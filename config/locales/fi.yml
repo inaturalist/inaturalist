@@ -277,7 +277,7 @@ fi:
   add_blocked_users: Lisää estettävä käyttäjä
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Lisää lihavoitu teksti
-  add_comma_separated_tags: "Lisää pilkulla erotellut merkinnät"
+  add_comma_separated_tags: "Lisää pilkulla erotellut tunnisteet"
   add_comment: Lisää kommentti
   add_conservation_status: Lisää suojelutaso
   add_custom_project_fields: Lisää mukautettuja projektikenttiä
@@ -343,12 +343,12 @@ fi:
   add_sex_cannot_be_determined_annotation: 'Lisää "sukupuoli: ei voida määrittää" -merkintä'
   add_some_now: Lisää jotain nyt
   add_tag: Lisää merkintä
-  add_tags: Lisää merkintöjä
-  add_tags_to_selected_taxa: Lisää tunnistuksia valittuun taksoniin
+  add_tags: Lisää tageja
+  add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
   add_taxa: Lisää taksoni
   add_taxon_batch_to: "Lisää taksonierä luetteloon %{list}"
   add_taxon_range: Lisää taksonin levinneisyysalue
-  add_taxonomic_tags_to: "Lisää taksonomiset merkinnät valittuihin Flickr-kuviin &raquo;"
+  add_taxonomic_tags_to: "Lisää taksonomisia tunnisteita valittuihin Flickr-kuviin &raquo;"
   add_to_a_scheme: Lisää järjestelmään
   add_to_a_project: Lisää projektiin
   add_to_calendar: Lisää kalenteriin
@@ -632,7 +632,7 @@ fi:
   are_you_sure_you_want_to_delete_this_photo?: Haluatko varmasti poistaa tämän kuvan?
   are_you_sure_you_want_to_delete_this_post: Haluatko varmasti poistaa tämän kirjoituksen?
   are_you_sure_you_want_to_delete_this_taxon_change: Haluatko varmasti poistaa tämän taksonimuutoksen?
-  are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki merkinnät?
+  are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tunnisteet?
   are_you_sure_you_want_to_remove_curator: Haluatko varmasti poistaa käyttäjältä %{user} kuraattorin oikeudet?
   are_you_sure_you_want_to_remove_from_project: Haluatko varmasti poistaa käyttäjän %{user} tästä projektista?
   are_you_sure_you_want_to_remove_manager: Haluatko varmasti poistaa käyttäjältä %{user} managerin oikeudet?
@@ -872,7 +872,7 @@ fi:
   choose_photos_to_tag_from_photostream: Valitse kuvia tagattaviksi valokuvavirrastasi
   choose_rule: Valitse sääntö
   choose_subjects: Valitse aiheet
-  choose_tags: Valitse merkinnät
+  choose_tags: Valitse tunnisteet
   choose_taxon: Valitse taksoni
   choose_what_kind_of_change_youre_creating: "Valitse millaisia muutoksia olet luomassa."
   cid_d_to_genus: Yhteisötunnistettu suvulle
@@ -1367,8 +1367,8 @@ fi:
   description: Kuvaus
   description_from: Kuvauksen lähde on
   description_sections: Kuvausosiot
-  description_slash_tags: Kuvaus / Merkinnät
-  description_tags_more: "Kuvaus, merkinnät, &amp; muuta"
+  description_slash_tags: Kuvaus / tunnisteet
+  description_tags_more: "Kuvaus, tunnisteet, &amp; muuta"
   desription: Kuvaus
   destroy: Tuhoa
   details: Tiedot
@@ -1730,7 +1730,7 @@ fi:
   flickr_photos: Flickr-valokuvia
   flickr_style: Flickr-tyyli
   flickr_tagger: Flickr-tagienlisääjä
-  flickr_tags: Flickr-merkinnät
+  flickr_tags: Flickr-tunnisteet
   fluid_layout: Virtaava asettelu
   #Adjective, as in a fluid layout of images
   fluid: neste
@@ -1770,7 +1770,7 @@ fi:
     other: sientä
   gbif: GBIF
   gbif_occurrences: GBIF:n esiintymistiedot
-  generate_taxonomic_tags_for_flickr: Luo taksonomisia merkintöjä Flickr-valokuviisi.
+  generate_taxonomic_tags_for_flickr: Luo taksonomisia tunnisteita Flickr-kuviisi.
   generate_widget: Luo pienoisohjelma
   generate_your_stats: Tuota tilastosi
   generating_mobile_archive: "Luodaan mobiiliarkistoa"
@@ -1899,6 +1899,7 @@ fi:
   if_for_some_reason_a_user_doesnt_agree: |
     Jos jotain syystä et hyväksy yhteisön tunnistusta, voit hylätä sen, mikä tarkoittaa, että omaa tunnistustasi käytetään linkittämään muihin havaintoihin, päivittämään pinnalistoja jne. Voit kuitenkin saada havainnollesi Tutkimustaso-merkinnän vain, jos yhteisö on samaa mieltä kanssasi.
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty tällä hetkellä?
+  if_this_link_will_apply_to_descendant: Jos tämä linkki koskee lapsitaksoneja, voit käyttää mallitunnisteita täyttääksesi taksonin nimen URL-osoitteessa.
   if_you_have_any_trouble_with_the_site_check_out: 'Jos sinulla on kysyttävää, tutustu <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.'
   if_your_project_is: Jos projekti koskee tiettyä paikkaa, aseta koordinaatit klikkaamalla karttaa tai syöttämällä ne manuaalisesti.
   ignore_and_continue: Hylkää ja jatka
@@ -1917,7 +1918,7 @@ fi:
   import_observations: Tuo havaintoja
   import_observations_from_a_photo: Tuo havaintoja valokuvan tarjoajalta tai tiedostosta tietokoneeltasi.
   import_photos: Tuo kuvia
-  import_tags_from_csv: Tuo merkinnät CSV-tiedostosta
+  import_tags_from_csv: Tuo tunnisteet CSV-tiedostosta
   importing: "Tuodaan..."
   improving: Parannus
   in_n: "paikassa %{n}"
@@ -2192,7 +2193,7 @@ fi:
   loading_metadata: Ladataan metadataa...
   loading_preview_and_code: Ladataan esikatselua ja koodia...
   loading_suggestions: Ladataan ehdotuksia...
-  loading_tags: "Ladataan merkintöjä..."
+  loading_tags: "Ladataan tunnisteita..."
   loading_taxa_from_your: "Ladataan taksoneita havainnoistasi..."
   loading_wikipedia_description: "Ladataan Wikipediakuvausta..."
   locales_: Kieli
@@ -2745,7 +2746,7 @@ fi:
   observation_fields: Havainnointikentät
   observation_fields_are_additional: Havaintokentät ovat lisätietokenttiä, joita voidaan lisätä havaintoihin.
   observation_fields_by_preferences_description: |
-    Havaintokentät muistuttavat merkintöjä, paitsi kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
+    Havaintokentät ovat vähän kuin tunnisteita, mutta kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     esim. 2019-10-29 13:12:21
@@ -3711,8 +3712,8 @@ fi:
   remarks_optional: 'Huomautukset <span class="small description">(valinnainen)</span>'
   remember_me: Muista minut
   remove: Poista
-  remove_all_tags: Poista kaikki merkinnät
-  remove_comma_separated_tags: "Poista pilkulla erotellut merkinnät"
+  remove_all_tags: Poista kaikki tunnisteet
+  remove_comma_separated_tags: "Poista pilkulla erotellut tunnisteet"
   remove_conservation_status: poista suojelustatus
   remove_from: Poista kohteesta
   remove_curator: Poista kuraattori
@@ -3734,7 +3735,7 @@ fi:
   remove_relationship_question: Poista kaveri?
   remove_section: Poista sektio
   remove_selected: Poista valitut
-  remove_tags: Poista merkinnät
+  remove_tags: Poista tunnisteet
   removed: Poistettu
   removed_project_user: Poista projektikäyttäjä
   removing: "Poistetaan..."
@@ -3963,6 +3964,7 @@ fi:
   sorry_we_didnt_find_that_photo: "Valitettavasti emme löytäneet tuota kuvaa."
   sorry_x_is_not_responding: "%{x} ei vastaa. Yritä myöhemmin uudelleen."
   sorry_you_can_only_add_1000_at_a_time: "Valitettavasti voit lisätä vain 1000 kerrallaan."
+  sorry_you_need_to_be_signed_in_and: Anteeksi, sinun täytyy olla kirjautuneena sisään ja linkitettynä Flickr-tiliisi lähettääksesi tunnisteet suoraan Flickriin.
   sort: Lajittele
   sort_by: Lajitteluperuste
   sorting_by: 'Lajittele:'
@@ -3970,7 +3972,7 @@ fi:
     add_media: Lisää mediatiedosto
     add_sounds: Lisää ääniä
     before_importing_sounds: ennen äänien tuontia
-    import_from_soundcloud_description: "Valitse iNaturalist-havainnoiksi muutettavat äänet SoundCloud-käyttäjätililtäsi. Täytämme päivämäärän ja kellonajan äänen metatietojen pohjalta, ja yritämme etsiä lajinimiä avainsanoista."
+    import_from_soundcloud_description: "Valitse iNaturalist-havainnoiksi muutettavat äänet SoundCloud-käyttäjätililtäsi. Täytämme päivämäärän ja kellonajan äänen metatietojen pohjalta, ja yritämme etsiä lajinimiä tunnisteista."
     import_from_sounds: Tuo äänistä
     import_sounds: Tuo ääniä
     listen: Kuuntele
@@ -4101,8 +4103,8 @@ fi:
   #Noun, as in "add a tag to this observation"
   tag: Tagi
   tagging: 'Tageja lisätään...'
-  tags: Merkinnät
-  tags_are_a_way: 'Merkinnät ovat tapa järjestää havaintojasi. Esimerkiksi, saatat merkitä kaikki tidepool-havaintosi merkinnällä "tidepools" helpottaaksesi niiden myöhempää löytymistä.'
+  tags: Tunnisteet
+  tags_are_a_way: 'Tunnisteiden avulla voit järjestää havaintojasi. Voit esimerkiksi merkitä kaikki niityillä tekemästi havainnot tunnisteella "niitty" helpottaaksesi niiden löytämistä myöhemmin.'
   take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   target_list_alert: Oletko varma, että olet yrittänyt havainnoida kaikkia lajiluettelosi lajeja? Huomaa, että kaikki luettelosi lajit, joita ei ole merkitty havaituksi, tulkitaan poissaoleviksi, joten on hyvin tärkeää, että lajiluettelosi vastaa täsmällisesti sitä lajiryhmää, jota ole yrittänyt havaita
@@ -4188,7 +4190,7 @@ fi:
   taxonomic_groups: Taksonomiset ryhmät
   taxonomic_order: Taksonominen järjestys
   taxonomic_status: Taksonominen tila
-  taxonomic_tags_for_flickr: Flickr'in taksonomiset merkinnät
+  taxonomic_tags_for_flickr: Flickr'in taksonomiset tunnisteet
   taxonomy_details: Taksonomiset tiedot
   taxonomy_details_for: Taksonomiset tiedot kohteelle
   taxonomy_details_info: 'Taksonomiset tiedot -sivu käyttää Taksonikehyksiä auttaakseen kuvaamaan, mitä tarkoitamme taksonilla. <a href="/pages/taxon_frameworks">Lisätietoja</a>.'
@@ -4279,7 +4281,7 @@ fi:
   #Application is an app or service the user has authorized to access their
   #iNat account
   this_will_sign_you_out_current_session: Tämä kirjaa sinut pois nykyisestä istunnostasi tässä sovelluksessa.
-  this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä merkintöjä Flickr-valokuvillesi. Jatketaan?
+  this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tunnisteita Flickr-kuvillesi. Jatketaanko?
   this_year: Tänä vuonna
   threatened: Uhanalainen
   time_: aika
@@ -4847,7 +4849,7 @@ fi:
   your_recent_projects: Viimeaikaiset projektisi
   your_relationships: Omat kaverisuhteet
   your_subscriptions_to_this_place: Tilauksesi, jotka liittyvät tähän paikkaan.
-  your_tags: Omat merkinnät
+  your_tags: Tunnisteesi
   yours: Sinun
   youre_not_following_anyone: |-
     Et seuraa ketään. Muiden luontoharrastajien seuraaminen sallii sinun helposti seurata heidän viimeisimpiä havaintojaan. Selvitä mitä ihmiset <a href="%{observations_path}">havainnoivat</a> ja tee joitain uusia <a href="%{people_path}">tuttavuuksia</a>.
@@ -4924,6 +4926,13 @@ fi:
       edit:
         add_eol_content: |
           Lisää EOL-sisältöä valittuihin taksoneihin eränä. Tämä voi kestää jonkin aikaa, joten ole kärsivällinen.
+        add_color_tags_help: |
+          Lisää väritunnisteita valittuun taksoniin liitetyistä väreistä.
+        add_rank_tags_help_html: |
+          Lisää taksonitunnisteita, jotka perustuvat taksonomiaamme, esim.
+          <code>heimo=Laridae</code>
+          tai
+          <code>heimo=Lokit</code>
         import_tags_from_csv_help_html: |
           <p>
           Lataa CSV-tiedosto, jossa on tageja tämän oppaan lajeille. CSV-tiedoston rakenteen pitää olla seuraava:
@@ -4968,6 +4977,12 @@ fi:
           Yksittäisten kuvien ruudukko, ei kuvauksia
       pdf_generation_notice: |
         Olethan kärsivällinen, suuren PFD-tiedoston luominen voi viedä minuutin tai pari.
+      tags_help_html: |
+        Tunnisteet ovat kuin kategorioita lajeille, paitsi että
+        usealla lajilla voi olla sama tunniste. Syötä tunnisteet pilkulla erotettuna luettelona
+        tähän, esim. <code>pieni, pörröinen</code>. Lisätäksesi nimettyjä
+        kategorioita, käytä tunnisteita, kuten <code>category_name=category_value</code>,
+        esim. <code>väri=keltainen</code>.
       sorts:
         default: Oppaan järjestys
         alphaname: Aakkosjärjestyksessä tieteellisten nimien mukaan
@@ -5139,7 +5154,7 @@ fi:
         url: URL-osoite havainnolle
         image_url: URL-osoite oletuskuvalle
         sound_url: URL oletusäänitteelle. Huomaa että tämä toimii vain tähän palveluun lisäytyille äänitteille, mutta ei äänitteille kolmansien osapuolten palveluissa
-        tag_list: Pilkulla erotettu luettelo merkinnöistä
+        tag_list: Pilkulla erotettu luettelo tunnisteista
       import:
         coordinate_systems_help: |
           %{site_name} hyväksyy koordinaatit useassa eri koordinaattijärjestelmässä, joten kun annat koordinaatit jossain muussa järjestelmässä kuin leveysaste/pituusaste (latitudi/longitudi), tarvitaan tieto koordinaattijärjestelmästä koordinaattien tulkitsemiseksi oikein. Ole hyvä ja varmista, että olet valinnut oikean koordinaattijärjestelmän datallesi tai sijainti voi mennä kauaksikin oikeasta paikasta. Jos koordinaatit ovat peräisin GPS-laitteelta, tarkista laitteen asetuksista sen käyttämä koordinaattijärjestelmä. Huomaa, että emme säilytä erikoiskoordinaatteja, vain niiden konversiot leveys- ja pituusasteisiin.
@@ -5320,7 +5335,7 @@ fi:
         coordinates_desc: Sinun täytyy määritellä koordinaatit, jos et piirrä paikan rajoja tai tallenna KML-tiedostoa.
         map_instruction: Käytä polygonityökalua paikan rajojen piirtämiseen.
     posts:
-      formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi merkintöjä."
+      formatting_none_help: "Ei HTML-asetusta, käytä vain syöttämiäsi tunnisteita."
       formatting_simple_help: "Linkitä URL-osoitteet ja aseta rivinvaihdot automaattisesti."
     projects:
       project_type: Projektin tyyppi
