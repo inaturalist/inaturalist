@@ -20,9 +20,9 @@ et:
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">1</span> määratleja'
+    one: '<span class="count">%{count}</span> määraja'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> määratlejat'
+    other: '<span class="count">%{count}</span> määrajat'
   x_languages:
     one: "%{count} keel"
     other: "%{count} keelt"
@@ -1432,7 +1432,7 @@ et:
   identifications: Määratlused
   computer_vision_suggestion_desc: |
     Masin-nägemine on protsess, mille abil õpetatakse arvuteid piltidelt mustreid leidma. Kasutame määratluste pakkumiseks (nt automaatne lõpetamine ja võrdlemine) tööriistu, mis kasutavad masin-nägemise mudeleid, mida on õpetatud kogukondlike fotode abil. Antud silt tähistab seda, kui keegi on lisanud määratluse mõne taolise tööriista abil.
-  identifiers: Määratlejad
+  identifiers: Määrajad
   identotron: Määramismasin
   identotron_for: 'Määramismasin:'
   identotron_help: Määramismasina abi
@@ -3291,8 +3291,8 @@ et:
   today: Täna
   tools: Tööriistad
   top_contributors: Parimad täiendajad
-  top_identifiers: Parimad määratlejad
-  top_identifiers_of_taxon: Taksoni %{taxon} parimad määratlejad
+  top_identifiers: Parimad määrajad
+  top_identifiers_of_taxon: Taksoni %{taxon} parimad määrajad
   top_observers: Parimad vaatlejad
   total: Kokku
   totals: Kokku
