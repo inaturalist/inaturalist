@@ -9,6 +9,8 @@ class CheckListsController < ApplicationController
   before_action :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_action :set_iconic_taxa, :only => [:show]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
   

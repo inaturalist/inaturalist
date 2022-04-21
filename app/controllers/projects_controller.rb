@@ -36,6 +36,8 @@ class ProjectsController < ApplicationController
   before_action :filter_params, only: [ :update, :create ]
   before_action :site_required, only: [ :feature, :unfeature ]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   requires_privilege :organizer, only: [:new_traditional]
   
   ORDERS = %w(title created)

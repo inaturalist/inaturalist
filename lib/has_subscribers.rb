@@ -289,7 +289,7 @@ module HasSubscribers
             if options[:delay] == false
               record.send(callback_method, subscribable_association)
             else
-              record.delay(priority: options[:priority]).
+              record.delay(priority: options[:priority], run_at: 5.seconds.from_now).
                 send(callback_method, subscribable_association)
             end
           end

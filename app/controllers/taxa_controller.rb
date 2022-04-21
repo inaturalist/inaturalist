@@ -49,7 +49,7 @@ class TaxaController < ApplicationController
   before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
-  prepend_around_action :enable_replica, only: [:show]
+  prepend_around_action :enable_replica, only: [:describe, :links, :show]
 
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
