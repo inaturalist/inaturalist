@@ -1398,6 +1398,9 @@ da:
   default_search_place_description: |
     Dette vil være dit standardsted for alle søgninger i Explore og Identify.
   default_sound_license: Standard lyd licens
+  default_time_zone_desc: |
+    Dette er standard tidszonen. Den endelige tidszone tildeles baseret
+    på observationens placering, når den gemmes.
   defaults_to_your_name_or_username: Standard til dit navn eller brugernavn
   defines_a_taxon_framework_for: Definerer en taksonramme for %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definerer en Takson-ramme for %{taxon} klidebestemt til %{source}

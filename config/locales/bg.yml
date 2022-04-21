@@ -589,6 +589,8 @@ bg:
   batch_operations: Групови операции
   be_the_first_to_fave_this_observation: Станете първият добавил наблюдението в Любими!
   because_of: заради
+  become_a_donor_caps: СТАНЕТЕ ДАРИТЕЛ
+  become_a_donor_today_caps: СТАНЕТЕ ДАРИТЕЛ ДНЕС
   bg_color: Цвят на фона
   bio: Биография
   bio_description: Разкажете на останалите повече за себе си!
@@ -687,6 +689,7 @@ bg:
   check_list_place: "Видов списък на %{place}"
   check_list_updated: Видовият списък е обновен!
   check_lists_for: "Други видови списъци за %{place}"
+  check_out_the_inat_store: Разгледайте магазина на iNaturalist
   check_this_box_if_html: |
     Маркирайте тази кутийка, ако искате да приложите лиценза <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -783,6 +786,16 @@ bg:
   continue: Продължи
   continue_to_site: Продължи към %{site_name}
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Без значение
     sex: Пол
     male: Мъжки
     female: Женски
@@ -995,6 +1008,7 @@ bg:
   default: по подразбиране
   #Default option
   default_: По подразбиране
+  default_display_time_zone: Часова зона за изписване по подразбиране
   default_invite_comment: "Страхотна снимка! Трябва да я публикувате на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Лиценз по подразбиране за наблюдение
   default_photo_license: Лиценз по подразбиране за снимка
@@ -1002,6 +1016,8 @@ bg:
   default_search_place_description: |
     Това ще е мястото по подразбиране при търсене в „Изследвайте“ и „Разпознаване“.
   default_sound_license: Лиценз по подразбиране за звук
+  default_time_zone_desc: |
+    Това е часовата зона по подразбиране. Окончателната часова зона ще се зададе въз основа на местоположението на наблюдението, когато то бъде запазено.
   delete: Изтриване
   delete_conversation: Изтрий разговора
   delete_icon?: Изтрий иконата?
@@ -1413,6 +1429,8 @@ bg:
   highest_rank: Най-висок ранг
   history: История
   home: Начало
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Часова корекция:"
   however_there_were_some_issues: "Обаче възникнаха няколко проблема: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Не знам, но съм сигурен че това е %{taxon}
   icon: Иконка
@@ -1450,6 +1468,7 @@ bg:
   importing: "Импортиране..."
   in_n: "във %{n}"
   in_place_x: във %{place}
+  inaturalist_network: Мрежа на iNaturalist
   inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
   inbox: Входящи
@@ -1688,6 +1707,7 @@ bg:
     eo: есперанто
     es: испански
     es-AR: испански (Аржентина)
+    es-CO: испански (Колумбия)
     es-MX: испански (Мексико)
     et: естонски
     eu: баски
@@ -1696,6 +1716,7 @@ bg:
     fr-CA: френски (Канада)
     gl: галисийски
     he: иврит
+    hu: унгарски
     id: индонезийски
     it: италиански
     ja: японски
@@ -1715,6 +1736,7 @@ bg:
     sk: словашки
     sq: албански
     sv: шведски
+    th: тайландски
     tr: турски
     uk: украински
     zh-CN: китайски (опростен)
@@ -1863,6 +1885,10 @@ bg:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Месец
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
@@ -1946,6 +1972,7 @@ bg:
   new_message: Ново съобщение
   new_observation_field: Ново поле за наблюдения
   new_observations: Нови наблюдения
+  new_observations_in_year: "Нови наблюдения през %{year}"
   new_observations_ellispsis: "Нови наблюдения..."
   new_observations_from_place_html: "Нови наблюдения от %{place}"
   new_observations_may_take_up_to: Може да отнеме до %{widget_expiration} минути докато новите наблюдения се появят в джаджата (widget).
@@ -1960,16 +1987,21 @@ bg:
   new_taxon_link: Нова таксономична препратка
   new_taxon_name_for: Ново име на таксон за
   new_users: Нови потребители
+  new_users_in_year: "Нови потребители през %{year}"
   new_users_w_7_obs: Нови потребители със 7 набл.
   newly_added: Новодобавени
   newly_added_species: Новодобавени видове
   newly_observed_species: Новонаблюдавани видове
   newly_observed_species_in_year: "Новодобавени видове през %{year}"
   next: След.
+  next_date_short: След.
   next_observation: Следващо наблюдение
   next_page: След. страница
+  next_page_short: След.
   next_photo: Следваща снимка
+  next_post_short: След.
   next_tab: Следващ раздел
+  next_taxon_short: След.
   'no': 'Не'
   no_but_it_is_a_member_of_taxon: "Не, но е представител на %{taxon}"
   no_comments_yet: Няма коментари.
@@ -2061,14 +2093,26 @@ bg:
     Наблюдението е включено в проект, който изисква това поле. Наблюдението трябва да се премахне от проекта, за да може това поле да бъде изтрито.
   observation_brief_something_on_day_at_time_by_user: "Нещо на %{day} в %{time} от %{user}"
   observation_brief_something_on_day_by_user: "Нещо на %{day} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "Нещо през %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year_by_user: "Нещо през %{month} %{year} от %{user}"
   observation_brief_something_by_user: "Нещо от %{user}"
   observation_brief_something_from_place_by_user: "Нещо от %{place} от %{user}"
   observation_brief_something_from_place_on_day: "Нещо от %{place} на %{day}"
   observation_brief_something_from_place_on_day_by_user: "Нещо от %{place} на %{day} от %{user}"
   observation_brief_something_from_place_on_day_at_time: "Нещо от %{place} на %{day} в %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "Нещо от %{place} на %{day} в %{time} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Нещо от %{place} през %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Нещо от %{place} през %{month} %{year} от %{user}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} на %{day} в %{time} от %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} на %{day} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} през %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{taxon} през %{month} %{year} от %{user}"
   observation_brief_taxon_by_user: "%{taxon} от %{user}"
   observation_brief_taxon_from_place: "%{taxon} от %{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} от %{place} от %{user}"
@@ -2076,6 +2120,10 @@ bg:
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} от %{place} на %{day} от %{user}"
   observation_brief_taxon_from_place_on_day_at_time: "%{taxon} от %{place} на %{day} в %{time}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} от %{place} на %{day} в %{time} от %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{taxon} от %{place} през %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} от %{place} през %{month} %{year} от%{user}"
   observations_by_category: "Наблюдения според категория"
   observations_by_app: Наблюдения според приложение
   observations_by_rank: Наблюдения според ранг
@@ -2165,6 +2213,10 @@ bg:
   off_caps: "ИЗКЛ"
   official_blog: Официален блог
   offline_access_enabled: Извънмрежовият достъп е разрешен
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Часово изместване"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Измести
   old_observation_form: Стар формуляр за наблюдения (неактуален)
   on_caps: "ВКЛ"
   on_day: "на"
@@ -2335,6 +2387,8 @@ bg:
     Закачи тази комбинация от координати, точност, геоповерителност и бележки за мястото за повторно използване.
   place: Място
   place_autocomplete_placeholder: България, Пирин и т.н.
+  place_create_quota_exceeded: |
+    Достигнахте максималния брой места, които можете да създадете в рамките на 24 часа (%{quota})
   place_deleted: Мястото е изтрито.
   place_geo:
     geo_planet_place_types:
@@ -2716,6 +2770,8 @@ bg:
     zimbabwe: Зимбабве
   places_of_interest: Места представляващи интерес
   places_merged_successfully: Местата са успешно слети!
+  places_warning_quota: |
+    Можете да създадете само три места на ден.
   plants: растения
   please_confirm_your_inat_username: "Моля потвърдете Вашето потребителско име на %{site_name}"
   please_fix_your_csv_and_try_again: Моля поправете Вашия CSV и опитайте отново.
@@ -2739,11 +2795,15 @@ bg:
   preview_observations_with_these_observation_requirements: Предварителен преглед на наблюденията при тези изисквания
   preview_of_synced_observation: "<strong>Преглед</strong> на синхронизирано наблюдение. <a href=\"%{url}\">Отмени?</a>"
   previewing: "Преглед..."
+  previous_date_short: Пред.
   prev: Пред.
   previous_observation: Предишно наблюдение
   previous_page: Пред. страница
+  previous_page_short: Пред.
   previous_photo: Предишна снимка
+  previous_post_short: Пред.
   previous_tab: Предишен раздел
+  previous_taxon_short: Пред.
   print_verb: Печат
   privacy: Поверителност
   private: поверително
@@ -3003,6 +3063,7 @@ bg:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Отмени %{site_name}?"
+  revoke_privacy_consent_warning: "Единственият начин да отмените съгласието си е като изтриете акаунта си и всичките данни свързани с него."
   rg_observations: Наблюдения ИК
   role: Роля
   rotate_left: Завърти наляво
@@ -3412,6 +3473,124 @@ bg:
   threatened: Застрашен
   time_: час
   time_ago: "преди %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Южноафриканско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Източноафриканско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Аржентинско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Колумбийско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Централно време (САЩ и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Тихоокеанско време (Мексико)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Време в Скалистите планини (САЩ и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Гватемалско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Атлантическо време (Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Боливийско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Перуанско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Тихоокеанско време (САЩ и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Централно време (Мексико)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Източно време (САЩ и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Аризонско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Време в континентално Чили
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Бразилско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Тихоокеанско време (Мексико)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Арабско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Индокитайско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Хонконгско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Западноиндонезийско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Израелско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Индийско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Време в Красноярск
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Китайско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Сингапурско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Тайванско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Японско стандартно време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Време в Екатеринбург
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Време в Аделейд
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Време в Бризбън
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Време в Мелбърн
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Време в Пърт
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Време в Сидни
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Източноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Източноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Турско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Източноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Западноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Западноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Московско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Източноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Централноевропейско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Самоанско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Новозеландско време
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Хавайско-алеутско време
   #As in the title of a book or a blog post
   title: заглавие
   title_and_description: "Заглавие и описание"
@@ -3722,6 +3901,24 @@ bg:
   yes_license_my_childs_observations: Да, лицензирай снимките, звуците и наблюденията на детето ми, така че учените да могат да използват данните (препоръчително).
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми, така че учените да могат да използват данните ми (препоръчително).
   yesterday: Вчера
+  yir_donate_banner_inaturalist_in_year: "INATURALIST ПРЕЗ %{year}:"
+  yir_donate_banner_reaching_millions: Достигаме милиони. Разкриваме биоразнообразието. Глобално сътрудничество.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Изцяло благодарение на хора като Вас!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist просперира благодарение на хора като Вас!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Помогнахте на iNaturalist да просперира тази година. Благодарим Ви!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist се нуждае от подкрепата Ви
+  yir_generating_and_sharing: |
+    Генерирането и споделянето на ценните данни за биоразнообразието, с тези несравними мащаби и скорост, е свързано с растящи разходи
+  yir_millions_of_people_used_inaturalist: |
+    Тази година милиони хора използваха iNaturalist, както и Seek от iNaturalist, за да се сближат с природата
+  yir_thank_your_for_being_generous: |
+    Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Платформата разчита на множество субсидии и дарения, включително на благотворителни дарения на съвсем малка част от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие.
+  yir_your_gift_sustains: |
+    Вашето дарение поддържа тази платформа с глобален досег и значимо лично и екологично значение
   you: Вас
   you_: Вас
   you_appear_offline_try_again: |
@@ -3806,6 +4003,20 @@ bg:
             Ако е така, моля прочетете нашето <a href="%{url}">Ръководство за учители</a> за съвети как да използвате %{site_name} с ученици и студенти.
     donate:
       donate_short_desc: "Дарете и покажете своята подкрепа!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим Ви, че сте част от нея!</strong>
+        </p>
+        <p class="lead">
+        Ако вярвате в способността на тази глобална общност от любители на природата да споделя знания и да генерира незаменими данни за биоразнообразието – моля, обмислете възможността да станете еднократен или редовен дарител или разгледайте<a
+        href="https://www.inaturalist.org/pages/giving">други начини да дарите</a>.
+        </p>
+        <p class="lead">
+        Вашите дарения помагат за поддръжката на iNaturalist и разрастващата се общност, за развиването на компютърното зрение, разработването на нови функции и поддържането на нашите сървъри и персонал.
+        </p>
+        <p class="text-muted">
+        iNaturalist e съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Всички дарения ще бъдат получени от Калифорнийската академия на науките - базирана в САЩ, некомерсиална и освободена от данъци организация според секция 501(c)(3) от Кодекса на САЩ (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Подкрепям iNaturalist, защото...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станете Ежемесечен поддръжник на iNaturalist
@@ -3909,6 +4120,7 @@ bg:
         horizontal: Хоризонтално
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Интервал
+        interval_limit_warning_year: Показват се само 100 години
       export:
         export_in_progress_notice_html: |
           В момента се извършва ваше <a href="%{url}">експортиране</a>. Трябва да изчакате да завърши, преди да започнете ново експортиране.
@@ -4204,6 +4416,9 @@ bg:
           Каква беше тази година в сравнение с предходните години? Зеленият стълб показва тази година, белият вертикален стълб показва предходната година, а сивите площи на фона показват най-слабите и най-силните години, както и средните стойности за всички години.
         compared_to_previous_years: Сравни с предишни години
         donate_title: "Специални благодарности на всичките ни поддръжници"
+        donate_desc_html: |
+          Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество.
+          Поддържа се от <a href="%{team_url}">малък екип</a>, който разработва целия дизайн и софтуер на уебсайта, мобилните приложения, включително <a href="%{seek_url}">Seek от iNaturalist</a>, и освен това ръководи поддръжката на общността, сътрудничеството и интеграциите необходими за функционирането и разрастването на платформата. А тя разчита на множество субсидии и дарения, включително на благотворителни дарения на съвсем малка част от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие. Можете да дарите в множество валути, за да поддържате основната дейност на iNaturalist. Благодарим на всички, че превърнахте %{year} г. в най-успешната година на iNaturalist досега!
         donors: Дарители
         donors_guide_label_our_goal_is_1000: Целта ни е 1 000 редовни дарители на месец
         inaturalist_network: Мрежа на iNaturalist
