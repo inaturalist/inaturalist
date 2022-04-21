@@ -786,6 +786,16 @@ bg:
   continue: Продължи
   continue_to_site: Продължи към %{site_name}
   controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Без значение
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Без значение
     sex: Пол
     male: Мъжки
     female: Женски
@@ -1419,6 +1429,8 @@ bg:
   highest_rank: Най-висок ранг
   history: История
   home: Начало
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Часова корекция:"
   however_there_were_some_issues: "Обаче възникнаха няколко проблема: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Не знам, но съм сигурен че това е %{taxon}
   icon: Иконка
@@ -1873,6 +1885,10 @@ bg:
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Месец
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
@@ -2197,6 +2213,10 @@ bg:
   off_caps: "ИЗКЛ"
   official_blog: Официален блог
   offline_access_enabled: Извънмрежовият достъп е разрешен
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Часово изместване"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Измести
   old_observation_form: Стар формуляр за наблюдения (неактуален)
   on_caps: "ВКЛ"
   on_day: "на"
