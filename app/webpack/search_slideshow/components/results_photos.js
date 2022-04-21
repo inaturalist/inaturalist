@@ -64,7 +64,7 @@ class ResultsPhotos extends Component {
         </div>
       );
     } else {
-      photos = <h1 className="noresults">No Photos Yet</h1>;
+      photos = <h1 className="noresults">{ I18n.t( "no_photos" ) }</h1>;
     }
     return (
       <div className="slide photos-slide">

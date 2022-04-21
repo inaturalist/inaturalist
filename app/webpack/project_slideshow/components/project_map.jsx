@@ -132,9 +132,9 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  stripTags( I18n.t( "x_observations_html", {
+                  I18n.t( "x_observations_html", {
                     count: parseInt( this.props.overallStats.observations, 0 ) || 0
-                  } ) )
+                  } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
             </div>
@@ -144,9 +144,9 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  stripTags( I18n.t( "x_species_html", {
+                  I18n.t( "x_species_html", {
                     count: parseInt( this.props.overallStats.species, 0 ) || 0
-                  } ) )
+                  } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
             </div>
@@ -156,9 +156,9 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  stripTags( I18n.t( "x_identifiers_html", {
+                  I18n.t( "x_identifiers_html", {
                     count: parseInt( this.props.overallStats.identifiers, 0 ) || 0
-                  } ) )
+                  } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
             </div>
@@ -168,9 +168,9 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  stripTags( I18n.t( "x_observers_html", {
+                  I18n.t( "x_observers_html", {
                     count: parseInt( this.props.overallStats.observers, 0 ) || 0
-                  } ) )
+                  } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
             </div>
