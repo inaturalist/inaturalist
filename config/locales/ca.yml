@@ -4656,6 +4656,28 @@ ca:
   threatened: Amenaçat
   time_: hora
   time_ago: "fa %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Hora d'Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Hora d'Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Hora de Turquia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Hora d'Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Hora d'Europa Occidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Hora d'Europa Occidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Hora Central Europea
   #As in the title of a book or a blog post
   title: títol
   title_and_description: "Títol i Descripció"
@@ -7163,6 +7185,8 @@ ca:
         login: Nom d’usuari
         name: Nom
         locale: Local
+        time_zone: Fus horari
+        search_place_id: Cerqueu lloc
         place_id: Lloc
         preferred_observation_fields_by: Permet camps d'observació de
     errors:
