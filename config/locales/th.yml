@@ -29,14 +29,6 @@ th:
     other: '%{count} ลำดับอนุกรมวิธานที่ตรงกัน'
   x_matching_taxa_html:
     other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
-  x_misidentifications_of_this_species:
-    other: "%{count} ชนิดนี้มีการระบุผิด"
-  x_misidentifications_of_species_in_this_genus:
-    other: "%{count} สกุลนี้มีการระบุผิด"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
-  x_misidentifications_of_species_in_this_rank:
-    other: "%{count} การระบุชนิดต่อไปนี้ผิด %{rank}"
   x_observations:
     other: "%{count} การสังเกต"
   x_observations_:
@@ -193,7 +185,6 @@ th:
     sex: เพิ่มคำอธิบายสำหรับ "เพศ"
     plant_phenology: เพิ่มคำอธิบายสำหรับ "ชีพลักษณ์"
     life_stage: เพิ่มคำอธิบายสำหรับ "ช่วงอายุ"
-    evidence_of_presence: หลักฐานการพบเจอ
   add_another_flag: ติดธงเพิ่ม
   add_another_photo: เพิ่มภาพถ่ายอีกใบ
   add_another_section: เพิ่มส่วนอื่น ๆ
@@ -890,10 +881,6 @@ th:
       maverick: |
         หน่วยอนุกรมวิธานนี้ไม่ใช่ลูกหลานหรือบรรพบุรุษของหน่วยฯ ที่เสนอโดยชุมชน นั่นหมายความว่าชุมชนไม่ยอมรับคำแนะนำนี้
   id_withdrawn: ถอนการจำแนก
-  identify: ระบุชนิด
-  identify_observations: "ระบุการสังเกต"
-  identify_observations_by_these_users: ผู้ใช้งานเหล่านี้ได้ระบุการสังเกต
-  identify_title: "ระบุชนิด"
   identifications: การจำแนก
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
@@ -953,7 +940,6 @@ th:
   location_is_accurate: สถานที่สังเกตถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
   location_is_private: สถานที่นี้เป็นส่วนตัว
-  location_specified: มีการระบุสถานที่สังเกต
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
   longitude_value: "ลองจิจูด: %{longitude}"
@@ -1010,8 +996,6 @@ th:
   n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
   n_person_disagrees: "มี %{amount} คนไม่เห็นด้วย"
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
-  needs_id: รอระบุชนิด
-  needs_id_: รอระบุชนิด
   new_check_list: รายการตรวจสอบใหม่
   new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
   new_journal_post: โพสต์วารสารใหม่
@@ -1064,14 +1048,10 @@ th:
   order: อันดับ
   order_by: เรียงลำดับตาม
   organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
-  other_species_commonly_misidentified_as_this_species: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
-  other_species_commonly_misidentified_as_this_species_in_place_html: ชนิดอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genushybrid: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้ใน <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้ใน <a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_species: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้
-  other_taxa_commonly_misidentified_as_this_species_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกระบุผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
   our_blog: บล็อกของเรา
   per_day: ต่อวัน
   places_name:
