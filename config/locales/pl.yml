@@ -259,6 +259,9 @@ pl:
   about_place: "O %{place}"
   about_places: O lokalizacjach
   about_taxon_ranges: O zasięgach taksonów
+  about_taxon_ranges_desc: |
+    Zasięgi taksonów wyrażają globalne rozmieszczenie taksonu. Zasięgi taksonów
+    zazwyczaj pochodzą z Czerwonej Listy IUCN.
   about_the_network: O sieci
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
@@ -647,6 +650,7 @@ pl:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplikacje
+  apply_app_owner: Aplikuj
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Aplikuj
@@ -836,12 +840,14 @@ pl:
   by_you: Przez Ciebie
   calendar: Kalendarz
   calendars_only_show_x_observations_at_time: Kalendarze pokazują tylko %{x} obserwacji na raz
+  callback_url: Adres URL wywołania zwrotnego
   cancel: Anuluj
   cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez kuratorów strony
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Żyjące w niewoli
   captive_cultivated: Żyje w niewoli / Jest hodowany
+  captive_observations: Obserwacje organizmów w niewoli
   card: Karta
   casual: nieformalny
   casual_: Nieformalny
@@ -4575,6 +4581,10 @@ pl:
         observed_on: data obserwacji
       observation_field_value:
         value: 'wartość'
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Adres URL wywołania zwrotnego
       place_taxon_name:
         position: Pozycja
       post:

@@ -114,8 +114,8 @@ de:
     one: "<span class='count'>Eine</span> Beobachtung mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
     other: "<span class='count'>%{count}</span> Beobachtungen mit Forschungsqualität auf Ebene der Art oder darunter bestimmt</span>"
   x_sounds:
-    one: "%{count} Ton"
-    other: "%{count} Töne"
+    one: "%{count} Tonaufnahme"
+    other: "%{count} Tonaufnahmen"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> Taxon kuratiert"
     other: "<span class='count'>%{count}</span> Taxa kuratiert"
@@ -3166,9 +3166,9 @@ de:
     Informationen zu speichern, so dass die einzige Möglichkeit, diese Einwilligung zu widerrufen, in der Löschung des Kontos besteht.
     </p>
   data_transfer_consent_label: |
-    I stimme zu, dass meine persönlichen Daten in die Vereinigten Staaten übertragen werden dürfen
+    Ich stimme zu, dass meine persönlichen Daten in die Vereinigten Staaten übertragen werden dürfen
   data_transfer_consent_child_label: |
-    I stimme zu, dass die persönlichen Daten meines Kindes in die Vereinigten Staaten übertragen werden dürfen
+    Ich stimme zu, dass die persönlichen Daten meines Kindes in die Vereinigten Staaten übertragen werden dürfen
   pin_verb: Anpinnen
   pink: rosa
   pinned_locations_desc: |
@@ -4061,7 +4061,7 @@ de:
   schemes: Vorlagen
   schemes_including: Schemata einschließlich
   #E.g. "Homo sapiens" instead of "human"
-  scientific_name: Wissenschaftlicher Name
+  scientific_name: Wissenschaftl. Name
   search: Suchen
   search_all_fields: alle Felder durchsuchen
   search_by_name_or_email: Nach Namen oder E-Mail suchen

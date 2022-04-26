@@ -1392,6 +1392,7 @@ nl:
   default: standaard
   #Default option
   default_: Standaard
+  default_display_time_zone: Standaard tijdzone
   default_invite_comment: "Mooie foto! Post ze op %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Standaard waarnemingslicentie
   default_photo_license: Standaard fotolicentie
@@ -4814,6 +4815,8 @@ nl:
   time_: tijd
   time_ago: "%{time} geleden"
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Centraal-Europese tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_johannesburg: Zuid-Afrikaanse Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_nairobi: Oost-Afrikaanse Tijd
@@ -4824,15 +4827,31 @@ nl:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_yekaterinburg: Jekaterinenburgtijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: Oost-Europese Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_brussels: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Oost-Europese Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_kiev: Oost-Europese Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_lisbon: West-Europese Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: West-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: Moskoutijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Midden-Europese Tijd
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Midden-Europese Tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_rome: Centraal-Europese tijd
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -7517,6 +7536,8 @@ nl:
         login: Gebruikersnaam
         name: Naam
         locale: Taalinstelling
+        time_zone: Tijdzone
+        search_place_id: Plaats zoeken
         place_id: Plaats
         preferred_observation_fields_by: Sta waarnemingsvelden toe van
     errors:

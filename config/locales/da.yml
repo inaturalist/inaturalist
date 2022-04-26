@@ -1501,7 +1501,7 @@ da:
   display_link_to_checklist: Vis link til projektliste fra projektside
   display_monthly_supporter_badge: Vis Månedlig Supporter-badge på min profil
   display_name: Visningsnavn
-  display_name_description: Dette er navnet, der vil fremgå på din profil samt for ophavsretstilskrivning
+  display_name_description: Dette er det navn, der vil blive vist på din profil og brugt til angivelse af ophavsret
   distance_traveled_value: "Afstand tilbagelagt:%{distance}m"
   distance_traveled: "Afstand tilbagelagt (m)"
   documentation_for_developers_html: Dokumentation for <a href="/pages/developers">udviklere</a>
@@ -4069,7 +4069,7 @@ da:
   required_field: obligatorisk felt
   research: forskning
   research_: Forskning
-  research_grade: forskningskvalitet
+  research_grade: Forskningskvalitet
   research_grade_short_html: "F<span class='full'>orsknings</span>k<span class='full'>valitet</span>"
   research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
@@ -5562,9 +5562,9 @@ da:
   your_tags: Dine tags
   yours: Dine
   youre_not_following_anyone: |-
-    Du følger ikke nogen. Ved at følge andre naturelskere vil det tillade dig at se deres seneste observationer på en nem måde. Find ud af hvad andre personer 
-    <a href="%{observations_path}"> observerer </a> og få nogle nye
-    <a href="%{people_path}"> bekendtskaber </a>.
+    Du følger ikke nogen. Ved at følge andre naturelskere kan du følge med i deres seneste observationer på en nem måde. Find ud af hvad andre personer 
+    <a href="%{observations_path}">observerer</a> og få nogle nye
+    <a href="%{people_path}">bekendtskaber</a>.
   youre_not_following_anyone_on_inat: Du følger ingen på %{site_name} endnu!
   youve_linked_your_inaturalist_google_account: "Du har tilknyttet din %{site_name} konto med din Google konto. Dette giver dig mulighed for at bruge dine Google fotos i dine %{site_name} observationer."
   youve_successfully_linked_your_provider_account: "Du har tilknyttet din %{provider} konto"
