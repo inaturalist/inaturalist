@@ -25,7 +25,15 @@ const DroppedFile = class DroppedFile {
     const updates = { };
     const obs = photo.to_observation;
     if ( obs.time_observed_at ) {
-      updates.date = moment( obs.time_observed_at ).format( parsableDatetimeFormat( ) );
+      // to_observation should come back with a time zone set based on
+      // coordinates, and we need to use that here to tell moment that we
+      // want to use that timezone when formatting an output date, otherwise
+      // moment will parse the date with the offset in time_observed at
+      // correctly, but then *output* a datetime in the local time zone when
+      // we call format()
+      updates.date = moment
+        .tz( obs.time_observed_at, obs.zic_time_zone )
+        .format( parsableDatetimeFormat( ) );
       updates.selected_date = updates.date;
     }
     if ( obs.latitude && obs.longitude ) {
