@@ -1,5 +1,26 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe TaxonNamesController, "update" do
+  it "should allow a non-curator to change a name they made to another lexicon" do
+    user = create :user
+    tn = create :taxon_name, creator: user, lexicon: TaxonName::SPANISH
+    sign_in user
+    put :update, params: { id: tn.id, taxon_name: { lexicon: TaxonName::ENGLISH } }
+    tn.reload
+    expect( tn.lexicon ).to eq TaxonName::ENGLISH
+  end
+
+  it "should not allow a non-curator to change a name they made to a scientific name" do
+    user = create :user
+    tn = create :taxon_name, creator: user, lexicon: TaxonName::ENGLISH
+    expect( tn.lexicon ).not_to eq TaxonName::SCIENTIFIC_NAMES
+    sign_in user
+    put :update, params: { id: tn.id, taxon_name: { lexicon: TaxonName::SCIENTIFIC_NAMES, is_valid: false } }
+    tn.reload
+    expect( tn.lexicon ).not_to eq TaxonName::SCIENTIFIC_NAMES
+  end
+end
+
 describe TaxonNamesController, "destroy" do
   it "should work for curators" do
     tn = TaxonName.make!( lexicon: TaxonName::LEXICONS[:ENGLISH] )
