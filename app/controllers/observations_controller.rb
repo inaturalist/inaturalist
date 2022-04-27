@@ -59,7 +59,7 @@ class ObservationsController < ApplicationController
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
   before_action :load_observation, :only => load_only
-  blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
+  blocks_spam :only => load_only - [ :taxon_summary, :observation_links, :review ],
     :instance => :observation
   check_spam only: [:create, :update], instance: :observation
   before_action :require_owner, :only => [:edit, :edit_photos,
