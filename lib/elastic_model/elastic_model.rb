@@ -262,7 +262,7 @@ module ElasticModel
   end
 
   def self.elasticsearch_url
-    url = Taxon.__elasticsearch__.client.transport.options[:host]
+    url = Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:host]
     unless url.starts_with?("http://")
       url = "http://" + url
     end
