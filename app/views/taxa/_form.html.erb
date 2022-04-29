@@ -36,7 +36,6 @@
     <div class="stacked last column span-23">
       <div class="column span-12">
         <%= f.text_field :parent_id, value: taxon.parent_id, class: "text", disabled: !@protected_attributes_editable %><br/>
-
         <% if @protected_attributes_editable %>
           <%= label_tag t(:parent_name) %><br/>
           <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
@@ -45,7 +44,10 @@
             <%= t(:this_is_more_convenient_way_find_parent) %>
           </div>
         <% end %>
-        
+        <%= link_to "potential clashes", "#", :class => "potential_clashes" %>
+      </div>
+      <div class="jqmWindow" id="dialog">
+        <div class="loading status">Loading...</div>
       </div>
       <% if !taxon.new_record? && @protected_attributes_editable -%>
         <div class="column span-5">

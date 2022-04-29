@@ -1,0 +1,21 @@
+= link_to "Close", "#", :class => "jqmClose" 
+- @results.each do |result|
+  .lined.small.description
+    %p
+      By moving #{ result[:child] } out of #{ result[:old_parent] } you're narrowing what we mean by #{ result[:old_parent] }.
+    %p
+      There are #{ result[:id_count] } IDs of #{ result[:old_parent] }
+    %p
+      Based on a sample of #{ result[:percent] }% of these IDs, we estimate that this will result in #{ result[:num_clashes] } clashes* with IDs of #{ result[:child] }.
+    - unless result[:sample].nil?
+      %p
+        Here are a some observations where such clashes would occur
+        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } )
+    -unless result[:num_clashes] == 0
+      %p
+        - if result[:num_clashes] > 10
+          Since this move is resulting in >10 clashes, we recommend you also commit a taxon change involving #{ result[:old_parent] } such as splitting #{ result[:new_parent] } off from #{ result[:old_parent] }
+        - else
+          Since this move is resulting in 10 or fewer clashes, its probably not necessary to commit a taxon change involving #{ result[:old_parent] }, but you may want to comment on the clashing observations linked above to alert identifiers that the meaning of #{ result[:old_parent] } has narrowed
+%p.small.description
+  *clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child.

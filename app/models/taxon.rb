@@ -2158,6 +2158,91 @@ class Taxon < ApplicationRecord
     elastic_index!
   end
 
+  def clash_analysis( new_parent_id )
+    new_parent = Taxon.where(id: new_parent_id )
+    child_ids = [id]
+    old_parent_ancestor_ids = parent.ancestor_ids
+    new_parent_ancestor_ids = [ Taxon.find( new_parent_id ).ancestor_ids, new_parent_id ].flatten
+    narrowed_parents = old_parent_ancestor_ids.select{ |tid| !new_parent_ancestor_ids.include? tid }
+    #results = detect_clashes( narrowed_parents, child_ids )
+    results = [
+      {
+        parent_id: 5,
+        id_count: 10,
+        percent: 12,
+        num_clashes: 0,
+        sample: nil
+      },{
+        parent_id: 5,
+        id_count: 10,
+        percent: 12,
+        num_clashes: 14,
+        sample: [1,2]
+      },{
+        parent_id: 5,
+        id_count: 10,
+        percent: 12,
+        num_clashes: 5,
+        sample: nil
+      }
+    ]
+    return results
+  end
+
+  def detect_clashes( narrowed_parents, child_ids )
+    results = []
+    narrowed_parents.each do |parent_id|
+      result = {
+        parent_id: parent_id,
+        id_count: nil,
+        percent: nil,
+        num_clashes: 0,
+        sample: nil
+      }
+      params = { current: true, exact_taxon_id: parent_id }
+      params[:per_page] = 0
+      id_count = INatAPIService.get( "/identifications", params ).total_results
+      if id_count > 0
+        if id_count > 200
+          params[:per_page] = 200
+          id_obs = []
+          ceil = [( id_count / 200 ),5].min
+          ( 1..ceil ).each do |p|
+            params[:page] = p
+            id_obs << INatAPIService.get( "/identifications", params ).results.map{ |r| r["observation"]["id"] }.uniq
+          end
+          id_obs = id_obs.flatten.uniq
+        else
+          params[:per_page] = id_count
+          id_obs = INatAPIService.get( "/identifications", params ).results.map{ |r| r["observation"]["id"] }.uniq
+        end
+        params = { id: id_obs[0..499] }
+        obs = INatAPIService.get( "/observations", params ).results
+        id_taxa = obs.map{ |o| o["identifications"].select{ |a| a["current"] == true }.map{ |i| i["taxon"]["id"] } }.flatten
+        id_taxon_array = obs.map{ |o| o["identifications"].select{ |a| a["current"] == true} .map{ |i| { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } } }.flatten.uniq
+        id_taxon_hash = id_taxon_array.map{ |a| [a[:id], a[:ancestor_ids]] }.to_h
+
+        child_desc_ids = id_taxon_hash.select{ |taxon, ancestors| ( child_ids.include? taxon ) || ( child_ids & ancestors ).count > 0}.keys
+        if child_desc_ids.count > 0
+          freq = id_taxa.group_by( &:itself ).transform_values!( &:size ).sort_by{ |k,v| v }.reverse.to_h
+          sampled_ids = freq[parent_id]
+          clash_frac = child_desc_ids.map{ |a| ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
+          sample = obs.select{ |o| o["identifications"].select{ |i| i["current"]==true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any? }.map{ |r| r["id"] }
+          result[:num_clashes] = ( id_count * clash_frac ).round
+          result[:sample] = sample
+        else
+          sampled_ids = obs.map{ |o| o["identifications"].select{ |a| a["current"] == true && a["taxon_id"] == parent_id }.count }.sum
+        end
+        result[:id_count] = id_count
+        percent = (id_count > sampled_ids && id_count > 200) ? ( sampled_ids / id_count.to_f * 100 ).round : 100
+        result[:percent] = percent
+      end
+      results << result
+    end
+    return results
+  end
+
+
   # Static ##################################################################
 
   def self.match_descendants_of_id( id, taxon_hash )

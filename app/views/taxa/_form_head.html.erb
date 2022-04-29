@@ -1,5 +1,31 @@
 <% content_for(:extracss) do %>
   <%= stylesheet_link_tag 'taxa', 'taxa/form', 'taxon_browser' %>
+
+  <style type="text/css" media="screen">
+    .jqmWindow {
+      display: none;
+      position: fixed;
+      top: 17%;
+      left: 50%;
+      margin-left: -300px;
+      width: 600px;
+      background-color: #EEE;
+      color: #333;
+      border: 1px solid black;
+      padding: 12px;
+    }
+
+    .jqmOverlay { background-color: #000; }
+
+    * html .jqmWindow {
+      position: absolute;
+      top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+    }
+
+    .small {
+      font-size:  100;
+    }
+  </style>
 <% end %>
 
 <% content_for(:extrajs) do %>
@@ -73,6 +99,42 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
         $('.field.complete_rank_field').hide( );
       }
     });
+
+    $( document ).on( "change", "#taxon_parent_id", function( ) {
+      var old_ancestors = $( "#taxon-ancestor-id" ).val( ).split( "/" );
+      var old_parent = old_ancestors[old_ancestors.length - 1];
+      var new_parent = $( "#taxon_parent_id" ).val( );
+      if( $.isNumeric( new_parent ) ){
+        $.ajax( {
+          type: "get",
+          dataType: "json",
+          url: "/taxa/" + new_parent,
+          success: function( s ) {
+            var ancestry_string = s.ancestry;
+            if( ancestry_string == null ){
+              var ancestry = [];
+            }else{
+              var ancestry = ancestry_string.split( "/" );
+            }
+            ancestry.push(new_parent)
+            //console.log(ancestry);
+            //console.log(old_parent);
+            if( ancestry.indexOf( old_parent ) == -1 ){
+              //console.log("clash");
+              $('.potential_clashes').show();
+              $('#dialog').jqm({ajax: 'clashes?new_parent_id=' + new_parent, trigger: 'a.potential_clashes'});
+            }else{
+              $('.potential_clashes').hide();
+              //console.log("no clash");
+            }
+          },
+          error: function( e ) {
+            //console.log("taxon_doesn't exist");
+            $('a.potential_clashes').hide();
+          }
+        } );
+      }
+    } );
   });
 
   $.fn.conservationStatus = function() {
