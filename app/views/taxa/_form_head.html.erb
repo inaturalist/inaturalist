@@ -117,19 +117,14 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
               var ancestry = ancestry_string.split( "/" );
             }
             ancestry.push(new_parent)
-            //console.log(ancestry);
-            //console.log(old_parent);
             if( ancestry.indexOf( old_parent ) == -1 ){
-              //console.log("clash");
               $('.potential_clashes').show();
               $('#dialog').jqm({ajax: 'clashes?new_parent_id=' + new_parent, trigger: 'a.potential_clashes'});
             }else{
               $('.potential_clashes').hide();
-              //console.log("no clash");
             }
           },
           error: function( e ) {
-            //console.log("taxon_doesn't exist");
             $('a.potential_clashes').hide();
           }
         } );

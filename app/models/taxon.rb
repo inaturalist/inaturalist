@@ -2164,28 +2164,7 @@ class Taxon < ApplicationRecord
     old_parent_ancestor_ids = parent.ancestor_ids
     new_parent_ancestor_ids = [ Taxon.find( new_parent_id ).ancestor_ids, new_parent_id ].flatten
     narrowed_parents = old_parent_ancestor_ids.select{ |tid| !new_parent_ancestor_ids.include? tid }
-    #results = detect_clashes( narrowed_parents, child_ids )
-    results = [
-      {
-        parent_id: 5,
-        id_count: 10,
-        percent: 12,
-        num_clashes: 0,
-        sample: nil
-      },{
-        parent_id: 5,
-        id_count: 10,
-        percent: 12,
-        num_clashes: 14,
-        sample: [1,2]
-      },{
-        parent_id: 5,
-        id_count: 10,
-        percent: 12,
-        num_clashes: 5,
-        sample: nil
-      }
-    ]
+    results = detect_clashes( narrowed_parents, child_ids )
     return results
   end
 
