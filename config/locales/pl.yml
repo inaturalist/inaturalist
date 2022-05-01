@@ -1934,6 +1934,7 @@ pl:
     Pamiętaj żeby <a href="%{url}">zmienić hasło</a> dla nowej wersji.
   let_us_walk_you_through: Poprowadzimy Cię przez główne funkcje strony.
   lexicon: Leksykon
+  lexicon_cannot_contain_words: "nie można zawierać następujących słów: %{words}"
   lexicons:
     scientific_names: Nazwy naukowe
     afrikaans: Afrikaans
@@ -2306,6 +2307,7 @@ pl:
   new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
   new_announcement: Nowe ogłoszenie
+  new_application: Nowa aplikacja
   new_assessment: Nowa ocena
   new_check_list: Nowa checklista
   new_check_list_for: "Stwórz nową checklistę dla %{place} &raquo;"
@@ -2673,6 +2675,12 @@ pl:
     large: duży
     original: oryginalny
   photos_updated: Zdjęcia zaktualizowane.
+  data_transfer_consent_desc_title: O zgodzie na przekazanie danych osobowych
+  data_transfer_consent_label: |
+    Wyrażam zgodę na przekazanie moich danych osobowych do Stanów Zjednoczonych Ameryki
+  data_transfer_consent_child_label: |
+    Wyrażam zgodę na przekazanie danych osobowych mojego dziecka do
+    Stanów Zjednoczonych Ameryki
   pin_verb: Przypnij
   pink: różowy
   place: Lokalizacja
@@ -3306,6 +3314,7 @@ pl:
     zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
+  revoke_privacy_consent_warning: "Jedynym sposobem na cofnięcie tej zgody jest usunięcie konta i wszystkich powiązanych danych."
   rg_observations: Obserwacje SB
   role: Rola
   rotate_left: Obrót w lewo
@@ -3596,6 +3605,64 @@ pl:
   threatened: Gatunki zagrożone
   time_: czas
   time_ago: "%{time} temu"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Czas w Argentynie
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Czas w Kolumbii
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Czas w Gwatemali
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Czas w Boliwii
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Czas w Peru
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Czas w Adelaide
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Czas w Brisbane
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Czas w Melbourne
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Czas w Perth
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Czas w Sydney
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Czas zachodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Czas zachodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Czas środkowoeuropejski
   #As in the title of a book or a blog post
   title: tytuł
   title_and_description: "Tytuł i opis"
@@ -3858,6 +3925,9 @@ pl:
   yes_find_them!: "Tak, znajdź je!"
   yes_i_want_to_join: Tak, chcę dołączyć
   yesterday: Wczoraj
+  yir_donate_banner_inaturalist_in_year: "INATURALIST W %{year}:"
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist potrzebuje Twojego wsparcia
   you: ty
   you_: Ty
   you_appear_offline_try_again: |
@@ -4585,6 +4655,8 @@ pl:
         #The URL the user will be redirected to after authorizing an app to
         #access their iNaturalist account
         callback_url: Adres URL wywołania zwrotnego
+        #Unique identifier for an application
+        uid: ID
       place_taxon_name:
         position: Pozycja
       post:
@@ -4622,6 +4694,8 @@ pl:
       taxon:
         auto_description: Automatyczny opis
         auto_photos: Automatyczne zdjęcia
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Status ochronny
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktywny?
         locked: Zablokowany
