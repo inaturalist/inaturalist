@@ -365,7 +365,7 @@ pl:
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dodaj tekst pochyły
   add_muted_users: Dodaj wyciszonego użytkownika
-  add_new_lexicon: Dodaj nowy język
+  add_new_lexicon: Dodaj nowy leksykon
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
   add_new_place: Dodaj nową lokalizację
   add_new_rule: Dodaj nową regułę
@@ -1476,10 +1476,8 @@ pl:
     endemic: Endemiczny
     introduced: Introdukowany
     invasive: Inwazyjny
-    managed: Zarządzane
     native: Rodzimy
-    naturalised: Introdukowany
-  establishment_means: Sposoby ustanowienia
+    naturalised: Naturalizowany
   event_in_progress: Wydarzenie w toku
   event_stats: Statystyki wydarzenia
   event_url: URL wydarzenia
@@ -3693,6 +3691,9 @@ pl:
   type_taxon_name: "Wpisz nazwę taksonu"
   unique_identifier_of_this_taxon: Unikatowy identyfikator tego taksonu w źródłowej bazie danych.
   unique_observers: unikalnych obserwatorów
+  unknown: Nieznany
+  unknown_error: Nieznany błąd
+  unknown_rank: '(Nieznana ranga)'
   unfollow: Przestań obserwować
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
@@ -4639,7 +4640,6 @@ pl:
         published_at: Publikacja
       listed_taxon:
         occurrence_status_level: Stopień statusu występowania
-        establishment_means: Sposoby ustanowienia
       message:
         subject: Temat
         body: Treść
