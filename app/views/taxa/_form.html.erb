@@ -44,7 +44,6 @@
             <%= t(:this_is_more_convenient_way_find_parent) %>
           </div>
         <% end %>
-        <%= link_to "potential clashes", "#", :class => "potential_clashes" %>
       </div>
       <div class="jqmWindow" id="dialog">
         <div class="loading status">Loading...</div>
@@ -60,6 +59,14 @@
       <% end -%>
     </div>
     
+    <div class="column span-23 potential_clashes">
+      <span class="notice box">
+        Changing the classification to that parent may result in clashes, please first
+        <%= link_to "analyze the clashes", "#", :class => "potential_clashes_link" %>
+        this may take a while
+      </span>
+    </div>
+
     <div class="column span-23">
       <%= f.check_box :locked, :label_after => true %>
       <p class="description ui">

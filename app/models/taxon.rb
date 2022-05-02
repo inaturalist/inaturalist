@@ -2173,8 +2173,8 @@ class Taxon < ApplicationRecord
     narrowed_parents.each do |parent_id|
       result = {
         parent_id: parent_id,
-        id_count: nil,
-        percent: nil,
+        id_count: 0,
+        percent: 100,
         num_clashes: 0,
         sample: nil
       }

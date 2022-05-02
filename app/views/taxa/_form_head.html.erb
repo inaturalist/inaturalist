@@ -5,14 +5,14 @@
     .jqmWindow {
       display: none;
       position: fixed;
-      top: 17%;
+      top: 10%;
       left: 50%;
-      margin-left: -300px;
-      width: 600px;
+      margin-left: -350px;
+      width: 700px;
       background-color: #EEE;
       color: #333;
       border: 1px solid black;
-      padding: 12px;
+      padding: 20px;
     }
 
     .jqmOverlay { background-color: #000; }
@@ -24,6 +24,10 @@
 
     .small {
       font-size:  100;
+    }
+
+    .potential_clashes {
+      margin-bottom: 10px;
     }
   </style>
 <% end %>
@@ -119,13 +123,13 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
             ancestry.push(new_parent)
             if( ancestry.indexOf( old_parent ) == -1 ){
               $('.potential_clashes').show();
-              $('#dialog').jqm({ajax: 'clashes?new_parent_id=' + new_parent, trigger: 'a.potential_clashes'});
+              $('#dialog').jqm({ajax: 'clashes?new_parent_id=' + new_parent, trigger: 'a.potential_clashes_link'});
             }else{
               $('.potential_clashes').hide();
             }
           },
           error: function( e ) {
-            $('a.potential_clashes').hide();
+            $('.potential_clashes').hide();
           }
         } );
       }
