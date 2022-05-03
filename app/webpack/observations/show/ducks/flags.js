@@ -5,11 +5,14 @@ export function createFlag( className, id, flag, body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const params = { flag: {
-      flaggable_type: className,
-      flaggable_id: id,
-      flag
-    }, flag_explanation: body };
+    const params = {
+      flag: {
+        flaggable_type: className,
+        flaggable_id: id,
+        flag
+      },
+      flag_explanation: body
+    };
     dispatch( callAPI( inatjs.flags.create, params ) );
   };
 }

@@ -206,7 +206,11 @@ class FlaggingModal extends Component {
               </label>
               <div className="help-block">
                 <p>{ I18n.t( "some_other_reason" ) }</p>
-                { item.quality_grade && <p>{ I18n.t( "duplicate_observation_flag_warning" ) }</p>}
+                { item.quality_grade && (
+                  <div className="alert alert-warning">
+                    <p>{ I18n.t( "duplicate_observation_flag_warning" ) }</p>
+                  </div>
+                ) }
               </div>
               { otherTextarea }
             </div>

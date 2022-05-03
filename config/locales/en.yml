@@ -8674,6 +8674,11 @@ en:
               relative_uri: "must be an absolute URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                cannot be about duplicate observations; only the observer can
+                remove duplicates, so please address these concerns to them
+                directly with a comment
             user_id:
               already_flagged: "already flagged that item"
         guide:
