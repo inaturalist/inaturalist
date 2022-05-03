@@ -2159,11 +2159,11 @@ class Taxon < ApplicationRecord
   end
 
   def clash_analysis( new_parent_id )
-    new_parent = Taxon.where(id: new_parent_id )
-    child_ids = [id]
-    old_parent_ancestor_ids = [parent.ancestor_ids, parent.id].flatten
-    new_parent_ancestor_ids = [ Taxon.find( new_parent_id ).ancestor_ids, new_parent_id ].flatten
-    narrowed_parents = old_parent_ancestor_ids.select{ |tid| !new_parent_ancestor_ids.include? tid }
+    new_parent = Taxon.where( id: new_parent_id ).first
+    child_ids = [ id ]
+    old_parent_ancestor_ids = parent.self_and_ancestor_ids
+    new_parent_ancestor_ids = new_parent.self_and_ancestor_ids
+    narrowed_parents = old_parent_ancestor_ids.select{ |tid| !( new_parent_ancestor_ids.include? tid ) }
     results = detect_clashes( narrowed_parents, child_ids )
     return results
   end
