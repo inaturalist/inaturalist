@@ -7,7 +7,7 @@
 - @results.each do |result|
   -unless result[:id_count] == 0
     %p
-    Moving #{ result[:child] } out of #{ result[:old_parent] } would narrow what we mean by #{ result[:old_parent] }. There are #{ result[:id_count] } IDs of #{ result[:old_parent] }.
+      Moving #{ result[:child] } out of #{ result[:old_parent] } would narrow what we mean by #{ result[:old_parent] }. There are #{ result[:id_count] } IDs of #{ result[:old_parent] }.
     %p
       Based on a sample of #{ result[:percent] }% of these IDs, we estimate that this will result in #{ result[:num_clashes] } clashes with IDs of #{ result[:child] }.
     - unless result[:sample].nil?

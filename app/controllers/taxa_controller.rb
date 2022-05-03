@@ -380,12 +380,15 @@ class TaxaController < ApplicationController
     @results = @taxon.clash_analysis( new_parent_id )
     @results.each do |result|
       result[:child] = @taxon.name
-      result[:old_parent] = @taxon.parent.name
-      result[:new_parent] = Taxon.where(id: result[:parent_id]).first.name
+      result[:old_parent] = Taxon.where(id: result[:parent_id]).first.name
+      result[:new_parent] = Taxon.where(id: new_parent_id).first.name
     end
     respond_to do |format|
       format.html do
         render partial: "clashes.html.haml", locals: { results: @results }
+      end
+      format.json do
+        render :json => @results.to_json(:methods => [:html])
       end
     end
   end
