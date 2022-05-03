@@ -86,8 +86,8 @@ module Inaturalist
       # expected behavior and the way to deal with it is to preload all these
       # classes.
       begin
-        require_dependency "denormalizer"
         require_dependency "check_list"
+        require_dependency "denormalizer"
         require_dependency "eol_photo"
         require_dependency "facebook_photo"
         require_dependency "flickr_photo"

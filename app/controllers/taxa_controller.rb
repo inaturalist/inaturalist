@@ -1196,7 +1196,10 @@ class TaxaController < ApplicationController
       params[:month] &&
       params[:day] &&
       ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
-    @date ||= @audit_days&.sort&.reverse&.last&.first
+    # At this point @audit_days is an array of arrays with the first elt of
+    # each being a date sorted in descending order, so &.first&.first should
+    # be the most recent date
+    @date ||= @audit_days&.first&.first
     @show_all = @date && audit_scope.count < 500
     @audits = audit_scope.order( "created_at desc" )
     @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
