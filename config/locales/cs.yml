@@ -431,6 +431,7 @@ cs:
   add_life_stage_egg_annotation: 'Přidat anotaci „Stádium života: vejce“'
   add_evidence_of_presence_organism_annotation: 'Přidat anotaci „Důkaz přítomnosti: organismus“'
   add_evidence_of_presence_feather_annotation: 'Přidat anotaci „Důkaz přítomnosti: peří“'
+  add_evidence_of_presence_gall_annotation: 'Přidat anotaci "Důkaz přítomnosti: gal"'
   add_evidence_of_presence_scat_annotation: 'Přidat anotaci „Důkaz přítomnosti: trus“'
   add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
   add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
@@ -494,6 +495,8 @@ cs:
   agree_with_current_taxon: Souhlasím s aktuálním taxonem
   agreeing: Souhlasím...
   aka: alias
+  #Noun, title of a popup alerting you to something
+  alert: Výstraha
   all: Vše
   all_comments: Všechny komentáře
   all_flags_must_be_resolved: Všechna označení musí být vyřešena
@@ -1203,6 +1206,8 @@ cs:
     evidence_of_presence: Důkazy přítomnosti
     #As in the feather on a bird
     feather: Peří
+    #Abnormal growth
+    gall: Gall
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismus
@@ -1232,6 +1237,7 @@ cs:
       Převážně pozůstatky vnitřní kostry; částečně odhalené kosti v jinak neporušeném organismu
       by měly být označeny jako „organismus“
     molt: Odhozená kůže nebo exoskelet
+    gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
@@ -2364,6 +2370,7 @@ cs:
     portuguese: portugalsky
     romanian: rumunština
     russian: rusky
+    santali: santálština
     setswana: Setswanština
     sinhala: Sinhálský
     slovak: Slovenský
@@ -2479,6 +2486,7 @@ cs:
     pt: Portugalština
     pt-BR: portugalština (Brazílie)
     ru: Rusky
+    sat: santálština
     sk: Slovenština
     sl: Slovinský
     sq: albánsky
@@ -2624,6 +2632,11 @@ cs:
   messages_new_correspondent_personal: |
     Nezpřístupněte své osobní informace lidem, kterým
     nedůvěřujete.
+  messages_new_correspondent_actions_html: |
+    Pokud máte podezření, že tato osoba porušuje naše <a href="%{tos_url}"
+    target="_blank">Podmínky použítí</a> nebo nejedná v souladu s našimi <a
+    href="%{guidelines_url}" target="_blank">Zásadami komunity</a>, prosím
+    označte tuto zprávu níže.
   minimum_positional_accuracy: Minimální přesnost polohy
   misidentifications: Zprávy
   misleading_or_illegal_content_html: |
@@ -3301,6 +3314,13 @@ cs:
     original: původní
   photos_updated: Fotky byly aktualizovány.
   pi_consent_desc_title: O osobní údajích
+  pi_consent_desc_html: |
+    <p>
+    Ukládáme osobní údaje, jako jsou uživatelská jména a e-mailové adresy, abychom mohli spravovat účty na tomto webu a abychom dodrželi zákony na ochranu soukromí, potřebujeme, abyste zaškrtnutím tohoto políčka dali najevo, že souhlasíte s tímto použitím osobních údajů. Chcete-li se dozvědět více o tom, jaké informace shromažďujeme a jak je používáme, přečtěte si naše <a href='%{privacy_url}' target='_blank'>Zásady ochrany osobních údajů</a> a naše <a href='%{terms_url} ' target='_blank'>Podmínky použití</a>.
+    </p>
+    <p>
+    Neexistuje způsob, jak mít účet iNaturalist bez ukládání osobních údajů, takže jediný způsob, jak odvolat tento souhlas, je smazat svůj účet.
+    </p>
   pi_consent_label: |
     Souhlasím s tím, že umožním iNaturalist ukládat a zpracovávat omezené
     osobní údaje o mně za účelem správy mého účtu
@@ -3309,6 +3329,26 @@ cs:
 
     Souhlasím, aby iNaturalist umožnil ukládat a zpracovávat omezené
     osobní údaje o mém dítěti za účelem správy účtu mého dítěte
+  data_transfer_consent_desc_title: O souhlasu s přenosem osobních informací
+  data_transfer_consent_desc_html: |
+    <p>
+    Některé zákony na ochranu osobních údajů, jako je obecné nařízení Evropské unie o ochraně osobních údajů (GDPR), vyžadují výslovný souhlas s přenosem osobních údajů z jejich jurisdikcí do jiných jurisdikcí, kde se právní ochrana těchto informací nebere v úvahu.
+    adekvátní. Od <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> již Evropská unie nepovažuje Spojené státy za jurisdikci, která poskytuje odpovídající právní ochranu osobních informace, konkrétně kvůli možnosti vlády USA sledovat data vstupující do USA. Je možné, že jiné jurisdikce mohou mít stejný názor.
+    </p>
+    <p>
+    Používání iNaturalist vyžaduje uložení osobních údajů, jako je vaše e-mailová adresa, všechna data iNaturalist jsou uložena ve Spojených státech, a nemůžeme si být jisti, v jaké právní jurisdikci se nacházíte, když používáte iNaturalist, abychom dodrželi zákony na ochranu soukromí, jako je např. GDPR, musíte potvrdit, že rozumíte a přijímáte toto riziko a souhlasíte s přenosem vašich osobních údajů na servery iNaturalist v
+    Spojené státy.
+    </p>
+    <p>
+    Chcete-li se dozvědět více o tom, jaké informace shromažďujeme a jak je používáme, přečtěte si naše <a href='%{privacy_url}' target='_blank'>Zásady ochrany osobních údajů</a> a naše <a href='%{terms_url} ' target='_blank'>Podmínky použití</a>.
+    </p>
+    <p>
+    Neexistuje způsob, jak mít účet iNaturalist bez ukládání osobních údajů, takže jediný způsob, jak odvolat tento souhlas, je smazat svůj účet.
+    </p>
+  data_transfer_consent_label: |
+    Souhlasím s tím, aby byly mé osobní údaje předávány do Spojených států amerických
+  data_transfer_consent_child_label: |
+    Souhlasím s tím, aby byly osobní údaje mého dítěte předávány do Spojených států amerických
   pin_verb: Připnout
   pink: růžový
   pinned_locations_desc: |
@@ -3757,6 +3797,7 @@ cs:
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Požádejte své rodiče o souhlas
   #Title to a section warning a user to exercise caution
   please_be_careful!: Prosím, opatrně!
   please_complete_the_following_to_add_project: |
@@ -4173,6 +4214,7 @@ cs:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "Odmítnout %{site_name}?"
+  revoke_privacy_consent_warning: "Jediným způsobem, jak zrušit tento souhlas, je smazat váš účet a všechna související data."
   rg_observations: Pozorování VS
   role: Funkce
   rotate_left: Otočit doleva
@@ -4760,6 +4802,7 @@ cs:
   terms: Podmínky
   terms_and_rules_html: "Podmínky &amp; Pravidla"
   terms_new_users: "Pokud přidáte podmínky, musí je noví uživatelé odsouhlasit, než se připojí k tomuto projektu."
+  terms_service: Podmínky použití
   terrain: terén
   text: Text
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4909,6 +4952,10 @@ cs:
   top_identifiers_of_taxon: Nejlepší identifikátoři %{taxon}
   top_observer_caps: TOP POZOROVATEL
   top_observers: Nejlepší pozorovatelé
+  tos_privacy_guidelines_label: |
+    Souhlasím s <a href="/terms" target="_blank">Podmínkami použití</a> a s 
+    <a href="/privacy" target="_blank">Zásady ochrany osobních údajů</a>, které jsem si přečetl
+    <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>.
   total: Součet
   totals: Součty
   total_ids_on_input_taxon: "Celkem ID vstupního taxonu:"
@@ -5439,6 +5486,8 @@ cs:
   you_must_specify_and_confirm_a_new_password: Musíte uvést a potvrdit nové heslo.
   you_need_to_have_linked_flickr_account: Abyste mohli označovat své fotky, musíte mít propojený účet na Flickru.
   you_need_to_select_some_observations_first: Nejdřív musíte vybrat nějaká pozorování.
+  you_retain_full_copyright: "Uchováváte si plná autorská práva k vašemu obsahu mimo práva udělená společnosti %{site_name} v našich podmínkách použití."
+  you_retain_full_copyright_over_your_content: "Veškerá vaše autorská práva k vašemu obsahu budou zachována, s výjimkou práv udělených %{site_name} podle našich Podmínek služby."
   you_should_delete_this_taxon_change: |
     Pravděpodobně byste měli tuto změnu taxonu smazat nebo alespoň najít nějaké řešení s osobou/osobami, které provedly jinou změnu/jiné změny.
   you_sure_delete_asset?: Jste si jistí, že chcete tuto položku smazat?
@@ -6356,7 +6405,7 @@ cs:
         make_owner: Učinit vlastníkem
         no_curators: |
           Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou osobu, nejdřív se musí přidat k tomuto projektu a vy ji musíte jmenovat kurátorem.
-        observation_aggregation_desc_html: |2
+        observation_aggregation_desc_html: |
           <p class="description">
             Seskupením pozorování se do vašeho projektu automaticky přidají vhodná pozorování podle pravidel vašeho projektu. Protože mnoho pozorování nelze z projektu najednou odebrat, může to být nebezpečné, proto se prosím ujistěte, že jste vybrali pravidla pro místo a taxon, která chcete, jinak by se mohlo stát, že budete muset manuálně odebrat mnoho nevhodných pozorování. 
           </p>
@@ -6549,7 +6598,7 @@ cs:
       show:
         are_you_sure_you_want_to_convert: |
           Opravdu chcete tento projekt převést na Sbírky projektů?
-        bioblitz_results_desc_html: |2
+        bioblitz_results_desc_html: |
           <p>
            Na rozdíl od běžných projektů se u bioblitzů zobrazuje statistika <em>všech</em> pozorování v daném místě a čase, ne pouze pozorování, která lidé do projektu záměrně přidali. 
            Je to z důvodu odstranění překážky přidávání pozorování do projektu k vytvoření statistiky v reálném čase. Vezměte na vědomí, že pozorování nebudou přístupná pro export nebo zobrazení v různých zobrazeních projektu jako příspěvky členů na webové stránce nebo při prohledávání pozorování projektu v mobilních aplikacích, pokud projektový tým a účastníci aktivně nepřidají příslušná pozorování stejně jako v běžném projektu.
@@ -6767,7 +6816,7 @@ cs:
           naši mezipaměť obsahu Wikipedie, který zobrazujeme na
           webových stránkách, a který se po týdnu aktualizuje automaticky.
       show:
-        about_names_desc: |2
+        about_names_desc: |
           <p>
             Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
           </p>
@@ -6846,7 +6895,7 @@ cs:
           Název taxonu s kategorií. Pro infraspecifické kategorie je kategorie vložena za binominální nomenklaturou.
     taxon_names:
       form:
-        new_name_guidelines_html: |2
+        new_name_guidelines_html: |
           <ul>
             <li><p>Zkuste přidat názvy, které se používají jinde. Nevymýšlejte prosím nové názvy.</p></li>
             <li><p>Nepřidávejte zdvojené názvy, např. nepojmenovávejte několik jestřábů „jestřáb“</p></li>
@@ -6947,6 +6996,20 @@ cs:
           Chcete-li účet smazat, musíte do formuláře zadat %{confirmation_code}
       edit:
         about_third_party_tracking: O sledování třetí strany
+        blocking_desc_html: |
+          <p>
+          Zablokování někoho zabrání tomu, aby vám posílal zprávy, komentoval vaše pozorování, identifikoval vaše pozorování a jinak s vámi interagoval na %{site_name}. Také odebere jejich pozorování z vašich výsledků vyhledávání a vaše pozorování z jejich výsledků vyhledávání. Nečiní vás to však pro ně neviditelnými. Stále mohou najít vaše postřehy a zobrazit váš profil, jen s vámi nemohou komunikovat.
+          </p>
+          <p>
+          Blokování je pro situace, kdy si s někým jen tak nerozumíte a nenechají vás na pokoji, i když se snažíte spory urovnat civilizovaně. Není to způsob, jak se skrýt před lidmi, zabránit identifikaci před lidmi, jejichž názorům nedůvěřujete, nebo se odhlásit z ID komunity (na to existuje jiné nastavení). Blokování tedy funguje oběma způsoby: pokud někoho zablokujete, nemůže s vámi komunikovat, ale ani vy s ním. Pokud jej zneužijete k tomu, abyste někomu zabránili identifikovat vaše pozorování, zabráníte také sobě identifikovat jeho pozorování.
+          </p>
+          <p>
+          Můžete zablokovat pouze tři osoby. Myslíme si, že je to rozumné číslo, které vyhovuje lidem, kteří potřebují blokování, a zároveň zabraňuje zneužití blokování. Pokud máte pocit, že potřebujete zablokovat více lidí, <a href="mailto:%{help_email}">kontaktujte nás</a>.
+          </p>
+          <p>
+          Pokud vás někdo na %{site_name} obtěžuje nebo pronásleduje, <a href="mailto:%{help_email}">dejte nám prosím vědět</a>. Pokud to představuje porušení našich Podmínek použití nebo jiné chování, které považujeme za nevhodné pro naše stránky, uděláme to
+          vyšetřovat.
+          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jestliže změníte svůj názor, můžete kdykoli
           <a href='/users/edit'>změnit své nastavení</a>.
@@ -6971,7 +7034,7 @@ cs:
           Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
           políčko pro zobrazení tohoto stavu na vašem profilu. Poznámka: budete muset použít
           přesnou, stejnou e-mailovou adresu na Donorboxu jako na iNaturalist, abyste mohli potvrdit, že jste se stali Měsíční podporovatel.
-        muting_desc_html: |2
+        muting_desc_html: |
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 
           </p>
@@ -7033,7 +7096,7 @@ cs:
           Podrobnosti o selhání, stejně jako přesně, který řádek kódu způsobil selhání
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           Podrobnosti o zařízení, například značka a model mobilního telefonu
-        prefers_no_tracking_label_desc_value_html: |2
+        prefers_no_tracking_label_desc_value_html: |
           <strong>Tyto služby třetích stran poskytují nesmírnou hodnotu pro
           nás </strong> při udržování stability a použitelnosti programu iNaturalist
           s našimi relativně malými zaměstnanci. Na mobilních zařízeních téměř neexistuje
@@ -7618,10 +7681,17 @@ cs:
         ancestry: Předchůdce
         auto_description: Automatický popis
         auto_photos: Automatické fotky
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Kompletní taxonomická kategorie
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Stav ochrany
         #Datetime this taxon was featured for display on /taxa
         featured_at: Doporučeno v
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Ikonické ID taxonu
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktivní?
         #Boolean attribute stating that this taxon is itself represented by
@@ -7636,9 +7706,13 @@ cs:
         #re-order photos of this taxon
         photos_locked: Fotografie uzamčeny?
         rank: Pořadí
+        rank_level: Úroveň taxonomické kategorie
         source_id: ID zdroje
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID vztahu taxonu ve frameworku
         wikipedia_summary: Shrnutí na Wikipedii
         wikipedia_title: Titul Wikipedie
       taxon_name:
@@ -7654,6 +7728,8 @@ cs:
         login: Uživatelské jméno
         name: Název
         locale: Jazyk
+        time_zone: Časové pásmo
+        search_place_id: Prohledat místo
         place_id: Místo
         preferred_observation_fields_by: Povolit pole pozorování z
     errors:
