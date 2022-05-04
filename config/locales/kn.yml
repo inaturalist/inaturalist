@@ -4084,6 +4084,20 @@ kn:
   threatened: ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ
   time_: ಸಮಯ
   time_ago: "%{time} ಸಮಯದ ಹಿಂದೆ"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: ದಕ್ಷಿಣ ಆಫ್ರಿಕಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: ಪಶ್ಚಿಮ ಆಫ್ರಿಕಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #As in the title of a book or a blog post
   title: ಶೀರ್ಷಿಕೆ
   title_and_description: "ಶೀರ್ಷಿಕೆ & ವಿವರಣೆ"
@@ -5794,6 +5808,8 @@ kn:
         login: ಬಳಕೆದಾರರ ಹೆಸರು
         name: ಹೆಸರು
         locale: ಪ್ರಾದೇಶಿಕತೆ
+        time_zone: ಸಮಯ ವಲಯ
+        search_place_id: ಪ್ರದೇಶಗಳನ್ನು ಹುಡುಕಿ
         place_id: ಸ್ಥಳ
     errors:
       format: '%{attribute} %{message}'
