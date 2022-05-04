@@ -401,6 +401,9 @@ mr:
     any_alive_or_dead: कोणताही
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: कोणताही
+    pupa: कोष
+    larva: अळी
+    egg: अंडे
     evidence_of_presence: उपस्थितीचा पुरावा
     #As in the feather on a bird
     feather: पीस
@@ -427,6 +430,9 @@ mr:
   create_an_account: खाते उघडा
   dashboard: मुख्यपटल
   date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
+  default_display_time_zone: सर्वसाधारण दृश्यमान वेळ क्षेत्र
+  default_time_zone_desc: |
+    हे सर्वसाधारण वेळ क्षेत्र आहे. अंतिम वेळ क्षेत्र निरीक्षणाच्या स्थानावर आधारित जेव्हा ते जतन केले जाते त्यानुसार नियुक्त केले जाईल.
   devise:
     confirmations:
       #Message a user sees when they try to manually trigger email
@@ -529,6 +535,8 @@ mr:
   projects: प्रकल्प
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: नोंद
+  result_window_too_large_error: |
+    पृष्‍ठसंख्या आणि प्रति पृष्‍ठ परिणामांची संख्‍या यांचा गुणाकार १०, ००० पेक्षा जास्त असू शकत नाही. परिणामांची संख्या कमी करण्यासाठी चाळणीचा वापर करा.
   rules_types:
     must_be_wild: वन्य असणे गरजेचे
   satellite: उपग्रह प्रतिमा
@@ -542,7 +550,123 @@ mr:
   teachers_guide: शिक्षकांसाठी मार्गदर्शक
   terrain: भूभाग
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: दक्षिण आफ्रिका वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: पूर्व आफ्रिका वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: अर्जेंटिना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: कोलंबिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: मध्यवर्ती वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: पॅसिफिक वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: माउंटन टाइम (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: ग्वाटेमाला वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: अटलांटिक प्रमाण वेळ (कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: बोलिव्हिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: पेरू वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: पॅसिफिक वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: मध्यवर्ती वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: पूर्वीय वेळ (यूएस आणि कॅनडा)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: ऍरिझोना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: कॉन्टिनेन्टल चिली वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: ब्राझिलिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: पॅसिफिक वेळ (मेक्सिको)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: अरेबिया प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: इंडोचायना वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: हाँगकाँग वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: पश्चिम इंडोनेशिया वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: इस्रायल प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: भारतीय प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnoyarsk Time
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: चीन प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: सिंगापूर प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: तैवान वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: जपान प्रमाण वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: येकातेरिनबर्ग वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: ऍडलेड वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: ब्रिस्बेन वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: मेलबर्न वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: पर्थ वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: सिडनी वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: यु टी सी
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: तुर्की वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: पश्चिम युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: पश्चिम युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: मॉस्को वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: पूर्व युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: मध्य युरोपीय वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: सामोआ वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: न्यूझीलंड वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: हवाई-अलेउटियन वेळ
   tos_privacy_guidelines_label: |
     मी <a href="/terms" target="_blank">वापराच्या अटींना</a> सहमत आहे आणि
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
@@ -577,6 +701,12 @@ mr:
           रंग लॉगेरिथमिक स्केलवर (घातांक श्रेणी) दिवसांची संख्या दर्शवितो
         observation_streaks_desc2: |
           एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
+    taxa:
+      show:
+        frequency:
+          "Life Stage=Egg": अंडे
+          "Life Stage=Larva": अळी
+          "Life Stage=Pupa": कोष
     welcome:
       index:
         connect_with_nature: निसर्गाशी संबंध जोडा
