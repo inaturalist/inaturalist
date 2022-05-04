@@ -1465,6 +1465,7 @@ ru:
   default: по умолчанию
   #Default option
   default_: По умолчанию
+  default_display_time_zone: Часовой пояс отображения по умолчанию
   default_invite_comment: "Отличное фото! Вы должны разместить его на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Лицензия наблюдения по умолчанию
   default_photo_license: Лицензия фото по умолчанию
@@ -1472,6 +1473,8 @@ ru:
   default_search_place_description: |
     Это будет вашим местом по умолчанию для всех поисков в нашей поисковой системе.
   default_sound_license: Лицензия аудио по умолчанию
+  default_time_zone_desc: |
+    Это часовой пояс по умолчанию. Окончательный часовой пояс будет назначен на основе местоположения наблюдения при его сохранении.
   defaults_to_your_name_or_username: Значения по умолчанию для вашего имени или логина
   defines_a_taxon_framework_for: Задаёт основу таксона для %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Задаёт основу таксона для %{taxon}, взятого из %{source}
@@ -4125,6 +4128,8 @@ ru:
   restart: Перезапустить
   restore: Восстановить
   restoring: Восстановление...
+  result_window_too_large_error: |
+    Количество страниц, умноженное на количество результатов на странице, не может превышать 10 000. Попробуйте применить фильтры, чтобы уменьшить количество результатов.
   review_all: Просмотреть всё
   review_identifications_of_taxon_html: |
     Просмотреть идентификации <span class="sciname">%{taxon}</span> %{taxon_id}
@@ -4843,6 +4848,124 @@ ru:
   threatened: Под угрозой исчезновения
   time_: время
   time_ago: "%{time} назад"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Южно-Африканское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Восточно-Африканское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Аргентинское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Колумбийское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Центральное время (США и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Тихоокеанское время (Мексика)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Горное время (США и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Гватемальское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Атлантическое стандартное время (Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Время в Боливии
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Время в Перу
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Тихоокеанское время (США и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Центральное время (Мексика)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Восточное время (США и Канада)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Время в Аризоне
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Континентальное время Чили
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Время в Бразилии
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Тихоокеанское время (Мексика)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Стандартное время Аравии
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Индокитайское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Гонконгское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Западно-Индонезийское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Израильское стандартное время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Индийское стандартное время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Красноярское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Китайское стандартное время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Сингапурское стандартное время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Тайваньское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Стандартное время Японии
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Екатеринбургское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Время в Аделаиде
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Брисбенское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Мельбурнское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Время в Перте
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Сиднейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: Координированное универсальное время (UTC)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Восточноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Восточноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Время в Турции
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Восточноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Западноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Западноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Московское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Восточноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Центральноевропейское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Время Самоа
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Новозеландское время
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Гавайско-алеутское время
   #As in the title of a book or a blog post
   title: название
   title_and_description: "Заголовок и описание"
@@ -5590,7 +5713,7 @@ ru:
         Это может занять некоторое время, поэтому попробуйте обновить эту страницу через несколько минут.
       mobile_downloads_tip_html: |
         Это руководство можно загрузить в мобильное приложение для использования офлайн.
-      mobile_downloads_help_html: |2
+      mobile_downloads_help_html: |
         <p>Это приведет к созданию загружаемого архива всех данных и медиафайлов, связанных с этим руководством, чтобы пользователи мобильных приложений могли просматривать содержимое руководства без подключения к Интернету. Для создания архива потребуется несколько минут, но, как только он будет создан, архив будет обновляться при каждом изменении этого руководства.</p>
         <p class="alert status">
           Пожалуйста, <strong> не включайте офлайновые мобильные загрузки, если вы на 
@@ -5959,7 +6082,7 @@ ru:
           нарушающие авторское право. Подробнее см. в разделе %{links}
         join_project_desc_html: |
           Присоединяясь к проекту, вы даёте кураторам проекта возможность видеть скрытые координаты того или иного наблюдения в проекте, это означает, что вы согласны с условиями проекта <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |2
+        quality_assessment_help2_html: |
           <p>
           Оценка качества данных это совокупность точности даных наблюдения. Все наблюдения изначально имеют <strong>"обыкновенный"</strong> уровень, а затем получают уровень
           <strong>"требуется идентификация"</strong> когда
@@ -6294,7 +6417,7 @@ ru:
         you_can_preview: |
           Вы можете просмотреть, как будет выглядеть ваш проект в виде проекта коллекции, <a href="%{url}">нажав здесь</a>.
       invite:
-        description_html: |2
+        description_html: |
           <h3>О приглашениях</h3>
           <p class="ui">
             Приглашение людей к вашему проекту несколько отличается от приглашения отдельных наблюдений. Приглашение людей приведёт к 
@@ -6422,7 +6545,7 @@ ru:
       show:
         are_you_sure_you_want_to_convert: |
           Вы уверены, что хотите преобразовать этот проект в коллекционный?
-        bioblitz_results_desc_html: |2
+        bioblitz_results_desc_html: |
           <p>
             В отличие от обычных проектов, биоблицы отображают статистику событий 
           <em>всех</em> наблюдений в пределах места и периода времени, а не только наблюдений, которых люди намеренно добавили в проект. Это сделано, чтобы  устранить препятствие для добавления наблюдений в проект, только для того, чтобы управлять статистикой в реальном времени. Обратите внимание, что наблюдения не будут доступны для экспорта или отображения в различных проектных представлениях, таких как вклады участников на веб-сайте или поиск наблюдений в проекте в мобильных приложениях, пока команда проекта и участники не будут активно добавлять соответствующие наблюдения, как в обычном проекте.
@@ -6615,7 +6738,7 @@ ru:
           Краткое описание этого таксона основано на его <a target="_blank"
           href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
       show:
-        about_names_desc: |2
+        about_names_desc: |
           <p>
             Большинство категорий организмов имеют «народные названия» в разговорных языках. 
             Эти имена обычно узнаваемы, легко произносятся и стабильны с течением 
@@ -7493,6 +7616,8 @@ ru:
         login: Имя пользователя
         name: Имя
         locale: Языковой стандарт
+        time_zone: Часовой пояс
+        search_place_id: Место поиска
         place_id: Место
         preferred_observation_fields_by: Разрешить поля наблюдения от
     errors:
