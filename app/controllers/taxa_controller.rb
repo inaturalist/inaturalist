@@ -376,6 +376,7 @@ class TaxaController < ApplicationController
   
   def clashes
     @taxon = Taxon.where( id: params[:id] ).first
+    @context = params[:context]
     new_parent_id = params[:new_parent_id]
     @results = @taxon.clash_analysis( new_parent_id )
     @results.each do |result|

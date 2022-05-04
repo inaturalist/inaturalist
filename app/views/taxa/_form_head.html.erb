@@ -122,14 +122,14 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
             }
             ancestry.push(new_parent)
             if( ancestry.indexOf( old_parent ) == -1 ){
-              $('.potential_clashes').show();
-              $('#dialog').jqm({ajax: 'clashes?new_parent_id=' + new_parent, trigger: 'a.potential_clashes_link'});
+              $( '.potential_clashes' ).show();
+              $( '#dialog' ).jqm( { ajax: 'clashes?context=taxon&new_parent_id=' + new_parent , trigger: 'a.potential_clashes_link' } );
             }else{
-              $('.potential_clashes').hide();
+              $( '.potential_clashes' ).hide();
             }
           },
           error: function( e ) {
-            $('.potential_clashes').hide();
+            $( '.potential_clashes' ).hide();
           }
         } );
       }

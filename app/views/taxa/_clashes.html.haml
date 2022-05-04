@@ -1,9 +1,10 @@
-= link_to "Close", "#", :class => "jqmClose" 
-%h2
-  Analyze Clashes*
+- if @context == "taxon"
+  = link_to "Close", "#", :class => "jqmClose" 
+  %h2
+    Analyze Clashes*
 - if @results.map{ |result| result[:id_count] == 0 }.all?
   %p
-    There are no current IDs of the narrowed #{ @results.count == 1 ? "parent" : "parents" } so no need to commit any taxon changes along with changing the classification.
+    There are no current IDs of the narrowed #{ @results.count == 1 ? "parent" : "parents" } so no need to commit any #{ @context == "taxon" ? "taxon changes following this classification change" : "additional taxon changes following this one"}.
 - @results.each do |result|
   -unless result[:id_count] == 0
     %p
@@ -13,12 +14,14 @@
     - unless result[:sample].nil?
       %p
         Here are a some observations where such clashes would occur
-        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } )
+        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" }, target: "_blank" )
     %p
       - if result[:num_clashes] > 10
-        Since this move is resulting in >10 clashes, we recommend you also commit a taxon change involving #{ result[:old_parent] } such as splitting #{ result[:new_parent] } off from #{ result[:old_parent] }
+        Since we estimate this move is resulting in >10 clashes, we recommend you also commit a taxon change involving #{ result[:old_parent] } such as splitting #{ result[:new_parent] } off from #{ result[:old_parent] }
       - else
-        Since this move is resulting in 10 or fewer clashes, its probably not necessary to commit a taxon change involving #{ result[:old_parent] }, but you may want to comment on the clashing observations linked above to alert identifiers that the meaning of #{ result[:old_parent] } has narrowed
-    %hr
-%p.description
-  *Clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child. For example, Bufo is a child of Bufonidae. An observation has an ID of Bufonidae and an ID of Bufo bufo. If Bufo is moved out of Bufonidae, then the ID of Bufonidae will be reinterpreted as a disagreement with Bufo bufo. This is a clash. If narrowing a parent results in more than 10 clashes, you should split the parent. e.g. if Bufo is moved from Bufonidae to Hylidae, afterwards split Bufonidae into Bufonidae and Hylidae. This will replace existing IDs of Bufonidae with the common ancestor Anura and avoid clashes.
+        Since we estimate this move is resulting in 10 or fewer clashes, its probably not necessary to commit a taxon change involving #{ result[:old_parent] }
+        - if result[:num_clashes] > 0
+          , but you may want to comment on the clashing observations linked above to alert identifiers that the meaning of #{ result[:old_parent] } has narrowed
+- if @context == "taxon"
+  %p.description
+    *Clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child. For example, Bufo is a child of Bufonidae. An observation has an ID of Bufonidae and an ID of Bufo bufo. If Bufo is moved out of Bufonidae, then the ID of Bufonidae will be reinterpreted as a disagreement with Bufo bufo. This is a clash. If narrowing a parent results in more than 10 clashes, you should split the parent. e.g. if Bufo is moved from Bufonidae to Hylidae, afterwards split Bufonidae into Bufonidae and Hylidae. This will replace existing IDs of Bufonidae with the common ancestor Anura and avoid clashes.

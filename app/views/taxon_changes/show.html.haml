@@ -56,6 +56,13 @@
   .row
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSwap )
+        .potential_clashes
+          .notice.box
+            Committing this swap may result in clashes, please first
+            = link_to "analyze the clashes", taxa_clashes_path(id: @taxon_change.input_taxa[0].id), :class => "potential_clashes_link", :data => { input_ancestry: @taxon_change.input_taxa[0].ancestry, output_ancestry: @taxon_change.output_taxon.ancestry }, "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
+            this may take a while
+
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         #id_analysis
         =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
@@ -82,3 +89,16 @@
         - if logged_in?
           .upstacked
             = render "subscriptions/subscription", resource: @taxon_change
+
+
+#clashes_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#clashes_modal_label.modal-title Analyze Clashes
+      .modal-body
+        = image_tag "spinner.gif", :id => "spinner", :class => "center"
+      .modal-footer
+        Clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child. For example, Bufo is a child of Bufonidae. An observation has an ID of Bufonidae and an ID of Bufo bufo. If Bufo is moved out of Bufonidae, then the ID of Bufonidae will be reinterpreted as a disagreement with Bufo bufo. This is a clash. If narrowing a parent results in more than 10 clashes, you should split the parent. e.g. if Bufo is moved from Bufonidae to Hylidae, afterwards split Bufonidae into Bufonidae and Hylidae. This will replace existing IDs of Bufonidae with the common ancestor Anura and avoid clashes.
