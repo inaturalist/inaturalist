@@ -1375,6 +1375,7 @@ pt-BR:
   default: padrão
   #Default option
   default_: Padrão
+  default_display_time_zone: Exibir o fuso horário padrão
   default_invite_comment: "Ótima foto! Você deveria publicar ela no %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licença padrão para suas observações
   default_photo_license: Licença padrão para suas fotos
@@ -4768,6 +4769,100 @@ pt-BR:
   threatened: Ameaçado
   time_: horário
   time_ago: "há %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Horário da África do Sul
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Horário da África Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Horário da Argentina
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Horário da Colômbia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Horário Central (EUA e Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Horário do Pacífico (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Horário da Guatemala
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Horário padrão do Atlântico (Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Horário da Bolívia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Horário do Peru
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Horário do Pacífico (EUA e Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Horário Central (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Horário do Leste (EUA e Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Horário do Arizona
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Horário do Chile continental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Horário de Brasília
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Horário do Pacífico (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Horário Padrão da Arábia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Horário da Indochina
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Horário de Hong Kong
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Horário da Indonésia Ocidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Hora padrão de Israel
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Horário Padrão Indiano
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Horário de Krasnoyarsk
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Horário Padrão da China
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Horário Padrão de Singapura
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Horário de Taiwan
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Horário Padrão do Japão
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Horário de Ecaterimburgo
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Horário de Adelaide
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Horário de Brisbane
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Horário de Melbourne
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Horário de Perth
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Horário de Sidney
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Horário da Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Horário da Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Horário da Turquia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Horário da Europa Ocidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Horário da Europa Ocidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Horário da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Horário de Moscou
   #As in the title of a book or a blog post
   title: título
   title_and_description: "Titulo e Descrição"
@@ -5841,7 +5936,7 @@ pt-BR:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
         ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
-        community_taxon_desc_html: |2
+        community_taxon_desc_html: |
           <p class="ui">
           O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
           </p>
@@ -5996,7 +6091,7 @@ pt-BR:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
-        content_html: |2
+        content_html: |
           <p>
           Obrigado por criar uma conta iNaturalist para o seu filho! o
              conta foi ativada. Aqui estão os detalhes que você digitou
@@ -6106,7 +6201,7 @@ pt-BR:
         make_owner: Tornar proprietário
         no_curators: |
           Ainda não existem administrador neste projeto. Se você decidir tornar um membro administrador, ele deverá primeiro inscrever-se no projeto e, somente depois poderá ser promovido.
-        observation_aggregation_desc_html: |2
+        observation_aggregation_desc_html: |
           <p class="description">
             A agregador de observações irá automaticamente adicionar observações que se adequem as suas normas ao seu projeto. Já que não existe uma forma de remover, de uma só vez, um número elevado de observações de um projeto, utilizar este recurso pode ser potencialmente perigoso, então por favor verifique com cuidado e, seja preciso, ao escolher quais táxons e/ou lugares lhe interessam ao criar as normas do seu projeto, ou você poderá acabar com centenas de observações inadequadas que somente poderão ser removidas manualmente. 
           </p>
@@ -6127,7 +6222,7 @@ pt-BR:
           <li>Arquivos que terminam em .logo.jpg, .logo.png, etc. serão utilizados como o logotipo do projeto na página ao invés do ícone do projeto</li>
           <li>Arquivos KML e KMZ serão adicionados ao mapa na página do projeto</li>
           </ol>
-        project_list_desc_html: |2
+        project_list_desc_html: |
           <p class="description">
             Você pode criar uma lista personalizada de um táxon e conectá-la ao seu 
             projeto. Isto pode ser útil para restringir observações adicionadas ao seu 
@@ -6172,7 +6267,7 @@ pt-BR:
           Você pode ver a visualização de como seu projeto se parecerá com um projeto de coleção
           Por quê? <a href="%{url}">selecione aqui</a>.
       invite:
-        description_html: |2
+        description_html: |
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente do que convidar 
@@ -6310,7 +6405,7 @@ pt-BR:
       show:
         are_you_sure_you_want_to_convert: |
           Tem certeza de que deseja converter este projeto em um projeto de coleção?
-        bioblitz_results_desc_html: |2
+        bioblitz_results_desc_html: |
           <p>
             Diferente de projetos regulares, as bioblitz divulgam o status do evento abaixo de
             <em>todas</em> observações naquele local e período, não somente 
@@ -6540,7 +6635,7 @@ pt-BR:
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizar este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
-        about_names_desc: |2
+        about_names_desc: |
           <p>
             A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são comumente, popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo, mas muitos outros organismos possuem mais de um nome popular em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. \  
             Os cientistas solucionaram este problema criando o uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,
@@ -7377,6 +7472,8 @@ pt-BR:
         login: Nome de usuário
         name: Nome
         locale: Localização
+        time_zone: Fuso horário
+        search_place_id: Procurar lugar
         place_id: Lugar
         preferred_observation_fields_by: Permitir campos de observação de
     errors:
