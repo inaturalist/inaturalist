@@ -269,7 +269,7 @@ be:
   about_this_bioblitz: Пра гэты біябліц
   about_this_map: Пра гэтую мапу
   about_this_project: Пра гэты праект
-  about_trips_html: |2
+  about_trips_html: |
     <h4>
     Падарожжы дазваляюць збіраць дадзеныя аб адсутнасці/прысутнасці, дадаючы кантэкст
     да вашых назіранняў
@@ -502,6 +502,8 @@ be:
   agree_with_current_taxon: Згадзіцца з дадзеным таксонам
   agreeing: Згаджаемся...
   aka: таксама вядомы як
+  #Noun, title of a popup alerting you to something
+  alert: Папярэджанне
   all: Усе
   all_comments: Усе каментарыі
   all_flags_must_be_resolved: Усе пазнакі павінны быць вырашаны
@@ -1502,6 +1504,7 @@ be:
   default: прадвызначанае
   #Default option
   default_: Перадвызначана
+  default_display_time_zone: Паказваць гадзінны пояс па змаўчанні
   default_invite_comment: "Выдатнае фота! Вы павінны размясціць яго на %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Прадвызначаная ліцэнзія назірання
   default_photo_license: Прадвызначаная ліцэнзія на фатаграфіі
@@ -1509,6 +1512,8 @@ be:
   default_search_place_description: |
     Гэтае месца будзе выкарыстоўвацца па змоўчанні для ўсіх пошукаў у падзелах "Даследаваць" і "Вызначаць".
   default_sound_license: Прадвызначаная ліцэнзія на гукі
+  default_time_zone_desc: |
+    Гэта гадзінны пояс па змаўчанні. Канчатковы гадзінны пояс будзе прызначаны на аснове месцазнаходжання назірання, калі яно будзе захавана.
   defaults_to_your_name_or_username: Выкарыстоўваць вашае імя або імя карыстальніка па змоўчванні
   defines_a_taxon_framework_for: Вызначае таксанамічную сістэму для %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Вызначае канцэпцыю таксона для %{taxon} з %{source}
@@ -1984,6 +1989,7 @@ be:
   generating_mobile_archive: "Стварэнне мабільнага архіва"
   Genus: Род
   geoprivacy: Геапрыватнасць
+  geoprivacy_is_obscured: Геапрыватнасць прыхавана
   geoprivacy_is_obscured_desc: Назіральнік вырашыў прыхаваць гэтыя каардынаты.
   geoprivacy_is_private: 'Геапрыватнасць: прыватнае'
   geoprivacy_is_private_desc: Назіральнік вырашыў схаваць гэтыя каардынаты.
@@ -2361,6 +2367,7 @@ be:
     portuguese: Партугальская
     romanian: Румынская
     russian: Руская
+    santali: Санталі
     setswana: Сэтсвана
     sinhala: Сінгальская
     slovak: Славацкая
@@ -2476,6 +2483,7 @@ be:
     pt: Партугальская
     pt-BR: Партугальская (Бразілія)
     ru: Руская
+    sat: Санталі
     sk: Славацкая
     sl: Славенская
     sq: Албанская
@@ -2615,6 +2623,8 @@ be:
     Будзьце ўважлівыя да запытаў на ўзоры або схаваныя дадзеныя. Паспрабуйце праверыць асобу чалавека, які робіць запыт, і калі яны просяць узоры, запытайце іх паказаць дазвол.
   messages_new_correspondent_personal: |
     Не раскрывайце асабістую інфармацыю пра сябе людзям, якім не давяраеце
+  messages_new_correspondent_actions_html: |
+    Калі вы мяркуеце, што гэты чалавек парушае нашы <a href="%{tos_url}" target="_blank">Умовы выкарыстання</a> або дзейнічае не ў адпаведнасці з нашымі <a href="%{guidelines_url}" target= "_blank">Правіламі паводзін у супольнасці</a>, калі ласка, адзначце гэта паведамленне ніжэй.
   minimum_positional_accuracy: Мінімальная дакладнасць пазіцыі
   misidentifications: Памылковыя ідэнтыфікацыі
   misleading_or_illegal_content_html: |
@@ -2839,6 +2849,9 @@ be:
   no_ids_have_been_suggested_yet: Ніякіх вызначэнняў яшчэ не прапанавана
   no_interaction_data_available: Дадзеных аб узаемадзеянні няма
   no_its_as_good_as_it_can_be: Не, гэта добра наколькі можа так быць
+  no_favorites_added:
+    current_user: Вы яшчэ нічога не дадалі ў абранае.
+    user: "%{user} не дадаў нічога ў абранае."
   no_journal_posts_yet: У дзённіку пакуль няма допісаў
   no_license_all_rights_reserved: Без ліцэнзіі (усе правы абаронены)
   no_managers_set: Не пазначаны менеджэры
@@ -2918,6 +2931,7 @@ be:
   not_linked_facebook: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Facebook."
   not_linked_flickr: "Ваш уліковы запіс %{site_name} не звязаны з вашым уліковым запісам Flickr."
   not_on_this_list: Няма ў гэтым спісе.
+  not_recorded: Не запісана
   not_resolved: Не вырашана
   not_seeing_what_looking_for: Не знайшлі тое, што шукалі?
   note: Нататка
@@ -2931,6 +2945,11 @@ be:
   number_of_observers: "Колькасць назіральнікаў"
   number_selected: "# абрана"
   obs: Наз.
+  obs_cid_d: Назіранні супольнасці
+  obscured: Прыхаванае
+  obscured_or_private: прыхаванае або прыватнае
+  obscured_description: |
+    Публічныя каардынаты паказаны ў выглядзе выпадковай кропкі ў межах 0,2 градуса шыр/даўг ад сапраўдных каардынат.
   observation: Назіранне
   observation_: назіранне
   observation_added_to_the_project: "Назіранне дададзена да праекта \"%{project}\""
@@ -2959,6 +2978,13 @@ be:
   observation_brief_something_from_place: "Некаторае з %{place}"
   observation_brief_something_from_place_by_user: "Некаторае з %{place} ад %{user}"
   observation_brief_something_from_place_on_day: "Некаторае з %{place} за %{day}"
+  observation_brief_something_from_place_on_day_by_user: "Нешта з %{place} за %{day} ад %{user}"
+  observation_brief_something_from_place_on_day_at_time: "Нешта з %{place} за %{day} а %{time}"
+  observation_brief_something_from_place_on_day_at_time_by_user: "Нешта з %{place} за %{day} а %{time} ад %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "Нешта з %{place} за %{month} %{year}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "Нешта з %{place} за %{month} %{year} ад %{user}"
   observation_brief_taxon_on_day: "%{taxon} за %{day}"
   observation_brief_taxon_on_day_at_time: "%{taxon} за %{day} у %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} за %{day} у %{time} ад %{user}"
@@ -3260,10 +3286,37 @@ be:
     original: зыходны
   photos_updated: Фота адноўлены.
   pi_consent_desc_title: Пра асабістую інфармацыю
+  pi_consent_desc_html: |
+    <p>
+    Мы захоўваем асабістую інфармацыю, такую як імёны карыстальнікаў і адрасы электроннай пошты, для кіравання ўліковымі запісамі на гэтым сайце, і ў адпаведнасці з законамі аб канфідэнцыяльнасці нам трэба, каб вы паставілі гэты сцяжок, каб паказаць, што згаджаецеся на такое выкарыстанне асабістай інфармацыі. Каб даведацца больш пра тое, якую інфармацыю мы збіраем і як яе выкарыстоўваем, глядзіце нашу <a href='%{privacy_url}' target='_blank'>Палітыку прыватнасці</a> і нашыя <a href='%{terms_url} ' target='_blank'>Умовы выкарыстання</a>.
+    </p>
+    <p>
+    Немагчыма мець уліковы запіс iNaturalist без захоўвання асабістай інфармацыі, таму адзіны спосаб адмяніць гэтую згоду - гэта выдаліць свой уліковы запіс.
+    </p>
   pi_consent_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі пра мяне для кіравання маім уліковым запісам
   pi_consent_child_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі аб маім дзіцяці для кіравання уліковым запісам майго дзіцяці
+  data_transfer_consent_desc_title: Аб згодзе на перадачу персанальнай інфармацыі
+  data_transfer_consent_desc_html: |
+    <p>
+    Некаторыя законы аб канфідэнцыяльнасці даных, напрыклад, Агульны рэгламент Еўрапейскага саюза аб абароне даных (GDPR), патрабуюць яўнай згоды на перадачу асабістай інфармацыі з іх юрысдыкцыі ў іншыя юрысдыкцыі, дзе прававая абарона гэтай інфармацыі не лічыцца дастатковай. Па стане на <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    Еўрапейскі Саюз больш не лічыць Злучаныя Штаты юрысдыкцыяй, якая забяспечвае адэкватную прававую абарону асабістай інфармацыі, у прыватнасці, з-за магчымасці назірання ўрада ЗША за дадзенымі, якія трапляюць у ЗША. Магчыма, іншыя юрысдыкцыі могуць мець такое ж меркаванне.
+    </p>
+    <p>
+    Выкарыстанне iNaturalist патрабуе захоўвання асабістай інфармацыі, такой як ваш адрас электроннай пошты, усе дадзеныя iNaturalist захоўваюцца ў Злучаных Штатах, і мы не можам быць упэўнены, у якой юрысдыкцыі вы знаходзіцеся, калі выкарыстоўваеце iNaturalist, таму, каб выконваць законы аб канфідэнцыяльнасці, напрыклад, GDPR, вы павінны прызнаць, што разумееце і прымаеце гэту рызыку і згоду на перадачу вашай асабістай інфармацыі на серверы iNaturalist у ЗША.
+    </p>
+    <p>
+    Каб даведацца больш аб тым, якую інфармацыю мы збіраем і як яе выкарыстоўваем,
+    глядзіце нашу <a href='%{privacy_url}' target='_blank'>Палітыку прыватнасці</a> і нашы <a href='%{terms_url}' target='_blank'>Умовы выкарыстання</a> .
+    </p>
+    <p>
+    Немагчыма мець уліковы запіс iNaturalist без захавання асабістай інфармацыі, таму адзіны спосаб адмяніць гэтую згоду - гэта выдаліць свой уліковы запіс.
+    </p>
+  data_transfer_consent_label: |
+    Я даю згоду на перадачу маёй асабістай інфармацыі ў Злучаныя Штаты Амерыкі
+  data_transfer_consent_child_label: |
+    Я даю згоду на перадачу асабістай інфармацыі майго дзіцяці ў Злучаныя Штаты Амерыкі
   pin_verb: Замацаваць
   pink: ружовы
   pinned_locations_desc: |
@@ -3347,8 +3400,12 @@ be:
       open_space: адкрытая прастора
       Parish: Парафія
       parish: парафія
+      Postal_Code: Паштовы індэкс
+      postal_code: Паштовы індэкс
       Province: Правінцыя
       province: правінцыя
+      Region: Вобласць
+      region: вобласць
       Republic: Рэспубліка
       republic: рэспубліка
       Sports_Team: Спартыўная каманда
@@ -3359,6 +3416,7 @@ be:
       street: вуліца
       Street_Segment: Адрэзак вуліцы
       street_segment: адрэзак вуліцы
+      time_zone: Часавы пояс
       Unknown: Невядомае
       unknown: невядомае
       Zone: Зона
@@ -3640,6 +3698,7 @@ be:
     zimbabwe: Зімбабвэ
   places_of_interest: Славутасці
   places_merged_successfully: Месцы паспяхова аб'яднаны!
+  plants: расліны
   please_ask_your_parents_for_permission: Калі ласка, атрымай дазвол ў бацькоў
   #Title to a section warning a user to exercise caution
   please_be_careful!: Калі ласка, будзьце асцярожны!
@@ -3757,6 +3816,7 @@ be:
   query: Запыт
   radius: Радыюс (м)
   radius_value: "Радыюс (м): %{radius}"
+  range: Арэал
   ranks:
     class: Клас
     x_classes:
@@ -3986,11 +4046,14 @@ be:
   some_of_those_photos_couldnt_be_saved: "Некаторыя з гэтых фота не атрымалася захаваць: %{error}"
   some_other_reason: Іншая прычына, якую вы можаце растлумачыць ніжэй.
   some_rights_reserved: некаторыя правы абаронены
+  somewhere_on_earth: дзесьці на Зямлі
   sounds:
     add_media: Дадаць медыа
     add_sounds: Дадаць гукі
     before_importing_sounds: перад імпартам гукаў
     import_from_soundcloud_description: "Выберыце гукі са свайго ўліковага запісу SoundCloud, каб пераўтварыць іх у назіранні iNaturalist. Мы ўвядзем дату і час з метададзеных гуку і паспрабуем знайсці назвы відаў па тэгам."
+    sound: Гук
+    sounds: Гукі
   #Plural
   species: Віды
   species_by_category: віды па катэгорыях
@@ -4004,6 +4067,8 @@ be:
   supporting: Падтрымка
   tags_are_a_way: 'Пазнакі - гэта сродак арганізацыі назіранняў. Напрыклад, вы можаце пазначыць усе свае назіранні ў прыпрыліўных вадаёмах як "прыліўныя вадаёмы" каб зрабіць паскорыць іх пошук у будучыні.'
   taxa_info: Інфармацыя пра таксоны
+  taxon: Таксон
+  taxon_autocomplete_placeholder: Птушкі, матылёк манарх і інш.
   taxon_changes: Змены таксона
   taxon_colors: Колеры таксона
   taxon_curators: Куратары таксона
@@ -4055,8 +4120,12 @@ be:
   top_observers: Лепшыя назіральнікі
   twitter: Twitter
   unreview_all: Удмяніць прагляд усяго
+  update_observations: Абнавіць назіранні
+  update_photos: Абнавіць фота
+  update_search: Абнавіць пошук
   update_your_content: Аднавіць змест
   updated: Адноўлена
+  updated_by: Адноўлена
   updated_daily: Аднаўляецца штодзённа
   upload: Запампаваць
   uploader:
@@ -4403,6 +4472,7 @@ be:
       user:
         email: Email
         login: Імя карыстальніка
+        time_zone: Гадзінны пояс
     errors:
       messages:
         empty: не можа быць пустым
