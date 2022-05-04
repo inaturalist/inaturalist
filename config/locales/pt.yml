@@ -3185,7 +3185,7 @@ pt:
   there_were_some_problems_with_fields: "Ocorreram problemas com os seguintes campos:"
   there_were_some_problems_with_these_files: "Ocorreram problemas com os seguintes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Passa-se algo de errado - não conseguimos determinar a relação entre quaisquer táxon internos e externos
-  these_are_items_people_on: |2
+  these_are_items_people_on: |
     Estes são itens que as pessoas no site sinalizaram para curadoria. Comentários com spam
      devem ser excluídos e os utilizadores que adicionarem spam devem ser suspensos (vá
     à sua página de perfil e clique em 'Suspender usuário', no canto inferior direito, para
@@ -3441,7 +3441,7 @@ pt:
           O seu acesso a coordenadas ocultas será revogado durante uma semana após
           alterar os requisitos de observação, para que os membros tenham tempo para fazer isso
       invite:
-        description_html: |2
+        description_html: |
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente de convidar observações individuais. Ao convidar pessoas
@@ -3805,6 +3805,8 @@ pt:
         login: Nome de Utilizador
         name: Nome
         locale: Local
+        time_zone: Fuso horário
+        search_place_id: Procurar lugar
         place_id: Lugar
     errors:
       models:
