@@ -5439,7 +5439,7 @@ fi:
           Voit esikatsella miltä projektisi näyttäisi koontiprojektina
           <a href="%{url}">klikkaamalla tästä</a>.
       invite:
-        description_html: |2
+        description_html: |
           <h3>Tietoja kutsuista</h3>
           <p class="ui">
             Ihmisten kutsuminen projektiisi on hieman eri kuin kutsuminen
@@ -6339,6 +6339,8 @@ fi:
         login: Käyttäjänimi
         name: Nimi
         locale: Maa
+        time_zone: Aikavyöhyke
+        search_place_id: Havaintohaun oletuspaikka
         place_id: Paikka
         preferred_observation_fields_by: Salli havaintokentät
     errors:
