@@ -77,7 +77,7 @@ $( document ).ready( function () {
   if( new_ancestors.indexOf( old_parent ) == -1 ){
     var new_parent = new_ancestors[new_ancestors.length - 1];
     var _href = $("a.potential_clashes_link").attr("href");
-    $("a.potential_clashes_link").attr("href", _href + '?new_parent=' + new_parent);
+    $("a.potential_clashes_link").attr("href", _href + '?new_parent_id=' + new_parent);
     $('.potential_clashes').show();
   }else{
     $('.potential_clashes').hide();
