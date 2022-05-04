@@ -935,7 +935,7 @@ es-AR:
   connecting_to_facebook: "Conectándose a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "El conectar tu cuenta de %{site_name} con cuentas en otros sitios te permitirá ingresar a %{site_name} usando tus credenciales de esos sitios."
   cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
-  conservation_status: Categoría de riesgo
+  conservation_status: Estado de conservación
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsala, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
     description: Descripción muy corta del porque esta en la lista.
@@ -1145,7 +1145,7 @@ es-AR:
     No demuestra el comportamiento apropiado él mismo.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |2
+  curator_application_inelligible: |
     Para solicitar ser curador del sitio debes haber tenido una cuenta por 60
      o más días y haber añadido 100 identificaciones que mejoran a varias observaciones, incluyendo las tuyas (has añadido %{num_idents}). Cuando hayas
     cumplido con los ambos requisitos, regresa aquí y podrás enviar la
@@ -1305,6 +1305,9 @@ es-AR:
   default_search_place_description: |
     Este será su lugar predeterminado para todas las búsquedas en "Explorar" e "Identificar".
   default_sound_license: Licencia predeterminada de sonido
+  default_time_zone_desc: |
+    Esta es la zona horaria por defecto. La zona horaria final se asignará basada en
+    la ubicación de la observación cuando se guarde.
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
   defines_a_taxon_framework_for: Define un marco de taxon para %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Define un Marco de Taxones para %{taxon} cuya fuente es %{source}
@@ -3748,6 +3751,8 @@ es-AR:
   resolver_said_x_html: '<span class="meta">%{resolver} dijo:</span> "%{x}"'
   restore: Restaurar
   restoring: Restaurando...
+  result_window_too_large_error: |
+    El número de páginas multiplicado por el número de resultados por página no puede exceder de 10,000. Intente aplicar filtros para reducir el número de resultados.
   review_all: Revisar todas
   review_identifications_of_taxon_html: |
     Revisar identificaciones de <span class="sciname">%{taxon}</span> %{taxon_id}
@@ -5686,7 +5691,7 @@ es-AR:
       show:
         are_you_sure_you_want_to_convert: |
           ¿Estás seguro que quieres convertir este proyecto a un Proyecto de colección?
-        bioblitz_results_desc_html: |2
+        bioblitz_results_desc_html: |
           <p>
            A diferencia de los proyectos, los inventarios rápidos (maratones naturalistas) exhiben estadísticas con las observaciones de <em>todos</em> dentro de un lugar y período de tiempo, y no sólo con las observaciones que las personas agregan intencionalmente para el proyecto. Esto es con el fin de quitar el obstáculo de unirse a un proyecto para contribuir a las estadísticas de estos eventos.
           </p>
@@ -6487,6 +6492,8 @@ es-AR:
         login: Nombre de usuario
         name: Nombre
         locale: Configuración regional
+        time_zone: Huso horario
+        search_place_id: Busca lugares
         place_id: Lugar
         preferred_observation_fields_by: Permite campos de observación de
     errors:
