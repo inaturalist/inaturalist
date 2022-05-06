@@ -2210,7 +2210,7 @@ class Taxon < ApplicationRecord
         id_taxon_hash = id_taxon_array.map {| a | [a[:id], a[:ancestor_ids]] }.to_h
         child_desc_ids = id_taxon_hash.
           select {| taxon, ancestors | ( child_ids.include? taxon ) || ( child_ids & ancestors ).count.positive? }.keys
-        if child_desc_ids.positive?
+        if child_desc_ids.count.positive?
           freq = id_taxa.group_by( &:itself ).transform_values!( &:size ).sort_by {| _k, v | v }.reverse.to_h
           sampled_ids = freq[parent_id]
           clash_frac = child_desc_ids.map {| a | ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
