@@ -2235,6 +2235,7 @@ class Taxon < ApplicationRecord
       end
       results << result
     end
+    return results
   end
 
   # Static ##################################################################
