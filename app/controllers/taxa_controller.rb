@@ -376,7 +376,8 @@ class TaxaController < ApplicationController
   def clashes
     @taxon = Taxon.where( id: params[:id] ).first
     @context = params[:context]
-    unless ( new_parent_id = params[:new_parent_id] )
+    new_parent_id = params[:new_parent_id]
+    unless new_parent_id
       flash[:error] = t( :no_new_parent_specified )
       redirect_back_or_default( @taxon )
       return
