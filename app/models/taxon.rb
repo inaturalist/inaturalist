@@ -2196,12 +2196,14 @@ class Taxon < ApplicationRecord
         end
         params = { id: id_obs[0..499] }
         obs = INatAPIService.get( "/observations", params ).results
-        id_taxa = obs.each do | o |
-          o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
+        id_taxa = []
+        obs.each do | o |
+          id_taxa << o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
         end
         id_taxa = id_taxa.flatten
-        id_taxon_array = obs.each do | o |
-          o["identifications"].select {| a | a["current"] == true }.
+        id_taxon_array = []
+        obs.each do | o |
+          id_taxon_array << o["identifications"].select {| a | a["current"] == true }.
             map {| i | { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } }
         end
         id_taxon_array = id_taxon_array.flatten.uniq
@@ -2212,16 +2214,18 @@ class Taxon < ApplicationRecord
           freq = id_taxa.group_by( &:itself ).transform_values!( &:size ).sort_by {| _k, v | v }.reverse.to_h
           sampled_ids = freq[parent_id]
           clash_frac = child_desc_ids.map {| a | ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
-          sample = obs.each do | o |
-            o["identifications"].
+          sample = []
+          obs.each do | o |
+            sample << o["identifications"].
               select {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any?
           end
           sample = sample.map {| r | r["id"] }
           result[:num_clashes] = ( id_count * clash_frac ).round
           result[:sample] = sample
         else
-          sampled_ids = obs.each do | o |
-            o["identifications"].select {| a | a["current"] == true && a["taxon_id"] == parent_id }.count
+          sampled_ids = []
+          obs.each do | o |
+            sampled_ids << o["identifications"].select {| a | a["current"] == true && a["taxon_id"] == parent_id }.count
           end
           sampled_ids = sampled_ids.sum
         end
