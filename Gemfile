@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "~> 2.7.6"
+ruby "~> 2.6.0"
 
 gem "rails", "6.1.4.7"
 
@@ -18,7 +18,7 @@ gem "audited"
 gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"
-#gem "biodiversity"
+gem "biodiversity"
 gem "capistrano"
 gem "capistrano-passenger"
 gem "capistrano-rails"
@@ -53,7 +53,7 @@ gem "georuby"
 gem "haml"
 gem "htmlentities"
 gem "i18n-inflector-rails"
-gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
+gem "i18n-js", git: "https://github.com/fnando/i18n-js.git"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "irwi", git: "https://github.com/Programatica/irwi.git"
 gem "json"

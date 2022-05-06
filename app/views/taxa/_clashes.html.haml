@@ -14,7 +14,7 @@
     - unless result[:sample].nil?
       %p
         Here are a some observations where such clashes would occur
-        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any", target: "_blank" } )
+        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank"
     %p
       - if result[:num_clashes] > 10
         Since we estimate this move is resulting in >10 clashes, we recommend you also commit a taxon change involving #{ result[:old_parent] } such as splitting #{ result[:new_parent] } off from #{ result[:old_parent] }
