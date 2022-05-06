@@ -370,30 +370,29 @@ class TaxaController < ApplicationController
     flash[:notice] = t(:taxon_deleted)
     redirect_to :action => 'index'
   end
-  
 
 ## Custom actions ############################################################
-  
+
   def clashes
     @taxon = Taxon.where( id: params[:id] ).first
     @context = params[:context]
-    unless new_parent_id = params[:new_parent_id]
-      flash[:error] = t(:taxon_doesnt_have_a_range)
+    unless ( new_parent_id = params[:new_parent_id] )
+      flash[:error] = t( :no_new_parent_specified )
       redirect_back_or_default( @taxon )
       return
     end
     @results = @taxon.clash_analysis( new_parent_id )
-    @results.each do |result|
+    @results.each do | result |
       result[:child] = @taxon.name
-      result[:old_parent] = Taxon.where(id: result[:parent_id]).first.name
-      result[:new_parent] = Taxon.where(id: new_parent_id).first.name
+      result[:old_parent] = Taxon.where( id: result[:parent_id] ).first.name
+      result[:new_parent] = Taxon.where( id: new_parent_id ).first.name
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         render partial: "clashes.html.haml", locals: { results: @results }
       end
       format.json do
-        render :json => @results.to_json(:methods => [:html])
+        render json: @results.to_json( methods: [:html] )
       end
     end
   end
