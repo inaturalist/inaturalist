@@ -1,5 +1,5 @@
 - if @context == "taxon"
-  = link_to "Close", "#", :class => "jqmClose" 
+  = link_to t( :close ), "#", :class => "jqmClose" 
   %h2
     Analyze Clashes
 - if @results.map{ |result| result[:id_count] == 0 }.all?
