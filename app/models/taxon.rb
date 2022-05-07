@@ -2216,8 +2216,10 @@ class Taxon < ApplicationRecord
           clash_frac = child_desc_ids.map {| a | ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
           sample = []
           obs.each do | o |
-            sample << o["identifications"].
+            next unless o["identifications"].
               select {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any?
+
+            sample << o
           end
           sample = sample.map {| r | r["id"] }
           result[:num_clashes] = ( id_count * clash_frac ).round
