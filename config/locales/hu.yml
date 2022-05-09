@@ -240,6 +240,7 @@ hu:
   add_id: Azonosítás
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dőlt betűs szöveg hozzáadása
+  add_muted_users: Némított felhasználók hozzáadása
   add_new_lexicon: Új szókészlet hozzáadása
   add_new_place: Új hely hozzáadása
   add_new_rule: Új szabály hozzáadása
@@ -324,6 +325,7 @@ hu:
     suborder: Minden alrend hozzáadva az adatbázishoz
     infraorder: Minden alrendág hozzáadva az adatbázishoz
     superfamily: Minden főcsalád hozzáadva az adatbázishoz
+    epifamily: Minden klád hozzáadva az adatbázishoz
     family: Minden család hozzáadva az adatbázishoz
     subfamily: Minden alcsalád hozzáadva az adatbázishoz
     supertribe: Minden öregnemzetség hozzáadva az adatbázishoz
@@ -503,6 +505,7 @@ hu:
   authorize_with_pkce_desc_html: |
     (Használd a <code>%{code_challenge}t</code> mint
     <code>%{code_verifier_param}t</code>) Megjegyzés: ez egy egyszerű példa. Kész termék kodjában KELL, hogy használd a <code>%{code_challenge_method}t</code> és helyes legyen a <code>%{code_challenge_param}</code> hash-je.
+  automatically_update_my_content_for_taxon_changes: Automatikusan frissítsd tartalmamat a taxonváltozásokkal
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
   avg: Átlag
@@ -623,6 +626,7 @@ hu:
     replace_with: csere ezzel
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}t felosztják ezekre: %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} ejtve"
     input_taxon_will_be_dropped_html: "%{input_taxon} ejtve lesz"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} hamarosan aktiválva lesz"
@@ -631,6 +635,7 @@ hu:
   #Plural noun, as in changes to a taxon record over time
   changes: Változások
   changing_the_geoprivacy: 'A helyvédelem módosítása megváltoztatja hogyan látják mások a megfigyelésed koordinátáit.'
+  check_above_for_errors: Ellenőrizd fentebb a hibákat
   check_back_soon: Jöjjön vissza hamarosan!
   check_list: Lista
   check_list_for_taxon_html: "%{taxon} listája"
@@ -678,6 +683,7 @@ hu:
   community_id_heading: Közösségi taxon
   community_id_at_species_level_or_lower: Közösségi meghatározás faji szinten vagy alatta
   community_id_is_precise: A közösségi taxon pontos
+  community_moderation_settings: A közösség közbenjáró tevékenységeinek beállításai
   compare: Összehasonlítás
   compare_with: 'Összehasonlítás ezzel:'
   comparing: összehasonlítás
@@ -714,14 +720,21 @@ hu:
   connect_to_provider: "Kapcsolódás %{provider} szolgáltatóhoz"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Csatlakoztatott fiókok
+  connected_accounts_description: A csatlakoztatott fiókok olyan más alkalmazások fiókjai melyeknek engedélyt adtál az iNaturalistnak, hogy nevedben belépjen, fotókat importáljon és egyéb funkciókat hajtson végre.
   connected_accounts_titlecase: Csatlakoztatott fiókok
   connecting_flickr: "Kapcsolódás a Flickr-re... "
   connecting_to_facebook: "Kapcsolódás a Facebookra…"
+  cannot_be_changed_during_a_content_freeze: Nem változtatható meg ameddig a tartalom be van fagyasztva
   conservation_status: Természetvédelmi státusz
   conservation_status_geoprivacy_desc: |
     Az alapértelmezett helyvédelmet alkalmazták e taxon minden megfigyelésére ezen a helyen
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Tartalom
+  content_and_display: Tartalom és megjelenítés
+  content_author: Tartalom szerzője
+  content_hidden: Tartalom elrejtve
+  content_hidden_by_user_on_date_because_reason_html: |
+    Tartalom elrejtve %{user} által %{date}. napon, mert: "%{reason}"
   content_type: Tartalom típusa
   continue: Folytatás
   continue_to_site: Folytatás itt %{site_name}
@@ -799,6 +812,7 @@ hu:
     some_rights_reserved: néhány jog fenntartva
     some_rights_reserved_by: "(c) %{name}, néhány jog fenntartva (%{license_short})"
     all_rights_reserved: "(c) %{name}, minden jog fenntartva"
+    no_known_copyright_restrictions: "%{name}, nincs ismert szerzői jog korlátozás (%{license_name})"
     no_rights_reserved: semmilyen jog nincs fenntartva
     no_rights_reserved_by: "%{name}, semmilyen jog nincs fenntartva (%{license_name})"
     anonymous: névtelen
@@ -806,6 +820,8 @@ hu:
     copyright: Szerzői jog
     no_copyright: közkincs (CC0)
     attribution_noncommercial_sharealike_license: Nevezd meg! - Ne add el! - Így add tovább! licenc
+    attribution_noncommercial_license: Nevezd meg - Ne add el! licenc
+    attribution_noncommercial_noderivs_license: Nevezd meg - Ne add el - Ne változtasd! licenc
     attribution_license: Nevezd meg! licenc
     attribution_sharealike_license: Nevezd meg - Így add tovább! licenc
     attribution_noderivs_license: Nevezd meg - Ne változtasd! licenc
@@ -922,10 +938,16 @@ hu:
   default: alapértelmezett
   #Default option
   default_: Alapértelmezett
+  default_display_time_zone: Alapértelmezett időzóna a megjelenítéshez
   default_invite_comment: "Nagyszerű fotó!  Fel kellene töltened ide %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Alapértelmezett megfigyelési licenc
   default_photo_license: Alapértelmezett fényképlicenc
+  default_search_place: Alapértelmezett hely a kereséshez
+  default_search_place_description: |
+    Ez lesz az alapértelmezett helyed a keresésekhez a Felfedezés és Azonodítás lapokon.
   default_sound_license: Alapértelmezett hanglicenc
+  default_time_zone_desc: |
+    Ez az alapértelmezett időzóna. A végső időzónát a megfigyelés helyétől függően állítjuk be amikor elmented.
   definitions: Meghatározások
   delete: Törlés
   delete_all: Összes törlése
@@ -1052,6 +1074,7 @@ hu:
   edit_the_observation: Megfigyelés szerkesztése
   edit_your_account_and_profile_html: "Fiókod és profilod módosítása"
   edit_your_default_settings: "Alapértelmezett beállításaid szerkesztése"
+  edit_your_identification: Meghatározásod szerkesztése
   edited_by_name_html: "Módosította %{name}"
   edited_by_name_some_rights_reserved_html: |
     %{name} módosította, néhány jog fenntartva (%{license})
@@ -1121,11 +1144,13 @@ hu:
   extinct_in_the_wild: Vadon kihalt
   evidence_of_organism: Bizonyíték az organizmusra
   facebook: Facebook
+  facebook_account_information: Facebook fiókod adatai
   facebook_options: Facebook beállítások
   failed_to_find_your_location: Nem találtuk a helyedet.
   failed_to_repair_photo: "Nem sikerült a fotó javtása: %{errors}"
   failed_to_save_record: "A rekord mentése sikertelen. Kérjük, próbáld meg később."
   failed_to_save_record_with_errors: "Nem sikerült menteni a rekordot: %{errors}"
+  failed_to_unlink_your_account: Nem sikerült fiókodat lekapcsolni
   'false': 'Nem'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Kedvencek
@@ -1212,6 +1237,8 @@ hu:
     A megjelöléssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
   flags_for_x_html: '%{x} bejelentések'
+  flickr_account_information: Flickr fiókod adatai
+  flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
   flickr_photo: Flickr fotó
   flickr_photos: Flickr fotók
   fluid_layout: Rugalmas elrendezés
@@ -1237,6 +1264,7 @@ hu:
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
   generate_widget: Modul létrehozása
+  generate_your_stats: Saját statisztika készítése
   Genus: Nemzetség
   geoprivacy: Pozíció láthatósága
   geoprivacy_is_obscured: A helymegjelenítés kitakart
@@ -1264,14 +1292,18 @@ hu:
   has_photos_or_sounds: Hanggal
   has_sounds: Hanggal
   header_your_observations: Megfigyeléseim
+  header_your_calendar: A naptárad
   header_your_favorites: Kedvenceid
   header_your_lists: Listáid
   header_your_journal: A te hírmondód
   header_your_identifications: Meghatározásaid
   header_your_projects: Projektjeid
   header_your_profile: Profilod
+  heads_up: Értesítés
   heads_up_automatable_draft_split_notice_html: |
     <strong>Figyelem!</strong> Ennek a változtatásnak az élesítésével a meghatározások a céltaxonok térképei alapján újra azonosításra kerülnek. Ha egy vagy több céltaxon nem rendelkezik térképpel, vagy ha a térképek átfedést mutatnak az adott meghatározásnál, a meghatározások lecserélődnek a legközelebbi közös felmenő taxonnal (%{taxon}).
+  heads_up_this_photo_has_been_flagged: "ÉRTESÍTÉS: ez a fotó meg volt jelölve"
+  heads_up_this_photo_is_already_associated_with: "Értesítés: az a fotó már társítva van <a target='_blank' href='%{url}'>egy másik megfigyeléssel</a>"
   help: Súgó
   here_are_our_top_suggestions: Íme a legjobb javaslataink
   here_are_our_top_species_suggestions: Íme a legjobb javaslataink
@@ -1329,6 +1361,7 @@ hu:
   in_n: "%{n}ben"
   in_place_x: 'itt: %{place}'
   inaturalist_network: iNaturalist-hálózat
+  inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
   inbox: Beérkezett üzenetek
   include_places: Helyeket tartalmazza
@@ -1347,6 +1380,7 @@ hu:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Inaktív
   inappropriate_content: Kifogásolható tartalom?
+  inat_believes_this_is_a_complete_listing: "%{site_name} úgy hiszi ezen a helyen ennek a taxonnak ez egy teljes listája."
   inat_user_profile: "%{site_name}: %{user} profilja"
   inaturalist_activity_notifications: "Értesítések %{site_name}-tevékenységekről"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
@@ -1408,6 +1442,8 @@ hu:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
   lock_zoom_level: Nagyítás mértékének rögzítése
+  language_slash_locale: Nyelv/Nyelvi lokalizáció
+  language_slash_locale_description: Ez beállítja a nyelvet és a dátum megjelenítését az iNaturalist-on a nyelvi lokalizáció alapján. A változtatások érvényesülnek miután a weboldalt frissíted.
   language_slash_type: Nyelv / Típus
   #Large photo size
   large: nagy
@@ -1499,6 +1535,7 @@ hu:
     ukrainian: Ukrán
   less: Kevesebb
   license: Licenc
+  licensing: Engedélyezés
   life: Élet
   life_list: "%{user} életlistája"
   linear_scale_label: Lineáris
@@ -1507,6 +1544,9 @@ hu:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Hivatkozás a hitelesítési kódhoz
+  link_your_facebook_account: Facebook fiók csatlakoztatása
+  link_your_flickr_account: Flickr fiók csatlakoztatása
+  link_your_google_account: Csatlakoztasd Google fiókodat
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista törölve
@@ -1608,6 +1648,10 @@ hu:
   longitude_value: "Hosszúsági kör: %{longitude}"
   lookup: Keresés
   low: Alsó
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: Fő téma
+  #Stub text for the main content section when editing custom project data
+  main_content_description: A honlap tartalma ide kerül.
   mammals: emlősök
   manage_all_your_subscriptions: Feliratkozásaid kezelése
   manage_your_projects: Projektjeid kezelése
@@ -1691,6 +1735,14 @@ hu:
       'y': "1é"
       #Short text representing %d years in the past
       yy: "%dé"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "YYYY, MMM D, · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D H:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "YYYY, MMM D · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -1818,6 +1870,7 @@ hu:
     current_user: Még nem adtál hozzá kedvenceket.
     user: "%{user} még nem adott hozzá kedvenceket."
   no_journal_posts_yet: Még nincs hírmondó-bejegyzés
+  no_license_all_rights_reserved: Nincs licenc (minden jog fenntartva)
   no_matching_article_from_x: "Nincs egyező cikk %{x}-től"
   no_matching_observations: Nincs egyező megfigyelés
   no_matching_places: Nincs egyező hely
@@ -2080,6 +2133,10 @@ hu:
   pi_consent_desc_title: A személyes információkról
   pi_consent_label: |
     Beleegyezem, hogy az iNaturalist korlátozott személyes információkat tároljon és dolgozzon fel rólam a fiókom kezelése érdekében.
+  data_transfer_consent_label: |
+    Engedélyezem, hogy személyes adataimat át lehessen vinni az Amerikai Egyesült Államokba
+  data_transfer_consent_child_label: |
+    Engedélyezem, hogy a gyermekem személyes adatait át lehessen vinni az Amerikai Egyesült Államokba
   pin_verb: Tűzd
   pink: rózsaszín
   place: Hely
@@ -2427,6 +2484,7 @@ hu:
     venezuela: Venezuela
     vietnam: Vietnám
     virgin_islands: Virgin-szigetek
+    wallis_and_futuna: Wallis és Futuna
     west_africa: Nyugat-afrika
     western_sahara: Nyugat-Szahara
     yemen: Jemen
@@ -2437,6 +2495,7 @@ hu:
   please_allow_a_few_weeks_for_external_sites: Kérünk adj pár hetet a külső honlapoknak, hogy e megfigyelés változtatásait szinkronizálják #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Kérd a szüleid engedélyét
   please_confirm_your_inat_username: "Kérjük erősítsd meg %{site_name} felhasználónevedet"
+  please_fix_your_csv_and_try_again: Kérünk, javítsd ki a CSV-t, majd próbáld újra
   popular: Népszerű
   position: Pozíció
   #Post is a noun
@@ -2705,6 +2764,8 @@ hu:
   saving_num_of_count_observations:
     one: Megfigyelések mentése...
     other: '%{count}/%{num} megfigyelés mentése...'
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Tudományos név
   search: Keresés
   search_by_name_or_email: Keresés név vagy email alapján
   search_external_name_providers: Keress rá külső névszolgáltatókon
@@ -2734,11 +2795,13 @@ hu:
   share: Megosztás
   share_colon: "Megosztás:"
   show: Megjelenítés
+  show_hidden_content: Rejtett tartalom megjelenítése
   show_less: Mutass kevesebbet
   show_more: Továbbiak
   show_off_your_recent_observations: Mutasd meg legújabb megfigyeléseidet saját blogodon vagy honlapodon!
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Kumulatív megjelenítése
+  show_uncountable_species: Mutasd a megszámlálhatatlan fajokat
   sign_in: Belépés
   sign_in_with_provider: "Bejelentkezés %{provider}-profillal"
   sign_in_with_google: Bejelentkezés Google-fiókkal
@@ -2774,6 +2837,7 @@ hu:
     select_one_or_more_sounds: Hang(ok) kiválasztása
     sound: Hang
     sounds: Hangok
+    your_soundcloud_account: a SoundCloud fiókod
   source: Forrás
   source_: 'Forrás:'
   source_wikipedia: "Forrás: Wikipedia"
@@ -2822,6 +2886,7 @@ hu:
   subscribe_to_observations_in_a_place: 'Értesítés kérése minden megfigyelésről ezen a földrajzi helyen. Opcionális: taxon megadásával leszűkítheted az értesítéseket (pl. kosborfélék Nógrád megyéből).'
   subscribe_to_this: Feliratkozás erre
   subscriptions: Feliratkozások
+  successfully_changed_your_password: Sikeresen megváltoztattad a jelszavadat.
   suggest_an_identification: Meghatározás hozzáadása
   suggestions: Javaslatok
   summary: Összefoglaló
@@ -2831,6 +2896,7 @@ hu:
   sync: Frissít?
   synonyms: Szinonimák
   table: Táblázat
+  table_of_contents: Tartalomjegyzék
   #Noun, as in "add a tag to this observation"
   tag: címke
   tagging: 'Címkézve...'
@@ -2841,6 +2907,7 @@ hu:
   taxon: Taxon
   taxon_autocomplete_placeholder: Madarak, pillangók, stb.
   taxon_geoprivacy: Taxon helyvédelme
+  taxon_is_a_rank: "%{taxon} egy %{rank}"
   taxon_is_threatened_coordinates_hidden: Veszélyeztetett taxon, a koordináták nem publikusak
   taxon_is_threatened_coordinates_hidden_desc: |
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
@@ -2849,6 +2916,7 @@ hu:
   taxon_map:
     overlays: Rétegek
   taxon_changes: Taxonváltozások
+  taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_name: Taxon neve
   taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
   taxon_ranks: Rendszertani besorolás
@@ -2877,10 +2945,13 @@ hu:
   the_observation_was_already_added_to_that_project: A megfigyelés már hozzá volt adva ahhoz a projekthez.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
+  there_merge_problems_with_the_merge: "Hiba volt az egyesítéssel: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
+  there_were_some_problems_with_these_files: "Baj van ezekkel a fájlokkal:"
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a taxonómiát és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  this_is_how_taxon_names_will_be_displayed: Azt mutatja hogyan jelenjenek meg számodra a taxonmegnevezések %{site_name} minden oldalán
   this_is_your_observation: Ez a te megfigyelésed
   this_is_your_observation_desc: Mindig láthatod saját megfigyeléseid koordinátáit.
   this_observation_is_featured_on_x_sites:
@@ -2889,9 +2960,130 @@ hu:
   this_observation_is_research_grade: Ez a megfigyelés tudományos szintű!
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   this_place_has_no_check_list: "Ennek a helynek nincs listája"
+  #Application is an app or service the user has authorized to access their
+  #iNat account
+  this_will_sign_you_out_current_session: Ez kiléptet a jelen munkamenetedből ebben ez alkalmazásban.
   this_year: Idén
   threatened: Veszélyeztetett
   time_ago: "%{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Dél-afrikai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Kelet-afrikai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentinai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolumbiai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Központi idő (AEÁ és Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Csendesóceáni idő (Mexikó)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Hegyvidéki idő (AEÁ és Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemala idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlanti-óceáni idő (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolíviai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Perui idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Csendes-óceáni idő (A.E.Á és Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Központi idő (Mexikó)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Keleti parti idő (A.E.Á és Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Arizonai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Kontinentális Chilei idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brazíliavárosi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Csendes-óceáni idő (Mexikó)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arábiai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indokínai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hong Kongi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Nyugat-indonéziai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Izraeli téli idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Indiai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnoyarski idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Kínai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Szingapúri idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Taiwani idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Japán idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Jekatyerinburgi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Adelaidei idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Brisbanei idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Melbourne-i idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Perthi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Sydneyi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Kelet-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Kelet-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Törökországi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Kelet-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Nyugat-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Nyugat-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Moszkvai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Kelet-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Közép-európai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Szamarai idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Új-zélandi idő
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaii–Aleutiani idő
   #As in the title of a book or a blog post
   title: név
   to_configure_your_widget: a modulod konfigurálásához.
@@ -2919,9 +3111,12 @@ hu:
   type_place_name: Írd be a helyet
   umbrella_projects: Ernyőprojektek
   unblock: Letiltás feloldása
+  unhide_content: Tartalom elrejtésének a visszaállítása
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unfollow: Leiratkozás
+  unlink_your_google_account: Google fiók kapcsolat szétbontása
+  unlink_your_flickr_account: "Flickr fiók kapcsolat szétbontása"
   unmute: Némítás feloldása
   updates_notification_email_subject: "%{prefix} Új hírek %{date}"
   unreview_all: Összes áttekintés visszavonása
@@ -2929,10 +3124,14 @@ hu:
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
   unsuspend_user_html: Feloldod %{user} felfüggesztését
   update: Frissítés
+  update_existing_observations_with_new_license: Alkalmazd ezt a licencet az összes már létező megfigyelésekre
+  update_existing_photos_with_new_license: Alkalmazd ezt a licencet az összes, már létező képekre
+  update_existing_sounds_with_new_license: Alkalmazd ezt a licencet az összes, már létező hangokra
   update_search: Keresés frissítése
   update_subscription: Feliratkozás frissítése
   update_subscription_preferences: Feliratkozási beállítások frissítése
   update_your_content: Megfigyeléseid módosítása
+  update_with_site_content: "Frissítsd %{site_name} tartalmával"
   updated: Frissítve
   updated_by: Frissítette
   updated_daily: Naponta frissítve
@@ -2941,6 +3140,9 @@ hu:
   upload_new_photo: Új fénykép feltöltése
   uploaded_by: Feltöltötte
   uploader:
+    errors:
+      file_too_big: A fájl mérete legfeljebb %{megabytes} MB lehet
+      unsupported_file_type: 'A fájl típusa nem támogatott. Csak ezeket fogadjuk el: JPG, PNG, GIF, WAV, AAC, MP3, és MP4 (csak hang)'
     tooltips:
       remove: Kiválasztott megfigyelések eltávolítása
       remove_observation: Megfigyelés törlése
@@ -2949,6 +3151,8 @@ hu:
     one: Fénykép feltöltése...
     other: Fényképek feltöltése (%{count}/%{num})
   user: Felhasználó
+  user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvencelték ezt a megfigyelést"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvencelték ezt a megfigyelést"
   user_added_a_comment_html: "%{user} hozzászólt"
   user_added_a_fave_html: "%{user} kedvencelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
@@ -2967,14 +3171,23 @@ hu:
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} %{x} megfigyelést adott hozzá"
+  user_already_authenticated: A felhasználó már hitelesítve van
+  user_already_app_owner: A felhasználó már egy apptulajdonos
+  #Label for comprehensive check lists. @vow_or_con will work for the taxon but
+  #not the place. Gender for all variables is not known..
+  user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
+    %{user} szerint ez %{place} teljes %{taxon} listája
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} kedvencelte %{owner} %{noun}ét"
+  user_faved_this_observation: "%{user} kedvencelte ezt a megfigyelést"
   user_hasnt_joined_any_projects: "%{user} még nem lépett be egy projektbe sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
+  user_is_a_naturalist: "%{user} is a naturalist!"
   user_muted: A felhasználó némítva van
   user_suggested_an_id: "%{user} javasolt meghatározása"
+  user_thinks_yours_is: "%{user} %{noun}, hogy %{observation} megfigyelésed"
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
   username_or_email: Felhasználónév vagy email cím
@@ -3017,6 +3230,7 @@ hu:
   view_post: Bejegyzés megtekintése
   view_sample: Példa megtekintése
   view_stats: Statisztikák megtekintése
+  view_taxon_change: Taxonváltozások megtekintése
   view_taxon_changes: Taxonváltozások megtekintése
   view_taxon_page: Taxon lapjának megtekintése
   view_taxononomy_details_for_taxon: "%{taxon} rendszertani részletei"
@@ -3026,8 +3240,10 @@ hu:
   view_your_dashboard: Vezérlőpult megtekintése
   view_your_dashboard_for_more_updates_html: "További információkért <a href='%{url}'>irány a vezérlőpult</a>"
   view_your_inbox: Beérkezett üzenetek megtekintése
+  view_your_observations: Megfigyeléseid megtekintése
   view_your_year_stats: "%{year} évi statisztikáid megtekintése"
   view_yours: Sajátok megtekintése
+  view_all_of_your_observations_from_x: "Megfigyeléseid megtekintése innen: %{x}"
   visually_similar: Kinézetre hasonló
   w_photos_only: fotókkal
   #Species that are "wanted," e.g. we know they exist but haven't been observed
@@ -3038,11 +3254,20 @@ hu:
   website: Weboldal
   welcome: Üdvözlünk
   welcome_back!: Köszöntünk ismét!
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Nagy bizonyossággal e nemzetség tagja
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Nagy bizonyossággal e család tagja
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Nagy bizonyossággal ez alcsalád tagja
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Nagy bizonyossággal e főcsalád tagja
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
+  were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk de %{filename} tömeges importálása sikertelen."
   what: Mi
   what_did_you_see: Mit láttál?
   what_did_you_see?: <em>Mit</em> láttál?
@@ -3053,6 +3278,7 @@ hu:
   where: Hol
   where_were_they?: Hol vannak?
   where_were_you?: Hol voltál?
+  which_projects_can_add_your_observations?: Mely hagyományos projektek használhatják fel a megfigyeléseidet?
   white: fehér
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
@@ -3094,6 +3320,8 @@ hu:
   yesterday: Tegnap
   #"You" is singular
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: Az iNaturalist a támogatásodat kéri
   you: te
   you_: Te
   you_are_already_a_member_of_this_project: "Ennek a projektnek már tagja vagy!"
@@ -3106,19 +3334,30 @@ hu:
   you_sure_delete_check_list: "Biztos ki akarod törölni ezt a listát? Mások már sok munkát fektethettek bele..."
   you_sure_delete_identification?: Biztosan törlöd ezt az azonosítást?
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
+  you_unlinked_your_provider_account: "%{provider} fiókod kapcsolatát felbontottad"
+  your_account_has_been_activated: A fiókod sikeresen aktiválva!
   your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
+  your_contributions_to_project: "Hozzájárulásod %{project_title} projekthez"
+  your_email_address: E-mail címed
   your_favorites: Kedvenceid
+  your_flickr_account: Flickr fiókod
   your_hard_drive: saját meghajtó
+  your_home: Az otthonod
   your_id: Meghatározásod
   your_identification: Az azonosításod
   your_membership: Tagságod
+  your_name_was_saved: Neved el volt mentve.
   your_observations: Megfigyeléseim
   your_observations_couldnt_be_added_to_that_project: "Megfigyeléseidet nem lehetett hozzáadni ahhoz a projekthez: %{errors}"
   your_projects: Projektjeid
+  your_google_account: Google fiókod
+  your_google_account_info: Google fiókod adatai
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
   your_recent_projects: Legutóbbi projektjeid
+  your_relationships: Kapcsolataid
   your_subscriptions_to_this_place: E helyhez tartozó feliratkozásaid
+  your_tags: Címkéid
   yours: Sajátjaid
   youre_not_following_anyone: |-
     Nem követsz senkit. Ha más természebúvárokat követsz akkor naprakész lehetsz legújabb megfigyeléseivel. Tudd meg mit
@@ -3131,11 +3370,15 @@ hu:
     views: 'Nézetek'
     content_freeze:
       content_freeze: Tartalom fagyasztás
+      this_functionality_will_return: |
+        Ez a művelet visszaáll amikor vége a tartalom befagyasztásának.
     guides:
       pdf_layouts:
         grid: rács
         book: könyv
         journal: hírmondó
+      sorts:
+        alphaname: Ábc sorrend tudományos név szerint
     lifelists:
       list_view: Listanézet
       tree_view: Faelrendezés
@@ -3182,6 +3425,18 @@ hu:
     messages:
       from: Feladó
       subject_body: Tárgy / Szövegtörzs
+    oauth:
+      authorizations:
+        new:
+          #Application is an app or service the user is about to
+          #authorize to access their iNat account
+          authorize_application_to_use_your_account?: Engedélyezed %{application}t, hogy használja a fiókodat?
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          this_application_will_be_able_to_colon: "Ez az alkalmazás képes lesz:"
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          more_about_application: Többet az %{application} alkalmazásról
     observations:
       community_id:
         agreement: Egyetértés
@@ -3200,7 +3455,11 @@ hu:
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Vízszintes
         total_taxa: Összes taxon
+      export:
+        receive_an_email_with_your_data: Kapj emailt az adataiddal
+        receive_an_email_with_your_data_help: Emailt kapsz az exportoddal csatolmányként
       field_descriptions:
+        scientific_name: "A megfigyelt taxon tudományos neve e honlap szerint"
         time_zone: A megfigyelés időzónája
         geoprivacy: "Ha a megfigyelő úgy döntött kitakarja vagy elrejtse a koordinátákat"
       identify:
@@ -3275,6 +3534,8 @@ hu:
         multiple_project_administrators: Több adminisztrátor
         no_need_to_rely_on_manual_addition: |
           Manuálisan nem lehet megfigyeléseket hozzáadni
+        note_you_can_delete_the_time: |
+          (Megjegyzés: kitörölheted az időzónát és a pontos időt ha egész napokat akarsz figyelembe venni.)
         project_details: Projekt részletei
         project_name: Projekt neve
         project_summary: A projekt összefoglalása
@@ -3290,6 +3551,12 @@ hu:
         welcome_to_projects: A projektek bemutatása
         you_can_learn_more_html: |
           <a href="https://www.inaturalist.org/pages/managing-projects">Itt</a> többet is megtudhatsz a projektek kezeléséről, a <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogunkon</a> pedig elolvashatod a projektek történetét.
+        errors:
+          name_is_required: A "Projekt neve" mező szükséges
+          name_less_than_100_characters: A projektnév maximum 100 karakterből állhat
+          name_already_taken: A projektnév már foglalt
+          cannot_have_more_than_x_project_rules: Nem lehet %{x} projekt szabálynál több
+          summary_is_required: Projekt leíró szövege kötelező
       project_user_curator_coordinate_access_labels:
         none: Nem.
       updates_desc: |
@@ -3342,7 +3609,7 @@ hu:
         species_per_year_by_date_added: Hozzáadás dátuma szerint
         stats_generated_datetime: A statisztikák a %{datetime} időpontot tükrözik.
         translators_title: Fordítók
-        translators_desc: |2
+        translators_desc: |
           Tudtad, hogy az iNaturalist szinte teljes fordítását %{x_people} végezte el %{x_languages}re, és ezek közül egy páran nem is használják az iNatot? Itt vannak a csodálatos fordítók, akik idén fordítottak, valamint a lefordított szavak száma a
            %{website_link_tag}webes felületre%{link_tag_end}, a
           %{iphone_link_tag}iPhone%{link_tag_end} és
@@ -3397,19 +3664,42 @@ hu:
         trending_desc: Legtöbbször megfigyelt taxon az elmúlt hónapban
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
     users:
+      delete:
+        by_deleting_your_account_you_will_remove: |
+          Ha kitörlöd fiókod, kitörlöd
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          Ha meggondolod magad mindig
+          <a href='/users/edit'>módosíthatod beállításaidat</a>.
+        name_place_help_html: |
+          Elsőbbségben részesülnek az ezen a helyen használt közynelvi nevek.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Megjegyzések
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Meghatározások
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Megemlítések
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Üzenetek
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: A projekt hírmondó bejegyzései
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Amikor egy projekt felhasználja megfigyeléseidet
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Változások a projektek gondozóiról
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Rendszertani változások
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Megfigyelések a követett emberektől
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Megfigyelések olyan taxonokról és helyekről amelyekre feliratkoztam
         project_addition_preferences:
           any: Bármely
+          joined: Projektek melyekhez kapcsolódtál
+          none: "Egyik sem, csak te adhatod hozzá megfigyeléseidet projektekhez"
+        prefers_no_tracking_label: Harmadik féltől származó szolgáltatásokkal ne gyűjtsön adatokat az alkalmazás működéséről.
         same_day_geoprivacy_protection: Azonosnapi helymegjelenítés védettsége
       recent:
         about_recent_users: Rólunk
@@ -3528,6 +3818,7 @@ hu:
     messages:
       accepted: el kell fogadni
       blank: nem lehet üres
+      confirmation: nem talált a jelszóval
       empty: nem lehet üres
       equal_to: egyenlőnek kell lennie %{count}-al
       even: páros kell legyen
@@ -3542,7 +3833,11 @@ hu:
       not_a_number: nem szám
       not_an_integer: egész számnak kell lennie
       odd: páratlan kell legyen
+      only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
       record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
+      requires_privilege_speech: |
+        ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
+      requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
       taken: már foglalt
     template:
       body: 'Problémák merültek fel az alábbi mezőkkel:'
@@ -3597,12 +3892,32 @@ hu:
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        accepted: el kell fogadni
         blank: nem lehet üres
+        confirmation: nem talált a jelszóval
         empty: nem lehet üres
+        equal_to: pontosan %{count} kell legyen
+        even: páros kell legyen
         exclusion: foglalt
+        greater_than: nagyobb kell legyen, mint %{count}
+        greater_than_or_equal_to: nagyobbnak vagy egyenlőnek kell lennie mint %{count}
+        inclusion: nem szerepel a listán
+        invalid: érvénytelen
+        less_than: kisebbnek kell lennie mint %{count}
+        less_than_or_equal_to: kisebbnek vagy egyenlőnek kell lennie mint %{count}
+        new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
+        not_a_number: nem szám
+        not_an_integer: egész számnak kell lennie
         odd: páratlan kell legyen
+        only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
+        record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
+        requires_privilege_speech: ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
+        requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
+        taken: már foglalt
       template:
+        body: 'Problémák merültek fel az alábbi mezőkkel:'
         header:
           one: '%{count} hiba miatt %{model} nem menthető el'
           other: '%{count} hiba miatt %{model} nem menthető el'
@@ -3693,15 +4008,22 @@ hu:
         url: URL
         citation: Idézet
       taxon:
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktív?
         locked: Zárolt
         name: Név
       user:
         email: Email
         login: Felhasználónév
         name: Név
+        time_zone: Időzóna
         place_id: Hely
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        accepted: el kell fogadni
+        blank: nem lehet üres
+        confirmation: nem talált a jelszóval
         empty: nem lehet üres
         equal_to: egyenlőnek kell lennie %{count}-al
         even: páros kell legyen
@@ -3712,25 +4034,65 @@ hu:
         invalid: érvénytelen
         less_than: kisebbnek kell lennie mint %{count}
         less_than_or_equal_to: kisebbnek vagy egyenlőnek kell lennie mint %{count}
+        new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
         not_a_number: nem szám
         not_an_integer: egész számnak kell lennie
         odd: páratlan kell legyen
+        only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
         record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
+        requires_privilege_speech: ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
+        requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
         taken: már foglalt
       template:
+        body: 'Problémák merültek fel az alábbi mezőkkel:'
         header:
           one: '%{count} hiba miatt %{model} nem menthető el'
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: "nem tartalmazhat töredéket."
         moderator_action:
           attributes:
             base:
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                nem lehet több %{max} képnél
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: elfogadott étték kell legyen
+            taxon_id:
+              already_has_a_range: már van intervallumja
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: |
+                betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
             email:
               must_look_like_an_email_address: úgy kell kinéznie, mint egy email cím
+              domain_is_not_supported: a domén nem támogatott
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Már blokkoltad azt a felhasznállót
+              user_cannot_be_staff: |
+                Nem blokkolhatod a személyzetet. Az iNat személyzete mindenkivel kapcsolatba kell léphessen az iNat-on, minden adathoz hozzá kell férjen az iNat-on és a nézeteltérések végső közbenjárói, ezért a blokkolásuk nem akadályozza meg hogy veled kapcsolatba lépjenek. Ha gondod van a szeméyzet egyik tagjával, kérünk számolj be erről az iNat egyik igazgatójának, vagy, ha az egyik igazgatóval van problémád, akkor kapcsolatba léphetsz a Kaliforniai Tudományakadémia Biodiverzitás és Fenntarthatóságtudomány Intezetének a Tudományvezetőjével.
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                egy létező felhasználóhoz tartozik; ha már van fiókod kérlek lépjél be mielőtt folytatnád vagy használj egy másik email címet
   doorkeeper:
+    errors:
+      messages:
+        #Common error messages
+        invalid_request: 'A kérésből hiányzik egy szükséges paraméter, nem támogatott paramétert tartalmaz, vagy máshogy sérült.'
+        invalid_redirect_uri: 'Az átirányító URI nem valós.'
     flash:
       applications:
         create:

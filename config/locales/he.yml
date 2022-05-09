@@ -1259,6 +1259,7 @@ he:
   day: יום
   #Default option
   default: ברירת המחדל
+  default_display_time_zone: אזור זמן ברירת מחדל
   default_invite_comment: "תמונה נהדרת! צריך להעלות אותה ל%{site_name}{{INVITE_LINK}}"
   default_observation_license: רשיון ברירת המחדל של התצפית
   default_photo_license: רשיון ברירת המחדל של התמונה
@@ -3487,6 +3488,16 @@ he:
   those_observations_no_longer_exist: תצפיות אלו לא קיימות יותר.
   time_: זמן
   time_ago: "לפני %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: זמן מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: זמן דרום אפריקה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: זמן מזרח אפריקה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: זמן ארגנטינה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: זמן קולומביה
   #As in the title of a book or a blog post
   title: כותרת
   title_and_description: "כותרת ותיאור"
@@ -4766,6 +4777,8 @@ he:
         login: שם משתמש
         name: שם
         locale: אזור
+        time_zone: אזור זמן
+        search_place_id: חיפוש מקום
         place_id: מקום
         preferred_observation_fields_by: אפשר שדות מ-
     errors:

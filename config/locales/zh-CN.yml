@@ -617,6 +617,7 @@ zh-CN:
   assessment_x: "%{assessment} 评定"
   assessments: 评定
   associations: 关联
+  atlased: 有地图集
   atlas_for_taxon_html: '%{taxon} 的 地图集'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -5687,6 +5688,9 @@ zh-CN:
         about_recent_users: 关于
       show:
         this_user_was_banned: 此用户已被停用
+        favorites_list_prompt_html: |
+          想要展示您喜爱的类群？ %{link_start_tag}创建一个名为 "喜爱" 的
+          列表%{link_end_tag} ，对应的新增观察将出现在这个列表中。
     user_parents:
       confirm:
         thanks_for_creating_a_minor_account: 感谢您创建一个副账户！
@@ -6073,6 +6077,8 @@ zh-CN:
         login: 用户名
         name: 名称
         locale: 地域
+        time_zone: 时区
+        search_place_id: 搜索地点
         place_id: 地方
         preferred_observation_fields_by: 允许观察字段来自
     errors:
