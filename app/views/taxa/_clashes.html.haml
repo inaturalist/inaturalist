@@ -1,28 +1,38 @@
 - if @context == "taxon"
-  = link_to "×", "#", :class => "jqmClose right"
+  = link_to t( :close ), "#", :class => "jqmClose right"
   %h2=t( :analyze_clashes )
 - if @results.map{ |result| result[:id_count] == 0 }.all?
   %p
-    There are no current IDs of the narrowed #{ @results.count == 1 ? "parent" : "parents" } so no need to commit any #{ @context == "taxon" ? "taxon changes following this classification change" : "additional taxon changes following this one"}.
+    = t( :there_are_no_current_ids )
+    - if @context == "taxon"
+      = t( :therefore_committing_taxon_changes )
+    - else
+      = t( :therefore_committing_additional_taxon_changes )
 - @results.each do |result|
   -unless result[:id_count] == 0
     %p
-      Moving #{ result[:child] } out of #{ result[:old_parent] } would narrow what we mean by #{ result[:old_parent] }. There are #{ result[:id_count] } IDs of #{ result[:old_parent] }.
+      =t( :moving_child_out_of_old_parent_would_narrow_html, |
+      child: result[:child], old_parent: result[:old_parent], id_count: result[:id_count] )
     %p
-      Based on a sample of #{ result[:percent] }% of these IDs, we estimate that this will result in #{ result[:num_clashes] } clashes with IDs of #{ result[:child] }.
+      =t( :based_on_a_sample_of_percent_of_these_ids_html, |
+      percent: result[:percent], num_clashes: result[:num_clashes], child: result[:child] )
     - unless result[:sample].nil?
       %p
-        Here are a some observations where such clashes would occur
-        = link_to t( :view ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank"
+        =t( :here_are_some_observations_where_clashes )
+        = link_to t( :view ), |
+        observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank"
     %p
       - if result[:num_clashes] > 10
-        Since we estimate this move is resulting in >10 clashes, we recommend you also commit a taxon change involving #{ result[:old_parent] } such as splitting #{ result[:new_parent] } off from #{ result[:old_parent] }
+        =t( :because_we_estimate_this_change_act_html, |
+        old_parent: result[:old_parent], new_parent: result[:new_parent] )
       - else
-        Since we estimate this move is resulting in 10 or fewer clashes, its probably not necessary to commit a taxon change involving #{ result[:old_parent] }
+        =t( :because_we_estimate_this_change_dont_act_html, |
+        old_parent: result[:old_parent], new_parent: result[:new_parent] )
         - if result[:num_clashes] > 0
-          , but you may want to comment on the clashing observations linked above to alert identifiers that the meaning of #{ result[:old_parent] } has narrowed
+          =t( :however_you_may_want_to_commit_html, old_parent: result[:old_parent] )
 - if @context == "taxon"
-  %table
+  %hr
+  %table.clashes
     %tbody
       %tr
         %td.fig20
@@ -36,5 +46,5 @@
         %td
           = t( :if_narrowing_a_parent_for_moves_html )
         %td.fig20
-          %b= t( :taxon_split )
+          %b= t( :taxon_split ).capitalize
           %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }

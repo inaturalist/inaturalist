@@ -13,10 +13,6 @@
   = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
 - content_for(:extracss) do
   = stylesheet_link_tag "taxon_changes"
-  :css
-    iframe { border: 0; }
-    .modal-footer { font-size: 90%; }
-    .potential_clashes_link { margin-left: 20px; }
 - content_for :extrajs do
   = javascript_include_tag "taxon_changes/show"
 .container
@@ -96,7 +92,7 @@
             = render "subscriptions/subscription", resource: @taxon_change
 
 
-#clashes_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", role: "dialog", tabindex: "-1"}
+#clashes_modal.modal.modal-wide.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", role: "dialog", tabindex: "-1"}
   .modal-dialog
     .modal-content
       .modal-header
@@ -108,18 +104,15 @@
       .modal-footer
         .row
           .col-xs-2
-            %b
-              =t( :taxonomy )
+            %b=t( :taxonomy )
             %embed{ src: image_path( "clashes-modal-fig-1-swaps.svg" ) }
           .col-xs-3
             = t( :clashes_occur_for_swaps_html )
           .col-xs-2
-            %b
-              =t( :observation )
+            %b=t( :observation )
             %embed{ src: image_path("clashes-modal-fig-2-swaps.svg" ) }
           .col-xs-3
             = t( :if_narrowing_a_parent_for_swaps_html )
           .col-xs-2
-            %b
-              =t( :taxon_split ).capitalize
+            %b=t( :taxon_split ).capitalize
             %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }
