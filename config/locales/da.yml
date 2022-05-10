@@ -6161,7 +6161,7 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help2_html: |2
+        quality_assessment_help2_html: |
           <p>
           Datakvalitetsvurderingen er et sammendrag af en observations nøjagtighed. Alle observationer gradueres indledningsvis som <strong>"tilfældig"</strong>, og bliver så til <strong>"behøver ID"</strong>, når
           </p>
@@ -7960,6 +7960,10 @@ da:
               relative_uri: "skal være et fuldstændigt URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kan ikke angå dubletobservationer - kun observatøren kan
+                fjerne dubletter, så kontakt venligst vedkommende direkte herom via en kommentar
             user_id:
               already_flagged: "allerede markeret dette"
         guide:
