@@ -66,14 +66,11 @@ class LocationChooserMap extends React.Component {
     } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
     const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
+      ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
       zoom: zoom || 1,
       center: existingCenter || { lat: 30, lng: 15 },
-      defaultMapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser ),
-      streetViewControl: false,
       fullscreenControl: true,
-      rotateControl: false,
-      gestureHandling: "greedy",
-      controlSize: 26
+      mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )
     } );
     this.map = map;
     google.maps.event.addListener( map, "click", this.handleMapClick );
@@ -97,9 +94,6 @@ class LocationChooserMap extends React.Component {
       } else if ( show && fitCurrentCircle ) {
         setTimeout( this.fitCurrentCircle, 10 );
       }
-    }
-    if ( map ) {
-      iNaturalist.log( { "map-placement": "observations-upload-location-chooser" } );
     }
   }
 
