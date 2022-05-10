@@ -1,7 +1,6 @@
 export default class PhotoMarkerOverlayView extends google.maps.OverlayView {
   constructor( imgUrl, latLng ) {
     super( );
-    console.log( "[DEBUG] PhotoMarkerOverlayView constructor, imgUrl: ", imgUrl, ", latLng: ", latLng );
     this.imgUrl = imgUrl;
     this.latLng = latLng;
   }
@@ -17,12 +16,9 @@ export default class PhotoMarkerOverlayView extends google.maps.OverlayView {
   }
 
   draw( ) {
-    console.log( "[DEBUG] PhotoMarkerOverlayView draw, this.imgUrl: ", this.imgUrl, ", this.latLng: ", this.latLng );
     const proj = this.getProjection( );
-    console.log( "[DEBUG] PhotoMarkerOverlayView draw, proj: ", proj );
     if ( proj && this.latLng && this.div ) {
       const point = proj.fromLatLngToDivPixel( this.latLng );
-      console.log( "[DEBUG] PhotoMarkerOverlayView draw, point: ", point );
       this.div.style.left = `${point.x}px`;
       this.div.style.top = `${point.y}px`;
     }
