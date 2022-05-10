@@ -4752,7 +4752,15 @@ fi:
   year_on_site: "Vuosi %{year} %{site}issa"
   yellow: keltainen
   'yes': "Kyllä"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Vain arkaluontoisten havaintojen koordinaatit, mutta ei itse karkeistamieni havaintojen koordinaatteja
   yes_find_them!: "Kyllä, hae ne!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Kyllä, kaikkien havaintojen koordinaatit"
   yes_i_want_to_join: Kyllä, haluan liittyä
   yes_license_my_childs_observations: Kyllä, lisensoi lapseni ottamat valokuvat, äänitteet ja havainnot niin että tutkijat voivat käyttää niitä.
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
