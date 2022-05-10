@@ -1,3 +1,4 @@
+import _ from "lodash";
 import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
@@ -34,13 +35,11 @@ const store = createStore(
   {
     compare: initialState
   },
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 store.dispatch( fetchDataForTab( ) );

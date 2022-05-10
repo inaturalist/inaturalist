@@ -1,3 +1,4 @@
+import _ from "lodash";
 import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import { createStore, compose, applyMiddleware } from "redux";
@@ -10,13 +11,11 @@ import SlideshowContainer from "./containers/slideshow_container";
 
 const store = createStore(
   reducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 render(

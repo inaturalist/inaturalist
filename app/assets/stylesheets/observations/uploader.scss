@@ -1123,3 +1123,24 @@ $tickmark: 6px;
 .time-shifter-buttons {
   margin-top: 15px;
 }
+
+.GooglePlacesSearchBox {
+  position: absolute;
+  top: 16px;
+  left: 181px;
+
+  input {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 14px;
+    line-height: 14px;
+    height: 26px;
+    outline: none;
+    padding: 0 12px;
+    text-overflow: ellipses;
+    width: 250px;
+  }
+}
