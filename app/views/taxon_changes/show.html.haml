@@ -7,8 +7,10 @@
     when "TaxonDrop" then t( :taxon_change_title_taxon_drop, id: @taxon_change.id )
     when "TaxonStage" then t( :taxon_change_title_taxon_stage, id: @taxon_change.id )
     end
-    @input_ancestry = @taxon_change.input_taxa[0].ancestry
-    @output_ancestry = @taxon_change.output_taxon.ancestry
+    if @taxon_change.is_a?( TaxonSwap )
+      @input_ancestry = @taxon_change.input_taxa[0].ancestry
+      @output_ancestry = @taxon_change.output_taxon.ancestry
+    end
   = title
   = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
 - content_for(:extracss) do
