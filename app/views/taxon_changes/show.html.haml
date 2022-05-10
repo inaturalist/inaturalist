@@ -10,6 +10,7 @@
     if @taxon_change.is_a?( TaxonSwap )
       @input_ancestry = @taxon_change.input_taxa[0].ancestry
       @output_ancestry = @taxon_change.output_taxon.ancestry
+      @output_taxon_id = @taxon_change.output_taxon.id
     end
   = title
   = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
@@ -64,7 +65,7 @@
             = t( :committing_this_swap_may_result )
             = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
             class: "potential_clashes_link btn btn-default", |
-            data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry }, |
+            data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry, output_taxon_id: @output_taxon_id }, |
             "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         #id_analysis

@@ -63,17 +63,19 @@ $( document ).ready( function () {
   var potential_clashes_link = $( ".potential_clashes_link" )
   var old_ancestors = potential_clashes_link.data( "input-ancestry" )
   if( $.isNumeric( old_ancestors ) ){
-    old_ancestors = [old_ancestors];
+    old_ancestors = [ String( old_ancestors ) ];
   }else{
     old_ancestors = old_ancestors.split( "/" )
   }
   var old_parent = old_ancestors[old_ancestors.length - 1];
+  var new_taxon = potential_clashes_link.data( "output-taxon-id" );
   var new_ancestors = potential_clashes_link.data( "output-ancestry" );
   if( $.isNumeric( new_ancestors ) ){
-    new_ancestors = [new_ancestors];
+    new_ancestors = [ String( new_ancestors ) ];
   }else{
     new_ancestors = new_ancestors.split( "/" )
   }
+  new_ancestors.push( String(new_taxon) );
   if( new_ancestors.indexOf( old_parent ) == -1 ){
     var new_parent = new_ancestors[new_ancestors.length - 1];
     var _href = $("a.potential_clashes_link").attr("href");
