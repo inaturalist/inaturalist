@@ -1,6 +1,6 @@
 - if @context == "taxon"
-  = link_to t( :close ), "#", :class => "jqmClose" 
-  %h2 =t( :analyze_clashes )
+  = link_to "×", "#", :class => "jqmClose right"
+  %h2=t( :analyze_clashes )
 - if @results.map{ |result| result[:id_count] == 0 }.all?
   %p
     There are no current IDs of the narrowed #{ @results.count == 1 ? "parent" : "parents" } so no need to commit any #{ @context == "taxon" ? "taxon changes following this classification change" : "additional taxon changes following this one"}.
@@ -22,5 +22,19 @@
         - if result[:num_clashes] > 0
           , but you may want to comment on the clashing observations linked above to alert identifiers that the meaning of #{ result[:old_parent] } has narrowed
 - if @context == "taxon"
-  %p.description
-    Clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child. For example, Bufo is a child of Bufonidae. An observation has an ID of Bufonidae and an ID of Bufo bufo. If Bufo is moved out of Bufonidae, then the ID of Bufonidae will be reinterpreted as a disagreement with Bufo bufo. This is a clash. If narrowing a parent results in more than 10 clashes, you should split the parent. e.g. if Bufo is moved from Bufonidae to Hylidae, afterwards split Bufonidae into Bufonidae and Hylidae. This will replace existing IDs of Bufonidae with the common ancestor Anura and avoid clashes.
+  %table
+    %tbody
+      %tr
+        %td.fig20
+          %b= t( :taxonomy )
+          %embed{ src: image_path( "clashes-modal-fig-1-moves.svg" ) }
+        %td
+          = t( :clashes_occur_for_moves_html )
+        %td.fig10
+          %b= t( :observation )
+          %embed{ src: image_path( "clashes-modal-fig-2-moves.svg" ) }
+        %td
+          = t( :if_narrowing_a_parent_for_moves_html )
+        %td.fig20
+          %b= t( :taxon_split )
+          %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }

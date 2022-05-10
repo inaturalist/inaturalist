@@ -596,6 +596,7 @@ en:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
+  analyze_clashes: Analyze Clashes
   analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
   and: and
@@ -965,6 +966,7 @@ en:
   change_your_password: Change Your Password
   # Plural noun, as in changes to a taxon record over time
   changes: Changes
+  changing_the_classification_to_that_parent: Changing the classification to that parent may result in clashes, please first analyze the clashes which may take a while.
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
@@ -1009,6 +1011,8 @@ en:
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
   cid_d_to_genus: CID'd to Genus
   citation: Citation
+  clashes_occur_for_moves_html: Clashes occur when narrowing a parent <strong>(B)</strong> by moving a child <strong>(E)</strong> results in existing IDs of the parent being interpreted as disagreements with existing IDs of the moved child.
+  clashes_occur_for_swaps_html: Clashes occur when narrowing a parent <strong>(B)</strong> by swapping a child <strong>(E)</strong> results in existing IDs of the parent being interpreted as disagreements with existing IDs of the swapped child.
   classification: Classification
   clear: clear
   clear_filters: Clear filters
@@ -1048,6 +1052,7 @@ en:
   committed_taxon_changes_cannot_be_deleted: Committed taxon changes cannot be deleted
   # Status message while a taxon change is being committed
   committing: Committing...
+  committing_this_swap_may_result: Committing this swap may result in clashes, please first analyze the clashes which may take a while.
   common_name: Common Name
   community: Community
   community_curated: Community Curated
@@ -2210,6 +2215,8 @@ en:
     which means your ID is the one used for linking to other observations, updating life lists,
     etc. It also means your observation can only become research grade when the community agrees
     with you.
+  if_narrowing_a_parent_for_moves_html: If narrowing a parent results in more than 10 clashes, you should split the parent after moving the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t clash.
+  if_narrowing_a_parent_for_swaps_html: If narrowing a parent results in more than 10 clashes, you should split the parent after swapping the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t clash.
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL

@@ -7,12 +7,16 @@
     when "TaxonDrop" then t( :taxon_change_title_taxon_drop, id: @taxon_change.id )
     when "TaxonStage" then t( :taxon_change_title_taxon_stage, id: @taxon_change.id )
     end
+    @input_ancestry = @taxon_change.input_taxa[0].ancestry
+    @output_ancestry = @taxon_change.output_taxon.ancestry
   = title
   = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
 - content_for(:extracss) do
   = stylesheet_link_tag "taxon_changes"
   :css
     iframe { border: 0; }
+    .modal-footer { font-size: 90%; }
+    .potential_clashes_link { margin-left: 20px; }
 - content_for :extrajs do
   = javascript_include_tag "taxon_changes/show"
 .container
@@ -59,13 +63,14 @@
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSwap )
         .potential_clashes
           .notice.box
-            Committing this swap may result in clashes, please first
-            = link_to "analyze the clashes", taxa_clashes_path(id: @taxon_change.input_taxa[0].id), :class => "potential_clashes_link", :data => { input_ancestry: @taxon_change.input_taxa[0].ancestry, output_ancestry: @taxon_change.output_taxon.ancestry }, "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
-            this may take a while
-
+            = t( :committing_this_swap_may_result )
+            = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
+            class: "potential_clashes_link btn btn-default", |
+            data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry }, |
+            "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         #id_analysis
-        =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
+        =link_to t( :analyze_ids ), "#", class: "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
         - helptip_for "analyze" do
           = t :estimate_which_input
         = image_tag "spinner.gif", :class => "spinner"
@@ -91,14 +96,30 @@
             = render "subscriptions/subscription", resource: @taxon_change
 
 
-#clashes_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", :role => "dialog", :tabindex => "-1"}
+#clashes_modal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", role: "dialog", tabindex: "-1"}
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-          %span{"aria-hidden" => "true"} ×
-        %h4#clashes_modal_label.modal-title Analyze Clashes
+        %button.close{ "aria-label" => "Close", "data-dismiss" => "modal", type: "button" }
+          %span{ "aria-hidden" => "true" } ×
+        %h4#clashes_modal_label.modal-title= t( :analyze_clashes )
       .modal-body
         = image_tag "spinner.gif", :id => "spinner", :class => "center"
       .modal-footer
-        Clashes occur when narrowing a parent results in a existing IDs of the narrowed parent being interpreted as disagreements with existing IDs of the moved child. For example, Bufo is a child of Bufonidae. An observation has an ID of Bufonidae and an ID of Bufo bufo. If Bufo is moved out of Bufonidae, then the ID of Bufonidae will be reinterpreted as a disagreement with Bufo bufo. This is a clash. If narrowing a parent results in more than 10 clashes, you should split the parent. e.g. if Bufo is moved from Bufonidae to Hylidae, afterwards split Bufonidae into Bufonidae and Hylidae. This will replace existing IDs of Bufonidae with the common ancestor Anura and avoid clashes.
+        .row
+          .col-xs-2
+            %b
+              =t( :taxonomy )
+            %embed{ src: image_path( "clashes-modal-fig-1-swaps.svg" ) }
+          .col-xs-3
+            = t( :clashes_occur_for_swaps_html )
+          .col-xs-2
+            %b
+              =t( :observation )
+            %embed{ src: image_path("clashes-modal-fig-2-swaps.svg" ) }
+          .col-xs-3
+            = t( :if_narrowing_a_parent_for_swaps_html )
+          .col-xs-2
+            %b
+              =t( :taxon_split ).capitalize
+            %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }

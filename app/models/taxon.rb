@@ -1649,7 +1649,7 @@ class Taxon < ApplicationRecord
   end
 
   def global_conservation_status
-    conservation_statuses.select { | cs | cs.place_id.blank? }.sort_by { | cs | cs.iucn.to_i }.last
+    conservation_statuses.select {| cs | cs.place_id.blank? }.sort_by {| cs | cs.iucn.to_i }.last
   end
 
   # TODO: make this work for different conservation status sources
@@ -2159,6 +2159,10 @@ class Taxon < ApplicationRecord
   end
 
   def clash_analysis( new_parent_id )
+    if INatAPIService.get( "/identifications", { current: true, exact_taxon_id: id, per_page: 0 } ).total_results.zero?
+      []
+    end
+
     new_parent = Taxon.where( id: new_parent_id ).first
     child_ids = [id]
     old_parent_ancestor_ids = parent.self_and_ancestor_ids
@@ -2237,7 +2241,7 @@ class Taxon < ApplicationRecord
       end
       results << result
     end
-    return results
+    results
   end
 
   # Static ##################################################################
