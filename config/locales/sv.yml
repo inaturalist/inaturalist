@@ -3240,7 +3240,7 @@ sv:
   pi_consent_child_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mitt barn för att kunna hantera mitt barns konto
   data_transfer_consent_desc_title: Om samtycke till överföring av personuppgifter
-  data_transfer_consent_desc_html: |2
+  data_transfer_consent_desc_html: |
     <p>
     Vissa integritetslagar, såsom Europeiska unionens dataskyddsförordning
     (GDPR), kräver uttryckligt samtycke för att överföra personuppgifter
@@ -6919,7 +6919,7 @@ sv:
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
-        inaturalist_network_affiliation_desc_html: |2
+        inaturalist_network_affiliation_desc_html: |
           <p>
            <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-communityn. Nätverksplatserna stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater, från sina länder, som automatiskt diffuseras vid publik visning för att skydda hotade arter.
           </p>
@@ -7609,6 +7609,11 @@ sv:
               relative_uri: "måste vara en absolut URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kan inte röra dubbla observationer; endast observatören kan
+                ta bort dubbletter, ta därför upp dessa problem med en kommentar
+                direkt till dem
             user_id:
               already_flagged: "redan flaggat det objektet"
         guide:
