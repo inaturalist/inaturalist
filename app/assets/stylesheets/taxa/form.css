@@ -52,11 +52,6 @@ fieldset.column {margin-bottom: 1em;}
 
 .jqmOverlay { background-color: #000; }
 
-* html .jqmWindow {
-  position: absolute;
-  top: expression( ( document.documentElement.scrollTop || document.body.scrollTop ) + Math.round( 17 * ( document.documentElement.offsetHeight || document.body.clientHeight ) / 100 ) + 'px' );
-}
-
 .potential_clashes {
   margin-bottom: 10px;
   display:  none;

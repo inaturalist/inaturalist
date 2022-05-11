@@ -72,7 +72,7 @@ $( document ).ready( function () {
   var new_ancestors = potential_clashes_link.data( "output-ancestry" );
   if( $.isNumeric( new_ancestors ) ){
     new_ancestors = [ String( new_ancestors ) ];
-  }else{
+  } else {
     new_ancestors = new_ancestors.split( "/" )
   }
   new_ancestors.push( String(new_taxon) );

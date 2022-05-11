@@ -2160,7 +2160,7 @@ class Taxon < ApplicationRecord
 
   def clash_analysis( new_parent_id )
     if INatAPIService.get( "/identifications", { current: true, exact_taxon_id: id, per_page: 0 } ).total_results.zero?
-      []
+      return []
     end
 
     new_parent = Taxon.where( id: new_parent_id ).first
