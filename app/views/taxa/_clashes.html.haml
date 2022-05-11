@@ -8,8 +8,10 @@
       = t( :therefore_committing_taxon_changes )
     - else
       = t( :therefore_committing_additional_taxon_changes )
-- @results.each do |result|
+- @results.each_with_index do |result, index|
   -unless result[:id_count] == 0
+    - unless index == 0
+      %hr
     %p
       =t( :moving_child_out_of_old_parent_would_narrow_html, |
       child: result[:child], old_parent: result[:old_parent], id_count: result[:id_count] )
