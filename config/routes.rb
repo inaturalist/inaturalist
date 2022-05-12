@@ -713,6 +713,13 @@ Rails.application.routes.draw do
   post "translate/translate" => "translations#translate", :as => :translate
   get "translate/reload" => "translations#reload", :as => :translate_reload
 
+  resource :translations do
+    collection do
+      get :index
+      get :locales
+    end
+  end
+
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 
   # Hack to enable mail previews. You could also remove get
