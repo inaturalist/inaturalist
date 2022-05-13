@@ -596,11 +596,10 @@ en:
   alphabetical_order: Alphabetical Order
   already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
-  # This is used to launch a tool that analayzes clashes. Clashes are a subset of identifications of
-  # the parent of the taxon involved in a taxon swap or ancestry change. If those IDs of the parent
-  # uninentionally disagee with IDs of the child taxon because the meaning of the parent was narrowed
-  # by the change they are clashes.
-  analyze_clashes: Analyze Clashes
+  # This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  # in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  # as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analyze Unintended Disagreements
   analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
   and: and
@@ -839,9 +838,8 @@ en:
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
   badges: Badges
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy
-  based_on_a_sample_of_percent_of_these_ids_html: "Based on a sample of %{percent}% of these IDs, we estimate that this will result in %{num_clashes} clashes with IDs of %{child}."
+  # disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html: "Based on a sample of %{percent}% of these IDs, we estimate that this will result in %{num_clashes} unintended disagreements with IDs of %{child}."
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
   batch: Batch
@@ -851,12 +849,10 @@ en:
   batch_operations: Batch Operations
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
   because_of: because of
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy
-  because_we_estimate_this_change_act_html: "Because we estimate this change will result in more than 10 clashes, we recommend you also commit a taxon change involving %{old_parent} such as splitting %{new_parent} off from %{old_parent}."
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy
-  because_we_estimate_this_change_dont_act_html: "Because we estimate this change will result in 10 or fewer clashes, its probably not necessary to commit a taxon change involving %{old_parent}."
+  # disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: "Because we estimate this change will result in more than 10 unintended disagreements, we recommend you also commit a taxon change involving %{old_parent} such as splitting %{new_parent} off from %{old_parent}."
+  # disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: "Because we estimate this change will result in 10 or fewer unintended disagreements, its probably not necessary to commit a taxon change involving %{old_parent}."
   become_a_donor_caps: BECOME A DONOR
   become_a_donor_today_caps: BECOME A DONOR TODAY
   before_importing_photos: before importing photos
@@ -979,9 +975,8 @@ en:
   change_your_password: Change Your Password
   # Plural noun, as in changes to a taxon record over time
   changes: Changes
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy
-  changing_the_ancestry_to_that_parent: Changing the ancestry to that parent may result in clashes, please first analyze the clashes which may take a while.
+  # disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Changing the ancestry to that parent may result in unintended disagreements, please first analyze them which may take a while.
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
@@ -1026,14 +1021,10 @@ en:
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
   cid_d_to_genus: CID'd to Genus
   citation: Citation
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  clashes_occur_for_moves_html: Clashes occur when narrowing a parent <strong>(B)</strong> by moving a child <strong>(E)</strong> results in existing IDs of the parent being interpreted as disagreements with existing IDs of the moved child.
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  clashes_occur_for_swaps_html: Clashes occur when narrowing a parent <strong>(B)</strong> by swapping a child <strong>(E)</strong> results in existing IDs of the parent being interpreted as disagreements with existing IDs of the swapped child.
+  # thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: Unintended disagreements occur when a parent <strong>(B)</strong> is thinned by moving a child <strong>(E)</strong> resulting in existing IDs of the parent being interpreted as disagreements with existing IDs of the moved child.
+  # thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: Unintended disagreements occur when a parent <strong>(B)</strong> is thinned by swapping a child <strong>(E)</strong> resulting in existing IDs of the parent being interpreted as disagreements with existing IDs of the swapped child.
   classification: Classification
   clear: clear
   clear_filters: Clear filters
@@ -1073,10 +1064,9 @@ en:
   committed_taxon_changes_cannot_be_deleted: Committed taxon changes cannot be deleted
   # Status message while a taxon change is being committed
   committing: Committing...
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  committing_this_swap_may_result: Committing this swap may result in clashes, please first analyze the clashes which may take a while.
+  # disagreements are identifications that disagree with previous identifications on the same observation
+  # committing refers to committing a taxon swap
+  committing_this_swap_may_result: Committing may result in unintended disagreements, please first analyze them which may take a while.
   common_name: Common Name
   community: Community
   community_curated: Community Curated
@@ -2157,10 +2147,8 @@ en:
   help_support_inaturalist: "Help Support iNaturalist"
   help_translate!: Help Translate!
   here_are_3_examples: Here are 3 examples of well-formed data
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  here_are_some_observations_where_clashes: Here are some observations where such clashes would occur
+  # disagreements are identifications that disagree with other identifications on the same observation
+  here_are_some_observations_where_clashes: Here are some observations where such unintended disagreements would occur
   here_are_our_top_suggestions: Here are our top suggestions
   here_are_our_top_species_suggestions: Here are our top species suggestions
   hex_color_eg: Hex color, e.g. 65644F
@@ -2191,9 +2179,9 @@ en:
   # Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hours to Adjust:"
   however_there_were_some_issues: "However, there were some issues: %{issues}"
-  # clashing observations have identifications that unintentionally disagree following changes to the taxonomy
-  # that narrow a parent taxon, meaining the branch downstream of the parent taxon includes less taxa
-  however_you_may_want_to_commit_html: "However, you may want to comment on the clashing observations linked above to alert identifiers that the meaning of %{old_parent} has narrowed."
+  # disagreements are identifications that disagree with other identifications on the same observation
+  # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: "However, you may want to comment on the observations with unintended disagreements linked above to alert identifiers that the meaning of %{old_parent} was thinned."
   i_dont_know_but_i_am_sure_this_is_taxon: I don't know but I am sure this is %{taxon}
   icon: Icon
   icon_size: Icon size
@@ -2210,6 +2198,10 @@ en:
       maverick: |
         Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
         agree with this taxon.
+  # disagreements are identifications that disagree with other identifications on the same observation
+  id_two_of_taxon_move_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> post ancestry change"
+  # disagreements are identifications that disagree with other identifications on the same observation
+  id_two_of_taxon_swap_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> post taxon swap"
   id_withdrawn: ID Withdrawn
   ids_by_taxon: IDs By Taxon
   identify: Identify
@@ -2246,14 +2238,12 @@ en:
     which means your ID is the one used for linking to other observations, updating life lists,
     etc. It also means your observation can only become research grade when the community agrees
     with you.
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  if_narrowing_a_parent_for_moves_html: If narrowing a parent results in more than 10 clashes, you should split the parent after moving the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t clash.
-  # Clashes are existing identifications of parent taxa that unintentionally disagree with
-  # identifications of child taxa following changes to the taxonomy that narrow the parent
-  # meaning the branch downstream of the taxon includes less species
-  if_narrowing_a_parent_for_swaps_html: If narrowing a parent results in more than 10 clashes, you should split the parent after swapping the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t clash.
+  # disagreements are identifications that disagree with other identifications on the same observation
+  # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: If thinning a parent results in more than 10 unintended disagreements, you should split the parent after moving the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t disagree.
+  # disagreements are identifications that disagree with other identifications on the same observation
+  # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: If thinning a parent results in more than 10 unintended disagreements, you should split the parent after swapping the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t disagree.
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
@@ -5096,9 +5086,8 @@ en:
     others are just down the street! %{site_name} Places let you browse life
     from around the planet.  Start exploring!
   then_keybord_sequence: then
-  # When a taxon's ancestry is changed or is swapped, the parent taxon may be narrowed
-  # in terms of the downstream branch it refers to
-  there_are_no_current_ids: There are no current IDs of any narrowed parents.
+  # thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: There are no current IDs of any thinned parents.
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
     other: "There are <span class='count'>%{count}</span> synonyms</span>"

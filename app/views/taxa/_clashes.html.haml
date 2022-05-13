@@ -38,13 +38,14 @@
     %tbody
       %tr
         %td.fig20
-          %b= t( :taxonomy )
+          %b= t( :ancestry_change )
           %embed{ src: image_path( "clashes-modal-fig-1-moves.svg" ) }
         %td
           = t( :clashes_occur_for_moves_html )
-        %td.fig10
-          %b= t( :observation )
-          %embed{ src: image_path( "clashes-modal-fig-2-moves.svg" ) }
+        %td.fig20
+          %b= t( :identification )
+          %embed{ src: image_path( "clashes-modal-fig-2.svg" ) }
+          =t( :id_two_of_taxon_move_html )
         %td
           = t( :if_narrowing_a_parent_for_moves_html )
         %td.fig20
