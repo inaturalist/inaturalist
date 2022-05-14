@@ -7337,6 +7337,9 @@ ca:
               relative_uri: "ha de ser un URI absolut."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                no poden haver-hi observacions duplicades; únicament l'observador pot eliminar els duplicats, per tant, fes-li saber les teves observacions a ell amb un comentari
             user_id:
               already_flagged: "aquest ítem ja ha estat assenyalat"
         guide:
