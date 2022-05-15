@@ -2622,7 +2622,7 @@ lv:
   needs_to_be_identified: Nepieciešama identifikācija
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
-    <strong>%{site_name}</strong> ir daļa no iNaturalist starptautiskā tīkla ar mērķi pievērst uzmanību bioloģiskajai daudzveidībai un cilvēkiem iekš %{place}. Vai vēlies mainīt sava konta piederību no <strong>%{inat_site_name}</strong> uz <strong>%{site_name}</strong> un dalīties ar datiem ar vietējām organizācijām?
+    %{site_name} ir daļa no iNaturalist starptautiskā tīkla, kas radīts, lai pievērstu uzmanību bioloģiskajai daudzveidībai šajā vietā: %{place}. Vai vēlies mainīt sava konta piederību no %{inat_site_name} uz %{site_name} un sniegt pieeju pie saviem datiem vietējām organizācijām?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
