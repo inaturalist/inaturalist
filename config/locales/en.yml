@@ -300,6 +300,8 @@ en:
   # Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     You can choose to share hidden coordinates for
+  # Header for a section describing unintended disagreements
+  about_unintended_disagreements: About Unintended Disagreements
   # Abbreviated form of "accuracy in meters", where "accuracy" is the
   # positional_accuracy attribute of an observation, which is really more like
   # positional uncertainty
@@ -839,7 +841,22 @@ en:
   back_to_your_profile: Back to your profile
   badges: Badges
   # disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html: "Based on a sample of %{percent}% of these IDs, we estimate that this will result in %{num_clashes} unintended disagreements with IDs of %{child}."
+  based_on_a_sample_of_percent_of_these_ids_html:
+    zero: |
+      Based on a sample of %{percent}% of these IDs, we estimate that this will
+      result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
+    one: |
+      Based on a sample of %{percent}% of these IDs, we estimate that this will
+      result in <strong>%{count} unintended disagreement</strong> with IDs of %{child}.
+    few: |
+      Based on a sample of %{percent}% of these IDs, we estimate that this will
+      result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
+    many: |
+      Based on a sample of %{percent}% of these IDs, we estimate that this will
+      result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
+    other: |
+      Based on a sample of %{percent}% of these IDs, we estimate that this will
+      result in <strong>%{count} unintended disagreements</strong> with IDs of %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Based on the evidence, can the Community Taxon still be confirmed or improved?
   batch: Batch
@@ -850,9 +867,15 @@ en:
   be_the_first_to_fave_this_observation: Be the first to fave this observation!
   because_of: because of
   # disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_act_html: "Because we estimate this change will result in more than 10 unintended disagreements, we recommend you also commit a taxon change involving %{old_parent} such as splitting %{new_parent} off from %{old_parent}."
+  because_we_estimate_this_change_act_html: |
+    Because we estimate this change will result in more than 10 unintended
+    disagreements, <strong>we recommend you also commit a taxon change involving
+    %{old_parent}, such as splitting %{new_parent} off from %{old_parent}</strong>.
   # disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_dont_act_html: "Because we estimate this change will result in 10 or fewer unintended disagreements, its probably not necessary to commit a taxon change involving %{old_parent}."
+  because_we_estimate_this_change_dont_act_html: |
+    Because we estimate this change will result in 10 or fewer unintended
+    disagreements, <strong>it's probably not necessary to commit a taxon change
+    involving %{old_parent}</strong>.
   become_a_donor_caps: BECOME A DONOR
   become_a_donor_today_caps: BECOME A DONOR TODAY
   before_importing_photos: before importing photos
@@ -1022,9 +1045,17 @@ en:
   cid_d_to_genus: CID'd to Genus
   citation: Citation
   # thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  clashes_occur_for_moves_html: Unintended disagreements occur when a parent <strong>(B)</strong> is thinned by moving a child <strong>(E)</strong> resulting in existing IDs of the parent being interpreted as disagreements with existing IDs of the moved child.
+  clashes_occur_for_moves_html: |
+    Unintended disagreements occur when a parent <strong>(B)</strong> is
+    thinned by moving a child <strong>(E)</strong> to another part of the
+    taxonomic tree, resulting in existing IDs of the parent being interpreted
+    as disagreements with existing IDs of the moved child.
   # thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
-  clashes_occur_for_swaps_html: Unintended disagreements occur when a parent <strong>(B)</strong> is thinned by swapping a child <strong>(E)</strong> resulting in existing IDs of the parent being interpreted as disagreements with existing IDs of the swapped child.
+  clashes_occur_for_swaps_html: |
+    Unintended disagreements occur when a parent <strong>(B)</strong> is
+    thinned by swapping a child <strong>(E)</strong> to another part of the
+    taxonomic tree, resulting in existing IDs of the parent being interpreted
+    as disagreements with existing IDs of the swapped child.
   classification: Classification
   clear: clear
   clear_filters: Clear filters
@@ -2147,8 +2178,6 @@ en:
   help_support_inaturalist: "Help Support iNaturalist"
   help_translate!: Help Translate!
   here_are_3_examples: Here are 3 examples of well-formed data
-  # disagreements are identifications that disagree with other identifications on the same observation
-  here_are_some_observations_where_clashes: Here are some observations where such unintended disagreements would occur
   here_are_our_top_suggestions: Here are our top suggestions
   here_are_our_top_species_suggestions: Here are our top species suggestions
   hex_color_eg: Hex color, e.g. 65644F
@@ -2181,7 +2210,10 @@ en:
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  however_you_may_want_to_commit_html: "However, you may want to comment on the observations with unintended disagreements linked above to alert identifiers that the meaning of %{old_parent} was thinned."
+  however_you_may_want_to_commit_html: |
+    However, you may want to comment on the observations with unintended
+    disagreements linked above to alert identifiers that the scope of %{old_parent}
+    was thinned.
   i_dont_know_but_i_am_sure_this_is_taxon: I don't know but I am sure this is %{taxon}
   icon: Icon
   icon_size: Icon size
@@ -2198,10 +2230,10 @@ en:
       maverick: |
         Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
         agree with this taxon.
-  # disagreements are identifications that disagree with other identifications on the same observation
-  id_two_of_taxon_move_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> post ancestry change"
-  # disagreements are identifications that disagree with other identifications on the same observation
-  id_two_of_taxon_swap_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> post taxon swap"
+  # Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> after the change in ancestry"
+  # Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 of taxon <strong>E</strong> will be an unintended disagreement with ID 1 of taxon <strong>B</strong> after the taxon swap"
   id_withdrawn: ID Withdrawn
   ids_by_taxon: IDs By Taxon
   identify: Identify
@@ -2240,10 +2272,16 @@ en:
     with you.
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_moves_html: If thinning a parent results in more than 10 unintended disagreements, you should split the parent after moving the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t disagree.
+  if_narrowing_a_parent_for_moves_html: |
+    If thinning a parent results in more than 10 unintended disagreements, you
+    should split the parent after moving the child to replace existing IDs of
+    the parent <strong>(B)</strong> with IDs that don't disagree.
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_swaps_html: If thinning a parent results in more than 10 unintended disagreements, you should split the parent after swapping the child to replace existing IDs of the parent <strong>(B)</strong> with IDs that don’t disagree.
+  if_narrowing_a_parent_for_swaps_html: |
+    If thinning a parent results in more than 10 unintended disagreements, you
+    should split the parent after swapping the child to replace existing IDs
+    of the parent <strong>(B)</strong> with IDs that don't disagree.
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
@@ -2845,7 +2883,9 @@ en:
   most_observed_introduced_species: Most Observed Introduced Species
   most_observed_threatened_species: Most Observed Threatened Species
   move_input_children_to_output?: Move children to output?
-  moving_child_out_of_old_parent_would_narrow_html: "Moving %{child} out of %{old_parent} would narrow what we mean by %{old_parent}. There are %{id_count} IDs of %{old_parent}."
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Moving %{child} out of %{old_parent} would narrow what we mean by
+    %{old_parent}. There are %{id_count} IDs of %{old_parent}.
   multiple: multiple
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
@@ -3015,6 +3055,7 @@ en:
   no_more_taxa_to_load: No more taxa to load!
   no_more_results_found: No more results found
   no_new_messages: No new messages
+  no_new_parent_specified: No new parent specified
   no_observations: No Observations
   no_observations_from_this_place_yet: No observations from this place yet.
   no_observations_matching_those_ids: No observations matching those IDs.
@@ -5087,7 +5128,7 @@ en:
     from around the planet.  Start exploring!
   then_keybord_sequence: then
   # thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  there_are_no_current_ids: There are no current IDs of any thinned parents.
+  there_are_no_current_ids: There are no current IDs of any potentially-thinned parent taxa.
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
     other: "There are <span class='count'>%{count}</span> synonyms</span>"
@@ -5109,7 +5150,7 @@ en:
   there_were_some_problems_with_fields: "There were some problems with the following fields:"
   there_were_some_problems_with_these_files: "There were some problems with these files:"
   theres_something_wrong_with_taxon_framework_relationship: There's something wrong here - we can't determine the relationship between any internal and external taxa
-  therefore_committing_additional_taxon_changes: Therefore, committing additional taxon changess following committing this taxon swap is not necessary.
+  therefore_committing_additional_taxon_changes: Therefore, committing additional taxon changes after committing this taxon swap will not be necessary.
   therefore_committing_taxon_changes: Therefore, committing taxon changes following this ancestry change is not necessary.
   these_are_items_people_on: |
     These are items people on the site have flagged for curation. Spam

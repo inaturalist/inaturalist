@@ -60,10 +60,9 @@
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSwap )
-        .potential_clashes
-          .notice.box
-            = t( :committing_this_swap_may_result )
-            = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
+        .potential_clashes.alert.alert-warning
+          = t( :committing_this_swap_may_result )
+          = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
             class: "potential_clashes_link btn btn-default", |
             data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry, output_taxon_id: @output_taxon_id }, |
             "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
@@ -103,16 +102,19 @@
           %span{ "aria-hidden" => "true" } ×
         %h4#clashes_modal_label.modal-title= t( :analyze_clashes )
       .modal-body
-        = image_tag "spinner.gif", :id => "spinner", :class => "center"
-      .modal-footer
-        .row
+        .unintended-disagreements-content
+          = image_tag "spinner.gif", :id => "spinner", :class => "center"
+        .row.about-unintended-disagreements
+          %hr
+          .col-xs-12
+            %h5=t :about_unintended_disagreements
           .col-xs-2
             %b=t( :taxon_swap ).capitalize
             %embed{ src: image_path( "clashes-modal-fig-1-swaps.svg" ) }
           .col-xs-3
             = t( :clashes_occur_for_swaps_html )
           .col-xs-2
-            %b=t( :identification )
+            %b=t( :identification_ )
             %embed{ src: image_path("clashes-modal-fig-2.svg" ) }
             =t( :id_two_of_taxon_swap_html )
           .col-xs-3
