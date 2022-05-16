@@ -2965,7 +2965,6 @@ de:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
     observe_panel_body_p1_local: Brauchst du Inspiration? Hier sind ein paar Lebewesen, die in der Gegend beobachtet wurden...
     observe_panel_body_p1_global: Brauchst du Inspiration? Hier sind ein paar Organismen die beobachtet wurden...
-    observe_panel_body_p2: Gehe nach draußen und beobachte ein einzelnes Lebewesen (Tier, Pflanze, Pilz...). Mache davon ein klares, gut erkennbares Bild. Wenn Du bereits ein Foto von einem Lebewesen hast, <a href="%{new_observation_path}">füge es jetzt hinzu</a>. Du kannst auch die mobilen Apps von %{site_name} verwenden, um Beobachtungen zu dokumentieren.
     observe_panel_body_p3: Sobald Du Deine Beobachtungen hochgeladen hast, zeigt Dir diese Seite die Reaktionen aus der Community in Form von Kommentaren und Bestimmungen.
     follow_panel_title_local: Folge anderen Benutzern in der Umgebung
     follow_panel_title_global: Folge aktiven Benutzern
@@ -6968,8 +6967,8 @@ de:
   datetime:
     distance_in_words:
       about_x_hours:
-        one: vor ca. einer Stunde
-        other: vor ca. %{count} Stunden
+        one: ca. %{count} Stunde
+        other: ca. %{count} Stunden
       about_x_months:
         one: etwa %{count} Monat
         other: etwa %{count} Monate
@@ -7363,6 +7362,9 @@ de:
               relative_uri: "muss ein absoluter URI sein."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kann nicht für doppelte Beobachtungen (Duplikate) verwendet werden; nur Beobachter können Duplikate entfernen, also bitte solche Angelegenheiten mit ihnen direkt in einem Kommentar besprechen
             user_id:
               already_flagged: "hat diesen Artikel bereits gemeldet"
         guide:
