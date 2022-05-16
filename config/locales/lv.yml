@@ -280,7 +280,7 @@ lv:
   #Status of a taxon that is available for use on iNat
   active_taxon_status: Aktīvs
   active_users: Aktīvi lietotāji
-  activity: Paziņojumi
+  activity: Aktivitātes
   adapted_by_name_from_a_work_by_original: "Pielāgojis %{name} no %{original} darba"
   add: Pievienot
   add_a_batch_of_observations: Pievienot vairākus novērojumus reizē
@@ -363,14 +363,14 @@ lv:
   add_plant_phenology_flowering_annotation: 'Pievienot piezīmi "auga fenoloģija: zied"'
   add_plant_phenology_fruiting_annotation: 'Pievienot piezīmi "auga fenoloģija: ar augļiem"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Pievienot piezīmi "auga fenoloģija: ziedēšana nav novērojama"'
-  add_life_stage_adult_annotation: 'Pievienot piezīmi "Dzīves posms: pieaudzis"'
-  add_life_stage_teneral_annotation: 'Pievienot piezīmi "Dzīves posms: tenerāls īpatnis"'
-  add_life_stage_subimago_annotation: 'Pievienot piezīmi "Dzīves posms: subimago"'
-  add_life_stage_pupa_annotation: 'Pievienot piezīmi "Dzīves posms: kūniņa"'
-  add_life_stage_nymph_annotation: 'Pievienot piezīmi "Dzīves posms: kukaiņu nimfa"'
-  add_life_stage_larva_annotation: 'Pievienot piezīmi "Dzīves posms: cirmenis"'
-  add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves posms: nepieaudzis"'
-  add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves posms: ola"'
+  add_life_stage_adult_annotation: 'Pievienot piezīmi "Dzīves stadija: pieaudzis"'
+  add_life_stage_teneral_annotation: 'Pievienot piezīmi "Dzīves stadija: tenerāls īpatnis"'
+  add_life_stage_subimago_annotation: 'Pievienot piezīmi "Dzīves stadija: subimago"'
+  add_life_stage_pupa_annotation: 'Pievienot piezīmi "Dzīves stadija: kūniņa"'
+  add_life_stage_nymph_annotation: 'Pievienot piezīmi "Dzīves stadija: kukaiņu nimfa"'
+  add_life_stage_larva_annotation: 'Pievienot piezīmi "Dzīves stadija: cirmenis"'
+  add_life_stage_juvenile_annotation: 'Pievienot piezīmi "Dzīves stadija: nepieaudzis"'
+  add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves stadija: ola"'
   add_evidence_of_presence_organism_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: organisms"'
   add_evidence_of_presence_feather_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: spalva"'
   add_evidence_of_presence_scat_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: izkārnijumi"'
@@ -1074,7 +1074,7 @@ lv:
     flower_budding: Ziedpumpuri
     flowering: Zied
     fruiting: Ar augļiem
-    life_stage: Dzīves posms
+    life_stage: Dzīves stadija
     adult: Pieaudzis
     teneral: Tenerāls īpatnis
     subimago: Subimago
@@ -1810,7 +1810,7 @@ lv:
   follow_receive_updates_about_new_observations: Sekot (saņemt ziņojumus par jauniem novērojumiem)
   follow_user: "Sekot lietotājam %{user}"
   followers: Sekotāji
-  following: Tu seko
+  following: Abonēts saturs
   following_x_people:
     zero: 'Seko %{count} lietotājiem'
     one: 'Seko 1 lietotājam'
@@ -2057,7 +2057,7 @@ lv:
   info: Info
   input_taxon: Sākotnējais taksons
   insects: kukaiņi
-  insect_life_stage: Kukaiņu dzīves posms
+  insect_life_stage: Kukaiņu dzīves stadija
   instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Pievienot citātu
@@ -2627,7 +2627,8 @@ lv:
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong> ir daļa no iNaturalist starptautiskā tīkla ar mērķi pievērst uzmanību bioloģiskajai daudzveidībai un cilvēkiem Somijā. Vai vēlies mainīt sava konta piederību no <strong>%{inat_site_name}</strong> uz <strong>iNaturalist Suomi</strong> un dalīties ar datiem ar vietējām organizācijām?
+    <strong>iNaturalist Suomi</strong> ir daļa no iNaturalist starptautiskā tīkla, kas radīts, lai pievērstu uzmanību bioloģiskajai daudzveidībai Somijā. Vai vēlies mainīt sava konta piederību no <strong>%{inat_site_name}</strong> uz
+    <strong>iNaturalist Suomi</strong> un sniegt pieeju pie saviem datiem vietējām organizācijām?
   network_affiliation_prompt_from_other_site_html: |
     Vai vēlies saistīt savu kontu ar <strong>%{site_name}</strong>, nevis <strong>%{other_site_name}</strong>?
   #Column header in a table listing iNaturalist Network members
@@ -2980,7 +2981,6 @@ lv:
     observe_panel_title: Sāksim ar novērojumu pievienošanu!
     observe_panel_body_p1_local: Vēlies iedvesmoties? Apskati tavā apkārtnē novērotos organismus!
     observe_panel_body_p1_global: Vēlies iedvesmoties? Apskati nesen novērotos organismus!
-    observe_panel_body_p2: Dodies dabā, atrodi kādu individuālu organismu un uzņem skaidru pilnizmēra attēlu! Ja tev jau ir šādas fotogrāfijas, <a href="%{new_observation_path}">pievieno tās jau tagad!</a> Vēl iespējams izmantot arī %{site_name} lietotnes, lai saglabātu novērojumus.
     observe_panel_body_p3: Kad būsi saglabājis kādu novērojumu, šajā lapā varēsi apskatīt aktualitātes – komentārus un identifikācijas no mūsu kopienas. Diezin kas tevi sagaida!
     follow_panel_title_local: Pieseko naturālistiem tavā apkārtnē!
     follow_panel_title_global: Pieseko aktīvajiem naturālistiem!
@@ -4098,7 +4098,7 @@ lv:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Rādīt "Bez piezīmēm"
-  show_off_your_recent_observations: Palielies ar saviem pēdējiem novērojumiem savā emuārā vai tīmekļa vietnē!
+  show_off_your_recent_observations: Palielies ar saviem jaunākajiem novērojumiem savā emuārā vai tīmekļa vietnē!
   show_only: Rādīt tikai
   show_relative_proportions_of_all_observations: Rādīt relatīvo proporciju attiecībā pret visiem novērojumiem
   #Label for a button to show the running total of an accumulation chart
@@ -4330,7 +4330,8 @@ lv:
   subscribe_to_observations_in_a_taxon: Sekot visiem sugas vai organismu grupas (piemēram, "skorpioni") novērojumiem
   subscribe_to_observations_in_a_place: Sekot visiem vietas novērojumiem. Iespējams pievienot papildu taksonu filtru (piemēram, Teksasas skorpioni)
   subscribe_to_places_help: |
-    Informācijas panelī un jaunumos redzamais ir atkarīgs no abonementiem, piemēram, iespējams abonēt taksona jaunumus, lai saņemtu ziņojumus par jauniem novērojumiem ar šo taksonu. Tevis komentēto vai identificēto novērojumu paziņojumi tiek automātiski abonēti.
+    Informācijas panelī un jaunumos redzamais ir atkarīgs no abonementiem, piemēram, iespējams abonēt taksona jaunumus, lai saņemtu ziņojumus ar jauniem
+    šī taksona novērojumiem. Tevis komentēto vai identificēto novērojumu paziņojumi tiek automātiski abonēti.
   subscribe_to_this: Sekot šim
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Sekot</a> %{x} no šī %{y}.
@@ -5037,7 +5038,7 @@ lv:
     Rakstā izmantoti materiāli no Vikipēdijas raksta
     <a href="%{url}">"%{title}"</a>, kas publicēts ar licenci
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
-    Commons Attribution-Share-Alike License 3.0</a>. Daļa no oriģināla satura var būt neiekļauta, bet saturs nav ne izmainīts, ne pagarināts.
+    Commons Attribution-Share-Alike License 3.0</a>. Daļa no oriģināla satura var nebūt iekļauta, bet saturs nav ne izmainīts, ne pagarināts.
   with: ar
   withdraw: Atsaukt
   withdrawing: Atsauc...
@@ -5240,7 +5241,7 @@ lv:
   your_tags: Tavi tagi
   yours: Tavi
   youre_not_following_anyone: |-
-    Tu neseko nevienam lietotājam. Sekošana citiem lietotājiem sniedz iespēju būt lietas kursā par viņu pēdējiem novērojumiem. Apskati citu lietotāju <a href="%{observations_path}">novērojumus</a> un iepazīsties ar jauniem <a href="%{people_path}">cilvēkiem</a>.
+    Tu neseko nevienam lietotājam. Sekošana citiem lietotājiem sniedz iespēju būt lietas kursā par viņu jaunākajiem novērojumiem. Apskati citu lietotāju <a href="%{observations_path}">novērojumus</a> un iepazīsties ar jauniem <a href="%{people_path}">cilvēkiem</a>.
   youre_not_following_anyone_on_inat: Pagaidām tu vēl neseko nevienam lietotājam %{site_name} vietnē.
   youve_linked_your_inaturalist_google_account: "Tagad esi savienojis savu %{site_name} kontu ar Google kontu. Šādi tavas Google fotogrāfijas tiks piesaistītas taviem %{site_name} vietnes novērojumiem."
   youve_successfully_linked_your_provider_account: "Tev veiksmīgi izdevās pievienot savu %{provider} kontu"
@@ -6059,7 +6060,7 @@ lv:
           Vai tev būs nepieciešamas standarta projektu funkcijas, piemēram, pieeja patiesajām koordinātām, pielāgojami novērojumu lauki vai atsevišķi automātiski nefiltrējami novērojumi?
         duplicate_project: Kopēt projektu
         include_annotated_observations: |
-          Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves posms), vai ar īpašībām un vērtību (piemēram, dzīves posms = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.
+          Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves stadija), vai ar īpašībām un vērtību (piemēram, dzīves stadija = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.
         leaderboards_among_individuals: <strong>Lietotāju</strong> rangu tabula
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektu</strong> rangu tabula
@@ -6197,7 +6198,7 @@ lv:
         android_desc_html: Izveidots ar <a href="%{url}">iNaturalist Android lietotni</a>
         avg_ttcid: Vidējais KINL (kopienas identifikācijai nepieciešamais laiks)
         avg_ttid: Vidējais INL (identifikācijai nepieciešamais laiks)
-        identifiers_desc: Šajā dienā pievienoja ID cita lietotāja novērojumam
+        identifiers_desc: Šajā dienā ieteica ID cita lietotāja novērojumam
         iphone_desc_html: Izveidots ar <a href="%{url}">iNaturalist iPhone lietotni</a>
         med_ttcid: Vidējais KINL
         med_ttid: Vidējais INL
@@ -6673,18 +6674,18 @@ lv:
       - Sestd.
     abbr_month_names:
       - 
-      - Janv.
-      - Febr.
-      - Mar.
-      - Apr.
-      - Maij.
-      - Jūn.
-      - Jūl.
-      - Aug.
-      - Sept.
-      - Okt.
-      - Nov.
-      - Dec.
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - Mai
+      - Jūn
+      - Jūl
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Dec
     day_names:
       - Svētdiena
       - Pirmdiena
