@@ -680,7 +680,6 @@ th:
     anonymous: ไม่ระบุชื่อ
     public_domain: โดเมนสาธารณะ
     copyright: ลิขสิทธิ์
-    no_copyright: ไม่มีลิขสิทธิ์
   copyright_info: ข้อมูลลิขสิทธิ์
   copyright_info_and_more: ข้อมูลลิขสิทธิ์และอื่น ๆ
   create: สร้าง
@@ -1567,7 +1566,6 @@ th:
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
   your_observations: การสังเกตของคุณ
   your_recent_projects: โครงการล่าสุดของคุณ
-  verifiable: ยังพิสูจน์ได้
   verifiable_observations: การสังเกตที่พิสูจน์ได้
   views:
     guides:
@@ -1614,7 +1612,6 @@ th:
     projects:
       edit:
         rules:
-          verifiable: ยังพิสูจน์ได้
           wild: พบตามธรรมชาติ
       new:
         collection_projects: โครงการสะสมชนิด
@@ -1630,7 +1627,6 @@ th:
       show:
         frequency:
           research: ระดับงานวิจัย
-          verifiable: ยังพิสูจน์ได้
           "Life Stage=Larva": ตัวอ่อน
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
     users:

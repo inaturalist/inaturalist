@@ -2965,7 +2965,6 @@ ca:
     observe_panel_title: Anem a començar publicant algunes observacions
     observe_panel_body_p1_local: Necessiteu inspiració? Aquí teniu alguns organismes observats a prop...
     observe_panel_body_p1_global: Necessiteu inspiració? Aquí teniu alguns organismes observats...
-    observe_panel_body_p2: Sortiu a l'exterior, i observeu un organisme. Escolliu algun ésser viu silvestre i preneu una fotografia clara on ocupi tot el fotograma. Si ja teniu la foto d'alguna forma silvestre,  <a href="%{new_observation_path}">afegiu-la ara</a>. També podeu utilitzar l'aplicació mòbil de %{site_name} per enregistrar les observacions.
     observe_panel_body_p3: Una vegada heu compartit la vostra observació, aquesta pàgina us mostrarà les actualitzacions de la la comunitat en forma de comentaris i identificacions. Qui sap el que podeu descobrir!
     follow_panel_title_local: Seguiu alguns naturalistes propers
     follow_panel_title_global: Seguiu alguns naturalistes actius
@@ -5453,7 +5452,7 @@ ca:
           L'<a href="http://eol.org/" target="_blank">Enciclopèdia de la Vida (EOL)</a> és un repositori d'informació sobre la vida a la Terra. A EOL pots crear <a href="http://eol.org/info/252" target="_blank">col·leccions</a> d'espècies. Si voleu importar les espècies d'una col·lecció EOL enganxeu aquí l'URL de la col·lecció.
         guide_place_desc: |
           Associant la guia a un lloc permeteu a les persones trobar-la quan cerquen llocs, i mostra els límits del lloc al mapa de %{site_name} que els tenen si s'ha establert (per exemple a la vista "targeta", les pàgines del tàxon, etc.)
-        import_tags_from_csv_help_html: |2
+        import_tags_from_csv_help_html: |
           <p>
             Pugeu un fitxer CSV que contingui les etiquetes per als tàxons
             d'aquesta guia. L'arxiu CSV ha de tenir un aspecte semblant a
@@ -7337,6 +7336,9 @@ ca:
               relative_uri: "ha de ser un URI absolut."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                no poden haver-hi observacions duplicades; únicament l'observador pot eliminar els duplicats, per tant, fes-li saber les teves observacions a ell amb un comentari
             user_id:
               already_flagged: "aquest ítem ja ha estat assenyalat"
         guide:
