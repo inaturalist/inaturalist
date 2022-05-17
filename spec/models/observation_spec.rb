@@ -4487,6 +4487,13 @@ describe Observation, "set_time_zone" do
     expect( o.zic_time_zone ).to eq "America/Denver"
   end
 
+  it "should change the time zone when the coordinates change when geoprivacy is obscured" do
+    o = Observation.make!( latitude: oakland[:lat], longitude: oakland[:lng], geoprivacy: Observation::OBSCURED )
+    expect( o.zic_time_zone ).to eq "America/Los_Angeles"
+    o.update( latitude: denver[:lat], longitude: denver[:lng] )
+    expect( o.zic_time_zone ).to eq "America/Denver"
+  end
+
   it "should work in the middle of the ocean" do
     o = Observation.make!(
       latitude: pacific_ocean[:lat],
