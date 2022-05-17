@@ -1,17 +1,7 @@
 es-MX:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} cambio"
-    other: "%{count} cambios"
-  x_comments:
-    one: '1 comentario'
-    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
-  x_faves:
-    one: '1 Favorito'
-    other: '%{count} Favoritos'
   x_flags_resolved_html:
     one: "<span class='count'>1</span> advertencia resuelta"
     other: "<span class='count'>%{count}</span> advertencias resueltas"
@@ -52,7 +42,7 @@ es-MX:
     one: "1 error de identificación de esta especie"
     other: "%{count} errores de identificación de esta especie"
   x_misidentifications_of_species_in_this_genus:
-    one: "%{count} identificaciones erroneas de espeies en este género"
+    one: "%{count} identificación errónea de especie en este género"
     other: "%{count} identificaciones erróneas de especies en este género"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
@@ -83,19 +73,15 @@ es-MX:
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
-    one: "%{count} foto"
+    one: "foto"
     other: "%{count} fotos"
   x_new_species:
     one: "%{count} Nueva especie"
     other: "%{count} Nuevas especies"
   x_new_users:
-    one: '%{count} Nuevo usuario'
+    one: 'Nuevo usuario'
     other: '%{count} Nuevos usuarios'
-  x_species:
-    one: '%{count} especie'
-    other: '%{count} especies'
   x_species_html:
     one: "<span class='count'>1</span> especie"
     other: "<span class='count'>%{count}</span> especies"
@@ -108,37 +94,12 @@ es-MX:
   x_taxa:
     one: "taxón"
     other: "taxones"
-  x_taxa_observed_html:
-    one: "<span class='count'>1</span> especie o grupo observado"
-    other: "<span class='count'>%{count}</span> especies o grupos observados"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> observación con grado de investigación</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación</span>"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>1</span> observación con grado de investigación identificada a especie o subespecie</span>"
-    other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o subespecie</span>"
-  x_sounds:
-    one: "sonido"
-    other: "sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón revisado"
     other: "<span class='count'>%{count}</span> taxones revisados"
-  x_taxa_matching_current_filters:
-    one: "1 especie o grupo con los filtros seleccionados"
-    other: "%{count} especies o grupos con los filtros seleccionados"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>1</span> cambio taxonómico agregado"
-    other: "<span class='count'>%{count}</span> cambios taxonómicos agregados"
-  _100_day_trends: Tendencias de 100 días
-  _percent_ID_d: "% identificados"
-  a_community_for_naturalist: Una comunidad para naturalistas
-  a_default_taxon_name_will_automatically_created: |
-    Se creará un nombre predeterminado para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos obsoletos, etc.)
-  a_flag_for_x: "una alerta para %{x}"
-  a_member_of_taxon_html: "un miembro de %{taxon}"
-  #Ascending alphabetical sort option. Could be alternatively be translated as
-  #"Alphabetical (ascending)"
-  a_to_z: "De la A a la Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -159,16 +120,6 @@ es-MX:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
-  about: Acerca
-  about_charts: Acerca de los gráficos
-  about_community_taxa: Acerca de los taxa de la comunidad
-  about_complete_taxa: Acerca de los taxones completos
-  about_conservation_status: Acerca del estado de conservación
-  about_editing_observation_fields: Acerca de la edición de campos de observación
-  #Header for a section explaining Establishment Means. See the
-  #about_establishment_desc key or
-  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: Acerca de los medios de establecimiento
   about_license_options: Acerca de opciones de licencia
   about_licenses: Acerca de las licencias
   #Header for a section describing taxon names
@@ -223,9 +174,6 @@ es-MX:
   active: Activo
   #Status of a complete set that is available for use
   active_complete_set_status: Activo
-  #Status of a taxon that is available for use on iNat
-  active_taxon_status: Activo
-  active_users: Usuarios activos
   activity: Actividad
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} del trabajo de  %{original}"
   add: Añade
@@ -253,35 +201,6 @@ es-MX:
   add_an_observation_of: "Añade una observación de %{taxon}"
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
-  add_annotations_for_controlled_attribute:
-    sex: Agrega anotaciones para "Sexo"
-    plant_phenology: Añade anotaciones para "fenología de la planta"
-    life_stage: Añade anotaciones para "etapa de vida"
-    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
-  add_another_flag: Añade otra advertencia
-  add_another_photo: Añade otra foto
-  add_another_section: Añade otra sección
-  add_another_subscription: Añade otra suscripción
-  #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: Añade recurso
-  add_batch: Añade un grupo
-  add_blocked_users: Agregar usuarios bloqueados
-  #Tool tip for a button that adds bold text to a text area
-  add_bold_text: Añadir texto en negritas
-  add_comma_separated_tags: "Añade etiquetas separadas por comas"
-  add_comment: Añade un comentario
-  add_conservation_status: Añade estado de conservación
-  add_custom_project_fields: Añade campos a la medida del proyecto
-  add_edit_flags: Agrega/edita etiquetas
-  add_editor: Agrega editor
-  add_description: "Añade %{description_name}"
-  add_from_your_observations: Añade de tus observaciones
-  add_link: Añade enlace
-  add_higher_level_taxon: Añade un grupo de nivel superior (por ejemplo, "aves")
-  add_id: Añade ID
-  #Tool tip for a button that adds italic text to a text area
-  add_italic_text: Añadir texto en cursivas
-  add_muted_users: Agregar usuarios silenciados
   add_new_lexicon: Añade nuevo lexicón
   add_new_photos_by_their_ids: Añade nuevas fotos de tus identificaciones de Filckr (deben ser Creative Commons)
   add_new_place: Añade un nuevo lugar
@@ -337,69 +256,7 @@ es-MX:
   add_tags: Añade etiquetas
   add_tags_to_selected_taxa: Añade las etiquetas al taxa seleccionado
   add_taxa: Añade taxones
-  add_taxon_batch_to: "Añade un grupo de taxones a %{list}"
-  add_taxon_range: Añade la distribución del taxón
-  add_taxonomic_tags_to: "Añade etiquetas taxonómicas para seleccionar fotos de Flickr &raquo;"
-  add_to_a_scheme: Añade a un esquema
-  add_to_a_project: Añade a un proyecto
-  add_to_calendar: Añade al calendario
-  add_to_checklist: Añade a lista de comprobación
-  add_to_favorites: Añade a los favoritos
-  add_to_list: Añade a la lista
-  add_to_project: Añade al proyecto
-  add_to_your_list: Añade a tu lista
-  add_your_email_to_get: |
-    Añade tu correo para tener un seguimiento de tu observación por la comunidad. Sin embargo puedes elegir no compartir tu observación
-  add_your_own_observations_at: "Añadir tus propias observaciones al %{site_name}"
-  added: añadido
-  added!: '¡Añadido!'
-  added_as_a_part_of_a_taxon_change_html: |
-    Añadido como parte de un cambio de taxón
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
-  added_as_a_part_of_a_taxon_merge_html: |
-    Añadido como parte de un cambio de taxón
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
-  added_as_a_part_of_a_taxon_split_html: |
-    Añadido como parte de un cambio de taxón
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
-  added_as_a_part_of_a_taxon_swap_html: |
-    Añadido como parte de un cambio de taxón
-    <a target="%{target}" class="%{class}" href="%{url}"></a>
-  added_by: Añadido por
-  added_by_user_on_date_html: "Añadido por %{user} el %{date}"
-  added_on_datetime: "Añadido el %{datetime}"
-  added_to_favorites_html: |
-    Agregado a <a href="%{url}">favoritos</a>
-  adding: "Añadiendo..."
-  adjust_brightness: Ajusta el brillo
-  admin: Administrador
-  admin_s: Administrador(es)
-  admin_only: Solamente administrador
-  admin_tools: Herramientas de administrador
-  #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations: Organizaciones afiliadas
-  agree_: De acuerdo
-  agree?: '¿Estás de acuerdo?'
-  agree_with_current_taxon: De acuerdo con la especie o grupo
-  agreeing: De acuerdo...
-  aka: Alias
-  #Noun, title of a popup alerting you to something
-  alert: Alerta
-  all: Todo
-  all_comments: Todos los comentarios
-  all_flags_must_be_resolved: Se deben resolver todas las advertencias
-  all_life: Toda la vida
-  all_names: Todos los nombres
-  all_observations: Todas las observaciones
-  all_photos: Todas las fotos
-  all_places: "Todos los lugares"
-  all_projects: Todos los proyectos
   all_rank_added_to_the_database:
-    phylum: Se añadieron todos los filos a la base de datos
-    subphylum: Se añadieron todos los subfilos a la base de datos
-    superclass: Se añadieron todas las superclases a la base de datos
-    class: Se añadieron todas las clases a la base de datos
-    subclass: Se añadieron todas las subclases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
     superorder: Se añadieron todos los superórdenes a la base de datos
     order: Se añadieron todos los órdenes a la base de datos
@@ -471,96 +328,9 @@ es-MX:
     x_arachnida:
       one: "1 arácnido"
       other: "%{count} arácnidos"
-    x_fungi:
-      one: "1 hongo"
-      other: "%{count} hongos"
-    x_chromista:
-      one: "1 alga parda y parientes"
-      other: "%{count} algas pardas y parientes"
-    x_protozoa:
-      one: "1 protozoario"
-      other: "%{count} protozoarios"
     x_other_animals:
       one: "1 otro animal"
       other: "%{count} otros animales"
-  all_taxa_: Todos los taxones
-  all_taxa_in_this_guide: Todas las especies y grupos de esta guía
-  all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
-  all_updates: Todas las actualizaciones
-  allow_curator_access: Permite acceso al curador
-  allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordinadas privadas
-  allowed_establish_means_values: Valores permitidos para los medios de establecimiento
-  allowed_html: Etiquetas permitidas de HTML
-  allowed_occurrence_status_values: Valores permitidos para los estatus de ocurrencia
-  allowed_values: Valores permitidos
-  almost_there_: Casi al final...
-  alphabetical: Orden alfabético
-  alphabetical_order: Orden alfabético
-  already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
-  amphibians: Anfibios
-  analyze_ids: Analizar IDs
-  ancestor_taxon: Taxón ancestro
-  and: "y"
-  and_other_taxa: "&amp; otros taxa"
-  android: Androide
-  animals: Animales
-  annotation: Anotación
-  annotations: Anotaciones
-  announcement_was_successfully_created: El aviso fue creado satisfactoriamente.
-  announcement_was_successfully_updated: El aviso fue autualizado satisfactoriamente.
-  announcements: Anuncios
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
-  any: Cualquiera
-  #Label to for an option to show content with any value. Often used as a
-  #fallback when the more specific any_* keys aren't translated. If you're
-  #seeing this used incorrectly somewhere we should be using a more specific
-  #translation, please let us know.
-  any_: Cualquiera
-  #Label for an option to show content with any annotation attribute
-  any_annotation_attribute: Cualquiera
-  #Label for an option to show content with any annotation value
-  any_annotation_value: Cualquiera
-  #Label for an option to show content from any date
-  any_date: Cualquiera
-  #Label for an option to show content with any establishment means
-  any_establishment: Cualquiera
-  #Label for an option to show content with any license
-  any_license: Cualquiera
-  #Label for an option to show content with photos, sounds, or neither
-  any_media: Cualquiera
-  #Label for an option to show content from any project
-  any_project: Cualquiera
-  #Label for an option to show content with any quality grade
-  any_quality_grade: Cualquiera
-  #Label for an option to show observation with any reviewed status, i.e. both
-  #reviewed and unreviewed
-  any_reviewed: Cualquiera
-  #Label for an option to show/include content by any user
-  any_user: Cualquiera
-  anyone: Cualquiera
-  app_owner_application_about_p1a_html: |
-    Las aplicaciones iNaturalist permiten el uso autenticado de la API de iNaturalist. Esta
-    te permite hacer llamadas API que hacen cosas como crear observaciones o
-    identificaciones. Los casos de uso habitual son aplicaciones como aplicaciones de escritorio o aplicaciones móviles que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe ser generado con una implicación humana real o supervisada. Por favor, para más detalles, lea nuestras <a href="/pages/community+guidelines"
-    target="_blank">Guás comunitarias</a> que prohibiben observaciones, identificaciones y comentarios generados por máquinas.
-    .
-  app_owner_application_about_p2_html: |
-    A partir de 2022 estamos requiriendo aprobación manual para usuarios que deseen hacerse clientes API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertirte en "propietario de aplicación". Esta solicitud debe describir la funcionalidad de tu app propuesta y cómo planeas utilizarla. Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes haber hecho al menos 10 <a href="/pages/help#identification"
-    target="_blank">identificaciones mejorando </a> en el último mes. Podemos hacer preguntas de seguimiento sobre tu plan y nos reservamos el derecho de rechazar las solicitudes por cualquier razón.
-  app_owner_application_inelligible: |
-    Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
-    haber hecho al menos 10 mejoras de identificaciones en el último mes.
-  app_owner_application_fields_explanation_html: Describe la funcionalidad que tu app tendrá y cómo planeas usarla.
-  app_owner_application_success: Solicitud de "propietario de app" enviada
-  #An app or service the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
-  application: Aplicación
-  #Apps or services the user has authorized to access their iNat account, e.g.
-  #the iNaturalist Android app or Flickr
-  applications: Aplicaciones
   apply_app_owner: Aplicar
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -630,75 +400,6 @@ es-MX:
   are_you_sure_you_want_to_commit_this_change: '¿Estás seguro de querer guardar este cambio? Esta acción no puede ser revertida.'
   are_you_sure_you_want_to_delete_this: '¿Estás seguro que quieres borrar esto?'
   are_you_sure_you_want_to_delete_this_assessment?: '¿Estás seguro que quieres borrar esta evaluación?'
-  are_you_sure_you_want_to_delete_this_photo?: '¿Estás seguro de que quieres eliminar esta foto?'
-  are_you_sure_you_want_to_delete_this_post: '¿Estás seguro que quieres borrar esta nota?'
-  are_you_sure_you_want_to_delete_this_taxon_change: '¿Estás seguro que quieres borrar este cambio en la especieo o grupo?'
-  are_you_sure_you_want_to_remove_all_tags: '¿Estás seguro que deseas eliminar todas las etiquetas?'
-  are_you_sure_you_want_to_remove_curator: '¿Estás seguro que deseas quitar a %{user} de curador?'
-  are_you_sure_you_want_to_remove_from_project: '¿Estás seguro que deseas quitar a %{user} del proyecto?'
-  are_you_sure_you_want_to_remove_manager: '¿Estás seguro que deseas quitar a %{user} de gerente?'
-  are_you_sure_you_want_to_remove_spammer: |
-    ¿Estas seguro que deseas eliminar todas las etiquetas?
-    Cualquier alerta de spams en su contenido será resuelta.
-  are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estas seguro que quieres eliminar estos %{x} taxa?"
-  are_you_sure_you_want_to_remove_this_observation_from_project: |
-    ¿Estás seguro de que quieres eliminar esta observación de %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
-  associated_observations: Observaciones asociadas
-  associated_taxa: Taxa asociados
-  attention: Atención
-  you_sure_delete_list: '¿Estás seguro que quieres borrar esta lista?'
-  you_sure_delete_taxon_from_list?: "¿Estás seguro que quieres quitar al %{taxon} de la lista?"
-  asc: Ascendente
-  ascending: ascendente
-  assessment: evaluación
-  assessment_has_benn_completed: La evaluación ha sido completada
-  assessment_sections: Secciones de evaluación
-  assessment_was_deleted: La evaluación fue eliminada.
-  assessment_was_successfully_created: La evaluación fue creada satisfactoriamente.
-  assessment_was_successfully_updated: La evaluación fue actualizada satisfactoriamente.
-  assessment_x: "Evaluación de %{assessment}"
-  assessments: Evaluaciones
-  associations: Asociaciones
-  atlased: Con Atlas
-  atlas_for_taxon_html: Atlas para %{taxon}
-  #As in the Atom Syndication Format:
-  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
-  #an Atom representation of the content shown on the current page
-  atom: Atom
-  attached_taxon: Taxón adjunto
-  #Noun form, as in a property of something. Generally used to describe the
-  #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute: Atributo
-  attribution: Atribución
-  authority_list:
-    iucn_red_list: Lista roja UICN
-    natureserve: NatureServe
-    cites: CITES
-  authorize: Autoriza
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce: Autorizar con PKCE
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
-  authorize_with_pkce_desc_html: |
-    (Usa <code>%{code_challenge}</code> como
-    <code>%{code_verifier_param}</code>) Nota: este es un ejemplo básico. En el código de producción, DEBES usar <code>%{code_challenge_method}</code> y mezclar correctamente 
-    el <code>%{code_challenge_param}</code>.
-  authorize_permissions_from_provider: "Autoriza permisos de %{provider}"
-  automatic_short: Autom.
-  automatically_add_observations_to_this_project: Añade observaciones automáticamente a este proyecto
-  automatically_update_my_content_for_taxon_changes: Actualiza mi contenido automáticamente cuando exista un cambio
-  #Abbreviation of "average," i.e. the sum of all values divided by the numer
-  #of values, and not a synonym of "typical" or "normal"
-  avg: Promedio
-  back: Regresar
-  back_to_applications: "&laquo; Volver a aplicaciones"
-  back_to_all_species: De regreso a Todas las especies
-  back_to_editing_observation: Regresar a editar la observación
-  back_to_friends: De regreso a amigos
-  back_to_flags_html: "&laquo; Regresa a las advertencias"
   back_to_lists: "Regresar a las listas %{name}"
   back_to_observation: Regresar a la observación
   back_to_observation_fields: De regreso a los campos de observación
