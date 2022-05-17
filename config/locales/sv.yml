@@ -222,6 +222,8 @@ sv:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kan välja att dela dolda koordinater för
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Om oavsiktlig oenighet
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -515,6 +517,10 @@ sv:
   alphabetical_order: Alfabetisk ordning
   already_have_an_account_log_in_html: Har du redan ett konto? <strong>Logga in.</strong>
   amphibians: groddjur
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Undersök oavsiktlig oenighet
   analyze_ids: Analysera ID:n
   ancestor_taxon: Överliggande taxon
   and: och
@@ -753,6 +759,14 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
+      kommer att resultera i <strong>%{count} oavsiktlig oenighet</strong> för bestämningar av %{child}.
+    other: |
+      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
+      kommer att resultera i <strong>%{count} oavsiktliga oenigheter</strong> för bestämningar av %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
   batch: Batch
@@ -762,6 +776,16 @@ sv:
   batch_operations: Batch-funktioner
   be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
   because_of: eftersom
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Eftersom vi uppskattar att denna förändring kommer att resultera i mer än 10 oavsiktliga
+    oenigheter, <strong>rekommenderar vi att du också gör en taxonändring med
+    %{old_parent}, t.ex. särskilja %{new_parent} från %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Eftersom vi uppskattar att denna förändring kommer att resultera i 10 eller färre oavsiktliga
+    oenigheter, <strong>är det förmodligen inte nödvändigt att bekräfta en taxonändring som
+    berör %{old_parent}</strong>.
   become_a_donor_caps: BLI BIDRAGSGIVARE
   become_a_donor_today_caps: BLI BIDRAGSGIVARE IDAG
   before_importing_photos: innan bildimport
@@ -884,6 +908,8 @@ sv:
   change_your_password: Ändra ditt lösenord
   #Plural noun, as in changes to a taxon record over time
   changes: Ändringar
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Att ändra ursprung till den föräldern kan resultera i oavsiktliga oenigheter, analysera dem först vilket kan ta ett tag.
   changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser ditt fynds position.'
   check_above_for_errors: Kolla efter fel ovan
   check_back_soon: Kolla snart igen!
@@ -923,6 +949,18 @@ sv:
   choose_what_kind_of_change_youre_creating: "Välj vilken typ av förändring du vill göra."
   cid_d_to_genus: Kollektivt bestämd till släkte
   citation: Citering
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Oavsiktliga oenigheter uppstår när en förälder <strong>(B)</strong> gallras
+    genom flytt av ett barn <strong>(E)</strong> till en annan del av det
+    taxonomiska trädet, vilket resulterar i att befintliga bestämningar av föräldern tolkas
+    som oenigheter med befintliga bestämningar av det flyttade barnet.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Oavsiktliga oenigheter uppstår när en förälder <strong>(B)</strong> gallras
+    genom att byta plats på ett barn <strong>(E)</strong> till en annan del av det
+    taxonomiska trädet, med resultatet att befintliga bestämningar av föräldern tolkas
+    som oenigheter med befintliga bestämningar av det utbytta barnet.
   classification: Klassificering
   clear: rensa
   clear_filters: Rensa filter
@@ -961,6 +999,9 @@ sv:
   committed_taxon_changes_cannot_be_deleted: Bekräftade taxonändringar kan inte raderas
   #Status message while a taxon change is being committed
   committing: Bekräftar...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Att bekräfta kan resultera i oavsiktliga oenigheter, undersök dem först vilket kan ta ett tag.
   common_name: Vardagligt namn
   community: Community
   community_curated: Community-förvaltad
@@ -2002,6 +2043,12 @@ sv:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timmar att justera:"
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Du kanske vill kommentera fynden med oavsiktliga oenigheter som länkas
+    ovan för att uppmärksamma artbestämmare att omfattningen av %{old_parent}
+    begränsades.
   i_dont_know_but_i_am_sure_this_is_taxon: Jag vet inte men jag är säker på att detta är %{taxon}
   icon: Ikon
   icon_size: Ikonstorlek
@@ -2017,6 +2064,10 @@ sv:
       maverick: |
         Taxon är varken under- eller överliggande community-taxonet, d.v.s. communityn
         håller inte med om detta taxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "Bestämning 2 av taxon <strong>E</strong> kommer att bli en oavsiktlig oenighet med bestämning 1 av taxon <strong>B</strong> efter förändringen av ursprung"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "Bestämning 2 av taxon <strong>E</strong> kommer att bli en oavsiktlig oenighet med bestämning 1 av taxon <strong>B</strong> efter taxonbytet"
   id_withdrawn: Bestämning ångrad
   ids_by_taxon: Bestämningar per taxon
   identify: Artbestämning
@@ -2044,6 +2095,18 @@ sv:
   ids_made_for_others: Bestämningar gjorda för andra
   if_for_some_reason_a_user_doesnt_agree: |
     Om du av någon anledning inte håller med om community-taxonet, kan du avvisa den, vilket innebär att din artbestämning är den som används för länkning till andra fynd, uppdatering av livslistor, etc. Det betyder också att ditt fynd bara kan uppnå forskningsklass när communityn håller med dig.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Om gallring av en förälder resulterar i mer än 10 oavsiktliga oenigheter, bör
+    du dela upp föräldern efter att ha flyttat barnet för att ersätta befintliga bestämningar av
+    föräldern <strong>(B)</strong> med bestämningar som inte är oeniga.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Om gallring av en förälder resulterar i mer än 10 oavsiktliga oenigheter, bör
+    du dela upp föräldern efter att ha bytt ut barnet för att ersätta befintliga bestämningar
+    av föräldern <strong>(B)</strong> med bestämningar som inte är oeniga.
   if_matches_come_from_a_comprehensive_list: Om matchningar kommer från en fullständig lista visas en grön list här.
   if_this_is_a_scientific_name: Om detta är ett vetenskapligt namn, är det för närvarande accepterat?
   if_this_link_will_apply_to_descendant: Om denna länk ska gälla för underliggande taxa, kan du använda taggningar enligt mall för att fylla i taxonnamnet i URL:en
@@ -2633,6 +2696,9 @@ sv:
   most_observed_introduced_species: Mest observerade införda arter
   most_observed_threatened_species: Mest observerade hotade arter
   move_input_children_to_output?: Flytta barnen till utdata?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Att flytta %{child} från %{old_parent} skulle begränsa vad vi menar med
+    %{old_parent}. Det finns %{id_count} bestämningar av %{old_parent}.
   multiple: flera
   multiple_select_option: '-- flera --'
   multiple_taxa_for_taxon_change: "Flera taxa (indata för byte/hopslagning, utdata för uppdelning)"
@@ -2797,6 +2863,7 @@ sv:
   no_more_taxa_to_load: Inga fler taxa att ladda!
   no_more_results_found: Inga fler resultat hittades
   no_new_messages: Inga nya meddelanden
+  no_new_parent_specified: Ingen ny förälder angiven
   no_observations: Inga fynd
   no_observations_from_this_place_yet: Inga fynd från denna fyndplats än.
   no_observations_matching_those_ids: Inga fynd som matchar de bestämningarna.
@@ -3054,6 +3121,7 @@ sv:
     observe_panel_title: Låt oss komma igång genom att lägga in några fynd
     observe_panel_body_p1_local: Behöver du inspiration? Här är några organismer som brukar ses i närheten...
     observe_panel_body_p1_global: Behöver du inspiration? Här är några organismer som brukar ses...
+    observe_panel_body_p2: Ge dig ut i naturen och hitta en organism. Välj en som är vild och ta sedan en bra, fokuserad bild. Om du redan har en bild på något vilt, <a href="%{new_observation_path}">lägg till det nu</a>. Du kan också använda %{site_name}-mobilappar för att spara fynd.
     observe_panel_body_p3: När du väl har delat dina fynd kommer denna sida att visa dig uppdateringar från communityn i form av kommentarer och bestämningar. Vem vet vad du kommer att upptäcka!
     follow_panel_title_local: Följ några naturforskare i närheten
     follow_panel_title_global: Följ några aktiva naturforskare
@@ -4731,6 +4799,8 @@ sv:
   the_world_is_full_of_interesting_places: |
     Världen är full av intressanta platser, var och en fylld med märkliga och underbara livsformer. Vissa finns på andra sidan jorden, medan andra finns hemma runt hörnet! %{site_name}-fyndplatser låter dig bläddra bland liv från hela planeten. Börja utforska!
   then_keybord_sequence: sedan
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Det finns inga aktuella bestämningar av potentiellt gallrade föräldrataxa.
   there_are_x_synonyms_html:
     one: "Det finns <span class='count'>1</span> synonym</span>"
     other: "Det finns <span class='count'>%{count}</span> synonymer</span>"
@@ -4751,6 +4821,8 @@ sv:
   there_were_some_problems_with_fields: "Det uppstod problem med följande fält:"
   there_were_some_problems_with_these_files: "Det uppstod problem med följande filer:"
   theres_something_wrong_with_taxon_framework_relationship: Något har gått fel - vi kan inte avgöra relationen mellan några interna och externa taxa
+  therefore_committing_additional_taxon_changes: Därför behöver inte ytterligare taxonändringar bekräftas efter att detta taxonbyte bekräftats.
+  therefore_committing_taxon_changes: Därför behöver inte taxonändringar bekräftas efter denna ändring av ursprung.
   these_are_items_people_on: |
     Det här är objekt som personer på webbplatsen har flaggat för hantering. Spam-kommentarer bör tas bort och användare som lägger till spam bör stängas av
     (gå till deras profilsida och klicka på 'Stäng av användare' i nedre högra hörnet för att hindra dem från att logga in). Andra flaggade saker bör endast
