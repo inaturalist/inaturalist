@@ -206,6 +206,8 @@ fr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Vous pouvez choisir de partager vos coordonnées masquées pour :
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: À propos des désaccords involontaires
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -504,6 +506,10 @@ fr:
   alphabetical_order: Ordre alphabétique
   already_have_an_account_log_in_html: Vous avez déjà un compte ? <strong>Connectez-vous.</strong>
   amphibians: amphibiens
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analyser les désaccords involontaires
   analyze_ids: Analyser les Id
   ancestor_taxon: Taxon parent
   and: et
@@ -725,6 +731,14 @@ fr:
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   badges: Badges
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Sur la base d'un échantillon de %{percent}% de ces ID, nous estimons que cela entraînera
+       <strong>%{count} désaccord involontaire</strong> avec des ID pour %{child}.
+    other: |
+      Sur la base d'un échantillon de %{percent}% de ces ID, nous estimons que cela entraînera
+       <strong>%{count} désaccords involontaires</strong> avec des ID pour %{child}.
   based_on_the_evidence_can_id_be_improved: |
     D’après les données, le taxon de communauté peut-il être encore confirmé ou amélioré ?
   batch: Groupe
@@ -734,6 +748,15 @@ fr:
   batch_operations: Opérations groupées
   be_the_first_to_fave_this_observation: Soyez le premier à ajouter cette observation comme favori !
   because_of: en raison de
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Étant donné que nous estimons que ce changement entraînera plus de 10 désaccords
+    involontaires, <strong>nous vous recommandons de valider également un changement de taxon concernant %{old_parent}, par exemple en séparant %{new_parent} de %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Étant donné que nous estimons que ce changement entraînera au plus 10 désaccords involontaires,
+     <strong>il n'est probablement pas nécessaire de valider un changement de taxon
+    concernant %{old_parent}</strong>.
   become_a_donor_caps: FAITES UN DON
   become_a_donor_today_caps: DEVENEZ UN DONATEUR AUJOURD'HUI
   before_importing_photos: avant d’importer des photos
@@ -856,6 +879,8 @@ fr:
   change_your_password: Modifier votre mot de passe
   #Plural noun, as in changes to a taxon record over time
   changes: Changements
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Changer la généalogie vers ce taxon de rang supérieur peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
   check_above_for_errors: Vérifier ci-dessus les erreurs
   check_back_soon: Revenez voir dans quelques temps !
@@ -897,6 +922,16 @@ fr:
   choose_what_kind_of_change_youre_creating: "Choisissez la sorte de modification que vous créez."
   cid_d_to_genus: CID du genre
   citation: Citation
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    comme des désaccords avec les ID existants du taxon dérivé déplacé.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxonomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
+    comme des désaccords avec les ID existants du taxon dérivé déplacé.
   classification: Classification
   clear: effacer
   clear_filters: Effacer les filtres
@@ -939,6 +974,9 @@ fr:
   committed_taxon_changes_cannot_be_deleted: Les modifications de taxon validées ne peuvent pas être supprimées.
   #Status message while a taxon change is being committed
   committing: Validation en cours…
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: La validation peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   common_name: Nom vernaculaire
   community: Communauté
   community_curated: Communauté organisée
@@ -1983,6 +2021,10 @@ fr:
       maverick: |
         Le taxon n’est pas un descendant ni un parent du taxon de la communauté, c'est à dire que la communauté n’est
         pas d’accord avec ce taxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "L'ID 2 du taxon <strong>E</strong> sera un désaccord involontaire avec l'ID 1 du taxon <strong>B</strong> après le changement de généalogie"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "L'ID 2 du taxon <strong>E</strong> sera un désaccord involontaire avec l'ID 1 du taxon <strong>B</strong> après l'échange de taxon"
   id_withdrawn: ID supprimé
   ids_by_taxon: IDs par taxon
   identify: Identifier
@@ -2011,6 +2053,16 @@ fr:
   if_for_some_reason_a_user_doesnt_agree: |
     Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est
     d’accord avec vous.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Si réduire un taxon de rang supérieur entraîne plus de 10 désaccords involontaires, il faut diviser le taxon de rang supérieur après avoir déplacé le taxon dérivé pour remplacer les ID existants
+    du taxon de rang supérieur <strong>(B)</strong> par des ID qui ne sont pas en désaccord.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Si réduire un taxon de rang supérieur entraîne plus de 10 désaccords involontaires, il faut diviser le taxon de rang supérieur après avoir échangé le taxon dérivé pour remplacer les ID existants
+    du taxon de rang supérieur <strong>(B)</strong> par des ID qui ne sont pas en désaccord.
   if_matches_come_from_a_comprehensive_list: Si la correspondance vient d’une liste complète, une barre verte sera affichée.
   if_this_is_a_scientific_name: Si c’est un nom scientifique, est-il actuellement accepté ?
   if_this_link_will_apply_to_descendant: Si ce lien s’applique aux taxons descendants, vous pouvez utiliser les étiquettes modèles pour remplir le nom du taxon dans l’URL
@@ -2600,6 +2652,9 @@ fr:
   most_observed_introduced_species: Espèces introduites les plus observées
   most_observed_threatened_species: Espèces menacées les plus observées
   move_input_children_to_output?: Déplacer les enfants vers la sortie ?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Si %{child} n'était plus dans %{old_parent}, cela réduirait ce que nous entendons par
+    %{old_parent}. %{old_parent} a %{id_count} ID.
   multiple: multiple
   multiple_select_option: '-- multiple --'
   multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de séparation)"
@@ -2761,6 +2816,7 @@ fr:
   no_more_taxa_to_load: Il ne reste plus de taxons à charger!
   no_more_results_found: Pas d'autres résultats trouvés
   no_new_messages: Aucun nouveau message
+  no_new_parent_specified: Aucun nouveau taxon de rang supérieur spécifié
   no_observations: Pas d'observations
   no_observations_from_this_place_yet: Aucune observation dans ce lieu jusqu’à présent.
   no_observations_matching_those_ids: Aucune observation correspondant à ces identifications.
@@ -4666,6 +4722,8 @@ fr:
     d’autres sont juste au bout de la rue! Les lieux sur %{site_name} vous laissent découvrir des êtres vivants
     sur toute la planète. Partez en exploration!
   then_keybord_sequence: alors
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Il n'y a pas d'ID actuel de taxons de rang supérieur potentiellement réduits.
   there_are_x_synonyms_html:
     one: "Il y a <span class='count'>1</span> synonyme</span>"
     other: "Il y a <span class='count'>%{count}</span> synonymes</span>"
@@ -4686,6 +4744,8 @@ fr:
   there_were_some_problems_with_fields: "Il y a eu des problèmes avec les champs suivants :"
   there_were_some_problems_with_these_files: "Il y a eu quelques problèmes avec ces fichiers :"
   theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne et externe
+  therefore_committing_additional_taxon_changes: Par conséquent, il ne sera pas nécessaire de valider d'autres modifications de taxon après avoir validé cet échange de taxon.
+  therefore_committing_taxon_changes: Par conséquent, il n'est pas nécessaire de valider des changements de taxon à la suite de ce changement de généalogie.
   these_are_items_people_on: |
     Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur 'Suspendez l’utilisateur' en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un drapeau doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
   these_are_taxa_that: |
