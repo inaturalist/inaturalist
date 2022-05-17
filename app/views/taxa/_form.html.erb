@@ -36,16 +36,17 @@
     <div class="stacked last column span-23">
       <div class="column span-12">
         <%= f.text_field :parent_id, value: taxon.parent_id, class: "text", disabled: !@protected_attributes_editable %><br/>
-
         <% if @protected_attributes_editable %>
           <%= label_tag t(:parent_name) %><br/>
           <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
-          <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
+          <%= link_to_function t( :browse_all_species ), "$('#taxonchooser').jqmShow();" %>
           <div class="description">
-            <%= t(:this_is_more_convenient_way_find_parent) %>
+            <%= t( :this_is_more_convenient_way_find_parent ) %>
           </div>
         <% end %>
-        
+      </div>
+      <div class="jqmWindow" id="dialog">
+        <div class="loading status">Loading...</div>
       </div>
       <% if !taxon.new_record? && @protected_attributes_editable -%>
         <div class="column span-5">
@@ -58,6 +59,13 @@
       <% end -%>
     </div>
     
+    <div class="column span-23 potential_clashes">
+      <span class="notice box">
+        <%= t( :changing_the_ancestry_to_that_parent ) %>
+        <%= link_to t( :analyze_clashes), "#", class: "potential_clashes_link" %>
+      </span>
+    </div>
+
     <div class="column span-23">
       <%= f.check_box :locked, :label_after => true %>
       <p class="description ui">

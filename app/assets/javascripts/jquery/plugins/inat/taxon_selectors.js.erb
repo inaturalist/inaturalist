@@ -334,7 +334,7 @@
         chosenTaxonName = $.fn.simpleTaxonSelector.chosenTaxonNameFor(q, taxon)
 
     // Set the taxon_id
-    $(taxon_id).val(taxon.id);
+    $(taxon_id).val(taxon.id).trigger('change');
     if (typeof(options.selectedName) != 'undefined') {
       $(input).val(options.selectedName);
     } else if (typeof(chosenTaxonName) != 'undefined') {

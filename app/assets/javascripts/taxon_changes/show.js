@@ -60,4 +60,32 @@ $( document ).ready( function () {
     $( ".spinner" ).hide();
   } );
 
+  var potentialClashesLink = $( ".potential_clashes_link" );
+  var oldAncestors = potentialClashesLink.data( "input-ancestry" );
+  if ( $.isNumeric( oldAncestors ) ) {
+    oldAncestors = [String( oldAncestors )];
+  } else {
+    oldAncestors = oldAncestors.split( "/" );
+  }
+  var oldParent = oldAncestors[oldAncestors.length - 1];
+  var newTaxon = potentialClashesLink.data( "output-taxon-id" );
+  var newAncestors = potentialClashesLink.data( "output-ancestry" );
+  if ( $.isNumeric( newAncestors ) ) {
+    newAncestors = [String( newAncestors )];
+  } else {
+    newAncestors = newAncestors.split( "/" );
+  }
+  newAncestors.push( String( newTaxon ) );
+  if ( newAncestors.indexOf( oldParent ) === -1 ) {
+    var newParent = newAncestors[newAncestors.length - 2];
+    var href = $( "a.potential_clashes_link" ).attr( "href" );
+    $( "a.potential_clashes_link" ).attr( "href", href + "?new_parent_id=" + newParent );
+    $( ".potential_clashes" ).show();
+  } else {
+    $( ".potential_clashes" ).hide();
+  }
+  $( "#clashes_modal" ).on( "show.bs.modal", function ( e ) {
+    var link = $( e.relatedTarget );
+    $( this ).find( ".unintended-disagreements-content" ).load( link.attr( "href" ) );
+  } );
 } );

@@ -1,0 +1,60 @@
+- if @context == "taxon"
+  = link_to t( :close ), "#", :class => "jqmClose right"
+  %h2=t( :analyze_clashes )
+- if @results.map{ |result| result[:id_count] == 0 }.all?
+  %p{ class: "#{@context == "taxon" ? "success box" : "alert alert-success" }"}
+    = t( :there_are_no_current_ids )
+    - if @context == "taxon"
+      = t( :therefore_committing_taxon_changes )
+    - else
+      = t( :therefore_committing_additional_taxon_changes )
+- @results.select { | r | r[:id_count].to_i > 0 }.each_with_index do |result, result_index|
+  - unless result_index == 0
+    %hr
+  - if @context == "taxon"
+    - if result[:num_clashes] > 10
+      - @classname = "error box"
+    - else
+      - @classname = "notice box"
+  - else
+    - if result[:num_clashes] > 10
+      - @classname = "alert alert-danger"
+    -else
+      - @classname = "alert alert-warning"
+  %div{ class: @classname }
+    %p
+      =t( :moving_child_out_of_old_parent_would_narrow_html, |
+      child: result[:child], old_parent: result[:old_parent], id_count: result[:id_count] )
+      =t( :based_on_a_sample_of_percent_of_these_ids_html, |
+      percent: result[:percent], count: result[:num_clashes], child: result[:child] )
+      - unless result[:sample].nil?
+        = link_to( t( :view_observations ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank" )
+    %p
+      - if result[:num_clashes] > 10
+        =t( :because_we_estimate_this_change_act_html, |
+        old_parent: result[:old_parent], new_parent: result[:new_parent] )
+      - else
+        =t( :because_we_estimate_this_change_dont_act_html, |
+        old_parent: result[:old_parent], new_parent: result[:new_parent] )
+        - if result[:num_clashes] > 0
+          =t( :however_you_may_want_to_commit_html, old_parent: result[:old_parent] )
+- if @context == "taxon"
+  %hr
+  %h3=t :about_unintended_disagreements
+  %table.clashes
+    %tbody
+      %tr
+        %td.fig20
+          %b= t( :ancestry_change )
+          %embed{ src: image_path( "clashes-modal-fig-1-moves.svg" ) }
+        %td
+          = t( :clashes_occur_for_moves_html )
+        %td.fig20
+          %b= t( :identification )
+          %embed{ src: image_path( "clashes-modal-fig-2.svg" ) }
+          =t( :id_two_of_taxon_move_html )
+        %td
+          = t( :if_narrowing_a_parent_for_moves_html )
+        %td.fig20
+          %b= t( :taxon_split ).capitalize
+          %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }
