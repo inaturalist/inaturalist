@@ -2001,12 +2001,15 @@ nl:
   identify_title: "Determineer"
   identification: determinatie
   identification_by_user: Determinatie door %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Determinatie verwijderd.
   identification_saved: "Determinatie opgeslagen!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Determinatietekst weer tonen
+  #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
   identification_user_short: Det. gebr.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
   computer_vision_suggestion: Computer Vision Voorstel
@@ -3045,6 +3048,7 @@ nl:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
     observe_panel_body_p1_local: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
     observe_panel_body_p1_global: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
+    observe_panel_body_p2: Ga naar buiten en observeer een organisme. Kies iets wilds en maak een duidelijke, beeldvullende foto. Als je al een foto van iets wilds hebt, <a href="%{new_observation_path}">voeg die dan nu toe</a>. Je kunt ook de mobiele apps van %{site_name} gebruiken om waarnemingen vast te leggen.
     observe_panel_body_p3: Zodra je je waarnemingen hebt gedeeld, toont deze pagina je updates van de gemeenschap in de vorm van opmerkingen en determinaties. Wie weet wat je zult ontdekken!
     follow_panel_title_local: Volg enkele naturalisten uit de buurt
     follow_panel_title_global: Volg enkeke actieve naturalisten
