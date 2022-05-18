@@ -2076,12 +2076,15 @@ sv:
   identify_title: "Bestäm"
   identification: bestämning
   identification_by_user: Bestämning av %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Bestämningstext synliggjord
+  #Notification when an identification has been updated
   identification_updated: Bestämning uppdaterad!
   identification_user_short: Best. användare
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   computer_vision_suggestion: Bildigenkänningsförslag
