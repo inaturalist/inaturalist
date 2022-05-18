@@ -1630,10 +1630,13 @@ et:
   identify_title: "Määra"
   identification: määratlus
   identification_by_user: Kasutaja %{user} määratlus
+  #Notification when an identification has been deleted
   identification_deleted: Määratlus kustutatud.
   identification_saved: "Määratlus salvestatud!"
+  #Notification when an identification has been updated
   identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Määratlus tagasivõetud.
   identifications: Määratlused
   computer_vision_suggestion: Masin-nägemise pakkumine
