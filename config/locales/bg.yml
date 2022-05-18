@@ -1445,9 +1445,12 @@ bg:
   identify_title: "Разпознай"
   identification: разпознаване
   identification_by_user: Разпознаване от %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Разпознаването е изтрито.
   identification_saved: "Разпознаването е записано!"
+  #Notification when an identification has been updated
   identification_updated: Разпознаването е обновено!
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Разпознаването е оттеглено.
   identifications: Разпознавания
   computer_vision_suggestion_desc: |
