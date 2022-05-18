@@ -751,7 +751,7 @@ da:
       resultere i <strong>%{count} utilsigtet uenighed</strong> med ID'er på %{child}.
     other: |
       Baseret på en stikprøve på %{percent}% af disse ID'er, anslås det, at dette vil
-      resultere i <strong>%{count} utilsigtet uenigheder</strong> med ID'er på %{child}.
+      resultere i <strong>%{count} utilsigtede uenigheder</strong> med ID'er på %{child}.
   based_on_the_evidence_can_id_be_improved: |
     På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
   batch: Bundt
@@ -893,7 +893,7 @@ da:
   #Plural noun, as in changes to a taxon record over time
   changes: Ændringer
   #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent: Ændring af forfædre til denne forælder kan resultere i utilsigtede uenigheder. Analysér dem venligst først.
+  changing_the_ancestry_to_that_parent: Ændring af forfædre til denne forælder kan resultere i utilsigtede uenigheder. Analysér dem venligst først (kan tage et stykke tid).
   changing_the_geoprivacy: 'Ændring af geofortrolighed ændrer hvordan andre personer ser placeringen af din observation.'
   check_above_for_errors: Tjek ovenstående for fejl
   check_back_soon: Kig ind snart!
@@ -935,6 +935,16 @@ da:
   choose_what_kind_of_change_youre_creating: "Vælg hvilken ændring du vil foretage."
   cid_d_to_genus: FID'et til slægt
   citation: Citation
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Utilsigtede uenigheder opstår, når en forælder <strong>(B)</strong> 
+    udtyndes ved at flytte et afkom <strong>(E)</strong> til en anden del af det
+    taksonomisk træ, hvilket medfører, at eksisterende ID'er for forælderen fortolkes som værende i uoverensstemmelser med eksisterende ID'er for det flyttede afkom.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Utilsigtet uenighed forekommer, når en forælder <strong>(B)</strong> udtyndes ved at omplacere et afkom <strong>(E)</strong> til en anden del af det
+    taksonomiske træ, resulterende i, at eksisterende ID'er for forældrene fortolkes
+    som uenigheder med eksisterende ID'er for det omplacerede afkom.
   classification: Klassifikation
   clear: ryd
   clear_filters: Ryd filtre
@@ -973,6 +983,9 @@ da:
   committed_taxon_changes_cannot_be_deleted: Kommittede taksonændringer kan ikke slettes
   #Status message while a taxon change is being committed
   committing: Engagerer
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Indsendelse kan resultere i utilsigtede uenigheder. Analysér dem venligst først (kan tage et stykke tid).
   common_name: Almindeligt navn
   community: Fællesskab
   community_curated: Kurateret af fællesskabet
@@ -2013,6 +2026,10 @@ da:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Du ønsker måske at kommentere på-observationerne med de utilsigtede uenigheder, linket øverst, for at varsko identificerende om, at omfanget af %{old_parent} blev udtyndet.
   i_dont_know_but_i_am_sure_this_is_taxon: Jeg ved det ikke, men jeg sikker på det er %{taxon}
   icon: Ikon
   icon_size: Ikon størrelse
@@ -2029,6 +2046,8 @@ da:
         Takson er ikke en efterkommer eller stamfader til fællesskabs taksonen, dvs. fællesskabet er ikke enig i denne takson
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
   id_two_of_taxon_move_html: "ID 2 for takson <strong>E</strong> vil være en utilsigtet uenighed med ID 1 for takson <strong>B</strong> efter ændringen af herkomst"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 for takson <strong>E</strong> vil være en utilsigtet uenighed med ID 1 for takson <strong>B</strong> efter taksonombytningen"
   id_withdrawn: ID trukket tilbage
   ids_by_taxon: IDs efter takson
   identify: Identificér
@@ -2037,12 +2056,15 @@ da:
   identify_title: "Identificér"
   identification: identifikation
   identification_by_user: Identifikation af %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikation slettet
   identification_saved: "Identifikation gemt!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Identifikationstekst gjort synlig
+  #Notification when an identification has been updated
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
   computer_vision_suggestion: Computer vision forslag
@@ -2056,6 +2078,14 @@ da:
   ids_made_for_others: IDs udført for andre
   if_for_some_reason_a_user_doesnt_agree: |
     Hvis du af en eller anden grund er uenig med fællesskabets takson, kan du afvise den, hvilket betyder at det er DIT ID, der bruges til at linke til andre observationer, opdatering af livslisten etc. Det betyder også at din observation kun kan opnå forskningskvalitet hvis fællesskabet er enige i din identifikation.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Medfører en forælderudtynding flere end 10 utilsigtede uenigheder, bør du opdele forælderen efter flytning af afkommet for at erstatte eksisterende ID'er for forælderen <strong>(B)</strong> med ID'er uden uenigheder.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Medfører en forælderudtynding flere end 10 utilsigtede uenigheder, bør du opdele forælderen efter ombytning af afkommet for at erstatte eksisterende ID'er for forælderen <strong>(B)</strong> med ID'er uden uenigheder.
   if_matches_come_from_a_comprehensive_list: Hvis matchene kommer fra en omfattende liste, vises der en grøn bjælke her.
   if_this_is_a_scientific_name: Hvis dette er et videnskabeligt navn, er det så accepteret?
   if_this_link_will_apply_to_descendant: Hvis dette link virker på efterkommer taksa, kan du bruge skabelontags til at udfylde takson navnet i webadressen
@@ -2647,7 +2677,7 @@ da:
   move_input_children_to_output?: Flyt underordnede til output?
   moving_child_out_of_old_parent_would_narrow_html: |
     At flytte %{child} ud af %{old_parent} ville indsnævre, hvad vi mener med
-    %{old_parent}. Der er %{id_count} ID'er på %{old_parent}.
+    %{old_parent}. Der er %{id_count} ID'er for %{old_parent}.
   multiple: flere
   multiple_select_option: '-- flere --'
   multiple_taxa_for_taxon_change: "Flere taksa (input for skifte/sammenlægning, output for deling)"
@@ -3080,6 +3110,7 @@ da:
     observe_panel_title: Lad os komme i gang med at indsende nogle observationer
     observe_panel_body_p1_local: Har du brug for inspiration? Her er nogle organismer observeret i nærheden ...
     observe_panel_body_p1_global: Har du brug for inspiration? Her er nogle organismer, der bliver observeret...
+    observe_panel_body_p2: Kom udenfor og observér en særskilt organisme. Vælg noget vildtlevende og tag et klart foto i bedste opløsning. Har du allerede et foto af noget vildtlevende, <a href="%{new_observation_path}"> så tilføj det nu </a>. Du kan også bruge mobil-appen %{site_name} til observationsregistreringer.
     observe_panel_body_p3: Når du har delt dine observationer, viser denne side dig underretninger fra fællesskabet i form af kommentarer og identifikationer. Hvem ved hvad du vil opdage!
     follow_panel_title_local: Følg nogle naturelskere som er tæt på
     follow_panel_title_global: Følg nogle aktive naturelskere
@@ -4790,7 +4821,7 @@ da:
     andre er lige nede af gaden! Med %{site_name} steder får du mulighed for at browse livet fra hele verden. Begynd at udforske!
   then_keybord_sequence: derefter
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  there_are_no_current_ids: Der er ingen aktuelle ID'er for nogle potentielt udtyndede modertaksa.
+  there_are_no_current_ids: Der er ingen aktuelle ID'er for nogle potentielt udtyndede forældretaksxa.
   there_are_x_synonyms_html:
     one: "Der er <span class='count'>1</span> synonym</span>"
     other: "Der er <span class='count'>%{count}</span> synonymer</span>"
@@ -4811,6 +4842,7 @@ da:
   there_were_some_problems_with_fields: "Der var nogle problemer med følgende felter:"
   there_were_some_problems_with_these_files: "Der var nogle problemer med disse filer:"
   theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her - slægtsskabet mellem interne og eksterne taksaer kan ikke bestemmes
+  therefore_committing_additional_taxon_changes: Derfor er indsendelse af yderligere taksonændringer, efter indseldelsen af denne taksonombytning, ikke nødvendig.
   therefore_committing_taxon_changes: Derfor er indsendelse af taksonændringer, efter ændring af denne herkomst, ikke nødvendig.
   these_are_items_people_on: |
     Dette er emner andre personer på siden har markeret til kuration. Spam
