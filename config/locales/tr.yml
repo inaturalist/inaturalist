@@ -1862,10 +1862,13 @@ tr:
   identify_title: "Tanımla"
   identification: tanımlama
   identification_by_user: '%{user} tarafından tanımlama'
+  #Notification when an identification has been deleted
   identification_deleted: Tanımlama silindi.
   identification_saved: "Tanımlama kaydedildi!"
+  #Notification when an identification has been updated
   identification_updated: Tanımlama güncellendi!
   identification_user_short: Kullanıcı kimliği
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
   computer_vision_suggestion: Bilgisayar Görüş Önerisi
