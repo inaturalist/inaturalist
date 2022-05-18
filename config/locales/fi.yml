@@ -1880,12 +1880,15 @@ fi:
   identify_title: "Tunnistus"
   identification: tunnistus
   identification_by_user: Käyttäjän %{user} tunnistus
+  #Notification when an identification has been deleted
   identification_deleted: Tunnistus poistettu.
   identification_saved: "Tunnistus tallennettu!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Määritysteksti piilotettu
+  #Notification when an identification has been updated
   identification_updated: Tunnistus päivitetty!
   identification_user_short: Tunnist. käyttäjä
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
