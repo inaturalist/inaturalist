@@ -1278,8 +1278,8 @@ class Observation < ApplicationRecord
     # changes to the time zone if the coordinates have not changed
     if georeferenced?
       if coordinates_changed?
-        lat = private_latitude.blank? ? latitude : private_latitude
-        lng = private_longitude.blank? ? longitude : private_longitude
+        lat = ( latitude_changed? || private_latitude.blank? ) ? latitude : private_latitude
+        lng = ( longitude_changed? || private_longitude.blank? ) ? longitude : private_longitude
         self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
         self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
       elsif time_zone_changed?
