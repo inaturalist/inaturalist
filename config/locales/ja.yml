@@ -1572,10 +1572,13 @@ ja:
   identify_title: "ID判定"
   identification: 同定
   identification_by_user: '%{user}さんの同定'
+  #Notification when an identification has been deleted
   identification_deleted: 同定が削除されました
   identification_saved: "判定が保存されました！"
+  #Notification when an identification has been updated
   identification_updated: 同定が更新されました
   identification_user_short: 同定ユーザー
+  #Notification when an identification has been withdrawn
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   computer_vision_suggestion: コンピュータビジョンの提案
