@@ -1055,6 +1055,10 @@ class Observation < ApplicationRecord
       date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
       date_string.gsub!( / 12:/, " 00:" )
     end
+
+    # Translate am/pm into English for parsing
+    date_string.sub!( /\s#{I18n.t( "time.am")}/, " AM" )
+    date_string.sub!( /\s#{I18n.t( "time.pm")}/, " PM" )
     
     # Set the time zone appropriately
     old_time_zone = Time.zone

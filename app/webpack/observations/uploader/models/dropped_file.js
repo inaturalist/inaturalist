@@ -94,7 +94,7 @@ const DroppedFile = class DroppedFile {
           // reformat YYYY:MM:DD into YYYY/MM/DD for moment
           const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized )
             .replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
-          metadata.date = moment( dt ).format( "YYYY/MM/DD h:mm A" );
+          metadata.date = moment( dt ).format( parsableDatetimeFormat( ) );
           metadata.selected_date = metadata.date;
         }
         if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {

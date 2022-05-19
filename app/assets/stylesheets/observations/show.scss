@@ -554,8 +554,14 @@ a.UserImage,
     }
   }
   .edit-button {
+    display: flex;
+    justify-content: flex-end;
     .btn-group {
-      float: right;
+      display: flex;
+      a {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
       .dropdown-menu > li > a {
         padding: 3px 10px;
       }
