@@ -20,7 +20,7 @@ export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes
 export const DATETIME_WITH_TIMEZONE = "YYYY/MM/DD h:mm A z";
 export const DATETIME_WITH_TIMEZONE_OFFSET = "YYYY/MM/DD h:mm A ZZ";
 export const DATETIME_12_HOUR = "YYYY/MM/DD h:mm A";
-export const DATETIME_24_HOUR = "YYYY/MM/DD hh:mm";
+export const DATETIME_24_HOUR = "YYYY/MM/DD HH:mm";
 
 // Datetime format without a time zone that is both ok to parse and ok to
 // display. Intentionally not internationalized b/c translators shouldn't be
