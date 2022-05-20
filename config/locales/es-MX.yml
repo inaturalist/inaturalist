@@ -1,7 +1,17 @@
 es-MX:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} cambio"
+    other: "%{count} cambios"
+  x_comments:
+    one: '1 comentario'
+    other: '%{count} comentarios'
   x_comments_html:
     one: '<span class="count">%{count}</span> comentario'
     other: '<span class="count">%{count}</span> comentarios'
+  x_faves:
+    one: '1 Favorito'
+    other: '%{count} Favoritos'
   x_flags_resolved_html:
     one: "<span class='count'>1</span> advertencia resuelta"
     other: "<span class='count'>%{count}</span> advertencias resueltas"
@@ -73,6 +83,7 @@ es-MX:
   x_people:
     one: "%{count} persona"
     other: "%{count} personas"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "foto"
     other: "%{count} fotos"
@@ -82,6 +93,9 @@ es-MX:
   x_new_users:
     one: 'Nuevo usuario'
     other: '%{count} Nuevos usuarios'
+  x_species:
+    one: '%{count} especie'
+    other: '%{count} especies'
   x_species_html:
     one: "<span class='count'>1</span> especie"
     other: "<span class='count'>%{count}</span> especies"
@@ -201,6 +215,10 @@ es-MX:
   add_an_observation_of: "Añade una observación de %{taxon}"
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
+  add_comment: Añade un comentario
+  add_conservation_status: Añade estado de conservación
+  add_edit_flags: Agrega/edita Advertencias
+  add_editor: Agrega Editor
   add_new_lexicon: Añade nuevo lexicón
   add_new_photos_by_their_ids: Añade nuevas fotos de tus identificaciones de Filckr (deben ser Creative Commons)
   add_new_place: Añade un nuevo lugar
