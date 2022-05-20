@@ -1056,9 +1056,13 @@ class Observation < ApplicationRecord
       date_string.gsub!( / 12:/, " 00:" )
     end
 
-    # Translate am/pm into English for parsing
-    date_string.sub!( /\s#{I18n.t( "time.am")}/, " AM" )
-    date_string.sub!( /\s#{I18n.t( "time.pm")}/, " PM" )
+    # Translate am/pm into English for parsing. This is a pretty conservative
+    # solution to a complicated problem. Assumes AM/PM is at the end of the
+    # string and preceeded by a space, or in the middle but followed by a space
+    date_string.sub!( /\s#{I18n.t( "time.am" )}$/i, " AM" )
+    date_string.sub!( /\s#{I18n.t( "time.am" )}\s/i, " AM " )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}$/i, " PM" )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}\s/i, " PM " )
     
     # Set the time zone appropriately
     old_time_zone = Time.zone

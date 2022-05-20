@@ -159,6 +159,14 @@ describe Observation do
             expect( o.time_observed_at_in_zone.hour ).to eq 23
           end
         end
+
+        it "should parse translated AM/PM regardless of case" do
+          I18n.with_locale( :ru ) do
+            o = build :observation, observed_on_string: "2022-01-01 11 ВЕЧЕРА"
+            o.munge_observed_on_with_chronic
+            expect( o.time_observed_at_in_zone.hour ).to eq 23
+          end
+        end
       end
 
       context "when the user has a time zone" do
