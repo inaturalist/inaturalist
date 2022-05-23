@@ -27,7 +27,11 @@ export function handleAPIError( e, message, options = { } ) {
         // these errors come from Rails and have their own usable error messages
         let railsErrors;
         if ( body && body.error && body.error.original && body.error.original.errors ) {
+          // sometimes it's an array
           railsErrors = body.error.original.errors;
+        } else if ( body && body.error && body.error.original && body.error.original.error ) {
+          // sometimes it's just a string
+          railsErrors = [body.error.original.error];
         } else if ( body && body.error && body.error.original ) {
           // sometimes we get rails errors keyed by attribute
           railsErrors = _.flatten( _.map( body.error.original, ( errors, attr ) => (
@@ -55,7 +59,9 @@ export function handleAPIError( e, message, options = { } ) {
       } else {
         e.response.text( ).then( text => {
           handleErrorJson( JSON.parse( text ) );
-        } ).catch( responseTextError => { } );
+        } ).catch( responseTextError => {
+          console.warn( "[WARNING] : Failed to parse an error response: ", responseTextError );
+        } );
       }
     }
   };
