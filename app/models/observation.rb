@@ -19,7 +19,7 @@ class Observation < ApplicationRecord
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifies_subscribers_of :public_places runs
   after_create :update_observations_places
-  after_update :update_observations_places
+  # after_update :update_observations_places
   
   notifies_subscribers_of :public_places,
     notification: "new_observations",

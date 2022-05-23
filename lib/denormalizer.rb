@@ -23,5 +23,3 @@ class Denormalizer
   end
 
 end
-
-Dir["#{File.dirname(__FILE__)}/denormalizer/*.rb"].each { |f| load(f) }
