@@ -213,41 +213,51 @@ const App = ( {
                 </OverlayTrigger>
               </div>
             </Col>
-            { viewerIsObserver ? (
-              <Col xs={2} className="edit-button">
-                <SplitButton
-                  bsStyle="primary"
-                  className="edit"
-                  href={`/observations/${observation.id}/edit`}
-                  title={I18n.t( "edit" )}
-                  id="edit-dropdown"
-                  pullRight
-                  onSelect={key => {
-                    if ( key === "delete" ) {
-                      deleteObservation( );
-                    } else if ( key === "license" ) {
-                      setLicensingModalState( { show: true } );
-                    }
-                  }}
-                >
-                  <MenuItem eventKey="delete">
-                    <i className="fa fa-trash" />
-                    { I18n.t( "delete" ) }
-                  </MenuItem>
-                  <MenuItem
-                    eventKey="duplicate"
-                    href={`/observations/new?copy=${observation.id}`}
+            { viewerIsObserver
+              ? (
+                <Col xs={2} className="edit-button">
+                  <SplitButton
+                    bsStyle="primary"
+                    className="edit"
+                    href={`/observations/${observation.id}/edit`}
+                    title={I18n.t( "edit" )}
+                    id="edit-dropdown"
+                    pullRight
+                    onSelect={key => {
+                      if ( key === "delete" ) {
+                        deleteObservation( );
+                      } else if ( key === "license" ) {
+                        setLicensingModalState( { show: true } );
+                      }
+                    }}
                   >
-                    <i className="fa fa-files-o" />
-                    { I18n.t( "duplicate_verb" ) }
-                  </MenuItem>
-                  <MenuItem eventKey="license">
-                    <i className="fa fa-copyright" />
-                    { I18n.t( "edit_license" ) }
-                  </MenuItem>
-                </SplitButton>
-              </Col> ) : ( <FollowButtonContainer /> )
-            }
+                    <MenuItem
+                      eventKey="edit"
+                      href={`/observations/${observation.id}/edit`}
+                    >
+                      <i className="fa fa-pencil" />
+                      { I18n.t( "edit" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey="duplicate"
+                      href={`/observations/new?copy=${observation.id}`}
+                    >
+                      <i className="fa fa-files-o" />
+                      { I18n.t( "duplicate_verb" ) }
+                    </MenuItem>
+                    <MenuItem eventKey="license">
+                      <i className="fa fa-copyright" />
+                      { I18n.t( "edit_license" ) }
+                    </MenuItem>
+                    <li role="separator" className="divider" />
+                    <MenuItem eventKey="delete">
+                      <i className="fa fa-trash" />
+                      { I18n.t( "delete" ) }
+                    </MenuItem>
+                  </SplitButton>
+                </Col>
+              )
+              : ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>
