@@ -1,4 +1,10 @@
 cs:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} změna"
+    few: "%{count} změny"
+    many: "%{count} změn"
+    other: "%{count} změn"
   x_comments:
     one: '%{count} komentář'
     few: '%{count} komentáře'
@@ -431,7 +437,7 @@ cs:
   add_life_stage_egg_annotation: 'Přidat anotaci „Stádium života: vejce“'
   add_evidence_of_presence_organism_annotation: 'Přidat anotaci „Důkaz přítomnosti: organismus“'
   add_evidence_of_presence_feather_annotation: 'Přidat anotaci „Důkaz přítomnosti: peří“'
-  add_evidence_of_presence_gall_annotation: 'Přidat anotaci "Důkaz přítomnosti: gal"'
+  add_evidence_of_presence_gall_annotation: 'Přidat anotaci "Důkaz přítomnosti: hálka"'
   add_evidence_of_presence_scat_annotation: 'Přidat anotaci „Důkaz přítomnosti: trus“'
   add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
   add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
@@ -682,13 +688,13 @@ cs:
   any_user: Kterýkoliv
   anyone: Kdokoliv
   app_owner_application_about_p1a_html: |
-    Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům obsahují funkce pro vytváření pozorování iNaturalistů. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Přečtěte si prosím naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře, kde najdete další podrobnosti.
+    Aplikace iNaturalist umožňují ověřené použití rozhraní iNaturalist API. To vám umožňuje provádět volání API, která dělají věci, jako je vytváření pozorování nebo identifikace. Obvyklé případy použití jsou aplikace, jako jsou aplikace pro stolní počítače nebo mobilní aplikace, které svým uživatelům nabízejí funkce pro vytváření pozorování iNaturalist. Tento obsah musí být generován se skutečným lidským zapojením nebo dohledem. Pro více informací si prosím přečtěte naše <a href="/pages/community+guidelines" target="_blank">Pokyny pro komunitu</a>, které zakazují strojově generovaná pozorování, identifikace a komentáře.
   app_owner_application_about_p2_html: |
-    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet API klienty. Chcete-li vytvářet aplikace třetích stran, musíte nejprve odeslat aplikaci, abyste se stali „vlastníkem aplikace“. Tato aplikace by měla popisovat funkce navrhované aplikace a způsob, jakým ji plánujete používat. Abyste mohli odeslat žádost, váš účet musí být alespoň 2 měsíce starý a musí mít za poslední měsíc alespoň 10 <a href="/pages/help#identification" target="_blank">lepších identifikací</a> . Můžeme klást doplňující otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
+    Od roku 2022 vyžadujeme ruční schválení pro uživatele, kteří chtějí vytvářet API klienty. Chcete-li vytvářet aplikace třetích stran, musíte nejprve odeslat žádost, abyste se stali „vlastníkem aplikace“. Tato žádost by měla popisovat funkce navrhované aplikace a způsob, jakým ji plánujete používat. Abyste mohli odeslat žádost, váš účet musí být alespoň 2 měsíce starý a musí mít za poslední měsíc alespoň 10 <a href="/pages/help#identification" target="_blank">zlepšujících identifikací</a> . Můžeme klást doplňující otázky týkající se vašeho plánu a vyhrazujeme si právo odmítnout žádosti z jakéhokoli důvodu.
   app_owner_application_inelligible: |
-    Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce a
-    musí za poslední měsíc zlepšit identifikaci.
-  app_owner_application_fields_explanation_html: Popište funkci, kterou bude mít aplikace a jak ji plánujete.
+    Aby bylo možné podat žádost, musí být váš účet nejméně 2 měsíce starý a
+    musí za poslední měsíc zlepšit aspoň 10 identifikací.
+  app_owner_application_fields_explanation_html: Popište funkci, kterou bude mít aplikace a jak ji plánujete využívat.
   app_owner_application_success: Žádost vlastníka aplikace byla odeslána
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -696,11 +702,11 @@ cs:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplikace
-  apply_app_owner: Použít
+  apply_app_owner: Podat žádost
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Použít
-  apply_to_be_an_app_owner: Použít jako vlastníka aplikace
+  apply_to_be_an_app_owner: Podat žádost na vlastníka aplikace
   apply_to_create_applications_title: Žádost pro vytvoření aplikací
   apply_to_selected: Platí pro vybrané
   apply_captive_cultivated: "Aplikuj zajetí / kutlivovaný"
@@ -817,9 +823,9 @@ cs:
   #code that must match the content of the link and thus cannot be
   #translated.
   authorize_with_pkce_desc_html: |
-    (Použij <code>%{code_challenge}</code> jako
-    <code>%{code_verifier_param}</code>) Poznámka: toto je základní příklad. ve výrobním kódu,
-    MUSÍ použít <code>%{code_challenge_method}</code> a správně hash
+    (Použijte <code>%{code_challenge}</code> jako
+    <code>%{code_verifier_param}</code>) Poznámka: toto je jednoduchý příklad. V produkčním kódu
+    MUSÍTE použít <code>%{code_challenge_method}</code> a správně zašifrovat
      <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Schválit povolení od %{provider}"
   automatic_short: Automaticky
@@ -829,7 +835,7 @@ cs:
   #of values, and not a synonym of "typical" or "normal"
   avg: Prům.
   back: Zpět
-  back_to_applications: "&laquo; Zpět do aplikací"
+  back_to_applications: "&laquo; Zpět do žádostí"
   back_to_all_species: Zpět na Všechny Druhy
   back_to_editing_observation: Zpět na editaci pozorování
   back_to_friends: Zpět k přátelům
@@ -914,7 +920,7 @@ cs:
   by_you: vámi
   calendar: Kalendář
   calendars_only_show_x_observations_at_time: Kalendáře zobrazují najednou jen %{x} pozorování
-  callback_url: URL zpětného volání
+  callback_url: URL zpětného volání ("callback")
   cancel: Storno
   cant_edit_or_delete_hidden_content: Nemůžete upravovat ani mazat obsah, který byl skryt kurátory stránek
   cant_flag_an_object_that_doesnt_exist: Není možné označit objekt, který neexistuje
@@ -1049,7 +1055,7 @@ cs:
   #Notice when a comment has been hidden by moderators
   comment_hidden: Komentář skryt
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden: Komentář není skrytý
+  comment_unhidden: Komentář odkryt
   comments: Komentáře
   comments_by_me: Moje komentáře
   comments_have_been_disabled: Komentáře byly zakázány
@@ -1207,7 +1213,7 @@ cs:
     #As in the feather on a bird
     feather: Peří
     #Abnormal growth
-    gall: Gall
+    gall: Hálka
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organismus
@@ -1510,6 +1516,7 @@ cs:
   default: výchozí
   #Default option
   default_: Výchozí
+  default_display_time_zone: Výchozí časové pásmo zobrazení
   default_invite_comment: "Super fotka! Měli byste ji zveřejnit na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Výchozí licence pozorování
   default_photo_license: Výchozí fotografická licence
@@ -1517,6 +1524,9 @@ cs:
   default_search_place_description: |
     Toto bude výchozí místo pro všechna vyhledávání v Průzkumu.
   default_sound_license: Výchozí licence pro zvuk
+  default_time_zone_desc: |
+    Toto je výchozí časové pásmo. Skutečné časové pásmo bude přiřazeno na základě
+    polohy pozorování, pokud bude uložena.
   defaults_to_your_name_or_username: Odpovídá vašemu jménu nebo uživatelskému jménu
   defines_a_taxon_framework_for: Definuje rámec taxonu pro %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definuje rámec taxonu pro %{taxon} zdrojový pro %{source}
@@ -1756,8 +1766,8 @@ cs:
     Způsob vzniku popisuje, jak začal daný taxon v oblasti existovat. Více informací o terminologii najdete v DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"></a>.
   establishment_means_descriptions:
     native: vyvinutý v této oblasti nebo přijatý neantropogenními prostředky
-    endemic: nativní a nikde jinde se neobjevuje
-    introduced: Do regionu přišel prostřednictvím antropogenního působení
+    endemic: původní a nikde jinde se neobjevuje
+    introduced: do regionu přišel prostřednictvím antropogenního působení
   estimate_which_input: |
     Odhadněte, které vstupní taxony budou nahrazeny kterými výstupními taxony a které budou po dokončení rozdělení zestručněny na společného předka. Výpočet může chvíli trvat. Odkazy na pozorování jsou zkráceny na podmnožiny 200.
   event_in_progress: Událost probíhá
@@ -2121,7 +2131,7 @@ cs:
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
   #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text identifikace není skrytý
+  identification_text_hidden: Text identifikace odkryt
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
@@ -2318,7 +2328,7 @@ cs:
     albanian: Albánština
     arabic: Arabština
     armenian: Arménština
-    belarusian: Běloruský
+    belarusian: Běloruština
     bengali: bengálsky
     bulgarian: Bulharština
     catalan: Katalánština
@@ -2350,7 +2360,7 @@ cs:
     indonesian: Indonéština
     italian: italsky
     japanese: japonsky
-    kannada: Kanadský
+    kannada: Kannadština
     korean: korejsky
     latvian: lotyština
     lithuanian: Litevština
@@ -2359,7 +2369,7 @@ cs:
     malayalam: Malajámština
     maltese: maltsky
     maori: maorsky
-    marathi: Maráthí
+    marathi: Maráthština
     maya: Maya
     misima_paneati: Misima-paneati
     mongolian: Mongolština
@@ -2367,17 +2377,17 @@ cs:
     norwegian: norsky
     occitan: okcitánština
     ojibwe: Ojibwe
-    palauan: palauština
+    palauan: Palauština
     pangasinan: Pangasinan
-    polish: Polský
+    polish: Polština
     portuguese: portugalsky
     romanian: rumunština
     russian: rusky
     santali: santálština
     setswana: Setswanština
-    sinhala: Sinhálský
-    slovak: Slovenský
-    slovenian: Slovinský
+    sinhala: Sinhálština
+    slovak: Slovenština
+    slovenian: Slovinština
     spanish: španělsky
     swedish: švédsky
     tagalog: Tagalog
@@ -2385,7 +2395,7 @@ cs:
     thai: Thajština
     tokelauan: Tokelauan
     turkish: turecky
-    ukrainian: Ukrajinský
+    ukrainian: Ukrajinština
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Méně
@@ -2450,7 +2460,7 @@ cs:
   locales_: Národní prostředí
   locales:
     ar: Arabština
-    be: Běloruský
+    be: bělorusky
     bg: Bulharský
     br: Bretonština
     ca: Katalánština
@@ -2475,13 +2485,13 @@ cs:
     id: Indonéština
     it: Italština
     ja: Japonština
-    kn: Kanadský
+    kn: kannadsky
     ko: Korejština
     lb: Lucemburština
     lt: Litevština
     lv: lotyština
     mk: makedonsky
-    mr: Maráthí
+    mr: maráthsky
     nb: Norština (Bokmål)
     nl: holandsky
     oc: okcitánština
@@ -2491,7 +2501,7 @@ cs:
     ru: Rusky
     sat: santálština
     sk: Slovenština
-    sl: Slovinský
+    sl: slovinsky
     sq: albánsky
     sv: švédsky
     th: thajsky
@@ -2551,7 +2561,7 @@ cs:
   make_sure_the_default_photo_looks_good: Ujistěte se, že výchozí fotografie vypadá dobře ve velkých formátech.
   make_this_your_default_license: "Nastavte tuto výchozí licenci %{type}"
   make_this_the_primary_listing: "Vytvořte tohle jako primární zápis"
-  make_your_app_confidential: Udělejte svou aplikaci důvěrnou, pokud můžete bezpečně uložit svou aplikaci, tzn. že není ve veřejně dostupném binárním souboru, který lze dekompilovat. Zrušte zaškrtnutí tohoto políčka, pokud tomu tak není, a plánujete použít tok PKCE
+  make_your_app_confidential: Udělejte svou aplikaci důvěrnou, pokud můžete bezpečně uložit tajemství vaší aplikace, tzn. že není ve veřejně dostupném binárním souboru, který lze dekompilovat. Zrušte zaškrtnutí tohoto políčka, pokud tomu tak není, a plánujete použít tok PKCE
   mammals: savci
   manage_all_your_subscriptions: Spravujte všechny vaše odběry
   manage_names: Spravovat jména
@@ -3165,7 +3175,7 @@ cs:
     updates_by_you_panel_title: Tento panel je rychlým způsobem, jak vyfiltrovat pouze aktualizace vašeho obsahu.
     updates_by_you_panel_body: Nezapomeňte, že v panelu „Všechny aktualizace“ budete dostávat aktualizace nejen vašeho vlastního obsahu, ale také obsahu lidí, které sledujete, a taxonů nebo míst, která odebíráte pomocí nastavení Odebírání vpravo.
     youve_got_updates_panel_title: Dostali jste aktualizace!
-    youve_got_updates_panel_body_p1: Zůstat aktuální s aktualizacemi následujícího...
+    youve_got_updates_panel_body_p1: Zůstaňte v obraze s následujícími aktualizacemi...
     youve_got_updates_panel_body_p2: |
       <ul>
       <li><strong>Váš obsah:</strong> Aktivita ve vašich pozorování, například komentáře, identifikace nebo přidání do oblíbených v komunitě %{site_name}. Aktualizace budete dostávat také v případě, že někdo přidá vaše pozorování do projektu nebo provede anotaci v doplňujících polích.</li>
@@ -3334,18 +3344,16 @@ cs:
   data_transfer_consent_desc_title: O souhlasu s přenosem osobních informací
   data_transfer_consent_desc_html: |
     <p>
-    Některé zákony na ochranu osobních údajů, jako je obecné nařízení Evropské unie o ochraně osobních údajů (GDPR), vyžadují výslovný souhlas s přenosem osobních údajů z jejich jurisdikcí do jiných jurisdikcí, kde se právní ochrana těchto informací nebere v úvahu.
-    adekvátní. Od <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> již Evropská unie nepovažuje Spojené státy za jurisdikci, která poskytuje odpovídající právní ochranu osobních informace, konkrétně kvůli možnosti vlády USA sledovat data vstupující do USA. Je možné, že jiné jurisdikce mohou mít stejný názor.
+    Některé zákony na ochranu osobních údajů, jako je Obecné nařízení Evropské unie o ochraně osobních údajů (GDPR), vyžadují výslovný souhlas s přenosem osobních údajů z jejich jurisdikcí do jiných jurisdikcí, kde se právní ochrana těchto informací nepovažuje za adekvátní. Od <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">roku 2020</a> již Evropská unie nepovažuje Spojené státy za jurisdikci, která poskytuje odpovídající právní ochranu osobních informací, konkrétně kvůli možnosti vlády USA sledovat data vstupující do USA. Je možné, že jiné jurisdikce mohou mít stejný názor.
     </p>
     <p>
-    Používání iNaturalist vyžaduje uložení osobních údajů, jako je vaše e-mailová adresa, všechna data iNaturalist jsou uložena ve Spojených státech, a nemůžeme si být jisti, v jaké právní jurisdikci se nacházíte, když používáte iNaturalist, abychom dodrželi zákony na ochranu soukromí, jako je např. GDPR, musíte potvrdit, že rozumíte a přijímáte toto riziko a souhlasíte s přenosem vašich osobních údajů na servery iNaturalist v
-    Spojené státy.
+    Používání iNaturalist vyžaduje uložení osobních údajů, jako je vaše e-mailová adresa, všechna data iNaturalist jsou uložena ve Spojených státech, a nemůžeme si být jisti, v jaké právní jurisdikci se nacházíte, když používáte iNaturalist, abychom dodrželi zákony na ochranu soukromí, jako je např. GDPR, musíte potvrdit, že rozumíte a přijímáte toto riziko a souhlasíte s přenosem vašich osobních údajů na servery iNaturalist ve Spojených státech.
     </p>
     <p>
     Chcete-li se dozvědět více o tom, jaké informace shromažďujeme a jak je používáme, přečtěte si naše <a href='%{privacy_url}' target='_blank'>Zásady ochrany osobních údajů</a> a naše <a href='%{terms_url} ' target='_blank'>Podmínky použití</a>.
     </p>
     <p>
-    Neexistuje způsob, jak mít účet iNaturalist bez ukládání osobních údajů, takže jediný způsob, jak odvolat tento souhlas, je smazat svůj účet.
+    Neexistuje způsob, jak mít účet iNaturalist bez ukládání osobních údajů, takže jediný způsob, jak odvolat tento souhlas, je smazat váš účet.
     </p>
   data_transfer_consent_label: |
     Souhlasím s tím, aby byly mé osobní údaje předávány do Spojených států amerických
@@ -3799,7 +3807,7 @@ cs:
   plants: rostliny
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Request that a known child ask their parents for permission to use this service
-  please_ask_your_parents_for_permission: Požádejte své rodiče o souhlas
+  please_ask_your_parents_for_permission: Požádejte prosím své rodiče o souhlas
   #Title to a section warning a user to exercise caution
   please_be_careful!: Prosím, opatrně!
   please_complete_the_following_to_add_project: |
@@ -4936,6 +4944,104 @@ cs:
   threatened: ohrožený
   time_: čas
   time_ago: "před %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Jihoafrický čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Východoafrický čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentinský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolumbijský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Centrální čas (Spojené státy a Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Tichomořský čas (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Horský čas (Spojené státy a Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemalský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantský standardní čas (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolivijský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peruánský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Tichomořský čas (Spojené státy a Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Centrální čas (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Východní čas (Spojené státy a Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Arizonský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Kontinentální chilský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brazilský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Tichomořský čas (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabský standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indočínský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hongkongský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Západoindonézský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Izraelský standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Indický standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnojarský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Čínský standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singapurský standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Tchaj-wanský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Japonský standardní čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Jekatěrinburský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Adelaidský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Brisbanský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Melbournský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Perthský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Sydneyský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Východoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Východoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Turecký čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Východoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Západoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Západoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Moskevský čas
   #As in the title of a book or a blog post
   title: název
   title_and_description: "Název a popis"
@@ -5276,13 +5382,13 @@ cs:
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Jsme si docela jistí, že se jedná o rod
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
-  were_pretty_sure_this_is_in_the_family: Jsme si docela jistí, že se jedná o rod
+  were_pretty_sure_this_is_in_the_family: Jsme si docela jistí, že se jedná o čeleď
   #Label for the most probable taxon in the automated suggestions when that taxon is an order
   were_pretty_sure_this_is_in_the_order: Jsme si docela jistí, že se jedná o řád
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: Jsme si docela jistí, že patří do podčeledi
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
-  were_pretty_sure_this_is_in_the_superfamily: Jsme si docela jistí, že tohle patří do nadčeledi
+  were_pretty_sure_this_is_in_the_superfamily: Jsme si docela jistí, že patří do nadčeledi
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -6101,28 +6207,28 @@ cs:
         quality_assessment_help2_html: |
           <p>
           Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna
-          pozorování začínají jako <strong>"příležitostná"</strong> a stávají se
+          pozorování začínají jako <strong>"neformální"</strong> a stávají se
           <strong>„vyžaduje ID“</strong> když
           </p>
 
           <ul>
           <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
+          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky a délky)</li>
           <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
-          <li>pozorování <strong>není od člověka</strong></li>
+          <li>pozorování <strong>se netýká člověka</strong></li>
           </ul>
           <p>
-          Pozorování se stanou <strong>„třídou pro výzkum“</strong>, když
+          Pozorování se stanou <strong>„výzkumným stupněm“</strong>, když
           </p>
           <ul>
           <li>
           komunita %{site_name} <strong>souhlasí s ID na úrovni druhu nebo
-          nižší</strong> t. j. když se více než 2/3 identifikátorů shoduje na a
-          taxon (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, takže se vrátí na ID na úrovni podrodiny nebo nižší)
+          nižší</strong> tj. když se více než 2/3 identifikátorů shoduje na
+          taxonu (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, pak se ID vrátí na úroveň podčeledi nebo nižší)
           </li>
           </ul>
           <p>
-          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
+          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„neformální“</strong>
           </p>
           <ul>
           <li>
@@ -6131,7 +6237,7 @@ cs:
           hroši v kancelářských budovách atd.)
           </li>
           <li>
-          <strong>organismus není divoký / zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
+          <strong>organismus není divoký/zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
           nebo inteligentní vesmírní mimozemšťané)
           </li>
           <li>
@@ -6145,12 +6251,12 @@ cs:
           jsou v pořádku)
           </li>
           <li>
-          pozorování již nepotřebuje ID <em>a</em> ID komunity je nad rodinou
+          pozorování již nepotřebuje ID <em>a</em> ID komunity je vyšší, než čeleď
           </li>
           <li>
-          pozorovatel se odhlásil z ID komunity a komunity
-          ID taxon není předkem ani potomkem souvisejícího taxonu
-          s průkazem pozorovatele
+          pozorovatel se odhlásil z ID komunity a komunitní
+          ID taxonu není předkem ani potomkem souvisejícího taxonu
+          s ID pozorovatele
           </li>
           </ul>
           <p>
@@ -6158,9 +6264,9 @@ cs:
           </p>
           <ul>
           <li>
-          Systém bude hlasovat, že pozorování není divoké / zdivočelé
-          pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího místa
-          elvivalentu kraje, státu nebo země, které
+          Systém bude hlasovat, že pozorování není divoké/zdivočelé
+          pokud existuje alespoň 10 dalších pozorování rodu nebo nižší úrovně v
+          nejmenším ekvivalentu kraje, státu nebo země, které
           obsahuje toto pozorování a 80 % nebo více těchto pozorování
           byly označeny jako nikoli divoké/zdivočelé.
           </li>
@@ -7626,7 +7732,7 @@ cs:
       oauth_application:
         #The URL the user will be redirected to after authorizing an app to
         #access their iNaturalist account
-        callback_url: URL zpětného volání
+        callback_url: URL zpětného volání ("callback")
         #Unique identifier for an application
         uid: ID
         #Noun, secret associated with an application, sort of like the application's password
@@ -7854,7 +7960,7 @@ cs:
           attributes:
             geom:
               cannot_be_blank: nemůže být prázdné
-              invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo menší než -90
+              invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
               must_have_more_than_three_points: musí mít více než 3 body
               polygon_with_fewer_than_four_points: má mnohoúhelník s méně než 4 body
         post:
