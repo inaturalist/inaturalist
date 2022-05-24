@@ -828,6 +828,8 @@ id:
   change_your_password: Ubah Kata Sandi Anda
   #Plural noun, as in changes to a taxon record over time
   changes: Perubahan
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Mengubah garis keturunan induk tersebut dapat mengakibatkan pertentangan yang tidak disengaja, harap menganalisis terlebih dahulu (hal ini dapat memerlukan beberapa saat).
   changing_the_geoprivacy: 'Mengubah geoprivasi mengubah bagaimana orang lain melihat lokasi pengamatan Anda.'
   check_above_for_errors: Periksa hal-hal di atas untuk eror
   check_back_soon: Periksa kembali nanti!
@@ -910,6 +912,9 @@ id:
   committed_taxon_changes_cannot_be_deleted: Perubahan takson yang sudah diterapkan tidak bisa dihapus
   #Status message while a taxon change is being committed
   committing: Sedang menerapkan...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Mengubah garis keturunan induk tersebut dapat mengakibatkan pertentangan yang tidak disengaja, harap menganalisis terlebih dahulu (hal ini dapat memerlukan beberapa saat).
   common_name: Istilah Umum
   community: Komunitas
   community_curated: Dikurasi Komunitas
@@ -2993,6 +2998,7 @@ id:
     observe_panel_title: Mari Kita Mulai Dengan Mengunggah Beberapa Pengamatan
     observe_panel_body_p1_local: Perlu inspirasi? Berikut adalah beberapa organisme yang diamati di dekatmu...
     observe_panel_body_p1_global: Perlu inspirasi? Berikut adalah beberapa organisme yang sedang diamati...
+    observe_panel_body_p2: Pergilah dan amatilah suatu organisme. Pilihlah suatu organisme yang liar dan ambillah gambar yang jelas dan memenuhi bingkai foto. Jika kamu sudah memiliki foto organisme liar, <a href="%{new_observation_path}">tambahkan sekarang</a>. Kamu juga bisa menggunakan aplikasi %{site_name} di ponselmu untuk mencatat pengamatan.
     observe_panel_body_p3: Saat kamu sudah membagikan pengamatanmu, halaman ini akan memberikan kabar terbaru dari komunitas dalam bentuk komentar dan identifikasi. Siapa tahu kamu akan menemukan sesuatu yang keren!
     follow_panel_title_local: Ikuti Naturalis Di Sekitarmu
     follow_panel_title_global: Ikuti Naturalis Yang Aktif
