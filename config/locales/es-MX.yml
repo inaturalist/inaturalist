@@ -117,6 +117,14 @@ es-MX:
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón revisado"
     other: "<span class='count'>%{count}</span> taxones revisados"
+  _100_day_trends: Tendencias de 100 días
+  _percent_ID_d: "% identificados"
+  a_community_for_naturalist: Una comunidad para Naturalistas
+  a_flag_for_x: "una advertencia para %{x}"
+  a_member_of_taxon_html: "un miembro de %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "De la A a la Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -137,6 +145,16 @@ es-MX:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
+  about: Acerca
+  about_charts: Acerca de los gráficos
+  about_community_taxa: Acerca de los taxa de la comunidad
+  about_complete_taxa: Acerca de los taxa completos
+  about_conservation_status: Acerca del Estado de Conservación
+  about_editing_observation_fields: Acerca de la Edición de Campos de Observación
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: Acerca de los Medios de Establecimiento
   about_license_options: Acerca de opciones de licencia
   about_licenses: Acerca de las licencias
   #Header for a section describing taxon names
@@ -191,6 +209,9 @@ es-MX:
   active: Activo
   #Status of a complete set that is available for use
   active_complete_set_status: Activo
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Activo
+  active_users: Usuarios Activos
   activity: Actividad
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} del trabajo de  %{original}"
   add: Añade
@@ -218,10 +239,31 @@ es-MX:
   add_an_observation_of: "Añade una observación de %{taxon}"
   add_an_observation_to_project_html: Añadir una observación a %{project}
   add_annotations_for_x: Añade anotaciones para "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Agrega anotaciones para "Sexo"
+    plant_phenology: Añade anotaciones para "Fenología de la Planta"
+    life_stage: Añade anotaciones para "Etapa de Vida"
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
+  add_another_flag: Añade otra Advertencia
+  add_another_photo: Añade otra foto
+  add_another_section: Añade otra sección
+  add_another_subscription: Añade otra suscripción
+  add_batch: Añade un grupo
+  add_blocked_users: Agregar usuarios bloqueados
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: Añadir texto en negritas
+  add_comma_separated_tags: "Añade etiquetas separadas por comas"
   add_comment: Añade un comentario
   add_conservation_status: Añade estado de conservación
   add_edit_flags: Agrega/edita Advertencias
   add_editor: Agrega Editor
+  add_description: "Añade %{description_name}"
+  add_from_your_observations: Añade de tus observaciones
+  add_link: Añade enlace
+  add_id: Añade ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Añadir texto en cursivas
+  add_muted_users: Agregar usuarios silenciados
   add_new_lexicon: Añade nuevo lexicón
   add_new_photos_by_their_ids: Añade nuevas fotos de tus identificaciones de Filckr (deben ser Creative Commons)
   add_new_place: Añade un nuevo lugar
@@ -277,6 +319,44 @@ es-MX:
   add_tags: Añade etiquetas
   add_tags_to_selected_taxa: Añade las etiquetas al taxa seleccionado
   add_taxa: Añade taxones
+  add_taxon_range: Añade la distribución del taxón
+  add_to_a_scheme: Añade a un esquema
+  add_to_a_project: Añade a un proyecto
+  add_to_calendar: Añade al calendario
+  add_to_checklist: Añade a lista de comprobación
+  add_to_favorites: Añade a los favoritos
+  add_to_list: Añade a la lista
+  add_to_project: Añade al proyecto
+  add_to_your_list: Añade a tu lista
+  add_your_own_observations_at: "Añadir tus propias observaciones al %{site_name}"
+  added: Añadido
+  added!: '¡Añadido!'
+  added_by: Añadido por
+  added_by_user_on_date_html: "Añadido por %{user} en %{date}"
+  added_on_datetime: "Añadido el %{datetime}"
+  adding: "Añadiendo"
+  adjust_brightness: Ajusta el brillo
+  admin: Administrador
+  admin_s: Administrador(es)
+  admin_only: Solamente administrador
+  admin_tools: Herramientas de administrador
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizaciones afiliadas
+  agree_: De acuerdo
+  agree?: '¿Estás de acuerdo?'
+  agree_with_current_taxon: De acuerdo con la especie o grupo
+  agreeing: De acuerdo...
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
+  all: Todo
+  all_comments: Todos los comentarios
+  all_flags_must_be_resolved: Se deben resolver todas las advertencias
+  all_life: Toda la vida
+  all_names: Todos los nombres
+  all_observations: Todas las observaciones
+  all_photos: Todas las fotos
+  all_places: "Todos los lugares"
+  all_projects: Todos los proyectos
   all_rank_added_to_the_database:
     infraclass: Se añadieron todas las infraclases a la base de datos
     superorder: Se añadieron todos los superórdenes a la base de datos
