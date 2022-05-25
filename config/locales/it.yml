@@ -206,6 +206,8 @@ it:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puoi scegliere di condividere le coordinate nascoste per
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Sui Disaccordi Non Intenzionali
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -499,6 +501,10 @@ it:
   alphabetical_order: Ordine Alfabetico
   already_have_an_account_log_in_html: Hai già un'utenza? <strong>Accedi.</strong>
   amphibians: anfibi
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analizza i Disaccordi Non Intenzionali
   analyze_ids: Analizza ID
   ancestor_taxon: Taxon Antenato
   and: e
@@ -725,6 +731,14 @@ it:
   back_to_your_observations: Torna alle tue osservazioni
   back_to_your_profile: Torna al tuo profilo
   badges: Distintivi
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      risulterà in <strong>%{count} disaccordo involontario</strong> con ID di %{child}.
+    other: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      risulterà in <strong>%{count} disaccordi involontari</strong> con ID di %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Basandosi sull'evidenza, il taxon della comunità può essere ancora confermato o migliorato?
   batch: Gruppo
@@ -734,6 +748,16 @@ it:
   batch_operations: Operazioni a blocchi
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
   because_of: perché
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Poiché stimiamo che questo cambiamento risulterà in più di 10 disaccordi
+    involontari, <strong>ti consigliamo anche di effettuare un cambio taxon che coinvolga
+    %{old_parent}, come ad esempio separare %{new_parent} da %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Poiché stimiamo che questo cambiamento risulterà in 10 o meno disaccordi
+    non intenzionali, <strong>probabilmente non è necessario effettuare una modifica di taxon
+    che coinvolge %{old_parent}</strong>.
   become_a_donor_caps: DIVENTA UN DONATORE
   become_a_donor_today_caps: DIVENTA UN DONATORE OGGI
   before_importing_photos: prima di importare le foto
@@ -2978,6 +3002,7 @@ it:
     observe_panel_title: Inizia con l'invio di alcune Osservazioni
     observe_panel_body_p1_local: Hai bisogno di ispirazione? Ecco alcuni esseri viventi osservati vicino a te...
     observe_panel_body_p1_global: Hai bisogno di ispirazione? Ecco alcuni esseri viventi osservati...
+    observe_panel_body_p2: Vai fuori e osserva un essere vivente. Fai una foto chiara e completa a qualcosa in natura. Se hai già una foto, <a href="%{new_observation_path}">aggiungila adesso</a>. Puoi usare anche l'app %{site_name} per inserire osservazioni.
     observe_panel_body_p3: Una volta che hai condiviso le tue osservazioni, questa pagina ti mostrerà gli aggiornamenti da parte della comunità sotto forma di commenti e identificazioni. Chissà cosa riuscirai a scoprire!!!
     follow_panel_title_local: Segui dei naturalisti vicino a te
     follow_panel_title_global: Segui dei naturalisti attivi
