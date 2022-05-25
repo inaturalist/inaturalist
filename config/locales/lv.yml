@@ -995,11 +995,11 @@ lv:
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Iekļauts
   computer_vision_model_included_desc: |
-    Pašreizējam datorredzes sistēmas modelim ir pieejama taksona informācija un tas var tikt pievienots pie automātiskajiem ietekumiem ar piezīmi "Vizuāli līdzīgs".
+    Pašreizējam datorredzes sistēmas modelim ir pieejama taksona informācija un tas var tikt pievienots pie automātiskajiem ieteikumiem ar piezīmi "Vizuāli līdzīgs".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Vēl neiekļauts
   computer_vision_model_pending_desc: |
-    Pašreizējam datorredzes sistēmas modelim nav šī taksona informācijas, tāpēc tas var tikt pievienots pie automātiskajiem ietekumiem ar piezīmi "Redzēts tuvumā", bet bez piezīmes "Vizuāli līdzīgs". Prasības taksonu iekļaušanai sistēmā mainās atkarībā no katra modeļa. Pārsvarā tas ir atkarīgs no novērojumu skaita. Lai palielinātu taksona iekļaušanas iespēju nākamajā modeļa trenēšanā, pievieno vai identificē pēc iespējas vairāk šī taksona novērojumus.
+    Pašreizējam datorredzes sistēmas modelim nav šī taksona informācijas, tāpēc tas var tikt pievienots pie automātiskajiem ieteikumiem ar piezīmi "Redzēts tuvumā", bet bez piezīmes "Vizuāli līdzīgs". Prasības taksonu iekļaušanai sistēmā mainās atkarībā no katra modeļa. Pārsvarā tas ir atkarīgs no novērojumu skaita. Lai palielinātu taksona iekļaušanas iespēju nākamajā modeļa trenēšanā, pievieno vai identificē pēc iespējas vairāk šī taksona novērojumus.
   concept_status: Jēdziena statuss
   configure: Apstiprināt
   configure_a_widget_to_show: Logrīku var konfigurēt tā, lai tas rādītu %{site_name} novērojumus tavā tīmekļa vietnē vai emuārā. Iespējams, ka tavam HTML būs jāpievieno iegultu CSS<code>&lt;head&gt;</code>. CSS iespējams rakstīt arī no sākuma.
@@ -1676,7 +1676,7 @@ lv:
   failed_to_save_record: "Neizdevās saglabāt ierakstu. Lūdzu, mēģini vēlreiz nedaudz vēlāk."
   failed_to_save_record_with_errors: "Neizdevās saglabāt ierakstu: %{errors}"
   failed_to_unlink_your_account: Neizdevās atvienot kontu
-  'false': 'Nepareizi'
+  'false': 'Nē'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Izlase
   Family: Dzimta
@@ -1944,10 +1944,10 @@ lv:
     Noslēpts saturs vairs nebūs publiski pieejams, bet lietotāji redzēs, ka kaut kas ir ticis noslēpts, toties šī satura autors un pārziņi šo saturu varēs apskatīt. Tas ir attiecināms tikai uz rakstveida saturu, piemēram, ja noslēpsi identifikācijas saturu, identifikācija būs pieejama, bet identificētāja piezīmes būs noslēptas. Tikai vietnes darbinieki var atsaukt šo darbību. Lietotājiem nav šādas iespējas, tāpēc esi uzmanīgs un lieto šo funkciju tikai tad, ja saturs ir patiešām nepieņemams.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Noslēpt "Bez piezīmēm"
+  hide_no_annotation: Paslēpt "Bez piezīmēm"
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Nerādīt kopējo skaitu
-  hide_uncountable_species: Noslēpt nesaskaitāmās sugas
+  hide_uncountable_species: Paslēpt nesaskaitāmās sugas
   high: Augsts
   highest_rank: Augstākā klasifikācija
   highlights_and_stats_from_year_on_site: "Būtiskākie momenti un statistika %{year}, gadā %{site} vietnē"
@@ -2668,7 +2668,7 @@ lv:
   new_species_added_in_interval_x_of_y: 'Jaunas sugas, kas pievienotas šajā laika posmā: %{interval} (Rāda %{x} no %{y})'
   new_taxon_change: Jaunas izmaiņas taksonos
   new_taxon_link: Jauna taksona saite
-  new_taxon_name_for: Jauns taksona nosaukums priekš
+  new_taxon_name_for: Jauns nosaukums taksonam
   new_taxon_range: Jauna taksona klasifikācija
   new_taxonomic_change: Jaunas taksonomiskās izmaiņas (Melnraksts)
   new_trip: Jauns ceļojums
@@ -3873,12 +3873,12 @@ lv:
   recent_evidence_of_organism: Organisms novērots nesen
   recent_exports: Nesen eksportēts
   recent_new_users: Nesen pievienojušies lietotāji
-  recent_observations: Neseni novērojumi
-  recent_observations_: Neseni novērojumi
+  recent_observations: Jaunākie novērojumi
+  recent_observations_: Jaunākie novērojumi
   recent_post: Nesens ieraksts
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
-  recent_atom_observations_by: "Lietotāja %{login} nesenie novērojumi (Atom)"
-  recent_observations_by: "Lietotāja %{login} nesenie novērojumi"
+  recent_atom_observations_by: "Lietotāja %{login} jaunākie novērojumi (Atom)"
+  recent_observations_by: "Lietotāja %{login} jaunākie novērojumi"
   recently_active: Nesen aktīvs
   recently_added: Nesen pievienots
   recently_created: Nesen izveidots
@@ -4101,7 +4101,7 @@ lv:
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Rādīt "Bez piezīmēm"
-  show_off_your_recent_observations: Palielies ar saviem jaunākajiem novērojumiem savā emuārā vai tīmekļa vietnē!
+  show_off_your_recent_observations: Dalies ar saviem jaunākajiem novērojumiem savā emuārā vai tīmekļa vietnē!
   show_only: Rādīt tikai
   show_relative_proportions_of_all_observations: Rādīt relatīvo proporciju attiecībā pret visiem novērojumiem
   #Label for a button to show the running total of an accumulation chart
@@ -4688,7 +4688,7 @@ lv:
   total_species_observed_caps: KOPĒJAIS NOVĒROTO SUGU SKAITS
   total_unique_observers: Kopējais vienīgo novērotāju skaits
   translated_languages: Tulkojumu valodas
-  'true': 'Patiess'
+  'true': 'Jā'
   trending: Tendences
   trends: Tendences
   trip_target_list_info: 'Mērķa sarakstā iekļautās sugas, kas netika novērotas šī ceļojuma rādiusā un laikā, tiks uzskatītas par neesošām. <a href="/pages/trips">Uzzināt vairāk</a>.'
@@ -6340,9 +6340,9 @@ lv:
         about_taxon_curators_desc: |
           Šie cilvēki pārvalda taksonomiskā koka daļu, kas ietver taksonu. Ja vēlies veikt izmaiņas, lūdzu, pievieno karodziņu vai saziņies ar kādu no viņiem.
         charts_help_seasonality: |
-          Grafikā attēlots taksona novērojumu skaits, kas sakārtots pēc mēneša. Jāņem vērā, ka novērojumu skaits ir atkarīgs no tā, kad organisms ir novērojams, kā arī no tā, kad cilvēki izlemj iet novērot. Kāda putnu suga var šķist ļoti aktīva maijā, kas var būt tāpēc, ka maijā ir lielāka novērotāju aktivitāte, bet nākamajos mēnešos šie novērotāji var potenciāli nepievērst sugai tik lielu uzmanību. Līdzīgs piemērs varētu būt ar spāru novērošanu – ja jūnijā novērots vairāk spāru nekā Janvārī, tas nenozīmē, ka spāru aktivitāte ir lielāka jūnijā, bet drīzāk to, ka ziemeļu puslodē ir vairāk novērotāju nekā dienvidu puslodē. Šo iemeslu dēļ vienmēr pārbaudi karti. Ja grafikos attēloti zemi rādītāji un/vai nesakritības starp pierādāmiem un pētniecības līmeņa novērojumiem, prātīgāk skatīties uz šiem grafikiem ar skepsi.
+          Grafikā attēlots taksona novērojumu skaits, sadalījumā pa mēnešiem. Jāņem vērā, ka novērojumu skaits ir atkarīgs no tā, kad organisms ir novērojams, kā arī no tā, kad cilvēki izlemj iet novērot. Kāda putnu suga var šķist ļoti aktīva maijā, kas var būt tāpēc, ka maijā ir lielāka novērotāju aktivitāte, bet nākamajos mēnešos šie novērotāji var potenciāli nepievērst sugai tik lielu uzmanību. Līdzīgs piemērs varētu būt ar spāru novērošanu – ja jūnijā novērots vairāk spāru nekā janvārī, tas nenozīmē, ka spāru aktivitāte ir lielāka jūnijā, bet drīzāk to, ka ziemeļu puslodē ir vairāk novērotāju nekā dienvidu puslodē. Šo iemeslu dēļ vienmēr pārbaudi karti. Ja grafikos attēloti zemi rādītāji un/vai nesakritības starp pierādāmiem un pētniecības līmeņa novērojumiem, prātīgāk skatīties uz šiem grafikiem ar skepsi.
         charts_help_history: |
-          Grafikā attēlots taksona novērojumu skaits pēc mēneša pēdējo 10 gadu laikā. Atkal jāpiebilst, ka tas ir atkarīgs no novērotāju skaita. Grafikā attēlotas arī neierastas izmaiņas novērojumu skaitā. Ja tās izskatās nemainīgas vai samazinās, lai gan novērotāju skaits palielinās, tas var liecināt par izmaiņām taksona sastopamībā.
+          Grafikā attēlots taksona novērojumu skaits sadalījumā pa mēnešiem pēdējo 10 gadu laikā. Atkal jāpiebilst, ka tas ir atkarīgs no novērotāju skaita. Grafikā attēlotas arī neierastas izmaiņas novērojumu skaitā. Ja tās izskatās nemainīgas vai samazinās, lai gan novērotāju skaits palielinās, tas var liecināt par izmaiņām taksona sastopamībā.
         charts_help_other: |
           Pieejami arī novērojumu sezionalitātes piezīmju grafiki. Ar piezīmēm iespējams novērojumiem pievienot metadatus ar pārbaudītu terminoloģiju, piemēram, vai novērojumā redzams ziedošs augs vai augs ar augļiem.
         charts_help_relative_observations: |
@@ -6400,22 +6400,22 @@ lv:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul><li><p>Centies pievienot nosaukumus, kas citur jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
-          <li><p>Nepievieno nosaukumus dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
+          <ul><li><p>Centies pievienot nosaukumus, kas jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
+          <li><p>Nepievieno nosaukumu dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
           <li><p>Pievienojot augstākas pakāpes taksonu nosaukumus, centies iekļaut visus zemāko pakāpju taksonus, piemēram, "Gārņu dzimta" vai "Ēriku dzimta"</p></li>
           <li>
           <p>
-          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, savas domas par to, kā nosaukums būtu jāizmanto nav jāraksta.
+          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, nav jāraksta savas domas par to, kā nosaukums būtu jāizmanto.
           </p>
           </li>
           <li>
           <p>
-          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus valodu nosaukumus, piemēram "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
+          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus nosaukumus citās valodās, piemēram, "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
           </p>
           </li>
           <li>
           <p>
-          Noklusējuma režīmā tiek attēloti pārtulkoto valodu tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
+          Noklusējuma režīmā tiek attēloti citās valodās pārtulkotie tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
           </p>
           </li>
           </ul>
