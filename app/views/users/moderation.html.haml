@@ -73,7 +73,7 @@
           - if record.is_a?( ModeratorNote )
             - if record.editable_by?( current_user )
               = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
-              = link_to t(:delete), moderator_note_path( record ), method: :delete, confirm: t(:are_you_sure?), class: "btn btn-sm btn-danger"
+              = link_to t(:delete), moderator_note_path( record ), method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-sm btn-danger"
           - elsif record.is_a?( ModeratorAction )
             = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
           - else
