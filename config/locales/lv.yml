@@ -206,7 +206,7 @@ lv:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: Vairāk par izplatības skaidrojumu
+  about_establishment_means: Vairāk par izplatības statusu
   about_license_options: Vairāk par licenču izvēles iespējām
   about_licenses: Vairāk par licencēm
   #Header for a section describing taxon names
@@ -310,7 +310,7 @@ lv:
   add_annotations_for_controlled_attribute:
     sex: Pievienot piezīmes par "dzimumu"
     plant_phenology: Pievienot piezīmes par "auga fenoloģiju"
-    life_stage: Pievienot piezīmes par "dzīves posmu"
+    life_stage: Pievienot piezīmes par "dzīves stadiju"
     evidence_of_presence: Pievienot piezīmes par "Sastopamības pierādījumiem"
   add_another_flag: Vēlreiz pievienot karodziņu
   add_another_photo: Pievienot vēl vienu foto
@@ -621,7 +621,7 @@ lv:
   apply_fields: Pievienot laukus
   apply_geoprivacy: Pielietot ģeoprivātumu
   apply_darr: "Pielietot &darr;"
-  apply_establishment_means_to_descendant_places: "Pielietot izplatības skaidrojumu vietām, kurās iekļautas citas vietas"
+  apply_establishment_means_to_descendant_places: "Pielietot izplatības statusu vietās, kurās iekļautas citas vietas"
   apply_these_settings_to_all: Pielietot šos iestatījumus visiem zemāk atrodamajiem novērojumiem.
   appropriate?: Piemērots?
   arachnids: zirnekļveidīgie
@@ -891,6 +891,8 @@ lv:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} tika apvienots ar %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} tiks apvienots ar %{output_taxon}"
   change_your_password: Mainīt paroli
+  #Plural noun, as in changes to a taxon record over time
+  changes: Izmaiņas
   changing_the_geoprivacy: 'Ģeoprivātuma iestatījumi izmaina to, kā citiem lietotājiem izskatās tava novērojuma atrašanās vieta.'
   check_above_for_errors: Paritini uz augšu, lai apskatītu kļūdas
   check_back_soon: Pārbaudi vēlreiz vēlāk!
@@ -1191,7 +1193,7 @@ lv:
   curate_taxa: Pārbaudīti taksoni
   curate_user: Pārbaudīts lietotājs
   curating: Tiek pārbaudīts
-  curation: Pārbaude
+  curation: Iespējas
   curator: Pārzinis
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
@@ -1618,9 +1620,9 @@ lv:
     managed: Kontrolēts
     native: Vietējs
     naturalised: Naturalizēts
-  establishment_means: Izplatības skaidrojums
+  establishment_means: Izplatības statuss
   establishment_means_describes_how: |
-    Izplatības skaidrojums apraksta to, kā taksons ir izplatījies noteiktā apkārtnē. Skatīt DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">, lai noskaidrotu vairāk par izmantoto terminoloģiju</a>.
+    Izplatības statusā tiek aprakstīts, kā taksons ir izplatījies noteiktā apkārtnē. Skatīt DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">, lai noskaidrotu vairāk par izmantoto terminoloģiju</a>.
   establishment_means_descriptions:
     native: Attīstījās šajā reģionā vai nonāca šeit dabiskā ceļā
     endemic: vietējs un nav atrodams nekur citur
@@ -1880,7 +1882,7 @@ lv:
   grid_layout: Režģa izkārtojums
   grid_tooltip: Rādīt režģa skatu
   group: Grupa
-  grouping: Grupē...
+  grouping: Grupēšana
   guides: Padomi
   guide_compiled_by: 'Padomu izveidojis:'
   guide_deleted: Padoms dzēsts
@@ -2958,7 +2960,7 @@ lv:
     irregular: Sastopamība ir neparedzama, tai skaitā klejotāji. Vienu gadu var būt sastopami, bet citu ne.
     present: Sastopams šajā apkārtnē
     uncommon: Sastopams bieži, bet nelielā skaitā. Uzmanīgi jāmeklē atbilstoša dzīvotne.
-  occurrence_status_establishment_means: sastopamības statuss, izplatības skaidrojums
+  occurrence_status_establishment_means: sastopamības statuss, izplatības statuss
   occurrence_status_levels:
     present: sastopams
     common: bieži sastopams
@@ -3028,8 +3030,8 @@ lv:
   only_the_project_admin_can_delete_this_project: Tikai projekta administrators var dzēst projektu.
   only_view_nearby_suggestions: Skatīt tikai tos indivīdu minējumus, kas novēroti tuvumā
   only_you: Tikai tu
-  open: publiska
-  open_: Publiska
+  open: publisks
+  open_: Publisks
   open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
   open_street_map: OpenStreetMap
   optional: pēc izvēles
@@ -3885,6 +3887,8 @@ lv:
   recently_finished: Nesen pabeigts
   recently_observed: Nesen novērots
   recently_resolved: Nesen atrisināts
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Ieraksts
   red: sarkans
   redo_search_in_map: Atkārtot meklēšanu kartē
   redo_search_in_map_area: Atkārtot meklēšanu kartes nogabalā
@@ -4239,7 +4243,7 @@ lv:
   source: Avots
   source_: 'Avots:'
   source_wikipedia: "Avots: Vikipēdija"
-  source_list_: "Avotu saraksts"
+  source_list_: "Avots"
   source_list:
     ubio: uBio
     catalogue_of_life: Dzīvības katalogs
@@ -5478,10 +5482,10 @@ lv:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Vai esi pārliecināts? Šī darbība izmainīs izplatības skaidrojumus VISIEM saraksta taksoniem, kas atrodas šajā vietā iekļautajās vietās. Šīs darbības rezultātā var pazust daudz padarītā darba.
+          Vai esi pārliecināts? Šī darbība izmainīs izplatības statusus VISIEM saraksta taksoniem, kas atrodas šajā vietā iekļautajās vietās. Šīs darbības rezultātā var pazust daudz padarītā darba.
         description_html: |
-          Šī darbība izmainīs <em>visus</em>taksona izplatības skaidrojumus visās zemākas pakāpes vietās <a href="%{place_url}">%{place_name}</a>
-          uz <strong>"%{establishment_means}"</strong>. Šī funkcija pieejama tikai pārziņiem. Ja izplatības skaidrojumā norādīsi "introducēts", rezultāts būs līdzīgs, bet jau saglabātas vērtības netiks mainītas. Tikai tukšās vērtības tiks aizpildītas.
+          Šī darbība izmainīs <em>visus</em>taksona izplatības statusus visās zemākas pakāpes vietās <a href="%{place_url}">%{place_name}</a>
+          uz <strong>"%{establishment_means}"</strong>. Šī funkcija pieejama tikai pārziņiem. Ja izplatības statusā norādīsi "introducēts", rezultāts būs līdzīgs, bet jau saglabātas vērtības netiks mainītas. Tikai tukšās vērtības tiks aizpildītas.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Saraksta nosaukumi nevar tikt izmainīti
@@ -6325,18 +6329,18 @@ lv:
       show:
         about_names_desc: |
           <p>
-          Lielākai daļai organismu kategoriju dažādās valodās ir "tautā pieņemtie nosaukumi". Šie nosaukumi lielākoties ir atpazīstami, viegli izrunājami un nemainīgi, bet daudziem organismiem atkarībā no vietas pat vienā un tajā pašā valodā ir vairāki nosaukumi. Tas var apgrūtināt organismu apspriešanu. Tādēļ zinātnieki izmanto vienotus zinātniskos nosaukumus katrai organismu kategorijai, kas atbilst <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">binārās nomenklatūras</a> noteikumiem. Šie nosaukumi ir latīņu valodā, kurā vairs neviens nerunā, tāpēc salīdzinājumā ar tautā pieņemtajiem nosaukumiem daudziem cilvēkiem tos ir grūtāk atcerēties. Zinātniskie nosaukumi mēdz ietvert organismu taksonomisko novietojumu, tāpēc tie var mainīties, kad zinātnieki nāk klajā ar precīzākām teorijām par organismu evolucionārajām attiecībām. Šis iemesls apgrūtina organismu apspriešanu pat starp cilvēkiem, kas pazīst zinātniskos nosaukumus.
+          Lielākajai daļai sugu dažādās valodās ir "tautā pieņemtie nosaukumi". Šie nosaukumi lielākoties ir atpazīstami, viegli izrunājami un nemainīgi, bet daudzām sugām atkarībā no reģiona pat vienā un tajā pašā valodā var būt dažādi nosaukumi. Tas var apgrūtināt diskusijas par sugām. Tādēļ zinātnieki izmanto vienotus zinātniskos nosaukumus katrai organismu kategorijai, kas atbilst <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">binārās nomenklatūras</a> noteikumiem. Šie nosaukumi ir latīņu valodā, kurā vairs neviens nerunā, tāpēc salīdzinājumā ar tautā pieņemtajiem nosaukumiem daudziem cilvēkiem tos ir grūtāk atcerēties. Zinātniskie nosaukumi mēdz ietvert organismu taksonomisko novietojumu, tāpēc tie var mainīties, kad zinātnieki nāk klajā ar precīzākām teorijām par organismu evolucionārajām attiecībām. Šis iemesls apgrūtina organismu apspriešanu pat cilvēkiem, kas pazīst zinātniskos nosaukumus.
           </p>
           <p>
-          Vecais labais teiciens labi paskaidro šo situāciju – "Tautā pieņemtie nosaukumi mainās atkarībā no vietas, bet zinātniskie laikam ritot."
+          Vecais labais teiciens labi paskaidro šo situāciju – "Tautā pieņemtie nosaukumi mainās atkarībā no vietas, bet zinātniskie laika gaitā."
           </p>
           <p>
-          Mēs risinām šo problēmu, rādot gan tautā pieņemtos, gan zinātniskos nosaukumus, kad vien iespējams, kā arī izvēloties tautā pieņemtos nosaukumus atkarībā no lietotāja valodas un atrašanās vietas.
+          Mēs risinām šo problēmu, iespēju robežās atainojot gan tautā pieņemtos, gan zinātniskos nosaukumus, kā arī izvēloties tautā pieņemtos nosaukumus atkarībā no lietotāja valodas un atrašanās vietas.
           </p>
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
         about_establishment_desc: |
-          Izplatības skaidrojumā aprakstīts, kā sugas nonāk konkrētās vietās. "Introducētās" sugas atrodas kādā konkrētā vietā cilvēku ietekmes dēļ, bet "vietējās" sugas bez cilvēku ietekmes. "Endēmiskās" sugas atrodamas tikai kādā konkrētā vietā un nekur citur.
+          Izplatības statusā aprakstīts, kā sugas nonāk konkrētās vietās. Introducētās sugas atrodas kādā konkrētā vietā cilvēku darbības dēļ, bet vietējās sugas tajā atrodas dabiski, bez cilvēka ietekmes. Endēmiskās sugas atrodamas tikai kādā konkrētā vietā un nekur citur.
         about_taxon_curators_desc: |
           Šie cilvēki pārvalda taksonomiskā koka daļu, kas ietver taksonu. Ja vēlies veikt izmaiņas, lūdzu, pievieno karodziņu vai saziņies ar kādu no viņiem.
         charts_help_seasonality: |
@@ -6376,7 +6380,7 @@ lv:
           Vienam taksonam var būt %{max} fotogrāfijas. Lai pievienotu vēl fotogrāfijas, nāksies dzēst kādu no jau pievienotajām.
         no_trending_desc: Pēdējā mēness laikā nekas saistīts ar šo taksonu nav novērots
         photo_chooser_modal_desc: |
-          Velc attēlus šeit no kreisās puses. Šeit tos iespējams arī pārkārtot.
+          Ievelc attēlus šeit no kreisās puses. Šeit tos iespējams arī pārkārtot.
         photo_chooser_modal_explanation: |
           Taksona lapā rādīsies taksona un tā zemāku pakāpju fotogrāfijas. Paša taksona fotogrāfijas būs redzamas pirmās. Pati pirmā redzamā fotogrāfija ir noklusējuma fotogrāfija, kas tiek lietota visā vietnē.
         rare_desc: Vismazāk novēroto apdraudēto sugu
@@ -7014,7 +7018,7 @@ lv:
         published_at: Publikācija
       listed_taxon:
         occurrence_status_level: Sastopamības statusa līmenis
-        establishment_means: Izplatības skaidrojums
+        establishment_means: Izplatības statuss
       message:
         subject: Temats
         body: Teksts
