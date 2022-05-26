@@ -603,36 +603,32 @@ module DarwinCore
       while chunk_start_id <= max_id
         params[:min_id] = chunk_start_id
         params[:max_id] = chunk_start_id + search_chunk_size - 1
-        try_and_try_again( [
-          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
-          Observation.search_in_batches( params, logger: logger ) do |batch|
-            avg_batch_time = if batch_times.size > 0
-              (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
-            else
-              0
-            end
-            avg_observation_time = avg_batch_time / ObservationSearch::SEARCH_IN_BATCHES_BATCH_SIZE
-            msg = "Observation batch #{batch_times.size}"
-            msg += " for #{options[:label]}" if options[:label]
-            msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s, obs in batch: #{batch.size})"
-            if batch_times.size % 20 == 0
-              logger.info msg
-              logger.flush if logger.respond_to?( :flush )
-            else
-              logger.debug msg
-            end
-            try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
-              Observation.preload_associations(batch, preloads)
-            end
-            filtered_obs = batch.select do |observation|
-              ! ( @opts[:community_taxon] && observation.community_taxon.blank? ||
-                   max_observation_created && observation.created_at > max_observation_created )
-            end
-            yield filtered_obs
-            batch_times << (Time.now - observations_start)
-            observations_start = Time.now
+        Observation.search_in_batches( params, logger: logger ) do |batch|
+          avg_batch_time = if batch_times.size > 0
+            (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
+          else
+            0
           end
+          avg_observation_time = avg_batch_time / ObservationSearch::SEARCH_IN_BATCHES_BATCH_SIZE
+          msg = "Observation batch #{batch_times.size}"
+          msg += " for #{options[:label]}" if options[:label]
+          msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s, obs in batch: #{batch.size})"
+          if batch_times.size % 20 == 0
+            logger.info msg
+            logger.flush if logger.respond_to?( :flush )
+          else
+            logger.debug msg
+          end
+          try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
+            Observation.preload_associations(batch, preloads)
+          end
+          filtered_obs = batch.select do |observation|
+            ! ( @opts[:community_taxon] && observation.community_taxon.blank? ||
+                 max_observation_created && observation.created_at > max_observation_created )
+          end
+          yield filtered_obs
+          batch_times << (Time.now - observations_start)
+          observations_start = Time.now
         end
 
         chunk_start_id += search_chunk_size
