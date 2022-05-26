@@ -22,7 +22,12 @@ module CloudfrontInvalidator
   class_methods do
     # it's important to place this after `has_attached_file`
     def invalidate_cloudfront_caches(attachment_name, path_pattern)
-      after_save ->(obj) { invalidate_cloudfront_cache_for(attachment_name, path_pattern) }
+      after_save ->(obj) do
+        delay(
+          priority: INTEGRITY_PRIORITY,
+          unique_hash: { "#{self.class.name}::invalidate_cloudfront_cache_for": id }
+        ).invalidate_cloudfront_cache_for( attachment_name, path_pattern )
+      end
     end
   end
 end
