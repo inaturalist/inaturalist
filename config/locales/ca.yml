@@ -206,6 +206,8 @@ ca:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Heu escollits compartir les vostres coordenades ocultes per a
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Sobre els desacords no intencionats
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -496,6 +498,10 @@ ca:
   alphabetical_order: Ordre alfabètic
   already_have_an_account_log_in_html: Ja teniu un compte?
   amphibians: amfibis
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analitza els desacords no intencionats
   analyze_ids: Analiza IDs
   ancestor_taxon: Tàxon Ancestral
   and: i
@@ -727,6 +733,14 @@ ca:
   batch_operations: Operacions de grups
   be_the_first_to_fave_this_observation: Sigueu el primer en fer aquesta observació favorita!
   because_of: a causa de
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Com estimem que aquest canvi donarà com a resultat més de 10 no desitjats
+    desacords, <strong>us recomanem que també cometeu un canvi de taxó que implica
+    %{old_parent}, com ara dividir %{new_parent} de respecte %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Com calculem que aquest canvi produirà 10 o menys desacords no intencionats, <strong>probablement no és necessari impulsar un canvi de tàxon que inclogui %{old_parent}</strong> .
   become_a_donor_caps: SIGUEU UN DONANT
   become_a_donor_today_caps: SIGUEU UN DONANT, AVUI
   before_importing_photos: abans d'importar fotos.
@@ -849,6 +863,8 @@ ca:
   change_your_password: Canvia la vostra contrasenya
   #Plural noun, as in changes to a taxon record over time
   changes: Canvis
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: El canvi de l'ancestre a aquest grup pare pot provocar desacords no intencionats. Si us plau, analitzeu-lo abans, el que pot requerir una mica de temps.
   changing_the_geoprivacy: 'Canviar la geoprivacitat modifica la manera en què altres persones veuen la localització de la vostra observació.'
   check_above_for_errors: Verifiqueu els errors anteriors
   check_back_soon: Verifiqueu properament!
@@ -886,6 +902,12 @@ ca:
   choose_what_kind_of_change_youre_creating: "Escolliu el tipus de canvi que voleu introduir."
   cid_d_to_genus: CID del gènere
   citation: Referència
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Els desacords no intencionats succeeixen quan el grup pare <strong>(B)</strong> s'aprima en moure una branca filla <strong>(E)</strong> a una altra part de l'arbre taxonòmic, ocasionant que les identificacions efectuades del grup pare puguin ser interpretades com a desacords amb les Identificacions del grup fill mogut.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Els desacords no intencionats succeeixen quan el grup pare <strong>(B)</strong> s'aprima en intercanviar una branca filla <strong>(E)</strong> a una altra part de l'arbre taxonòmic, ocasionant que les identificacions efectuades del grup pare puguin ser interpretades com a desacords amb les Identificacions del grup fill intercanviat.
   classification: Classificació
   clear: Neteja
   clear_filters: Netegeu filtres
@@ -926,6 +948,9 @@ ca:
   committed_taxon_changes_cannot_be_deleted: Els canvis de tàxon compromesos no es poden suprimir
   #Status message while a taxon change is being committed
   committing: Desant...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Canviar els grups pare pot provocar desacords no intencionats. Si us plau, analitzeu-lo abans, el que pot requerir una mica de temps
   common_name: Nom Comú
   community: Comunitat
   community_curated: Supervisat per la Comunitat
@@ -1921,6 +1946,10 @@ ca:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hores a ajustar:"
   however_there_were_some_issues: "Malgrat això, hi havia alguns problemes: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Tanmateix, és possible que vulgueu comentar les observacions amb desacords no intencionats enllaçats amb anterioritat, per alertar els identificadors que l'abast de %{old_parent} s'ha reduït.
   i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
   icon: Icona
   icon_size: Mida de la icona
@@ -1934,6 +1963,10 @@ ca:
         Primer suggeriment d'aquest tàxon amb el qual la comunitat ha estat d'acord. Això va ajudar a acotar el tàxon proposat per la Comunitat.
       maverick: |
         Aquest tàxon no és un descendent o avantpassat del de la comunitat, i.e. la comunitat no està d'acord amb aquest tàxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "La Identificació 2 del tàxon <strong>E</strong> serà un desacord no intencionat amb la identificació 1 del tàxon <strong>B</strong> després del canvi en l'antecessor."
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "La Identificació 2 del tàxon <strong>E</strong> serà un desacord no intencionat amb la identificació 1 del tàxon <strong>B</strong> després de l'intercanvi de tàxons."
   id_withdrawn: ID retirat
   ids_by_taxon: Ids. per tàxon
   identify: Identificar
@@ -1964,6 +1997,14 @@ ca:
   ids_made_for_others: ID fetes per altres usuaris
   if_for_some_reason_a_user_doesnt_agree: |
     Si per algun motiu no esteu d'acord amb el tàxon de la comunitat, el podeu refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que la vostra observació només podrà ser de grau de recerca si la comunitat està d'acord amb vostè.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Si l'aprimament del grup pare provoca més de 10 desacords no intencionats, hauríeu de dividir el progenitor després de traslladar el grup fill per substituir els identificadors existents del grup pare<strong>(B)</strong> amb les identificacions que no hi estiguin en desacord.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Si l'aprimament del grup pare provoca més de 10 desacords no intencionats, hauríeu de dividir el progenitor després d'intercanviar el grup fill per substituir els identificadors existents del grup pare<strong>(B)</strong> amb les identificacions que no hi estiguin en desacord.
   if_matches_come_from_a_comprehensive_list: Si els resultats procedeixen d'una llista exhaustiva, es mostrarà una barra verda com aquesta.
   if_this_is_a_scientific_name: Si es tracta d’un nom científic, està acceptat actualment?
   if_this_link_will_apply_to_descendant: Si apliqueu aquest enllaç als tàxons descendents, podeu fer servir les teves plantilles d'etiquetes per introduir el nom del tàxon a l’URL
@@ -2057,6 +2098,7 @@ ca:
     supervisor del lloc. Si penseu que això és una errada, si us plau
     <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
     <a href="%{manage_flags_path}">Gestioneu etiquetes</a>
+  jobs: Treballs
   join: Uniu-vos a
   join_and_add_an_observation_to_project_html: Unir-se i afegir una observació a %{project}
   join_project: Uniu-vos a aquest projecte
@@ -2547,6 +2589,8 @@ ca:
   most_observed_introduced_species: Les espècies introduïdes més observades
   most_observed_threatened_species: Les espècies en perill més observades
   move_input_children_to_output?: Moure fills a la sortida
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Moure %{child} de %{old_parent} reduiria el que entenem per %{old_parent}. Hi ha %{id_count} identificacions de %{old_parent}.
   multiple: múltiples
   multiple_select_option: '-- múltiple --'
   multiple_taxa_for_taxon_change: "Múltiples tàxons (entrar per intercanviar/barrejar, sortir per separar)"
@@ -2710,6 +2754,7 @@ ca:
   no_more_taxa_to_load: Ja no queden més tàxons per carregar!
   no_more_results_found: No s'han trobat més resultats
   no_new_messages: No hi ha nous missatges
+  no_new_parent_specified: No s'ha especificat el nou grup pare.
   no_observations: Sense observacions
   no_observations_from_this_place_yet: Encara no hi ha observacions per a aquest lloc.
   no_observations_matching_those_ids: No hi ha observacions que coincideixin amb aquestes ID.
@@ -2968,6 +3013,7 @@ ca:
     observe_panel_title: Anem a començar publicant algunes observacions
     observe_panel_body_p1_local: Necessiteu inspiració? Aquí teniu alguns organismes observats a prop...
     observe_panel_body_p1_global: Necessiteu inspiració? Aquí teniu alguns organismes observats...
+    observe_panel_body_p2: Sortiu a l'exterior, i observeu un organisme. Escolliu algun ésser viu silvestre i preneu una fotografia clara que ocupi tot el visor. Si ja teniu la foto d'alguna formade vida silvestre, <a href="%{new_observation_path}">afegiu-la ara</a>. També podeu utilitzar l'aplicació mòbil de %{site_name} per enregistrar les observacions.
     observe_panel_body_p3: Una vegada heu compartit la vostra observació, aquesta pàgina us mostrarà les actualitzacions de la la comunitat en forma de comentaris i identificacions. Qui sap el que podeu descobrir!
     follow_panel_title_local: Seguiu alguns naturalistes propers
     follow_panel_title_global: Seguiu alguns naturalistes actius
@@ -4583,6 +4629,8 @@ ca:
   the_world_is_full_of_interesting_places: |
     El món està ple de llocs interessants, cadascun amb les seves formes de vida rares i meravelloses. Algunes es troben a l'altre costat del món, i d’altres són molt a la vora. Llocs de %{site_name} us permet buscar vida en qualsevol racó del planeta. Comenceu a explorar!
   then_keybord_sequence: llavors
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Actualment no hi ha identificacions de cap tàxon pare potencialment aprimat
   there_are_x_synonyms_html:
     one: "Hi ha <span class=\"count\">1</span> sinònim</span>"
     other: "Hi ha <span class=\"count\">%{count}</span> sinònims</span>"
@@ -4603,6 +4651,8 @@ ca:
   there_were_some_problems_with_fields: "Hi ha hagut problemes amb els següents camps"
   there_were_some_problems_with_these_files: "Hi ha hagut alguns problemes amb aquests arxius:"
   theres_something_wrong_with_taxon_framework_relationship: Hi ha alguna errada - no podem determinar la relacio entre tàxons interns i externs
+  therefore_committing_additional_taxon_changes: Per tant, no serà necessari cometre canvis addicionals de tàxons després de dur a terme aquest intercanvi de tàxons.
+  therefore_committing_taxon_changes: Per tant, no és necessari realitzar canvis de taxons després d'aquest canvi d'ascendència.
   these_are_items_people_on: |
     Hi ha continguts que altres han marcat per ser supervisats. Els continguts brossa s’esborraran i l’usuari que els va introduir podria ser suspès (aneu a la pàgina del seu perfil i a la part inferior esquerra seleccioneu l'enllaç "Suspèn l'usuari" perquè ja no pugui entrar al lloc). Els continguts de tipus il·legal, enganyós, racista, xenòfob, etc., s'han d'esborrar i s'han de respondre amb un comentari correcte. Les persones que repeteixin aquests comentaris s'han de comunicar a l'administrador del lloc o %{email}
   these_are_taxa_that: |
