@@ -176,7 +176,7 @@ lv:
   a_member_of_taxon_html: "daļa no %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "No A līdz Z"
+  a_to_z: "A līdz Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -813,7 +813,7 @@ lv:
   by: 'autors:'
   by_everyone: Visi
   by_user: "Autors: %{user}"
-  by_you: tevis
+  by_you: tavi
   calendar: Kalendārs
   calendars_only_show_x_observations_at_time: Kalendāri vienlaicīgi uzrāda tikai %{x} novērojumus
   cancel: Atcelt
@@ -2279,7 +2279,7 @@ lv:
   list_updated: Saraksts izmainīts.
   list_views:
     plain: standarta
-    taxonomic: taksonomisks
+    taxonomic: taksonomiski
     photo: foto
   list_was_successfully_created: Saraksts veiksmīgi izveidots.
   listed_taxa: Sarakstā iekļautie taksoni
@@ -2804,9 +2804,9 @@ lv:
   number_of_observers_value: "Novērotāju skaits: %{number}"
   number_of_observers: "Novērotāju skaits"
   number_selected: "# atlasīts"
-  obs: Nov.
+  obs: Novērojumi
   obs_cid_d: Nov. apstipr. ID
-  obs_id_d: Nov. ID
+  obs_id_d: identificēti novērojumi
   obscured: Noslēpts
   obscured_or_private: noslēpts vai privāts
   obscured_description: |
@@ -2867,7 +2867,7 @@ lv:
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} iekš %{place} %{month}%{year} no %{user}"
   observations_by_category: "Novērojumi pēc kategorijas"
   observations_by_app: Novērojumi pēc lietotnes
-  observations_by_rank: Novērojumi, šķirojot pēc klasifikācijas
+  observations_by_rank: Novērojumi pēc klasifikācijas
   observations_by_user_on_date: "Lietotāja %{user} novērojumi %{date}"
   observations_by_you: "Tavi novērojumi"
   observations_by_you_on_date: "Tavi novērojumi %{date}"
@@ -2981,7 +2981,7 @@ lv:
   old_observation_form: Vecā novērojumu veidlapa (neiesakām lietot)
   ok: "Aizvērt"
   on_caps: "IESLĒGTS"
-  on_day: "ieslēgts"
+  on_day: "novērots"
   onboarding:
     observe_panel_title: Sāksim ar novērojumu pievienošanu!
     observe_panel_body_p1_local: Vēlies iedvesmoties? Apskati tavā apkārtnē novērotos organismus!
@@ -3881,7 +3881,7 @@ lv:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "Lietotāja %{login} jaunākie novērojumi (Atom)"
   recent_observations_by: "Lietotāja %{login} jaunākie novērojumi"
-  recently_active: Nesen aktīvs
+  recently_active: Nesen aktīvie
   recently_added: Nesen pievienots
   recently_created: Nesen izveidots
   recently_finished: Nesen pabeigts
@@ -4147,7 +4147,7 @@ lv:
   site_stats: Vietnes statistika
   site_taxon_page: "%{site_name} taksona lapa"
   sites_affiliation_about_desc_html: |
-    Ja tavai organizācijai ir vēlme pievienoties iNaturalist tīklam, vairāk informācijas vari atrast %{start_tag_join}šeit%{end_tag_join}.
+    Ja tavai organizācijai ir interese pievienoties iNaturalist tīklam, vairāk informācijas vari atrast %{start_tag_join}šeit%{end_tag_join}.
   sites_affiliation_examples_canada_cdc_html: |
     %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} nodrošina datus Kanādas provinču sistēmām, kuras uztur Dabas aizsardzības datu centri (CDC). Šīs sistēmas izmanto, divreiz gadā veicot novērtējumus, kas paredzēti sugu apdraudējuma pakāpes un apdraudēto sugu biotopu noteikšanai. Novērtējumu dēļ iespējams noteikt arī vietas, kur uz ceļiem ir vislielākā apdraudēto sugu mirstība un to samazināt, kā arī noteikt un aizsargāt būtiskus bioloģiskās daudzveidības areālus. Vēl iespējams no jauna apstiprināt sugu klātbūtni, par kurām neviens nav ziņojis pat desmitiem gadu ilgi.
   sites_affiliation_examples_ecuardor_bndb_html: |
@@ -4186,7 +4186,7 @@ lv:
     %{start_tag_join}šeit%{end_tag_join}.</strong>
   sites_network_consists_of: "iNaturalist tīkls sastāv no vairākām organizācijām:"
   sites_network_inaturalist_network_collection: |
-    iNaturalist tīkls ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktajā valstī un aizsargātu vietējo bioloģisko daudzveidību. Organizācijām ir pieeja pie viņu reģionā reģistrēto novērojumu faktiskajām koordinātām, kas veicina efektīvāku apdraudēto sugu aizsardzību.
+    iNaturalist tīkls ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktā valstī un aizsargātu vietējo bioloģisko daudzveidību. Organizācijām ir pieeja pie viņu reģionā reģistrēto novērojumu faktiskajām koordinātām, kas veicina efektīvāku apdraudēto sugu aizsardzību.
   sites_network_your_username: |
     Tavs lietotājvārds un parole funkcionē visās tīmekļa vietnēs, kas ir daļa no iNaturalist tīkla. Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese (tikai, lai sazinātos ar tevi par vietnes aktivitātēm) un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šīm organizācijām, kas uztur attiecīgās tīmekļa vietnes.
   some_agree: daži piekrīt
@@ -4872,7 +4872,7 @@ lv:
     Novērotājs tev uzticas ar visu savu novērojumu noslēptajām koordinātām.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> uzrakstīja,
   username: Lietotājvārds
-  username_description: Lietotājvārds paredzēts, lai pieslēgtos un, lai citi iNaturalist lietotāji varētu tevi identificēt.
+  username_description: Lietotājvārds paredzēts, lai pieslēgtos un lai citi iNaturalist lietotāji varētu tevi identificēt.
   username_or_email: Lietotājvārds vai e-pasts
   username_or_user_id: Lietotājvārds vai lietotāja ID
   users: Lietotāji
@@ -5469,9 +5469,9 @@ lv:
       dropdowns:
         sort: Kārtot
         taxonomic: Taksonomisks
-        name: Nosaukums
-        most_observed: Visnovērotākās
-        least_observed: Vismazāk novērots
+        name: Pēc nosaukuma
+        most_observed: Visnovērotākie
+        least_observed: Vismazāk novērotie
         date_added_newest: Pievienošanas datums, no jaunākā uz vecāko
         date_added_oldest: Pievienošanas datums, no vecākā uz jaunāko
         ancestry: Priekštecība
@@ -6209,7 +6209,7 @@ lv:
         med_ttcid: Vidējais KINL
         med_ttid: Vidējais INL
         new_users_desc: Reģistrējušies šajā dienā
-        obs_1_day: "Novēr. (1 dien. laikā)"
+        obs_1_day: "Novērojumi vienā dienā"
         obs_1_day_desc: "Vienā dienā izveidoti novērojumi"
         obs_cid_d_desc: Izveidoti pēdējo septiņu dienu laikā un ieguvuši kopienas ID
         #Short for "observations community-identified to genus"
@@ -6231,7 +6231,7 @@ lv:
         TTID: ISLCL (ID saņemšanas laiks no cita lietotāja)
         TTID_desc: Laiks līdz ID saņemšanai no cita lietotāja
         TTID_note: |
-          Šī ir pēdējās nedēļas pievienoto novērojumu statistika. Novērojumi, kas pievienoti vēlāk par vienu nedēļu rādītājos nebūs iekļauti. Šī iemesla dēļ rādītāji var izskatīties zemāki nekā tad, ja aprēķini tiktu veikti vēl vienu reizi tagad, bet tiem tāpat vajadzētu sniegt visai precīzu priekšstatu par to, cik ātri kopiena ir spējīga identificēt novērojumus konkrētās nedēļās. Jāņem vērā, ka rādītājos ir iekļauti novērojumi tikai ar fotogrāfijām.
+          Šī ir pēdējās nedēļas pievienoto novērojumu statistika. Novērojumi, kas pievienoti vēlāk par vienu nedēļu, rādītājos nebūs iekļauti. Šī iemesla dēļ rādītāji var izskatīties zemāki nekā tad, ja aprēķini tiktu veikti vēl vienu reizi tagad, bet tiem tāpat vajadzētu sniegt visai precīzu priekšstatu par to, cik ātri kopiena ir spējīga identificēt novērojumus konkrētās nedēļās. Jāņem vērā, ka rādītājos ir iekļauti novērojumi tikai ar fotogrāfijām.
         website_desc_html: |
           Izveidots ar <a href="https://www.inaturalist.org">iNaturalist</a> vai <a href="%{url}">iNaturalist tīkla</a> tīmekļa vietnēm
       year:
@@ -6491,21 +6491,23 @@ lv:
           Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
           </p>
           <p>
-          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abejādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
+          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abējādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
           </p>
           <p>
-          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, <a href="mailto:%{help_email}">sazinies ar mums</a>.
+          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, sazinies ar mums.
           </p>
           <p>
-          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu, <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu.
+          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu,
+          <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu. <a href="mailto:%{help_email}">
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
         inaturalist_network_affiliation_desc_html: |
-          <p><a href="%{url}" target="_blank">iNaturalist tīkls</a> ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas, kas parakstījušas vienošanos ar iNaturalist, atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktajā valstī, kas nāk par labu vietējai bioloģiskai daudzveidībai. Organizācijām ir pieeja pie savās valstīs reģistrētām koordinātām, kas tiek automātiski noslēptas no publikas, lai aizsargātu apdraudētas sugas.
+          <p><a href="%{url}" target="_blank">iNaturalist tīkls</a> ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas, kas parakstījušas vienošanos ar iNaturalist, atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktā valstī, kas nāk par labu vietējai bioloģiskai daudzveidībai. Organizācijām ir pieeja pie savās valstīs reģistrētām koordinātām, kas tiek automātiski noslēptas no publikas, lai aizsargātu apdraudētas sugas.
           </p>
           <p>
           Tavs lietotājvārds un parole funkcionē visās tīmekļa vietnēs, kas ir daļa no iNaturalist tīkla. Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese (tikai, lai sazinātos ar tevi par vietnes aktivitātēm) un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šīm organizācijām, kas uztur attiecīgās tīmekļa vietnes.
+
           </p>
           <p>
           Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu.
@@ -6553,7 +6555,7 @@ lv:
           Vietu iestatījumi izmainīti. Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
         project_addition_preferences:
           any: Nenorādīt
-          joined: Projekti, kuriem esi pievienojies
+          joined: Projektiem, kuriem esi pievienojies
           none: "Neviens, tikai tu pats vari pievienot projektiem novērojumus"
         prefers_community_taxa_desc: |
           %{site_name} seko līdzi tavām un kopienas identifikācijām pie taviem novērojumiem. Ja tev šķiet, ka kopienas viedoklis nav uzticamāks par tavu, iestatījumus iespējams pielāgot tā, lai citi lietotāji spētu pievienot identifikācijas, bet tavi novērojumi tiks saistīti tikai ar tevis identificēto taksonu. Tavi novērojumi nevarēs sasniegt pētniecības līmeni, ja vien tava identifikācija nesakrītīs ar kopienas viedokli.
@@ -6572,16 +6574,16 @@ lv:
         prefers_no_tracking_label_desc_info_we_share_crash_details: |
           Informācija par avāriju, lai precīzi noteiktu, piemēram, koda rindu, kas izraisīja avāriju.
         prefers_no_tracking_label_desc_info_we_share_device_details: |
-          Informācija par ierīci, piemēram, mobilā telefona ražotājs un modelis
+          Informācija par ierīci, piemēram, mobilā telefona ražotājs un modelis.
         prefers_no_tracking_label_desc_value_html: |
-          <strong>Trešo pušu pakalpojumi mums ir nepieciešami</strong>, lai ar mūsu salīdzinoši mazo darbinieku skaitu nodrošinātu lietotnes darbības stabilitāti un lietojamību. Ar citām metodēm mobilo ierīču programmatūras nepilnības gandrīz nav iespējams pamanīt, jo šīs ierīces mēs nekontrolējam. Zināmos gadījumos šādas problēmas nav iespējams pamanīt kamēr neesam saņēmuši trešo pušu pakalpojumu datus par nepilnībām programmatūrā. <strong> Daloties ar šo informāciju, lietotāji palīdz mums strādāt lietotāju un visas iNaturalist kopienas labā.</strong>
+          <strong>Trešo pušu pakalpojumi mums ir nepieciešami</strong>, lai ar mūsu salīdzinoši mazo darbinieku skaitu nodrošinātu lietotnes darbības stabilitāti un lietojamību. Ar citām metodēm mobilo ierīču programmatūras nepilnības gandrīz nav iespējams pamanīt, jo šīs ierīces mēs nekontrolējam. Zināmos gadījumos šādas problēmas nav iespējams pamanīt, kamēr neesam saņēmuši trešo pušu pakalpojumu datus par nepilnībām programmatūrā. <strong> Daloties ar šo informāciju, lietotāji palīdz mums strādāt lietotāju un visas iNaturalist kopienas labā.</strong>
         prefers_no_tracking_label_desc_limits: |
-          Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos analīžu un avāriju datus. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās viņiem vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs tiek izmantotas Apple Maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet šo datu plūsmu pavisam nav iespējams apturēt.
+          Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos analīžu un avāriju datus. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs tiek izmantotas Apple Maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet šo datu plūsmu pavisam nav iespējams apturēt.
         project_settings_desc: |
           Jāņem vērā, ka šīs funkcijas izmantošanas dēļ nesaņemsi paziņojumus par jaunumiem un tā nesniegs projektā iesaistītajiem pieeju pie tavām noslēptajām koordinātām. Lai sniegtu projektiem šādu piekļuvi, tev jāpievienojas projektam. Vēl iespējams sniegt piekļuvi katram gadījumam atsevišķi.
         same_day_geoprivacy_protection: Vienas dienas ģeoprivātuma aizsardzība
         taxon_change_desc: |
-          Kad taksoni tiek apvienoti vai pārsaukti %{site_name} vietnē, tavas identifikācijas, novērojumi, sarakstā iekļautie taksoni, u.c. tiks automātiski atjaunoti un samainīti pret jauni izveidotajiem taksoniem, bet ar nosacījumu, ka izmaiņas taksonos ir viennozīmīgas. Ja atspējo šo funkciju vai izmaiņas ir viennozīmīgas (piemēram, taksonu sadalīšanas rezultātā), saņemsi paziņojumu par izmaiņām kopā ar saiti uz rīku, kuru var izmantot, lai manuāli atjaunotu savu saturu.
+          Kad taksoni tiek apvienoti vai pārsaukti %{site_name} vietnē, tavas identifikācijas, novērojumi, sarakstā iekļautie taksoni, u.c. tiks automātiski atjaunoti un samainīti pret jaunizveidotajiem taksoniem, bet ar nosacījumu, ka izmaiņas taksonos ir viennozīmīgas. Ja atspējo šo funkciju vai arī ja izmaiņas ir viennozīmīgas (piemēram, taksonu sadalīšanas rezultātā), saņemsi paziņojumu par izmaiņām kopā ar saiti uz rīku, kuru var izmantot, lai manuāli atjaunotu savu saturu.
         this_only_applies_to_traditional_projects: |
           Tas attiecas tikai uz standarta projektiem. Nav iespējams izlaist kolekciju projektu vai projektu grupu novērojumus, jo tie ir tikai saglabāti meklēšanas rezultāti. Vairāk informācijas <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">šeit</a>.
       recent:
@@ -6671,13 +6673,13 @@ lv:
         save_and_edit_to_add_attachments: Saglabāt un rediģēt, lai pievienotu pielikumus
   date:
     abbr_day_names:
-      - Svētd.
-      - Pirmd.
-      - Otrd.
-      - Trešd.
-      - Cetur.
-      - Piektd.
-      - Sestd.
+      - Sv
+      - P
+      - O
+      - T
+      - C
+      - Pk
+      - S
     abbr_month_names:
       - 
       - Jan
