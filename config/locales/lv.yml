@@ -1,4 +1,9 @@
 lv:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} izmaiņas"
+    one: "%{count} izmaiņa"
+    other: "%{count} izmaiņas"
   x_comments:
     zero: '%{count} komentāri'
     one: '%{count} komentārs'
@@ -373,6 +378,7 @@ lv:
   add_life_stage_egg_annotation: 'Pievienot piezīmi "Dzīves stadija: ola"'
   add_evidence_of_presence_organism_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: organisms"'
   add_evidence_of_presence_feather_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: spalva"'
+  add_evidence_of_presence_gall_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: galli"'
   add_evidence_of_presence_scat_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: izkārnijumi"'
   add_evidence_of_presence_track_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: nospiedumi"'
   add_evidence_of_presence_bone_annotation: 'Pievienot piezīmi "Sastopamības pierādījums: kauli"'
@@ -437,6 +443,8 @@ lv:
   agree_with_current_taxon: Piekrist šobrīd noteiktajam taksonam
   agreeing: Piekrīt...
   aka: jeb
+  #Noun, title of a popup alerting you to something
+  alert: Uzmanību!
   all: Viss
   all_comments: Visi komentāri
   all_flags_must_be_resolved: Visiem ziņojumiem ar karodziņiem jāatrod risinājums
@@ -1093,6 +1101,8 @@ lv:
     evidence_of_presence: Sastopamības pierādījumi
     #As in the feather on a bird
     feather: Spalva
+    #Abnormal growth
+    gall: Galli
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organisms
@@ -4823,7 +4833,7 @@ lv:
   user_added_a_x_to_noun_by_user_html: "%{user} pievienoja %{x} pie %{noun} no %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   user_added_a_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
-  user_added_an_identification_html: "%{user} pievienoja ID"
+  user_added_an_identification_html: "%{user} ieteica ID"
   user_added_an_observation_field_html: '%{user} pievienoja vērtību "%{field_name}" laukā lietotāja %{owner} novērojumam'
   user_added_an_observation_field_value_html: "%{user} pievienoja novērojuma lauka vērtību"
   user_added_an_observation_html: "%{user} pievienoja novērojumu"
@@ -6580,7 +6590,7 @@ lv:
         prefers_no_tracking_label_desc_limits: |
           Jāņem vērā, ka šī funkcija ietver tikai šiem pakalpojumu sniedzējiem nosūtītos analīžu un avāriju datus. Visus iNaturalist serverus nodrošina un uztur Microsoft, visas iNaturalist fotogrāfijas uzglabā Amazon un gandrīz visas iNaturalist kartes nodrošina Google – lietotājam apskatot iNaturalist novērojumus, ierīce ik reizi pieslēgsies šo uzņēmumu pakalpojumiem un atklās vismaz lietotāja IP adresi un, iespējams, arī citus datus (iPhone ierīcēs tiek izmantotas Apple Maps kartes). Visticamāk, iNaturalist nepastāvētu bez šo uzņēmumu pakalpojumiem. Mēs cenšamies ierobežot šiem uzņēmumiem pieejamo iNat lietotāju datu dažādību un daudzumu, bet šo datu plūsmu pavisam nav iespējams apturēt.
         project_settings_desc: |
-          Jāņem vērā, ka šīs funkcijas izmantošanas dēļ nesaņemsi paziņojumus par jaunumiem un tā nesniegs projektā iesaistītajiem pieeju pie tavām noslēptajām koordinātām. Lai sniegtu projektiem šādu piekļuvi, tev jāpievienojas projektam. Vēl iespējams sniegt piekļuvi katram gadījumam atsevišķi.
+          Ja izmantosi šo funkciju, nesaņemsi paziņojumus par jaunumiem un projektā iesaistītajiem nebūs pieejas pie tavām noslēptajām koordinātām. Lai sniegtu projektiem šādu piekļuvi, tev jāpievienojas projektam. Vēl iespējams sniegt piekļuvi katram gadījumam atsevišķi.
         same_day_geoprivacy_protection: Vienas dienas ģeoprivātuma aizsardzība
         taxon_change_desc: |
           Kad taksoni tiek apvienoti vai pārsaukti %{site_name} vietnē, tavas identifikācijas, novērojumi, sarakstā iekļautie taksoni, u.c. tiks automātiski atjaunoti un samainīti pret jaunizveidotajiem taksoniem, bet ar nosacījumu, ka izmaiņas taksonos ir viennozīmīgas. Ja atspējo šo funkciju vai arī ja izmaiņas ir viennozīmīgas (piemēram, taksonu sadalīšanas rezultātā), saņemsi paziņojumu par izmaiņām kopā ar saiti uz rīku, kuru var izmantot, lai manuāli atjaunotu savu saturu.
