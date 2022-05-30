@@ -1,4 +1,10 @@
 uk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} зміна"
+    few: "%{count} зміни"
+    many: "%{count} змін"
+    other: "%{count} зміни"
   x_comments:
     one: '%{count} коментар'
     few: '%{count} коментарі'
@@ -257,6 +263,9 @@ uk:
   about_place: "Про %{place}"
   about_places: Про місця
   about_taxon_ranges: Докладніше про область поширення таксону
+  about_taxon_ranges_desc: |
+    Ареал таксону відображає глобальне поширення таксону. Ареали таксонів зазвичай беруться з Червоного Списку МСОП.
+  about_the_network: Про мережу
   about_this_bioblitz: Про цей біобліц
   about_this_map: Про цю карту
   about_this_project: Про цей проект
@@ -297,6 +306,8 @@ uk:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Ви маєте змогу обрати, якими з прихованих координат ділитися:
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Про непередбачувані розбіжності
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -412,6 +423,7 @@ uk:
   add_life_stage_egg_annotation: 'Додати примітку "Стадія життєвого циклу: яйце"'
   add_evidence_of_presence_organism_annotation: 'Додати анотацію "Доказ присутності: організм"'
   add_evidence_of_presence_feather_annotation: 'Додати анотацію "Доказ присутності: перо"'
+  add_evidence_of_presence_gall_annotation: 'Додати анотацію "Доказ присутності: галл"'
   add_evidence_of_presence_scat_annotation: 'Додати анотацію "Доказ присутності: послід"'
   add_evidence_of_presence_track_annotation: 'Додати анотацію "Доказ присутності: сліди"'
   add_evidence_of_presence_bone_annotation: 'Додати анотацію "Доказ присутності: кістка"'
@@ -469,11 +481,15 @@ uk:
   admin_s: Адмін(и)
   admin_only: Тільки для адміністраторів
   admin_tools: Засоби адміністрування
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Афілійовані організації
   agree_: Погоджуюсь
   agree?: Погоджуєтесь?
   agree_with_current_taxon: Погодитись з поточним таксоном
   agreeing: Погодження
   aka: також відомий як
+  #Noun, title of a popup alerting you to something
+  alert: Попередження
   all: Всі
   all_comments: Всі коментарі
   all_flags_must_be_resolved: Всі позначки мають бути розв'язані
@@ -615,6 +631,11 @@ uk:
   alphabetical_order: За алфавітом
   already_have_an_account_log_in_html: Вже маєте обліковий запис? <strong>Увійдіть.</strong>
   amphibians: земноводні
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Аналіз непередбачуваних розбіжностей
+  analyze_ids: Аналізувати ID
   ancestor_taxon: Материнський таксон
   and: та
   and_other_taxa: "&amp; Інші таксони"
@@ -804,6 +825,7 @@ uk:
   back_to_x_history: "Назад до історії: %{x}"
   back_to_x_journal: "Назад до журналу користувача %{user}"
   back_to_x_blog: "Назад до блогу %{x}"
+  back_to_your_calendar: Назад до вашого календаря
   back_to_your_dashboard: Назад до вашої панелі інструментів
   back_to_your_lists: Назад до ваших списків
   back_to_your_journal: Назад до вашого журналу
@@ -858,7 +880,7 @@ uk:
   by: '&nbsp;'
   by_everyone: Будь-ким
   by_user: "користувачем %{user}"
-  by_you: вами
+  by_you: від вас
   calendar: Календар
   calendars_only_show_x_observations_at_time: Календарі одночасно показують тільки %{x} спостережень
   cancel: Скасувати
@@ -1669,7 +1691,7 @@ uk:
   event_stats: Статистика події
   event_url: URL події
   events_only: Лише події
-  everyone: Усi
+  everyone: Будь-кого
   everyone_: Усі
   everyone_journal_posts: Дописи в усіх журналах
   everywhere: всюди
@@ -2963,6 +2985,7 @@ uk:
     observe_panel_title: Давайте розпочнемо з публікації декількох спостережень
     observe_panel_body_p1_local: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали поблизу...
     observe_panel_body_p1_global: Бажаєте натхнення? Ось деякі живі істоти, яких спостерігали...
+    observe_panel_body_p2: Підіть кудись та спостерігайте за живими істотами. Оберіть якийсь організм з дикої природи та зробіть чіткі, повнокадрові фото. Якщо у вас вже є фото якоїсь дикої істоти, <a href="%{new_observation_path}">додайте його зараз</a>. Для запису спостережень ви також можете використовувати мобільний додаток %{site_name}.
     observe_panel_body_p3: Як тільки ви поділитеся своїми спостереженнями, на цій сторінці відображатимуться оновлення від спільноти у вигляді коментарів та визначень. Хто знає, що ви виявите!
     follow_panel_title_local: Піідписатися на натуралістів, що знаходяться поблизу
     follow_panel_title_global: Підписатися на активних натуралістів
@@ -3187,8 +3210,8 @@ uk:
       continent: континент
       Country: Країна
       country: країна
-      County: Графство
-      county: графство
+      County: Район
+      county: район
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Округ
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -3595,6 +3618,7 @@ uk:
   plants: рослини
   please_add_a_citation_for_this_change: Будь ласка, додайте цитату до цієї зміни.
   please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Будь ласка, отримайте дозвіл від батьків
   #Title to a section warning a user to exercise caution
   please_be_careful!: Будь ласка, будьте уважні!
   please_complete_the_following_to_add_project: |
@@ -4896,7 +4920,7 @@ uk:
   view_observation: Переглянути спостереження
   view_observations: Переглянути спостереження
   view_observation_flags: Переглянути прапорці спостереження
-  view_observations_by_everyone: Перегляд спостережень усіх
+  view_observations_by_everyone: Перегляд спостережень від усіх
   view_observations_by_these_users: Переглянути спостереження цих користувачів
   view_observations_of_this_taxon_by: Переглянути спостереження цього таксону від
   view_on: Переглянути на
@@ -5066,8 +5090,8 @@ uk:
   yes_reject_it: Так, відхилити це
   yes_show_this_in_the_box: Так, показувати це у великому прямокутнику згори /таксону
   yesterday: Вчора
-  you: ви
-  you_: Ви
+  you: від вас
+  you_: Вac
   you_appear_offline_try_again: |
     Здається, ви не в мережі. Спробуйте ще раз, коли ви підключені до Інтернету.
   youre_a_site_curator_which_means: |
