@@ -605,7 +605,7 @@ class Identification < ApplicationRecord
     ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
-      next if !taxon_change.automatable_for_output?( output_taxon.id )
+      next unless taxon_change.automatable_for_output?( output_taxon.id )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
         taxon: output_taxon, 
@@ -641,6 +641,7 @@ class Identification < ApplicationRecord
       end
       ident_ids << ident.id
     end
+    Rails.logger.info "[INFO #{Time.now}] #{self}: observation_ids #{observation_ids.uniq.compact.sort.join(,)}" if options[:debug]
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
       batch = Observation.where( id: obs_ids )
@@ -666,7 +667,7 @@ class Identification < ApplicationRecord
     # a previous attempt hit an error and stopped before indexing some records
     observation_ids += Identification.connection.execute(
       "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
-    ).select {|r| r["observation_id"].to_i }
+    ).map {|r| r["observation_id"].to_i }
     observation_ids.uniq!
     ident_ids.uniq!
     Identification.elastic_index!( ids: ident_ids )
