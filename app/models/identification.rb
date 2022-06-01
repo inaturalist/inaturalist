@@ -641,7 +641,7 @@ class Identification < ApplicationRecord
       end
       ident_ids << ident.id
     end
-    Rails.logger.info "[INFO #{Time.now}] #{self}: observation_ids #{observation_ids.uniq.compact.sort.join(,)}" if options[:debug]
+    Rails.logger.info "[INFO #{Time.now}] #{self}: observation_ids #{observation_ids.uniq.compact.sort.join(',')}" if options[:debug]
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
       batch = Observation.where( id: obs_ids )
