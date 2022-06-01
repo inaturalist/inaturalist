@@ -253,7 +253,7 @@ class TaxonChange < ApplicationRecord
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, options, records: auto_updatable_records )
+          update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
         end
         if !batch_users_to_notify.empty?
           action_attrs = {
