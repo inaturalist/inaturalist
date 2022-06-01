@@ -431,13 +431,91 @@ es-MX:
     x_arachnida:
       one: "1 arácnido"
       other: "%{count} arácnidos"
+    x_protozoa:
+      one: "1 protozoario"
+      other: "%{count} protozoarios"
     x_other_animals:
       one: "1 otro animal"
       other: "%{count} otros animales"
+  all_taxa_: Todos los taxa
+  all_taxa_in_this_guide: Todas las especies y grupos de esta guía
+  all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
+  all_updates: Todas las actualizaciones
+  allow_curator_access: Permite acceso al curador
+  allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordinadas privadas
+  allowed_values: Valores permitidos
+  almost_there_: Casi llegas al final...
+  alphabetical: Orden alfabético
+  alphabetical_order: Orden alfabético
+  already_have_an_account_log_in_html: '¿Ya tienes una cuenta? <strong>Inicia sesión.</strong>'
+  amphibians: Anfibios
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
   #as disagreements with existing IDs of the thinned descendant.
   analyze_clashes: Analizar desacuerdos no intencionados
+  analyze_ids: Analizar IDs
+  ancestor_taxon: Taxón ancestro
+  and: "y"
+  and_other_taxa: "&amp; otros taxa"
+  android: Android
+  animals: Animales
+  annotation: Anotación
+  annotations: Anotaciones
+  announcement_was_successfully_created: El aviso fue creado satisfactoriamente.
+  announcement_was_successfully_updated: El aviso fue autualizado satisfactoriamente.
+  announcements: Anuncios
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: Cualquiera
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: Cualquiera
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Cualquiera
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Cualquiera
+  #Label for an option to show content from any date
+  any_date: Cualquiera
+  #Label for an option to show content with any establishment means
+  any_establishment: Cualquiera
+  #Label for an option to show content with any license
+  any_license: Cualquiera
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Cualquiera
+  #Label for an option to show content from any project
+  any_project: Cualquiera
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Cualquiera
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Cualquiera
+  #Label for an option to show/include content by any user
+  any_user: Cualquiera
+  anyone: Cualquier persona
+  app_owner_application_about_p1a_html: |
+    Las aplicaciones iNaturalist permiten el uso autenticado de la API de iNaturalist. Esta
+    te permite hacer llamadas API que hacen cosas como crear observaciones o
+    identificaciones. Los casos de uso habitual son aplicaciones como aplicaciones de escritorio o aplicaciones móviles que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe ser generado con una implicación humana real o supervisada. Por favor, para más detalles, lea nuestras <a href="/pages/community+guidelines"
+    target="_blank">Guás comunitarias</a> que prohibiben observaciones, identificaciones y comentarios generados por máquinas.
+    .
+  app_owner_application_about_p2_html: |
+    A partir de 2022 estamos requiriendo aprobación manual para usuarios que deseen hacerse clientes API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertirte en "propietario de aplicación". Esta solicitud debe describir la funcionalidad de tu app propuesta y cómo planeas utilizarla. Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes haber hecho al menos 10 <a href="/pages/help#identification"
+    target="_blank">identificaciones mejorando </a> en el último mes. Podemos hacer preguntas de seguimiento sobre tu plan y nos reservamos el derecho de rechazar las solicitudes por cualquier razón.
+  app_owner_application_inelligible: |
+    Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes
+    haber hecho al menos 10 mejoras de identificaciones en el último mes.
+  app_owner_application_fields_explanation_html: Describe la funcionalidad que tu app tendrá y cómo planeas usarla.
+  app_owner_application_success: Solicitud de "propietario de app" enviada
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplicación
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Aplicaciones
   apply_app_owner: Aplicar
   #Button label and section header when submitting a form to request to be a
   #curator
@@ -507,6 +585,17 @@ es-MX:
   are_you_sure_you_want_to_commit_this_change: '¿Estás seguro de querer guardar este cambio? Esta acción no puede ser revertida.'
   are_you_sure_you_want_to_delete_this: '¿Estás seguro que quieres borrar esto?'
   are_you_sure_you_want_to_delete_this_assessment?: '¿Estás seguro que quieres borrar esta evaluación?'
+  are_you_sure_you_want_to_delete_this_photo?: '¿Estás seguro de que quieres eliminar esta foto?'
+  are_you_sure_you_want_to_delete_this_post: '¿Estás seguro que quieres borrar esta nota?'
+  are_you_sure_you_want_to_remove_all_tags: '¿Estás seguro que deseas eliminar todas las etiquetas?'
+  attached_taxon: Taxón adjunto
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Atributo
+  attribution: Atribución
+  authority_list:
+    iucn_red_list: Lista Roja UICN
+    natureserve: NatureServe
   back_to_lists: "Regresar a las listas %{name}"
   back_to_observation: Regresar a la observación
   back_to_observation_fields: De regreso a los campos de observación
@@ -534,6 +623,14 @@ es-MX:
   back_to_your_observations: De regreso a tus observaciones
   back_to_your_profile: De regreso a tu perfil
   badges: Insignias
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Basado en una muestra de %{percent}% de estos IDs, estimamos que esto
+      dará como resultado <strong>%{count} desacuerdo no deseado</strong> con ID de %{child}.
+    other: |
+      Basado en una muestra de %{percent}% de estos IDs, estimamos que esto
+      dará como resultado <strong>%{count} desacuerdos no deseados</strong> con IDs de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Basándose en la evidencia, ¿Se puede confirmar o mejorar el ID de la comunidad ?
   batch: Grupo
@@ -543,6 +640,16 @@ es-MX:
   batch_operations: Operaciones de grupo
   be_the_first_to_fave_this_observation: Se el primero en decir que le agrada esta observación.
   because_of: debido a
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Dado que estimamos que este cambio tendrá como resultado más de 10 desacuerdos
+    no deseados, <strong>te recomendamos que también realices un cambio de taxón que involucre
+    %{old_parent}, tales como separar %{new_parent} de %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Dado que estimamos que este cambio tendrá como resultado 10 o menos desacuerdos
+    no deseados, <strong>Probablemente no es necesario realizar un cambio de taxón
+    que involucre %{old_parent}</strong>.
   become_a_donor_caps: CONVIERTETE EN UN DONANTE
   become_a_donor_today_caps: CONVIÉRTETE EN UN DONANTE HOY
   before_importing_photos: Antes de importar las fotos
@@ -665,6 +772,8 @@ es-MX:
   change_your_password: Cambia tu contraseña
   #Plural noun, as in changes to a taxon record over time
   changes: Cambios
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Cambiar el antepasado a ese padre puede resultar en desacuerdos no intencionados, por favor primero analízalos, lo cual puede tardar un tiempo.
   changing_the_geoprivacy: 'Cambiar la geoprivacidad modifica como otras personas ven la ubicación de tu observación.'
   check_above_for_errors: Revisa errores arriba
   check_back_soon: '¡Regresa pronto para revisar!'
@@ -705,6 +814,18 @@ es-MX:
   choose_what_kind_of_change_youre_creating: "Escoge que clase de cambio quieres crear."
   cid_d_to_genus: CID'd a género
   citation: Referencia
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Los desacuerdos no deseados ocurren cuando un padre <strong>(B)</strong> es
+    disminuido al mover un hijo <strong>(E)</strong> a otra parte del árbol taxonómico,
+    resultando en que los IDs existentes del padre sean interpretados
+    como desacuerdos con los IDs existentes del hijo movido.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Los desacuerdos no deseados ocurren cuando un padre <strong>(B)</strong> es
+    disminuido al mover un hijo <strong>(E)</strong> a otra parte del árbol taxonómico,
+    resultando en que los IDs existentes del padre sean interpretados
+    como desacuerdos con los IDs existentes del hijo movido.
   classification: Clasificación
   clear: Limpiar
   clear_filters: Elimina los filtros
@@ -745,6 +866,9 @@ es-MX:
   committed_taxon_changes_cannot_be_deleted: No se pueden eliminar los cambios en los taxones
   #Status message while a taxon change is being committed
   committing: Guardando...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Realizarlo puede provocar desacuerdos no intencionados. Analízalos primero, lo que puede tardar un tiempo.
   common_name: Nombre común
   community: Comunidad
   community_curated: Curadas por la comunidad
@@ -1757,6 +1881,12 @@ es-MX:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Horas para ajustar:"
   however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Sin embargo, puedes comentar sobre las observaciones con desacuerdos no deseados
+    enlazados aquí para alertar a los identificadores de que el enfoque de %{old_parent}
+    fue disminuido.
   i_dont_know_but_i_am_sure_this_is_taxon: No lo sé, pero estoy seguro de que es %{taxon}
   icon: Ícono
   icon_size: Tamaño del icono
@@ -1770,6 +1900,10 @@ es-MX:
         Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón de la comunidad.
       maverick: |
         El taxón no desciende o es antepasado del taxón de la comunidad, es decir que la comunidad no está de acuerdo con este taxón.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "ID 2 del taxón <strong>E</strong> será un desacuerdo no deseado con la ID 1 del taxón <strong>B</strong> después del cambio de ancestros"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 del taxón <strong>E</strong> será un desacuerdo no deseado con la ID 1 del taxón <strong>B</strong> después del cambio de taxon"
   id_withdrawn: Identificación retirada
   ids_by_taxon: Identificación por taxón
   identify: Identificación
@@ -1800,6 +1934,16 @@ es-MX:
   ids_made_for_others: Identificaciones hechas para otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Si disminuir a un padre resulta en más de 10 desacuerdos no deseados, debes dividir al padre después de mover al hijo para reemplazar las identificaciones existentes de
+    el padre <strong>(B)</strong> con identificaciones que no están en desacuerdo.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Si disminuir a un padre resulta en más de 10 desacuerdos no deseados, debes dividir al padre después de cambiar al hijo para reemplazar las identificaciones existentes de
+    el padre <strong>(B)</strong> con identificaciones que no están en desacuerdo.
   if_matches_come_from_a_comprehensive_list: Si los resultados provienen de una lista exhaustiva, una barra verde se mostrará.
   if_this_is_a_scientific_name: Si este es un nombre científico ¿Está aceptado actualmente?
   if_this_link_will_apply_to_descendant: Si este enlace se va aplicar a los grupos descendientes, puedes usar las etiquetas de la plantilla para completar el nombre de la especie o grupo en el URL.
@@ -1893,6 +2037,7 @@ es-MX:
     visible públicamente. \ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, 
     <a href="mailto:%{help_email}" class="contact">contáctanos </a>.
     <a href="%{manage_flags_path}">Administra advertencias</a>
+  jobs: Empleos
   join: '¡Únete a'
   join_and_add_an_observation_to_project_html: Únete y añade una observación a %{project}
   join_project: Únete a este proyecto
@@ -2391,6 +2536,9 @@ es-MX:
   most_observed_introduced_species: Especies introducidas más observadas
   most_observed_threatened_species: Especies amenazadas más observadas
   move_input_children_to_output?: '¿Mover a los descendientes al output?'
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Mover %{child} fuera de %{old_parent} reduciría lo que entendemos por
+    %{old_parent}. Hay %{id_count} IDs de %{old_parent}.
   multiple: Múltiple
   multiple_select_option: '--- Múltiple ---'
   multiple_taxa_for_taxon_change: "Más de una especie o grupo (entrada de datos para intercambiar/mezclar, salida de datos para separar)"
@@ -4435,6 +4583,8 @@ es-MX:
   the_world_is_full_of_interesting_places: |
     l mundo está lleno de lugares interesantes, cada uno lleno de formas de vida raras y maravillosas. Algunas viven al otro lado del mundo, mientras que otras viven ¡a la vuelta de la esquina! %{site_name} Lugares te deja explorar la vida alrededor del planeta ¡Empieza a explorar!
   then_keybord_sequence: después
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: No hay IDs actuales de ningún taxón padre potencialmente reducido.
   there_are_x_synonyms_html:
     one: "Hay <span class='count'>1</span> sinónimo</span>"
     other: "Hay <span class='count'>%{count}</span> sinónimos</span>"
@@ -4455,6 +4605,8 @@ es-MX:
   there_were_some_problems_with_fields: "Hubo algunos problemas con los siguientes campos:"
   there_were_some_problems_with_these_files: "Hubo algunos problemas con estos archivos:"
   theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no podemos determinar la relación entre cualquier taxón interno y externo
+  therefore_committing_additional_taxon_changes: Por lo tanto, no será necesario realizar cambios adicionales en los taxones después de haber realizado este intercambio de taxones.
+  therefore_committing_taxon_changes: Por lo tanto, no es necesario realizar cambios en los taxones después de este cambio de ascendencia.
   these_are_items_people_on: |
     Son contenidos que la gente a puesto como advertencia para curación. Contenidos de spam serán borrados y el usuario que lo puso debería ser suspendido (ve a la pagina de su perfil y en la parte inferior izquierda selecciona el enlace "suspender usuario" para que ya no pueda entrar al sitio). Otro tipo de contenidos como que sea ilegal, engañoso, racial, étnico, etc, deberán ser borrados y respondidos con un comentario de una manera atenta. Gente que repita estos comentarios deberán ser reportados a
   these_are_taxa_that: |
