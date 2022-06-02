@@ -108,18 +108,32 @@ es-MX:
   x_taxa:
     one: "taxón"
     other: "taxones"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> especie o grupo observado"
+    other: "<span class='count'>%{count}</span> especies o grupos observados"
   x_research_grade_observations_html:
     one: "<span class='count'>1</span> observación con grado de investigación</span>"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación</span>"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> observación con grado de investigación identificada a especie o subespecie</span>"
+    other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o subespecie</span>"
   x_sounds:
     one: "sonido"
     other: "sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón revisado"
     other: "<span class='count'>%{count}</span> taxones revisados"
+  x_taxa_matching_current_filters:
+    one: "1 especie o grupo con los filtros seleccionados"
+    other: "%{count} especies o grupos con los filtros seleccionados"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> cambio taxonómico agregado"
+    other: "<span class='count'>%{count}</span> cambios taxonómicos agregados"
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: "% identificados"
   a_community_for_naturalist: Una comunidad para Naturalistas
+  a_default_taxon_name_will_automatically_created: |
+    Se creará un nombre predeterminado para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos obsoletos, etc.)
   a_flag_for_x: "una advertencia para %{x}"
   a_member_of_taxon_html: "un miembro de %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -250,6 +264,8 @@ es-MX:
   add_another_photo: Añade otra foto
   add_another_section: Añade otra sección
   add_another_subscription: Añade otra suscripción
+  #Project assets are files associated with projects, e.g. image files for a custom header
+  add_asset: Añade Recurso de Proyecto
   add_batch: Añade un grupo
   add_blocked_users: Agregar usuarios bloqueados
   #Tool tip for a button that adds bold text to a text area
@@ -257,11 +273,13 @@ es-MX:
   add_comma_separated_tags: "Añade etiquetas separadas por comas"
   add_comment: Añade un comentario
   add_conservation_status: Añade estado de conservación
+  add_custom_project_fields: Añadir Campos de Proyecto personalizados
   add_edit_flags: Agrega/edita Advertencias
   add_editor: Agrega Editor
   add_description: "Añade %{description_name}"
   add_from_your_observations: Añade de tus observaciones
   add_link: Añade enlace
+  add_higher_level_taxon: Añade un taxón de nivel superior (por ejemplo, "aves")
   add_id: Añade ID
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Añadir texto en cursivas
@@ -321,7 +339,9 @@ es-MX:
   add_tags: Añade etiquetas
   add_tags_to_selected_taxa: Añade las etiquetas al taxa seleccionado
   add_taxa: Añade taxones
+  add_taxon_batch_to: "Añade un grupo de Taxa a %{list}"
   add_taxon_range: Añade la distribución del taxón
+  add_taxonomic_tags_to: "Añade etiquetas taxonómicas a las fotos seleccionadas de Flickr &raquo;"
   add_to_a_scheme: Añade a un esquema
   add_to_a_project: Añade a un proyecto
   add_to_calendar: Añade al calendario
@@ -330,12 +350,29 @@ es-MX:
   add_to_list: Añade a la lista
   add_to_project: Añade al proyecto
   add_to_your_list: Añade a tu lista
+  add_your_email_to_get: |
+    Añade tu correo electrónico para recibir comentarios de la comunidad sobre tu observación.
+    Si prefieres no compartirlo, ¡por favor regresa pronto a revisar!
   add_your_own_observations_at: "Añadir tus propias observaciones al %{site_name}"
   added: Añadido
   added!: '¡Añadido!'
+  added_as_a_part_of_a_taxon_change_html: |
+    Añadido como parte de un 
+    <a target="%{target}" class="%{class}" href="%{url}">cambio de taxón</a>
+  added_as_a_part_of_a_taxon_merge_html: |
+    Añadido como parte de una 
+    <a target="%{target}" class="%{class}" href="%{url}">combinación de taxa</a>
+  added_as_a_part_of_a_taxon_split_html: |
+    Añadido como parte de una 
+    <a target="%{target}" class="%{class}" href="%{url}">división de taxa</a>
+  added_as_a_part_of_a_taxon_swap_html: |
+    Añadido como parte de un 
+    <a target="%{target}" class="%{class}" href="%{url}">intercambio de taxa</a>
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} en %{date}"
   added_on_datetime: "Añadido el %{datetime}"
+  added_to_favorites_html: |
+    Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo"
   adjust_brightness: Ajusta el brillo
   admin: Administrador
@@ -348,6 +385,7 @@ es-MX:
   agree?: '¿Estás de acuerdo?'
   agree_with_current_taxon: De acuerdo con la especie o grupo
   agreeing: De acuerdo...
+  aka: Alias
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Todo
@@ -360,6 +398,11 @@ es-MX:
   all_places: "Todos los lugares"
   all_projects: Todos los proyectos
   all_rank_added_to_the_database:
+    phylum: Se añadieron todos los filos a la base de datos
+    subphylum: Se añadieron todos los subfilos a la base de datos
+    superclass: Se añadieron todas las superclases a la base de datos
+    class: Se añadieron todas las clases a la base de datos
+    subclass: Se añadieron todas las subclases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
     superorder: Se añadieron todos los superórdenes a la base de datos
     order: Se añadieron todos los órdenes a la base de datos
@@ -431,6 +474,12 @@ es-MX:
     x_arachnida:
       one: "1 arácnido"
       other: "%{count} arácnidos"
+    x_fungi:
+      one: "1 hongo"
+      other: "%{count} hongos"
+    x_chromista:
+      one: "1 alga parda y parientes"
+      other: "%{count} algas pardas y parientes"
     x_protozoa:
       one: "1 protozoario"
       other: "%{count} protozoarios"
@@ -443,6 +492,9 @@ es-MX:
   all_updates: Todas las actualizaciones
   allow_curator_access: Permite acceso al curador
   allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordinadas privadas
+  allowed_establish_means_values: Valores permitidos para los medios de establecimiento
+  allowed_html: Etiquetas permitidas de HTML
+  allowed_occurrence_status_values: Valores permitidos para los estatus de ocurrencia
   allowed_values: Valores permitidos
   almost_there_: Casi llegas al final...
   alphabetical: Orden alfabético
@@ -587,7 +639,40 @@ es-MX:
   are_you_sure_you_want_to_delete_this_assessment?: '¿Estás seguro que quieres borrar esta evaluación?'
   are_you_sure_you_want_to_delete_this_photo?: '¿Estás seguro de que quieres eliminar esta foto?'
   are_you_sure_you_want_to_delete_this_post: '¿Estás seguro que quieres borrar esta nota?'
+  are_you_sure_you_want_to_delete_this_taxon_change: '¿Estás seguro que quieres borrar este cambio taxón?'
   are_you_sure_you_want_to_remove_all_tags: '¿Estás seguro que deseas eliminar todas las etiquetas?'
+  are_you_sure_you_want_to_remove_curator: '¿Estás seguro que deseas quitar a %{user} como curador?'
+  are_you_sure_you_want_to_remove_from_project: '¿Estás seguro que deseas quitar a %{user} del proyecto?'
+  are_you_sure_you_want_to_remove_manager: '¿Estás seguro que deseas remover a %{user} como gerente?'
+  are_you_sure_you_want_to_remove_spammer: |
+    ¿Estás seguro de que consideras que este usuario es honorable?
+    Se resolverán las banderas de spam de su contenido.
+  are_you_sure_you_want_to_remove_these_x_taxa?: "¿Estas seguro que quieres eliminar estos %{x} taxa?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    ¿Estás seguro de que quieres eliminar esta observación de %{project}?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Estás seguro que deseas quitar a esta especie o grupo de la lista de comprobación de %{place}?"
+  associated_observations: Observaciones asociadas
+  associated_taxa: Taxa asociados
+  attention: Atención
+  you_sure_delete_list: '¿Estás seguro que quieres borrar esta lista?'
+  you_sure_delete_taxon_from_list?: "¿Estás seguro que quieres quitar al %{taxon} de la lista?"
+  asc: Ascendente
+  ascending: ascendente
+  assessment: evaluación
+  assessment_has_benn_completed: La evaluación ha sido completada
+  assessment_sections: Secciones de evaluación
+  assessment_was_deleted: La evaluación fue eliminada.
+  assessment_was_successfully_created: La evaluación fue creada satisfactoriamente.
+  assessment_was_successfully_updated: La evaluación fue actualizada satisfactoriamente.
+  assessment_x: "Evaluación de %{assessment}"
+  assessments: Evaluaciones
+  associations: Asociaciones
+  atlased: Con Atlas
+  atlas_for_taxon_html: Atlas para %{taxon}
+  #As in the Atom Syndication Format:
+  #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
+  #an Atom representation of the content shown on the current page
+  atom: Atom
   attached_taxon: Taxón adjunto
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -596,6 +681,31 @@ es-MX:
   authority_list:
     iucn_red_list: Lista Roja UICN
     natureserve: NatureServe
+    cites: CITES
+  authorize: Autoriza
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Autorizar con PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Usa <code>%{code_challenge}</code> como
+    <code>%{code_verifier_param}</code>) Nota: este es un ejemplo básico. En el código de producción, DEBES usar <code>%{code_challenge_method}</code> y mezclar correctamente 
+    el <code>%{code_challenge_param}</code>.
+  authorize_permissions_from_provider: "Autoriza permisos de %{provider}"
+  automatic_short: Autom.
+  automatically_add_observations_to_this_project: Añade observaciones automáticamente a este proyecto
+  automatically_update_my_content_for_taxon_changes: Actualiza mi contenido automáticamente cuando exista un cambio
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Promedio
+  back: Regresar
+  back_to_applications: "&laquo; Volver a aplicaciones"
+  back_to_all_species: De regreso a Todas las especies
+  back_to_editing_observation: Regresar a editar la observación
+  back_to_friends: De regreso a amigos
+  back_to_flags_html: "&laquo; Regresa a las advertencias"
   back_to_lists: "Regresar a las listas %{name}"
   back_to_observation: Regresar a la observación
   back_to_observation_fields: De regreso a los campos de observación
@@ -1302,6 +1412,7 @@ es-MX:
   default: Predeterminada
   #Default option
   default_: Predeterminada
+  default_display_time_zone: Zona horaria predeterminada
   default_invite_comment: "¡Excelente foto! Debes subirla a  %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Licencia predeterminada de observación
   default_photo_license: Licencia predeterminada de foto
@@ -1309,6 +1420,9 @@ es-MX:
   default_search_place_description: |
     Este será tu lugar predeterminado para todas las búsquedas en "Explora".
   default_sound_license: Licencias de sonido predeterminadas
+  default_time_zone_desc: |
+    Esta es la zona horaria por defecto. La zona horaria final se asignará basada en
+    la ubicación de la observación cuando se guarde.
   defaults_to_your_name_or_username: Por defecto es su nombre o nombre de usuario
   defines_a_taxon_framework_for: Define un marco de referencia del taxón para %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Define un Marco de Taxones para %{taxon} cuya fuente es %{source}
@@ -2962,6 +3076,7 @@ es-MX:
     observe_panel_title: Empieza añadiendo observaciones
     observe_panel_body_p1_local: Por si necesitas inspiración, aquí hay algunas especies que se observan a través de la sitio...
     observe_panel_body_p1_global: Por si necesitas inspiración, aquí hay algunas especies que se observan a través de la sitio...
+    observe_panel_body_p2: Ahora sal al campo y observa a alguna especie u organismo. Escoge algo silvestre y toma una foto clara que lo enfoque en su totalidad. Si ya tienes una foto de algo silvestre, puedes <a href="%{new_observation_path}">subirla</a>. También puedes utilizar las aplicaciones móviles de %{site_name} para compartir tus observaciones con la comunidad.
     observe_panel_body_p3: Aquí, se actualizará el contenido acerca de tus observaciones de la comunidad en forma de comentarios o identificaciones. ¡Podrías descrubir una nueva especie!
     follow_panel_title_local: Sigue a algunos NaturaListas cera de ti
     follow_panel_title_global: Sigue a algunos NaturaListas activos
@@ -3148,6 +3263,25 @@ es-MX:
     Permito a iNaturalist almacenar y procesar ciertos tipos de
     información personal acerca de mi hijo/a para administrar la cuenta de este/a
   data_transfer_consent_desc_title: Sobre el Consentimiento de Transferencia de Información Personal
+  data_transfer_consent_desc_html: |
+    <p>
+    Algunas leyes de privacidad de datos, como la Regulación General de Protección de Datos (RGPD) de la Unión Europea, requieren del consentimiento explícito para transferir información personal de sus jurisdicciones a otras jurisdicciones donde la protección legal de esta información no se considera adecuada. Desde que en <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, la Unión Europea ya no considera que los Estados Unidos brinden una protección legal adecuada a la información, especialmente debido a la posibilidad de que el gobierno de los EE. UU. vigile los datos que ingresan a los EE. UU. Es posible que otras jurisdicciones tengan la misma opinión.
+    </p>
+    <p>
+    El uso de iNaturalist requiere el almacenamiento de información personal como su dirección de correo electrónico, todos los datos de iNaturalist se almacenan en los Estados Unidos y no podemos estar seguros sobre la jurisdicción legal de donde se encuentra cuando usa iNaturalist, por lo que, para cumplir con las leyes de privacidad como el RGPD, debe indicar que comprende y acepta este riesgo y da su consentimiento para transferir su información personal a los servidores de iNaturalist en los EE. UU.
+    </p>
+    <p>
+    Para obtener más información sobre qué información recopilamos y cómo la utilizamos,
+    consulte nuestra <a href='%{privacy_url}' target='_blank'>Política de privacidad</a> y nuestras <a href='%{terms_url}' target='_blank'>Términos de uso</a> .
+    </p>
+    <p>
+    No hay forma de tener una cuenta de iNaturalist sin almacenar información personal, por lo que la única forma de revocar este consentimiento es eliminar su cuenta.
+    </p>
+  data_transfer_consent_label: |
+    Yo conciento que mi información personal se transfiera a los Estados Unidos de América
+  data_transfer_consent_child_label: |
+    Yo Conciento que la información personal de mi hijo se transfiera a los
+    Estados Unidos de América
   pin_verb: Anclar
   pink: Rosa
   pinned_locations_desc: |
@@ -3969,6 +4103,8 @@ es-MX:
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
+  result_window_too_large_error: |
+    El número de páginas por número de resultados por página no puede exceder de 10,000. Intente aplicar filtros para reducir el número de resultados.
   review_all: Revisar todas
   review_identifications_of_taxon_html: |
     Revisar identificaciones de <span class="sciname">%{taxon}</span> %{taxon_id}
@@ -4668,6 +4804,124 @@ es-MX:
   threatened: en riesgo
   time_: Tiempo
   time_ago: "hace %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Hora de Sudáfrica
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Hora del Este de África
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Hora de Argentina
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Hora de Colombia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Hora Central (Estados Unidos y Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Hora del Pacífico (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Hora de las Montañas (Estados Unidos y Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Hora de Guatemala
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Hora Standard del Atlántico (Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Hora de Bolivia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Hora de Perú
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Hora del Pacífico (Estados Unidos y Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Hora central (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Hora del Este (Estados Unidos y Canadá)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Hora de Arizona
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Hora de Chile Continental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Hora de Brasília
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Hora del Pacífico (México)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Hora Estándar de Arabia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Hora de Indochina
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hora de Hong Kong
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Hora de Indonesia Occidental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Hora Estándar de Israel
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Hora Estándar de India
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Hora de Krasnoyarsk
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Hora Estándar de China
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Hora Estándar de Singapur
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Hora de Taiwán
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Hora Estándar de Japón
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Hora de Yekaterinburgo
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Hora de Adelaida
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Hora de Brisbane
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Hora de Melbourne
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Hora de Perth
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Hora de Sydney
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Hora del Este de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Hora del Este de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Hora de Turquía
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Hora del Este de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Hora del Oeste de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Hora del Oeste de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Hora de Moscú
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Hora del Este de Europa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Hora Central Europea
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Hora de Samoa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Hora de Nueva Zelanda
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hora de Hawaii y las islas Aleutianas
   #As in the title of a book or a blog post
   title: título
   title_and_description: "Título y descripción"
@@ -7335,6 +7589,9 @@ es-MX:
         source_id: ID fuente
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID de la relación del marco taxonómico
         wikipedia_summary: Resumen de wikipedia
         wikipedia_title: Título de wikipedia
       taxon_name:
@@ -7350,6 +7607,8 @@ es-MX:
         login: Nombre de usuario
         name: Nombre
         locale: Localidad
+        time_zone: Zona horaria
+        search_place_id: Busca lugares
         place_id: Lugar
         preferred_observation_fields_by: Permite campos de observación de
     errors:
@@ -7401,6 +7660,11 @@ es-MX:
               relative_uri: "debe ser un URI absoluto."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                no puede ser acerca de observaciones duplicadas; solo el observador puede
+                eliminar duplicados, así que por favor dirígele tus observaciones
+                directamente con un comentario
             user_id:
               already_flagged: "Ese elemento ya tiene advertencia"
         guide:
