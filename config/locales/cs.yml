@@ -323,6 +323,8 @@ cs:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Můžete si vybrat sdílení skrytých souřadnic pro
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: O nezamýšlených neshodách
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -644,6 +646,10 @@ cs:
   alphabetical_order: Abecední pořadí
   already_have_an_account_log_in_html: Máte již účet? <strong> Přihlášení. </strong>
   amphibians: obojživelníci
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analyzovat nezamýšlené neshody
   analyze_ids: Analyzovat ID
   ancestor_taxon: Předek taxonu
   and: a
@@ -876,6 +882,16 @@ cs:
   batch_operations: Hromadné operace
   be_the_first_to_fave_this_observation: Buďte první, komu se toto pozorování líbí!
   because_of: kvůli
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Protože odhadujeme, že tato změna bude mít za následek více než 10 nezamýšlených
+    neshod, <strong>doporučujeme také provést změnu taxonu zahrnující
+    %{old_parent}, například rozdělení %{new_parent} na %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Protože odhadujeme, že tato změna bude mít za následek 10 nebo méně nezamýšlených
+    neshod, <strong>pravděpodobně není nutné provést změnu taxonu
+    zahrnující %{old_parent}</strong>.
   become_a_donor_caps: STAŇTE SE DÁRCEM
   become_a_donor_today_caps: STAŇTE SE DÁRCEM JEŠTĚ DNES
   before_importing_photos: před importováním fotek
@@ -1071,6 +1087,9 @@ cs:
   committed_taxon_changes_cannot_be_deleted: Provedené změny taxonu nelze odstranit
   #Status message while a taxon change is being committed
   committing: Commituji...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Odeslání může vést k nezamýšleným neshodám, prosím nejprve je analyzujte, což může chvíli trvat.
   common_name: Obecný název
   community: Komunita
   community_curated: Komunitní organizace
@@ -2106,6 +2125,12 @@ cs:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hodiny k úpravě:"
   however_there_were_some_issues: "Objevily se však nějaké problémy: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Možná budete chtít komentovat pozorování s nezamýšlenými
+    neshodami, na které je odkazováno výše, abyste identifikátory upozornili, že rozsah %{old_parent}
+    byl zúžen.
   i_dont_know_but_i_am_sure_this_is_taxon: Nevím, ale jsem si jistý/á, že toto je %{taxon}
   icon: Ikona
   icon_size: Velikost ikony
@@ -2119,6 +2144,10 @@ cs:
         První návrh tohoto taxonu, s nímž komunita následně souhlasila. Toto pomohlo komunitní taxon vylepšit.
       maverick: |
         Taxon není následník ani předchůdce komunitního taxonu, komunita tedy s tímto taxonem nesouhlasí.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "ID 2 taxonu <strong>E</strong> povede k nezamýšlenému nesouhlasu s ID 1 taxonu <strong>B</strong> po změně předků"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 taxonu <strong>E</strong> povede k nezamýšlenému nesouhlasu s ID 1 taxonu <strong>B</strong> po výměně taxonu."
   id_withdrawn: ID odebráno
   ids_by_taxon: ID podle taxonu
   identify: Identifikovat
@@ -2905,6 +2934,7 @@ cs:
   no_more_taxa_to_load: Žádné další taxony k nahrání!
   no_more_results_found: Žádné další nalezené výsledky
   no_new_messages: Žádné nové zprávy
+  no_new_parent_specified: Nebyl zadán žádný nový rodič
   no_observations: žádná pozorování
   no_observations_from_this_place_yet: Zatím žádná pozorování z tohoto místa.
   no_observations_matching_those_ids: Žádná pozorování odpovídající těmto ID.
@@ -3164,6 +3194,7 @@ cs:
     observe_panel_title: Začněme odesláním nějakých pozorování
     observe_panel_body_p1_local: Hledáte inspiraci? Zde najdete několik organismů, které jsou pozorovány v okolí...
     observe_panel_body_p1_global: Hledáte inspiraci? Zde najdete několik organismů, které jsou pozorovány...
+    observe_panel_body_p2: Běžte ven a pozorujte individuální organismus. Vyberte si něco v přírodě a udělejte dobrou fotku v plné velikosti. Pokud už fotku něčeho z přírody máte, <a href="%{new_observation_path}">přidejte ji teď</a>. K nahrání pozorování také můžete použít mobilní aplikace %{site_name}.
     observe_panel_body_p3: Až svá pozorování nasdílíte, tato stránka vám zobrazí aktualizace z komunity v podobě komentářů a identifikací. Kdo ví, co objevíte?!
     follow_panel_title_local: Sledovat přírodovědce ve svém okolí
     follow_panel_title_global: Sledovat aktivní přírodovědce
@@ -4860,6 +4891,8 @@ cs:
   the_world_is_full_of_interesting_places: |
     Na světě je spousta zajímavých míst a každé z nich je plné zvláštních a úžasných forem života. Některé jsou na druhém konci světa, zatímco jiné jsou ve vaší ulici! %{site_name} Místa vám umožní procházet život na celé planetě. Začněte objevovat!
   then_keybord_sequence: potom
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Neexistují žádné ID žádného potenciálně menšího nadřazeného taxonu.
   there_are_x_synonyms_html:
     one: "Tady je <span class='count'>1</span> synonym</span>"
     few: "Tady jsou <span class='count'>%{count}</span> synonym</span>"
@@ -4882,6 +4915,8 @@ cs:
   there_were_some_problems_with_fields: "Nastaly problémy u následujících polí:"
   there_were_some_problems_with_these_files: "Vyskytly se problémy s těmito soubory:"
   theres_something_wrong_with_taxon_framework_relationship: Je je špatně - nemůžeme určit vztah mezi jakýmkoliv vnitřním a vnějším taxonem
+  therefore_committing_additional_taxon_changes: Proto nebude nutné provést další změny v taxonu po provedení výměny taxonu.
+  therefore_committing_taxon_changes: Proto není nutné zavádět změny v taxonech po této změně.
   these_are_items_people_on: |
     Toto jsou položky, které lidé na stránce označili ke správě. Spamové komentáře by měly být smazány a uživatelé, kteří spamy vkládají, by měli být vyloučeni (jděte na jejich profil a klikněte na „Vyloučit uživatele“ vpravo dole, aby se nemohl přihlásit). Ostatní označené položky by měly být smazány pouze tehdy, jsou-li očividně nenávistné, nelegální atd. Nezdvořilost, útočný jazyk atd. by se měly řešit zdvořilým komentářem. Ti, kdo se těchto porušení pravidel doupouštějí opakovaně, by měli být nahlášeni správci stránky nebo %{email}
   these_are_taxa_that: |
@@ -5043,6 +5078,26 @@ cs:
   time_zone_europe_madrid: Středoevropský čas
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: Moskevský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Východoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Středoevropský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoaský Time
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Novozélandský čas
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havajsko-aleutský čas
   #As in the title of a book or a blog post
   title: název
   title_and_description: "Název a popis"
@@ -7898,6 +7953,11 @@ cs:
               relative_uri: "musí být absolutní URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                nemůže být o duplicitních pozorováních; pouze pozorovatel může
+                odebrat duplicity, proto se prosím obraťte s komentářem
+                přímo na něj
             user_id:
               already_flagged: "již označil tuto položku"
         guide:
