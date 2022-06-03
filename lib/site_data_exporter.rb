@@ -390,6 +390,11 @@ class SiteDataExporter
       partition_filters << {
         range: { id: { gte: partition.min, lte: partition.max } }
       }
+      partition_total_entries = Observation.elastic_search( base_es_params.merge( filters: partition_filters, per_page: 0 ) ).total_entries
+      if partition_total_entries <= 0
+        puts "[#{Time.now}] Partition #{partition.min}-#{partition.max} is empty"
+        next
+      end
       min_id = 0
       obs_i = 0
       loop do
@@ -407,9 +412,6 @@ class SiteDataExporter
         if observations.size.zero?
           puts "Observation batch #{partition.min}-#{partition.max} empty, moving on..." if @options[:verbose]
           break
-        end
-        if obs_i.zero?
-          partition_total_entries = observations.total_entries
         end
         if @options[:verbose]
           msg = "[#{Time.now}] "
