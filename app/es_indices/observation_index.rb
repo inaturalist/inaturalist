@@ -636,8 +636,9 @@ class Observation < ApplicationRecord
 
     # Place searches require special handling if the user is asking for their
     # own observations
+    params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
-      if p[:viewer] && p[:user_id] && p[:viewer].id == p[:user_id].to_i
+      if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
         search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
@@ -650,7 +651,7 @@ class Observation < ApplicationRecord
 
     unless p[:not_in_place].blank?
       place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
-      inverse_filters << if p[:viewer]&.id == p[:user_id].to_i
+      inverse_filters << if ( params_user_ids.size == 1 && p[:viewer]&.id == params_user_ids[0] )
         { terms: { "private_place_ids.keyword" => place_ids } }
       else
         { terms: { "place_ids.keyword" => place_ids } }
