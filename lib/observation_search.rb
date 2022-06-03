@@ -380,8 +380,9 @@ module ObservationSearch
       users = [p[:user_id].to_s.split( "," )].flatten.map do | user_id |
         candidate = user_id.to_s.strip
         User.find_by_id( candidate ) || User.find_by_login( candidate )
-      end
+      end.compact
       p[:user_id] = users.blank? ? nil : users.map(&:id)
+      p[:user_id] = p[:user_id].first if p[:user_id].is_a?( Array ) && p[:user_id].size == 1
 
       unless p[:user_id].blank? || p[:user_id].is_a?(Array)
         p[:user] = User.find_by_id(p[:user_id])

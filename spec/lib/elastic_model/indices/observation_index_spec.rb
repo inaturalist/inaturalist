@@ -397,10 +397,11 @@ describe "Observation Index" do
     end
 
     it "filters by user and user_id" do
-      expect( Observation.params_to_elastic_query({ user: 1 }) ).to include(
-        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
-      expect( Observation.params_to_elastic_query({ user_id: 1 }) ).to include(
-        filters: [ { terms: { "user.id.keyword" => [ 1 ] } } ] )
+      user = create :user
+      expect( Observation.params_to_elastic_query({ user: user.id }) ).to include(
+        filters: [ { term: { "user.id.keyword" => user.id } } ] )
+      expect( Observation.params_to_elastic_query({ user_id: user.id }) ).to include(
+        filters: [ { term: { "user.id.keyword" => user.id } } ] )
     end
 
     it "filters by taxon_id" do
