@@ -291,6 +291,8 @@ ru:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Вы можете выбрать, с кем готовы делиться крытыми координатами
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: О непредусмотренных разногласиях
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -613,6 +615,10 @@ ru:
   alphabetical_order: В алфавитном порядке
   already_have_an_account_log_in_html: Уже есть учётная запись? <strong>Войдите.</strong>
   amphibians: земноводные
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Анализ непредусмотренных разногласий
   analyze_ids: Анализ идентификаций
   ancestor_taxon: Таксон-предок
   and: и
@@ -843,6 +849,12 @@ ru:
   batch_operations: Пакетные Операции
   be_the_first_to_fave_this_observation: Будьте первым, кто добавил это наблюдение в фавориты!
   because_of: поскольку
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Поскольку, по нашим оценкам, это изменение приведет к более чем 10 непредусмотренным разногласиям, <strong>мы рекомендуем вам также ввести изменения таксонов, связанные с %{old_parent}, например, отделить %{new_parent} от %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Поскольку, по нашим оценкам, это изменение приведет к 10 или менее непредусмотренным разногласиям, <strong> вероятно, нет необходимости фиксировать изменение таксона, включающее %{old_parent}</strong>.
   become_a_donor_caps: СТАНЬТЕ СПОНСОРОМ
   become_a_donor_today_caps: СТАНЬТЕ СПОНСОРОМ СЕГОДНЯ
   before_importing_photos: прежде чем импортировать фото
@@ -965,6 +977,8 @@ ru:
   change_your_password: Изменить пароль
   #Plural noun, as in changes to a taxon record over time
   changes: Изменения
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Изменение предка на этого родителя может привести к непредусмотренным разногласиям, пожалуйста, сначала проанализируйте их, что может занять некоторое время.
   changing_the_geoprivacy: 'Изменение настройки приватности местоположения влияет на то, могут ли другие люди видеть место вашего наблюдения.'
   check_above_for_errors: Проверьте указанное выше на наличие ошибок
   check_back_soon: Возвращайтесь в ближайшее время!
@@ -1002,6 +1016,12 @@ ru:
   choose_what_kind_of_change_youre_creating: "Выберите, какие изменения вы создаете."
   cid_d_to_genus: Идентифицированные сообществом до рода
   citation: Цитата
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Непредусмотренные разногласия возникают, когда родительский элемент <strong>(B)</strong> установится тоньше при перемещении дочернего элемента <strong>(E)</strong> в другую часть таксономического дерева, в результате чего существующие идентификаторы родительского элемента интерпретируются как разногласия с существующими идентификаторами перемещенного дочернего элемента.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Непредусмотренные разногласия возникают, когда родительский элемент <strong>(B)</strong> уменьшается путем замены дочернего элемента <strong>(E)</strong> на другую часть таксономического дерева, в результате чего существующие идентификаторы родительского элемента интерпретируются как разногласия с существующими идентификаторами заменяемого дочернего элемента.
   classification: Классификация
   clear: очистить
   clear_filters: Очистить фильтры
@@ -1040,6 +1060,9 @@ ru:
   committed_taxon_changes_cannot_be_deleted: Задействованные изменения таксонов удалить нельзя.
   #Status message while a taxon change is being committed
   committing: В процессе выполнения...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Подтверждение может привести к непреднамеренным разногласиям, пожалуйста, сначала проанализируйте их, что может занять некоторое время.
   common_name: Народное название
   community: Сообщество
   community_curated: Управляется сообществом
@@ -2051,6 +2074,10 @@ ru:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Часы регулировки:"
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Тем не менее, вы можете прокомментировать наблюдения с непредусмотренными разногласиями, связанными выше, чтобы предупредить экспертов о том, что область действия %{old_parent} была уменьшена.
   i_dont_know_but_i_am_sure_this_is_taxon: Я не знаю, но уверен, что это таксон %{taxon}
   icon: Иконка
   icon_size: Размер иконки
@@ -2064,6 +2091,10 @@ ru:
         Первое предложение этого таксона, с которым сообщество согласилось. Это помогло уточнить таксон сообщества.
       maverick: |
         Таксон не является потомком или предком таксона сообщества, т.е. сообщество не согласно с этим таксоном.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "Идентификатор 2 таксона <strong>E</strong> будет непредусмотренным расхождением с идентификатором 1 таксона <strong>B</strong> после изменения предков"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "Идентификатор 2 таксона <strong>E</strong> будет непредусмотренным расхождением с идентификатором 1 таксона <strong>B</strong> после замены таксона"
   id_withdrawn: Отзыв идентификации
   ids_by_taxon: Идентификации по таксону
   identify: Идентифицируйте
@@ -2094,6 +2125,14 @@ ru:
   ids_made_for_others: Идентификации, сделанные для других
   if_for_some_reason_a_user_doesnt_agree: |
     Если по какой-то причине вы не согласны с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает, что ваше наблюдение может перейти на  исследовательский уровень только тогда, когда сообщество соглашается с вами.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Если утоньшение родительского элемента приводит к более чем 10 непредусмотренным разногласиям, вам следует разделить родительский элемент после перемещения дочернего элемента, чтобы заменить существующие идентификации родительского элемента <strong>(B)</strong> не противоречаимыми идентификациями
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Если утоньшение родительского элемента приводит к более чем 10 непредусмотренным разногласиям, вы должны разделить родительский элемент после удаления дочернего элемента, чтобы заменить существующие идентификации родительского элемента <strong>(B)</strong> не противоречащими идентификациями.
   if_matches_come_from_a_comprehensive_list: Если совпадения взяты из полного списка, здесь отобразится зеленая полоса.
   if_this_is_a_scientific_name: Если это научное название, является ли оно в настоящее время общепринятым?
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам, можно использовать теги шаблона для вставки наименования таксона в URL
@@ -2186,6 +2225,7 @@ ru:
     Это помечено как спам и больше не является общедоступным. Вы можете видеть это, потому что вы это создали или же вы куратор сайта. Если вы считаете, что это ошибка, пожалуйста,
     <a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>.
     <a href="%{manage_flags_path}">Управление флагами</a>
+  jobs: Вакансии
   join: Присоединиться
   join_and_add_an_observation_to_project_html: Присоединиться и добавить наблюдение к %{project}
   join_project: Присоединиться к этому проекту
@@ -2674,6 +2714,8 @@ ru:
   most_observed_introduced_species: Наиболее наблюдаемые интродуцированные виды
   most_observed_threatened_species: Наиболее наблюдаемые виды, находящиеся под угрозой исчезновения
   move_input_children_to_output?: Переместить потомков на выход?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Перемещение %{child} из %{old_parent} сузило бы то, что мы подразумеваем под %{old_parent}. Существуют идентификации %{id_count} %{old_parent}.
   multiple: множественный
   multiple_select_option: '-- множественный --'
   multiple_taxa_for_taxon_change: "Несколько таксонов (ввод для замены/слияния, вывод для разделения)"
@@ -2835,6 +2877,7 @@ ru:
   no_more_taxa_to_load: Больше нет таксонов для загрузки!
   no_more_results_found: Больше ничего не найдено
   no_new_messages: Нет новых сообщений
+  no_new_parent_specified: Не задан новый предок
   no_observations: Нет наблюдений
   no_observations_from_this_place_yet: Пока нет наблюдений в этом месте.
   no_observations_matching_those_ids: Нет наблюдений, соответствующих этим идентификациям.
@@ -3092,6 +3135,7 @@ ru:
     observe_panel_title: Давайте начнём публиковать некоторые наблюдения
     observe_panel_body_p1_local: Нужно вдохновение? Вот некоторые организмы, наблюдаемые поблизости...
     observe_panel_body_p1_global: Нужно вдохновение? Вот некоторые наблюдаемые организмы...
+    observe_panel_body_p2: Выйдите на улицу и понаблюдайте за отдельным организмом. Выберите что-нибудь дикое и сделайте четкое полнокадровое фото. Если у вас уже есть фото чего-нибудь дикого, <a href="%{new_observation_path}">добавьте его сейчас</a>. Вы также можете использовать мобильные приложения %{site_name} для регистрации наблюдений.
     observe_panel_body_p3: После того, как вы поделились своими наблюдениями, эта страница покажет вам обновления от сообщества в виде комментариев и идентификаций. Кто знает, что вы обнаружите!
     follow_panel_title_local: Подписаться на некоторых наблюдателей, находящихся поблизости
     follow_panel_title_global: Подписаться на некоторых активных наблюдателей
@@ -4769,6 +4813,8 @@ ru:
   the_world_is_full_of_interesting_places: |
     Мир полон интересных мест, наполненных странными и удивительными  формами жизни. Некоторые из них находятся на другой стороне планеты, а другие можно найти, если просто идти вниз по улице! %{site_name} Места дадут вам возможность просматривать жизнь на всей планете. Приступайте!
   then_keybord_sequence: затем
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: В настоящее время нет ни одного потенциально утоньшенного родительского таксона.
   there_are_x_synonyms_html:
     one: "Существует <span class='count'>1</span> синоним</span>"
     few: "Существует <span class='count'>%{count}</span> синонима</span>"
@@ -4791,6 +4837,8 @@ ru:
   there_were_some_problems_with_fields: "Возникли некоторые проблемы со следующими полями:"
   there_were_some_problems_with_these_files: "Возникли некоторые проблемы с этими файлами:"
   theres_something_wrong_with_taxon_framework_relationship: Здесь что-то не так - мы не можем определить связь между внутренними и внешними таксонами
+  therefore_committing_additional_taxon_changes: Таким образом, подтверждение дополнительных изменений таксонов после совершения этого обмена таксонов не потребуется.
+  therefore_committing_taxon_changes: Таким образом, внесение изменений в таксон после изменения предков не является обязательным.
   these_are_items_people_on: |
     Это элементы, которые люди на сайте отметили для курирования. Спам-комментарии должны быть удалены, а пользователи, которые добавляют спам, должны быть приостановлены (перейдите на страницу своего профиля и нажмите "приостановить пользователя" в правом нижнем углу, чтобы предотвратить их вход в систему). Другие отмеченные флагом элементы удаляются, только если они явно ненавистные, незаконные и т.д. На грубость, оскорбительные высказывания и т.п. следует реагировать вежливым комментарием. О повторных правонарушителях следует сообщить администратору сайта или на %{email}
   these_are_taxa_that: |
@@ -7679,6 +7727,9 @@ ru:
               relative_uri: "должен быть абсолютным URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                не допускаются повторяющиеся наблюдения; только наблюдатель может удалять повторы, поэтому, пожалуйста, адресуйте эти проблемы непосредственно ему, сопроводив комментарием
             user_id:
               already_flagged: "этот пункт уже помечен"
         guide:
