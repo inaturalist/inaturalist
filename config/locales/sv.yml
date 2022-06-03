@@ -908,6 +908,8 @@ sv:
   change_your_password: Ändra ditt lösenord
   #Plural noun, as in changes to a taxon record over time
   changes: Ändringar
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Att ändra ursprung till den föräldern kan resultera i oavsiktliga oenigheter, analysera dem först vilket kan ta ett tag.
   changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser ditt fynds position.'
   check_above_for_errors: Kolla efter fel ovan
   check_back_soon: Kolla snart igen!
@@ -997,6 +999,9 @@ sv:
   committed_taxon_changes_cannot_be_deleted: Bekräftade taxonändringar kan inte raderas
   #Status message while a taxon change is being committed
   committing: Bekräftar...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Att bekräfta kan resultera i oavsiktliga oenigheter, undersök dem först vilket kan ta ett tag.
   common_name: Vardagligt namn
   community: Community
   community_curated: Community-förvaltad
