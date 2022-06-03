@@ -879,6 +879,8 @@ fr:
   change_your_password: Modifier votre mot de passe
   #Plural noun, as in changes to a taxon record over time
   changes: Changements
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Changer la généalogie vers ce taxon de rang supérieur peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   changing_the_geoprivacy: 'En changeant la géoconfidentialité, vous changez la façon dont les gens voient l’emplacement de votre observation.'
   check_above_for_errors: Vérifier ci-dessus les erreurs
   check_back_soon: Revenez voir dans quelques temps !
@@ -972,6 +974,9 @@ fr:
   committed_taxon_changes_cannot_be_deleted: Les modifications de taxon validées ne peuvent pas être supprimées.
   #Status message while a taxon change is being committed
   committing: Validation en cours…
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: La validation peut entraîner des désaccords involontaires. Veuillez d'abord les analyser, ce qui peut prendre un certain temps.
   common_name: Nom vernaculaire
   community: Communauté
   community_curated: Communauté organisée
@@ -2002,6 +2007,10 @@ fr:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Cependant, vous souhaiterez peut-être commenter les observations avec des désaccords involontaires susmentionnées pour avertir les identifieurs que la portée de %{old_parent} a été réduite.
   i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
@@ -3081,6 +3090,7 @@ fr:
     observe_panel_title: Commençons par publier quelques observations
     observe_panel_body_p1_local: Besoin d’inspiration ? Voici quelques organismes observés à proximité…
     observe_panel_body_p1_global: Besoin d’inspiration ? Voici quelques organismes observés…
+    observe_panel_body_p2: Sortir, et observer un organisme individuel. Choisir quelque chose de sauvage et prendre une photo claire et plein cadre. Si vous avez déjà une photo de quelque chose de sauvage, <a href="%{new_observation_path}">ajoutez-la maintenant</a>. Vous pouvez aussi utiliser l’application mobile %{site_name} pour enregistrer les observations.
     observe_panel_body_p3: Une fois que vous avez partagé vos observations, cette page vous montrera des notifications de la communauté dans le formulaire des commentaires et des identifications. Qui sait ce que vous allez découvrir !
     follow_panel_title_local: Suivre quelques naturalistes proches
     follow_panel_title_global: Suivre quelques naturalistes actifs
