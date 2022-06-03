@@ -724,6 +724,14 @@ ca:
   back_to_your_observations: Torneu a les vostres observacions
   back_to_your_profile: Torneu al vostre perfil
   badges: Insígnies
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Basant-nos en una mostra del %{percent}% percent d'aquests ID, calculem que això farà
+      resultat en <strong>%{count} desacord no intencionat</strong> amb la ID de %{child}.
+    other: |
+      Basant-nos en una mostra del %{percent}% percent d'aquests ID, calculem que això farà
+      resultat en <strong>%{count} desacords no intencionats</strong> amb la ID de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
   batch: Grup
