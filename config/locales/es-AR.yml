@@ -1896,10 +1896,13 @@ es-AR:
   identify_title: "Identificar"
   identification: identificación
   identification_by_user: Identificación por %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
+  #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
   identification_user_short: Usuario ident.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   computer_vision_suggestion: Sugerencia de la visión artificial
@@ -2829,6 +2832,7 @@ es-AR:
     observe_panel_title: Vamos a añadir observaciones
     observe_panel_body_p1_local: Por un poco de inspiración, aquí hay algunas especies que se observan en las inmediaciones...
     observe_panel_body_p1_global: Por un poco de inspiración, aquí hay algunas especies que se observan en todo el mundo...
+    observe_panel_body_p2: Sal a la calle y observa un organismo. Escoge algo silvestre y toma una foto clara y completa. Si ya tienes una foto de algo silvestre, <a href="%{new_observation_path}">añádela ahora</a>. También puedes utilizar las aplicaciones móviles %{site_name} para compartir tu observación con la comunidad.
     observe_panel_body_p3: Así, se actualizará con cualquier comentarios sobre tus observaciones de la comunidad en forma de comentarios o identificaciones. ¡Quién sabe lo que  descubrirás!
     follow_panel_title_local: Siga algunos naturalistas cercanos
     follow_panel_title_global: Siga algunos naturalistas activos

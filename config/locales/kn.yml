@@ -1635,10 +1635,13 @@ kn:
   identify_title: "ಗುರುತಿಸಿ"
   identification: ಗುರುತಿಸುವಿಕೆ
   identification_by_user: '%{user} ರಿಂದ ಗುರುತಿಸುವಿಕೆ'
+  #Notification when an identification has been deleted
   identification_deleted: ಗುರುತಿಸುವಿಕೆಯನ್ನು ಅಳಿಸಲಾಗಿದೆ.
   identification_saved: "ಗುರುತಿಸುವಿಕೆಯನ್ನು ಉಳಿಸಲಾಗಿದೆ!"
+  #Notification when an identification has been updated
   identification_updated: ಗುರುತಿಸುವಿಕೆಯನ್ನು ನವೀಕರಿಸಲಾಗಿದೆ!
   identification_user_short: ಗುರುತಿಸುವಿಕೆ ಬಳಕೆದಾರರು
+  #Notification when an identification has been withdrawn
   identification_withdrawn: ಗುರುತಿಸುವಿಕೆಯನ್ನು ಹಿಂಪಡೆಯಲಾಗಿದೆ.
   identifications: ಗುರುತುಗಳು
   computer_vision_suggestion: ಕಂಪ್ಯೂಟರ್ ವಿಷನ್ ಸಲಹೆ
@@ -2564,6 +2567,7 @@ kn:
     observe_panel_title: ಕೆಲವು ವೀಕ್ಷಣೆಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡುವುದರ ಮೂಲಕ ಪ್ರಾರಂಭಿಸೋಣ
     observe_panel_body_p1_local: ಪ್ರೇರಣೆಯ ಅಗತ್ಯವಿದೆಯೇ? ಸಮೀಪದಲ್ಲಿ ನೆಡೆದ ಜೀವಿಗಳ ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಕೆಲವು ಇಲ್ಲಿವೆ...
     observe_panel_body_p1_global: ಪ್ರೇರಣೆಯ ಅಗತ್ಯವಿದೆಯೇ? ಜೀವಿಗಳ ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಕೆಲವು ಇಲ್ಲಿವೆ...
+    observe_panel_body_p2: ಹೊರಬನ್ನಿ ಮತ್ತು ಪ್ರತಿಯೊಂದು ಜೀವವೈವಿಧ್ಯವನ್ನು ವೀಕ್ಷಿಸಿ. ಅವುಗಳಲ್ಲಿ ಯಾವುದಾದರೂ ವನ್ಯಜೀವಿಯಂತಹದನ್ನು ಆಯ್ಕೆಮಾಡಿ, ಅದರ ಪೂರ್ಣ ಚೌಕಟ್ಟಿನ ಚಿತ್ರವನ್ನು ತೆಗೆಯಿರಿ. ನಿಮ್ಮಲ್ಲಿ ಈಗಾಗಲೇ ವನ್ಯಜೀವಿ ಬಗೆಯ ಚಿತ್ರವಿದ್ದಲ್ಲಿ ಅದನ್ನು <a href="%{new_observation_path}">ಈಗಲೇ ಸೇರಿಸಿ</a>. ನೀವು %{site_name} ಮೊಬೈಲ್ ಆಪ್‍ಗಳನ್ನು ಕೂಡ ವೀಕ್ಷಣೆಗಳ ದಾಖಲಾತಿಗೆ ಬಳಸಬಹುದು.
     observe_panel_body_p3: ಒಮ್ಮೆ ನೀವು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಂಡ ನಂತರ, ಈ ಪುಟವು ನಿಮಗೆ ಸಮುದಾಯದಿಂದ ಅಭಿಪ್ರಾಯಗಳ ಮತ್ತು ಗುರುತಿಸುವಿಕೆಗಳ ಮೂಲಕ ನವೀಕರಣಗಳನ್ನು ಪ್ರದರ್ಶಿಸುತ್ತದೆ. ಯಾರಿಗೆ ಅರಿವಿದೆ ನೀವೇನು ಅನ್ವೇಷಿಸಬಹುದೆಂದು!
     follow_panel_title_local: ಸಮೀಪದ ಕೆಲವು ನಿಸರ್ಗನಿಪುಣರನ್ನು ಅನುಸರಿಸಿ
     follow_panel_title_global: ಕೆಲವು ಸಕ್ರಿಯ ನಿಸರ್ಗನಿಪುಣರನ್ನು ಅನುಸರಿಸಿ
@@ -4090,13 +4094,49 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_nairobi: ಪಶ್ಚಿಮ ಆಫ್ರಿಕಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: ಅರ್ಜೆಂಟೀನಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: ಕೊಲಂಬಿಯಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: ಗ್ವಾಟೆಮಾಲ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: ಬೊಲಿವಿಯಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: ಪೆರು ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: ಅರಿಜೋನಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: ಇಂಡೋಚೈನಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: ಹಾಂಗ್ ಕಾಂಗ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: ತೈವಾನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: ಬ್ರಿಸ್ಬೇನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: ಮೆಲ್ಬೋರ್ನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: ಪರ್ತ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: ಸಿಡ್ನಿ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_berlin: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_copenhagen: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: ಟರ್ಕಿ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: ಮಾಸ್ಕೋ ಸಮಯ
   #As in the title of a book or a blog post
   title: ಶೀರ್ಷಿಕೆ
   title_and_description: "ಶೀರ್ಷಿಕೆ & ವಿವರಣೆ"

@@ -204,6 +204,8 @@ pt-BR:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por compartilhar as coordenadas ocultas para
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Sobre Desacordos Não Intencionais
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -497,6 +499,10 @@ pt-BR:
   alphabetical_order: Ordem Alfabética
   already_have_an_account_log_in_html: Já tem uma conta? <strong>Entre</strong>
   amphibians: anfíbios
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analisar desacordos não intencionais
   analyze_ids: Analisar IDs
   ancestor_taxon: Táxon ancestral
   and: e
@@ -723,6 +729,14 @@ pt-BR:
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   badges: Insígnias
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Baseado em uma amostra de %{percent}% dessas IDs, estimamos que isso irá
+      resultar em <strong>%{count} de desacordo não intencional</strong> com IDs de %{child}.
+    other: |
+      Baseado em uma amostra de %{percent}% dessas IDs, estimamos que isso irá
+      resultar em <strong>%{count} desacordos não intencionais</strong> com IDs de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Com base nas evidências, o Táxon comunitário ainda pode ser confirmado ou melhorado?
   batch: Grupo
@@ -732,6 +746,16 @@ pt-BR:
   batch_operations: Operações por lote
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
   because_of: por causa de
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Porque estimamos que essa alteração resultará em mais que 10 desacordos
+    não intencionais. <strong>recomendamos que você também faça uma mudança de táxon relativa a
+    %{old_parent}, como dividir %{new_parent} para %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Porque estimamos que essa mudança resultará em menos que 10 desacordos não intencionais
+     <strong>provavelmente não é necessário confirmar uma mudança de táxon
+    envolvendo %{old_parent}</strong>.
   become_a_donor_caps: TORNE-SE UM DOADOR
   become_a_donor_today_caps: TORNE-SE UM DOADOR HOJE
   before_importing_photos: antes de importar fotos
@@ -854,6 +878,8 @@ pt-BR:
   change_your_password: Altere sua senha
   #Plural noun, as in changes to a taxon record over time
   changes: Modificações
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Alterar o ancestral para esse pai pode resultar em desacordos não intencionais. Por favor, analise-os primeiro, o que pode demorar um pouco.
   changing_the_geoprivacy: 'Mudar a geoprivacidade altera como as outras pessoas verão a localização das suas observações.'
   check_above_for_errors: Verifique erros acima
   check_back_soon: Verifique em breve!
@@ -892,6 +918,14 @@ pt-BR:
   choose_what_kind_of_change_youre_creating: "Escolha o tipo de mudança que deseja criar."
   cid_d_to_genus: CID do gênero
   citation: Citação
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Desacordos indesejados ocorrem quando um pai <strong>(B)</strong> perde filhos ao se mover um filho <strong>(E)</strong> para outra parte da árvore taxonômica, resultando em IDs existentes do pai sendo interpretados
+    como desacordos com IDs prévios do filho movimentado.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Desacordos indesejados ocorrem quando um pai <strong>(B)</strong> perde filhos ao se trocar um filho <strong>(E)</strong> para outra parte da árvore taxonômica, resultando em IDs existentes do pai sendo interpretados
+    como desacordos com IDs prévios do filho movimentado.
   classification: Classificação
   clear: limpar
   clear_filters: Limpar filtros
@@ -930,6 +964,9 @@ pt-BR:
   committed_taxon_changes_cannot_be_deleted: Mudanças de táxon submetidas não podem ser excluídas
   #Status message while a taxon change is being committed
   committing: Submetendo...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: A submissão pode resultar em desacordos não intencionais. Por favor, analise-os primeiro, o que pode demorar um pouco.
   common_name: Nome Comum
   community: Comunidade
   community_curated: Supervisionado pela Comunidade
@@ -1992,12 +2029,15 @@ pt-BR:
   identify_title: "Identificar"
   identification: identificação
   identification_by_user: Identificação por %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação salva!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Texto de identificação reexibido
+  #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Usuário ident.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   computer_vision_suggestion: Sugestão de visão por computador
@@ -2103,6 +2143,7 @@ pt-BR:
     Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou porque você é um curador do site. Se você acha que foi um erro, por favor
     <a href="mailto:%{help_email}" class="contact">nos contate</a>.
     <a href="%{manage_flags_path}">Gerenciar sinalizações</a>
+  jobs: Trabalhos
   join: Faça parte
   join_and_add_an_observation_to_project_html: Junte-se e Adicione uma Observação a %{project}
   join_project: Entre neste projeto
@@ -3003,6 +3044,7 @@ pt-BR:
     observe_panel_title: Vamos começar adicionando algumas observações
     observe_panel_body_p1_local: Precisa de inspiração? Veja agora alguns organismos super legais já observados nas proximidades...
     observe_panel_body_p1_global: Precisa de inspiração? Veja alguns organismos sendo observados...
+    observe_panel_body_p2: Vá lá fora e observe um organismo. Escolha algo selvagem e tire uma foto nítida e sem cortes. Caso já tenha uma foto, <a href="%{new_observation_path}">pode adiciona-la agora</a>. Pode também utilizar a aplicação %{site_name} para registar as suas observações.
     observe_panel_body_p3: Logo que você compartilhe suas observações, está página irá mostrar todas as atualizações feitas por nossa comunidade na forma de comentários e identificações. Quem sabe o que você poderá descobrir! Até mesmo uma calyptura? Uau!
     follow_panel_title_local: Siga Alguns Naturalistas que atuam nas Proximidades
     follow_panel_title_global: Siga Alguns dos Naturalistas mais Ativos
@@ -7524,6 +7566,11 @@ pt-BR:
               relative_uri: "deve ser um URI absoluto."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                não pode ser sobre observações duplicadas; apenas o observador pode
+                remover duplicatas, então por favor resolva essas questões
+                diretamente através de um comentário
             user_id:
               already_flagged: "já sinalizou esse item"
         guide:

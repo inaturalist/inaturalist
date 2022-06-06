@@ -1572,10 +1572,13 @@ ja:
   identify_title: "ID判定"
   identification: 同定
   identification_by_user: '%{user}さんの同定'
+  #Notification when an identification has been deleted
   identification_deleted: 同定が削除されました
   identification_saved: "判定が保存されました！"
+  #Notification when an identification has been updated
   identification_updated: 同定が更新されました
   identification_user_short: 同定ユーザー
+  #Notification when an identification has been withdrawn
   identification_withdrawn: 同定が撤回されました。
   identifications: 同定
   computer_vision_suggestion: コンピュータビジョンの提案
@@ -2347,6 +2350,7 @@ ja:
     observe_panel_title: 早速観察記録を投稿しよう！
     observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近くに観察されている生き物を見ましょう...
     observe_panel_body_p1_global: 何を投稿すればいいのかわからない？観察されている生き物を見ましょう...
+    observe_panel_body_p2: 外に出て、生き物の個体を観察します。野生のものを選び、鮮明で画面一杯の写真を撮ります。既に野生生物の写真がある場合は、<a href="%{new_observation_path}">今すぐ投稿しましょう</a>。また、モバイルアプリ%{site_name} を使用して観察を記録することもできます。
     observe_panel_body_p3: 同定を公開すると、コミュニティによる更新をこのページにコメントや同定の形で表示します。これからどんな発見をするか楽しみです！
     follow_panel_title_local: 近くのナチュラリストをフォローしましょう
     follow_panel_title_global: 活発なナチュラリストをフォローしましょう

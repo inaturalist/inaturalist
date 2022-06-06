@@ -959,8 +959,10 @@ lb:
   identify_title: "Bestëmmen"
   identification: Identifikatioun
   identification_by_user: Idendifikatioun duerch de(n) %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikatioun geläscht.
   identification_saved: "Identifikatioun gespäichert!"
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
   identifiers: Bestëmmer
@@ -1506,6 +1508,7 @@ lb:
   onboarding:
     observe_panel_title: Loosst eis ufänken an post a puer Observatiounen
     observe_panel_body_p1_local: Braucht Dir Inspiratioun? Hei sinn e puer Organismen dei an der Géigend observéiert goufen...
+    observe_panel_body_p2: Gitt eraus an observéiert en individuellen Organismus. Wielt eppes wëlles an huelt eng kloer, Vollformat Foto. Wann Dir schonn eng Foto vun eppes wëlles hutt, <a href="%{new_observation_path}">füügt se elo bäi</a>. Dir kënnt och d'%{site_name} mobil Apps benotze fir Observatiounen eropzehuelen.
     observe_panel_body_p3: Wann Dir Är Observatioune gedeelt hutt, weist dës Säit Iech Updates aus der Gemeinschaft a Form vu Kommentaren an Bestëmmungen. Wee weess wat Dir entdeckt!
     follow_panel_title_local: Suivéiert Naturalisten an der Géigend
     follow_panel_body: Wann Dir dës Profiller besicht an op de Follow Knäppche klickt, da sidd Dir benoriichtegt wann se Observatioune posten

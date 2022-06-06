@@ -2007,6 +2007,10 @@ fr:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Cependant, vous souhaiterez peut-être commenter les observations avec des désaccords involontaires susmentionnées pour avertir les identifieurs que la portée de %{old_parent} a été réduite.
   i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
@@ -2033,12 +2037,15 @@ fr:
   identify_title: "Identifier"
   identification: identification
   identification_by_user: Identification par %{user}
+  #Notification when an identification has been deleted
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Texte d'identification non masqué
+  #Notification when an identification has been updated
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
@@ -3083,6 +3090,7 @@ fr:
     observe_panel_title: Commençons par publier quelques observations
     observe_panel_body_p1_local: Besoin d’inspiration ? Voici quelques organismes observés à proximité…
     observe_panel_body_p1_global: Besoin d’inspiration ? Voici quelques organismes observés…
+    observe_panel_body_p2: Sortir, et observer un organisme individuel. Choisir quelque chose de sauvage et prendre une photo claire et plein cadre. Si vous avez déjà une photo de quelque chose de sauvage, <a href="%{new_observation_path}">ajoutez-la maintenant</a>. Vous pouvez aussi utiliser l’application mobile %{site_name} pour enregistrer les observations.
     observe_panel_body_p3: Une fois que vous avez partagé vos observations, cette page vous montrera des notifications de la communauté dans le formulaire des commentaires et des identifications. Qui sait ce que vous allez découvrir !
     follow_panel_title_local: Suivre quelques naturalistes proches
     follow_panel_title_global: Suivre quelques naturalistes actifs
