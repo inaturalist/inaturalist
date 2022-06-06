@@ -31,7 +31,7 @@ describe SiteDataExporter do
 
       it "should generate a csv with data" do
         dir_path = File.dirname( @archive_path )
-        system "unzip -od #{dir_path} #{@archive_path}", exception: true
+        system "unzip -qod #{dir_path} #{@archive_path}", exception: true
         basename = SiteDataExporter.basename_for_site( site )
         rows = CSV.open( File.join( dir_path, basename, "#{basename}-observations.csv" ) ).to_a
         expect( rows.size ).to eq 2

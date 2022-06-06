@@ -274,7 +274,7 @@ class SiteDataExporter
     # Make the archive
     fname = "#{@basename}.zip"
     archive_path = File.join( @work_dir, fname )
-    system_call "cd #{@work_dir} && zip -D #{archive_path} #{@basename}/*"
+    system_call "cd #{@work_dir} && zip -#{!@options[:verbose] && 'q'}D #{archive_path} #{@basename}/*"
     archive_path
   end
 
@@ -386,13 +386,20 @@ class SiteDataExporter
 
     Parallel.each_with_index( partitions, in_processes: partitions.size ) do | partition, parition_i |
       ActiveRecord::Base.connection.enable_replica
+      # Make sure Makara releases context and performs subsequent queries
+      # against the replica. It may be stuck on the primary due to previews
+      # requests to the primary. Not entirely sure if the context gets
+      # preserved when Parallel forks a subprocess
+      Makara::Context.release_all
       partition_filters = filters.dup
       partition_filters << {
         range: { id: { gte: partition.min, lte: partition.max } }
       }
-      partition_total_entries = Observation.elastic_search( base_es_params.merge( filters: partition_filters, per_page: 0 ) ).total_entries
+      partition_total_entries = Observation.elastic_search(
+        base_es_params.merge( filters: partition_filters, per_page: 0 )
+      ).total_entries
       if partition_total_entries <= 0
-        puts "[#{Time.now}] Partition #{partition.min}-#{partition.max} is empty"
+        puts "[#{Time.now}] Partition #{partition.min}-#{partition.max} is empty" if @options[:verbose]
         next
       end
       min_id = 0
