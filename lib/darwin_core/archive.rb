@@ -420,9 +420,17 @@ module DarwinCore
       tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
-      preloads = [
-        { observation_photos: { photo: [:file_prefix, :file_extension, :user, :flags] } },
-        { observation_sounds: { sound: :user } }
+      preloads = [ {
+        observation_photos: {
+          photo: [
+            :file_prefix, :file_extension, :user, :flags, :photo_metadata
+          ] }
+        },
+        {
+          observation_sounds: {
+            sound: :user
+          }
+        }
       ]
       file = CSV.open( tmp_path, "w" )
       file << headers
@@ -590,6 +598,7 @@ module DarwinCore
       max_id = Observation.maximum( :id )
       search_chunk_size = 200000
       chunk_start_id = 1
+      last_seen_observation_id = nil
       if !params[:created_d1] && !params[:created_d2]
         # no date limits provided. We want to set a default upper limit of roughly when
         # the archive started exporting. Don't add created_d2 to the ES query, which
@@ -624,7 +633,13 @@ module DarwinCore
           end
           filtered_obs = batch.select do |observation|
             ! ( @opts[:community_taxon] && observation.community_taxon.blank? ||
-                 max_observation_created && observation.created_at > max_observation_created )
+                 max_observation_created && observation.created_at > max_observation_created ||
+                 last_seen_observation_id && observation.id <= last_seen_observation_id )
+          end
+          batch.uniq!
+          batch.sort!
+          if last_obs = filtered_obs.last
+            last_seen_observation_id = last_obs.id
           end
           yield filtered_obs
           batch_times << (Time.now - observations_start)
