@@ -1,4 +1,62 @@
 mi:
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> kaitautuhi'
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> pūkete"
+  x_species_html:
+    other: "<span class='count'>%{count}</span> momo"
+  amphibians: ika oneone
+  animals: Kīrehe
+  birthday: Huritau
+  captive_cultivated: Mōkai/Rerenga
+  date_format:
+    date_long:
+      january: '%{day} Hānuere %{year}'
+      february: '%{day} Pēpuere %{year}'
+      march: '%{day} Māehe %{year}'
+      april: '%{day} Āperira %{year}'
+      may: '%{day} Mei %{year}'
+      june: '%{day} Hune %{year}'
+      july: '%{day} Hūrae %{year}'
+      august: '%{day} Ākuhata %{year}'
+      september: '%{day} Hepetema %{year}'
+      october: '%{day} Oketopa %{year}'
+      november: '%{day} Noema %{year}'
+      december: '%{day} Tīhema %{year}'
+    month:
+      january: Hānuere
+      february: Pēpuere
+      march: Māehe
+      april: Āperira
+      may: Mei
+      june: Hune
+      july: Hūrae
+      august: Ākuhata
+      september: Hepetema
+      october: Oketopa
+      november: Noema
+      december: Tīhema
+  devise_reset_password_instructions_hello_email: Kia ora %{email}
+  email: Īmēra
+  facebook: Pukamata
+  help: Āwhina
+  identify: E tautuhi ana
+  identifications: Ngā taituhi
+  identifiers: Ngā kaitautuhi
+  learn: Ako
+  list: Tūtira
+  lists: Ngā tūtira
+  log_in: Takiuru
+  map: Mahere
+  meet: Tūtaki
+  password: Kupuhipa
+  people: Tāngata
+  places: Wāhi
+  search: Rapunga
+  sign_out: Takiputa
+  username: Ingoa rorohiko
   date:
     abbr_month_names:
       - 
