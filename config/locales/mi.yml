@@ -1,4 +1,198 @@
 mi:
+  x_identifications:
+    other: '%{count} tautuhi'
+  x_identifications_:
+    other: '%{count} Tautuhi'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> kaitautuhi'
+  x_observations:
+    other: "%{count} pūkete"
+  x_observations_:
+    other: "%{count} Pūkete"
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> pūkete"
+  x_species_html:
+    other: "<span class='count'>%{count}</span> momo"
+  about_licenses: Mō ngā raihana
+  #Header for a section describing taxon names
+  about_names: Mō ngā ingoa
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Mō te %{place}"
+  about_places: Mō ngā wāhi
+  about_this_map: Mō te mahere tēnei
+  agree_: Whakaae
+  agree?: Whakaae?
+  all: Katoa
+  all_comments: Ngā kōrero katoa
+  all_names: Ngā ingoa katoa
+  all_observations: Ngā pūkete katoa
+  all_photos: Ngā whakaahua katoa
+  all_places: "Ngā wāhi katoa"
+  all_taxa:
+    amphibians: Ika oneone
+    animals: Kīrehe
+    arachnids: Pūngāwerewere
+    birds: Manu
+    fungi: Hekaheka
+    insects: Pepeke
+    mammals: Whāngote
+    mollusks: Kaiwhao
+    plants: Tipu
+    protozoans: Rauropi pūtautahi
+    ray_finned_fishes: Ika
+    reptiles: Ngārara
+    x_actinopterygii:
+      other: "%{count} ika"
+    x_aves:
+      other: "%{count} manu"
+    x_insecta:
+      other: "%{count} pepeke"
+  amphibians: ika oneone
+  animals: Kīrehe
+  arachnids: pūngāwerewere
+  birds: manu
+  birthday: Huritau
+  black: pango
+  calendar: Maramataka
+  captive: Mōkai
+  captive_cultivated: Mōkai/Rerenga
+  cc_0_name: Manatārua Kore (CC0)
+  #Noun, used to label a comment or a comment field in a form
+  comment: kōrero
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: Kōrero
+  comment_deleted: I mukua te kōrero
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: I hunaia te kōrero
+  comments: Kōrero
+  copyright:
+    copyright: manatārua
+    no_copyright: manatārua kore (CC0)
+    attribution_noncommercial_sharealike_license: Raihana Tautohu Matatiki-Arumoni Kore-Tiritiri Raihana
+    attribution_noncommercial_license: Raihana Tautohu Matatiki-Arumoni Kore
+    attribution_noncommercial_noderivs_license: Raihana Tautohu Matatiki-Arumoni Kore-Taketake Anake
+    attribution_license: Raihana Tautohu Matatiki
+    attribution_sharealike_license: Raihana Tautohu Matatiki-Tiritiri Raihana
+    attribution_noderivs_license: Raihana Tautohu Matatiki-Taketake Anake
+  date_format:
+    date_long:
+      january: '%{day} Hānuere %{year}'
+      february: '%{day} Pēpuere %{year}'
+      march: '%{day} Māehe %{year}'
+      april: '%{day} Āperira %{year}'
+      may: '%{day} Mei %{year}'
+      june: '%{day} Hune %{year}'
+      july: '%{day} Hūrae %{year}'
+      august: '%{day} Ākuhata %{year}'
+      september: '%{day} Hepetema %{year}'
+      october: '%{day} Oketopa %{year}'
+      november: '%{day} Noema %{year}'
+      december: '%{day} Tīhema %{year}'
+    month:
+      january: Hānuere
+      february: Pēpuere
+      march: Māehe
+      april: Āperira
+      may: Mei
+      june: Hune
+      july: Hūrae
+      august: Ākuhata
+      september: Hepetema
+      october: Oketopa
+      november: Noema
+      december: Tīhema
+  devise_reset_password_instructions_hello_email: Kia ora %{email}
+  email: Īmēra
+  explore: Tuhuratia
+  facebook: Pukamata
+  filter: Tātari
+  filtering: E tātari ana
+  filters: Tātari
+  find: Kimihia
+  find_a_place: Kimihia tētahi wāhi
+  find_observations: Kimihia ngā pūkete
+  find_photos: Kimihia ngā whakaahua
+  find_places: Kimihia ngā wāhi
+  find_species: Kimihia ngā momo
+  help: Āwhina
+  identify: E tautuhi ana
+  identification: tautuhi
+  identifications: Ngā taituhi
+  identifiers: Ngā kaitautuhi
+  learn: Ako
+  list: Tūtira
+  lists: Ngā tūtira
+  log_in: Takiuru
+  map: Mahere
+  meet: Tūtaki
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Pūkete &copy; %{user}
+  password: Kupuhipa
+  people: Tāngata
+  places: Wāhi
+  search: Rapunga
+  sign_out: Takiputa
+  small: iti
+  sounds:
+    listen: Whakarongo
+  source: Te pū
+  source_: 'Te pū:'
+  source_wikipedia: "Te pū: Wikipedia"
+  the_world: Te Ao
+  this: tēnei
+  upload: Tukuatu
+  username: Ingoa rorohiko
+  view: Tirohia
+  view_all_n: "TIrohia ngā %{n} katoa"
+  view_all_observations: TIrohia ngā pūkete katoa
+  view_observation: Tirohia te pūkete
+  view_observations: Tirohia ngā pūkete
+  view_place: Tirohia te wāhi
+  view_the_observation: Tirohia te pūkete
+  view_user_observations: "Tirohia ngā pūkete o %{user}"
+  view_your_observations: Tirohia tāu pūkete
+  weather: Huarere
+  when_did_you_see_it?: Inahea?
+  white: mā
+  year: Tau
+  yellow: kōwhai
+  'yes': "Āe"
+  yesterday: Inanahi
+  you: koe
+  your_email_address: Tōu īmēra
+  your_identification: Tōu tautuhi
+  your_observations: Tōu pūkete
+  views:
+    guides:
+      pdf_layouts:
+        book: pukapuka
+    lifelists:
+      all_species: Ngā momo katoa
+      all_observations: Ngā pūkete katoa
+      dropdowns:
+        name: Ingoa
+    projects:
+      project_user_curator_coordinate_access_labels:
+        none: Kao.
+    taxa:
+      show:
+        frequency:
+          "Alive or Dead=Alive": He ora
+          "Alive or Dead=Dead": He mate
+          "Sex=Female": Uwha
+          "Sex=Male": Tourawhi
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Tautuhi
   date:
     abbr_month_names:
       - 
@@ -14,22 +208,44 @@ mi:
       - Oct
       - Nov
       - Dec
+    day_names:
+      - Rātapu
+      - Rāhina
+      - Rātū
+      - Rāapa
+      - Rāpare
+      - Rāmere
+      - Rāhoroi
     month_names:
       - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Hānuere
+      - Pēpuere
+      - Māehe
+      - Āperira
+      - Mei
+      - Hune
+      - Hūrae
+      - Ākuhata
+      - Hepetema
+      - Oketopa
+      - Noema
+      - Tīhema
+  datetime:
+    prompts:
+      year: Tau
   number:
     human:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      place:
+        name: Ingoa
+      taxon:
+        name: Ingoa
+      user:
+        email: Īmēra
+        login: Ingoa rorohiko
+        name: Ingoa
+        place_id: Wāhi
