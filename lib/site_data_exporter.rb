@@ -123,6 +123,9 @@ class SiteDataExporter
     if dbconfig[:username]
       @psql_cmd += " -U #{dbconfig[:username]}"
     end
+    if dbconfig[:password]
+      @psql_cmd = "PGPASSWORD=#{dbconfig[:password]} #{@psql_cmd}"
+    end
     @max_obs_id = options[:max_obs_id] || Observation.calculate( :maximum, :id ) || 0
     @num_processes = options[:num_processes].to_i.positive? ? options[:num_processes].to_i : 3
   end
