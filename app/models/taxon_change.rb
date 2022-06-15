@@ -236,6 +236,7 @@ class TaxonChange < ApplicationRecord
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
+      next unless k == "identifications"
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
@@ -248,7 +249,9 @@ class TaxonChange < ApplicationRecord
             notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-            auto_updatable_records << record
+            unless record.observation.identifications.map{|i| i.user.prefers_automatic_taxonomic_changes?}.all?
+              auto_updatable_records << record
+            end
           end
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]

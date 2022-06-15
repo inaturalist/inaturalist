@@ -75,7 +75,8 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
     });
 
     $( document ).on( "change", "#taxon_parent_id", function( ) {
-      var old_ancestors = $( "#taxon-ancestor-id" ).val( ).split( "/" );
+      var raw_old_ancestors = $( "#taxon-ancestor-id" ).val( )
+      var old_ancestors = raw_old_ancestors == null ? [] : raw_old_ancestors.split( "/" );
       var old_parent = old_ancestors[old_ancestors.length - 1];
       var new_parent = $( "#taxon_parent_id" ).val( );
       if( $.isNumeric( new_parent ) ){
