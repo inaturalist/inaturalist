@@ -209,6 +209,8 @@ de:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Du kannst auswählen, die verdeckten Koordinaten zu teilen mit
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Über unbeabsichtigte ID-Widersprüche
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -503,6 +505,10 @@ de:
   alphabetical_order: Alphabetische Reihenfolge
   already_have_an_account_log_in_html: Hast du schon einen Account? <b><strong>Hier anmelden</strong></b>
   amphibians: Amphibien
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Unbeabsichtigte ID-Widersprüche analysieren
   analyze_ids: IDs analysieren
   ancestor_taxon: Höheres Taxon
   and: und
@@ -1931,12 +1937,15 @@ de:
   identify_title: "ID-Modul"
   identification: ID
   identification_by_user: Bestimmung durch %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Bestimmung gelöscht.
   identification_saved: "Bestimmung gespeichert!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Bestimmungstext wieder sichtbar
+  #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
   computer_vision_suggestion: Vorschlag der Computer-Vision
@@ -2042,6 +2051,7 @@ de:
     Dies ist als Spam gemeldet worden und ist nicht mehr
     öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
     <a href="%{manage_flags_path}">Meldungen verwalten</a>
+  jobs: Aufgaben
   join: Beitreten
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
   join_project: Diesem Projekt beitreten
@@ -2965,6 +2975,7 @@ de:
     observe_panel_title: Fangen wir an und posten ein paar Beobachtungen
     observe_panel_body_p1_local: Brauchst du Inspiration? Hier sind ein paar Lebewesen, die in der Gegend beobachtet wurden...
     observe_panel_body_p1_global: Brauchst du Inspiration? Hier sind ein paar Organismen die beobachtet wurden...
+    observe_panel_body_p2: Gehe nach draußen und beobachte ein einzelnes Lebewesen (Tier, Pflanze, Pilz...). Mache davon ein klares, gut erkennbares Bild. Wenn Du bereits ein Foto von einem Lebewesen hast, <a href="%{new_observation_path}">füge es jetzt hinzu</a>. Du kannst auch die mobilen Apps von %{site_name} verwenden, um Beobachtungen zu dokumentieren.
     observe_panel_body_p3: Sobald Du Deine Beobachtungen hochgeladen hast, zeigt Dir diese Seite die Reaktionen aus der Community in Form von Kommentaren und Bestimmungen.
     follow_panel_title_local: Folge anderen Benutzern in der Umgebung
     follow_panel_title_global: Folge aktiven Benutzern
@@ -3181,7 +3192,7 @@ de:
   place_deleted: Ort gelöscht.
   place_geo:
     geo_planet_place_types:
-      Aggregate: Zusammenfassen
+      Aggregate: Aggregat
       aggregate: zusammenfassen
       Airport: Flughafen
       airport: Flughafen

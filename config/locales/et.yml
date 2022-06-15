@@ -1630,10 +1630,13 @@ et:
   identify_title: "Määra"
   identification: määratlus
   identification_by_user: Kasutaja %{user} määratlus
+  #Notification when an identification has been deleted
   identification_deleted: Määratlus kustutatud.
   identification_saved: "Määratlus salvestatud!"
+  #Notification when an identification has been updated
   identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Määratlus tagasivõetud.
   identifications: Määratlused
   computer_vision_suggestion: Masin-nägemise pakkumine
@@ -2336,6 +2339,7 @@ et:
     observe_panel_title: Alustame mõne vaatluse lisamisega
     observe_panel_body_p1_local: Vajad inspiratsiooni? Siin on mõned lähipiirkonnas tehtud vaatlused...
     observe_panel_body_p1_global: Vajad inspiratsiooni? Siin on mõned vaadeldud organismid...
+    observe_panel_body_p2: Mine õue ning vaatle mõnd üksikut organismi. Leia midagi metsikut ning tee sellest täielikult kadreeritud foto. Kui sul juba on millegi metsiku foto, <a href="%{new_observation_path}">lisa see kohe</a>. Vaatluste tegemiseks saab kasutada ka %{site_name} mobiiliäppi.
     observe_panel_body_p3: Kui oled oma vaatlust jaganud, ilmuvad siia lehel täiendused kogukondlike kommentaaride ja määratlustena. Kes teab, mida sa avastada võid!
     follow_panel_title_local: Jälgi mõnda läheduses tegutsevat loodusloolast
     follow_panel_title_global: Jälgi mõnda aktiivset loodusloolast

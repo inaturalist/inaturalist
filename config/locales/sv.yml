@@ -2076,12 +2076,15 @@ sv:
   identify_title: "Bestäm"
   identification: bestämning
   identification_by_user: Bestämning av %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Bestämning raderad.
   identification_saved: "Bestämning sparad!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Bestämningstext synliggjord
+  #Notification when an identification has been updated
   identification_updated: Bestämning uppdaterad!
   identification_user_short: Best. användare
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   computer_vision_suggestion: Bildigenkänningsförslag
@@ -2199,6 +2202,7 @@ sv:
     Detta fynd har flaggats som spam och är inte längre
     publikt synlig. Du kan se den eftersom du skapade den, eller är en webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen <a href="mailto:%{help_email}" class="contact">kontakta oss</a>.
     <a href="%{manage_flags_path}">Hantera flaggor</a>
+  jobs: Jobb
   join: Gå med
   join_and_add_an_observation_to_project_html: Gå med och lägg till en fynd till %{project}
   join_project: Gå med i detta projekt

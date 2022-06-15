@@ -1187,6 +1187,7 @@ hu:
   find_suitable_observations: Megfelelő megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   finished: Befejezve
+  first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
   first_observer: első megfigyelő
   #Verb form, as in "Flag this item"
   flag: Bejelentés
@@ -1285,6 +1286,7 @@ hu:
   group: Csoport
   grouping: Csoportosítás
   guides: Útmutatók
+  guidelines: Irányelvek
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
   has_photo: Van fénykép
   has_photos: Fényképpel
@@ -1338,9 +1340,12 @@ hu:
   identify_title: "Azonosítás"
   identification: meghatározás
   identification_by_user: '%{user} meghatározásai'
+  #Notification when an identification has been deleted
   identification_deleted: Meghatározás törölve.
   identification_saved: "Meghatározás elmentve!"
+  #Notification when an identification has been updated
   identification_updated: Meghatározás módosítva!
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Meghatározás visszavonva
   identifications: Meghatározások
   computer_vision_suggestion_desc: |
@@ -1749,7 +1754,7 @@ hu:
     month_year: "YYYY MMMM"
   month: Hónap
   months: Hónapok
-  more: Egyéb
+  more: Több
   more_fields: További mezők
   more_filters: További szűrők
   more_from_x: Továbbiak %{x} felhasználótól
@@ -1792,6 +1797,9 @@ hu:
   name: Név
   name_entered: Név beírva
   name_or_slug: "Név vagy URL-paraméter, pl. magyarorszag-biodiverzitasa"
+  name_providers:
+    col: Az élet katalógusa
+    nzor: Újzélandi organizmusok jegyzéke
   names: Nevek
   names_for_taxon_html: "%{taxon} nevei"
   native: őshonos
@@ -2495,6 +2503,8 @@ hu:
   please_allow_a_few_weeks_for_external_sites: Kérünk adj pár hetet a külső honlapoknak, hogy e megfigyelés változtatásait szinkronizálják #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Kérd a szüleid engedélyét
   please_confirm_your_inat_username: "Kérjük erősítsd meg %{site_name} felhasználónevedet"
+  please_explain_why_you_want_to_hide_this: Kérlek magyarázs el miért rejted el ezt
+  please_explain_why_you_want_to_unhide_this: Kérlek magyarázd meg miért akarod a retjtettséget visszavonni
   please_fix_your_csv_and_try_again: Kérünk, javítsd ki a CSV-t, majd próbáld újra
   popular: Népszerű
   position: Pozíció
@@ -2585,7 +2595,7 @@ hu:
     subterclass: Subterclass
     parvorder: Parvorder
     superfamily: Főcsalád
-    epifamily: Epifamily
+    epifamily: Klád
     family: Család
     x_families:
       one: Család
@@ -2601,6 +2611,7 @@ hu:
     genushybrid: Nemzetséghibrid
     subgenus: Alnemzetség
     subsection: Alfajcsoport
+    complex: Fajkomplexum
     #Singular
     species: Faj
     x_species:
@@ -2644,7 +2655,7 @@ hu:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: főcsalád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
-  ranks_lowercase_epifamily: epifamily
+  ranks_lowercase_epifamily: klád
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: család
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
@@ -2846,6 +2857,8 @@ hu:
     inaturalist: iNaturalist
     catalogue_of_life_2012_annual_checklist: 'Az élet katalógusa: 2012 évi lista'
     catalogue_of_life_2013_annual_checklist: 'Az élet katalógusa: 2013 évi lista'
+  source_eg:
+    url: pl. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
   source_url: Forrás URL
   sources: Források
   sources_youve_added: Források, melyeket hozzáadtál
@@ -2960,6 +2973,8 @@ hu:
   this_observation_is_research_grade: Ez a megfigyelés tudományos szintű!
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   this_place_has_no_check_list: "Ennek a helynek nincs listája"
+  this_taxon_name_was_originally_imported: "Ez a taxonnév eredetileg egy külső névszolgáltatótól volt beimportálva:"
+  this_taxon_was_originally_imported_from: "Ez a taxon eredetileg egy külső névszolgáltatótól volt beimportálva:"
   #Application is an app or service the user has authorized to access their
   #iNat account
   this_will_sign_you_out_current_session: Ez kiléptet a jelen munkamenetedből ebben ez alkalmazásban.
@@ -3112,6 +3127,7 @@ hu:
   umbrella_projects: Ernyőprojektek
   unblock: Letiltás feloldása
   unhide_content: Tartalom elrejtésének a visszaállítása
+  unique_identifier_of_this_taxon: E taxon egyedi azonosítója a forrás adatbázisban
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unfollow: Leiratkozás
@@ -3123,6 +3139,8 @@ hu:
   unsubscribe: Leiratkozás
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
   unsuspend_user_html: Feloldod %{user} felfüggesztését
+  unsuspend_user_reason_instructions: |
+    Kérlek magyarázd meg miért oldod fel e felhasználó felfüggesztését.
   update: Frissítés
   update_existing_observations_with_new_license: Alkalmazd ezt a licencet az összes már létező megfigyelésekre
   update_existing_photos_with_new_license: Alkalmazd ezt a licencet az összes, már létező képekre
@@ -3150,6 +3168,8 @@ hu:
   uploading_num_of_count_photos:
     one: Fénykép feltöltése...
     other: Fényképek feltöltése (%{count}/%{num})
+  url_identifier_of_a_project_derived_from: "Egy projekt URL-je / azonosítója valamilyen külső forrásból származtatva"
+  url_of_this_taxon_on_the_source_website: E taxon URL-je a forrás weboldalán
   user: Felhasználó
   user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvencelték ezt a megfigyelést"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvencelték ezt a megfigyelést"
@@ -3280,6 +3300,8 @@ hu:
   where_were_you?: Hol voltál?
   which_projects_can_add_your_observations?: Mely hagyományos projektek használhatják fel a megfigyeléseidet?
   white: fehér
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Miért módosítasz? (opcionális)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
   who_can_see_the_coordinates: Ki láthatja a koordinátákat
@@ -3292,6 +3314,8 @@ hu:
   widget: Modul
   widget_code: Modul kódrészlet
   widget_for: 'Modul:'
+  wikipedia_attribution_cc_by_sa_3: |
+    Forrás: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   withdraw: Visszavonás
   withdrawing: Visszavonás...
   with_errors: Hibával
@@ -3343,11 +3367,11 @@ hu:
   your_favorites: Kedvenceid
   your_flickr_account: Flickr fiókod
   your_hard_drive: saját meghajtó
-  your_home: Az otthonod
+  your_home: Kezdőlap
   your_id: Meghatározásod
   your_identification: Az azonosításod
   your_membership: Tagságod
-  your_name_was_saved: Neved el volt mentve.
+  your_name_was_saved: A név elmentve.
   your_observations: Megfigyeléseim
   your_observations_couldnt_be_added_to_that_project: "Megfigyeléseidet nem lehetett hozzáadni ahhoz a projekthez: %{errors}"
   your_projects: Projektjeid
@@ -3356,6 +3380,7 @@ hu:
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
   your_recent_projects: Legutóbbi projektjeid
   your_relationships: Kapcsolataid
+  your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} engedélyedet kéri több jogosultsághoz %{provider} szolgáltatóhoz a folytatáshoz:"
   your_subscriptions_to_this_place: E helyhez tartozó feliratkozásaid
   your_tags: Címkéid
   yours: Sajátjaid
@@ -3627,7 +3652,7 @@ hu:
       show:
         about_names_desc: |
           <p>
-          Az élőlények nagy része rendelkezik névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlénykategóriát egy tudomnyos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
+          Az élőlények nagy része rendelkezik névvel a beszélt nyelvek valamelyikén. Ezek a nevek általában könnyen felismerhetők, könnyen kiejthetők, és jellemzően nem módosulnak az idő folyamán. Viszont sok élőlényt számos különböző néven illetnek különféle helyeken, még ugyanazon a nyelven belül is, ami félreértésekhez vezethet. Ezt a problémát a tudósok azzal kerülik el, hogy minden egyes élőlény-kategóriát egy tudományos névvel illetnek, amely név megfelel a <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">Binomenális nómenklatúra</a> szabályainak. A tudományos név legtöbbször latin nyelven alapszik, amelyet senki nem beszél, ezért azokat a legtöbb embernek nehezebb észben tartani. A tudományos nevek az élőlény rendszertani besorolására is utalhatnak, így azok módosításra szorulnak, amikor a tudósok rendszertanilag pontosabban be tudják kategorizálni az élőlényt. Ez szintén kommunikációs problémákhoz vezethet, még a tudományos neveket ismerők körében is.
           </p>
           <p>
           Ami jól kifejezi a problémát: "A népies nevek helyről helyre, a tudományos nevek időről időre változnak."
@@ -3663,6 +3688,32 @@ hu:
           unannotated: Nincs magyarázat
         trending_desc: Legtöbbször megfigyelt taxon az elmúlt hónapban
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
+    taxon_names:
+      form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Igyekezz olyan neveket hozzáadni amelyeket máshol is használnak már. Kérünk ne találj ki új neveket.</p></li>
+          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfélét "sólyom"-nak.</p></li>
+          <li><p>Magasabb rendű taxonoknak olyan neveked próbálj adni, amely minden leszármazottat magába foglal, például "sólyomfélék", "hangafélék", stb..</p></li>
+          <li>
+          <p>
+          Ne add hozzá olyan információt ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni
+          </p>
+          </li>
+          <li>
+          <p>
+          Az új nevek magyarul kell legyenek. Kérünk ne adj hozzá lefordított nyelvneveket mint "Francia, Français" mert ez csak nehézzé vagy lehetetlenné teszi számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára akik más nyelveken használják a honlapot.
+          </p>
+          </li>
+          <li>
+          <p>
+          A lefordított nyelvekkel kapcsolatos köznevek alapértelmezettként fognak megjelenni azon a nyelven (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
+          <a class="readmore" href="/pages/translate">Tudj meg többet a fordításról</a>
+          </p>
+          </li>
+          </ul>
+        places_help_html: |
+          Adj hozzá egy nevet egy helyhez, hogy elsőbbségben részesítsd azon helyek honlapjain és felhasználói számára. Ha több név van egy helyhez elsőbbséget hozhatsz létre <a href="%{url}">itt</a>. Kérünk <strong>ne adj hozzá</strong> nevet MINDEN helyhez ahol a nevet használják, csak olyan helyekhez ahol eltérő a név más helyekhez képest.
     users:
       delete:
         by_deleting_your_account_you_will_remove: |
@@ -4012,6 +4063,14 @@ hu:
         is_active: Aktív?
         locked: Zárolt
         name: Név
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Névszolgáltató
+        source_identifier: Forrás azonosító
+        source_url: Forrás URL
+      taxon_name:
+        name_provider: Névszolgáltató
+        source_url: Forrás URL
+        source_identifier: Forrás azonosító
       user:
         email: Email
         login: Felhasználónév
