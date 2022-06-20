@@ -748,6 +748,17 @@ bg:
   comparing_versions_x_and_y: "Сравняване на версии %{x} и %{y}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Изчерпателен
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Модел на компютърното зрение
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Включен
+  computer_vision_model_included_desc: |
+    Текущият Модел на компютърното зрение познава този таксон, така че таксона може да бъде включен в автоматичните предложения с обозначението „Визуално подобен“.
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: Предстои
+  computer_vision_model_pending_desc: |
+    Текущият Модел на компютърното зрение не познава този таксон. Затова, въпреки че може да бъде включен в автоматичните предложения с обозначението „Видян наоколо“, няма да има обозначението „Визуално подобен“. Конкретните изисквания за включването в модела се променят с генерирането на всеки нов модел, но включването зависи най-вече от броя наблюдения. Ще увеличите вероятността за включването на този таксон в следващия модел, ако добавите или разпознаете повече наблюдения на таксона.
   configure: Конфигуриране
   configure_a_widget_to_show: Конфигурирайте приставка, която да показва наблюдения от %{site_name} на Вашия уебсайт или блог. Може да се наложи да включите вградения CSS в <code>&lt;head&gt;</code> етикета на Вашия HTML код. Ако желаете - можете да промените CSS стила по Ваше усмотрение.
   confirm: Потвърди
@@ -1480,6 +1491,7 @@ bg:
   inbox: Входящи
   include_places: Включвай места
   include_projects: Включи проекти
+  include_suggestions_not_seen_nearby: Включи и предложения, които не са наблюдавани наоколо
   include_taxa: Включвай таксони
   include_users: Включвай потребители
   increase_brightness: Увеличи яркостта
@@ -3145,7 +3157,7 @@ bg:
   searching: "Търсене..."
   seasonality: Сезонност
   second_person_possessive_singular: "@gender{m:Вашият|f:Вашата|n:Вашето} %{noun}"
-  seen_nearby: Видяно наоколо
+  seen_nearby: Видян наоколо
   select: Избери
   select_all: Избери всички
   select_at_least_one: Изберете поне едно
