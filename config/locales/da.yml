@@ -4402,6 +4402,13 @@ da:
     forbundne til det globale iNaturalist-fællesskab. Netværkssteder understøttes
     af lokale institutioner, som fremmer lokal brug og letter brugen af data
     fra iNaturalist til gavn for den lokale biodiversitet. De har inden for deres geografiske områder adgang til reelle koordinater, som automatisk skjules for offentligheden for bedre at beskytte truede arter.
+  sites_network_your_username: |
+    Dit brugernavn og adgangskode fungerer på alle websteder, som er en del af
+    iNaturalistisk Network. Vælger du at affiliere med et netværkswebsted, vil
+    lokale institutioner, som understøtter hvert websted, også have adgang til din
+    e-mailadresse (kun for at kommunikere med dig om webstedsaktiviteter) og
+    adgang til de reelle koordinater for observationer, som du har valgt at
+    gøre offentligt tilslørede eller fortrolige.
   some_agree: nogle er enige
   some_observations_are_missing_media_or_identifications: |
     Nogle observationer mangler medier eller identifikationer
@@ -7293,6 +7300,18 @@ da:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist Network</a> er en
+          samling af lokale websteder, som er forbundet med det globale INaturalist-fællesskab.
+          Netværkswebsteder understøttes af lokale institutioner, som har underskrevet en aftale med iNaturalist om at fremme lokalt brug og gavn af biodiversitet. De har adgang til reelle koordinater fra deres lande, som automatisk er sløre for offentligheden for at beskytte truede arter.
+          </p>
+          <p>
+          Dit brugernavn og adgangskode fungerer på alle websteder, som udgør en del af iNaturalist Network. Hvis du vælger at deltage i et netværkswebsted, vil de lokale institutioner, som driver hvert websted, også have adgang til din e-mailadresse (kun for at kommunikere med dig om iNat-aktiviteter) og adgang til de reelle koordinater for observationer, som er offentligt sløret eller fortrolige.
+          </p>
+          <p>
+          Bemærk: Skift ikke for sjov din tilknytning, hvis du har flere end 1.000 observationer.
+          </p>
         licensing_desc_html: |
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
@@ -8007,10 +8026,6 @@ da:
               relative_uri: "skal være et fuldstændigt URI."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                kan ikke angå dubletobservationer - kun observatøren kan
-                fjerne dubletter, så kontakt venligst vedkommende direkte herom via en kommentar
             user_id:
               already_flagged: "allerede markeret dette"
         guide:
