@@ -4331,6 +4331,8 @@ fr:
   sites_network_consists_of: "Le réseau iNaturalist se compose de plusieurs organisations :"
   sites_network_inaturalist_network_collection: |
     Le réseau iNaturalist est un ensemble de sites Web localisés qui sont entièrement connectés à la communauté mondiale iNaturalist. Les sites du réseau sont soutenus par des institutions locales qui font la promotion à l'échelle locale et qui facilitent l'utilisation des données d'iNaturalist dans l'intérêt de la biodiversité locale. Dans leur zone géographique, ils ont accès aux coordonnées exactes qui sont automatiquement masquées pour le public afin de mieux protéger les espèces menacées.
+  sites_network_your_username: |
+    Votre nom d'utilisateur et votre mot de passe fonctionnent sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous affilier à un site du réseau, les institutions locales qui soutiennent ce site auront également accès à votre adresse électronique (uniquement pour communiquer avec vous au sujet des activités du site) et aux coordonnées exactes des observations que vous avez choisi de masquer ou de rendre privées.
   some_agree: quelques personnes sont d’accord
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo ou d'identification
@@ -7293,6 +7295,12 @@ fr:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web au niveau local liés à la communauté mondiale d'iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation du site et la protection de la biodiversité à l'échelle locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées à la vue du public afin de protéger les espèces menacées. </p>
+          <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse mail (seulement pour communiquer avec vous à propos des activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
+          <p>
+           Note: ne modifiez pas votre affiliation "juste pour essayer" si vous avez plus de 1000 observations.
+          </p>
         licensing_desc_html: |
           En mettant votre contenu sous licence, vous donnerez à quiconque le
           droit de l’utiliser légalement sans
