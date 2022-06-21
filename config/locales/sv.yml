@@ -4403,6 +4403,12 @@ sv:
   sites_network_consists_of: "iNaturalist-nätverket består av ett flertal organisationer:"
   sites_network_inaturalist_network_collection: |
     iNaturalist-nätverket är en samling anpassade webbplatser som är fullt kopplade till den globala iNaturalist-communityn. Nätverksplatser stöds av lokala institutioner som främjar lokal användning och underlättar användningen av data från iNaturalist för att gynna lokal biologisk mångfald. De har tillgång till exakta koordinater inom sina geografiska områden som automatiskt diffuseras vid publik visning för att bättre skydda hotade arter.
+  sites_network_your_username: |
+    Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i
+    iNaturalist-nätverket. Om du väljer att anknyta dig till en nätverkswebbplats, kommer de
+    lokala institutioner som stödjer varje webbplats också att ha tillgång till din
+    e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och
+    tillgång till de exakta koordinaterna för fynd som du har valt att göra offentligt diffuserade eller privata.
   some_agree: några håller med
   some_observations_are_missing_media_or_identifications: |
     Vissa fynd saknar media eller bestämningar
@@ -6988,6 +6994,16 @@ sv:
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-communityn. Nätverksplatserna stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater, från sina länder, som automatiskt diffuseras vid publik visning för att skydda hotade arter.
+          </p>
+          <p>
+          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att knyta an till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för fynd som offentligt är diffuserade eller privata.
+          </p>
+          <p>
+          Obs: Teständra inte din anknytning om du har mer än 1000 fynd.
+          </p>
         licensing_desc_html: |
           Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar %{site_name} ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel
           inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
@@ -7668,11 +7684,6 @@ sv:
               relative_uri: "måste vara en absolut URI."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                kan inte röra dubbla observationer; endast observatören kan
-                ta bort dubbletter, ta därför upp dessa problem med en kommentar
-                direkt till dem
             user_id:
               already_flagged: "redan flaggat det objektet"
         guide:
