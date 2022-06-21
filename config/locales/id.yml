@@ -4234,6 +4234,8 @@ id:
   sites_network_consists_of: "Jaringan iNaturalist terdiri dari beberapa organisasi:"
   sites_network_inaturalist_network_collection: |
     Jaringan iNaturalist adalah kumpulan situs web terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist secara global. Jaringan situs didukung oleh institusi-institusi lokal yang mempromosikan penggunaan lokal dan memfasilitasi penggunaan data dari iNaturalist untuk kebaikan keanekaragaman hayati lokal. Mereka memiliki akses ke koordinat yang tepat dari negara masing-masing yang terkaburkan secara otomatis dari publik untuk melindungi spesies yang terancam punah dengan baik.
+  sites_network_your_username: |
+    Nama pengguna dan kata sandi Anda dapat digunakan ke dalam seluruh situs yang merupakan bagian dari iNaturalist Network. Jika Anda memilih untuk mengafiliasikan diri dengan situs Network tertentu, institusi lokal yang mendukung situs terkait juga akan memiliki akses ke surel Anda (hanya untuk berkomunikasi dengan Anda mengenai aktivitas di situs) dan mengakses koordinat yang tepat untuk pengamatan yang Anda pilih untuk dikaburkan atau diperuntukkan secara pribadi.
   some_agree: beberapa setuju
   some_observations_are_missing_media_or_identifications: |
     Beberapa pengamatan tidak memiliki media atau identifikasi
@@ -6664,6 +6666,16 @@ id:
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jika Anda berubah pikiran, Anda selalu dapat <a href='/users/edit'>mengubah pengaturan Anda</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">Jaringan iNaturalist</a> adalah koleksi situs web yang terlokalisasi yang terhubung sepenuhnya dengan komunitas iNaturalist global. Situs jaringan didukung oleh institusi-institusi lokal yang telah menandatangani persetujuan dengan iNaturalist untuk mempromosikan penggunaan lokal dan memberikan manfaat kepada keanekaragaman hayati lokal. Mereka memiliki akses kepada koordinat sebenarnya dari negara mereka yang secara otomatis dikaburkan dari tampilan publik untuk melindungi spesies yang terancam.
+          </p>
+          <p>
+          Nama pengguna dan kata sandi Anda berlaku untuk semua situs yang merupakan bagian dari Jaringan iNaturalist. Jika Anda memilih untuk berafiliasi dengan sebuah situs Jaringan, institusi lokal yang mengoperasikan setiap situs akan memiliki akses juga kepada alamat email Anda (hanya untuk berkomunikasi dengan Anda tentang aktivitas situs) dan mengakses koordinat sebenarnya untuk pengamatan yang secara publik dikaburkan atau pribadi.
+          </p>
+          <p>
+          Catatan: Jangan mencoba-coba untuk mengganti afiliasi Anda jika Anda memiliki lebih dari 1000 pengamatan.
+          </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
         monthly_supporter_desc_html: |
@@ -7307,9 +7319,6 @@ id:
               relative_uri: "harus berupa URI yang absolut."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                tidak boleh berupa pengamatan duplikat, hanya pengamat yang boleh menghapus duplikat, jadi harap selesaikan masalah ini dengan mereka secara langsung dengan berkomentar
             user_id:
               already_flagged: "sudah menandai barang tersebut"
         guide:
