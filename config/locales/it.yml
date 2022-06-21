@@ -4266,8 +4266,6 @@ it:
   sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
   sites_network_inaturalist_network_collection: |
     La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
-  sites_network_your_username: |
-    Il tuo nome utente e la tua password su tutti i siti parte della Rete di iNaturalist. Se scegli di affiliarti con un sito della Rete, le istituzioni locali che supportano ogni sito avranno anche accesso al tuo indirizzo email (solo per comunicare con te sulle attività del sito) e accedere alle vere coordinate per le osservazioni che hai scelto di rendere pubblicamente oscurate o private.
   some_agree: alcuni concordano
   some_observations_are_missing_media_or_identifications: |
     Alcune osservazioni mancano di allegato multimediale o di identificazioni
@@ -6765,16 +6763,6 @@ it:
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se cambi idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          Il <a href="%{url}" target="_blank">Network iNaturalist</a> è una collezione di siti web localizzati che sono completamente connessi alla comunità globale di iNaturalist. i Siti del Network sono supportati da istituzioni locali che hanno firmato un accordo con iNaturalist per promuovere l'utilizzo locale e portare beneficio alla biodiversità locale. Per gli stati di competenza, hanno accesso alle coordinare reali che sono automaticamente oscurate al pubblico per proteggere le specie minacciate.
-          </p>
-          <p>
-          Il tuo nome utente e password funziona per tutti i siti che sono partner del Network iNaturalist. Se scegli di affiliarti ad un sito del Network, le istituzioni locali che mantengono ogni siti hanno anche accesso alla tua mail (solo per comunicare con te relativamente all'attività del sito) e alle coordinate reali delle osservazioni che sono pubblicamente oscurate o private.
-          </p>
-          <p>
-          Nota: Per favore non provare a cambiare affiliazione se hai più di 1000 osservazioni.
-          </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
         monthly_supporter_desc_html: |
