@@ -4327,8 +4327,6 @@ es-MX:
   sites_network_consists_of: "La Red de iNaturalist está conformada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La Red de iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad global de iNaturalist. Los sitios de la Red están apoyados por instituciones locales que promueven el uso local y facilitan el uso de datos de iNaturalist para beneficiar la biodiversidad en cada sitio. Tienen acceso a las coordenadas verdaderas dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública con el fin de proteger mejor las especies amenazadas.
-  sites_network_your_username: |
-    Tu nombre de usuario y contraseña funcionan en todos los sitios que forman parte de la Red de iNaturalist. Si eliges afiliarte a un sitio específico de la Red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse contigo acerca de las actividades del sitio) y acceso a las coordenadas verdaderas para las observaciones que ha elegido hacer ocultas o privada.
   some_agree: Algunos están de acuerdo
   some_observations_are_missing_media_or_identifications: |
     Algunas observaciones carecen de fotografías o identificaciones
@@ -6954,14 +6952,6 @@ es-MX:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>La <a href="%{url}" target="_blank">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>
-
-          <p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>
-
-          <p>
-          Nota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.
-          </p>
         licensing_desc_html: |
           La licencia de tu contenido permite a otra gente el uso legal sin
           pedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.
@@ -7660,11 +7650,6 @@ es-MX:
               relative_uri: "debe ser un URI absoluto."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                no puede ser acerca de observaciones duplicadas; solo el observador puede
-                eliminar duplicados, así que por favor dirígele tus observaciones
-                directamente con un comentario
             user_id:
               already_flagged: "Ese elemento ya tiene advertencia"
         guide:

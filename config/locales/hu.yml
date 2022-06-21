@@ -173,6 +173,7 @@ hu:
   about_places: A helyekről
   about_taxon_ranges: A taxonintervallumokról
   about_the_network: A hálózatról
+  about_this_bioblitz: Erről a bioblitzról
   about_this_map: Erről a térképről
   about_this_project: Erről a projektről
   about_trusting_projects: A projektekről melyekben megbízól
@@ -245,11 +246,15 @@ hu:
   add_new_place: Új hely hozzáadása
   add_new_rule: Új szabály hozzáadása
   add_new_taxon_name: Új taxonnév hozzáadása
+  add_obs_from_a_list: Hozzáadás megfigy listából
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
   add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
   #Prompt to add a new journal post
   add_one: Új létrehozása
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Most adj hozzá egyet
   add_photos: Fénykép hozzáadása
   add_place: Hely hozzáadása
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
@@ -265,6 +270,7 @@ hu:
   add_life_stage_egg_annotation: '"Életszakasz: Pete, tojás" megjelölés hozzáadása'
   add_evidence_of_presence_organism_annotation: '"Megjelenési bizonyíték: Élőlény" hozzáadása'
   add_evidence_of_presence_feather_annotation: '"Megjelenési bizonyíték: Toll" hozzáadása'
+  add_evidence_of_presence_gall_annotation: '"Megjelenési bizonyíték: Gubacs" hozzáadása'
   add_evidence_of_presence_scat_annotation: '"Megjelenési bizonyíték: Ürülék" hozzáadása'
   add_evidence_of_presence_track_annotation: '"Megjelenési bizonyíték: Nyom" hozzáadása'
   add_evidence_of_presence_bone_annotation: '"Megjelenési bizonyíték: Csont" hozzáadása'
@@ -306,9 +312,12 @@ hu:
   agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
   agreeing: Egyetértés...
+  aka: más néven
   all: Mind
   all_comments: Minden megjegyzés
+  all_flags_must_be_resolved: Minden megjelölést meg kell oldani
   all_life: Minden életforma
+  all_names: Minden név
   all_observations: Minden megfigyelés
   all_photos: Az összes fotó
   all_places: "Az összes hely"
@@ -438,6 +447,7 @@ hu:
   apply_darr: "Alkalmaz &darr;"
   apply_establishment_means_to_descendant_places: "Alkalmazd a letelepedési formát a leszármazó helyekre"
   apply_these_settings_to_all: Ezen beállítások alkalmazása az összes alábbi megfigyelésre.
+  appropriate?: Megfelelő?
   arachnids: pókszabásúak
   archives: Archívum
   are_you_really_sure_want_delete_this_user: Teljesen biztos vagy benne, hogy ki akarod törölni ezt a felhasználót és minden tartalmát?
@@ -495,6 +505,9 @@ hu:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribútum
   attribution: Nevezd meg!
+  authority_list:
+    iucn_red_list: IUCN vörös lista
+    natureserve: NatureServe
   authorize: Engedélyezés
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
@@ -776,6 +789,8 @@ hu:
     evidence_of_presence: Megjelenési bizonyíték
     #As in the feather on a bird
     feather: Toll
+    #Abnormal growth
+    gall: Gubacs
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Élőlény
@@ -856,7 +871,23 @@ hu:
   curation: Gondozás
   curator: Gondnok
   #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Meg kell magyaráznod hogy miért akarsz kurátor lenni.
+  #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Miért akarsz gondnok lenni?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Ha az iNaturalist taxonómiáját akarod szerkeszteni, kérünk, hogy mondj egy-két példát a végrehajtani kívánt változtatásokra, és adj meg forrásokat a javasolt változtatásokhoz. Ha alkalmazható, kérünk, hogy hivatkozz a megfelelő taxonómiai hatóságra <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">a felsoroltak szerint a kurátori útmutatóban</a>. Ha nem mellékelsz semmilyen forrást, akkor a te kérelmedet nem veszik figyelembe.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Ha gyakori neveket akarsz szerkeszteni, kérünk, hogy mondj egy-két példát a végrehajtani kívánt változtatásokra.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Ha viselkedést akarsz mérsékelni az iNaturaliston, kérünk hogy mondj egy-két példát közösségi irányelvek megsértésére és mit tennél azokban a helyzetekben.
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Hogyan veszíti el egy kurátor a hatáskörét
   #Header
   curator_application_what_curators_can_do: Mit tehetnek a gondnokok
   curator_application_what_curators_can_do_hide_comments_html: |
@@ -874,6 +905,8 @@ hu:
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
     Más emberek saját üzeneteinek az olvasása.
+  #Title of a page where people apply to become a curator
+  curator_application_title: Kurátor alkalmazás
   curators: Gondnokok
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   darr_apply_darr: "&darr; Alkalmaz &darr;"
@@ -883,6 +916,7 @@ hu:
   data_deficient: Adathiányos
   data_quality: Adatminőség
   data_quality_assessment: Adatminőség
+  data_used: "Adathasználat:"
   datatype: Adattípus
   date_: Dátum
   date_added: Létrehozás dátuma
@@ -916,6 +950,7 @@ hu:
       november: November
       december: December
   date_is_accurate: A dátum pontos
+  date_joined: Regisztráció
   date_obscured_notice: A dátum kitakart hogy egy személyt vagy szervezetet védjen
   date_observed: Megfigyelés dátuma
   date_observed_: Megfigyelés dátuma
@@ -981,6 +1016,7 @@ hu:
   devise:
     failure:
       already_authenticated: 'Már be vagy jelentkezve.'
+      unauthenticated: 'A folytatás előtt be kell jelentkezned.'
       invalid: 'Érvénytelen e-mail cím vagy jelszó.'
       invalid_token: 'Érvénytelen hitelesítési token.'
       user:
@@ -992,6 +1028,10 @@ hu:
       send_instructions: 'Hamarosan fogsz kapni egy emailt arról, hogy hogyan tudod megváltoztatni a jelszavadat'
       updated: 'A jelszó sikeresen megváltoztatva. Ön bejelentkezett.'
       updated_not_active: 'Sikeresen megváltoztattad jelszavadat.'
+    registrations:
+      signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
+      updated: 'Fiókod sikeresen frissítve.'
+      destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
     mailer:
       confirmation_instructions:
         subject: 'Megerősítési utasítások'
@@ -1031,6 +1071,7 @@ hu:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: TÁMOGATÁS
+  donate_again_caps: ADOMÁNYOZZ ÚJRA
   done: Kész
   dont_have_an_account_sign_up_html: Nincs még fiókod? <strong>Regisztrálj.</strong>
   #Prompt shown when you are dragging a file somewhere and should release it to
@@ -1078,6 +1119,7 @@ hu:
   edited_by_name_html: "Módosította %{name}"
   edited_by_name_some_rights_reserved_html: |
     %{name} módosította, néhány jog fenntartva (%{license})
+  editing: Szerkesztés
   editing_observation_field: Az adatmezők szerkesztése
   editing_observation_id: "%{obs_id} megfigyelés módosítása"
   editing_observations:
@@ -1098,6 +1140,8 @@ hu:
   endangered: Veszélyeztetett
   endemic: Helyi
   endemic_to_x: "%{x} helyen helyi"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   error_updating_photo: "Hiba a fotó frissítésekor: %{photo_errors}"
   establishment:
     endemic: Helyi
@@ -1195,6 +1239,7 @@ hu:
   flag_an_item: Megjelölés kifogásolhatóként
   #Label for the date/time when a flag was created
   flag_created: Bejelentés létrehozva
+  flag_deleted: Megjelölés kitörölve.
   flag_for_check_list_title_html: |
     Lista bejelentése: %{title}
   flag_for_comment_id_html: <a href="%{url}">%{id} hozzászólás</a> bejelentése
@@ -1237,6 +1282,8 @@ hu:
   flagging_desc: |
     A megjelöléssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
+  flags: Megjelölések
+  flags_with_count: Megjelölések (%{count})
   flags_for_x_html: '%{x} bejelentések'
   flickr_account_information: Flickr fiókod adatai
   flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
@@ -1252,11 +1299,13 @@ hu:
     one: 'Egy felhasználót követ'
     other: '%{count} felhasználót követ'
   for_a_taxon: egy taxonról
+  formatting: Formátum
   forgot_your_password: Elfelejtetted a jelszavadat?
   forum: Fórum
   forum_categories:
     feature_requests: Funkciójavaslatok
     news_and_updates: Hírek & Újdonságok
+    tutorials: Bemutatók
   frequency: Gyakoriság
   from_a_place: egy helyről
   from_flickr_facebook_etc: Flickr, Facebook stb. oldalakról
@@ -1292,6 +1341,7 @@ hu:
   has_photos: Fényképpel
   has_photo_and_sound: Van fénykép és hang
   has_photos_or_sounds: Hanggal
+  has_sound: Hanggal
   has_sounds: Hanggal
   header_your_observations: Megfigyeléseim
   header_your_calendar: A naptárad
@@ -1309,6 +1359,7 @@ hu:
   help: Súgó
   here_are_our_top_suggestions: Íme a legjobb javaslataink
   here_are_our_top_species_suggestions: Íme a legjobb javaslataink
+  hex_color_eg: Hex szín, például 65644F
   hi_user: "Szia %{user},"
   #Verb, usually a button to hide an interface element
   hide: Elrejt
@@ -1372,6 +1423,7 @@ hu:
   include_places: Helyeket tartalmazza
   include_projects: Projekteket tartalmazza
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
+  including: beleértve
   increase_brightness: Fényerő növelése
   in_progress: folyamatban
   in_the_past: régen
@@ -1414,6 +1466,7 @@ hu:
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: dõlt szöveg
+  jobs: Állások
   join: Csatlakozás
   join_and_add_an_observation_to_project_html: Csatlakozz és tölts fel egy megfigyelést a %{project} projekthez.
   join_project: Csatlakozás a projekthez
@@ -1499,6 +1552,10 @@ hu:
     bengali: Bengáli
     bulgarian: Bolgár
     catalan: Katalán
+    chinese_simplified: Kínai (egyszerűsített)
+    chinese_traditional: Kínai (hagyományos)
+    creole_french: kreol (francia)
+    creole_portuguese: kreol (portugál)
     croatian: Horvát
     czech: Cseh
     danish: Dán
@@ -1521,14 +1578,19 @@ hu:
     korean: Koreai
     latvian: Litván
     lithuanian: Litván
+    luxembourgish: Luxemburgi
     malay: Maláj
     maltese: Máltai
+    maya: Maja
     mongolian: Mongol
+    nahuatl: Nahuatl
     norwegian: Norvég
+    occitan: okszitán
     polish: Lengyel
     portuguese: Portugál
     romanian: Román
     russian: Orosz
+    sinhala: Szingaléz
     slovak: Szlovák
     slovenian: Szolvén
     spanish: Spanyol
@@ -1833,7 +1895,7 @@ hu:
   new_observations_in_year: "%{year} évi új megfigyelések"
   new_observations_ellispsis: "Új megfigyelések..."
   new_observations_from_place_html: "Új megfigyelések innen: %{place}"
-  new_observations_may_take_up_to: Az új megfigyelések megjelenése a modulban %{widget_expiration} késedelemmel történik.
+  new_observations_may_take_up_to: Az új megfigyelések megjelenése a modulban %{widget_expiration} perc késedelemmel történik.
   new_observations_of_x_html: "%{x} új megfigyelései"
   new_password: Új jelszó
   new_post: Új bejegyzés
@@ -3908,6 +3970,7 @@ hu:
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
       delimiter: ','
+      precision: 3
       #The separator separates an integer from a decimal fraction, so if the
       #number is "one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "." is the separator. This should not be
@@ -3923,6 +3986,7 @@ hu:
           million: millió
           thousand: ezer
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
       storage_units:
@@ -3977,6 +4041,8 @@ hu:
       Atlas: Térkép
       BlockedUser: Letiltott felhasználó
       CompleteSet: Teljes sorozat
+      #Noun
+      Flag: Megjelölés
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Alkalmazás
@@ -4068,6 +4134,8 @@ hu:
         source_identifier: Forrás azonosító
         source_url: Forrás URL
       taxon_name:
+        lexicon: Szókészlet
+        name: Név
         name_provider: Névszolgáltató
         source_url: Forrás URL
         source_identifier: Forrás azonosító
@@ -4173,6 +4241,8 @@ hu:
         vow: magánhangzó
         con: mássalhangzó
       "@gender":
+        m: hím
+        f: nőstény
         "n": semleges
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         atlas: "@n"
@@ -4183,6 +4253,7 @@ hu:
   will_paginate:
     previous_label: "&#8592; Előző"
     next_label: "Következő &#8594;"
+    page_gap: "&hellip;"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Fordított ABC-sorrend

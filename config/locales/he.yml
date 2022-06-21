@@ -2254,6 +2254,8 @@ he:
   needs_to_be_identified: יש צורך בזיהוי
   network_affiliation_prompt_from_other_site_html: |
     האם ברצונך לשנות את השיוך שלך מ <strong>%{other_site_name}</strong> ל <strong>%{site_name}</strong>?
+  #Column header in a table listing iNaturalist Network members
+  network_member: חבר רשת
   new: חדש
   new_and_noteworthy: חדש ומעניין
   new_announcement: הודעה חדשה
@@ -3394,14 +3396,40 @@ he:
   #People who administrate a particular iNaturalist Network partner
   site_admins: אדמינסטרצורים
   site_stats: סטטיסטיקות האתר
+  sites_affiliation_about_desc_html: |
+    במידה והארגון שלך מעוניין להצטרף לרשת iNaturalist, ניתן לקבל פרטים נוספים %{start_tag_join}כאן%{end_tag_join}.
   sites_affiliation_examples_ecuardor_bndb_html: |
     %{start_tag_ecuador}iNaturalist אקוודור%{end_tag_ecuador} מזרים נתונים למאגר המגוון הביולוגי הלאומי של אקוודור - BNDB - מאגר גדול של נתונים מתיעודים מדעיים וכן ממדע אזרחי. המטרה היא לשלב את הידע והנתונים שעוזרים לחזק את ההבנה הסביבתית של החי והצומח של אקוודור.
   sites_affiliation_examples_mexico_nbis_html: |
     ה-%{start_tag_naturalista}Naturalista%{end_tag_naturalista} של מקסיקו מזרימה תצפיות אל מערכת המידע הלאומית למגוון ביולוגי (CONABIO) יחד עם תצפיות מ-eBird. ניתן למצוא במערכת תצפיות הן ממחקרים מדעיים והן ממדע אזרחי ב-%{start_tag_enciclovida}Enciclovida%{end_tag_enciclovida}.
+  sites_affiliation_examples_portugal_atlas_html: |
+    חברת רשת iNaturalist בפורטוגל %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} שיתפה מאגר דאטא של האטלס הפורטוגזי של עופות נודדים, של יונקים, וכן הרבה מאמרים מחקריים פורטוגזיים אחרים.
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
     האפליקציה מסתירה באופן אוטומטי את הקואורדינטות של חלק מהמינים על מנת להגן עליהם מפגיעה, איסוף או ציד בלתי חוקי. במידה והקואורדינטות הוסתרו באופן אוטומטי על מנת להגן על המינים, איי-נאט משתפת את הקוארדינטות האמיתיות של כל התצפיות מהמדינות הרלוונטיות עם חברי הרשת.
+  sites_affiliation_more_email_addresses: |
+    שיתוף כתובות דוא"ל עם חברות וחברי רשת הוא לצורך תקשורת שקשורה לאתר בלבד.
+  sites_affiliation_more_twice_per_year: |
+    פעמיים בשנה, iNaturalist משתפת כתובות דוא"ל של חשבונות משויכים וחלק מהקואורדינטות הנסתרות (כלומר מוסתרות מהציבור או פרטיות) עם חברי וחברות הרשת של iNaturalist כדי לסייע בשימוש iNaturalist לצורכי מחקר, שמירת טבע וניהול - כל אחד ואחת בתחומם. שתי הדרכים להסתרת קואורדינטות ושיתופן מפורטות להלן.
+  sites_affiliation_more_user_hidden_coordinates_desc: |
+    שיתוף של תצפיות בעלות קואורדינטות מוסתרות עקב בחירות של משתמש.ת נעשה בצורה הרבה יותר מוגבלת וספציפית. באמצעות השתייכות לאתר ברשת, iNaturalist ישתף עם אדמיני האתר את הקואורדינטות המדויקות של תצפיות עם פרטיות מיקום שהגדרת כמוסתרת או פרטית, בנוסף לאלו שהן מוסתרות מהציבור או פרטיות עקב פרטיות מיקום של טקסון. זה מאפשר לתצפיות שלך להיות יותר ערכיות עבור מאמצי שימור טבע מקומיים.
+  sites_affiliation_overview_current_member_list_html: |
+    ניתן לראות את רשימת החברות והחברים הנוכחית %{start_tag_network}ברשת iNaturalist%{end_tag_network}.
+  sites_affiliation_overview_in_order_to_advance: |
+    חברות וחברי הרשת יכולים לשתף דאטא מ-iNaturalist על מנת לקדם מחקר ושימור טבע, כל אחת בתחום שלה. יש להן אחריות להעריך באיזו מידה בקשת הדאטא שלהן והשלכותיה הפוטנציאליות תקינות והולמות; להבהיר בכתב את האחריות גם לוודא את אבטחת המידע ולא לחשוף אותו בגלוי באף צורה, או לשתף אותו מעבר למטרה המקורית לשמה הוא נועד; לתעד כל מקרים של שיתוף יחד עם התוצאות הנלוות או שימושים מתוכננים; ולדווח מדי שנה בשנה ל-iNaturalist.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}רשת iNaturalist%{end_tag_network} היא אוסף של אתרים מותאמים לפי מיקום %{start_tag_global}ברשת iNaturalist העולמית%{end_tag_global}.
+  sites_affiliation_overview_when_you_affiliate: |
+    כשאת מתחברת לחבר ברשת iNaturalist, כתובת הדוא"ל שלך והמיקומים האמיתיים של המיקומים המוסתרים והפרטיים שלך משותפים עם אותו חבר ברשת. זה מאפשר לתצפיות שלך להיות ערכיות יותר עבור מאמצי שימור טבע מקומיים. אם את.ה גר.ה או מבקר.ת תכופות באזור שהוא חבר ברשת, מומלץ לבחור בו בתור השתייכות כדי לסייע בשיתוף דאטא.
+  sites_affiliation_overview_you_can_continue_html: |
+    באפשרותך להמשיך להתחבר דרך iNaturalist.org או דרך אתר ספציפי לרשת משלך. בלי קשר לשיוך שלך, כל הדאטא שלך תישמר באותו המקום ותוכל.י להמשיך לפעול בתוך קהילת iNaturalist הבינלאומית הרחבה. כל חשבון iNaturalist יכול להיות משויך לחבר.ת רשת אחת בלבד. ניתן לצפות בשיוך שלך או לשנות אותו %{start_tag_settings}בהגדרות החשבון%{end_tag_settings} שלך.
+  sites_affiliation_title: מידע נוסף אודות שיוך לרשת
   sites_network_cas_and_nat_geo_html: |
     ל%{start_tag_cas}אקדמיה למדעים של קליפורניה%{end_tag_cas} ול%{start_tag_nat_geo}נשיונל ג'יאוגרפיק%{end_tag_nat_geo} יש הסכמים פורמאליים עם ארגונים בכל אחד מהאזורים הגאוגרפיים הללו כדי לתמוך בשימוש בפלטפורמת iNaturalist.<strong>אם הארגון שלך מעוניין להצטרף לרשת של iNaturalist, ניתן למצוא פרטים נוספים %{start_tag_join}כאן%{end_tag_join}.</strong>
+  sites_network_consists_of: "רשת iNaturalist מורכבת ממספר ארגונים:"
+  sites_network_inaturalist_network_collection: |
+    רשת iNaturalist היא אוסף של אתרים מקומיים שמחוברים במלואם לקהילת iNaturalist העולמית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שמקדמים שימוש מקומי ומסייעים בשימוש בדאטא מ-iNaturalist על מנת להועיל למגוון הביולוגי המקומי. הם בעלי גישה לקואורדינטות אמיתיות באזורם הגיאוגרפי שמוסתרות מהציבור באופן אוטומטי כדי להגן טוב יותר על מינים בסיכון.
+  sites_network_your_username: |
+    שם המשתמש והסיסמה שלך עובדים בכל האתרים שהם חלק מרשת iNaturalist. אם בחרת להשתייך לאתר ברשת, המוסדות המקומיים שתומכים בכל אתר גם יקבלו גישה לכתובת הדוא"ל שלך (רק לתקשר איתך על פעילות באתר) וגישה לקואורדינטות האמיתיות של תצפיות שבחרת להפוך למוסתרות מהציבור או לפרטיות.
   some_agree: חלק מסכימים
   some_observations_failed_to_be_added: חלק מהתצפיות לא נוספו לפרויקטים
   some_observations_failed_to_save: חלק מהתצפיות לא נשמרו
@@ -4431,6 +4459,8 @@ he:
         recent_w_0_obs: לאחרונה ללא תצפ'
         TTCID: זעז"ק
         TTID: זע"ז
+        website_desc_html: |
+          נוצרו באמצעות האתרים <a href="https://www.inaturalist.org">iNaturalist</a> או <a href="%{url}">iNaturalist Network</a>
       year:
         donate_title: "תודה מיוחדת לכל התומכים בנו"
         include_usa: כולל ארה"ב
@@ -4481,6 +4511,16 @@ he:
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
         about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">רשת iNaturalist</a> היא אוסף של אתרים מותאמים שמקושרים בצורה מלאה לרשת iNaturalist הגלובלית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שחתמו על הסכם עם iNaturalist כדי לקדם שימוש מקומי ולהועיל למגוון הביולוגי המקומי. יש להם גישה לקואורדינטות אמיתיות מהמדינות שלהם שמוסתרות באופן אוטומטי, כדי להגן על מינים בסיכון.
+          </p>
+          <p>
+          שם המשתמש והסיסמה שלך עובדים בכל האתרים שהם חלק מהרשת של iNaturalist. במידה ותבחר.י להשתייך לאתר ברשת, המוסדות המקומיים שמנהלים כל אתר גם יקבלו גישה לכתובת הדוא"ל שלך (רק לתקשר איתך אודות פעילות באתר) וגישה לקואורדינטות האמיתיות עבור תצפיות שהן מוסתרות מהציבור או פרטיות.
+          </p>
+          <p>
+          יש לציין: נא לא לשנות את השיוך שלך באופן ניסיוני אם יש לך מעל 1000 תצפיות.
+          </p>
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update

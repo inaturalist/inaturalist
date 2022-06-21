@@ -3020,7 +3020,7 @@ de:
   only_the_owner_of_this_list_can_do_that: Nur der Besitzer dieser Liste kann das. Sei nicht böse.
   only_the_project_admin_can_delete_this_project: Nur der Projektadministrator kann dieses Projekt löschen.
   only_view_nearby_suggestions: Vorschläge auf die nähere Umgebung beschränken
-  only_you: Nur dir
+  only_you: Nur du
   open: offen
   open_: öffentlich
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
@@ -4893,7 +4893,7 @@ de:
   user_added_a_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
   user_added_a_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_an_identification_html: "Bestimmung hinzugefügt von: %{user}"
-  user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name} zu einer Beobachtung von %{owner} hinzugefügt'
+  user_added_an_observation_field_html: '%{user} hat einen Wert für "%{field_name}" zu einer Beobachtung von %{owner} hinzugefügt'
   user_added_an_observation_field_value_html: "%{user} hat einen Wert in einem Beobachtungsfeld hinzugefügt"
   user_added_an_observation_html: "%{user} hat eine Beobachtung hinzugefügt"
   user_added_an_x: "%{user}: %{x} hinzugefügt"
@@ -6717,7 +6717,7 @@ de:
           Das <a href="%{url}" target="_blank">iNaturalist Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern. Sie haben Zugang zu echten Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.
           </p>
           <p>
-          Dein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind. 
+          Dein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind.
           </p>
           <p>
           Hinweis: Bitte ändere deine Zugehörigkeit nicht experimentell, wenn du mehr als 1000 Beobachtungen hast.
@@ -7373,9 +7373,6 @@ de:
               relative_uri: "muss ein absoluter URI sein."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                kann nicht für doppelte Beobachtungen (Duplikate) verwendet werden; nur Beobachter können Duplikate entfernen, also bitte solche Angelegenheiten mit ihnen direkt in einem Kommentar besprechen
             user_id:
               already_flagged: "hat diesen Artikel bereits gemeldet"
         guide:

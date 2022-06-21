@@ -68,6 +68,8 @@ mi:
   #Notice when a comment has been hidden by moderators
   comment_hidden: I hunaia te kōrero
   comments: Kōrero
+  community: Hapori
+  community_guidelines: Aratohu hapori
   copyright:
     copyright: manatārua
     no_copyright: manatārua kore (CC0)
@@ -117,17 +119,23 @@ mi:
   find_photos: Kimihia ngā whakaahua
   find_places: Kimihia ngā wāhi
   find_species: Kimihia ngā momo
+  forum: Wānanga
+  guidelines: Aratohu
   help: Āwhina
   identify: E tautuhi ana
   identification: tautuhi
   identifications: Ngā taituhi
   identifiers: Ngā kaitautuhi
+  inaturalist_is_a_joint_initiative: "He %{site_name} tētahi kaupapa o te California Academy of Sciences me te National Geographic Society."
   learn: Ako
+  learn_more: Akohia tonuhia
   list: Tūtira
   lists: Ngā tūtira
   log_in: Takiuru
   map: Mahere
   meet: Tūtaki
+  more_observations: Tonuhia ngā pūkete
+  more_photos: Tonuhia ngā whakaahua
   #Attributes an observation to a user and specifies that copyright is retained
   #(though a license may be applied). %{user} can be a username or a full name.
   #@vow_or_con will work here and use the first letter of the name used. &copy;
@@ -137,8 +145,13 @@ mi:
   observation_attribution_copyright_html: Pūkete &copy; %{user}
   password: Kupuhipa
   people: Tāngata
+  pi_consent_desc_title: Mō mōhiohio whaiaro
   places: Wāhi
+  privacy: Me te punanga
+  read_more: Pānuihia tonuhia
+  satellite: amiorangi
   search: Rapunga
+  show_more: Hurahia tonuhia
   sign_out: Takiputa
   small: iti
   sounds:
@@ -146,6 +159,8 @@ mi:
   source: Te pū
   source_: 'Te pū:'
   source_wikipedia: "Te pū: Wikipedia"
+  teachers_guide: Aratohu o kaiako
+  terrain: takoto
   the_world: Te Ao
   this: tēnei
   upload: Tukuatu
@@ -153,6 +168,7 @@ mi:
   view: Tirohia
   view_all_n: "TIrohia ngā %{n} katoa"
   view_all_observations: TIrohia ngā pūkete katoa
+  view_more: Tirohia tonuhia
   view_observation: Tirohia te pūkete
   view_observations: Tirohia ngā pūkete
   view_place: Tirohia te wāhi
@@ -193,6 +209,9 @@ mi:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tautuhi
+    welcome:
+      index:
+        learn_about_nature: Ka ako i mō taiao
   date:
     abbr_month_names:
       - 
@@ -249,3 +268,8 @@ mi:
         login: Ingoa rorohiko
         name: Ingoa
         place_id: Wāhi
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: oropuare
+        con: orokati
