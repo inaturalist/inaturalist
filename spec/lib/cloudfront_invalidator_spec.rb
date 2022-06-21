@@ -12,21 +12,21 @@ describe CloudfrontInvalidator do
     expect( INatAWS ).to_not receive(:cloudfront_invalidate)
     u = User.make!
     u.icon.assign(File.new(File.join(Rails.root, "app/assets/images/404mole.png")))
-    u.save
+    without_delay { u.save }
   end
 
   it "invalidates when updating attachments" do
     u = User.make!(icon_file_name: "something", icon_content_type: "jpg", icon_updated_at: Time.now)
     expect( INatAWS ).to receive(:cloudfront_invalidate).with("attachments/users/icons/#{u.id}/*")
     u.icon.assign(File.new(File.join(Rails.root, "app/assets/images/404mole.png")))
-    u.save
+    without_delay { u.save }
   end
 
   it "invalidates when removing attachments" do
     u = User.make!(icon_file_name: "something", icon_content_type: "jpg", icon_updated_at: Time.now)
     expect( INatAWS ).to receive(:cloudfront_invalidate).with("attachments/users/icons/#{u.id}/*")
     u.icon = nil
-    u.save
+    without_delay { u.save }
   end
 
 end

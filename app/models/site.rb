@@ -267,6 +267,7 @@ class Site < ApplicationRecord
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
+  preference :jobs_url, :string, default: "/pages/jobs"
   preference :twitter_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string

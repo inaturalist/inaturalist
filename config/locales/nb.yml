@@ -1699,10 +1699,13 @@ nb:
   identify_title: "Identifiser"
   identification: identifikasjon
   identification_by_user: Identifikasjon av %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikasjon slettet.
   identification_saved: "Identifikasjon lagret!"
+  #Notification when an identification has been updated
   identification_updated: Identifikasjon oppdatert!
   identification_user_short: Ident. bruker
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikasjon trukket.
   identifications: Identifikasjoner
   computer_vision_suggestion: Forslag fra Computer Vision
@@ -2603,6 +2606,7 @@ nb:
     observe_panel_title: La oss komme i gang ved å legge ut noen observasjoner
     observe_panel_body_p1_local: Trenger du inspirasjon? Her er noen organismer som observeres i nærheten...
     observe_panel_body_p1_global: Trenger du inspirasjon? Her er noen organismer som observeres...
+    observe_panel_body_p2: Kom deg ut, og observer en organisme. Velg noe vilt og ta et tydelig, skjermfyllende bilde. Hvis du allerede har et bilde av noe vilt, <a href="%{new_observation_path}">legg det til nå</a>. Du kan også bruke %{site_name}s mobile apper for å registrere observasjoner.
     observe_panel_body_p3: Så snart du har delt dine observasjoner, viser denne siden oppdateringer fra fellesskapet i formen av kommentarer og identifikasjoner. Hvem vet hva du vil oppdage!
     follow_panel_title_local: Følg noen naturalister i nærheten
     follow_panel_title_global: Følg noen aktive naturalister

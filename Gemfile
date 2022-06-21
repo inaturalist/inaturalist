@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "~> 2.6.0"
+ruby "~> 2.7.6"
 
 gem "rails", "6.1.4.7"
 
@@ -130,6 +130,12 @@ group :test, :development, :prod_dev do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem "thin"
+end
+
+group :development do
+  # The following are required for ed25519 ssh keys
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
 end
 
 group :test do

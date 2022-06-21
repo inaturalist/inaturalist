@@ -2381,6 +2381,7 @@ en:
     site curator. If you think this is a mistake, please
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
+  jobs: Jobs
   join: Join
   join_and_add_an_observation_to_project_html: Join and Add An Observation to %{project}
   join_project: Join this project
@@ -4706,7 +4707,7 @@ en:
     coordinates within their geographic areas that are automatically obscured from
     public view in order to better protect threatened species.
   sites_network_your_username: |
-    Your username and password works on all sites that are part of the
+    Your username and password work on all sites that are part of the
     iNaturalist Network. If you choose to affiliate with a Network site, the
     local institutions that support each site will also have access to your
     email address (only to communicate with you about site activities) and
@@ -8012,7 +8013,7 @@ en:
             obscured from public view in order to protect threatened species.
           </p>
           <p>
-            Your username and password works on all sites that are part of
+            Your username and password work on all sites that are part of
             the iNaturalist Network. If you choose to affiliate with a Network
             site, the local institutions that operate each site will also have
             access to your email address (only to communicate with you about
@@ -8759,9 +8760,9 @@ en:
           attributes:
             flag:
               not_about_duplicate: |
-                cannot be about duplicate observations; only the observer can
-                remove duplicates, so please address these concerns to them
-                directly with a comment
+                cannot be about duplicate observations or photos; only the
+                observer can remove duplicates, so please address these
+                concerns to them directly with a comment
             user_id:
               already_flagged: "already flagged that item"
         guide:

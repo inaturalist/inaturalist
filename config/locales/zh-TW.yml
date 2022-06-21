@@ -1838,10 +1838,13 @@ zh-TW:
   identify_title: "鑑定"
   identification: 鑑定
   identification_by_user: 由 %{user} 做的鑑定
+  #Notification when an identification has been deleted
   identification_deleted: 鑑定已刪除
   identification_saved: "鑑定已儲存！"
+  #Notification when an identification has been updated
   identification_updated: 鑑定已更新！
   identification_user_short: 識別用戶
+  #Notification when an identification has been withdrawn
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
   computer_vision_suggestion: 電腦視覺建議
@@ -2833,6 +2836,7 @@ zh-TW:
     observe_panel_title: 讓我們來開始發佈一些觀察
     observe_panel_body_p1_local: 需要靈感？這裡有一些在附近被觀察到的生物...
     observe_panel_body_p1_global: 需要靈感？這裡有一些被觀察到的生物...
+    observe_panel_body_p2: 到外頭去觀察一種生物吧。挑選一些野生動物來拍下幾張清晰、完整的照片。如果您已擁有某個野生動物的照片，現在就<a href="%{new_observation_path}">開始添加</a>吧。您也可以透過使用 %{site_name} 的移動應用程式來記錄觀察。
     observe_panel_body_p3: 一旦您分享了您的觀察，此頁面將會顯示出來自於社群評論與鑑定的更新內容。
     follow_panel_title_local: 關注一些附近的自然觀察者
     follow_panel_title_global: 關注一些活躍的自然觀察者

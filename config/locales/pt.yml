@@ -1611,10 +1611,13 @@ pt:
   identify_title: "Identificar"
   identification: Identificação
   identification_by_user: Identificação por %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação guardada!"
+  #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Utilizador ident.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   identifiers: Identificadores
@@ -2343,6 +2346,7 @@ pt:
     observe_panel_title: Vamos começar adicionando algumas observações
     observe_panel_body_p1_local: Precisa de inspiração? Eis alguns organismos a serem observados nas proximidades...
     observe_panel_body_p1_global: Precisa de inspiração? Tem aqui alguns organismos que estão a ser observados...
+    observe_panel_body_p2: Vá lá fora e observe um organismo. Escolha algo selvagem e tire uma foto nítida e sem cortes. Caso já tenha uma foto, <a href="%{new_observation_path}">pode adiciona-la agora</a>. Pode também utilizar a aplicação %{site_name} para registar as suas observações.
     observe_panel_body_p3: Assim que partilhar as suas observações, esta página irá mostrar as atualizações da comunidade na forma de comentários e identificações. Quem sabe o que irá descobrir!
     follow_panel_title_local: Siga Alguns Naturalistas que estão nas Proximidades
     follow_panel_title_global: Siga Alguns dos Naturalistas mais Ativos
@@ -3531,7 +3535,7 @@ pt:
           ocultas da visão pública, a fim de proteger as espécies ameaçadas.
           </p>
           <p>
-          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte 
+          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte
           da rede iNaturalist. Se você optar por se afiliar a uma rede
           local, as instituições locais que operam cada site terão também
           acesso ao seu endereço de e-mail (apenas para comunicar consigo sobre

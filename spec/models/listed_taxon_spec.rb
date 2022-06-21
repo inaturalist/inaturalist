@@ -550,14 +550,26 @@ describe ListedTaxon do
     end
     it "should be queued" do
       lt = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?).to be true
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
     end
 
     it "should not be queued if existing job" do
       lt = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
       lt2 = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
     end
   end
 

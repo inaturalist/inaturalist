@@ -17,6 +17,9 @@
         - unless site.press_url.blank?
           %p
             %a{ href: site.press_url }=t :press
+        - unless site.jobs_url.blank?
+          %p
+            %a{ href: site.jobs_url }=t :jobs
         - unless site.blog_url.blank?
           %p
             %a{ href: site.blog_url }=t :our_blog

@@ -58,7 +58,9 @@ site ||= Site.find_by_id( OPTS.site_id )
 sites = if site
   [site]
 else
-  Site.where( "id != ?", Site.default ).where( "NOT draft" ).order( "id ASC" )
+  # Note that we are sorting by id DESC b/c more recent sites tend to have
+  # smaller exports, so that should reveal problems a bit sooner
+  Site.where( "id != ?", Site.default ).where( "NOT draft" ).order( "id DESC" )
 end
 
 max_obs_id = Observation.calculate( :maximum, :id )

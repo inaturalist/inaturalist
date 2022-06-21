@@ -2116,12 +2116,15 @@ be:
   identify_title: "Вызначыць"
   identification: вызначэнне
   identification_by_user: Вызначэнне карыстальніка %{user}
+  #Notification when an identification has been deleted
   identification_deleted: вызначэнне выдалена.
   identification_saved: "вызначэнне захавана!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Тэкст вызначэння паказаны
+  #Notification when an identification has been updated
   identification_updated: Вызначэнне абноўлена!
   identification_user_short: Вызн. карыстальнік
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Вызначэнне знята.
   identifications: Вызначэнні
   computer_vision_suggestion: Прапанова ад сістэмы камп'ютарнага зроку
@@ -3125,6 +3128,7 @@ be:
     observe_panel_title: Давайце пачнем з публікацыі некаторых назіранняў
     observe_panel_body_p1_local: Патрэбна натхненне? Вось некаторыя арганізмы назіраюцца паблізу...
     observe_panel_body_p1_global: Патрэбна натхненне? Вось некаторыя арганізмы назіраюцца...
+    observe_panel_body_p2: Выйдзіце на вуліцу і паназірайце за асобным арганізмам. Выберыце што-небудзь дзікае і зрабіце выразнае поўнакадравае фота. Калі ў вас ужо ёсць фота чагосьці дзікага, <a href="%{new_observation_path}">дадайце яго зараз</a>. Вы таксама можаце выкарыстоўваць мабільныя прыкладанні %{site_name} для запісу назіранняў.
     observe_panel_body_p3: Пасля таго, як вы падзяліліся сваімі назіраннямі, гэтая старонка пакажа вам абнаўленні ад суполкі ў выглядзе каментарыяў і вызначэнняў. Хто ведае, што вы адкрыеце!
     follow_panel_title_local: Падпісацца на некаторых натуралістаў, якія знаходзяцца паблізу
     follow_panel_title_global: Падпісацца на некаторых актыўных натуралістаў

@@ -1771,10 +1771,13 @@ zh-CN:
   identify_title: "鉴定"
   identification: 鉴定
   identification_by_user: 由 %{user} 做出的物种鉴定
+  #Notification when an identification has been deleted
   identification_deleted: 身份验证已删除。
   identification_saved: "身份验证已保存！"
+  #Notification when an identification has been updated
   identification_updated: 鉴定已更新！
   identification_user_short: 鉴别用户
+  #Notification when an identification has been withdrawn
   identification_withdrawn: 身份验证已放弃。
   identifications: 鉴定
   computer_vision_suggestion: 电脑视觉建议
@@ -2726,6 +2729,7 @@ zh-CN:
     observe_panel_title: 让我们开始发表一些观察吧
     observe_panel_body_p1_local: 需要灵感？这里有一些在附近被观察到的生命体...
     observe_panel_body_p1_global: 需要灵感？这里有一些被观察到的生物...
+    observe_panel_body_p2: 到户外去，观察一种生物吧。找到一些物种，照一张清晰、完整的照片吧。如果您已经有某些物种的照片，可以<a href="%{new_observation_path}">现在就添加进来</a>。您也可以使用%{site_name} 的移动端应用程序来记录您的观察。
     observe_panel_body_p3: 当您将您的观察结果分享给大家后，此页面会以评论和标识的形式向您显示社区的更新内容。谁知道您将会发现什么！
     follow_panel_title_local: 关注一些附近的自然法学家
     follow_panel_title_global: 关注一些活跃的自然法学家
@@ -3485,7 +3489,7 @@ zh-CN:
     variety: 变种
     form: 型
     infrahybrid: 种内杂种
-    leaves: 叶片
+    leaves: 叶节点
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: 物态
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -3978,7 +3982,7 @@ zh-CN:
   submission_model_description: 谁可以添加观察至您的项目？
   submit_observations:
     other: 提交 %{count} 个观察
-  submitted: 已提交
+  submitted: 提交于
   subscribe_to_a_taxon: 订阅分类单元
   subscribe_to_a_place: 订阅地点
   subscribe_to_comments_on_this_flag_html: "%{tag_start}订阅%{tag_end} 关于此标记的评论"
@@ -5638,8 +5642,6 @@ zh-CN:
         about_third_party_tracking: 关于第三方的追踪
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
-        inaturalist_network_affiliation_desc_html: |
-          <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
         muting_desc_html: |

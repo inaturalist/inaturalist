@@ -1184,6 +1184,26 @@ shared_examples_for "an ObservationsController" do
       expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
     end
 
+    it "should filter by single login in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: o1.user.login }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).to be_blank
+    end
+
+    it "should filter by multiple logins in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o3 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: "#{o1.user.login},#{o2.user.login}" }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o3.id } ).to be_blank
+    end
+
     it "should filter by week of the year" do
       o1 = Observation.make!( observed_on_string: "2012-01-05T13:13+00:00" )
       o2 = Observation.make!( observed_on_string: "2010-03-01T13:13+00:00" )
