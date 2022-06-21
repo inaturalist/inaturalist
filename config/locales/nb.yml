@@ -5796,6 +5796,22 @@ nb:
         about_third_party_tracking: Om tredjepartssporing
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du ombestemmer deg kan du alltid <a href='/users/edit'>redigere dine innstillinger</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>
+          <a href="%{url}" target="_blank">iNaturalist-nettverket</a> er en samling av lokaliserte nettsteder som er fullstendig tilkoble det verdensomspennende iNaturalist-fellesskapet. Nettverkssider støttes av lokale
+          institusjoner som har signert en avtale med iNaturalist til å
+          fremme lokal bruk og og gagne det lokale biologiske mangfoldet. De har tilgang
+          til sanne koordinater fra sine land som automatisk er
+          tilslørt fra offentlig innsyn for å beskytte truede arter.
+          </p>
+          <p>
+          Ditt brukernavn og passord fungerer på alle nettsteder som er en del av
+          iNaturalist-netverket. Hvis du velger å knytte det til en nettverksside, vil de lokale institusjonene som driver hvert nettsted også ha tilgang til e-postadressen din (bare for å kommunisere med deg om
+          nettstedaktiviteter) og ha tilgang til de sanne koordinatene for observasjoner
+          som er offentlig tilslørt eller privat.</p>
+          <p>
+          Merk: Vennligst ikke endre din tilknytning eksperimentelt hvis du har mer enn 1000 observasjoner.
+          </p>
         licensing_desc_html: |
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
         monthly_supporter_desc_html: |
