@@ -132,6 +132,12 @@ group :test, :development, :prod_dev do
   gem "thin"
 end
 
+group :development do
+  # The following are required for ed25519 ssh keys
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
+end
+
 group :test do
   gem "factory_bot_rails", require: false
   gem "faker"
