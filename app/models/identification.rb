@@ -626,7 +626,7 @@ class Identification < ApplicationRecord
       ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
-    Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+    Identification.current.where( "disagreement AND previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
         ident.update(
