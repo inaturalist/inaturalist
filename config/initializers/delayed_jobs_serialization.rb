@@ -7,15 +7,11 @@ module ActiveRecord
     attr_accessor :dj_serialize_minimal
 
     def encode_with(coder)
-      if !self.class.primary_key || !self.class.primary_key.is_a?( String ) || !dj_serialize_minimal
-        super
-        return
+      encoded = super
+      if self.class.primary_key && self.class.primary_key.is_a?( String ) && dj_serialize_minimal
+        coder.map["concise_attributes"] = coder.map["concise_attributes"].select{ |a| a.name == "id" }
       end
-      coder.map = {
-        "attributes" => {
-          self.class.primary_key => self[self.class.primary_key].to_s
-        }
-      }
+      encoded
     end
 
   end

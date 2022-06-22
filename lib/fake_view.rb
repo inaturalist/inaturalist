@@ -45,7 +45,7 @@ class FakeView
   end
 
   def respond_to_missing?( method, include_private = false )
-    controller.respond_to_missing?( method, include_private ) || controller.helpers.respond_to_missing?( method )
+    controller.send( :respond_to_missing?, method, include_private ) || controller.helpers.send( :respond_to_missing?, method, include_private )
   end
 
   # Overriding this so that assets we have chosen not to be used with a digest

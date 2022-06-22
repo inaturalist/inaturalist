@@ -1782,10 +1782,13 @@ el:
   identify_title: "Ταυτοποιήστε"
   identification: ταυτοποίηση
   identification_by_user: Ταυτοποίηση από %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Η ταυτοποίηση διαγράφηκε.
   identification_saved: "Η ταυτοποίηση αποθηκεύτηκε!"
+  #Notification when an identification has been updated
   identification_updated: Η ταυτοποίηση ενημερώθηκε!
   identification_user_short: Ταυτ. χρήστης
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Η ταυτοποίηση αποσύρθηκε.
   identifications: Ταυτοποιήσεις
   computer_vision_suggestion: Πρόταση Όρασης Υπολογιστή
@@ -2655,6 +2658,7 @@ el:
     observe_panel_title: Ας ξεκινήσουμε αναρτώντας κάποιες παρατηρήσεις
     observe_panel_body_p1_local: Χρειάζεστε έμπνευση; Να μερικοί οργανισμοί που παρατηρούνται εδώ κοντά...
     observe_panel_body_p1_global: Χρειάζεστε έμπνευση; Να μερικοί οργανισμοί που παρατηρούνται...
+    observe_panel_body_p2: Βγείτε έξω, και παρατηρήστε έναν συγκεκριμένο οργανισμό. Επιλέξτε κάτι άγριο και βγάλτε μία καθαρή φωτογραφία πλήρους κάδρου. Αν έχετε ήδη μία φωτογραφία από κάτι άγριο, <a href="%{new_observation_path}">προσθέστε την τώρα</a>. Μπορείτε επίσης να χρησιμοποιείτε τις %{site_name} εφαρμογές κινητού για να καταγράφετε παρατηρήσεις.
     observe_panel_body_p3: Όταν έχετε κοινοποιήσει τις παρατηρήσεις σας, αυτή η σελίδα θα σας δείχνει τις ενημερώσεις από την κοινότητα σε μορφή σχολίων και ταυτοποιήσεων. Ποιος ξέρει τι θα ανακαλύψετε!
     follow_panel_title_local: Ακολουθήστε φυσιογνώστες που βρίσκονται κοντά σας
     follow_panel_title_global: Ακολουθήστε φυσιογνώστες που είναι ενεργοί

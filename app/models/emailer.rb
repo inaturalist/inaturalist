@@ -23,7 +23,7 @@ class Emailer < ActionMailer::Base
     @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
     mail_with_defaults(
       to: user.email,
-      subject: t( :updates_notification_email_subject, prefix: subject_prefix, date: Date.today )
+      subject: [:updates_notification_email_subject, { prefix: subject_prefix, date: Date.today }]
     )
   end
 
@@ -54,9 +54,10 @@ class Emailer < ActionMailer::Base
     attachments[fto.file_file_name] = File.read( fto.file.path )
     mail_with_defaults(
       to: @user.email,
-      subject: t( :site_observations_export_from_date,
+      subject: [:site_observations_export_from_date, {
         site_name: site_name,
-        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long )
+      }]
     )
   end
 
@@ -67,9 +68,10 @@ class Emailer < ActionMailer::Base
 
     mail_with_defaults(
       to: @user.email,
-      subject: t( :site_observations_export_from_date,
+      subject: [:site_observations_export_from_date, {
         site_name: site_name,
-        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long )
+      }]
     )
   end
 
@@ -87,7 +89,10 @@ class Emailer < ActionMailer::Base
 
     mail_with_defaults(
       to: @user.email,
-      subject: t( :user_invited_you_to_join_project, user: @sender.try( :login ), project: @project.title )
+      subject: [
+        :user_invited_you_to_join_project,
+        { user: @sender.try( :login ), project: @project.title }
+      ]
     )
   end
 
@@ -103,7 +108,7 @@ class Emailer < ActionMailer::Base
     @site_name = site_name
     mail_with_defaults(
       to: @user.email,
-      subject: t( :updates_suspension_email_subject, prefix: subject_prefix )
+      subject: [:updates_suspension_email_subject, { prefix: subject_prefix }]
     )
   end
 
@@ -111,19 +116,29 @@ class Emailer < ActionMailer::Base
   # an error.
   def bulk_observation_error( user, filename, error_details )
     @user = user
-    @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, filename: filename}"
     @message       = error_details[:reason]
     @errors        = error_details[:errors]
     @field_options = error_details[:field_options]
-    mail_with_defaults( to: "#{user.name} <#{user.email}>", subject: @subject )
+    mail_with_defaults(
+      to: "#{user.name} <#{user.email}>",
+      subject: [
+        :were_sorry_but_your_bulk_import_of_filename_has_failed,
+        { filename: filename }
+      ]
+    )
   end
 
   # Send the user an email saying the bulk observation import was successful.
   def bulk_observation_success( user, filename )
     @user = user
-    @subject = "#{subject_prefix} #{t( :bulk_import_of_filename_is_complete, filename: filename )}"
     @filename = filename
-    mail_with_defaults( to: "#{user.name} <#{user.email}>", subject: @subject )
+    mail_with_defaults(
+      to: "#{user.name} <#{user.email}>",
+      subject: [
+        :bulk_import_of_filename_is_complete,
+        { filename: filename }
+      ]
+    )
   end
 
   def moimport_finished( mot, errors = {}, warnings = {} )
@@ -163,7 +178,7 @@ class Emailer < ActionMailer::Base
     @site = Site.default
     mail_with_defaults(
       to: email,
-      subject: t( "views.emailer.parental_consent.subject" )
+      subject: ["views.emailer.parental_consent.subject"]
     )
   end
 
@@ -173,7 +188,7 @@ class Emailer < ActionMailer::Base
     @user = @user_parent.parent_user
     mail_with_defaults(
       to: user_parent.email,
-      subject: t( "views.emailer.user_parent_confirmation.subject" )
+      subject: ["views.emailer.user_parent_confirmation.subject"]
     )
   end
 
@@ -183,10 +198,10 @@ class Emailer < ActionMailer::Base
 
     @user = project_user.user
     mail_with_defaults(
-      subject: t(
+      subject: [
         "views.emailer.collection_project_changed_for_trusting_member.subject",
-        project: @project.title
-      )
+        { project: @project.title }
+      ]
     )
   end
 
@@ -222,6 +237,11 @@ class Emailer < ActionMailer::Base
     opts = set_site_specific_opts.merge( defaults )
     opts[:to] ||= @user.name.blank? ? @user.email : "#{@user.name} <#{@user.email}>"
     set_locale
+    # You can specify the subject as an array so it can be translated in the
+    # correct locale
+    if opts[:subject].is_a?( Array )
+      opts[:subject] = t( *opts[:subject] )
+    end
     mail( opts )
     reset_locale
   end

@@ -226,6 +226,8 @@ nl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Je kan kiezen om verborgen coördinaten te delen voor
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Over onbedoelde meningsverschillen
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -519,6 +521,10 @@ nl:
   alphabetical_order: Alfabetische volgorde
   already_have_an_account_log_in_html: Heb je al een account? <strong>Log in.</strong>
   amphibians: amfibieën
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Onbedoelde meningsverschillen analyseren
   analyze_ids: ID's analyseren
   ancestor_taxon: Voorouder-taxon
   and: en
@@ -2001,12 +2007,15 @@ nl:
   identify_title: "Determineer"
   identification: determinatie
   identification_by_user: Determinatie door %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Determinatie verwijderd.
   identification_saved: "Determinatie opgeslagen!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Determinatietekst weer tonen
+  #Notification when an identification has been updated
   identification_updated: Determinatie bijgewerkt!
   identification_user_short: Det. gebr.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
   computer_vision_suggestion: Computer Vision Voorstel
@@ -2114,6 +2123,7 @@ nl:
     website-curator bent. Als je denkt dat dit een vergissing is, neem dan 
     <a href="mailto:%{help_email}" class="contact">contact met ons op</a>.
     <a href="%{manage_flags_path}">Beheer meldingen</a>
+  jobs: Vacatures
   join: Lid worden
   join_and_add_an_observation_to_project_html: Word lid en voeg een waarneming toe aan %{project}
   join_project: Doe mee aan dit project
@@ -2773,6 +2783,7 @@ nl:
   no_more_taxa_to_load: Geen taxa meer om te laden!
   no_more_results_found: Geen resultaten meer gevonden
   no_new_messages: Geen nieuwe berichten
+  no_new_parent_specified: Geen nieuwe ouder opgegeven
   no_observations: Geen Waarnemingen
   no_observations_from_this_place_yet: Nog geen waarnemingen voor deze plaats
   no_observations_matching_those_ids: Er zijn geen waarnemingen die overeenkomen met die ID's.
@@ -2793,7 +2804,7 @@ nl:
   no_attached_range: Geen bijgevoegde verspreiding
   no_range_data_available: Geen datareeks beschikbaar.
   no_recent_activity: Geen recente activiteit
-  no_relevant_annotations: Geen relevante annotaties
+  no_relevant_annotations: Geen relevante aantekeningen
   no_reply_yet: Nog geen antwoord
   no_results_found: Geen resultaten gevonden
   no_results_for: 'Geen resultaten voor'
@@ -3045,6 +3056,7 @@ nl:
     observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
     observe_panel_body_p1_local: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
     observe_panel_body_p1_global: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
+    observe_panel_body_p2: Ga naar buiten en observeer een organisme. Kies iets wilds en maak een duidelijke, beeldvullende foto. Als je al een foto van iets wilds hebt, <a href="%{new_observation_path}">voeg die dan nu toe</a>. Je kunt ook de mobiele apps van %{site_name} gebruiken om waarnemingen vast te leggen.
     observe_panel_body_p3: Zodra je je waarnemingen hebt gedeeld, toont deze pagina je updates van de gemeenschap in de vorm van opmerkingen en determinaties. Wie weet wat je zult ontdekken!
     follow_panel_title_local: Volg enkele naturalisten uit de buurt
     follow_panel_title_global: Volg enkeke actieve naturalisten
@@ -7658,9 +7670,6 @@ nl:
               relative_uri: "moet een absolute URI zijn."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                kan niet over dubbele waarnemingen gaan; alleen de waarnemer kan duplicaten verwijderen, dus meld deze zorgen alsjeblieft direct aan ze in een reactie
             user_id:
               already_flagged: "item is al gemeld"
         guide:

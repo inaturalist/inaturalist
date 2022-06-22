@@ -206,6 +206,8 @@ it:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Puoi scegliere di condividere le coordinate nascoste per
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Sui Disaccordi Non Intenzionali
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -499,6 +501,10 @@ it:
   alphabetical_order: Ordine Alfabetico
   already_have_an_account_log_in_html: Hai già un'utenza? <strong>Accedi.</strong>
   amphibians: anfibi
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analizza i Disaccordi Non Intenzionali
   analyze_ids: Analizza ID
   ancestor_taxon: Taxon Antenato
   and: e
@@ -725,6 +731,14 @@ it:
   back_to_your_observations: Torna alle tue osservazioni
   back_to_your_profile: Torna al tuo profilo
   badges: Distintivi
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      risulterà in <strong>%{count} disaccordo involontario</strong> con ID di %{child}.
+    other: |
+      Sulla base di un campione di %{percent}% di queste identificazioni, stimiamo che questo
+      risulterà in <strong>%{count} disaccordi involontari</strong> con ID di %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Basandosi sull'evidenza, il taxon della comunità può essere ancora confermato o migliorato?
   batch: Gruppo
@@ -734,6 +748,16 @@ it:
   batch_operations: Operazioni a blocchi
   be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai preferiti!
   because_of: perché
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Poiché stimiamo che questo cambiamento risulterà in più di 10 disaccordi
+    involontari, <strong>ti consigliamo anche di effettuare un cambio taxon che coinvolga
+    %{old_parent}, come ad esempio separare %{new_parent} da %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Poiché stimiamo che questo cambiamento risulterà in 10 o meno disaccordi
+    non intenzionali, <strong>probabilmente non è necessario effettuare una modifica di taxon
+    che coinvolge %{old_parent}</strong>.
   become_a_donor_caps: DIVENTA UN DONATORE
   become_a_donor_today_caps: DIVENTA UN DONATORE OGGI
   before_importing_photos: prima di importare le foto
@@ -856,6 +880,8 @@ it:
   change_your_password: Cambia la tua password
   #Plural noun, as in changes to a taxon record over time
   changes: Modifiche
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Cambiare l'antenato di quel genitore potrebbe causare disaccordi non intenzionali. Per favore, prima analizzali, cosa che potrebbe richiedere un po' di tempo.
   changing_the_geoprivacy: 'Cambiando la geoprivacy modifichi il modo in cui gli altri vedono la posizione della tua osservazione.'
   check_above_for_errors: Controlla sopra per errori
   check_back_soon: Ricontrolla presto!
@@ -894,6 +920,12 @@ it:
   choose_what_kind_of_change_youre_creating: "Scegliere che tipo di modifica stai creando."
   cid_d_to_genus: Con CID al genere
   citation: Citazione
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    I disaccordi non intenzionali si verificano quando un genitore <strong>(B)</strong> è ridotto spostando un discendente <strong>(E)</strong> in un'altra parte dell'albero tassonomico, facendo si che le ID esistenti del genitore possa essere interpretato come dei disaccordi con le ID esistenti del discendente spostato.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    I disaccordi non intenzionali si verificano quando un genitore <strong>(B)</strong> è ridotto scambiando un discendente <strong>(E)</strong> in un'altra parte dell'albero tassonomico, facendo si che le ID esistenti del genitore possa essere interpretato come dei disaccordi con le ID esistenti del discendente scambiato.
   classification: Classificazione
   clear: pulisci
   clear_filters: Cancella filtri
@@ -932,6 +964,9 @@ it:
   committed_taxon_changes_cannot_be_deleted: Le modifiche del taxon impegnate non sono eliminabili
   #Status message while a taxon change is being committed
   committing: Conferma in corso...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: L'applicazione potrebbe causare disaccordi non intenzionali. Per favore prima analizzali, cosa che potrebbe richiedere un po' di tempo.
   common_name: Nome Comune
   community: Comunità
   community_curated: Curate dalla Community
@@ -1363,6 +1398,8 @@ it:
   default_search_place_description: |
     Questo sarà il tuo luogo predefinito per tutte le ricerche in "Esplora" ed "Identifica".
   default_sound_license: Licenza predefinita dei suoni
+  default_time_zone_desc: |
+    Questo è il fuso orario predefinito. Il fuso orario finale sarà assegnato in base alla localizzazione dell'osservazione quando viene salvata.
   defaults_to_your_name_or_username: Utilizza in maniera predefinita il tuo nome o il tuo nome utente
   defines_a_taxon_framework_for: Definisce un quadro del taxon per %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definisce un Quadro del Taxon per %{taxon} originato da %{source}
@@ -1930,6 +1967,10 @@ it:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Ore da regolare:"
   however_there_were_some_issues: "Tuttavia, ci sono stati alcuni problemi: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Tuttavia, potresti voler commentare le osservazioni con disaccordi non intenzionali linkati sopra per allertare gli identificatori che l'ambito di %{old_parent} è stato ridotto.
   i_dont_know_but_i_am_sure_this_is_taxon: Non lo so ma sono sicuro che è %{taxon}
   icon: Icona
   icon_size: Dimensione dell'icona
@@ -1943,6 +1984,10 @@ it:
         Il primo suggerimento per questo taxon su cui la comunità concorda. Questo suggerimento aiuta ad affinare il taxon della comunità.
       maverick: |
         Il taxon non è discendente o antenato del taxon della comunità, e.g., la comunità non concorda con questo taxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "L'ID 2 del taxon <strong>E</strong> sarà un disaccordo non intenzionale con l'ID 1 del taxon <strong>B</strong> dopo la modifica nell'antenato"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "L'ID 2 del taxon <strong>E</strong> sarà un disaccordo non intenzionale con l'ID 1 del taxon <strong>B</strong> dopo lo scambio di taxon"
   id_withdrawn: ID ritirata
   ids_by_taxon: ID per Taxon
   identify: Identifica
@@ -1951,12 +1996,15 @@ it:
   identify_title: "Identifica"
   identification: identificazione
   identification_by_user: Identificazione di %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificazione eliminata.
   identification_saved: "Identificazione salvata!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Testo dell'identificazione mostrato
+  #Notification when an identification has been updated
   identification_updated: Identificazione aggiornata!
   identification_user_short: Utente ident.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
   computer_vision_suggestion: Suggerimento della visione artificiale
@@ -1970,6 +2018,14 @@ it:
   ids_made_for_others: ID fatte per altri
   if_for_some_reason_a_user_doesnt_agree: |
     Se per qualche ragione non concordi con il taxon della comunità, puoi rifiutarlo; significa che la tua ID è quella usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa anche che le tue osservazioni possono raggiungere il Livello Ricerca solo quando la comunità è d'accordo con te.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Se la riduzione di un genitore comporta più di 10 disaccordi non intenzionali, si dovrebbe dividere il genitore dopo aver spostato il discendente per sostituire le ID esistenti del genitore <strong>(B)</strong> con gli ID che non sono in disaccordo.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Se la riduzione di un genitore comporta più di 10 disaccordi non intenzionali, si dovrebbe dividere il genitore dopo aver scambiato il discendente per sostituire le ID esistenti del genitore <strong>(B)</strong> con gli ID che non sono in disaccordo.
   if_matches_come_from_a_comprehensive_list: Se i risultati provengono da una lista esaustiva, qui verrà mostrata una barra verde.
   if_this_is_a_scientific_name: Se questo è un nome scientifico, è comunemente accettato?
   if_this_link_will_apply_to_descendant: Se questo link si applica ai taxa discendenti, puoi usare modelli di etichette per completare il nome del taxon nell'URL
@@ -2061,6 +2117,7 @@ it:
   item_flagged_notice_html: |
     Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href="mailto:%{help_email}" class="contact">contattaci</a>.
     <a href="%{manage_flags_path}">Gestisci contrassegni</a>
+  jobs: Lavora con noi
   join: Unisciti
   join_and_add_an_observation_to_project_html: Unisciti ed Aggiungi Un'Osservazione a %{project}
   join_project: Unisciti a questo progetto
@@ -2555,6 +2612,8 @@ it:
   most_observed_introduced_species: Le specie introdotte più osservate
   most_observed_threatened_species: Le specie minacciate più osservate
   move_input_children_to_output?: Sposta i discendenti verso l'output?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Spostare %{child} su %{old_parent} ridurrebbe quello che intendiamo %{old_parent}. Ci sono %{id_count} ID di %{old_parent}.
   multiple: Più di uno
   multiple_select_option: '-- più --'
   multiple_taxa_for_taxon_change: "Taxa multipli (entra per scambiare/unire, esci per dividere)"
@@ -2716,6 +2775,7 @@ it:
   no_more_taxa_to_load: Non ci sono più taxa da caricare!
   no_more_results_found: Nessun altro risultato trovato
   no_new_messages: Nessun nuovo messaggio
+  no_new_parent_specified: Nessun nuovo genitore specificato
   no_observations: Nessuna Osservazione
   no_observations_from_this_place_yet: Ancora nessuna osservazione da questo luogo.
   no_observations_matching_those_ids: Nessuna osservazione corrisponde a queste ID.
@@ -2975,6 +3035,7 @@ it:
     observe_panel_title: Inizia con l'invio di alcune Osservazioni
     observe_panel_body_p1_local: Hai bisogno di ispirazione? Ecco alcuni esseri viventi osservati vicino a te...
     observe_panel_body_p1_global: Hai bisogno di ispirazione? Ecco alcuni esseri viventi osservati...
+    observe_panel_body_p2: Vai fuori e osserva un essere vivente. Fai una foto chiara e completa a qualcosa in natura. Se hai già una foto, <a href="%{new_observation_path}">aggiungila adesso</a>. Puoi usare anche l'app %{site_name} per inserire osservazioni.
     observe_panel_body_p3: Una volta che hai condiviso le tue osservazioni, questa pagina ti mostrerà gli aggiornamenti da parte della comunità sotto forma di commenti e identificazioni. Chissà cosa riuscirai a scoprire!!!
     follow_panel_title_local: Segui dei naturalisti vicino a te
     follow_panel_title_global: Segui dei naturalisti attivi
@@ -4596,6 +4657,8 @@ it:
   the_world_is_full_of_interesting_places: |
     Il mondo è pieno di posti interessanti, ognuno pieno di forme di vita strane e meravigliose. Alcune sono all'altro capo del mondo, altre appena sotto casa! I luoghi di %{site_name} ti permettono di esplorare le forme di vita di tutto il globo. Inizia ad esplorare!
   then_keybord_sequence: poi
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Non ci sono ID attuali di alcun taxa genitore potenzialmente ridotto.
   there_are_x_synonyms_html:
     one: "C'è <span class='count'>1</span> sinonimo</span>"
     other: "Ci sono <span class='count'>%{count}</span> sinonimi</span>"
@@ -4616,6 +4679,8 @@ it:
   there_were_some_problems_with_fields: "Ci sono stati problemi con i seguenti campi:"
   there_were_some_problems_with_these_files: "Ci sono stati problemi con questi file:"
   theres_something_wrong_with_taxon_framework_relationship: C'è qualcosa di sbagliato qui - non possiamo determinare la relazione tra nessuno dei taxa interni ed esterni
+  therefore_committing_additional_taxon_changes: Pertanto, non sarà necessario eseguire ulteriori modifiche di taxon dopo aver effettuato questo scambio di taxon.
+  therefore_committing_taxon_changes: Pertanto, non è necessario effettuare modifiche di taxon a seguito di questo cambiamento di antenato.
   these_are_items_people_on: |
     Ci sono elementi che le persone hanno contrassegnato sul sito per essere revisionate. I commenti di spam devo essere cancellati e gli utenti che li hanno aggiunti devono essere sospesi (vai al loro profilo e seleziona "Sospendi utente" in basso a destra per impedirgli di accedere). Altri elementi dovrebbero essere eliminati solo se sono chiaramente odiosi, illegali, etc. Commenti sgarbati, linguaggio offensivo, etc, dovrebbero essere gestiti con gentilezza. Chi persiste in tali comportamenti deve essere segnalato all'amministratore del sito o %{email}
   these_are_taxa_that: |

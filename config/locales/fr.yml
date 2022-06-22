@@ -2007,6 +2007,10 @@ fr:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Cependant, vous souhaiterez peut-être commenter les observations avec des désaccords involontaires susmentionnées pour avertir les identifieurs que la portée de %{old_parent} a été réduite.
   i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je confirme que ça fait partie des %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
@@ -2033,12 +2037,15 @@ fr:
   identify_title: "Identifier"
   identification: identification
   identification_by_user: Identification par %{user}
+  #Notification when an identification has been deleted
   identification_deleted: identification supprimée.
   identification_saved: "Identification enregistrée!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Texte d'identification non masqué
+  #Notification when an identification has been updated
   identification_updated: Identification mise à jour!
   identification_user_short: Identifiant. utilisateur
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
@@ -3083,6 +3090,7 @@ fr:
     observe_panel_title: Commençons par publier quelques observations
     observe_panel_body_p1_local: Besoin d’inspiration ? Voici quelques organismes observés à proximité…
     observe_panel_body_p1_global: Besoin d’inspiration ? Voici quelques organismes observés…
+    observe_panel_body_p2: Sortir, et observer un organisme individuel. Choisir quelque chose de sauvage et prendre une photo claire et plein cadre. Si vous avez déjà une photo de quelque chose de sauvage, <a href="%{new_observation_path}">ajoutez-la maintenant</a>. Vous pouvez aussi utiliser l’application mobile %{site_name} pour enregistrer les observations.
     observe_panel_body_p3: Une fois que vous avez partagé vos observations, cette page vous montrera des notifications de la communauté dans le formulaire des commentaires et des identifications. Qui sait ce que vous allez découvrir !
     follow_panel_title_local: Suivre quelques naturalistes proches
     follow_panel_title_global: Suivre quelques naturalistes actifs
@@ -3748,7 +3756,7 @@ fr:
   powered_by: Optimisé par
   powered_by_inaturalist_open_source_software_html: 'Hébergé par la plateforme open source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>'
   present: présent
-  press: Presse
+  press: Dans la presse
   preview: Aperçu
   preview_observations_with_these_observation_requirements: Aperçu des observations avec ces critères d’observation
   preview_of_synced_observation: "<strong>Aperçu</strong> de l’observation synchronisée. <a href=\"%{url}\">Annuler ?</a>"
@@ -3880,7 +3888,7 @@ fr:
       one: Ordre
       other: Ordres
     suborder: Sous-ordre
-    infraorder: Sous-ordre
+    infraorder: Infra-ordre
     subterclass: Sous-classe
     parvorder: Micro-ordre
     zoosection: Section animale
@@ -7288,7 +7296,7 @@ fr:
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
         inaturalist_network_affiliation_desc_html: |
-          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web au niveau local liés à la communauté mondiale d'iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation du site et la protection de la biodiversité à l'échelle locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées à la vue du public afin de protéger les espèces menacées. </p> 
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web au niveau local liés à la communauté mondiale d'iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation du site et la protection de la biodiversité à l'échelle locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées à la vue du public afin de protéger les espèces menacées. </p>
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse mail (seulement pour communiquer avec vous à propos des activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
            Note: ne modifiez pas votre affiliation "juste pour essayer" si vous avez plus de 1000 observations.

@@ -69,7 +69,7 @@ class TaxonLink < ApplicationRecord
   end
   
   def set_site_title
-    if self.site_title.blank?
+    if self.site_title.blank? && !self.url.blank?
       self.site_title = URI.parse(url_without_template_tags).host
     end
     true

@@ -95,5 +95,5 @@
       </tr>
     <% end %>
   </table>
-  <%= link_to "#{t(:view)} #{t(class_name.humanize.downcase, :default => class_name.humanize.downcase)}", url_for_resource_with_host(resource), :class => "readmore" %>
+  <%= link_to t( "view_#{class_name.parameterize.underscore}", default: t( :view ) ), url_for_resource_with_host(resource), :class => "readmore" %>
 </div>

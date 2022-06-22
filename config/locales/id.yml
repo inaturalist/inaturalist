@@ -253,7 +253,7 @@ id:
   add_comma_separated_tags: "Tambahkan Label Yang Dipisahkan Oleh Koma"
   add_comment: Tambahkan Komentar
   add_conservation_status: Tambahkan Status Konservasi
-  add_custom_project_fields: Tambahkan Kolom Proyek Kustom
+  add_custom_project_fields: Tambahkan Bidang Proyek Kustom
   add_edit_flags: Tambahkan/Sunting Tanda
   add_editor: Tambahkan Editor
   add_description: "Tambahkan %{description_name}"
@@ -1491,8 +1491,8 @@ id:
   download_csv: Unduh CSV
   download_csv_template: Unduh Template CSV
   download_kml: Unduh KML
-  downstream_coverage_rank: Kategori cakupan arus bawah
-  downstream_coverage_colon_rank: "Cakupan arus bawah: kategori %{rank}"
+  downstream_coverage_rank: Tingkat cakupan arus bawah
+  downstream_coverage_colon_rank: "Cakupan arus bawah: tingkat %{rank}"
   downstream_deviations: Deviasi arus bawah
   downstream_deviations_for_taxon: "Deviasi arus bawah untuk %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
@@ -1519,8 +1519,8 @@ id:
   edit_body: Ubah Isi Pesan
   edit_comment: Ubah Komentar Anda
   edit_complete_set_for_taxon_in_place_html: "Ubah Set Komplet untuk %{taxon} di %{place}"
-  edit_custom_project_fields: Ubah Kolom Proyek Kustom
-  edit_field: Ubah Kolom
+  edit_custom_project_fields: Ubah Bidang Proyek Kustom
+  edit_field: Ubah Bidang
   edit_license: Ubah Lisensi
   edit_multiple_dates: Ubah Sejumlah Tanggal
   edit_multiple_descriptions: Ubah Sejumlah Catatan
@@ -1551,8 +1551,8 @@ id:
     Diubah oleh %{name}, beberapa hak dilindungi (%{license})
   editing: Menyunting
   editing_announcement: Pengumuman perubahan
-  editing_custom_project_fields_for: Mengubah kolom proyek kustom untuk
-  editing_observation_field: Mengubah kolom pengamatan
+  editing_custom_project_fields_for: Mengubah bidang proyek kustom untuk
+  editing_observation_field: Mengubah bidang pengamatan
   editing_observation_id: "Mengubah Pengamatan %{obs_id}"
   editing_observations:
     other: 'Mengubah <span class="count">%{count}</span> pengamatan:'
@@ -1617,7 +1617,7 @@ id:
   everywhere: di mana saja
   exact: Pasti
   exact_date: Tanggal Pasti
-  exact_rank: Kategori Pasti
+  exact_rank: Tingkat Pasti
   except: kecuali
   exclude_places: Tempat Yang Dikecualikan
   exclude_projects: Proyek Yang Dikecualikan
@@ -1671,16 +1671,16 @@ id:
   feeds: 'Umpan'
   failed: Gagal
   field_note: |
-    <strong>Catatan:</strong> Jika Anda ingin membuat kolom, periksalah dulu apakah ada
+    <strong>Catatan:</strong> Jika Anda ingin membuat bidang, periksalah dulu apakah ada
     orang lain yang telah membuatnya untuk menghindari duplikasi.
-  fields: kolom
-  fields_: Kolom
-  fields_can_only_be_edited_by_the_people_who: Kolom hanya bisa diedit oleh penciptanya dan kurator situsnya
-  fields_merged: Penggabungan kolom
+  fields: Bidang
+  fields_: Bidang
+  fields_can_only_be_edited_by_the_people_who: Bidang hanya bisa diedit oleh penciptanya dan kurator situsnya
+  fields_merged: Penggabungan bidang
   file: Berkas
   file_size: Ukuran berkas
   file_should_be_in_the_following_format: "File harus dalam format berikut: nama takson, deskripsi"
-  fill_out_project_observation_fields: Isi kolom pengamatan proyek
+  fill_out_project_observation_fields: Isi bidang pengamatan proyek
   fill_out_your_profile: lengkapi profil Anda
   #The name of a computer file
   filename: Nama berkas
@@ -1902,7 +1902,7 @@ id:
     other: "<strong>Peringatan:</strong> ada %{count} draf perubahan takson lain dengan taksa input yang sama:"
   heads_up_this_photo_has_been_flagged: "PENTING: Foto ini telah ditandai."
   heads_up_this_photo_is_already_associated_with: "PENTING: foto ini sudah dikaitkan dengan <a target='_blank' href='%{url}'>observasi lain</a>"
-  heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa label mesin taksonomi untuk kategori serupa. Mereka diberikan kode warna di bawahnya berdasarkan kategori."
+  heads_up_you_have_multiple: "PENTING: Anda memiliki beberapa label mesin taksonomi untuk tingkat serupa. Mereka diberikan kode warna di bawahnya berdasarkan tingkatannya."
   help: Bantuan
   help_confirm_observations!: Bantu konfirmasi pengamatan!
   help_support_inaturalist: "Bantu Dukung iNaturalist"
@@ -1924,7 +1924,7 @@ id:
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
   high: Tinggi
-  highest_rank: Kategori tertinggi
+  highest_rank: Tingkat tertinggi
   highlights_and_stats_from_year_on_site: "Sorotan dan statistik pada %{year} di %{site}"
   history: Sejarah
   home: Halaman Utama
@@ -1960,12 +1960,15 @@ id:
   identify_title: "Kenali"
   identification: identifikasi
   identification_by_user: Identifikasi oleh %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikasi telah dihapus.
   identification_saved: "Identifikasi telah disimpan!"
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: Teks identifikasi ditampilkan kembali
+  #Notification when an identification has been updated
   identification_updated: Identifikasi telah diperbarui!
   identification_user_short: Pengguna identifikasi
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
@@ -2060,7 +2063,7 @@ id:
   interactions: Interaksi
   internal_server_error: Kesalahan Server Internal
   internal_taxon_including_descendants: Takson internal (termasuk turunannya)
-  internal_taxon_rank: Kategori takson internal
+  internal_taxon_rank: Tingkat takson internal
   introduced: Diperkenalkan
   introduced_in_place: "Diperkenalkan di %{place}"
   invitation: Undangan
@@ -2388,7 +2391,7 @@ id:
   looks_like_no_species_in_guide: Sepertinya Anda belum memiliki spesies apapun pada panduan Anda.
   lookup: Cari
   low: Rendah
-  lowest_rank: Kategori Terendah
+  lowest_rank: TIngkat Terendah
   make_admin: Jadikan pengelola
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Konten utama
@@ -2465,7 +2468,7 @@ id:
   merge: Gabungkan
   merge_it_with_another_place: Gabungkan dengan tempat lainnya
   merge_two_places_together: Menggabungkan dua tempat menjadi satu. Semua spesies pada daftar centang akan digabung, termasuk data geografisnya.
-  merge_observation_field_x_into: 'Gabung kolom pengamatan "%{x}" menjadi...'
+  merge_observation_field_x_into: 'Gabung bidang pengamatan "%{x}" menjadi...'
   merging: Menggabungkan
   merging_places: Menggabungkan Tempat
   message: Pesan
@@ -2587,7 +2590,7 @@ id:
   must_be_observed_by_user: harus diamati oleh %{user}
   must_be_observed_in_place: harus diamati di %{place}
   must_be_less_than_x_MB: "Harus kurang dari %{x} MB"
-  must_have_observation_field: "kolom pengamatan '%{operand}' harus diisi"
+  must_have_observation_field: "Bidang pengamatan '%{operand}' harus diisi"
   must_have_photos: harus memiliki foto
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "harus memiliki tingkat berkualitas: %{grades}"
@@ -2660,7 +2663,7 @@ id:
   new_list: Daftar Baru
   new_members: "Anggota baru"
   new_message: Pesan baru
-  new_observation_field: Kolom pengamatan baru
+  new_observation_field: Bidang pengamatan baru
   new_observations: Pengamatan Baru
   new_observations_in_year: "Pengamatan Baru di %{year}"
   new_observations_ellispsis: "Pengamatan baru..."
@@ -2834,7 +2837,7 @@ id:
   #@something.
   observation_attribution_copyright_html: Pengamatan &copy; %{user}
   observation_belongs_to_project_requiring_field: |
-    Pengamatan ini milik proyek yang memerlukan kolom ini. Pengamatan ini harus dihapus dari proyek tersebut sebelum nilai kolom ini dapat dihapus.
+    Pengamatan ini milik sebuah proyek yang memerlukan bidang ini. Pengamatan ini harus dihapus dari proyek tersebut sebelum nilai bidang ini dapat dihapus.
   observation_brief_something_on_day: "Sesuatu pada %{day}"
   observation_brief_something_on_day_at_time: "Sesuatu pada %{day} pukul %{time}"
   observation_brief_something_on_day_at_time_by_user: "Sesuatu pada %{day} pukul %{time} oleh %{user}"
@@ -2885,8 +2888,8 @@ id:
   observation_curation: Kurasi Pengamatan
   observation_date: Tanggal
   observation_date?: Tanggal?
-  observation_field: Kolom Pengamatan
-  observation_field_details: Detail kolom pengamatan
+  observation_field: Bidang Pengamatan
+  observation_field_details: Detail bidang pengamatan
   observation_field_type_text: Teks
   observation_field_type_numeric: Nomor
   observation_field_type_date: Tanggal
@@ -2894,10 +2897,10 @@ id:
   observation_field_type_datetime: Waktutanggal
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNA
-  observation_fields: Kolom Pengamatan
-  observation_fields_are_additional: Kolom pengamatan adalah kolom data tambahan yang dapat ditambahkan ke pengamatan.
+  observation_fields: Bidang Pengamatan
+  observation_fields_are_additional: Bidang pengamatan adalah bidang data tambahan yang dapat ditambahkan ke pengamatan.
   observation_fields_by_preferences_description: |
-    Kolom pengamatan bisa dibilang seperti tanda, tetapi semua orang dapat menambahkannya kepada pengamatan Anda jika mengacu setelan aslinya. Ubah ini jika Anda ingin hanya Anda yang bisa melakukan ini, atau hanya situs kurator saja.
+    Bidang pengamatan bisa dibilang seperti label, tetapi semua orang dapat menambahkannya kepada pengamatan Anda jika mengacu setelan aslinya. Ubah ini jika Anda ingin hanya Anda yang bisa melakukan ini, atau hanya situs kurator saja.
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     contoh 2019-10-29 13:12:21
@@ -2919,7 +2922,7 @@ id:
   observations_by_user: "Pengamatan oleh %{user}"
   observations_deleted: Pengamatan telah dihapus.
   observations_fields_are: |
-    Kolom pengamatan adalah potongan-potongan tambahan data yang terkait dengan pengamatan, seperti jumlah individu yang diamati, deskripsi habitat, atau apapun yang Anda inginkan! Proyek juga dapat menentukan kolom yang ingin mereka isi.
+    Bidang pengamatan adalah potongan-potongan tambahan data yang terkait dengan pengamatan, seperti jumlah individu yang diamati, deskripsi habitat, atau apa pun yang Anda inginkan! Proyek juga dapat menentukan bidang yang ingin mereka isi.
   observations_from_people_taxa_and_places_youre_following: "Pengamatan dari orang, tempat, dan taksa yang Anda ikuti"
   observations_from_this_place: Pengamatan dari tempat ini
   observations_from_this_project: Pengamatan dari proyek ini
@@ -2935,19 +2938,19 @@ id:
   observations_per_month: Pengamatan / Bulan
   observations_removed_from_the_project: "Pengamatan dihapus dari proyek \"%{project}\""
   observations_saved: Pengamatan disimpan!
-  observations_specifying_this_field: Pengamatan yang mencakup kolom ini
-  observations_specifying_this_field_with_value: Pengamatan yang mencakup kolom ini dengan "%{value}"
+  observations_specifying_this_field: Pengamatan yang mencakup bidang ini
+  observations_specifying_this_field_with_value: Pengamatan yang mencakup bidang ini dengan "%{value}"
   observations_text_search_warning: |
     Pencarian teks dapat menghasilkan hasil yang aneh bila dikombinasikan dengan saringan lainnya. Jika
     Anda ingin mencari pengamatan dari spesies tertentu, gunakan saringan takson.
   observations_this_year_vs_last_year: Pengamatan Tahun Ini vs. Tahun Lalu
   observations_total: Total Pengamatan
   observations_w: Pengamatan dengan
-  observations_w_field: Pengamatan dengan kolom
+  observations_w_field: Pengamatan dengan bidang
   observations_was_successfully_updated: Pengamatan sukses diperbarui.
   observations_widget: Widget Pengamatan
-  observations_with_this_field: Pengamatan dengan kolom ini
-  observations_with_this_field_and_value: Pengamatan dengan kolom dan nilai ini
+  observations_with_this_field: Pengamatan dengan bidang ini
+  observations_with_this_field_and_value: Pengamatan dengan bidang dan nilai ini
   observations_without_media: Pengamatan Tanpa Media
   observationcounts_refreshed: Jumlah pengamatan diperbarui
   observed: Diamati
@@ -2995,6 +2998,7 @@ id:
     observe_panel_title: Mari Kita Mulai Dengan Mengunggah Beberapa Pengamatan
     observe_panel_body_p1_local: Perlu inspirasi? Berikut adalah beberapa organisme yang diamati di dekatmu...
     observe_panel_body_p1_global: Perlu inspirasi? Berikut adalah beberapa organisme yang sedang diamati...
+    observe_panel_body_p2: Pergilah dan amatilah suatu organisme. Pilihlah suatu organisme yang liar dan ambillah gambar yang jelas dan memenuhi bingkai foto. Jika kamu sudah memiliki foto organisme liar, <a href="%{new_observation_path}">tambahkan sekarang</a>. Kamu juga bisa menggunakan aplikasi %{site_name} di ponselmu untuk mencatat pengamatan.
     observe_panel_body_p3: Saat kamu sudah membagikan pengamatanmu, halaman ini akan memberikan kabar terbaru dari komunitas dalam bentuk komentar dan identifikasi. Siapa tahu kamu akan menemukan sesuatu yang keren!
     follow_panel_title_local: Ikuti Naturalis Di Sekitarmu
     follow_panel_title_global: Ikuti Naturalis Yang Aktif
@@ -3010,7 +3014,7 @@ id:
     youve_got_updates_panel_body_p1: Jangan ketinggalan dengan kabar-kabar berikut...
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Konten Anda:</strong> Aktivitas di pengamatan Anda seperti komentar, identifikasi, atau favorit dari komunitas %{site_name}. Anda juga akan mendapatkan kabar terbaru saat seseorang menambahkan pengamatan Anda ke sebuah proyek, atau memberikan catatan kolom tambahan.</li>
+      <li><strong>Konten Anda:</strong> Aktivitas di pengamatan Anda seperti komentar, identifikasi, atau favorit dari komunitas %{site_name}. Anda juga akan mendapatkan kabar terbaru saat seseorang menambahkan pengamatan Anda ke sebuah proyek, atau menamahkan catatan bidang tambahan.</li>
       <li><strong>Orang:</strong> Pengamatan baru atau postingan jurnal dari orang yang kamu ikuti.</li>
       <li><strong>Organisme, Proyek & Tempat:</strong> Pengamatan baru dari organisme atau tempat tertentu yang kamu ikuti. Kamu juga bisa bergabung dengan proyek jadi kamu akan diberi kabar ketika mereka menerbitkan postingan jurnal proyek.</li>
       <li><strong>Diskusi yang telah kamu ikuti:</strong> Berkomentar atau menambahkan identifikasi kepada konten orang lain otomatis menambahkan langgananmu kepada aktivitas baru apapun pada konten ini. Pakai fitur 'Kelola langganan Anda' untuk berhenti menerima kabar.</li>
@@ -3767,8 +3771,8 @@ id:
   radius_value: "Radius (m): %{radius}"
   random: Acak
   range: Jangkauan
-  rank: Kategori
-  rank_position: Kategori
+  rank: Tingkat
+  rank_position: Tingkat
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -4059,7 +4063,7 @@ id:
   save_changes: Simpan Perubahan
   save_comment: Simpan Komentar
   save_draft: Simpan Draf
-  save_fields: Simpan Kolom
+  save_fields: Simpan Bidang
   save_flag: Simpan Tanda
   save_guide_taxon: Simpan Takson Panduan
   save_identification: Simpan Identifikasi
@@ -4080,7 +4084,7 @@ id:
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Nama Ilmiah
   search: Cari
-  search_all_fields: cari semua kolom
+  search_all_fields: cari semua bidang
   search_by_name_or_email: Cari berdasarkan nama atau email
   search_by_taxon_name_or_observation_id: Cari berdasarkan nama takson atau ID pengamatan
   search_by_taxon_name_or_flickr_photo_id: Cari berdasarkan nama takson atau ID foto Flickr
@@ -4336,7 +4340,7 @@ id:
   start_date_time: Tanggal / Waktu Mulai
   start_one: Mulai Satu
   start_one_now: Mulai Satu Sekarang!
-  start_typing_field_name: Mulailah mengetik nama kolom...
+  start_typing_field_name: Mulailah mengetik nama bidang...
   start_typing_place_name: Mulailah mengetik nama tempat...
   start_typing_taxon_name: Mulailah mengetik nama takson...
   start_typing_someones_name: "Mulailah mengetik nama seseorang..."
@@ -4367,7 +4371,7 @@ id:
     other: Kirimkan %{count} pengamatan
   submitted: Dikirimkan
   subscribe_to_a_taxon: Berlangganan pada suatu Takson
-  subscribe_to_a_place: Berlangganan Tempat
+  subscribe_to_a_place: Berlangganan pada suatu Tempat
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di tanda ini"
   subscribe_to_comments_on_this_post_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di postingan ini"
   subscribe_to_comments_on_this_taxon_stage_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di aktivasi takson ini"
@@ -4380,7 +4384,7 @@ id:
   subscribe_to_observations_in_a_place: Ikuti semua pengamatan yang diunggah di tempat ini. Anda juga bisa menambahkan saringan takson opsional (contohnya 'kalajengking dari Texas').
   subscribe_to_places_help: |
     Langganan mengatur apa yang Anda akan lihat di berita dan dasbor Anda.
-    Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan pada kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
+    Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
   subscribe_to_this: Berlangganan pada ini
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
@@ -4388,7 +4392,7 @@ id:
   subscriptions_arent_available_for: Langganan tidak tersedia untuk tempat tanpa batas.
   successfully_changed_your_password: Berhasil mengubah sandi Anda.
   suggest_an_identification: Berikan Usulan Identifikasi
-  suggest_or_require_that: Sarankan atau haruskan kontributor mengisi kolom ini untuk pengamatan yang mereka tambahkan untuk proyek Anda.
+  suggest_or_require_that: Sarankan atau haruskan kontributor mengisi bidang ini untuk pengamatan yang mereka tambahkan untuk proyek Anda.
   suggestions: Rekomendasi
   suitable_for_the_global_biodiversity_information_facility: Cocok untuk Global Biodiversity Information Facility
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Cocok untuk Wikipedia dan proyek Wikimedia Foundation lainnya
@@ -5465,7 +5469,7 @@ id:
         add_color_tags_help: |
           Tambahkan label warna dari warna yang terkait dengan taksa yang dipilih.
         add_rank_tags_help_html: |
-          Tambahkan kategori takson berdasarkan taksonomi kami, contohnya <code>famili=Laridae</code>
+          Tambahkan tingkatan takson berdasarkan taksonomi kami, contohnya <code>famili=Laridae</code>
           atau
           <code>famili=Camar dan Sekutunya</code>
         coordinates_desc: |
@@ -6496,7 +6500,7 @@ id:
         complete_desc_html: |
           Takson yang "lengkap" mengandung <em>semua</em> turunan taksa yang sudah diketahui dalam suatu kategori tertentu yang mematuhi kebijakan kurasi takson iNaturalist, tidak peduli mereka sudah atau belum diamati. Hanya pengelola situs yang bisa menyatakan suatu taksa sudah lengkap untuk saat ini.
         complete_rank_desc_html: |
-          Kategori di mana takson ini selesai, contohnya jika famili ini mengandung semua genusnya, tapi tidak mengandung semua spesiesnya, ini akan diatur menjadi "genus". Standarnya diatur menjadi spesies.
+          Tingkat di mana takson ini selesai, contohnya jika famili ini mengandung semua genusnya, tapi tidak mengandung semua spesiesnya, ini akan diatur menjadi "genus". Standarnya diatur menjadi spesies.
         wikipedia_summary_desc_html: |
           Ringkasan singkat dari takson ini berdasarkan <a target="_blank"
           href="%{url}">halaman Wikipedianya</a> yang terus kami simpan dalam cache hingga disegarkan secara manual. Menyegarkan ringkasan ini juga akan secara langsung mengubah cache konten Wikipedia kami yang kami tampilkan di situs web, yang akan disegarkan secara otomatis setiap minggunya.
@@ -6527,7 +6531,7 @@ id:
         charts_help_relative_observations: |
           Menampilkan frekuensi sebagai proporsi relatif dari semua pengamatan membantu menghaluskan efek pertumbuhan keseluruhan dari situs. Sebagai contoh, jika situs sedang bertumbuh karena kami mendapatkan lebih banyak pengamatan setiap tahunnya, kami akan mendapatkan lebih banyak pengamatan tentang takson individu apapun, yang tidak akan memberitahukan Anda tentang apakah ada lebih banyak takson itu untuk diamati di sekitar Anda, tetapi hanya menyampaikan bahwa ada lebih banyak orang yang mengamatinya. Menunjukkan proporsi relatif berarti jika ada 100 total pengamatan, tapi ada 20 pengamatan saja dari takson ini, proporsinya adalah 0,2 (20 / 100). Jika orang-orang mengamati 2000 pengamatan ini tahun depan dan 400 pengamatannya berupa takson ini, proporsinya tetap 0,2 (400 / 2000). Hal ini menyebabkan beberapa penyimpangan ketika ada sedikit pengamat saja dalam sebuah area, atau untuk taksa yang sangat jarang diamati, tetapi hal ini juga berlaku untuk jumlah total.
         complete_taxon_desc: |
-          Taksa yang "lengkap" memiliki semua taksa turunannya yang masih ada dari kategori tertentu yang tersimpan di dalam database situs. Ketika suatu takson lengkap hingga ke tingkat spesies, contohnya, kita bisa bilang berapa banyak dari spesiesnya yang sudah diamati dan berapa banyak lagi yang masih belum diamati. Jumlah spesies untuk taksa yang "lengkap" hingga ke tingkat spesies tidak menyertakan spesies yang "tidak terhitung" seperti spesies yang sudah punah atau konsep spesies yang tidak aktif. Selain itu, mereka hanya memasukkan spesies, bukan taksa infraspesifik seperti subspesies atau varietas.
+          Taksa yang "lengkap" memiliki semua taksa turunannya yang masih ada dari tingkat tertentu yang tersimpan di dalam database situs. Ketika suatu takson lengkap hingga ke tingkat spesies, contohnya, kita bisa bilang berapa banyak dari spesiesnya yang sudah diamati dan berapa banyak lagi yang masih belum diamati. Jumlah spesies untuk taksa yang "lengkap" hingga ke tingkat spesies tidak menyertakan spesies yang "tidak terhitung" seperti spesies yang sudah punah atau konsep spesies yang tidak aktif. Selain itu, mereka hanya memasukkan spesies, bukan taksa infraspesifik seperti subspesies atau varietas.
         discoveries_desc: "Spesies terkini yang baru diidentifikasi dalam takson ini"
         frequency:
           research: Kelas Riset
@@ -6574,7 +6578,7 @@ id:
     taxon_links:
       form:
         name_with_rank_desc: |
-          Nama takson dengan kategorinya. Untuk takson infraspesifik, kategori dimasukkan setelah binomialnya.
+          Nama takson dengan tingkatnya. Untuk takson infraspesifik, tingkat dimasukkan setelah binomialnya.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -7223,7 +7227,7 @@ id:
         #e.g. if Homonidae has complete_rank set to genus, you would expect
         #the genus Homo to be in the database, but not necessarily Homo
         #sapiens
-        complete_rank: Kategori lengkap
+        complete_rank: Tingkat lengkap
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Status konservasi
         #Datetime this taxon was featured for display on /taxa
@@ -7315,9 +7319,6 @@ id:
               relative_uri: "harus berupa URI yang absolut."
         flag:
           attributes:
-            flag:
-              not_about_duplicate: |
-                tidak boleh berupa pengamatan duplikat, hanya pengamat yang boleh menghapus duplikat, jadi harap selesaikan masalah ini dengan mereka secara langsung dengan berkomentar
             user_id:
               already_flagged: "sudah menandai barang tersebut"
         guide:
