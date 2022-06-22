@@ -431,6 +431,7 @@ Rails.application.routes.draw do
     resources :flags
     resources :taxon_names, controller: :taxon_names, shallow: true
     resources :taxon_scheme_taxa, controller: :taxon_scheme_taxa, shallow: true
+    resources :conservation_statuses, controller: :conservation_statuses, shallow: true
     get "description" => "taxa#describe", on: :member, as: :describe
     member do
       post "update_photos", as: "update_photos_for"
@@ -676,7 +677,8 @@ Rails.application.routes.draw do
   resources :taxon_swaps, controller: :taxon_changes
   resources :taxon_drops, controller: :taxon_changes
   resources :taxon_stages, controller: :taxon_changes
-  resources :conservation_statuses, only: [:autocomplete]
+
+  resources :conservation_statuses, only: [:create, :destroy]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
     collection do

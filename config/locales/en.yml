@@ -1172,6 +1172,9 @@ en:
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
+  conservation_status_created: Conservation status created
+  conservation_status_deleted: Conservation status deleted
+  conservation_status_updated: Conservation status updated
   conservation_status_descriptions:
     status: Status code, rank, etc. If a short code like E or CR exists, please use that, but if not, please use the full status, e.g. endangered or critically endangered.
     description: Brief description of why this was listed.
@@ -1758,6 +1761,7 @@ en:
   edit_body: Edit Body
   edit_comment: Edit Your Comment
   edit_complete_set_for_taxon_in_place_html: "Edit Complete Set for %{taxon} in %{place}"
+  edit_conservation_status: Edit Conservation Status
   edit_custom_project_fields: Edit Custom Project Fields
   edit_field: Edit Field
   edit_license: Edit License
@@ -2975,6 +2979,7 @@ en:
   new_check_list_for: "Create a new check list for %{place} &raquo;"
   new_check_list_record: "If you want to mark this list as comprehensive, create it, add the taxa, and then edit it and you'll have the option to mark it as comprehensive here."
   new_comment_on_a_parent_by_user_link: New comment on @vow_or_con{vow:an|a} %{parent} by %{user_link}
+  new_conservation_status: New Conservation Status
   new_flag_for: New Flag for
   new_guide: New Guide
   new_journal_post: New Journal Post

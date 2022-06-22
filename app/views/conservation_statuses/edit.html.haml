@@ -1,0 +1,15 @@
+- content_for :extracss do
+  = stylesheet_link_tag :taxa, media: "all", cache: true
+
+.container
+  .row
+    .col-cs-12
+      %ul.breadcrumb.unstacked
+        %li= link_to t( :back_to_x, noun: @taxon.name ), :back, class: "back crumb"
+      %h1=t :edit_conservation_status
+      = form_for @conservation_status, builder: BootstrapFormBuilder do | f |
+        = render "form", f: f
+        = f.text_area :audit_comment, placeholder: t(:why_are_you_making_this_change_optional), label: t(:note)
+        = f.submit t(:update), class: "btn btn-primary"
+        = link_to t( :cancel ), :back, class: "btn btn-default"
+        = link_to t(:delete), @conservation_status, method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-danger pull-right"

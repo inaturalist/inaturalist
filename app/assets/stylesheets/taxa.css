@@ -94,3 +94,5 @@ table.taxa .taxon_name {
 }
 .taxonimage:hover .attribution { opacity: 1; background-color: #111; }
 
+.taxa.inline .taxonimage { vertical-align: middle; }
+.taxa.inline .info { display: inline-block; }

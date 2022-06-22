@@ -316,4 +316,5 @@ module TaxaHelper
       "#{taxon_range.kml_url}?#{taxon_range.updated_at.to_i}".html_safe
     end
   end
+
 end
