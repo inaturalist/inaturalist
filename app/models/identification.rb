@@ -592,6 +592,7 @@ class Identification < ApplicationRecord
   end
 
   def self.update_for_taxon_change( taxon_change, options = {} )
+    Rails.logger.info "[INFO #{ Time.now }] #{ self }: options #{ JSON.pretty_generate( options ) }" if options[:debug]
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Identification.current.where( "identifications.taxon_id IN (?)", input_taxon_ids )
     scope = scope.where( user_id: options[:user] ) if options[:user]
@@ -670,6 +671,9 @@ class Identification < ApplicationRecord
     ).map {|r| r["observation_id"].to_i }
     observation_ids.uniq!
     ident_ids.uniq!
+    Rails.logger.info "[INFO #{ Time.now }] #{ self }: observation_ids #{ observation_ids.uniq.compact.sort.join(',') }" if options[:debug]
+    Rails.logger.info "[INFO #{ Time.now }] #{ self }: ident_ids #{ ident_ids.uniq.compact.sort.join(',') }" if options[:debug]
+    
     Identification.elastic_index!( ids: ident_ids )
     Observation.elastic_index!( ids: observation_ids )
   end

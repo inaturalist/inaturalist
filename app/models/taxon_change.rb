@@ -255,6 +255,7 @@ class TaxonChange < ApplicationRecord
           end
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
+        Rails.logger.info "[INFO #{ Time.now }] #{ self }: auto_updatable_record identification_ids #{ auto_updatable_records.map {| i | i.id }.join( ',' ) }" if options[:debug]
         unless auto_updatable_records.blank?
           update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
         end
