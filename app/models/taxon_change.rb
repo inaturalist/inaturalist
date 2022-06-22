@@ -249,9 +249,7 @@ class TaxonChange < ApplicationRecord
             notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-            unless record.observation.identifications.map{|i| i.user.prefers_automatic_taxonomic_changes?}.all?
-              auto_updatable_records << record
-            end
+            auto_updatable_records << record
           end
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
