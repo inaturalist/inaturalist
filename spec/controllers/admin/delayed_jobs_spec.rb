@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe Admin::DelayedJobsController do
@@ -8,14 +10,13 @@ describe Admin::DelayedJobsController do
     end
 
     it "unlocks delayed jobs" do
-      dj = Delayed::Job.create(locked_at: Time.now, locked_by: "someone")
-      expect(dj.locked_at).to_not be_nil
-      expect(dj.locked_by).to_not be_nil
+      dj = Delayed::Job.create( locked_at: Time.now, locked_by: "someone" )
+      expect( dj.locked_at ).to_not be_nil
+      expect( dj.locked_by ).to_not be_nil
       get :unlock, params: { id: dj.id }
       dj.reload
-      expect(dj.locked_at).to be_nil
-      expect(dj.locked_by).to be_nil
+      expect( dj.locked_at ).to be_nil
+      expect( dj.locked_by ).to be_nil
     end
-
   end
 end

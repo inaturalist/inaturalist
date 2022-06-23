@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://developer.apple.com/documentation/xcode/supporting-associated-domains
 class AppleAppSiteAssociationController < ApplicationController
   def index
@@ -5,7 +7,7 @@ class AppleAppSiteAssociationController < ApplicationController
       render_404
       return
     end
-    render :json => {
+    render json: {
       webcredentials: {
         apps: [
           @site.preferred_ios_app_webcredentials

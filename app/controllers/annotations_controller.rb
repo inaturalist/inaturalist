@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AnnotationsController < ApplicationController
-  before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :doorkeeper_authorize!, if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!, unless: -> { authenticated_with_oauth? }
   before_action :load_record, only: [:show, :update, :destroy]
 
   def show
@@ -14,12 +16,12 @@ class AnnotationsController < ApplicationController
   end
 
   def create
-    p = annotation_params(params[:annotation])
-    @annotation = Annotation.new(p)
-    if !@annotation.save
+    p = annotation_params( params[:annotation] )
+    @annotation = Annotation.new( p )
+    unless @annotation.save
       flash[:error] = @annotation.errors.full_messages.to_sentence
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         redirect_to @annotation.resource
       end
@@ -28,7 +30,7 @@ class AnnotationsController < ApplicationController
           head :bad_request
         else
           @annotation.reload
-          render :json => @annotation.as_json
+          render json: @annotation.as_json
         end
       end
     end
@@ -36,7 +38,7 @@ class AnnotationsController < ApplicationController
 
   def destroy
     @annotation.destroy
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         redirect_to @annotation.resource
       end
@@ -48,9 +50,9 @@ class AnnotationsController < ApplicationController
 
   private
 
-  def annotation_params(p)
-    p[:user_id] ||= current_user.id
-    p.permit(
+  def annotation_params( annotation )
+    annotation[:user_id] ||= current_user.id
+    annotation.permit(
       :resource_id,
       :resource_type,
       :controlled_attribute_id,

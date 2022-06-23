@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + "/../spec_helper"
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe AppleAppSiteAssociationController do
   it "should 404 if preference not set for site" do
