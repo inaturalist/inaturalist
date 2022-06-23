@@ -46,7 +46,6 @@ class TaxaController < ApplicationController
   before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
-  before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
   prepend_around_action :enable_replica, only: [:describe, :links, :show]
@@ -1738,17 +1737,6 @@ class TaxaController < ApplicationController
       redirect_to url_for( controller: :flickr, action: :options, scope: "write" )
       return false
     end
-  end
-  
-  def load_form_variables
-    @conservation_status_authorities = ConservationStatus.
-      group(:authority).
-      order( Arel.sql( "count(*) DESC" ) ).
-      limit( 500 ).
-      count.
-      map(&:first).compact.reject(&:blank?).map(&:strip)
-    @conservation_status_authorities += ConservationStatus::AUTHORITIES
-    @conservation_status_authorities = @conservation_status_authorities.uniq.sort
   end
 
   def taxon_curator_required
