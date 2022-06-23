@@ -236,7 +236,6 @@ class TaxonChange < ApplicationRecord
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      next unless k == "identifications"
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
