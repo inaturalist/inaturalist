@@ -287,7 +287,7 @@
   
   <div class="clear buttonrow">
     <% if @taxon.observose_warning_branch? -%>
-      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving), confirm: t( :this_taxon_has_more_than_1000 ) } %>
+      <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving), confirm: t( :this_taxon_has_more_than_1000_alt ).gsub( /\s+/m, " " ) } %>
     <% else %>
       <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
     <% end -%>

@@ -13,5 +13,15 @@
       = form_for @conservation_status, builder: BootstrapFormBuilder do | f |
         = render "form", f: f
         = f.text_area :audit_comment, placeholder: t(:why_are_you_making_this_change_optional), label: t(:note)
-        = f.submit t(:create), class: "btn btn-primary"
+        :ruby
+          submit_options = {
+            class: "btn btn-primary",
+            data: {
+              loading_click: t( :saving )
+            }
+          }
+          if @taxon.observose_warning_branch?
+            submit_options[:data][:confirm] = t( :this_taxon_has_more_than_1000_alt ).gsub( /\s+/m, " " )
+          end
+        = f.submit t(:create), submit_options
         = link_to t( :cancel ), :back, class: "btn btn-default"
