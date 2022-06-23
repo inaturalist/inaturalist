@@ -116,7 +116,7 @@ class ProjectMembershipButton extends React.Component {
               <p>{ I18n.t( "about_trusting_projects_project_managers_are" ) }</p>
               <div className="stacked row">
                 { project.admins.map( manager => (
-                  <div className="col-xs-3" key={`admin-${manager.id}`}>
+                  <div className="col-xs-3 admin-user" key={`admin-${manager.id}`}>
                     <UserImage user={manager.user} />
                     { " " }
                     <UserLink user={manager.user} />
@@ -172,7 +172,7 @@ class ProjectMembershipButton extends React.Component {
               { I18n.t( "your_membership" ) }
             </Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="project-membership">
             <div className="stacked">
               <h4>{ I18n.t( "receive_project_journal_notifications?" ) }</h4>
               <div className="radio">

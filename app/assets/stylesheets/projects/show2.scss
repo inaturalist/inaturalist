@@ -1611,3 +1611,24 @@ $tip-opacity: 1;
     display: block;
   }
 }
+
+.project-membership {
+  .admin-user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .userimage {
+      width: 40px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .userlink {
+      text-overflow: ellipsis;
+      width: auto;
+      overflow: hidden;
+    }
+  }
+}
