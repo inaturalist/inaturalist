@@ -40,7 +40,7 @@
   .row
     .col-xs-12.col-md-6
       = f.select :geoprivacy,
-        Observation::GEOPRIVACY_DESCRIPTIONS.keys.map{| g | [t( g == "private" ? "private_" : g, default: g ), g] },
+        Observation::GEOPRIVACY_DESCRIPTIONS.keys.map{| g | [t( g == "obscured" ? g : "#{g}_", default: g ), g] },
         {},
         description: t( "conservation_status_descriptions.geoprivacy" ),
         description_after: true
