@@ -79,7 +79,7 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
       var old_ancestors = raw_old_ancestors == null ? [] : raw_old_ancestors.split( "/" );
       var old_parent = old_ancestors[old_ancestors.length - 1];
       var new_parent = $( "#taxon_parent_id" ).val( );
-      if( $.isNumeric( new_parent ) ){
+      if( $.isNumeric( new_parent ) && $.isNumeric( old_parent ) ){
         $.ajax( {
           type: "get",
           dataType: "json",
