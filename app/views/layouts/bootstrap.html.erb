@@ -21,10 +21,10 @@
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
-    <% if !@site.twitter_username.blank? -%>
+    <% if !@site&.twitter_username.blank? -%>
       <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
     <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
       <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />

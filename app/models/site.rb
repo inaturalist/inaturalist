@@ -359,8 +359,9 @@ class Site < ApplicationRecord
       return cached
     end
 
-    site = Site.includes( :stored_preferences ).first
-    return unless site
+    unless site = Site.includes( :stored_preferences ).first
+      site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
+    end
 
     Rails.cache.fetch( "sites_default" ) do
       site
