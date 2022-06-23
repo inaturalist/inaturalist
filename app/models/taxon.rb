@@ -106,7 +106,6 @@ class Taxon < ApplicationRecord
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
 
   accepts_nested_attributes_for :source
-  accepts_nested_attributes_for :conservation_statuses, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
