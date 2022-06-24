@@ -3635,6 +3635,7 @@ bg:
   totals: Общо
   total_members: Общо членове
   total_observations: Общо наблюдения
+  total_observations_caps: ОБЩО НАБЛЮДЕНИЯ
   total_unique_observers: Общо различни наблюдатели
   translated_languages: Преводни езици
   'true': 'Вярно'
@@ -4083,10 +4084,12 @@ bg:
       list_view: Списъчен изглед
       tree_view: Дървовиден изглед
       observed_species: Наблюдавани видове
+      observed_rank: Наблюдавани %{rank}
       unobserved_species: Ненаблюдавани видове
       all_species: Всички видове
       all_unobserved_species: Всички ненаблюдавани видове
       all_observations: Всички наблюдения
+      total_observations: Общо наблюдения
       filter_by: Филтрирай по
       filtered_by: Филтрирано по
       restrict_to_taxa_observed_in_place: Ограничи до таксони наблюдавани във %{place}
@@ -4099,6 +4102,8 @@ bg:
         name: Име
         most_observed: Най-наблюдаван
         least_observed: Най-малко наблюдаван
+        date_added_newest: Дата на добавяне, от нови към стари
+        date_added_oldest: Дата на добавяне, от стари към нови
         show: Покажи
         children: Деца
         simplified_tree: Опростено дърво
