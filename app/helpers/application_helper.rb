@@ -1611,4 +1611,13 @@ module ApplicationHelper
     )
   end
 
+  # Workaround for our inconsistent i18n keys
+  def geoprivacy_with_consistent_case( geoprivacy )
+    if geoprivacy != "obscured"
+      t( "#{geoprivacy}_" )
+    else
+      t( :obscured )
+    end
+  end
+
 end

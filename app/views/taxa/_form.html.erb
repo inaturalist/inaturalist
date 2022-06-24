@@ -252,6 +252,8 @@
                 <% elsif cs_col == "iucn" %>
                   <%=t conservation_status.iucn_status %>
                   (<%= conservation_status.iucn_status_code %>)
+                <% elsif cs_col == "geoprivacy" %>
+                  <%= geoprivacy_with_consistent_case conservation_status.send( cs_col ) %>
                 <% elsif cs_col == "description" %>
                   <% unless conservation_status.description.blank? %>
                     <div class="stacked"><%= conservation_status.description %></div>
