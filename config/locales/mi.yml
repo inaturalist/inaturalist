@@ -70,6 +70,7 @@ mi:
   comments: Kōrero
   community: Hapori
   community_guidelines: Aratohu hapori
+  compare: Ine
   copyright:
     copyright: manatārua
     no_copyright: manatārua kore (CC0)
@@ -94,18 +95,18 @@ mi:
       november: '%{day} Noema %{year}'
       december: '%{day} Tīhema %{year}'
     month:
-      january: Hānuere
-      february: Pēpuere
-      march: Māehe
-      april: Āperira
-      may: Mei
-      june: Hune
-      july: Hūrae
-      august: Ākuhata
-      september: Hepetema
-      october: Oketopa
-      november: Noema
-      december: Tīhema
+      january: Kohiātea
+      february: Huitanguru
+      march: Poutū-te-rangi
+      april: Paenga-whāwhā
+      may: Haratua
+      june: Pipiri
+      july: Hōngongoi
+      august: Here-turi-kōkā
+      september: Mahuru
+      october: Whiringa-ā-nuku
+      november: Whiringa-ā-rangi
+      december: Hakihea
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   email: Īmēra
   explore: Tuhuratia
@@ -122,6 +123,7 @@ mi:
   forum: Wānanga
   guidelines: Aratohu
   help: Āwhina
+  help_translate!: Āwhina e whakareo!
   identify: E tautuhi ana
   identification: tautuhi
   identifications: Ngā taituhi
@@ -131,9 +133,23 @@ mi:
   learn_more: Akohia tonuhia
   list: Tūtira
   lists: Ngā tūtira
+  loading_suggestions: E whakauta ana ngā marohi ...
   log_in: Takiuru
   map: Mahere
   meet: Tūtaki
+  momentjs:
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mma z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   more_observations: Tonuhia ngā pūkete
   more_photos: Tonuhia ngā whakaahua
   #Attributes an observation to a user and specifies that copyright is retained
@@ -143,12 +159,47 @@ mi:
   #@this could also be translated like "Observation by %{user} (copyright)" or
   #@something.
   observation_attribution_copyright_html: Pūkete &copy; %{user}
+  only_view_nearby_suggestions: Tirohia ngā marohi tātata noa iho
   password: Kupuhipa
   people: Tāngata
   pi_consent_desc_title: Mō mōhiohio whaiaro
+  place_geo:
+    geo_planet_place_types:
+      Time_Zone: Rohe wā
+      time_zone: rohe wā
   places: Wāhi
+  places_name:
+    africa: Awherika
+    antarctica: Te Kōpaka Runga
+    asia: Āhia
+    australia: Ahitereiria
+    canada: Kānata
+    central_african_republic: Te Puku o Āwherika
+    central_america: Te Puku o Amerika
+    china: Haina
+    cook_islands: Kuki Airani
+    egypt: Ihipa
+    europe: Ūropi
+    france: Wīwī
+    germany: Tiamani
+    greece: Kariki
+    greenland: Kārikirana
+    india: Īnia
+    japan: Hapani
+    north_america: Amerika ki te Raki
+    russia: Rūhia
+    samoa: Hāmoa
+    south_africa: Awherika ki te Tonga
+    south_america: Amerika ki te Tonga
+    tonga: Tonga
+    united_kingdom: Piritānia
+    vietnam: Witināma
+    zambia: Tāmipia
+    zimbabwe: Timuwawe
   privacy: Me te punanga
   read_more: Pānuihia tonuhia
+  red: whero
+  reptiles: ngārara
   satellite: amiorangi
   search: Rapunga
   show_more: Hurahia tonuhia
@@ -159,10 +210,14 @@ mi:
   source: Te pū
   source_: 'Te pū:'
   source_wikipedia: "Te pū: Wikipedia"
+  suggestions: Marohi
   teachers_guide: Aratohu o kaiako
   terrain: takoto
+  thanks!: Kia ora!
   the_world: Te Ao
   this: tēnei
+  total: Tapeke
+  two_thirds: 2/3
   upload: Tukuatu
   username: Ingoa rorohiko
   view: Tirohia
@@ -176,6 +231,10 @@ mi:
   view_user_observations: "Tirohia ngā pūkete o %{user}"
   view_your_observations: Tirohia tāu pūkete
   weather: Huarere
+  welcome: nau mai, haere mai
+  welcome_back!: Hoki mai anō!
+  welcome_to_inat: "Nau mai, haere mai ki %{site_name}!"
+  welcome_to_x_project: "Nau mai, haere mai ki %{project}!"
   when_did_you_see_it?: Inahea?
   white: mā
   year: Tau
@@ -195,6 +254,9 @@ mi:
       all_observations: Ngā pūkete katoa
       dropdowns:
         name: Ingoa
+    observations:
+      field_descriptions:
+        time_zone: Rohe wā o te pūkete
     projects:
       project_user_curator_coordinate_access_labels:
         none: Kao.
@@ -213,20 +275,28 @@ mi:
       index:
         learn_about_nature: Ka ako i mō taiao
   date:
+    abbr_day_names:
+      - Tap
+      - Hin
+      - Tū
+      - Apa
+      - Par
+      - Mer
+      - Hor
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
+      - Kohi
+      - Hui
+      - Pou
+      - Pae
+      - Hara
+      - Pipi
+      - Hōngo
+      - Here
+      - Mahu
+      - Nuku
+      - Rangi
+      - Haki
     day_names:
       - Rātapu
       - Rāhina
@@ -235,20 +305,25 @@ mi:
       - Rāpare
       - Rāmere
       - Rāhoroi
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d %B %Y'
     month_names:
       - 
-      - Hānuere
-      - Pēpuere
-      - Māehe
-      - Āperira
-      - Mei
-      - Hune
-      - Hūrae
-      - Ākuhata
-      - Hepetema
-      - Oketopa
-      - Noema
-      - Tīhema
+      - Kohiātea
+      - Huitanguru
+      - Poutū-te-rangi
+      - Paenga-whāwhā
+      - Haratua
+      - Pipiri
+      - Hōngongoi
+      - Here-turi-kōkā
+      - Mahuru
+      - Whiringa-ā-nuku
+      - Whiringa-ā-rangi
+      - Hakihea
   datetime:
     prompts:
       year: Tau
@@ -257,6 +332,10 @@ mi:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%d %B %Y"
   activerecord:
     attributes:
       place:
@@ -267,6 +346,7 @@ mi:
         email: Īmēra
         login: Ingoa rorohiko
         name: Ingoa
+        time_zone: Rohe wā
         place_id: Wāhi
   i18n:
     inflections:
