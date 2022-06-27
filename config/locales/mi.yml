@@ -7,14 +7,25 @@ mi:
   x_identifiers_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> kaitautuhi'
+  x_languages:
+    other: "%{count} ngā reo"
   x_observations:
-    other: "%{count} pūkete"
+    other: "%{count} mauhanga"
   x_observations_:
-    other: "%{count} Pūkete"
+    other: "%{count} Mauhanga"
   x_observations_html:
-    other: "<span class='count'>%{count}</span> pūkete"
+    other: "<span class='count'>%{count}</span> mauhanga"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> ngā kaititiro'
   x_species_html:
     other: "<span class='count'>%{count}</span> momo"
+  x_taxa:
+    other: "%{count} ngā rōpū"
+  x_sounds:
+    other: "%{count} oro"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A ki Z"
   about_licenses: Mō ngā raihana
   #Header for a section describing taxon names
   about_names: Mō ngā ingoa
@@ -23,12 +34,20 @@ mi:
   about_place: "Mō te %{place}"
   about_places: Mō ngā wāhi
   about_this_map: Mō te mahere tēnei
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Tika (m)'
+  account: Pūkete
+  account_settings: Tautuhinga pūkete
+  accuracy: Tika
+  accuracy_meters: Tika (mita)
   agree_: Whakaae
   agree?: Whakaae?
   all: Katoa
   all_comments: Ngā kōrero katoa
   all_names: Ngā ingoa katoa
-  all_observations: Ngā pūkete katoa
+  all_observations: Ngā mauhanga katoa
   all_photos: Ngā whakaahua katoa
   all_places: "Ngā wāhi katoa"
   all_taxa:
@@ -50,16 +69,32 @@ mi:
       other: "%{count} manu"
     x_insecta:
       other: "%{count} pepeke"
+  all_taxa_: Ngā rōpū katoa
+  all_updates: Ngā whakahou katoa
   amphibians: ika oneone
   animals: Kīrehe
   arachnids: pūngāwerewere
+  asc: Piki
+  ascending: Whakapiki
   birds: manu
   birthday: Huritau
   black: pango
+  by: nā
+  by_everyone: Nā tātou
+  by_user: "Nā %{user}"
+  by_you: Nā koe
   calendar: Maramataka
   captive: Mōkai
   captive_cultivated: Mōkai/Rerenga
   cc_0_name: Manatārua Kore (CC0)
+  cc_by_name: Tautohu Matatiki
+  cc_by_nc_name: Tautohu Matatiki-Arumoni Kore
+  cc_by_nc_nd_name: Tautohu Matatiki-Arumoni Kore-Taketake Anake
+  cc_by_nc_sa_name: Tautohu Matatiki-Arumoni Kore-Tiritiri Raihana
+  cc_by_nd_name: Tautohu Matatiki-Taketake Anake
+  cc_by_sa_name: Tautohu Matatiki-Tiritiri Raihana
+  change_password: Ka tīni tāu kupuhipa
+  change_your_password: Ka tīni tāu kupuhipa
   #Noun, used to label a comment or a comment field in a form
   comment: kōrero
   #Verb, generally a label on a button that allows the user to add a comment
@@ -71,6 +106,22 @@ mi:
   community: Hapori
   community_guidelines: Aratohu hapori
   compare: Ine
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect: Hono
+  controlled_term_labels:
+    male: Tourawhi
+    female: Uwha
+    alive: Ora
+    dead: Mate
+    #As in the feather on a bird
+    feather: Huruhuru
+    #Fecal matter, not regurgitated matter
+    scat: Tūtae
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Makenu
+    #Endoskeletal remains, like a deer bone
+    bone: Wheua
   copyright:
     copyright: manatārua
     no_copyright: manatārua kore (CC0)
@@ -80,6 +131,13 @@ mi:
     attribution_license: Raihana Tautohu Matatiki
     attribution_sharealike_license: Raihana Tautohu Matatiki-Tiritiri Raihana
     attribution_noderivs_license: Raihana Tautohu Matatiki-Taketake Anake
+  copyright_infringement: Hara manatārua
+  curator: Kairauhī
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
+  curators: Kairauhī
+  dashboard: Paemana
+  date_created: Rā waihanga
   date_format:
     date_long:
       january: '%{day} Hānuere %{year}'
@@ -107,34 +165,74 @@ mi:
       october: Whiringa-ā-nuku
       november: Whiringa-ā-rangi
       december: Hakihea
+  date_observed: Rā tiro
+  date_observed_: Rā tiro
+  date_time: Rā/Wā
+  date_updated: Rā whakaou
+  day: Rā
+  #Default option
+  default: taunoa
+  #Default option
+  default_: Taunoa
+  desc: Heke
+  descending: Whakaheke
   devise_reset_password_instructions_hello_email: Kia ora %{email}
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Momotu
+  disconnect_caps: MOMOTU
+  disconnect_provider: "Momotu %{provider}"
+  display: Whakaatu
+  display_name: Ingoa whakaatu
+  done: Ka oti
   email: Īmēra
+  end_date_time: Rā/Wā mutunga
+  endemic: Taketake
+  endemic_to_x: "Taketake ki %{x}"
+  establishment:
+    endemic: Taketake
   explore: Tuhuratia
+  extinct: korehāhā
   facebook: Pukamata
   filter: Tātari
   filtering: E tātari ana
   filters: Tātari
   find: Kimihia
   find_a_place: Kimihia tētahi wāhi
-  find_observations: Kimihia ngā pūkete
+  find_observations: Kimihia ngā mauhanga
   find_photos: Kimihia ngā whakaahua
   find_places: Kimihia ngā wāhi
   find_species: Kimihia ngā momo
+  first_observer: kaititiro tuatahi
+  follow: Aru
+  follow_user: "Aruhia a %{user}"
+  followers: Ngā kiriaru
   forum: Wānanga
+  grid: Tukutuku
   guidelines: Aratohu
+  header_your_profile: Tāu kīwhaiaro
   help: Āwhina
   help_translate!: Āwhina e whakareo!
   identify: E tautuhi ana
   identification: tautuhi
   identifications: Ngā taituhi
   identifiers: Ngā kaitautuhi
+  inat_user_profile: "%{site_name}: Kīwhaiaro ā %{user}"
   inaturalist_is_a_joint_initiative: "He %{site_name} tētahi kaupapa o te California Academy of Sciences me te National Geographic Society."
+  latitude: Ahopae
+  latitude_in_decimals: 'Te ahopae i roto i nga tohu-a-ira, e.g. 38.123'
+  latitude_value: "Ahopae: %{latitude}"
   learn: Ako
   learn_more: Akohia tonuhia
+  link_your_facebook_account: Ka hono tāu pūkete Pukamata
+  link_your_google_account: Ka hono tāu pūkete Kūkara
   list: Tūtira
   lists: Ngā tūtira
   loading_suggestions: E whakauta ana ngā marohi ...
   log_in: Takiuru
+  longitude: Ahopau
+  longitude_in_decimal: 'Te ahopou i roto i nga tohu-a-ira, e.g. -122.123'
+  longitude_value: "Ahopau: %{longitude}"
   map: Mahere
   meet: Tūtaki
   momentjs:
@@ -150,15 +248,24 @@ mi:
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
-  more_observations: Tonuhia ngā pūkete
+  more_observations: Tonuhia ngā mauhanga
   more_photos: Tonuhia ngā whakaahua
+  number_of_observers_value: "E hia ngā kaititiro: %{number}"
+  number_of_observers: "E hia ngā kaititiro"
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Mauhanga nā %{user}
   #Attributes an observation to a user and specifies that copyright is retained
   #(though a license may be applied). %{user} can be a username or a full name.
   #@vow_or_con will work here and use the first letter of the name used. &copy;
   #@is the HTML entity for the copyright symbol. If that doesn't make sense,
   #@this could also be translated like "Observation by %{user} (copyright)" or
   #@something.
-  observation_attribution_copyright_html: Pūkete &copy; %{user}
+  observation_attribution_copyright_html: Mauhanga &copy; %{user}
+  observation_field_type_time: Wā
+  observer: Kaititiro
+  observers: Ngā kaititiro
+  observer_short: Kaititiro
   only_view_nearby_suggestions: Tirohia ngā marohi tātata noa iho
   password: Kupuhipa
   people: Tāngata
@@ -185,6 +292,8 @@ mi:
     greece: Kariki
     greenland: Kārikirana
     india: Īnia
+    indonesia: Initonīhia
+    ireland: Airangi
     japan: Hapani
     north_america: Amerika ki te Raki
     russia: Rūhia
@@ -192,11 +301,120 @@ mi:
     south_africa: Awherika ki te Tonga
     south_america: Amerika ki te Tonga
     tonga: Tonga
+    trinidad_and_tobago: Tirinaki Tōpako
     united_kingdom: Piritānia
     vietnam: Witināma
     zambia: Tāmipia
     zimbabwe: Timuwawe
+  press: Arapāho
+  preview: Huritao takamua
   privacy: Me te punanga
+  private: tūmataiti
+  private_: Tūmataiti
+  profile: Kīwhaiaro
+  profile_picture: Atawhaiaro
+  project_start_time_datetime: "Wā tīmatanga: %{datetime}"
+  purple: waiporoporo
+  radius: Pūtoro (m)
+  radius_value: "Pūtoro (m): %{radius}"
+  random: Matapōkere
+  range: Ine whānui
+  rank: Kapa
+  rank_position: Kapa
+  ranks:
+    kingdom: Mātāmuatanga
+    x_kingdoms:
+      other: Mātāmuatanga
+    subkingdom: Mātāmuatanga iti
+    phylum: Pori
+    x_phyla:
+      other: Pori
+    subphylum: Pori iti
+    superclass: Karangatanga nui
+    class: Karangatanga
+    x_classes:
+      other: Karangatanga
+    subclass: Karangatanga iti
+    infraclass: Karangatanga tuaiti
+    superorder: Pūtoi nui
+    order: Pūtoi
+    x_orders:
+      other: Pūtoi
+    suborder: Pūtoi iti
+    infraorder: Pūtoi tuaiti
+    superfamily: Whānau nui
+    family: Whānau
+    x_families:
+      other: Whānau
+    subfamily: Whānau iti
+    supertribe: Iwi nui
+    tribe: Iwi
+    subtribe: Iwi iti
+    genus: Puninga
+    x_genera:
+      other: Puninga
+    genushybrid: Momorua pūninga
+    subgenus: Puninga iti
+    #Singular
+    species: Momo
+    x_species:
+      other: Momo
+    hybrid: Momorua
+    #Singular
+    subspecies: Momo iti
+    infrahybrid: Momorua tuaiti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: mātāmuatanga
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: mātāmuatanga iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: pori
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: pori iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: karangatanga nui
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: karangatanga
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: karangatanga iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: karangatanga tuaiti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: pūtoi nui
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: pūtoi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: pūtoi iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: pūtoi tuaiti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: whānau nui
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: whānau
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: whānau iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: rōpū nui
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: iwi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: iwi iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: puninga
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: momorua pūninga
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: puninga iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: momo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: momorua
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: momo iti
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: momorua tuaiti
+  ranges: Tuari
+  ray_finned_fishes: ika
   read_more: Pānuihia tonuhia
   red: whero
   reptiles: ngārara
@@ -205,58 +423,67 @@ mi:
   show_more: Hurahia tonuhia
   sign_out: Takiputa
   small: iti
+  site_stats: Tauanga paetukutuku
   sounds:
     listen: Whakarongo
+    photos_sounds: Whakaahua/Oro
+    sound: Oro
+    sounds: Oro
   source: Te pū
   source_: 'Te pū:'
   source_wikipedia: "Te pū: Wikipedia"
+  start_date_time: Rā/Wā tīmatanga
   suggestions: Marohi
   teachers_guide: Aratohu o kaiako
   terrain: takoto
   thanks!: Kia ora!
   the_world: Te Ao
   this: tēnei
+  time_: wā
   total: Tapeke
   two_thirds: 2/3
   upload: Tukuatu
   username: Ingoa rorohiko
+  users_profile: "Kīwhaiaro ā %{user}"
   view: Tirohia
   view_all_n: "TIrohia ngā %{n} katoa"
-  view_all_observations: TIrohia ngā pūkete katoa
+  view_all_observations: TIrohia ngā mauhanga katoa
   view_more: Tirohia tonuhia
-  view_observation: Tirohia te pūkete
-  view_observations: Tirohia ngā pūkete
+  view_observation: Tirohia te mauhanga
+  view_observations: Tirohia ngā mauhanga
   view_place: Tirohia te wāhi
-  view_the_observation: Tirohia te pūkete
-  view_user_observations: "Tirohia ngā pūkete o %{user}"
-  view_your_observations: Tirohia tāu pūkete
+  view_the_observation: Tirohia te mauhanga
+  view_user_observations: "Tirohia ngā mauhanga o %{user}"
+  view_your_observations: Tirohia tāu mauhanga
   weather: Huarere
   welcome: nau mai, haere mai
   welcome_back!: Hoki mai anō!
   welcome_to_inat: "Nau mai, haere mai ki %{site_name}!"
   welcome_to_x_project: "Nau mai, haere mai ki %{project}!"
+  what_were_you_looking_for?: "He aha i kimi koe? (tūtira ūnga)"
   when_did_you_see_it?: Inahea?
   white: mā
   year: Tau
   yellow: kōwhai
   'yes': "Āe"
+  yes_license_my_observations_so_scientists_can_use: Āe, e raihana ana āku whakaahua, āku oro, me āku mauhanga, ka whakamahi ngā kaiputaiao i āku raraunga (taunakitia)
   yesterday: Inanahi
   you: koe
   your_email_address: Tōu īmēra
   your_identification: Tōu tautuhi
-  your_observations: Tōu pūkete
+  your_observations: Tāu mauhanga
   views:
     guides:
       pdf_layouts:
         book: pukapuka
     lifelists:
       all_species: Ngā momo katoa
-      all_observations: Ngā pūkete katoa
+      all_observations: Ngā mauhanga katoa
       dropdowns:
         name: Ingoa
     observations:
       field_descriptions:
-        time_zone: Rohe wā o te pūkete
+        time_zone: Rohe wā o te mauhanga
     projects:
       project_user_curator_coordinate_access_labels:
         none: Kao.
@@ -271,8 +498,13 @@ mi:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tautuhi
+    user_parents:
+      new:
+        child_name_private: Ingoa o te tamariki (tūmataiti)
     welcome:
       index:
+        species_observed: 'Momo i tirohia'
+        people_signed_up: 'Tāngata i takiuru'
         learn_about_nature: Ka ako i mō taiao
   date:
     abbr_day_names:
@@ -307,6 +539,8 @@ mi:
       - Rāhoroi
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_day_year: '%d %B %Y'
@@ -325,7 +559,15 @@ mi:
       - Whiringa-ā-rangi
       - Hakihea
   datetime:
+    countdown_x_days:
+      other: rā
+    countdown_x_hours:
+      other: haora
     prompts:
+      day: Rā
+      hour: Haora
+      minute: Meneti
+      second: Hākona
       year: Tau
   number:
     human:
@@ -335,10 +577,21 @@ mi:
   time:
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B %Y %I:%M %p'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %B %Y"
   activerecord:
     attributes:
+      conservation_status:
+        place_id: Wāhi
+      project:
+        end_time: Wā mutunga
+        start_time: Wā tīmatanga
       place:
+        latitude: Ahopae
+        longitude: Ahopau
         name: Ingoa
       taxon:
         name: Ingoa
@@ -353,3 +606,8 @@ mi:
       "@vow_or_con":
         vow: oropuare
         con: orokati
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z ki A
+  zoom_in: Topa atu
+  zoom_out: Topa atu
