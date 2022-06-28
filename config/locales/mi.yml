@@ -1,6 +1,8 @@
 mi:
   x_identifications:
     other: '%{count} tautuhi'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> tautuhi'
   x_identifications_:
     other: '%{count} Tautuhi'
   #Number of people who have added identifications
@@ -17,8 +19,14 @@ mi:
     other: "<span class='count'>%{count}</span> mauhanga"
   x_observers_html:
     other: '<span class="count">%{count}</span> ngā kaititiro'
+  x_new_species:
+    other: "%{count} Momo hōu"
+  x_species:
+    other: '%{count} Momo'
   x_species_html:
     other: "<span class='count'>%{count}</span> momo"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} momo</a>"
   x_taxa:
     other: "%{count} ngā rōpū"
   x_sounds:
@@ -73,9 +81,14 @@ mi:
   all_updates: Ngā whakahou katoa
   amphibians: ika oneone
   animals: Kīrehe
+  annotation: Kupu tāpiri
+  annotations: Kupu tāpiri
   arachnids: pūngāwerewere
   asc: Piki
   ascending: Whakapiki
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Āhuatanga
   birds: manu
   birthday: Huritau
   black: pango
@@ -116,6 +129,9 @@ mi:
     dead: Mate
     #As in the feather on a bird
     feather: Huruhuru
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Rauropi
     #Fecal matter, not regurgitated matter
     scat: Tūtae
     #Impression made by the organism on the ground or in snow, like a footprint
@@ -132,6 +148,7 @@ mi:
     attribution_sharealike_license: Raihana Tautohu Matatiki-Tiritiri Raihana
     attribution_noderivs_license: Raihana Tautohu Matatiki-Taketake Anake
   copyright_infringement: Hara manatārua
+  critically_endangered: Mōrea rukiruki
   curator: Kairauhī
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
@@ -184,9 +201,15 @@ mi:
   disconnect_provider: "Momotu %{provider}"
   display: Whakaatu
   display_name: Ingoa whakaatu
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: Koha
+  donate_again_caps: Takohatia anō
+  donate_again_today_caps: Takohatia anō inaianei
   done: Ka oti
   email: Īmēra
   end_date_time: Rā/Wā mutunga
+  endangered: Mōrearea
   endemic: Taketake
   endemic_to_x: "Taketake ki %{x}"
   establishment:
@@ -208,6 +231,8 @@ mi:
   follow_user: "Aruhia a %{user}"
   followers: Ngā kiriaru
   forum: Wānanga
+  go: Hoake
+  google: Kūkara
   grid: Tukutuku
   guidelines: Aratohu
   header_your_profile: Tāu kīwhaiaro
@@ -229,6 +254,10 @@ mi:
   list: Tūtira
   lists: Ngā tūtira
   loading_suggestions: E whakauta ana ngā marohi ...
+  location: Wāhi
+  location_is_accurate: He tika te wāhi
+  location_is_public: He tūmatanui te wāhi
+  location_is_private: He tūmataiti te wāhi
   log_in: Takiuru
   longitude: Ahopau
   longitude_in_decimal: 'Te ahopou i roto i nga tohu-a-ira, e.g. -122.123'
@@ -417,7 +446,12 @@ mi:
   ray_finned_fishes: ika
   read_more: Pānuihia tonuhia
   red: whero
+  relationships:
+    many_to_many: maha-ki-maha
+    many_to_one: maha-ki-kotahi
+    one_to_many: kotahi-ki-maha
   reptiles: ngārara
+  research_grade: Kua pūruatia
   satellite: amiorangi
   search: Rapunga
   show_more: Hurahia tonuhia
@@ -435,6 +469,7 @@ mi:
   start_date_time: Rā/Wā tīmatanga
   suggestions: Marohi
   teachers_guide: Aratohu o kaiako
+  tell_the_world_a_little_about_yourself: Kōrero mai i a koe
   terrain: takoto
   thanks!: Kia ora!
   the_world: Te Ao
@@ -473,8 +508,11 @@ mi:
   your_identification: Tōu tautuhi
   your_observations: Tāu mauhanga
   views:
+    donate:
+      post_donate_social_media_text: Kei te tautoko ahau i iNaturalist nō te mea ...
     guides:
       pdf_layouts:
+        grid: tukutuku
         book: pukapuka
     lifelists:
       all_species: Ngā momo katoa
@@ -490,6 +528,7 @@ mi:
     taxa:
       show:
         frequency:
+          research: Kua pūruatia
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
           "Sex=Female": Uwha
