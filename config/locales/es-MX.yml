@@ -3109,9 +3109,6 @@ es-MX:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
-  one_or_more_input_taxa_have_more_than_1000: |
-    Uno o más taxones de entrada tienen más de 1000 observaciones asignadas.
-    El llevarlo a cabo puede tardar algún tiempo en procesarse, ¿estás seguro de que este cambio de taxón es necesario? Además, los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -4780,7 +4777,6 @@ es-MX:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio de taxonomía en la especie o grupo ha sido guradado!</strong> Porfavor no edites la especie o grupo. Puedes editar los demas campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
-  this_taxon_has_more_than_1000: Este taxón tiene más de 1000 observaciones asignadas. La edición puede tardar algún tiempo en procesarse, ¿estás seguro de que es necesario?
   this_taxon_has_no_default_photo: '¡Esta especie o grupo no tiene foto predeterminada!'
   this_taxon_is_inactive_this_means: |
     Esta especie o grupo esta <strong>inactiva</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
