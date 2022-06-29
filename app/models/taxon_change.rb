@@ -417,9 +417,8 @@ class TaxonChange < ApplicationRecord
     true
   end
 
-  def commit_job
-    unique_hash = taxon_change_commit_records_unique_hash
-    job = Delayed::Job.where( unique_hash: unique_hash.to_s ).first
+  def commit_records_job
+    Delayed::Job.where( unique_hash: taxon_change_commit_records_unique_hash.to_s ).first
   end
 
   def editable_by?(u)

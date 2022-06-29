@@ -80,7 +80,7 @@ class TaxonChangesController < ApplicationController
   def show
     user_viewed_updates_for( @taxon_change ) if logged_in?
     if @taxon_change.committed?
-      @job = @taxon_change.commit_job
+      @job = @taxon_change.commit_records_job
     else
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
