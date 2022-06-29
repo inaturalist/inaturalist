@@ -1,0 +1,57 @@
+= error_messages_for :conservation_status
+- content_for :extracss do
+  :css
+    .conservation_status .place_id_field input {
+      width: auto
+    }
+- content_for :extrajs do
+  :javascript
+    $( ".conservation_status .place_id_field input" ).chooser({
+      collectionUrl: "/places/autocomplete.json",
+      resourceUrl: "/places/{{id}}.json?partial=autocomplete_item"
+    } )
+.conservation_status
+  .row
+    .col-xs-12
+      - if f.object.new_record?
+        = f.hidden_field :taxon_id
+      = f.form_field :taxon do
+        .taxa.inline
+          = render "taxa/taxon", taxon: f.object.taxon, hide_wikipedia_summary: true, include_full_name: true, link_name: true,link_image: true
+  .row
+    .col-xs-12.col-md-6
+      = f.text_field :status, description_after: true,
+        description: t( "conservation_status_descriptions.status" ),
+        required: true
+    .col-xs-12.col-md-6
+      = f.text_field :description, description_after: true, description: t( "conservation_status_descriptions.description" )
+  .row
+    .col-xs-12.col-md-6
+      = f.text_field :authority, description_after: true, 
+        description: t( "conservation_status_descriptions.authority" ),
+        placeholder: t( :type_authority ),
+        datalist: @conservation_status_authorities
+    .col-xs-12.col-md-6
+      = f.text_field :url, description_after: true, description: t( "conservation_status_descriptions.url" )
+  .row
+    .col-xs-12.col-md-6
+      = f.text_field :place_id, description_after: true, 
+        description: t( "conservation_status_descriptions.place" ),
+        placeholder: t( :type_place_name )
+    .col-xs-12.col-md-6
+      = f.select :geoprivacy,
+        Observation::GEOPRIVACY_DESCRIPTIONS.keys.map{| g | [t( g == "obscured" ? g : "#{g}_", default: g ), g] },
+        {},
+        description: t( "conservation_status_descriptions.geoprivacy" ),
+        description_after: true
+  .row
+    .col-xs-12.col-md-6
+      = f.select :iucn, iucn_status_select_options, {}, description_after: true, description: t( "conservation_status_descriptions.iucn" )
+    - if f.object.user && f.object.persisted?
+      .col-xs-12.col-md-6
+        = f.form_field :added_by, label: t(:date_added) do
+          =t :added_by_user_on_date_html, user: link_to_user( f.object.user ), date: l( f.object.created_at )
+    - if f.object.updater
+      .col-xs-12.col-md-6
+        = f.form_field :updated_by, label: t(:date_updated) do
+          =t :updated_by_user_on_date_html, user: link_to_user( f.object.updater ), date: l( f.object.updated_at )

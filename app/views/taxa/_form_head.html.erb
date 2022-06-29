@@ -9,7 +9,6 @@
                            "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
-var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_authorities.to_json.html_safe %>
   $(document).ready(function() {
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
@@ -38,21 +37,6 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
         }
       }
     });
-
-    $('#conservation_statuses .conservation_status').conservationStatus()
-    $('#conservation_statuses').bind('cocoon:before-remove', function(e, item) {
-      $(this).data('remove-timeout', 1000)
-      item.slideUp()
-    })
-    $('#conservation_statuses').bind('cocoon:after-insert', function(e, item) {
-      $(item).css('display', 'none')
-      $(item).slideDown(function() {
-        $(item).conservationStatus()
-      })
-    });
-    $("#conservation_statuses a.add_fields").
-      data("association-insertion-method", 'before').
-      data("association-insertion-node", 'this');
 
     $('#taxon_photos').sortable({
       items: "> .taxon_photo",
@@ -106,15 +90,6 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
     } );
   });
 
-  $.fn.conservationStatus = function() {
-    this.each(function() {
-      $('.place_id_field input', this).chooser({
-        collectionUrl: '/places/autocomplete.json',
-        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
-      })
-    })
-  }
-  
   function handleTaxonClick(e, taxon) {
     $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon);
     $('#taxonchooser').jqmHide();

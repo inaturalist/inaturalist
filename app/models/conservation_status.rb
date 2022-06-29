@@ -19,7 +19,7 @@ class ConservationStatus < ApplicationRecord
   after_update :index_taxon
 
   attr_accessor :skip_update_observation_geoprivacies
-  validates_presence_of :status, :iucn
+  validates_presence_of :status, :iucn, :taxon
   validates_uniqueness_of :authority, :scope => [:taxon_id, :place_id], :message => "already set for this taxon in that place"
   validates :iucn, inclusion: Taxon::IUCN_STATUS_VALUES.values
 
