@@ -3047,8 +3047,6 @@ ca:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de les següents ha de ser certa:"
   one_of_your_lists: "una de les teves llistes..."
-  one_or_more_input_taxa_have_more_than_1000: |
-    Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació a un supervisor de projecte
   only_administrators_may_access_that_page: Només els administradors poden accedir a aquesta pàgina
   only_an_admin_can_remove_project_users: Només l'administrador pot eliminar usuaris del projecte.
@@ -4697,7 +4695,6 @@ ca:
   this_taxon_change_has_been_commited: |
     <strong>Aquest canvi de taxonomia en l'espècie o grup s’ha desat!</strong> Si us plau, no editeu l'espècie o grup. Podeu editar els altres camps.
   this_taxon_concept_is_inactive: aquesta concepte taxonòmic està inactiu
-  this_taxon_has_more_than_1000: Aquest tàxon té més de 1000 observacions. Editar-lo pot necessitar molt temps de procés, esteu segurs que és necessari?
   this_taxon_has_no_default_photo: Aquest tàxon no té foto per defecte!
   this_taxon_is_inactive_this_means: |
     Aquest tàxon està <strong>inactiu</strong>. Això significa que els supervisors d’%{site_name} l’han reemplaçat per un concepte taxonómic més actualitzat.
