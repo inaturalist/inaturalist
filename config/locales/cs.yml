@@ -3219,8 +3219,6 @@ cs:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "jedno z následujícího musí být pravdivé:"
   one_of_your_lists: "jeden z vašich seznamů..."
-  one_or_more_input_taxa_have_more_than_1000: |
-    Jeden nebo více vstupních taxonů má více než 1000 následných pozorování. Zpracování může trvat nějakou dobu, jste si jisti, že je tato změna taxonu nutná? Změny taxonů také nelze vrátit zpět.
   only_a_project_manager_can_add: Status kurátora projektu může přidat pouze vedoucí projektu
   only_administrators_may_access_that_page: K této stránce mají přístup pouze správci
   only_an_admin_can_remove_project_users: Uživatele projektu může odebrat pouze správce
@@ -4958,7 +4956,6 @@ cs:
     <strong>Tato změna taxonu je závazná!</strong>
     Neprovádějte prosím editaci taxonů. Editace ostatních polí je možná.
   this_taxon_concept_is_inactive: tento koncept taxonu je neaktivní
-  this_taxon_has_more_than_1000: Tento taxon má více než 1000 následných pozorování. Zpracování úprav může nějakou dobu trvat, jste si jisti, že je to nutné?
   this_taxon_has_no_default_photo: Tento taxon nemá žádnou základní fotku!
   this_taxon_is_inactive_this_means: |
     Tento taxon je <strong>neaktivní</strong>. To znamená, že ho kurátoři %{site_name} nahradili konceptem, který je taxonomicky aktuálnější.
