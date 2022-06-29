@@ -3,7 +3,9 @@ import fetch from "cross-fetch";
 import moment from "moment";
 
 export const ACCEPTED_FILE_TYPES = [
-  "image/*",
+  "image/jpeg",
+  "image/png",
+  "image/gif",
   "audio/x-wav",
   "audio/wav",
   "audio/wave",
