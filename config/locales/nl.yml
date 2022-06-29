@@ -3083,10 +3083,6 @@ nl:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "een van de volgende zaken moet waar zijn:"
   one_of_your_lists: "één van je lijsten..."
-  one_or_more_input_taxa_have_more_than_1000: |
-    Eén of meer ingevoerde taxa hebben meer dan 1000 downstreamwaarnemingen.
-    Het bevestigen kan enige tijd in beslag nemen, weet je zeker dat deze taxonwijziging
-    nodig is? Taxonwijzigingen kunnen niet ongedaan worden gemaakt.
   only_a_project_manager_can_add: Alleen een projectbeheerder kan de status projectcurator toevoegen
   only_administrators_may_access_that_page: Alleen administratoren hebben toegang tot deze pagina
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
@@ -4801,7 +4797,6 @@ nl:
     <strong>Deze taxonwijziging is vastgelegd!</strong>
     Bewerk de taxa alsjeblieft niet. Het bewerken van andere velden mag wel.
   this_taxon_concept_is_inactive: Dit taxonconcept is niet actief
-  this_taxon_has_more_than_1000: Dit taxon heeft meer dan 1000 downstreamwaarnemingen. Bewerken kan enige tijd in beslag nemen, weet je zeker dat het nodig is?
   this_taxon_has_no_default_photo: Dit taxon heeft geen standaardfoto!
   this_taxon_is_inactive_this_means: |
     Dit taxon is <strong>inactief</strong>. Dit betekent dat de curatoren van %{site_name} het hebben vervangen met een meer actueel taxonomisch concept.
