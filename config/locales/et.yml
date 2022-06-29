@@ -320,8 +320,8 @@ et:
   #As in a Guide Section
   add_section: Lisa alaosa
   add_several_observations_at_once: Lisa korraga mitu vaatlust
-  add_sex_female_annotation: 'Lisa märge "Sugu: nais"'
-  add_sex_male_annotation: 'Lisa märge "Sugu: mees"'
+  add_sex_female_annotation: 'Lisa märge "Sugu: naissoost"'
+  add_sex_male_annotation: 'Lisa märge "Sugu: meessoost"'
   add_sex_cannot_be_determined_annotation: 'Lisa märge "Sugu: ei saa täpselt määrata"'
   add_some_now: Lisa midagi kohe
   add_tag: Lisa märksõna
@@ -1016,8 +1016,8 @@ et:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Kõik
     sex: Sugu
-    male: Mees
-    female: Nais
+    male: Meessoost
+    female: Naissoost
     plant_phenology: Taime fenoloogia
     budding: Võrsuv
     flower_budding: Õiepungad
@@ -2030,7 +2030,7 @@ et:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
+    datetime_with_zone_no_year: "MMMM D HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "MMMM D, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -4197,7 +4197,7 @@ et:
       import:
         coordinate_systems_help: |
           %{site_name} lubab kasutada erinevate koordinaatsüsteemide koordinate. Kui kasutad koordinaate, mis ei vasta laius-/pikkuskraadidele, pead meile ütlema, millist süsteemi sa kasutad, et saaksime neid õigesti tõlgendada. Palun vali kindlasti oma andmetele vastav koordinaatsüsteem, muidu võib asukohta paikned reaalsest väga kaugel. Kui su koordinaadid on pärit GPS-seadmest, vaata selle sätetest järgi kasutatava koordinaatsüsteemi nimi. Pane tähele: me ei säilita teistest süsteemidest pärit koordinaate, vaid ainult nende laius-/pikkuskraadide versioone.
-        date_column_format: AAAA-KK-PP TT:MM
+        date_column_format: DD.MM.YYYY HH:MM
         decimal_degrees_format: kk.kkkk
         geoprivacy_must_be_in_english: |
           Asukoha privaatsuse tulba väärtused peavad olema inglise keeles. Sobivad väärtused on tühi, "obscured" (varjatud) või "private" (privaatne).
