@@ -580,6 +580,8 @@ fi:
   are_you_really_sure_want_delete_this_user: Oletko todella aivan varma että haluat poistaa tämän käyttäjän ja kaikki hänen aineistonsa?
   are_you_sure?: Oletko varma?
   are_you_sure_no_undo: Oletko varma? Tätä ei voi perua.
+  are_you_sure_delete_conservation_status: |
+    Oletko varma, että haluat poistaa tämän uhanalaisuusluokan? Tämä voi muuttaa tämän taksonin ja sen lapsitaksonien havaintojen karkeistuksiin.
   are_you_sure_delete_post: Haluatko varmasti poistaa tämän julkaisun?
   are_you_sure_delete_taxon_move_associates: "Haluatko varmasti poistaa taksonin %{taxonname} (%{taxonid}), ja siirtää kaikki sen kumppanit?"
   are_you_sure_delete_this_place: Haluatko varmasti poistaa tämän paikan?
@@ -974,6 +976,9 @@ fi:
   connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
   cannot_be_changed_during_a_content_freeze: Tätä ei voi väliaikaisesti muuttaa sisällön jäädytyksen aikana
   conservation_status: Uhanalaisuusluokitus
+  conservation_status_created: Uhanalaisuusluokka lisätty
+  conservation_status_deleted: Uhanalaisuusluokka poistettu
+  conservation_status_updated: Uhanalaisuusluokka päivitetty
   conservation_status_descriptions:
     status: Esim. uhanlaisuusluokan koodi tai merkki. Jos käytettävissä on lyhyt määre, kuten E tai CR, käytä sitä, jos sellaista ei ole, kirjota koko merkitys, kuten erittäin uhanalainen tai äärimmäisen uhanalainen.
     description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
@@ -1479,6 +1484,7 @@ fi:
   edit_body: Muokkaa kappaletta
   edit_comment: Muokkaa kommenttiasi
   edit_complete_set_for_taxon_in_place_html: "Muuta tietoja kohdassa Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
+  edit_conservation_status: Muokkaa uhanalaisuusluokkaa
   edit_custom_project_fields: Muokkaa mukautettuja projektikenttiä
   edit_field: Muokkaa kenttää
   edit_license: Muokkaa lisenssiä
@@ -2529,6 +2535,7 @@ fi:
   new_check_list: Uusi lajiluettelo
   new_check_list_for: "Luo uusi lajiluettelo paikalle %{place} &raquo;"
   new_comment_on_a_parent_by_user_link: Uusi kommentti käyttäjän %{user_link} kohteessa %{parent}
+  new_conservation_status: Uusi uhanalaisuusluokka
   new_flag_for: Uusi lippu kohteelle
   new_guide: Uusi opas
   new_journal_post: Uusi päiväkirjakirjoitus
@@ -2857,6 +2864,8 @@ fi:
       </ul>
   one_by_one: "Yksi kerrallaan"
   one_of_your_lists: "yksi listoistasi..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Yhteen tai useampaan taksoniin liittyy yli 1000 havaintoa, joten muutosten käsittely voi kestää jonkin aikaa. Oletko varma, että tämä taksonimuutos on tarpeen? Muista, että taksonimuutoksia ei voi perua.
   only_administrators_may_access_that_page: Vain ylläpitäjät voivat päästä tälle sivulle
   only_an_admin_can_remove_project_users: Vain ylläpitäjä voi poistaa projektin käyttäjiä
   only_curators_can_add_edit_scientific_names: Vain kuraattorit voivat lisätä/muokata tieteellisiä nimiä.
@@ -4274,6 +4283,8 @@ fi:
   this_taxon_change_has_been_commited: |
     <strong>Tämä taksonimuutos on tehty!</strong>
     Älä muokkaa taksoneita.  Muiden kenttien muokkaaminen on ok.
+  this_taxon_has_more_than_1000_alt: |
+    Tällä taksonilla on yli 1000 havaintoa, joten näiden muutosten käsittely voi kestää jonkin aikaa. Oletko varma, että muutokset ovat välttämättömiä?
   this_taxon_has_no_default_photo: Tällä taksonilla ei ole oletuskuvaa!
   this_taxon_is_inactive_this_means: |
     Tämä taksoni on <strong>ei-aktiivinen</strong>. Tämä tarkoittaa, että %{site_name}'n kuraattorit ovat korvanneet sen nykyisin voimassaolevalla taksonikonseptilla.
