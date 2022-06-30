@@ -100,29 +100,27 @@ $( function () {
           $( "a.analysis_input" ).text( data.analysis_header.id_count );
           // update table
           $.each( data.analysis_table, function ( k, v ) {
-            if ( $( "#analysis_" + v.taxon_id ).length === 0 ) {
-              var countPiece;
-              if ( v.id_count === 0 ) {
-                countPiece = "0";
-              } else {
-                countPiece = "<a href='" + v.url + "' target='_blank'>" + v.id_count + "</a>";
-              }
-              var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank'>" + v.name + "</a>";
-              var atlasPiece;
-              if ( v.atlas_url === null ) {
-                atlasPiece = v.atlas_string;
-              } else {
-                atlasPiece = "<a href='" + v.atlas_url + "' target='_blank'>" + v.atlas_string + "</a>";
-              }
-              var addedClass;
-              if ( v.role === "warning" && v.id_count > 0 ) {
-                addedClass = "dynamically_added analysis_id_warning";
-              } else {
-                addedClass = "dynamically_added";
-              }
-              var htmlString = "<tr class='" + addedClass + "'><td>" + countPiece + "</td><td>" + taxonPiece + "</td><td>" + atlasPiece + "</td></tr>";
-              $( "tr.headers" ).after( htmlString );
+            var countPiece;
+            if ( v.id_count === 0 ) {
+              countPiece = "0";
+            } else {
+              countPiece = "<a href='" + v.url + "' target='_blank'>" + v.id_count + "</a>";
             }
+            var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank'>" + v.name + "</a>";
+            var atlasPiece;
+            if ( v.atlas_url === null ) {
+              atlasPiece = v.atlas_string;
+            } else {
+              atlasPiece = "<a href='" + v.atlas_url + "' target='_blank'>" + v.atlas_string + "</a>";
+            }
+            var addedClass;
+            if ( v.role === "warning" && v.id_count > 0 ) {
+              addedClass = "dynamically_added analysis_id_warning";
+            } else {
+              addedClass = "dynamically_added";
+            }
+            var htmlString = "<tr class='" + addedClass + "'><td>" + countPiece + "</td><td>" + taxonPiece + "</td><td>" + atlasPiece + "</td></tr>";
+            $( "tr.headers" ).after( htmlString );
           } );
         }
       },

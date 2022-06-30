@@ -53,6 +53,9 @@
               %li
                 = link_to user_image( tc.user ), person_path( tc.user.login )
                 = link_to_user( tc.user )
+      - if @taxon_change.committed_on.present? && @job.present?
+        .alert.alert-warning
+          =t :taxon_change_commit_may_still_be_processing 
       #pageheader
         .breadcrumbs
           %strong= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb'

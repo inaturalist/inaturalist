@@ -59,10 +59,11 @@
     });
 
     $( document ).on( "change", "#taxon_parent_id", function( ) {
-      var old_ancestors = $( "#taxon-ancestor-id" ).val( ).split( "/" );
+      var raw_old_ancestors = $( "#taxon-ancestor-id" ).val( )
+      var old_ancestors = raw_old_ancestors == null ? [] : raw_old_ancestors.split( "/" );
       var old_parent = old_ancestors[old_ancestors.length - 1];
       var new_parent = $( "#taxon_parent_id" ).val( );
-      if( $.isNumeric( new_parent ) ){
+      if( $.isNumeric( new_parent ) && $.isNumeric( old_parent ) ){
         $.ajax( {
           type: "get",
           dataType: "json",

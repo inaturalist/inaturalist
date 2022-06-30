@@ -79,7 +79,9 @@ class TaxonChangesController < ApplicationController
   
   def show
     user_viewed_updates_for( @taxon_change ) if logged_in?
-    unless @taxon_change.committed?
+    if @taxon_change.committed?
+      @job = @taxon_change.commit_records_job
+    else
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}

@@ -253,7 +253,7 @@ class TaxonChange < ApplicationRecord
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, records: auto_updatable_records )
+          update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
         end
         if !batch_users_to_notify.empty?
           action_attrs = {
@@ -405,10 +405,20 @@ class TaxonChange < ApplicationRecord
     output_taxa.size == 1
   end
 
+  def taxon_change_commit_records_unique_hash
+    { "TaxonSwap::commit_records": id }
+  end
+
   def commit_records_later
     return true unless saved_change_to_committed_on? && committed?
-    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
+    delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: taxon_change_commit_records_unique_hash ).
+      commit_records
     true
+  end
+
+  def commit_records_job
+    Delayed::Job.where( unique_hash: taxon_change_commit_records_unique_hash.to_s ).first
   end
 
   def editable_by?(u)
