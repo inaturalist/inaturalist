@@ -587,6 +587,9 @@ es-MX:
   are_you_really_sure_want_delete_this_user: '¿Estás totalmente seguro que quieres borrar a este usuario y todo su contenido?'
   are_you_sure?: '¿Estás seguro?'
   are_you_sure_no_undo: '¿Estás seguro? Esto no se puede deshacer.'
+  are_you_sure_delete_conservation_status: |
+    ¿Estás seguro de que quieres eliminar este estado de conservación? Esto puede cambiar
+    el obscurecimiento de observaciones de este taxón y taxa dentro de él.
   are_you_sure_delete_post: '¿Estás seguro que quieres borrar esta nota?'
   are_you_sure_delete_taxon_move_associates: "¿Estás seguro que quieres borrar el %{taxonname} (%{taxonid}) y mover a todos sus asociados?"
   are_you_sure_delete_this_place: '¿Estás seguro que quieres borrar este lugar?'
@@ -1050,6 +1053,9 @@ es-MX:
   connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} a cuentas de otros sitios podrás registrarte en %{site_name} usando tus credenciales de esos sitios."
   cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
   conservation_status: Estado de conservación
+  conservation_status_created: Estado de conservación creado
+  conservation_status_deleted: Estado de conservación eliminado
+  conservation_status_updated: Estado de conservación actualizado
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsela, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
     description: Descripción muy corta del porque esta en la lista.
@@ -1578,6 +1584,7 @@ es-MX:
   edit_body: Edita el cuerpo
   edit_comment: Edita tu comentario
   edit_complete_set_for_taxon_in_place_html: "Editar lista completa para %{taxon} en %{place}"
+  edit_conservation_status: Editar Estado de Conservación
   edit_custom_project_fields: Edita campos a la medida del proyecto
   edit_field: Edita el campo
   edit_license: Edita la licencia
@@ -1600,6 +1607,8 @@ es-MX:
   edit_taxon_link: Edita el enlace de la especie o grupo
   edit_taxon_range: Edita la distribución de la especie o grupo
   edit_the_observation: Edita la observación
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edita este taxón después de crearlo para añadir estados de conservación
   edit_your_account_and_profile_html: "Edita tu cuenta y perfil"
   edit_your_default_settings: "Edita tu configuración predeterminada"
   edit_your_global_project_settings: Edita tu configuración global de proyectos
@@ -2733,6 +2742,7 @@ es-MX:
   new_check_list_for: "Crea una nueva lista de comprobación para %{place} &raquo;"
   new_check_list_record: "Si quieres marcar esta lista como exhaustiva, créala, añade las especies y edítala, entonces tendrás la opción de marcarla como exhaustiva."
   new_comment_on_a_parent_by_user_link: Nuevo comentario en @vow_or_con{voto:un|un} %{parent} de %{user_link}
+  new_conservation_status: Nuevo Estado de Conservación
   new_flag_for: Nuevas advertencias por
   new_guide: Nueva Guía
   new_journal_post: Nueva nota de Diario
@@ -3109,6 +3119,9 @@ es-MX:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Uno o más taxa de entrada están asociados con más de 1000 observaciones, por lo que
+    realizarlo puede tardar algún tiempo en procesarse. ¿Estás seguro de que este cambio de taxón es necesario? Ten en cuenta que los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación a un curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -4324,6 +4337,8 @@ es-MX:
   sites_network_consists_of: "La Red de iNaturalist está conformada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La Red de iNaturalist es una colección de sitios web localizados que están completamente conectados a la comunidad global de iNaturalist. Los sitios de la Red están apoyados por instituciones locales que promueven el uso local y facilitan el uso de datos de iNaturalist para beneficiar la biodiversidad en cada sitio. Tienen acceso a las coordenadas verdaderas dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública con el fin de proteger mejor las especies amenazadas.
+  sites_network_your_username: |
+    Tu nombre de usuario y contraseña funcionan en todos los sitios que forman parte de la Red de iNaturalist. Si eliges afiliarte a un sitio específico de la Red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse contigo acerca de las actividades del sitio) y acceso a las coordenadas verdaderas para las observaciones que ha elegido hacer ocultas o privada.
   some_agree: Algunos están de acuerdo
   some_observations_are_missing_media_or_identifications: |
     Algunas observaciones carecen de fotografías o identificaciones
@@ -4577,6 +4592,8 @@ es-MX:
     Las evaluaciones de los grupos o especies son documentos que evalúan el estado de una especie, usualmente
     el estado de conservación. Por ejemplo, una organización de conservación regional puede usar esto para organizar
     su información solicitando el estado de conservación de varios grupos o especies que se encuentren bajo amenaza en determinada región.
+  taxon_change_commit_may_still_be_processing: |
+    La aplicación del cambio de taxón puede estar aún procesándose, así que ten en cuenta que algunos registros aún no se han actualizado
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
   taxon_change_title_taxon_drop: Eliminación taxonómica %{id}
   taxon_change_title_taxon_merge: Combinación taxonómica %{id}
@@ -4777,6 +4794,9 @@ es-MX:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio de taxonomía en la especie o grupo ha sido guradado!</strong> Porfavor no edites la especie o grupo. Puedes editar los demas campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
+  this_taxon_has_more_than_1000_alt: |
+    Este taxón tiene más de 1000 observaciones asociadas a él, por lo que estos
+    cambios pueden tardar algún tiempo en procesarse. ¿Está seguro de que son necesarios?
   this_taxon_has_no_default_photo: '¡Esta especie o grupo no tiene foto predeterminada!'
   this_taxon_is_inactive_this_means: |
     Esta especie o grupo esta <strong>inactiva</strong>. Esto sigifica que los curadores de %{site_name} lo han reemplazado por un concepto mas actualizado.
@@ -6948,6 +6968,14 @@ es-MX:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
+        inaturalist_network_affiliation_desc_html: |
+          <p>La <a href="%{url}" target="_blank">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>
+
+          <p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>
+
+          <p>
+          Nota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.
+          </p>
         licensing_desc_html: |
           La licencia de tu contenido permite a otra gente el uso legal sin
           pedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.
@@ -7646,6 +7674,11 @@ es-MX:
               relative_uri: "debe ser un URI absoluto."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                no puede ser acerca de observaciones duplicadas; solo el observador puede
+                eliminar duplicados, así que por favor dirígele tus observaciones
+                directamente con un comentario
             user_id:
               already_flagged: "Ese elemento ya tiene advertencia"
         guide:
