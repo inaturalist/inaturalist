@@ -612,6 +612,9 @@ sv:
   are_you_really_sure_want_delete_this_user: Är du verkligen helt säker på att du vill ta bort denna användare och allt dess innehåll?
   are_you_sure?: Är du säker?
   are_you_sure_no_undo: Är du säker? Detta kan inte ångras.
+  are_you_sure_delete_conservation_status: |
+    Är du säker på att du vill ta bort denna bevarandestatus? Det kan ändra
+    diffuseringen av fynd av detta taxon och taxa under det.
   are_you_sure_delete_post: Är du säker på att du vill radera detta inlägg?
   are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill radera %{taxonname} (%{taxonid}) och flytta allt tillhörande?"
   are_you_sure_delete_this_place: Är du säker på att du vill radera denna fyndplats?
@@ -1073,6 +1076,9 @@ sv:
   connecting_your_inat_account_to_accounts_other_sites: "Genom att koppla ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
   cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
   conservation_status: Bevarandestatus
+  conservation_status_created: Bevarandestatus skapad
+  conservation_status_deleted: Bevarandestatus raderad
+  conservation_status_updated: Bevarandestatus uppdaterad
   conservation_status_descriptions:
     status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
     description: Kort beskrivning av varför detta är med på listan.
@@ -1611,6 +1617,7 @@ sv:
   edit_body: Redigera innehåll
   edit_comment: Redigera din kommentar
   edit_complete_set_for_taxon_in_place_html: "Redigera komplett uppsättning för %{taxon} i %{place}"
+  edit_conservation_status: Redigera bevarandestatus
   edit_custom_project_fields: Redigera anpassade projektfält
   edit_field: Redigera fält
   edit_license: Redigera licens
@@ -2784,6 +2791,7 @@ sv:
   new_check_list_for: "Skapa en ny checklista för %{place} &raquo;"
   new_check_list_record: "Om du vill markera att denna lista är fullständig, skapa den, lägg till taxa, och redigera den sedan så kommer du ha möjlighet att markera den som fullständig här."
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent} av %{user_link}
+  new_conservation_status: Ny bevarandestatus
   new_flag_for: Ny flagga för
   new_guide: Ny guide
   new_journal_post: Nytt dagboksinlägg
@@ -3150,6 +3158,10 @@ sv:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "ett av följande måste vara sant:"
   one_of_your_lists: "en av dina listor..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Ett eller flera indatataxa är knutna till mer än 1000 fynd, så det kan ta lite tid
+    att bearbeta en bekräftelse. Är du säker på att denna taxonändring är nödvändig?
+    Tänk på att taxonändringar inte kan ångras.
   only_a_project_manager_can_add: Endast en projektledare kan lägga till förvaltarstatus
   only_administrators_may_access_that_page: Endast administratörer har tillgång till den sidan
   only_an_admin_can_remove_project_users: Endast en administratör kan ta bort projektanvändare
@@ -4861,6 +4873,9 @@ sv:
     <strong>Denna taxonändring är på gång!</strong>
     Redigera inte några taxa.  Redigering av andra fält är ok.
   this_taxon_concept_is_inactive: detta taxonkoncept är inaktivt
+  this_taxon_has_more_than_1000_alt: |
+    Denna taxon har mer än 1000 fynd knutna till sig, så dessa ändringar
+    kan ta lite tid att bearbeta. Är du säker på att de är nödvändiga?
   this_taxon_has_no_default_photo: Detta taxon har ingen standardbild!
   this_taxon_is_inactive_this_means: |
     Detta taxon är <strong>inaktivt</strong>. Det innebär att %{site_name}s förvaltare har ersatt det med ett taxonomiskt mer aktuellt taxonkoncept.
@@ -7679,6 +7694,11 @@ sv:
               relative_uri: "måste vara en absolut URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kan inte röra dubblerade observationer eller bilder; endast observatören kan
+                ta bort dubbletter, ta därför upp dessa problem med en kommentar
+                direkt till dem
             user_id:
               already_flagged: "redan flaggat det objektet"
         guide:
