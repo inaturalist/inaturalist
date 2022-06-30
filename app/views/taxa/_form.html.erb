@@ -279,7 +279,13 @@
           </tr>
         <% end %>
       </table>
-      <%= link_to t( :add_conservation_status ), new_taxon_conservation_status_path( taxon_id: @taxon.id ), class: "readmore", target: "_blank" %>
+      <% if @taxon.new_record? %>
+        <div class="quiet box">
+          <%=t :edit_this_taxon_after_you_create_it_to_add_conservation_statuses %>
+        </div>
+      <% else %>
+        <%= link_to t( :add_conservation_status ), new_taxon_conservation_status_path( taxon_id: @taxon.id ), class: "readmore", target: "_blank" %>
+      <% end %>
     </div>
   </fieldset>
 

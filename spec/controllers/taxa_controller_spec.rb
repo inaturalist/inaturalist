@@ -3,6 +3,19 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe TaxaController do
+  describe "new" do
+    render_views
+    it "should work for a curator" do
+      sign_in create( :user, :as_curator )
+      get :new
+      expect( response ).to be_successful
+    end
+    it "should not work for a non-curator" do
+      sign_in create( :user )
+      get :new
+      expect( response ).to be_redirect
+    end
+  end
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
