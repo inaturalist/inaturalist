@@ -89,6 +89,7 @@ class TaxonName < ApplicationRecord
     NORWEGIAN: "Norwegian",
     OCCITAN: "Occitan",
     PANGASINAN: "Pangasinan",
+    PERSIAN: "Persian",
     POLISH: "Polish",
     PORTUGUESE: "Portuguese",
     ROMANIAN: "Romanian",
@@ -99,6 +100,7 @@ class TaxonName < ApplicationRecord
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
     SPANISH: "Spanish",
+    SWAHILI: "Swahili",
     SWEDISH: "Swedish",
     TAGALOG: "Tagalog",
     TAHITIAN: "Tahitian",
@@ -162,6 +164,7 @@ class TaxonName < ApplicationRecord
     "norwegian_bokmal" => "nb",
     "ojibwe" => "oj",
     "occitan" => "oc",
+    "persian" => "fa",
     "polish" => "pl",
     "portuguese" => "pt",
     "romanian" => "ro",
@@ -172,6 +175,7 @@ class TaxonName < ApplicationRecord
     "slovak" => "sk",
     "slovenian" => "sl",
     "spanish" => "es",
+    "swahili" => "sw",
     "swedish" => "sv",
     "thai" => "th",
     "turkish" => "tr",
@@ -221,7 +225,10 @@ class TaxonName < ApplicationRecord
   def self.normalize_lexicon( lexicon )
     return nil if lexicon.blank?
     return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    return TaxonName::PERSIAN if lexicon.to_s.downcase.strip == "farsi"
     return TaxonName::ROMANIAN if lexicon.to_s.downcase.strip == "rumanian"
+    return TaxonName::SWAHILI if lexicon.to_s.downcase.strip == "kiswahili"
+    return TaxonName::SWAHILI if lexicon.to_s =~ /^swahili/
     # Correct a common misspelling
     return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
 
