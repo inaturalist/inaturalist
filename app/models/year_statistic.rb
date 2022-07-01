@@ -1726,8 +1726,10 @@ class YearStatistic < ApplicationRecord
     tz.tzinfo.name
   end
 
-  def self.run_cmd( cmd, options = {} )
-    system cmd, options.merge( exception: true )
+  def self.run_cmd( cmd, options = { timeout: 60 } )
+    Timeout.timeout( options.delete( :timeout ) ) do
+      system cmd, options.merge( exception: true )
+    end
   end
 
   def run_cmd( cmd, options = {} )
