@@ -579,6 +579,9 @@ ca:
   are_you_really_sure_want_delete_this_user: Esteu totalment segur que voleu eliminar aquest usuari i tot el seu contingut?
   are_you_sure?: N’esteu segur?
   are_you_sure_no_undo: N'esteu segur? Aquesta acció no es pot desfer.
+  are_you_sure_delete_conservation_status: |
+    Esteu segur que voleu suprimir aquest estat de conservació? Això pot canviar
+    l'obscuració d'observacions d'aquest tàxon i tàxons dins seu.
   are_you_sure_delete_post: Esteu segur que voleu eliminar aquest enviament?
   are_you_sure_delete_taxon_move_associates: "Esteu segur que voleu eliminar %{taxonname} (%{taxonid}) i traslladar tots els seus associats?"
   are_you_sure_delete_this_place: Esteu segur que voleu eliminar aquest lloc?
@@ -1023,6 +1026,9 @@ ca:
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
   cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
+  conservation_status_created: Estat de conservació creat
+  conservation_status_deleted: Estat de conservació eliminat
+  conservation_status_updated: Estat de conservació actualitzat
   conservation_status_descriptions:
     status: Codi d'estat, rang, etc. Si ja existeix un codi curt com E o CR, si us plau, utilitzeu-lo, en cas contrari utilitzeu el full d'estat, per exemple, en perill o en perill crític.
     description: Breu descripció de la raó per la que es va llistar.
@@ -1541,6 +1547,7 @@ ca:
   edit_body: Edita el cos
   edit_comment: Modifica el vostre comentari
   edit_complete_set_for_taxon_in_place_html: "Editar llista completa de %{taxon} a %{place}"
+  edit_conservation_status: Editar estat de conservació
   edit_custom_project_fields: Modifiqueu els camps de projecte personalitzats
   edit_field: Camp d'edició
   edit_license: Modifica la llicència
@@ -1563,6 +1570,8 @@ ca:
   edit_taxon_link: Modifica l'enllaç del tàxon
   edit_taxon_range: Modifica el rang del tàxon
   edit_the_observation: Modifica l'Observació
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edita aquest taxó després de crear-lo per afegir estats de conservació
   edit_your_account_and_profile_html: "Modifiqueu el vostre compte i perfil"
   edit_your_default_settings: "Editeu la vostra configuració predeterminada"
   edit_your_global_project_settings: Editeu la vostra configuració global del projecte
@@ -2679,6 +2688,7 @@ ca:
   new_check_list_for: "Crea una nova llista de verificació per a {place} »"
   new_check_list_record: "Si vol marcar aquesta llista com a exhaustiva, creeu-la, afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva."
   new_comment_on_a_parent_by_user_link: Nou comentari sobre @vow_or_con{vot:un|un} %{parent} de %{user_link}
+  new_conservation_status: Nou estat de conservació
   new_flag_for: Nova marca per a
   new_guide: Guia nova
   new_journal_post: Nou article de Revista
@@ -3047,6 +3057,8 @@ ca:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de les següents ha de ser certa:"
   one_of_your_lists: "una de les teves llistes..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Un o més dels tàxons introduïts té més de 1000 observacions. Modificar-lo pot necessitar molt temps, esteu segur que aquest canvi del tàxon és necessari? A més, els canvis de tàxon no es pot desfer.
   only_a_project_manager_can_add: Només un gestor de projecte pot atorgar-li classificació a un supervisor de projecte
   only_administrators_may_access_that_page: Només els administradors poden accedir a aquesta pàgina
   only_an_admin_can_remove_project_users: Només l'administrador pot eliminar usuaris del projecte.
@@ -4498,6 +4510,9 @@ ca:
   taxon_assessments_are: |
     Les valoracions de tàxons són documents que avaluen l'estat actual d'una espècie, normalment el seu estat de conservació.
     Per exemple, una organització conservacionista local pot utilitzar-los per organitzar i recollir la informació l'estat de diversos tàxons amenaçats de la seva regió.
+  taxon_change_commit_may_still_be_processing: |
+    La comissió de canvi de taxó encara pot estar processant així que tingueu en compte que alguns registres
+    encara no s'ha actualitzat
   taxon_change_must_be_committed_to_update_records: Cal canviar el tàxon per actualitzar els registres
   taxon_change_title_taxon_drop: Eliminació taxonómica %{id}
   taxon_change_title_taxon_merge: Fusió taxonómica %{id}
@@ -4695,6 +4710,9 @@ ca:
   this_taxon_change_has_been_commited: |
     <strong>Aquest canvi de taxonomia en l'espècie o grup s’ha desat!</strong> Si us plau, no editeu l'espècie o grup. Podeu editar els altres camps.
   this_taxon_concept_is_inactive: aquesta concepte taxonòmic està inactiu
+  this_taxon_has_more_than_1000_alt: |
+    Aquest tàxon té més de 1.000 observacions associades amb ell, per tant aquestes
+    Els canvis poden trigar una mica a processar-se. Segur que són necessaris?
   this_taxon_has_no_default_photo: Aquest tàxon no té foto per defecte!
   this_taxon_is_inactive_this_means: |
     Aquest tàxon està <strong>inactiu</strong>. Això significa que els supervisors d’%{site_name} l’han reemplaçat per un concepte taxonómic més actualitzat.
