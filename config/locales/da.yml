@@ -598,6 +598,9 @@ da:
   are_you_really_sure_want_delete_this_user: Er du helt, helt sikker på, at du vil slette denne bruger og alt dennes indhold?
   are_you_sure?: Er du sikker?
   are_you_sure_no_undo: Er du sikker? Dette kan ikke fortrydes.
+  are_you_sure_delete_conservation_status: |
+    Sikker på, at du vil slette denne bevaringsstatus? Dette kan ændre
+    sløringen af observationer af denne takson samt taksa i den.
   are_you_sure_delete_post: Er du sikker på, at du vil slette dette indlæg?
   are_you_sure_delete_taxon_move_associates: "Er du sikker på, at du vil slette %{taxonname} (%{taxonid}) og flytte alle dets associerede?"
   are_you_sure_delete_this_place: Er du sikker på, at du vil slette dette sted?
@@ -1052,6 +1055,9 @@ da:
   connecting_your_inat_account_to_accounts_other_sites: "Ved at tilknytte din %{site_name} konto med konti på andre websteder kan du logge ind på %{site_name} ved hjælp af dine legitimationsoplysninger fra disse websteder."
   cannot_be_changed_during_a_content_freeze: Kan ikke ændres under en indholdsfrysning
   conservation_status: Bevaringsstatus
+  conservation_status_created: Bevaringsstatus oprettet
+  conservation_status_deleted: Bevaringsstatus slettet
+  conservation_status_updated: Bevaringsstatus opdateret
   conservation_status_descriptions:
     status: Status kode, rang osv. Hvis der findes en kort kode som E eller CR, skal du bruge det, men hvis ikke, skal du bruge den fulde status, f.eks. truet eller kritisk truet.
     description: Kort beskrivelse af hvorfor denne blev opført.
@@ -1597,6 +1603,7 @@ da:
   edit_body: Redigér indhold
   edit_comment: Redigér din kommentar
   edit_complete_set_for_taxon_in_place_html: "Redigér Komplete sæt for %{taxon} i %{place}"
+  edit_conservation_status: Redigér bevaringsstatus
   edit_custom_project_fields: Redigér brugerdefinerede projektfelter
   edit_field: Redigér felt
   edit_license: Redigér licens
@@ -1619,6 +1626,8 @@ da:
   edit_taxon_link: Redigér takson link
   edit_taxon_range: Redigér takson område
   edit_the_observation: Redigér observationen
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Redigér denne takson efter oprettelsen for at tilføje bevaringsstatusser
   edit_your_account_and_profile_html: "Redigér din konto & profil"
   edit_your_default_settings: "Redigér dine standardindstillinger"
   edit_your_global_project_settings: Redigér dine globale projektindstillinger
@@ -2761,6 +2770,7 @@ da:
   new_check_list_for: "Opret en ny tjekliste for %{place}&raquo;"
   new_check_list_record: "Hvis du vil markere denne liste som omfattende, opretter du den, tilføjer taxa, og redigerer den, og du får mulighed for at markere den som omfattende her."
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent} af %{user_link}
+  new_conservation_status: Ny bevaringsstatus
   new_flag_for: Ny markering for
   new_guide: Ny guide
   new_journal_post: Nyt journalindlæg
@@ -3137,9 +3147,9 @@ da:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "et af flg. skal være sandt:"
   one_of_your_lists: "en af dine lister..."
-  one_or_more_input_taxa_have_more_than_1000: |
-    En eller flere input-taksa har flere end 1.000 nedstrømsobservationer.
-    Effektuering kan kræve noget behandlingstid, er du derfor sikker på, at denne taksonændring er nødvendig? Taksonændringer kan heller ikke fortrydes.
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Én eller flere input-taksa er associeret med flere end 1.000 observationer, så
+    effektuering kan tage tid at behandle. Sikker på, at denne taksonændring er nødvendig? Taksonændringer kan heller ikke fortrydes.
   only_a_project_manager_can_add: Kun en projektleder kan tilføje projekt kuratorstatus
   only_administrators_may_access_that_page: Kun administratorer kan få adgang til denne side
   only_an_admin_can_remove_project_users: Kun en administrator kan fjerne projekt brugere
@@ -4668,6 +4678,8 @@ da:
   taxon_assessments_are: |
     Takson vurderinger er dokumenter, der vurderer den aktuelle status for en art, normalt bevaringsstatus.
     For eksempel kan en regional bevarelses organisation bruge dem til at organisere oplysninger og anmode om feedback på status for flere truede taksa i regionen.
+  taxon_change_commit_may_still_be_processing: |
+    Udførelse af taksonændring kan stadig pågå, så nogle poster er måske ikke opdateret endnu
   taxon_change_must_be_committed_to_update_records: Taksonændring skal udføres for at opdatere registreringer
   taxon_change_title_taxon_drop: Taksonomisk fald %{id}
   taxon_change_title_taxon_merge: Taksonomisk sammenfletning %{id}
@@ -4888,7 +4900,9 @@ da:
     <strong> Denne takson ændring er blevet udført! </strong>
     Vær venlig ikke at redigere taksa. Redigering af andre felter er ok.
   this_taxon_concept_is_inactive: Denne takson er inaktiv
-  this_taxon_has_more_than_1000: Denne takson har flere end 1.000 nedstrømsobservationer. Redigering kan tage noget tid at behandle, er du derfor sikker på, at det er nødvendigt?
+  this_taxon_has_more_than_1000_alt: |
+    Denne takson har flere end 1.000 observationer associeret med sig, så disse
+    ændringer kan tage tid at behandle. Sikker på, at de er nødvendig?
   this_taxon_has_no_default_photo: Denne taxon har intet standardbillede!
   this_taxon_is_inactive_this_means: |
     Denne takson er <strong> inaktiv </strong>. Det betyder, at %{site_name}'s kuratorer har erstattet den med et mere taksonomisk aktuelt koncept.
@@ -8026,6 +8040,10 @@ da:
               relative_uri: "skal være et fuldstændigt URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kan ikke omhandle dubletobservationer eller -fotos. Kun observatøren kan
+                fjerne dubletter, så påpeg et sådant forhold overfor vedkommende med en kommentar
             user_id:
               already_flagged: "allerede markeret dette"
         guide:

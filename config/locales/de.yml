@@ -7373,6 +7373,9 @@ de:
               relative_uri: "muss ein absoluter URI sein."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kann nicht für doppelte Beobachtungen (Duplikate) verwendet werden; nur Beobachter können Duplikate entfernen, also bitte solche Angelegenheiten mit ihnen direkt in einem Kommentar besprechen
             user_id:
               already_flagged: "hat diesen Artikel bereits gemeldet"
         guide:

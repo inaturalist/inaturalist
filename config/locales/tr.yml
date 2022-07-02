@@ -3818,6 +3818,7 @@ tr:
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje sorumlularının koordinatları görmesine izin vermelidir.
     must_be_verifiable: doğrulanabilir olmalı
+    must_be_wild: vahşi olmalı
   running_total: Toplam Bulunan
   said: şunu dedi
   satellite: uydu
@@ -4744,6 +4745,8 @@ tr:
   where_were_you?: Neredeydin?
   which_projects_can_add_your_observations?: Hangi geleneksel projeler gözlemlerinizi ekleyebilir?
   white: beyaz
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Bu değişikliği neden yapıyorsunuz? (isteğe bağlı)
   why_you_can_see_the_coordinates: Koordinatları Neden Görüyorsunuz
   who_can_add_observation_fields_to_my_obs: Gözlemlerime kimler gözlem alanı ekleyebilir?
   who_can_add_observations_to_this_project?: Bu projeye kim gözlem ekleyebilir?
