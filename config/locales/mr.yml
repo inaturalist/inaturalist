@@ -391,6 +391,8 @@ mr:
     fungi: कवक
     insects: कीटक
   already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
+  are_you_sure_delete_conservation_status: |
+    तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
   birthday: जन्मतारीख
   calendar: दिनदर्शिका
   #Plural noun, as in changes to a taxon record over time
@@ -412,6 +414,9 @@ mr:
   computer_vision_model_included: समाविष्ट
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: प्रलंबित
+  conservation_status_created: संवर्धन स्थिती निर्माण केली
+  conservation_status_deleted: संवर्धन स्थिती हटवली
+  conservation_status_updated: संवर्धन स्थिती अद्ययावत केली
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_sex: कोणताही
@@ -461,7 +466,10 @@ mr:
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
+  edit_conservation_status: संवर्धन स्थिती बदला
   edit_observations: निरीक्षणात बदल करा
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
   email: ई-मेल
   explore: सर्वेक्षण
   favorites: "आवडते"
@@ -501,10 +509,13 @@ mr:
   map: नकाशा
   meet: भेटा
   more: अधिक
+  new_conservation_status: नवीन संवर्धन स्थिती
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "वेळेत सुधारणा"
   #Button label to offset the date/time of observations by a set number of hours
   offset_time_verb: वेळेत सुधारणा
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    एक किंवा अधिक अंतर्भूत वर्ग १००० पेक्षा जास्त निरीक्षणांशी संबंधित आहेत, म्हणून निश्चिती प्रक्रियेसाठी काहीसा वेळ लागू शकतो. तुम्हाला खात्री आहे की हा वर्ग बदलला जाणे आवश्यक आहे? लक्षात ठेवा की वर्गातील बदल हे पूर्ववत केले जाऊ शकत नाहीत.
   or: किंवा
   password: परवलीचा शब्द (पासवर्ड)
   password_confirmation: 'पासवर्ड पुष्टी'
@@ -568,9 +579,13 @@ mr:
   site_stats: साइट आकडेवारी
   suspend_user_html: निलंबित %{user}
   taxa_info: वर्गांबद्दलची माहिती
+  taxon_change_commit_may_still_be_processing: |
+    वर्ग बदल निश्चिती प्रक्रिया चालू असल्याने कदाचित काही नोंदी अद्ययावत झालेल्या नसतील हे ध्यानात घ्या.
   taxon_history_notice: वर्ग-इतिहास हा बदल फेब्रुवारी २०२२ पासून अमलात आणला गेला, त्यामुळे त्याआधीच्या तारखांसाठी वर्ग-इतिहास उपलब्ध नाही.
   teachers_guide: शिक्षकांसाठी मार्गदर्शक
   terrain: भूभाग
+  this_taxon_has_more_than_1000_alt: |
+    या वर्गाशी संबंधित १००० हून अधिक निरीक्षणे आहेत, म्हणून ह्या बदल प्रक्रियेसाठी काही वेळ लागू शकतो. तुम्हाला खात्री आहे की ते आवश्यक आहेत?
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: मध्य युरोपीय वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -644,7 +659,7 @@ mr:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_sydney: सिडनी वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone_etc_utc: यु टी सी
+  time_zone_etc_utc: जागतिक समन्वित वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: मध्य युरोपीय वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -813,6 +828,11 @@ mr:
         position: स्थान
     errors:
       models:
+        flag:
+          attributes:
+            flag:
+              not_about_duplicate: |
+                निरीक्षणाच्या हुबेहूब प्रतिबद्दल असू शकत नाही; फक्त मूळ निरीक्षक दुसरी प्रत काढून टाकू शकतो, त्यामुळे कृपया टिप्पणी मार्फत हि समस्या त्यांच्यापर्यंत पोहोचावा
         place_geometry:
           attributes:
             geom:
