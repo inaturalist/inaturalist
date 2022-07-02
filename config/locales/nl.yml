@@ -607,6 +607,9 @@ nl:
   are_you_really_sure_want_delete_this_user: Ben je echt helemaal zeker dat je deze gebruiker en al zijn inhoud wenst te verwijderen?
   are_you_sure?: Weet je het zeker?
   are_you_sure_no_undo: Weet je het zeker? Dit kan niet ongedaan worden gemaakt.
+  are_you_sure_delete_conservation_status: |
+    Weet je zeker dat je deze natuurbeschermingstatus wilt verwijderen? Dit kan
+    de vervaging van waarnemingen van dit taxon en taxa erbinnen veranderen.
   are_you_sure_delete_post: Weet je zeker dat je dit bericht wilt verwijderen?
   are_you_sure_delete_taxon_move_associates: "Weet je zeker dat je %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
   are_you_sure_delete_this_place: Weet je zeker dat je deze plaats wilt verwijderen?
@@ -1029,6 +1032,9 @@ nl:
   connecting_your_inat_account_to_accounts_other_sites: "Door je %{site_name}-account aan te sluiten op accounts op andere sites, kunt je je aanmelden bij %{site_name} met je inloggegevens van die sites."
   cannot_be_changed_during_a_content_freeze: Kan niet worden gewijzigd tijdens een content freeze
   conservation_status: Natuurbeschermingstatus
+  conservation_status_created: Natuurbeschermingstatus aangemaakt
+  conservation_status_deleted: Natuurbeschermingstatus verwijderd
+  conservation_status_updated: Natuurbeschermingstatus bijgewerkt
   conservation_status_descriptions:
     status: Statuscode, rang, enz. Als er een korte code zoals E of CR bestaat, gebruik die dan, maar zo niet, gebruik dan de volledige status, bv. "bedreigd" of "ernstig bedreigd".
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
@@ -1562,6 +1568,7 @@ nl:
   edit_body: Hoofdtekst bewerken
   edit_comment: Bewerk je reactie
   edit_complete_set_for_taxon_in_place_html: "Complete set voor %{taxon} in %{place} bewerken"
+  edit_conservation_status: Bewerkt Natuurbeschermingsstatus
   edit_custom_project_fields: Bewerk Aangepaste projectvelden
   edit_field: Veld bewerken
   edit_license: Licentie bewerken
@@ -1584,6 +1591,8 @@ nl:
   edit_taxon_link: Taxon koppeling bewerken
   edit_taxon_range: Taxonreeks bewerken
   edit_the_observation: Waarneming bewerken
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Bewerk dit taxon nadat je het hebt aangemaakt om de natuurbeschermingsstatus toe te voegen
   edit_your_account_and_profile_html: "Bewerk je account en profiel"
   edit_your_default_settings: "Bewerk je standaardinstellingen"
   edit_your_global_project_settings: Bewerk je algemene projectinstellingen
@@ -2700,6 +2709,7 @@ nl:
   new_check_list_for: "Maak een nieuwe checklist voor %{place} &raquo;"
   new_check_list_record: "Als je deze lijst wilt markeren als volledig, maak deze aan, voeg de taxa toe, en bewerk de lijst vervolgens. Dan heb je de optie om de lijst hier als volledig te markeren."
   new_comment_on_a_parent_by_user_link: Nieuwe reactie op een %{parent} van %{user_link}
+  new_conservation_status: Nieuwe Natuurbeschermingsstatus
   new_flag_for: Nieuwe melding voor
   new_guide: Nieuwe Gids
   new_journal_post: Nieuw dagboekbericht
@@ -3083,6 +3093,10 @@ nl:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "een van de volgende zaken moet waar zijn:"
   one_of_your_lists: "één van je lijsten..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Eén of meer ingevoerde taxa hebben meer dan 1000 waarnemingen, dus 
+    bevestigen kan enige tijd in beslag nemen. Weet je zeker dat deze taxonwijziging
+    nodig is? Taxonwijzigingen kunnen niet ongedaan worden gemaakt.
   only_a_project_manager_can_add: Alleen een projectbeheerder kan de status projectcurator toevoegen
   only_administrators_may_access_that_page: Alleen administratoren hebben toegang tot deze pagina
   only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
@@ -4595,6 +4609,9 @@ nl:
   taxon_assessments_are: |
     Taxonbeoordelingen zijn documenten die de huidige status van een soort beoordelen, meestal de beschermingstatus.
     Een regionale organisatie voor natuurbehoud kan deze bijvoorbeeld gebruiken om informatie in te delen en om feedback te vragen over de status van verschillende bedreigde taxa in de regio.
+  taxon_change_commit_may_still_be_processing: |
+    Taxonwijziging commit kan nog steeds bezig zijn, dus wees ervan bewust dat sommige records
+    nog niet zijn bijgewerkt
   taxon_change_must_be_committed_to_update_records: Er moet een taxonwijziging worden vastgelegd om records bij te werken
   taxon_change_title_taxon_drop: Taxonomisch vervallen %{id}
   taxon_change_title_taxon_merge: Taxonomisch samenvoegen %{id}
@@ -4797,6 +4814,9 @@ nl:
     <strong>Deze taxonwijziging is vastgelegd!</strong>
     Bewerk de taxa alsjeblieft niet. Het bewerken van andere velden mag wel.
   this_taxon_concept_is_inactive: Dit taxonconcept is niet actief
+  this_taxon_has_more_than_1000_alt: |
+    Er zijn meer dan 1000 waarnemingen van dit taxon, dus de verwerking van deze
+    wijzigingen kunnen enige tijd. Weet je zeker dat ze nodig zijn?
   this_taxon_has_no_default_photo: Dit taxon heeft geen standaardfoto!
   this_taxon_is_inactive_this_means: |
     Dit taxon is <strong>inactief</strong>. Dit betekent dat de curatoren van %{site_name} het hebben vervangen met een meer actueel taxonomisch concept.
@@ -7665,6 +7685,9 @@ nl:
               relative_uri: "moet een absolute URI zijn."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                kan niet over dubbele waarnemingen gaan; alleen de waarnemer kan duplicaten verwijderen, dus meld deze zorgen alsjeblieft direct aan ze in een reactie
             user_id:
               already_flagged: "item is al gemeld"
         guide:
