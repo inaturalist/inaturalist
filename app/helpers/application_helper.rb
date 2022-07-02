@@ -1620,4 +1620,15 @@ module ApplicationHelper
     end
   end
 
+  # Another workaround for our inconsistent use of underscores in i18n keys
+  def translate_with_consistent_case( key, options = {} )
+    lower_requested = options.delete( :case ) != "upper"
+    translation = I18n.t( key, options )
+    en = I18n.t( key, options.merge( locale: "en" ) )
+    default_is_lower = en == en.downcase
+    return translation if lower_requested && default_is_lower
+
+    I18n.t( "#{key}_", options )
+  end
+
 end
