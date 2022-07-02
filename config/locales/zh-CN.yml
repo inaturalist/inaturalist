@@ -1953,7 +1953,7 @@ zh-CN:
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
   #Terminal nodes in a taxonomic tree
-  leaves: 离开
+  leaves: 叶节点
   legacy_authentication_notice_html: |
     看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
@@ -2666,7 +2666,7 @@ zh-CN:
     “靠近”某个地方的观察结果位于该地点边界周围的矩形内，这可能会导致形状不接近矩形的地点会出现一些不准确的结果。这是由于数据库的限制所致的，我们正在努力解决。
   observations_needing_curation: 需要策展的观察
   observations_observed_this_month: 本月<em>观察到</em>的观察结果，本月没有添加新的观察。到户外去吧！
-  observations_of_relatives: 亲属的观察
+  observations_of_relatives: 相关的观察
   observations_of_taxon: "%{taxon_name} 的观察"
   observations_per_month: 观察 / 月
   observations_removed_from_the_project: "从项目“%{project}”中移除的观察"
@@ -3432,7 +3432,7 @@ zh-CN:
   random: 随机
   range: 范围
   rank: 排名
-  rank_position: 排名
+  rank_position: 分类阶层
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
@@ -4213,6 +4213,9 @@ zh-CN:
   this_taxon_change_has_been_commited: |
     <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_taxon_concept_is_inactive: 此分类单元概念已不活跃
+  this_taxon_has_more_than_1000_alt: |
+    与此分类群相关联的观察记录超过 1000 条，因此这些
+    更改可能需要一些时间才能完成。 您确定它们是必要的吗？
   this_taxon_has_no_default_photo: 此分类单元没有默认照片！
   this_taxon_is_inactive_this_means: |
     此分类单元<strong>无效</strong>。这意味着%{site_name}的馆长已经用更符合分类学的概念取代了它。
@@ -6064,7 +6067,7 @@ zh-CN:
         locked: 已锁定
         name: 名称
         parent_id: 父ID
-        rank: 排名
+        rank: 分类阶层
         source_identifier: 来源标识符
         source_url: 来源URL
         wikipedia_summary: 维基百科摘要
