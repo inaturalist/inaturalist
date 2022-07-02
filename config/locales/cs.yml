@@ -727,6 +727,9 @@ cs:
   are_you_really_sure_want_delete_this_user: Jste si opravdu, opravdu jisti, že chcete smazat tohoto uživatela a všechen jeho obsah?
   are_you_sure?: Jste si jistý?
   are_you_sure_no_undo: Jste si jistí? Tento krok nelze vrátit.
+  are_you_sure_delete_conservation_status: |
+    Jste si jisti, že chcete odstranit tento stav ochrany? To může změnit
+    zakrytím vyobrazení tohoto taxonu a taxonů v něm.
   are_you_sure_delete_post: Opravdu chcete odstranit tento post?
   are_you_sure_delete_taxon_move_associates: "Jste si jisti, že chcete smazat %{taxonname} (%{taxonid}) a přesunout všechny jeho vazby?"
   are_you_sure_delete_this_place: Jste si jisti, že chcete smazat toto místo?
@@ -1161,6 +1164,9 @@ cs:
   connecting_your_inat_account_to_accounts_other_sites: "Propojení vašeho účtu na %{site_name} s účty na ostatních stránkách vám umožní se přihlašovat na %{site_name} pomocí oprávnění z těchto ostatních stránek."
   cannot_be_changed_during_a_content_freeze: Nelze změnit během zmrazení obsahu
   conservation_status: Stav ochrany
+  conservation_status_created: Stav ochrany byl vytvořen
+  conservation_status_deleted: Stav ochrany odstraněn
+  conservation_status_updated: Stav ochrany aktualizován
   conservation_status_descriptions:
     status: Kód statusu, kategorie atd. Pokud existuje zkratka kódu, např. E nebo CR, použijte ji prosím, pokud však neexistuje, uveďte prosím celý status, např. ohrožený nebo kriticky ohrožený.
     description: Krátký popis důvodů uvedení v seznamu.
@@ -1699,6 +1705,7 @@ cs:
   edit_body: Editovat text
   edit_comment: Editovat váš komentář
   edit_complete_set_for_taxon_in_place_html: "Upravit kompletní sadu pro %{taxon} v %{place}"
+  edit_conservation_status: Upravit stav ochrany
   edit_custom_project_fields: Editovat vlastní projektová pole
   edit_field: Editovat pole
   edit_license: Editovat licenci
@@ -2851,6 +2858,7 @@ cs:
   new_check_list_for: "Vytvořit nový seznam pro %{place}&raquo;"
   new_check_list_record: "Pokud chcete tento seznam označit jako kompletní, vytvořte ho, přidejte taxony, potom zvolte možnost editovat, kde můžete seznam označit jako kompletní."
   new_comment_on_a_parent_by_user_link: Nový komentář na @vow_or_con{vow:an|a} %{parent} od uživatele %{user_link}
+  new_conservation_status: Nový stav ochrany
   new_flag_for: Nové označení pro
   new_guide: Nový průvodce
   new_journal_post: Nový příspěvek do deníku
@@ -3219,6 +3227,10 @@ cs:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "jedno z následujícího musí být pravdivé:"
   one_of_your_lists: "jeden z vašich seznamů..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Jeden nebo více taxonů na vstupu je spojeno s více než 1000 pozorováními, takže
+    zpracování požadavku může nějakou dobu trvat. Opravdu je tato změna taxonu
+    nezbytná? Mějte na paměti, že změny taxonu nelze vrátit zpět.
   only_a_project_manager_can_add: Status kurátora projektu může přidat pouze vedoucí projektu
   only_administrators_may_access_that_page: K této stránce mají přístup pouze správci
   only_an_admin_can_remove_project_users: Uživatele projektu může odebrat pouze správce
@@ -4956,6 +4968,9 @@ cs:
     <strong>Tato změna taxonu je závazná!</strong>
     Neprovádějte prosím editaci taxonů. Editace ostatních polí je možná.
   this_taxon_concept_is_inactive: tento koncept taxonu je neaktivní
+  this_taxon_has_more_than_1000_alt: |
+    Tento taxon má s ním spojené více než 1000 pozorování, takže zpracování těchto
+    změn může nějakou dobu trvat. Jste si jisti, že jsou nezbytné?
   this_taxon_has_no_default_photo: Tento taxon nemá žádnou základní fotku!
   this_taxon_is_inactive_this_means: |
     Tento taxon je <strong>neaktivní</strong>. To znamená, že ho kurátoři %{site_name} nahradili konceptem, který je taxonomicky aktuálnější.
@@ -7950,6 +7965,11 @@ cs:
               relative_uri: "musí být absolutní URI."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                nemůže být o duplicitních pozorováních; pouze pozorovatel může
+                odebrat duplicity, proto se prosím obraťte s komentářem
+                přímo na něj
             user_id:
               already_flagged: "již označil tuto položku"
         guide:
