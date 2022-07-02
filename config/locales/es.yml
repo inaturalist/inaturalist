@@ -7606,6 +7606,10 @@ es:
               relative_uri: "debe ser un URI absoluto."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                no pueden ser sobre observaciones o fotos duplicadas; solo el observador puede eliminar los duplicados, así que por favor solucione estos
+                preocupaciones a ellos directamente con un comentario
             user_id:
               already_flagged: "Ese elemento ya ha sido marcado"
         guide:
