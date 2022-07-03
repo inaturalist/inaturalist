@@ -795,6 +795,8 @@ th:
   deny: ปฏิเสธ
   desc: วันล่าสุดก่อน
   descending: มากไปน้อย
+  description: คำอธิบาย
+  description_from: คำอธิบายจาก
   description_slash_tags: คำอธิบาย / แท็ก
   desription: คำอธิบาย
   details: รายละเอียด
@@ -869,6 +871,7 @@ th:
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   facebook: Facebook
+  facebook_account_information: ข้อมูลบัญชี Facebook ของคุณ
   facebook_options: ตัวเลือก Facebook
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
@@ -1345,6 +1348,7 @@ th:
   observer_short: ผู้สังเกต
   only_administrators_may_access_that_page: ผู้ดูแลเท่านั้นที่เข้าถึงหน้านั้นได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
+  only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   open_: เปิด
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -1367,6 +1371,8 @@ th:
   other_taxa_commonly_misidentified_as_this_subgenus: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลย่อยนี้
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลย่อยนี้ใน <a href="%{url}">%{place}</a>
   our_blog: บล็อกของเรา
+  overview: ภาพรวม
+  owner: เจ้าของ
   people: ผู้คน
   people_added:
     identification:
@@ -1715,6 +1721,9 @@ th:
   show_only: แสดงเฉพาะ
   show_taxa_from_both: (แสดงหน่วยอนุกรมวิธานจากทั้งสองรายการ)
   show_uncountable_species: แสดงชนิดที่นับไม่ได้
+  showing_taxa_from_place: "แสดงหน่วยอนุกรมวิธานจาก %{place}"
+  showing_x_of_y: แสดง %{x} จาก %{y}
+  showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
@@ -1733,6 +1742,7 @@ th:
   source: ที่มา
   source_: 'ที่มา:'
   source_wikipedia: "ที่มา: วิกิพีเดีย"
+  source_list_: "รายการอ้างอิง"
   source_list:
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2012'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2013'
@@ -1987,6 +1997,7 @@ th:
   view_all_members: ดูสมาชิกทุกคน
   view_all_observations: ดูการสังเกตทั้งหมด
   view_check_list_page: ดูหน้ารายการตรวจสอบ
+  view_details: ดูรายละเอียด
   view_dynamic_lifelist_: ดูรายการสิ่งมีชีวิตแบบไดนามิก
   view_flags: ดูการรายงาน
   view_flags_for_x_html: "ดูการรายงานสำหรับ %{x}"
@@ -2130,12 +2141,15 @@ th:
           has_media: มีสื่อ (รูปหรือเสียง)
           verifiable: ตรวจสอบได้
           wild: พบตามธรรมชาติ
+        trust_allow_members_to_trust: |-
+          อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
       new:
         collection_projects: โครงการสะสมชนิด
         delete_project: ลบโครงการ
         duplicate_project: ทำซ้ำโครงการ
         only_display_member_observations: |
           แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
+        project_details: รายละเอียดโครงการ
         project_name: ชื่อโครงการ
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
         you_can_learn_more_html: |
@@ -2259,8 +2273,11 @@ th:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      assessment:
+        description: คำอธิบาย
       conservation_status:
         status: สถานะ
+        description: คำอธิบาย
         geoprivacy: ความเป็นส่วนตัวของพิกัด
       flag:
         reason: เหตุผล
@@ -2271,6 +2288,7 @@ th:
       observation_field_value:
         value: 'ค่า'
       project:
+        description: คำอธิบาย
         map_type: ประเภทแผนที่
       taxon:
         #The most conservative, global, IUCN Red List status for this taxon
