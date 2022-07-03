@@ -18,7 +18,7 @@ mi:
   x_observations_html:
     other: "<span class='count'>%{count}</span> mauhanga"
   x_observers_html:
-    other: '<span class="count">%{count}</span> ngā kaititiro'
+    other: '<span class="count">%{count}</span> kaimātaki'
   x_new_species:
     other: "%{count} Momo hōu"
   x_species:
@@ -50,6 +50,24 @@ mi:
   account_settings: Tautuhinga pūkete
   accuracy: Tika
   accuracy_meters: Tika (mita)
+  active: Hohe
+  #Status of a complete set that is available for use
+  active_complete_set_status: Hohe
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Hohe
+  add: Tāpiri
+  add_a_name: Tāpiri tētahi ingoa
+  add_a_taxon: Tāpiri tētahi rōpū
+  add_an_identification: Tāpiri tētahi tautuhi
+  add_an_observation: Tāpiri tētahi mauhanga
+  add_id: Tāpiri tautuhi
+  add_new_place: Tāpiri tētahi wāhi hōu
+  add_observations: Tāpiri ngā mauhanga
+  add_photos: Tāpiri ngā whakaahua
+  add_place: Tāpiri wāhi
+  add_taxa: Tāpiri ngā rōpū
+  add_to_calendar: Tāpiri ki te maramataka
+  add_to_list: Tāpiri ki te rārangi
   agree_: Whakaae
   agree?: Whakaae?
   all: Katoa
@@ -107,7 +125,7 @@ mi:
   cc_by_nd_name: Tautohu Matatiki-Taketake Anake
   cc_by_sa_name: Tautohu Matatiki-Tiritiri Raihana
   change_password: Ka tīni tāu kupuhipa
-  change_your_password: Ka tīni tāu kupuhipa
+  change_your_password: Ka tīni tō kupuhipa
   #Noun, used to label a comment or a comment field in a form
   comment: kōrero
   #Verb, generally a label on a button that allows the user to add a comment
@@ -119,6 +137,7 @@ mi:
   community: Hapori
   community_guidelines: Aratohu hapori
   compare: Ine
+  confirm_new_password: Whakaū i te kupuhipa hōu
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hono
@@ -148,6 +167,12 @@ mi:
     attribution_sharealike_license: Raihana Tautohu Matatiki-Tiritiri Raihana
     attribution_noderivs_license: Raihana Tautohu Matatiki-Taketake Anake
   copyright_infringement: Hara manatārua
+  create_a_new_place: Hangaia he wāhi hōu
+  create_a_new_taxon: Hangaia he rōpū hōu
+  create_an_account: Hangaia he pūkete
+  create_new_taxon: Hangaia he rōpū hōu
+  created: I hangaia
+  created_by: I hangaia nā
   critically_endangered: Mōrea rukiruki
   curator: Kairauhī
   #Prompt for information when applying to be a curator
@@ -182,8 +207,8 @@ mi:
       october: Whiringa-ā-nuku
       november: Whiringa-ā-rangi
       december: Hakihea
-  date_observed: Rā tiro
-  date_observed_: Rā tiro
+  date_observed: Rā mātakitia
+  date_observed_: Rā mātakitia
   date_time: Rā/Wā
   date_updated: Rā whakaou
   day: Rā
@@ -203,9 +228,9 @@ mi:
   display_name: Ingoa whakaatu
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: Koha
-  donate_again_caps: Takohatia anō
-  donate_again_today_caps: Takohatia anō inaianei
+  donate: KOHA
+  donate_again_caps: TAKOHATIA ANŌ
+  donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
   email: Īmēra
   end_date_time: Rā/Wā mutunga
@@ -214,6 +239,7 @@ mi:
   endemic_to_x: "Taketake ki %{x}"
   establishment:
     endemic: Taketake
+  exact_date: Rā tino
   explore: Tuhuratia
   extinct: korehāhā
   facebook: Pukamata
@@ -226,10 +252,12 @@ mi:
   find_photos: Kimihia ngā whakaahua
   find_places: Kimihia ngā wāhi
   find_species: Kimihia ngā momo
-  first_observer: kaititiro tuatahi
+  finished: Ka mutu
+  first_observer: kaimātaki tuatahi
   follow: Aru
   follow_user: "Aruhia a %{user}"
   followers: Ngā kiriaru
+  forgot_your_password: Kua warewarehia tō kupuhipa?
   forum: Wānanga
   go: Hoake
   google: Kūkara
@@ -244,6 +272,7 @@ mi:
   identifiers: Ngā kaitautuhi
   inat_user_profile: "%{site_name}: Kīwhaiaro ā %{user}"
   inaturalist_is_a_joint_initiative: "He %{site_name} tētahi kaupapa o te California Academy of Sciences me te National Geographic Society."
+  journal: Rangitaki
   latitude: Ahopae
   latitude_in_decimals: 'Te ahopae i roto i nga tohu-a-ira, e.g. 38.123'
   latitude_value: "Ahopae: %{latitude}"
@@ -279,8 +308,9 @@ mi:
     month_year_short: "MMM 'YY"
   more_observations: Tonuhia ngā mauhanga
   more_photos: Tonuhia ngā whakaahua
-  number_of_observers_value: "E hia ngā kaititiro: %{number}"
-  number_of_observers: "E hia ngā kaititiro"
+  new_password: Kupuhipa hōu
+  number_of_observers_value: "E hia ngā kaimātaki: %{number}"
+  number_of_observers: "E hia ngā kaimātaki"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: Mauhanga nā %{user}
@@ -291,22 +321,33 @@ mi:
   #@this could also be translated like "Observation by %{user} (copyright)" or
   #@something.
   observation_attribution_copyright_html: Mauhanga &copy; %{user}
+  observation_brief_taxon_from_place: "%{taxon} ki %{place}"
+  observation_brief_taxon_from_place_by_user: "%{taxon} ki %{place} nā %{user}"
   observation_field_type_time: Wā
-  observer: Kaititiro
-  observers: Ngā kaititiro
-  observer_short: Kaititiro
+  observations_from_this_place: Ngā mauhanga ki te wāhi nei
+  observed: I mātakitia
+  observed_by: I mātakitia nā
+  observer: Kaimātaki
+  observers: Ngā kaimātaki
+  observer_short: Kaimātaki
+  of_places: wāhi
   only_view_nearby_suggestions: Tirohia ngā marohi tātata noa iho
+  our_blog: Rangitaki tō mātou
   password: Kupuhipa
   people: Tāngata
   pi_consent_desc_title: Mō mōhiohio whaiaro
+  place: Wāhi
   place_geo:
     geo_planet_place_types:
+      Island: Motu
+      island: motu
       Time_Zone: Rohe wā
       time_zone: rohe wā
   places: Wāhi
   places_name:
     africa: Awherika
     antarctica: Te Kōpaka Runga
+    argentina: Āketina
     asia: Āhia
     australia: Ahitereiria
     canada: Kānata
@@ -316,6 +357,7 @@ mi:
     cook_islands: Kuki Airani
     egypt: Ihipa
     europe: Ūropi
+    fiji: Whītī
     france: Wīwī
     germany: Tiamani
     greece: Kariki
@@ -450,12 +492,14 @@ mi:
     many_to_many: maha-ki-maha
     many_to_one: maha-ki-kotahi
     one_to_many: kotahi-ki-maha
+  remember_me: Maumahara ki ahau
   reptiles: ngārara
   research_grade: Kua pūruatia
   satellite: amiorangi
   search: Rapunga
   show_more: Hurahia tonuhia
   sign_out: Takiputa
+  sign_up: Rēhita
   small: iti
   site_stats: Tauanga paetukutuku
   sounds:
@@ -467,7 +511,11 @@ mi:
   source_: 'Te pū:'
   source_wikipedia: "Te pū: Wikipedia"
   start_date_time: Rā/Wā tīmatanga
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: TOA
   suggestions: Marohi
+  taxa_observed: Rōpū mātakitia
   teachers_guide: Aratohu o kaiako
   tell_the_world_a_little_about_yourself: Kōrero mai i a koe
   terrain: takoto
@@ -479,10 +527,11 @@ mi:
   two_thirds: 2/3
   upload: Tukuatu
   username: Ingoa rorohiko
+  users_journal: "Rangitaki tō a %{user}"
   users_profile: "Kīwhaiaro ā %{user}"
   view: Tirohia
   view_all_n: "TIrohia ngā %{n} katoa"
-  view_all_observations: TIrohia ngā mauhanga katoa
+  view_all_observations: Tirohia ngā mauhanga katoa
   view_more: Tirohia tonuhia
   view_observation: Tirohia te mauhanga
   view_observations: Tirohia ngā mauhanga
@@ -498,6 +547,10 @@ mi:
   what_were_you_looking_for?: "He aha i kimi koe? (tūtira ūnga)"
   when_did_you_see_it?: Inahea?
   white: mā
+  x_blog: "Rangitaki tō a %{x}"
+  x_journal: "Rangitaki tō a %{user}"
+  x_journal_middot: "Rangitaki tō a %{user} •"
+  x_project_journal: "%{name} tō %{project}"
   year: Tau
   yellow: kōwhai
   'yes': "Āe"
@@ -514,14 +567,20 @@ mi:
       pdf_layouts:
         grid: tukutuku
         book: pukapuka
+        journal: Rangitaki
     lifelists:
+      observed_species: Momo mātakitia
+      observed_rank: '%{rank} mātakitia'
+      unobserved_species: Momo koremātakitia
       all_species: Ngā momo katoa
+      all_unobserved_species: Ngā momo koremātakitia katoa
       all_observations: Ngā mauhanga katoa
       dropdowns:
         name: Ingoa
     observations:
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
+        user_login: Ingo rorohiko o te kaimātaki
     projects:
       project_user_curator_coordinate_access_labels:
         none: Kao.
@@ -536,15 +595,21 @@ mi:
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Kōrero
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Tautuhi
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Karere
     user_parents:
       new:
         child_name_private: Ingoa o te tamariki (tūmataiti)
+        step1_title: HANGAIA HE PŪKETE I TŌ TAMARIKI
     welcome:
       index:
-        species_observed: 'Momo i tirohia'
+        species_observed: 'Momo i mātakitia'
         people_signed_up: 'Tāngata i takiuru'
         learn_about_nature: Ka ako i mō taiao
+        join_today: Rēhita ināianei
   date:
     abbr_day_names:
       - Tap
@@ -579,6 +644,14 @@ mi:
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d %B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d %b'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%e %b"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%d %b %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       month_year: '%B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -625,6 +698,11 @@ mi:
     attributes:
       conservation_status:
         place_id: Wāhi
+      observation:
+        observed_on: rā mātakitia
+      observations_export_flow_task:
+        #Date/time the task finished processing
+        finished_at: Ka mutu
       project:
         end_time: Wā mutunga
         start_time: Wā tīmatanga
