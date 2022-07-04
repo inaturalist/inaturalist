@@ -846,6 +846,7 @@ th:
     managed: ถูกควบคุม
     native: พื้นเมือง
     naturalised: ปรับตัวเข้ากับท้องถิ่น
+  establishment_means: การเข้ามาตั้งถิ่นฐาน
   establishment_means_descriptions:
     native: มีวิวัฒนาการในภูมิภาคนี้หรือเข้ามากระจายพันธุ์ตามธรรมชาติ
     endemic: ชนิดพันธุ์พื้นเมืองและไม่พบในที่อื่น
@@ -1024,7 +1025,6 @@ th:
   inactive_taxon_status: ไม่ใช้งาน
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
   info: ข้อมูล
-  instagram: อินสตาแกรม
   introduced: ชนิดพันธุ์ต่างถิ่น
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
@@ -1094,6 +1094,7 @@ th:
     lithuanian: ภาษาลิทัวเนีย
     luxembourgish: ภาษาลักเซมเบิร์ก
     malayalam: ภาษามลยาฬัม
+    maya: ภาษามายา
     mongolian: ภาษามองโกเลีย
     norwegian: ภาษานอร์เวย์
     ojibwe: ภาษาโอจิบเว
@@ -1307,6 +1308,8 @@ th:
   number_of_observations: จำนวนการสังเกต
   number_of_observers_value: "จำนวนผู้สังเกต: %{number}"
   number_of_observers: "จำนวนผู้สังเกต"
+  obscured: คลุมเครือ
+  obscured_or_private: คลุมเครือหรือส่วนตัว
   observations_by_category: "การสังเกตแบ่งตามประเภท"
   observations_by_app: การสังเกตแบ่งตามแอป
   observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
@@ -1431,6 +1434,7 @@ th:
     india: ประเทศอินเดีย
     indonesia: ประเทศอินโดนีเซีย
     jamaica: ประเทศจาเมกา
+    japan: ประเทศญี่ปุ่น
     laos: ประเทศลาว
     malaysia: ประเทศมาเลเซีย
     mongolia: ประเทศมองโกเลีย
@@ -1438,6 +1442,7 @@ th:
     north_africa: แอฟริกาเหนือ
     north_america: อเมริกาเหนือ
     pakistan: ประเทศปากีสถาน
+    peru: ประเทศเปรู
     philippines: ประเทศฟิลิปปินส์
     poland: ประเทศโปแลนด์
     russia: ประเทศรัสเซีย
@@ -1621,7 +1626,7 @@ th:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: ลูกผสมฐาน
   read_more: อ่านเพิ่มเติม
-  real_time_discussions: การถกเถียงที่กำลังเกิดขึ้น
+  real_time_discussions: การอภิปรายในขณะนี้
   reason: เหตุผล
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
   recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
@@ -2052,6 +2057,7 @@ th:
   who_can_see_the_coordinates: ใครเห็นพิกัดได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับความไว้วางใจจากผู้สังเกตในการเปิดเผยพิกัด
+  why_the_coordinates_are_obscured: เหตุผลที่พิกัดมีความคลุมเครือ
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
   withdraw: ถอนออก
