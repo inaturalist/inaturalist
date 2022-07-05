@@ -95,6 +95,7 @@ th:
   a_to_z: "A ถึง Z"
   about: รายละเอียด
   about_charts: เกี่ยวกับแผนภูมิ
+  about_complete_taxa: เกี่ยวกับหน่วยอนุกรมวิธานที่สมบูรณ์
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
   about_editing_observation_fields: เกี่ยวกับการแก้ไขฟิลด์ที่สังเกตการณ์
   about_license_options: เกี่ยวกับตัวเลือกของใบอนุญาต
@@ -357,8 +358,8 @@ th:
     arachnids: แมง
     birds: นก
     chromista: โครมิสตา
-    fungi: เชื้อรา
-    fungi_including_lichens: เชื้อรารวมทั้งไลเคน
+    fungi: รา
+    fungi_including_lichens: ราและไลเคน
     insects: แมลง
     mammals: สัตว์เลี้ยงลูกด้วยนม
     mollusks: หอย
@@ -527,6 +528,7 @@ th:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: คุณลักษณะ
+  attribution: แสดงที่มา
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
@@ -541,11 +543,12 @@ th:
   based_on_the_evidence_can_id_be_improved: |
     จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังสามารถยืนยันหรือจำแนกย่อยได้อีกหรือไม่?
   batch_edit: แก้ไขหลายรายการ
-  be_the_first_to_fave_this_observation: เป็นคนแรกที่เพิ่มการสังเกตนี้เข้ารายการโปรด!
+  be_the_first_to_fave_this_observation: เพิ่มการสังเกตนี้เข้ารายการโปรดเป็นคนแรก!
   birds: นก
   birthday: วันเกิด
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   blue_butterfly_etc: "สีฟ้า, ผีเสื้อ, และอื่น ๆ"
+  browse_all_projects: เรียกดูโครงการทั้งหมด
   browse_all_species: ค้นดูชนิดทั้งหมด
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
   by_user: "โดย %{user}"
@@ -558,6 +561,13 @@ th:
   casual_tooltip_html: 'การสังเกตระดับ "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ สถานที่ หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกตระดับงานวิจัยหรือกำลังรอจำแนกชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
   categories: หมวดหมู่สิ่งมีชีวิต
   cc_0_name: ไม่มีลิขสิทธิ์ (CC0)
+  cc_attribution_license: สัญญาอนุญาตครีเอทีฟคอมมอนส์ประเภทแสดงที่มา
+  cc_by_name: แสดงที่มา
+  cc_by_nc_name: แสดงที่มา-ไม่ใช้เพื่อการค้า
+  cc_by_nc_nd_name: แสดงที่มา-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง
+  cc_by_nc_sa_name: แสดงที่มา-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน
+  cc_by_nd_name: แสดงที่มา-ไม่ดัดแปลง
+  cc_by_sa_name: แสดงที่มา-อนุญาตแบบเดียวกัน
   change_admin: เปลี่ยนผู้ดูแล
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
@@ -699,10 +709,17 @@ th:
     some_rights_reserved_by: "(c) %{name} สงวนลิขสิทธิ์บางประการ (%{license_short})"
     all_rights_reserved: "(c) %{name} สงวนลิขสิทธิ์ทั้งหมด"
     no_rights_reserved: ไม่สงวนลิขสิทธิ์
+    no_rights_reserved_by: "%{name} ไม่สงวนลิขสิทธิ์ (%{license_name})"
     anonymous: ไม่ระบุชื่อ
     public_domain: โดเมนสาธารณะ
     copyright: ลิขสิทธิ์
     no_copyright: ไม่มีลิขสิทธิ์ (CC0)
+    attribution_noncommercial_sharealike_license: สัญญาอนุญาตประเภทแสดงที่มา-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน
+    attribution_noncommercial_license: สัญญาอนุญาตประเภทแสดงที่มา-ไม่ใช้เพื่อการค้า
+    attribution_noncommercial_noderivs_license: สัญญาอนุญาตประเภทแสดงที่มา-ไม่ใช้เพื่อการค้า-ไม่ดัดแปลง
+    attribution_license: สัญญาอนุญาตประเภทแสดงที่มา
+    attribution_sharealike_license: สัญญาอนุญาตประเภทแสดงที่มา-อนุญาตแบบเดียวกัน
+    attribution_noderivs_license: สัญญาอนุญาตประเภทแสดงที่มา-ไม่ดัดแปลง
   copyright_info: ข้อมูลลิขสิทธิ์
   copyright_info_and_more: ข้อมูลลิขสิทธิ์และอื่น ๆ
   create: สร้าง
@@ -926,6 +943,7 @@ th:
   flags_with_count: รายงาน (%{count})
   flags_for_x_html: การรายงานสำหรับ %{x}
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
+  flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
   follow: ติดตาม
   follow_receive_updates_about_new_observations: ติดตาม (รับข้อมูลเกี่ยวกับการสังเกตใหม่ ๆ)
   follow_user: "ติดตาม %{user}"
@@ -947,7 +965,7 @@ th:
   from_soundcloud: จาก Soundcloud
   full_screen: เต็มจอ
   fungi:
-    other: เห็ดรา
+    other: รา
   Genus: สกุล
   geoprivacy: ความเป็นส่วนตัวของพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
@@ -1262,6 +1280,7 @@ th:
   needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ สถานที่ และวันที่ แต่ยังขาดความเห็นร่วมกันของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   #Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
+  new_and_noteworthy: ใหม่ & น่าสังเกต
   new_check_list: รายการตรวจสอบใหม่
   new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
   new_journal_post: โพสต์วารสารใหม่
@@ -1290,6 +1309,7 @@ th:
   no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
   no_its_as_good_as_it_can_be: ไม่ต้อง แค่นี้ก็ดีแล้ว
   no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
+  no_license_all_rights_reserved: ไม่มีสัญญาอนุญาต (สงวนลิขสิทธิ์ทั้งหมด)
   no_members_yet: "ยังไม่มีสมาชิก"
   no_messages_yet: ยังไม่มีข้อความ
   no_misidentifications_yet: ยังไม่มีการจำแนกผิด
@@ -1310,6 +1330,16 @@ th:
   number_of_observers: "จำนวนผู้สังเกต"
   obscured: คลุมเครือ
   obscured_or_private: คลุมเครือหรือส่วนตัว
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: การสังเกตโดย %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: การสังเกต &copy; %{user}
   observations_by_category: "การสังเกตแบ่งตามประเภท"
   observations_by_app: การสังเกตแบ่งตามแอป
   observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
@@ -1635,6 +1665,8 @@ th:
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "การสังเกตล่าสุดโดย %{login} (Atom)"
   recent_observations_by: "การสังเกตล่าสุดโดย %{login}"
+  recently_active: เคลื่อนไหวล่าสุด
+  recently_created: สร้างขึ้นล่าสุด
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
   relationship: "ความสัมพันธ์"
@@ -1712,6 +1744,7 @@ th:
   select_options: เลือก
   selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
   select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
+  set_license: ตั้งค่าสัญญาอนุญาต
   share: แชร์
   share_colon: "แชร์:"
   show: แสดง
@@ -1752,6 +1785,7 @@ th:
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2012'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2013'
   source_url: URL แหล่งที่มา
+  sourced_to: อ้างอิงจาก
   #Plural
   species: ชนิด
   species_from_around_the_world: ชนิดจากทั่วโลก
@@ -1760,6 +1794,7 @@ th:
   species_search: การค้นหาชนิด
   species_taxon_name: ชนิด / ชื่อหน่วยอนุกรมวิธาน
   species_unknown: ไม่ทราบชนิด
+  standard: มาตรฐาน
   start: เริ่มต้น
   start_a_new_project: เริ่มโครงการใหม่
   start_a_project: เริ่มต้นโครงการ
@@ -1790,7 +1825,7 @@ th:
   taxon_is_a_rank_of_animalia_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของสัตว์ที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_fungi_with_x_observations:
-    other: "%{taxon} เป็น%{rank}หนึ่งของเห็ดราที่มี %{count} การสังเกต"
+    other: "%{taxon} เป็น%{rank}หนึ่งของราที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_protozoa_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของโปรโตซัวที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_chromista_with_x_observations:
@@ -1959,6 +1994,7 @@ th:
   unfollow: เลิกติดตาม
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
+  update_past: "อัปเดต%{type}ก่อนหน้า"
   update_search: อัปเดตการค้นหา
   update_selected_taxa: อัปเดตหน่วยอนุกรมวิธานที่ถูกเลือก
   update_x_selected_taxa:
@@ -1986,7 +2022,9 @@ th:
   user1_and_user2_faved_this_observation: "%{user1} และ %{user2} เพิ่มการสังเกตนี้เข้ารายการโปรด"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, และ %{x_others} เพิ่มการสังเกตนี้เข้ารายการโปรด"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
+  user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
+  user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
   user_faved_this_observation: "%{user} เพิ่มการสังเกตนี้เข้ารายการโปรด"
@@ -2009,6 +2047,7 @@ th:
   view_journal: ดูวารสาร
   view_leaderboard_from_last_month: ดูกระดานจัดอันดับจากเดือนที่แล้ว
   view_leaderboard_from_last_year: ดูกระดานจัดอันดับจากปีที่แล้ว
+  view_license: ดูสัญญาอนุญาต
   view_lists: ดูรายการ
   view_more_observations_from_this_place: ดูการสังเกตเพิ่มเติมจากสถานที่นี้
   view_observation: ดูการสังเกต
@@ -2060,6 +2099,8 @@ th:
   why_the_coordinates_are_obscured: เหตุผลที่พิกัดมีความคลุมเครือ
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
+  wikipedia_attribution_cc_by_sa_3: |
+    ที่มา: วิกิพีเดีย, "%{title}", %{url}, CC BY-SA 3.0
   withdraw: ถอนออก
   withdrawing: กำลังถอน...
   x_journal: "วารสารของ %{user}"
