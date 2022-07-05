@@ -1640,6 +1640,8 @@ sv:
   edit_taxon_link: Redigera taxonlänk
   edit_taxon_range: Redigera taxons utbredningsområde
   edit_the_observation: Redigera fyndet
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Redigera detta taxon efter du skapat det för att lägga till bevarandestatus
   edit_your_account_and_profile_html: "Redigera ditt konto och profil"
   edit_your_default_settings: "Ändra dina standardinställningar"
   edit_your_global_project_settings: Redigera dina globala projektinställningar
@@ -2349,6 +2351,7 @@ sv:
     ojibwe: Ojibwe
     palauan: Palauiska
     pangasinan: Pangasinan
+    persian: Persiska
     polish: Polska
     portuguese: Portugisiska
     romanian: Rumänska
@@ -2359,6 +2362,7 @@ sv:
     slovak: Slovakiska
     slovenian: Slovenska
     spanish: Spanska
+    swahili: Swahili
     swedish: Svenska
     tagalog: Tagalog
     tahitian: Tahitiska
@@ -4670,6 +4674,9 @@ sv:
   taxon_assessments_are: |
     Taxonbedömningar är dokument som bedömer artens nuvarande status, vanligen bevarandestatus.
     Till exempel kan en regional bevarandeorganisation använda dem för att organisera information och be om feedback på statusen för flera hotade taxa i regionen.
+  taxon_change_commit_may_still_be_processing: |
+    Taxonändringbekräftelse kanske fortfarande bearbetas så tänk på att vissa poster
+    ännu inte är uppdaterade
   taxon_change_must_be_committed_to_update_records: En taxonändring måste genomföras för att uppdatera data
   taxon_change_title_taxon_drop: Taxoninaktivering %{id}
   taxon_change_title_taxon_merge: Taxonhopslagning %{id}
