@@ -379,6 +379,7 @@ mi:
   inat_user_profile: "%{site_name}: Kīwhaiaro ā %{user}"
   inaturalist_is_a_joint_initiative: "He %{site_name} tētahi kaupapa o te California Academy of Sciences me te National Geographic Society."
   insects: pepeke
+  join_the_largest_group_of_naturalists_in_the_world: E kuhu mai koe i te rōpū nui o kaitaiao i te ao!
   journal: Rangitaki
   lat: Pae
   latitude: Ahopae
@@ -413,6 +414,29 @@ mi:
   merge: Hanumi
   mollusks: kaiwhao
   momentjs:
+    shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1he"
+      #Short text representing 1 minute in the past
+      m: "1men"
+      #Short text representing %d minutes in the past
+      mm: "%dm"
+      #Short text representing 1 hour in the past
+      h: "1h"
+      #Short text representing %d hours in the past
+      hh: "%dh"
+      #Short text representing 1 day in the past
+      d: "1r"
+      #Short text representing %d days in the past
+      dd: "%dr"
+      #Short text representing 1 month in the past
+      M: "1ma"
+      #Short text representing %d months in the past
+      MM: "%dma"
+      #Short text representing 1 year in the past
+      'y': "1t"
+      #Short text representing %d years in the past
+      yy: "%dt"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -618,6 +642,7 @@ mi:
     uganda: Ukānga
     united_arab_emirates: Te Kotahitanga o ngā Whenua Ārapi
     united_kingdom: Piritānia
+    united_states: Te Hononga o Amerika
     uruguay: Urukoi
     venezuela: Wenehūera
     vietnam: Witināma
@@ -802,6 +827,8 @@ mi:
   taxonomy: Whakarōpū
   teachers_guide: Aratohu o kaiako
   tell_the_world_a_little_about_yourself: Kōrero mai i a koe
+  terms: Kuputaka
+  terms_service: Tikanga whakamahi
   terrain: takoto
   thanks!: Kia ora!
   the_people_of_inat: "Ngā tāngata o %{site_name}"
@@ -818,6 +845,8 @@ mi:
   top_identifiers_of_taxon: Ngā kaitautuhi ki runga o %{taxon}
   top_observer_caps: TE KAIMĀTAKI KI RUNGA
   top_observers: Ngā kaimātaki ki runga
+  tos_privacy_guidelines_label: |
+    Kei te whakaae au i ngā <a href="/terms" target="_blank">Tikanga whakamahi</a> me te <a href="/privacy" target="_blank">Kaupapahere tūmataiti</a>. Kua arotake au i ngā <a href="/pages/community+guidelines" target="_blank">Aratohu hapori</a>.
   total: Tapeke
   'true': 'Pono'
   trending: Ee rōpū te haere
@@ -863,6 +892,7 @@ mi:
   year: Tau
   yellow: kōwhai
   'yes': "Āe"
+  yes_license_my_childs_observations: Āe, e raihana ana ngā whakaahua, ngā oro, me ngā mauhanga o tāku tamaiti, ka whakamahi ngā kaiputaiao i āku raraunga (taunakitia)
   yes_license_my_observations_so_scientists_can_use: Āe, e raihana ana āku whakaahua, āku oro, me āku mauhanga, ka whakamahi ngā kaiputaiao i āku raraunga (taunakitia)
   yesterday: Inanahi
   you: koe
@@ -897,6 +927,9 @@ mi:
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
         user_login: Ingoa rorohiko o te kaimātaki
+    emailer:
+      parental_consent:
+        subject: Kei te hiahia tāu tamaiti i whakamahi iNaturalist
     projects:
       project_user_curator_coordinate_access_labels:
         none: Kao.
@@ -929,7 +962,10 @@ mi:
       index:
         species_observed: 'Momo i mātakitia'
         people_signed_up: 'Tāngata i takiuru'
+        how_it_works: Pehea te mahi
+        record_your_observations: Tuhia ō whakamātaki
         learn_about_nature: Ka ako i mō taiao
+        who_uses_site_name: "Ko wai e whakamahi %{site_name}?"
         join_today: Rēhita ināianei
   date:
     abbr_day_names:
@@ -1000,6 +1036,8 @@ mi:
       - Whiringa-ā-rangi
       - Hakihea
   datetime:
+    distance_in_words:
+      half_a_minute: haurua i te meneti
     countdown_x_days:
       other: rā
     countdown_x_hours:
