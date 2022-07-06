@@ -32,6 +32,8 @@ mi:
   x_sounds:
     other: "%{count} oro"
   _100_day_trends: Ia kotahi rau rā
+  a_community_for_naturalist: Tētahi hapori mō kaitaiao
+  a_member_of_taxon_html: "He huānga i %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ki Z"
@@ -130,6 +132,7 @@ mi:
       other: "%{count} pepeke"
   all_taxa_: Ngā rōpū katoa
   all_updates: Ngā whakahou katoa
+  already_have_an_account_log_in_html: Kua hangaia tō pūkete anō? <strong>Takiuru mai.</strong>
   amphibians: ika oneone
   animals: Kīrehe
   annotation: Kupu tāpiri
@@ -277,7 +280,7 @@ mi:
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
   date_time: Rā/Wā
-  date_updated: Rā whakaou
+  date_updated: Rā whakahou
   day: Rā
   #Default option
   default: taunoa
@@ -388,6 +391,8 @@ mi:
   leading: Whakamua
   learn: Ako
   learn_more: Akohia tonuhia
+  lexicons:
+    spanish: Pāniora
   license: Raihana
   link_your_facebook_account: Ka hono tāu pūkete Pukamata
   link_your_google_account: Ka hono tāu pūkete Kūkara
@@ -398,6 +403,11 @@ mi:
   loading_images: E uta ana ngā whakaahua...
   loading_metadata: E uta ana ngā raraungameta...
   loading_suggestions: E whakauta ana ngā marohi ...
+  locales:
+    es: Pāniora
+    es-AR: Pāniora (Āketina)
+    es-CO: Pāniora (Koromōpia)
+    es-MX: Pāniora (Mēhiko)
   location: Wāhi
   location_is_accurate: He tika te wāhi
   location_is_public: He tūmatanui te wāhi
@@ -411,6 +421,8 @@ mi:
   longitude_value: "Ahopau: %{longitude}"
   map: Mahere
   meet: Tūtaki
+  #As in members of a project
+  members: Huānga
   merge: Hanumi
   mollusks: kaiwhao
   momentjs:
@@ -457,11 +469,16 @@ mi:
   more_photos: Tonuhia ngā whakaahua
   name: Ingoa
   names: Ingoa
+  new_members: "Huānga hōu"
   new_message: Karere hou
   new_password: Kupuhipa hōu
   'no': 'Kāo'
+  no_comments_yet: E kore ngā kōrero anō
   no_license_all_rights_reserved: Raihana kore (kua rāhuitia ngā mōtika katoa)
+  no_members_yet: "E kore ngā huānga anō"
   no_observations: Mauhanga kore
+  no_observations_from_this_place_yet: E kore ngā mauhanga i kōnei anō
+  no_observations_yet: E kore ngā mauhanga anō
   no_photo: Whakaahua kore
   no_photos: Whakaahua kore
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
@@ -855,6 +872,7 @@ mi:
   update: Whakahōu
   update_observations: Whakahōu ngā mauhanga
   update_photos: Whakahōu ngā whakaahua
+  updated: I whakahōu
   updated_by: I whakahōu nā
   updated_daily: I whakahōu ai i rā
   upload: Tukuatu
@@ -965,6 +983,7 @@ mi:
         how_it_works: Pehea te mahi
         record_your_observations: Tuhia ō whakamātaki
         learn_about_nature: Ka ako i mō taiao
+        works_on_all_your_devices: I mahinga i runga i āu pūrere katoa
         who_uses_site_name: "Ko wai e whakamahi %{site_name}?"
         join_today: Rēhita ināianei
   date:
