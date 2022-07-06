@@ -1189,6 +1189,7 @@ class ObservationsController < ApplicationController
     @identification_fields = if @ident_user
       %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}
     end
+    @hide_spam = true
     respond_to do |format|
       format.html
     end
@@ -2191,6 +2192,9 @@ class ObservationsController < ApplicationController
     unless search_params[:not_in_place_record].blank? || search_params[:not_in_place_record].is_a?(Array)
       @not_in_place_record = search_params[:not_in_place_record]
     end
+    @lat = search_params[:lat]
+    @lng = search_params[:lng]
+    @radius = search_params[:radius]
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
@@ -2237,6 +2241,7 @@ class ObservationsController < ApplicationController
     @introduced = search_params[:introduced]
     @native = search_params[:native]
     @popular = search_params[:popular]
+    @spam = search_params[:spam]
     if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
       @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
@@ -2248,6 +2253,15 @@ class ObservationsController < ApplicationController
       @ident_user = User.find_by_id( search_params[:ident_user_id] )
       @ident_user ||= User.find_by_login( search_params[:ident_user_id] )
     end
+    @misc_hidden_parameters = %w(
+      day
+      id
+      ident_taxon_id
+      identified
+      term_id
+      term_value_id
+      year
+    )
     
     @filters_open = 
       !@q.nil? ||

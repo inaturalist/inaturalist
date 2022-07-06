@@ -206,6 +206,29 @@
   </div>
 </div>
 
+<% if @lat && @lng -%>
+<div class="stacked clear row">
+  <div id="lat_lng_filter" class="left">
+    <div id="latitude_label" class="label">
+      <strong><%=t :latitude %></strong>
+    </div>
+    <div class="left latlon">
+      <input type="text" class="text" name="lat" id="lat" value="<%= @lat %>"/>
+    </div>
+    <div class="left latlon">
+      <label><%= t :longitude %></label>
+      <input type="text" class="text" name="lng" id="lng" value="<%= @lng %>"/>
+    </div>
+    <div class="left latlon">
+      <label><%= t :radius_km %></label>
+      <input type="text" class="text" name="radius" id="radius" value="<%= @radius %>"/>
+    </div>
+  </div>
+</div>
+<% end -%>
+
+
+
 <div class="stacked clear row">
   <div id="not_in_place_filter" class="left">
     <div id="not_in_place_filter_label" class="label">
@@ -549,6 +572,16 @@
 <input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
+
+<% if @spam -%>
+  <input type="hidden" name="spam" id="spam" value="<%= @spam %>" />
+<% end -%>
+
+<% @misc_hidden_parameters.each do |k| -%>
+  <% unless params[k].blank? -%>
+    <input type="hidden" name="<%= k %>" value="<%= params[k] %>">
+  <% end -%>
+<% end -%>
 
 <% unless hide_buttons -%>
   <div class="inline buttonrow upstacked">

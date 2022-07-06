@@ -668,7 +668,8 @@ class Observation < ApplicationRecord
       # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
-      { http_param: :captive, es_field: "captive" }
+      { http_param: :captive, es_field: "captive" },
+      { http_param: :spam, es_field: "spam" }
     ].each do |filter|
       if p[ filter[:http_param] ].yesish?
         search_filters << { term: { filter[:es_field] => true } }
