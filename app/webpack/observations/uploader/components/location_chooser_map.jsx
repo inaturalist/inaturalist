@@ -253,7 +253,8 @@ class LocationChooserMap extends React.Component {
     const comparableKeys = [
       "show",
       "lat",
-      "lng"
+      "lng",
+      "radius"
     ];
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
