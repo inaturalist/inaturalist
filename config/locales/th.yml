@@ -1407,6 +1407,7 @@ th:
   overview: ภาพรวม
   owner: เจ้าของ
   people: ผู้คน
+  people_following_user: "ผู้คนที่ติดตาม %{user}"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -2240,7 +2241,7 @@ th:
           none: "คุณเท่านั้นที่เพิ่มการสังเกตเข้าโครงการได้"
       show:
         favorites_list_prompt_html: |
-          อยากอวดหน่วยอนุกรมวิธานที่คุณชอบไหมล่ะ? ถ้าอย่างนั้นก็%{link_start_tag}สร้างรายการ%{link_end_tag}ที่ชื่อว่า "รายการโปรด" เพื่อให้สิ่งที่คุณชอบล่าสุดมาปรากฏที่นี่
+          อยากอวดหน่วยอนุกรมวิธานที่คุณชอบไหมล่ะ? %{link_start_tag}สร้างรายการ%{link_end_tag}ที่ชื่อว่า "รายการโปรด" เพื่อให้สิ่งที่คุณชอบล่าสุดมาปรากฏที่นี่
     welcome:
       index:
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
