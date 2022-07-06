@@ -1135,6 +1135,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       urlParams.projects = urlParams.project_id;
       delete urlParams.project_id;
     }
+    // override `fields:` params with already processed observationFields, so
+    // value is left undefined and not set to `true` when searching fields w/o values
+    _.each( urlParams.observationFields, function( v, k ) {
+      urlParams[k] = v;
+    } );
     delete urlParams._iconic_taxa;
     delete urlParams.order;
     delete urlParams.order_by;
