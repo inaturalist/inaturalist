@@ -98,6 +98,10 @@ th:
   about_complete_taxa: เกี่ยวกับหน่วยอนุกรมวิธานที่สมบูรณ์
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
   about_editing_observation_fields: เกี่ยวกับการแก้ไขฟิลด์ที่สังเกตการณ์
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: เกี่ยวกับการเข้ามาตั้งถิ่นฐาน
   about_license_options: เกี่ยวกับตัวเลือกของใบอนุญาต
   about_licenses: เกี่ยวกับใบอนุญาต
   #Header for a section describing taxon names
@@ -164,7 +168,7 @@ th:
   active: กำลังดำเนินการ
   #Status of a taxon that is available for use on iNat
   active_taxon_status: ใช้งาน
-  active_users: จำนวนผู้เล่นที่ยังมีความเคลื่อนไหวอยู่
+  active_users: ผู้ใช้ที่ยังมีความเคลื่อนไหว
   activity: กิจกรรมที่เกิดขึ้น
   adapted_by_name_from_a_work_by_original: "เปลี่ยนแปลงโดย %{name} จากต้นทางของ %{original}"
   add: เพิ่มเติม
@@ -265,20 +269,20 @@ th:
   add_sex_male_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ผู้"'
   add_sex_cannot_be_determined_annotation: 'ใส่คำอธิบายประกอบ "เพศ: ไม่สามารถระบุได้"'
   add_some_now: เพิ่มบางอย่าง เดี๋ยวนี้
-  add_tag: เพิ่มป้ายกำกับ
-  add_tags: เพิ่มป้ายกำกับทั้งหมด
-  add_tags_to_selected_taxa: เพิ่มป้ายกำกับในกลุ่มลำดับที่ถูกเลือก
+  add_tag: เพิ่มแท็ก
+  add_tags: เพิ่มแท็ก
+  add_tags_to_selected_taxa: เพิ่มแท็กไปที่หน่วยอนุกรมวิธานที่เลือก
   add_taxa: เพิ่มหน่วยอนุกรมวิธาน
   add_taxon_batch_to: "เพิ่มชุดลำดับขั้นทางอนุกรมวิธานใน %{list}"
   add_taxon_range: เพิ่มช่วงอันดับขั้นทางอนุกรมวิธาน
-  add_taxonomic_tags_to: "เพิ่มป้ายกำกับของอันดับทางอนุกรมวิธานในรูปภาพ Flickr &raquo;"
+  add_taxonomic_tags_to: "เพิ่มแท็กอนุกรมวิธานไปที่รูปจาก Flickr &raquo;"
   add_to_a_scheme: เพิ่มเข้าไปในแผนการ
-  add_to_a_project: เพิ่มเข้าไปในโครงการ
+  add_to_a_project: เพิ่มเข้าโครงการ
   add_to_calendar: เพิ่มลงในปฎิทิน
   add_to_checklist: เพิ่มลงในรายการตรวจสอบ
   add_to_favorites: เพิ่มไปยังรายการโปรด
   add_to_list: เพิ่มไปยังรายการ
-  add_to_project: เพิ่มเข้าไปในโครงการ
+  add_to_project: เพิ่มเข้าโครงการ
   add_to_your_list: เพิ่มไปยังรายการของคุณ
   add_your_email_to_get: |
     เพิ่มอีเมลของคุณเพื่อรับความคิดเห็นเกี่ยวกับการสังเกตการณ์ของคุณจากชุมชน หากคุณไม่ต้องการที่จะแบ่งบัน โปรดกลับมาตรวจสอบอีกครั้ง
@@ -538,6 +542,7 @@ th:
   back_to_users_calendar: "กลับไปที่ปฏิทินของ %{user}"
   back_to_your_calendar: กลับสู่ปฏิทิน
   back_to_your_dashboard: กลับไปที่หน้ารวม
+  back_to_your_journal: กลับไปที่วารสารของคุณ
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
   based_on_the_evidence_can_id_be_improved: |
@@ -608,6 +613,7 @@ th:
   choose_from_your_lists: เลือกจากรายการของคุณ
   choose_tags: เลือกแท็ก
   choose_taxon: เลือกหน่วยอนุกรมวิธาน
+  cid_d_to_genus: จำแนกถึงระดับสกุล
   classification: การจัดจำแนก
   colors: สี
   combine: รวม
@@ -778,6 +784,10 @@ th:
   date_observed_on: สังเกตในวันที่
   date_picker:
     currentText: วันนี้
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: ก่อนหน้า
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: ถัดไป
     range: ช่วงวันที่
   date_range: ช่วงวันที่
   date_specified: มีการระบุวันที่สังเกต
@@ -896,6 +906,7 @@ th:
   Family: วงศ์
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
+  file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
@@ -951,6 +962,7 @@ th:
   following: กำลังติดตาม
   following_x_people:
     other: 'กำลังติดตาม %{count} คน'
+  formatting: รูปแบบ
   forum: กระดานสนทนา
   forum_categories:
     bug_reports: รายงานข้อผิดพลาด
@@ -970,12 +982,14 @@ th:
   geoprivacy: ความเป็นส่วนตัวของพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
+  getting_started_guide: คู่มือเริ่มต้นใช้งาน
   globally: ทั่วโลก
   go: ค้นหา
   go_back: ย้อนกลับ
   going_to_your_observations: กำลังไปที่การสังเกตของคุณ...
   grid: ตาราง
   guides: คู่มือสำรวจ
+  guide_was_successfully_published: เผยแพร่คู่มือสำเร็จแล้ว
   has_id_supported_by_two_or_more: ได้รับการจำแนกจากสองคนขึ้นไป
   has_one_or_more_faves: มีการเพิ่มเข้ารายการโปรด
   has_photo: มีรูปถ่าย
@@ -1003,6 +1017,8 @@ th:
   #have no annotation
   hide_no_annotation: ซ่อน "ไม่มีหมายเหตุ"
   hide_uncountable_species: ซ่อนชนิดที่นับไม่ได้
+  high: สูง
+  highest_rank: ลำดับสูงสุด
   history: ประวัติ
   home: หน้าหลัก
   i_dont_know_but_i_am_sure_this_is_taxon: ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ%{taxon}
@@ -1198,6 +1214,8 @@ th:
   longitude_value: "ลองจิจูด: %{longitude}"
   look_up_name: "ค้นหาชื่อ"
   looks_like_no_species_in_guide: ดูเหมือนว่ายังไม่มีรายชื่อชนิดในคู่มือของคุณ
+  low: ตํ่า
+  lowest_rank: ลำดับต่ำสุด
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
   mammals: สัตว์เลี้ยงลูกด้วยนม
@@ -1291,6 +1309,7 @@ th:
   new_observations_in_year: "การสังเกตใหม่ในปี %{year}"
   new_observations_ellispsis: "การสังเกตใหม่..."
   new_observations_from_place_html: "การสังเกตใหม่จาก %{place}"
+  new_post: โพสต์ใหม่
   new_species_added_in_interval: ชนิดใหม่ที่เพิ่มใน %{interval}
   new_species_added_in_interval_x_of_y: ชนิดใหม่ที่เพิ่มใน %{interval} (แสดง %{x} จาก %{y})
   new_taxon_name_for: ชื่อหน่วยอนุกรมวิธานใหม่สำหรับ
@@ -1299,7 +1318,15 @@ th:
   newly_added_species: ชนิดที่เพิ่มใหม่
   newly_observed_species: ชนิดที่พบใหม่
   newly_observed_species_in_year: "ชนิดที่เพิ่มใหม่ในปี %{year}"
+  next: ถัดไป
+  next_date_short: ถัดไป
   next_observation: การสังเกตถัดไป
+  next_page: หน้าถัดไป
+  next_page_short: ถัดไป
+  next_photo: รูปถัดไป
+  next_post_short: ถัดไป
+  next_tab: แท็บถัดไป
+  next_taxon_short: ถัดไป
   'no': 'ไม่'
   no_but_it_is_a_member_of_taxon: "ไม่ใช่ แต่จัดจำแนกอยู่ใน%{taxon}"
   no_comments_yet: ยังไม่มีความคิดเห็น
@@ -1316,8 +1343,10 @@ th:
   no_new_messages: ยังไม่มีข้อความใหม่
   no_observations: ไม่มีการสังเกต
   no_observations_yet: ยังไม่มีการสังเกต
+  no_post_yet: ยังไม่มีโพสต์!
   no_project_to_admin_current_user: "คุณไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
   no_project_to_admin_login: "%{login} ไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
+  no_relevant_annotations: ไม่มีหมายเหตุที่เกี่ยวข้อง
   no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
@@ -1383,6 +1412,7 @@ th:
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   open_: เปิด
+  optional: ไม่บังคับ
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: หรือ
@@ -1408,6 +1438,7 @@ th:
   owner: เจ้าของ
   people: ผู้คน
   people_following_user: "ผู้คนที่ติดตาม %{user}"
+  people_user_follows: "ผู้คนที่ %{user} ติดตาม"
   people_added:
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -1426,8 +1457,12 @@ th:
       continent: ทวีป
       Country: ประเทศ
       country: ประเทศ
+      County: เทศมณฑล
+      county: เทศมณฑล
       District: เขต/อำเภอ
       district: เขต/อำเภอ
+      Historical_County: เทศมณฑลประวัติศาสตร์
+      historical_county: เทศมณฑลประวัติศาสตร์
       Historical_Town: เมืองประวัติศาสตร์
       historical_town: เมืองประวัติศาสตร์
       Open_Space: พื้นที่เปิด
@@ -1500,11 +1535,17 @@ th:
   post_from_journal_by_parent_html: โพสต์จาก<a href="%{url}">วารสารของ %{parent}</a>
   #Post is a noun
   post_from_your_journal_html: โพสต์จาก<a href="%{url}">วารสารของคุณ</a>
+  post_published: เผยแพร่โพสต์แล้ว!
+  posts: โพสต์
   powered_by: ขับเคลื่อนโดย
   powered_by_inaturalist_open_source_software_html: 'ขับเคลื่อนโดย <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: สื่อข่าวสาร
   preview: ดูตัวอย่าง
   previewing: "กำลังแสดงตัวอย่าง..."
+  previous_date_short: ก่อนหน้า
+  prev: ก่อนหน้า
+  previous_observation: การสังเกตก่อนหน้า
+  previous_page_short: ก่อนหน้า
   privacy: ความเป็นส่วนตัว
   private_: ส่วนตัว
   probably_spam: อาจเป็นสแปม
@@ -1531,6 +1572,7 @@ th:
   projects_user_admins: โครงการที่ %{user} เป็นผู้ดูแล
   projects_you_admin: โครงการที่คุณเป็นผู้ดูแล
   protozoans: โปรโตซัว
+  publish: เผยแพร่
   quality_grade: ระดับคุณภาพ
   quality_grade_: ระดับคุณภาพ
   quality_grade_colon: "ระดับคุณภาพ"
@@ -1657,6 +1699,7 @@ th:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: ลูกผสมฐาน
   read_more: อ่านเพิ่มเติม
+  read_our_getting_started_guide: อ่านคู่มือเริ่มต้นใช้งานของเรา
   real_time_discussions: การอภิปรายในขณะนี้
   reason: เหตุผล
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
@@ -1766,6 +1809,7 @@ th:
   sign_out: ออกจากระบบ
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
+  skip_to_next_page: "ข้ามไปหน้าถัดไป"
   site_stats: สถิติการใช้งาน
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
@@ -1810,6 +1854,7 @@ th:
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
+  subscribe_to_observations_in_a_place: ติดตามทุกการสังเกตที่พบในสถานที่นี้ คุณสามารถเพิ่มตัวกรองหน่วยอนุกรมวิธานได้ด้วย เช่น 'แมงป่องจาก Texas'
   subscriptions: การติดตาม
   suggest_an_identification: แนะนำว่าเป็น
   supporting: สนับสนุน
@@ -1846,6 +1891,7 @@ th:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: นี่ไม่ใช่แผนที่การกระจายของบัญชีแดง IUCN เนื่องจากหน่วยอนุกรมวิธานนี้ไม่อยู่ในบัญชีแดง IUCN
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: แผนที่การกระจายของบัญชีแดง IUCN สำหรับหน่วยอนุกรมวิธานนี้ไม่เหมาะสม
   taxon_range_guidelines_learn_more_about_taxon_ranges: เรียนรู้เพิ่มเติมเกี่ยวกับช่วงหน่วยอนุกรมวิธาน
+  taxon_ranks: ลำดับอนุกรมวิธาน
   taxon_search: การค้นหาหน่วยอนุกรมวิธาน
   taxon_search_results_for: ผลการค้นหาหน่วยอนุกรมวิธานสำหรับ
   taxonomic_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
@@ -1993,6 +2039,7 @@ th:
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
   unfollow: เลิกติดตาม
+  unpublish: เลิกเผยแพร่
   unreview_all: เลิกทบทวนทั้งหมด
   unsubscribe: เลิกติดตาม
   update_past: "อัปเดต%{type}ก่อนหน้า"
@@ -2131,7 +2178,7 @@ th:
   your_recent_projects: โครงการล่าสุดของคุณ
   your_relationships: ความสัมพันธ์ของคุณ
   verifiable: ตรวจสอบได้
-  verifiable_observations: การสังเกตที่พิสูจน์ได้
+  verifiable_observations: การสังเกตที่ตรวจสอบได้
   views:
     donate:
       post_donate_social_media_text: ฉันสนับสนุน iNaturalist เพราะว่า...
@@ -2210,6 +2257,8 @@ th:
         no_taxa_forum: ติดต่อกระดานสนทนา
     stats:
       index:
+        #Short for "observations community-identified to genus"
+        obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         observers_desc: เพิ่มการสังเกตในวันนี้
       year:
         inaturalist_network: เครือข่าย iNaturalist
@@ -2323,24 +2372,34 @@ th:
     attributes:
       assessment:
         description: คำอธิบาย
+      assessment_section:
+        title: หัวข้อ
       conservation_status:
         status: สถานะ
         description: คำอธิบาย
         geoprivacy: ความเป็นส่วนตัวของพิกัด
       flag:
         reason: เหตุผล
+      listed_taxon:
+        establishment_means: การเข้ามาตั้งถิ่นฐาน
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: เหตุผล
       observation_field_value:
         value: 'ค่า'
+      post:
+        title: หัวข้อ
       project:
+        title: หัวข้อ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
+      source:
+        title: หัวข้อ
       taxon:
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: สถานะการอนุรักษ์
+        wikipedia_title: หัวข้อวิกิพีเดีย
       user:
         search_place_id: ค้นหาสถานที่
     errors:
