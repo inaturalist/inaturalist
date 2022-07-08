@@ -71,7 +71,6 @@ opts = Optimist.options do
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
   opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean
-  opt :additional_with_taxa_path, "Create a second archive with a taxa.csv file", type: :string
   opt :post_taxon_archive_to_url, "Post the second archive with taxa.csv to this URL", type: :string
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
