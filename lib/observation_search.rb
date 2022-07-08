@@ -38,7 +38,7 @@ module ObservationSearch
       search_params = Observation.get_search_params(raw_params, options)
       search_params.merge!(
         min_id: raw_params[:min_id] || 1,
-        per_page: SEARCH_IN_BATCHES_BATCH_SIZE,
+        per_page: raw_params[:per_page] || SEARCH_IN_BATCHES_BATCH_SIZE,
         preload: [ ],
         order_by: "id",
         order: "asc"

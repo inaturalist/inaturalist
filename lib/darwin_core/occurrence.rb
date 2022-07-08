@@ -367,32 +367,32 @@ module DarwinCore
 
       def kingdom
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :kingdom, :name ) : dwc_taxon.try( :kingdom_name )
+          @ranked_ancestors.dig( :kingdom_name ) : dwc_taxon.try( :kingdom_name )
       end
 
       def phylum
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :phylum, :name ) : dwc_taxon.try( :phylum_name )
+          @ranked_ancestors.dig( :phylum_name ) : dwc_taxon.try( :phylum_name )
       end
 
       def taxon_class
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :class, :name ) : dwc_taxon.try( :taxonomic_class_name )
+          @ranked_ancestors.dig( :class_name ) : dwc_taxon.try( :taxonomic_class_name )
       end
 
       def order
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :order, :name ) : dwc_taxon.try( :taxonomic_order_name )
+          @ranked_ancestors.dig( :order_name ) : dwc_taxon.try( :taxonomic_order_name )
       end
 
       def family
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :family, :name ) : dwc_taxon.try( :family_name )
+          @ranked_ancestors.dig( :family_name ) : dwc_taxon.try( :family_name )
       end
 
       def genus
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :genus, :name ) : dwc_taxon.try( :genus_name )
+          @ranked_ancestors.dig( :genus_name ) : dwc_taxon.try( :genus_name )
       end
 
       def dwc_license

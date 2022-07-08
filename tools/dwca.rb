@@ -88,6 +88,7 @@ opts = Optimist.options do
   opt :swlat, "Bounding box bottom latitude", type: :double
   opt :nelng, "Bounding box right longitude", type: :double
   opt :nelat, "Bounding box top latitude", type: :double
+  opt :processes, "Number of processes to use with the parallel gem", type: :integer
 end
 
 if opts.debug
