@@ -602,13 +602,25 @@ module DarwinCore
 
     def process_observations( params, preloads, options = {}, &block )
       max_id = Observation.maximum( :id )
-      range_partitions = DarwinCore::Archive.partition_range( 1, max_id, options[:processes] )
-      Parallel.each( range_partitions, in_processes: options[:processes] ) do |range|
+      if options[:processes] > 1
+        # use the Parallel gem if more than one process was requested
+        range_partitions = DarwinCore::Archive.partition_range( 1, max_id, options[:processes] )
+        Parallel.each( range_partitions, in_processes: options[:processes] ) do |range|
+          observations_in_batches(
+            params,
+            preloads,
+            range[:start_id],
+            range[:end_id],
+            options,
+            &block
+          )
+        end
+      else
         observations_in_batches(
           params,
           preloads,
-          range[:start_id],
-          range[:end_id],
+          1,
+          max_id,
           options,
           &block
         )
@@ -692,10 +704,10 @@ module DarwinCore
     # information about the observations' taxa
     def self.lookup_taxa_for_obs_batch( observations )
       taxon_ids = observations.map{ |o| [o.taxon_id, o.community_taxon_id] }.flatten.uniq.compact
-      ancestor_taxon_ids = Taxon.where( id: taxon_ids ).pluck( :ancestry ).
-        map{ |a| a.split( "/" ) }.flatten.uniq.compact
+      ancestor_taxon_ids = ::Taxon.where( id: taxon_ids ).pluck( :ancestry ).
+        map{ |a| a.try( :split, "/" ) }.flatten.uniq.compact
       cached_taxa = { }
-      Taxon.where( id: ( taxon_ids + ancestor_taxon_ids ).uniq ).
+      ::Taxon.where( id: ( taxon_ids + ancestor_taxon_ids ).uniq ).
         pluck( :id, :name, :rank, :ancestry ).each do |row|
         ( taxon_id, name, rank, ancestry ) = row
         ancestor_ids = ancestry.blank? ? [] : ancestry.split( "/" ).map( &:to_i )
