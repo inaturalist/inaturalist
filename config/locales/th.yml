@@ -303,7 +303,7 @@ th:
     <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกสลับ</a>
   added_by: ถูกเพิ่มโดย
   added_by_user_on_date_html: "ถูกเพิ่มโดย %{user} เมื่อ %{date}"
-  added_on_datetime: "ถูกเพิ่มเมื่อ %{datetime}"
+  added_on_datetime: "เพิ่มเมื่อ %{datetime}"
   added_to_favorites_html: |
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
   adding: "กำลังทำการเพิ่ม..."
@@ -1373,6 +1373,7 @@ th:
   observations_by_app: การสังเกตแบ่งตามแอป
   observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
   observations_by_user_on_date: "การสังเกตโดย %{user} ในวันที่ %{date}"
+  observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
   observation_field: ข้อมูลภาคสนาม
   observation_field_details: รายละเอียดข้อมูลภาคสนาม
