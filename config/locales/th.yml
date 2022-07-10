@@ -539,9 +539,27 @@ th:
   #of values, and not a synonym of "typical" or "normal"
   avg: ค่าเฉลี่ย
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
+  back_to_editing_observation: กลับไปแก้ไขการสังเกต
+  back_to_friends: กลับไปที่เพื่อน
+  back_to_lists: "กลับไปที่รายการ %{name}"
+  back_to_observation: กลับไปที่การสังเกต
+  back_to_people: กลับไปที่ผู้คน
+  back_to_places: กลับไปที่สถานที่
+  back_to_possessive_user_profile: "กลับไปที่โปรไฟล์ของ %{possuser}"
+  back_to_post: '&laquo; กลับไปที่โพสต์'
+  back_to_projects: กลับไปที่โครงการ
+  back_to_suggestions: กลับไปที่คำแนะนำ
+  back_to_taxon: "กลับไปที่%{defaulttaxon}"
+  back_to_taxon_changes: "กลับไปดูการเปลี่ยนหน่วยอนุกรมวิธาน"
   back_to_users_calendar: "กลับไปที่ปฏิทินของ %{user}"
+  back_to_users_lists: "กลับไปที่รายการของ %{user}"
+  back_to_viewing: "กลับไปดู<i>%{taxon}</i>"
+  back_to_x: "กลับไปที่%{noun}"
+  back_to_x_journal: "กลับไปที่วารสารของ %{user}"
+  back_to_x_blog: "กลับไปที่บล็อกของ %{x}"
   back_to_your_calendar: กลับสู่ปฏิทิน
   back_to_your_dashboard: กลับไปที่หน้ารวม
+  back_to_your_lists: กลับไปที่รายการของคุณ
   back_to_your_journal: กลับไปที่วารสารของคุณ
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
@@ -862,6 +880,13 @@ th:
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
+  editing: แก้ไข
+  editing_project: แก้ไข %{project}
+  editing_subscription_to_x_html: "แก้ไขการติดตาม %{x}"
+  editing_taxon: แก้ไข %{taxon}
+  editing_taxon_link: แก้ไขลิงก์หน่วยอนุกรมวิธาน
+  editing_this: แก้ไข %{elem}
+  editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   end: สิ้นสุด
   endangered: ใกล้สูญพันธุ์
@@ -1098,10 +1123,14 @@ th:
   lexicons:
     scientific_names: ชื่อวิทยาศาสตร์
     afrikaans: ภาษาอาฟรีกานส์
+    albanian: ภาษาแอลเบเนีย
     arabic: ภาษาอาหรับ
     armenian: ภาษาอาร์เมเนีย
+    belarusian: ภาษาเบลารุส
+    bengali: ภาษาเบงกาลี
     bulgarian: ภาษาบัลแกเรีย
     catalan: ภาษากาตาลา
+    cebuano: ภาษาเซบัวโน
     chinese_simplified: ภาษาจีน (ตัวย่อ)
     chinese_traditional: ภาษาจีน (ดั้งเดิม)
     creole_french: ภาษาครีโอล (ฝรั่งเศส)
@@ -1109,6 +1138,7 @@ th:
     croatian: ภาษาโครเอเชีย
     czech: ภาษาเช็ก
     danish: ภาษาเดนมาร์ก
+    davawenyo: ภาษาดาวาเวนโย
     dutch: ภาษาดัตช์
     english: ภาษาอังกฤษ
     estonian: ภาษาเอสโตเนีย
@@ -1116,36 +1146,58 @@ th:
     finnish: ภาษาฟินแลนด์
     french: ภาษาฝรั่งเศส
     galician: ภาษากาลิเซีย
+    gela: ภาษาเจลา
     german: ภาษาเยอรมัน
     greek: ภาษากรีก
     hawaiian: ภาษาฮาวาย
     hebrew: ภาษาฮีบรู
+    hiligaynon: ภาษาฮีลีไกโนน
+    hungarian: ภาษาฮังการี
     icelandic: ภาษาไอซ์แลนด์
+    ilokano: ภาษาอีโลกาโน
     indonesian: ภาษาอินโดนีเซีย
     italian: ภาษาอิตาลี
     japanese: ภาษาญี่ปุ่น
+    kannada: ภาษากันนาดา
     korean: ภาษาเกาหลี
+    latvian: ภาษาลัตเวีย
     lithuanian: ภาษาลิทัวเนีย
     luxembourgish: ภาษาลักเซมเบิร์ก
+    malay: ภาษามลายู
     malayalam: ภาษามลยาฬัม
+    maltese: ภาษามอลตา
+    maori: ภาษาเมารี
+    marathi: ภาษามราฐี
     maya: ภาษามายา
+    misima_paneati: ภาษามิซิมา-ปาเนอาติ
     mongolian: ภาษามองโกเลีย
+    nahuatl: ภาษานาวัตล์
     norwegian: ภาษานอร์เวย์
+    occitan: ภาษาอุตซิตา
     ojibwe: ภาษาโอจิบเว
+    palauan: ภาษาปาเลา
+    pangasinan: ภาษาปังกาซีนัน
+    persian: ภาษาเปอร์เซีย
     polish: ภาษาโปแลนด์
     portuguese: ภาษาโปรตุเกส
     romanian: ภาษาโรมาเนีย
     russian: ภาษารัสเซีย
+    santali: ภาษาสันถาลี
     setswana: ภาษาเซตสวานา
     sinhala: ภาษาสิงหล
     slovak: ภาษาสโลวัก
     slovenian: ภาษาสโลวีเนีย
     spanish: ภาษาสเปน
+    swahili: ภาษาสวาฮีลี
     swedish: ภาษาสวีเดน
     tagalog: ภาษาตากาล็อก
+    tahitian: ภาษาตาฮิติ
     thai: ภาษาไทย
+    tokelauan: ภาษาโตเกเลา
     turkish: ภาษาตุรกี
     ukrainian: ภาษายูเครน
+    waray_waray: ภาษาวาไร-วาไร
+    visayan: ภาษาวิซายัน
   life: สิ่งมีชีวิต
   life_list: "รายการสิ่งมีชีวิตของ %{user}"
   link_your_facebook_account: เชื่อมต่อบัญชี Facebook ของคุณ
@@ -1848,6 +1900,7 @@ th:
   stats: สถิติ
   status: สถานะ
   status_globally: '%{status} ทั่วโลก'
+  stop_editing: หยุดแก้ไข
   stop_following_user: "เลิกติดตาม %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
@@ -2233,6 +2286,7 @@ th:
           สงสัยว่าความเป็นส่วนตัวของพิกัดคืออะไรใช่ไหม? <a href="%{url}">เรียนรู้เพิ่มเติมในเอกสารของเรา</a>
     projects:
       edit:
+        admins_must_be_existing_members: ผู้ดูแลต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
         rules:
           has_media: มีสื่อ (รูปหรือเสียง)
           verifiable: ตรวจสอบได้
@@ -2243,6 +2297,7 @@ th:
         collection_projects: โครงการสะสมชนิด
         delete_project: ลบโครงการ
         duplicate_project: ทำซ้ำโครงการ
+        multiple_project_administrators: ผู้ดูแลโครงการหลายคน
         only_display_member_observations: |
           แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
         project_details: รายละเอียดโครงการ
@@ -2352,6 +2407,9 @@ th:
     prompts:
       day: วัน
       minute: นาที
+  errors:
+    messages:
+      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
   helpers:
     select:
       prompt: โปรดเลือก
@@ -2369,6 +2427,11 @@ th:
       format:
         significant: true
         strip_insignificant_zeros: true
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      messages:
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
   activerecord:
     attributes:
       assessment:
@@ -2404,6 +2467,8 @@ th:
       user:
         search_place_id: ค้นหาสถานที่
     errors:
+      messages:
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
       models:
         observation:
           attributes:
@@ -2417,6 +2482,7 @@ th:
         taxon_name:
           attributes:
             lexicon:
+              should_not_contain_commas_or_slashes: ไม่ควรมีจุลภาค (,) หรือเครื่องหมายทับ (/)
               should_be_in_english: ควรเป็นภาษาอังกฤษ
         taxon_range:
           attributes:
