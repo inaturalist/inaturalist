@@ -1784,7 +1784,7 @@ th:
   research: งานวิจัย
   research_: งานวิจัย
   research_grade: ระดับงานวิจัย
-  research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ สถานที่ วันที่ และความเห็นร่วมกันของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ ตำแหน่ง วันที่ และความเห็นร่วมกันของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   research_grade_observations_have: 'การสังเกต "ระดับงานวิจัย" ต้องมีวันที่ รูปภาพ พิกัด และการจำแนกชนิดโดยชุมชน คลิกเพื่อดูการประเมินคุณภาพข้อมูล'
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
   reset_brightness: คืนค่าความสว่าง
@@ -2076,7 +2076,7 @@ th:
   today: วันนี้
   top_identifier_caps: ผู้ที่มีการจำแนกมากสุด
   top_identifiers: ผู้ที่มีการจำแนกมากสุด
-  top_identifiers_of_taxon: ผู้ที่มีการจำแนก %{taxon} มากสุด
+  top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon} มากสุด
   top_observer_caps: ผู้ที่มีการสังเกตมากสุด
   top_observers: ผู้ที่มีการสังเกตมากสุด
   total_members: สมาชิกทั้งหมด
@@ -2433,6 +2433,10 @@ th:
       messages:
         new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
   activerecord:
+    models:
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: แอปพลิเคชัน
     attributes:
       assessment:
         description: คำอธิบาย
