@@ -361,6 +361,7 @@ mi:
   go_back: E hoki
   google: Kūkara
   grid: Tukutuku
+  guides: Aratohu
   guidelines: Aratohu
   header_your_profile: Tāu kīwhaiaro
   help: Āwhina
@@ -519,6 +520,7 @@ mi:
   our_blog: Rangitaki tō mātou
   overview: Tirohanga Whānui
   password: Kupuhipa
+  password_confirmation: 'Whakaū kupuhipa'
   paste: Whakapiri
   people: Tāngata
   person: Tangata
@@ -680,6 +682,7 @@ mi:
   protozoans: rauropi pūtautahi
   purple: waiporoporo
   radius: Pūtoro (m)
+  radius_km: Pūtoro (km)
   radius_value: "Pūtoro (m): %{radius}"
   random: Matapōkere
   range: Ine whānui
@@ -892,6 +895,7 @@ mi:
   view_your_dashboard: Tirohia tō paemana
   view_your_inbox: Tirohia tō pouakauru
   view_your_observations: Tirohia tāu mauhanga
+  video_tutorials: Ako ataata
   weather: Huarere
   welcome: nau mai, haere mai
   welcome_back!: Hoki mai anō!
@@ -1072,6 +1076,9 @@ mi:
       month: Marama
       second: Hākona
       year: Tau
+  errors:
+    messages:
+      confirmation: Kāore i te ōrite te kupuhipa
   number:
     human:
       format:
@@ -1085,6 +1092,11 @@ mi:
       long: '%d %B %Y %I:%M %p'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       day_month_year: "%d %B %Y"
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      messages:
+        confirmation: Kāore i te ōrite te kupuhipa
   activerecord:
     attributes:
       conservation_status:
@@ -1109,6 +1121,9 @@ mi:
         name: Ingoa
         time_zone: Rohe wā
         place_id: Wāhi
+    errors:
+      messages:
+        confirmation: Kāore i te ōrite te kupuhipa
   i18n:
     inflections:
       "@vow_or_con":
