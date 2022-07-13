@@ -729,7 +729,7 @@ cs:
   are_you_sure_no_undo: Jste si jistí? Tento krok nelze vrátit.
   are_you_sure_delete_conservation_status: |
     Jste si jisti, že chcete odstranit tento stav ochrany? To může změnit
-    zakrytím vyobrazení tohoto taxonu a taxonů v něm.
+    zakrytí pozorování tohoto taxonu a taxonů v něm.
   are_you_sure_delete_post: Opravdu chcete odstranit tento post?
   are_you_sure_delete_taxon_move_associates: "Jste si jisti, že chcete smazat %{taxonname} (%{taxonid}) a přesunout všechny jeho vazby?"
   are_you_sure_delete_this_place: Jste si jisti, že chcete smazat toto místo?
@@ -1978,7 +1978,7 @@ cs:
   follow: Sledovat
   follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
   follow_user: "Sledovat %{user}"
-  followers: Sledovatelé
+  followers: Sledující
   following: Sledovaní
   following_x_people:
     one: 'Sleduje 1 osobu'
@@ -2361,51 +2361,51 @@ cs:
   lexicon_cannot_contain_words: "nemůže obsahovat následující slova: %{words}"
   lexicons:
     scientific_names: Vědecké názvy
-    afrikaans: afrikánsky
+    afrikaans: Afrikánština
     albanian: Albánština
     arabic: Arabština
     armenian: Arménština
     belarusian: Běloruština
-    bengali: bengálsky
+    bengali: Bengálština
     bulgarian: Bulharština
     catalan: Katalánština
     cebuano: Cebuánština
     chinese_simplified: Čínština (zjednodušená)
     chinese_traditional: Čínština (tradiční)
-    creole_french: kreolsky
-    creole_portuguese: kreolskou portugalštinou
+    creole_french: Kreolšina (francouzská)
+    creole_portuguese: Kreolština (portugalská)
     croatian: Chorvatština
     czech: Čeština
     danish: Dánština
     davawenyo: Davawenyo
-    dutch: holandsky
-    english: anglicky
-    estonian: Estonsko
+    dutch: Holandština
+    english: Angličtina
+    estonian: Estonština
     faroese: Faerština
-    finnish: finština
-    french: francouzsky
+    finnish: Finština
+    french: Francouzština
     galician: Galicijština
     gela: Gela
-    german: německy
-    greek: řečtina
-    hawaiian: havajsky
-    hebrew: hebrejsky
+    german: Němčina
+    greek: Řečtina
+    hawaiian: Havajština
+    hebrew: Hebrejština
     hiligaynon: Hiligaynon
     hungarian: Maďarština
-    icelandic: islandsky
+    icelandic: Islandština
     ilokano: Ilokano
     indonesian: Indonéština
-    italian: italsky
-    japanese: japonsky
+    italian: Italština
+    japanese: Japonština
     kannada: Kannadština
-    korean: korejsky
-    latvian: lotyština
+    korean: Korejština
+    latvian: Lotyština
     lithuanian: Litevština
-    luxembourgish: lucemburština
+    luxembourgish: Lucemburština
     malay: Malajština
     malayalam: Malajámština
-    maltese: maltsky
-    maori: maorsky
+    maltese: Maltština
+    maori: Maorština
     marathi: Maráthština
     maya: Maya
     misima_paneati: Misima-paneati
@@ -2416,6 +2416,7 @@ cs:
     ojibwe: Ojibwe
     palauan: Palauština
     pangasinan: Pangasinan
+    persian: Perština
     polish: Polština
     portuguese: portugalsky
     romanian: rumunština
@@ -2426,6 +2427,7 @@ cs:
     slovak: Slovenština
     slovenian: Slovinština
     spanish: španělsky
+    swahili: Svahilština
     swedish: švédsky
     tagalog: Tagalog
     tahitian: tahitsky
@@ -2496,56 +2498,56 @@ cs:
   loading_wikipedia_description: "Načítání popisu z Wikipedie..."
   locales_: Národní prostředí
   locales:
-    ar: Arabština
+    ar: arabsky
     be: bělorusky
-    bg: Bulharský
-    br: Bretonština
-    ca: Katalánština
+    bg: bulharsky
+    br: bretonsky
+    ca: katalánsky
     cs: česky
-    da: Dánština
-    de: Němec
-    el: řečtina
-    en: Angličtina
-    eo: Esperanto
-    es: Španělština
-    es-AR: Španělština (Argentina)
-    es-CO: Španělština (Kolumbie)
-    es-MX: Španělština (Mexiko)
-    et: estonský
-    eu: Baskičtina
-    fi: Finština
-    fr: francouzština
-    fr-CA: Francouzština (Kanada)
-    gl: Galicijština
-    he: Hebrejsky
+    da: dánsky
+    de: německy
+    el: řecky
+    en: anglicky
+    eo: esperanto
+    es: španělsky
+    es-AR: španělsky (Argentina)
+    es-CO: španělsky (Kolumbie)
+    es-MX: španělsky (Mexiko)
+    et: estonsky
+    eu: baskicky
+    fi: finsky
+    fr: francouzsky
+    fr-CA: francouzsky (Kanada)
+    gl: galicijsky
+    he: hebrejsky
     hu: maďarsky
-    id: Indonéština
-    it: Italština
-    ja: Japonština
+    id: indonésky
+    it: italsky
+    ja: japonsky
     kn: kannadsky
-    ko: Korejština
-    lb: Lucemburština
-    lt: Litevština
-    lv: lotyština
+    ko: korejsky
+    lb: lucembursky
+    lt: litevsky
+    lv: lotyšsky
     mk: makedonsky
     mr: maráthsky
-    nb: Norština (Bokmål)
+    nb: norsky (Bokmål)
     nl: holandsky
-    oc: okcitánština
-    pl: Polština
-    pt: Portugalština
-    pt-BR: portugalština (Brazílie)
-    ru: Rusky
-    sat: santálština
-    sk: Slovenština
+    oc: okcitánsky
+    pl: polsky
+    pt: portugalsky
+    pt-BR: portugalsky (Brazílie)
+    ru: rusky
+    sat: santálsky
+    sk: slovensky
     sl: slovinsky
     sq: albánsky
     sv: švédsky
     th: thajsky
-    tr: Turečtina
-    uk: Ukrajinština
-    zh-CN: Čínština
-    zh-TW: Čínština (tradiční)
+    tr: turecky
+    uk: ukrajinsky
+    zh-CN: čínsky (zjednodušeně)
+    zh-TW: čínsky (tradičně)
   locality_notes: Poznámky k lokalitě
   localized_species_accounts: Účty lokalizovaných druhů
   location: Místo
@@ -3976,6 +3978,7 @@ cs:
   queued: Ve frontě
   query: Dotaz
   radius: poloměr (m)
+  radius_km: Poloměr (km)
   radius_value: "Poloměr (m): %{radius}"
   random: Náhodně
   range: Rozsah
@@ -4763,6 +4766,9 @@ cs:
   taxonomy: Taxonomie
   taxon_assessments_are: |
     Hodnocení taxonů jsou dokumenty hodnotící aktuální status druhu, obvykle status ochrany. Může je využít například regionální ochranářská organizace při organizování informací a vyžadování zpětné vazby o statusu několika ohrožených taxonů v regionu.
+  taxon_change_commit_may_still_be_processing: |
+    Změny taxonu mohou být stále zpracovávány, takže některé záznamy
+    ještě nejsou aktualizované
   taxon_change_must_be_committed_to_update_records: Pro aktualizaci záznamů musí být provedena změna taxonu
   taxon_change_title_taxon_drop: Zahození taxonu %{id}
   taxon_change_title_taxon_merge: Taxonomické sloučení %{id}
@@ -4969,7 +4975,7 @@ cs:
     Neprovádějte prosím editaci taxonů. Editace ostatních polí je možná.
   this_taxon_concept_is_inactive: tento koncept taxonu je neaktivní
   this_taxon_has_more_than_1000_alt: |
-    Tento taxon má s ním spojené více než 1000 pozorování, takže zpracování těchto
+    S tímto taxonem je spojeno více než 1000 pozorování, takže zpracování těchto
     změn může nějakou dobu trvat. Jste si jisti, že jsou nezbytné?
   this_taxon_has_no_default_photo: Tento taxon nemá žádnou základní fotku!
   this_taxon_is_inactive_this_means: |
