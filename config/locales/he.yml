@@ -286,7 +286,7 @@ he:
   about_trusting_projects_project_managers_are: |-
     מנהלות ומנהלי הפרויקטים שיקבלו גישה לקואורדינטות המוסתרות שלך הם:
   about_trusting_projects_warning: |-
-    שימו לב שמנהלות ומנהלי פרויקטים יכולים לשנות את הפרמטרים של הפרויקט כדי לכלול כל אחת מהתצפיות שלך, וביכולותן להוסיף או להסיר מנהלות ומנהלי פרויקטים בכל זמן. אמנם תקבלו התראות על שינויים אלה, אך אתם בעקרון סומכים על פרויקט זה עם נתוני המיקום הפרטיים שלכם, אז יש להיזהר.
+    שימו לב שמנהלות ומנהלי פרויקטים יכולים לשנות את הפרמטרים של הפרויקט כדי לכלול כל אחת מהתצפיות שלך, וביכולותן להוסיף או להסיר מנהלות ומנהלי פרויקטים אחרים בכל זמן. אמנם תקבלו התראות על שינויים אלה, אך אתם בעקרון סומכים על פרויקט זה עם נתוני המיקום הפרטיים שלכם, אז יש להיזהר.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     באפשרותך לבחור לשתף קואורדינטות מוסתרות עבור
@@ -1014,7 +1014,7 @@ he:
   community_id_heading: טקסון הקהילה
   community_id_at_species_or_lower?: רמת זיהוי קהילתי של מין או רמה נמוכה יותר
   community_id_at_species_level_or_lower: רמת זיהוי קהילתי של מינים או רמה נמוכה יותר
-  community_moderation_settings: הגדרות מתינות הקהילה
+  community_moderation_settings: הגדרות בקרת הקהילה
   community_supported_id: טקסון שנתמך על־ידי הקהילה
   compare: השווה
   compare_with: השוואה עם
@@ -1211,7 +1211,7 @@ he:
   csv: CSV
   csv_file: קובץ CSV
   csv_should_not_contain_a_header_row: על ה-CSV להיות ללא שורת כותרת
-  cumulative_ids: "סה\"כ זיהויים: %{count} מ %{total}"
+  cumulative_ids: "סה\"כ זיהויים: %{count} מתוך %{total}"
   curate_observations: אצירת תצפיות
   curate_taxa: אצירת טקסונים
   curate_user: אצירת משתמשים
@@ -3463,7 +3463,7 @@ he:
   sites_affiliation_overview_current_member_list_html: |
     ניתן לראות את רשימת החברות והחברים הנוכחית %{start_tag_network}ברשת iNaturalist%{end_tag_network}.
   sites_affiliation_overview_in_order_to_advance: |
-    חברות וחברי הרשת יכולים לשתף דאטא מ-iNaturalist על מנת לקדם מחקר ושימור טבע, כל אחת בתחום שלה. יש להן אחריות להעריך באיזו מידה בקשת הדאטא שלהן והשלכותיה הפוטנציאליות תקינות והולמות; להבהיר בכתב את האחריות גם לוודא את אבטחת המידע ולא לחשוף אותו בגלוי באף צורה, או לשתף אותו מעבר למטרה המקורית לשמה הוא נועד; לתעד כל מקרים של שיתוף יחד עם התוצאות הנלוות או שימושים מתוכננים; ולדווח מדי שנה בשנה ל-iNaturalist.
+    חברות וחברי הרשת יכולים לשתף דאטא מ-iNaturalist על מנת לקדם מחקר ושמירת טבע, כל אחת בתחום שלה. יש להן אחריות להעריך באיזו מידה בקשת הדאטא שלהן והשלכותיה הפוטנציאליות תקינות והולמות; להבהיר בכתב את האחריות גם לוודא את אבטחת המידע ולא לחשוף אותו בגלוי באף צורה, או לשתף אותו מעבר למטרה המקורית לשמה הוא נועד; לתעד כל מקרים של שיתוף יחד עם התוצאות הנלוות או שימושים מתוכננים; ולדווח מדי שנה בשנה ל-iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}רשת iNaturalist%{end_tag_network} היא אוסף של אתרים מותאמים לפי מיקום %{start_tag_global}ברשת iNaturalist העולמית%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
@@ -3655,6 +3655,7 @@ he:
   taxon_colors: צבעי טקסון
   taxon_curators: אוצרי טקסון
   taxon_framework_complete: "שלם: כן"
+  taxon_framework_deviations_with_count_html: "חריגות: %{count}"
   taxon_framework_notes: הערות על מסגרת הטקסון
   taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
   taxon_merge: איחוד טקסונים
@@ -4281,16 +4282,6 @@ he:
           זהו המספר הכולל של טקסוני "עלה" המיוצגים בשאילתה. לפעמים יופיעו יותר שורות מזה עם ספירות שאינן אפס מכיוון שיש טקסונים מרמה גבוהה יותר אשר נוספו משאילתות אחרות. למשל אם שאילתה 1 כוללת תצפית של 'הומו ספיאנס' ושאילתה 2 כוללת תצפית מהסוג 'הומו', שני הטקסונים יופיעו בטבלה, אבל תהיה שורה אחת נוספת עבור הסוג 'הומו' בשאילתה 1, אשר לא נכללה בספירה הכוללת שלה כי היא ספרה רק את המין 'הומו ספיאנס' בתוך הסוג, מכיוון שהוא חלק ה"עלה" של אותו חלק בעץ שלה.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: אנכי
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} אינו משותף"
-          #Count of how many taxa several observation searches have in common
-          two: "%{count} אינם משותפים"
-          #Count of how many taxa several observation searches have in common
-          many: "%{count} אינם משותפים"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} אינם משותפים"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           #Count of how many taxa are not present in *all* of several observation searches
@@ -4485,7 +4476,10 @@ he:
         custom_project_fields_means: "התאמת כרזת הפרויקט, הוספת תוכן צדדי, ועריכת CSS"
         icon_desc: "יחתך לריבוע"
         project_assets_desc_html: |
-          <p class="description">נכסי פרויקט הם רק קבצים משויכים לפרויקט שלך, עם מספר כללים מיוחדים:</p><ol class="description"> <li>קבצים עם הסיומות .logo.jpg, .logo.png וכו' ישמשו ללוגו של הפקויט בעמוד הפרויקט במקום אייקון הפרויקט</li> <li>קובצי KML ו-KMZ יתווספו למפה בעמוד הפרויקט</li>
+          <p class="description">נכסי פרויקט הם רק קבצים משויכים לפרויקט שלך, עם מספר כללים מיוחדים:</p>
+          <ol class="description"> 
+          <li>קבצים עם הסיומות .logo.jpg, .logo.png וכו' ישמשו ללוגו של הפקויט בעמוד הפרויקט במקום אייקון הפרויקט</li> 
+          <li>קובצי KML ו-KMZ יתווספו למפה בעמוד הפרויקט</li>
           </ol>
         rules:
           captive: בשבי/מתורבת
@@ -4681,16 +4675,6 @@ he:
           במידה וברצונך לעזור ולתרגם, %{link_tag} כאן ניתן ללמוד איך%{link_tag_end}.
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          רוב הקטגוריות של אורגניזמים הן בעלות "שמות נפוצים" בשפות מדוברות. שמות אלו הם בדרך כלל מוכרים, קלים להגייה, וקבועים לאורך זמן. אולם להרבה אורגניזמים יש כמה שמות במקומות שונים, אפילו באותה השפה, דבר אשר יכול להקשות על תקשורת בהירה אודות אורגניזמים אלו. מדעניות ומדענים מתייחסים לבעיה זו באמצעות שימוש ב"שם מדעי" אחד לכל קטגוריה של אורגניזם שמשתלבת בכללי <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">נומנקלטורה דו-שמית</a>, אבל שמות אלו נוטים להיות מבוססים על לטינית, שפה שאף אחד לא מדבר, ולכן הם לא קליטים כמו שמות נפוצים עבור א.נשים רבים. שמות מדעיים יכולים גם לשקף מיקום טקסונומי של אורגניזם, ועקב כך הם יכולים להשתנות כאשר מדעניות ומדענים מפתחות.ים תיאוריות יותר מדויקות על היחסים האבולוציוניים בין אורגניזמים שונים, מה ששוב מוריד את השימושיות של שמות אלו בתקשורת, אפילו בין א.נשים שמכירות שמות מדעיים.
-          </p>
-          <p>
-          הפתגם הישן מסכם היטב: "שמות נפוצים משתנים בין מקום למקום, ושמות מדעיים משתנים בין זמן לזמן."
-          </p>
-          <p>
-          אנו משתדלים להתייחס לחסרונות הללו באמצעות הצגת גם שמות נפוצים וגם שמות מדעיים היכן שאפשר, ובחירת שמות נפוצים לפי השפה וההעדפות הגיאוגרפיות של המשתמש.ת.
-          </p>
         about_conservation_status_desc: |
           סטטוס השימור מסכם את סכנת ההכחדה עבור קבוצת אורגניזמים.
         about_establishment_desc: |
@@ -4760,8 +4744,6 @@ he:
           <p>
           ביכולתך להשתיק כמה אנשים שאת.ה רוצה, רק יש לזכור כי תפסיד.י התראות שעשויות להיות חשובות, כגון זיהויים שמכריעים את זיהוי הקהילה על תצפיות שלך.
           </p>
-        name_place_help_html: |
-          לתעדף שמות נפוצים שנמצאים בשימוש במקום זה.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4789,7 +4771,7 @@ he:
           joined: פרוייקטים שהצטרפת אליהם
           none: "אף אחד, רק את.ה יכול.ה להוסיף את התצפיות שלך לפרויקטים"
         prefers_community_taxa_desc: |
-          %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה לעולם אינו ראוי להחליף את שלך, ניתן לבטן את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכים/י עם זיהוי הקהילה.
+          %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה אינו ראוי להחליף את שלך, ניתן לבטל את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכימ.י עם זיהוי הקהילה.
         prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
         prefers_no_tracking_label_desc_we_use: |
           אנחנו משתמשים במגוון שירותים של גופי צד שלישי על מנת לנטר את יציבות, ולאבחן באגים ובעיות אחרות בתוכנה ששלנו. גופי צד שלישי אלו כוללים
@@ -4872,14 +4854,14 @@ he:
         keep_track: המשיכו לעקוב
         record_your_encounters: |
           תיעוד המפגשים שלך עם מינים שונים והחזקת רשימות חיים - הכל בענן.
-        create_useful_data: תירמו מידע משמעותי
+        create_useful_data: לתרום מידע שימושי
         help_scientists: עיזרו למדענים ואנשי ממשק הטבע להבין מתי והיכן מינים שונים מופיעים.
-        crowdsource_identifications: זיהוי ההמונים
-        connect_with_experts: התחברו אל המומחים שיכולים לזהות את המינים שצפיתם בהם.
-        become_a_citizen_scientist: הפכו למדענים אזרחים
+        crowdsource_identifications: להיעזר בחוכמת ההמונים
+        connect_with_experts: התחברו אל מומחיות ומומחים שיכולים לזהות את המינים שצפיתם בהם.
+        become_a_citizen_scientist: להפוך למדענ.ית בקהילה
         find_a_project: "מיצאו פרוייקט עם מטרה שמעניינת אותכם, או התחילו אחד משלכם."
         learn_about_nature: לימדו על הטבע
-        build_your_knowledge: הרחיבו אופקים באמצעות שיחות עם חובבי טבע אחרים ועזרה לאחרים.
+        build_your_knowledge: הרחיבו אופקים באמצעות שיחות ועזרה הדדית עם חובבות וחובבי טבע אחרים.
         run_a_bioblitz: הריצו ביו-בליץ
         hold_an_event: קיימו אירוע שבו אנשים מנסים לתעד את מספר המינים הגבוה ביותר.
         works_on_all_your_devices: עובד בכל המכשירים שלך
