@@ -271,6 +271,7 @@ tr:
     sex: '"Cinsiyet" için Açıklama Ekle'
     plant_phenology: '"Bitki Fenolojisi" için Açıklama Ekle'
     life_stage: '"Yaşam Evresi" için Açıklama Ekle'
+    evidence_of_presence: '"Varlık Kanıtı" için Ek Açıklamalar Ekleyin'
   add_another_flag: Başka Bir İşaret Ekle
   add_another_photo: Başka Bir Fotoğraf Ekle
   add_another_section: Başka Bir Kısım Ekle
@@ -330,6 +331,13 @@ tr:
   add_life_stage_larva_annotation: '"Yaşam Evresi: Larva" açıklaması ekle'
   add_life_stage_juvenile_annotation: '"Yaşam Evresi: Genç" açıklaması ekle'
   add_life_stage_egg_annotation: '"Yaşam Evresi: Yumurta" açıklaması ekle'
+  add_evidence_of_presence_organism_annotation: '"Varlık Kanıtı: organizma" ek açıklamasını ekleyin'
+  add_evidence_of_presence_feather_annotation: '"Varlık Kanıtı: tüy" ek açıklamasını ekleyin'
+  add_evidence_of_presence_gall_annotation: '"Varlık Kanıtı: gal" ek açıklamasını ekleyin'
+  add_evidence_of_presence_scat_annotation: '"Varlık Kanıtı: dışkı" ek açıklamasını ekleyin'
+  add_evidence_of_presence_track_annotation: '"Varlık Kanıtı: iz" ek açıklamasını ekleyin'
+  add_evidence_of_presence_bone_annotation: '"Varlık Kanıtı: kemik" ek açıklamasını ekleyin'
+  add_evidence_of_presence_molt_annotation: '"Varlık Kanıtı: deri değiştirme" ek açıklamasını ekleyin'
   #As in a Taxon Framework Relationship
   add_relationship: 'İlişki ekle'
   #As in a Guide Section
@@ -501,6 +509,10 @@ tr:
   alphabetical_order: Alfabetik Sıra
   already_have_an_account_log_in_html: Zaten bir hesabınız var mı? <strong>Giriş yapın.</strong>
   amphibians: yüzergezerler
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: İstenmeyen Anlaşmazlıkları Analiz Edin
   analyze_ids: Tanımlamaları analiz et
   ancestor_taxon: Ata Sınıfı
   and: ve
@@ -544,15 +556,28 @@ tr:
   #Label for an option to show/include content by any user
   any_user: Tümü
   anyone: Herhangi Biri
+  app_owner_application_about_p1a_html: |
+    iNaturalist uygulamaları, iNaturalist API'sinin kimliği doğrulanmış kullanımına izin verir. Bu, gözlemler ya da tanımlamalar oluşturmak gibi şeyler yapan API çağrıları yapmanıza olanak tanır. Genel kullanım durumları, kullanıcılarının iNaturalist gözlemleri oluşturması için işlevsellik içeren masaüstü ya da mobil uygulamalardır. Bu içerik gerçek insan katılımı ya da gözetimi ile oluşturulmalıdır. Daha fazla ayrıntı için lütfen makine tarafından oluşturulan gözlemleri, tanımlamaları ve yorumları yasaklayan <a href="/pages/community+guidelines"
+    target="_blank">Topluluk İlkelerimizi</a> okuyun.
+  app_owner_application_about_p2_html: |
+    2022'den itibaren API istemcisi olmak isteyen kullanıcılar için manuel onay şartı getiriyoruz. Üçüncü taraf uygulamaları oluşturmak için öncelikle "uygulama sahibi" olmak üzere bir başvuru göndermeniz gerekir. Bu başvuru, önerdiğiniz uygulamanın işlevselliğini ve onu nasıl kullanmayı tasarladığınızı açıklamalıdır. Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 <a href="/pages/help#identification"
+    target="_blank">geliştirme tanımlaması</a> yapmış olmanız gerekmektedir.
+  app_owner_application_inelligible: |
+    Başvuru yapabilmek için hesabınızın en az 2 aylık olması ve son bir ay içinde en az 10 geliştirme tanımlaması yapmış olmanız gerekmektedir.
+  app_owner_application_fields_explanation_html: Uygulamanızın sahip olacağı işlevselliği ve nasıl kullanmayı tasarladığınızı açıklayın.
+  app_owner_application_success: Uygulama sahibi başvurusu gönderildi
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Uygulama
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Uygulamalar
+  apply_app_owner: Başvur
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Başvuruyu Gönder
+  apply_to_be_an_app_owner: Uygulama Sahibi Olmak için Başvurun
+  apply_to_create_applications_title: Uygulama Oluşturmak için Başvurun
   apply_to_selected: Seçililere uygula
   apply_captive_cultivated: "Kısıtlı / ekili olarak işaretle"
   apply_fields: Alanları uygula
@@ -566,6 +591,8 @@ tr:
   are_you_really_sure_want_delete_this_user: Bu kullanıcıyı ve içeriklerini silmek istediğinizden gerçekten, gerçekten emin misiniz?
   are_you_sure?: Emin misiniz?
   are_you_sure_no_undo: Emin misiniz? Bu geri alınamaz.
+  are_you_sure_delete_conservation_status: |
+    Bu koruma durumunu silmek istediğinize emin misiniz? Bu durum, bu sınıf ve içindeki sınıflara ilişkin gözlemlerin belirsizliğini değiştirebilir.
   are_you_sure_delete_post: Bu gönderiyi silmek istediğinizden emin misiniz?
   are_you_sure_delete_taxon_move_associates: "Tüm %{taxonname} (%{taxonid}) ile bağlıları taşımak ve silmek istediğinizden emin misiniz?"
   are_you_sure_delete_this_place: Bu yeri silmek istediğinden emin misin?
@@ -644,6 +671,7 @@ tr:
   assessment_x: "%{assessment} değerlendirmesi"
   assessments: değerlendirmeler
   associations: İlişikler
+  atlased: Haritalandı
   atlas_for_taxon_html: '%{taxon} için Atlas'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -659,6 +687,14 @@ tr:
     natureserve: NatureServe
     cites: CITES
   authorize: Yetki ver
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: PKCE ile yetkilendirin
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (<code>%{code_challenge}</code>'nı <code>%{code_verifier_param}</code> olarak kullanın) Not: Bu basit bir örnektir. Kod üretiminde <code>%{code_challenge_method}</code> kullanmalı ve <code>%{code_challenge_param}</code> doğru hash etmelisiniz.
   authorize_permissions_from_provider: "%{provider} tarafından izin yetkisi verme"
   automatic_short: Kendiliğinden
   automatically_add_observations_to_this_project: Gözlemleri bu projeye kendiliğinden ekle
@@ -667,6 +703,7 @@ tr:
   #of values, and not a synonym of "typical" or "normal"
   avg: Ort
   back: Geri
+  back_to_applications: "&laquo; Uygulamalara geri dön"
   back_to_all_species: Tüm Türlere Dön
   back_to_editing_observation: Gözlem düzenlemeye dön
   back_to_friends: Arkadaşlara dön
@@ -707,6 +744,8 @@ tr:
   batch_operations: Toplu İşlemler
   be_the_first_to_fave_this_observation: Bu gözlemi ilk favori yapan siz olun!
   because_of: çünkü
+  become_a_donor_caps: BİR BAĞIŞÇI OL
+  become_a_donor_today_caps: BUGÜN BİR BAĞIŞÇI OL
   before_importing_photos: fotoğrafları içe aktarmadan önce
   bg_color: Arka Plan Rengi
   bio: Hakkında
@@ -749,6 +788,7 @@ tr:
   by_you: Senin tarafından
   calendar: Takvim
   calendars_only_show_x_observations_at_time: Takvimler bir kerede yalnızca %{x} gözlem gösteriyor
+  callback_url: Geri arama URL'si
   cancel: İptal
   cant_edit_or_delete_hidden_content: Site sorumluları tarafından gizlenmiş içeriği düzenleyemez ya da silemezsiniz
   cant_flag_an_object_that_doesnt_exist: Var olmayan nesneyi işaretleyemezsin
@@ -826,6 +866,8 @@ tr:
   change_your_password: Şifreni Değiştir
   #Plural noun, as in changes to a taxon record over time
   changes: Değişiklikler
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Soyun bu üst sınıfla değiştirilmesi istenmeyen anlaşmazlıklara neden olabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
   changing_the_geoprivacy: 'Coğrafi gizliliğin değişimi, diğer insanların gözlemlerinin konumları nasıl göreceğini değiştirir.'
   check_above_for_errors: Hatalar için yukarıyı kontrol et
   check_back_soon: Yakında kontrol et!
@@ -840,6 +882,7 @@ tr:
   check_list_place: "%{place} Kontrol Listesi"
   check_list_updated: Kontrol listesi güncellendi!
   check_lists_for: "%{place} için Diğer Kontrol Listeleri"
+  check_out_the_inat_store: iNaturalist Mağazasına Göz Atın
   check_out_what_the_observation: Tanımlamaya çalıştığınız gözlemin neye benzediğini kontrol edin.
   check_this_box_if_html: |
     Yüklenen içeriğe <a
@@ -863,6 +906,12 @@ tr:
   choose_what_kind_of_change_youre_creating: "Ne tür bir değişiklik yaratacağını seç."
   cid_d_to_genus: Cins düzeyinde CID
   citation: Alıntı
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Bir <strong>(B)</strong> üst sınıfı, bir <strong>(E)</strong> alt sınıfını taksonomik ağacın başka bir bölümüne taşıyarak daralttığında, üst sınıfın mevcut kimliklerinin taşınan alt sınıfın mevcut kimlikleriyle uyuşmazlık olarak yorumlanması ile sonuçlanan istenmeyen uyuşmazlıklar ortaya çıkar.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Bir <strong>(B)</strong> üst sınıfının, bir <strong>(E)</strong> alt sınıfı ile taksonomik ağacın başka bir bölümüyle değiştirilmesi ile daraltıldığında, üst sınıfın mevcut kimliklerinin değiştirilen alt sınıfın mevcut kimlikleriyle uyuşmazlık olarak yorumlanması ile sonuçlanan istenmeyen uyuşmazlıklar ortaya çıkar.
   classification: Sınıflama
   clear: temizle
   clear_filters: Filtreleri temizle
@@ -882,6 +931,10 @@ tr:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Yorum
   comment_deleted: Yorum silindi
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Yorum gizlendi
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Yorum açığa çıkarıldı
   comments: Yorumlar
   comments_by_me: Yorumlarım
   comments_have_been_disabled: Yorumlar devre dışı bırakıldı
@@ -894,8 +947,12 @@ tr:
   committed_by_user_on_date_html: '%{date} tarihinde%{user} tarafından yapıldı'
   #Label for date the taxon change was committed
   committed_on: '%{date} tarihinde yapıldı'
+  committed_taxon_changes_cannot_be_deleted: İşlenmiş sınıf değişiklikleri silinemez
   #Status message while a taxon change is being committed
   committing: Yapılıyor...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: İşleme yapmak istenmeyen anlaşmazlıklara yol açabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
   common_name: Genel İsim
   community: Topluluk
   community_curated: Topluluk Düzenlendi
@@ -923,10 +980,17 @@ tr:
   comprehensive_check_list_for_taxon_html: |
     %{taxon} için <span class="comprehensive_notice" data-tip="%{tip}">kapsamlı</span> kontrol listesi
   comprehensive_list: Kapsamlı liste
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Bilgisayar Görü Modeli
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Dahil
+  computer_vision_model_included_desc: |
+    Mevcut Bilgisayar Görü Modeli bu sınıfı tanımaktadr, bu nedenle "Görsel Olarak Benzer" etiketiyle otomatik önerilere dahil edilebilir.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Yükleniyor
+  computer_vision_model_pending_desc: |
+    Mevcut Bilgisayar Görü Modeli bu sınıf hakkında bilgi sahibi değildir, bu nedenle otomatik önerilere "Yakın" etiketiyle dahil edilebilirken, "Görsel Olarak Benzer" etiketine sahip olmayacaktır. Model dahil etme gereklilikleri her modele göre değişmekle birlikte, genellikle gözlem sayısına dayanır, bu nedenle bir sonraki model eğitimi sırasında bu sınıfın dahil edilme şansını artırmak için bu sınıfa ait daha çok gözlem ekleyin ya da tanımlayın.
   concept_status: Konsept Durumu
   confidential: Gizli
   configure: Yapılandır
@@ -952,6 +1016,9 @@ tr:
   connecting_your_inat_account_to_accounts_other_sites: "%{site_name} hesabınızı başka sitelerdeki hesaplara bağlamak, bu sitelerdeki kimlik bilgilerinizi kullanarak %{site_name} hesabınıza giriş yapmanızı sağlar."
   cannot_be_changed_during_a_content_freeze: İçerik dondurulduğunda değiştirilemez
   conservation_status: Koruma Durumu
+  conservation_status_created: Koruma durumu oluşturuldu
+  conservation_status_deleted: Koruma durumu silindi
+  conservation_status_updated: Koruma durumu güncellendi
   conservation_status_descriptions:
     status: Durum kodu, sıra, vb. E ya da CR gibi kısa bir kod varsa, lütfen bunu kullanın ancak yoksa, lütfen tam durumu kullanın örn. tehlikede ya da kritik tehlikede.
     description: Bunun neden listelendiğinin kısa açıklaması.
@@ -959,6 +1026,10 @@ tr:
       Bu durumu bildiren kuruluş. Lütfen yeni bir tane eklemeden önce var olan bir yetkiliyi seçmek için otomatik tamamlamayı kullanın. Yetkili olarak listelenmek istiyorsanız bunu atlayabilirsiniz.
     place: Bu durumun kısıtlandığı yer.
     url: Bu durumu açıklayan bir sayfanın URL'si.
+    geoprivacy: |
+      Bu sınıfın gözlemleri için varsayılan coğrafi gizlilik. Kıta, ülke ya da eyalet düzeyinde bir yerle ilişkili bir durumun coğrafi gizliliğinin, küresel olan ya da daha üst düzey bir yerle ilişkili bir durumu geçersiz kılabileceğini unutmayın.
+    iucn: |
+      Eşdeğer IUCN Kırmızı Liste kodu. Bu gerçek IUCN değerlendirmesi değildir, sadece bu durumun ima ettiği koordinat ifşası tehdidine en iyi uyan IUCN kodudur. Bu, "En Az Endişe Verici" ya da altında ise coğrafi gizliliği geçersiz kılacaktır, bu nedenle bu gözlemleri gizlemek istiyorsanız sınıfı için bunu "Tehdide Yakın" ya da daha yüksek bir değere ayarlayın.
   conservation_status_geoprivacy_desc: |
     Bu yerdeki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
@@ -1015,6 +1086,8 @@ tr:
     evidence_of_presence: Organizmanın Varlığının Kanıtı
     #As in the feather on a bird
     feather: Tüy
+    #Abnormal growth
+    gall: Gal
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: Organizma
@@ -1034,11 +1107,16 @@ tr:
     flowering: Çiçekler görünür, açık ve hala bitkiye bağlı
     fruiting: Meyveler görünür ve hala bitkiye bağlı
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
+    teneral: Yakın zamanda ortaya çıkmış ancak henüz nihai yetişkin formuna ulaşmamış yetişkin
     cannot_be_determined: Sununlan kanıtlardan tespit edilemez
     feather: Bir organizmaya bağlı olmayan bir veya birden fazla tüy
     organism: Organizmanın tamamı veya bir kısmı
+    scat: Dışkı maddesi (baykuş peletleri ya da diğer kusmuk maddeleri değil)
     track: Organizma tarafından zeminde veya karda yapılan izlenim
+    bone: |
+      Ağırlıklı olarak iç iskelet kalıntıları; aksi takdirde sağlam bir organizmada kısmi kemik maruziyeti "organizma" olarak etiketlenmelidir
     molt: Atılan deri veya dış iskelet
+    gall: Parazit bir organizmanın neden olduğu deforme olmuş bitki dokusu büyümesi
   controls: Kontroller
   convert: Dönüştür
   coordinate_systems: Koordinat sistemleri
@@ -1121,6 +1199,10 @@ tr:
     Neden küratör olmak istediğini açıklamalısın
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Neden küratör olmak istiyorsun?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    iNaturalist'in sınıflandırmasını düzenlemek istiyorsanız, lütfen yapmak istediğiniz sınıflandırma değişikliklere bir ya da iki örnek verin ve önerdiğiniz değişiklikler için kaynakları ekleyin. Varsa, lütfen <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">Küratör Kılavuzunda</a> listelenen uygun sınıflandırma otoritelere atıfta bulunun. Eğer herhangi bir kaynak eklemezseniz başvuru dikkate alınmayacaktır.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Eğer yaygın isimleri düzenlemek istiyorsan, lütfen değişiklik yapmak istediklerine ait bir kaç örnek belirt
@@ -1292,6 +1374,7 @@ tr:
   default: varsayılan
   #Default option
   default_: Varsayılan
+  default_display_time_zone: Varsayılan zaman dilimi
   default_invite_comment: "Harika fotoğraf! %{site_name} adresine göndermelisiniz: {{INVITE_LINK}}"
   default_observation_license: Varsayılan gözlemleme lisansı
   default_photo_license: Varsayılan fotoğraf lisansı
@@ -1299,6 +1382,8 @@ tr:
   default_search_place_description: |
     Bu, senin tüm Keşfetme ve Tanımlama aramalarında varsayılan bölgen olacak.
   default_sound_license: Varsayılan ses lisansı
+  default_time_zone_desc: |
+    Bu varsayılan zaman dilimidir. Nihai saat dilimi, gözlem kaydedildiğinde gözlemin konumuna göre atanacaktır.
   defaults_to_your_name_or_username: Adınıza ya da kullanıcı adınıza varsayılanlar
   defines_a_taxon_framework_for: '%{taxon_name} için bir Sınıf Yapısı tanımlar'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: '%{source} kaynaklı %{taxon} için bir Sınıf Yapısı tanımlar'
@@ -1442,6 +1527,8 @@ tr:
   each_place_displays_all_species_inat_knows: "Her, yer sayfası %{site_name} sitesinin bildiği bütün türleri gösterir; sayıyı, korunma durumları ve %{site_name} sitesinde bu türleri ilk o bölgeden en çok kimin gözlemlediğini de içerir. Türleri sınıflandırma grubu, renk, koruma durumu ya da yalın eski aramalara göre filtreleyebilirsiniz."
   earliest_added: Eskiden yeniye
   edit: Düzenle
+  #Title of the moderation note editor
+  edit_moderator_note: Moderatör Notunu Düzenle
   edit_a_batch_of_observations: Toplu Gözlem Düzenle
   edit_account_settings_and_profile: "Hesap ayarlarını &amp; profilini düzenle"
   edit_assessment: Değerlendirmeyi Düzenle
@@ -1450,6 +1537,7 @@ tr:
   edit_body: Gövdeyi düzenle
   edit_comment: Yorumunu Düzenle
   edit_complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Eksiksiz Kümeyi Düzenleyin"
+  edit_conservation_status: Koruma Durumu Düzenle
   edit_custom_project_fields: Özel Proje Alanlarını Düzenle
   edit_field: Alanı Düzenle
   edit_license: Lisansı Düzenle
@@ -1472,6 +1560,8 @@ tr:
   edit_taxon_link: Sınıf Bağlantısını Düzenle
   edit_taxon_range: Sınıf Aralığını Düzenle
   edit_the_observation: Gözlemi Düzenle
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Koruma durumlarını eklemek için bu sınıfı oluşturduktan sonra düzenleyin
   edit_your_account_and_profile_html: "Hesabını & Profilini Düzenle"
   edit_your_default_settings: "Varsayılan Ayarlarını Düzenle"
   edit_your_global_project_settings: Küresel Proje Ayarlarını Düzenle
@@ -1646,7 +1736,9 @@ tr:
   flag_as_non_spammer: Gereksiz iletici olmayan olarak işaretle
   #Label for the date/time when a flag was created
   flag_created: İşaret Oluşumu
+  flag_deleted: İşaret silindi
   flag_description: Sorumluların bir sorun olduğunu bilmesi için bu içeriği işaretle.
+  flag_comment_description: Bu işareti, neden eklediğinizi açıklayan ve destekleyici kanıtlara bağlantılar sağlayan isteğe bağlı bir yorum ekleyin.
   flag_for_check_list_title_html: |
     Şu Kontrol Listesi için İşaretle: %{title}
   flag_for_comment_id_html: <a href="%{url}">Yorum %{id}</a> için işaretle
@@ -1975,6 +2067,7 @@ tr:
   item_flagged_notice_html: |
     Bu gereksiz olarak işaretlendi ve artık herkes tarafından görülür değil. Bunu görebilirsiniz çünkü siz yarattınız ya da bir site sorumlususunuz. Bunun bir hata olduğunu düşünüyorsanız, lütfen <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
     <a href="%{manage_flags_path}">İşaretleri yönetme</a>
+  jobs: Bizimle Çalış
   join: Katıl
   join_and_add_an_observation_to_project_html: Katıl ve %{project}'e Bir Gözlem Ekle
   join_project: Bu projeye katılın
@@ -2090,24 +2183,37 @@ tr:
     indonesian: Endonezya dili
     italian: İtalyanca
     japanese: Japonca
+    kannada: Kannadaca
     korean: Korece
     latvian: Letonca
     lithuanian: Litvanca
     luxembourgish: Lüksemburgca
+    malay: Malayca
+    malayalam: Malayalamca
     maltese: Maltaca
     maori: Maorice
+    marathi: Marathice
+    maya: Maya
     misima_paneati: Misimanca
     mongolian: Moğolca
+    nahuatl: Nahuatl
     norwegian: Norveççe
     occitan: Oksitanca
+    ojibwe: Ojibvaca
+    palauan: Palauca
     pangasinan: Pangasinanca
+    persian: Farsça
     polish: Lehçe
     portuguese: Portekizce
     romanian: Rumence
     russian: Rusça
+    santali: Santalice
+    setswana: Setsvana
+    sinhala: Sinhala
     slovak: Slovakça
     slovenian: Slovence
     spanish: İspanyolca
+    swahili: Svahilice
     swedish: İsveççe
     tagalog: Tagalogca
     tahitian: Tahitice
@@ -2116,6 +2222,7 @@ tr:
     turkish: Türkçe
     ukrainian: Ukraynaca
     waray_waray: Varayca
+    visayan: Visayanca
   less: Daha az
   licensed_site_photos: "Lisanslı %{site_name} fotoğrafları"
   license: Lisans
@@ -3455,11 +3562,15 @@ tr:
   preview_observations_with_these_observation_requirements: Bu Gözlem Koşullarıyla Gözlemleri Önizleyin
   preview_of_synced_observation: "Eşitlenmiş gözlemi <strong>ön izleme</strong>. <a href=\"%{url}\">Geri alınsın mı?</a>"
   previewing: "Ön izleme yapılıyor..."
+  previous_date_short: Önceki
   prev: Önceki
   previous_observation: Önceki Gözlem
   previous_page: Önceki sayfa
+  previous_page_short: Önceki
   previous_photo: Önceki Fotoğraf
+  previous_post_short: Önceki
   previous_tab: Önceki Sekme
+  previous_taxon_short: Önceki
   print_verb: Yazdır
   privacy: Gizlilik
   private: özel
@@ -3543,6 +3654,7 @@ tr:
   queued: Sıraya eklendi
   query: Sorgulama
   radius: Yarıçap (m)
+  radius_km: Yarıçap (km)
   radius_value: "Yarıçağ (m): %{radius}"
   random: Rastgele
   range: Tarih Aralığı
@@ -4394,6 +4506,124 @@ tr:
   threatened: Tehdit Altında
   time_: zaman
   time_ago: "%{time} önce"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Güney Afrika Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Doğu Afrika Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Arjantin Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolombiya Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Merkez Zaman Dilimi (ABD ve Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Pasifik Zaman Dilimi (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Dağ Zaman Dilimi (ABD ve Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemala Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantik Standart Zaman Dilimi (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolivya Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peru Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Pasifik Zaman Dilimi (ABD ve Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Merkez Zaman Dilimi (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Doğu Zaman Dilimi (ABD ve Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Arizona Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Şili Kıtasal Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brezilya Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Pasifik Zaman Dilimi (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabistan Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Hindiçin Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hong Kong Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Batı Endonezya Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: İsrail Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Hindistan Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnoyarsk Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Çin Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singapur Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Tayvan Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Japonya Standart Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Yekaterinburg Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Adelaide Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Brisbane Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Melbourne Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Perth Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Sidney Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Doğu Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Doğu Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Türkiye Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Doğu Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Batı Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Batı Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Moskova Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Doğu Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Orta Avrupa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoa Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Yeni Zelanda Zaman Dilimi
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havai–Aleutian Zaman Dilimi
   #As in the title of a book or a blog post
   title: başlık
   title_and_description: "Başlık & Açıklama"
