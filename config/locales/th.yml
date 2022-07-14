@@ -404,7 +404,7 @@ th:
   all_taxa_: หน่วยอนุกรมวิธานทั้งหมด
   all_taxa_in_this_guide: หน่วยอนุกรมวิธานทั้งหมดในคู่มือนี้
   all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
-  all_updates: ทั้งหมดที่อัปเดต
+  all_updates: อัปเดตทั้งหมด
   allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
   allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
   alphabetical: ตามตัวอักษร
@@ -878,6 +878,7 @@ th:
   edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
+  edit_your_default_settings: "แก้ไขการตั้งค่าเริ่มต้นของคุณ"
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
@@ -1386,7 +1387,7 @@ th:
   no_identifications: ไม่มีการจำแนก
   no_ids: "จำนวนการจำแนก"
   no_ids_have_been_suggested_yet: ยังไม่ได้รับการแนะนำ
-  no_its_as_good_as_it_can_be: ไม่ต้อง แค่นี้ก็ดีแล้ว
+  no_its_as_good_as_it_can_be: ไม่ต้อง เท่านี้ก็พอแล้ว
   no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
   no_license_all_rights_reserved: ไม่มีสัญญาอนุญาต (สงวนลิขสิทธิ์ทั้งหมด)
   no_members_yet: "ยังไม่มีสมาชิก"
@@ -1642,6 +1643,7 @@ th:
   rank: ลำดับขั้น
   rank_position: อันดับ
   ranks:
+    stateofmatter: สถานะของสสาร
     kingdom: อาณาจักร
     x_kingdoms:
       other: อาณาจักร
@@ -1692,6 +1694,8 @@ th:
     subspecies: ชนิดย่อย
     variety: พันธุ์
     infrahybrid: ลูกผสมฐาน
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: สถานะของสสาร
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: อาณาจักร
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
@@ -1875,6 +1879,8 @@ th:
   site_stats: สถิติการใช้งาน
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
+  some_observations_are_missing_media_or_identifications_desc: |
+    การสังเกตที่ไม่มีรูปหรือเสียงจะไม่แสดงในผลการค้นหาเริ่มต้น และการสังเกตที่ไม่มีการจำแนกชนิดใด ๆ อาจทำให้ผู้เชี่ยวชาญค้นหาไม่เจอด้วย อย่างน้อยการจำแนกชนิดแบบคร่าว ๆ เช่น "พืช" ก็จะช่วยให้ผู้เชี่ยวชาญด้านพืชค้นเจอการสังเกตของคุณได้
   some_other_reason: อธิบายเหตุผลอื่น ๆ ข้างล่างนี้ได้
   some_rights_reserved: สงวนลิขสิทธิ์บางประการ
   sort_by: เรียงตาม
@@ -1948,6 +1954,7 @@ th:
   taxon_framework_relationship: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
   taxon_framework_relationship_number: "ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน %{number}"
   taxon_framework_relationships: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
+  taxon_history_notice: ประวัติหน่วยอนุกรมวิธานเริ่มใช้งานตั้งแต่กุมภาพันธ์ 2022 จึงไม่มีข้อมูลประวัติก่อนหน้านี้
   taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN หรือไม่ ถ้าไม่ใช่ เพราะเหตุใด?
   taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: นี่เป็นแผนที่การกระจายของบัญชีแดง IUCN
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: นี่ไม่ใช่แผนที่การกระจายของบัญชีแดง IUCN เนื่องจากแผนที่ไม่เหมาะสม
@@ -2232,6 +2239,7 @@ th:
   you_need_to_select_some_observations_first: คุณต้องเลือกการสังเกตบางอันก่อน
   you_sure_delete_project?: คุณแน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   your_content: เนื้อหาของคุณ
+  your_default: ค่าเริ่มต้นของคุณ
   your_home: หน้าหลักของคุณ
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
