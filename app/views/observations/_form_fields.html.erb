@@ -173,9 +173,23 @@
               :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
             } %>
           </div>
+
+          <div>
+            <% unless observation.photos.empty? || observation.new_record? -%>
+              <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
+            <% end -%>
+            <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+              <br/>
+              <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
+                "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                  "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+                ").join('&');" +
+                "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                  "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+            <% end -%>
+          </div>
           
           <% if @photo_identities.blank? %>
-          
             <div class="column-separator"><img src="<%= image_path('logo-eee-15px.png') %>"></div>
             
             <p class="ui description">
@@ -189,24 +203,7 @@
                 {:controller => 'picasa', :action => 'options'}, :class => "button" %>
               <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
             </div>
-
           <% end %>
-          
-          <div>
-            <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-              <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
-                "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
-                  "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
-                ").join('&');" +
-                "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
-                  "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
-            <% end -%>
-
-            <% unless observation.photos.empty? || observation.new_record? -%>
-              <br/>
-              <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
-            <% end -%>
-          </div>
         </div>
 
         <div id="add_sounds_<%= i %>">
