@@ -525,6 +525,7 @@ th:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการ %{place}?"
+  associated_observations: การสังเกตที่เกี่ยวข้อง
   you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
   you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
   asc: วันแรกสุดก่อน
@@ -933,6 +934,8 @@ th:
   favorite_taxa: หน่วยอนุกรมวิธานที่ชอบ
   favorites: "รายการโปรด"
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
+  #The name of a computer file
+  filename: ชื่อไฟล์
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
@@ -1101,6 +1104,8 @@ th:
   #*should* have a location
   location_unknown: ไม่มีตำแหน่ง
   language_slash_type: ภาษา / ศัพท์เฉพาะ
+  #Large photo size
+  large: ใหญ่
   last_active_with_date: "ใช้งานล่าสุด: %{date}"
   last_observation: การสังเกตล่าสุด
   last_observation_caps: การสังเกตล่าสุด
@@ -1291,6 +1296,7 @@ th:
   maverick: ขัดแย้ง
   media: สื่อ
   media_type: ประเภทสื่อ
+  medium: กลาง
   member_of_the_inaturalist_network_html: |
     สมาชิกของ<a href="%{url}">เครือข่าย iNaturalist</a>
   #As in members of a project
@@ -1349,6 +1355,7 @@ th:
   needs_id: รอจำแนกชนิด
   needs_id_: รอจำแนกชนิด
   needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ สถานที่ และวันที่ แต่ยังขาดความเห็นร่วมกันของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  needs_to_be_identified: ต้องการจำแนกชนิด
   #Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
   new_and_noteworthy: ใหม่ & น่าสังเกต
@@ -1430,6 +1437,7 @@ th:
   observation_date: วันที่
   observation_field: ข้อมูลภาคสนาม
   observation_field_details: รายละเอียดข้อมูลภาคสนาม
+  observation_field_type_datetime: วันที่และเวลา
   observation_fields: ข้อมูลภาคสนาม
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
@@ -1503,6 +1511,10 @@ th:
   person: ผู้ใช้งาน
   per_page: "จำนวนต่อหน้า"
   photo_licensing: สัญญาอนุญาตรูปถ่าย
+  photos_size:
+    small: เล็ก
+    medium: กลาง
+    large: ใหญ่
   place: สถานที่
   place_geo:
     geo_planet_place_types:
@@ -1807,6 +1819,8 @@ th:
   review_all: ทบทวนทั้งหมด
   reviewed: ดูแล้ว
   rg_observations: การสังเกตระดับงานวิจัย
+  rotate_left: หมุน​ซ้าย
+  rotate_right: หมุนขวา
   rules_types:
     must_be_verifiable: ต้องพิสูจน์ได้
     must_be_wild: ต้องพบตามธรรมชาติ
@@ -1875,7 +1889,9 @@ th:
   sign_out: ออกจากระบบ
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
+  sizes: ขนาด
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
+  small: เล็ก
   site_stats: สถิติการใช้งาน
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
@@ -1899,6 +1915,8 @@ th:
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: รายการตรวจสอบรายปี 2013'
   source_url: URL แหล่งที่มา
   sourced_to: อ้างอิงจาก
+  spam: สแปม
+  spammer: ผู้ส่งสแปม
   #Plural
   species: ชนิด
   species_from_around_the_world: ชนิดจากทั่วโลก
@@ -2146,6 +2164,8 @@ th:
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
   user_faved_this_observation: "%{user} เพิ่มการสังเกตนี้เข้ารายการโปรด"
+  user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
+  user_flagged_as_a_spammer_html: "%{user} ถูกรายงานว่าเป็นผู้ส่งสแปม"
   user_is_a_naturalist: "%{user} เป็นนักธรรมชาติวิทยา!"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
   users_journal: "วารสารของ %{user}"
@@ -2328,6 +2348,9 @@ th:
     search:
       index:
         no_taxa_forum: ติดต่อกระดานสนทนา
+    shared:
+      spam:
+        this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
     stats:
       index:
         #Short for "observations community-identified to genus"
@@ -2491,6 +2514,10 @@ th:
       messages:
         new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
       models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "ต้องมีอย่างน้อย 3 หน่วยอนุกรมวิธานในคู่มือของคุณ"
         observation:
           attributes:
             observed_on:
