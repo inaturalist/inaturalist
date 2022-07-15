@@ -1,4 +1,8 @@
 tr:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} değişiklik"
+    other: "%{count} değişiklik"
   x_comments:
     one: '%{count} yorum'
     other: '%{count} yorum'
@@ -2306,10 +2310,12 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    kn: Kannada
     ko: Korece
     lb: Lüksemburgca
     lt: Litvanca
     lv: Letonya
+    mi: Maori
     mk: Makedonca
     mr: Marathi
     nb: Bokmal Norveççesi
@@ -2319,6 +2325,7 @@ tr:
     pt: Portekizce
     pt-BR: Portekizce (Brezilya)
     ru: Rusça
+    sat: Santali
     sk: Slovakça
     sl: Slovence
     sq: Arnavutça
@@ -2608,11 +2615,13 @@ tr:
   new: Yeni
   new_and_noteworthy: Yeni & Öne Çıkan
   new_announcement: Yeni duyuru
+  new_application: Yeni uygulama
   new_assessment: Yeni değerlendirme
   new_check_list: Yeni kontrol listesi
   new_check_list_for: "%{place} için yeni bir kontrol listesi oluşturun &raquo;"
   new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsanız, oluşturun, sınıfları ekleyin ve ardından düzenleyin; burada kapsamlı olarak işaretleme seçeneğiniz olacaktır."
   new_comment_on_a_parent_by_user_link: '%{user_link} tarafından @vow_or_con{vow:an|a} %{parent} için yeni yorum'
+  new_conservation_status: Yeni Koruma Durumu
   new_flag_for: Şunun için Yeni İşaret
   new_guide: Yeni Rehber
   new_journal_post: Yeni Yayın Gönderisi
@@ -2696,6 +2705,7 @@ tr:
   no_more_taxa_to_load: Yüklenecek başka sınıflar yok!
   no_more_results_found: Başka sonuç bulunamadı
   no_new_messages: Yeni ileti yok
+  no_new_parent_specified: Yeni üst sınıf belirtilmedi
   no_observations: Gözlem Yok
   no_observations_from_this_place_yet: Bu yerden henüz gözlem yok.
   no_observations_matching_those_ids: Bu tanımlamalarla eşleşen gözlem yok.
@@ -2713,6 +2723,7 @@ tr:
   no_project_to_admin_current_user: "Hiçbir projeyi yönetmiyorsun"
   no_project_to_admin_login: "%{login} hiçbir projeyi yönetmiyor"
   no_projects_yet: Henüz proje yok
+  no_attached_range: Ekli mesafe yok
   no_range_data_available: Geçerli veri aralığı yok.
   no_recent_activity: Son etkinlik yok
   no_relevant_annotations: İlgili Açıklama Yok
@@ -2724,8 +2735,11 @@ tr:
   no_sections_have_been_added_to_this_assessments_yet: Bu değerlendirmelere henüz hiçbir bölüm eklenmedi.
   no_species_have_been_listed: Bu yer için henüz bir tür listelenmedi!
   no_species_on_this_list: Bu listede henüz tür yok!
+  no_species_on_this_list_for_owner: |
+    Sağ taraftaki "Listenize Ekleyin" aracını kullanarak bu listeye tür eklemeye başlayabilirsiniz.
   no_subject_parens: "(Konu yok)"
   no_such_wiki_page: Böyle bir sayfa bulunmamaktadır.
+  no_such_wiki_page_html: Böyle bir sayfa bulunmamakta. <a href="%{new_url}">Oluşturmak</a> ister misiniz?
   no_suggestions_available: Geçerli öneriler yok
   no_summary_from_wikipedia: Vikipedi'den özet yok
   no_summary_has_been_set: Ayarlanmış özet yok.
@@ -2742,6 +2756,7 @@ tr:
   none: Hiçbiri
   none_found: Hiçbir şey bulunamadı
   normal: sıradan
+  not_atlased: Haritalanmadı
   not_completed: Tamamlanmadı
   not_confident: Öneride bulunacak kadar kendimize güvenmiyoruz.
   not_confident_top_suggestions: Tavsiye yapacak kadar kendimize güvenmiyoruz ancak şunlar bizim en iyi önerilerimiz
@@ -2804,10 +2819,18 @@ tr:
   observation_brief_something_from_place_on_day_by_user: "%{user} kullanıcısı tarafından %{day} gününde %{place} yerinden bir şeyler"
   observation_brief_something_from_place_on_day_at_time: "%{time} zamanında ve %{day} gününde %{place} yerinden bir şeyler"
   observation_brief_something_from_place_on_day_at_time_by_user: "%{user} kullanıcısı tarafından %{time} zamanında ve %{day} gününde %{place} yerinden bir şeyler"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year: "%{month} %{year} tarihinde %{place} konumundan bir şey"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_from_place_in_month_year_by_user: "%{user} tarafından %{month} %{year} tarihinde %{place} konumundan bir şey"
   observation_brief_taxon_on_day: "%{day} gününden %{taxon}"
   observation_brief_taxon_on_day_at_time: "%{day} gününde %{time} zamanında %{taxon}"
   observation_brief_taxon_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında %{day} gününde %{taxon}"
   observation_brief_taxon_on_day_by_user: "%{day} gününde %{user} tarafından %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{month} %{year} tarihinde %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year_by_user: "%{user} tarafından %{month} %{year} tarihinde %{taxon}"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
   observation_brief_taxon_from_place: "%{place} yerinden %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{user} tarafından ve %{place} yerinden %{taxon}"
@@ -2815,6 +2838,10 @@ tr:
   observation_brief_taxon_from_place_on_day_by_user: "%{user} tarafından %{day} gününden ve %{place} yerinden %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time: "%{time} zamanında %{day} günü ve %{place} yerinden %{taxon}"
   observation_brief_taxon_from_place_on_day_at_time_by_user: "%{user} tarafından %{time} zamanında, %{day} gününde ve %{place} yerinden %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{month} %{year} tarihinde %{place} konumundan %{taxon}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{user} tarafından %{month} %{year} tarihinde %{place} konumundan %{taxon}"
   observations_by_category: "Kategoriye Göre Gözlemler"
   observations_by_app: Uygulamadan Gözlemler
   observations_by_rank: Düzeye Göre Gözlemler
@@ -2954,6 +2981,8 @@ tr:
       <li><strong>Katıldığın Tartışmalar:</strong> Başka birinin içeriğine yorum eklemek ya da tanımlama eklemek, sizi kendiliğinden abone eder ve yenilikleri alırsınız. Güncellemeleri almayı durdurmak için 'Aboneliklerimi Yönet' aracını kullanın.</li>
       </ul>
   one_by_one: "Birer birer"
+  #Header for a list of project observation requirements
+  one_of_the_following_must_be_true: "aşağıdakilerden biri doğru olmalıdır:"
   one_of_your_lists: "listelerinizden biri..."
   only_a_project_manager_can_add: Proje sorumlusunun durumunu yalnızca bir proje yöneticisi ekleyebilir
   only_administrators_may_access_that_page: Bu sayfaya yalnızca yöneticiler erişebilir
@@ -4076,6 +4105,16 @@ tr:
   sites_affiliation_about_desc_html: |
     Kuruluşunuz iNaturalist Ağı'na katılmak ile ilgileniyorsa,
     daha fazla ayrıntıya %{start_tag_join}buradan%{end_tag_join} ulaşabilirsiniz
+  sites_affiliation_more_automatically_hidden_coordinates: |
+    Otomatik gizlenen koordinatlar (sınıf coğrafi gizliliği nedeniyle gizlenmiş ya da özel)
+  sites_affiliation_more_user_hidden_coordinates: |
+    Kullanıcı tarafından gizlenen koordinatlar (sınıf coğrafi gizliliği nedeniyle gizlenmiş ya da özel)
+  sites_affiliation_overview_current_member_list_html: |
+    %{start_tag_network}iNaturalist Ağı%{end_tag_network} için mevcut üye listesini görebilirsiniz.
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist Ağı%{end_tag_network}, %{start_tag_global}küresel iNaturalist topluluğundaki%{end_tag_global} yerelleştirilmiş internet sayfalarının bir kümesidir.
+  sites_affiliation_title: Bağlılıkla İlgili Daha Çok Bilgi Edinin
+  sites_network_consists_of: "iNaturalist Ağı çeşitli kuruluşlardan oluşur:"
   some_agree: kısmi katılma
   some_observations_are_missing_media_or_identifications: |
     Bazı gözlemlerde eksik medya ya da tanımlamalar var
@@ -4237,6 +4276,7 @@ tr:
   summary: Özet
   supporting: Destekleyici
   suspend_user: Kullanıcıyı askıya al
+  suspend_user_html: '%{user} kullanıcısını askıya al'
   sw_lat: GB Enlemi.
   sw_lon: GB Boylamı.
   sync: Eşitlensin mi?
