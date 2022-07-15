@@ -99,8 +99,8 @@ de:
     one: "<a href='%{url}'>Eine Art</a>"
     other: "<a href='%{url}'>%{count} Arten</a>"
   x_suggestions_filtered_by_colon:
-    one: "Ein Vorschlag gefiltert nach:"
-    other: "%{count} Vorschläge gefiltert nach:"
+    one: "Ein Vorschlag, gefiltert nach:"
+    other: "%{count} Vorschläge, gefiltert nach:"
   x_taxa:
     one: "%{count} Taxon"
     other: "%{count} Taxons"
@@ -258,12 +258,12 @@ de:
   add_an_observation: Beobachtung hinzufügen
   add_an_observation_of: "Beobachtung von %{taxon} hinzufügen"
   add_an_observation_to_project_html: Beobachtung zu %{project} hinzufügen
-  add_annotations_for_x: Annotationen für "%{x}" hinzufügen
+  add_annotations_for_x: Angaben hinzufügen für "%{x}"
   add_annotations_for_controlled_attribute:
     sex: 'Angaben hinzufügen für: "Geschlecht"'
     plant_phenology: 'Angaben hinzufügen zu: "Pflanzenphänologie"'
     life_stage: 'Angaben hinzufügen zu: "Entwicklungsstadium"'
-    evidence_of_presence: Annotation für 'Anwesenheitsnachweis' hinzufügen
+    evidence_of_presence: Angaben hinzufügen für "Anwesenheitsnachweis"
   add_another_flag: Weitere Meldung hinzufügen
   add_another_photo: Weiteres Foto hinzufügen
   add_another_section: Weiteren Abschnitt hinzufügen
@@ -314,7 +314,7 @@ de:
   add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend (Blüte)"'
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
   add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
-  add_plant_phenology_no_evidence_of_flowering_annotation: 'Annotation "Phänologie (Pflanze): Nicht blühend" hinzufügen'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Angabe hinzufügen "Phänologie (Pflanze): Nicht blühend"'
   add_life_stage_adult_annotation: 'Angabe hinzufügen "Entwicklungssstadium: Adult"'
   add_life_stage_teneral_annotation: 'Angabe hinzufügen "Lebensstadium: Frisch geschlüpft"'
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
@@ -323,13 +323,13 @@ de:
   add_life_stage_larva_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Jungtier"'
   add_life_stage_egg_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Ei"'
-  add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
-  add_evidence_of_presence_feather_annotation: 'Annotation ''Anwesenheitsnachweis: Feder'' hinzufügen'
-  add_evidence_of_presence_gall_annotation: 'Annotation ''Anwesenheitsnachweis: Galle'' hinzufügen'
-  add_evidence_of_presence_scat_annotation: 'Annotation ''Anwesenheitsnachweis: Kot'' hinzufügen'
-  add_evidence_of_presence_track_annotation: 'Annotation ''Anwesenheitsnachweis: Spur'' hinzufügen'
-  add_evidence_of_presence_bone_annotation: 'Annotation ''Anwesenheitsnachweis: Knochen'' hinzufügen'
-  add_evidence_of_presence_molt_annotation: 'Annotation ''Anwesenheitsnachweis: Häutung'' hinzufügen'
+  add_evidence_of_presence_organism_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Organismus"'
+  add_evidence_of_presence_feather_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Feder"'
+  add_evidence_of_presence_gall_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Galle"'
+  add_evidence_of_presence_scat_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Kot"'
+  add_evidence_of_presence_track_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Spur"'
+  add_evidence_of_presence_bone_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Knochen"'
+  add_evidence_of_presence_molt_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Häutung"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
   #As in a Guide Section
