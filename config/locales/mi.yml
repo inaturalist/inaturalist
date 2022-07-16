@@ -451,6 +451,7 @@ mi:
   forum: Wānanga
   fungi:
     other: hekaheka
+  generate_your_stats: Tatauhia tāu tauanga
   Genus: Puninga
   go: Hoake
   go_back: E hoki
@@ -989,6 +990,7 @@ mi:
   red: whero
   refresh: Tāmata
   refreshing: e tāmata ana
+  regenerate_stats: Tatauhia tauanga anō
   relationships:
     one_to_one: kotahi-ki-kotahi
     many_to_many: maha-ki-maha
@@ -1045,6 +1047,8 @@ mi:
   species_taxon_name: Ingoa momo/rōpū
   start: Tīmata
   start_date_time: Rā/Wā tīmatanga
+  stats: Tauanga
+  stats_for_this_year_have_not_been_generated: Kāore anō kia tatauhia ngā tauanga mō tēnei tau
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: TOA
@@ -1072,6 +1076,8 @@ mi:
   thanks!: Kia ora!
   the_people_of_inat: "Ngā tāngata o %{site_name}"
   the_world: Te Ao
+  these_observations_have_not_been_uploaded_yet: |
+    Kāore anō kia tukuatu ēnei mauhanga
   third_person_possessive_singular: "%{noun} tō %{object_phrase}"
   this: tēnei
   this_is_your_observation: He tāu mauhanga tēnei
@@ -1105,12 +1111,13 @@ mi:
       select_all: Tīpakohia te mauhanga katoa
   uploading_num_of_count_photos:
     other: E tukuatu ana i whakaahua...
+  usage_stats: Tauanga whakamahi
   user: Kaiwhakamahi
   user_added_a_comment_html: "Nā %{user} tāpiritia tētahi kōrero"
   user_added_a_x: "Nā %{user} tāpiritia tētahi %{x}"
   user_added_a_x_to_noun_by_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
   user_added_a_x_to_noun_by_user_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
-  user_added_a_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nā %{by}"
+  user_added_a_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
   user_added_a_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_added_an_identification_html: "Nā %{user} tāpiritia tētahi tautuhi"
   user_added_an_observation_html: "Nā %{user} tāpiritia tētahi mauhanga"
@@ -1128,6 +1135,7 @@ mi:
   view: Tirohia
   view_all: Tirohia katoa
   view_all_flags: Tirohia ngā kara katoa
+  view_all_members: Tirohia ngā huānga katoa
   view_all_n: "TIrohia ngā %{n} katoa"
   view_all_observations: Tirohia ngā mauhanga katoa
   view_details: Tirohia ngā taipitopito
@@ -1140,6 +1148,7 @@ mi:
   view_observation: Tirohia te mauhanga
   view_observations: Tirohia ngā mauhanga
   view_place: Tirohia te wāhi
+  view_stats: Tirohia tauanga
   view_taxononomy_details_for_taxon: "Tirohia ngā taipitopito whakarōpū mō %{taxon}"
   view_the_observation: Tirohia te mauhanga
   view_user_observations: "Tirohia ngā mauhanga o %{user}"
@@ -1147,6 +1156,7 @@ mi:
   view_your_dashboard: Tirohia tō paemana
   view_your_inbox: Tirohia tō pouakauru
   view_your_observations: Tirohia āu mauhanga
+  view_your_year_stats: "Tirohia tāu tauanga mō %{year}"
   view_yours: Tirohia āu
   view_all_of_your_observations_from_x: "Tirohia āu mauhanga katoa mai i %{x}"
   video_tutorials: Ako ataata
@@ -1168,6 +1178,7 @@ mi:
   x_journal: "Rangitaki tō a %{user}"
   x_journal_middot: "Rangitaki tō a %{user} •"
   x_project_journal: "%{name} tō %{project}"
+  x_project_stats: "Tauanga mō %{project}"
   year: Tau
   year_month: tau/marama
   yellow: kōwhai
