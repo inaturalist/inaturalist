@@ -4876,6 +4876,7 @@ tr:
   users_id: "%{user} Tanımlamaları"
   users_journal: "%{user} Kullanıcısının Günlüğü"
   users_latest_observations_on_site: "%{user} kullanıcısının %{site} sayfasındaki son gözlemleri"
+  users_lists: "%{user}'nın Listeleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
   users_year_on_site: "%{user} Kullanıcısının %{site} sayfasındaki %{year} Yılı"
@@ -5096,8 +5097,24 @@ tr:
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
   yesterday: Dün
+  yir_donate_banner_inaturalist_in_year: "%{year} YILINDA INATURALIST"
+  yir_donate_banner_reaching_millions: Milyonlara ulaşıyoruz. Biyoçeşitliliği ortaya çıkarıyoruz. Küresel iş birliği yapıyoruz.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Hepsi sizin gibi insanlar sayesinde!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist sizin gibi insanlar sayesinde büyüyor!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Bu yıl iNaturalist'in gelişmesine yardımcı oldunuz. Teşekkür ederiz!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist'in sizin yardımınıza ihtiyacı var
+  yir_generating_and_sharing: |
+    Yüksek etkili biyoçeşitlilik verilerinin bu benzeri görülmemiş ölçek ve hızda üretilmesi ve paylaşılmasının artan maliyetleri vardır
+  yir_millions_of_people_used_inaturalist: |
+    Bu yıl milyonlarca kişi iNaturalist ve Seek'i doğa ile bağlantı kurmak için kullandı
+  yir_thank_your_for_being_generous: |
+    Zamanınız, ilginiz, uzmanlığınız ve bağışlarınızla cömert davrandığınız için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Society'nin kâr amacı gütmeyen ortak bir girişimidir. Program, toplumun çok küçük bir kısmından gelen hayırsever armağanlar da dahil olmak üzere çok sayıda hibe ve bağışa dayanmaktadır. Özellikle, yinelenen armağanlarla geleceği tasarlamamıza yardımcı olan Aylık Destekçilerimize minnettarız.
+  yir_your_gift_sustains: |
+    Armağanınz, küresel erişime ve derin kişisel ve ekolojik etkilere sahip bu programı sürdürülebilir kılmaktadır.
   you: sen
   you_: Sen
   you_appear_offline_try_again: |
@@ -5178,6 +5195,10 @@ tr:
   you_must_specify_and_confirm_a_new_password: Yeni bir şifre belirlemeli ve onaylamalısınız.
   you_need_to_have_linked_flickr_account: Fotoğraflarınızı etiketlemek için bağlı bir Flickr hesabına sahip olmalısınız.
   you_need_to_select_some_observations_first: Önce bazı gözlemleri seçmelisiniz.
+  you_retain_full_copyright: "Kullanım Koşullarımızda %{site_name}'e tanınan haklar dışında içeriğinizin tüm telif hakkı size aittir."
+  you_retain_full_copyright_over_your_content: "Kullanım Koşullarımızda %{site_name}'e tanınan haklar dışında içeriğinizin tüm telif hakkı size aittir."
+  you_should_delete_this_taxon_change: |
+    Muhtemelen bu sınıf değişikliğini silmeli ya da en azından diğer değişiklik(ler)i yapan kişi/kişilerle bir tür çözüm bulmalısınız.
   you_sure_delete_asset?: Bu Proje Varlığını silmek istediğinize emin misin?
   you_sure_delete_check_list: "Bu listeyi silmek istediğine emin misin? Bazı insanlar burada çok iş yapmış olabilir..."
   you_sure_delete_comment?: Bu yorumu silmek istediğinize emin misiniz?
@@ -5426,7 +5447,9 @@ tr:
       filter_by: Filtrele
       filtered_by: Filtre
       apply_filters_to_export: Filtreleri dışa aktarıma uygula
+      restrict_to_leaf_taxa: Son sınıflar ile sınırlayın
       restrict_to_taxon: '%{taxon} ile sınırla'
+      restrict_to_taxa_observed_in_place: '%{place} konumunda gözlemlenen sınıflarla sınırlandır'
       exporting_all_x_taxa:
         one: '%{count} sınıf dışa aktarılıyor'
         other: '%{count} sınıfın tamamı dışa aktarılıyor'
@@ -6582,8 +6605,11 @@ tr:
           "Life Stage=Adult": Yetişkin
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
+          "Life Stage=Juvenile": Olgunlaşmamış
           "Life Stage=Nymph": Nemf
           "Life Stage=Pupa": Pupa
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Teneral
           "Sex=Cannot Be Determined": Belirlenemiyor
           "Sex=Female": Dişi
           "Sex=Male": Erkek
@@ -7259,6 +7285,9 @@ tr:
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
       ModeratorNote: Moderatör Notu
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Uygulama
       TaxonLink: Sınıf Bağlantısı
     attributes:
       assessment:
@@ -7289,6 +7318,10 @@ tr:
       message:
         subject: Konu
         body: Mesaj metni
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Neden
       observation:
         description: Notlar
         geo_x: Doğuya Doğru
@@ -7305,6 +7338,20 @@ tr:
         finished_at: Bitti
         #Inputs to an export task, e.g. the query and the columns
         inputs: Girdiler
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Geri Alma URL'si
+        #Unique identifier for an application
+        uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Gizli
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Gizli
+      place_taxon_name:
+        position: Konum
       post:
         title: Başlık
         body: İçerik
@@ -7348,18 +7395,49 @@ tr:
         url: URL
         citation: Alıntı
       taxon:
+        ancestry: Soy
         auto_description: Otomatik açıklama
         auto_photos: Otomatik fotoğraflar
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Eksiksiz düzey
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Koruma durumu
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Öne çıkanlar
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Simgesel sınıf ID'si
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Etkin mi?
+        #Boolean attribute stating that this taxon is itself represented by
+        #an icon, e.g. Aves
+        is_iconic: Simgesel mi?
         locked: Kilitli
         name: İsim
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Ad Sağlayıcı
         parent_id: Üst Kimliği
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotoğraflar kilitli mi?
         rank: Sıralama
+        rank_level: Düzey sırası
+        source_id: Kaynak ID'si
         source_identifier: Kaynak tanımlayıcı
         source_url: Kaynak URL
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: ID Sınıf Yapısı İlişkisi
         wikipedia_summary: Vikipedi özeti
         wikipedia_title: Vikipedi başlığı
       taxon_name:
+        is_valid: Geçerli mi?
+        lexicon: Lügatçe
+        name: Ad
         name_provider: İsim sağlayıcı
+        position: Konum
         source_url: Kaynak URL
         source_identifier: Kaynak tanımlayıcısı
       user:
@@ -7420,6 +7498,9 @@ tr:
               relative_uri: "eksiksiz bir URI olmalıdır."
         flag:
           attributes:
+            flag:
+              not_about_duplicate: |
+                yinelenen gözlemler ya da fotoğraflar hakkında olamaz; yalnızca gözlemci yinelenenleri kaldırabilir, bu nedenle lütfen bu endişelerinizi bir yorumla doğrudan onlara iletin.
             user_id:
               already_flagged: "bu öge zaten işaretlendi"
         guide:
@@ -7432,6 +7513,11 @@ tr:
               guide_has_too_many_taxa: "rehber yalnızca 500 sınıfa sahip olabilir"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: bu tür içerikler için desteklenmez
+            base:
+              only_staff_can_unhide: Gizli içeriği yalnızca yetkili açığa çıkarabilir
+              staff_cannot_be_suspended: Yetkili askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
         mushroom_observer_import_flow_task:
@@ -7446,6 +7532,8 @@ tr:
             observed_on:
               cannot_be_greater_than_date_created: |
                 gözlemin eklendiği tarihten daha büyük olamaz
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: son 130 yıl içinde olmalı
         observation_field_value:
           attributes:
             value:
@@ -7476,6 +7564,9 @@ tr:
           attributes:
             geom:
               cannot_be_blank: boş olamaz
+              invalid_point: geçersiz bir noktaya sahiptir, örneğin boylam 180'den büyük ya da enlem -90'dan küçük
+              must_have_more_than_three_points: 3'ten fazla noktaya sahip olmalıdır
+              polygon_with_fewer_than_four_points: 4'ten az noktası olan bir çokgene sahiptir
         post:
           attributes:
             parent:
@@ -7550,6 +7641,12 @@ tr:
             taxon:
               too_many_photos: |
                 %{max}'dan fazla fotoğraf olamaz
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: kabul edilen bir değer olmalı
+            taxon_id:
+              already_has_a_range: zaten bir aralığı var
         user:
           attributes:
             login:
