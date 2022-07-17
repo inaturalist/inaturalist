@@ -185,6 +185,7 @@ mi:
   back_to_observation: Hoki ki te mauhanga
   back_to_people: Hoki ki ngā tāngata
   back_to_places: Hoki ki ngā wāhi
+  back_to_possessive_user_profile: "Hoki ki te kīwhaiaro tō %{possuser}"
   back_to_projects: Hoki ki ngā kohinga
   back_to_taxon: "Hoki ki te %{defaulttaxon}"
   back_to_users_calendar: "Hoki ki te maramataka tō %{user}"
@@ -375,6 +376,7 @@ mi:
   drafts: Hukihuki
   duration_value: "Roanga: %{duration} mēneti"
   edit: Whakatika
+  edit_account_settings_and_profile: "Whakatika i tautuhinga pūkete me kīwhaiaro"
   edit_conservation_status: Whakatika tūnga whāomoomo
   edit_notes: Whakatika ngā kupu tīpoka
   edit_observations: Whakatika ngā mauhanga
@@ -384,6 +386,7 @@ mi:
   edit_project: Whakatikatia te kohinga
   edit_taxa: Whakatika ngā rōpū
   edit_taxon: Whakatika te rōpū
+  edit_your_account_and_profile_html: "Whakatika i tāu tautuhinga pūkete me tāu kīwhaiaro"
   edited_by_name_html: "I whakatika nā %{name}"
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
   editing_project: E whakatika ana %{project}
@@ -489,7 +492,7 @@ mi:
   improving: Whakapai
   #Label for messages you've received
   inbox: Pouakauru
-  inat_user_profile: "%{site_name}: Kīwhaiaro ā %{user}"
+  inat_user_profile: "%{site_name}: Kīwhaiaro tō %{user}"
   inaturalist_is_a_joint_initiative: "He %{site_name} tētahi kaupapa o te California Academy of Sciences me te National Geographic Society."
   insects: pepeke
   jobs: He tūranga mahi
@@ -1130,7 +1133,7 @@ mi:
   users: Kaiwhakamahi
   users_journal: "Rangitaki tō a %{user}"
   users_lists: "Tūtira ō %{user}"
-  users_profile: "Kīwhaiaro ā %{user}"
+  users_profile: "Kīwhaiaro tō %{user}"
   users_projects: "Kohinga ā %{user}"
   view: Tirohia
   view_all: Tirohia katoa
