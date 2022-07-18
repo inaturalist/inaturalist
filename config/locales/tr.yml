@@ -341,7 +341,7 @@ tr:
   add_evidence_of_presence_scat_annotation: '"Varlık Kanıtı: dışkı" ek açıklamasını ekleyin'
   add_evidence_of_presence_track_annotation: '"Varlık Kanıtı: iz" ek açıklamasını ekleyin'
   add_evidence_of_presence_bone_annotation: '"Varlık Kanıtı: kemik" ek açıklamasını ekleyin'
-  add_evidence_of_presence_molt_annotation: '"Varlık Kanıtı: deri değiştirme" ek açıklamasını ekleyin'
+  add_evidence_of_presence_molt_annotation: '"Varlık Kanıtı: deri değiştirme/tüy dökme" ek açıklamasını ekleyin'
   #As in a Taxon Framework Relationship
   add_relationship: 'İlişki ekle'
   #As in a Guide Section
@@ -420,10 +420,10 @@ tr:
     order: Tüm takımlar veri tabanına eklendi
     suborder: Tüm alt takımlar veri tabanına eklendi
     infraorder: Tüm infra takımlar veri tabanına eklendi
-    superfamily: Tüm üst aileler veri tabanına eklendi
-    epifamily: Tüm epi aileler veri tabanına eklendi
-    family: Tüm aileler veri tabanına eklendi
-    subfamily: Tüm alt aileler veri tabanına eklendi
+    superfamily: Tüm üst familyalar veri tabanına eklendi
+    epifamily: Tüm epi familyalar veri tabanına eklendi
+    family: Tüm familyalar veri tabanına eklendi
+    subfamily: Tüm alt familyalar veri tabanına eklendi
     supertribe: Tüm üst oymaklar veri tabanına eklendi
     tribe: Tüm oymaklar veri tabanına eklendi
     subtribe: Tüm alt oymaklar veri tabanına eklendi
@@ -964,7 +964,7 @@ tr:
   community_id_heading: Topluluk Sınıfı
   community_id_at_species_or_lower?: Topluluk Sınıfı, türde ya da onun da mı altında?
   community_id_at_species_level_or_lower: Topluluk Sınıfı, türde ya da onun da altında
-  community_id_is_precise: Topluluk Sınıflandırması kesindir
+  community_id_is_precise: Topluluk Sınıfı kesindir
   community_moderation_settings: Topluluk Denetim Ayarları
   community_supported_id: Topluluk destekli sınıf mı?
   compare: Karşılaştır
@@ -1087,7 +1087,7 @@ tr:
     alive: Canlı
     dead: Ölü
     cannot_be_determined: Belirlenemedi
-    evidence_of_presence: Organizmanın Varlığının Kanıtı
+    evidence_of_presence: Varlık Kanıtı
     #As in the feather on a bird
     feather: Tüy
     #Abnormal growth
@@ -1103,7 +1103,7 @@ tr:
     bone: Kemik
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
-    molt: Değişen deri veya dökülmüş tüy
+    molt: Deri değiştirme/Tüy dökme
   controlled_term_definitions:
     alive: Organizma yaşıyor ve bir ölüm belirtisi göstermiyor
     dead: Organizma ölü ya da bir ölüm belirtisi gösteriyor
@@ -1116,7 +1116,7 @@ tr:
     feather: Bir organizmaya bağlı olmayan bir veya birden fazla tüy
     organism: Organizmanın tamamı veya bir kısmı
     scat: Dışkı maddesi (baykuş peletleri ya da diğer kusmuk maddeleri değil)
-    track: Organizma tarafından zeminde veya karda yapılan izlenim
+    track: Organizma tarafından zeminde veya karda yapılan iz
     bone: |
       Ağırlıklı olarak iç iskelet kalıntıları; aksi takdirde sağlam bir organizmada kısmi kemik maruziyeti "organizma" olarak etiketlenmelidir
     molt: Atılan deri veya dış iskelet
@@ -1215,9 +1215,9 @@ tr:
     Eğer iNaturalist'teki davranışları düzenlemek istiyorsan; lütfen bir kaç Topluluk Kılavuzu ihlali örneği vererek bu durumlara karşı ne yapacağını belirt
   #Header
   curator_application_how_curators_lose_their_powers: |
-    Küratör, Güçlerini Nasıl Kaybeder
+    Bir Küratör Yetkilerini Nasıl Kaybeder
   curator_application_how_curators_lose_their_powers_desc: |
-    iNat çalışanları, küratör aşağıdaki belirtilenleri sürekli tekrarlıyorsa, küratörün güçlerini elinden alabilir:
+    iNat yetkilileri, küratör aşağıdaki belirtilenleri sürekli tekrarlıyorsa, küratörün yetkilerini elinden alabilir:
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1681,7 +1681,7 @@ tr:
   'false': 'Yanlış'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriler
-  Family: Aile
+  Family: Familya
   favorite_taxa: Favori Sınıflar
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
@@ -1707,7 +1707,7 @@ tr:
   filename: Dosya adı
   filter: Filtre
   filter_by_curator_identification: Sorumlu Tanımalamasıyla Filtre
-  filter_by_place: Yer ile Filtre
+  filter_by_place: Konuma göre Filtrele
   filter_by_taxon: Sınıfla Filtre
   filter_by_place_taxon_and_color: Kontrolleri kullanarak yer, sınıf ve renge göre filtrele.
   filter_list_by_this_taxon: Listeyi bu sınıfla filtrele
@@ -2514,7 +2514,7 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    time_hours: "HH:mm"
+    time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2659,7 +2659,7 @@ tr:
   newly_observed_species: Yeni Gözlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
   next: Sonraki
-  next_date_short: İleri
+  next_date_short: Sonraki
   next_observation: Sonraki Gözlem
   next_page: Sonraki sayfa
   next_page_short: Sonraki
@@ -3722,13 +3722,13 @@ tr:
     parvorder: Geçiş Takımı
     zoosection: Zoosection
     zoosubsection: Zoosubsection
-    superfamily: Üst Aile
-    epifamily: Epi Aile
-    family: Aile
+    superfamily: Üst Familya
+    epifamily: Epi Familya
+    family: Familya
     x_families:
-      one: Aile
-      other: Aile
-    subfamily: Alt Aile
+      one: Familya
+      other: Familya
+    subfamily: Alt Familya
     supertribe: Üst Oymak
     tribe: Oymak
     subtribe: Alt Oymak
@@ -3782,13 +3782,13 @@ tr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: geçiş takımı
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
-  ranks_lowercase_superfamily: üst aile
+  ranks_lowercase_superfamily: üst familya
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
   ranks_lowercase_epifamily: epi familya
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
-  ranks_lowercase_family: aile
+  ranks_lowercase_family: familya
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
-  ranks_lowercase_subfamily: alt aile
+  ranks_lowercase_subfamily: alt familya
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
   ranks_lowercase_supertribe: üst oymak
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
@@ -5334,9 +5334,9 @@ tr:
           Seçilen sınıflarla ilişkilendirilmiş renklerden, renk etiketleri ekleyin.
         add_rank_tags_help_html: |
           Sınıflandırmamıza dayanarak sınıf düzey etiketleri ekleyin, örn.
-          <code>aile=Martıgiller</code>
+          <code>familya=Martıgiller</code>
           veya
-          <code>aile=Martılar ve Yakınları</code>
+          <code>familya=Martılar ve Yakınları</code>
         coordinates_desc: |
           Rehber koordinatlarınızı vermek, yere göre arama yaparken insanların onu bulmasına yardımcı olacaktır.
         eol_subjects_desc: |
@@ -5465,8 +5465,8 @@ tr:
       no_unobserved_species_within_this_taxon_in_place: '%{place} bölgesinde bu sınıflandırmada herhangi bir gözlemlenmemiş tür bulunamadı.'
       reset_place_filter: Konum Filtresini Temizle
       all_observations_in_this_taxon: Bu sınıftaki tüm gözlemler
-      observations_of_exactly_this_taxon: Tam olarak bu sınıflandırmadaki gözlemler
-      focus_tree_on_this_taxon: Bu sınıflandırmadaki ağaca odaklan
+      observations_of_exactly_this_taxon: Tam olarak bu sınıftaki gözlemler
+      focus_tree_on_this_taxon: Bu sınıftaki ağaca odaklan
       expand_all_nodes_in_this_branch: Bu setteki tüm boğumları genişlet
       collapse_this_branch: Bu seti daralt
       dropdowns:
@@ -5481,7 +5481,7 @@ tr:
         show: Göster
         children: Çocuklar
         simplified_tree: Basitleştirilmiş Ağaç
-        full_taxonomy: Tüm Sınıflandırmalar
+        full_taxonomy: Tüm Sınıflandırma
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -5553,7 +5553,7 @@ tr:
           Tanımlamanız (<span class="bold">%{taxon_name}</span>) topluluk tanımlaması ile eşleşmiyor
       copy_tip: "Bu gözlemin tarihini, yerini, fotoğraflarını, ve gözlem alanlarını kopyalayarak yeni bir gözlem ekleyin."
       captive_help_html: |
-        Organizma, <strong>kısıtlanmış</strong> ya da <strong>ekili</strong> mi? Örneğin; <strong>bir bahçede, hayvanat bahçesinde, akvaryumda</strong> ya da yalnızca <strong>insanının onun orada bulunduğunu düşündüğü için var olduğu</strong> başka bir durumda mıydı? Canlılarla ilgili tüm gözlemler mutlulukla karşılanmaktadır ancak ne zaman vahşi/doğal olmadığını bilmek isteriz.
+        Organizma, <strong>kısıtlanmış</strong> ya da <strong>ekili</strong> mi? Örneğin; <strong>bir bahçede, hayvanat bahçesinde, akvaryumda</strong> ya da yalnızca <strong>insanının onun orada bulunduğunu düşündüğü için var olduğu</strong> başka bir durumda mıydı? Canlılarla ilgili tüm gözlemler mutlulukla karşılanmaktadır ancak ne zaman yabani/doğal olmadığını bilmek isteriz.
       compare:
         about_missing_taxa: Eksik Sınıflar Hakkında
         about_total_taxa: "Mevcut Sınıflar Hakkında"
@@ -5783,6 +5783,56 @@ tr:
           projedeki diğer gözlemleri görme yetkisi verecek 
           ve bu, proje <a href="%{url}" target="_blank">şartlarını</a>
           kabul ettiğiniz anlamına gelir.
+        quality_assessment_help2_html: |
+          <p>
+          Veri niteliği değerlendirmesi, bir gözlemin doğruluğunun özetidir. Aşağıdaki durumlarda, tüm gözlemler <strong>"sıradan"</strong> sınıf olarak başlar ve <strong>"tanımlama gerekiyor"</strong> hâlini alır:
+          </p>
+
+          <ul>
+          <li>gözlemin <strong>bir tarihi vardır</strong></li>
+          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (örn. enlem/boylam koordinatları)</li>
+          <li>gözlem, <strong>fotoğraflara ya da seslere sahiptir</strong></li>
+          <li>gözlem, <strong>bir insana ait değildir</strong></li>
+          </ul>
+          <p>
+          Gözlemler aşağıdaki durumda <strong>"araştırma sınıfı"</strong> olur:
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>topluluğu tür düzeyinde ya da daha düşük bir düzeyde tanımlama üzerinde anlaştığında</strong>, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise, alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
+          </li>
+          </ul>
+          <p>
+          Adı geçen koşullar yerine getirilmezse ya da topluluk kabul ederse gözlemler <strong>"sıradan"a</strong> dönecektir.
+          </p>
+          <ul>
+          <li>
+          <strong>konum doğru görünmemektedir</strong> (örn. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
+          </li>
+          <li>
+          <strong>organizma yabani ya da doğal değildir</strong> (örn. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
+          </li>
+          <li>
+          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, örn. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
+          </li>
+          <li>
+          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (örn. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
+          </li>
+          <li>
+          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk kimliği familyanın üstündedir
+          </li>
+          <li>
+          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlamasıyla ilişkili sınıfın atası ya da alt soyundan değildir.
+          </li>
+          </ul>
+          <p>
+          Ve eğer bu yeterince karmaşık değilse, sistemin oy aldığı durumlar da vardır:
+          </p>
+          <ul>
+          <li>
+          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri yerde bir cins ya da daha düşük düzey en az 10 gözlem varsa ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmişse, gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
+          </li>
+          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkese açık değil. 
@@ -6355,6 +6405,12 @@ tr:
     search:
       index:
         no_taxa_options: "Birkaç seçeneğiniz var:"
+        no_taxa_add_a_flag: Daha Üst Seviye Bir Sınıfa İşaret Ekle
+        no_taxa_add_a_flag_desc: |
+          Örneğin bir türü içeren cins. Gönüllü bir küratörün vakti var ise ve sınıflanırma politikalarımızla uyumluy ise sınıfı ekleyeceğini umuyoruz.
+        no_taxa_forum: Forum ile İletişime Geç
+        no_taxa_forum_desc_html: |
+          Birçok gönüllü küratör %{link_start_tag}Forum'a%{link_end_tag} gelen mesajları takip etmektedir.
     shared:
       blocked:
         youve_been_blocked: Engellendin
@@ -6542,9 +6598,12 @@ tr:
           işleme politikalarına uygun, belirli bir sırada bilinen <em>tüm</em> soyundan gelen sınıfları içerir. 
           Şu anda yalnızca site yöneticileri sınıfları tam olarak beyan edebilir.
         complete_rank_desc_html: |
-          Bu sınıfın tamamlanma derecesi, örn. eğer bu aile bütün cinsini 
+          Bu sınıfın tamamlanma derecesi, örn. eğer bu familya bütün cinsini 
           içeriyorsa, ama bütün türünü içermiyorsa, bu "cins" olarak ayarlanacaktır. 
           Varsayılan türdür.
+        wikipedia_summary_desc_html: |
+          Bu, sınıfın <a target="_blank"
+          href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
       show:
         about_names_desc: |
           <p>
@@ -6643,7 +6702,7 @@ tr:
           yapıldığında Değişimler ve Birleşmeler için sınıf çıkışına getirecektir.
           Bu değişiklik bir cins veya daha düşük bir değişiklik olursa, ima edilen bir isim 
           değişikliği olan tüm soy ağacı için Sınıf Takasları yaratacaktır.
-          Örneğin, Canidae ailesini Dogidae ile değiştirirseniz, bu, <i>Canis</i> cinsinin 
+          Örneğin, Canidae familyasını Dogidae ile değiştirirseniz, bu, <i>Canis</i> cinsinin 
           ebeveynini Canidae'dan Dogidae'ye değiştirir. <i>Canis</i> cinsini <i>Dogis</i> 
           cinsi ile değiştirirseniz, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>lupus</i> alt türü 
           <i>Canis lupus</i>'u <i>lupus</i>alt türü <i>Dogis lupus</i> olarak değiştirmek 
@@ -6712,6 +6771,8 @@ tr:
       delete:
         by_deleting_your_account_you_will_remove: |
           Hesabınızı silerek kaldıracaksınız
+        caching: |
+          Hesabınızı, içeriğinizin bir kısmını silmeye çalıştığınız ancak hâlâ bir haritada yada internette başka bir yerde görebildiğiniz için siliyorsanız, harita verilerinin kayıtlar silindikten sonra bile bir güne kadar önbelleğe alınabileceğini ve bu platformdaki içeriğin silinmesinin diğer sitelerde ve platformlarda (GBIF gibi) bulunan kopyalar üzerinde herhangi bir etkisi olmayabileceğini unutmayın.
         x_observations_html:
           one: |
             <strong class="count">%{count} gözlem </strong>,
@@ -6723,6 +6784,11 @@ tr:
             tanımlamalarınıza yardımcı olmuş
             <strong class="count">%{helpers_count} kişi</strong>nin
             çalışmasını içerir
+        x_projects_html:
+          one: |
+            yeni sahibi olabilecek başka bir düzenleycisi ya da yöneticisi olmayan <strong class="count">%{count} proje</strong>
+          other: |
+            yeni sahibi olabilecek başka düzenleycileri ya da yöneticileri olmayan <strong class="count">%{count} proje</strong>
         x_identifications_html:
           one: |
             Başka birinin gözlemine ilişkin <strong class="count">%{count} tanımlamanız</strong>,
@@ -6752,6 +6818,19 @@ tr:
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
+        blocking_desc_html: |
+          <p>
+          Birini engellemek, size mesaj göndermesini, gözlemlerinize yorum yapmasını, gözlemlerinizi tanımlamasını ve %{site_name}'te sizinle başka şekilde etkileşime girmesini engeller. Ayrıca onların gözlemlerini sizin arama sonuçlarınızdan ve sizin gözlemlerinizi de onların arama sonuçlarından kaldırır. Ancak, sizi, onlar için görünmez yapmaz. Hâlâ gözlemlerinizi bulabilir ve profilinizi görüntüleyebilirler, yalnızca sizinle etkileşime giremezler.
+          </p>
+          <p>
+          Engelleme, biriyle anlaşamadığınız ve anlaşmazlıkları medeni bir şekilde çözmek için elinizden gelenin en iyisini yapmanıza karşın sizi rahat bırakmadığı durumlar içindir. Bu; insanlardan saklanmanın, düşüncelerine güvenmediğiniz kişilerin sizi tanımlamasını engellemenin ya da topluluk kimliğinden çıkmanın bir yolu değildir (bunun için başka bir ayar vardır). Bu nedenle, engelleme her iki şekilde de çalışır: birini engellerseniz, sizinle etkileşime giremez ancak siz de onunla etkileşime giremezsiniz. Birinin gözlemlerinizi tanımlamasını engellemek için yanlış şekilde kullanırsanız, kendinizin de onların gözlemlerini tanımlamasını engellemiş olursunuz.
+          </p>
+          <p>
+          Yalnızca üç kişiyi engelleyebilirsiniz. Bunun, engellemenin kötüye kullanılmasını önlerken engellemeye gerek duyan kişileri barındıran makul bir sayı olduğunu düşünüyoruz. Daha çok kişiyi engellemeniz gerektiğini düşünüyorsanız, lütfen <a href="mailto:%{help_email}">bizimle iletişime geçin</a>.
+          </p>
+          <p>
+          Birisi sizi %{site_name}'te taciz ediyorsa, <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu, Kullanım Koşullarımızın ihlali anlamına geliyor ise ya da sitemiz için uygunsuz olduğunu düşündüğümüz başka bir davranışı temsil ediyor ise, araştıracağız.
+          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Fikrinizi değiştirirseniz, her zaman 
           <a href='/users/edit'>ayarlarınızı düzenleyebilirsiniz</a>.
