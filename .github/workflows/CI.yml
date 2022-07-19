@@ -46,6 +46,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Install cURL Headers
+      run: sudo apt-get update && sudo apt-get install libcurl4-openssl-dev
+
     - name: Use Ruby
       uses: ruby/setup-ruby@v1
       with:
