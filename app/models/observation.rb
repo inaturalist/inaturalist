@@ -3081,7 +3081,7 @@ class Observation < ApplicationRecord
       scope = scope.where(id: filter_ids)
     end
     options[:batch_size] = 100
-    scope.select(:id).find_in_batches(options) do |batch|
+    scope.select(:id).find_in_batches(**options) do |batch|
       ids = batch.map(&:id)
       Observation.transaction do
         connection.execute("DELETE FROM observations_places

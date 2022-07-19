@@ -121,7 +121,7 @@ module ActsAsElasticModel
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
         batch_sleep = options.delete(:sleep)
         batches_indexed = 0
-        scope.find_in_batches(options) do |batch|
+        scope.find_in_batches(**options) do |batch|
           if batch_sleep && batches_indexed > 0
             # sleep only if more than one batch is being indexed
             sleep batch_sleep.to_i
