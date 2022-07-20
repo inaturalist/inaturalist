@@ -575,7 +575,9 @@ th:
   browse_all_projects: เรียกดูโครงการทั้งหมด
   browse_all_species: ค้นดูชนิดทั้งหมด
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
+  by_everyone: โดยทุกคน
   by_user: "โดย %{user}"
+  by_you: โดยคุณ
   calendar: ปฏิทิน
   cancel: ยกเลิก
   captive: ถูกจับมา
@@ -1408,6 +1410,8 @@ th:
   no_project_to_admin_login: "%{login} ไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
   no_relevant_annotations: ไม่มีหมายเหตุที่เกี่ยวข้อง
   no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
+  no_species_on_this_list_for_owner: |
+    คุณสามารถเริ่มต้นเพิ่มชนิดไปที่รายการโดยใช้เครื่องมือ "เพิ่มไปที่รายการของคุณ" ทางด้านขวา
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
@@ -1433,6 +1437,8 @@ th:
   observations_by_app: การสังเกตแบ่งตามแอป
   observations_by_rank: การสังเกตแบ่งตามลำดับอนุกรมวิธาน
   observations_by_user_on_date: "การสังเกตโดย %{user} ในวันที่ %{date}"
+  observations_by_you: "การสังเกตโดยคุณ"
+  observations_by_you_on_date: "การสังเกตโดยคุณเมื่อ %{date}"
   observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
   observation_field: ข้อมูลภาคสนาม
@@ -1482,9 +1488,14 @@ th:
   order_by: เรียงลำดับตาม
   organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
   organisms: สิ่งมีชีวิต
+  other: อื่น ๆ
+  other_animals: สัตว์อื่น ๆ
+  other_lexicons: ศัพท์เฉพาะอื่น ๆ
   other_names: ชื่ออื่น ๆ
   other_species_commonly_misidentified_as_this_species: ชนิดอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นชนิดนี้
   other_species_commonly_misidentified_as_this_species_in_place_html: ชนิดอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นชนิดนี้ใน <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นชนิดเชิงซ้อนนี้
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นชนิดเชิงซ้อนนี้ใน <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลนี้
   other_taxa_commonly_misidentified_as_this_genus_in_place_html: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลนี้ใน <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genushybrid: หน่วยอนุกรมวิธานอื่น ๆ ที่มักถูกจำแนกผิดว่าเป็นสกุลผสมนี้
