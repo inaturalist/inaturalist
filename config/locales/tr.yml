@@ -333,7 +333,7 @@ tr:
   add_life_stage_pupa_annotation: '"Yaşam Evresi: Pupa" açıklaması ekle'
   add_life_stage_nymph_annotation: '"Yaşam Evresi: Nemfi" açıklaması ekle'
   add_life_stage_larva_annotation: '"Yaşam Evresi: Larva" açıklaması ekle'
-  add_life_stage_juvenile_annotation: '"Yaşam Evresi: Genç" açıklaması ekle'
+  add_life_stage_juvenile_annotation: '"Yaşam Evresi: Olgunlaşmamış" açıklaması ekle'
   add_life_stage_egg_annotation: '"Yaşam Evresi: Yumurta" açıklaması ekle'
   add_evidence_of_presence_organism_annotation: '"Varlık Kanıtı: organizma" ek açıklamasını ekleyin'
   add_evidence_of_presence_feather_annotation: '"Varlık Kanıtı: tüy" ek açıklamasını ekleyin'
@@ -763,7 +763,7 @@ tr:
   blog_widget: Blog widgeti
   blue: mavi
   blue_butterfly_etc: "mavi, kelebek vb."
-  body: Gövde
+  body: İçerik
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
@@ -831,7 +831,7 @@ tr:
     drop: Sınıf kavramı tamamen geçersiz, tarihsel amaçlar ya da ortak uyumluluğu için korundu
     stage: Değişim grubunun bir parçası olarak serbest bırakmak için etkin olmayan bir konsept hazırlayın
   change_geoprivacy: 'Coğrafi Gizliliği Değiştir'
-  change_group: Grubu değiştir
+  change_group: Değişim grubu
   change_icon: Simgeyi değiştir
   change_password: Şifreyi Değiştir
   change_types:
@@ -957,7 +957,7 @@ tr:
   #disagreements are identifications that disagree with previous identifications on the same observation
   #committing refers to committing a taxon swap
   committing_this_swap_may_result: İşleme yapmak istenmeyen anlaşmazlıklara yol açabilir. Lütfen önce bunları analiz edin, bu biraz zaman alabilir.
-  common_name: Genel İsim
+  common_name: Yaygın Ad
   community: Topluluk
   community_curated: Topluluk Düzenlendi
   community_guidelines: Topluluk Rehberleri
@@ -1082,7 +1082,7 @@ tr:
     nymph: Nimfa
     larva: Larva
     egg: Yumurta
-    juvenile: Genç
+    juvenile: Olgunlaşmamış
     alive_or_dead: Canlı ya da Ölü
     alive: Canlı
     dead: Ölü
@@ -1538,7 +1538,7 @@ tr:
   edit_assessment: Değerlendirmeyi Düzenle
   edit_atlas: Atlas'ı Düzenle
   edit_atlas_for_taxon_html: '%{taxon} için Atlas''ı düzenleyin'
-  edit_body: Gövdeyi düzenle
+  edit_body: İçeriği Düzenle
   edit_comment: Yorumunu Düzenle
   edit_complete_set_for_taxon_in_place_html: "%{place}'deki %{taxon} için Eksiksiz Kümeyi Düzenleyin"
   edit_conservation_status: Koruma Durumu Düzenle
@@ -7396,7 +7396,7 @@ tr:
         establishment_means: Kuruluş Varlığı
       message:
         subject: Konu
-        body: Mesaj metni
+        body: İçerik
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
