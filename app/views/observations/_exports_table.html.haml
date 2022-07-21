@@ -36,7 +36,7 @@
       %td
         %div
           %strong=t :query
-          = URI.unescape(ft.query).split('&').map{|p| k,v = p.split('=');"#{k}=<b>#{v}</b>"}.join('&').html_safe
+          = CGI.unescape(ft.query).split('&').map{|p| k,v = p.split('=');"#{k}=<b>#{v}</b>"}.join('&').html_safe
         %div
           %strong=t :columns
           = ft.export_columns.join(', ')

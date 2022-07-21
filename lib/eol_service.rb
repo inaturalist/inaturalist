@@ -61,9 +61,9 @@ class EolService
     uri += ".xml"
     unless params.blank?
       uri += "?"
-      uri += params.map {|k,v| "#{k}=#{v}"}.join('&') 
+      uri += URI.encode_www_form( params )
     end
-    URI.parse(URI.encode(uri))
+    URI.parse(uri)
   end
 
   def self.method_missing(method, *args)

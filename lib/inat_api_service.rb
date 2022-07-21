@@ -60,11 +60,7 @@ module INatAPIService
     if authorization && !headers["Authorization"]
       headers["Authorization"] = authorization
     end
-    begin
-      uri = URI.parse(url)
-    rescue URI::InvalidURIError
-      uri = URI.parse(URI.escape(url))
-    end
+    uri = URI.parse(url)
     if !params.blank? && params.is_a?(Hash)
       uri.query = URI.encode_www_form( Hash[URI.decode_www_form( uri.query || "" )].merge( params ) )
     end
