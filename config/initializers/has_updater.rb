@@ -3,14 +3,13 @@
 module HasUpdater
   def self.included(base)
     base.extend ClassMethods
-    include InstanceMethods
   end
   
   module ClassMethods
     def has_updater
       belongs_to :updater, class_name: "User"
-      include HasUpdater::InstanceMethods
       attr_accessor :updater_assigned
+      include HasUpdater::InstanceMethods
       before_save :remove_updater_if_not_explicitly_assigned
     end
   end
@@ -32,4 +31,5 @@ module HasUpdater
     end
   end
 end
+
 ActiveRecord::Base.send(:include, HasUpdater)
