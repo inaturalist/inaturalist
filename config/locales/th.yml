@@ -584,7 +584,7 @@ th:
   captive_cultivated: ถูกจับมา / เพาะปลูก
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
   casual_: ไม่เป็นทางการ
-  casual_tooltip_html: 'การสังเกตระดับ "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ สถานที่ หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกตระดับงานวิจัยหรือกำลังรอจำแนกชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  casual_tooltip_html: 'การสังเกต "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ ตำแหน่ง หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกต "ระดับงานวิจัย" หรือ "รอจำแนกชนิด" <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
   categories: หมวดหมู่สิ่งมีชีวิต
   cc_0_name: ไม่มีลิขสิทธิ์ (CC0)
   cc_attribution_license: สัญญาอนุญาตครีเอทีฟคอมมอนส์ประเภทแสดงที่มา
@@ -651,9 +651,11 @@ th:
   common_name: ชื่อสามัญ
   community: ชุมชน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
-  community_id_heading: หน่วยอนุกรมวิธานที่เสนอโดยชุมชน
-  community_id_at_species_or_lower?: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า?
-  community_id_at_species_level_or_lower: หน่วยอนุกรมวิธานที่เสนอโดยชุมชนที่ระดับชนิดหรือต่ำกว่า
+  community_id_heading: หน่วยอนุกรมวิธานที่เห็นพ้องกัน
+  community_id_at_species_or_lower?: หน่วยอนุกรมวิธานที่เห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า?
+  community_id_at_species_level_or_lower: หน่วยอนุกรมวิธานที่เห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า
+  community_id_is_precise: หน่วยอนุกรมวิธานที่เห็นพ้องกันมีความถูกต้อง
+  community_supported_id: หน่วยอนุกรมวิธานที่ชุมชนสนับสนุน?
   compare: เปรียบเทียบ
   compare_with: เปรียบเทียบกับ
   comparing: เปรียบเทียบ
@@ -892,6 +894,7 @@ th:
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
+  encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
   endangered: ใกล้สูญพันธุ์
   endemic: เฉพาะถิ่น
@@ -1009,6 +1012,7 @@ th:
   full_screen: เต็มจอ
   fungi:
     other: รา
+  gbif_occurrences: รายงานการพบใน GBIF
   Genus: สกุล
   geoprivacy: ความเป็นส่วนตัวของพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
@@ -1034,6 +1038,7 @@ th:
   header_your_favorites: รายการโปรดของคุณ
   header_your_lists: รายการของคุณ
   header_your_journal: วารสารของฉัน
+  header_your_identifications: การจำแนกของคุณ
   header_your_projects: โครงการของคุณ
   header_your_profile: โปรไฟล์ของคุณ
   help: ช่วยเหลือ
@@ -1056,11 +1061,11 @@ th:
   id_categories:
     tooltips:
       leading: |
-        หน่วยอนุกรมวิธานนี้เป็นลูกหลานของหน่วยฯ ที่เสนอโดยชุมชน ซึ่งจะช่วยให้เข้าใกล้คำตอบที่ถูกต้องมากขึ้น
+        หน่วยอนุกรมวิธานนี้เป็นลูกหลานของหน่วยฯ ที่เห็นพ้องกัน ซึ่งจะช่วยให้เข้าใกล้คำตอบที่ถูกต้องมากขึ้น
       improving: |
-        คำแนะนำแรกที่ชุมชนเห็นพ้องกัน ซึ่งจะช่วยให้หน่วยอนุกรมวิธานที่เสนอโดยชุมชนแบ่งย่อยลงไปมากขึ้น
+        คำแนะนำแรกของหน่วยอนุกรมวิธานที่ชุมชนยอมรับ ซึ่งจะช่วยให้หน่วยฯ ที่เห็นพ้องกันได้รับการจำแนกย่อยลงไป
       maverick: |
-        หน่วยอนุกรมวิธานนี้ไม่ใช่ลูกหลานหรือบรรพบุรุษของหน่วยฯ ที่เสนอโดยชุมชน นั่นหมายความว่าชุมชนไม่ยอมรับคำแนะนำนี้
+        หน่วยอนุกรมวิธานนี้ไม่ใช่ลูกหลานหรือบรรพบุรุษของหน่วยฯ ที่เห็นพ้องกัน แสดงว่าชุมชนไม่ยอมรับคำแนะนำนี้
   id_withdrawn: ถอนการจำแนก
   identify: จำแนกชนิด
   identify_observations: "จำแนกการสังเกต"
@@ -1278,6 +1283,7 @@ th:
   lowest_rank: ลำดับต่ำสุด
   #Header for main content section of the project detail page when editing custom project data.
   main_content: เนื้อหาหลัก
+  make_this_your_default_license: "ตั้งค่าเป็นสัญญาอนุญาตเริ่มต้นของ%{type}"
   mammals: สัตว์เลี้ยงลูกด้วยนม
   manage_all_your_subscriptions: จัดการการติดตามทั้งหมดของคุณ
   manage_names: จัดการชื่อ
@@ -1308,6 +1314,8 @@ th:
   message_from_user_on_date: จาก %{user} เมื่อ %{date}
   messages: ข้อความ
   misidentifications: การจำแนกผิด
+  #Person who executed a moderator action or flagged something
+  moderator_or_flagger: ผู้ควบคุม / ผู้รายงาน
   momentjs:
     shortRelativeTime:
       #Short text representing 1 second in the past
@@ -1320,13 +1328,17 @@ th:
       hh: "%d ชม."
       #Short text representing %d days in the past
       dd: "%d วัน"
+      #Short text representing 1 month in the past
+      M: "1 เดือน"
       #Short text representing %d months in the past
       MM: "%d เดือน"
       #Short text representing %d years in the past
       yy: "%d ปี"
+  month: เดือน
   months: เดือน
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
+  more_fields: ข้อมูลภาคสนามเพิ่มเติม
   more_filters: ตัวกรองเพิ่มเติม
   more_from_x: การสังเกตเพิ่มเติมจาก %{x}
   more_import_options: ตัวเลือกนำเข้าเพิ่มเติม
@@ -1334,6 +1346,7 @@ th:
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
+  most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
   most_observations: ผู้ที่มีการสังเกตมากสุด
   most_species: ผู้ที่พบจำนวนชนิดมากสุด
@@ -1356,7 +1369,7 @@ th:
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
   needs_id: รอจำแนกชนิด
   needs_id_: รอจำแนกชนิด
-  needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ สถานที่ และวันที่ แต่ยังขาดความเห็นร่วมกันของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ ตำแหน่ง และวันที่ แต่ยังขาดความเห็นพ้องของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   needs_to_be_identified: ต้องการจำแนกชนิด
   #Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
@@ -1805,6 +1818,7 @@ th:
   recently_created: สร้างขึ้นล่าสุด
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
+  reject?: ปฏิเสธ?
   relationship: "ความสัมพันธ์"
   relationship_x: "ความสัมพันธ์: %{relationship}"
   relationships:
@@ -1823,7 +1837,7 @@ th:
   research: งานวิจัย
   research_: งานวิจัย
   research_grade: ระดับงานวิจัย
-  research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ ตำแหน่ง วันที่ และความเห็นร่วมกันของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
+  research_grade_tooltip_html: 'การสังเกต "ระดับงานวิจัย" ต้องมีสื่อ ตำแหน่ง วันที่ และความเห็นพ้องของชุมชนในการจำแนก (ปกติจะต้องจำแนกที่ระดับชนิด) <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   research_grade_observations_have: 'การสังเกต "ระดับงานวิจัย" ต้องมีวันที่ รูปภาพ พิกัด และการจำแนกชนิดโดยชุมชน คลิกเพื่อดูการประเมินคุณภาพข้อมูล'
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
   reset_brightness: คืนค่าความสว่าง
@@ -1983,6 +1997,8 @@ th:
     other: "%{taxon} เป็นอาณาจักรที่มี %{count} การสังเกต"
   taxon_is_threatened_coordinates_hidden: หน่วยอนุกรมวิธานถูกคุกคาม จึงต้องซ่อนพิกัดไว้
   taxonomy: อนุกรมวิธาน
+  taxon_map:
+    gbif_occurrences: รายงานการพบใน GBIF
   taxon_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   taxon_framework_relationships_with_count_html: "ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน: %{count}"
   taxon_framework_relationship: ความสัมพันธ์โครงร่างหน่วยอนุกรมวิธาน
@@ -2264,6 +2280,7 @@ th:
   year_month: ปี/เดือน
   'yes': "ใช่"
   yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
+  yes_reject_it: ปฏิเสธ
   yesterday: เมื่อวาน
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
   you_are_submitting_obs_with_no_date_or_no_location: |
