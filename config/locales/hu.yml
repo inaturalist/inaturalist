@@ -390,6 +390,7 @@ hu:
   all_taxa_: Minden taxon
   all_updates: Minden frissítés
   allowed_html: Engedélyezett HTML
+  allowed_occurrence_status_values: Az előfordulási státusz megengedett értékei
   allowed_values: Megengedett értékek
   almost_there_: Majdnem kész...
   alphabetical: Betűrendben
@@ -402,6 +403,7 @@ hu:
   animals: Állatok
   annotation: Jegyzet
   annotations: Megjelölések
+  announcement_was_successfully_updated: A közlemény sikeresen frissítve.
   announcements: Közlemények
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
@@ -508,6 +510,7 @@ hu:
   ascending: Növekvő
   assessment: értékelések
   assessment_sections: Értékelés paragrafusok
+  assessment_was_successfully_updated: Az értékelés sikeresen frissítve.
   associations: Társítások
   atlased: Térképezett
   atlas_for_taxon_html: '%{taxon}-térkép'
@@ -655,12 +658,15 @@ hu:
     replace_with: csere ezzel
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon}t feloszották ezekre: %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}t felosztják ezekre: %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} ejtve"
     input_taxon_will_be_dropped_html: "%{input_taxon} ejtve lesz"
     input_taxon_will_be_activated_soon_html: "%{input_taxon} hamarosan aktiválva lesz"
     input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} le lett cserélve erre: %{output_taxon}"
     input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} le lesz cserélve %{output_taxon} taxonra"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} taxonokat összevonták %{output_taxon} taxonba"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} taxonok össze lesznek vonva ebbe: %{output_taxon}"
   change_your_password: Jelszó módosítása
   #Plural noun, as in changes to a taxon record over time
   changes: Változások
@@ -713,6 +719,9 @@ hu:
   commercial_solicitation: Üzleti ajánlat, nemműködő linkek, stb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Közzététel
+  committed_by_user_on_date_html: 'Készítette %{user} ekkor: %{date}'
+  #Label for date the taxon change was committed
+  committed_on: 'Készítve ekkor: %{date}'
   common_name: Köznyelvi név
   community: Közösség
   community_guidelines: Közösségi irányelvek
@@ -763,6 +772,7 @@ hu:
   connecting_to_facebook: "Kapcsolódás a Facebookra…"
   cannot_be_changed_during_a_content_freeze: Nem változtatható meg ameddig a tartalom be van fagyasztva
   conservation_status: Természetvédelmi státusz
+  conservation_status_updated: Természetvédelmi státusz frissítve
   conservation_status_geoprivacy_desc: |
     Az alapértelmezett helyvédelmet alkalmazták e taxon minden megfigyelésére ezen a helyen
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -773,6 +783,8 @@ hu:
   content_hidden_by_user_on_date_because_reason_html: |
     Tartalom elrejtve %{user} által %{date}. napon, mert: "%{reason}"
   content_type: Tartalom típusa
+  user_hid_this_item_because_reason_html: |
+    %{user} elrejtette %{item}t "%{reason}" miatt
   continue: Folytatás
   continue_to_site: Folytatás itt %{site_name}
   contributor_cannot_be_found: A közreműködő nem található
@@ -868,6 +880,7 @@ hu:
   copyright_info: Szerzői jogi információ
   copyright_info_and_more: Szerzői jogi információk és egyebek
   copyright_infringement: Szerzői jogok megsértése
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} taxonkeretrendszere"
   couldnt_change_your_password: "A jelszócsre sikertelen: %{e}"
   couldnt_find_that_taxon: Nem találtuk azt a taxont.
   create: Létrehozás
@@ -934,6 +947,7 @@ hu:
   curator_application_title: Kurátor alkalmazás
   curators: Gondnokok
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
+  custom_project_was_successfully_updated: A projekt testreszabása frissítve
   darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
   danger_zone: Veszélyes zóna
@@ -1267,6 +1281,7 @@ hu:
   find_suitable_observations: Megfelelő megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   finished: Befejezve
+  first_confirmed_inat_observation: "Első igazolt %{site_name} megfigyelés"
   first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
   first_observer: első megfigyelő
   #Verb form, as in "Flag this item"
@@ -1385,6 +1400,7 @@ hu:
   group: Csoport
   grouping: Csoportosítás
   guides: Útmutatók
+  guide_was_successfully_updated: Az útmutató sikeresen frissítve.
   guidelines: Irányelvek
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
   has_photo: Van fénykép
@@ -1649,6 +1665,7 @@ hu:
     nahuatl: Nahuatl
     norwegian: Norvég
     occitan: okszitán
+    persian: Perzsa
     polish: Lengyel
     portuguese: Portugál
     romanian: Román
@@ -1657,6 +1674,7 @@ hu:
     slovak: Szlovák
     slovenian: Szolvén
     spanish: Spanyol
+    swahili: Szuahéli
     swedish: Svéd
     tahitian: Tahiti
     thai: Tháj
@@ -1689,6 +1707,7 @@ hu:
     taxonomic: rendszertani
     photo: Fénykép
   list_was_successfully_created: Lista sikeresen létrehozva.
+  listed_taxon_updated: A listázott taxon frissítve
   lists: Listák
   lists_by_login:
     title:
@@ -2122,6 +2141,9 @@ hu:
   observation_brief_something_from_place_in_month_year: "Valami %{place} helyről, ekkor: %{year} %{month}"
   #%{month} will be filled in the name of the month
   observation_brief_something_from_place_in_month_year_by_user: "Valami %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
+  observation_brief_taxon_on_day: "%{taxon} %{day} napon"
+  observation_brief_taxon_on_day_at_time: "%{taxon} ekkor: %{day} %{time}"
+  observation_brief_taxon_on_day_at_time_by_user: "%{taxon} %{user} által ekkor: %{day} %{time}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year: "%{taxon}, %{year} %{month}"
   #%{month} will be filled in the name of the month
@@ -2184,6 +2206,7 @@ hu:
   observations_this_year_vs_last_year: Megfigyelések idén és tavaly
   observations_total: Minden megfigyelés
   observations_w_field: Megfigyelések adatmezővel
+  observations_was_successfully_updated: A megfigyelés(ek) sikeresen frissítve.
   observations_widget: Megfigyelésmodul
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
