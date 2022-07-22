@@ -781,7 +781,7 @@ class ObservationsController < ApplicationController
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
-    hashed_params = Hash[params[:observations].map do |id, obs|
+    hashed_params = Hash[params[:observations].to_h.map do |id, obs|
       instance = @observations.detect{ |o| o.uuid == id || o.id.to_s == id }
       instance ? [instance.id.to_s, obs] : nil
     end.compact]
