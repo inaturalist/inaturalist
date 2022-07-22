@@ -757,7 +757,7 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = params[:observations].map do |id, obs|
+    @observations = params[:observations].to_h.map do |id, obs|
       Observation.where( uuid: id, user_id: observation_user ).first ||
         Observation.where( id: id, user_id: observation_user ).first
     end.compact
