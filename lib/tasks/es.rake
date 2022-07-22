@@ -59,7 +59,8 @@ def start
   return if fail_unless_binaries_exists
   unless ElasticModel.elasticsearch_is_running?
     puts "\nElasticsearch is starting up...\n"
-    `elasticsearch/bin/elasticsearch -p #{ pid_path } -d`
+    puts "elasticsearch/bin/elasticsearch -p #{ pid_path } -d"
+    system( "elasticsearch/bin/elasticsearch -p #{ pid_path } -d" )
   end
   success = ElasticModel.wait_until_elasticsearch_is_running
   if success
