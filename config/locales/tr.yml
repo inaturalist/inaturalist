@@ -36,9 +36,9 @@ tr:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} yaşam listesinde ilk"
+    one: "%{count} tür yaşam listesinde ilk"
     #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} yaşam listesinde ilk"
+    other: "%{count} tür yaşam listesinde ilk"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> günlük gönderisi'
     other: '<span class="count">%{count}</span> günlük gönderisi'
@@ -78,8 +78,8 @@ tr:
     one: '<span class="count">%{count}</span> Gözlemci'
     other: '<span class="count">%{count}</span> Gözlemci'
   x_others:
-    one: "%{count} diğer"
-    other: "%{count} diğer"
+    one: "diğer %{count}"
+    other: "diğer %{count}"
   x_people:
     one: "%{count} kişi"
     other: "%{count} kişi"
@@ -103,8 +103,8 @@ tr:
     one: "<a href='%{url}'>%{count} tür</a>"
     other: "<a href='%{url}'>%{count} tür</a>"
   x_suggestions_filtered_by_colon:
-    one: "%{count} Önerinin Filtreme Şekli:"
-    other: "%{count} Önerinin Filtreme Şekli:"
+    one: "%{count} Öneri Filtrelendi:"
+    other: "%{count} Öneri Filtrelendi:"
   x_taxa:
     one: "%{count} sınıf"
     other: "%{count} sınıf"
@@ -130,10 +130,10 @@ tr:
     one: "<span class='count'>%{count}</span> sınıf değişimi eklendi"
     other: "<span class='count'>%{count}</span> sınıf değişimi eklendi"
   _100_day_trends: 100 Günlük Eğilimler
-  _percent_ID_d: "% tanımlama"
+  _percent_ID_d: "% tanımlanmış"
   a_community_for_naturalist: Doğa Bilimciler Topluluğu
   a_default_taxon_name_will_automatically_created: |
-    Varsayılan bir sınıf adı, kendiliğinden bu sınıfın bilimsel ad özelliğinden oluşturulacak. Bu yeni sınıfı kaydettikten sonra, buraya başka adlar ekleyebilirsiniz (yaygın adlar, eski bilimsel adlar vb.).
+    Bu sınıfın bilimsel ad niteliğinden otomatik olarak varsayılan bir sınıf adı oluşturulacaktır. Bu yeni sınıfı kaydettiğinde, buraya başka adlar ekleyebileceksin (yaygın adlar, eski bilimsel adlar vb.).
   a_flag_for_x: "%{x} için bir işaret"
   a_member_of_taxon_html: "%{taxon} sınıfının bir üyesi"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -264,7 +264,7 @@ tr:
   add_a_single_observation: Tek Gözlem Ekle.
   add_a_taxon: Bir Sınıf Ekle
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    Eğer adı değiştirmek istersen <a target="_blank" href="%{url}">sınıf takası</a> ekle
+    Eğer adı değiştirmek istersen <a target="_blank" href="%{url}">sınıf yer değişimi</a> ekle
   add_an_assessment: Bir Değerlendirme Ekle
   add_an_identification: Bir Tanımlama Ekle
   add_an_observation: Bir Gözlem Ekle
@@ -379,7 +379,7 @@ tr:
   added_as_a_part_of_a_taxon_split_html: |
     <a target="%{target}" class="%{class}" href="%{url}">sınıf bölmenin</a> bir parçası olarak eklendi
   added_as_a_part_of_a_taxon_swap_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">sınıf takasının</a> bir parçası olarak eklendi
+    <a target="%{target}" class="%{class}" href="%{url}">Sınıf yer değişiminin</a> bir parçası olarak eklendi
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
   added_on_datetime: "%{datetime} tarihinde eklendi"
@@ -739,6 +739,12 @@ tr:
   back_to_your_observations: Gözlemlerine dön
   back_to_your_profile: Profiline dön
   badges: Rozetler
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
+    other: |
+      Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
   based_on_the_evidence_can_id_be_improved: |
     Kanıtlara dayanarak, Topluluk Sınıfı hâlâ onaylanabilir ya da geliştirilebilir mi?
   batch: Toplu
@@ -748,6 +754,12 @@ tr:
   batch_operations: Toplu İşlemler
   be_the_first_to_fave_this_observation: Bu gözlemi favori yapan ilk sen ol!
   because_of: çünkü
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Bu değişikliğin 10'dan çok istenmeyen anlaşmazlığa neden olacağını tahmin ettiğimiz için <strong>%{old_parent} üst soyunu içeren bir sınıf değişimi de yapmanı öneririz, örneğin %{new_parent} ile %{old_parent} üst soylarını bölmek gibi</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Bu değişikliğin 10 ya da daha az istenmeyen anlaşmazlıkla sonuçlanacağını tahmin ettiğimiz için <strong>muhtemelen %{old_parent} üst soyunu içeren bir sınıf değiştirme yapmak gerekli değildir</strong>.
   become_a_donor_caps: BİR BAĞIŞÇI OL
   become_a_donor_today_caps: BUGÜN BİR BAĞIŞÇI OL
   before_importing_photos: fotoğrafları içe aktarmadan önce
@@ -1404,7 +1416,7 @@ tr:
   delete_range: Yayılımı sil
   delete_selected: Seçileni sil
   delete_taxon_and_merge_most_data_html: |
-    <i>%{taxon}</i> sınıfını silin ve verilerinin çoğunu başka bir sınıfla birleştirin. <strong>Kopyalanan sınıfları kaldırmak</strong> için bu aracı kullanın. Eski bir eş anlamlıyı kaldırmak istiyorsanız, lütfen bir sınıf takası oluşturun. <strong>DİKKATLİ OL!</strong> Sınıfları silmek oldukça zararlı olabilir. Daha çok bilgi için <a href="%{curator_url}">Sorumlu Rehberini</a> incele.
+    <i>%{taxon}</i> sınıfını silin ve verilerinin çoğunu başka bir sınıfla birleştirin. <strong>Kopyalanan sınıfları kaldırmak</strong> için bu aracı kullanın. Eski bir eş anlamlıyı kaldırmak istiyorsanız, lütfen bir sınıf yer değişimi oluşturun. <strong>DİKKATLİ OL!</strong> Sınıfları silmek oldukça zararlı olabilir. Daha çok bilgi için <a href="%{curator_url}">Sorumlu Rehberini</a> incele.
   delete_user: Kullanıcıyı sil
   delete_your_account: Hesabını sil
   deleted_synonyms: Silinmiş eş anlamlılar
@@ -1954,7 +1966,13 @@ tr:
   highlights_and_stats_from_year_on_site: "%{site} sayfasının %{year} yılındaki öne çıkanları ve istatistikleri"
   history: Geçmiş
   home: Ana Sayfa
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "Ayarlanacak Saat:"
   however_there_were_some_issues: "Ancak, bazı sorunlar vardı: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Bununla birlikte, tanımlayıcıları %{old_parent} kapsamının daraltıldığı konusunda uyarmak için yukarıda bağlantısı verilen istenmeyen uyuşmazlıklara sahip gözlemler hakkında yorum yapmak isteyebilirsin.
   i_dont_know_but_i_am_sure_this_is_taxon: Bilmiyorum ama bunun %{taxon} olduğundan eminim
   icon: Simge
   icon_size: Simge boyutu
@@ -1968,6 +1986,10 @@ tr:
         Bu sınıflandırmanın topluluk tarafından kabul edilen ilk önerisi. Bu, topluluk sınıflandırmasının düzenlenmesine yardımcı olur.
       maverick: |
         Sınıf, topluluk sınıfının alt ya da üst sınıfı değildir, yani topluluk bu sınıfa katılmamaktadır.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "<strong>E</strong> sınıfının 2. tanımlaması, soydaki değişiklikten sonra <strong>B</strong> taksonunun 1. tanımlaması ile istenmeyen bir uyuşmazlık yaratacaktır."
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "<strong>E</strong> sınıfına ait 2. tanımlama, sınıf yer değişiminden sonra <strong>B</strong> sınıfına ait 1. tanımlama ile istenmeyen bir uyuşmazlık yaratacaktır."
   id_withdrawn: Tanımlama Geri Alındı
   ids_by_taxon: Sınıfa Göre Tanımlamalar
   identify: Tanımla
@@ -1998,6 +2020,14 @@ tr:
   ids_made_for_others: Diğerleri için yapılan tanımlamalar
   if_for_some_reason_a_user_doesnt_agree: |
     Herhangi bir nedenle topluluk sınıfına katılmıyorsanız bunu reddedebilirsiniz, bu kimliğinizin diğer gözlemlere bağlanmak, yaşam listelerini güncellemek vb. için kullanıldığı anlamına gelir. Ayrıca, gözleminiz ancak topluluk sizinle aynı düşüncede olduğunda araştırma sınıfı olacağı anlamına da gelir.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Bir üst soyu daraltmak 10'dan çok istenmeyen anlaşmazlığa neden oluyorsa, alt soyu taşıdıktan sonra üst soyu ayırarak <strong>(B)</strong> üst soyunun mevcut tanımlamalarını uyuşmayan tanımlamalarla değiştirmelisin.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Bir üst soyun daraltılması 10'dan çok istenmeyen anlaşmazlıkla sonuçlanırsa, <strong>(B)</strong> üst soyunun mevcut tanımlamalarını uyuşmayan tanımlamalarla değiştirmek için alt soyu değiştirdikten sonra üst soyu bölmelisin.
   if_matches_come_from_a_comprehensive_list: Eşleşmeler kapsamlı bir listeden geliyorsa burada yeşil bir çubuk görünecektir.
   if_this_is_a_scientific_name: Bu bilimsel bir isimse, şu anda onaylı mı?
   if_this_link_will_apply_to_descendant: Bu bağlantı azalan sınıflara uygulanacaksa, URL’deki sınıf adını doldurmak için şablon etiketlerini kullanabilirsiniz
@@ -2149,6 +2179,10 @@ tr:
   leaderboards: Lider Sıralamaları
   leaderboard_most:
     species_in_month_year: '%{month_year} tarihindeki en çok tür'
+    species_in_year: '%{year} yılındaki en çok tür'
+    observations_in_month_year: '%{month_year} tarihindeki en çok gözlem'
+    observations_in_year: '%{year} yılındaki en çok gözlem'
+    identifications_in_month_year: '%{month_year} tarihindeki en çok tanımlama'
     identifications_in_year: '%{year} yılındaki en çok tanımlama'
   leading: Öncü
   learn: Öğren
@@ -2403,12 +2437,13 @@ tr:
   #Stub text for the main content section when editing custom project data
   main_content_description: Temel içerik buraya
   make_a_new_place: Yeni bir yer oluştur
-  make_a_taxon_swap_instead?: Bunun yerine bir Sınıf Takası yapılsın mı?
+  make_a_taxon_swap_instead?: Bunun yerine bir Sınıf Yer Değişimi yapılsın mı?
   make_curator: Sorumlu yap
   make_manager: Yönetici yap
   make_sure_the_default_photo_looks_good: Varsayılan fotoğrafın büyük boyutta iyi göründüğünden emin olun.
   make_this_your_default_license: "Bunu varsayılan %{type} lisansınız yapın"
   make_this_the_primary_listing: "Bunu birincil liste yapın"
+  make_your_app_confidential: Uygulamanı güvenli bir şekilde saklayabiliyorsan, yani kaynak koda dönüştürülebilen herkese açık bir dosyada saklamıyorsan uygulamanı gizli yap. Durum böyle değilse ve PKCE akışını kullanmayı planlıyorsan bu kutunun işaretini kaldır
   mammals: memeliler
   manage_all_your_subscriptions: Tüm aboneliklerini yönet
   manage_names: İsimleri Yönet
@@ -2443,6 +2478,9 @@ tr:
   mark_all_as_unreviewed: Tümünü İncelenmemiş Olarak İşaretle
   matching_species_will_shown_up_here: Eşleşen türler burada görünecek. Eğer %{place} bu tür için bir tane sahipse haritalar bir aralık gösterecek.
   maverick: Aykırı
+  maximum_positional_accuracy: Azami konumsal doğruluk
+  maximum_positional_accuracy_including_unknown: |
+    Konumsal doğruluğu olmayan gözlemler dahil azami konumsal doğruluk
   media: Medya
   media_type: Medya Türü
   medium: orta
@@ -2483,6 +2521,11 @@ tr:
     Türler ve gizli bilgilerle ilgili isteklere karşı dikkatli olun. İstek yapan kişinin kimliğini doğrulamaya çalışın ve türler hakkında sorular soruyorlarsa, yetki izinlerini göstermelerini isteyin.
   messages_new_correspondent_personal: |
     Güvenmediğin kişilere kendin hakkındaki kişisel bilgilerini paylaşma.
+  messages_new_correspondent_actions_html: |
+    Bu kişinin <a href="%{tos_url}"
+    target="_blank">Kullanım Koşullarımızı</a> ihlal ettiğinden ya da <a
+    href="%{guidelines_url}" target="_blank">Topluluk İlkelerimize</a> uygun hareket etmediğinden şüpheleniyorsan, lütfen bu mesajı işaretle.
+  minimum_positional_accuracy: Asgari konumsal doğruluk
   misidentifications: Yanlış tanımlamalar
   misleading_or_illegal_content_html: |
     Yanıltıcı veya yasa dışı içerik, ırksal veya etnik hakaretler vb. "Uygun" tanımımızla ilgili daha çoğu için <a href="/help#inappropriate">SSS'ye</a>bakın.
@@ -2568,10 +2611,15 @@ tr:
   most_observed_introduced_species: En Çok Gözlenen Yabancı Türler
   most_observed_threatened_species: En Çok Gözlenen Tehdit Altındaki Türler
   move_input_children_to_output?: Alt sınıflar çıktıya mı taşınsın?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    %{child} alt soyunu %{old_parent} üst soyundan ayırmak, %{old_parent} ile kastettiğimiz şeyi daraltacaktır. %{old_parent} için %{id_count} tanımlama vardır.
   multiple: çoklu
   multiple_select_option: '-- çoklu --'
   multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: '%{project} projesinde olmalı'
   must_be_in_taxon: '%{taxon} sınıfında olmalı'
   must_be_not_in_taxon: '%{taxon} sınıfında olmamalı'
   must_be_not_observed_by_user: '%{user} tarafından gözlemlenmemeli'
@@ -2973,6 +3021,10 @@ tr:
   off_caps: "KAPALI"
   official_blog: Resmi Blog
   offline_access_enabled: Çevrimdışı erişim etkin
+  #Header label for hiding or unhiding the time shifter in the Uploader
+  offset_time: "Saat Farkı"
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: Ayarla
   old_observation_form: Eski gözlem formu (kullanımdan kaldırıldı)
   ok: "TAMAM"
   on_caps: "AÇIK"
@@ -3006,6 +3058,8 @@ tr:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "aşağıdakilerden biri doğru olmalıdır:"
   one_of_your_lists: "listelerinizden biri..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Bir ya da daha çok girdi sınıfı 1000'den çok gözlemle ilişkilidir, bu nedenle işlem yapmak biraz zaman alabilir. Bu sınıf değiştirmenin gerekli olduğundan emin misin? Sınıf değiştirmenin geri alınamayacağını unutmayın.
   only_a_project_manager_can_add: Proje sorumlusunun durumunu yalnızca bir proje yöneticisi ekleyebilir
   only_administrators_may_access_that_page: Bu sayfaya yalnızca yöneticiler erişebilir
   only_an_admin_can_remove_project_users: Proje kullanıcılarını yalnızca bir yönetici kaldırabilir
@@ -3074,9 +3128,11 @@ tr:
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Genellikle bu alt cins olarak <a href="%{url}">%{place}</a> yerinde yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_subsection: Bu alt seksiyon olarak sıklıkla yanlış tanımlanmış diğer sınıflar
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Bu alt seksiyon olarak <a href="%{url}">%{place}</a> yerinde sıklıkla yanlış tanımlanmış diğer sınıflar
+  outside_of_all_atlases: Tüm atlasların dışında
   our_blog: Blogumuz
   output_taxon: Sınıf çıkışı
   overview: Genel Bakış
+  overlapping_atlases: Çakışan atlaslar
   overlapping_downstream_taxon_frameworks_html: "Üst üste gelen alt sınıf Sınıf Yapıları: %{count}"
   owner: Sahip
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
@@ -3141,11 +3197,31 @@ tr:
     original: orjinal
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
+  pi_consent_desc_html: |
+    <p>
+    Bu sitedeki hesapları yönetmek için kullanıcı adları ve e-posta adresleri gibi kişisel bilgileri saklıyoruz ve gizlilik yasalarına uymak için kişisel bilgilerin bu şekilde kullanılmasına izin verdiğini belirtmek adına bu kutuyu işaretlemen gerekiyor. Hangi bilgileri topladığımız ve bunları nasıl kullandığımız hakkında daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Koşullarımıza</a> bakın.
+    </p>
+    <p>
+    Kişisel bilgileri saklamadan bir iNaturalist hesabına sahip olmanın bir yolu yoktur, bu nedenle bu izni iptal etmenin tek yolu hesabını silmektir.
+    </p>
   pi_consent_label: |
     iNaturalist’in hesabımı yönetmek için sınırlı sayıda kişisel bilgiyi saklamasına ve işlemesine izin veriyorum
   pi_consent_child_label: |
     iNaturalist’in çocuğumun hesabını yönetmek için sınırlı sayıda kişisel bilgisini saklamasına ve işlemesine izin veriyorum
   data_transfer_consent_desc_title: Kişisel Bilgi Aktarımı İzni Hakkında
+  data_transfer_consent_desc_html: |
+    <p>
+    Avrupa Birliği'nin Genel Veri Koruma Yönetmeliği (GDPR) gibi bazı veri gizliliği yasaları, kişisel bilgilerin kendi yetki alanlarından bu bilgilerin yasal olarak korunmasının yeterli görülmediği diğer yetki alanlarına aktarılması için açık rıza gerektirir. <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> itibariyle Avrupa Birliği, özellikle ABD hükümetinin ABD'ye giren verileri gözetleme olasılığı nedeniyle, ABD'yi artık kişisel bilgilerin yeterli yasal korumasını sağlayan bir otorite olarak görmemektedir. Diğer otoritelerin de aynı görüşte olması olasıdır.
+    </p>
+    <p>
+    iNaturalist'i kullanmak e-posta adresiniz gibi kişisel bilgilerin saklanmasını gerektirir, tüm iNaturalist verileri ABD'de saklanır ve iNaturalist'i kullanırken hangi yasal yetki alanında olduğunuzdan emin olamayız, bu nedenle GDPR gibi gizlilik yasalarına uymak için bu riski anladığınızı ve kabul ettiğinizi ve kişisel bilgilerinizin iNaturalist'in ABD'deki sunucularına aktarılmasına izin verdiğinizi onaylamanız gerekir. 
+    </p>
+    <p>
+    Hangi bilgileri topladığımız ve bunları nasıl kullandığımız hakkında daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Koşullarımıza</a> bakın.
+    </p>
+    <p>
+    Kişisel bilgileri saklamadan bir iNaturalist hesabına sahip olmanın bir yolu yoktur, bu nedenle bu izni iptal etmenin tek yolu hesabınızı silmektir.
+    </p>
   data_transfer_consent_label: |
     Kişisel bilgilerimin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
   data_transfer_consent_child_label: |
@@ -3157,6 +3233,8 @@ tr:
   place: Konum
   placeholder: Yer imi
   place_autocomplete_placeholder: Zion Ulusal Parkı, Miami, vb.
+  place_create_quota_exceeded: |
+    24 saatlik süre içinde oluşturabileceğin konum sayısını (%{quota}) aştın
   place_deleted: Konum silindi.
   place_geo:
     geo_planet_place_types:
@@ -3584,6 +3662,7 @@ tr:
   plants: bitkiler
   please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekleyin.
   please_allow_a_few_weeks_for_external_sites: Lütfen dış sitelerin bu gözlemdeki değişiklikleri eşitlemesine izin vermek için birkaç hafta bekleyin #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Lütfen ebeveynlerinden izin iste
   #Title to a section warning a user to exercise caution
   please_be_careful!: Lütfen Dikkatli Olun!
   please_complete_the_following_to_add_project: |
@@ -3800,6 +3879,8 @@ tr:
   ranks_lowercase_suborder: alt takım
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infra takım
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: enaltsınıf
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: geçiş takımı
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
@@ -3830,6 +3911,8 @@ tr:
   ranks_lowercase_section: seksiyon
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
   ranks_lowercase_subsection: alt seksiyon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: tür
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
@@ -3843,6 +3926,8 @@ tr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: infra melez
   ranges: Aralıklar
+  #Text to link to a taxon range as a KML file
+  range_file: Yayılım Dosyası
   ray_finned_fishes: ışınsal yüzgeçli balıklar
   re_order_photos: "Fotoğrafları yeniden sırala &raquo;"
   read_more: Daha Fazla Oku
@@ -3961,7 +4046,11 @@ tr:
   restart: Yeniden başlat
   restore: Geri yükle
   restoring: Geri yükleniyor...
+  result_window_too_large_error: |
+    Sayfa sayısı çarpı sayfa başına sonuç sayısı 10.000'i geçemez. Sonuç sayısını azaltmak için filtre uygulamayı deneyin.
   review_all: Tümünü İncele
+  review_identifications_of_taxon_html: |
+    <span class="sciname">%{taxon}</span> %{taxon_id} sınıfının tanımlamalarını gözden geçir
   reviewed: İncelenmiş
   revoke: İptal Et
   revoke_caps: İPTAL ET
@@ -4082,6 +4171,9 @@ tr:
   show: Göster
   show_active_and_inactive_taxa: Etkin ve etkin olmayan sınıfları göster
   show_hidden_content: Gizli İçeriği Göster
+  show_history_by_this_user: Bu kullanıcının geçmişini göster
+  show_history_for_this_kind_of_action: Bu tür bir eylemin geçmişini göster
+  show_history_for_this_record: Bu kaydın geçmişini göster
   show_keyboard_shortcuts: Klavye Kısayollarını Göster
   show_less: Daha Az Göster
   show_more: Daha Fazla Göster
@@ -4307,8 +4399,8 @@ tr:
   subscribe_to_a_place: Bir Konuma Abone Ol
   subscribe_to_comments_on_this_flag_html: "Bu işaretteki yorumlara %{tag_start}Abone Ol%{tag_end}"
   subscribe_to_comments_on_this_post_html: "Bu gönderideki yorumlara %{tag_start}Abone Ol%{tag_end}"
-  subscribe_to_comments_on_this_taxon_stage_html: "Bu sınıf aşamasındaki yorumlara %{tag_start}abone olun%{tag_end}"
-  subscribe_to_comments_on_this_taxon_swap_html: "Bu sınıf takasındaki yorumlara %{tag_start}abone olun%{tag_end}"
+  subscribe_to_comments_on_this_taxon_stage_html: "Bu sınıf etkinleştirmesindeki yorumlara %{tag_start}abone ol%{tag_end}"
+  subscribe_to_comments_on_this_taxon_swap_html: "Bu sınıf yer değişimi yorumlarına %{tag_start}abone ol%{tag_end}"
   subscribe_to_comments_on_this_taxon_merge_html: "Bu sınıf birleştirmesindeki ilgili yorumlara %{tag_start}abone olun%{tag_end}"
   subscribe_to_comments_on_this_taxon_split_html: "Bu sınıf bölünmesine ilişkin yorumlara %{tag_start}abone olun%{tag_end}"
   subscribe_to_comments_on_this_taxon_drop_html: "Bu sınıf etkisizleştirmeyle ilgili yorumlara %{tag_start}abone olun%{tag_end}"
@@ -4420,6 +4512,11 @@ tr:
   taxon_change_commit_may_still_be_processing: |
     Sınıf değiştirme işlemi hâlâ devam ediyor olabilir, bu nedenle bazı kayıtların henüz güncellenmediğini unutmayın.
   taxon_change_must_be_committed_to_update_records: İçeriği güncellemek için sınıflama değişikliği onaylaman gerekir
+  taxon_change_title_taxon_drop: Sınıflandırmasal Etkisizleştirme %{id}
+  taxon_change_title_taxon_merge: Sınıflandırmasal Birleştirme %{id}
+  taxon_change_title_taxon_split: Sınıflandırmasal Bölme %{id}
+  taxon_change_title_taxon_stage: Sınıflandırmasal Etkinleştirme %{id}
+  taxon_change_title_taxon_swap: Sınıflandırmasal Yer Değişimi %{id}
   taxon_deleted: Sınıf silindi.
   taxon_doesnt_have_a_range: Sınıf bir yayılıma sahip değil
   taxon_drop: sınıf etkisizleştime
@@ -4481,10 +4578,10 @@ tr:
   taxon_search_results_for: Şunun için Sınıf Araması sonuçları
   taxon_split: sınıf bölme
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: sınıf aşaması
-  taxon_swap: sınıf takası
+  taxon_stage: sınıf etkinleştirme
+  taxon_swap: sınıf yer değişimi
   taxon_swap_only_has_one_input: takas için yalnızca bir girişe izin verilir
-  taxon_swap_has_inputs_and_outputs: takas hem girişlere hem de çıkışlara sahip olmalıdır
+  taxon_swap_has_inputs_and_outputs: yer değişimi hem girişlere hem de çıkışlara sahip olmalıdır
   taxon_name_was_deleted: Sınıf ismi silindi.
   taxon_name_was_successfully_updated: Sınıf ismi başarıyla güncellendi.
   taxon_was_successfully_created: Sınıf başarıyla oluşturuldu.
@@ -4514,7 +4611,7 @@ tr:
   text_formatting_controls: Metin biçimlendirme kontrolleri
   text_editing_controls: Metin düzenleme kontrolleri
   thanks!: Teşekkürler!
-  thanks_from_all_of_us_here_at: Hepimize buradan teşekkürler
+  thanks_from_all_of_us_here_at: Hepimiz adına teşekkürler
   that_photo_doesnt_exist: Bu fotoğraf mevcut değil.
   that_observation_doesnt_exist: Bu gözlem mevcut değil.
   that_observation_doesnt_have_any_photos: "Bu gözlem herhangi bir fotoğrafa sahip değil."
@@ -4772,6 +4869,7 @@ tr:
     <a href="/terms" target="_blank">Kullanım Koşullarını</a> ve <a href="/privacy" target="_blank">Gizlilik Politikası'nı</a> kabul ediyorum ve <a href="/pages/community+guidelines" target="_blank">Topluluk İlkeleri'ni</a> okudum.
   total: Toplam
   totals: Toplam
+  total_ids_on_input_taxon: "Girdi sınıfının toplam tanımlaması:"
   total_members: Toplam üye
   total_observations: Toplam Gözlem
   total_observations_caps: TOPLAM GÖZLEM
@@ -4890,7 +4988,7 @@ tr:
   use_name_as_a_placeholder: |
     Yer imi olarak <span class='ac-placeholder'>%{name}</span> kullanın
   use_this_form_to_create_a_new: |
-    Bu formu, daha sonra işlenecek olan etkin sınıflara önerilen bir bölünmeyi, birleştirmeyi ya da takası yapmayı tanımlayan yeni bir taslak sınıflandırmasal değişikliği oluşturmak için kullanın.
+    Bu formu, daha sonra işlenecek olan etkin sınıflara önerilen bir bölünmeyi, birleştirmeyi ya da yer değişimini tanımlayan yeni bir taslak sınıflandırmasal değişikliği oluşturmak için kullanın.
   use_this_if_the_url_needs_genus_species_separated: |
     Bu URL'yi, cins ve türlerin belirli bir şekilde ayrılması gerekiyorsa kullanın. Sınıf bir tür ya da infra tür değilse, [GENUS] ve [SPECIES] arasındaki her şey sınıf adıyla değiştirilir, bu nedenle dikkatli kullanın.
   use_unique_file_names_for_separate_uploads: Ayrı yüklemeler için özgün dosya isimleri kullanın
@@ -5242,7 +5340,7 @@ tr:
   you_are_subscribed_to_comments_on_this_flag: Bu işaret ile ilgili yorumlara abone oldunuz.
   you_are_subscribed_to_comments_on_this_post: Bu gönderi ile ilgili yorumlara abone oldunuz.
   you_are_subscribed_to_comments_on_this_taxon_stage: Bu sınıf aşamasındaki yorumlara abone oldunuz
-  you_are_subscribed_to_comments_on_this_taxon_swap: Bu sınıf takasındaki yorumlara abone oldunuz
+  you_are_subscribed_to_comments_on_this_taxon_swap: Bu sınıf yer değişimindeki yorumlara abone oldun
   you_are_subscribed_to_comments_on_this_taxon_merge: Bu sınıf birleştirmesiyle ilgili yorumlara abone oldunuz
   you_are_subscribed_to_comments_on_this_taxon_split: Bu sınıf bölünmesiyle ilgili yorumlara abone oldunuz
   you_are_subscribed_to_comments_on_this_taxon_drop: Bu sınıf etkisizleştirmesiyle ilgili yorumlara abone oldunuz
