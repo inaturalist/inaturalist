@@ -3309,6 +3309,7 @@ hu:
   taxon_scheme: Taxonrendszer
   taxon_schemes: "Taxonrendszerek"
   taxon_swap: taxoncsere
+  taxon_was_successfully_updated: A taxon sikeresen frissítve.
   taxonomic: Rendszertani
   taxonomic_changes: Rendszertani változások
   taxonomic_groups: Rendszertani csoportok
@@ -3541,6 +3542,7 @@ hu:
   update_with_site_content: "Frissítsd %{site_name} tartalmával"
   updated: Frissítve
   updated_by: Frissítette
+  updated_by_user_on_date_html: 'Frissítette %{user} ekkor: %{date}'
   updated_daily: Naponta frissítve
   updated_photo: Fotó frissítve
   upload: Feltöltés
@@ -3595,6 +3597,7 @@ hu:
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} kedvencelte %{owner} %{noun}ét"
   user_faved_this_observation: "%{user} kedvencelte ezt a megfigyelést"
+  user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
   user_hasnt_joined_any_projects: "%{user} még nem lépett be egy projektbe sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
   user_is_a_naturalist: "%{user} is a naturalist!"
