@@ -1655,6 +1655,7 @@ bg:
     occitan: окситански
     palauan: палауански
     pangasinan: пангасинан
+    persian: персийски
     polish: полски
     portuguese: португалски
     romanian: румънски
@@ -1663,6 +1664,7 @@ bg:
     slovak: словашки
     slovenian: словенски
     spanish: испански
+    swahili: суахили
     swedish: шведски
     tagalog: тагалог
     tahitian: таитянски
@@ -1743,6 +1745,7 @@ bg:
     lb: люксембургски
     lt: литовски
     lv: латвийски
+    mi: маорски
     mk: македонски
     nb: норвежки (букмол)
     nl: нидерландски
@@ -2890,6 +2893,7 @@ bg:
   queued: На опашка
   query: Заявка
   radius: Радиус (m)
+  radius_km: Радиус (km)
   radius_value: "Радиус (m): %{radius}"
   random: Произволно
   range: Диапазон
@@ -5053,6 +5057,11 @@ bg:
             redirect_uri:
               invalid_uri: "трябва да е валиден URI."
               relative_uri: "трябва да е абсолютен URI."
+        flag:
+          attributes:
+            flag:
+              not_about_duplicate: |
+                но може да се отнася за дублирани наблюдения или снимки; само наблюдателят може да изтрива дубликати, така че моля отправете забележките си директно към него с коментар
         observation:
           attributes:
             observed_on:
