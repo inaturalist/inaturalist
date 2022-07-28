@@ -124,6 +124,11 @@ class Guide < ApplicationRecord
     guide_users.detect {| gu | gu.user_id == user_id }
   end
 
+  def self.set_taxon( guide_id )
+    return unless guide = Guide.find_by_id( guide_id )
+    guide.set_taxon
+  end
+
   def set_taxon
     ancestry_counts = Taxon.joins( :guide_taxa ).where( "guide_taxa.guide_id = ?", id ).group( :ancestry ).count
     ancestries = ancestry_counts.map {| a, _c | a.to_s.split( "/" ) }.sort_by( &:size ).compact

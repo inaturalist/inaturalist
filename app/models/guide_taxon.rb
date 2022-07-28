@@ -135,8 +135,8 @@ class GuideTaxon < ApplicationRecord
   end
 
   def set_guide_taxon
-    self.guide.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Guide::set_taxon": guide_id }).set_taxon
+    Guide.delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::set_taxon": guide_id } ).set_taxon( guide_id )
     true
   end
 
