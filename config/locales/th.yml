@@ -1320,6 +1320,16 @@ th:
       MM: "%d เดือน"
       #Short text representing %d years in the past
       yy: "%d ปี"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
   month: เดือน
   months: เดือน
   more: เพิ่มเติม
@@ -2350,6 +2360,8 @@ th:
     observations:
       field_descriptions:
         scientific_name: "ชื่อวิทยาศาสตร์ของหน่วยอนุกรมวิธานที่สังเกตอ้างอิงจากเว็บไซต์นี้"
+      import:
+        date_column_format: YYYY-MM-DD HH:MM
       show:
         data_quality_assessment_desc_html: |
           การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
