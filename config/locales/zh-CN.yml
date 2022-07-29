@@ -295,6 +295,7 @@ zh-CN:
   add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
   add_evidence_of_presence_organism_annotation: '添加“出现记录的证据：生物”的注释'
   add_evidence_of_presence_feather_annotation: '添加“出现记录的证据：羽毛”的注释'
+  add_evidence_of_presence_gall_annotation: '添加“出现记录的证据：虫瘿”的注释'
   add_evidence_of_presence_scat_annotation: '添加“出现记录的证据：排泄物”的注释'
   add_evidence_of_presence_track_annotation: '添加“出现记录的证据：足迹”的注释'
   add_evidence_of_presence_bone_annotation: '添加“出现记录的证据：骨骼”的注释'
@@ -991,6 +992,8 @@ zh-CN:
     evidence_of_presence: 出现记录的证据
     #As in the feather on a bird
     feather: 羽毛
+    #Abnormal growth
+    gall: 虫瘿
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: 生物
@@ -1017,6 +1020,7 @@ zh-CN:
     scat: 排泄物（非鸮类食丸或其它呕吐物）
     track: 由生物在地面或雪地上留下的印痕
     molt: 蜕下的皮或外骨骼
+    gall: 植物因受病原刺激或虫害而出现的局部增生
   controls: 控制
   convert: 转换
   coordinate_systems: 坐标系
