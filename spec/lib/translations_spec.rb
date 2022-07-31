@@ -27,81 +27,92 @@ def traverse( obj, key = nil, &blk )
 end
 
 describe "translations" do
-  data = {}
-  Dir.glob( "config/locales/*.yml" ).each do |path|
-    next if path =~ /qqq.yml/
-    locale = File.basename( path, ".yml" )
-    yaml = YAML.load_file( path )
-    unless locale =~ /(phonetic|doorkeeper)/
-      # Sometimes Crowdin seems to set the root of pt-BR to pt, which makes
-      # all the pt-BR translations unavailable to everyone with that
-      # preference
-      it "#{locale} should have a root key that matches the locale" do
+  # Sometimes Crowdin seems to set the root of pt-BR to pt, which makes
+  # all the pt-BR translations unavailable to everyone with that
+  # preference
+  it "locales should have a root key that matches the locale" do
+    Dir.glob( "config/locales/*.yml" ).each do |path|
+      next if path =~ /qqq.yml/
+      locale = File.basename( path, ".yml" )
+      yaml = YAML.load_file( path )
+      unless locale =~ /(phonetic|doorkeeper)/
         expect( yaml.keys.first ).to eq locale
       end
     end
-    traverse( YAML.load_file( path ) ) do |translation, key|
-      data[key] = translation
-    end
   end
 
-  data.each do |key, translation|
-    next if key =~ /^en\./
-    locale = key[/^(.+?)\./, 1]
-    en_key = key.sub( "#{locale}.", "en." )
-    describe key do
-      if key =~ /^#{locale}\.i18n\.inflections\.gender\./
-        it "should be a blank gender inflection" do
+  it "locales should pass a series of tests" do
+    en_translations = { }
+    traverse( YAML.load_file( "config/locales/en.yml" ) ) do |translation, key|
+      en_translations[key] = translation
+    end
+    Dir.glob( "config/locales/*.yml" ).each do |path|
+      next if path =~ /qqq.yml/
+      locale = File.basename( path, ".yml" )
+      next if locale == "en"
+      yaml = YAML.load_file( path )
+      separator_values = { }
+      traverse( YAML.load_file( path ) ) do |translation, key|
+        en_key = key.sub( "#{locale}.", "en." )
+        if key =~ /^#{locale}\.i18n\.inflections\.gender\./
+          # it "should be a blank gender inflection"
           expect( key ).not_to eq "#{locale}.i18n.inflections.gender."
         end
-      end
-      next unless data[en_key]
-      if data[en_key].is_a?( Array )
-        # For some reason, translatewiki tends to translate yaml arrays as yaml
-        # hashes with numbered keys. Our arrays often begin with a blank for
-        # position 0, and translatewiki tends not to include that in their hash, so
-        # ignore that in the count
-        it "should have all members of an array" do
-          expect( data[en_key].size ).to eq translation.size
+        next unless en_translations[en_key]
+
+        if en_translations[en_key].is_a?( Array )
+          # For some reason, translatewiki tends to translate yaml arrays as yaml
+          # hashes with numbered keys. Our arrays often begin with a blank for
+          # position 0, and translatewiki tends not to include that in their hash, so
+          # ignore that in the count
+          # it "should have all members of an array"
+          expect( en_translations[en_key].size ).to eq translation.size
+          next
+        elsif !en_translations[en_key].is_a?( String )
+          next
         end
-        next
-      elsif !data[en_key].is_a?( String )
-        next
-      end
-      variables = translation.scan( /%{.+?}/ )
-      variables.each do |variable|
-        # Bit of a kludge, but a lot of our singular form translations look like
-        # "1 observation" in the source string when they should probably look
-        # like "%{count} observation". The localization libs handle the %{count}
-        # variable regardless, so this is not really a problem worth raising
-        # alarms about
-        next if en_key =~ /\.one/ && variable == "%{count}"
-        unless data[en_key] =~ /#{variable.encode( "utf-8" )}/
-          it "#{variable} should be present in the source string" do
-            expect( data[en_key] ).to match /#{variable.encode( "utf-8" )}/
+
+        variables = translation.scan( /%{.+?}/ )
+        variables.each do |variable|
+          # Bit of a kludge, but a lot of our singular form translations look like
+          # "1 observation" in the source string when they should probably look
+          # like "%{count} observation". The localization libs handle the %{count}
+          # variable regardless, so this is not really a problem worth raising
+          # alarms about
+          next if en_key =~ /\.one/ && variable == "%{count}"
+          unless en_translations[en_key] =~ /#{variable.encode( "utf-8" )}/
+            # it "#{variable} should be present in the source string"
+            expect( en_translations[en_key] ).to match /#{variable.encode( "utf-8" )}/
           end
         end
-      end
 
-      # https://stackoverflow.com/a/3314572
-      if translation =~ /<\/?\s+[^\s]+>/
-        it "should not have HTML with leading spaces" do
+        # https://stackoverflow.com/a/3314572
+        if translation =~ /<\/?\s+[^\s]+>/
+          # it "should not have HTML with leading spaces"
           expect( translation ).not_to match /<\/?\s+[^\s]+>/
         end
-      end
 
-      complete_inflections_pattern = /@\w+\{[^@\{]+?\}/
-      started_inflections_pattern = /@\w+\{/
-      if translation.scan( complete_inflections_pattern ).size != translation.scan( started_inflections_pattern ).size
-        it "should not have unclosed inflections" do
+        complete_inflections_pattern = /@\w+\{[^@\{]+?\}/
+        started_inflections_pattern = /@\w+\{/
+        if translation.scan( complete_inflections_pattern ).size != translation.scan( started_inflections_pattern ).size
+          # it "should not have unclosed inflections"
           expect( translation.scan( complete_inflections_pattern ).size ).to eq translation.scan( started_inflections_pattern ).size
+        end
+
+        # keep track of `separator` keys to compare them to `delimiter` keys on a second pass
+        if key.split( "." ).last === "separator"
+          separator_values[key] = translation
         end
       end
 
-      if key.split( "." ).last === "delimiter"
-        sep_key = key.sub( "delimiter", "separator" )
-        if sep = data[sep_key]
-          it "#{key} should not be the same as #{sep_key}" do
+      traverse( YAML.load_file( path ) ) do |translation, key|
+        en_key = key.sub( "#{locale}.", "en." )
+        next unless en_translations[en_key]
+        next unless en_translations[en_key].is_a?( String )
+        if key.split( "." ).last === "delimiter"
+          sep_key = key.sub( "delimiter", "separator" )
+          if sep = separator_values[sep_key]
+            # it "#{key} should not be the same as #{sep_key}"
             expect( sep ).not_to eq translation
           end
         end

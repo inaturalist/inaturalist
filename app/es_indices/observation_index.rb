@@ -470,7 +470,7 @@ class Observation < ApplicationRecord
             p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
-          unless o.geoprivacy == Observation::PRIVATE
+          unless o.latitude.blank? || o.geoprivacy == Observation::PRIVATE || o.taxon_geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
               always_indexed_place_levels.include?( p.admin_level ) ||
               Observation.places_without_obscuration_protection.include?( p.id ) ||
