@@ -1,7 +1,4 @@
 hu:
-  x_comments:
-    one: '%{count} megjegyzés'
-    other: '%{count} megjegyzés'
   x_comments_html:
     one: '<span class="count">%{count}</span> megjegyzés'
     other: '<span class="count">%{count}</span> megjegyzés'
@@ -785,6 +782,8 @@ hu:
   content_type: Tartalom típusa
   user_hid_this_item_because_reason_html: |
     %{user} elrejtette %{item}t "%{reason}" miatt
+  user_unhid_this_item_because_reason_html: |
+    %{user} újra megjelenítette %{item}t "%{reason}" miatt
   continue: Folytatás
   continue_to_site: Folytatás itt %{site_name}
   contributor_cannot_be_found: A közreműködő nem található
@@ -1283,6 +1282,7 @@ hu:
   finished: Befejezve
   first_confirmed_inat_observation: "Első igazolt %{site_name} megfigyelés"
   first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
+  first_inat_observation: "Első %{site_name} megfigyelés"
   first_observer: első megfigyelő
   #Verb form, as in "Flag this item"
   flag: Bejelentés
@@ -2179,6 +2179,9 @@ hu:
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
   observation_removed_from_the_project: "A megfigyelést törölték a \"%{project}\" projektből"
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: 'A megfigyelések követelményei frissítve itt:'
   observation_rules: Megfigyelések szabályai
   observation_was_deleted: Megfigyelés törölve
   observation_without_media: Megfigyelés fénykép/hang nélkül
@@ -2217,10 +2220,18 @@ hu:
   observer: Megfigyelő
   observers: Megfigyelők
   observer_short: Megfigyelő
+  occurence_status_describes_how: 'Az előfordulási státusz azt írja le, hogy milyen gyakran vagy ritkán fordul elő egy bizonyos taxon egy megadott területen. Nézd meg a DarwinCore-t <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">a terminológiával kapcsolatos információkért</a>.'
+  occurrence_status: Előfordulási státusz
   occurrence_status_descriptions:
+    absent: Nem fordul elő a területen
     common: Gyakran előfordul
+    doubtful: Feltételezik, hogy előfordul, de a bizonyíték kétséges
+    irregular: Az előfordulás nem előre látható, a csavargókat beleértve; gyakori lehet bizonyos években, hiányozhat másokban
+    present: Előfordul a területen
+    uncommon: Rendszeresen előfordul, de kis számban; szükséges az élőhely alapos átvizsgálása
   occurrence_status_establishment_means: Előfordulás, letelepedés státusz
   occurrence_status_levels:
+    present: jelen van
     common: gyakori
     uncommon: Nem gyakori
     irregular: szabálytalan
@@ -2266,6 +2277,7 @@ hu:
   only_showing_taxa_from: csak e lista taxonjait mutatja
   only_staff_can_edit_large_places: Csak a honlap személyzete módosíthat nagyon nagy helyeket.
   only_staff_can_edit_standard_places: Csak a honlap személyzete módosíthat helyeket a standard rangsorból.
+  only_view_nearby_suggestions: Csak közeli javaslatok megjelenítése
   only_you: Csak te
   open: nyilvános
   open_: Nyilvános
@@ -2840,6 +2852,7 @@ hu:
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_requirements: Kritériumok
+  project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
     Projektek révén egyesítheted a megfigyeléseidet másokéval az %{site_name}-on. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
@@ -3007,6 +3020,9 @@ hu:
   recent_new_users: Nemrég regisztrált felhasználók
   recent_observations: Új megfigyelések
   recent_observations_: Új megfigyelések
+  #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
+  recent_atom_observations_by: "%{login} új megfigyelései (Atom)"
+  recent_observations_by: "%{login} új megfigyelései"
   recently_active: Nemrég aktív
   recently_added: Újonnan hozzáadva
   recently_created: Legutóbb létrehozott
@@ -3018,10 +3034,12 @@ hu:
   regenerate_stats: Statisztikák újragenerálása
   reject?: Elutasítod?
   relationship: "Viszony"
+  relationship_x: "Kapcsolat: %{relationship}"
   relationships:
     match: egyezés
     error: hiba
   relationships_user_settings: Kapcsolatok
+  relationship_html: "Kapcsolat: %{link}"
   remember_me: Emlékezz rám
   remove: Eltávolítás
   remove_all_tags: Minden címke eltávolítása
@@ -3068,6 +3086,7 @@ hu:
   reset_search_filters: Szűrők visszaállítása
   resolved: Megoldva
   resolved_by: Megoldotta
+  resolved_by_user_on_date_html: 'Megoldotta %{user} ekkor: %{date}'
   restart: Újraindít
   restore: Visszaállít
   review_all: Összes áttekintése
@@ -3113,6 +3132,7 @@ hu:
   search_by_name_or_email: Keresés név vagy email alapján
   search_external_name_providers: Keress rá külső névszolgáltatókon
   search_for_species: Fajok keresése
+  search_list: Keresés a listában
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Okok keresése
   search_species: Fajok keresése
@@ -3126,6 +3146,7 @@ hu:
   select_all: Összes kijelölése
   select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
   select_observations_to_edit: Válassz ki megfigyelést a szerkesztéshez
+  select_one_of_friends_albums: Válassz egyet %{friend} albumai közül
   select_options: válassz
   selected: kiválasztva
   selected_photos: Kiválasztott fényképek
@@ -3169,8 +3190,11 @@ hu:
   sizes: Méretek
   skip_to_next_page: "Ugrás a következő oldalra"
   small: kicsi
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Honlap adminisztrátorai
   site_name_place: "%{site_name} hely"
   site_stats: Webhelyforgalom
+  site_taxon_page: "%{site_name} taxonlap"
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatikusan rejtett koordináták (kitakart vagy rejtett a "taxon helyvédelme" miatt)
   sites_affiliation_more_user_hidden_coordinates: |
@@ -3187,6 +3211,7 @@ hu:
   something_went_wrong_deleting_the_taxon_name: "Hiba történt \"%{taxon_name}\" taxonnév törlésekor!"
   sorry_how_about_we_try_repeat: "Bocsánat! Mit szólnál ha megismételjük keresésedet valamilyen másik fajneveket tartalmazó adatbázisvan? Ha találunk valamit elmentjük, hogy legközelebb azt megtaláld."
   sorry_we_didnt_find_that_photo: "Sajnos nem találtuk azt a fotót."
+  sorry_x_is_not_responding: "Sajnáljuk, de %{x} nem válaszol. Kérünk próbáld meg később."
   sort: Rendezés
   sort_by: Rendezés
   sorting_by: Rendezés
@@ -3303,17 +3328,22 @@ hu:
   taxon_changes: Taxonváltozások
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_name: Taxon neve
+  taxon_observed_by_user: "%{taxon} megfigyelve %{user} által"
   taxon_photos_updated: Taxonfotó frissítve!
+  taxon_range_for_taxon_html: '%{taxon} taxonintervalluma'
   taxon_range_guidelines_learn_more_about_taxon_ranges: További információk a taxonintervallumokról
+  taxon_range_updated_notice: A taxonintervallum sikeresen frissítve. Kérünk várj pár percet ameddig a vátoztatások megjelennek a térképeken.
   taxon_ranks: Rendszertani besorolás
   taxon_removed_from_list: Taxon eltávolítva a listáról.
   taxon_scheme: Taxonrendszer
   taxon_schemes: "Taxonrendszerek"
   taxon_swap: taxoncsere
+  taxon_name_was_successfully_updated: A taxonnév sikeresen frissítve.
   taxon_was_successfully_updated: A taxon sikeresen frissítve.
   taxonomic: Rendszertani
   taxonomic_changes: Rendszertani változások
   taxonomic_groups: Rendszertani csoportok
+  taxonomic_order: Rendszertani sorrend
   taxonomy_details: Rendszertani részletek
   taxonomy_details_for: 'Rendszertani részletek erről:'
   taxonomy_settings: Rendszertani beállítások
@@ -3550,7 +3580,6 @@ hu:
   upload_a_csv_file: CSV-fájl feltöltése
   upload_new_photo: Új fénykép feltöltése
   upload_photo: Fotó feltöltése
-  uploaded_by: Feltöltötte
   uploader:
     errors:
       file_too_big: A fájl mérete legfeljebb %{megabytes} MB lehet
@@ -3601,6 +3630,8 @@ hu:
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
   user_hasnt_joined_any_projects: "%{user} még nem lépett be egy projektbe sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
+  user_invite_observation_to_project: '%{user} meghívja "%{observation}" megfigyelésedet a %{project} projektbe.'
+  user_invited_you_to_join_this_project_on_date_html: "%{user} meghívott, hogy csatlakozz ehez a projekthez ekkor: %{date}"
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_muted: A felhasználó némítva van
   user_observed_on_on_date_in_place: |
@@ -3612,9 +3643,14 @@ hu:
   username_or_email: Felhasználónév vagy email cím
   username_or_user_id: Felhasználói név vagy azonosító
   users: Felhasználók
+  users_contributions_to_project_html: <a href="%{url}">%{login}</a> hozzájárulása a %{project_title} projekthez
   users_favorites: "%{user} kedvencei"
+  users_highlights_and_stats_from_year_on_site: "%{user} kiemelt teljesítménye és statisztikája %{year} évből %{site} honlapon"
   users_identifications: "%{user} meghatározásai"
+  users_latest_observations_on_site: "%{user} legutóbbi %{site} megfigyelései"
+  users_lists: "%{user} listái"
   users_profile: "%{user} profilja"
+  users_year_on_site: "%{user} %{year}. %{site} éve"
   value: Érték
   values: Értékek
   verifiable_observations_by_observation_date: Megerősíthető megfigyelések a megfigyelés dátuma szerint
@@ -3642,6 +3678,7 @@ hu:
   view_more: Továbbiak
   view_more_observations_from_this_place: Nézz meg több megfigyelést erről a helyről
   view_more_observations_near_x_place: "Nézz meg több megfigyelést %{place} közelében <nobr>%{site_name} &raquo;</nobr>on"
+  view_more_observations_of_x_project: "Tekints meg több <nobr>%{site_name}</nobr> megfigyelést a %{project} projektből."
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
   view_observations_of_this_taxon_by: Nézd meg ennek a taxonnak a megfigyeléseit
@@ -3737,9 +3774,11 @@ hu:
   x_of_y_short: "%{x} / %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} emberből %{x} egyetért (2/3 fölött), hogy ez"
   x_project_journal: "%{project} project %{name}"
+  x_sent_you_a_new_message_on_y_html: "%{x} új üzenetet küldött ekkor: %{y}: "
   year: Év
   year_in_review: "%{year} áttekintése"
   year_month: év/hónap
+  year_on_site: "%{site}: %{year} áttekintése"
   yellow: sárga
   'yes': "Igen"
   #Used when trusting a project and the user is agreeing to trust the project
@@ -3756,6 +3795,7 @@ hu:
   you: te
   you_: Te
   you_are_already_a_member_of_this_project: "Ennek a projektnek már tagja vagy!"
+  you_are_no_longer_following_x: "Már nem követed %{friend}t."
   you_are_submitting_obs_with_no_date_or_no_location: |
     Dátum és hely nélkül töltesz fel megfigyeléseket. Az ilyen megfigyeléseket lehetetlen azonosítani, ezért ezek alapértelmezetten nem jelennek meg a kereséseknél.
   you_are_subscribed_to_comments_on_this_flag: Feliratkoztál a megjegyzésekhez ehhez a bejelentéshez.
@@ -3821,6 +3861,8 @@ hu:
       content_freeze: Tartalom fagyasztás
       this_functionality_will_return: |
         Ez a művelet visszaáll amikor vége a tartalom befagyasztásának.
+      we_expect_this_functionality_will_return_by_date: |
+        Ezt a funkciót remélhetőleg %{date}-ig visszaállítjuk.
     donate:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Legyél havi támogatója az iNaturalist-nak
@@ -3846,6 +3888,7 @@ hu:
       filter_by: 'Szűrés:'
       filtered_by: Szűrte
       apply_filters_to_export: Exportálás a következő szűrőkkel
+      restrict_to_taxon: Korlátozás %{taxon} taxonra
       restrict_to_taxa_observed_in_place: Korlátozd %{place} megfigyelt taxonjaira
       exporting_all_x_taxa:
         one: '%{count} taxon exportálása'
@@ -4489,6 +4532,7 @@ hu:
         source_url: Forrás URL
         published_at: Publikálva
       listed_taxon:
+        occurrence_status_level: Előfordulás szintje
         establishment_means: Letelepedési Forma
       message:
         subject: Tárgy
