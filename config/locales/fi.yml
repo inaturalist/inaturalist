@@ -3525,8 +3525,8 @@ fi:
   projects_description: |
     Projektien avulla voit yhdistää havaintosi muiden ihmisten kesken %{site_name}issa.
     Projekteilla voit esimerkiksi käynnistää kansalaistiedehankkeen tai pitää kirjaa naapuruston linnuista.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Hakuehtoihin täsmäävät projektit paikasta %{place}"
-  projects_in_x: "Projektit paikassa %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projektit joita %{user} hallinnoi
   projects_you_admin: Projektit joita hallinoit
@@ -3865,6 +3865,11 @@ fi:
   search_your_photos: Etsi kuviasi
   searching: "Haetaan..."
   seasonality: Kausivaihtelu
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Sinun %{noun}"
   see_something_wrong_with_taxon: Onko tässä taksonissa jotain vikaa? Ilmoita asiasta kuraattoreille.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4270,6 +4275,11 @@ fi:
   these_observations_have_not_been_uploaded_yet: |
     Näitä havaintoja ei ole vielä tallennettu.
   third_party_tracking: Kolmannen osapuolen seuranta
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "Käyttäjän %{object_phrase} %{noun}"
   this: tämä
   this_bioblitz_beings_in: Aikaa tämän projektin alkuun
