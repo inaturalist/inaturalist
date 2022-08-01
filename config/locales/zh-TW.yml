@@ -3540,8 +3540,8 @@ zh-TW:
   projects_description: |
     專案能讓您的觀察在 %{site_name} 上與其他人交流。
     無論您是有意開始進行公眾科學事項，或是僅對在您的鄰近地區裡賞鳥感興趣，專案都會是可採用的方法。
+  #@vow_or_con should work on %{place}
   projects_from_place: "來自於%{place}的專案"
-  projects_in_x: "在%{x}的專案"
   #"admins" is equivalent to "administrates"
   projects_user_admins: 專案的管理者 %{user}
   projects_you_admin: 您管理的專案
@@ -3892,6 +3892,11 @@ zh-TW:
   search_your_photos: 搜尋您的照片
   searching: "搜尋中..."
   seasonality: 季節性
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "您的 %{noun}"
   see_something_wrong_with_taxon: 在此分類群發現問題了嗎？請讓策展人知悉。
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4424,6 +4429,11 @@ zh-TW:
   these_observations_have_not_been_uploaded_yet: |
     這些觀察尚未被上傳。
   third_party_tracking: 第三方追蹤
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}的%{noun}"
   this: 此
   this_bioblitz_beings_in: 此 bioblitz 開始於
