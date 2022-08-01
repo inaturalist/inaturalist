@@ -2755,8 +2755,8 @@ pt:
   projects: Projetos
   projects_description: |
     Os projetos permitem agrupar as suas observações com as de outras pessoas em %{site_name}. Quer pretende iniciar um projeto de ciência cidadã, ou manter um registo das aves que existem no seu bairro. Os projetos são o caminho certo.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projetos de %{place}"
-  projects_in_x: "Projetos em %{x}"
   projects_you_admin: Projetos que administra
   proposed_taxa_that_contradict_the_community_id: Taxa proposto que contradiz a identificação feita pela comunidade
   proposed_taxa_that_support_the_community_id: Taxa proposto que suporta a identificação feita pela comunidade
@@ -2962,6 +2962,11 @@ pt:
   search_your_photos: Procurar as suas fotos
   searching: "A procurar..."
   seasonality: Sazonalidade
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Seu(s) %{noun}"
   see_something_wrong_with_taxon: Descobriu algo errado com este táxon? Informe os curadores.
   seen_nearby: Visto nas Proximidades
