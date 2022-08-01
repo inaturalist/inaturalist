@@ -3238,8 +3238,8 @@ kn:
   projects: ಪ್ರಾಯೋಜನೆಗಳು
   projects_description: |
     ಪ್ರಾಯೋಜನೆಗಳು %{site_name} ನಲ್ಲಿ ಇತರ ವ್ಯಕ್ತಿಗಳ ಜೊತೆ ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಒಗ್ಗೂಡಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನೀವು ನಾಗರೀಕ ವಿಜ್ಞಾನ ಪ್ರಯತ್ನಗಳನ್ನೇ ಪ್ರಾರಂಭಿಸಿರಿ ಅಥವಾ ನಿಮ್ಮ ನೆರೆಹೊರೆಯ ಹಕ್ಕಿಗಳ ಮೇಲೆ ನಿಗಾವಹಿಸುತ್ತಿರಿ, ಪ್ರಾಯೋಜನೆಗಳು ಅವಕ್ಕೆಲ್ಲಾ ಅತ್ಯಂತ ಸೂಕ್ತವಾದ ವಿಧಾನ.
+  #@vow_or_con should work on %{place}
   projects_from_place: "%{place} ದಿಂದ ಪ್ರಾಯೋಜನೆಗಳು"
-  projects_in_x: "%{x} ನಲ್ಲಿ ಪ್ರಾಯೋಜನೆಗಳು"
   #"admins" is equivalent to "administrates"
   projects_user_admins: ಪ್ರಾಯೋಜನೆಗಳ %{user} ನಿರ್ವಾಹಕರು
   projects_you_admin: ನೀವು ನಿರ್ವಹಿಸುತ್ತಿರುವ ಪ್ರಾಯೋಜನೆಗಳು
@@ -3584,6 +3584,11 @@ kn:
   search_your_photos: ನಿಮ್ಮ ಚಿತ್ರಗಳನ್ನು ಹುಡುಕಿ
   searching: "ಹುಡುಕಲಾಗುತ್ತಿದೆ..."
   seasonality: ಋತುಲಭ್ಯತೆ
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "ನಿಮ್ಮ %{noun}"
   see_something_wrong_with_taxon: ಈ ಜೀವಿವರ್ಗದ ಜೊತೆ ಏನಾದಾರೂ ತಪ್ಪಾಗಿ ಕಾಣುತ್ತಿದೆಯೇ? ಮೇಲ್ವಿಚಾರಕರಿಗೆ ತಿಳಿಸಿ.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4048,6 +4053,11 @@ kn:
   theres_something_wrong_with_taxon_framework_relationship: ಇಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಿದೆ - ನಾವು ಯಾವುದೇ ಆಂತರಿಕ ಹಾಗು ಬಾಹ್ಯ ಜೀವಿವರ್ಗಗಳ ನಡುವಿನ ಸಂಬಂಧಗಳನ್ನು ನಿರ್ಣಯಿಸಲಾಗುತ್ತಿಲ್ಲ
   these_observations_have_not_been_uploaded_yet: |
     ಈ ವೀಕ್ಷಣೆಗಳನ್ನು ಇನ್ನೂ ಅಪ್ಲೋಡ್ ಮಾಡಿಲ್ಲ.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: ಇದು
   this_bioblitz_beings_in: ಈ Bioblitz ಪ್ರಾರಂಭವಾಗುತ್ತದೆ
