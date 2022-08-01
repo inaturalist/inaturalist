@@ -3961,8 +3961,8 @@ cs:
   projects: Projekty
   projects_description: |
     Projekty jsou způsob, jak sdílet vaše pozorování s pozorováním ostatních na %{site_name}. Pokud chcete začít s vědeckým projektem mezi občany nebo pozorovat ptáky ve svém okolí, projekty jsou cestou, jak se tam dostat.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
-  projects_in_x: "Projekty v %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekty %{user} Adminů
   projects_you_admin: Projekty, které spravujete
@@ -4349,6 +4349,11 @@ cs:
   search_your_photos: Prohledat vaše fotky
   searching: "Hledání..."
   seasonality: Sezónnost
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Váš %{noun}"
   see_something_wrong_with_taxon: Je s tímto taxonem něco v nepořádku? Dejte to vědět kurátorům.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4946,6 +4951,11 @@ cs:
   these_observations_have_not_been_uploaded_yet: |
     Tato pozorování dosud nebyla nahrána.
   third_party_tracking: Sledování třetí strany
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
