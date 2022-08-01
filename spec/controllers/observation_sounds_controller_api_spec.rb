@@ -4,7 +4,7 @@ require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "an ObservationSoundsController" do
   describe "create" do
-    let( :file ) { fixture_file_upload( "files/pika.mp3", "audio/mpeg" ) }
+    let( :file ) { fixture_file_upload( "pika.mp3", "audio/mpeg" ) }
     it "should work" do
       expect do
         post :create, format: :json, params: {

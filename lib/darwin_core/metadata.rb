@@ -5,9 +5,9 @@ module DarwinCore
     def initialize( options = {} )
       super()
       @template = options[:template] || if @opts[:core] == DarwinCore::Cores::OCCURRENCE
-        File.join( "observations", "dwc.eml.erb" )
+        File.join( "observations", "dwc" )
       else
-        File.join( "taxa", "dwc.eml.erb" )
+        File.join( "taxa", "dwc" )
       end
       @observations_params = options[:observations_params] || {}
       site = options[:site] || ::Site.find_by_id( options[:site_id] ) || ::Site.default
@@ -61,6 +61,8 @@ module DarwinCore
       FakeView.render(
         layout: nil,
         template: @template,
+        handlers: [:erb],
+        formats: [:eml],
         assigns: {
           contact: @contact,
           creator: @creator,

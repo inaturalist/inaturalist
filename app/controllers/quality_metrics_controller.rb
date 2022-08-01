@@ -29,12 +29,17 @@ class QualityMetricsController < ApplicationController
       format.json do
         render json: {
           object: @existing,
-          html: render_to_string( partial: "quality_metric_row.html.erb", locals: {
-            metric: params[:metric],
-            question: QualityMetric::METRIC_QUESTIONS[params[:metric]],
-            existing_quality_metrics: @observation.quality_metrics.all,
-            observation: @observation
-          } )
+          html: render_to_string(
+            partial: "quality_metric_row",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              metric: params[:metric],
+              question: QualityMetric::METRIC_QUESTIONS[params[:metric]],
+              existing_quality_metrics: @observation.quality_metrics.all,
+              observation: @observation
+            }
+          )
         }
       end
     end
@@ -52,13 +57,18 @@ class QualityMetricsController < ApplicationController
         format.json do
           render json: {
             object: qm,
-            html: render_to_string( partial: "quality_metric_row.html.erb", locals: {
-              metric: qm.metric,
-              question: QualityMetric::METRIC_QUESTIONS[qm.metric],
-              existing_quality_metrics: @observation.quality_metrics.all,
-              user_quality_metric: qm,
-              observation: @observation
-            } )
+            html: render_to_string(
+              partial: "quality_metric_row",
+              handlers: [:erb],
+              formats: [:html],
+              locals: {
+                metric: qm.metric,
+                question: QualityMetric::METRIC_QUESTIONS[qm.metric],
+                existing_quality_metrics: @observation.quality_metrics.all,
+                user_quality_metric: qm,
+                observation: @observation
+              }
+            )
           }
         end
       end

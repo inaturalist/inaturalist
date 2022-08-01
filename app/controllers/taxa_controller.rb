@@ -636,8 +636,12 @@ class TaxaController < ApplicationController
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       :taxon_descriptions ] )
     @taxa.each do |t|
-      t.html = view_context.render_in_format(:html, :partial => "chooser.html.erb",
-        :object => t, :comname => t.common_name)
+      t.html = view_context.render_in_format(:html,
+        partial: "chooser",
+        handlers: [:erb],
+        formats: [:html],
+        object: t,
+        comname: t.common_name)
     end
     @taxa.uniq!
     respond_to do |format|

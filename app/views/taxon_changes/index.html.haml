@@ -1,16 +1,16 @@
 :ruby
   if @taxon
-    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon)
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon)
     taxon
   end
   if @user
-    @user.html = render(:partial => "users/chooser", :object => @user)
+    @user.html = render( partial: "users/chooser", object: @user)
   end
   @default_users = User.curators.limit(10).map do |user|
-    user.html = render(:partial => "users/chooser", :object => user)
+    user.html = render( partial: "users/chooser", object: user)
     user
   end
 - content_for(:title) do

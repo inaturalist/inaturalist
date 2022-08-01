@@ -169,11 +169,11 @@ describe ObservationsController do
       o = Observation.make!
       sign_in o.user
       expect( o.photos.size ).to eq 0
-      fixture_file_upload( "observations.csv", "text/csv" )
+      fixture_file_upload( "../observations.csv", "text/csv" )
       put :update, params: { id: o.id, observation: { description: "+2 photos" }, local_photos: {
         o.id.to_s => [
-          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" ),
-          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" )
+          fixture_file_upload( "cuthona_abronia-tagged.jpg", "image/jpeg" ),
+          fixture_file_upload( "cuthona_abronia-tagged.jpg", "image/jpeg" )
         ]
       } }
       o.reload
@@ -599,11 +599,11 @@ describe ObservationsController, "new_bulk_csv" do
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
     sleep( 2 )
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( Delayed::Job.count ).to eq 1
   end
 
@@ -626,7 +626,7 @@ describe ObservationsController, "new_bulk_csv" do
     post :new_bulk_csv, params: { upload: { datafile: Rack::Test::UploadedFile.new( work_path, "text/csv" ) } }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( Delayed::Job.count ).to eq 2
   end
 

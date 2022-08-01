@@ -1,9 +1,9 @@
 :ruby
   if @taxon
-    @taxon.html = render( partial: "taxa/chooser.html.erb", object: @taxon )
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon )
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon )
     taxon
   end
 - content_for :extrahead do
