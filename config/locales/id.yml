@@ -3762,8 +3762,8 @@ id:
   projects: Proyek
   projects_description: |
     Proyek mengumpulkan pengamatan Anda dengan orang-orang lain di %{site_name}. Jika Anda tertarik untuk memulai proyek ilmiah masyarakat atau hanya ingin memantau burung-burung di sekitar rumah Anda, Proyek adalah jalan yang baik untuk ditempuh.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyek dari %{place}"
-  projects_in_x: "Proyek dalam %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyek Yang Dikelola %{user}
   projects_you_admin: Proyek Yang Anda Kelola
@@ -4122,6 +4122,11 @@ id:
   search_your_photos: Cari foto Anda
   searching: "Mencari..."
   seasonality: Musim
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} Anda"
   see_something_wrong_with_taxon: Menemukan kesalahan pada takson ini? Beritahu kurator.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4657,6 +4662,11 @@ id:
   these_observations_have_not_been_uploaded_yet: |
     Pengamatan ini belum diunggah.
   third_party_tracking: Pelacakan Pihak Ketiga
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: ini
   this_bioblitz_beings_in: Bioblitz ini dimulai dalam
