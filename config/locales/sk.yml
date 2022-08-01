@@ -2286,8 +2286,8 @@ sk:
   project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
   project_x_was_delete: "%{project} bol zmazaný (počkajte prosím pár minút, než bude odstránený z webovej stránky)"
   projects: Projekty
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
-  projects_in_x: "Projekty v %{x}"
   projects_you_admin: Projekty, ktoré spravujete
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia od ID komunity
   protozoans: prvoky
@@ -2508,6 +2508,11 @@ sk:
   search_your_photos: Prehľadať vaše fotky
   searching: "Hľadám..."
   seasonality: Sezónnosť
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Vaše %{noun}"
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to vedieť kurátorom.
   seen_nearby: Videné blízko
