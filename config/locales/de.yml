@@ -3735,8 +3735,8 @@ de:
   projects: Projekte
   projects_description: |
     Mit Projekten kannst du deine Beobachtungen gezielt mit anderen Benutzern auf %{site_name} teilen. Ob du nun eine gemeinnützige wissenschaftliche Initiative startest oder die Vögel in deiner Nachbarschaft dokumentieren willst, Projekte sind der richtige Weg.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekte aus %{place}"
-  projects_in_x: "Projekte in %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekte verwaltet von %{user}
   projects_you_admin: Projekte, die du verwaltest
@@ -4102,6 +4102,11 @@ de:
   search_your_photos: Suchen in deinen Bildern
   searching: "Suche..."
   seasonality: Saisonalität
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Dein %{noun}"
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die Kuratoren wissen.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4435,6 +4440,9 @@ de:
   target_list_warning: Denke daran, dass alles, was von der Zielliste abgedeckt wird, innerhalb des Radius und der Dauer dieser Reise nicht beobachtet wurde, als Abwesenheit interpretiert wird. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast. Wenn du nicht versucht hast, eine Art auf deiner Zielliste oder jede von einer Gruppe abgedeckte Art auf deiner Zielliste zu finden, diese bitte entfernen.
   task_deleted: Aufgabe gelöscht
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tipp: Gib eine Beobachtungs-ID in das Suchfeld ein, wenn du
+    Fotos einer bestimmten Beobachtung auswählen möchtest.
   taxa_with_unknown_relationships: Taxa mit unbekannten Beziehungen
   taxa_info: Informationen über Taxa
   taxa_needing_curation: Kuration bedürftige Taxa
@@ -4669,6 +4677,11 @@ de:
   these_observations_have_not_been_uploaded_yet: |
     Diese Beobachtungen wurden noch nicht hochgeladen.
   third_party_tracking: Drittanbieter-Tracking
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} von %{object_phrase}"
   this: dies
   this_bioblitz_beings_in: Dieser Bioblitz beginnt in
