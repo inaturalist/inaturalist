@@ -3358,8 +3358,8 @@ el:
   projects_description: |
     Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
     Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Πρότζεκτ από %{place}"
-  projects_in_x: "Εγχειρήματα στο %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Διαχειριστές %{user} Πρότζεκτ
   projects_you_admin: Πρότζεκτ που Διαχειρίζεστε
@@ -3642,6 +3642,11 @@ el:
   search_your_photos: Αναζητήστε τις φωτογραφίες σας
   searching: "Γίνεται αναζήτηση..."
   seasonality: Εποχικότητα
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Το δικό σας %{noun}"
   see_something_wrong_with_taxon: Βλέπετε κάτι λάθος σε αυτό το taxon; Ενημερώστε τους επιμελητές.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4105,6 +4110,11 @@ el:
   these_observations_have_not_been_uploaded_yet: |
     Αυτές οι παρατηρήσεις δεν έχουν μεταφορτωθεί ακόμα.
   third_party_tracking: Παρακολούθηση Τρίτων
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "του %{object_phrase} %{noun}"
   this: αυτό
   this_bioblitz_beings_in: Το bioblitz ξεκινά σε
