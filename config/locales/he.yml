@@ -3161,8 +3161,8 @@ he:
   projects: פרויקטים
   projects_description: |
     פרויקטים מאפשרים לחלוק ולשתף תצפיות עם א.נשים אחרים ב%{site_name}. במידה ואתם פותחים פרויקט מדע אזרחי, או עוקבים אחרי ציפורים בשכונה שלכם, פרויקטים זאת הדרך לעשות זאת.
+  #@vow_or_con should work on %{place}
   projects_from_place: "פרוייקט מ%{place}"
-  projects_in_x: "פרוייקטים ב %{x}"
   projects_you_admin: הפרוייקטים שאת/ה אדמינ בהם
   protozoans: פרוטוזואות
   publish: פרסם\י
@@ -3371,6 +3371,11 @@ he:
   search_your_photos: חיפוש בתמונותייך
   searching: "חיפוש..."
   seasonality: עונתיות
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "ה %{noun} שלך"
   see_something_wrong_with_taxon: משהו לא נכון עם הטקסון הזה? עדכנו את האוצרים.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -3694,13 +3699,13 @@ he:
   taxonomic_status: סטטוס טקסונומי
   taxonomic_tags_for_flickr: תגיות טקסונומיות ל Flickr
   taxonomy_details: פרטי טקסונומיה
-  taxonomy_details_for: פרטים טקסונומיים של
+  taxonomy_details_for: פרטי טקסונומיה עבור
   taxonomy_settings: הגדרות טקסונומיות
   teachers_guide: מדריך למורה
   tell_the_world_a_little_about_yourself: ספרו לנו על עצמכם
   tell_us_why: ספרו לנו למה...
-  terms: תנאים
-  terms_service: תנאי השירות
+  terms: מונחים
+  terms_service: תנאי שימוש
   terrain: פני שטח
   text: טקסט
   text_editing_controls: בקרי עריכת טקסט
@@ -3744,9 +3749,14 @@ he:
   these_observations_have_not_been_uploaded_yet: |
     התצפיות האלה עדיין לא הועלו.
   third_party_tracking: מעקב צד שלישי
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} של %{object_phrase}"
   this: זה
-  this_bioblitz_beings_in: הביובליץ מתחיל ב
+  this_bioblitz_beings_in: ביו-בליץ זה מתחיל בעוד
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     זוהי דרך יותר נוחה למצוא מזהה טקסון. מזהה הטקסון הוא מה שנשמר בעצם. חיפוש זה עובד רק עבור טקסונים פעילים.
   this_is_how_taxon_names_will_be_displayed: כך יוצגו לך כל שמות הטקסונים ב-%{site_name}
@@ -3790,10 +3800,10 @@ he:
   too_many_results: יותר מדי תוצאות
   tools: כלים
   top_contributors: האוצרים המובילים
-  top_identifier_caps: מזהה מוביל/ה
+  top_identifier_caps: מזהה מוביל.ה
   top_identifiers: מזהים מובילים
-  top_identifiers_of_taxon: המזהים המובילים של %{taxon}
-  top_observer_caps: מתצפת/ת מוביל/ה
+  top_identifiers_of_taxon: המזהות והמזהים המובילים של %{taxon}
+  top_observer_caps: מתצפת.ת מוביל.ה
   top_observers: המתצפתים המובילים
   tos_privacy_guidelines_label: |
     אני מסכימ.ה ל<a href="/terms" target="_blank">תנאי השימוש</a> ול<a href="/privacy" target="_blank">מדיניות הפרטיות</a>, ועברתי על <a href="/pages/community+guidelines" target="_blank">כללי הקהילה</a>.
@@ -3814,7 +3824,7 @@ he:
   trusted: מהימן
   trust_this_person_with_your_private_coordinates: לבטוח באדם זה עם הקואורדינטות המוסתרות שלך
   trust_this_project_with_your_private_coordinates?: לבטוח בפרויקט זה עם קואורדינטות מוסתרות?
-  trust_with_private_coordinates: אמון עם נקודות הציון המוסתרות
+  trust_with_private_coordinates: לבטוח עם קואורדינטות מוסתרות
   twitter: טוויטר
   two_thirds: שני שליש
   #As in a category, not as in a keyboard
@@ -3822,12 +3832,12 @@ he:
   type_one_name_per_line: יש להזין שם אחד בשורה
   type_place_name: הקלד שם של המקום
   type_source_name: הקלד שם מקור
-  type_source_title: "הקלד שם מקור"
+  type_source_title: "יש להקליד שם מקור"
   type_taxon_name: "הקלד שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
-  umbrella_projects: פרוייקטי מטריה
+  umbrella_projects: פרויקטי מטריה
   unable_to_save_comment: לצערנו ההודעה לא נשמרה.
-  unblock: הסרת חסימה
+  unblock: ביטול חסימה
   unclassified: לא מסווג
   unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
   unique_observers: מתצפתים יחודיים
@@ -3837,18 +3847,18 @@ he:
   unfollow: הפסק לעקוב
   unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
-  unmute: בטלו השתקה
+  unmute: ביטול השתקה
   updating: מתעדכן...
   unprocessable: לא ניתן לעיבוד
   unpublish: ביטול פרסום
   unreview_all: ביטול הסקירה של הכול
-  unsubscribe: ביטול מינוי
+  unsubscribe: ביטול מנוי
   unsubscribe_from_emails_like_this: הסר מתפוצת דברי דואר מסוג זה
   unsuspend_user_html: בטול השהיית %{user}
   upcoming_bioblitzes: ביובליצים עתידיים
   update: עדכון
   update_existing_observations_with_new_license: לעדכן תצפיות קיימות בבחירות רישוי חדשות
-  update_existing_photos_with_new_license: לעדכן תמונות קיימות בבחירות רישוי חדשות
+  update_existing_photos_with_new_license: לעדכן תמונות קיימות ברישיון השימוש החדש
   update_existing_sounds_with_new_license: לעדכן קולות קיימים בבחירות רישוי חדשות
   update_observations: עדכון תצפיות
   update_past: "עדכון %{type} קודמות"
@@ -3888,7 +3898,7 @@ he:
     two: משומש %{count} פעמים
     many: משומש %{count} פעמים
     other: משומש %{count} פעמים
-  user: משתמש
+  user: משתמש.ת
   user1_and_user2_faved_this_observation: "%{user1} ו%{user2} אהבו תצפית זו"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, ו %{x_others} אהבו תצפית זו"
   user_added_a_comment_html: "הערה הוספה על ידי %{user}"
@@ -3900,7 +3910,7 @@ he:
   user_added_an_x: "%{user} הוסיף/ה %{x}"
   user_added_x_observations_html: "%{user} הוסיף %{x} תצפיות"
   user_already_authenticated: משתמש זה כבר אושר
-  user_autocomplete_placeholder: עדי, מחמד123, וכו'
+  user_autocomplete_placeholder: ronf, shlomit, וכו'
   user_blocked: המשתמש חסום
   user_commented: "%{user} העיר"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
@@ -3922,12 +3932,12 @@ he:
   user_muted: משתמש מושתק
   user_observed_on_on_date_in_place: |
     תוצפת על ידי %{user} ב%{date} ב%{place}
-  user_suggested_an_id: "%{user} הציע זיהוי"
+  user_suggested_an_id: "%{user} הציע.ה זיהוי"
   username: שם משתמש
   username_description: זהו שם המשתמש שישמש אותך להתחברות, ודרכו אחרים יוכלו לזהות אותך ב-iNaturalist
   username_or_email: שם משתמש או כתובת מייל
   username_or_user_id: שם משתמש או מזהה משתמש
-  users: משתמשים
+  users: משתמשות.ים
   users_id: "הזיהוי של %{user}"
   users_journal: "היומן של %{user}"
   users_profile: "הפרופיל של %{user}"
@@ -3937,9 +3947,9 @@ he:
   values: ערכים
   verbing_x_of_y: "%{verb} %{x} מ %{y}"
   view: צפייה
-  view_all: צפייה בכול
+  view_all: צפייה בהכל
   view_all_flags: צפייה בכל הדגלים
-  view_all_members: הצגת כל המשתמשים
+  view_all_members: הצגת כל המשתמשות.ים
   view_all_n: "צפייה בכל %{n}"
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
@@ -3958,7 +3968,6 @@ he:
   view_more: צפייה בעוד
   view_more_about_x: "צפייה בעוד על %{x}"
   view_more_unreviewed: "הצגת תצפיות נוספות שטרם נסקרו"
-  view_observation: צפייה בתצפית
   view_observations: צפייה בתצפיות
   view_observation_flags: צפייה בדגלים עבור תצפית זו
   view_observations_by_these_users: עיון בתצפיות של משתמשים אלו
