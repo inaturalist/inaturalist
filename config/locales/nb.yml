@@ -3277,8 +3277,8 @@ nb:
   projects: Prosjekter
   projects_description: |
     Prosjekter lar deg slå sammen dine observasjoner med andre personer på %{site_name}. Om du starter en dugnadsinnsats eller følger med på fuglene i ditt nabolag, prosjekter er veien å gå.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Prosjekter fra %{place}"
-  projects_in_x: "Prosjekter i %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Prosjekter som %{user} administrerer
   projects_you_admin: Prosjekter som du administrerer
@@ -3584,6 +3584,11 @@ nb:
   search_your_photos: Søk i dine bilder
   searching: "Søker..."
   seasonality: Innflytelse av sesong
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "@gender{n:Ditt|Din} %{noun}"
   see_something_wrong_with_taxon: Er det noe som ikke stemmer med dette taksonet? Si fra til kuratorne.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4037,6 +4042,11 @@ nb:
   these_observations_have_not_been_uploaded_yet: |
     Disse observasjoner har ikke blitt lastet opp ennå.
   third_party_tracking: Sporing av tredjeparter
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitzen starter om
