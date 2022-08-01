@@ -3907,8 +3907,8 @@ sv:
   projects_description: |
     Projekten låter dig dela dina fynd med andra personer på %{site_name}.
     Oavsett om du börjar med medborgarforskning eller tänker hålla koll på fåglarna i grannskapet, är projekt lämpade för det.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekt från %{place}"
-  projects_in_x: "Projekt i %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekt %{user} administrerar
   projects_you_admin: Projekt som du administrerar
@@ -4276,6 +4276,11 @@ sv:
   search_your_photos: Sök dina bilder
   searching: "Söker..."
   seasonality: Säsongsvariation
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Är det något fel med detta taxon? Meddela förvaltarna.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4855,6 +4860,11 @@ sv:
   these_observations_have_not_been_uploaded_yet: |
     Dessa fynd har ännu inte laddats upp.
   third_party_tracking: Spårning av tredjepart
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: detta
   this_bioblitz_beings_in: Denna bioblitz börjar om
