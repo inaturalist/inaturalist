@@ -2878,8 +2878,8 @@ bg:
   projects: Проекти
   projects_description: |
     Проектите са начин да обедините наблюденията си с тези на други хора от %{site_name}. Независимо дали искате да започнете граждански научен проект или просто да следите птиците от близкия парк заедно с други местни ентусиасти - Проектите са удобен начин да го направите.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекти от %{place}"
-  projects_in_x: "Проекти в %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Проекти, които %{user} администрира
   projects_you_admin: Проекти които администрирате
@@ -3160,6 +3160,11 @@ bg:
   search_your_photos: Претърси своите снимки
   searching: "Търсене..."
   seasonality: Сезонност
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "@gender{m:Вашият|f:Вашата|n:Вашето} %{noun}"
   seen_nearby: Видян наоколо
   select: Избери
