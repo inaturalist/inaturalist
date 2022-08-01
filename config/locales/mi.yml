@@ -1015,6 +1015,11 @@ mi:
   saving: "E tiaki ana ..."
   saving_verb: E tiaki ana
   search: Rapunga
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Tō %{noun}"
   select: Tīpako
   select_all: Tīpakohia te katoa
@@ -1081,6 +1086,11 @@ mi:
   the_world: Te Ao
   these_observations_have_not_been_uploaded_yet: |
     Kāore anō kia tukuatu ēnei mauhanga
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} tō %{object_phrase}"
   this: tēnei
   this_is_your_observation: He tāu mauhanga tēnei
