@@ -2856,8 +2856,8 @@ hu:
   projects: Projektek
   projects_description: |
     Projektek révén egyesítheted a megfigyeléseidet másokéval az %{site_name}-on. Közösségi tudományos kezdeményezésektől kezdve a környezeted madarainak tanulmányozásáig a projektek sok mindenre jók.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projektek innen: %{place}"
-  projects_in_x: "%{x} projektjei"
   projects_you_admin: Kezelt projektjeid
   protozoans: állati egysejtűek
   purple: lila
@@ -3139,6 +3139,11 @@ hu:
   search_species_: Fajok keresése...
   search_your_photos: Kényképeid keresése
   seasonality: Szezonalitás
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun}, a tied"
   see_something_wrong_with_taxon: Látsz valami hibásat e taxonnal kapcsolatban? Tudasd a gondozókkal.
   seen_nearby: A közelben látták
