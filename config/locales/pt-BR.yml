@@ -3847,8 +3847,8 @@ pt-BR:
   projects: Projetos
   projects_description: |
     Projetos são uma maneira de reunir suas observações com outras pessoas no %{site_name}. Seja começando um projeto de ciência cidadã ou mantendo tabelas sobre as aves próximas na sua vizinhança, os Projetos são o caminho a seguir.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projetos do %{place}"
-  projects_in_x: "Projetos em %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projetos que %{user} Administra
   projects_you_admin: Projetos que você administra
@@ -4213,6 +4213,11 @@ pt-BR:
   search_your_photos: Pesquisar suas fotos
   searching: "Buscando..."
   seasonality: Sazonalidade
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Sua %{noun}"
   see_something_wrong_with_taxon: Você visualizou algo errado com este táxon? Avise aos coordenadores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4809,6 +4814,11 @@ pt-BR:
   these_observations_have_not_been_uploaded_yet: |
     Estas observações ainda não foram carregadas.
   third_party_tracking: Rastreamento de terceiros
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Esta maratona naturalista começa em
