@@ -2847,8 +2847,8 @@ et:
   projects: Projektid
   projects_description: |
     Projektid võimaldavad koguda vaatlusi teistel lehe %{site_name} kasutajatelt. Hoolimata sellest, kas soovid alustada kogukondlikku teaduskorjet või saada teada, millised linnud lähikonnas elavad, on just projektid õigeks lahenduseks.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projektid kohast %{place}"
-  projects_in_x: "Projektid kohas %{x}"
   projects_you_admin: Sinu administreeritavad projektid
   proposed_taxa_that_contradict_the_community_id: Kogukondliku määratlusega mitte sobivad taksonid
   proposed_taxa_that_support_the_community_id: Kogukondliku määratlust toetavad taksonid
@@ -3079,6 +3079,11 @@ et:
   search_your_photos: Otsi enda fotode hulgast
   searching: "Otsin..."
   seasonality: Hooajalisus
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Sinu %{noun}"
   see_something_wrong_with_taxon: Kas selle taksoniga on midagi valesti? Anna kuraatoritele teada.
   seen_nearby: Läheduses nähtud
@@ -3488,6 +3493,11 @@ et:
   these_folks_kindly_volunteer_to: Need inimesed pakuvad lahkelt oma vabatahtliku aega, et hallata meie taksonoomiat ning tegeleda muude probleemidega.
   these_observations_have_not_been_uploaded_yet: |
     Neid vaatluseid pole veel üles laetud.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "Kasutaja %{object_phrase} %{noun}"
   this: see
   this_bioblitz_beings_in: Välkvaatlus algab
