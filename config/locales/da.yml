@@ -3881,8 +3881,8 @@ da:
   projects: Projekter
   projects_description: |
     Projekter er en måde at forene dine - med andres observationer på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekter fra %{place}"
-  projects_in_x: "Projekter i %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekter håndteret af %{user}
   projects_you_admin: Projekter du administrerer
@@ -4251,6 +4251,11 @@ da:
   search_your_photos: Søg i dine foto´s
   searching: "Søger..."
   seasonality: Sæsonudsving
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4614,6 +4619,8 @@ da:
   target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
   task_deleted: Opgave slettet
   taxa: Taksa
+  taxa_show_obs_photo_search_tip: |
+    Tip: Angiv et observations-ID i søgefeltet, hvis fotos fra en bestemt observation ønskes valgt.
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksainfo
   taxa_needing_curation: Taksa har brug for kuration
@@ -4876,6 +4883,11 @@ da:
   these_observations_have_not_been_uploaded_yet: |
     Disse observationer er ikke blevet uploadet endnu.
   third_party_tracking: Tredjepartssporing
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
