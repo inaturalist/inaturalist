@@ -3414,8 +3414,8 @@ zh-CN:
   projects: 项目
   projects_description: |
     通过项目，您可以在%{site_name}上与其他人共享您的观察结果。无论您是在开展公民科学活动还是密切关注您附近的鸟类，项目都是您的选择。
+  #@vow_or_con should work on %{place}
   projects_from_place: "来自%{place}的项目"
-  projects_in_x: "在 %{x} 中的项目"
   #"admins" is equivalent to "administrates"
   projects_user_admins: 项目管理员 %{user}
   projects_you_admin: 您管理的项目
@@ -3767,6 +3767,11 @@ zh-CN:
   search_your_photos: 搜索您的照片
   searching: "正在搜索……"
   seasonality: 季节性
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "您的 %{noun}"
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4193,6 +4198,11 @@ zh-CN:
   these_observations_have_not_been_uploaded_yet: |
     这些观察结果尚未上传。
   third_party_tracking: 第三方跟踪
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase} 的 %{noun}"
   this: 此
   this_bioblitz_beings_in: 此bioblitz开始于
