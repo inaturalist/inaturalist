@@ -2492,14 +2492,16 @@ tr:
   membership_model: Üyelik Modeli
   mentioned_you_in_noun_html: "%{user} şurada senden bahsetti %{noun}"
   mentioned_you_in_noun_by_html: "%{user} %{by} vasıtasıyla %{noun} içersinde senden bahsetti"
-  mentioned_you_in_noun_by_user_html: "%{user}%{noun}}%{by} tarafından sizden bahsetti"
-  mentioned_you_in_noun_by_you_html: "%{user}%{noun} içinde sizden bahsetti"
+  mentioned_you_in_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında senden söz etti"
+  mentioned_you_in_noun_by_you_html: "%{user} senin yaptığın %{noun} hakkında senden söz etti"
+  mentioned_you_in_a_x_on_noun_html: "%{user}, %{noun}e yaptığı bir %{x}da senden söz etti"
+  mentioned_you_in_an_x_on_noun_html: "%{user}, %{noun}e yaptığı bir %{x}da senden söz etti"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
-  mentioned_you_in_a_x_on_noun_by_user_html: "%{user}%{noun}}%{x} tarihinde%{by} içinde sizden bahsetti"
-  mentioned_you_in_a_x_on_noun_by_you_html: "%{user}%{noun} tarihinde%{x} içinde sizden bahsetti"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında bir %{x}da senden söz etti"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user}, senin yaptığın %{noun} hakkında bir %{x}da senden söz etti"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
-  mentioned_you_in_an_x_on_noun_by_user_html: "%{user}%{noun}}%{x} tarihinde%{by} içinde sizden bahsetti"
-  mentioned_you_in_an_x_on_noun_by_you_html: "%{user}%{noun} tarihinde%{x} içinde sizden bahsetti"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında bir %{x} içinde senden söz etti"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user}, senin yaptığın %{noun} hakkında bir %{x} içinde senden söz etti"
   merge: Birleştir
   merge_it_with_another_place: Başka bir yer ile birleştir
   merge_two_places_together: İki yeri birleştir. Kontrol listelerindeki tüm türlerin yanı sıra coğrafi veriler de birleştirilecektir.
@@ -3709,7 +3711,7 @@ tr:
   profile: Profil
   profile_picture: Profil Resmi
   profile_visibility_desc: |
-    Gereksiz şeyleri %{site_name}'tten uzak tutmak amacıyla, kullanıcı profilleri yalnızca kullanıcı birkaç Araştırma Sınıfı gözleme katkıda bulunduktan sonra herkese açık olarak görünür.
+    Gereksiz şeyleri %{site_name}'ten uzak tutmak amacıyla, kullanıcı profilleri yalnızca kullanıcı birkaç Araştırma Sınıfı gözleme katkıda bulunduktan sonra herkese açık olarak görünür.
   project: Proje
   project_admins:
     one: Proje yöneticisi
@@ -3761,6 +3763,7 @@ tr:
   projects: Projeler
   projects_description: |
     Projeler, gözlemlerini %{site_name} üzerinde diğer insanlarla bir araya getirmeni sağlar. İster bir vatandaş bilimi çalışması başlatıyor ol, ister mahallendeki kuşları takip ediyor ol, Projeler tam size göre.
+  #@vow_or_con should work on %{place}
   projects_from_place: "%{place} konumundan projeler"
   #"admins" is equivalent to "administrates"
   projects_user_admins: '%{user} Tarafından Yönetilen Projeler'
@@ -4129,6 +4132,11 @@ tr:
   search_your_photos: Fotoğraflarını ara
   searching: "Aranıyor..."
   seasonality: Mevsimsellik
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Senin %{noun}"
   see_something_wrong_with_taxon: Bu sınıfla ilgili yanlış bir şey mi var? Küratörlere bildir.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4440,6 +4448,8 @@ tr:
   target_list_warning: Hedef listende yer alan ve bu gezinin yarıçapı ve süresi içinde gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutma. Hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir. Hedef listendeki bir türü ya da hedef listendeki bir grubun kapsadığı her türü tespit etmeye çalışmadıysan, lütfen listenden çıkar.
   task_deleted: Görev silindi
   taxa: Sınıflar
+  taxa_show_obs_photo_search_tip: |
+    İpucu: Belirli bir gözlemden fotoğraf seçmek istiyorsan, arama alanına bir gözlemin tanımlamasını gir.
   taxa_with_unknown_relationships: Bilinmeyen ilişkilerle sınıflar
   taxa_info: Sınıf Bilgileri
   taxa_needing_curation: Düzenleme Gerektiren Sınıflar
@@ -4673,6 +4683,12 @@ tr:
   these_observations_have_not_been_uploaded_yet: |
     Bu gözlemler henüz yüklenmedi.
   third_party_tracking: Üçüncü Parti İzlemeleri
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{object_phrase} kullanıcısının %{noun}"
   this: bu
   this_bioblitz_beings_in: 'Bioblitz başlangıcı:'
   this_is_more_convenient_way_find_parent: Bu, bir üst soy tanımlamasını bulmak için daha uygun bir yoldur. Aslında kaydedilecek olan üst soy tanımlamasıdır.
@@ -4944,7 +4960,7 @@ tr:
   update_with_site_content: "%{site_name} içeriği ile güncelle"
   updated: Güncellendi
   updated_by: 'Güncelleyen:'
-  updated_by_user_on_date_html: '%{date} tarihinde%{user} tarafından güncellendi'
+  updated_by_user_on_date_html: '%{date} tarihinde %{user} tarafından güncellendi'
   updated_daily: Günlük güncellenir
   updated_photo: Güncel fotoğraf
   upload: Yükle
