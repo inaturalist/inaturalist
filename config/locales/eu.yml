@@ -1970,6 +1970,11 @@ eu:
   search_ubio_raquo: "Bilaketa uBio-n »"
   search_your_photos: Zure argazkiak bilatu
   searching: "Bilatzen..."
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Zure %{noun}"
   see_something_wrong_with_taxon: Zerbait txarrik ikusten duzu taxon honetan? Administrariei jakinarazi.
   seen_nearby: Hurbil Ikusita
@@ -2197,6 +2202,11 @@ eu:
     %{site}(e)ak automatikoki zuhaitz taxonomikora gehitu ezin izan dituen espezieak edo taldeak dira. Zuhaitzera gehi ditzakezu esteka hautatuta "editar" eta dagokion elementu nagusia aukeratuta.
     Esate baterako, <i>Homo sapiens-en</i> elementu nagusia <i>Homo</i> izan liteke. Sinonimoak diren espezie edo taldeen arabera ere bila ditzakezu eta konbinatu.
   these_folks_kindly_volunteer_to: Pertsona hauek beren borondatez eskaini dute beren burua taxonomia mantentzeko eta bestelako arazoak konpontzeko.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}-(r)en %{noun}"
   this: hau
   this_is_more_convenient_way_find_parent: Identifikadore nagusia topatzeko modu komenigarriagoa da hau. Identifikadore nagusia da benetan gordeta geratzen dena.
