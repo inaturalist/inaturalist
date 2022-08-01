@@ -29,7 +29,7 @@ const config = {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
     // for inclusion in the asset pipeline, make app/assets/javascripts/[name]-bundle.js
     filename: "[name]-webpack.js",
-    path: path.resolve( __dirname, "../assets/javascripts" )
+    path: path.resolve( __dirname, "../app/assets/javascripts" )
   },
   resolve: {
     extensions: [".js", ".jsx"],
