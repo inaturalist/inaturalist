@@ -3842,8 +3842,8 @@ nl:
   projects_description: |
     Projecten laten je je waarnemingen samenvoegen met andere mensen op %{site_name}.
     Of je nu een intiatief voor burgerwetenschap opstart of op de hoogte wilt blijven van de vogels in jouw buurt, projecten zijn dé manier.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projecten van %{place}"
-  projects_in_x: "Projecten in %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projecten die %{user} administreert
   projects_you_admin: Projecten die jij administreert
@@ -4211,6 +4211,11 @@ nl:
   search_your_photos: In je foto's zoeken
   searching: "Bezig met zoeken ..."
   seasonality: Seizoensinvloeden
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Jouw %{noun}"
   see_something_wrong_with_taxon: Is er iets mis met dit taxon? Laat het de curators weten.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4559,6 +4564,9 @@ nl:
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
   task_deleted: Taak verwijderd
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tip: voer het ID van een waarneming in het zoekveld in als je
+    foto's van een specifieke waarneming wilt kiezen.
   taxa_with_unknown_relationships: Taxa met onbekende verwantschappen.
   taxa_info: Taxa-informatie
   taxa_needing_curation: Taxa heeft Curation nodig
@@ -4801,6 +4809,11 @@ nl:
   these_observations_have_not_been_uploaded_yet: |
     Deze waarnemingen werden nog niet geüpload.
   third_party_tracking: Volgen door derden
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz begint over
