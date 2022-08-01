@@ -3507,8 +3507,8 @@ es-AR:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club local, la forma de hacerlo es con Proyectos.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyectos de %{place}"
-  projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyectos que %{user} administra
   projects_you_admin: Proyectos que administras
@@ -3832,6 +3832,11 @@ es-AR:
   search_your_photos: Buscar sus fotos
   searching: "Buscando..."
   seasonality: Estacionalidad
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4330,6 +4335,11 @@ es-AR:
   these_folks_kindly_volunteer_to: Nuestros queridos voluntarios mantienen actualizada la taxonomía y resuelven otros problemas.
   these_observations_have_not_been_uploaded_yet: |
     Estas observaciones no se han subido aún.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
