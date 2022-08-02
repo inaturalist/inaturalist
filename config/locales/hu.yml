@@ -4499,7 +4499,7 @@ hu:
       template:
         body: 'Problémák merültek fel az alábbi mezőkkel:'
         header:
-          one: '%{count} hiba miatt %{model} nem menthető el'
+          one: '%{count} hiba miatt "%{model}" nem menthető el'
           other: '%{count} hiba miatt %{model} nem menthető el'
   activerecord:
     models:
@@ -4676,7 +4676,7 @@ hu:
       template:
         body: 'Problémák merültek fel az alábbi mezőkkel:'
         header:
-          one: '%{count} hiba miatt %{model} nem menthető el'
+          one: '%{count} hiba miatt "%{model}" nem menthető el'
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
         application:
