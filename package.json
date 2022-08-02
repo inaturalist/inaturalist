@@ -2,6 +2,10 @@
   "name": "inaturalist",
   "version": "2.0.0",
   "description": "iNaturalist npm package for managing node dependencies.",
+  "scripts": {
+    "webpack": "webpack --config config/webpack.config.js",
+    "webpack-watch": "webpack watch --config config/webpack.config.js"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@formatjs/intl-locale": "^2.4.19",
@@ -20,7 +24,6 @@
     "debug": "^2.6.9",
     "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "es6-promise-pool": "^2.5.0",
-    "gulp": "^4.0.2",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
     "inaturalistjs": "github:inaturalist/inaturalistjs",
@@ -86,7 +89,7 @@
     "punycode": "^2.1.1",
     "querystring-es3": "^0.2.1",
     "webpack": "^5.66.0",
-    "webpack-stream": "^7.0.0"
+    "webpack-cli": "^4.10.0"
   },
   "repository": {
     "type": "git",
