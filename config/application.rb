@@ -75,7 +75,7 @@ module Inaturalist
 
     config.exceptions_app = routes
 
-    config.active_record.yaml_column_permitted_classes = [Symbol]
+    config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
 
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
