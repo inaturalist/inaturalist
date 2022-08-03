@@ -1073,6 +1073,9 @@ mi:
   taxa_info: Mōhiohio rōpū
   taxa_observed: Rōpū mātakitia
   taxon: Rōpū
+  taxon_is_a_rank: "Ko %{taxon} he %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    other: "Ko %{taxon} he tētahi %{rank} i roto i a %{iconic_taxon} i ngā mauhanga e %{count}"
   taxonomy: Whakarōpū
   taxonomy_details: Taipitopito whakarōpū
   taxonomy_details_for: Taipitopito whakarōpū mō
