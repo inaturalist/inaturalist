@@ -1857,9 +1857,9 @@ hu:
   merging: Egyesül
   merging_places: Helyek összevonása
   message: Üzenet
-  message_deleted: Üzenet kitörölve
-  message_from_user_at_time: '%{user}-tól ekkor %{time}'
-  message_from_user_on_date: '%{user}-tól ekkor %{date}'
+  message_deleted: Üzenet törölve
+  message_from_user_at_time: '%{user}-tól ekkor: %{time}'
+  message_from_user_on_date: '%{user}-tól ekkor: %{date}'
   messages: Üzenetek
   misidentifications: Téves azonosítás
   misleading_or_illegal_content_html: |
@@ -1868,11 +1868,11 @@ hu:
   missing_date: Hiányzó dátum
   mobile: Mobil
   #Person who executed a moderator action or flagged something
-  moderator_or_flagger: Moderáló / Megjelölő
+  moderator_or_flagger: Moderátor / Megjelölő
   mollusks: puhatestűek
   momentjs:
     shortRelativeTime:
-      future: "%s-ben"
+      future: "%s"
       past: "%s"
       #Short text representing 1 second in the past
       s: "1mp"
@@ -1905,13 +1905,13 @@ hu:
     #please use Z and not z
     datetime_with_offset: "YYYY, MMM D · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "YYYY MMMM D"
+    date_long: "YYYY. MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "MMMM D"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    month_year: "YYYY MMMM"
+    month_year: "YYYY. MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "'YY MMM"
   month: Hónap
@@ -1939,9 +1939,9 @@ hu:
   #the observation must be in
   must_be_in_project: szerepelnie kell %{project} projektben
   must_be_in_taxon: '%{taxon} taxonban kell legyen'
-  must_be_not_in_taxon: nem kell %{taxon} taxonban legyen
-  must_be_not_observed_by_user: nem kell %{user} által megfigyelve legyen
-  must_be_not_observed_in_place: 'nem kell ezen a helyen megfigyelve legyen: %{place}'
+  must_be_not_in_taxon: nem lehet %{taxon} taxonban
+  must_be_not_observed_by_user: nem lehet %{user} által megfigyelve
+  must_be_not_observed_in_place: 'nem lehet ezen a helyen megfigyelve: %{place}'
   must_be_observed_after: '%{operand} után kell legyen megfigyelve'
   must_be_observed_before: '%{operand} előtt kell legyen megfigyelve'
   must_be_observed_by_user: '%{user} által megfigyelve kell legyen'
@@ -1963,10 +1963,10 @@ hu:
   name: Név
   name_entered: Név beírva
   name_or_slug: "Név vagy URL-paraméter, pl. magyarorszag-biodiverzitasa"
-  name_of_the_place_you: Hely neve ahol a mefigyelés történt
+  name_of_the_place_you: Megfigyelési hely
   name_providers:
     col: Az élet katalógusa
-    nzor: Újzélandi organizmusok jegyzéke
+    nzor: Újzélandi Organizmusok Jegyzéke
   names: Nevek
   names_for_taxon_html: "%{taxon} nevei"
   native: őshonos
@@ -2009,10 +2009,10 @@ hu:
   new_project: Új projekt
   new_source: Új forrás
   new_species_added_in_interval: Új faj hozzáadva az %{interval} intervallumban
-  new_taxon_change: Új taxon módosítás
-  new_taxon_link: Új taxon hivatkozás
+  new_taxon_change: Új taxonmódosítás
+  new_taxon_link: Új taxonhivatkozás
   new_taxon_name_for: 'Új taxonnév: '
-  new_taxon_range: Új taxon intervallum
+  new_taxon_range: Új taxonintervallum
   new_trip: Új túra
   new_updates_in_the_last_24_hours_from: "Új hírek az %{site_name}tól az utolsó 24 órában"
   new_users: Új felhasználó
@@ -2059,7 +2059,7 @@ hu:
   no_members_yet: "Nincs még tag."
   no_messages_yet: Még nincs üzenet
   no_misidentifications_yet: Még nincs téves meghatározás
-  no_more_mail_from_site: "Nem akarsz emailt kapni %{site_name}-tól? Módosítsd az email beállításaidat"
+  no_more_mail_from_site: "Nem akarsz emailt kapni innen: %{site_name}? Módosítsd az emailbeállításaidat"
   no_more_taxa_to_load: Nincs több betöltendő taxon!
   no_more_results_found: Nincs több eredmény
   no_new_messages: Nincs új üzenet
@@ -2183,13 +2183,13 @@ hu:
   #project were last updated
   observation_requirements_updated_at: 'A megfigyelések követelményei frissítve itt:'
   observation_rules: Megfigyelések szabályai
-  observation_was_deleted: Megfigyelés törölve
+  observation_was_deleted: Megfigyelés törölve.
   observation_without_media: Megfigyelés fénykép/hang nélkül
   observations: Megfigyelések
   observations_: megfigyelés
   observations_added_by_x_html: "Megfigyeléseket hozzáadta %{x}"
-  observations_by_user: "Megfigyelések %{user}-tól"
-  observations_deleted: Megfigyelések kitörölve.
+  observations_by_user: "Megfigyelések %{user} felhasználótól"
+  observations_deleted: Megfigyelések törölve.
   observations_fields_are: |
     Az adatmezők a megfigyelésekhez tartozó extra adatok, amely bármi lehet, például a megfigyelők száma, élőhelyleírás, stb. A projektek meghatározhatják, hogy mely adatmezők kitöltése kötelező.
   observations_from_people_taxa_and_places_youre_following: "A követett emberek, helyek és taxonok megfigyelései"
@@ -2197,7 +2197,7 @@ hu:
   observations_in_this_project_must: E projekt megfigyeléseire a következő kritériumok vonatkoznak
   observations_map: Megfigyelések / Térkép
   observations_near_a_place_are: |
-    Azok a megfigyelések, amelyek egy hely "közelében" vannak egy olyan téglalapban amely a hely határai köré van rajzolva. Ez pontatlan eredményeket adhat olyan helyeknél, amelyek nem téglalap alakúak. Ez egy korlátozás az adatbázisunkból amin dolgozunk, hogy kiküszöböljök.
+    A megfigyelések "közeli"-nek számítanak egy hely viszonylatában, ha azok a hely határai köré rajzolt téglalapon belül esnek. Ez pontatlan eredményeket adhat olyan helyeknél, amelyek nem téglalap alakúak. Ez a korlátozás jelenlegi adatbázisunkból ered, aminek javításán dolgozunk.
   observations_needing_curation: Gondozásra szorult megfigyelések
   observations_observed_this_month: A <em>megfigyelések</em> dátuma (és nem a feltöltés dátuma) alapján. Rajta, ki a természetbe!
   observations_of_relatives: Rokon fajok megfigyelései
@@ -2229,16 +2229,16 @@ hu:
     irregular: Az előfordulás nem előre látható, a csavargókat beleértve; gyakori lehet bizonyos években, hiányozhat másokban
     present: Előfordul a területen
     uncommon: Rendszeresen előfordul, de kis számban; szükséges az élőhely alapos átvizsgálása
-  occurrence_status_establishment_means: Előfordulás, letelepedés státusz
+  occurrence_status_establishment_means: előfordulás, letelepedési státusz
   occurrence_status_levels:
     present: jelen van
     common: gyakori
-    uncommon: Nem gyakori
+    uncommon: nem gyakori
     irregular: szabálytalan
     doubtful: kétes
     absent: hiányzó
   of_places: helyek
-  of_this_taxon: erről a taxonról
+  of_this_taxon: Ebből a taxonból
   offensive_inappropriate: Erőszakos / Felháborodástkeltő
   off_caps: "KI"
   #Header label for hiding or unhiding the time shifter in the Uploader
@@ -2247,23 +2247,23 @@ hu:
   ok: "OK"
   on_caps: "BE"
   onboarding:
-    observe_panel_body_p2: Menj ki és figyelj megy egy egyéni élőlényt. Válassz valami vadat és készíts róla egy tiszta, teljes keretű képet. Ha már van egy képed valami vadról, <a href="%{new_observation_path}">itt feltöltheted</a>. Használhatod a %{site_name} mobilalkalmazását is, hogy megfigyeléseket rögzíts.
+    observe_panel_body_p2: Menj ki a természetbe és figyelj meg egy élőlényt. Válassz egy vadon előt és készíts róla tiszta, egészalakos képet. Ha már van egy képed valami vadról, <a href="%{new_observation_path}">itt feltöltheted</a>. Használhatod az %{site_name} mobilalkalmazását is a megfigyelések rögzítéséhez.
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
     following_panel_title: Kövess emebereket, taxonokat és helyeket
     following_panel_body: |
-      %{site_name}on embereket követhetsz, hogy naprakész legyél a feltöltött észleléseikkel. Bizonyos fajok lapjára is feliratkozhatsz, hogy kövesd a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
-    comments_panel_title: Kíváncsi vagy milyen beszélgetések folynak %{site_name}on?
-    comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz hozzé. Kezeld ezeket a frissítéseket a 'Feliratkozások' lapon a jobb felén.)</p>"
+      %{site_name}-on embereket követhetsz, hogy naprakész legyél a feltöltött észleléseikkel. Bizonyos fajok lapjára is feliratkozhatsz, hogy kövesd a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
+    comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak %{site_name}-on?
+    comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz. Ezeket a frissítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
     updates_by_you_panel_body: 'Emlékeztető: a "Minden frissítés" fülön nemcsak a saját tartalmaidről kapsz frissítéseket, hanem a követett felhasználók tartalmairól is, valamint azokról a taxonokról, amelyekre feliratkoztál a jobbra található Feliratkozás opcióval.'
     youve_got_updates_panel_title: Új híreid vannak!
     youve_got_updates_panel_body_p1: Légy naprakész az alábbiakkal...
     youve_got_updates_panel_body_p2: |
       <ul>
-      <li><strong>Tartalmaid:</strong> Aktivitás a megfigyeléseidről, mint például megjegyzések, meghatározások vagy kedvencek a %{site_name} közösségtől. Akkor is kapsz frissítést amikor valaki hozzáadja megfigyelésedet egy projekthez vagy más adatmezőkkel kiegészíti azt. </li>
-      <li><strong>Emberek:</strong> Új megfigyelések vagy naplóbejegyzések felhasználóktól akiket követsz.</li>
-      <li><strong>Élőlények, projektek és helyek:</strong> Új megfigyelések élőlényekről és helyekről amikre feliratkoztál. Projektekben is részt vehetsz és akkor fejleményeket kapsz ezek naplóbejegyzéseiből.</li>
-      <li><strong>Beszélgetések melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod automatikusan feliratkozol, hogy új fejleményeket kapj minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' eszközt ha nem akarsz a fejleményekről értesülni.</li>
+      <li><strong>Tartalmaid:</strong> Aktivitás a megfigyeléseidről, mint például megjegyzések, meghatározások vagy kedvencek az %{site_name} közösségtől. Akkor is kapsz frissítést, amikor valaki hozzáadja megfigyelésedet egy projekthez vagy más adatmezőkkel kiegészíti azt. </li>
+      <li><strong>Emberek:</strong> Új megfigyelések vagy naplóbejegyzések a követett felhasználóktól.</li>
+      <li><strong>Élőlények, projektek és helyek:</strong> Új megfigyelések élőlényekről és helyekről amikre feliratkoztál. Projektekben is részt vehetsz, így értesítéseket kaphatsz ezek naplóbejegyzéseiből.</li>
+      <li><strong>Beszélgetések, melyekben részt vettél:</strong> Amikor megjegyzést fűzől mások megfigyeléseihez vagy ezeket azonosítod, automatikusan feliratkozol, így értesítéseket kapsz minden ezekkel kapcsolatos aktivitásról. Használd a 'Feliratkozások kezelése' eszközt, ha nem akarsz a fejleményekről értesülni.</li>
       </ul>
   one_by_one: "Egyenként"
   #Header for a list of project observation requirements
