@@ -590,8 +590,6 @@ ca:
   are_you_sure_remove_photo: "Esteu segur que voleu eliminar aquesta foto?"
   are_you_sure_remove_relationship: Esteu segur de voler eliminar aquesta relació? Això farà que no seguiu aquesta persona i revocar l'accés a les vostres coordenades ocultes si vau habilitar aquest accés.
   are_you_sure_remove_taxon_from_list: "Esteu segur que voleu eliminar de la llista aquesta espècie o grup?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Esteu segur? Això tornarà a carregar la pàgina, i podeu perdre alguns dels vostres canvis.
   are_you_sure_unresolve_flag?: |
     Esteu segur que voleu eliminar la resolució d'aquesta marca? Aquesta acció eliminarà tant l'usuari com la resposta a aquesta marca.
   are_you_sure_want_delete_taxon: "Esteu segur que voleu eliminar aquest tàxon?"
@@ -4071,7 +4069,6 @@ ca:
     must_be_georeferenced: han d'estar georeferenciades
     must_be_identified: ha de ser identificada
     must_be_on_list: ha d'estar a la llista
-    must_be_observed_in_place: ha de ser observada en aquest lloc
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
     must_be_verifiable: ha de ser verificable
@@ -5069,7 +5066,6 @@ ca:
   user_observed_on_on_date_in_place: |
     %{user} observà un el %{date} a %{place}
   user_suggested_an_id: "%{user} ha suggerit una identificació"
-  user_thinks_yours_is: "%{user} %{noun} la vostra observació %{observation} és"
   user_trusts_you_with_their_private_coordinates: "%{user} comparteix amb tu les seves coordenades ocultes"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'observador ha escollit compartir amb tu les coordenades ocultes de totes les seves observacions.
@@ -5099,7 +5095,6 @@ ca:
   view_all: Mostra-ho tot
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
-  view_all_n: "Veure tots els %{n}"
   view_all_observations: Veure totes les observacions
   view_all_photocount_photos: "Veure les %{photo_count} fotos"
   view_assessment: Veure valoració
@@ -5151,7 +5146,6 @@ ca:
   view_taxon_page: Mostra la pàgina del tàxon
   view_taxon_page_for_this_x: "Mostra la pàgina del tàxon per a aquest %{x}"
   view_taxononomy_details_for_taxon: "Veure els detall taxonòmics del tàxon %{taxon}"
-  view_the_observation: Mostra l'observació
   view_user_observations: "Mostra observacions de %{user}"
   view_x: "Veure %{x}"
   view_year_stats_for_site: "Veure estadístiques del %{year} a %{site}"
