@@ -506,8 +506,6 @@ zh-TW:
   are_you_sure_remove_photo: "您確定要移除此照片？"
   are_you_sure_remove_relationship: 您確定要移除此關係？這將會無法追蹤此人，並且若您已啟用存取您的隱藏座標也會撤銷掉。
   are_you_sure_remove_taxon_from_list: "您確定要從名錄中移除此物種分類？"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    您確定嗎？這將會重新載入頁面而您會遺失您更改的內容。
   are_you_sure_unresolve_flag?: |
     您確定要取消解決這個標記嗎？這將會移除這個解決問題標記，以及此標記的解決者。
   are_you_sure_want_delete_taxon: "您確定要刪除此物種分類？"
@@ -3832,7 +3830,6 @@ zh-TW:
     must_be_georeferenced: 必須被地理參考
     must_be_identified: 必須被鑑定
     must_be_on_list: 必須在名錄中
-    must_be_observed_in_place: 需在地點裡觀察
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   running_total: 運行總計
@@ -4675,7 +4672,6 @@ zh-TW:
   user_observed_on_on_date_in_place: |
     %{user} 於 %{date} 在%{place}觀察了一個
   user_suggested_an_id: "%{user} 建議了一個鑑定"
-  user_thinks_yours_is: "%{user} %{noun}您的觀察%{observation}是"
   user_trusts_you_with_their_private_coordinates: "%{user}以他的隱藏座標來信任您"
   user_trusts_you_with_their_private_coordinates_desc: |
     觀察者選擇以他所有觀察的隱藏座標來信任您
@@ -4705,7 +4701,6 @@ zh-TW:
   view_all: 檢視所有
   view_all_flags: 檢視所有標籤
   view_all_members: 檢視所有成員
-  view_all_n: "檢視所有%{n}"
   view_all_observations: 檢視所有觀察
   view_all_photocount_photos: "檢視所有 %{photo_count} 張照片"
   view_assessment: 查看評估
@@ -4757,7 +4752,6 @@ zh-TW:
   view_taxon_page: 檢視物種分類頁面
   view_taxon_page_for_this_x: "檢視用於%{x}的物種分類頁面"
   view_taxononomy_details_for_taxon: "檢視%{taxon}的分類詳情"
-  view_the_observation: 檢視觀察
   view_user_observations: "檢視 %{user} 的觀察"
   view_x: "檢視 %{x}"
   view_year_stats_for_site: "檢視 %{site} 在 %{year} 的統計內容"
