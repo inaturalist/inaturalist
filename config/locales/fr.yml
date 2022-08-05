@@ -597,8 +597,6 @@ fr:
   are_you_sure_remove_photo: "Êtes-vous sûr de vouloir supprimer cette photo ?"
   are_you_sure_remove_relationship: Voulez-vous vraiment supprimer cette relation? Vous ne suivrez plus cette personne et elle n'aura plus accès à vos coordonnées masquées si vous lui aviez donné cet accès.
   are_you_sure_remove_taxon_from_list: "Êtes-vous sûr de vouloir enlever ce taxon de la liste ?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Êtes-vous sûr ? Cela rechargera la page et vous risquez de perdre certaines de vos modifications.
   are_you_sure_unresolve_flag?: |
     Êtes-vous certain de vouloir annuler la résolution du problème signalé ? Ceci enlèvera de ce signalement à la fois la résolution et son auteur.
   are_you_sure_want_delete_taxon: "Êtes-vous sûr de vouloir supprimer ce taxon ?"
@@ -4153,7 +4151,6 @@ fr:
     must_be_georeferenced: doit être géoréférencé
     must_be_identified: doit être identifié
     must_be_on_list: doit être dans la liste
-    must_be_observed_in_place: doit être observé dans le lieu
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
     must_be_verifiable: doit être vérifiable
@@ -5164,7 +5161,6 @@ fr:
   user_observed_on_on_date_in_place: |
     %{user} en a observé un le %{date} à %{place}
   user_suggested_an_id: "%{user} a suggéré un ID"
-  user_thinks_yours_is: "%{user} %{noun} que votre observation %{observation} est"
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
     L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
@@ -5194,7 +5190,6 @@ fr:
   view_all: Afficher tout
   view_all_flags: Voir tout les signalements
   view_all_members: Afficher tous les membres
-  view_all_n: "Afficher tous les %{n}"
   view_all_observations: Afficher toutes les observations
   view_all_photocount_photos: "Afficher toutes les %{photo_count} photos"
   view_assessment: Afficher l’évaluation
@@ -5246,7 +5241,6 @@ fr:
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
-  view_the_observation: Afficher l’observation
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
   view_year_stats_for_site: "Afficher les statistiques de %{year} pour %{site}"
