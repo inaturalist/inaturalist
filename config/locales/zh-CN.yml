@@ -547,8 +547,6 @@ zh-CN:
   are_you_sure_remove_photo: "您确定要移除这张照片么？"
   are_you_sure_remove_relationship: 您确定要解除此关系吗？ 这将取消关注此人并撤销对您隐藏坐标的访问。
   are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    您确定么？这将重新加载页面，您可能会丢失您的一些更改。
   are_you_sure_unresolve_flag?: |
     你确定要将这个旗标问题标志为未解决吗？这将会把目前的解决方案以及解决此事的用户从旗标问题中移除出去。
   are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？"
@@ -3706,7 +3704,6 @@ zh-CN:
     must_be_georeferenced: 必须有地理参考
     must_be_identified: 必须被认证
     must_be_on_list: 必须在清单上
-    must_be_observed_in_place: 必须在原地观察
     must_be_in: 必须在分类群中
     must_be_coordinates_shareable_by_project_curators: 观察者必须允许项目馆长查看坐标。
     must_be_wild: 必须是野生的
@@ -4435,7 +4432,6 @@ zh-CN:
   user_observed_on_on_date_in_place: |
     %{user} 于 %{date} 在 %{place} 上观察到一个
   user_suggested_an_id: "%{user}建议了一个ID"
-  user_thinks_yours_is: "%{user}%{noun}您的观察%{observation}是"
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
@@ -4460,7 +4456,6 @@ zh-CN:
   view_all: 查看全部
   view_all_flags: 查看所有标记
   view_all_members: 查看所有成员
-  view_all_n: "查看所有%{n}"
   view_all_observations: 查看所有观察
   view_all_photocount_photos: "查看所有 %{photo_count} 张照片"
   view_assessment: 查看评估
@@ -4511,7 +4506,6 @@ zh-CN:
   view_taxon_page: 查看分类学页面
   view_taxon_page_for_this_x: "查看用于%{x}的分类单元页面"
   view_taxononomy_details_for_taxon: "查看 %{taxon} 的分类详情"
-  view_the_observation: 查看观察
   view_user_observations: "查看 %{user} 的观察"
   view_x: "查看%{x}"
   view_year_stats_for_site: "查看用于%{site}的%{year}统计"
