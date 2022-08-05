@@ -708,8 +708,6 @@ uk:
   are_you_sure_remove_photo: "Ви дійсно бажаєте видалити цю фотографію?"
   are_you_sure_remove_relationship: Ви дійсно хочете видалити цей зв'язок? Цим ви відпишетеся від даної особи і скасуєте її доступ до ваших прихованих координат, якщо такий доступ був дозволений раніше.
   are_you_sure_remove_taxon_from_list: "Ви дійсно хочете видалити цей таксон зі списку?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Ви впевнені? Це перезавантажить сторінку і ви можете втратити деякі внесені зміни.
   are_you_sure_unresolve_flag?: |
     Ви дійсно бажаєте відновити цей прапорець? Це скасує рішення проблеми
     і видалить користувача, який виніс це рішення, з цього прапорця.
@@ -4040,7 +4038,6 @@ uk:
     must_be_georeferenced: мусить мати координати
     must_be_identified: мусить бути визначене
     must_be_on_list: мусить бути у списку
-    must_be_observed_in_place: мусить бути спостережене у межах Місця
     must_be_in: мусить належати до таксону
     must_be_coordinates_shareable_by_project_curators: Спостерігач мусить дозволити кураторам проєкту бачити координати.
   running_total: Поточний підсумок
@@ -4872,7 +4869,6 @@ uk:
   user_observed_on_on_date_in_place: |
     Користувач %{user} спостерігав це %{date} у такому місці: %{place}
   user_suggested_an_id: "%{user} запропонував/ла визначення"
-  user_thinks_yours_is: "%{user} %{noun} ваше спостереження %{observation} є"
   user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Спостерігач вирішив довірити вам приховані координати всіх своїх спостережень.
@@ -4899,7 +4895,6 @@ uk:
   view_all: Переглянути всі
   view_all_flags: Переглянути всі прапорці
   view_all_members: Переглянути всіх учасників
-  view_all_n: "Переглянути всі %{n}"
   view_all_observations: Переглянути всі спостереження
   view_all_photocount_photos: "Переглянути всі %{photo_count} фото"
   view_assessment: Переглянути оцінку
@@ -4950,7 +4945,6 @@ uk:
   view_taxon_page: Переглянути сторінку таксону
   view_taxon_page_for_this_x: "Переглянути сторінку таксону для цього %{x}"
   view_taxononomy_details_for_taxon: "Переглянути подробиці таксономії для %{taxon}"
-  view_the_observation: Переглянути спостереження
   view_user_observations: "Переглянути спостереження користувача %{user}"
   view_x: "Переглянути %{x}"
   view_year_stats_for_site: "Переглянути статистику за %{year} рік для %{site}"
