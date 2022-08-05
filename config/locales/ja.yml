@@ -492,8 +492,6 @@ ja:
   are_you_sure_remove_photo: "この写真を本当に削除してよろしいですか？"
   are_you_sure_remove_relationship: このリレーションシップを削除してもよろしいですか? これにより、このユーザーのフォローが解除され、非表示の座標へのアクセスが有効になっていた場合は無効になります。
   are_you_sure_remove_taxon_from_list: "リストからこの分類群を削除して本当によろしいですか？"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
   are_you_sure_unresolve_flag?: |
     このフラグを解除してもよろしいですか？これにより、このフラグから解決と解決したユーザが削除されます。
   are_you_sure_want_delete_taxon: "この分類群を削除して本当によろしいですか？"
@@ -3171,7 +3169,6 @@ ja:
     must_be_georeferenced: 位置情報が必要です
     must_be_identified: 同定済みでなければなりません
     must_be_on_list: リストに入っていなければなりません
-    must_be_observed_in_place: 次の場所で観察されなければなりません
     must_be_in: 分類群に含まれなければなりません
     must_be_coordinates_shareable_by_project_curators: 観察者は、プロジェクトのキュレーターが座標を表示できるようにしなければなりません。
   running_total: 現在の総計
@@ -3809,7 +3806,6 @@ ja:
   view_all: すべて表示
   view_all_flags: すべてのフラグを表示
   view_all_members: メンバーをすべて表示
-  view_all_n: "すべての%{n}を表示"
   view_all_observations: すべての観察記録を表示
   view_all_photocount_photos: "写真%{photo_count}枚すべてを表示"
   view_assessment: 評定を表示
@@ -3849,7 +3845,6 @@ ja:
   view_taxon_page: 分類群ページを表示
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
   view_taxononomy_details_for_taxon: "%{taxon} の分類の詳細を表示"
-  view_the_observation: 観察記録を表示
   view_user_observations: "%{user}さんの観測記録を表示"
   view_your_dashboard: ダッシュボードを表示
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>ダッシュボードを表示</a> してさらにアップデートを見る"
