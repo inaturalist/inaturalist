@@ -602,8 +602,6 @@ pt-BR:
   are_you_sure_remove_photo: "Tem certeza de que deseja remover esta foto?"
   are_you_sure_remove_relationship: Tem certeza de que deseja excluir este relacionamento? Isso fará com que você pare de seguir essa pessoa e revogue o acesso às suas coordenadas ocultadas, se já tiver ativado esse acesso.
   are_you_sure_remove_taxon_from_list: "Você tem certeza que quer remover este táxon da lista?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Você tem certeza? Isto irá recarregar a página você provavelmente perderá algumas de suas alterações.
   are_you_sure_unresolve_flag?: |
     Tem certeza de que deseja cancelar a resolução desta sinalização? Isso removerá a resolução e o usuário que a criou deste alerta.
   are_you_sure_want_delete_taxon: "Você tem certeza que deseja remover este táxon?"
@@ -4150,7 +4148,6 @@ pt-BR:
     must_be_georeferenced: Georreferenciamento obrigatório
     must_be_identified: identificação obrigatória
     must_be_on_list: deve constar na lista
-    must_be_observed_in_place: deve ser observado neste lugar
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
     must_be_verifiable: Deve ser verificável
@@ -5167,7 +5164,6 @@ pt-BR:
   user_observed_on_on_date_in_place: |
     %{user} observado um em %{date} no %{place}
   user_suggested_an_id: "%{user} sugeriu uma identificação"
-  user_thinks_yours_is: "%{user} %{noun} a sua observação %{observation} é"
   user_trusts_you_with_their_private_coordinates: "%{user} confia suas coordenadas ocultadas a você"
   user_trusts_you_with_their_private_coordinates_desc: |
     O observador escolheu confiar em você com as coordenadas ocultadas de todas as suas observações.
@@ -5197,7 +5193,6 @@ pt-BR:
   view_all: Ver todas
   view_all_flags: Ver Todas as Sinalizações
   view_all_members: Ver todos os membros
-  view_all_n: "Exibir todos %{n}"
   view_all_observations: Ver todas observações
   view_all_photocount_photos: "Exibir todas as %{photo_count} fotos"
   view_assessment: Ver avaliação
@@ -5249,7 +5244,6 @@ pt-BR:
   view_taxon_page: Veja a página do Táxon
   view_taxon_page_for_this_x: "Veja a página de táxon para este %{x}"
   view_taxononomy_details_for_taxon: "Visualizar detalhes da taxonomia para %{taxon}"
-  view_the_observation: Exibir a observação
   view_user_observations: "Exibir as observações de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Veja as estatísticas para %{year} de %{site}"
