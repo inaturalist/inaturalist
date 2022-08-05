@@ -598,8 +598,6 @@ es-MX:
   are_you_sure_remove_photo: "¿Estás seguro que quieres quitar esta foto?"
   are_you_sure_remove_relationship: '¿Estás seguro que deseas eliminar esta relación? Esto hará que dejes de seguir a esta persona y revocará el acceso a tus coordenadas ocultas si ya habías habilitado tal acceso.'
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres quitar esta especie o grupo de la lista?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
   are_you_sure_unresolve_flag?: |
     ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
     y el usuario que ha resuelto esta marca.
@@ -4142,7 +4140,6 @@ es-MX:
     must_be_georeferenced: deben estar con georeferencia
     must_be_identified: deben estar idenfiticadas
     must_be_on_list: deben estar en la lista
-    must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
     must_be_verifiable: debe ser verificable
@@ -5158,7 +5155,6 @@ es-MX:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió un ID"
-  user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   user_trusts_you_with_their_private_coordinates: "%{user} te confío sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarte las coordenadas ocultas de todas sus observaciones.
@@ -5188,7 +5184,6 @@ es-MX:
   view_all: Ver todas
   view_all_flags: Ver todas las marcas
   view_all_members: Ver a todos los miembros
-  view_all_n: "Ver todos %{n}"
   view_all_observations: Ver todas las observaciones
   view_all_photocount_photos: "Ver todas las %{photo_count} fotos"
   view_assessment: Ver evaluación
@@ -5240,7 +5235,6 @@ es-MX:
   view_taxon_page: Ver la página de la especie o grupo
   view_taxon_page_for_this_x: "Ve página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the_observation: Ve la observación
   view_user_observations: "Ve las observaciones de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Ver las estadísticas de %{year} de %{site}"
