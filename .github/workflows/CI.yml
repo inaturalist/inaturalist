@@ -70,7 +70,7 @@ jobs:
         curl --verbose --show-error http://localhost:9200
 
     - run: npm install
-    - run: gulp webpack
+    - run: npm run webpack
 
     - name: Install dependencies
       run: |
