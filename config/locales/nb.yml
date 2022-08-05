@@ -532,8 +532,6 @@ nb:
   are_you_sure_remove_photo: "Er du sikker på at du vil fjerne dette bildet?"
   are_you_sure_remove_relationship: Er du sikker på at du vil fjerne denne relasjonen? Da følger du ikke denne personen lenger og trekkes eventuell tilgang du har gitt til dine skjulte koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på at du vil fjerne dette taksonet fra listen?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Er du sikker? Dette vil laste siden på nytt og du kan miste noen av dine endringer.
   are_you_sure_unresolve_flag?: |
     Er du sikker på at du vil fjerne løsningen for denne markeringen? Dette vil fjerne løsningen og brukeren som bidro med løsningen fra denne markeringen.
   are_you_sure_want_delete_taxon: "Er du sikker på at du vil slette dette taksonet?"
@@ -3523,7 +3521,6 @@ nb:
     must_be_georeferenced: må være georeferert
     must_be_identified: må være identifisert
     must_be_on_list: må være på liste
-    must_be_observed_in_place: må være observert på sted
     must_be_in: må være i takson
     must_be_coordinates_shareable_by_project_curators: observatør må tillate at prosjektkuratorer kan se koordinatene.
   running_total: Løpende total
@@ -4280,7 +4277,6 @@ nb:
   user_observed_on_on_date_in_place: |
     %{user} har observert en på %{date} i %{place}
   user_suggested_an_id: "%{user} har foreslått en ID"
-  user_thinks_yours_is: "%{user} %{noun} din observasjon %{observation} er"
   user_trusts_you_with_their_private_coordinates: "%{user} stoler på deg med sine skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt å stole på deg med de skjulte koordinatene av alle sine observasjoner.
@@ -4305,7 +4301,6 @@ nb:
   view_all: Vis alle
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
-  view_all_n: "Vis alle %{n}"
   view_all_observations: Vis alle observasjoner
   view_all_photocount_photos: "Vis alle %{photo_count} bilder"
   view_assessment: Vis vurdering
@@ -4355,7 +4350,6 @@ nb:
   view_taxon_page: Vis taksonside
   view_taxon_page_for_this_x: "Vis taksonside for @gender{n:dette|denne} %{x}@gender{n:et|en}"
   view_taxononomy_details_for_taxon: "Vis taksonomiske detaljer for %{taxon}"
-  view_the_observation: Vis observasjonen
   view_user_observations: "Vis %{user} sine observasjoner"
   view_x: "Vis %{x}"
   view_year_stats_for_site: "Vis %{year} statistikker for %{site}"
