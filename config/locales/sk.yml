@@ -267,8 +267,6 @@ sk:
   are_you_sure_remove_photo: "Ste si istý, že chcete odstrániť túto fotku?"
   are_you_sure_remove_relationship: Naozaj chcete tento vzťah odstrániť? Týmto spôsobom prestanete sledovať túto osobu a prístup k skrytým súradniciam sa zruší, ak ste takýto prístup povolili.
   are_you_sure_remove_taxon_from_list: "Ste si istý, že chcete odstrániť taxón z tohto zoznamu?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Ste si istí? Toto znovu načíta stránku a Vy môžete stratiť nejaké Vaše zmeny.
   are_you_sure_want_delete_taxon: "Naozaj chcete odstrániť tento taxón?"
   are_you_sure_want_delete_taxon_observations: |
     Naozaj chcete odstrániť tento taxón? Obsahuje pozorovania.
@@ -2460,7 +2458,6 @@ sk:
     must_be_georeferenced: musí byť uvedený geografický odkaz
     must_be_identified: musí byť uvedená identifikácia
     must_be_on_list: musí byť na zoznamu
-    must_be_observed_in_place: musí byť pozorovaný v mieste
     must_be_in: musí byť v taxóne
     must_be_coordinates_shareable_by_project_curators: pozorovateľ musí kurátorom projektu sprístupniť náhľad súradníc.
   said: povedal/a
@@ -2887,7 +2884,6 @@ sk:
   user_invite_observation_to_project: 'Užívateľ %{user} by rád pripojil vaše pozorovanie „%{observation}“ k projektu %{project}.'
   user_invited_you_to_join_project: "Užívateľ %{user} vás pozval, aby ste sa pripojili k projektu %{project}"
   user_suggested_an_id: "%{user} navrhol ID"
-  user_thinks_yours_is: "%{user} %{noun} vaše pozorovanie %{observation} je"
   username: Používateľské meno
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
@@ -2924,7 +2920,6 @@ sk:
   view_taxon_changes: Zobraziť zmeny taxónu
   view_taxon_page: Zobraziť stránku taxónu
   view_taxon_page_for_this_x: "Zobraziť stránku taxónu pre tento %{x}"
-  view_the_observation: Zobraziť pozorovania
   view_x: "Zobraziť %{x}"
   view_your_dashboard: Zobraziť vašu nástenku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobraziť vašu nástenku</a> a aktualizácie"
