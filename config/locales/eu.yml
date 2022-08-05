@@ -426,8 +426,6 @@ eu:
   are_you_sure_remove_photo: "Ziur zaude argazki hau kendu nahi duzula?"
   are_you_sure_remove_relationship: Ziur zaude harreman hau kendu nahi duzula? Honela pertsona hau jarraitzeari utziko diozu eta bere koordenatu ezkutuetara sarbidea kenduko zaizu sarbide hori gaituta badu.
   are_you_sure_remove_taxon_from_list: "Ziur zaude espezie edo talde hau zerrendatik ezabatu nahi duzula?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Ziur zaude? Honek orria berriro kargatuko du eta baliteke hainbat aldaketa galtzea.
   are_you_sure_want_delete_taxon: "Ziur zaude taxon hau ezabatu nahi duzula?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Ziur zaude taxon hau ezabatu nahi duzula? Taxon alabak ditu.
@@ -1931,7 +1929,6 @@ eu:
     must_be_georeferenced: geoerreferentzia izan behar dute
     must_be_identified: identifikatuta egon behar dute
     must_be_on_list: zerrendan egon behar dute
-    must_be_observed_in_place: toki honetako behaketak izan behar dute
     must_be_in: espezie edo taldearen barruan egon behar dute
   said: zioen
   satellite: satelitea
@@ -2296,7 +2293,6 @@ eu:
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_is_a_naturalist: "%{user} naturalista da!"
-  user_thinks_yours_is: "%{user} %{noun} zure %{observation} behaketa honelakoa da:"
   username: Erabiltzailearen izena
   username_or_email: Erabiltzailearen izena edo helbide elektronikoa
   username_or_user_id: Erabiltzailearen izena edo ID
@@ -2307,7 +2303,6 @@ eu:
   view: Ikusi
   view_all: Denak ikusi
   view_all_members: Kide guztiak ikusi
-  view_all_n: "%{n} guztiak ikusi"
   view_all_observations: Behaketa guztiak ikusi
   view_all_photocount_photos: "%{photo_count} argazki guztiak ikusi"
   view_check_list_page: Egiaztapen-zerrendaren orrialdea ikusi
@@ -2340,7 +2335,6 @@ eu:
   view_taxon_page: Taxonaren orrialdea ikusi
   view_taxon_page_for_this_x: "%{x} honetarako taxonaren orrialdea ikusi"
   view_taxononomy_details_for_taxon: "Ikusi %{taxon} taxoiaren xehetasun taxonomikoak"
-  view_the_observation: Behaketa ikusi
   view_user_observations: "Honen behaketak ikusi: %{user}"
   view_your_dashboard: Zure taula ikusi
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zure taula ikusi</a> eguneraketa gehiagotarako"
