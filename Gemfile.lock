@@ -5,13 +5,6 @@ GIT
     dynamic_form (1.1.4)
 
 GIT
-  remote: https://github.com/IDolgirev/omniauth-flickr.git
-  revision: bcd202b0825659cbd984e611f6151f67c4aae591
-  ref: bcd202b0825659cbd984e611f6151f67c4aae591
-  specs:
-    dynamic_form (1.1.4)
-
-GIT
   remote: https://github.com/fnando/i18n-js.git
   revision: 384a02dd58ed4994310a8094f6c8cc7f74b93026
   tag: v3.7.0
@@ -381,7 +374,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashdiff (1.0.1)
-    hashie (4.1.0)
+    hashie (5.0.0)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
@@ -452,7 +445,7 @@ GEM
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
-    oauth (0.5.6)
+    oauth (0.5.10)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
