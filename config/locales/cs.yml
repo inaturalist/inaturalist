@@ -738,8 +738,6 @@ cs:
   are_you_sure_remove_photo: "Jste si jistý/á, že chcete odstranit tuto fotografii?"
   are_you_sure_remove_relationship: Opravdu chcete tento vztah odstranit? Tímto způsobem přestanete sledovat tuto osobu a přístup k skrytým souřadnicím se zruší, pokud jste takový přístup povolili.
   are_you_sure_remove_taxon_from_list: "Jste si jisti, že chcete tento taxon odebrat ze seznamu?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Jste si jisti? Tohle znovunačte stránku a Vy můžete ztratit nějaké Vaše změny.
   are_you_sure_unresolve_flag?: |
     Jste si jisti, že chcete toto označení odstranit? Tímto odstraníte
     řešení a uživatele, který řeší tento problém.
@@ -4284,7 +4282,6 @@ cs:
     must_be_georeferenced: musí být uveden geografický odkaz
     must_be_identified: musí být uvedena identifikace
     must_be_on_list: musí být na seznamu
-    must_be_observed_in_place: musí být pozorován v místě
     must_be_in: musí být v taxonu
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
     must_be_verifiable: musí být ověřitelné
@@ -5340,7 +5337,6 @@ cs:
   user_observed_on_on_date_in_place: |
     %{user} pozoroval %{date} v %{place}
   user_suggested_an_id: "Uživatel %{user} navrhl ID"
-  user_thinks_yours_is: "%{user} %{noun} vaše pozorování %{observation} je"
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
@@ -5370,7 +5366,6 @@ cs:
   view_all: Zobrazit vše
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
-  view_all_n: "Zobrazit všechny %{n}"
   view_all_observations: Zobrazit všechna pozorování
   view_all_photocount_photos: "Zobrazit všech %{photo_count} fotek"
   view_assessment: Zobrazit hodnocení
@@ -5422,7 +5417,6 @@ cs:
   view_taxon_page: Zobrazit stránku taxonu
   view_taxon_page_for_this_x: "Zobrazit stránku taxonu pro tento %{x}"
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
-  view_the_observation: Zobrazit pozorování
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
   view_year_stats_for_site: "Zobrazit statistiku za rok %{year} pro %{site}"
