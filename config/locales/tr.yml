@@ -605,8 +605,6 @@ tr:
   are_you_sure_remove_photo: "Fotoğrafı kaldırmak istediğinden emin misin?"
   are_you_sure_remove_relationship: Bu ilişkiyi kaldırmak istediğinden emin misin? Bu, bu kişiyi takip etmeyi bırakacak ve bu tür bir erişimi etkinleştirdiysen gizli koordinatlarına erişimi iptal edecektir.
   are_you_sure_remove_taxon_from_list: "Bu sınıfı listeden kaldırmak istediğine emin misin?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Emin misin? Bu, sayfayı yeniden yükleyecektir ve bazı değişikliklerini kaybedebilirsin.
   are_you_sure_unresolve_flag?: |
     Bu işareti kaldırmak istediğinden emin misin? Bu, çözümlemeyi ve çözümleyen kullanıcıyı bu işaretten kaldıracaktır.
   are_you_sure_want_delete_taxon: "Bu sınıfı silmek istediğinden emin misin?"
@@ -4069,7 +4067,6 @@ tr:
     must_be_georeferenced: coğrafi ilişikli olmalı
     must_be_identified: tanımlanmalı
     must_be_on_list: listede olmalı
-    must_be_observed_in_place: bir konumda gözlemlenmiş olmalı
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje küratörlerinin koordinatları görüntülemesine izin vermelidir.
     must_be_verifiable: doğrulanabilir olmalı
@@ -5061,7 +5058,6 @@ tr:
   user_observed_on_on_date_in_place: |
     %{user}, %{place} konumunda %{date} tarihinde bir tane gözlemledi
   user_suggested_an_id: "%{user} bir tanımlama önerdi"
-  user_thinks_yours_is: "%{user} %{noun} sizin gözleminiz %{observation}"
   user_trusts_you_with_their_private_coordinates: "%{user} gizli koordinatları konusunda sana güveniyor"
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci size tüm gözlemlerin gizli koordinatlarıyla güvenmeyi seçti.
@@ -5091,7 +5087,6 @@ tr:
   view_all: Tümünü Görüntüle
   view_all_flags: Tüm İşaretleri Görüntüle
   view_all_members: Tüm Üyeleri Görüntüle
-  view_all_n: "Tüm %{n} Görüntüle"
   view_all_observations: Tüm Gözlemleri Görüntüle
   view_all_photocount_photos: "%{photo_count} Fotoğrafı Görüntüle"
   view_assessment: Değerlendirmeyi Görüntüle
@@ -5143,7 +5138,6 @@ tr:
   view_taxon_page: Sınıf Sayfasını Görüntüle
   view_taxon_page_for_this_x: "%{x} için sınıf sayfasını görüntüle"
   view_taxononomy_details_for_taxon: "%{taxon} için sınıflandırma detaylarını görüntüle"
-  view_the_observation: Gözlemi görüntüle
   view_user_observations: "%{user}'ın gözlemlerini görüntüle"
   view_x: "Görüntüle: %{x}"
   view_year_stats_for_site: "%{site} İçin %{year} İstatistiklerini Görüntüle"
