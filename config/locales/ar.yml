@@ -273,8 +273,6 @@ ar:
   are_you_sure_remove_photo: "هل تريد بالتأكيد إزالة هذه الصورة؟"
   are_you_sure_remove_relationship: هل أنت متأكد من أنك تريد إزالة هذه العلاقة؟ سيؤدي هذا إلى إلغاء متابعة هذا الشخص وإلغاء الوصول إلى الإحداثيات المخفية إذا كنت قد مكنت هذا الوصول.
   are_you_sure_remove_taxon_from_list: "هل تريد بالتأكيد إزالة هذه الأصنوفة من القائمة؟"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    هل أنت متأكد؟ سيؤدي ذلك إلى إعادة تحميل الصفحة التي قد تفقد بعض التغييرات فيها.
   are_you_sure_want_delete_taxon: "هل تريد بالتأكيد حذف هذه الأصنوفة؟"
   are_you_sure_want_delete_taxon_link: هل تريد بالتأكيد حذف رابط هذه الأصنوفة؟
   are_you_sure_want_delete_this_name: هل تريد بالتأكيد حذف هذا الاسم؟
@@ -2720,7 +2718,6 @@ ar:
     must_be_georeferenced: يجب أن تكون مرجعا جغرافيا
     must_be_identified: يجب تحديدها
     must_be_on_list: يجب أن تكون في القائمة
-    must_be_observed_in_place: تجب ملاحظته في مكان
     must_be_in: يجب أن يكون في أصنوفة
     must_be_coordinates_shareable_by_project_curators: يجب أن يسمح المراقب لأمناء المشروع بعرض الإحداثيات.
   running_total: مجموع التشغيل
@@ -3366,7 +3363,6 @@ ar:
   user_observed_on_on_date_in_place: |
     %{user} لاحظ واحدة بتاريخ %{date} في %{place}
   user_suggested_an_id: "اقترح %{user} معرفا"
-  user_thinks_yours_is: "%{user} %{noun} ملاحظتك %{observation}"
   user_trusts_you_with_their_private_coordinates: "يثق بك %{user} بإحداثياته المخفية"
   user_trusts_you_with_their_private_coordinates_desc: |
     اختار المراقب أن يثق بك بالإحداثيات المخفية لجميع
@@ -3392,7 +3388,6 @@ ar:
   view_all: اعرض الكل
   view_all_flags: عرض جميع الأعلام
   view_all_members: عرض جميع الأعضاء
-  view_all_n: "عرض كل %{n}"
   view_all_observations: عرض جميع الملاحظات
   view_all_photocount_photos: "عرض كل ال%{photo_count} صورة"
   view_assessment: عرض التقييم
@@ -3442,7 +3437,6 @@ ar:
   view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for_this_x: "عرض صفحة الأصنوفة لهذا %{x}"
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
-  view_the_observation: عرض الملاحظة
   view_user_observations: "عرض ملاحظات %{user}"
   view_x: "عرض %{x}"
   view_year_stats_for_site: "عرض إحصاءات %{year} ل%{site}"
