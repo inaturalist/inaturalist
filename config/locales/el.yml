@@ -551,8 +551,6 @@ el:
   are_you_sure_remove_photo: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη φωτογραφία;"
   are_you_sure_remove_relationship: Σίγουρα θέλετε να διαγράψετε αυτή τη σχέση? Αυτό σημαίνει ότι δεν θα ακολουθείτε πια αυτό το άτομο και θα ανακαλεσθεί η πρόσβασή του στις κρυφές συντεταγμένες σας, αν του είχατε επιτρέψει πρόσβαση.
   are_you_sure_remove_taxon_from_list: "Είστε βέβαιοι πως θέλετε να αφαιρέσετε αυτό το taxon από τη λίστα;"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Είστε σίγουρος; Θα επαναφορτωθεί η σελίδα και μπορεί να χάσετε κάποιες από τις αλλαγές σας.
   are_you_sure_unresolve_flag?: |
     Είστε σίγουρος ότι δεν θέλετε να επιλύσετε αυτή την αναφορά? Αυτό θα αφαιρέσει την επίλυση και τον χρήστη που την έκανε από αυτή την αναφορά.
   are_you_sure_want_delete_taxon: "Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη ταξινομία"
@@ -3581,7 +3579,6 @@ el:
     must_be_georeferenced: απαιτείται γεωαναφορά
     must_be_identified: πρέπει να έχει αναγνωριστεί
     must_be_on_list: Πρέπει να βρίσκεται στη λίστα
-    must_be_observed_in_place: πρέπει να παρατηρηθεί στον Τόπο
     must_be_in: Πρέπει να βρίσκεται σε ταξινομική βαθμίδα
     must_be_coordinates_shareable_by_project_curators: Ο παρατηρητής πρέπει να επιτρέπει στους επιμελητές της εργασίας να βλέπουν τις συντεταγμένες.
   running_total: Τρέχον σύνολο
@@ -4355,7 +4352,6 @@ el:
   user_observed_on_on_date_in_place: |
     %{user} παρατήρησε ένα την %{date} σε %{place}
   user_suggested_an_id: "Η/Ο %{user} πρότεινε μια ταυτοποίηση"
-  user_thinks_yours_is: "%{user} %{noun} η παρατήρηση σου %{observation} είναι"
   user_trusts_you_with_their_private_coordinates: "%{user} σας εμπιστεύεται με τις κρυμμένες συντεταγμένες"
   user_trusts_you_with_their_private_coordinates_desc: |
     Ο παρατηρητής έχει επιλέξει να σας εμπιστευτεί με τις κρυμμένες συντεταγμένες από όλες του τις παρατηρήσεις.
@@ -4381,7 +4377,6 @@ el:
   view_all: Προβολή όλων
   view_all_flags: Δείτε όλες τις αναφορές
   view_all_members: Προβολή όλων των μελών
-  view_all_n: "Προβολή όλων %{n}"
   view_all_observations: Προβολή όλων των παρατηρήσεων
   view_all_photocount_photos: "Προβολή όλων των %{photo_count} φωτογραφιών"
   view_assessment: Προβολή Αξιολόγησης
@@ -4432,7 +4427,6 @@ el:
   view_taxon_page: Προβολή σελίδας ταξινομικής μονάδας
   view_taxon_page_for_this_x: "Προβολή σελίδας ταξινομικής μονάδας για %{x}"
   view_taxononomy_details_for_taxon: "Προβολή ταξινομικών λεπτομερειών για %{taxon}"
-  view_the_observation: Προβολή της παρατήρησης
   view_user_observations: "Προβολή παρατηρήσεων της/του %{user}"
   view_x: "Προβολή %{x}"
   view_year_stats_for_site: "Προβολή στατιστικών του %{site} για το %{year}"
