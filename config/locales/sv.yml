@@ -623,8 +623,6 @@ sv:
   are_you_sure_remove_photo: "Är du säker på att du vill ta bort denna bild?"
   are_you_sure_remove_relationship: Är du säker på att du vill ta bort denna relation? Du kommer inte längre att följa denna person och åtkomst till dina dolda koordinater återkallas i de fall du hade aktiverat det.
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort detta taxon från listan?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Är du säker? Sidan kommer att laddas om och dina ändringar kan gå förlorade.
   are_you_sure_unresolve_flag?: |
     Är du säker på att du vill ångra lösningen för den här flaggan? Det
     kommer att ta bort lösningen och dess användare från flaggan.
@@ -4213,7 +4211,6 @@ sv:
     must_be_georeferenced: måste vara koordinatsatt
     must_be_identified: måste bestämmas
     must_be_on_list: måste vara med på listan
-    must_be_observed_in_place: måste vara observerad på Fyndplats
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
     must_be_verifiable: måste gå att verifiera
@@ -5241,7 +5238,6 @@ sv:
   user_observed_on_on_date_in_place: |
     %{user} observerade en den %{date} i %{place}
   user_suggested_an_id: "%{user} föreslog en bestämning"
-  user_thinks_yours_is: "%{user} %{noun} ditt fynd %{observation} är"
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
@@ -5271,7 +5267,6 @@ sv:
   view_all: Visa alla
   view_all_flags: Visa alla flaggor
   view_all_members: Visa alla medlemmar
-  view_all_n: "Visa alla %{n}"
   view_all_observations: Visa alla fynd
   view_all_photocount_photos: "Visa alla %{photo_count} bilder"
   view_assessment: Visa bedömning
@@ -5323,7 +5318,6 @@ sv:
   view_taxon_page: Visa taxonsida
   view_taxon_page_for_this_x: "Visa taxonsida för denna %{x}"
   view_taxononomy_details_for_taxon: "Visa taxonomidetaljer för %{taxon}"
-  view_the_observation: Visa fyndet
   view_user_observations: "Visa %{user}s fynd"
   view_x: "Visa %{x}"
   view_year_stats_for_site: "Visa statistik för %{site} under %{year}"
