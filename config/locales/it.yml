@@ -595,8 +595,6 @@ it:
   are_you_sure_remove_photo: "Sei sicuro di voler rimuovere questa foto?"
   are_you_sure_remove_relationship: Sei sicuro di voler rimuovere questa relazione? In questo modo non seguirai questa persona e revocherai il suo accesso alle tue coordinate nascoste se glielo avevi permesso.
   are_you_sure_remove_taxon_from_list: "Sei sicuro di voler rimuovere questo taxon dall'elenco?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Sei sicuro? Questa operazione aggiornerà la pagina, potresti perdere alcune delle tue modifiche.
   are_you_sure_unresolve_flag?: |
     Sei sicuro di voler rimuovere la risoluzione di questo contrassegno? Questo rimuoverà la risoluzione
     e l'utente risolutore da questo contrassegno.
@@ -4089,7 +4087,6 @@ it:
     must_be_georeferenced: deve essere georeferenziata
     must_be_identified: deva essere identificata
     must_be_on_list: deve essere sulla lista
-    must_be_observed_in_place: deve essere osservata nel Luogo
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
     must_be_verifiable: dev'esser verificabile
@@ -5087,7 +5084,6 @@ it:
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
   user_suggested_an_id: "%{user} ha suggerito una ID"
-  user_thinks_yours_is: "%{user} %{noun} che la tua osservazione %{observation} sia"
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
@@ -5117,7 +5113,6 @@ it:
   view_all: Mostra tutto
   view_all_flags: Mostra tutti i contrassegni
   view_all_members: Visualizza tutti i membri
-  view_all_n: "Visualizza tutte %{n}"
   view_all_observations: Visualizza tutte le osservazioni
   view_all_photocount_photos: "Visualizza tutte le %{photo_count} foto"
   view_assessment: Visualizza la valutazione
@@ -5169,7 +5164,6 @@ it:
   view_taxon_page: Visualizza la Pagina del Taxon
   view_taxon_page_for_this_x: "Visualizza la pagina per questo %{x}"
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
-  view_the_observation: Visualizza l'osservazione
   view_user_observations: "Visualizza le osservazioni di %{user}"
   view_x: "Visualizza %{x}"
   view_year_stats_for_site: "Visualizza statistica %{year} per %{site}"
