@@ -75,6 +75,8 @@ module Inaturalist
 
     config.exceptions_app = routes
 
+    config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
       # Rails 5 is more strict about what classes are allowed to be

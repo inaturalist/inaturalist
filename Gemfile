@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 2.7.6"
 
-gem "rails", "6.1.4.7"
+gem "rails", "6.1.6.1"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -37,7 +37,7 @@ gem "devise_suspendable"
 gem "diffy"
 gem "dm_preferences", git: "https://github.com/nickcoyne/preferences.git"
 gem "doorkeeper"
-gem "dynamic_form"
+gem "dynamic_form", git: "https://github.com/GoodMeasuresLLC/dynamic_form.git"
 gem "elasticsearch"
 gem "elasticsearch-api"
 gem "elasticsearch-model"
