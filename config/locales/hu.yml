@@ -467,8 +467,6 @@ hu:
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Biztos vagy benne? Ez újratölti az oldalt, ezért néhány változtatásod elveszhet.
   are_you_sure_unresolve_flag?: |
     Biztosan visszavonod e bejelentés megoldását? Ez eltávolítja a megoldást és a megoldást nyújtó felhasználót erről a bejelentésről.
   are_you_sure_want_delete_taxon: "Biztosan törlöd ezt a taxont?"
@@ -1106,7 +1104,7 @@ hu:
   display_name: Megjelenített név
   display_name_description: Ez a név fog megjelenni a profilodon és a copyright megjegyzésnél
   distance_traveled: "Megtett távolság (m)"
-  documentation_for_developers_html: <a href="/pages/developers">Fejlesztői</a> dokumentáció
+  documentation_for_developers_html: Fejlesztői <a href="/pages/developers">dokumentáció</a>
   do_not_show_this_message_again: Ne jelenjen meg ismét ez az üzenet
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     A fonálférgeket tanulmányozod? Esetleg te vagy a világ legelismertebb szakértője moharendszertan-témában? Vagy csak szeretsz vadvirágokat nézegetni? A profilod kitöltésével személyesebbé és bizalmasabbá teheted jelenléted.
@@ -2312,7 +2310,6 @@ hu:
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'E %{rank}ként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_section: E szekcióként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_section_in_place_html: 'E szekcióként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
-  other_taxa_commonly_misidentified_as_this_species: E fajként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_species_in_place_html: 'E fajként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_subgenus: Ezen alnemzetségként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Ezen alnemzetségként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
@@ -3099,7 +3096,6 @@ hu:
   row_singular_or_plural: Sor(ok)
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   rules_types:
-    must_be_observed_in_place: megfigyelve kell legyen a helyen
     must_be_wild: vad kell legyen
   running_total: Kumulatív
   satellite: műholdkép
@@ -3642,7 +3638,6 @@ hu:
   user_observed_on_on_date_in_place: |
     %{user} megfigyelt egyet ekkor: %{date}, itt: %{place}
   user_suggested_an_id: "%{user} javasolt meghatározása"
-  user_thinks_yours_is: "%{user} %{noun}, hogy %{observation} megfigyelésed"
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
   username_or_email: Felhasználónév vagy email cím
@@ -3663,7 +3658,6 @@ hu:
   view_all: Összes megtekintése
   view_all_flags: Minden bejelentés megtekintése
   view_all_members: Tagok megtekintése
-  view_all_n: "Minden %{n} megtekintése"
   view_all_observations: Minden megfigyelés megtekintése
   view_all_photocount_photos: "%{photo_count} fotó megtekintése"
   view_check_list_page: Mutasd a lista lapját
@@ -3686,9 +3680,9 @@ hu:
   view_more_observations_of_x_project: "Tekints meg több <nobr>%{site_name}</nobr> megfigyelést a %{project} projektből."
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
-  view_observations_of_this_taxon_by: Nézd meg ennek a taxonnak a megfigyeléseit
-  view_on: Nézd itt
-  view_on_flickr: Nézd meg Flickr-en
+  view_observations_of_this_taxon_by: 'E taxon megfigyeléseinek megtekintése tőle:'
+  view_on: 'Megtekintés itt:'
+  view_on_flickr: Megtekintés Flickr-en
   view_original: "Eredeti megtekintése"
   view_place: Helyek megtekintése
   view_post: Bejegyzés megtekintése
@@ -3713,20 +3707,20 @@ hu:
   w_photos_only: fotókkal
   w_sounds: hanggal
   #Species that are "wanted," e.g. we know they exist but haven't been observed
-  wanted: Kívánt
+  wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_establishment_data_for_this_taxon: "Nincs letelepedési adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
-  welcome: Üdvözlünk
+  welcome: üdvözlünk
   welcome_back!: Köszöntünk ismét!
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Nagy bizonyossággal e nemzetség tagja
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
   were_pretty_sure_this_is_in_the_family: Nagy bizonyossággal e család tagja
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
-  were_pretty_sure_this_is_in_the_subfamily: Nagy bizonyossággal ez alcsalád tagja
+  were_pretty_sure_this_is_in_the_subfamily: Nagy bizonyossággal ezen alcsalád tagja
   #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
   were_pretty_sure_this_is_in_the_superfamily: Nagy bizonyossággal e főcsalád tagja
   #Falback label for the most probable taxon in the automated suggestions.
@@ -3734,7 +3728,7 @@ hu:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
-  were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk de %{filename} tömeges importálása sikertelen."
+  were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk, de %{filename} tömeges importálása sikertelen."
   what: Mi
   what_did_you_see: Mit láttál?
   what_did_you_see?: <em>Mit</em> láttál?
@@ -3803,10 +3797,10 @@ hu:
   you_are_no_longer_following_x: "Már nem követed %{friend}t."
   you_are_submitting_obs_with_no_date_or_no_location: |
     Dátum és hely nélkül töltesz fel megfigyeléseket. Az ilyen megfigyeléseket lehetetlen azonosítani, ezért ezek alapértelmezetten nem jelennek meg a kereséseknél.
-  you_are_subscribed_to_comments_on_this_flag: Feliratkoztál a megjegyzésekhez ehhez a bejelentéshez.
+  you_are_subscribed_to_comments_on_this_flag: Feliratkoztál e bejelntés megjegyzéseihez.
   you_are_subscribed_to_comments_on_this_post: Feliratkoztál a megjegyzésekhez erről a cikkről.
   you_are_subscribed_to_comments_on_this_taxon_stage: Feliratkoztál a megjegyzésekhez erről a taxonfokról
-  you_are_subscribed_to_comments_on_this_taxon_swap: Feliratkoztál a megjegyzésekhez erről a taxoncseréről.
+  you_are_subscribed_to_comments_on_this_taxon_swap: Feliratkoztál a megjegyzésekhez erről a taxoncseréről
   you_are_subscribed_to_comments_on_this_taxon_merge: Feliratkoztál a megjegyzésekhez erről a taxonegyesítésről.
   you_are_subscribed_to_comments_on_this_taxon_split: Feliratkoztál a megjegyzésekhez erről a taxonfelosztásról.
   you_are_subscribed_to_comments_on_this_taxon_drop: Feliratkoztál a megjegyzésekhez e taxon ejtéséről.
@@ -3816,24 +3810,24 @@ hu:
   you_cant_do_that_for_the_default_check_list_place: Nem teheted ezt egy hely alapértelmezett listájával!
   you_cant_merge_standard_places: Nem vonhatsz össze szabványos helyeket
   you_faved_this: A kedvenced!
-  you_must_be_a_member_of_this_project_to_do_that: Ennek a projektnek tagja kell legyél ahhoz
+  you_must_be_a_member_of_this_project_to_do_that: Ehhez projektagnak kellene lenned
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
-  you_must_select_a_place_to_merge_with: Kell válassz egy helyet amivel összevond.
+  you_must_select_a_place_to_merge_with: Válassz egy helyet, amivel összevonod.
   you_retain_full_copyright: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
   you_retain_full_copyright_over_your_content: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
-  you_sure_delete_check_list: "Biztos ki akarod törölni ezt a listát? Mások már sok munkát fektethettek bele..."
+  you_sure_delete_check_list: "Biztos törlöd ezt a listát? Mások már sok munkát fektethettek bele..."
   you_sure_delete_identification?: Biztosan törlöd ezt az azonosítást?
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   you_sure_remove_taxon_from?: "Bizosan eltávolítod ezt a taxont a %{list} listáról?"
-  you_unlinked_your_provider_account: "%{provider} fiókod kapcsolatát felbontottad"
+  you_unlinked_your_provider_account: "%{provider}-fiókodat sikeresen leválasztottad"
   your_account_has_been_activated: A fiókod sikeresen aktiválva!
   your_comment_was_saved: A taralmad elmentve
   your_content: Tartalmaid
-  your_contributions_to_project: "Hozzájárulásod %{project_title} projekthez"
+  your_contributions_to_project: "Hozzájárulásaid %{project_title} projekthez"
   your_email_address: E-mail címed
   your_favorites: Kedvenceid
   your_flickr_account: Flickr fiókod
-  your_flickr_photos_have_been_tagged: Flickr fotóid címkézve lettek!
+  your_flickr_photos_have_been_tagged: Flickr-fotóid címkézve lettek!
   your_hard_drive: saját meghajtó
   your_home: Kezdőlap
   your_id: Meghatározásod
@@ -3844,8 +3838,8 @@ hu:
   your_observations_couldnt_be_added_to_that_project: "Megfigyeléseidet nem lehetett hozzáadni ahhoz a projekthez: %{errors}"
   your_photos_have_been_tagged: Fotóid címkézve lettek!
   your_projects: Projektjeid
-  your_google_account: Google fiókod
-  your_google_account_info: Google fiókod adatai
+  your_google_account: Google-fiókod
+  your_google_account_info: Google-fiókod adatai
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
   your_recent_projects: Legutóbbi projektjeid
   your_relationships: Kapcsolataid
@@ -3854,18 +3848,18 @@ hu:
   your_tags: Címkéid
   yours: Sajátjaid
   youre_not_following_anyone: |-
-    Nem követsz senkit. Ha más természebúvárokat követsz akkor naprakész lehetsz legújabb megfigyeléseivel. Tudd meg mit
+    Nem követsz senkit. Ha más természetbarátokat követsz, akkor naprakész lehetsz legújabb megfigyeléseivel. Tudd meg mit
     <a href="%{observations_path}">figyelnek meg</a> mások és szerezz új
     <a href="%{people_path}">ismerősöket</a>.
-  youre_not_following_anyone_on_inat: 'Még nem követsz itt senkit: %{site_name}!'
+  youre_not_following_anyone_on_inat: 'Még nem követsz itt senkit itt: %{site_name}'
   verifiable: Hiteles
   verifiable_observations: Hiteles megyfigyelések
   views:
     views: 'Nézetek'
     content_freeze:
-      content_freeze: Tartalom fagyasztás
+      content_freeze: Tartalom lezárása
       this_functionality_will_return: |
-        Ez a művelet visszaáll amikor vége a tartalom befagyasztásának.
+        Ez a művelet visszaáll, amikor vége a tartalom lezárásának.
       we_expect_this_functionality_will_return_by_date: |
         Ezt a funkciót remélhetőleg %{date}-ig visszaállítjuk.
     donate:
@@ -3873,13 +3867,13 @@ hu:
         become_a_monthly_supporter_of_inaturalist: Legyél havi támogatója az iNaturalist-nak
     guides:
       mobile_downloads_tip_html: |
-        Ez az útmutató letölthető a mobil alkalmazásra internet nélküli használatra.
+        Ez az útmutató letölthető a mobilalkalmazásra internet nélküli használatra.
       pdf_layouts:
         grid: rács
         book: könyv
         journal: hírmondó
       sorts:
-        alphaname: Ábc sorrend tudományos név szerint
+        alphaname: Ábécésorrend tudományos név szerint
     lifelists:
       list_view: Listanézet
       tree_view: Faelrendezés
@@ -3891,7 +3885,7 @@ hu:
       all_observations: Minden megfigyelés
       total_observations: Minden megfigyelés
       filter_by: 'Szűrés:'
-      filtered_by: Szűrte
+      filtered_by: 'Szűrte:'
       apply_filters_to_export: Exportálás a következő szűrőkkel
       restrict_to_taxon: Korlátozás %{taxon} taxonra
       restrict_to_taxa_observed_in_place: Korlátozd %{place} megfigyelt taxonjaira
