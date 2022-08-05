@@ -680,8 +680,6 @@ lt:
   are_you_sure_remove_photo: "Ar tikrai norite pašalinti šią nuotrauką?"
   are_you_sure_remove_relationship: Ar tikrain norite panaikinti šiuos santykius? Jūs nebeseksite šio žmogaus ir bus atšaukta prieiga prie privačių koordinačių, jeigu turėjote tokią prieigą.
   are_you_sure_remove_taxon_from_list: "Ar tikrai norite ištrinti šį taksoną iš sąrašo?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Ar tikrai? Tai perkraus puslapį ir jūs galite prarasti kai kuriuos savo pakeitimus.
   are_you_sure_unresolve_flag?: |
     Ar tikrai norite šia žymę pažymėti kaip neišspręstą? Tai panaikins sprendimą ir tai atlikusį vartotoją iš šios žymės.
   are_you_sure_want_delete_taxon: "Ar tikrai norite ištrinti šį taksoną?"
@@ -3441,7 +3439,6 @@ lt:
     must_be_captive: turi būti naminis / kultivuojamas
     must_be_identified: turi būti identifikuotas
     must_be_on_list: turi būti sąraše
-    must_be_observed_in_place: turi būti stebėtas vietoje
     must_be_in: turi būti taksone
     must_be_coordinates_shareable_by_project_curators: stebėtojas turi leisti projekto kuratoriams žiūrėti koordinates.
     must_be_wild: turi būti laukinis
@@ -4107,7 +4104,6 @@ lt:
   user_observed_on_on_date_in_place: |
     %{user} stebėjo vieną %{date} vietovėje: %{place}
   user_suggested_an_id: "%{user} pasiūlė ID"
-  user_thinks_yours_is: "%{user} %{noun} jūsų stebėjimas %{observation} yra"
   user_trusts_you_with_their_private_coordinates: "%{user} patiki jums savo paslėptas koordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     Stebėtojas patiki jums visų savo stebėjimų paslėptas koordinates.
@@ -4132,7 +4128,6 @@ lt:
   view_all: Rodyti viską
   view_all_flags: Rodyti visus pažymėjimus
   view_all_members: Rodyti visus narius
-  view_all_n: "Rodyti viską: %{n}"
   view_all_observations: Peržiūrėti visus stebėjimus
   view_all_photocount_photos: "Rodyti visas %{photo_count} nuotraukas"
   view_assessment: Redaguoti įvertinimą
@@ -4181,7 +4176,6 @@ lt:
   view_taxon_page: Rodyti taksono puslapį
   view_taxon_page_for_this_x: "Rodyti taksono puslapį šiam %{x}"
   view_taxononomy_details_for_taxon: "Rodyti taksonomijos informaciją: %{taxon}"
-  view_the_observation: Rodyti stebėjimą
   view_user_observations: "Rodyti vartotojo %{user} stebėjimus"
   view_x: "Žiūrėti %{x}"
   view_year_stats_for_site: "Žiūrėti %{year} %{site} Statistiką"
