@@ -609,8 +609,6 @@ da:
   are_you_sure_remove_photo: "Er du sikker på, at du ønsker at fjerne dette foto?"
   are_you_sure_remove_relationship: Sikker på, at du vil fjerne denne relation? Du vil ikke længere følge personen, og dette vil annullere adgangen til dine fortrolige koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på, at du vil fjerne denne takson fra listen?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Er du sikker? Dette vil genindlæse siden og du kan miste nogle af dine ændringer.
   are_you_sure_unresolve_flag?: |
     Sikker på, at du vil fjerne løsningen for dette flag? Både løsningen
     og den bruger, der har leveret den, fjernes fra dette flag.
@@ -4188,7 +4186,6 @@ da:
     must_be_georeferenced: skal geo refereres
     must_be_identified: skal identificeres
     must_be_on_list: skal være på listen
-    must_be_observed_in_place: skal være observeret et sted
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer at se koordinater.
     must_be_verifiable: skal være verificerbar
@@ -5268,7 +5265,6 @@ da:
   user_observed_on_on_date_in_place: |
     %{user} observeredes en den %{date} i %{place}
   user_suggested_an_id: "%{user} foreslog et ID"
-  user_thinks_yours_is: "%{user} %{noun} din observation %{observation} er"
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
@@ -5298,7 +5294,6 @@ da:
   view_all: Vis alle
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
-  view_all_n: "Vis alle %{n}"
   view_all_observations: Vis alle observationer
   view_all_photocount_photos: "Vis alle %{photo_count}foto´s"
   view_assessment: Vis vurderinger
@@ -5350,7 +5345,6 @@ da:
   view_taxon_page: Vis takson side
   view_taxon_page_for_this_x: "Vis takson side for dette %{x}"
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
-  view_the_observation: Vis observationen
   view_user_observations: "Vis %{user}'s observationer"
   view_x: "Vis %{x}"
   view_year_stats_for_site: "Vis %{year} statistik for %{site}"
