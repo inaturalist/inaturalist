@@ -567,8 +567,6 @@ et:
   are_you_sure_remove_photo: "Oled sa kindel, et soovid seda fotot eemaldada?"
   are_you_sure_remove_relationship: Oled sa kindel, et soovid seda suhet kustutada? Selle tulemusena ei jälgi sa enam seda isikut ning ei luba tal näha sinu peidetud koordinaate, kui sa varem talle seda lubasid.
   are_you_sure_remove_taxon_from_list: "Oled sa kindel, et soovid selle taksoni nimekirjast eemaldada?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Oled sa kindel? See laeb lehe uuesti ja võid kaotada enda tehtud muudatused.
   are_you_sure_unresolve_flag?: |
     Oled sa kindel, et soovid selle märkuse lahendamatuks märkida? See eemaldab märkuselt lahenduse ja viite lahendunud kasutajale.
   are_you_sure_want_delete_taxon: "Oled sa kindel, et soovid selle taksoni kustutada?"
@@ -3025,7 +3023,6 @@ et:
     must_be_georeferenced: peab olema asukoha andmetega
     must_be_identified: peab olema määratletud
     must_be_on_list: peab olema nimekirjas
-    must_be_observed_in_place: peal olema vaadeldud kohas
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti kuraatoritel koordinaate näha.
   running_total: Hetke koguarv
@@ -3688,7 +3685,6 @@ et:
   user_is_a_naturalist: "Kasutaja %{user} on loodusloolane!"
   user_muted: Kasutaja vaigistatud
   user_suggested_an_id: "%{user} pakkus määratlust"
-  user_thinks_yours_is: "Kasutaja %{user} %{noun}, et su vaatlus %{observation} on"
   user_trusts_you_with_their_private_coordinates: "Kasutaja %{user} usaldab sind oma peidetud koordinaatidega"
   user_trusts_you_with_their_private_coordinates_desc: |
     Kasutaja on otsustanud usaldata sulle kõigi oma vaatluste peidetud koordinaadid
@@ -3710,7 +3706,6 @@ et:
   view: Vaata
   view_all: Vaata kõiki
   view_all_members: Vaata kõiki liikmeid
-  view_all_n: "Näita kõike: %{n}"
   view_all_observations: Vaata kõiki vaatluseid
   view_all_photocount_photos: "Näita kõik %{photo_count} fotot"
   view_assessment: Näita hinnangut
@@ -3755,7 +3750,6 @@ et:
   view_taxon_changes: Vaata taksonimuutuseid
   view_taxon_page: Vaata taksoni lehekülge
   view_taxon_page_for_this_x: "Näita taksoni lehte: %{x}"
-  view_the_observation: Ava vaatlus
   view_user_observations: "Vaata kasutaja %{user} vaatluseid"
   view_x: "Näita %{x}"
   view_year_stats_for_site: "Näita lehe %{site} %{year}. aasta statistikat"
