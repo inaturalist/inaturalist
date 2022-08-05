@@ -584,8 +584,6 @@ de:
   are_you_sure_remove_photo: "Bist du sicher, dass du dieses Bild entfernen willst?"
   are_you_sure_remove_relationship: Willst Du diese Verbindung wirklich entfernen? Damit folgst Du dieser Person nicht mehr und entziehst ihr den Zugang zu Deinen versteckten Koordinaten, falls Du ihn ihr gewährt hattest.
   are_you_sure_remove_taxon_from_list: "Bist du sicher, dass du dieses Taxon aus der Liste entfernen willst?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Bist du sicher? Die Seite wird neu geladen und deine Änderungen könnten verloren gehen.
   are_you_sure_unresolve_flag?: |
     Sicher, dass du die Lösung zu dieser Meldung zurücknehmen möchtest? Dies wird sowohl die Auflösung als auch den zugehörigen Benutzer von dieser Meldung entfernen.
   are_you_sure_want_delete_taxon: "Bist du sicher, dass du dieses Taxon entfernen willst?"
@@ -4039,7 +4037,6 @@ de:
     must_be_georeferenced: muss georeferenziert sein
     must_be_identified: muss identifiziert werden
     must_be_on_list: muss auf der Liste stehen
-    must_be_observed_in_place: muss im Gebiet beobachtet worden sein
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
     must_be_verifiable: muss verifizierbar sein
@@ -4952,7 +4949,6 @@ de:
   user_observed_on_on_date_in_place: |
     Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
-  user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
@@ -4982,7 +4978,6 @@ de:
   view_all: Alle ansehen
   view_all_flags: Alle Meldungen anzeigen
   view_all_members: Alle Mitglieder ansehen
-  view_all_n: "Alle %{n} anzeigen"
   view_all_observations: Alle Beobachtungen ansehen
   view_all_photocount_photos: "Alle %{photo_count} Bilder anzeigen"
   view_assessment: Bewertung ansehen
@@ -5034,7 +5029,6 @@ de:
   view_taxon_page: Taxonseite ansehen
   view_taxon_page_for_this_x: "Taxonseite für dieses %{x} ansehen"
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
-  view_the_observation: Die Beobachtung ansehen
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
   view_year_stats_for_site: "Statistiken von %{year} für %{site} anzeigen"
