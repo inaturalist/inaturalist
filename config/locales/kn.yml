@@ -531,8 +531,6 @@ kn:
   are_you_sure_merge_these_places: ನೀವು ಈ ಸ್ಥಳಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲು ಬಯಸುತ್ತೀರಾ? ಇದನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ
   are_you_sure_remove_photo: "ಈ ಚಿತ್ರವನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
   are_you_sure_remove_taxon_from_list: "ಈ ಜೀವಿವರ್ಗವನ್ನು ಪಟ್ಟಿಯಿಂದ ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    ನಿಮಗೆ ಖಚಿತವೇ? ಇದು ಪುಟವನ್ನು ಮರುಲೋಡ್‍ ಮಾಡುತ್ತದೆ, ಹಾಗೂ ನಿಮ್ಮ ಕೆಲವು ಬದಲಾವಣೆಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳಬಹುದು.
   are_you_sure_want_delete_taxon: "ಈ ಜೀವಿವರ್ಗವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     ನೀವು ಈ ಜೀವಿವರ್ಗವನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ? ಇದು ಜೀವಿವರ್ಗಗಳ ಸಂತತಿಯನ್ನು ಹೊಂದಿದೆ.
@@ -3523,7 +3521,6 @@ kn:
   rules_types:
     must_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
     must_be_on_list: ಪಟ್ಟಿಯಲ್ಲಿರಲೇಬೇಕು
-    must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
     must_be_coordinates_shareable_by_project_curators: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರಿಗೆ ವೀಕ್ಷಕರು ಅನುಮತಿಸಲೇಬೇಕು.
     must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
@@ -4349,7 +4346,6 @@ kn:
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_members: ಎಲ್ಲ ಸದಸ್ಯರನ್ನೂ ವೀಕ್ಷಿಸಿ
-  view_all_n: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ %{n}"
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_assessment: ಮೌಲ್ಯಮಾಪನವನ್ನು ವೀಕ್ಷಿಸಿ
@@ -4393,7 +4389,6 @@ kn:
   view_taxon_page: ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ
   view_taxon_page_for_this_x: "ಈ %{x} ಗಾಗಿ ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ"
   view_taxononomy_details_for_taxon: "%{taxon} ಗಾಗಿ ಜೀವಿವರ್ಗೀಕರಣದ ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  view_the_observation: ವೀಕ್ಷಣೆಯನ್ನು ವೀಕ್ಷಿಸಿ
   view_user_observations: "%{user} ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_x: "%{x} ವೀಕ್ಷಿಸಿ"
   view_year_stats_for_site: "%{site} ಗಾಗಿ %{year} ರ ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
