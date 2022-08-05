@@ -645,8 +645,6 @@ lv:
   are_you_sure_remove_photo: "Vai tiešām vēlies dzēst fotogrāfiju?"
   are_you_sure_remove_relationship: Vai tiešām vēlies pārstāt sekot šim lietotājam? Veicot šo darbību, šim lietotājam vairs nebūs redzamas tavas noslēptās koordinātas, ja iepriekš biji sniedzis tām piekļuvi.
   are_you_sure_remove_taxon_from_list: "Vai tiešām vēlies izņemt šo taksonu no saraksta?"
-  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Vai tiešām vēlies pārlādēt lapu? Iespējams, ka veiktās izmaiņas netiks saglabātas.
   are_you_sure_unresolve_flag?: |
     Vai tiešām vēlies noņemt karodziņu? Veicot šo darbību, izdzēsīsies problēmas apraksts un informācija par lietotāju, kas atrisināja ziņojumā aprakstīto problēmu.
   are_you_sure_want_delete_taxon: "Vai tiešām vēlies dzēst šo taksonu?"
@@ -4008,7 +4006,6 @@ lv:
     must_be_georeferenced: jāsatur ģeogrāfiskā atsauce
     must_be_identified: jābūt identificētam
     must_be_on_list: jābūt sarakstā
-    must_be_observed_in_place: jābūt novērotam noteiktā vietā
     must_be_in: jābūt taksonā
     must_be_coordinates_shareable_by_project_curators: novērotājam jāsniedz projekta pārziņiem piekļuve pie koordinātām.
     must_be_verifiable: jābūt pierādāmam
@@ -4884,7 +4881,6 @@ lv:
   user_observed_on_on_date_in_place: |
     %{user} novēroja tādu %{date} iekš %{place}
   user_suggested_an_id: "%{user} ieteica ID"
-  user_thinks_yours_is: "%{user} %{noun} tavs novērojums %{observation} ir"
   user_trusts_you_with_their_private_coordinates: "%{user} tev uzticas ar savām noslēptajām koordinātām"
   user_trusts_you_with_their_private_coordinates_desc: |
     Novērotājs tev uzticas ar visu savu novērojumu noslēptajām koordinātām.
@@ -4914,7 +4910,6 @@ lv:
   view_all: Skatīt visu
   view_all_flags: Skatīt visus karodziņus
   view_all_members: Skatīt visus dalībniekus
-  view_all_n: "Skatīt visu %{n}"
   view_all_observations: Skatīt visus novērojumus
   view_all_photocount_photos: "Skatīt visas %{photo_count} fotogrāfijas"
   view_assessment: Skatīt novērtējumu
@@ -4966,7 +4961,6 @@ lv:
   view_taxon_page: Skatīt taksona lapu
   view_taxon_page_for_this_x: "Skatīt taksona lapu šim %{x}"
   view_taxononomy_details_for_taxon: "Skatīt %{taxon} taksonomijas datus"
-  view_the_observation: Skatīt novērojumu
   view_user_observations: "Skatīt lietotāja %{user} novērojumus"
   view_x: "Skatīt %{x}"
   view_year_stats_for_site: "Skatīt %{site} vietnes statistiku %{year}. gadā"
