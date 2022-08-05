@@ -775,8 +775,10 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.where(id: params[:observations].to_h.map{ |k,v| k },
-      user_id: observation_user)
+    @observations = params[:observations].to_h.map do |id, obs|
+      Observation.where( uuid: id, user_id: observation_user ).first ||
+        Observation.where( id: id, user_id: observation_user ).first
+    end.compact
     
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
@@ -797,7 +799,10 @@ class ObservationsController < ApplicationController
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
-    hashed_params = Hash[*params[:observations].to_h.to_a.flatten]
+    hashed_params = Hash[params[:observations].to_h.map do |id, obs|
+      instance = @observations.detect{ |o| o.uuid == id || o.id.to_s == id }
+      instance ? [instance.id.to_s, obs] : nil
+    end.compact]
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|

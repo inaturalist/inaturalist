@@ -754,23 +754,47 @@ describe "Observation Index" do
   end
 
   describe "prepare_batch_for_index" do
-    it "should always include country-, state-, and county-level place IDs" do
-      country = make_place_with_geom(
+    let( :country ) do
+      make_place_with_geom(
         admin_level: Place::COUNTRY_LEVEL,
         wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
       )
-      state = make_place_with_geom(
+    end
+    let( :state ) do
+      make_place_with_geom(
         admin_level: Place::STATE_LEVEL, parent: country,
         wkt: "MULTIPOLYGON(((0.1 0.1,0.1 0.9,0.9 0.9,0.9 0.1,0.1 0.1)))"
       )
-      county = make_place_with_geom(
+    end
+    let( :county ) do
+      make_place_with_geom(
         admin_level: Place::STATE_LEVEL, parent: state,
-        wkt: "MULTIPOLYGON(((0.2 0.2,0.2 0.8,0.8 0.8,0.8 0.2,0.2 0.2)))" 
+        wkt: "MULTIPOLYGON(((0.2 0.2,0.2 0.8,0.8 0.8,0.8 0.2,0.2 0.2)))"
       )
-      o = Observation.make!( latitude: county.latitude, longitude: county.longitude, positional_accuracy: 99999 )
+    end
+    it "should include country-, state-, and county-level public and private place IDs by default" do
+      o = Observation.make!(
+        latitude: county.latitude,
+        longitude: county.longitude,
+        positional_accuracy: 99999
+      )
       Observation.prepare_batch_for_index( [o] )
       [country, state, county].each do |p|
         expect( o.indexed_place_ids ).to include p.id
+        expect( o.indexed_private_place_ids ).to include p.id
+      end
+    end
+    it "should not include country-, state-, and county-level public place IDs when taxon geoprivacy is private" do
+      cs = ConservationStatus.make!( geoprivacy: Observation::PRIVATE )
+      o = Observation.make!(
+        taxon: cs.taxon,
+        latitude: county.latitude,
+        longitude: county.longitude,
+        positional_accuracy: 99999
+      )
+      Observation.prepare_batch_for_index( [o] )
+      [country, state, county].each do |p|
+        expect( o.indexed_place_ids ).not_to include p.id
         expect( o.indexed_private_place_ids ).to include p.id
       end
     end

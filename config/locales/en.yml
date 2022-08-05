@@ -705,7 +705,7 @@ en:
   are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your hidden coordinates if you had enabled such access.
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Are you sure? This will reload the page you may lose some of your changes.
+    Are you sure? This will reload the page and you may lose some of your changes.
   are_you_sure_unresolve_flag?: |
     Are you sure you want to unresolve this flag? This will remove the
     resolution and the resolving user from this flag.
@@ -4153,8 +4153,8 @@ en:
     Projects let you pool your observations with other people on %{site_name}.
     Whether you're starting a citizen science effort or keeping tabs on
     the birds in your neighborhood, Projects are the way to go.
+  # @vow_or_con should work on %{place}
   projects_from_place: "Projects from %{place}"
-  projects_in_x: "Projects in %{x}"
   # "admins" is equivalent to "administrates"
   projects_user_admins: Projects %{user} Admins
   projects_you_admin: Projects You Admin
@@ -4460,7 +4460,7 @@ en:
     must_be_georeferenced: must be georeferenced
     must_be_identified: must be identified
     must_be_on_list: must be on list
-    must_be_observed_in_place: must be observed in Place
+    must_be_observed_in_place: must be observed in place
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
     must_be_verifiable: must be verifiable
@@ -4523,6 +4523,11 @@ en:
   search_your_photos: Search your photos
   searching: "Searching..."
   seasonality: Seasonality
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "Your
+  # Identifications", but we generally handle those with more specific
+  # translation keys like `your_identifications`. This is here in case we
+  # forget to add a translation key like that.
   second_person_possessive_singular: "Your %{noun}"
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   # Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4920,6 +4925,9 @@ en:
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
   task_deleted: Task deleted
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tip: enter the ID of an observation in the search field if you want to
+    choose photos from a specific observation.
   taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info
   taxa_info: Taxa Info
@@ -5191,6 +5199,11 @@ en:
   these_observations_have_not_been_uploaded_yet: |
     These observations have not been uploaded yet.
   third_party_tracking: Third-Party Tracking
+  # This is a fallback translation for posessive phrases. It could be used on
+  # pages that show a user's content where the title might be "kueda's
+  # identifications", but we generally handle those with more specific
+  # translation keys like `users_identifications`. This is here in case we
+  # forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: this
   this_bioblitz_beings_in: This bioblitz begins in
@@ -5584,7 +5597,6 @@ en:
   user_observed_on_on_date_in_place: |
     %{user} observed one on %{date} in %{place}
   user_suggested_an_id: "%{user} suggested an ID"
-  user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
@@ -5613,9 +5625,16 @@ en:
   verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View All
+  view_all_fields: View All Fields
   view_all_flags: View All Flags
   view_all_members: View All Members
-  view_all_n: "View All %{n}"
+  # As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    zero: "View All %{count}"
+    one: "View All %{count}"
+    few: "View All %{count}"
+    many: "View All %{count}"
+    other: "View All %{count}"
   view_all_observations: View All Observations
   view_all_photocount_photos: "View All %{photo_count} Photos"
   view_assessment: View Assessment
@@ -5667,7 +5686,6 @@ en:
   view_taxon_page: View Taxon Page
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
   view_taxononomy_details_for_taxon: "View taxonomy details for %{taxon}"
-  view_the_observation: View the observation
   view_user_observations: "View %{user}'s observations"
   view_x: "View %{x}"
   view_year_stats_for_site: "View %{year} Stats For %{site}"
