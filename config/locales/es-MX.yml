@@ -598,6 +598,8 @@ es-MX:
   are_you_sure_remove_photo: "¿Estás seguro que quieres quitar esta foto?"
   are_you_sure_remove_relationship: '¿Estás seguro que deseas eliminar esta relación? Esto hará que dejes de seguir a esta persona y revocará el acceso a tus coordenadas ocultas si ya habías habilitado tal acceso.'
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres quitar esta especie o grupo de la lista?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
   are_you_sure_unresolve_flag?: |
     ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
     y el usuario que ha resuelto esta marca.
@@ -4140,6 +4142,7 @@ es-MX:
     must_be_georeferenced: deben estar con georeferencia
     must_be_identified: deben estar idenfiticadas
     must_be_on_list: deben estar en la lista
+    must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
     must_be_verifiable: debe ser verificable
@@ -5182,8 +5185,13 @@ es-MX:
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
   view_all: Ver todas
+  view_all_fields: Ver todos los Campos
   view_all_flags: Ver todas las marcas
   view_all_members: Ver a todos los miembros
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Ver todo %{count}"
+    other: "Ver todos %{count}"
   view_all_observations: Ver todas las observaciones
   view_all_photocount_photos: "Ver todas las %{photo_count} fotos"
   view_assessment: Ver evaluación
