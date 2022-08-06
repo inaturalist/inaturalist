@@ -5085,8 +5085,13 @@ tr:
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
   view: Görüntüle
   view_all: Tümünü Görüntüle
+  view_all_fields: Tüm Alanları Göster
   view_all_flags: Tüm İşaretleri Görüntüle
   view_all_members: Tüm Üyeleri Görüntüle
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Tümünü Göster (%{count})"
+    other: "Tümünü Göster (%{count})"
   view_all_observations: Tüm Gözlemleri Görüntüle
   view_all_photocount_photos: "%{photo_count} Fotoğrafı Görüntüle"
   view_assessment: Değerlendirmeyi Görüntüle
