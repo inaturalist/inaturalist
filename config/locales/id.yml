@@ -554,6 +554,8 @@ id:
   are_you_sure_remove_photo: "Apakah Anda yakin ingin menghapus foto ini?"
   are_you_sure_remove_relationship: Apakah Anda yakin untuk menghapus hubungan ini? Hal ini akan membuat Anda berhenti mengikuti orang ini dan mencabut akses Anda kepada koordinat yang disembunyikan jika Anda pernah mengaktifkan akses tersebut.
   are_you_sure_remove_taxon_from_list: "Apakah Anda yakin ingin menghapus taksa ini dari daftar?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Apakah Anda yakin? Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
   are_you_sure_unresolve_flag?: |
     Apakah Anda yakin ingin menarik kembali penyelesaian untuk tanda ini? Hal ini akan menghapus penyelesaian ini dan pengguna yang menyelesaikannya dari tanda ini.
   are_you_sure_want_delete_taxon: "Apakah Anda yakin ingin menghapus takson ini?"
@@ -2089,6 +2091,7 @@ id:
   italic_text: teks bercetak miring
   item_flagged_notice_html: |
     Hal ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="%{manage_flags_path}">Kelola tanda</a>
+  jobs: Pekerjaan
   join: Gabung
   join_and_add_an_observation_to_project_html: Gabung dan Tambahkan Pengamatan ke %{project}
   join_project: Gabung dengan proyek ini
@@ -4058,6 +4061,7 @@ id:
     must_be_georeferenced: harus diberi georeferensi
     must_be_identified: harus diidentifikasi
     must_be_on_list: harus termasuk di daftar
+    must_be_observed_in_place: harus diamati di dalam tempat
     must_be_in: harus di dalam takson
     must_be_coordinates_shareable_by_project_curators: pengamat harus mengizinkan kurator proyek untuk melihat koordinat.
     must_be_verifiable: harus bisa diverifikasi
@@ -4486,6 +4490,8 @@ id:
   taxon_assessments_are: |
     Penilaian takson adalah dokumen yang menilai status spesies saat ini, biasanya status konservasi.
     Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status dari beberapa taksa yang terancam di wilayah tersebut.
+  taxon_change_commit_may_still_be_processing: |
+    Perubahan takson mungkin sedang dalam proses sehingga beberapa catatan belum diperbarui
   taxon_change_must_be_committed_to_update_records: Perubahan takson harus diterapkan untuk memperbarui catatan
   taxon_change_title_taxon_drop: Deaktivasi Taksonomi %{id}
   taxon_change_title_taxon_merge: Peleburan Taksonomi %{id}
@@ -5062,8 +5068,12 @@ id:
   verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
   view: Lihat
   view_all: Lihat Semua
+  view_all_fields: Lihat Semua Bidang
   view_all_flags: Lihat Semua Tanda
   view_all_members: Lihat Semua Anggota
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    other: "Lihat Semua %{count}"
   view_all_observations: Lihat Semua Pengamatan
   view_all_photocount_photos: "Lihat Semua Foto %{photo_count}"
   view_assessment: Lihat Penilaian
