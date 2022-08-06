@@ -609,6 +609,8 @@ da:
   are_you_sure_remove_photo: "Er du sikker på, at du ønsker at fjerne dette foto?"
   are_you_sure_remove_relationship: Sikker på, at du vil fjerne denne relation? Du vil ikke længere følge personen, og dette vil annullere adgangen til dine fortrolige koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på, at du vil fjerne denne takson fra listen?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Sikker? Dette genindlæser siden, og nogle af ændringerne kan mistes.
   are_you_sure_unresolve_flag?: |
     Sikker på, at du vil fjerne løsningen for dette flag? Både løsningen
     og den bruger, der har leveret den, fjernes fra dette flag.
@@ -4186,6 +4188,7 @@ da:
     must_be_georeferenced: skal geo refereres
     must_be_identified: skal identificeres
     must_be_on_list: skal være på listen
+    must_be_observed_in_place: skal være observeret et sted
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer at se koordinater.
     must_be_verifiable: skal være verificerbar
@@ -5292,8 +5295,13 @@ da:
   verifiable_observations_by_observation_date: Verificerbare observationer efter observations dato
   view: Vis
   view_all: Vis alle
+  view_all_fields: Vis alle felter
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Vis alle (%{count} i alt)"
+    other: "Vis alle %{count}"
   view_all_observations: Vis alle observationer
   view_all_photocount_photos: "Vis alle %{photo_count}foto´s"
   view_assessment: Vis vurderinger
