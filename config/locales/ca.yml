@@ -590,6 +590,8 @@ ca:
   are_you_sure_remove_photo: "Esteu segur que voleu eliminar aquesta foto?"
   are_you_sure_remove_relationship: Esteu segur de voler eliminar aquesta relació? Això farà que no seguiu aquesta persona i revocar l'accés a les vostres coordenades ocultes si vau habilitar aquest accés.
   are_you_sure_remove_taxon_from_list: "Esteu segur que voleu eliminar de la llista aquesta espècie o grup?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Esteu segur? Això tornarà a carregar la pàgina, i podeu perdre alguns dels vostres canvis.
   are_you_sure_unresolve_flag?: |
     Esteu segur que voleu eliminar la resolució d'aquesta marca? Aquesta acció eliminarà tant l'usuari com la resposta a aquesta marca.
   are_you_sure_want_delete_taxon: "Esteu segur que voleu eliminar aquest tàxon?"
@@ -2366,6 +2368,7 @@ ca:
     lb: Luxemburguès
     lt: Lituà
     lv: Letó
+    mi: Maorí
     mk: Macedònic
     mr: Marathi
     nb: Noruec (Bokmål)
@@ -3782,6 +3785,7 @@ ca:
   queued: En cua
   query: Consulta
   radius: Radi (m)
+  radius_km: Radi (km)
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
@@ -4069,6 +4073,7 @@ ca:
     must_be_georeferenced: han d'estar georeferenciades
     must_be_identified: ha de ser identificada
     must_be_on_list: ha d'estar a la llista
+    must_be_observed_in_place: ha de ser observada en aquest lloc
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre als supervisors del projecte veure les coordenades.
     must_be_verifiable: ha de ser verificable
@@ -4450,6 +4455,8 @@ ca:
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
   task_deleted: S'ha suprimit la tasca
   taxa: Tàxons
+  taxa_show_obs_photo_search_tip: |
+    Suggeriment: introduïu la ID d'una observació al camp de cerca si voleu escollir fotos d'una observació determinada
   taxa_with_unknown_relationships: Tàxon amb relacions desconegudes
   taxa_info: Informació taxonòmica
   taxa_needing_curation: Tàxons que necessiten administració
@@ -5093,8 +5100,13 @@ ca:
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
   view: Mostra
   view_all: Mostra-ho tot
+  view_all_fields: Veure tots els Camps
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Veure tot %{count}"
+    other: "Veure tots %{count}"
   view_all_observations: Veure totes les observacions
   view_all_photocount_photos: "Veure les %{photo_count} fotos"
   view_assessment: Veure valoració
