@@ -1,4 +1,7 @@
 hu:
+  x_comments:
+    one: '%{count} megjegyzés'
+    other: '%{count} megjegyzés'
   x_comments_html:
     one: '<span class="count">%{count}</span> megjegyzés'
     other: '<span class="count">%{count}</span> megjegyzés'
@@ -467,6 +470,8 @@ hu:
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Biztos vagy benne? Ez újratölti az oldalt, ezért néhány változtatásod elveszhet.
   are_you_sure_unresolve_flag?: |
     Biztosan visszavonod e bejelentés megoldását? Ez eltávolítja a megoldást és a megoldást nyújtó felhasználót erről a bejelentésről.
   are_you_sure_want_delete_taxon: "Biztosan törlöd ezt a taxont?"
@@ -728,6 +733,7 @@ hu:
   compare_with: 'Összehasonlítás ezzel:'
   comparing: összehasonlítás
   comparing_versions_x_and_y: "%{x} és %{y} verziók összehasonlítása"
+  compiled_by_name: "Összeállította: %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
   complete: Kész
   complete_set_for_taxon_in_place_html: "Teljes sorozat %{taxon} taxonnak itt: %{place}"
@@ -2298,6 +2304,7 @@ hu:
   other_animals: egyéb állatok
   other_lexicons: Egyéb szókészletek
   other_listings_of_this_taxon_for_this_place: E taxon megfigyelései erről a helyről
+  other_species_commonly_misidentified_as_this_species: E fajként gyakran tévesen meghatározott egyéb fajok
   other_species_commonly_misidentified_as_this_species_in_place_html: Egyéb fajok <a href="%{url}">%{place}</a> régiójában, amelyeket gyakran tévesen e fajként határoznak meg
   other_taxa_commonly_misidentified_as_this_complex: E komplexként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'E komplexként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
@@ -2311,6 +2318,7 @@ hu:
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'E %{rank}ként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_section: E szekcióként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_section_in_place_html: 'E szekcióként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_species: E fajként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_species_in_place_html: 'E fajként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
   other_taxa_commonly_misidentified_as_this_subgenus: Ezen alnemzetségként gyakran tévesen meghatározott egyéb taxonok
   other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Ezen alnemzetségként gyakran tévesen meghatározott egyéb taxonok itt: <a href="%{url}">%{place}</a>'
@@ -2324,6 +2332,8 @@ hu:
   owner: Tulajdonos
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Szülő
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Szülő neve
   password: Jelszó
   password_confirmation: 'Jelszó megerősítése'
   paste: Beilleszt
@@ -3103,11 +3113,13 @@ hu:
   revoke: Visszavonás
   revoke_caps: VISSZAVONÁS
   revoke_privacy_consent_warning: "E jóváhagyásod visszavonásának egyedüli módja az, ha törlöd a fiókodat és minden azzal kapcsolatos adatodat."
+  rg_observations: Tud. szintű megfigyelések
   rotate_left: Forgatás balra
   rotate_right: Forgatás jobbra
   row_singular_or_plural: Sor(ok)
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   rules_types:
+    must_be_observed_in_place: megfigyelve kell legyen a helyen
     must_be_wild: vad kell legyen
   running_total: Kumulatív
   satellite: műholdkép
@@ -3325,6 +3337,8 @@ hu:
   tagging: 'Címkézve...'
   tags: Címkék
   taxa: Taxon
+  taxa_show_obs_photo_search_tip: |
+    Tipp: ha egy adott megfigyelésből szeretnél fényképet hozzáadni, add meg a megfigyelés azonosítóját a keresőmezőben.
   taxa_info: Taxoninformációk
   taxa_needing_curation: Gondozásra szorult taxonok
   taxon: Taxon
@@ -3351,6 +3365,7 @@ hu:
   taxon_scheme: Taxonrendszer
   taxon_schemes: "Taxonrendszerek"
   taxon_swap: taxoncsere
+  taxon_name_was_deleted: A taxon neve törölve.
   taxon_name_was_successfully_updated: A taxonnév sikeresen frissítve.
   taxon_was_successfully_updated: A taxon sikeresen frissítve.
   taxonomic: Rendszertani
@@ -3555,6 +3570,7 @@ hu:
   twitter: Twitter
   two_thirds: 2/3
   type_place_name: Írd be a helyet
+  type_taxon_name: "Add meg a taxon nevét"
   umbrella_projects: Ernyőprojektek
   unblock: Letiltás feloldása
   unhide_content: Tartalom felfedése
@@ -3594,6 +3610,7 @@ hu:
   upload_a_csv_file: CSV-fájl feltöltése
   upload_new_photo: Új fénykép feltöltése
   upload_photo: Fotó feltöltése
+  uploaded_by: 'Feltöltötte:'
   uploader:
     errors:
       file_too_big: A fájl mérete legfeljebb %{megabytes} MB lehet
@@ -3982,6 +3999,7 @@ hu:
         horizontal: Vízszintes
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Intervallum
+        interval_limit_warning_hour: Csak egy hétnek megfelelő órát mutatunk
         interval_limit_warning_day: Csak egy évnek megfelelő napot mutatunk
         interval_limit_warning_week: Csak 10 évnek megfelelő hetet mutatunk
         interval_limit_warning_month: Csak 100 évnek megfelelő hónapot mutatunk
@@ -4218,6 +4236,8 @@ hu:
           Egy taxonnak csak %{max} fotója lehet. El kell távolíts létező fotókat ahhoz, hogy többet adj hozzá.
         photo_chooser_modal_desc: |
           Húzz ide fotókat balról vagy itt rendezd át azokat.
+        photo_chooser_modal_explanation: |
+          A taxonlap e taxon és az azalattiak fotóit fogja megjeleníteni. Az ehhez a taxonhoz választott fotók fognak elsőként megjelenni. Az első fotó alapértelmezett lesz a teljes weboldalon.
         rare_in_place_desc_html: 'Legkevésbé megfigyelt veszélyeztetett taxonok itt: <a href="%{url}">%{place}</a>'
         trending_desc: Legtöbbször megfigyelt taxon az elmúlt hónapban
         trending_in_place_desc_html: 'Legtöbbször megfigyelt taxon az elmúlt hónapban itt: <a href="%{url}">%{place}</a>'
@@ -4781,6 +4801,10 @@ hu:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 csak e taxon gondozója változtathatja meg
+        taxon_name:
+          attributes:
+            name:
+              already_exists: már létezik ennek a taxonnak ebben a szókészletben
         taxon_photo:
           attributes:
             taxon:
