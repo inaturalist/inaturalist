@@ -605,6 +605,8 @@ tr:
   are_you_sure_remove_photo: "Fotoğrafı kaldırmak istediğinden emin misin?"
   are_you_sure_remove_relationship: Bu ilişkiyi kaldırmak istediğinden emin misin? Bu, bu kişiyi takip etmeyi bırakacak ve bu tür bir erişimi etkinleştirdiysen gizli koordinatlarına erişimi iptal edecektir.
   are_you_sure_remove_taxon_from_list: "Bu sınıfı listeden kaldırmak istediğine emin misin?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Emin misin? Bu, sayfayı yeniden yükleyecektir ve bazı değişikliklerini kaybedebilirsin.
   are_you_sure_unresolve_flag?: |
     Bu işareti kaldırmak istediğinden emin misin? Bu, çözümlemeyi ve çözümleyen kullanıcıyı bu işaretten kaldıracaktır.
   are_you_sure_want_delete_taxon: "Bu sınıfı silmek istediğinden emin misin?"
@@ -4067,6 +4069,7 @@ tr:
     must_be_georeferenced: coğrafi ilişikli olmalı
     must_be_identified: tanımlanmalı
     must_be_on_list: listede olmalı
+    must_be_observed_in_place: bir konumda gözlemlenmeli
     must_be_in: bir sınıfta olmalı
     must_be_coordinates_shareable_by_project_curators: gözlemci, proje küratörlerinin koordinatları görüntülemesine izin vermelidir.
     must_be_verifiable: doğrulanabilir olmalı
