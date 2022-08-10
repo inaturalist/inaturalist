@@ -97,7 +97,7 @@ th:
   about_charts: เกี่ยวกับแผนภูมิ
   about_complete_taxa: เกี่ยวกับหน่วยอนุกรมวิธานที่สมบูรณ์
   about_conservation_status: เพิ่มสถานะการอนุรักษ์
-  about_editing_observation_fields: เกี่ยวกับการแก้ไขฟิลด์ที่สังเกตการณ์
+  about_editing_observation_fields: เกี่ยวกับการแก้ไขข้อมูลเสริมการสังเกต
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
@@ -149,13 +149,13 @@ th:
   active_users: ผู้ใช้ที่ยังมีความเคลื่อนไหว
   activity: กิจกรรมที่เกิดขึ้น
   adapted_by_name_from_a_work_by_original: "เปลี่ยนแปลงโดย %{name} จากต้นทางของ %{original}"
-  add: เพิ่มเติม
+  add: เพิ่ม
   add_a_batch_of_observations: เพิ่มหลายการสังเกต
   add_a_batch_of_taxa: เพิ่มหลายหน่วยอนุกรมวิธาน
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: เพิ่มรายการสัญลักษณ์แสดงหัวข้อย่อย
   add_a_comment: เพิ่มข้อเสนอแนะ
-  add_a_field: เพิ่มฟิลด์
+  add_a_field: เพิ่มข้อมูลเสริม
   add_a_flag: เพิ่มการรายงาน
   #Tool tip for a button that adds a link to a text area
   add_a_link: เพิ่มลิงก์
@@ -602,7 +602,7 @@ th:
   check_lists_for: "รายการตรวจสอบอื่น ๆ สำหรับ %{place}"
   check_out_the_inat_store: ดูร้านค้าของ iNaturalist
   checklist: รายการตรวจสอบ
-  choose_a_field: เลือกข้อมูลภาคสนาม
+  choose_a_field: เลือกข้อมูลเสริม
   choose_a_place: เลือกสถานที่
   choose_file: เลือกไฟล์
   choose_files: เลือกไฟล์
@@ -1334,7 +1334,7 @@ th:
   months: เดือน
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
-  more_fields: ข้อมูลภาคสนามเพิ่มเติม
+  more_fields: ข้อมูลเสริมเพิ่มเติม
   more_filters: ตัวกรองเพิ่มเติม
   more_from_x: การสังเกตเพิ่มเติมจาก %{x}
   more_import_options: ตัวเลือกนำเข้าเพิ่มเติม
@@ -1450,10 +1450,10 @@ th:
   observations_by_you_on_date: "การสังเกตโดยคุณเมื่อ %{date}"
   observation_calendar_for: "ปฏิทินการสังเกตสำหรับ %{user} ในปี %{year}"
   observation_date: วันที่
-  observation_field: ข้อมูลภาคสนาม
-  observation_field_details: รายละเอียดข้อมูลภาคสนาม
+  observation_field: ข้อมูลเสริมการสังเกต
+  observation_field_details: รายละเอียดข้อมูลเสริม
   observation_field_type_datetime: วันที่และเวลา
-  observation_fields: ข้อมูลภาคสนาม
+  observation_fields: ข้อมูลเสริม
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
