@@ -582,6 +582,7 @@ bg:
   back_to_your_observations: Обратно към Вашите наблюдения
   back_to_your_profile: Обратно към Вашия профил
   badges: Значки
+  batch: Групово
   batch_edit: Групово редактиране
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Групово редактиране на таксони за %{x}"
@@ -3218,6 +3219,7 @@ bg:
   similar_taxa: Подобни таксони
   #Journal post formatting option
   simple: Просто
+  single_observation: Единично наблюдение
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
@@ -3357,6 +3359,8 @@ bg:
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
   task_deleted: Задачата изтрита
   taxa: Таксони
+  taxa_show_obs_photo_search_tip: |
+    Съвет: въведете идентификатор на наблюдение в полето за търсене, ако искате да изберете снимки от конкретно наблюдение.
   taxa_info: Информация за таксони
   taxa_needing_curation: Таксони нуждаещи се от куриране
   taxa_observed: наблюдавани таксони
@@ -3796,6 +3800,7 @@ bg:
   verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдаване
   view: Виж
   view_all: Виж всички
+  view_all_fields: Виж всички полета
   view_all_flags: Виж всички маркери
   view_all_members: Виж всичките членове
   view_all_observations: Виж всички наблюдения
@@ -3880,6 +3885,7 @@ bg:
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what: Какво
   what_did_you_see: Какво наблюдавахте?
+  what_did_you_see?: <em>Какво</em> видяхте?
   what_do_you_think: Какво мислите?
   what_want_to_list?: Какво искате да включите в списъка?
   whats_this?: Какво е това?
@@ -3887,6 +3893,7 @@ bg:
   when_did_you_see_it?: Кога го наблюдавахте?
   when_did_you_see_them?: <em>Кога</em> ги видяхте?
   where: Къде
+  where_were_they?: Къде ги видяхте?
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
@@ -4466,6 +4473,7 @@ bg:
         identifiers_desc: Добавили са разпознаване към наблюдение на някой друг този ден
         iphone_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за iPhone</a>
         new_users_desc: Регистрирали са се този ден
+        obs_1_day_desc: "Наблюдения създадени за един ден"
         observers_desc: Добавили са наблюдение този ден
         other_desc_html: Създадено с други приложения <a href="%{url}">направени от разработчици</a>
         TTCID_desc: Време за получаване на разпознаване от някой друг, съответстващо на консенсусното разпознаване от общността.
