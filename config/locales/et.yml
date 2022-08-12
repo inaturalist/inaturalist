@@ -196,6 +196,8 @@ et:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Võid valida, milliseid peidetud koordinaate jagad:
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Tahtmatutest erimeelsustest
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -483,6 +485,10 @@ et:
   alphabetical_order: Tähestikuline järjekord
   already_have_an_account_log_in_html: On juba konto? <strong>Logi sisse.</strong>
   amphibians: kahepaiksed
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analüüsi tahtmatuid erimeelsusi
   analyze_ids: Analüüsi määratlusi
   ancestor_taxon: Ülemtakson
   and: ja
@@ -559,6 +565,8 @@ et:
   are_you_really_sure_want_delete_this_user: Oled sa ikka päris kindel, et soovid selle kasutaja koos kogu tema sisuga kustutada?
   are_you_sure?: Oled sa kindel?
   are_you_sure_no_undo: Oled sa kindel? Seda otsust ei saa tagasi võtta.
+  are_you_sure_delete_conservation_status: |
+    Oled sa kindel, et soovid selle kaitsestaatuse kustutada? See võib muuta selle taksoni ja alamtaksonite vaatluste nähtavust.
   are_you_sure_delete_post: Oled sa kindel, et soovid selle postituse kustutada?
   are_you_sure_delete_taxon_move_associates: "Oled sa kindel, et soovid taksoni %{taxonname} (%{taxonid}) kustuta ja ümber tõsta kõik sellega seonduva?"
   are_you_sure_delete_this_place: Oled sa kindel, et soovid selle koha kustutada?
@@ -567,6 +575,8 @@ et:
   are_you_sure_remove_photo: "Oled sa kindel, et soovid seda fotot eemaldada?"
   are_you_sure_remove_relationship: Oled sa kindel, et soovid seda suhet kustutada? Selle tulemusena ei jälgi sa enam seda isikut ning ei luba tal näha sinu peidetud koordinaate, kui sa varem talle seda lubasid.
   are_you_sure_remove_taxon_from_list: "Oled sa kindel, et soovid selle taksoni nimekirjast eemaldada?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Oled sa kindel? See laeb lehe uuesti ja võid kaotada enda tehtud muudatused.
   are_you_sure_unresolve_flag?: |
     Oled sa kindel, et soovid selle märkuse lahendamatuks märkida? See eemaldab märkuselt lahenduse ja viite lahendunud kasutajale.
   are_you_sure_want_delete_taxon: "Oled sa kindel, et soovid selle taksoni kustutada?"
@@ -709,6 +719,12 @@ et:
   batch_operations: Komplekstegevused
   be_the_first_to_fave_this_observation: Nimeta esimesena see vaatlus enda lemmikuks!
   because_of: sest
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Kuna usume, et selle muudatuse tulemusena tekib üle kümne tahtmatu erimeelsuse, <strong>soovitame sul alustada ka taksonimuudatust, milles sisalduks %{old_parent} (nt lahuta %{new_parent} ülemtaksonist %{old_parent})</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Kuna usume, et selle muudatuse tulemusena tekib vähem kui kümme tahtmatut erimeelsust, <strong>pole meie arust vaja alustada taksonimuudatust, milles sisalduks %{old_parent}</strong>.
   become_a_donor_caps: HAKKA TOETAJAKS
   become_a_donor_today_caps: HAKKA KOHE TOETAJAKS
   before_importing_photos: enne fotode importi
@@ -971,6 +987,9 @@ et:
   connecting_your_inat_account_to_accounts_other_sites: "Oma %{site_name} konto ühendamine teiste lehtede kontodega lubab sul siseneda lehele %{site_name} kasutades selleks teiste lehtede sisselogimismeetodit."
   cannot_be_changed_during_a_content_freeze: Sisu külmutamise ajal ei saa muuta
   conservation_status: Kaitsestaatus
+  conservation_status_created: Kaitsestaatus sisestatud
+  conservation_status_deleted: Kaitsestaatus kustutatud
+  conservation_status_updated: Kaitsestaatus uuendatud
   conservation_status_descriptions:
     status: Staatuse kood, kategooria, jne. Kui eksisteerib lühike kood nagu E või CR, siis palun kasuta seda, kui mitte, siis kasuta täielikku sõnastust, nt. hävimisohus või kriitilises seisus.
     description: Lühike põhjendus kaitse alla panemiseks.
@@ -1303,6 +1322,7 @@ et:
   edit_body: Muuda sisu
   edit_comment: Muuda oma kommentaari
   edit_complete_set_for_taxon_in_place_html: "Muuda taksoni %{taxon} täiskomplekt kohas %{place}"
+  edit_conservation_status: Muuda kaitsestaatust
   edit_custom_project_fields: Muuda projekti spetsiaalseid väljasid
   edit_field: Muuda välja
   edit_license: Muuda litsentsi
@@ -1324,6 +1344,8 @@ et:
   edit_taxon_link: Muuda taksoni linki
   edit_taxon_range: Muuda taksoni piirkonda
   edit_the_observation: Muuda vaatlust
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Kaitsestaatuste lisamiseks muuda peale algset loomist seda taksonit.
   edit_your_account_and_profile_html: "Muuda oma kontot ja profiili"
   edit_your_default_settings: "Muuta oma vaikimisisätteid"
   edit_your_global_project_settings: Muuda oma üldiseid projektisätteid
@@ -1817,10 +1839,12 @@ et:
     norwegian: Norra
     occitan: Oksitaani
     pangasinan: Pangasinani
+    persian: Farsi
     portuguese: Portugali
     romanian: Rumeenia
     russian: Vene
     spanish: Hispaania
+    swahili: Suahiili
     swedish: Rootsi
     tagalog: Tagalogi
     tahitian: Tahiti
@@ -1904,6 +1928,7 @@ et:
     lb: Luksemburgi
     lt: Leedu
     lv: Läti
+    mi: Maoori
     mk: Makedoonia
     nl: Hollandi
     oc: Oksitaani
@@ -2109,6 +2134,7 @@ et:
   new_check_list_for: "Loo kohale %{place} uus kontrollnimekiri &raquo;"
   new_check_list_record: "Kui soovid märkida nimekirja lõplikuks, tee see esmalt valmis, lisa liigid ning seejärel muuda seda, sest ilmub ka valik selle lõplikuks märkimiseks."
   new_comment_on_a_parent_by_user_link: 'Uus kommentaar: %{parent} (kasutaja: %{user_link})'
+  new_conservation_status: Uus kaitsestaatus
   new_flag_for: 'Uus märkus:'
   new_guide: Uus juhend
   new_journal_post: Uus päevikukanne
@@ -2860,6 +2886,7 @@ et:
   quality_grade_colon: "Kvaliteedihinnang:"
   queued: Järjekorras
   query: Päring
+  radius_km: Raadius (km)
   random: Juhuslik
   range: Piirkond
   rank: Kategooria
@@ -2869,6 +2896,9 @@ et:
     kingdom: Riik
     subkingdom: Alamriik
     phylum: Hõimkond
+    x_phyla:
+      one: Hõimkond
+      other: Hõimkonnad
     subphylum: Alamhõimkond
     superclass: Ülemklass
     class: Klass
@@ -2894,6 +2924,7 @@ et:
     subgenus: Alamperekond
     section: Sektsioon
     subsection: Alamsektsioon
+    complex: Liigikompleks
     #Singular
     species: Liik
     hybrid: Hübriid
@@ -2903,6 +2934,30 @@ et:
     form: Vorm
     infrahybrid: Alamhübriid
     leaves: Lehed
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: hõimkond
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: alamhõimkond
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: ülemklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: ülemselts
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvklass
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoloogiline sektsioon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zooloogiline alamsektsioon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: ülemsugukond
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: episugukond
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: ülemtriibus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: liigikompleks
   ranges: Piirkonnad
   ray_finned_fishes: kiiruimsed
   re_order_photos: "Korrasta fotode järjekord &raquo;"
@@ -3023,6 +3078,7 @@ et:
     must_be_georeferenced: peab olema asukoha andmetega
     must_be_identified: peab olema määratletud
     must_be_on_list: peab olema nimekirjas
+    must_be_observed_in_place: peal olema vaadeldud kohas
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti kuraatoritel koordinaate näha.
   running_total: Hetke koguarv
@@ -3310,6 +3366,8 @@ et:
   take_me_facebook: Jah, lähme Facebooki!
   take_me_flickr!: Jah, lähme Flickrisse!
   taxa: Taksonid
+  taxa_show_obs_photo_search_tip: |
+    Nõuanne: sisesta otsinguvälja vaatluse määratluse ID, kui soovid valida mõne konkreetse vaatluse fotosid.
   taxa_info: Taksonite info
   taxa_needing_curation: Kureerimist vajavad taksonid
   taxa_observed: vaadeldud taksonid
@@ -3429,6 +3487,7 @@ et:
   terms: Tingimused
   terms_and_rules_html: "Tingimused &amp; reeglid"
   terms_new_users: "Kui lisad tingimused, peavad uued kasutajad nendega enne projektiga liitumist nõustuma."
+  terms_service: Kasutustingimused
   terrain: maastik
   text: Tekst
   thanks!: Aitäh!
@@ -3705,7 +3764,12 @@ et:
   verifiable_observations_by_observation_date: Tõendatud vaatlused vaatluskuupäeva järgi
   view: Vaata
   view_all: Vaata kõiki
+  view_all_fields: Vaata kõiki väljasid
   view_all_members: Vaata kõiki liikmeid
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Vaata kõiki (%{count})"
+    other: "Vaata kõiki (%{count})"
   view_all_observations: Vaata kõiki vaatluseid
   view_all_photocount_photos: "Näita kõik %{photo_count} fotot"
   view_assessment: Näita hinnangut
@@ -3791,6 +3855,8 @@ et:
   welcome_to_inat: "Teretulemast lehele %{site_name}!"
   welcome_to_guides: "Teretulemast lehe %{site_name} juhendeid uurima!"
   welcome_to_x_project: "Teretulemast projekti %{project}"
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Oleme päris kindlad, et see on selles ülemperekonnas
   #Falback label for the most probable taxon in the automated suggestions.
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
@@ -5019,6 +5085,7 @@ et:
         description: Kirjeldus
         authority: Staatuse andja
         place_id: Koht
+        url: URL
         geoprivacy: Asukoha privaatsus
         iucn: IUCNilaadne organisatsioon
       flag:
@@ -5078,6 +5145,8 @@ et:
       taxon:
         auto_description: Automaatne kirjeldus
         auto_photos: Automaatsed fotod
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Kaitsestaatus
         locked: Lukustatud
         name: Nimi
         parent_id: Ülemtaksoni ID
@@ -5202,7 +5271,23 @@ et:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         comment: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
   wild: Metsik
   will_paginate:
     previous_label: "&#8592; eelmine"
