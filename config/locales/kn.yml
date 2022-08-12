@@ -531,6 +531,8 @@ kn:
   are_you_sure_merge_these_places: ನೀವು ಈ ಸ್ಥಳಗಳನ್ನು ವಿಲೀನಗೊಳಿಸಲು ಬಯಸುತ್ತೀರಾ? ಇದನ್ನು ಹಿಂಪಡೆಯಲು ಸಾಧ್ಯವಿಲ್ಲ
   are_you_sure_remove_photo: "ಈ ಚಿತ್ರವನ್ನು ತೆಗೆದುಹಾಕಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
   are_you_sure_remove_taxon_from_list: "ಈ ಜೀವಿವರ್ಗವನ್ನು ಪಟ್ಟಿಯಿಂದ ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    ನಿಮಗೆ ಖಚಿತವೇ? ಇದು ಪುಟವನ್ನು ಮರುಲೋಡ್‍ ಮಾಡುತ್ತದೆ, ಹಾಗೂ ನಿಮ್ಮ ಕೆಲವು ಬದಲಾವಣೆಗಳನ್ನು ನೀವು ಕಳೆದುಕೊಳ್ಳಬಹುದು.
   are_you_sure_want_delete_taxon: "ಈ ಜೀವಿವರ್ಗವನ್ನು ಅಳಿಸಲು ನೀವು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     ನೀವು ಈ ಜೀವಿವರ್ಗವನ್ನು ಅಳಿಸಲು ಖಚಿತವಾಗಿ ಬಯಸುವಿರಾ? ಇದು ಜೀವಿವರ್ಗಗಳ ಸಂತತಿಯನ್ನು ಹೊಂದಿದೆ.
@@ -876,6 +878,8 @@ kn:
   connecting_your_inat_account_to_accounts_other_sites: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ಇತರೆ ತಾಣಗಳ ಖಾತೆಗಳಿಗೆ ಜೋಡಿಸುವುದರಿಂದ, ನೀವು %{site_name} ಗೆ ಆ ತಾಣಗಳಿಂದ ನಿಮ್ಮ ಗುರುತನ್ನು ಬಳಸಿ ಲಾಗಿನ್ ಆಗಬಹುದು."
   cannot_be_changed_during_a_content_freeze: ವಸ್ತುವಿಷಯದ ಸ್ಥಿರೀಕರಣದ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
+  conservation_status_created: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ರಚಿಸಲಾಗಿದೆ
+  conservation_status_deleted: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ
   conservation_status_descriptions:
     status: ಸ್ಥಿತಿ ಸಂಕೇತ, ಶ್ರೇಣಿ, ಇತ್ಯಾದಿ. E ಅಥವಾ CR ನಂತಹ ಕಿರಿ ಸಂಕೇತಗಳು ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಅವನ್ನು ಬಳಸಿ, ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಪೂರ್ಣ ಸ್ಥಿತಿಯನ್ನು ಬಳಸಿ, ಉದಾ. ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಅಥವಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ.
     description: ಇದನ್ನು ಏತಕ್ಕೆ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆಯೆಂಬುದಕ್ಕೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ
@@ -1307,6 +1311,7 @@ kn:
   edit_atlas: ಭೂಪಟ ಸಂಪಾದಿಸಿ
   edit_atlas_for_taxon_html: '%{taxon} ಗೆ ಭೂಪಟ ಸಂಪಾದಿಸಿ'
   edit_comment: ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಸಂಪಾದಿಸಿ
+  edit_conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ಸಂಪಾದಿಸಿ
   edit_custom_project_fields: ಒಗ್ಗಿಸಿದ ಪ್ರಾಯೋಜನೆ ಆವರಣಗಳನ್ನು ಸಂಪಾದಿಸಿ
   edit_field: ಆವರಣವನ್ನು ಸಂಪಾದಿಸಿ
   edit_license: ಪರವಾನಿಗೆಯನ್ನು ಸಂಪಾದಿಸಿ
@@ -1728,6 +1733,7 @@ kn:
   it_can_now_be_used_for_research: ಇದನ್ನು ಈಗ ಸಂಶೋಧನೆಗಾಗಿ ಮತ್ತು ಇತರ ಜಾಲತಾಣಗಳಲ್ಲಿ ವಿಶೇಷವಾದುದೆಂದು ಬಳಸಬಹುದು
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: ಇಟ್ಯಾಲಿಕ್ ಪಠ್ಯ
+  jobs: ಕೆಲಸಗಳು
   join: ಸೇರಿರಿ
   join_and_add_an_observation_to_project_html: ಸೇರಿರಿ ಮತ್ತು %{project} ಗೆ ವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿ
   join_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿರಿ
@@ -1862,6 +1868,7 @@ kn:
     occitan: ಆಕ್ಸಿಟಾನ್
     ojibwe: ಒಜಿಬ್ವೆ
     pangasinan: ಪಂಗಾಸಿನಾನ್
+    persian: ಪರ್ಷಿಯನ್
     polish: ಪೋಲಿಷ್
     portuguese: ಪೋರ್ಚುಗೀಸ್
     romanian: ರೋಮಾನಿಯನ್
@@ -1872,6 +1879,7 @@ kn:
     slovak: ಸ್ಲೋವಾಕ್
     slovenian: ಸ್ಲೋವೇನಿಯನ್
     spanish: ಸ್ಪಾನಿಶ್
+    swahili: ಸ್ವಾಹಿಲಿ
     swedish: ಸ್ವೀಡಿಷ್
     tagalog: ಟ್ಯಾಗಲೊಂಗ್
     tahitian: ತಾಹಿತಿಯನ್
@@ -2246,6 +2254,7 @@ kn:
   new_assessment: ಹೊಸ ಮೌಲ್ಯಮಾಪನ
   new_check_list: ಹೊಸ ತಾಳೆಪಟ್ಟಿ
   new_check_list_for: "%{place} ಗಾಗಿ ಹೊಸ ತಾಳೆಪಟ್ಟಿಯೊಂದನ್ನು ರಚಿಸಿ &raquo;"
+  new_conservation_status: ಹೊಸ ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
   new_guide: ಹೊಸ ಕೈಪಿಡಿ
   new_journal_post: ಹೊಸ ನಿಯತಕಾಲಿಕೆಯ ಪೋಸ್ಟ್
   new_lexicon: ಹೊಸ ಪದಕೋಶವನ್ನು ಸೇರಿಸಿ
@@ -3254,6 +3263,7 @@ kn:
   queued: ಸರದಿಯಲ್ಲಿದೆ
   query: ವಿಚಾರಣೆ
   radius: ತ್ರಿಜ್ಯ (m)
+  radius_km: ತ್ರಿಜ್ಯ (km)
   radius_value: "ತ್ರಿಜ್ಯ (m):%{radius}"
   range: ವ್ಯಾಪ್ತಿ
   rank: ಶ್ರೇಣಿ
@@ -3521,6 +3531,7 @@ kn:
   rules_types:
     must_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
     must_be_on_list: ಪಟ್ಟಿಯಲ್ಲಿರಲೇಬೇಕು
+    must_be_observed_in_place: ಸ್ಥಳದಲ್ಲಿ ವೀಕ್ಷಣೆಯಾಗಿರಲೇಬೇಕು
     must_be_in: ಜೀವಿವರ್ಗದಲ್ಲಿರಲೇಬೇಕು
     must_be_coordinates_shareable_by_project_curators: ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಪ್ರಾಯೋಜನೆಯ ಮೇಲ್ವಿಚಾರಕರಿಗೆ ವೀಕ್ಷಕರು ಅನುಮತಿಸಲೇಬೇಕು.
     must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
