@@ -547,6 +547,8 @@ zh-CN:
   are_you_sure_remove_photo: "您确定要移除这张照片么？"
   are_you_sure_remove_relationship: 您确定要解除此关系吗？ 这将取消关注此人并撤销对您隐藏坐标的访问。
   are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    您确定么？这将重新加载页面，您可能会丢失您的一些更改。
   are_you_sure_unresolve_flag?: |
     你确定要将这个旗标问题标志为未解决吗？这将会把目前的解决方案以及解决此事的用户从旗标问题中移除出去。
   are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？"
@@ -3704,6 +3706,7 @@ zh-CN:
     must_be_georeferenced: 必须有地理参考
     must_be_identified: 必须被认证
     must_be_on_list: 必须在清单上
+    must_be_observed_in_place: 必须在原地观察
     must_be_in: 必须在分类群中
     must_be_coordinates_shareable_by_project_curators: 观察者必须允许项目馆长查看坐标。
     must_be_wild: 必须是野生的
@@ -4256,8 +4259,10 @@ zh-CN:
     此查询返回的分类群太多，无法一次呈现。请尝试添加更多筛选
   tools: 工具
   top_contributors: 顶尖贡献者
+  top_identifier_caps: 最多鉴定记录的用户
   top_identifiers: 顶端标识符
   top_identifiers_of_taxon: '%{taxon} 中排名靠前的鉴定者'
+  top_observer_caps: 最多观察记录的用户
   top_observers: 最多观察者
   total: 总计
   totals: 总计
