@@ -738,6 +738,8 @@ cs:
   are_you_sure_remove_photo: "Jste si jistý/á, že chcete odstranit tuto fotografii?"
   are_you_sure_remove_relationship: Opravdu chcete tento vztah odstranit? Tímto způsobem přestanete sledovat tuto osobu a přístup k skrytým souřadnicím se zruší, pokud jste takový přístup povolili.
   are_you_sure_remove_taxon_from_list: "Jste si jisti, že chcete tento taxon odebrat ze seznamu?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Jste si jisti? Tohle znovunačte stránku a Vy můžete ztratit nějaké Vaše změny.
   are_you_sure_unresolve_flag?: |
     Jste si jisti, že chcete toto označení odstranit? Tímto odstraníte
     řešení a uživatele, který řeší tento problém.
@@ -1726,6 +1728,8 @@ cs:
   edit_taxon_link: Editovat odkaz taxonu
   edit_taxon_range: Editovat rozsah taxonu
   edit_the_observation: Editovat pozorování
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Pro přidání stavu ochany upravte tento taxon po jeho vytvoření
   edit_your_account_and_profile_html: "Editovat váš účet a profil"
   edit_your_default_settings: "Editovat vlastní výchozí nastavení"
   edit_your_global_project_settings: Editovat vaše globální nastavení projektu
@@ -4282,6 +4286,7 @@ cs:
     must_be_georeferenced: musí být uveden geografický odkaz
     must_be_identified: musí být uvedena identifikace
     must_be_on_list: musí být na seznamu
+    must_be_observed_in_place: musí být pozorován v místě
     must_be_in: musí být v taxonu
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
     must_be_verifiable: musí být ověřitelné
@@ -4676,6 +4681,8 @@ cs:
   target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
   task_deleted: Úkol smazán
   taxa: Taxony
+  taxa_show_obs_photo_search_tip: |
+    Tip: Pokud chcete vybrat fotky z konkrétního pozorování, zadejte ID pozorování do vyhledávacího pole.
   taxa_with_unknown_relationships: Taxony s neznámými vztahy
   taxa_info: Informace o taxonu
   taxa_needing_curation: Taxony vyžadující správu
@@ -5364,6 +5371,7 @@ cs:
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
   view: Zobrazit
   view_all: Zobrazit vše
+  view_all_fields: Zobrazit všechna pole
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
   view_all_observations: Zobrazit všechna pozorování
