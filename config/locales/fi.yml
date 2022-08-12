@@ -590,6 +590,8 @@ fi:
   are_you_sure_remove_photo: "Haluatko varmasti poistaa tämän kuvan?"
   are_you_sure_remove_relationship: Oletko varma, että haluat lopettaa tämän yhteistyösuhteen? Samalla lopetat hänen seuraamisensa ja poistat häneltä oikeuden nähdä havaintojesi salattuja koordinaatteja, jos olet aiemmin antanut sellaisen oikeuden.
   are_you_sure_remove_taxon_from_list: "Haluatko varmasti poistaa tämän taksonin luettelosta?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Oletko varma? Tämä lataa sivun uudelleen, saatat menettää joitakin muutoksistasi.
   are_you_sure_unresolve_flag?: |
     Olet varma että haluat poistaa tämän lipun ratkaisun? Tämä poistaa myös ratkaisun tehneen käyttäjän tästä lipusta.
   are_you_sure_want_delete_taxon: "Haluatko varmasti poistaa tämän taksonin?"
@@ -3806,6 +3808,7 @@ fi:
     must_be_georeferenced: täytyy olla paikannettu
     must_be_identified: on oltava tunnistettu
     must_be_on_list: on oltava luettelossa
+    must_be_observed_in_place: täytyy olla havaittu paikassa
     must_be_in: täytyy olla taksonissa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin kuraattoreille mahdollisuus tarkistella koordinaatteja.
     must_be_wild: on oltava luonnonvarainen
