@@ -48,16 +48,17 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    min_id = UpdateAction.minimum(:id)
-    # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = UpdateAction.where(["created_at < ?", 3.months.ago]).
-      where("id < #{ min_id + 1000000 }").maximum(:id)
-    UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
-    # delete anything that may be left in Elasticsearch
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { lte: last_id_to_delete } } } })
-    end
+    # earliest_id = CONFIG.update_action_rollover_id || 1
+    # min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
+    # # using an ID clause to limit the number of rows in the query
+    # last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
+    #   where("id < #{ min_id + 1000000 }").maximum( :id )
+    # UpdateAction.delete_and_purge("id >= #{ earliest_id } AND id <= #{ last_id_to_delete }")
+    # # delete anything that may be left in Elasticsearch
+    # try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    #   Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
+    #     body: { query: { range: { id: { gte: earliest_id, lte: last_id_to_delete } } } })
+    # end
 
     # # suspend subscriptions of users with no viewed updates
     # Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
