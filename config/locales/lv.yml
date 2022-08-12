@@ -264,6 +264,8 @@ lv:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Tev ir iespēja izvēlēties, vai dalīties ar noslēptajām koordinātām šiem novērojumiem:
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Par neparedzētām domstarpībām
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -572,6 +574,10 @@ lv:
   alphabetical_order: Alfabētiskā secībā
   already_have_an_account_log_in_html: Tev jau ir konts? <strong>Pieslēdzies!</strong>
   amphibians: abinieki
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analizēt neparadzētās domstarpības
   analyze_ids: Analizēt ID
   ancestor_taxon: Priekšteču taksons
   and: un
@@ -615,6 +621,12 @@ lv:
   #Label for an option to show/include content by any user
   any_user: Jebkurš
   anyone: Jebkurš
+  app_owner_application_about_p1a_html: |
+    iNaturalist aplikācijas atļauj autentificētu iNaturalist API izmantošanu novērojumu izveides un idenficēšanas nolūkos. Parasti tas tiek pielietots darbvirsmas vai mobilajās aplikācijās, lai padarīto to lietošanu un iNaturalist novērojumu iesniegšanu funkcionālāku. Šo saturu ir jāveido ar cilvēka līdzdalību vai pārraudzību. Sīkāku informāciju par mašīnģenerētu novērojumu aizliegumu, identificēšanu, komentāriem u.c. varat izlasīt sadaļā <a href="/pages/community+guidelines"
+    target="_blank">Kopienas vadlīnijas</a>
+  app_owner_application_about_p2_html: |
+    No 2022. gada lietotājiem, kas vēlas izveidot trešo pušu lietotnes un lietojumprogrammas saskarnes (API) klientus, vispirms jāiesniedz pieteikums, lai kļūtu par lietotnes īpašnieku. Pieteikumā jāapraksta lietotnes funkcionalitāte un iecerētais pielietojums. Lai iesniegtu pieteikumu, tavam kontam jābūt vismaz divus mēnešus vecam un pēdējā mēneša laikā tajā jābūt veiktām vismaz 10 <a href="/pages/help#identification"
+    target="_blank">identifikācijām, kas tiek precizētas</a>. Iespējams, ka uzdosim vēl papildu jautājumus par tavām iecerēm. Mums ir tiesības noraidīt pieteikumus dažādu iemeslu dēļ.
   app_owner_application_inelligible: |
     Lai iesniegtu pieteikumu, tavam kontam jābūt vismaz 2 mēnešus vecam, kā arī pēdējā mēneša laikā ir jābūt veiktām vismaz 10 identifikācijām, kas tiek precizētas.
   app_owner_application_fields_explanation_html: Apraksti tavas aplikācijas funkcionalitāti un kā to plāno izmantot.
@@ -654,6 +666,8 @@ lv:
   are_you_sure_remove_photo: "Vai tiešām vēlies dzēst fotogrāfiju?"
   are_you_sure_remove_relationship: Vai tiešām vēlies pārstāt sekot šim lietotājam? Veicot šo darbību, šim lietotājam vairs nebūs redzamas tavas noslēptās koordinātas, ja iepriekš biji sniedzis tām piekļuvi.
   are_you_sure_remove_taxon_from_list: "Vai tiešām vēlies izņemt šo taksonu no saraksta?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Vai tiešām vēlies pārlādēt lapu? Iespējams, ka veiktās izmaiņas netiks saglabātas.
   are_you_sure_unresolve_flag?: |
     Vai tiešām vēlies noņemt karodziņu? Veicot šo darbību, izdzēsīsies problēmas apraksts un informācija par lietotāju, kas atrisināja ziņojumā aprakstīto problēmu.
   are_you_sure_want_delete_taxon: "Vai tiešām vēlies dzēst šo taksonu?"
@@ -742,6 +756,12 @@ lv:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Veikt autorizāciju ar PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Izmanto <code>%{code_challenge}</code> kā
+    <code>%{code_verifier_param}</code>). Uzmanību: šis ir tikai vienkāršs piemērs. Izlaides kodā OBLIGĀTI jāizmanto <code>%{code_challenge_method}</code> un jaucējfunkcija <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Ļaut piekļuvi no %{provider}"
   automatic_short: Autom.
   automatically_add_observations_to_this_project: Pievienot novērojumus šim projektam automātiski
@@ -750,35 +770,36 @@ lv:
   #of values, and not a synonym of "typical" or "normal"
   avg: Vid.
   back: Atpakaļ
-  back_to_all_species: Atpakaļ pie visām sugām
+  back_to_applications: "&laquo; Atpakaļ uz lietotnēm"
+  back_to_all_species: Atpakaļ uz visām sugām
   back_to_editing_observation: Atpakaļ pie novērojuma labošanas
   back_to_friends: Atpakaļ uz draugu sadaļu
-  back_to_flags_html: "&laquo; Atpakaļ pie karodziņiem"
+  back_to_flags_html: "&laquo; Atpakaļ uz karodziņiem"
   back_to_lists: "Atpakaļ uz %{name} sarakstiem"
   back_to_observation: Atpakaļ pie novērojuma
-  back_to_observation_fields: Atpakaļ pie novērojuma laukiem
+  back_to_observation_fields: Atpakaļ uz novērojuma laukiem
   back_to_people: Atpakaļ pie lietotājiem
   back_to_places: Atpakaļ uz vietām
   back_to_possessive_user_profile: "Atpakaļ uz %{possuser} profilu"
   back_to_post: '&laquo; Atpakaļ uz ierakstu'
-  back_to_projects: Atpakaļ pie projektiem
-  back_to_suggestions: Atpakaļ pie ieteikumiem
+  back_to_projects: Atpakaļ uz projektiem
+  back_to_suggestions: Atpakaļ uz ieteikumiem
   back_to_taxon: "Atvērt vēlreiz %{defaulttaxon}"
-  back_to_taxon_changes: "Atpakaļ pie taksonu izmaiņu sadaļas"
-  back_to_taxon_framework_for_x: "Atpakaļ pie %{taxon_name} taksona iedalījuma"
+  back_to_taxon_changes: "Atpakaļ uz taksonu izmaiņu sadaļu"
+  back_to_taxon_framework_for_x: "Atpakaļ uz %{taxon_name} taksona iedalījumu"
   back_to_users_calendar: "Atpakaļ uz %{user} kalendāru"
   back_to_users_lists: "Atgriezties %{user} sarakstā"
   back_to_viewing: "Atpakaļ uz <i>%{taxon}</i> lapu"
   back_to_x: "Atpakaļ uz %{noun}"
-  back_to_x_assessment: "Atpakaļ pie %{project} projekta novērtējumiem"
+  back_to_x_assessment: "Atpakaļ uz %{project} projekta novērtējumiem"
   back_to_x_history: "Atpakaļ uz %{x} vēsturi"
   back_to_x_journal: "Atpakaļ uz lietotāja %{user} žurnālu"
   back_to_x_blog: "Atpakaļ uz %{x} emuāru"
   back_to_your_calendar: Atpakaļ uz manu kalendāru
   back_to_your_dashboard: Atpakaļ uz informācijas paneli
-  back_to_your_lists: Atpakaļ pie taviem sarakstiem
+  back_to_your_lists: Atpakaļ uz taviem sarakstiem
   back_to_your_journal: Atpakaļ uz tavu žurnālu
-  back_to_your_observations: Atpakaļ pie taviem novērojumiem
+  back_to_your_observations: Atpakaļ uz taviem novērojumiem
   back_to_your_profile: Atpakaļ uz tavu profilu
   badges: Nozīmītes
   based_on_the_evidence_can_id_be_improved: |
@@ -1260,9 +1281,9 @@ lv:
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja %{num_idents} pievienotās identifikācijas. Kad šie kritēriji ir izpildīti, šajā sadaļā iespējams pieteikties pārziņa statusam.
+    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja %{num_idents} pievienotās identifikācijas. Kad šie kritēriji ir izpildīti, šajā sadaļā iespējams pieteikties pārziņa statusam.
   curator_application_inelligible_error: |
-    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas precizē galējo identifikāciju, tai skaitā paša lietotāja pievienotās identifikācijas.
+    Lai pieteiktos pārziņa statusam, kontam jābūt aktīvam vismaz 60 dienas un lietotājam jāpievieno vismaz 100 identifikācijas, kas tiek precizētas, tai skaitā paša lietotāja pievienotās identifikācijas.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Pieteikums pārziņa statusam iesniegts.
   #Header
@@ -2277,6 +2298,7 @@ lv:
     portuguese: Portugāļu
     romanian: Rumāņu
     russian: Krievu
+    santali: Santali
     setswana: Secvanu
     sinhala: Singāļu
     slovak: Slovāku
@@ -2393,6 +2415,7 @@ lv:
     pt: Portugāļu
     pt-BR: Portugāļu (Brazīlijā)
     ru: Krievu
+    sat: Santali
     sk: Slovāku
     sl: Slovēņu
     sq: Albāņu
@@ -4054,6 +4077,7 @@ lv:
     must_be_georeferenced: jāsatur ģeogrāfiskā atsauce
     must_be_identified: jābūt identificētam
     must_be_on_list: jābūt sarakstā
+    must_be_observed_in_place: jābūt novērotam noteiktā vietā
     must_be_in: jābūt taksonā
     must_be_coordinates_shareable_by_project_curators: novērotājam jāsniedz projekta pārziņiem piekļuve pie koordinātām.
     must_be_verifiable: jābūt pierādāmam
@@ -4730,6 +4754,106 @@ lv:
   threatened: Apdraudēts
   time_: laiks
   time_ago: "pirms %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Dienvidāfrikas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Austrumāfrikas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentīnas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolumbijas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Centrālais laiks (ASV un Kanāda)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Klusā Okeāna laiks (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Kalnu laiks (ASV un Kanāda)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Gvatemalas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantijas Okeāna standarta laiks (Kanāda)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolīvijas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peru laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Klusā okeāna laiks (ASV un Kanāda)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Centrālais laiks (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Austrumu laiks (ASV un Kanāda)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_phoenix: Arizonas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Kontinentālās Čīles laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Braziljas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Klusā Okeāna laiks (Meksika)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_taipei: Taivānas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_tokyo: Japānas standarta laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Jekaterinburgas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Adelaidas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Brisbenas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Melburnas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Pērtas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Sidnejas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC (Universālais koordinētais laiks)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Austrumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Austrumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Turcijas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Austrumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Rietumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Rietumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Maskavas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Austrumeiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Centrāleiropas laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoa laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Jaunzēlandes laiks
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havaju un Aleutu laiks
   #As in the title of a book or a blog post
   title: nosaukums
   title_and_description: "Virsraksts un apraksts"
@@ -4966,8 +5090,14 @@ lv:
   verifiable_observations_by_observation_date: Pierādāmi novērojumi, šķirojot pēc novērojuma datuma
   view: Skatīt
   view_all: Skatīt visu
+  view_all_fields: Skatīt visus laukus
   view_all_flags: Skatīt visus karodziņus
   view_all_members: Skatīt visus dalībniekus
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    zero: "Skatīt visus %{count}"
+    one: "Skatīt visus %{count}"
+    other: "Skatīt visus %{count}"
   view_all_observations: Skatīt visus novērojumus
   view_all_photocount_photos: "Skatīt visas %{photo_count} fotogrāfijas"
   view_assessment: Skatīt novērtējumu
@@ -6336,7 +6466,7 @@ lv:
         new_species_desc: |
           Sugas, kuras šogad pirmo reizi tika novērotas %{site_name} vietnē. Rāda %{x} no <a href="%{url}">%{y} sugām</a>.
         new_species_desc_html: |
-          Sugas, kuras šogad pirmo reizi tika pievienotas. Izvēlies kādu mēnesi, lai apskatītu tā mēneša jauni pievienotās sugas. Vēl iespējams apskatīt kopējo sugu uzkrājumu un kustināt slīdni atpakaļ laikā, lai apskatītu citas jauni novērotas sugas. Šī diagramma attēlo sugas ar pierādāmiem novērojumiem un šķiro tās pēc mēneša, kad novērojumi augšupielādēti %{site_name} vietnē (nevis novēroti). Diagramma netiek iekļauti augstākas vai zemākas pakāpes taksoni, piemēram, novērojums ar identifikāciju "Zīdītāji" netiks attēlots, bet <i>Canis lupus</i> ssp.
+          Sugas, kuras šogad pirmo reizi tika pievienotas. Izvēlies kādu mēnesi, lai apskatītu tā mēneša jauni pievienotās sugas. Vēl iespējams apskatīt kopējo sugu uzkrājumu un kustināt slīdni atpakaļ laikā, lai apskatītu citas jauni novērotas sugas. Šī diagramma attēlo sugas ar pierādāmiem novērojumiem un šķiro tās pēc mēneša, kad novērojumi augšupielādēti %{site_name} vietnē (nevis novēroti). Diagrammā netiek iekļauti augstākas vai zemākas pakāpes taksoni, piemēram, novērojums ar identifikāciju "Zīdītāji" netiks attēlots, bet <i>Canis lupus</i> ssp.
           <i>arctos</i> tiks attēlots tikai kā <i>Canis lupus</i>.
         new_species_per_year: Jaunas sugas / gads
         new_species_per_year_by_date_added: Pēc pievienošanas datuma
@@ -7186,6 +7316,8 @@ lv:
         complete_rank: Pilnīga pakāpe
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Aizsardzības statuss
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Attēlots
         #ID of the iconic taxon this taxon belongs to
         iconic_taxon_id: Pamata taksona ID
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
@@ -7296,6 +7428,8 @@ lv:
               guide_has_too_many_taxa: "padomā var būt tikai 500 taksoni"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: darbību nav iespējams izpildīt ar šādu saturu
             base:
               only_staff_can_unhide: Tikai vietnes darbinieki var atsegt noslēpto saturu
               staff_cannot_be_suspended: Vietnes darbinieki nevar tikt bloķēti
