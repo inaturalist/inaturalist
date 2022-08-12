@@ -532,6 +532,8 @@ nb:
   are_you_sure_remove_photo: "Er du sikker på at du vil fjerne dette bildet?"
   are_you_sure_remove_relationship: Er du sikker på at du vil fjerne denne relasjonen? Da følger du ikke denne personen lenger og trekkes eventuell tilgang du har gitt til dine skjulte koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på at du vil fjerne dette taksonet fra listen?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Er du sikker? Dette vil laste siden på nytt og du kan miste noen av dine endringer.
   are_you_sure_unresolve_flag?: |
     Er du sikker på at du vil fjerne løsningen for denne markeringen? Dette vil fjerne løsningen og brukeren som bidro med løsningen fra denne markeringen.
   are_you_sure_want_delete_taxon: "Er du sikker på at du vil slette dette taksonet?"
@@ -3521,6 +3523,7 @@ nb:
     must_be_georeferenced: må være georeferert
     must_be_identified: må være identifisert
     must_be_on_list: må være på liste
+    must_be_observed_in_place: må være observert på sted
     must_be_in: må være i takson
     must_be_coordinates_shareable_by_project_curators: observatør må tillate at prosjektkuratorer kan se koordinatene.
   running_total: Løpende total
