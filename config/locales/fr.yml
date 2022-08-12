@@ -597,6 +597,8 @@ fr:
   are_you_sure_remove_photo: "Êtes-vous sûr de vouloir supprimer cette photo ?"
   are_you_sure_remove_relationship: Voulez-vous vraiment supprimer cette relation? Vous ne suivrez plus cette personne et elle n'aura plus accès à vos coordonnées masquées si vous lui aviez donné cet accès.
   are_you_sure_remove_taxon_from_list: "Êtes-vous sûr de vouloir enlever ce taxon de la liste ?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Êtes-vous sûr ? Cela rechargera la page et vous risquez de perdre certaines de vos modifications.
   are_you_sure_unresolve_flag?: |
     Êtes-vous certain de vouloir annuler la résolution du problème signalé ? Ceci enlèvera de ce signalement à la fois la résolution et son auteur.
   are_you_sure_want_delete_taxon: "Êtes-vous sûr de vouloir supprimer ce taxon ?"
@@ -1607,6 +1609,8 @@ fr:
   edit_taxon_link: Modifier le lien relatif au taxon
   edit_taxon_range: Modifier l'aire de répartition du taxon
   edit_the_observation: Modifier l’observation
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Modifiez ce taxon après l'avoir créé pour ajouter des statuts de conservation
   edit_your_account_and_profile_html: "Modifier votre compte et votre profil"
   edit_your_default_settings: "Modifier vos paramètres par défaut"
   edit_your_global_project_settings: Modifier vos paramètres de projet globaux
@@ -3864,6 +3868,7 @@ fr:
   queued: Mis en file
   query: Requête
   radius: Rayon (m)
+  radius_km: Rayon (km)
   radius_value: "Rayon (m) : %{radius}"
   random: Aléatoire
   range: Période
@@ -4151,6 +4156,7 @@ fr:
     must_be_georeferenced: doit être géoréférencé
     must_be_identified: doit être identifié
     must_be_on_list: doit être dans la liste
+    must_be_observed_in_place: doit être observé dans le lieu
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser les responsables du projet à voir les coordonnées.
     must_be_verifiable: doit être vérifiable
@@ -4531,6 +4537,8 @@ fr:
   target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera interprété comme une absence. Il est très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter. Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
   task_deleted: Tâche supprimée
   taxa: Taxons
+  taxa_show_obs_photo_search_tip: |
+    Astuce : entrez l'ID d'une observation dans le champ de recherche si vous voulez choisir des photos d'une observation spécifique.
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations sur les taxons
   taxa_needing_curation: Taxons nécessitant une organisation
@@ -4595,6 +4603,8 @@ fr:
   taxon_assessments_are: |
     Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement son statut de conservation.
     Par exemple, un organisme régional de protection de l'environnement peut les utiliser pour exploiter de l’information et demander des données sur la situation des taxons menacés dans la région.
+  taxon_change_commit_may_still_be_processing: |
+    La validation du changement de taxon est peut-être toujours en cours. Gardez à l'esprit que certains enregistrements pourraient ne pas encore avoir été mis à jour
   taxon_change_must_be_committed_to_update_records: La modification de taxon doit être validée pour mettre à jour les enregistrements
   taxon_change_title_taxon_drop: Désactivation taxinomique %{id}
   taxon_change_title_taxon_merge: Fusion taxinomique %{id}
@@ -5188,8 +5198,13 @@ fr:
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
+  view_all_fields: Afficher tous les champs
   view_all_flags: Voir tout les signalements
   view_all_members: Afficher tous les membres
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Afficher %{count}"
+    other: "Afficher les %{count}"
   view_all_observations: Afficher toutes les observations
   view_all_photocount_photos: "Afficher toutes les %{photo_count} photos"
   view_assessment: Afficher l’évaluation
