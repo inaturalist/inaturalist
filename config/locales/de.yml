@@ -1,4 +1,8 @@
 de:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} Änderung"
+    other: "%{count} Änderungen"
   x_comments:
     one: '%{count} Kommentar'
     other: '%{count} Kommentare'
@@ -559,6 +563,7 @@ de:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Apps
+  apply_app_owner: Anwenden
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Beantragen
@@ -584,6 +589,8 @@ de:
   are_you_sure_remove_photo: "Bist du sicher, dass du dieses Bild entfernen willst?"
   are_you_sure_remove_relationship: Willst Du diese Verbindung wirklich entfernen? Damit folgst Du dieser Person nicht mehr und entziehst ihr den Zugang zu Deinen versteckten Koordinaten, falls Du ihn ihr gewährt hattest.
   are_you_sure_remove_taxon_from_list: "Bist du sicher, dass du dieses Taxon aus der Liste entfernen willst?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Bist du sicher? Die Seite wird neu geladen und deine Änderungen könnten verloren gehen.
   are_you_sure_unresolve_flag?: |
     Sicher, dass du die Lösung zu dieser Meldung zurücknehmen möchtest? Dies wird sowohl die Auflösung als auch den zugehörigen Benutzer von dieser Meldung entfernen.
   are_you_sure_want_delete_taxon: "Bist du sicher, dass du dieses Taxon entfernen willst?"
@@ -669,6 +676,9 @@ de:
     natureserve: NatureServe
     cites: CITES
   authorize: Erlauben
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Mit PKCE autorisieren
   authorize_permissions_from_provider: "Berechtigungen von %{provider} zulassen"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatisch Beobachtungen zu diesem Projekt hinzufügen
@@ -677,6 +687,7 @@ de:
   #of values, and not a synonym of "typical" or "normal"
   avg: Mittl.
   back: Zurück
+  back_to_applications: "&laquo; Zurück zu den Anwendungen"
   back_to_all_species: Zurück zu Alle Arten
   back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
@@ -836,6 +847,8 @@ de:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} wurden in %{output_taxon} zusammengeführt"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} werden in %{output_taxon} zusammengeführt"
   change_your_password: Dein Kennwort ändern
+  #Plural noun, as in changes to a taxon record over time
+  changes: Änderungen
   changing_the_geoprivacy: 'Die Änderung der Geo-Privatsphäre bestimmt, wie andere Personen den Ort deiner Beobachtung sehen.'
   check_above_for_errors: Oben nach Fehlern suchen
   check_back_soon: Schau demnächst wieder vorbei!
@@ -958,6 +971,7 @@ de:
     während der nächsten Modelltrainierung aufgenommen wird, sollten weitere Beobachtungen
     dieses Taxons hinzugefügt oder bestimmt werden.
   concept_status: Konzeptzustand
+  confidential: Vertraulich
   configure: Einrichten
   configure_a_widget_to_show: Konfiguriere ein Widget, um %{site_name} Beobachtungen auf deiner Webseite oder deinem Blog anzuzeigen. Eventuell musst du das eingebettete CSS in den <code>&lt;head&gt;</code> deines HTML einbinden. Das CSS kann auch gerne neu geschrieben werden.
   confirm: Bestätigen
@@ -3923,6 +3937,8 @@ de:
   recently_finished: Kürzlich abgeschlossen
   recently_observed: Kürzlich beobachtet
   recently_resolved: Kürzlich geklärt
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Aufnahmen
   red: rot
   redo_search_in_map: Suche in der Karte wiederholen
   redo_search_in_map_area: Suche im Kartenbereich wiederholen
@@ -4035,6 +4051,7 @@ de:
     must_be_georeferenced: muss georeferenziert sein
     must_be_identified: muss identifiziert werden
     must_be_on_list: muss auf der Liste stehen
+    must_be_observed_in_place: muss im Gebiet beobachtet worden sein
     must_be_in: 'muss in diesem Taxon sein:'
     must_be_coordinates_shareable_by_project_curators: Der Beobachter muss den Projektkuratoren erlauben, die Koordinaten einzusehen.
     must_be_verifiable: muss verifizierbar sein
@@ -4139,6 +4156,8 @@ de:
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
+  show_history_by_this_user: Verlauf dieses Benutzers anzeigen
+  show_history_for_this_kind_of_action: Verlauf für diese Art von Aktion anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -4507,6 +4526,8 @@ de:
     Taxabewertungen sind Dokumente, die den aktuellen Status, normalerweise den Umweltschutzstatus, einer Spezie bewerten. 
     Zum Beispiel können regionale Organisationen diese dann benutzen, um Informationen und Rückmeldungen über den Status bedohter Taxa in der Region zu erhalten.
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht werden, um Aufzeichnungen zu aktualisieren.
+  taxon_change_title_taxon_merge: Taxonomische Zusammenführung %{id}
+  taxon_change_title_taxon_split: Taxonomische Aufteilung %{id}
   taxon_deleted: Taxon gelöscht.
   taxon_doesnt_have_a_range: Das Taxon hat kein eingetragenes Verbreitungsgebiet
   taxon_drop: Taxon-Löschung
@@ -4732,6 +4753,44 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Südafrikanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Ostafrikanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentinische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolumbianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Zentrale Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Pazifische Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemalische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantische Standardzeit (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolivianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peruanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Pazifische Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Zentrale Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Östliche Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Chile Kontinental Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brasilianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Pazifische Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabische Standardzeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indochinesische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hong-Kong Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: UTC
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: Mitteleuropäische Zeit
@@ -4743,6 +4802,8 @@ de:
   time_zone_europe_copenhagen: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Mitteleuropäische Zeit
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
@@ -7276,8 +7337,13 @@ de:
         #Inputs to an export task, e.g. the query and the columns
         inputs: Eingaben
       oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Rückleitungs-URL
         #Unique identifier for an application
         uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Geheimnis
         #Adjective, whether or not this application can keep its secret
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
@@ -7314,6 +7380,7 @@ de:
         place_type: Gebiets-Typ
         prefers_check_lists: Checklisten erlaubt?
       site:
+        logo: Wortzeichen
         logo_email_banner: Email-Banner
       source:
         title: Titel
@@ -7321,16 +7388,37 @@ de:
         url: URL
         citation: Zitierung
       taxon:
+        ancestry: Vorfahren
         auto_description: Automatische Beschreibung
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Empfohlen am
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Symbolische Taxon-ID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
         locked: Gesperrt
         name: Name
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Namensanbieter
+        parent_id: Übergeordnete ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos gesperrt?
         rank: Rang
+        rank_level: Rangstufe
+        source_id: Quellen-ID
+        source_identifier: Quellbezeichner
         source_url: Quell-URL
         wikipedia_summary: Wikipedia-Zusammenfassung
         wikipedia_title: Wikipedia-Titel
       taxon_name:
+        is_valid: Ist es gültig?
+        lexicon: Lexikon
+        name: Name
         name_provider: Namensanbieter
+        position: Position
         source_url: Quellen-URL
+        source_identifier: Quellbezeichner
       user:
         email: E-Mail
         login: Benutzername
@@ -7584,9 +7672,16 @@ de:
         invalid_redirect_uri: 'Der beigefügte Weiterleitungs-URI ist ungültig.'
         unauthorized_client: 'Der Client ist nicht berechtigt, diese Anfrage mit dieser Methode durchzuführen.'
         access_denied: 'Die Anfrage wurde durch Benutzer oder Autorisierungs-Server verweigert.'
+        invalid_scope: 'Der angeforderte Geltungsbereich ist ungültig, unbekannt oder fehlerhaft.'
+        server_error: 'Der Autorisierungsserver hat eine unerwartete Bedingung gefunden, die ihn daran hinderte, die Anfrage zu bearbeiten.'
+        temporarily_unavailable: 'Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage zu bearbeiten.'
+        #Access grant errors
+        unsupported_response_type: 'Der Autorisierungs-Server unterstützt diesen Antworten-Typ nicht.'
         #Access token errors
         invalid_client: 'Die Klientauthentifizierung ist fehlgeschlagen, weil ein unbekannter Klient, keine Klientauthentifizierung oder eine nicht unterstützte Authentifizierungsmethode enthalten ist.'
         invalid_grant: 'Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, an einen anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.'
+        #Password Access token errors
+        invalid_resource_owner: 'Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden'
     flash:
       applications:
         create:
