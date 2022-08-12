@@ -623,6 +623,8 @@ sv:
   are_you_sure_remove_photo: "Är du säker på att du vill ta bort denna bild?"
   are_you_sure_remove_relationship: Är du säker på att du vill ta bort denna relation? Du kommer inte längre att följa denna person och åtkomst till dina dolda koordinater återkallas i de fall du hade aktiverat det.
   are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort detta taxon från listan?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Är du säker? Sidan kommer att laddas om och dina ändringar kan gå förlorade.
   are_you_sure_unresolve_flag?: |
     Är du säker på att du vill ångra lösningen för den här flaggan? Det
     kommer att ta bort lösningen och dess användare från flaggan.
@@ -4211,6 +4213,7 @@ sv:
     must_be_georeferenced: måste vara koordinatsatt
     must_be_identified: måste bestämmas
     must_be_on_list: måste vara med på listan
+    must_be_observed_in_place: måste vara observerad på Fyndplats
     must_be_in: måste finnas i taxon
     must_be_coordinates_shareable_by_project_curators: observatören måste tillåta projekthandläggare att se koordinater.
     must_be_verifiable: måste gå att verifiera
