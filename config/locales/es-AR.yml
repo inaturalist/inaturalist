@@ -549,6 +549,8 @@ es-AR:
   are_you_sure_remove_photo: "¿Estás seguro que quieres eliminar esta foto?"
   are_you_sure_remove_relationship: '¿Estás seguro que deseas eliminar esta relación? Esto hará que dejes de seguir a esta persona y revocará el acceso a tus coordenadas privadas si ya habías habilitado tal acceso.'
   are_you_sure_remove_taxon_from_list: "¿Estás seguro que quieres eliminar a este taxón de la lista?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    ¿Estás seguro? Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
   are_you_sure_unresolve_flag?: |
     ¿Estás seguro de que deseas borrar la respuesta a esta marca? Esto eliminará la resolución
     y el usuario que ha resuelto esta marca.
@@ -1478,6 +1480,8 @@ es-AR:
   edit_taxon_link: Modifica vínculo del taxón
   edit_taxon_range: Modifica área del taxón
   edit_the_observation: Modificá la observación
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edita este taxón después de crearlo para agregar estados de conservación
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
   edit_your_default_settings: "Edita la configuración predeterminada"
   edit_your_global_project_settings: Edita tu configuración global de proyectos
@@ -2007,6 +2011,7 @@ es-AR:
     visible públicamente. \ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, 
     <a href="mailto:%{help_email}" class="contact">contáctanos </a>.
     <a href="%{manage_flags_path}">Administra advertencias</a>
+  jobs: Oportunidades laborales
   join: '¡Únete a'
   join_and_add_an_observation_to_project_html: Unite y añadí una observación a %{project}
   join_project: Unirse a este proyecto
@@ -2143,6 +2148,7 @@ es-AR:
     ojibwe: Ojibwe
     palauan: Palauano
     pangasinan: Pangasinán
+    persian: Persa
     polish: Polaco
     portuguese: Portugués
     romanian: Rumano
@@ -2152,6 +2158,7 @@ es-AR:
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Español
+    swahili: Suajili
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
@@ -3523,6 +3530,7 @@ es-AR:
   queued: En espera
   query: Consulta
   radius: Radio (m)
+  radius_km: Radio (km)
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Área
@@ -3772,6 +3780,7 @@ es-AR:
     must_be_georeferenced: deben estar con georeferencia
     must_be_identified: deben estar identificadas
     must_be_on_list: deben estar en la lista
+    must_be_observed_in_place: deben ser observaciones en este lugar
     must_be_in: deben estar dentro de la especie o grupo
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir a los curadores del proyecto ver las coordenadas.
     must_be_wild: debe ser silvestre
@@ -4204,6 +4213,8 @@ es-AR:
   taxonomy: Taxonomía
   taxon_assessments_are: |
     Las evaluaciones del taxón son documentos que evalúan el estado actual de una especie, generalmente su estado de conservación. Por ejemplo, una organización regional de conservación puede utilizarlos para organizar la información y solicitar comentarios acerca del estado de varias especies en riesgo en la región.
+  taxon_change_commit_may_still_be_processing: |
+    El cambio de taxón realizado puede estar procesándose, así que tené en cuenta que algunos registros aún no se han actualizado
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxón no tiene una área
