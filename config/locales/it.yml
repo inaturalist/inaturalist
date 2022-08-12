@@ -595,6 +595,8 @@ it:
   are_you_sure_remove_photo: "Sei sicuro di voler rimuovere questa foto?"
   are_you_sure_remove_relationship: Sei sicuro di voler rimuovere questa relazione? In questo modo non seguirai questa persona e revocherai il suo accesso alle tue coordinate nascoste se glielo avevi permesso.
   are_you_sure_remove_taxon_from_list: "Sei sicuro di voler rimuovere questo taxon dall'elenco?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Sei sicuro? Questa operazione aggiornerà la pagina, potresti perdere alcune delle tue modifiche.
   are_you_sure_unresolve_flag?: |
     Sei sicuro di voler rimuovere la risoluzione di questo contrassegno? Questo rimuoverà la risoluzione
     e l'utente risolutore da questo contrassegno.
@@ -4087,6 +4089,7 @@ it:
     must_be_georeferenced: deve essere georeferenziata
     must_be_identified: deva essere identificata
     must_be_on_list: deve essere sulla lista
+    must_be_observed_in_place: deve essere osservata nel luogo
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
     must_be_verifiable: dev'esser verificabile
