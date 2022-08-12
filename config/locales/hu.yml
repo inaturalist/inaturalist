@@ -1,4 +1,8 @@
 hu:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} változtatás"
+    other: "%{count} változtatás"
   x_comments:
     one: '%{count} megjegyzés'
     other: '%{count} megjegyzés'
@@ -658,6 +662,7 @@ hu:
     replace_with: 'csere ezzel:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: Cserélve erre
+    dropped: elejtve
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon}t feloszották ezekre: %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} felosztása ezekre: %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} ejtve"
@@ -2174,6 +2179,7 @@ hu:
   observation_date?: Dátum?
   observation_field: Adatmező
   observation_field_details: Adatmező részletei
+  observation_field_type_text: Szöveg
   observation_field_type_numeric: Numerikus
   observation_field_type_date: Dátum
   observation_field_type_time: Idő
@@ -2275,6 +2281,7 @@ hu:
   one_of_the_following_must_be_true: "ez egyik ezek közül igaz kell legyen:"
   one_of_your_lists: "egyik listád..."
   only_an_admin_can_remove_project_users: Csak adminok távolíthatnak el projektfelhasználókat
+  only_receive_updates_about_this_taxon: Csak erről a taxonról kapj értesítést
   only_show_active_taxa: Mutasd csak az aktív taxonokat
   only_show_events_that_last_less_than_2_weeks: Csak a 2 hétnél rövidebb eseményeket mutasd
   only_show_for_species_subspecies_varieties_etc: Csak a fajt, alfajt, változatot, stb. mutasd
@@ -3119,7 +3126,10 @@ hu:
   row_singular_or_plural: Sor(ok)
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   rules_types:
+    must_be_captive: Fogságban lévő / kultivált kell legyen
     must_be_observed_in_place: megfigyelve kell legyen a helyen
+    must_be_in: taxonban kell legyen
+    must_be_verifiable: legyen ellenőrizhető
     must_be_wild: vad kell legyen
   running_total: Kumulatív
   satellite: műholdkép
@@ -3569,7 +3579,12 @@ hu:
   trust_this_project_with_your_private_coordinates?: Engedélyezed ennek a projektnek, hogy láthassák rejtett koordinátáidat?
   twitter: Twitter
   two_thirds: 2/3
+  #As in a category, not as in a keyboard
+  type: Típus
+  type_one_name_per_line: Egy nevet írj soronként
   type_place_name: Írd be a helyet
+  type_source_name: Írd be a forrás nevét
+  type_species_name: "Írd be a faj nevét"
   type_taxon_name: "Add meg a taxon nevét"
   umbrella_projects: Ernyőprojektek
   unblock: Letiltás feloldása
@@ -3895,6 +3910,8 @@ hu:
     views: 'Nézetek'
     content_freeze:
       content_freeze: Tartalom lezárása
+      during_this_time: |
+        A befagyasztás közben bizonyos tartalmakat nem lehet létrehozni, törölni vagy módoítani.
       this_functionality_will_return: |
         Ez a művelet visszaáll, amikor vége a tartalom lezárásának.
       we_expect_this_functionality_will_return_by_date: |
@@ -4271,6 +4288,7 @@ hu:
       delete:
         by_deleting_your_account_you_will_remove: |
           Ha kitörlöd fiókod, eltávolítod
+        type_confirmation_code: Írd be a %{confirmation_code}t
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ha meggondolod magad, bármikor
