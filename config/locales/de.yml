@@ -1173,11 +1173,9 @@ de:
   curator_application_fields_explanation_html: Warum möchtest du Kurator sein?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Wenn Sie die Taxonomie von iNaturalist bearbeiten möchten, geben Sie bitte ein Beispiel oder zwei
-    von Taxonomie-Änderungen an, die Sie vornehmen möchten. Diese sollten die Quellen für Ihre
-    vorgeschlagenen Änderungen enthalten. Falls zutreffend, führen Sie bitte die entsprechenden taxonomischen Institution, <a
-    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorhandbuch</a>aufgelistet an.
-    Wenn Sie keine Quellen angeben, wird Ihre Bewerbung nicht berücksichtigt.
+    Wenn du die Taxonomie in iNaturalist bearbeiten möchtest, gib bitte ein oder zwei Beispiele von Taxonomie-Änderungen an, die du vornehmen möchtest, einschließlich der Quellen, die als Grundlage für deine vorgeschlagenen Änderungen dienen. Führe bitte, falls möglich, die entsprechenden taxonomischen Institutionen an, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorenhandbuch</a>aufgelistet.
+    Wenn du keine Quellen angibst, wird die Bewerbung nicht berücksichtigt.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Wenn du umgangssprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
@@ -2465,8 +2463,8 @@ de:
   minimum_positional_accuracy: Minimale Genauigkeit der Position
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
-    Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 
-    <a href="/help#inappropriate">FAQ</a>.
+    Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", bitte in die 
+    <a href="/help#inappropriate">FAQs</a> schauen.
   #Label shown when a date has not been entered
   missing_date: Fehlendes Datum
   mobile: Mobil
@@ -4706,6 +4704,8 @@ de:
     <strong>Diese Taxon-Änderung wurde eingereicht!</strong>
     Bitte bearbeite die Taxa nicht.  Die Bearbeitung anderer Felder ist in Ordnung.
   this_taxon_concept_is_inactive: Dieses Taxonkonzept ist inaktiv
+  this_taxon_has_more_than_1000_alt: |
+    Dieses Taxon hat mehr als 1000 Beobachtungen. Änderungen könnten daher einige Zeit in Anspruch nehmen. Sicher, dass sie notwendig sind?
   this_taxon_has_no_default_photo: Dieses Taxon hat kein Standardbild!
   this_taxon_is_inactive_this_means: |
     Dieses Taxon ist <strong>inaktiv</strong>. Das bedeutet, dass es die Kuratoren von %{site_name}
