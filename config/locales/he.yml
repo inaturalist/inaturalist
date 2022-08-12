@@ -414,6 +414,7 @@ he:
   add_tag: הוספת תגית
   add_tags: הוספת תגיות
   add_tags_to_selected_taxa: הוספת תגיות לטקסונים שנבחרו
+  add_taxa: הוספת טקסונים
   add_taxon_batch_to: "הוספת טקסונים מרובים ל\"%{list}\""
   add_taxon_range: הוספת מגוון טקסונים
   add_taxonomic_tags_to: "הוספת תגיות טקסונומיות לתמונות ה־Flickr שנבחרו &raquo;"
@@ -675,6 +676,8 @@ he:
   are_you_sure_remove_photo: "האם ברצונך להסיר תמונה זו?"
   are_you_sure_remove_relationship: האם לנתק את הקשר בוודאות? זה ינתק את אדם זה מלעקוב אחריכם ויבטל את ההרשאות שלהם לראות את מיקומכם אם אישרתם גישה זו.
   are_you_sure_remove_taxon_from_list: "האם ברצונך להסיר את הטקסון הזה מהרשימה?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    אתם בטוחים? זה יטען מחדש את הדף, ואתם עלולים לאבד חלק מהשינויים שלכם.
   are_you_sure_unresolve_flag?: |
     האם לבטל את הפתרון של הערה זו? פעולה זו תסיר את הפתרון ואת הפותר מהערה זו.
   are_you_sure_want_delete_taxon: "האם ברצונך למחוק טקסון זה באופן סופי?"
@@ -1257,6 +1260,7 @@ he:
   data_used: "הנתונים שבהם נעשה שימוש:"
   datatype: סוג נתונים
   date_: תאריך
+  date_added: תאריך הוספה
   date_authorized: תאריך הרשאה
   date_created: תאריך יצירה
   date_format:
@@ -1777,6 +1781,7 @@ he:
   hide_running_total: הסתרת סכום מצטבר
   high: גבוה
   highest_rank: הדירוג הגבוה ביותר
+  history: היסטוריה
   home: דף הבית
   i_dont_know_but_i_am_sure_this_is_taxon: לא יודע/ת אבל בטוח/ה שזה %{taxon}
   icon: אייקון
@@ -2129,6 +2134,7 @@ he:
   maps:
     overlays:
       all_observations: כל התצפיות
+      every_publicly_visible_observation: כל תצפית גלויה שנוצרה ברשת iNaturalist
       featured_observations: תצפיות נבחרות
       gbif_network: GBIF network
       observations: תצפיות
@@ -2378,6 +2384,7 @@ he:
   no_taxa_selected: אף טקסה לא נבחרה!
   no_wikipedia_page_for_taxon: אין ערך בויקיפידיה לטקסון זה.
   non_human?: לא בן אדם?
+  none: אף לא אחד
   none_found: לא נמצא דבר
   normal: רגיל
   not_completed: טרם הושלם
@@ -3104,6 +3111,7 @@ he:
   preview_observations_with_these_observation_requirements: תצוגת מוקדמת של תצפיות העומדות בדרישות אלה
   previewing: "מציג..."
   prev: קודם
+  previous_observation: תצפית קודמת
   previous_page: דף קודם
   previous_photo: תמונה קודמת
   previous_tab: לשונית קודמת
@@ -3947,6 +3955,7 @@ he:
   verbing_x_of_y: "%{verb} %{x} מ %{y}"
   view: צפייה
   view_all: צפייה בהכל
+  view_all_fields: צפייה בכל השדות
   view_all_flags: צפייה בכל השדות
   view_all_members: הצגת כל המשתמשות.ים
   view_all_observations: צפייה בכל התצפיות
@@ -3966,6 +3975,7 @@ he:
   view_more: צפייה בעוד
   view_more_about_x: "צפייה בעוד על %{x}"
   view_more_unreviewed: "הצגת תצפיות נוספות שטרם נסקרו"
+  view_observation: צפייה בתצפית
   view_observations: צפייה בתצפיות
   view_observation_flags: צפייה בדגלים עבור תצפית זו
   view_observations_by_these_users: עיון בתצפיות של משתמשים אלו
@@ -3979,6 +3989,7 @@ he:
   view_sample: הצגת דוגמה
   view_stats: צפייה בסטטיסטיקות
   view_taxon_change: צפייה בשינוי טקסון
+  view_taxon_framework_relationship: צפייה ביחס מסגרות טקסון
   view_taxon_page: צפייה בדף הטקסון
   view_user_observations: "הצגת התצפיות של %{user}"
   view_x: "הצגת %{x}"
@@ -4258,6 +4269,7 @@ he:
         agreement: הסכם
         algorithm_summary: סיכום האלגוריתם
         ancestor_disagreements: אי-הסכמות הוריות
+        below_cutoff: מתחת לרף
         cumulative_count: ספירה מצטברת
         disagreement: אי-הסכמה
         disagreement_count: ספירת אי-הסכמות
@@ -4281,6 +4293,16 @@ he:
           זהו המספר הכולל של טקסוני "עלה" המיוצגים בשאילתה. לפעמים יופיעו יותר שורות מזה עם ספירות שאינן אפס מכיוון שיש טקסונים מרמה גבוהה יותר אשר נוספו משאילתות אחרות. למשל אם שאילתה 1 כוללת תצפית של 'הומו ספיאנס' ושאילתה 2 כוללת תצפית מהסוג 'הומו', שני הטקסונים יופיעו בטבלה, אבל תהיה שורה אחת נוספת עבור הסוג 'הומו' בשאילתה 1, אשר לא נכללה בספירה הכוללת שלה כי היא ספרה רק את המין 'הומו ספיאנס' בתוך הסוג, מכיוון שהוא חלק ה"עלה" של אותו חלק בעץ שלה.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: אנכי
+        #Count of how many taxa several observation searches have in common
+        x_in_common:
+          #Count of how many taxa several observation searches have in common
+          one: "%{count} משותף"
+          #Count of how many taxa several observation searches have in common
+          two: "%{count} משותפים"
+          #Count of how many taxa several observation searches have in common
+          many: "%{count} משותפים"
+          #Count of how many taxa several observation searches have in common
+          other: "%{count} משותפים"
         #Count of how many taxa are not present in *all* of several observation searches
         x_not_in_common:
           #Count of how many taxa are not present in *all* of several observation searches
@@ -4673,6 +4695,16 @@ he:
           במידה וברצונך לעזור ולתרגם, %{link_tag} כאן ניתן ללמוד איך%{link_tag_end}.
     taxa:
       show:
+        about_names_desc: |
+          <p>
+          רוב הקטגוריות של אורגניזמים הן בעלות "שמות עממיים" בשפות מדוברות. שמות אלו הם בדרך כלל מוכרים, קלים להגייה, וקבועים לאורך זמן. אולם להרבה אורגניזמים יש כמה שמות במקומות שונים, אפילו באותה השפה, דבר אשר יכול להקשות על תקשורת בהירה אודות אורגניזמים אלו. מדעניות ומדענים מתייחסים לבעיה זו באמצעות שימוש ב"שם מדעי" אחד לכל קטגוריה של אורגניזם שמשתלבת בכללי <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">נומנקלטורה דו-שמית</a>, אבל שמות אלו נוטים להיות מבוססים על לטינית, שפה שאף אחד לא מדבר, ולכן הם לא קליטים כמו שמות עממיים עבור א.נשים רבים. שמות מדעיים יכולים גם לשקף מיקום טקסונומי של אורגניזם, ועקב כך הם יכולים להשתנות כאשר מדעניות ומדענים מפתחות.ים תיאוריות יותר מדויקות על היחסים האבולוציוניים בין אורגניזמים שונים, מה ששוב מוריד את השימושיות של שמות אלו בתקשורת, אפילו בין א.נשים שמכירות שמות מדעיים.
+          </p>
+          <p>
+          הפתגם הישן מסכם היטב: "שמות עממיים משתנים בין מקום למקום, ושמות מדעיים משתנים בין זמן לזמן."
+          </p>
+          <p>
+          אנו משתדלים להתייחס לחסרונות הללו באמצעות הצגת גם שמות עממיים וגם שמות מדעיים היכן שאפשר, ובחירת שמות עממיים לפי השפה וההעדפות הגיאוגרפיות של המשתמש.ת.
+          </p>
         about_conservation_status_desc: |
           סטטוס השימור מסכם את סכנת ההכחדה עבור קבוצת אורגניזמים.
         about_establishment_desc: |
@@ -4742,6 +4774,8 @@ he:
           <p>
           ביכולתך להשתיק כמה אנשים שאת.ה רוצה, רק יש לזכור כי תפסיד.י התראות שעשויות להיות חשובות, כגון זיהויים שמכריעים את זיהוי הקהילה על תצפיות שלך.
           </p>
+        name_place_help_html: |
+          לתעדף שמות עממיים שנמצאים בשימוש במקום זה.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: הערות
         #Checkbox label for user preference about what to receive in the daily email update
@@ -4849,6 +4883,7 @@ he:
         contribute_to_science: תירמו למדע
         science_desc_html: |
           כל תצפית יכולה לתרום למדע, מהפרפר הכי נדיר ועד לעשב הכי השכיח. אנו משתפים את התצפיות שלך עם מאגרי מידע כמו <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> כדי לעזור למדעניות ומדענים למצוא ולהשתמש בתצפיות שלך. לך נותר רק לתצפת.
+        nature_at_your_fingertips: הטבע בהישג ידך
         keep_track: להמשיך לעקוב
         record_your_encounters: |
           תיעוד המפגשים שלך עם מינים שונים והחזקת רשימות חיים - הכל בענן.
@@ -5298,6 +5333,9 @@ he:
         rank: דרגה
         source_identifier: מזהה מקור
         source_url: URL המקור
+        #Identifier of the taxon framework relationship record associated
+        #with this taxon
+        taxon_framework_relationship_id: מזהה יחס מסגרות טקסון
         wikipedia_summary: תקציר ויקיפידיה
         wikipedia_title: כותרת ויקיפדיה
       taxon_name:
