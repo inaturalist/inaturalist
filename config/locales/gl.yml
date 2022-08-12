@@ -577,6 +577,8 @@ gl:
   are_you_sure_remove_photo: "¿Seguro que queres eliminar esta foto?"
   are_you_sure_remove_relationship: '¿Seguro que queres eliminar esta relación? Isto fará que deixes de seguir a esta persoa e revocará o acceso ás túas coordenadas privadas se xa habilitaras tal accesso.'
   are_you_sure_remove_taxon_from_list: "Estás seguro de que desexas eliminar esta especie ou grupo da lista?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    ¿Seguro? Isto cargará de novo a páxina e é posible que perdas algunhas modificacións.
   are_you_sure_unresolve_flag?: |
     ¿Seguro que queres eliminar a resposta a esta marca? Isto eliminará a resolución
     e ó usuario que resolveu esta marca.
@@ -3822,6 +3824,7 @@ gl:
     must_be_georeferenced: deben contar con xeoreferencia
     must_be_identified: deben estar identificadas
     must_be_on_list: deben estar na lista
+    must_be_observed_in_place: deben ser observacións neste lugar
     must_be_in: deben estar dentro da especie ou grupo
     must_be_coordinates_shareable_by_project_curators: o observador debe permitir ós conservadores do proxecto ver as coordenadas.
   running_total: Total Acumulado
