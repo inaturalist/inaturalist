@@ -708,6 +708,8 @@ ru:
   are_you_sure_remove_photo: "Вы уверены, что хотите удалить это фото?"
   are_you_sure_remove_relationship: Вы уверены, что хотите удалить эту связь? Это приведёт к отмене подписки на эту персону и отменит доступ к вашим скрытым координатам, если вы включили такой доступ.
   are_you_sure_remove_taxon_from_list: "Вы уверены что хотите удалить этот таксон из списка?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Вы уверены? Это приведёт к перезагрузке страницы и вы можете потерять несохранённые изменения.
   are_you_sure_unresolve_flag?: |
     Вы уверены, что хотите отменить этот флаг? Это приведет к отмене решения проблемы и удалению пользователя-автора из этого флага.
   are_you_sure_want_delete_taxon: "Вы уверены, что хотите удалить этот таксон?"
@@ -4225,6 +4227,7 @@ ru:
     must_be_georeferenced: должен иметь геолокацию
     must_be_identified: должен быть идентифицирован
     must_be_on_list: должен быть в списке
+    must_be_observed_in_place: должен наблюдаться в месте
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить куратору проекта видеть координаты.
     must_be_verifiable: должно быть проверяемым
@@ -5299,6 +5302,12 @@ ru:
   view_all_fields: Посмотреть все поля
   view_all_flags: Просмотр всех флагов
   view_all_members: Посмотреть всех участников
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Видеть все %{count}"
+    few: "Видеть все %{count}"
+    many: "Видеть все %{count}"
+    other: "Видеть все %{count}"
   view_all_observations: Посмотреть все наблюдения
   view_all_photocount_photos: "Посмотреть все %{photo_count} фото"
   view_assessment: Просмотр оценки
