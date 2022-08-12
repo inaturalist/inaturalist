@@ -514,6 +514,8 @@ bg:
   are_you_sure_merge_these_places: Сигурни ли сте, че искате да обедините тези места? Това не може да се отмени.
   are_you_sure_remove_photo: "Сигурни ли сте, че искате да премахнете тази снимка?"
   are_you_sure_remove_taxon_from_list: "Сигурни ли сте, че искате да премахнете този таксон от списъка?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Сигурни ли сте? Това ще презареди страницата и може да изгубите някои от промените си.
   are_you_sure_unresolve_flag?: |
     Сигурни ли сте, че искате да отмените решението на този маркер? Това ще премахне от маркера решението и потребителят, който го е направил.
   are_you_sure_want_delete_taxon: "Сигурни ли сте, че искате да изтриете този таксон?"
@@ -3803,6 +3805,10 @@ bg:
   view_all_fields: Виж всички полета
   view_all_flags: Виж всички маркери
   view_all_members: Виж всичките членове
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Виж всички (%{count})"
+    other: "Виж всички (%{count})"
   view_all_observations: Виж всички наблюдения
   view_all_photocount_photos: "Виж всичките %{photo_count} снимки"
   view_check_list_page: Виж видовия списък
@@ -5029,6 +5035,8 @@ bg:
         started_at: Започнато
         #Date/time the task finished processing
         finished_at: Завършено
+      place_taxon_name:
+        position: Позиция
       post:
         title: Заглавие
         body: Съдържание
