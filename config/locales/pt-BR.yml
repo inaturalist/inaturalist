@@ -602,6 +602,8 @@ pt-BR:
   are_you_sure_remove_photo: "Tem certeza de que deseja remover esta foto?"
   are_you_sure_remove_relationship: Tem certeza de que deseja excluir este relacionamento? Isso fará com que você pare de seguir essa pessoa e revogue o acesso às suas coordenadas ocultadas, se já tiver ativado esse acesso.
   are_you_sure_remove_taxon_from_list: "Você tem certeza que quer remover este táxon da lista?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Tem a certeza? Isto irá recarregar a página, você pode perder algumas de suas alterações.
   are_you_sure_unresolve_flag?: |
     Tem certeza de que deseja cancelar a resolução desta sinalização? Isso removerá a resolução e o usuário que a criou deste alerta.
   are_you_sure_want_delete_taxon: "Você tem certeza que deseja remover este táxon?"
@@ -2312,6 +2314,7 @@ pt-BR:
     ojibwe: Ojibwe
     palauan: Palauano
     pangasinan: Pangasinán
+    persian: Persa
     polish: Polonês
     portuguese: Português
     romanian: Romano
@@ -2322,6 +2325,7 @@ pt-BR:
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Espanhol
+    swahili: suaíli
     swedish: Sueco
     tagalog: Análogo
     tahitian: Taitiano
@@ -2423,6 +2427,7 @@ pt-BR:
     lb: Luxemburguês
     lt: Lituano
     lv: Letão
+    mi: Maori
     mk: Macedônio
     mr: Marata
     nb: Norueguês Bokmahl
@@ -2667,6 +2672,8 @@ pt-BR:
   most_observed_introduced_species: Espécies Introduzidas Mais Observadas
   most_observed_threatened_species: Espécies ameaçadas mais observadas
   move_input_children_to_output?: Mover os descendentes para a saída?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Movendo %{child} de %{old_parent} limitaria o que entendemos por %{old_parent}. Há %{id_count} IDs de %{old_parent}.
   multiple: múltiplo
   multiple_select_option: '-- múltiplo --'
   multiple_taxa_for_taxon_change: "Diversas espécies e grupos (entrada de dados para alterar/fundir, saída de dados para dividir)"
@@ -3863,6 +3870,7 @@ pt-BR:
   queued: Em espera
   query: Consulta
   radius: Raio (m)
+  radius_km: Raio (km)
   radius_value: "Raio (m): %{radius}"
   random: Aleatório
   range: Área de Distribuição
@@ -4125,6 +4133,8 @@ pt-BR:
   restart: Reiniciar
   restore: Restaurar
   restoring: Restaurando...
+  result_window_too_large_error: |
+    Número de páginas vezes o número de resultados por página não pode exceder 10.000. Tente aplicar filtros para reduzir o número de resultados.
   review_all: Revisar todas
   review_identifications_of_taxon_html: |
     Revisar identificações de <span class="sciname">%{taxon}</span> %{taxon_id}
@@ -4148,6 +4158,7 @@ pt-BR:
     must_be_georeferenced: Georreferenciamento obrigatório
     must_be_identified: identificação obrigatória
     must_be_on_list: deve constar na lista
+    must_be_observed_in_place: tem de ser observado no Local
     must_be_in: deve estar presente na espécie ou grupo
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que administradores de projetos acessem as coordenadas.
     must_be_verifiable: Deve ser verificável
@@ -4579,6 +4590,9 @@ pt-BR:
   target_list_warning: Lembre-se de que qualquer coisa coberta pela sua lista de alvos que você não tenha observado dentro do raio e duração desta viagem será interpretada como uma ausência. É muito importante que sua lista de segmentações reflita com precisão o conjunto de espécies que você tentou detectar. Se você não tentou detectar uma espécie na sua lista de alvos ou todas as espécies cobertas por um grupo na sua lista de alvos, remova-a.
   task_deleted: Tarefa excluída
   taxa: Táxons
+  taxa_show_obs_photo_search_tip: |
+    Dica: insira o ID de uma observação no campo de pesquisa se você quiser
+    escolher fotos de uma observação específica.
   taxa_with_unknown_relationships: Taxa com relações desconhecidas
   taxa_info: Informações sobre táxons
   taxa_needing_curation: Táxons que requerem administração
@@ -5191,6 +5205,7 @@ pt-BR:
   verifiable_observations_by_observation_date: Observações verificáveis por data de observação
   view: Exibir
   view_all: Ver todas
+  view_all_fields: Ver todos os campos
   view_all_flags: Ver Todas as Sinalizações
   view_all_members: Ver todos os membros
   view_all_observations: Ver todas observações
@@ -5501,6 +5516,8 @@ pt-BR:
   you_must_specify_and_confirm_a_new_password: Você deve especificar e confirmar uma nova senha.
   you_need_to_have_linked_flickr_account: Você tem que ter uma conta do Flickr vinculada para marcar suas fotos.
   you_need_to_select_some_observations_first: Você tem que selecionar algumas observações primeiro.
+  you_retain_full_copyright: "Você retém todos os direitos autorais sobre o seu conteúdo, exceto os direitos concedidos ao %{site_name} em nossos Termos de Serviço."
+  you_retain_full_copyright_over_your_content: "Você retém todos os direitos autorais sobre o seu conteúdo, exceto os direitos concedidos ao %{site_name} em nossos Termos de Serviço."
   you_should_delete_this_taxon_change: |
     Você provavelmente deve excluir esta mudança de táxon, ou pelo menos chegar em algum
     tipo de solução com a(s) pessoa(s) que fizeram as outras alterações.
