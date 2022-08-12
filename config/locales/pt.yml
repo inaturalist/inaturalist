@@ -540,6 +540,8 @@ pt:
   are_you_sure_remove_photo: "Tem a certeza que pretende remover esta fotografia?"
   are_you_sure_remove_relationship: Tem a certeza de que deseja remover esta relação? Deixará de seguir essa pessoa e revogará o acesso às suas coordenadas ocultas se tiver activado esse acesso.
   are_you_sure_remove_taxon_from_list: "Tem a certeza que deseja remover este táxon da lista?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Tem a certeza? Isto irá recarregar a página, você pode perder algumas de suas alterações.
   are_you_sure_want_delete_taxon: "Tem a certeza de que deseja eliminar este táxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Tem a certeza de que deseja eliminar este táxon? Ele tem táxons descendentes.
@@ -2912,6 +2914,7 @@ pt:
     must_be_georeferenced: têm de estar georreferenciadas
     must_be_identified: devem estar identificadas
     must_be_on_list: tem de estar na lista
+    must_be_observed_in_place: tem de ser observado no local
     must_be_in: tem de estar no táxon
     must_be_coordinates_shareable_by_project_curators: o observador deve permitir que os curadores do projeto visualizem as coordenadas.
   said: disse
