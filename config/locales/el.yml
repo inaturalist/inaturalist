@@ -3358,8 +3358,8 @@ el:
   projects_description: |
     Η μελέτη σε αφήνει να μοιράζεσαι τις παρατηρήσεις σου με άλλους ανθρώπους στο.
     Είτε ξεκινάς την προσπάθεια στην επιστήμη των πολιτών είτε παρατηρείς προσεκτικά τα πουλία στην γειτονία σου, η μελέτη είναι η κατάλληλη μέθοδος.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Πρότζεκτ από %{place}"
-  projects_in_x: "Εγχειρήματα στο %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Διαχειριστές %{user} Πρότζεκτ
   projects_you_admin: Πρότζεκτ που Διαχειρίζεστε
@@ -3581,7 +3581,7 @@ el:
     must_be_georeferenced: απαιτείται γεωαναφορά
     must_be_identified: πρέπει να έχει αναγνωριστεί
     must_be_on_list: Πρέπει να βρίσκεται στη λίστα
-    must_be_observed_in_place: πρέπει να παρατηρηθεί στον Τόπο
+    must_be_observed_in_place: πρέπει να παρατηρηθεί στον tόπο
     must_be_in: Πρέπει να βρίσκεται σε ταξινομική βαθμίδα
     must_be_coordinates_shareable_by_project_curators: Ο παρατηρητής πρέπει να επιτρέπει στους επιμελητές της εργασίας να βλέπουν τις συντεταγμένες.
   running_total: Τρέχον σύνολο
@@ -3642,6 +3642,11 @@ el:
   search_your_photos: Αναζητήστε τις φωτογραφίες σας
   searching: "Γίνεται αναζήτηση..."
   seasonality: Εποχικότητα
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Το δικό σας %{noun}"
   see_something_wrong_with_taxon: Βλέπετε κάτι λάθος σε αυτό το taxon; Ενημερώστε τους επιμελητές.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4105,6 +4110,11 @@ el:
   these_observations_have_not_been_uploaded_yet: |
     Αυτές οι παρατηρήσεις δεν έχουν μεταφορτωθεί ακόμα.
   third_party_tracking: Παρακολούθηση Τρίτων
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "του %{object_phrase} %{noun}"
   this: αυτό
   this_bioblitz_beings_in: Το bioblitz ξεκινά σε
@@ -4345,7 +4355,6 @@ el:
   user_observed_on_on_date_in_place: |
     %{user} παρατήρησε ένα την %{date} σε %{place}
   user_suggested_an_id: "Η/Ο %{user} πρότεινε μια ταυτοποίηση"
-  user_thinks_yours_is: "%{user} %{noun} η παρατήρηση σου %{observation} είναι"
   user_trusts_you_with_their_private_coordinates: "%{user} σας εμπιστεύεται με τις κρυμμένες συντεταγμένες"
   user_trusts_you_with_their_private_coordinates_desc: |
     Ο παρατηρητής έχει επιλέξει να σας εμπιστευτεί με τις κρυμμένες συντεταγμένες από όλες του τις παρατηρήσεις.
@@ -4371,7 +4380,6 @@ el:
   view_all: Προβολή όλων
   view_all_flags: Δείτε όλες τις αναφορές
   view_all_members: Προβολή όλων των μελών
-  view_all_n: "Προβολή όλων %{n}"
   view_all_observations: Προβολή όλων των παρατηρήσεων
   view_all_photocount_photos: "Προβολή όλων των %{photo_count} φωτογραφιών"
   view_assessment: Προβολή Αξιολόγησης
@@ -4422,7 +4430,6 @@ el:
   view_taxon_page: Προβολή σελίδας ταξινομικής μονάδας
   view_taxon_page_for_this_x: "Προβολή σελίδας ταξινομικής μονάδας για %{x}"
   view_taxononomy_details_for_taxon: "Προβολή ταξινομικών λεπτομερειών για %{taxon}"
-  view_the_observation: Προβολή της παρατήρησης
   view_user_observations: "Προβολή παρατηρήσεων της/του %{user}"
   view_x: "Προβολή %{x}"
   view_year_stats_for_site: "Προβολή στατιστικών του %{site} για το %{year}"

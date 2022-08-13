@@ -1970,6 +1970,11 @@ eu:
   search_ubio_raquo: "Bilaketa uBio-n »"
   search_your_photos: Zure argazkiak bilatu
   searching: "Bilatzen..."
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Zure %{noun}"
   see_something_wrong_with_taxon: Zerbait txarrik ikusten duzu taxon honetan? Administrariei jakinarazi.
   seen_nearby: Hurbil Ikusita
@@ -2197,6 +2202,11 @@ eu:
     %{site}(e)ak automatikoki zuhaitz taxonomikora gehitu ezin izan dituen espezieak edo taldeak dira. Zuhaitzera gehi ditzakezu esteka hautatuta "editar" eta dagokion elementu nagusia aukeratuta.
     Esate baterako, <i>Homo sapiens-en</i> elementu nagusia <i>Homo</i> izan liteke. Sinonimoak diren espezie edo taldeen arabera ere bila ditzakezu eta konbinatu.
   these_folks_kindly_volunteer_to: Pertsona hauek beren borondatez eskaini dute beren burua taxonomia mantentzeko eta bestelako arazoak konpontzeko.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}-(r)en %{noun}"
   this: hau
   this_is_more_convenient_way_find_parent: Identifikadore nagusia topatzeko modu komenigarriagoa da hau. Identifikadore nagusia da benetan gordeta geratzen dena.
@@ -2286,7 +2296,6 @@ eu:
   user_added_x_observations_html: "%{user}-(e)k %{x} behaketa gehitu zituen"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_is_a_naturalist: "%{user} naturalista da!"
-  user_thinks_yours_is: "%{user} %{noun} zure %{observation} behaketa honelakoa da:"
   username: Erabiltzailearen izena
   username_or_email: Erabiltzailearen izena edo helbide elektronikoa
   username_or_user_id: Erabiltzailearen izena edo ID
@@ -2297,7 +2306,6 @@ eu:
   view: Ikusi
   view_all: Denak ikusi
   view_all_members: Kide guztiak ikusi
-  view_all_n: "%{n} guztiak ikusi"
   view_all_observations: Behaketa guztiak ikusi
   view_all_photocount_photos: "%{photo_count} argazki guztiak ikusi"
   view_check_list_page: Egiaztapen-zerrendaren orrialdea ikusi
@@ -2330,7 +2338,6 @@ eu:
   view_taxon_page: Taxonaren orrialdea ikusi
   view_taxon_page_for_this_x: "%{x} honetarako taxonaren orrialdea ikusi"
   view_taxononomy_details_for_taxon: "Ikusi %{taxon} taxoiaren xehetasun taxonomikoak"
-  view_the_observation: Behaketa ikusi
   view_user_observations: "Honen behaketak ikusi: %{user}"
   view_your_dashboard: Zure taula ikusi
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zure taula ikusi</a> eguneraketa gehiagotarako"

@@ -1728,6 +1728,8 @@ cs:
   edit_taxon_link: Editovat odkaz taxonu
   edit_taxon_range: Editovat rozsah taxonu
   edit_the_observation: Editovat pozorování
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Pro přidání stavu ochany upravte tento taxon po jeho vytvoření
   edit_your_account_and_profile_html: "Editovat váš účet a profil"
   edit_your_default_settings: "Editovat vlastní výchozí nastavení"
   edit_your_global_project_settings: Editovat vaše globální nastavení projektu
@@ -2529,6 +2531,7 @@ cs:
     lb: lucembursky
     lt: litevsky
     lv: lotyšsky
+    mi: maorsky
     mk: makedonsky
     mr: maráthsky
     nb: norsky (Bokmål)
@@ -3960,8 +3963,8 @@ cs:
   projects: Projekty
   projects_description: |
     Projekty jsou způsob, jak sdílet vaše pozorování s pozorováním ostatních na %{site_name}. Pokud chcete začít s vědeckým projektem mezi občany nebo pozorovat ptáky ve svém okolí, projekty jsou cestou, jak se tam dostat.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
-  projects_in_x: "Projekty v %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekty %{user} Adminů
   projects_you_admin: Projekty, které spravujete
@@ -4348,6 +4351,11 @@ cs:
   search_your_photos: Prohledat vaše fotky
   searching: "Hledání..."
   seasonality: Sezónnost
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Váš %{noun}"
   see_something_wrong_with_taxon: Je s tímto taxonem něco v nepořádku? Dejte to vědět kurátorům.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4673,6 +4681,8 @@ cs:
   target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
   task_deleted: Úkol smazán
   taxa: Taxony
+  taxa_show_obs_photo_search_tip: |
+    Tip: Pokud chcete vybrat fotky z konkrétního pozorování, zadejte ID pozorování do vyhledávacího pole.
   taxa_with_unknown_relationships: Taxony s neznámými vztahy
   taxa_info: Informace o taxonu
   taxa_needing_curation: Taxony vyžadující správu
@@ -4945,6 +4955,11 @@ cs:
   these_observations_have_not_been_uploaded_yet: |
     Tato pozorování dosud nebyla nahrána.
   third_party_tracking: Sledování třetí strany
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: tento
   this_bioblitz_beings_in: Tento bioblitz začíná v
@@ -5329,7 +5344,6 @@ cs:
   user_observed_on_on_date_in_place: |
     %{user} pozoroval %{date} v %{place}
   user_suggested_an_id: "Uživatel %{user} navrhl ID"
-  user_thinks_yours_is: "%{user} %{noun} vaše pozorování %{observation} je"
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
@@ -5357,9 +5371,9 @@ cs:
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
   view: Zobrazit
   view_all: Zobrazit vše
+  view_all_fields: Zobrazit všechna pole
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
-  view_all_n: "Zobrazit všechny %{n}"
   view_all_observations: Zobrazit všechna pozorování
   view_all_photocount_photos: "Zobrazit všech %{photo_count} fotek"
   view_assessment: Zobrazit hodnocení
@@ -5411,7 +5425,6 @@ cs:
   view_taxon_page: Zobrazit stránku taxonu
   view_taxon_page_for_this_x: "Zobrazit stránku taxonu pro tento %{x}"
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
-  view_the_observation: Zobrazit pozorování
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
   view_year_stats_for_site: "Zobrazit statistiku za rok %{year} pro %{site}"

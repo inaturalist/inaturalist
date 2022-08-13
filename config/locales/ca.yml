@@ -2368,6 +2368,7 @@ ca:
     lb: Luxemburguès
     lt: Lituà
     lv: Letó
+    mi: Maorí
     mk: Macedònic
     mr: Marathi
     nb: Noruec (Bokmål)
@@ -3766,8 +3767,8 @@ ca:
   projects: Projectes
   projects_description: |
     Els projectes són una manera d'agrupar les vostres observacions amb les d’altres persones a %{site_name}. Tant si us interessa iniciar un projecte científic ciutadà com si només voleu mantenir registres de les aus del vostre veïnat, podeu fer servir projectes.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projectes de %{place}"
-  projects_in_x: "Projectes en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projectes administrats per %{user}
   projects_you_admin: Projectes que administreu
@@ -3784,6 +3785,7 @@ ca:
   queued: En cua
   query: Consulta
   radius: Radi (m)
+  radius_km: Radi (km)
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
@@ -4134,6 +4136,11 @@ ca:
   search_your_photos: Cerca les vostres fotos
   searching: "Cercant..."
   seasonality: Estacionalitat
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "El vostre %{noun}"
   see_something_wrong_with_taxon: Aquest tàxon és incorrecte? Comuniqueu-ho als supervisors.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4448,6 +4455,8 @@ ca:
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
   task_deleted: S'ha suprimit la tasca
   taxa: Tàxons
+  taxa_show_obs_photo_search_tip: |
+    Suggeriment: introduïu la ID d'una observació al camp de cerca si voleu escollir fotos d'una observació determinada
   taxa_with_unknown_relationships: Tàxon amb relacions desconegudes
   taxa_info: Informació taxonòmica
   taxa_needing_curation: Tàxons que necessiten administració
@@ -4686,6 +4695,11 @@ ca:
   these_observations_have_not_been_uploaded_yet: |
     Aquestes observacions encara no s'han pujat
   third_party_tracking: Seguiment per tercers
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: aquest
   this_bioblitz_beings_in: Aquest bioblitz comença en
@@ -5059,7 +5073,6 @@ ca:
   user_observed_on_on_date_in_place: |
     %{user} observà un el %{date} a %{place}
   user_suggested_an_id: "%{user} ha suggerit una identificació"
-  user_thinks_yours_is: "%{user} %{noun} la vostra observació %{observation} és"
   user_trusts_you_with_their_private_coordinates: "%{user} comparteix amb tu les seves coordenades ocultes"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'observador ha escollit compartir amb tu les coordenades ocultes de totes les seves observacions.
@@ -5087,9 +5100,13 @@ ca:
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
   view: Mostra
   view_all: Mostra-ho tot
+  view_all_fields: Veure tots els Camps
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
-  view_all_n: "Veure tots els %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Veure tot %{count}"
+    other: "Veure tots %{count}"
   view_all_observations: Veure totes les observacions
   view_all_photocount_photos: "Veure les %{photo_count} fotos"
   view_assessment: Veure valoració
@@ -5141,7 +5158,6 @@ ca:
   view_taxon_page: Mostra la pàgina del tàxon
   view_taxon_page_for_this_x: "Mostra la pàgina del tàxon per a aquest %{x}"
   view_taxononomy_details_for_taxon: "Veure els detall taxonòmics del tàxon %{taxon}"
-  view_the_observation: Mostra l'observació
   view_user_observations: "Mostra observacions de %{user}"
   view_x: "Veure %{x}"
   view_year_stats_for_site: "Veure estadístiques del %{year} a %{site}"

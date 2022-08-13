@@ -585,6 +585,9 @@ es:
   are_you_really_sure_want_delete_this_user: '¿Estás verdaderamente seguro que deseas eliminar a este usuario y todo su contenido?'
   are_you_sure?: '¿Estás seguro?'
   are_you_sure_no_undo: '¿Estás seguro? Esto no se puede deshacer.'
+  are_you_sure_delete_conservation_status: |
+    ¿Estás seguro de que quieres eliminar este estado de conservación? Esto puede cambiar
+    la ofuscación de las observaciones de este taxón y taxones dentro de él.
   are_you_sure_delete_post: '¿Estás seguro que quieres eliminar esta publicación?'
   are_you_sure_delete_taxon_move_associates: "¿Estás seguro que deseas eliminar %{taxonname} (%{taxonid}) y mover todos sus asociados?"
   are_you_sure_delete_this_place: '¿Estás seguro que quieres eliminar este lugar?'
@@ -1037,6 +1040,9 @@ es:
   connecting_your_inat_account_to_accounts_other_sites: "Al conectar tu cuenta de %{site_name} con cuentas de otros sitios podrás ingresar en %{site_name} usando tus credenciales de esos sitios."
   cannot_be_changed_during_a_content_freeze: No se puede cambiar durante un bloqueo de contenido
   conservation_status: Categoría de riesgo
+  conservation_status_created: Estado de conservación creado
+  conservation_status_deleted: Estado de conservación borrado
+  conservation_status_updated: Estado de conservación actualizado
   conservation_status_descriptions:
     status: Estatus, clasificación, etc. Si existe una abreviatura corta como E o CR, por favor úsala, de lo contrario, usa el estatus completo, ej. En peligro de extinción.
     description: Descripción muy corta del porqué esta en la lista.
@@ -1566,6 +1572,7 @@ es:
   edit_body: Edita el cuerpo
   edit_comment: Modifica tu comentario
   edit_complete_set_for_taxon_in_place_html: "Editar lista completa para %{taxon} en %{place}"
+  edit_conservation_status: Editar estado de conservación
   edit_custom_project_fields: Modifica campos de proyecto personalizados
   edit_field: Edita el campo
   edit_license: Modificar licencia
@@ -1588,6 +1595,8 @@ es:
   edit_taxon_link: Modifica vínculo del taxón
   edit_taxon_range: Modifica área del taxón
   edit_the_observation: Modifica la observación
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edita este taxón después de crearlo para añadir estados de conservación
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
   edit_your_default_settings: "Editar la configuración predeterminada"
   edit_your_global_project_settings: Editar tu configuración global de proyectos
@@ -2289,6 +2298,7 @@ es:
     ojibwe: Ojibwa
     palauan: Palauano
     pangasinan: Pangasinán
+    persian: Persa
     polish: Polaco
     portuguese: Portugués
     romanian: Rumano
@@ -2299,6 +2309,7 @@ es:
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Español
+    swahili: Suajili
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
@@ -2400,6 +2411,7 @@ es:
     lb: Luxemburgués
     lt: Lituano
     lv: Letón
+    mi: Maorí
     mk: Macedonio
     mr: Maratí
     nb: Noruego Bokmål
@@ -2731,6 +2743,7 @@ es:
   new_check_list_for: "Crear lista de verificación nueva para {place} &raquo;"
   new_check_list_record: "Si deseas marcar esta lista como exhaustiva, créala, agrega los taxones y luego modifícala y aquí tendrás la opción de marcarla como exhaustiva."
   new_comment_on_a_parent_by_user_link: Nuevo comentario en @vow_or_con{voto:un|un} %{parent} de %{user_link}
+  new_conservation_status: Nuevo estado de conservación
   new_flag_for: Marca nueva para
   new_guide: Guía nueva
   new_journal_post: Nuevo artículo en el diario
@@ -3101,6 +3114,8 @@ es:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de las siguientes opciones debe ser cierta:"
   one_of_your_lists: "una de tus listas..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Uno o más taxones introducidos se han asociado con más de 1000 observaciones, por eso, su modificación puede requerir mucho tiempo para procesarse, ¿estás seguro de que es necesario este cambio de taxón? Recuerda que los cambios de taxón no se pueden deshacer.
   only_a_project_manager_can_add: Solo un gerente del proyecto puede dar una clasificación de curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder a esa página
   only_an_admin_can_remove_project_users: Solo el administrador puede eliminar usuarios del proyecto.
@@ -3815,8 +3830,8 @@ es:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club local, la forma de hacerlo es con Proyectos.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyectos de %{place}"
-  projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyectos que %{user} administra
   projects_you_admin: Proyectos que administras
@@ -3833,6 +3848,7 @@ es:
   queued: En espera
   query: Consulta
   radius: Radio (m)
+  radius_km: Radio (km)
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Área
@@ -4183,6 +4199,11 @@ es:
   search_your_photos: Busca tus fotos
   searching: "Buscando..."
   seasonality: Estacionalidad
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4515,6 +4536,9 @@ es:
   target_list_warning: Recuerda que todo lo cubierto por tu lista de objetivos que no observaste dentro del radio o duración de este viaje será interpretado como una ausencia. Es muy importante que tu lista de objetivos refleje precisamente el conjunto de especies que intentaste detectar. Si no intentaste detectar una especie en tu lista de objetivos o todas las especies cubiertas por un grupo en tu lista de objetivos, por favor quítala.
   task_deleted: Tarea eliminada
   taxa: Taxones
+  taxa_show_obs_photo_search_tip: |
+    Consejo: introduzca el ID de una observación en el campo de búsqueda si desea
+    elegir fotos de una observación específica.
   taxa_with_unknown_relationships: Taxones con relaciones desconocidas
   taxa_info: Información sobre taxones
   taxa_needing_curation: Taxones que necesitan curación
@@ -4580,6 +4604,9 @@ es:
   taxonomy: Taxonomía
   taxon_assessments_are: |
     Las evaluaciones del taxón son documentos que evalúan el estado actual de una especie, generalmente su estado de conservación. Por ejemplo, una organización regional de conservación puede utilizarlos para organizar la información y solicitar comentarios acerca del estado de varias especies en riesgo en la región.
+  taxon_change_commit_may_still_be_processing: |
+    El cambio de taxón realizado puede estar procesándose, así que ten en cuenta que algunos registros
+    aún no se han actualizado
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
   taxon_change_title_taxon_drop: Gota taxonómica %{id}
   taxon_change_title_taxon_merge: Fusión taxonómica %{id}
@@ -4749,6 +4776,11 @@ es:
   these_observations_have_not_been_uploaded_yet: |
     Estas observaciones no se han subido aún.
   third_party_tracking: Seguimiento de Terceros
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
@@ -4775,6 +4807,8 @@ es:
   this_taxon_change_has_been_commited: |
     <strong>¡Este cambio taxonómico de la especie o grupo ha sido guardado!</strong> Por favor no edites la especie o grupo. Puedes editar los demás campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
+  this_taxon_has_more_than_1000_alt: |
+    Este taxón tiene más de 1000 observaciones asociadas, por lo que estos cambios pueden tardar algún tiempo en procesarse. ¿Estás seguro de que es necesario?
   this_taxon_has_no_default_photo: Este taxón no tiene ninguna foto predeterminada.
   this_taxon_is_inactive_this_means: |
     Este taxón está <strong>inactivo</strong>. Esto significa que los curadores de %{site_name} lo han reemplazado por un concepto más actualizado taxonómicamente.
@@ -5120,7 +5154,6 @@ es:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió una identificación"
-  user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
@@ -5148,9 +5181,13 @@ es:
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
   view_all: Ver todas
+  view_all_fields: Ver todos los Campos
   view_all_flags: Ver Todas las Marcas
   view_all_members: Ve todos los miembros
-  view_all_n: "Ve todas las %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Ver %{count}"
+    other: "Ver los %{count}"
   view_all_observations: Ve todas las observaciones
   view_all_photocount_photos: "Ve todas las %{photo_count} fotos"
   view_assessment: Ve evaluación
@@ -5202,7 +5239,6 @@ es:
   view_taxon_page: Ver página del taxón
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the_observation: Ver la observación
   view_user_observations: "Ver observaciones de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Ver las estadísticas de %{year} de %{site}"

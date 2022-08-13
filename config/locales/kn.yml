@@ -878,6 +878,8 @@ kn:
   connecting_your_inat_account_to_accounts_other_sites: "ನಿಮ್ಮ %{site_name} ಖಾತೆಯನ್ನು ಇತರೆ ತಾಣಗಳ ಖಾತೆಗಳಿಗೆ ಜೋಡಿಸುವುದರಿಂದ, ನೀವು %{site_name} ಗೆ ಆ ತಾಣಗಳಿಂದ ನಿಮ್ಮ ಗುರುತನ್ನು ಬಳಸಿ ಲಾಗಿನ್ ಆಗಬಹುದು."
   cannot_be_changed_during_a_content_freeze: ವಸ್ತುವಿಷಯದ ಸ್ಥಿರೀಕರಣದ ಸಮಯದಲ್ಲಿ ಬದಲಾಯಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ
   conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
+  conservation_status_created: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ರಚಿಸಲಾಗಿದೆ
+  conservation_status_deleted: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ಅಳಿಸಲಾಗಿದೆ
   conservation_status_descriptions:
     status: ಸ್ಥಿತಿ ಸಂಕೇತ, ಶ್ರೇಣಿ, ಇತ್ಯಾದಿ. E ಅಥವಾ CR ನಂತಹ ಕಿರಿ ಸಂಕೇತಗಳು ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಅವನ್ನು ಬಳಸಿ, ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಪೂರ್ಣ ಸ್ಥಿತಿಯನ್ನು ಬಳಸಿ, ಉದಾ. ಅಪಾಯದಂಚಿನಲ್ಲಿರುವ ಅಥವಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ.
     description: ಇದನ್ನು ಏತಕ್ಕೆ ಪಟ್ಟಿಮಾಡಲಾಗಿದೆಯೆಂಬುದಕ್ಕೆ ಸಂಕ್ಷಿಪ್ತ ವಿವರಣೆ
@@ -1309,6 +1311,7 @@ kn:
   edit_atlas: ಭೂಪಟ ಸಂಪಾದಿಸಿ
   edit_atlas_for_taxon_html: '%{taxon} ಗೆ ಭೂಪಟ ಸಂಪಾದಿಸಿ'
   edit_comment: ನಿಮ್ಮ ಅಭಿಪ್ರಾಯವನ್ನು ಸಂಪಾದಿಸಿ
+  edit_conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ಸಂಪಾದಿಸಿ
   edit_custom_project_fields: ಒಗ್ಗಿಸಿದ ಪ್ರಾಯೋಜನೆ ಆವರಣಗಳನ್ನು ಸಂಪಾದಿಸಿ
   edit_field: ಆವರಣವನ್ನು ಸಂಪಾದಿಸಿ
   edit_license: ಪರವಾನಿಗೆಯನ್ನು ಸಂಪಾದಿಸಿ
@@ -1730,6 +1733,7 @@ kn:
   it_can_now_be_used_for_research: ಇದನ್ನು ಈಗ ಸಂಶೋಧನೆಗಾಗಿ ಮತ್ತು ಇತರ ಜಾಲತಾಣಗಳಲ್ಲಿ ವಿಶೇಷವಾದುದೆಂದು ಬಳಸಬಹುದು
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: ಇಟ್ಯಾಲಿಕ್ ಪಠ್ಯ
+  jobs: ಕೆಲಸಗಳು
   join: ಸೇರಿರಿ
   join_and_add_an_observation_to_project_html: ಸೇರಿರಿ ಮತ್ತು %{project} ಗೆ ವೀಕ್ಷಣೆಯೊಂದನ್ನು ಸೇರಿಸಿ
   join_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿರಿ
@@ -1864,6 +1868,7 @@ kn:
     occitan: ಆಕ್ಸಿಟಾನ್
     ojibwe: ಒಜಿಬ್ವೆ
     pangasinan: ಪಂಗಾಸಿನಾನ್
+    persian: ಪರ್ಷಿಯನ್
     polish: ಪೋಲಿಷ್
     portuguese: ಪೋರ್ಚುಗೀಸ್
     romanian: ರೋಮಾನಿಯನ್
@@ -1874,6 +1879,7 @@ kn:
     slovak: ಸ್ಲೋವಾಕ್
     slovenian: ಸ್ಲೋವೇನಿಯನ್
     spanish: ಸ್ಪಾನಿಶ್
+    swahili: ಸ್ವಾಹಿಲಿ
     swedish: ಸ್ವೀಡಿಷ್
     tagalog: ಟ್ಯಾಗಲೊಂಗ್
     tahitian: ತಾಹಿತಿಯನ್
@@ -2248,6 +2254,7 @@ kn:
   new_assessment: ಹೊಸ ಮೌಲ್ಯಮಾಪನ
   new_check_list: ಹೊಸ ತಾಳೆಪಟ್ಟಿ
   new_check_list_for: "%{place} ಗಾಗಿ ಹೊಸ ತಾಳೆಪಟ್ಟಿಯೊಂದನ್ನು ರಚಿಸಿ &raquo;"
+  new_conservation_status: ಹೊಸ ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿ
   new_guide: ಹೊಸ ಕೈಪಿಡಿ
   new_journal_post: ಹೊಸ ನಿಯತಕಾಲಿಕೆಯ ಪೋಸ್ಟ್
   new_lexicon: ಹೊಸ ಪದಕೋಶವನ್ನು ಸೇರಿಸಿ
@@ -3238,8 +3245,8 @@ kn:
   projects: ಪ್ರಾಯೋಜನೆಗಳು
   projects_description: |
     ಪ್ರಾಯೋಜನೆಗಳು %{site_name} ನಲ್ಲಿ ಇತರ ವ್ಯಕ್ತಿಗಳ ಜೊತೆ ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಒಗ್ಗೂಡಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತವೆ. ನೀವು ನಾಗರೀಕ ವಿಜ್ಞಾನ ಪ್ರಯತ್ನಗಳನ್ನೇ ಪ್ರಾರಂಭಿಸಿರಿ ಅಥವಾ ನಿಮ್ಮ ನೆರೆಹೊರೆಯ ಹಕ್ಕಿಗಳ ಮೇಲೆ ನಿಗಾವಹಿಸುತ್ತಿರಿ, ಪ್ರಾಯೋಜನೆಗಳು ಅವಕ್ಕೆಲ್ಲಾ ಅತ್ಯಂತ ಸೂಕ್ತವಾದ ವಿಧಾನ.
+  #@vow_or_con should work on %{place}
   projects_from_place: "%{place} ದಿಂದ ಪ್ರಾಯೋಜನೆಗಳು"
-  projects_in_x: "%{x} ನಲ್ಲಿ ಪ್ರಾಯೋಜನೆಗಳು"
   #"admins" is equivalent to "administrates"
   projects_user_admins: ಪ್ರಾಯೋಜನೆಗಳ %{user} ನಿರ್ವಾಹಕರು
   projects_you_admin: ನೀವು ನಿರ್ವಹಿಸುತ್ತಿರುವ ಪ್ರಾಯೋಜನೆಗಳು
@@ -3256,6 +3263,7 @@ kn:
   queued: ಸರದಿಯಲ್ಲಿದೆ
   query: ವಿಚಾರಣೆ
   radius: ತ್ರಿಜ್ಯ (m)
+  radius_km: ತ್ರಿಜ್ಯ (km)
   radius_value: "ತ್ರಿಜ್ಯ (m):%{radius}"
   range: ವ್ಯಾಪ್ತಿ
   rank: ಶ್ರೇಣಿ
@@ -3584,6 +3592,11 @@ kn:
   search_your_photos: ನಿಮ್ಮ ಚಿತ್ರಗಳನ್ನು ಹುಡುಕಿ
   searching: "ಹುಡುಕಲಾಗುತ್ತಿದೆ..."
   seasonality: ಋತುಲಭ್ಯತೆ
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "ನಿಮ್ಮ %{noun}"
   see_something_wrong_with_taxon: ಈ ಜೀವಿವರ್ಗದ ಜೊತೆ ಏನಾದಾರೂ ತಪ್ಪಾಗಿ ಕಾಣುತ್ತಿದೆಯೇ? ಮೇಲ್ವಿಚಾರಕರಿಗೆ ತಿಳಿಸಿ.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4048,6 +4061,11 @@ kn:
   theres_something_wrong_with_taxon_framework_relationship: ಇಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಿದೆ - ನಾವು ಯಾವುದೇ ಆಂತರಿಕ ಹಾಗು ಬಾಹ್ಯ ಜೀವಿವರ್ಗಗಳ ನಡುವಿನ ಸಂಬಂಧಗಳನ್ನು ನಿರ್ಣಯಿಸಲಾಗುತ್ತಿಲ್ಲ
   these_observations_have_not_been_uploaded_yet: |
     ಈ ವೀಕ್ಷಣೆಗಳನ್ನು ಇನ್ನೂ ಅಪ್ಲೋಡ್ ಮಾಡಿಲ್ಲ.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: ಇದು
   this_bioblitz_beings_in: ಈ Bioblitz ಪ್ರಾರಂಭವಾಗುತ್ತದೆ
@@ -4339,7 +4357,6 @@ kn:
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_members: ಎಲ್ಲ ಸದಸ್ಯರನ್ನೂ ವೀಕ್ಷಿಸಿ
-  view_all_n: "ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ %{n}"
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_assessment: ಮೌಲ್ಯಮಾಪನವನ್ನು ವೀಕ್ಷಿಸಿ
@@ -4383,7 +4400,6 @@ kn:
   view_taxon_page: ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ
   view_taxon_page_for_this_x: "ಈ %{x} ಗಾಗಿ ಜೀವಿವರ್ಗದ ಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ"
   view_taxononomy_details_for_taxon: "%{taxon} ಗಾಗಿ ಜೀವಿವರ್ಗೀಕರಣದ ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  view_the_observation: ವೀಕ್ಷಣೆಯನ್ನು ವೀಕ್ಷಿಸಿ
   view_user_observations: "%{user} ಅವರ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
   view_x: "%{x} ವೀಕ್ಷಿಸಿ"
   view_year_stats_for_site: "%{site} ಗಾಗಿ %{year} ರ ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಿ"

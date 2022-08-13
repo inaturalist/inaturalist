@@ -1,4 +1,8 @@
 de:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} Änderung"
+    other: "%{count} Änderungen"
   x_comments:
     one: '%{count} Kommentar'
     other: '%{count} Kommentare'
@@ -99,8 +103,8 @@ de:
     one: "<a href='%{url}'>Eine Art</a>"
     other: "<a href='%{url}'>%{count} Arten</a>"
   x_suggestions_filtered_by_colon:
-    one: "Ein Vorschlag gefiltert nach:"
-    other: "%{count} Vorschläge gefiltert nach:"
+    one: "Ein Vorschlag, gefiltert nach:"
+    other: "%{count} Vorschläge, gefiltert nach:"
   x_taxa:
     one: "%{count} Taxon"
     other: "%{count} Taxons"
@@ -258,12 +262,12 @@ de:
   add_an_observation: Beobachtung hinzufügen
   add_an_observation_of: "Beobachtung von %{taxon} hinzufügen"
   add_an_observation_to_project_html: Beobachtung zu %{project} hinzufügen
-  add_annotations_for_x: Annotationen für "%{x}" hinzufügen
+  add_annotations_for_x: Angaben hinzufügen für "%{x}"
   add_annotations_for_controlled_attribute:
     sex: 'Angaben hinzufügen für: "Geschlecht"'
     plant_phenology: 'Angaben hinzufügen zu: "Pflanzenphänologie"'
     life_stage: 'Angaben hinzufügen zu: "Entwicklungsstadium"'
-    evidence_of_presence: Annotation für 'Anwesenheitsnachweis' hinzufügen
+    evidence_of_presence: Angaben hinzufügen für "Anwesenheitsnachweis"
   add_another_flag: Weitere Meldung hinzufügen
   add_another_photo: Weiteres Foto hinzufügen
   add_another_section: Weiteren Abschnitt hinzufügen
@@ -314,7 +318,7 @@ de:
   add_plant_phenology_flower_budding_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Knospend (Blüte)"'
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
   add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
-  add_plant_phenology_no_evidence_of_flowering_annotation: 'Annotation "Phänologie (Pflanze): Nicht blühend" hinzufügen'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Angabe hinzufügen "Phänologie (Pflanze): Nicht blühend"'
   add_life_stage_adult_annotation: 'Angabe hinzufügen "Entwicklungssstadium: Adult"'
   add_life_stage_teneral_annotation: 'Angabe hinzufügen "Lebensstadium: Frisch geschlüpft"'
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
@@ -323,13 +327,13 @@ de:
   add_life_stage_larva_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Larve"'
   add_life_stage_juvenile_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Jungtier"'
   add_life_stage_egg_annotation: 'Angabe hinzufügen "Entwicklungsstadium: Ei"'
-  add_evidence_of_presence_organism_annotation: 'Annotation ''Anwesenheitsnachweis: Organismus'' hinzufügen'
-  add_evidence_of_presence_feather_annotation: 'Annotation ''Anwesenheitsnachweis: Feder'' hinzufügen'
-  add_evidence_of_presence_gall_annotation: 'Annotation ''Anwesenheitsnachweis: Galle'' hinzufügen'
-  add_evidence_of_presence_scat_annotation: 'Annotation ''Anwesenheitsnachweis: Kot'' hinzufügen'
-  add_evidence_of_presence_track_annotation: 'Annotation ''Anwesenheitsnachweis: Spur'' hinzufügen'
-  add_evidence_of_presence_bone_annotation: 'Annotation ''Anwesenheitsnachweis: Knochen'' hinzufügen'
-  add_evidence_of_presence_molt_annotation: 'Annotation ''Anwesenheitsnachweis: Häutung'' hinzufügen'
+  add_evidence_of_presence_organism_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Organismus"'
+  add_evidence_of_presence_feather_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Feder"'
+  add_evidence_of_presence_gall_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Galle"'
+  add_evidence_of_presence_scat_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Kot"'
+  add_evidence_of_presence_track_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Spur"'
+  add_evidence_of_presence_bone_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Knochen"'
+  add_evidence_of_presence_molt_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Häutung"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
   #As in a Guide Section
@@ -559,6 +563,7 @@ de:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Apps
+  apply_app_owner: Anwenden
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Beantragen
@@ -671,6 +676,9 @@ de:
     natureserve: NatureServe
     cites: CITES
   authorize: Erlauben
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: Mit PKCE autorisieren
   authorize_permissions_from_provider: "Berechtigungen von %{provider} zulassen"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatisch Beobachtungen zu diesem Projekt hinzufügen
@@ -679,6 +687,7 @@ de:
   #of values, and not a synonym of "typical" or "normal"
   avg: Mittl.
   back: Zurück
+  back_to_applications: "&laquo; Zurück zu den Anwendungen"
   back_to_all_species: Zurück zu Alle Arten
   back_to_editing_observation: Zurück zur Bearbeitung der Beobachtung
   back_to_friends: Zurück zu den Freunden
@@ -838,6 +847,8 @@ de:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} wurden in %{output_taxon} zusammengeführt"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} werden in %{output_taxon} zusammengeführt"
   change_your_password: Dein Kennwort ändern
+  #Plural noun, as in changes to a taxon record over time
+  changes: Änderungen
   changing_the_geoprivacy: 'Die Änderung der Geo-Privatsphäre bestimmt, wie andere Personen den Ort deiner Beobachtung sehen.'
   check_above_for_errors: Oben nach Fehlern suchen
   check_back_soon: Schau demnächst wieder vorbei!
@@ -960,6 +971,7 @@ de:
     während der nächsten Modelltrainierung aufgenommen wird, sollten weitere Beobachtungen
     dieses Taxons hinzugefügt oder bestimmt werden.
   concept_status: Konzeptzustand
+  confidential: Vertraulich
   configure: Einrichten
   configure_a_widget_to_show: Konfiguriere ein Widget, um %{site_name} Beobachtungen auf deiner Webseite oder deinem Blog anzuzeigen. Eventuell musst du das eingebettete CSS in den <code>&lt;head&gt;</code> deines HTML einbinden. Das CSS kann auch gerne neu geschrieben werden.
   confirm: Bestätigen
@@ -1175,11 +1187,9 @@ de:
   curator_application_fields_explanation_html: Warum möchtest du Kurator sein?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Wenn Sie die Taxonomie von iNaturalist bearbeiten möchten, geben Sie bitte ein Beispiel oder zwei
-    von Taxonomie-Änderungen an, die Sie vornehmen möchten. Diese sollten die Quellen für Ihre
-    vorgeschlagenen Änderungen enthalten. Falls zutreffend, führen Sie bitte die entsprechenden taxonomischen Institution, <a
-    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorhandbuch</a>aufgelistet an.
-    Wenn Sie keine Quellen angeben, wird Ihre Bewerbung nicht berücksichtigt.
+    Wenn du die Taxonomie in iNaturalist bearbeiten möchtest, gib bitte ein oder zwei Beispiele von Taxonomie-Änderungen an, die du vornehmen möchtest, einschließlich der Quellen, die als Grundlage für deine vorgeschlagenen Änderungen dienen. Führe bitte, falls möglich, die entsprechenden taxonomischen Institutionen an, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">wie im Kuratorenhandbuch</a>aufgelistet.
+    Wenn du keine Quellen angibst, wird die Bewerbung nicht berücksichtigt.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Wenn du umgangssprachliche Namen bearbeiten möchtest, gib bitte ein oder zwei Beispiele von
@@ -2304,6 +2314,7 @@ de:
     lb: Luxemburgisch
     lt: Litauisch
     lv: Lettisch
+    mi: Maori
     mk: Mazedonisch
     mr: Marathi
     nb: Norwegisch (Bokmål)
@@ -2466,8 +2477,8 @@ de:
   minimum_positional_accuracy: Minimale Genauigkeit der Position
   misidentifications: Fehlbestimmungen
   misleading_or_illegal_content_html: |
-    Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", siehe die 
-    <a href="/help#inappropriate">FAQ</a>.
+    Irreführende oder illegale Inhalte, rassistische oder ethnische Beleidigungen usw. Für mehr Informationen über unsere Definition von "angemessen", bitte in die 
+    <a href="/help#inappropriate">FAQs</a> schauen.
   #Label shown when a date has not been entered
   missing_date: Fehlendes Datum
   mobile: Mobil
@@ -3734,8 +3745,8 @@ de:
   projects: Projekte
   projects_description: |
     Mit Projekten kannst du deine Beobachtungen gezielt mit anderen Benutzern auf %{site_name} teilen. Ob du nun eine gemeinnützige wissenschaftliche Initiative startest oder die Vögel in deiner Nachbarschaft dokumentieren willst, Projekte sind der richtige Weg.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekte aus %{place}"
-  projects_in_x: "Projekte in %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekte verwaltet von %{user}
   projects_you_admin: Projekte, die du verwaltest
@@ -3926,6 +3937,8 @@ de:
   recently_finished: Kürzlich abgeschlossen
   recently_observed: Kürzlich beobachtet
   recently_resolved: Kürzlich geklärt
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Aufnahmen
   red: rot
   redo_search_in_map: Suche in der Karte wiederholen
   redo_search_in_map_area: Suche im Kartenbereich wiederholen
@@ -4101,6 +4114,11 @@ de:
   search_your_photos: Suchen in deinen Bildern
   searching: "Suche..."
   seasonality: Saisonalität
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Dein %{noun}"
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die Kuratoren wissen.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4138,6 +4156,8 @@ de:
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
+  show_history_by_this_user: Verlauf dieses Benutzers anzeigen
+  show_history_for_this_kind_of_action: Verlauf für diese Art von Aktion anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -4434,6 +4454,9 @@ de:
   target_list_warning: Denke daran, dass alles, was von der Zielliste abgedeckt wird, innerhalb des Radius und der Dauer dieser Reise nicht beobachtet wurde, als Abwesenheit interpretiert wird. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast. Wenn du nicht versucht hast, eine Art auf deiner Zielliste oder jede von einer Gruppe abgedeckte Art auf deiner Zielliste zu finden, diese bitte entfernen.
   task_deleted: Aufgabe gelöscht
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tipp: Gib eine Beobachtungs-ID in das Suchfeld ein, wenn du
+    Fotos einer bestimmten Beobachtung auswählen möchtest.
   taxa_with_unknown_relationships: Taxa mit unbekannten Beziehungen
   taxa_info: Informationen über Taxa
   taxa_needing_curation: Kuration bedürftige Taxa
@@ -4503,6 +4526,8 @@ de:
     Taxabewertungen sind Dokumente, die den aktuellen Status, normalerweise den Umweltschutzstatus, einer Spezie bewerten. 
     Zum Beispiel können regionale Organisationen diese dann benutzen, um Informationen und Rückmeldungen über den Status bedohter Taxa in der Region zu erhalten.
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht werden, um Aufzeichnungen zu aktualisieren.
+  taxon_change_title_taxon_merge: Taxonomische Zusammenführung %{id}
+  taxon_change_title_taxon_split: Taxonomische Aufteilung %{id}
   taxon_deleted: Taxon gelöscht.
   taxon_doesnt_have_a_range: Das Taxon hat kein eingetragenes Verbreitungsgebiet
   taxon_drop: Taxon-Löschung
@@ -4668,6 +4693,11 @@ de:
   these_observations_have_not_been_uploaded_yet: |
     Diese Beobachtungen wurden noch nicht hochgeladen.
   third_party_tracking: Drittanbieter-Tracking
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} von %{object_phrase}"
   this: dies
   this_bioblitz_beings_in: Dieser Bioblitz beginnt in
@@ -4695,6 +4725,8 @@ de:
     <strong>Diese Taxon-Änderung wurde eingereicht!</strong>
     Bitte bearbeite die Taxa nicht.  Die Bearbeitung anderer Felder ist in Ordnung.
   this_taxon_concept_is_inactive: Dieses Taxonkonzept ist inaktiv
+  this_taxon_has_more_than_1000_alt: |
+    Dieses Taxon hat mehr als 1000 Beobachtungen. Änderungen könnten daher einige Zeit in Anspruch nehmen. Sicher, dass sie notwendig sind?
   this_taxon_has_no_default_photo: Dieses Taxon hat kein Standardbild!
   this_taxon_is_inactive_this_means: |
     Dieses Taxon ist <strong>inaktiv</strong>. Das bedeutet, dass es die Kuratoren von %{site_name}
@@ -4721,6 +4753,44 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_africa_algiers: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: Südafrikanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_nairobi: Ostafrikanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Argentinische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Kolumbianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Zentrale Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Pazifische Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemalische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantische Standardzeit (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Bolivianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Peruanische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_los_angeles: Pazifische Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_mexico_city: Zentrale Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: Östliche Zeit (USA und Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_santiago: Chile Kontinental Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_sao_paulo: Brasilianische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_tijuana: Pazifische Zeit (Mexiko)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabische Standardzeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indochinesische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hong-Kong Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: UTC
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: Mitteleuropäische Zeit
@@ -4732,6 +4802,8 @@ de:
   time_zone_europe_copenhagen: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: Mitteleuropäische Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Mitteleuropäische Zeit
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
@@ -4938,7 +5010,6 @@ de:
   user_observed_on_on_date_in_place: |
     Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
-  user_thinks_yours_is: "%{user} %{noun} deine Beobachtung %{observation} ist"
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
@@ -4966,9 +5037,13 @@ de:
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
   view: Ansehen
   view_all: Alle ansehen
+  view_all_fields: Alle Felder anzeigen
   view_all_flags: Alle Meldungen anzeigen
   view_all_members: Alle Mitglieder ansehen
-  view_all_n: "Alle %{n} anzeigen"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Alle anzeigen (%{count})"
+    other: "Alle %{count} anzeigen"
   view_all_observations: Alle Beobachtungen ansehen
   view_all_photocount_photos: "Alle %{photo_count} Bilder anzeigen"
   view_assessment: Bewertung ansehen
@@ -5020,7 +5095,6 @@ de:
   view_taxon_page: Taxonseite ansehen
   view_taxon_page_for_this_x: "Taxonseite für dieses %{x} ansehen"
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
-  view_the_observation: Die Beobachtung ansehen
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
   view_year_stats_for_site: "Statistiken von %{year} für %{site} anzeigen"
@@ -7263,8 +7337,13 @@ de:
         #Inputs to an export task, e.g. the query and the columns
         inputs: Eingaben
       oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Rückleitungs-URL
         #Unique identifier for an application
         uid: ID
+        #Noun, secret associated with an application, sort of like the application's password
+        secret: Geheimnis
         #Adjective, whether or not this application can keep its secret
         #confidential, e.g. a native or desktop app as opposed to a web
         #app.
@@ -7301,6 +7380,7 @@ de:
         place_type: Gebiets-Typ
         prefers_check_lists: Checklisten erlaubt?
       site:
+        logo: Wortzeichen
         logo_email_banner: Email-Banner
       source:
         title: Titel
@@ -7308,16 +7388,37 @@ de:
         url: URL
         citation: Zitierung
       taxon:
+        ancestry: Vorfahren
         auto_description: Automatische Beschreibung
+        #Datetime this taxon was featured for display on /taxa
+        featured_at: Empfohlen am
+        #ID of the iconic taxon this taxon belongs to
+        iconic_taxon_id: Symbolische Taxon-ID
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktiv?
         locked: Gesperrt
         name: Name
+        #External source of the taxon, e.g. Catalogue of Life
+        name_provider: Namensanbieter
+        parent_id: Übergeordnete ID
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: Fotos gesperrt?
         rank: Rang
+        rank_level: Rangstufe
+        source_id: Quellen-ID
+        source_identifier: Quellbezeichner
         source_url: Quell-URL
         wikipedia_summary: Wikipedia-Zusammenfassung
         wikipedia_title: Wikipedia-Titel
       taxon_name:
+        is_valid: Ist es gültig?
+        lexicon: Lexikon
+        name: Name
         name_provider: Namensanbieter
+        position: Position
         source_url: Quellen-URL
+        source_identifier: Quellbezeichner
       user:
         email: E-Mail
         login: Benutzername
@@ -7571,9 +7672,16 @@ de:
         invalid_redirect_uri: 'Der beigefügte Weiterleitungs-URI ist ungültig.'
         unauthorized_client: 'Der Client ist nicht berechtigt, diese Anfrage mit dieser Methode durchzuführen.'
         access_denied: 'Die Anfrage wurde durch Benutzer oder Autorisierungs-Server verweigert.'
+        invalid_scope: 'Der angeforderte Geltungsbereich ist ungültig, unbekannt oder fehlerhaft.'
+        server_error: 'Der Autorisierungsserver hat eine unerwartete Bedingung gefunden, die ihn daran hinderte, die Anfrage zu bearbeiten.'
+        temporarily_unavailable: 'Der Autorisierungs-Server ist aufgrund von zwischenzeitlicher Überlastung oder Wartungsarbeiten derzeit nicht in der Lage, die Anfrage zu bearbeiten.'
+        #Access grant errors
+        unsupported_response_type: 'Der Autorisierungs-Server unterstützt diesen Antworten-Typ nicht.'
         #Access token errors
         invalid_client: 'Die Klientauthentifizierung ist fehlgeschlagen, weil ein unbekannter Klient, keine Klientauthentifizierung oder eine nicht unterstützte Authentifizierungsmethode enthalten ist.'
         invalid_grant: 'Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, an einen anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.'
+        #Password Access token errors
+        invalid_resource_owner: 'Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden'
     flash:
       applications:
         create:

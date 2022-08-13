@@ -2542,8 +2542,8 @@ ar:
     تتيح لك المشروعات تجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،
     سواء كنت ترغب في بدء مشروع علم مواطن أو أو تحافظ على علامات تبويب 
     الطيور في منطقتك، فإن المشاريع هي الطريق للذهاب فيه.
+  #@vow_or_con should work on %{place}
   projects_from_place: "مشاريع من %{place}"
-  projects_in_x: "مشاريع في %{x}"
   projects_you_admin: مشاريع أنت إداريها
   proposed_taxa_that_contradict_the_community_id: الأصناف المقترحة التي تتناقض مع معرف المجتمع
   proposed_taxa_that_support_the_community_id: الأصناف المقترحة التي تدعم معرف المجتمع
@@ -2772,6 +2772,11 @@ ar:
   search_your_photos: البحث في صورك
   searching: "جارٍ البحث..."
   seasonality: موسمي
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun}ك"
   see_something_wrong_with_taxon: ترى شيئا خاطئا في هذه الأصنوفة؟ دع الأمناء يعرفون.
   seen_nearby: شُوهِد قريبا
@@ -3158,6 +3163,11 @@ ar:
   these_folks_kindly_volunteer_to: هؤلاء الناس متطوعون كرماء في الحفاظ على تصنيفنا والتعامل مع قضايا أخرى.
   these_observations_have_not_been_uploaded_yet: |
     لم يتم تحميل هذه الملاحظات بعد.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: هذا
   this_bioblitz_beings_in: هذا bioblitz يبدأ في
@@ -3356,7 +3366,6 @@ ar:
   user_observed_on_on_date_in_place: |
     %{user} لاحظ واحدة بتاريخ %{date} في %{place}
   user_suggested_an_id: "اقترح %{user} معرفا"
-  user_thinks_yours_is: "%{user} %{noun} ملاحظتك %{observation}"
   user_trusts_you_with_their_private_coordinates: "يثق بك %{user} بإحداثياته المخفية"
   user_trusts_you_with_their_private_coordinates_desc: |
     اختار المراقب أن يثق بك بالإحداثيات المخفية لجميع
@@ -3382,7 +3391,6 @@ ar:
   view_all: اعرض الكل
   view_all_flags: عرض جميع الأعلام
   view_all_members: عرض جميع الأعضاء
-  view_all_n: "عرض كل %{n}"
   view_all_observations: عرض جميع الملاحظات
   view_all_photocount_photos: "عرض كل ال%{photo_count} صورة"
   view_assessment: عرض التقييم
@@ -3432,7 +3440,6 @@ ar:
   view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for_this_x: "عرض صفحة الأصنوفة لهذا %{x}"
   view_taxononomy_details_for_taxon: "عرض تفاصيل تصنيف %{taxon}"
-  view_the_observation: عرض الملاحظة
   view_user_observations: "عرض ملاحظات %{user}"
   view_x: "عرض %{x}"
   view_year_stats_for_site: "عرض إحصاءات %{year} ل%{site}"

@@ -3525,8 +3525,8 @@ fi:
   projects_description: |
     Projektien avulla voit yhdistää havaintosi muiden ihmisten kesken %{site_name}issa.
     Projekteilla voit esimerkiksi käynnistää kansalaistiedehankkeen tai pitää kirjaa naapuruston linnuista.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Hakuehtoihin täsmäävät projektit paikasta %{place}"
-  projects_in_x: "Projektit paikassa %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projektit joita %{user} hallinnoi
   projects_you_admin: Projektit joita hallinoit
@@ -3865,6 +3865,11 @@ fi:
   search_your_photos: Etsi kuviasi
   searching: "Haetaan..."
   seasonality: Kausivaihtelu
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Sinun %{noun}"
   see_something_wrong_with_taxon: Onko tässä taksonissa jotain vikaa? Ilmoita asiasta kuraattoreille.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4270,6 +4275,11 @@ fi:
   these_observations_have_not_been_uploaded_yet: |
     Näitä havaintoja ei ole vielä tallennettu.
   third_party_tracking: Kolmannen osapuolen seuranta
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "Käyttäjän %{object_phrase} %{noun}"
   this: tämä
   this_bioblitz_beings_in: Aikaa tämän projektin alkuun
@@ -4574,7 +4584,6 @@ fi:
   user_observed_on_on_date_in_place: |
     %{user} havaitsi %{date} paikassa %{place}
   user_suggested_an_id: "%{user} ehdotti tunnistusta"
-  user_thinks_yours_is: "%{user} %{noun} että havaintosi %{observation} on"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
   username: Käyttäjänimi
   username_description: Tämä on käyttäjätunnus, jota käytät kirjautumiseen, ja muut käyttäjät voivat tunnistaa sinut iNaturalistissa
@@ -4599,7 +4608,6 @@ fi:
   view_all: Näytä kaikki
   view_all_flags: Näytä kaikki liput
   view_all_members: Näytä kaikki jäsenet
-  view_all_n: "Näytä kaikki %{n}"
   view_all_observations: Näytä kaikki havainnot
   view_all_photocount_photos: "Näytä kaikki %{photo_count} kuvaa"
   view_assessment: Näytä arviointi
@@ -4647,7 +4655,6 @@ fi:
   view_taxon_changes: Näytä taksonimuutokset
   view_taxon_page: Näytä taksonisivu
   view_taxon_page_for_this_x: "Näytä taksonisivu kohteessa %{x}"
-  view_the_observation: Näytä havainnot
   view_user_observations: "Näytä käyttäjän %{user} havainnot"
   view_x: "Näytä %{x}"
   view_year_stats_for_site: "Näytä vuoden %{year} tilastot sivustolta %{site}"

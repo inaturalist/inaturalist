@@ -263,6 +263,7 @@ bg:
   add_new_place: Добавяне на ново място
   add_new_rule: Добавяне на ново правило
   add_new_source: "Добавяне на нов източник..."
+  add_new_taxon_name: Добави ново име на таксон
   add_obs_from_a_link: "Добавете наблюдения от списък: %{link}"
   add_obs_from_a_list: Добавете наблюдения от списък
   add_observations: Добавяне на наблюдения
@@ -583,6 +584,7 @@ bg:
   back_to_your_observations: Обратно към Вашите наблюдения
   back_to_your_profile: Обратно към Вашия профил
   badges: Значки
+  batch: Групово
   batch_edit: Групово редактиране
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Групово редактиране на таксони за %{x}"
@@ -1124,6 +1126,7 @@ bg:
   donate: ДАРЕТЕ
   done: Готово
   dont_have_an_account_sign_up_html: Нямате акаунт? <strong>Регистрирайте се.</strong>
+  dont_use_double_quotes: Не използвайте двойни кавички за нищо друго
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Пусни го тук
@@ -1425,6 +1428,7 @@ bg:
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   help_support_inaturalist: "Подкрепете iNaturalist"
   help_translate!: Помогнете с превода!
+  here_are_3_examples: Ето три добре форматирани примера
   here_are_our_top_suggestions: Ето най-добрите ни предложения
   here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
   hex_color_eg: Цвят в шестнайсетичен код, например 6564BF
@@ -1655,6 +1659,7 @@ bg:
     occitan: окситански
     palauan: палауански
     pangasinan: пангасинан
+    persian: персийски
     polish: полски
     portuguese: португалски
     romanian: румънски
@@ -1663,6 +1668,7 @@ bg:
     slovak: словашки
     slovenian: словенски
     spanish: испански
+    swahili: суахили
     swedish: шведски
     tagalog: тагалог
     tahitian: таитянски
@@ -1743,6 +1749,7 @@ bg:
     lb: люксембургски
     lt: литовски
     lv: латвийски
+    mi: маорски
     mk: македонски
     nb: норвежки (букмол)
     nl: нидерландски
@@ -2272,6 +2279,7 @@ bg:
   only_an_admin_can_remove_project_users: Само администратор може да премахва потребители от проект
   only_curators_can_add_edit_scientific_names: Само кураторите могат да редактират научни имена.
   only_curators_can_access_that_page: Само кураторите имат достъп до тази страница.
+  only_files_with_10000_rows_at_a_time: Само файлове с по-малко от 10 000 реда, моля
   only_one_coordinate_system_per_file: |
     Само една координатна система може да бъде използвана в един файл. В противен случай ще се конвертира или изобрази погрешно.
   only_project_curators_can_do_that: Само кураторите на проекта могат да правят това.
@@ -2875,8 +2883,8 @@ bg:
   projects: Проекти
   projects_description: |
     Проектите са начин да обедините наблюденията си с тези на други хора от %{site_name}. Независимо дали искате да започнете граждански научен проект или просто да следите птиците от близкия парк заедно с други местни ентусиасти - Проектите са удобен начин да го направите.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекти от %{place}"
-  projects_in_x: "Проекти в %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Проекти, които %{user} администрира
   projects_you_admin: Проекти които администрирате
@@ -2890,6 +2898,7 @@ bg:
   queued: На опашка
   query: Заявка
   radius: Радиус (m)
+  radius_km: Радиус (km)
   radius_value: "Радиус (m): %{radius}"
   random: Произволно
   range: Диапазон
@@ -3156,6 +3165,11 @@ bg:
   search_your_photos: Претърси своите снимки
   searching: "Търсене..."
   seasonality: Сезонност
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "@gender{m:Вашият|f:Вашата|n:Вашето} %{noun}"
   seen_nearby: Видян наоколо
   select: Избери
@@ -3166,6 +3180,8 @@ bg:
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
   select_options: Избери опция
+  select_photos_from_your_photo_stream: |
+    Изберете снимки от външни сайтове за споделяне на снимки, за да ги направите наблюдения в %{site_name}. Ще попълним дата, час и място от метаданните на снимката и ще опитаме да открием вида сред етикетите (таговете) на снимката.
   selected: избрано
   selected_photos: Избрани снимки
   send: Изпрати
@@ -3205,6 +3221,7 @@ bg:
   similar_taxa: Подобни таксони
   #Journal post formatting option
   simple: Просто
+  single_observation: Единично наблюдение
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
@@ -3226,6 +3243,7 @@ bg:
   some_rights_reserved: някои права запазени
   something: Нещо
   something_: нещо
+  something_went_wrong_deleting_the_taxon_name: "Възникна проблем при изтриването на таксономичното име „%{taxon_name}“!"
   somewhere_on_earth: някъде на Земята
   somewhere: (Някъде...)
   sorry_flickr_isnt_responding_at_the_moment: "Съжаляваме, Flickr не отговаря в момента."
@@ -3343,6 +3361,8 @@ bg:
   tags_are_a_way: 'Етикетите са допълнителен начин за организиране на Вашите наблюдения. Например, можете да добавите етикет "пещера" към наблюденията си от пещери, за да ги намерите лесно по-късно.'
   task_deleted: Задачата изтрита
   taxa: Таксони
+  taxa_show_obs_photo_search_tip: |
+    Съвет: въведете идентификатор на наблюдение в полето за търсене, ако искате да изберете снимки от конкретно наблюдение.
   taxa_info: Информация за таксони
   taxa_needing_curation: Таксони нуждаещи се от куриране
   taxa_observed: наблюдавани таксони
@@ -3404,6 +3424,8 @@ bg:
   taxon_changes: Таксономични промени
   taxon_framework_complete: "Изчерпателен: да"
   taxon_merge: обединяване на таксони
+  taxon_name: Име на таксон
+  taxon_name_must_match_an_existing_taxon_in_our_database: Таксономичното име трябва да съвпада със съществуващ таксон в нашата база данни.
   taxon_observed_by_html: |
     <a href="%{url}">%{taxon}</a> наблюдавано от
   taxon_observed_by_user: "%{taxon}, наблюдавано от %{user}"
@@ -3416,6 +3438,8 @@ bg:
   taxon_swap: таксономична размяна
   taxon_swap_only_has_one_input: допустима е само една входяща стойност при таксономична размяна
   taxon_swap_has_inputs_and_outputs: таксономичната размяна трябва да има както входящи, така и изходни стойности
+  taxon_name_was_deleted: Таксономичното име беше изтрито.
+  taxon_name_was_successfully_updated: Таксономичното име беше обновено успешно.
   taxon_was_successfully_created: Таксонът беше създаден успешно.
   taxon_was_successfully_updated: Таксонът беше обновен успешно.
   taxonomic: Таксономично
@@ -3451,6 +3475,9 @@ bg:
     Долните елементи са необходими за достигане на <span className="bold">Изследователско качество:</span>
   the_following_observations_could: "Следните наблюдения не можаха да бъдат добавени до %{link}"
   the_following_photos_have_been_tagged: "Следните снимки бяга тагнати:"
+  the_name_of_the_taxon_including_space: Таксономичното име, включително интервала пред видовия и подвидовия епитет.
+  the_name_of_the_taxon_dashes: Таксономичното име, с интервали заместени с тирета.
+  the_name_of_the_taxon_underscores: Таксономичното име, интервали заместени с подчертавки.
   the_observation_was_already_added_to_that_project: Наблюдението вече беше добавено към проекта.
   the_people_of_inat: "Хората на %{site_name}"
   the_user_x_has_been_suspended: "Потребителят %{user} беше запориран"
@@ -3485,6 +3512,7 @@ bg:
   this_taxon_has_no_default_photo: Този таксон няма примерна снимка!
   this_taxon_is_inactive_this_means: |
     Този таксон е <strong>неактивен</strong>. Това означава, че кураторите на %{site_name} са го заменили с по-нова таксономична концепция.
+  this_taxon_name_was_originally_imported: "Това таксономично име е било импортирано от външен таксономичен източник."
   this_user_has_been_suspended: Този потребител е запориран
   this_user_has_been_suspended_message: |
     Ако това е Вашият акаунт и смятате, че това е направено по погрешка, моля <a href="mailto:%{email}">свържете се с нас</a>.
@@ -3689,6 +3717,8 @@ bg:
   updated_photo: Обновена снимка
   upload: Качване
   upload_a_csv_file: Качи CSV файл
+  upload_a_csv_file_with_observation: |
+    Качете CSV файл с данни за наблюдения. Ако данните Ви са в електронна таблица или база данни, това вероятно е най-добрия начин.
   upload_new_photo: Качи нова снимка
   upload_photo: Качи снимка
   uploaded_by: Качено от
@@ -3710,6 +3740,7 @@ bg:
   usage_stats: Статистика на използването
   use_this_form_to_create_a_new: |
     Използвайте този формуляр за да създадете нов проект за таксономична промяна - описващ предлагано разделяне, обединяване или размяна на активни таксони - който да бъде изпълнен по-късно.
+  use_unique_file_names_for_separate_uploads: Използвайте уникални имена на файлове при отделните качвания
   use_well_formed_csv: |
     Използвайте добре форматиран CSV. Това означава, че буквалните запетаи в текста трябва да бъдат оградени с двойни кавички. Повечето приложения за електронни таблици би трябвало да експортират CSV в този формат.
   used_x_times:
@@ -3771,9 +3802,13 @@ bg:
   verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдаване
   view: Виж
   view_all: Виж всички
+  view_all_fields: Виж всички полета
   view_all_flags: Виж всички маркери
   view_all_members: Виж всичките членове
-  view_all_n: "Виж всички %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Виж всички (%{count})"
+    other: "Виж всички (%{count})"
   view_all_observations: Виж всички наблюдения
   view_all_photocount_photos: "Виж всичките %{photo_count} снимки"
   view_check_list_page: Виж видовия списък
@@ -3816,7 +3851,6 @@ bg:
   view_taxon_change: Виж таксономичната промяна
   view_taxon_changes: Виж таксономичните промени
   view_taxononomy_details_for_taxon: "Виж таксономични детайли за %{taxon}"
-  view_the_observation: Виж наблюдението
   view_user_observations: "Виж наблюденията на %{user}"
   view_x: "Виж %{x}"
   view_year_stats_for_site: "Виж статистика за %{year} на %{site}"
@@ -3857,6 +3891,7 @@ bg:
   were_pretty_sure_this_is_in_the_rank: Почти сигурни сме, че това е от %{rank}
   what: Какво
   what_did_you_see: Какво наблюдавахте?
+  what_did_you_see?: <em>Какво</em> видяхте?
   what_do_you_think: Какво мислите?
   what_want_to_list?: Какво искате да включите в списъка?
   whats_this?: Какво е това?
@@ -3864,6 +3899,7 @@ bg:
   when_did_you_see_it?: Кога го наблюдавахте?
   when_did_you_see_them?: <em>Кога</em> ги видяхте?
   where: Къде
+  where_were_they?: Къде ги видяхте?
   where_were_you?: Къде се намирахте?
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   white: бяло
@@ -3977,6 +4013,7 @@ bg:
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
   you_must_choose_an_observation_field: Трябва да изберете поле за наблюдения
   you_must_fill_out_the_required_fields: Трябва да попълните задължителните полета
+  you_must_have_a_header_row: Трябва да има заглавен ред
   you_must_select_at_least_one_taxon: Трябва да изберете поне един таксон
   you_must_specify_and_confirm_a_new_password: Трябва да укажете и потвърдите нова парола.
   you_sure_delete_comment?: Сигурни ли сте, че искате да изтриете този коментар?
@@ -4175,6 +4212,10 @@ bg:
       import:
         date_column_format: ГГГГ-ММ-ДД ЧЧ:ММ
         decimal_degrees_format: dd.dddd
+        geoprivacy_must_be_in_english: |
+          Колоната за геоповерителност трябва да е на английски и трябва да е празна или със стойност „obscured“ или „private“
+        soundcloud_notice_html: |
+          През 2018, SoundCloud промени програмния си интерфейс и направи невъзможно свързването на акаунти за нас. Ако възобновят тази функция, ще можем отново да свързваме акаунтите. Междувременно можете да качвате звуци директно, използвайки <a href="/observations/upload">обичайния интерфейс</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Разрешете на кураторите на проекта да виждат скритите координати на това наблюдение.
@@ -4438,6 +4479,7 @@ bg:
         identifiers_desc: Добавили са разпознаване към наблюдение на някой друг този ден
         iphone_desc_html: Създадено с приложението на <a href="%{url}">iNaturalist за iPhone</a>
         new_users_desc: Регистрирали са се този ден
+        obs_1_day_desc: "Наблюдения създадени за един ден"
         observers_desc: Добавили са наблюдение този ден
         other_desc_html: Създадено с други приложения <a href="%{url}">направени от разработчици</a>
         TTCID_desc: Време за получаване на разпознаване от някой друг, съответстващо на консенсусното разпознаване от общността.
@@ -4544,6 +4586,10 @@ bg:
         trending_desc: Най-наблюдаваните таксони през последния месец
         trending_in_place_desc_html: Най-наблюдаваните таксони през последния месец във <a href="%{url}">%{place}</a>
         wanted_desc: Видове от този таксон които все още не са наблюдавани.
+    taxon_links:
+      form:
+        name_with_rank_desc: |
+          Таксономичното име, заедно с ранга. Вътревидовите рангове се поставят след биномното име.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -4989,6 +5035,8 @@ bg:
         started_at: Започнато
         #Date/time the task finished processing
         finished_at: Завършено
+      place_taxon_name:
+        position: Позиция
       post:
         title: Заглавие
         body: Съдържание
@@ -5025,6 +5073,10 @@ bg:
         rank: Ранг
         wikipedia_summary: Резюме от Уикипедия
         wikipedia_title: Заглавие в Уикипедия
+      taxon_name:
+        lexicon: Лексика
+        name: Название
+        position: Позиция
       user:
         email: Електронна поща
         login: Потребителско име
@@ -5053,6 +5105,11 @@ bg:
             redirect_uri:
               invalid_uri: "трябва да е валиден URI."
               relative_uri: "трябва да е абсолютен URI."
+        flag:
+          attributes:
+            flag:
+              not_about_duplicate: |
+                но може да се отнася за дублирани наблюдения или снимки; само наблюдателят може да изтрива дубликати, така че моля отправете забележките си директно към него с коментар
         observation:
           attributes:
             observed_on:

@@ -2106,8 +2106,8 @@ sq:
   projects_description: |
     Projektet ua mundësojnë t'i bashkoni vëzhgimet tuaja me njerëz tjerë në %{site_name}.
     Po që se jeni duke nisur një përpjekje shkencore qytetare apo mbani regjistër të zogjve në lagjen tuaj, Projektet janë mënyra e duhur.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projektet nga %{place}"
-  projects_in_x: "Projektet në %{x}"
   projects_you_admin: Projektet që ju administroni
   proposed_taxa_that_contradict_the_community_id: Taksonomitë e propozuara që bien në kundërshtim me ID-në e Komunitetit
   proposed_taxa_that_support_the_community_id: Taksonomitë e propozuara të cilat mbështesin ID-në e Komunitetit
@@ -2250,7 +2250,7 @@ sq:
     must_be_georeferenced: patjetër të ketë referencë gjeografike
     must_be_identified: Patjetër të identifikohet
     must_be_on_list: patjetër të jetë në listë
-    must_be_observed_in_place: Patjetër të jetë vëzhguar në Vend
+    must_be_observed_in_place: Patjetër të jetë vëzhguar në vend
     must_be_in: E detyrueshme të jetë në taxon
   said: thënë
   satellite: satelit
@@ -2300,6 +2300,11 @@ sq:
   search_your_photos: Kërko në fotot tuaja
   searching: "Duke kërkuar..."
   seasonality: Sezonaliteti
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} juaj"
   see_something_wrong_with_taxon: Sheh diçka të gabuar me këtë takson? Informo kuratorët.
   seen_nearby: E parë në afërsi

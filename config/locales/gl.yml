@@ -3528,8 +3528,8 @@ gl:
   projects: Proxectos
   projects_description: |
     Os proxectos son unha forma de agrupar as túas observacións con outras persoas en %{site_name}. Tanto se che interesa iniciar un proxecto científico cidadán coma se só queres manter rexistros das aves dun parque próximo ao teu club de observación local, podes facelo con Proxectos.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proxectos de %{place}"
-  projects_in_x: "Proxectos en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proxectos Administrados por %{user}
   projects_you_admin: Proxectos que ti administras
@@ -3885,6 +3885,11 @@ gl:
   search_your_photos: Procurar as túas fotos
   searching: "Procurando..."
   seasonality: Estacionalidade
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Teu %{noun}"
   see_something_wrong_with_taxon: Ves algo malo neste taxón? Comunícallelo aos administradores.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4349,6 +4354,11 @@ gl:
   these_observations_have_not_been_uploaded_yet: |
     Esas observacións aínda non foron subidas.
   third_party_tracking: Rastrexo de Terceiros
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: Este
   this_bioblitz_beings_in: Este bioblitz comeza en
@@ -4592,7 +4602,6 @@ gl:
   user_observed_on_on_date_in_place: |
     %{user} observou un no %{date} no %{place}
   user_suggested_an_id: "%{user} suxeriu unha identificación"
-  user_thinks_yours_is: "%{user} %{noun} a túa observación %{observation} é"
   user_trusts_you_with_their_private_coordinates: "%{user} confíate as súas coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     O observador escoulleu confiarte as coordenadas ocultas de tódalas súas observacións.
@@ -4619,7 +4628,6 @@ gl:
   view_all: Ver todo
   view_all_flags: Ver Tódalas Marcas
   view_all_members: Ver todos os membros
-  view_all_n: "Ver todas as %{n}"
   view_all_observations: Ver todas as observacións
   view_all_photocount_photos: "Ver todas as %{photo_count} fotos"
   view_assessment: Ver Avaliación
@@ -4670,7 +4678,6 @@ gl:
   view_taxon_page: Ver páxina do taxón
   view_taxon_page_for_this_x: "Ver páxina do taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the_observation: Ver a observación
   view_user_observations: "Ver observacións de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Ver Estatísticas de %{year} para %{site}"

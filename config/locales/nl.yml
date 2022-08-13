@@ -764,6 +764,16 @@ nl:
   batch_operations: Batchbewerkingen
   be_the_first_to_fave_this_observation: Sla als eerste deze waarneming op als een favoriet!
   because_of: wegens
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Omdat we inschatten dat deze verandering zal resulteren in meer dan 10 onbedoelde
+    meningsverschillen, <strong>raden we je ook een taxonwijziging aan met
+    %{old_parent}, zoals het opsplitsen van %{new_parent} van %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Omdat we inschatten dat deze verandering zal resulteren in 10 of minder onbedoelde
+    meningsverschillen, <strong>is het waarschijnlijk niet nodig om een taxonwijziging uit te voeren
+    waarbij %{old_parent} betrokken is</strong>.
   become_a_donor_caps: WORD DONATEUR
   become_a_donor_today_caps: WORD VANDAAG DONATEUR
   before_importing_photos: vóór het importeren van foto's
@@ -964,7 +974,7 @@ nl:
   committed_taxon_changes_cannot_be_deleted: Vastgelegde taxonwijzigingen kunnen niet worden verwijderd
   #Status message while a taxon change is being committed
   committing: Vastleggen...
-  common_name: Algemene naam
+  common_name: Lokale naam
   community: Gemeenschap
   community_curated: Gecureerd door de gemeenschap
   community_guidelines: Gemeenschapsrichtlijnen
@@ -1229,7 +1239,7 @@ nl:
     van taxonomische wijzigingen die jij wilt aanbrengen en voeg bronnen toe aan je wijzigingsvoorstellen. Indien van toepassing citeer dan de juiste taxonomische autoriteiten <a href="https://www.inaturalist.org/pages/curator+guide#policies"> zoals vermeld in de Curator Guide</a>. Als je geen bronnen toevoegt wordt je aanvraag niet in behandeling genomen.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-    Als je algemene namen wilt bewerken geef dan één of twee voorbeelden van
+    Als jij lokale namen wilt bewerken geef dan één of twee voorbeelden van
     wijzigingen die je wilt aanbrengen
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
@@ -2385,6 +2395,7 @@ nl:
     lb: Luxemburgs
     lt: Litouws
     lv: Lets
+    mi: Maori
     mk: Macedonisch
     mr: Marathi
     nb: Noors Bokmål
@@ -3831,8 +3842,8 @@ nl:
   projects_description: |
     Projecten laten je je waarnemingen samenvoegen met andere mensen op %{site_name}.
     Of je nu een intiatief voor burgerwetenschap opstart of op de hoogte wilt blijven van de vogels in jouw buurt, projecten zijn dé manier.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projecten van %{place}"
-  projects_in_x: "Projecten in %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projecten die %{user} administreert
   projects_you_admin: Projecten die jij administreert
@@ -4200,6 +4211,11 @@ nl:
   search_your_photos: In je foto's zoeken
   searching: "Bezig met zoeken ..."
   seasonality: Seizoensinvloeden
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Jouw %{noun}"
   see_something_wrong_with_taxon: Is er iets mis met dit taxon? Laat het de curators weten.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4548,6 +4564,9 @@ nl:
   target_list_warning: Denk eraan dat alles wat in je doellijst staat dat je niet hebt waargenomen binnen de straal en de duur van deze tocht zal worden geïnterpreteerd als een afwezigheid. Het is erg belangrijk dat je doellijst goed de soorten weergeeft die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst, of alle soorten binnen een soortgroep op je doellijst te vinden, verwijder deze dan.
   task_deleted: Taak verwijderd
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tip: voer het ID van een waarneming in het zoekveld in als je
+    foto's van een specifieke waarneming wilt kiezen.
   taxa_with_unknown_relationships: Taxa met onbekende verwantschappen.
   taxa_info: Taxa-informatie
   taxa_needing_curation: Taxa heeft Curation nodig
@@ -4778,6 +4797,7 @@ nl:
   there_were_some_problems_with_fields: "Er was een probleem met de volgende velden:"
   there_were_some_problems_with_these_files: "De volgende bestanden hebben een probleem:"
   theres_something_wrong_with_taxon_framework_relationship: Er is hier iets mis - we kunnen de relatie tussen interne en externe taxa niet bepalen
+  therefore_committing_additional_taxon_changes: Het vastleggen van extra taxonwijzigingen na het vastleggen van deze taxonwissel zal daarom niet nodig zijn.
   these_are_items_people_on: |
     Dit zijn items die mensen op de site hebben gemeld voor curatie. Reacties met spam moeten worden verwijderd, en gebruikers die spam toevoegen moeten worden opgeschort (ga naar hun profielpagina en klik op 'Gebruiker opschorten' rechtsonderin om te voorkomen
     dat ze inloggen). Andere gemelde items mogen alleen worden verwijderd
@@ -4789,6 +4809,11 @@ nl:
   these_observations_have_not_been_uploaded_yet: |
     Deze waarnemingen werden nog niet geüpload.
   third_party_tracking: Volgen door derden
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} van %{object_phrase}"
   this: deze
   this_bioblitz_beings_in: Deze bioblitz begint over
@@ -5169,7 +5194,6 @@ nl:
   user_observed_on_on_date_in_place: |
     %{user} nam één waar op %{date} in %{place}
   user_suggested_an_id: "%{user} heeft een ID voorgesteld"
-  user_thinks_yours_is: "%{user} %{noun} je waarneming %{observation} is"
   user_trusts_you_with_their_private_coordinates: "%{user} vertrouwt je hun verborgen coördinaten toe"
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
@@ -5197,9 +5221,9 @@ nl:
   verifiable_observations_by_observation_date: Verifieerbare waarnemingen op datum van waarneming
   view: Bekijken
   view_all: Alles weergeven
+  view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
   view_all_members: Alle leden weergeven
-  view_all_n: "Alle %{n} weergeven"
   view_all_observations: Alle waarnemingen weergeven
   view_all_photocount_photos: "Alle %{photo_count} foto's weergeven"
   view_assessment: Beoordeling bekijken
@@ -5251,7 +5275,6 @@ nl:
   view_taxon_page: Taxonpagina weergeven
   view_taxon_page_for_this_x: "Taxonpagina voor %{x} weergeven"
   view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
-  view_the_observation: Bekijk de waarneming
   view_user_observations: "Waarnemingen van %{user} weergeven"
   view_x: "%{x} weergeven"
   view_year_stats_for_site: "Statistieken van %{year} voor %{site} weergeven"

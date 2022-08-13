@@ -3728,8 +3728,8 @@ uk:
   projects: Проєкти
   projects_description: |
     Проекти дозволяють об'єднати ваші спостереження зі спостереженнями інших користувачів %{site_name}. Чи то нова ініціатива з громадської науки, чи просто обліки птахів на вашому подвір'ї, проєкти - те, що вам потрібно.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проєкти з місця: %{place}"
-  projects_in_x: "Проєкти у %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Проєкти, що адмініструє %{user}
   projects_you_admin: Проєкти, що адмініструєте ви
@@ -4103,6 +4103,11 @@ uk:
   search_your_photos: Шукати ваші фото
   searching: "Пошук.."
   seasonality: Фенологія
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Ваш %{noun}"
   see_something_wrong_with_taxon: Щось не так із цим таксоном? Повідомте кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4606,6 +4611,11 @@ uk:
   these_observations_have_not_been_uploaded_yet: |
     Ці спостереження ще не завантажені.
   third_party_tracking: Відстеження сторонніми сервісами
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: це
   this_bioblitz_beings_in: Цей біобліц розпочинається за
@@ -4862,7 +4872,6 @@ uk:
   user_observed_on_on_date_in_place: |
     Користувач %{user} спостерігав це %{date} у такому місці: %{place}
   user_suggested_an_id: "%{user} запропонував/ла визначення"
-  user_thinks_yours_is: "%{user} %{noun} ваше спостереження %{observation} є"
   user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Спостерігач вирішив довірити вам приховані координати всіх своїх спостережень.
@@ -4889,7 +4898,6 @@ uk:
   view_all: Переглянути всі
   view_all_flags: Переглянути всі прапорці
   view_all_members: Переглянути всіх учасників
-  view_all_n: "Переглянути всі %{n}"
   view_all_observations: Переглянути всі спостереження
   view_all_photocount_photos: "Переглянути всі %{photo_count} фото"
   view_assessment: Переглянути оцінку
@@ -4940,7 +4948,6 @@ uk:
   view_taxon_page: Переглянути сторінку таксону
   view_taxon_page_for_this_x: "Переглянути сторінку таксону для цього %{x}"
   view_taxononomy_details_for_taxon: "Переглянути подробиці таксономії для %{taxon}"
-  view_the_observation: Переглянути спостереження
   view_user_observations: "Переглянути спостереження користувача %{user}"
   view_x: "Переглянути %{x}"
   view_year_stats_for_site: "Переглянути статистику за %{year} рік для %{site}"

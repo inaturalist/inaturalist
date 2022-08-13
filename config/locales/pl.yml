@@ -3093,8 +3093,8 @@ pl:
   project_was_successfully_created: Projekt został pomyślnie utworzony.
   project_was_successfully_updated: Profil został pomyślnie zaktualizowany.
   projects: Projekty
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z miejsca %{place}"
-  projects_in_x: "Projekty w %{x}"
   projects_you_admin: Projekty, którymi administrujesz
   protozoans: pierwotniaki
   public_domain: Domena publiczna
@@ -3809,7 +3809,6 @@ pl:
   view_all: Zobacz wszystkie
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
-  view_all_n: "Zobacz wszystkie %{n}"
   view_all_observations: Zobacz wszystkie obserwacje
   view_all_photocount_photos: "Zobacz wszystkie %{photo_count} zdjęcia"
   view_assessment: Zobacz ocenę
@@ -3847,7 +3846,6 @@ pl:
   view_taxon_page: Zobacz stronę taksonu
   view_taxon_page_for_this_x: "Zobacz stronę taksonu dla tego %{x}"
   view_taxononomy_details_for_taxon: "Zobacz szczegóły taksonomii dla %{taxon}"
-  view_the_observation: Zobacz obserwację
   view_user_observations: "Zobacz obserwacje %{user}"
   view_x: "Zobacz %{x}"
   view_year_stats_for_site: "Zobacz statystyki dla %{site} z %{year}"
