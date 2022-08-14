@@ -265,7 +265,7 @@ lv:
   about_trusting_projects_you_can_choose: |-
     Tev ir iespēja izvēlēties, vai dalīties ar noslēptajām koordinātām šiem novērojumiem:
   #Header for a section describing unintended disagreements
-  about_unintended_disagreements: Par neparedzētām domstarpībām
+  about_unintended_disagreements: Par netīšu ID nesaderību
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -577,7 +577,7 @@ lv:
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
   #as disagreements with existing IDs of the thinned descendant.
-  analyze_clashes: Analizēt neparadzētās domstarpības
+  analyze_clashes: Analizēt netīšu ID nesaderību
   analyze_ids: Analizēt ID
   ancestor_taxon: Priekšteču taksons
   and: un
@@ -802,6 +802,14 @@ lv:
   back_to_your_observations: Atpakaļ uz taviem novērojumiem
   back_to_your_profile: Atpakaļ uz tavu profilu
   badges: Nozīmītes
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    zero: |
+      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} netīšu ID nesaderības gadījumu</strong> ar %{child} ID.
+    one: |
+      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} netīšs ID nesaderības gadījums</strong> ar %{child} ID.
+    other: |
+      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} neparedzētas domstarpības</strong> ar %{child} ID.
   based_on_the_evidence_can_id_be_improved: |
     Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
   batch: Vairākus reizē
@@ -811,6 +819,12 @@ lv:
   batch_operations: Vairākas darbības reizē
   be_the_first_to_fave_this_observation: Pievieno novērojumu izlasei pirmais!
   because_of: ', jo'
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Pēc mūsu aprēķiniem šo izmaiņu dēļ var rasties vairāk nekā 10 netīšu ID nesaderības gadījumu, <strong>tāpēc mēs iesakām veikt izmaiņas %{old_parent} taksonā, piemēram, atdalīt %{new_parent} no %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Pēc mūsu aprēķiniem šo izmaiņu dēļ var rasties 10 vai mazāk netīšu ID nesaderības gadījumu, <strong>tāpēc, visticamāk, nav vajadzības veikt izmaiņas %{old_parent}</strong> taksonā.
   become_a_donor_caps: KĻŪSTI PAR ZIEDOTĀJU
   become_a_donor_today_caps: KĻŪSTI PAR ZIEDOTĀJU JAU ŠODIEN
   before_importing_photos: pirms fotogrāfiju augšupielādes
@@ -933,6 +947,8 @@ lv:
   change_your_password: Mainīt paroli
   #Plural noun, as in changes to a taxon record over time
   changes: Izmaiņas
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Izmaiņas šī virstaksona priekštecībā var novest pie netīšas ID nesaderības. Lai gan tas var prasīt laiku, lūdzu, vispirms novērtē šīs izmaiņas.
   changing_the_geoprivacy: 'Ģeoprivātuma iestatījumi izmaina to, kā citiem lietotājiem izskatās tava novērojuma atrašanās vieta.'
   check_above_for_errors: Paritini uz augšu, lai apskatītu kļūdas
   check_back_soon: Pārbaudi vēlreiz vēlāk!
@@ -971,6 +987,12 @@ lv:
   choose_what_kind_of_change_youre_creating: "Kādas izmaiņas veiksi?"
   cid_d_to_genus: Kopiena identificējusi ģinti
   citation: Citāts
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Netīša ID nesaderība notiek tad, kad virstaksonā <strong>(B)</strong> iekļauto taksonu skaits tiek samazināts, pārvietojot kādu taksonu no apakšgrupām <strong>(E)</strong> uz citu taksonomiskā koka daļu. Šīs darbības dēļ pašreizējās virstaksona identifikācijas tiek uzskatītas par nesaderīgām ar pārvietotā apakšgrupas taksona pašreizējām identifikācijām.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Netīša ID nesaderība notiek tad, kad virstaksonā <strong>(B)</strong> iekļauto taksonu skaits tiek samazināts, samainot kādu taksonu no apakšgrupām <strong>(E)</strong> uz citu taksonomiskā koka daļu. Šīs darbības dēļ pašreizējās virstaksona identifikācijas tiek uzskatītas par nesaderīgām ar samainītā apakšgrupas taksona pašreizējām identifikācijām.
   classification: Klasifikācija
   clear: notīrīt
   clear_filters: Dezaktivizēt filtrus
@@ -1008,6 +1030,9 @@ lv:
   committed_taxon_changes_cannot_be_deleted: Saglabātas taksonu izmaiņas nevar dzēst
   #Status message while a taxon change is being committed
   committing: Veic izmaiņas...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Taksonu samainīšanas dēļ var rasties netīša ID nesaderība. Lai gan tas var prasīt laiku, lūdzu, vispirms novērtē šīs izmaiņas.
   common_name: Tautā pieņemtais nosaukums
   community: Kopiena
   community_curated: Kopienas pārbaudīts
@@ -2018,7 +2043,7 @@ lv:
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   however_you_may_want_to_commit_html: |
-    Taču, ja vēlies, vari atstāt komentārus zem novērojumiem ar neparedzētām domstarpībām, lai paziņotu par to citiem identificētājiem. %{old_parent}
+    Taču, ja vēlies, vari atstāt komentārus zem novērojumiem ar netīšiem ID nesaderības gadījumiem, lai paziņotu par to citiem identificētājiem. %{old_parent}
   i_dont_know_but_i_am_sure_this_is_taxon: Nespēju noteikt sugu, bet organisms pieder pie %{taxon}
   icon: Ikona
   icon_size: Ikonas izmērs
@@ -2032,6 +2057,10 @@ lv:
         Pirmais taksona minējums, kam piekrīt kopiena. Šādi tiek precizēts kopienas piedāvātais taksons.
       maverick: |
         Taksons nav kopienas taksona priekštecis vai pēctecis. Kopiena nepiekrīt tam, ka tas ir šis taksons.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "Pēc izmaiņām priekštecībā taksona ID nr. 2. <strong>E</strong> nesaderēs ar taksona ID nr. 1. <strong>B</strong>."
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "Pēc taksonu samainīšanas taksona ID nr. 2. <strong>E</strong> nesaderēs ar taksona ID nr. 1. <strong>B</strong>."
   id_withdrawn: ID atsaukta
   ids_by_taxon: ID iedal. pēc taksona
   identify: Identificēt
@@ -2062,6 +2091,14 @@ lv:
   ids_made_for_others: Citu novērojumiem pievienotās ID
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Ja virstaksonā iekļauto taksonu skaita samazināšanas dēļ rodas vairāk nekā 10 netīšu ID nesaderības gadījumu, iesakām sadalīt virstaksonu pēc taksona apakšgrupu pārvietošanas, lai aizvietotu pašreizējās virstaksona identifikācijas <strong>(B)</strong> ar saderīgām identifikācijām.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Ja virstaksonā iekļauto taksonu skaita samazināšanas dēļ rodas vairāk nekā 10 netīšu ID nesaderības gadījumu, iesakām sadalīt virstaksonu pēc taksona apakšgrupu samainīšanas, lai aizvietotu pašreizējās virstaksona identifikācijas <strong>(B)</strong> ar saderīgām identifikācijām.
   if_matches_come_from_a_comprehensive_list: Ja atbilstīgo taksonu avots ir pilnīgs saraksts, šeit parādīsies zaļa josla.
   if_this_is_a_scientific_name: Vai šis ir apstiprināts zinātniskais nosaukums?
   if_this_link_will_apply_to_descendant: Ja saite attiecas uz zemāku pakāpju taksoniem, tad iespējams izmantot tagus no veidnes, lai URL vietrādī aizpildītu taksona nosaukumu.
@@ -2721,6 +2758,7 @@ lv:
   new: Jauns
   new_and_noteworthy: Jauna un ievērojama funckija
   new_announcement: Jauns paziņojums
+  new_application: Jauna lietotne
   new_assessment: Jauns novērtējums
   new_check_list: Jauna kontrollapa
   new_check_list_for: "Izveidot jaunu kontrollapu, kas paredzēta šai vietai: %{place} &raquo;"
@@ -4712,7 +4750,7 @@ lv:
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: šis
   this_bioblitz_beings_in: Bioblitz sākas
-  this_is_more_convenient_way_find_parent: Šādi atrast augstākas pakāpes ID ir vieglāk. TIeši augstākas pakāpes ID ir tas, kurš tiek saglabāts.
+  this_is_more_convenient_way_find_parent: Šādi atrast augstākas pakāpes ID ir vieglāk. Tieši augstākas pakāpes ID ir tas, kurš tiek saglabāts.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Šādi atrast taksona ID ir vieglāk. Tieši taksona ID ir tas, kurš tiek saglabāts. Meklēšanā tiek uzrādīti tikai aktīvi taksoni.
   this_is_how_taxon_names_will_be_displayed: '%{site_name} vietnē visi taksonu nosaukumi tiks attēloti šādi.'
