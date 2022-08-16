@@ -49,11 +49,11 @@ namespace :inaturalist do
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
     earliest_id = CONFIG.update_action_rollover_id || 1
-    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).where(["created_at < ?", 3.months.ago]).minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
       where("id >= #{min_id} AND id < #{ min_id + 2000000 }").maximum( :id )
-    UpdateAction.delete_and_purge("id >= #{ earliest_id } AND id <= #{ last_id_to_delete }")
+    UpdateAction.delete_and_purge("id >= #{ min_id } AND id <= #{ last_id_to_delete }")
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
