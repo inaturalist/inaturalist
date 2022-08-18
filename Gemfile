@@ -45,7 +45,7 @@ gem "elasticsearch-rails"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"
-gem "flickraw", git: "git@github.com:Arux-Software/flickraw.git"
+gem "flickraw", git: "https://github.com/Arux-Software/flickraw.git"
 gem "flickraw-cached"
 gem "friendly_id"
 gem "gdata", git: "https://github.com/pleary/gdata.git"
