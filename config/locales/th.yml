@@ -2250,6 +2250,7 @@ th:
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   visually_similar: รูปที่คล้ายกัน
   vulnerable: มีแนวโน้มใกล้สูญพันธุ์
+  was_it_captive_cultivated?: "ถูกจับมา / เพาะปลูกหรือไม่?"
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   we_have_no_establishment_data_for_this_taxon: "เราไม่มีข้อมูลการตั้งถิ่นฐานสำหรับหน่วยอนุกรมวิธานนี้"
   welcome_to_inat: "ยินดีต้อนรับเข้าสู่ %{site_name}!"
@@ -2270,7 +2271,10 @@ th:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
+  what_did_you_see: คุณเห็นอะไร?
+  what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
+  when_did_you_see_it?: คุณเห็นเมื่อไหร่?
   why_you_can_see_the_coordinates: เหตุผลที่คุณมองเห็นพิกัดได้
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครเห็นพิกัดได้บ้าง?
