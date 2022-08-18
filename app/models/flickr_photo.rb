@@ -21,15 +21,15 @@ class FlickrPhoto < Photo
   end
   
   def self.flickraw_for_user(user)
-    return flickr unless (user && user.flickr_identity)
     f = FlickRaw::Flickr.new
+    return f unless (user && user.flickr_identity)
     f.access_token = user.flickr_identity.token
     f.access_secret = user.flickr_identity.secret
     f
   end
   
   def self.get_api_response(native_photo_id, options = {})
-    f = options[:user] ? flickraw_for_user(options[:user]) : flickr
+    f = options[:user] ? flickraw_for_user(options[:user]) : FlickRaw::Flickr.new
     user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
     r = Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
       f.photos.getInfo(:photo_id => native_photo_id)
@@ -40,7 +40,7 @@ class FlickrPhoto < Photo
     r
   rescue FlickRaw::FailedResponse => e
     if e.message =~ /Invalid auth token/
-      flickr.photos.getInfo(:photo_id => native_photo_id)
+      FlickRaw::Flickr.new.photos.getInfo(:photo_id => native_photo_id)
     elsif e.message =~ /invalid ID/
       nil
     else

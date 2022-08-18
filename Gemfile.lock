@@ -1,4 +1,11 @@
 GIT
+  remote: git@github.com:Arux-Software/flickraw.git
+  revision: 152e9c44df3e856012d13f8ce71f7cd9ac6d5710
+  specs:
+    flickraw (0.9.11)
+      nokogiri
+
+GIT
   remote: https://github.com/GoodMeasuresLLC/dynamic_form.git
   revision: bd9d4d9d92e724340be5f13e8b239537f29e2d90
   specs:
@@ -351,7 +358,6 @@ GEM
     faraday-rack (1.0.0)
     fastimage (2.2.5)
     ffi (1.15.4)
-    flickraw (0.9.10)
     flickraw-cached (20120701)
       flickraw (>= 0.9)
     friendly_id (5.4.2)
@@ -748,6 +754,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fastimage
+  flickraw!
   flickraw-cached
   friendly_id
   gdata!
