@@ -21,7 +21,7 @@ class FlickrPhoto < Photo
   end
   
   def self.flickraw_for_user(user)
-    f = FlickRaw::Flickr.new
+    f = FlickRaw::Flickr.new( CONFIG.flickr.key, CONFIG.flickr.shared_secret )
     return f unless (user && user.flickr_identity)
     f.access_token = user.flickr_identity.token
     f.access_secret = user.flickr_identity.secret
@@ -29,7 +29,7 @@ class FlickrPhoto < Photo
   end
   
   def self.get_api_response(native_photo_id, options = {})
-    f = options[:user] ? flickraw_for_user(options[:user]) : FlickRaw::Flickr.new
+    f = options[:user] ? flickraw_for_user(options[:user]) : FlickRaw::Flickr.new( CONFIG.flickr.key, CONFIG.flickr.shared_secret )
     user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
     r = Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
       f.photos.getInfo(:photo_id => native_photo_id)
@@ -40,7 +40,8 @@ class FlickrPhoto < Photo
     r
   rescue FlickRaw::FailedResponse => e
     if e.message =~ /Invalid auth token/
-      FlickRaw::Flickr.new.photos.getInfo(:photo_id => native_photo_id)
+      flickr = FlickRaw::Flickr.new( CONFIG.flickr.key, CONFIG.flickr.shared_secret )
+      flickr.photos.getInfo(:photo_id => native_photo_id)
     elsif e.message =~ /invalid ID/
       nil
     else
@@ -242,7 +243,7 @@ class FlickrPhoto < Photo
     find_options[:include] ||= [{:user => :flickr_identity}, :taxon_photos, :observation_photos]
     find_options[:batch_size] ||= 100
     find_options[:sleep] ||= 10
-    flickr = FlickRaw::Flickr.new
+    flickr = flickr = FlickRaw::Flickr.new( CONFIG.flickr.key, CONFIG.flickr.shared_secret )
     updated = 0
     destroyed = 0
     invalids = 0
