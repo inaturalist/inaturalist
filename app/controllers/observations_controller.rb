@@ -2673,7 +2673,7 @@ class ObservationsController < ApplicationController
         key += "_by_user"
         i18n_vars[:user] = search_user.try_methods(:name, :login)
       end
-      I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+      I18n.t( key, **i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
     elsif search_user
       if search_date
         I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )
