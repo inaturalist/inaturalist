@@ -705,8 +705,8 @@ class Observation < ApplicationRecord
   }
 
   scope :between_dates, lambda{|d1, d2|
-    t1 = (Time.parse(URI.unescape(d1.to_s)) rescue Time.now)
-    t2 = (Time.parse(URI.unescape(d2.to_s)) rescue Time.now)
+    t1 = (Time.parse(CGI.unescape(d1.to_s)) rescue Time.now)
+    t2 = (Time.parse(CGI.unescape(d2.to_s)) rescue Time.now)
     if d1.to_s.index(':')
       where("time_observed_at BETWEEN ? AND ? OR (time_observed_at IS NULL AND observed_on BETWEEN ? AND ?)", t1, t2, t1.to_date, t2.to_date)
     else
@@ -848,7 +848,7 @@ class Observation < ApplicationRecord
     if key != "something"
       key = "observation_brief_#{key}"
     end
-    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
+    I18n.t( key, **i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
@@ -3081,7 +3081,7 @@ class Observation < ApplicationRecord
       scope = scope.where(id: filter_ids)
     end
     options[:batch_size] = 100
-    scope.select(:id).find_in_batches(options) do |batch|
+    scope.select(:id).find_in_batches(**options) do |batch|
       ids = batch.map(&:id)
       Observation.transaction do
         connection.execute("DELETE FROM observations_places

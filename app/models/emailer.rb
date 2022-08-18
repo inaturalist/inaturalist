@@ -240,7 +240,9 @@ class Emailer < ActionMailer::Base
     # You can specify the subject as an array so it can be translated in the
     # correct locale
     if opts[:subject].is_a?( Array )
-      opts[:subject] = t( *opts[:subject] )
+      opts[:subject].length == 1 ?
+        opts[:subject] = t( opts[:subject][0] ) :
+        opts[:subject] = t( opts[:subject][0], **opts[:subject][1] )
     end
     mail( opts )
     reset_locale

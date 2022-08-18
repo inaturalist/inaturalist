@@ -1271,7 +1271,7 @@ module ApplicationHelper
       end
     end
     key += '_html'
-    t(key, opts)
+    t(key, **opts)
   end
   
   def url_for_resource_with_host(resource)

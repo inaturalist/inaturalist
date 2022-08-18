@@ -19,11 +19,11 @@ module DarwinCore
       @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
       @opts[:extensions] = [@opts[:extensions]].flatten.compact
       @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
-        File.join( "observations", "dwc.eml.erb" )
+        File.join( "observations", "dwc" )
       else
-        File.join( "taxa", "dwc.eml.erb" )
+        File.join( "taxa", "dwc" )
       end
-      @opts[:descriptor] ||= File.join("observations", "dwc.descriptor.builder")
+      @opts[:descriptor] ||= File.join("observations", "dwc_descriptor")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:media_licenses] = @opts[:photo_licenses].map(&:downcase)
@@ -163,6 +163,8 @@ module DarwinCore
       end
       d = DarwinCore::Descriptor.new(
         template: @opts[:descriptor],
+        handlers: [:builder],
+        formats: [:xml],
         core: @opts[:core],
         extensions: extensions,
         ala: @opts[:ala]

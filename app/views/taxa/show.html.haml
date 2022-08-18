@@ -1,6 +1,6 @@
 - @no_footer_gap = true
 - content_for :title do
-  =raw strip_tags( @shareable_title ||= render( "taxa/taxon.txt.erb", taxon: @taxon ) )
+  =raw strip_tags( @shareable_title ||= render( partial: "taxa/taxon", handlers: [:erb], formats: [:txt], locals: { taxon: @taxon } ) )
 - content_for :extrajs do
   :javascript
     var SERVER_PAYLOAD = {

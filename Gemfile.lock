@@ -5,26 +5,6 @@ GIT
     dynamic_form (1.1.4)
 
 GIT
-  remote: https://github.com/IDolgirev/omniauth-flickr.git
-  revision: bcd202b0825659cbd984e611f6151f67c4aae591
-  ref: bcd202b0825659cbd984e611f6151f67c4aae591
-  specs:
-    omniauth-flickr (0.0.19)
-      multi_json (~> 1.13.0)
-      omniauth-oauth (~> 1.0)
-
-GIT
-  remote: https://github.com/Programatica/irwi.git
-  revision: 9a49ff01bbfc399e649331505d4439a9658f07f0
-  specs:
-    irwi (0.5.0)
-      actionpack (>= 4.0)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
-      diff-lcs (>= 1.1.2)
-      rails_autolink (>= 1.0)
-
-GIT
   remote: https://github.com/fnando/i18n-js.git
   revision: 384a02dd58ed4994310a8094f6c8cc7f74b93026
   tag: v3.7.0
@@ -54,7 +34,6 @@ GIT
     riparian (0.4.0)
       activesupport (> 3.0.0)
       delayed_job
-      paperclip
       rails (> 3.0.0)
       rdoc
 
@@ -94,11 +73,41 @@ GIT
     gdata (1.1.2)
 
 GIT
+  remote: https://github.com/pleary/irwi.git
+  revision: ec16c4f6bc05bd07ae6b9d51eab93b43e32314f0
+  specs:
+    irwi (0.5.0)
+      actionpack (>= 4.0)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      diff-lcs (>= 1.1.2)
+      rails_autolink (>= 1.0)
+
+GIT
+  remote: https://github.com/pleary/omniauth-flickr.git
+  revision: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
+  ref: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
+  specs:
+    omniauth-flickr (0.0.19)
+      multi_json (~> 1.15.0)
+      omniauth-oauth (~> 1.0)
+
+GIT
   remote: https://github.com/ratafire/omniauth-soundcloud.git
   revision: 34e7e48919dadc66a27ee2a135e54a5d82df91ee
   specs:
     omniauth-soundcloud (1.0.2)
       omniauth-oauth2
+
+GIT
+  remote: https://github.com/siefca/i18n-inflector-rails.git
+  revision: 99726dc44e166f6fb794caec9d3244795e7ee79b
+  ref: 99726dc44e166f6fb794caec9d3244795e7ee79b
+  specs:
+    i18n-inflector-rails (1.0.8)
+      actionpack (>= 3.0.0)
+      i18n-inflector (~> 2.6)
+      railties (>= 3.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -315,7 +324,7 @@ GEM
     elasticsearch-transport (7.15.0)
       faraday (~> 1)
       multi_json
-    erubi (1.10.0)
+    erubi (1.11.0)
     eventmachine (1.2.7)
     execjs (2.8.1)
     exifr (1.3.9)
@@ -365,7 +374,7 @@ GEM
       temple (>= 0.8.0)
       tilt
     hashdiff (1.0.1)
-    hashie (4.1.0)
+    hashie (5.0.0)
     htmlentities (4.3.4)
     httmultiparty (0.3.16)
       httparty (>= 0.7.3)
@@ -384,10 +393,6 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
-    i18n-inflector-rails (1.0.7)
-      actionpack (>= 3.0.0)
-      i18n-inflector (~> 2.6)
-      railties (>= 3.0.0)
     icalendar (2.7.1)
       ice_cube (~> 0.16)
     ice_cube (0.16.3)
@@ -398,6 +403,12 @@ GEM
       addressable
       faraday
       json (>= 1.8)
+    kt-paperclip (7.1.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      marcel (~> 1.0.1)
+      mime-types
+      terrapin (~> 0.6.0)
     lefthook (0.7.7)
     loofah (2.18.0)
       crass (~> 1.0.2)
@@ -415,7 +426,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.16.2)
-    multi_json (1.13.1)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     net-scp (3.0.0)
@@ -434,7 +445,7 @@ GEM
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
-    oauth (0.5.6)
+    oauth (0.5.10)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -471,12 +482,6 @@ GEM
       rack
     optimist (3.0.1)
     orm_adapter (0.5.0)
-    paperclip (6.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      mime-types
-      mimemagic (~> 0.3.0)
-      terrapin (~> 0.6.0)
     parallel (1.21.0)
     parser (3.0.2.0)
       ast (~> 2.4.1)
@@ -754,15 +759,17 @@ DEPENDENCIES
   georuby
   haml
   htmlentities
-  i18n-inflector-rails
+  i18n-inflector-rails!
   i18n-js!
   icalendar
   irwi!
   json
   koala
+  kt-paperclip
   lefthook
   machinist!
   makara!
+  multi_json (~> 1.15.0)
   newrelic_rpm
   nokogiri
   non-stupid-digest-assets
@@ -779,7 +786,6 @@ DEPENDENCIES
   omniauth-soundcloud!
   omniauth-twitter
   optimist
-  paperclip
   parallel
   patron
   pg
@@ -827,7 +833,7 @@ DEPENDENCIES
   yui-compressor
 
 RUBY VERSION
-   ruby 2.7.6p219
+   ruby 3.0.4p208
 
 BUNDLED WITH
    2.3.9

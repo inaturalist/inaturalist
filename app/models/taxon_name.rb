@@ -502,10 +502,10 @@ class TaxonName < ApplicationRecord
     match = TaxonName.find_lexicons_by_translation( lexicon )
     return unless non_en_lexicons.include?( lexicon.downcase.strip )
 
-    errors.add( :lexicon, :should_match_english_translation, {
+    errors.add( :lexicon, :should_match_english_translation,
       suggested: I18n.with_locale( :en ) { I18n.t( "lexicons.#{match[:lexicons].key( lexicon.downcase.strip )}" ) },
       suggested_locale: I18n.t( "locales.#{match[:locale]}" )
-    } )
+    )
   end
 
   def parameterize_lexicon

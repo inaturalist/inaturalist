@@ -3,7 +3,6 @@
 module HasModeratorActions
   def self.included( base )
     base.extend ClassMethods
-    include InstanceMethods
   end
 
   module ClassMethods
@@ -25,4 +24,5 @@ module HasModeratorActions
     end
   end
 end
+
 ActiveRecord::Base.include HasModeratorActions

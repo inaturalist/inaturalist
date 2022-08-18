@@ -182,13 +182,26 @@ class ObservationsController < ApplicationController
       
       format.widget do
         if params[:markup_only] == 'true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: true,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence: params[:silence]
+            }
+          )
         else
-          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-            :show_user => true
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js],
+            locals: {
+              show_user: true
+            }
+          )
         end
       end
     end
@@ -289,7 +302,12 @@ class ObservationsController < ApplicationController
         end
         @shareable_title = if @observation.taxon
           Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
-          render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
+          render_to_string(
+            partial: "taxa/taxon",
+            handlers: [:erb],
+            formats: [:txt],
+            locals: { taxon: @observation.taxon }
+          )
         else
           I18n.t( "something" )
         end
@@ -1307,11 +1325,23 @@ class ObservationsController < ApplicationController
       end
       format.widget do
         if params[:markup_only]=='true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => false, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: false,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence:  params[:silence]
+            }
+          )
         else
-          render :js => render_to_string(:partial => "widget.js.erb")
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js]
+          )
         end
       end
       
@@ -1420,16 +1450,26 @@ class ObservationsController < ApplicationController
       end
       format.widget do
         if params[:markup_only] == "true"
-          render js: render_to_string( partial: "widget.html.erb", locals: {
-            show_user: true,
-            target: params[:target],
-            default_image: params[:default_image],
-            silence: params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: true,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence: params[:silence]
+            }
+          )
         else
-          render js: render_to_string( partial: "widget.js.erb", locals: {
-            show_user: true
-          } )
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js],
+            locals: {
+              show_user: true
+            }
+          )
         end
       end
     end
@@ -2633,7 +2673,7 @@ class ObservationsController < ApplicationController
         key += "_by_user"
         i18n_vars[:user] = search_user.try_methods(:name, :login)
       end
-      I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+      I18n.t( key, **i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
     elsif search_user
       if search_date
         I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )

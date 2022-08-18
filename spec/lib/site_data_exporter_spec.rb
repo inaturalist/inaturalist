@@ -21,7 +21,7 @@ describe SiteDataExporter do
 
       before do
         expect( obs.user.site ).to eq site
-        @archive_path = SiteDataExporter.new( site ).export
+        @archive_path = SiteDataExporter.new( site, num_processes: 1 ).export
       end
 
       it "should generate a zip file" do

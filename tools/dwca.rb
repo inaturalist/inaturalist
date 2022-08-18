@@ -50,7 +50,7 @@ opts = Optimist.options do
   ".strip.gsub( /\s+/m, " " ), type: :string, short: "-m"
   opt :descriptor, "Path to descriptor template",
     type: :string, short: "-r",
-    default: File.join( "observations", "dwc.descriptor.builder" )
+    default: File.join( "observations", "dwc_descriptor" )
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia
     exports. Options: research, casual, verifiable, any.
