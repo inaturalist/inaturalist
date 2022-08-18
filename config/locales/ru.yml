@@ -217,7 +217,7 @@ ru:
   _percent_ID_d: "% идентифицированных"
   a_community_for_naturalist: Сообщество натуралистов
   a_default_taxon_name_will_automatically_created: |
-    Название таксона по умолчанию будет автоматически создано из атрибута научного названия этого таксона. Когда вы сохраните этот новый таксон, вы сможете добавлять здесь другие названия  (народные названия, устаревшие научные названия и т.д.).
+    Название таксона по умолчанию будет автоматически создано из атрибута научного названия этого таксона. Когда вы сохраните этот новый таксон, вы сможете добавлять здесь другие названия (народные названия, устаревшие научные названия и т.д.).
   a_flag_for_x: "флаг для %{x}"
   a_member_of_taxon_html: "член %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -2388,6 +2388,7 @@ ru:
     ojibwe: Оджибве
     palauan: Палау
     pangasinan: Пангасинанский
+    persian: Персидский, фарси
     polish: Польский
     portuguese: Португальский
     romanian: Румынский
@@ -2398,6 +2399,7 @@ ru:
     slovak: Словацкий
     slovenian: Словенский
     spanish: Испанский
+    swahili: Суахили
     swedish: Шведский
     tagalog: тагальский
     tahitian: таитянский
@@ -2499,6 +2501,7 @@ ru:
     lb: Люксембургский
     lt: Литовский
     lv: Латышский
+    mi: Маори
     mk: Македонский
     mr: Маратхи
     nb: Норвежский (букмол)
@@ -3902,8 +3905,8 @@ ru:
   projects: Проекты
   projects_description: |
     Проекты - это способ объединить свои наблюдения с наблюдениями других людей на %{site_name}. Если вы заинтересованы в том, чтобы начать городской научный проект или просто наблюдаете птиц в ближайшем парке вместе с участниками местного клуба любителей птиц, проекты являются удобным способом.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекты для %{place}"
-  projects_in_x: "Проекты в %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Проекты, которые администрирует %{user}
   projects_you_admin: Проекты, которые вы администрируете
@@ -3920,6 +3923,7 @@ ru:
   queued: В очереди
   query: Запрос
   radius: Радиус (м)
+  radius_km: Радиус (км)
   radius_value: "Радиус (м): %{radius}"
   random: Случайный
   range: Диапазон
@@ -4288,6 +4292,11 @@ ru:
   search_your_photos: Поиск ваших фото
   searching: "Идет поиск..."
   seasonality: Сезонность
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "@gender{m:Ваш|f:Ваша|n:Ваше} %{noun}"
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4606,6 +4615,8 @@ ru:
   target_list_warning: Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали в радиусе и за время поездки, будет истолковано как отсутствие. Очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить. Если вы не пытались обнаружить вид из вашего целевого списка или каждый вид, входящий в группу в вашем целевом списке, удалите его.
   task_deleted: Задача удалена
   taxa: Таксоны
+  taxa_show_obs_photo_search_tip: |
+    Совет: введите идентификатор наблюдения в поле поиска, если вы хотите выбрать фотографии из конкретного наблюдения.
   taxa_with_unknown_relationships: Таксоны с неизвестными связями
   taxa_info: Информация о таксонах
   taxa_needing_curation: Таксоны, требующие внимания куратора
@@ -4873,6 +4884,11 @@ ru:
   these_observations_have_not_been_uploaded_yet: |
     Эти наблюдения ещё не были загружены
   third_party_tracking: Отслеживание третьими сторонами
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: это
   this_bioblitz_beings_in: Биоблиц начинается в
@@ -5256,7 +5272,6 @@ ru:
   user_observed_on_on_date_in_place: |
     %{user} наблюдал это %{date} в %{place}
   user_suggested_an_id: "%{user} предложил идентификацию"
-  user_thinks_yours_is: "%{user} %{noun} ваше %{observation}"
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
@@ -5284,9 +5299,15 @@ ru:
   verifiable_observations_by_observation_date: Подтверждаемые наблюдения по дате наблюдения
   view: Просмотр
   view_all: Посмотреть все
+  view_all_fields: Посмотреть все поля
   view_all_flags: Просмотр всех флагов
   view_all_members: Посмотреть всех участников
-  view_all_n: "Просмотреть все %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Видеть все %{count}"
+    few: "Видеть все %{count}"
+    many: "Видеть все %{count}"
+    other: "Видеть все %{count}"
   view_all_observations: Посмотреть все наблюдения
   view_all_photocount_photos: "Посмотреть все %{photo_count} фото"
   view_assessment: Просмотр оценки
@@ -5338,7 +5359,6 @@ ru:
   view_taxon_page: Посмотреть страницу таксона
   view_taxon_page_for_this_x: "Посмотреть страницу таксона для %{x}"
   view_taxononomy_details_for_taxon: "Просмотр сведений о таксономии для %{taxon}"
-  view_the_observation: Посмотреть наблюдение
   view_user_observations: "Посмотреть наблюдения %{user}"
   view_x: "Посмотреть %{x}"
   view_year_stats_for_site: "Просмотр статистики %{year} для %{site}"

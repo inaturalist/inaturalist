@@ -995,6 +995,8 @@ be:
   change_your_password: Змяніць пароль
   #Plural noun, as in changes to a taxon record over time
   changes: Змяненні
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Змена паходжання на гэтага з бацькоў можа прывесці да ненаўмысных рознагалоссяў. Спачатку прааналізуйце іх, што можа заняць некаторы час.
   changing_the_geoprivacy: 'Змена наладаў геапрыватнасці ўплыае на тое, як іншыя людзі бачаць месцазнаходжанне вашых назіранняў.'
   check_above_for_errors: Праверце пазначанае на наяўнасць памылак
   check_back_soon: Да хуткага пабачэння!
@@ -1140,6 +1142,9 @@ be:
   connecting_your_inat_account_to_accounts_other_sites: "Падлучэнне вашага ўліковага запісу %{site_name} да ўліковых запісаў на іншых сайтах дазволіць вам уваходзіць на %{site_name} выкарыстоўваючы ўліковыя дадзеныя з гэтых сайтаў."
   cannot_be_changed_during_a_content_freeze: Не можа быць зменена падчас замарожвання зместу
   conservation_status: Прыродаахоўны статус
+  conservation_status_created: Прыродаахоўны статус створаны
+  conservation_status_deleted: Прыродаахоўны статус выдалены
+  conservation_status_updated: Прыродаахоўны статус абноўлены
   conservation_status_descriptions:
     status: Код стану, ранг і г.д. Калі існуе кароткі код накшталт E або CR, калі ласка, выкарыстоўвайце яго. Калі не - калі ласка, карыстайцеся поўным статусам, напрыклад "пад пагрозай знікнення" або "знаходзіцца на мяжы знікнення"
     description: Кароткае апісанне чаму гэта было ўнесена ў спіс.
@@ -1671,6 +1676,7 @@ be:
   edit_body: Рэдагаваць тэкст
   edit_comment: Рэдагаваць ваш каментар
   edit_complete_set_for_taxon_in_place_html: "Рэдагваць поўны набор для %{taxon} у %{place}"
+  edit_conservation_status: Рэдагаваць прыродаахоўны статус
   edit_custom_project_fields: Рэдагаваць карыстальніцкія палі праекта
   edit_field: Рэдагаваць поле
   edit_license: Рэдагаваць ліцэнзію
@@ -1693,6 +1699,8 @@ be:
   edit_taxon_link: Рэдагаваць спасылку на таксон
   edit_taxon_range: Рэдагаваць арэал таксона
   edit_the_observation: Рэдагаваць назіранне
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Адрэдагуйце гэты таксон пасля яго стварэння, каб дадаць прыродаахоўны статус
   edit_your_account_and_profile_html: "Рэдагаваць ваш уліковы запіс і профіль"
   edit_your_default_settings: "Рэдагаваць вашыя стандартныя налады"
   edit_your_global_project_settings: Рэдагаваць вашыя глабальныя налады праекту
@@ -3800,8 +3808,8 @@ be:
   projects: Праэкты
   projects_description: |
     Праекты дазваляюць аб'ядноўваць свае назіранні з іншымі людзьмі на %{site_name}. Незалежна ад таго, ці гэта новая ініцыятыва грамадзянскай навукі, ці вы сочыце за птушкамі ў вашым раёне, праекты - гэта зручна.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Праэкту з %{place}"
-  projects_in_x: "Праэкты ў %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Праэкты, якія адмініструе %{user}
   projects_you_admin: Праэкты, якія вы адмініструеце
@@ -3832,6 +3840,11 @@ be:
     superfamily: Надсямейства
     epifamily: Эпісямейства
     family: Сямейства
+    x_families:
+      one: Сям'я
+      few: Сем'і
+      many: Сем'і
+      other: Сем'яў
     subfamily: Падсямейства
     supertribe: Надтрыба
     tribe: Трыба
@@ -3861,6 +3874,8 @@ be:
     form: Форма
     infrahybrid: Інфрагібрыд
     leaves: Лісце
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: стан рэчыва
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: царства
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
@@ -3879,6 +3894,8 @@ be:
   ranks_lowercase_infraclass: інфраклас
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
   ranks_lowercase_subterclass: надклас
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: зоападсекцыя
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: надсямейства
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
@@ -3917,6 +3934,7 @@ be:
   ranks_lowercase_form: форма
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
   ranks_lowercase_infrahybrid: інфрагібрыд
+  ranges: Дыяпазоны
   ray_finned_fishes: промнепёрыя рыбы
   read_more: Больш падрабязна
   read_our_getting_started_guide: прачытайце наша Кіраўніцтва па пачатку працы
@@ -4165,7 +4183,6 @@ be:
   view_all: Праглядзець усё
   view_all_flags: Праглядзець усе пазнакі
   view_all_members: Праглядзець усіх удзельнікаў
-  view_all_n: "Праглядзець усе %{n}"
   view_all_observations: Праглядзець усе назіранні
   view_all_photocount_photos: "Праглядзець усе %{photo_count} фота"
   view_leaderboard_from_last_month: Глядзець табліцу лідараў з мінулага месяцу

@@ -95,35 +95,39 @@ module DarwinCore
         end
         t
       end
-      
+
       def kingdom
-        cached_ancestor(:kingdom)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :kingdom_name ) : cached_ancestor(:kingdom)
       end
-      
+
       def phylum
-        cached_ancestor(:phylum)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :phylum_name ) : cached_ancestor(:phylum)
       end
-      
+
       def find_class_name
-        cached_ancestor(:class)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :class_name ) : cached_ancestor(:class)
       end
-      
+
       def order
-        cached_ancestor(:order)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :order_name ) : cached_ancestor(:order)
       end
-      
+
       def family
-        cached_ancestor(:family)
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :family_name ) : cached_ancestor(:family)
       end
-      
+
       def genus
-        if rank_level > ::Taxon::GENUS_LEVEL
-          find_genus.try(:name)
-        elsif rank == ::Taxon::GENUS
-          name
-        else
-          name.split.first
-        end
+        @ranked_ancestors ?
+          @ranked_ancestors.dig( :genus_name ) : cached_ancestor(:genus)
+      end
+
+      def set_ranked_ancestors( ranked_ancestors )
+        @ranked_ancestors = ranked_ancestors
       end
     end
   end

@@ -1250,17 +1250,11 @@ class User < ApplicationRecord
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
     options[:filters] << { term: { "subscriber_ids.keyword": id } }
-    ops = {
-      filters: options[:filters],
-      inverse_filters: options[:inverse_filters],
-      per_page: options[:per_page],
-      sort: { id: :desc }
-    }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
-      sort: { id: :desc })
+      sort: { created_at: :desc })
   end
 
   def blocked_by?( user )

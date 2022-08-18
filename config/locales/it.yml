@@ -584,6 +584,9 @@ it:
   are_you_really_sure_want_delete_this_user: Sei veramente, veramente sicuro di voler cancellare questo utente e tutti i suoi contenuti?
   are_you_sure?: Sei sicuro?
   are_you_sure_no_undo: Sei sicuro? Questa azione non può essere annullata.
+  are_you_sure_delete_conservation_status: |
+    Sei sicuro di voler eliminare questo stato di conservazione? Questo potrebbe cambiare
+    l'oscuramento delle osservazioni di questo taxon e dei taxa inclusi.
   are_you_sure_delete_post: Sei sicuro di voler cancellare questo post?
   are_you_sure_delete_taxon_move_associates: "Sei sicuro di voler cancellare %{taxonname} (%{taxonid}) e spostare tutti i suoi taxa associati?"
   are_you_sure_delete_this_place: Sei sicuro di voler cancellare questo luogo?
@@ -1030,6 +1033,9 @@ it:
   connecting_your_inat_account_to_accounts_other_sites: "La connessione del tuo account di %{site_name} ad altri account su altri siti ti permetterà di accedere a %{site_name} usando le credenziali di quei siti."
   cannot_be_changed_during_a_content_freeze: Non può essere modificato durante un blocco dei contenuti
   conservation_status: Stato di conservazione
+  conservation_status_created: Stato di conservazione creato
+  conservation_status_deleted: Stato di conservazione cancellato
+  conservation_status_updated: Stato di conservazione aggiornato
   conservation_status_descriptions:
     status: Il codice dello stato, del rango, etc. Se esiste un codice breve come E o CR, si consiglia di utilizzarlo, ma se non è disponibile, è meglio utilizzare il nome per esteso, ad esempio, in pericolo o in via di estinzione.
     description: Breve descrizione del motivo per cui è stato elencato.
@@ -1553,6 +1559,7 @@ it:
   edit_body: Modifica il corpo
   edit_comment: Modifica il tuo commento
   edit_complete_set_for_taxon_in_place_html: "Modifica l'Elenco Completo di %{taxon} in %{place}"
+  edit_conservation_status: Modifica stato di conservazione
   edit_custom_project_fields: Modifica i campi personalizzati del progetto
   edit_field: Modifica il campo
   edit_license: Modifica la licenza
@@ -1575,6 +1582,8 @@ it:
   edit_taxon_link: Modifica il link del taxon
   edit_taxon_range: Modifica l'areale del taxon
   edit_the_observation: Modifica l'osservazione
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Modifica questo taxon dopo averlo creato per aggiungere stati di conservazione
   edit_your_account_and_profile_html: "Modifica il tuo account & il tuo profilo"
   edit_your_default_settings: "Modifica le tue impostazioni predefinite"
   edit_your_global_project_settings: Modifica le impostazioni globali del progetto
@@ -2257,6 +2266,7 @@ it:
     ojibwe: Ojibwe
     palauan: Palauano
     pangasinan: Pangasinan
+    persian: Persiano
     polish: Polacco
     portuguese: Portoghese
     romanian: Rumeno
@@ -2267,6 +2277,7 @@ it:
     slovak: Slovacco
     slovenian: Sloveno
     spanish: Spagnolo
+    swahili: Swahili
     swedish: Svedese
     tagalog: Tagalog
     tahitian: Tahitiano
@@ -2368,6 +2379,7 @@ it:
     lb: Lussemburghese
     lt: Lituano
     lv: Lettone
+    mi: Maori
     mk: Macedone
     mr: Marathi
     nb: Norvegese Bokmål
@@ -2692,6 +2704,7 @@ it:
   new_check_list_for: "Crea una nuova checklist per %{place} &raquo;"
   new_check_list_record: "Se desideri contrassegnare la lista come esaustiva, creala, aggiungi i taxa e poi editala: troverai qui l'opzione per contrassegnarla come esaustiva."
   new_comment_on_a_parent_by_user_link: Nuovo commento su @gender{m:un|f:una|n:un} %{parent} di %{user_link}
+  new_conservation_status: Nuovo stato di conservazione
   new_flag_for: Nuovo Contrassegno per
   new_guide: Nuova guida
   new_journal_post: Nuovo Post del Diario
@@ -3060,6 +3073,8 @@ it:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una delle seguenti deve essere vera:"
   one_of_your_lists: "una delle tue liste..."
+  one_or_more_input_taxa_have_more_than_1000_alt: |
+    Uno o più taxa a monte hanno più di 1000 osservazioni a valle, perciò l'applicazione potrebbe richiedere un po' di tempo per l'elaborazione, sei sicuro che questa modifica del taxon sia necessaria? Ricordati che le modifiche del taxon non possono essere annullate.
   only_a_project_manager_can_add: Solo il gestore del progetto può assegnare il ruolo di curatore
   only_administrators_may_access_that_page: Solo gli amministratori possono accedere a questa pagina
   only_an_admin_can_remove_project_users: Solo l'amministratore può rimuovere gli utenti dal progetto
@@ -3768,8 +3783,8 @@ it:
   projects: Progetti
   projects_description: |
     I progetti ti permettono di unire le tue osservazioni con altre persone su %{site_name}. Se stai per avviare un progetto di citizen science o semplicemente vuoi annotarti le specie di uccelli presenti in un parco vicino a te, i Progetti fanno per te.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Progetti in %{place}"
-  projects_in_x: "Progetti in %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Progetti che %{user} Amministra
   projects_you_admin: Progetti che amministri
@@ -3786,6 +3801,7 @@ it:
   queued: In coda
   query: Interrogazione
   radius: Raggio (m)
+  radius_km: Raggio (Km)
   radius_value: "Raggio (m): %{radius}"
   random: Casuale
   range: Intervallo
@@ -4073,7 +4089,7 @@ it:
     must_be_georeferenced: deve essere georeferenziata
     must_be_identified: deva essere identificata
     must_be_on_list: deve essere sulla lista
-    must_be_observed_in_place: deve essere osservata nel Luogo
+    must_be_observed_in_place: deve essere osservata nel luogo
     must_be_in: deve essere nel taxon
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere ai curatori del progetto di visualizzare le coordinate.
     must_be_verifiable: dev'esser verificabile
@@ -4136,6 +4152,11 @@ it:
   search_your_photos: Cerca tra le tue foto
   searching: "Ricerca in corso..."
   seasonality: Stagionalità
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "@gender{m:Il tuo|f:La tua} %{noun}"
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon? Informa i curatori.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4515,6 +4536,8 @@ it:
   taxon_assessments_are: |
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
+  taxon_change_commit_may_still_be_processing: |
+    L'applicazione della modifica del taxon potrebbe essere ancora in fase di elaborazione, quindi tieni presente che alcuni record non sono ancora aggiornati
   taxon_change_must_be_committed_to_update_records: Per aggiornare i contenuti occorre confermare la modifica del taxon
   taxon_change_title_taxon_drop: Disattivazione Tassonomica %{id}
   taxon_change_title_taxon_merge: Fusione Tassonomica %{id}
@@ -4685,6 +4708,11 @@ it:
   these_observations_have_not_been_uploaded_yet: |
     Queste osservazioni non sono ancora state caricate.
   third_party_tracking: Tracciamento da Terze Parti
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} di %{object_phrase}"
   this: questo
   this_bioblitz_beings_in: Questo bioblitz inizia in
@@ -4712,6 +4740,8 @@ it:
     <strong>Questa modifica del taxon è stata salvata!</strong>
     Per favore non modificare i taxa. Modifica pure gli altri campi.
   this_taxon_concept_is_inactive: questo taxon è inattivo
+  this_taxon_has_more_than_1000_alt: |
+    Questo taxon ha più di 1000 osservazioni ad esso associate, quindi questi cambiamenti potrebbero richiedere un certo tempo per essere elaborati. Sei sicuro che siano necessari?
   this_taxon_has_no_default_photo: Questo taxon non ha una foto predefinita!
   this_taxon_is_inactive_this_means: |
     Questo taxon è <strong>inattivo</strong>. Questo significa che i curatori di %{site_name} l'hanno sostituito con un taxon più recente.
@@ -5057,7 +5087,6 @@ it:
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
   user_suggested_an_id: "%{user} ha suggerito una ID"
-  user_thinks_yours_is: "%{user} %{noun} che la tua osservazione %{observation} sia"
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
@@ -5087,7 +5116,6 @@ it:
   view_all: Mostra tutto
   view_all_flags: Mostra tutti i contrassegni
   view_all_members: Visualizza tutti i membri
-  view_all_n: "Visualizza tutte %{n}"
   view_all_observations: Visualizza tutte le osservazioni
   view_all_photocount_photos: "Visualizza tutte le %{photo_count} foto"
   view_assessment: Visualizza la valutazione
@@ -5139,7 +5167,6 @@ it:
   view_taxon_page: Visualizza la Pagina del Taxon
   view_taxon_page_for_this_x: "Visualizza la pagina per questo %{x}"
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
-  view_the_observation: Visualizza l'osservazione
   view_user_observations: "Visualizza le osservazioni di %{user}"
   view_x: "Visualizza %{x}"
   view_year_stats_for_site: "Visualizza statistica %{year} per %{site}"

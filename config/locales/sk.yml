@@ -2286,8 +2286,8 @@ sk:
   project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
   project_x_was_delete: "%{project} bol zmazaný (počkajte prosím pár minút, než bude odstránený z webovej stránky)"
   projects: Projekty
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
-  projects_in_x: "Projekty v %{x}"
   projects_you_admin: Projekty, ktoré spravujete
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia od ID komunity
   protozoans: prvoky
@@ -2508,6 +2508,11 @@ sk:
   search_your_photos: Prehľadať vaše fotky
   searching: "Hľadám..."
   seasonality: Sezónnosť
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Vaše %{noun}"
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to vedieť kurátorom.
   seen_nearby: Videné blízko
@@ -2882,7 +2887,6 @@ sk:
   user_invite_observation_to_project: 'Užívateľ %{user} by rád pripojil vaše pozorovanie „%{observation}“ k projektu %{project}.'
   user_invited_you_to_join_project: "Užívateľ %{user} vás pozval, aby ste sa pripojili k projektu %{project}"
   user_suggested_an_id: "%{user} navrhol ID"
-  user_thinks_yours_is: "%{user} %{noun} vaše pozorovanie %{observation} je"
   username: Používateľské meno
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
@@ -2919,7 +2923,6 @@ sk:
   view_taxon_changes: Zobraziť zmeny taxónu
   view_taxon_page: Zobraziť stránku taxónu
   view_taxon_page_for_this_x: "Zobraziť stránku taxónu pre tento %{x}"
-  view_the_observation: Zobraziť pozorovania
   view_x: "Zobraziť %{x}"
   view_your_dashboard: Zobraziť vašu nástenku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobraziť vašu nástenku</a> a aktualizácie"

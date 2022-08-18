@@ -169,6 +169,8 @@ mr:
     या प्रकल्पामधील फक्त तुमची निरीक्षणे ज्यामध्ये वर्गांना असलेल्या धोक्यामुळे निर्देशांक अस्पष्ट आहेत
   about_trusting_projects_options_taxon_desc: |-
     बर्‍याच प्रकल्पांना फक्त अस्पष्ट निर्देशांकाबद्दल माहिती पुरेशी आहे कारण निरीक्षणामध्ये धोक्यात असलेल्या वर्गांचा समावेश आहे
+  about_trusting_projects_overview: |-
+    लपवलेले नकाशा-निर्देशांक बघण्याची परवानगी मंजूर केल्याने, तुमच्या निरीक्षणांचे खरे आणि निश्चित स्थान प्रकल्प व्यवस्थापकांना बघण्याची अनुमती मिळेल. शास्त्रज्ञ किंवा संसाधन व्यवस्थापकांना अधिक विश्लेषणासाठी आणि योग्य निर्णय घेण्यासाठी हि परवानगी अतिशय महत्वाची आहे.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -178,6 +180,8 @@ mr:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     आपण आपले गोपनीय निर्देशांक जाहीर करण्याचे ठरवु शकता
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: अनपेक्षित मतभेदांबद्दल
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -389,10 +393,48 @@ mr:
     arachnids: अष्टपाद
     birds: पक्षी
     fungi: कवक
+    fungi_including_lichens: कवक
     insects: कीटक
+    mammals: सस्तन प्राणी
+    mollusks: मृदुकाय प्राणी
+    other_animals: इतर प्राणी
+    plants: वनस्पती
+    reptiles: सरपटणारे प्राणी
+    life: जीवन
+  all_taxa_: सर्व वर्गीकरणे
+  all_taxa_in_this_guide: ह्या मार्गदर्शकातली सर्व वर्गीकरणे
+  all_taxonomic_groups: "&laquo; वर्गीकरणातील सर्व समूह"
+  all_updates: सर्व अद्यतने
   already_have_an_account_log_in_html: याआधीच खाते आहे? <strong>लॉग इन करा</strong>
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: कोणत्याही
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: कोणत्याही
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: कोणत्याही
+  #Label for an option to show content with any annotation value
+  any_annotation_value: कोणत्याही
+  #Label for an option to show content from any date
+  any_date: कोणतीही
+  #Label for an option to show content with any establishment means
+  any_establishment: कोणतीही
+  anyone: कोणीही
+  apply_app_owner: लागू करा
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: लागू करा
+  apply_to_be_an_app_owner: अॅप मालक होण्यासाठी अर्ज करा
+  are_you_sure?: नक्की ?
+  are_you_sure_no_undo: तुमचं नक्की आहे? हे पूर्ववत केले जाऊ शकत नाही.
   are_you_sure_delete_conservation_status: |
     तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
+  are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
   birthday: जन्मतारीख
   calendar: दिनदर्शिका
   #Plural noun, as in changes to a taxon record over time
@@ -498,6 +540,8 @@ mr:
   learn_more: अधिक जाणून घ्या
   lexicons:
     marathi: मराठी
+    persian: पर्शियन
+    swahili: स्वाहिली
   list: यादी
   lists: याद्या
   locales:

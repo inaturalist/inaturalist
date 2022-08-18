@@ -432,7 +432,7 @@ class UsersController < ApplicationController
   def dashboard_updates
     filters = [ ]
     if params[:from]
-      filters << { range: { id: { lt: params[:from] } } }
+      filters << { range: { created_at: { lt: Time.at( params[:from].to_i ) } } }
     end
     unless params[:notifier_type].blank?
       filters << { term: { notifier_type: params[:notifier_type] } }

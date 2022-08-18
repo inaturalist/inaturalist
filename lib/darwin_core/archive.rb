@@ -346,9 +346,15 @@ module DarwinCore
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
         if @taxa.blank?
-          scope.find_each do |t|
-            DarwinCore::Taxon.adapt(t)
-            csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+          scope.includes( :source ).find_in_batches( batch_size: 1000 ) do |batch|
+            taxon_ranked_ancestors = DarwinCore::Archive.lookup_taxa_ancestors(
+              batch.map( &:id ), batch.map( &:ancestry ).map{ |a| a.try( :split, "/" ) }.flatten.uniq.compact
+            )
+            batch.each do |t|
+              DarwinCore::Taxon.adapt(t)
+              t.set_ranked_ancestors( taxon_ranked_ancestors[t.id] )
+              csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+            end
           end
         else
           @taxa.each do |taxon|
@@ -708,6 +714,10 @@ module DarwinCore
       taxon_ids = observations.map{ |o| [o.taxon_id, o.community_taxon_id] }.flatten.uniq.compact
       ancestor_taxon_ids = ::Taxon.where( id: taxon_ids ).pluck( :ancestry ).
         map{ |a| a.try( :split, "/" ) }.flatten.uniq.compact
+      lookup_taxa_ancestors( taxon_ids, ancestor_taxon_ids )
+    end
+
+    def self.lookup_taxa_ancestors( taxon_ids, ancestor_taxon_ids )
       cached_taxa = { }
       ::Taxon.where( id: ( taxon_ids + ancestor_taxon_ids ).uniq ).
         pluck( :id, :name, :rank, :ancestry ).each do |row|

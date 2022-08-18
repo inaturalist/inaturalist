@@ -2986,8 +2986,8 @@ ja:
   projects: プロジェクト
   projects_description: |
     プロジェクトでは、%{site_name} 上の他の人とあなたの観測を共有することができます。市民科学の取り組みを始めようとしている場合でも、近所の鳥を把握しようとしている場合でも、プロジェクトを利用することができます。
+  #@vow_or_con should work on %{place}
   projects_from_place: "%{place}からのプロジェクト"
-  projects_in_x: "%{x}の中のプロジェクト"
   #"admins" is equivalent to "administrates"
   projects_user_admins: プロジェクト %{user}さん 管理者
   projects_you_admin: 自分の管理プロジェクト
@@ -3229,6 +3229,11 @@ ja:
   search_your_photos: あなたの写真の中から検索
   searching: "検索中..."
   seasonality: 季節性
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "あなたの%{noun}"
   see_something_wrong_with_taxon: この分類群に間違いありますか？キュレーター管理者にお知らせください
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -3618,6 +3623,11 @@ ja:
   these_folks_kindly_volunteer_to: 分類群の管理やさまざまな問題への対応などを行っているボランティアの皆さんです。
   these_observations_have_not_been_uploaded_yet: |
     こちらの観察記録はまだアップロードされていません。
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}の%{noun}"
   this: この
   this_bioblitz_beings_in: このバイオブリッツの始まりは、
@@ -3799,7 +3809,6 @@ ja:
   view_all: すべて表示
   view_all_flags: すべてのフラグを表示
   view_all_members: メンバーをすべて表示
-  view_all_n: "すべての%{n}を表示"
   view_all_observations: すべての観察記録を表示
   view_all_photocount_photos: "写真%{photo_count}枚すべてを表示"
   view_assessment: 評定を表示
@@ -3839,7 +3848,6 @@ ja:
   view_taxon_page: 分類群ページを表示
   view_taxon_page_for_this_x: "この%{x}の分類群ページを表示"
   view_taxononomy_details_for_taxon: "%{taxon} の分類の詳細を表示"
-  view_the_observation: 観察記録を表示
   view_user_observations: "%{user}さんの観測記録を表示"
   view_your_dashboard: ダッシュボードを表示
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>ダッシュボードを表示</a> してさらにアップデートを見る"
@@ -4242,7 +4250,7 @@ ja:
         any: その観察記録をプロジェクトに追加したのが私自身ではない場合も同意します。
         none: いいえ。
       curator_coordinate_access_label: |
-        同意します。ただしその観察記録をプロジェクトに追加したのが私自身だった場合に限定します。
+        非公開/不明瞭な観察座標をプロジェクトキュレーターに提供しますか？
       curator_coordinate_access_note: |
         あなたは非公開・不明瞭に設定された観察記録の座標を状況次第で共有することもできます。これはプロジェクトに追加された新規追加された観察記録のデフォルトです。
       show:

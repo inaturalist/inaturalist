@@ -77,13 +77,17 @@
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
-                <%= t(
+                <%=raw t(
                   "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
                   inat_site_name: Site.default.name,
+                  # For some reason network_affiliation_prompt_from_inat_html
+                  # is no longer treated as html safe as of August 2022, so
+                  # we have to use raw above and strip_tags below to make
+                  # sure nothing bad is sneaking in via the place name
                   default: t( :network_affiliation_prompt_from_inat_html,
                     site_name: session[:potential_site][:name],
                     inat_site_name: Site.default.name,
-                    place: session[:potential_site][:place_name],
+                    place: strip_tags( session[:potential_site][:place_name] ),
                     vow_or_con: session[:potential_site][:place_name].first.downcase
                   )
                 ) %>

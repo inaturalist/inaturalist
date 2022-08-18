@@ -2091,6 +2091,7 @@ id:
   italic_text: teks bercetak miring
   item_flagged_notice_html: |
     Hal ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="%{manage_flags_path}">Kelola tanda</a>
+  jobs: Pekerjaan
   join: Gabung
   join_and_add_an_observation_to_project_html: Gabung dan Tambahkan Pengamatan ke %{project}
   join_project: Gabung dengan proyek ini
@@ -2343,6 +2344,7 @@ id:
     lb: Luksemburg
     lt: Lituania
     lv: Latvia
+    mi: Bahasa Maori
     mk: Makedonia
     mr: Marathi
     nb: Bokmål Norwegia
@@ -3761,8 +3763,8 @@ id:
   projects: Proyek
   projects_description: |
     Proyek mengumpulkan pengamatan Anda dengan orang-orang lain di %{site_name}. Jika Anda tertarik untuk memulai proyek ilmiah masyarakat atau hanya ingin memantau burung-burung di sekitar rumah Anda, Proyek adalah jalan yang baik untuk ditempuh.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyek dari %{place}"
-  projects_in_x: "Proyek dalam %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyek Yang Dikelola %{user}
   projects_you_admin: Proyek Yang Anda Kelola
@@ -4059,7 +4061,7 @@ id:
     must_be_georeferenced: harus diberi georeferensi
     must_be_identified: harus diidentifikasi
     must_be_on_list: harus termasuk di daftar
-    must_be_observed_in_place: harus diamati di dalam Tempat
+    must_be_observed_in_place: harus diamati di dalam tempat
     must_be_in: harus di dalam takson
     must_be_coordinates_shareable_by_project_curators: pengamat harus mengizinkan kurator proyek untuk melihat koordinat.
     must_be_verifiable: harus bisa diverifikasi
@@ -4121,6 +4123,11 @@ id:
   search_your_photos: Cari foto Anda
   searching: "Mencari..."
   seasonality: Musim
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} Anda"
   see_something_wrong_with_taxon: Menemukan kesalahan pada takson ini? Beritahu kurator.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4432,6 +4439,8 @@ id:
   target_list_warning: Ingat bahwa semua yang dicakup daftar target Anda yang tidak Anda amati dalam radius dan waktu perjalanan ini akan ditafsirkan sebagai ketidakberadaan. Daftar target Anda seharusnya merefleksikan secara akurat kelompok spesies yang Anda coba temukan. Jika Anda belum mencoba untuk menemukan suatu spesies dalam daftar target Anda atau semua spesies yang dicakup dalam suatu kelompok di daftar target Anda, harap menghapusnya.
   task_deleted: Tugas dihapus
   taxa: Taksa
+  taxa_show_obs_photo_search_tip: |
+    Tip: masukkan ID pengamatan di kolom pencarian jika Anda ingin memilih foto dari pengamatan tertentu.
   taxa_with_unknown_relationships: Taksa dengan relasi yang tidak diketahui
   taxa_info: Info Taksa
   taxa_needing_curation: Taksa Yang Membutuhkan Kurasi
@@ -4481,6 +4490,8 @@ id:
   taxon_assessments_are: |
     Penilaian takson adalah dokumen yang menilai status spesies saat ini, biasanya status konservasi.
     Sebagai contoh, sebuah organisasi konservasi daerah dapat menggunakannya untuk mengatur informasi dan mengumpulkan umpan balik tentang status dari beberapa taksa yang terancam di wilayah tersebut.
+  taxon_change_commit_may_still_be_processing: |
+    Perubahan takson mungkin sedang dalam proses sehingga beberapa catatan belum diperbarui
   taxon_change_must_be_committed_to_update_records: Perubahan takson harus diterapkan untuk memperbarui catatan
   taxon_change_title_taxon_drop: Deaktivasi Taksonomi %{id}
   taxon_change_title_taxon_merge: Peleburan Taksonomi %{id}
@@ -4654,6 +4665,11 @@ id:
   these_observations_have_not_been_uploaded_yet: |
     Pengamatan ini belum diunggah.
   third_party_tracking: Pelacakan Pihak Ketiga
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: ini
   this_bioblitz_beings_in: Bioblitz ini dimulai dalam
@@ -5025,7 +5041,6 @@ id:
   user_observed_on_on_date_in_place: |
     %{user} mengamatinya pada %{date} di %{place}
   user_suggested_an_id: "%{user} menyarankan sebuah ID"
-  user_thinks_yours_is: "%{user} %{noun} pengamatan %{observation} Anda adalah"
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
@@ -5053,9 +5068,12 @@ id:
   verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
   view: Lihat
   view_all: Lihat Semua
+  view_all_fields: Lihat Semua Bidang
   view_all_flags: Lihat Semua Tanda
   view_all_members: Lihat Semua Anggota
-  view_all_n: "Lihat Semua %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    other: "Lihat Semua %{count}"
   view_all_observations: Lihat Semua Pengamatan
   view_all_photocount_photos: "Lihat Semua Foto %{photo_count}"
   view_assessment: Lihat Penilaian
@@ -5107,7 +5125,6 @@ id:
   view_taxon_page: Lihat Halaman Takson
   view_taxon_page_for_this_x: "Lihat halaman takson untuk %{x} ini"
   view_taxononomy_details_for_taxon: "Lihat detail taksonomi untuk %{taxon}"
-  view_the_observation: Lihat pengamatan
   view_user_observations: "Lihat pengamatan %{user}"
   view_x: "Lihat %{x}"
   view_year_stats_for_site: "Lihat Statistik %{year} Untuk %{site}"

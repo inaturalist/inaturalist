@@ -1480,6 +1480,8 @@ es-AR:
   edit_taxon_link: Modifica vínculo del taxón
   edit_taxon_range: Modifica área del taxón
   edit_the_observation: Modificá la observación
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edita este taxón después de crearlo para agregar estados de conservación
   edit_your_account_and_profile_html: "Modifica tu cuenta y tu perfil"
   edit_your_default_settings: "Edita la configuración predeterminada"
   edit_your_global_project_settings: Edita tu configuración global de proyectos
@@ -2009,6 +2011,7 @@ es-AR:
     visible públicamente. \ Lo puedes ver porque tu lo creaste, o  porque eres un curador de sitio. Si piensas que esto es una equivocación, 
     <a href="mailto:%{help_email}" class="contact">contáctanos </a>.
     <a href="%{manage_flags_path}">Administra advertencias</a>
+  jobs: Oportunidades laborales
   join: '¡Únete a'
   join_and_add_an_observation_to_project_html: Unite y añadí una observación a %{project}
   join_project: Unirse a este proyecto
@@ -2145,6 +2148,7 @@ es-AR:
     ojibwe: Ojibwe
     palauan: Palauano
     pangasinan: Pangasinán
+    persian: Persa
     polish: Polaco
     portuguese: Portugués
     romanian: Rumano
@@ -2154,6 +2158,7 @@ es-AR:
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Español
+    swahili: Suajili
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
@@ -3507,8 +3512,8 @@ es-AR:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de ciencia ciudadana o solamente mantener registros de las aves de un parque cercano con tu club local, la forma de hacerlo es con Proyectos.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyectos de %{place}"
-  projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyectos que %{user} administra
   projects_you_admin: Proyectos que administras
@@ -3525,6 +3530,7 @@ es-AR:
   queued: En espera
   query: Consulta
   radius: Radio (m)
+  radius_km: Radio (km)
   radius_value: "Radio (m): %{radius}"
   random: Al azar
   range: Área
@@ -3832,6 +3838,11 @@ es-AR:
   search_your_photos: Buscar sus fotos
   searching: "Buscando..."
   seasonality: Estacionalidad
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Vé algo malo con este taxón? Infórmelo a los curadores.'
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4202,6 +4213,8 @@ es-AR:
   taxonomy: Taxonomía
   taxon_assessments_are: |
     Las evaluaciones del taxón son documentos que evalúan el estado actual de una especie, generalmente su estado de conservación. Por ejemplo, una organización regional de conservación puede utilizarlos para organizar la información y solicitar comentarios acerca del estado de varias especies en riesgo en la región.
+  taxon_change_commit_may_still_be_processing: |
+    El cambio de taxón realizado puede estar procesándose, así que tené en cuenta que algunos registros aún no se han actualizado
   taxon_change_must_be_committed_to_update_records: El cambio de taxón debe ejecutarse para actualizar los registros
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxón no tiene una área
@@ -4330,6 +4343,11 @@ es-AR:
   these_folks_kindly_volunteer_to: Nuestros queridos voluntarios mantienen actualizada la taxonomía y resuelven otros problemas.
   these_observations_have_not_been_uploaded_yet: |
     Estas observaciones no se han subido aún.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
@@ -4548,7 +4566,6 @@ es-AR:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió una identificación"
-  user_thinks_yours_is: "%{user} %{noun} su observación %{observation} es"
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
@@ -4574,7 +4591,6 @@ es-AR:
   view_all: Ve todo
   view_all_flags: Ver Todas las Marcas
   view_all_members: Ve todos los miembros
-  view_all_n: "Ve todas las %{n}"
   view_all_observations: Ve todas las observaciones
   view_all_photocount_photos: "Ve todas las %{photo_count} fotos"
   view_assessment: Ve evaluación
@@ -4625,7 +4641,6 @@ es-AR:
   view_taxon_page: Ver página del taxón
   view_taxon_page_for_this_x: "Ver página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the_observation: Ver la observación
   view_user_observations: "Ver observaciones de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Ver las estadísticas de %{year} de %{site}"

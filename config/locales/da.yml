@@ -610,7 +610,7 @@ da:
   are_you_sure_remove_relationship: Sikker på, at du vil fjerne denne relation? Du vil ikke længere følge personen, og dette vil annullere adgangen til dine fortrolige koordinater.
   are_you_sure_remove_taxon_from_list: "Er du sikker på, at du vil fjerne denne takson fra listen?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Er du sikker? Dette vil genindlæse siden og du kan miste nogle af dine ændringer.
+    Sikker? Dette genindlæser siden, og nogle af ændringerne kan mistes.
   are_you_sure_unresolve_flag?: |
     Sikker på, at du vil fjerne løsningen for dette flag? Både løsningen
     og den bruger, der har leveret den, fjernes fra dette flag.
@@ -2440,6 +2440,7 @@ da:
     lb: Luxembursk
     lt: Litauisk
     lv: Lettisk
+    mi: Maori
     mk: Makedonsk
     mr: Marathi
     nb: Norsk Bokmål
@@ -3880,8 +3881,8 @@ da:
   projects: Projekter
   projects_description: |
     Projekter er en måde at forene dine - med andres observationer på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekter fra %{place}"
-  projects_in_x: "Projekter i %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projekter håndteret af %{user}
   projects_you_admin: Projekter du administrerer
@@ -4250,6 +4251,11 @@ da:
   search_your_photos: Søg i dine foto´s
   searching: "Søger..."
   seasonality: Sæsonudsving
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Din %{noun}"
   see_something_wrong_with_taxon: Ser du noget galt med denne taxon? Giv kuratorerne besked.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4613,6 +4619,8 @@ da:
   target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende. Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede at observere. Hvis du ikke forsøgte at observere en art på din målliste eller alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne den.
   task_deleted: Opgave slettet
   taxa: Taksa
+  taxa_show_obs_photo_search_tip: |
+    Tip: Angiv et observations-ID i søgefeltet, hvis fotos fra en bestemt observation ønskes valgt.
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksainfo
   taxa_needing_curation: Taksa har brug for kuration
@@ -4875,6 +4883,11 @@ da:
   these_observations_have_not_been_uploaded_yet: |
     Disse observationer er ikke blevet uploadet endnu.
   third_party_tracking: Tredjepartssporing
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{object_phrase}s %{noun}"
   this: dette
   this_bioblitz_beings_in: Denne bioblitz starter om
@@ -5255,7 +5268,6 @@ da:
   user_observed_on_on_date_in_place: |
     %{user} observeredes en den %{date} i %{place}
   user_suggested_an_id: "%{user} foreslog et ID"
-  user_thinks_yours_is: "%{user} %{noun} din observation %{observation} er"
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
@@ -5283,9 +5295,13 @@ da:
   verifiable_observations_by_observation_date: Verificerbare observationer efter observations dato
   view: Vis
   view_all: Vis alle
+  view_all_fields: Vis alle felter
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
-  view_all_n: "Vis alle %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Vis alle (%{count} i alt)"
+    other: "Vis alle %{count}"
   view_all_observations: Vis alle observationer
   view_all_photocount_photos: "Vis alle %{photo_count}foto´s"
   view_assessment: Vis vurderinger
@@ -5337,7 +5353,6 @@ da:
   view_taxon_page: Vis takson side
   view_taxon_page_for_this_x: "Vis takson side for dette %{x}"
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
-  view_the_observation: Vis observationen
   view_user_observations: "Vis %{user}'s observationer"
   view_x: "Vis %{x}"
   view_year_stats_for_site: "Vis %{year} statistik for %{site}"

@@ -2413,6 +2413,7 @@ es-MX:
     lb: Luxemburgués
     lt: Lituano
     lv: Letón
+    mi: Maorí
     mk: Macedonio
     mr: Maratí
     nb: Noruego Bokmål
@@ -3835,8 +3836,8 @@ es-MX:
   projects: Proyectos
   projects_description: |
     Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Proyectos de %{place}"
-  projects_in_x: "Proyectos en %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Proyectos que %{user} administra
   projects_you_admin: Proyectos que administras
@@ -4204,6 +4205,11 @@ es-MX:
   search_your_photos: Busca tus fotos
   searching: "Buscando..."
   seasonality: Estacionalidad
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Tu %{noun}"
   see_something_wrong_with_taxon: '¿Ves algo equivocado con esta especie o grupo? Manda una advertencia a los curadores ahora.'
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4530,6 +4536,9 @@ es-MX:
   target_list_warning: Recuerde que cualquier cosa incluida en su lista de objetivos que no haya sido observada dentro del radio y la duración de este viaje se interpretará como una ausencia. Es muy importante que su lista de objetivos refleje con precisión el conjunto de especies que intentó detectar. Si no intentó detectar una especie en su lista de objetivos o todas las especies pertenecientes a un grupo en su lista de objetivos, elimínela.
   task_deleted: Tarea eliminada
   taxa: Especies o grupos
+  taxa_show_obs_photo_search_tip: |
+    Consejo: ingrese el ID de una observación en el campo de búsqueda si desea
+    elegir fotos de una observación específica.
   taxa_with_unknown_relationships: Taxa con relaciones desconocidas
   taxa_info: Información sobre taxa
   taxa_needing_curation: Taxa que necesita revisión
@@ -4771,6 +4780,11 @@ es-MX:
   these_observations_have_not_been_uploaded_yet: |
     Estas observaciones no se han subido aún.
   third_party_tracking: Seguimiento de Terceros
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: este
   this_bioblitz_beings_in: Este maratón naturalista empieza en
@@ -5144,7 +5158,6 @@ es-MX:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió un ID"
-  user_thinks_yours_is: "%{user} %{noun} tu observación %{observation} es"
   user_trusts_you_with_their_private_coordinates: "%{user} te confío sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarte las coordenadas ocultas de todas sus observaciones.
@@ -5172,9 +5185,13 @@ es-MX:
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
   view_all: Ver todas
+  view_all_fields: Ver todos los Campos
   view_all_flags: Ver todas las marcas
   view_all_members: Ver a todos los miembros
-  view_all_n: "Ver todos %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Ver todo %{count}"
+    other: "Ver todos %{count}"
   view_all_observations: Ver todas las observaciones
   view_all_photocount_photos: "Ver todas las %{photo_count} fotos"
   view_assessment: Ver evaluación
@@ -5226,7 +5243,6 @@ es-MX:
   view_taxon_page: Ver la página de la especie o grupo
   view_taxon_page_for_this_x: "Ve página del taxón para este %{x}"
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
-  view_the_observation: Ve la observación
   view_user_observations: "Ve las observaciones de %{user}"
   view_x: "Ver %{x}"
   view_year_stats_for_site: "Ver las estadísticas de %{year} de %{site}"

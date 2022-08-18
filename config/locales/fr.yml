@@ -1609,6 +1609,8 @@ fr:
   edit_taxon_link: Modifier le lien relatif au taxon
   edit_taxon_range: Modifier l'aire de répartition du taxon
   edit_the_observation: Modifier l’observation
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Modifiez ce taxon après l'avoir créé pour ajouter des statuts de conservation
   edit_your_account_and_profile_html: "Modifier votre compte et votre profil"
   edit_your_default_settings: "Modifier vos paramètres par défaut"
   edit_your_global_project_settings: Modifier vos paramètres de projet globaux
@@ -2423,6 +2425,7 @@ fr:
     lb: Luxembourgeois
     lt: Lithuanien
     lv: letton
+    mi: Maori
     mk: Macédonien
     mr: Marathi
     nb: Bokmål norvégien
@@ -3847,8 +3850,8 @@ fr:
   projects: Projets
   projects_description: |
     Les projets vous permettent d'associer vos observations à celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un projet de science citoyenne ou gérer un registre des oiseaux de votre voisinage, les projets sont le bon outil.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projets de %{place}"
-  projects_in_x: "Projets dans %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Projets administrés par %{user}
   projects_you_admin: Projets que vous administrez
@@ -3865,6 +3868,7 @@ fr:
   queued: Mis en file
   query: Requête
   radius: Rayon (m)
+  radius_km: Rayon (km)
   radius_value: "Rayon (m) : %{radius}"
   random: Aléatoire
   range: Période
@@ -4215,6 +4219,11 @@ fr:
   search_your_photos: Rechercher dans vos photos
   searching: "Recherche en cours…"
   seasonality: Saisonnalité
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Votre %{noun}"
   see_something_wrong_with_taxon: Quelque chose ne va pas avec ce taxon ? Faites-le savoir aux responsables de l’organisation.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4528,6 +4537,8 @@ fr:
   target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera interprété comme une absence. Il est très important que votre liste de cibles reflète avec précision l'ensemble des espèces que vous avez tenté de détecter. Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
   task_deleted: Tâche supprimée
   taxa: Taxons
+  taxa_show_obs_photo_search_tip: |
+    Astuce : entrez l'ID d'une observation dans le champ de recherche si vous voulez choisir des photos d'une observation spécifique.
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations sur les taxons
   taxa_needing_curation: Taxons nécessitant une organisation
@@ -4592,6 +4603,8 @@ fr:
   taxon_assessments_are: |
     Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement son statut de conservation.
     Par exemple, un organisme régional de protection de l'environnement peut les utiliser pour exploiter de l’information et demander des données sur la situation des taxons menacés dans la région.
+  taxon_change_commit_may_still_be_processing: |
+    La validation du changement de taxon est peut-être toujours en cours. Gardez à l'esprit que certains enregistrements pourraient ne pas encore avoir été mis à jour
   taxon_change_must_be_committed_to_update_records: La modification de taxon doit être validée pour mettre à jour les enregistrements
   taxon_change_title_taxon_drop: Désactivation taxinomique %{id}
   taxon_change_title_taxon_merge: Fusion taxinomique %{id}
@@ -4772,6 +4785,11 @@ fr:
   these_observations_have_not_been_uploaded_yet: |
     Ces observations n’ont pas encore été téléversées.
   third_party_tracking: Suivi par des partis tiers
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} de %{object_phrase}"
   this: ce
   this_bioblitz_beings_in: Ce bioblitz commence dans
@@ -5153,7 +5171,6 @@ fr:
   user_observed_on_on_date_in_place: |
     %{user} en a observé un le %{date} à %{place}
   user_suggested_an_id: "%{user} a suggéré un ID"
-  user_thinks_yours_is: "%{user} %{noun} que votre observation %{observation} est"
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
     L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
@@ -5181,9 +5198,13 @@ fr:
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
+  view_all_fields: Afficher tous les champs
   view_all_flags: Voir tout les signalements
   view_all_members: Afficher tous les membres
-  view_all_n: "Afficher tous les %{n}"
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Afficher %{count}"
+    other: "Afficher les %{count}"
   view_all_observations: Afficher toutes les observations
   view_all_photocount_photos: "Afficher toutes les %{photo_count} photos"
   view_assessment: Afficher l’évaluation
@@ -5235,7 +5256,6 @@ fr:
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for_this_x: "Afficher la page de taxon pour ce %{x}"
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
-  view_the_observation: Afficher l’observation
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
   view_year_stats_for_site: "Afficher les statistiques de %{year} pour %{site}"

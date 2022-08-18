@@ -1059,8 +1059,8 @@ mk:
   projects: Проекти
   projects_description: |
     Проектите се начин да вашите набљудувања со другите на %{site_name}. Тие се корисни било да сте заинтересирани да почнете граѓански научен проект, или пак само да водите евиденција за птиците во месниот парк заедно со некое птичарско здружение.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекти од %{place}"
-  projects_in_x: "Проекти во %{x}"
   projects_you_admin: Проекти што ги раководите
   protozoans: праживотни
   public_domain: Јавна сопственост
@@ -1304,7 +1304,6 @@ mk:
   view: Погл.
   view_all: Погл. сите
   view_all_members: Погл. сите членови
-  view_all_n: "Погл. сите %{n}"
   view_all_observations: Погл. сите набљудувања
   view_all_photocount_photos: "Погл. сите %{photo_count} слики"
   view_assessment: Погл. оценка

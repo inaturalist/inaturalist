@@ -114,7 +114,7 @@ class UpdateAction < ApplicationRecord
         { range: { created_at: { lte: end_time } } }
       ],
       per_page: 100,
-      sort: { id: :asc })
+      sort: { created_at: :asc })
     updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
@@ -377,7 +377,7 @@ class UpdateAction < ApplicationRecord
     filters = UpdateAction.arel_attributes_to_es_filters( attrs )
     es_response = UpdateAction.elastic_search(
       filters: filters,
-      sort: { id: :desc }
+      sort: { created_at: :desc }
     ).per_page(100).page(1)
     if es_response && es_response.results
       subscriber_ids = []
