@@ -1628,7 +1628,7 @@ module ApplicationHelper
     default_is_lower = en == en.downcase
     return translation if lower_requested && default_is_lower
 
-    I18n.t( "#{key}_", options )
+    I18n.t( "#{key}_", **options )
   end
 
 end
