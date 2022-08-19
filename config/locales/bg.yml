@@ -1205,6 +1205,8 @@ bg:
   establishment_means: Начин на заселване
   establishment_means_describes_how: |
     Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
+  establishment_means_descriptions:
+    introduced: пренесен в региона чрез човешка дейност (умишлено, търговия и т.н.)
   event_in_progress: Активно събитие
   everyone: всички
   everyone_: Всички
@@ -1977,6 +1979,7 @@ bg:
   needs_id: нуждае се от разпознаване
   needs_id_: Нуждае се от разпознаване
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
+  needs_id_tooltip_html: 'Наблюдения в категория „Нуждае се от разпознаване“ имат снимка или звук, местоположение и дата, но се нуждаят от точно консенсусно разпознаване от общността. <a href="https://www.inaturalist.org/pages/help#quality">Научете повече за категориите за качество</a>'
   needs_to_be_identified: Нуждае се от разпознаване
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2128,6 +2131,7 @@ bg:
   #%{month} will be filled in the name of the month
   observation_brief_something_in_month_year_by_user: "Нещо през %{month} %{year} от %{user}"
   observation_brief_something_by_user: "Нещо от %{user}"
+  observation_brief_something_from_place: "Нещо от %{place}"
   observation_brief_something_from_place_by_user: "Нещо от %{place} от %{user}"
   observation_brief_something_from_place_on_day: "Нещо от %{place} на %{day}"
   observation_brief_something_from_place_on_day_by_user: "Нещо от %{place} на %{day} от %{user}"
@@ -3311,6 +3315,7 @@ bg:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Не е генерирана статистика за тази година.
   status: Статус
+  status_in_place: '„%{status}“ във %{place}'
   stay_and_try_again: Останете и опитайте пак
   still_no_luck?: Пак ли нищо?
   stop_editing: Прекрати редактирането
