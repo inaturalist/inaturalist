@@ -13,6 +13,18 @@ GIT
       i18n (>= 0.6.6)
 
 GIT
+  remote: https://github.com/inaturalist/irwi.git
+  revision: b30bcb557ff128ddabb176e1320cab21df2f520d
+  ref: ruby3
+  specs:
+    irwi (0.5.0)
+      actionpack (>= 4.0)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      diff-lcs (>= 1.1.2)
+      rails_autolink (>= 1.0)
+
+GIT
   remote: https://github.com/inaturalist/objectify_xml.git
   revision: 85347a02896480775dbb8b6bbd479afc2c11ce8d
   specs:
@@ -28,12 +40,13 @@ GIT
 
 GIT
   remote: https://github.com/inaturalist/riparian.git
-  revision: 71e956bfb975d48d7b54f4da0ad21eba572748d6
+  revision: a09196fa31273002167442abc08df96c3f28dcf6
   ref: rails6
   specs:
     riparian (0.4.0)
       activesupport (> 3.0.0)
       delayed_job
+      kt-paperclip
       rails (> 3.0.0)
       rdoc
 
@@ -71,17 +84,6 @@ GIT
   revision: 85805f4f077357ceafce89c34073fa163944d7d4
   specs:
     gdata (1.1.2)
-
-GIT
-  remote: https://github.com/pleary/irwi.git
-  revision: ec16c4f6bc05bd07ae6b9d51eab93b43e32314f0
-  specs:
-    irwi (0.5.0)
-      actionpack (>= 4.0)
-      activerecord (>= 4.0)
-      activesupport (>= 4.0)
-      diff-lcs (>= 1.1.2)
-      rails_autolink (>= 1.0)
 
 GIT
   remote: https://github.com/pleary/omniauth-flickr.git

@@ -55,7 +55,7 @@ gem "i18n-inflector-rails", git: "https://github.com/siefca/i18n-inflector-rails
 ref: "99726dc44e166f6fb794caec9d3244795e7ee79b"
 gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
-gem "irwi", git: "https://github.com/pleary/irwi.git"
+gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
 gem "koala"
 gem "makara", git: "https://github.com/instacart/makara.git", tag: "v0.6.0.pre"
