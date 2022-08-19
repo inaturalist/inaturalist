@@ -44,7 +44,7 @@ class CatalogueOfLife
 
   def self.url_for_request(method, args = {})
     params = args
-    url = ENDPOINT + "?" + params.map {|k,v| "#{k}=#{v}"}.join('&')
-    URI.parse(URI.encode(url))
+    url = ENDPOINT + "?" + URI.encode_www_form( params )
+    URI.parse( url )
   end
 end

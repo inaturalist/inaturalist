@@ -47,12 +47,10 @@ class UBioService < MetaService
     if params.is_a? String
       lsid = params
     else
-      lsid  = "urn:lsid:ubio.org:%s:%s" % [params[:namespace], 
-                                           params[:object]]
-      lsid  += ":#{params[:revision]}" if params[:revision]
+      lsid = "urn:lsid:ubio.org:%s:%s" % [params[:namespace], params[:object]]
+      lsid += ":#{params[:revision]}" if params[:revision]
     end
-    url   = @lsid_endpoint + 'lsid=' + lsid
-    uri   = URI.encode(url)
+    url = @lsid_endpoint + "lsid=" + lsid
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
@@ -75,8 +73,7 @@ class UBioService < MetaService
   # an Nokogiri object out of that response.
   #
   def search_help(q)
-    url   = "#{@search_help_endpoint}q=#{q}"
-    uri   = URI.encode(url)
+    url = @search_help_endpoint + URI.encode_www_form( { q: q } )
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do
