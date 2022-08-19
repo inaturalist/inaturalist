@@ -606,6 +606,7 @@ th:
   checklist: รายการตรวจสอบ
   choose_a_field: เลือกข้อมูลเสริม
   choose_a_place: เลือกสถานที่
+  choose_a_taxon: เลือกหน่วยอนุกรมวิธาน (ไม่บังคับ)
   choose_file: เลือกไฟล์
   choose_files: เลือกไฟล์
   choose_from_your_lists: เลือกจากรายการของคุณ
@@ -694,7 +695,7 @@ th:
     #Fecal matter, not regurgitated matter
     scat: มูลสัตว์
     #Impression made by the organism on the ground or in snow, like a footprint
-    track: ร่องรอยตามทาง
+    track: รอยตามทาง
     #Endoskeletal remains, like a deer bone
     bone: กระดูก
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
@@ -1930,6 +1931,7 @@ th:
     การสังเกตที่ไม่มีรูปหรือเสียงจะไม่แสดงในผลการค้นหาเริ่มต้น และการสังเกตที่ไม่มีการจำแนกชนิดใด ๆ อาจทำให้ผู้เชี่ยวชาญค้นหาไม่เจอด้วย อย่างน้อยการจำแนกชนิดแบบคร่าว ๆ เช่น "พืช" ก็จะช่วยให้ผู้เชี่ยวชาญด้านพืชค้นเจอการสังเกตของคุณได้
   some_other_reason: อธิบายเหตุผลอื่น ๆ ข้างล่างนี้ได้
   some_rights_reserved: สงวนลิขสิทธิ์บางประการ
+  sorry_we_dont_have_any_metadata_for_that_photo: "ขออภัย เราไม่มีข้อมูลอภิพันธุ์ที่ใช้ตั้งคุณสมบัติการสังเกตสำหรับรูปนั้นได้"
   sort_by: เรียงตาม
   sorting_by: เรียงตาม
   sounds:
@@ -2317,6 +2319,7 @@ th:
   you_sure_delete_project?: คุณแน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   your_content: เนื้อหาของคุณ
   your_default: ค่าเริ่มต้นของคุณ
+  your_hard_drive: อุปกรณ์ของคุณ
   your_home: หน้าหลักของคุณ
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
