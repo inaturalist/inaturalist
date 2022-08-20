@@ -670,6 +670,8 @@ bg:
     merge_into: обедини във
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: обединени във
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: заместено със
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} беше разделен на %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} ще бъде разделен на %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} отпадна"
@@ -734,6 +736,7 @@ bg:
   comments_have_been_disabled: Коментарите са изключени
   comments_on_my_observations: Коментари на мои наблюдения
   commercial_solicitation: Комерсиални предложения, препратки доникъде и т.н.
+  committed_by_user_on_date_html: Изпълнено от %{user} на %{date}
   common_name: Народно име
   community: Общност
   community_curated: Курирано от общността
@@ -1520,6 +1523,7 @@ bg:
   inaturalist_is_a_joint_initiative: "%{site_name} е съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество."
   inaturalist_places: "%{site_name} Места"
   info: Информация
+  input_taxon: Входящ таксон
   insects: насекоми
   instagram: Инстаграм
   #Tool tip for a button that inserts quoted text into a text area
@@ -2336,6 +2340,7 @@ bg:
   other_taxa_commonly_misidentified_as_this_subsection: Други таксони често обърквани с тази подсекция
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Други таксони често обърквани с тази подсекция във <a href="%{url}">%{place}</a>
   our_blog: Нашият блог
+  output_taxon: Изходящ таксон
   overview: Общ преглед
   owner: Собственик
   password: Парола
