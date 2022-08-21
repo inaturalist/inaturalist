@@ -577,7 +577,7 @@ th:
   change_descriptions:
     split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
     merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
-  change_geoprivacy: 'เปลี่ยนความเป็นส่วนตัวของพิกัด'
+  change_geoprivacy: 'เปลี่ยนการเปิดเผยพิกัดพิกัด'
   change_group: เปลี่ยนกลุ่ม
   change_icon: เปลี่ยนไอคอน
   change_password: เปลี่ยนรหัสผ่าน
@@ -998,7 +998,7 @@ th:
   gbif_occurrences: รายงานการพบใน GBIF
   generate_widget: สร้างวิดเจ็ต
   Genus: สกุล
-  geoprivacy: ความเป็นส่วนตัวของพิกัด
+  geoprivacy: การเปิดเผยพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
@@ -1986,7 +1986,7 @@ th:
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
   taxa_observed: หน่วยอนุกรมวิธานที่สังเกต
   taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก และอื่น ๆ
-  taxon_geoprivacy: ความเป็นส่วนตัวของพิกัด
+  taxon_geoprivacy: การเปิดเผยพิกัด
   taxon_is_a_rank_of_plantae_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของพืชที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_animalia_with_x_observations:
@@ -2548,7 +2548,7 @@ th:
       conservation_status:
         status: สถานะ
         description: คำอธิบาย
-        geoprivacy: ความเป็นส่วนตัวของพิกัด
+        geoprivacy: การเปิดเผยพิกัด
       flag:
         reason: เหตุผล
       listed_taxon:
