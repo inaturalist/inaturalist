@@ -4617,6 +4617,9 @@ sv:
   target_list_warning: Kom ihåg att allt som finns på din mållista som du inte uppgett från området under tidsperioden för denna utflykt kommer att tolkas som en nollfynd. Det är viktigt att din mållista korrekt återspeglar den grupp arter du försökte hitta. Om du inte försökte hitta en art, eller alla arter inom en grupp, på din mållista, ta då bort den från listan.
   task_deleted: Uppgift raderad
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Tips: ange ett fynd-ID i sökfältet om du vill
+    välja bilder från ett specifikt fynd.
   taxa_with_unknown_relationships: Taxa med okända relationer
   taxa_info: Taxoninfo
   taxa_needing_curation: Taxa som behöver hanteras
@@ -5268,8 +5271,13 @@ sv:
   verifiable_observations_by_observation_date: Verifierbara fynd efter observationsdatum
   view: Visa
   view_all: Visa alla
+  view_all_fields: Visa alla fält
   view_all_flags: Visa alla flaggor
   view_all_members: Visa alla medlemmar
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Visa alla %{count}"
+    other: "Visa alla %{count}"
   view_all_observations: Visa alla fynd
   view_all_photocount_photos: "Visa alla %{photo_count} bilder"
   view_assessment: Visa bedömning
