@@ -670,6 +670,8 @@ bg:
     merge_into: обедини във
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: обединени във
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: заместено със
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} беше разделен на %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} ще бъде разделен на %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} отпадна"
@@ -734,6 +736,7 @@ bg:
   comments_have_been_disabled: Коментарите са изключени
   comments_on_my_observations: Коментари на мои наблюдения
   commercial_solicitation: Комерсиални предложения, препратки доникъде и т.н.
+  committed_by_user_on_date_html: Изпълнено от %{user} на %{date}
   common_name: Народно име
   community: Общност
   community_curated: Курирано от общността
@@ -1205,6 +1208,8 @@ bg:
   establishment_means: Начин на заселване
   establishment_means_describes_how: |
     Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
+  establishment_means_descriptions:
+    introduced: пренесен в региона чрез човешка дейност (умишлено, търговия и т.н.)
   event_in_progress: Активно събитие
   everyone: всички
   everyone_: Всички
@@ -1518,6 +1523,7 @@ bg:
   inaturalist_is_a_joint_initiative: "%{site_name} е съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество."
   inaturalist_places: "%{site_name} Места"
   info: Информация
+  input_taxon: Входящ таксон
   insects: насекоми
   instagram: Инстаграм
   #Tool tip for a button that inserts quoted text into a text area
@@ -1977,6 +1983,7 @@ bg:
   needs_id: нуждае се от разпознаване
   needs_id_: Нуждае се от разпознаване
   needs_id_expandable_html: "<span class='full'>Нуждае се от </span>разпознаване"
+  needs_id_tooltip_html: 'Наблюдения в категория „Нуждае се от разпознаване“ имат снимка или звук, местоположение и дата, но се нуждаят от точно консенсусно разпознаване от общността. <a href="https://www.inaturalist.org/pages/help#quality">Научете повече за категориите за качество</a>'
   needs_to_be_identified: Нуждае се от разпознаване
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -2128,6 +2135,7 @@ bg:
   #%{month} will be filled in the name of the month
   observation_brief_something_in_month_year_by_user: "Нещо през %{month} %{year} от %{user}"
   observation_brief_something_by_user: "Нещо от %{user}"
+  observation_brief_something_from_place: "Нещо от %{place}"
   observation_brief_something_from_place_by_user: "Нещо от %{place} от %{user}"
   observation_brief_something_from_place_on_day: "Нещо от %{place} на %{day}"
   observation_brief_something_from_place_on_day_by_user: "Нещо от %{place} на %{day} от %{user}"
@@ -2332,6 +2340,7 @@ bg:
   other_taxa_commonly_misidentified_as_this_subsection: Други таксони често обърквани с тази подсекция
   other_taxa_commonly_misidentified_as_this_subsection_in_place_html: Други таксони често обърквани с тази подсекция във <a href="%{url}">%{place}</a>
   our_blog: Нашият блог
+  output_taxon: Изходящ таксон
   overview: Общ преглед
   owner: Собственик
   password: Парола
@@ -3311,6 +3320,7 @@ bg:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Не е генерирана статистика за тази година.
   status: Статус
+  status_in_place: '„%{status}“ във %{place}'
   stay_and_try_again: Останете и опитайте пак
   still_no_luck?: Пак ли нищо?
   stop_editing: Прекрати редактирането

@@ -577,7 +577,7 @@ th:
   change_descriptions:
     split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
     merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
-  change_geoprivacy: 'เปลี่ยนความเป็นส่วนตัวของพิกัด'
+  change_geoprivacy: 'เปลี่ยนการเปิดเผยพิกัดพิกัด'
   change_group: เปลี่ยนกลุ่ม
   change_icon: เปลี่ยนไอคอน
   change_password: เปลี่ยนรหัสผ่าน
@@ -606,6 +606,7 @@ th:
   checklist: รายการตรวจสอบ
   choose_a_field: เลือกข้อมูลเสริม
   choose_a_place: เลือกสถานที่
+  choose_a_taxon: เลือกหน่วยอนุกรมวิธาน (ไม่บังคับ)
   choose_file: เลือกไฟล์
   choose_files: เลือกไฟล์
   choose_from_your_lists: เลือกจากรายการของคุณ
@@ -694,7 +695,7 @@ th:
     #Fecal matter, not regurgitated matter
     scat: มูลสัตว์
     #Impression made by the organism on the ground or in snow, like a footprint
-    track: ร่องรอยตามทาง
+    track: รอยตามทาง
     #Endoskeletal remains, like a deer bone
     bone: กระดูก
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
@@ -997,7 +998,7 @@ th:
   gbif_occurrences: รายงานการพบใน GBIF
   generate_widget: สร้างวิดเจ็ต
   Genus: สกุล
-  geoprivacy: ความเป็นส่วนตัวของพิกัด
+  geoprivacy: การเปิดเผยพิกัด
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
@@ -1930,6 +1931,7 @@ th:
     การสังเกตที่ไม่มีรูปหรือเสียงจะไม่แสดงในผลการค้นหาเริ่มต้น และการสังเกตที่ไม่มีการจำแนกชนิดใด ๆ อาจทำให้ผู้เชี่ยวชาญค้นหาไม่เจอด้วย อย่างน้อยการจำแนกชนิดแบบคร่าว ๆ เช่น "พืช" ก็จะช่วยให้ผู้เชี่ยวชาญด้านพืชค้นเจอการสังเกตของคุณได้
   some_other_reason: อธิบายเหตุผลอื่น ๆ ข้างล่างนี้ได้
   some_rights_reserved: สงวนลิขสิทธิ์บางประการ
+  sorry_we_dont_have_any_metadata_for_that_photo: "ขออภัย เราไม่มีข้อมูลอภิพันธุ์ที่ใช้ตั้งคุณสมบัติการสังเกตสำหรับรูปนั้นได้"
   sort_by: เรียงตาม
   sorting_by: เรียงตาม
   sounds:
@@ -1984,7 +1986,7 @@ th:
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
   taxa_observed: หน่วยอนุกรมวิธานที่สังเกต
   taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก และอื่น ๆ
-  taxon_geoprivacy: ความเป็นส่วนตัวของพิกัด
+  taxon_geoprivacy: การเปิดเผยพิกัด
   taxon_is_a_rank_of_plantae_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของพืชที่มี %{count} การสังเกต"
   taxon_is_a_rank_of_animalia_with_x_observations:
@@ -2250,6 +2252,7 @@ th:
   view_all_of_your_observations_from_x: "ดูการสังเกตทั้งหมดของคุณจาก %{x}"
   visually_similar: รูปที่คล้ายกัน
   vulnerable: มีแนวโน้มใกล้สูญพันธุ์
+  was_it_captive_cultivated?: "ถูกจับมา / เพาะปลูกหรือไม่?"
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   we_have_no_establishment_data_for_this_taxon: "เราไม่มีข้อมูลการตั้งถิ่นฐานสำหรับหน่วยอนุกรมวิธานนี้"
   welcome_to_inat: "ยินดีต้อนรับเข้าสู่ %{site_name}!"
@@ -2270,7 +2273,10 @@ th:
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
   were_pretty_sure_this_is_in_the_rank: เราค่อนข้างแน่ใจว่าอยู่ใน %{rank}
+  what_did_you_see: คุณเห็นอะไร?
+  what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
+  when_did_you_see_it?: คุณเห็นเมื่อไหร่?
   why_you_can_see_the_coordinates: เหตุผลที่คุณมองเห็นพิกัดได้
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครเห็นพิกัดได้บ้าง?
@@ -2313,6 +2319,7 @@ th:
   you_sure_delete_project?: คุณแน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   your_content: เนื้อหาของคุณ
   your_default: ค่าเริ่มต้นของคุณ
+  your_hard_drive: อุปกรณ์ของคุณ
   your_home: หน้าหลักของคุณ
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
@@ -2541,7 +2548,7 @@ th:
       conservation_status:
         status: สถานะ
         description: คำอธิบาย
-        geoprivacy: ความเป็นส่วนตัวของพิกัด
+        geoprivacy: การเปิดเผยพิกัด
       flag:
         reason: เหตุผล
       listed_taxon:
