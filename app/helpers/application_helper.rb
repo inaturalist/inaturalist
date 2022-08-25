@@ -1606,7 +1606,7 @@ module ApplicationHelper
       url_for_params( {
         order_by: header,
         order: @order == "desc" ? "asc" : "desc"
-      }.merge( options[:url_options] ) ),
+      }.merge( options[:url_options] || {} ) ),
       options
     )
   end
