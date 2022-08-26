@@ -755,6 +755,14 @@ nl:
   back_to_your_observations: Terug naar je waarnemingen
   back_to_your_profile: Terug naar je profiel
   badges: Badges
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
+      zal resulteren in <strong>%{count} onbedoelde onenigheid</strong> met IDs van %{child}.
+    other: |
+      Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
+      zal resulteren in <strong>%{count} onbedoelde tegenspraken</strong> met IDs van %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
   batch: Batch
@@ -974,6 +982,9 @@ nl:
   committed_taxon_changes_cannot_be_deleted: Vastgelegde taxonwijzigingen kunnen niet worden verwijderd
   #Status message while a taxon change is being committed
   committing: Vastleggen...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Vastleggen kan leiden tot onbedoelde meningsverschillen. Analyseer deze eerst, wat een tijdje kan duren.
   common_name: Lokale naam
   community: Gemeenschap
   community_curated: Gecureerd door de gemeenschap
@@ -4148,7 +4159,7 @@ nl:
     must_be_georeferenced: moet worden geogereferentieerd
     must_be_identified: moet geïdentificeerd worden
     must_be_on_list: moet(en) in de lijst aanwezig zijn
-    must_be_observed_in_place: moet waargenomen worden in Gebied
+    must_be_observed_in_place: moet waargenomen worden in gebied
     must_be_in: moet in het taxon zitten
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren toestaan om coordinaten te bekijken.
     must_be_verifiable: moet controleerbaar zijn
