@@ -46,7 +46,7 @@
     <coverage>
       <% if @extent %>
       <geographicCoverage>
-        <geographicDescription>Bounding Box</geographicDescription>
+        <geographicDescription>Custom Boundary</geographicDescription>
         <boundingCoordinates>
           <westBoundingCoordinate><%= [@extent.top_left.lon, -180].max %></westBoundingCoordinate>
           <eastBoundingCoordinate><%= [@extent.bottom_right.lon, 180].min %></eastBoundingCoordinate>

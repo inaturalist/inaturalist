@@ -899,7 +899,7 @@ en:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   # Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: bold text
-  bounding_box: Bounding Box
+  bounding_box: Clear boundary
   breadcrumbs: Breadcrumbs
   # This is a description of the "head" property of Custom Project Fields, i.e.
   # the customizable content that will replace top section of the project detail
@@ -1748,6 +1748,8 @@ en:
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
+  draw_circular_range: Draw circular range
+  draw_rectangular_range: Draw rectangular range
   drawings: Drawings
   duplicate_verb: Duplicate
   duration_value: "Duration: %{duration} minutes"
@@ -1968,6 +1970,7 @@ en:
   first_connect_your_provider_account_to_your_site: "First, connect your %{provider} account to %{site_name}:"
   first_inat_observation: "First %{site_name} observation"
   first_observer: 1st observer
+  fit_to_map: Fit to map
   # Verb form, as in "Flag this item"
   flag: Flag
   flag_as_inappropriate: Flag As Inappropriate
@@ -4504,6 +4507,7 @@ en:
   search_by_taxon_name_or_flickr_photo_id: Search by taxon name or Flickr photo ID
   search_catalogue_of_life: 'Search <a href="http://www.catalogueoflife.org">Catalogue of Life</a>'
   search_catalogue_of_life_raquo: "Search Catalogue of Life &raquo;"
+  search_current_map_range: Search current map range
   search_external_name_providers: Search external name providers
   search_for_a_location: Search for a Location
   search_for_species: Search for Species

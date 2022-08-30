@@ -41,7 +41,7 @@
   margin-top: 60px;
 }
 
-#obs-container .taxon.has-com-name .secondary-name { 
+#obs-container .taxon.has-com-name .secondary-name {
   color: #333;
 }
 
@@ -62,7 +62,7 @@
   background-color: #ccc;
   position: relative;
 }
-.grid .photo .icon, 
+.grid .photo .icon,
 .grid .photo:hover .icon,
 .grid .photo:active .icon,
 .grid .photo:visited .icon,
@@ -587,7 +587,7 @@ inat-taxon { white-space: nowrap; }
   font-size: 16px;
 }
 
-.bootstrap #filters .radio, 
+.bootstrap #filters .radio,
 .bootstrap #filters .checkbox {
   margin: 0px 0 2px;
 }
@@ -597,7 +597,7 @@ inat-taxon { white-space: nowrap; }
 #filters-ranks {margin-bottom: 10px;}
 .bootstrap #filters .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
 .bootstrap #filters .filters-dates .form-control {
-  width: 100px; 
+  width: 100px;
   display: inline-block;
 }
 .bootstrap #filters .filters-dates .filters-dates-exact.form-control {width: 176px;}
@@ -690,11 +690,67 @@ inat-taxon { white-space: nowrap; }
   margin-left: 5px;
   color: rgba(0, 0, 0, .5);
 }
-
-#view-controls .btn-default.reload {
-  color: #fff;
-  background: #f16f3a;
+.shape-buttons {
+  display: inline-block;
+  margin-right: 2px;
+}
+#view-controls .map-shape-searches {
   margin-left: 10px;
+}
+.search-current-map .tooltip-inner {
+  white-space: nowrap;
+}
+#view-controls .map-shape-searches button {
+  color: #eee;
+  background: #f16f3a;
+  padding: 6px 9px;
+  border: 0;
+  transition: background-color 0.2s ease-in-out;
+}
+#view-controls .map-shape-searches button:focus,
+#view-controls .map-shape-searches button:focus{
+  border: 0;
+  outline: 0;
+}
+
+#view-controls .btn-rect {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+#view-controls .btn-circle {
+  margin-left: -3px;
+  border-left: 1px solid #ffb090 !important;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 6px 0 !important;
+}
+#view-controls .btn-rect {
+  padding: 6px 0 !important;
+}
+#view-controls .btn-circle img,
+#view-controls .btn-rect img {
+  width: 50%;
+  height: 50%;
+}
+#view-controls .btn-fit-to-map.is-active {
+  opacity: 0.4;
+  cursor: default;
+}
+#view-controls .map-shape-searches .is-active {
+  opacity: 0.4;
+  cursor: default;
+}
+#view-controls .map-shape-searches button .drawing-icon-offset {
+  top: 3px;
+}
+#view-controls .map-shape-searches button:hover {
+  background-color: #ec5f26;
+}
+#view-controls .map-shape-searches button.is-active:hover {
+  background-color: #f16f3a;
+}
+#view-controls .filter-options {
+  display: inline-block;
 }
 .btn .glyphicon {
   top: 3px;
@@ -705,23 +761,20 @@ inat-taxon { white-space: nowrap; }
 #subview-controls .btn-default, .btn.places {
   padding: 7px 12px 5px;
 }
-
 #view-controls.open .btn-default.places {
   color: #fff;
   background: #f16f3a;
 }
-
 #place-name-input {margin-left: 0;}
 #place-name-input button {
   background-color: #f16f3a;
   color: white;
   margin-left: 5px;
 }
-
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
-  padding: 2px 0px 1px 10px;
+  padding: 2px 0 1px 10px;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
@@ -741,7 +794,7 @@ inat-taxon { white-space: nowrap; }
 }
 
 #obs-container .quality_grade {
-  padding: 1px 0px 1px 5px;
+  padding: 1px 0 1px 5px;
   font-size: 10px !important;
   line-height: 14px !important;
   margin-right: 20px;
@@ -1070,13 +1123,13 @@ $photo-count-line-width: 1px;
 #filters-observation-fields .observation-field {
   background-color: #999;
   padding: 5px 28px 5px 5px;
-  margin-right: 10px;
+  margin-right: 8px;
   position: relative;
 }
 #filters-observation-fields .observation-field button {
   border: 0;
   background-color: #ccc;
-  padding: 0px 5px;
+  padding: 0 5px;
   position: absolute;
   right: 2px;
 }
