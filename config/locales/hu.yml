@@ -693,6 +693,7 @@ hu:
   choose_a_field: Adatmező kiválasztása
   choose_a_place: Válassz helyet
   choose_a_taxon: Válassz taxont (opcionális)
+  choose_file: Fájl kiválasztása
   choose_files: Válassz fájlokat
   choose_photos_for_this_taxon: Válassz fotókat ehhez a taxonhoz
   choose_photos_to_tag_from_photostream: Címkézéshez válassz fotókat
@@ -1506,9 +1507,11 @@ hu:
   inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
   inbox: Beérkezett üzenetek
-  include_places: Helyeket tartalmazza
+  include_places: Helyek felvétele
   include_projects: Projekteket tartalmazza
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
+  include_taxa: Taxonok felvétele
+  include_users: Felhasználók felvétele
   including: beleértve
   increase_brightness: Fényerő növelése
   in_progress: folyamatban
@@ -2190,6 +2193,7 @@ hu:
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
   observation_removed_from_the_project: "A megfigyelést törölték a \"%{project}\" projektből"
+  observation_requirements: A megfigyelések listázási követelményei
   #Label for a field showing the date when the observation requirements for a
   #project were last updated
   observation_requirements_updated_at: 'A megfigyelések követelményei frissítve itt:'
@@ -2877,6 +2881,7 @@ hu:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
+  project_members_only: Csak projekttagok
   project_requirements: Kritériumok
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
@@ -3664,7 +3669,7 @@ hu:
   user_added_x_observations_html: "%{user} %{x} megfigyelést adott hozzá"
   user_already_authenticated: A felhasználó már hitelesítve van
   user_already_app_owner: A felhasználó már egy apptulajdonos
-  user_autocomplete_placeholder: kueda, simon123, etc.
+  user_autocomplete_placeholder: kueda, simon123, stb.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
   #not the place. Gender for all variables is not known..
   user_believes_this_is_a_comprehensive_list_of_taxon_in_place_html: |
@@ -4076,7 +4081,8 @@ hu:
         map_instruction: A hely határainak megadásához használd a sokszög eszközt.
     projects:
       project_type: Projekttípus
-      collection: Gyűjtemény
+      collection: Gyűjtő
+      umbrella: Ernyő
       collection_and_umbrellas_do_not_support: |
         A gyűjtő- és ernyőprojektek jelenleg nem férhetnek hozzá a rejtett koordinátákhoz.
       confirm_leave:
@@ -4107,6 +4113,8 @@ hu:
         an_umbrella_project_can_be_used_to: |
           Ernyőprojektekkel összehasonlításokat lehet végezni két vagy több gyűjtőprojekt között. Csak már létrehozott gyűjtőprojektek adhatók ernyőprojektekhez. Gyűjtőprojektek százai tartozhatnak egy ernyőprojekt alá. Ernyőprojektek nem tartalmazhatnak más ernyőprojekteket.
         can_be_included_in_multiple: Több ernyőprojekthez is adhatók
+        check_the_box_to_include_member_observations: |
+          Csak akkor jelöld be az alábbi négyzetet, ha csupán azon felhasználók megfigyeléseire terjeszted ki a projektet, akik csatlakoznak e projekthez. A fenti Felhasználók kizárása szűrővel kiszűrheted bizonyos felhasználók megfigyeléseit, beleértve a projekt létrehozóját és adminját.
         click_through_to_individual_projects: Navigáció az egyéni győjtőprojektekhez
         collection_projects: Gyűjtőprojektek
         collection_project_features: "Gyűjtőprojekt-funkciók"
@@ -4124,10 +4132,26 @@ hu:
           Manuálisan nem lehet megfigyeléseket hozzáadni
         note_you_can_delete_the_time: |
           (Megjegyzés: kitörölheted az időzónát és a pontos időt ha egész napokat akarsz figyelembe venni.)
+        note_about_unselected_filters: |
+          Megjegyzés: ha nem választasz ki taxont, helyet vagy felhasználót, alapértelmezetten minden szerepelni fog a projektben.
+        only_display_member_observations: |
+          Csak projekttagok megfigyeléseit tartalmazza a projekt (azon felhasználókét, akik csatlakoztak a projekthez)
+        or_drag_and_drop: (vagy húzd ide)
+        project_background_color: A projekt leírásának háttérszíne
+        project_background_color_help: Használj egy sötét árnyalatot, hogy a fehérrel szedett szöveg olvasható legyen.
+        project_banner: Projektbanner (PNG vagy JPG)
+        project_banner_help: 'Opcionális. Az ideális képméret: 760x320 pixel.'
         project_details: Projekt részletei
+        project_icon: Projektikon (PNG, JPG vagy GIF)
+        project_icon_help: |
+          Opcionális. Legalább 72x72 pixelesnek és négyzetalakúnak kell lennie.
         project_name: Projekt neve
         project_summary: A projekt leírása
+        project_summary_help: |
+          Ajd meg egy lényegretörő leírást. Kb. az első 200 karatker lesz látható jobbra a projekt kezdőoldalán, ezért ebbe a részbe férjen bele a lényeg!
         project_summary_placeholder: Fedezd fel és kövesd a Szigetköz madarait...
+        specify_project_filters: |
+          Add meg azokat a szűrőket, amelyek alapján a megfigyeléseket ki akarod listázni ebben a projektben. Kiválaszthatsz több fajt (vagy taxont), helyet, dátumot és egyéb feltételt.
         start_and_end_times_for_bioblitzes: Kezdő- és befejezési dátummal rendelkeznek (bioblitz-szerű eseményekhez)
         umbrella_project_features: "Ernyőprojekt-funkciók:"
         unique_url_for_outreach: Egyedi URL a népszerűsítéshez
