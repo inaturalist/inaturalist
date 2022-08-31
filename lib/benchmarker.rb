@@ -26,6 +26,8 @@ class Benchmarker
 
   def summarize( options = {} )
     sort_by = options.delete(:sort_by)
+    return if benchmarks.blank?
+
     max_len = benchmarks.keys.map(&:size).max
     puts "**** BENCHMARKS ******************************************************"
     puts "#{"".ljust( max_len )} #{%w(n min max avg total).map{|m| m.rjust( 10 )}.join( " " )}"
