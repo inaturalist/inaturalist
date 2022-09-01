@@ -1447,6 +1447,7 @@ hu:
   hide_no_annotation: Rejtsd el a "jegyzet nélkülit"
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Kumulatív elrejtése
+  hide_uncountable_species: A megszámlálhatatlan fajok elrejtése
   high: Felső
   highest_rank: Legmagasabb rang
   history: Idővonal
@@ -3575,6 +3576,7 @@ hu:
   total: Összes
   total_observations: Minden megfigyelés
   total_observations_caps: ÖSSZES MEGFIGYELÉS
+  total_species_observed_caps: ÖSSZES MEGFIGYELT FAJ
   'true': 'Igen'
   trending: Népszerű
   trends: Trendek
@@ -3874,7 +3876,10 @@ hu:
   you_retain_full_copyright: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
   you_retain_full_copyright_over_your_content: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
   you_sure_delete_check_list: "Biztos törlöd ezt a listát? Mások már sok munkát fektethettek bele..."
+  you_sure_delete_comment?: Biztosan törölni szeretnéd ezt a hozzászólást?
   you_sure_delete_identification?: Biztosan törlöd ezt az azonosítást?
+  you_sure_delete_flag?: Biztosan törlöd ezt a megjelölést?
+  you_sure_delete_project?: Biztosan törlöd ezt a projektet?
   you_sure_delete_this_observation: "Biztosan törlöd ezt a megfigyelést?"
   you_sure_remove_taxon_from?: "Bizosan eltávolítod ezt a taxont a %{list} listáról?"
   you_unlinked_your_provider_account: "%{provider}-fiókodat sikeresen leválasztottad"
@@ -4112,6 +4117,7 @@ hu:
           A gyűjtőprojektekkel megfigyeléseket lehet gyűjteni és vizualizálni az iNaturalist keresőfunkciói alapján. Minden olyan megfigyelés hozzáadódik a projekthez, amely megfelel a projekt paramétereinek.
         an_umbrella_project_can_be_used_to: |
           Ernyőprojektekkel összehasonlításokat lehet végezni két vagy több gyűjtőprojekt között. Csak már létrehozott gyűjtőprojektek adhatók ernyőprojektekhez. Gyűjtőprojektek százai tartozhatnak egy ernyőprojekt alá. Ernyőprojektek nem tartalmazhatnak más ernyőprojekteket.
+        are_you_sure_you_want_to_delete: Biztosan törlöd ezt a projektet?
         can_be_included_in_multiple: Több ernyőprojekthez is adhatók
         check_the_box_to_include_member_observations: |
           Csak akkor jelöld be az alábbi négyzetet, ha csupán azon felhasználók megfigyeléseire terjeszted ki a projektet, akik csatlakoznak e projekthez. A fenti Felhasználók kizárása szűrővel kiszűrheted bizonyos felhasználók megfigyeléseit, beleértve a projekt létrehozóját és adminját.
