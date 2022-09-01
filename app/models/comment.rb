@@ -83,12 +83,10 @@ class Comment < ApplicationRecord
   end
 
   def deletable_by?( deleting_user )
-    return false if deleting_user.blank?
-    return true if deleting_user.id == user_id
-    return true if deleting_user.id == parent.try_methods( :user_id )
-    return true if deleting_user.is_admin?
-
-    false
+    deleting_user.present?
+      && deleting_user.id == user_id
+      && deleting_user.id == parent.try_methods( :user_id )
+      && deleting_user.is_admin?
   end
 
   def mentioned_users
