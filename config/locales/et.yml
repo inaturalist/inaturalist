@@ -30,6 +30,12 @@ et:
   x_languages:
     one: "%{count} keel"
     other: "%{count} keelt"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} elunimekirja esmasissekanne"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} elunimekirja esmasissekannet"
   x_journal_posts_html:
     one: '<span class="count">1</span> päevikukanne'
     other: '<span class="count">%{count}</span> päevikukannet'
@@ -1273,6 +1279,12 @@ et:
     failure:
       user:
         suspended: Sinu konto on deaktiveeritud
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Sinu salasõna ei muutu, kui sa ülalolevale lingile ej vajuta ja uut salasõna ei loe.
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Sinu konto blokeeriti, kuna nurjunud sisselogimisi oli liiga palju.
   discoveries: Avastused
   did_you_mean: 'Kas mõtlesid'
   did_you_photos_flickr?: Kas sa panid mõned fotod ka Flickr kontole?
@@ -1281,6 +1293,8 @@ et:
   disconnect_provider: "Katkesta ühendus %{provider} kontoga"
   display_link_to_checklist: Näita projekti lehel viidet projekti nimekirjale
   display_monthly_supporter_badge: Näita profiili juures igakuise toetaja medalit
+  display_name: Kuvatav nimi
+  display_name_description: Seda nime kuvatakse sinu profiili juures ning samuti sinuga seotud autoriõiguse teadetes.
   documentation_for_developers_html: <a href="/pages/developers">Arendusdokumentatsioon</a>
   do_not_show_this_message_again: Ära seda teadet enam näita
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -1372,6 +1386,7 @@ et:
   either_that_user_doesnt_exist_or: "Kas kasutajat ei eksisteeri või sa juba jälgid teda."
   eligible_for_research_grade: Taduskõlbulikuks sobiv
   email: E-post
+  email_description: Sinu e-posti aadressit ei jagata teiste iNaturalisti kasutajatega
   email_address_for_comments_and_other_feedback: E-posti aadress kommentaaride ja muu tagasiside saamiseks
   email_copyright: "&copy; %{x}, kõik õigused kaitstud"
   embed: 'Manusta'
@@ -1433,6 +1448,7 @@ et:
   failed_to_find_your_location: Sinu asukohta ei leitu.
   failed_to_repair_photo: "Foto parandamine ei õnnestunud: %{errors}"
   failed_to_save_record: "Andmete salvestamine ebaõnnestus. Proovi hiljem uuesti."
+  failed_to_unlink_your_account: Konto lahtiühendamine ebaõnnestus
   'false': 'Väär'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Lemmikud
@@ -1492,6 +1508,7 @@ et:
   flag_as_spammer: 'Märkus: rämpspostitaja'
   flag_as_non_spammer: 'Märkus: pole rämpspostitaja'
   flag_description: Lisa antud sisule märkus, et kuraatorid teaksid, et midagi on valesti.
+  flag_comment_description: Lisa sellele märkusele soovikorral kommentaar, mis seletab lähemalt, miks seda tegid ning sisaldab linke vastavale tõestusmaterjalile.
   flag_for_curation: 'Märkus: vajab kureerimist'
   flag_it!: Lisa märkus!
   flag_marked_as_resolved_html: '<span class="meta">Märkus</span> <strong>on lahendatud.</strong>'
@@ -1608,6 +1625,14 @@ et:
   has_sound: On helidega
   has_sounds: On helidega
   hasnt_contributed_any_observations: pole sellele projektile lisanud ühtegi vaatlust.
+  header_your_observations: Sinu vaatlused
+  header_your_calendar: Sinu kalender
+  header_your_favorites: Sinu lemmikud
+  header_your_lists: Sinu nimekirjad
+  header_your_journal: Sinu päevik
+  header_your_identifications: Sinu määratlused
+  header_your_projects: Sinu projektid
+  header_your_profile: Sinu profiil
   heads_up: Pane tähele
   heads_up_non_automatable_draft_split_notice_html: |
     <strong>Tähelepanu:</strong> Selle taksonite jagamise tulemusena on tekkinud taksonid, millel kas atlased puuduvad või millel pole ühiseid ülemtaksoneid. Seega ei saa jagamisel sisendtaksonitega seotud vaatluseid automaatselt väljunditega seostada mistõttu peab kogukond nendele vaatlustele uued määratlused lisama.
@@ -1745,6 +1770,7 @@ et:
   item_flagged_notice_html: |
     See märgiti rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
     <a href="%{manage_flags_path}">Halda märkuseid</a>
+  jobs: Töökohad
   join: Liitu
   join_project: Liitu selle projektiga
   join_the_largest_group_of_naturalists_in_the_world: Liitu maailma suurima loodusloolaste grupiga!
@@ -2267,6 +2293,7 @@ et:
   note: Märkus
   notes: Märkused
   note_you_can_modify_the_height_attribute: "NB: Saad kõrgust muuta, et see vastaks sinu kodulehel kasutada olevale ruumile."
+  notifications: Teavitused
   notify_me_of_mentions: Anna mulle mainimistest teada (s.t. @kasutajatunnus)
   number_of_observations: Vaatluste arv
   number_selected: "# valitud"
@@ -2793,6 +2820,8 @@ et:
   please_complete_the_following_to_add_project: |
     Vaatluse projektile lisamiseks tee palun ära:
   please_confirm_your_inat_username: "Palun kinnita oma %{site_name} kasutajatunnus"
+  please_explain_why_you_want_to_hide_this: Palun seleta, miks seda peidad
+  please_explain_why_you_want_to_unhide_this: Palun seleta, miks sa selle peitmise lõpetad
   please_fix_your_csv_and_try_again: Palun tee oma CSV korda ja proovi uuesti.
   please_hold_on_while_the_file: Palun oota hetk, kuni faili luuakse. Kui sul on palu vaatluseid, võib see võtta paar minutit.
   please_hold_on_while_the_file_is_generated: Palun oota hetk, kuni faili luuakse. Suurte nimekirjade puhul võib see võta paar minutit.
@@ -2829,6 +2858,7 @@ et:
   processing: Töötlen
   processing3p: "Töötlen..."
   profile: Profiil
+  profile_picture: Profiilipilt
   profile_visibility_desc: |
     Proovime hoida rämsposti lehelt %{site_name} eemal muutes kasutajate profiilid avalikult nähtavaks alles peale seda, kui kasutaja on lisanud mitu teaduskõlbulikku vaatlust.
   project: Projekt
@@ -2891,6 +2921,9 @@ et:
   range: Piirkond
   rank: Kategooria
   rank_position: Tase
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     stateofmatter: Mateeria
     kingdom: Riik
@@ -3004,6 +3037,7 @@ et:
     not_external: mitte ülem
     not_internal: mitte alam
     error: viga
+  relationships_user_settings: Suhted
   relationship_html: "Suhe: %{link}"
   reload_from_observations: Lae vaatlustest uuesti
   reload_timed_out: 'Uuesti laadimine võttis liiga kaua. Proovi hiljem uuesti.'
@@ -3099,6 +3133,7 @@ et:
   save_observation: Salvesta vaatlus
   save_photos: Salvesta fotod
   save_place: Salvesta koht
+  save_settings_caps: SALVESTA SÄTTED
   save_trip: Salvesta reis
   saved: Salvestatud
   saving: "Salvestan..."
@@ -3351,6 +3386,8 @@ et:
   summary: Kokkuvõte
   supporting: Toetab
   suspend_user: Deaktiveeri kasutajakonto
+  suspend_user_reason_instructions_html: |
+    Seleta, miks sa selle konto deaktiveerid ning viita %{link_start_tag}kogukonna reeglite%{link_end_tag} vastavatele punktidele. Palun ära lisa isiklike arvamusi.
   sw_lat: Edelalaius
   sw_lon: Edelapikkus
   sync: Sünkroniseeri?
@@ -3560,6 +3597,7 @@ et:
   this_is_more_convenient_way_find_parent: Nii on ülemtaksoni ID leidmine lihtsam. Lõpuks salvestatakse ülemtaksoni ID.
   this_is_a_more_convenient_way_to_find_a_taxon_id: |
     Nii on taksoni ID leidmine lihtsam. Lõpuks salvestatakse taksoni ID. Otsida saab ainult aktiivseid taksoneid.
+  this_is_how_taxon_names_will_be_displayed: Niimoodi kuvatakse sulle lehel %{site_name} kõiki taksoninimesid
   this_is_taking_forever: See kestab liiga kaua. Palun proovi hiljem uuesti.
   this_is_the_primary_listing: See on peamine esindaja
   this_is_your_observation: See on sinu vaatlus
@@ -3659,6 +3697,8 @@ et:
   unreview_all: Tühista kõigi hinnang
   unsubscribe: Lõpeta jälgimine
   unsuspend_user: Aktiveeri kasutajakonto
+  unsuspend_user_reason_instructions: |
+    Palun seleta, miks sa selle kasutajkonto aktiveerid.
   upcoming_bioblitzes: Tulevased välkvaatlused
   update: Täienda
   update_existing_observations_with_new_license: Täienda olemasolevaid vaatluseid uue litsentsiga
@@ -3748,6 +3788,7 @@ et:
   user_trusts_you_with_their_private_coordinates_desc: |
     Kasutaja on otsustanud usaldata sulle kõigi oma vaatluste peidetud koordinaadid
   username: Kasutajatunnus
+  username_description: Seda kasutajatunnust kasutad sisse logimiseks ning teised kasutajad saavad selle abil sind iNaturalistis identifitseerida.
   username_or_email: Kasutajatunnus või e-posti aadress
   username_or_user_id: Kasutajatunnus või kasutaja ID
   users: Kasutajad
@@ -3776,6 +3817,7 @@ et:
   view_check_list_page: Näita kontrollnimekirja
   view_contributions: Näita panust
   view_details: Vaata üksikasju
+  view_dynamic_lifelist_: VAATA DÜNAAMILIST ELUNIMEKIRJA
   view_field_options: Näita välja sätteid
   view_flag: Vaata märkust
   view_flags: Vaata märkuseid
@@ -3878,6 +3920,8 @@ et:
   where_were_you?: Kus sa olid?
   which_projects_can_add_your_observations?: Millised tavaprojektid saavad su vaatluseid lisada?
   white: valge
+  #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
+  why_are_you_making_this_change_optional: Miks soovid seda muudatust teha? (valikuline)
   why_you_can_see_the_coordinates: Miks sa koordinaate näed
   who_can_add_observations_to_this_project?: Kes saavad sellele projektile vaatluseid lisada?
   who_can_see_the_coordinates: Kes näevad koordinaate
@@ -4791,6 +4835,8 @@ et:
           </p>
       show:
         this_user_was_banned: See kasutaja on deaktiveeritud
+        favorites_list_prompt_html: |
+          Soovid esitleda oma lemmiktaksoneid? %{link_start_tag}Loo nimekiri%{link_end_tag} pealkirjaga "Favorites" ning sinna lisatud uusimad sissekanded ilmuvad selle koha peale.
     welcome:
       index:
         connect_with_nature: Liitu loodusega
