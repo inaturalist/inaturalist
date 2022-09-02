@@ -1,4 +1,7 @@
 zh-TW:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "%{count} 個變更"
   x_comments:
     other: '%{count} 則評論'
   x_comments_html:
@@ -275,6 +278,7 @@ zh-TW:
   add_life_stage_egg_annotation: '新增「生命階段：卵」註解'
   add_evidence_of_presence_organism_annotation: '新增「出現記錄的證據：生物」註記'
   add_evidence_of_presence_feather_annotation: '新增「出現記錄的證據：羽毛」註記'
+  add_evidence_of_presence_gall_annotation: '新增「出現記錄的證據：蟲癭」註記'
   add_evidence_of_presence_scat_annotation: '新增「出現記錄的證據：糞便」註記'
   add_evidence_of_presence_track_annotation: '新增「出現記錄的證據：足跡」註記'
   add_evidence_of_presence_bone_annotation: '新增「出現記錄的證據：骨頭」註記'
@@ -334,6 +338,8 @@ zh-TW:
   agree_with_current_taxon: 同意以目前物種分類(學名)
   agreeing: 同意中...
   aka: 也稱作
+  #Noun, title of a popup alerting you to something
+  alert: 警告
   all: 所有
   all_comments: 所有評論
   all_flags_must_be_resolved: 所有標記需要被解決
@@ -482,6 +488,7 @@ zh-TW:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: 應用程式
+  apply_app_owner: 套用
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申請

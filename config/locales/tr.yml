@@ -2048,13 +2048,13 @@ tr:
   import_observations: Gözlemleri İçe Aktar
   import_observations_from_a_photo: Gözlemleri bir fotoğraf sağlayıcısından ya da bilgisayarındaki bir dosyadan içe aktar.
   import_photos: Fotoğrafları İçe Aktar
-  import_ranges: Aralıkları İçe Aktar
+  import_ranges: Yayılımları İçe Aktar
   import_sections: Bölümleri İçe Aktar
   import_tags_from_csv: CSV'den etiketleri içe aktar
   importing: "İçe aktarılıyor..."
   improving: Geliştirici
-  in_n: "konum: %{n}"
-  in_place_x: 'konum: %{place}'
+  in_n: "Konum: %{n}"
+  in_place_x: 'Konum: %{place}'
   inaturalist_network: iNaturalist Ağı
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
@@ -2085,7 +2085,7 @@ tr:
   inaturalist_activity_notifications: "%{site_name} Etkinlik Bildirimleri"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Uygulamaları"
-  inaturalist_is_a_joint_initiative: "%{site_name} Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir."
+  inaturalist_is_a_joint_initiative: "%{site_name}; Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir."
   inaturalist_places: "%{site_name} Konumları"
   info: Bilgi
   input_taxon: Girdi sınıfı
@@ -2290,15 +2290,15 @@ tr:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Yetkilendirme koduna bağlantı
-  link_your_facebook_account: Facebook hesabınızı bağlayın
-  link_your_flickr_account: Flickr hesabınızı bağlayın
-  link_your_google_account: Google hesabınızı bağlayın
-  linked_facebook: "%{site_name} hesabınız şu anda Facebook hesabınızla bağlı."
-  linked_facebook_automaticaly: "Ayrıca, Facebook üzerinden %{site_name} adresine giriş yaparsanız unutmayın, %{site_name} ve Facebook hesaplarınızı otomatik olarak yeniden bağlayacağız. Facebook kullanıyorsanız, Facebook fotoğraflarınızı içe aktarmayı isteyecek olmanız makul görünüyor değil mi?"
-  linked_facebook_description: "%{site_name} hesabınızı Facebook hesabınıza bağlı tutmak gözlemlerinize birden fazla fotoğraf eklemenize izin verir. Elbette, eğer %{site_name} ve Facebook hesabının ayrılmasını istersen, seni durdurmayacağız, sadece fotoğraf ekleyemezsiniz. Bazen bu en iyisi için olabilir, mesela %{site_name}'e bağlamak istediğin yeni bir Facebook hesabı oluşturursan."
-  linked_facebook_howto: "Facebook'a %{site_name} ile bağlanmak için, sağdaki bağlantıya tıklayın ve Facebook.com' a giriş yapın."
-  linked_facebook_password: "Facebook şifrenizi asla talep etmeyeceğiz (ancak Facebook talep edebilir, butonun size gönderdiği url'yi kontrol edin ve Facebook.com olduğundan emin olun). Ayrıca bizden istemediğiniz sürece Facebook verilerinizi de değiştirmeyeceğiz."
-  linked_flickr: "%{site_name} hesabınız şu anda Flickr hesabınıza bağlı."
+  link_your_facebook_account: Facebook hesabını bağla
+  link_your_flickr_account: Flickr hesabını bağla
+  link_your_google_account: Google hesabını bağla
+  linked_facebook: "%{site_name} hesabın şu anda Facebook hesabına bağlı."
+  linked_facebook_automaticaly: "Ayrıca, %{site_name}'e Facebook üzerinden giriş yaparsan, %{site_name} ve Facebook hesaplarını otomatik olarak yeniden bağlayacağımızı unutma. Facebook kullanıyorsan Facebook fotoğraflarını içe aktarabilmek istemen makul görünüyor, değil mi?"
+  linked_facebook_description: "%{site_name} hesabını Facebook hesabına bağlı tutmak, gözlemlerine birden çok fotoğraf eklemene olanak tanır. Elbette, eğer %{site_name} ve Facebook'un ayrılmasını istersen, seni durdurmayacağız, yalnızca fotoğraf ekleyemeyeceksin. Bazen bu en iyisi olabilir, örneğin %{site_name}'ı bağlamak istediğin yeni bir Facebook hesabı oluşturduğunda."
+  linked_facebook_howto: "Facebook'a %{site_name} ile bağlanmak için sağdaki bağlantıya tıkla ve Facebook.com'da oturum aç."
+  linked_facebook_password: "Asla Facebook şifreni istemeyeceğiz (ancak Facebook isteyebilir, sana gönderilen URL'yi kontrol et ve Facebook.com olduğundan emin ol). Ayrıca istemediğin sürece, Facebook verilerini de değiştirmeyeceğiz."
+  linked_flickr: "%{site_name} hesabın şu anda Flickr hesabına bağlı."
   linked_flickr_automatically: "Ayrıca, Flickr üzerinden %{site_name}'e giriş yaparsan, %{site_name} ve Flickr hesaplarını otomatik olarak yeniden bağlayacağımızı unutma. Flickr kullanıyorsan Flickr fotoğraflarını içe aktarabilmek istemen mantıklı görünüyor, değil mi?"
   linked_flickr_description: "%{site_name} hesabını Flickr hesabına bağlı tutmak, gözlemlerine birden çok fotoğraf eklemene olanak tanır. Tabii ki, eğer %{site_name} ve Flickr'ın ayrılmasını istersen, seni durdurmayacağız, sadece fotoğraf ekleyemeyeceksin. Bazen bu en iyisi olabilir, örneğin %{site_name}'i bağlamak istediğin yeni bir Flickr hesabı oluşturursan."
   linked_flickr_password_html: "<strong>Senden asla Flickr şifreni istemeyeceğiz</strong> (ancak Flickr isteyebilir, sana gönderilen URL'yi kontrol et ve Flickr.com'da olduğundan emin ol)."
@@ -2425,7 +2425,7 @@ tr:
   longitude_value: "Boylam: %{longitude}"
   look_up_name: "Ad ara"
   looks_like_neither_have!: Hiçbir sınıfı yok gibi görünüyor!
-  looks_like_no_species_in_guide: Rehberinizde henüz bir tür yok gibi görünüyor.
+  looks_like_no_species_in_guide: Görünüşe göre rehberinde henüz bir tür yok.
   lookup: Ara
   low: Düşük
   lowest_rank: En Düşük Sıra
@@ -2439,8 +2439,8 @@ tr:
   make_curator: Küratör yap
   make_manager: Yürütücü yap
   make_sure_the_default_photo_looks_good: Varsayılan fotoğrafın büyük boyutta iyi göründüğünden emin olun.
-  make_this_your_default_license: "Bunu varsayılan %{type} lisansınız yapın"
-  make_this_the_primary_listing: "Bunu birincil liste yapın"
+  make_this_your_default_license: "Bunu varsayılan %{type} lisansın yap"
+  make_this_the_primary_listing: "Bunu birincil liste yap"
   make_your_app_confidential: Uygulamanı güvenli bir şekilde saklayabiliyorsan, yani kaynak koda dönüştürülebilen herkese açık bir dosyada saklamıyorsan uygulamanı gizli yap. Durum böyle değilse ve PKCE akışını kullanmayı planlıyorsan bu kutunun işaretini kaldır
   mammals: memeliler
   manage_all_your_subscriptions: Tüm aboneliklerini yönet
@@ -2458,15 +2458,15 @@ tr:
   maps:
     overlays:
       all_observations: Tüm gözlemler
-      every_publicly_visible_observation: Halka açık her gözlem iNaturalist ağında oluşturuldu
+      every_publicly_visible_observation: iNaturalist ağında oluşturulan herkese açık her bir gözlem
       featured_observations: Öne çıkan gözlemler
       gbif_network: GBIF ağı
       gbif_network_description: Küresel Biyoçeşitlilik Bilişim Tesisi tarafından dağıtılan müzelerden ve diğer oluşum sağlayıcılardan gelen kayıtlar
       observations: Gözlemler
       place_boundary: Konum sınırı
-      checklist_places: Kontrol listesi yerleri
-      checklist_places_description: Bu sınıfın listelendiği yerler
-      range: Aralık
+      checklist_places: Kontrol listesi konumları
+      checklist_places_description: Bu sınıfın listelendiği konumlar
+      range: Yayılım
   map_tooltip: Harita görünümünü göster
   mark_as_reviewed: İncelendi Olarak İşaretle
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
@@ -2474,7 +2474,7 @@ tr:
     Bir gözlemi gözden geçirildi olarak işaretlemek, Tanımla'da varsayılan olarak onu bir daha görmeyeceğin anlamına gelir. Yine de Tanımla'daki diğer kişiler tarafından görülebilir.
   mark_all_as_reviewed: Tümünü İncelendi Olarak İşaretle
   mark_all_as_unreviewed: Tümünü İncelenmemiş Olarak İşaretle
-  matching_species_will_shown_up_here: Eşleşen türler burada görünecek. Eğer %{place} bu tür için bir tane sahipse haritalar bir aralık gösterecek.
+  matching_species_will_shown_up_here: Eşleşen türler burada görünecektir. Haritalar, eğer %{place} o tür için bir yayılıma sahip ise bir yayılım alanı gösterecektir.
   maverick: Aykırı
   maximum_positional_accuracy: Azami konumsal doğruluk
   maximum_positional_accuracy_including_unknown: |
@@ -2490,20 +2490,20 @@ tr:
   #As in members of a project
   members: Üyeler
   membership_model: Üyelik Modeli
-  mentioned_you_in_noun_html: "%{user} şurada senden bahsetti %{noun}"
+  mentioned_you_in_noun_html: "%{user} şurada senden bahsetti: %{noun}"
   mentioned_you_in_noun_by_html: "%{user}, %{by}in %{noun}inde senden bahsetti"
   mentioned_you_in_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında senden söz etti"
   mentioned_you_in_noun_by_you_html: "%{user} senin yaptığın %{noun} hakkında senden söz etti"
   mentioned_you_in_a_x_on_noun_html: "%{user}, %{noun}e yaptığı bir %{x}da senden söz etti"
   mentioned_you_in_an_x_on_noun_html: "%{user}, %{noun}e yaptığı bir %{x}da senden söz etti"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user}, %{by} kullanıcısının bir %{noun}ine yaptığı %{x}da senden bahsetti"
   mentioned_you_in_a_x_on_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında bir %{x}da senden söz etti"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user}, senin yaptığın %{noun} hakkında bir %{x}da senden söz etti"
-  mentioned_you_in_an_x_on_noun_by_html: "%{user} %{noun} konusunda %{by} vasıtasıyla %{x}'te sizden bahsetti"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user}, %{by} kullanıcısının bir %{noun}ine yaptığı %{x}da senden bahsetti"
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user}, %{by}in yaptığın %{noun} hakkında bir %{x} içinde senden söz etti"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user}, senin yaptığın %{noun} hakkında bir %{x} içinde senden söz etti"
   merge: Birleştir
-  merge_it_with_another_place: Başka bir yer ile birleştir
+  merge_it_with_another_place: Başka bir konum ile birleştir
   merge_two_places_together: İki yeri birleştir. Kontrol listelerindeki tüm türlerin yanı sıra coğrafi veriler de birleştirilecektir.
   merge_observation_field_x_into: '%{x} gözlem alanını şununla birleştir...'
   merging: Birleştirme
@@ -2589,9 +2589,9 @@ tr:
   more: Daha Fazla
   more_about_sharing: Paylaşım Hakkında Fazla Bilgi
   more_fields: Daha Çok Alan
-  more_filters: Daha Fazla Filtre Göster
+  more_filters: Daha Fazla Filtre
   more_from_x: '%{x} kullanıcısından daha çok'
-  more_import_options: Diğer İçe Aktarma Seçenekleri
+  more_import_options: Daha Fazla İçe Aktarma Seçeneği
   more_info: Daha Fazla Bilgi
   more_info_title: Daha Fazla Bilgi
   more_journal_posts: Daha Çok Günlük Gönderisi
@@ -2601,7 +2601,7 @@ tr:
   most_agree: çoğunluğun katıldığı
   most_browser_print_pdf: "Not: Çoğu tarayıcı PDF'ye yazdırma seçeneğine sahiptir"
   most_disagree: çoğunluğun katılmadığı
-  most_comments_and_faves: En Çok Yorumlananlar ve Favoriler
+  most_comments_and_faves: En Çok Yorum Alanlar ve Beğenilenler
   most_observations: Gözlem Sayısına Göre
   most_recent_observation_by_date_observed: Gözlenen tarihe göre en son doğrulanabilir gözlem
   most_species: Tür Sayısına Göre
@@ -2613,7 +2613,7 @@ tr:
     %{child} alt soyunu %{old_parent} üst soyundan ayırmak, %{old_parent} ile kastettiğimiz şeyi daraltacaktır. %{old_parent} için %{id_count} tanımlama vardır.
   multiple: çoklu
   multiple_select_option: '-- çoklu --'
-  multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için giriş, ayırma için çıkış)"
+  multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için girdi, ayırma için çıktı)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu sınıf tanımlamaları, örn. 123,654'
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
@@ -2641,9 +2641,9 @@ tr:
   n_person_agrees: "%{amount} kişi onaylıyor"
   n_person_disagrees: "%{amount} kişi onaylamıyor"
   name: İsim
-  name_entered: İsim girildi
+  name_entered: Girilen isim
   name_or_slug: "Ad ya da URL adresi, örn. projem"
-  name_of_the_place_you: Gözlem yaptığınız yerin adı
+  name_of_the_place_you: Gözlem yaptığın konumun adı
   name_providers:
     col: Yaşam Kataloğu
     ubio: uBio
@@ -2652,7 +2652,7 @@ tr:
   names_for_taxon_html: "%{taxon} için isimler"
   native: yerel
   native_page_url: Yerel Sayfa URL'si
-  native_to_place: "%{place}'e özgü"
+  native_to_place: "%{place} konumuna özgü"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Nav
@@ -2676,8 +2676,7 @@ tr:
   network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
     <strong>iNaturalist Suomi</strong>, Finlandiya'daki insanlara ve biyoçeşitliliğe odaklı uluslararası iNaturalist Ağının parçasıdır. Hesap üyeliğini <strong>%{inat_site_name}</strong> yerine <strong>iNaturalist Suomi</strong> olarak değiştirmek ve verilerini yerel kurumlarla paylaşmak istiyor musun?
   network_affiliation_prompt_from_other_site_html: |
-    Üyeliğinizi <strong>%{other_site_name}</strong>'den <strong>%{site_name}</strong>'e 
-    değiştirmek ister misiniz?
+    Üyeliğini <strong>%{other_site_name}</strong>'den <strong>%{site_name}</strong>'e değiştirmek ister misin?
   #Column header in a table listing iNaturalist Network members
   network_member: Ağ Üyesi
   new: Yeni
@@ -2686,8 +2685,8 @@ tr:
   new_application: Yeni uygulama
   new_assessment: Yeni değerlendirme
   new_check_list: Yeni kontrol listesi
-  new_check_list_for: "%{place} için yeni bir kontrol listesi oluşturun &raquo;"
-  new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsanız, oluşturun, sınıfları ekleyin ve ardından düzenleyin; burada kapsamlı olarak işaretleme seçeneğiniz olacaktır."
+  new_check_list_for: "%{place} için yeni bir kontrol listesi oluştur &raquo;"
+  new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, sınıfları ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
   new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} için yeni yorum'
   new_conservation_status: Yeni Koruma Durumu
   new_flag_for: Şunun için Yeni İşaret
@@ -2740,8 +2739,8 @@ tr:
   no_but_it_is_a_member_of_taxon: "Hayır ama bir %{taxon} üyesi"
   no_comments_yet: Henüz yorum yok.
   no_creative_commons_flickr_photos_tagged_x: '"%{x}" için etiketlenmiş Creative Commons Flickr fotoğrafları lisansı yok'
-  no_curators_set: Belirlenmiş sorumlu yok
-  no_curators_yet: Henüz sorumlu yok!
+  no_curators_set: Belirlenmiş küratör yok
+  no_curators_yet: Henüz küratör yok!
   no_description: Açıklama yok
   no_flags: Bu kez işaretler yok
   no_flickr_photos_tagged: Etiketlenmiş Flickr fotoğrafı yok!
@@ -2779,7 +2778,7 @@ tr:
   no_observations_matching_those_ids: Bu tanımlamalarla eşleşen gözlem yok.
   no_observations_submitted: "Hiç gözlem gönderilmedi!"
   no_observations_yet: Henüz gözlem yok
-  no_one_has_added_any: Bu yer için hiç kimse herhangi bir not eklemedi
+  no_one_has_added_any: Bu konum için hiç kimse herhangi bir not eklemedi
   no_one_has_been_invited_yet: Henüz hiç kimse davet edilmedi
   no_one_posted_anything_yet: Henüz kimse bir şey yayınlamadı!
   no_photo: Fotoğraf Yok
@@ -2858,7 +2857,7 @@ tr:
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
   observation: Gözlem
   observation_: gözlem
-  observation_added_to_the_project: "\"%{project}\" projesine gözlem eklendi"
+  observation_added_to_the_project: "Gözlem \"%{project}\" projesine eklendi"
   observation_aggregation: Gözlem yığınlama
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -2958,9 +2957,9 @@ tr:
   observations_fields_are: |
     Gözlem alanları; gözlem sayısı, habitat tanımı ya da istediğin her şey gibi bir gözlemle ilişkili ek verilerdir! Projeler, doldurmanı istedikleri alanları da belirleyebilirler.
   observations_from_people_taxa_and_places_youre_following: "Takip ettiğin kişi, konum ve sınıflardan gözlemler"
-  observations_from_this_place: Bu yerden gözlemler
+  observations_from_this_place: Bu konumdan gözlemler
   observations_from_this_project: Bu projeden gözlemler
-  observations_in_this_project_must: Bu projedeki gözlemler aşağıdaki kriterleri yerine getirmelidir
+  observations_in_this_project_must: Bu projedeki gözlemler aşağıdaki ölçütleri yerine getirmelidir
   observations_map: Gözlemler / Harita
   observation_must_dotdotdot: Gözlem şöyle olmalı...
   observations_near_a_place_are: |
@@ -3018,7 +3017,7 @@ tr:
   offensive_inappropriate: Saldırgan / Uygunsuz
   off_caps: "KAPALI"
   official_blog: Resmi Blog
-  offline_access_enabled: Çevrimdışı erişim etkin
+  offline_access_enabled: Çevrim dışı erişim etkin
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Saat Farkı"
   #Button label to offset the date/time of observations by a set number of hours
@@ -3032,18 +3031,18 @@ tr:
     observe_panel_body_p1_local: İlhama mı ihtiyacın var? İşte yakınlarda gözlemlenen bazı organizmalar...
     observe_panel_body_p1_global: İlhama mı ihtiyacın var? İşte gözlemlenen bazı organizmalar...
     observe_panel_body_p2: Dışarı çık ve bir organizma gözlemle. Yabani bir organizma seçtikten sonra, net ve tamamını kapsayan fotoğrafını çek. Yabani bir şeyin fotoğrafını daha önceden çektiysen <a href="%{new_observation_path}">şimdi ekle</a>. Gözlemleri kaydetmek için %{site_name} mobil uygulamasını da kullanabilirsin.
-    observe_panel_body_p3: Gözlemlerinizi bir kez paylaştığınızda, bu sayfa size topluluktan gelen yorumları ve tanımlamaları gösterir. Ne keşfedeceğinizi kim bilir!
+    observe_panel_body_p3: Gözlemlerini paylaştıktan sonra, bu sayfa sana yorum ve tanımlamalar şeklinde topluluktan gelen güncellemeleri gösterecektir. Kim bilir neler keşfedeceksin!
     follow_panel_title_local: Yakındaki Doğa Bilimcilerden Bazılarını Takip Et
     follow_panel_title_global: Bazı Aktif Doğa Bilimcileri Takip Et
-    follow_panel_body: Bu profilleri ziyaret edip takip butonuna tıklarsanız, gözlem bildirdiklerinde haberdar olacaksınız
+    follow_panel_body: Bu profilleri ziyaret eder ve takip et düğmesine tıklarsan, gözlem paylaşıldığında haberdar olacaksın
     following_panel_title: İnsanları, Sınıfları ve Konumları Takip Et
     following_panel_body: |
       %{site_name}'te insanları takip ederek gönderdikleri gözlemleri takip edebilirsin. Ayrıca belirli türlere abone olarak bu türlerle ilgili yeni gözlemleri takip edebilir ya da aynı şeyi konumlar için de yapabilirsin.
     comments_panel_title: '%{site_name}''te ne tür tartışmalar yaşandığını merak ediyor musun?'
-    comments_panel_body: "<p>%{site_name} tamamen canlıların gözlemlerini paylaşmak ve tartışmak ile ilgilidir. Aşağıda şu anda gerçekleşen tartışmalar yer alıyor. (Not: Yorum veya tanımlamalara katkıda bulunduğunuz tüm tartışmalara otomatik olarak abone olursunuz. Bu güncellemeleri sağdaki 'Abonelikler' bölümünden yönetin.)</p>"
-    updates_by_you_panel_title: Bu sekme, yalnızca içeriğinizdeki güncellemeleri filtrelemenin hızlı bir yoludur.
-    updates_by_you_panel_body: '''Tüm güncellemeler'' sekmesinde, yalnızca kendi içeriğiniz değil, aynı zamanda takip ettiğiniz kişilerin içeriği ve sağdaki Abonelikler aracını kullanarak abone olduğunuz sınıflar veya yerler hakkındaki güncellemeleri de alacağınızı unutmayın.'
-    youve_got_updates_panel_title: Güncellemelerin var!
+    comments_panel_body: "<p>%{site_name}, canlılarla ilgili gözlemlerin paylaşılması ve tartışılmasıyla ilgilidir. Şu anda gerçekleşen tartışmalar aşağıdadır. (Not: Yorum ya da tanımlamalarla katkıda bulunduğun tüm tartışmalara otomatik olarak abone olursun. Bu güncellemeleri sağdaki 'Abonelikler' bölümünden yönetebilirsin).</p>"
+    updates_by_you_panel_title: Bu sekme, yalnızca içeriğinle ilgili güncellemeleri filtrelemenin hızlı bir yoludur.
+    updates_by_you_panel_body: '''Tüm güncellemeler'' sekmesinde yalnızca kendi içeriğinle ilgili değil, aynı zamanda takip ettiğin kişilerin ve sağdaki Abonelikler aracını kullanarak abone olduğun sınıfların ya da konumların içerikleriyle ilgili güncellemeler de alacağını unutma.'
+    youve_got_updates_panel_title: Güncellemeler var!
     youve_got_updates_panel_body_p1: Aşağıdaki güncellemeler ile güncel kalın...
     youve_got_updates_panel_body_p2: |
       <ul>
@@ -3055,18 +3054,18 @@ tr:
   one_by_one: "Birer birer"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "aşağıdakilerden biri doğru olmalıdır:"
-  one_of_your_lists: "listelerinizden biri..."
+  one_of_your_lists: "listelerinden biri..."
   one_or_more_input_taxa_have_more_than_1000_alt: |
     Bir ya da daha çok girdi sınıfı 1000'den çok gözlemle ilişkilidir, bu nedenle işlem yapmak biraz zaman alabilir. Bu sınıf değiştirmenin gerekli olduğundan emin misin? Sınıf değiştirmenin geri alınamayacağını unutmayın.
   only_a_project_manager_can_add: Yalnızca bir proje yürütücüsü, proje küratörü ekleyebilir.
   only_administrators_may_access_that_page: Bu sayfaya yalnızca yöneticiler erişebilir
   only_an_admin_can_remove_project_users: Proje kullanıcılarını yalnızca bir yönetici kaldırabilir
-  only_curators_can_add_edit_scientific_names: Yalnızca sorumlular bilimsel isimleri ekleyebilir/düzenleyebilir.
-  only_curators_can_access_that_page: Bu sayfaya yalnızca sorumlular erişebilir.
+  only_curators_can_add_edit_scientific_names: Yalnızca küratörler bilimsel isimleri ekleyebilir/düzenleyebilir.
+  only_curators_can_access_that_page: Bu sayfaya yalnızca küratörler erişebilir.
   only_files_with_10000_rows_at_a_time: Lütfen, yalnızca 10,000 satırdan az dosyalar
   only_one_coordinate_system_per_file: |
     Dosya başına yalnızca bir koordinat sistemi kullanılabilir, aksi takdirde yanlış dönüştürme veya görüntüleme meydana gelir.
-  only_project_curators_can_do_that: Bunu sadece proje sorumluları yapabilir.
+  only_project_curators_can_do_that: Bunu sadece proje küratörleri yapabilir.
   only_receive_updates_about_this_taxon: Sadece bu sınıf ile ilgili güncellemeler alın
   only_show_active_taxa: Sadece etkin sınıfları göster
   only_show_events_that_last_less_than_2_weeks: Yalnızca 2 haftadan az süren etkinlikleri göster
@@ -3078,7 +3077,7 @@ tr:
   only_the_owner_of_this_list_can_do_that: Bunu yalnızca bu listenin sahibi yapabilir. İyi biri ol.
   only_the_project_admin_can_delete_this_project: Bu projeyi yalnızca proje yöneticisi silebilir.
   only_view_nearby_suggestions: Sadece yakındaki önerileri göster
-  only_you: Yalnızca siz
+  only_you: Yalnızca sen
   open: açık
   open_: Açık
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
@@ -3088,7 +3087,7 @@ tr:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: YA DA
-  or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seçin"
+  or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seç"
   orange: turuncu
   order: Sıralama
   order_by: Sıralama ölçütü
@@ -3104,7 +3103,7 @@ tr:
   other: Diğer
   other_animals: diğer hayvanlar
   other_lexicons: Diğer Sözlükler
-  other_listings_of_this_taxon_for_this_place: Bu yer için bu sınıfın diğer listelemeleri
+  other_listings_of_this_taxon_for_this_place: Bu konum için bu sınıfın diğer listelemeleri
   other_names: Diğer İsimler
   other_species_commonly_misidentified_as_this_species: Bu tür olarak sıklıkla yanlış tanımlanan diğer türler
   other_species_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu tür olarak yanlış tanımlanan diğer türler
@@ -3138,7 +3137,7 @@ tr:
   #Name of the entity one level up in a hierarchy, generally used for a parent taxon
   parent_name: Üst sınıf adı
   parental_consent:
-    must_specify_email: Bir e-posta adresi belirtmelisiniz
+    must_specify_email: Bir e-posta adresi belirtmelisin
     invalid_email: Geçersiz e-posta formatı
   password: Şifre
   password_confirmation: 'Şifre doğrulama'
@@ -3163,7 +3162,7 @@ tr:
       without_observation: bir <strong>Tanımlama</strong> eklendi
     post: bir %{post_link} oluşturuldu
     comment:
-      with_by: '%{by_link} vasıtasıyla bir %{comment_subject_link} hakkında yorum yaptı'
+      with_by: '%{by_link} tarafından yapılan %{comment_subject_link} hakkında yorum yaptı'
       without_by: bir %{comment_subject_link} hakkında yorum yaptı
   per_day: Günlük
   per_month: Aylık
@@ -3192,7 +3191,7 @@ tr:
     small: küçük
     medium: orta
     large: büyük
-    original: orjinal
+    original: orijinal
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
   pi_consent_desc_html: |
@@ -3370,7 +3369,7 @@ tr:
   place_name: Konum adı
   place_notes: Konum Notları
   place_too_big_for_check_list: |
-    Burası bir kontrol listesi için çok büyük. Kontrol listesi istatistikleri hesaplama oldukça pahalı, bu yüzden site yöneticileri tarafından eklenmediği sürece çok büyük yerlere izin vermiyoruz. Ancak, yine de proje sınırları ve gözlem sorguları için bu yeri kullanabilirsiniz.
+    Burası bir kontrol listesi için çok büyük. Kontrol listesi istatistiklerini hesaplamak oldukça pahalıdır, bu nedenle site yöneticileri tarafından eklenmedikleri sürece çok büyük konumlar için bunlara izin vermiyoruz. Ancak yine de burayı proje sınırları ve gözlem sorguları için kullanabilirsin.
   place_updated: Konum güncellendi!
   placement: Yerleştirme
   places: Konumlar
@@ -3475,7 +3474,7 @@ tr:
     grenada: Grenada
     guadeloupe: Guadeloupe
     guam: Guam
-    guatemala: Guetemala
+    guatemala: Guatemala
     guernsey: Guernsey
     guinea: Gine
     guinea_bissau: Gine-Bissau
@@ -3604,7 +3603,7 @@ tr:
     sudan: Sudan
     suriname: Surinam
     svalbard_and_jan_mayen: Svalbard ve Jan Mayen
-    swaziland: Esvati̇ni̇
+    swaziland: Esvatini
     sweden: İsveç
     switzerland: İsviçre
     syria: Suriye
@@ -3658,14 +3657,14 @@ tr:
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
-  please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekleyin.
+  please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekle.
   please_allow_a_few_weeks_for_external_sites: Lütfen harici sitelerin bu gözlemden değişiklikleri eşitlemesi için birkaç hafta bekle #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Lütfen ebeveynlerinden izin iste
   #Title to a section warning a user to exercise caution
   please_be_careful!: Lütfen Dikkatli Olun!
   please_complete_the_following_to_add_project: |
-    Bu gözlemi projeye eklemek için lütfen aşağıdakileri tamamlayın:
-  please_confirm_your_inat_username: "Lütfen %{site_name} kullanıcı adınızı onaylayın"
+    Bu gözlemi projeye eklemek için lütfen aşağıdakileri tamamla:
+  please_confirm_your_inat_username: "Lütfen %{site_name} kullanıcı adını onayla"
   please_explain_why_you_want_to_hide_this: Lütfen bunu neden gizlemek istediğini açıkla
   please_explain_why_you_want_to_unhide_this: Lütfen bunun gizliliğini neden kaldırmak istediğini açıkla
   please_fix_your_csv_and_try_again: Lütfen CSV'ni düzelt ve yeniden dene.
@@ -3739,7 +3738,7 @@ tr:
   project_id_or_url_slug: Proje Kimliği ya da URL adresi, örn. 333 ya da projem
   project_list: Proje Listesi
   project_list_defaults:
-    title: "%{owner_name}'in Kontrol Listesi"
+    title: "%{owner_name} Kullanıcısının Kontrol Listesi"
     description: '%{owner_name} için tür listeleri'
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> küratörleri gözlemlerinden bazılarını ekledi
@@ -3759,7 +3758,7 @@ tr:
   project_user_was_invalid: "Proje kullanıcısı geçerli değil: %{project_user}"
   project_was_successfully_created: Proje başarıyla oluşturuldu.
   project_was_successfully_updated: Proje başarıyla güncellendi.
-  project_x_was_delete: "%{project} silindi (lütfen web sitesinden kaldırılması için birkaç dakika bekleyin)"
+  project_x_was_delete: "%{project} silindi (lütfen web sitesinden kaldırılması için birkaç dakika bekle)"
   projects: Projeler
   projects_description: |
     Projeler, gözlemlerini %{site_name} üzerinde diğer insanlarla bir araya getirmeni sağlar. İster bir vatandaş bilimi çalışması başlatıyor ol, ister mahallendeki kuşları takip ediyor ol, Projeler tam size göre.
@@ -3767,7 +3766,7 @@ tr:
   projects_from_place: "%{place} konumundan projeler"
   #"admins" is equivalent to "administrates"
   projects_user_admins: '%{user} Tarafından Yönetilen Projeler'
-  projects_you_admin: Yönettiğiniz Projeler
+  projects_you_admin: Yönettiğin Projeler
   proposed_taxa_that_contradict_the_community_id: Topluluk tanımlamasıyla çelişen önerilmiş sınıflar
   proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş sınıflar
   protozoans: tek hücreliler
@@ -4002,7 +4001,7 @@ tr:
     other: '%{count} gözlem kaldırılsın mı?'
   remove_photo: Fotoğrafı Kaldır
   remove_place: Konumu Kaldır
-  remove_range: Aralığı Kaldır
+  remove_range: Yayılımı Kaldır
   remove_relationship: İlişkiyi Kaldır
   remove_relationship_caps: İLİŞKİYİ KALDIR
   remove_relationship_question: İlişki Kaldırılsın mı?
@@ -5148,8 +5147,8 @@ tr:
   view_user_observations: "%{user}'ın gözlemlerini görüntüle"
   view_x: "Görüntüle: %{x}"
   view_year_stats_for_site: "%{site} İçin %{year} İstatistiklerini Görüntüle"
-  view_your_dashboard: Kontrol panelinizi görüntüleyin
-  view_your_dashboard_for_more_updates_html: "Daha fazla güncelleme için <a href='%{url}'>kontrol panelinizi görüntüleyin</a>"
+  view_your_dashboard: Kontrol panelini görüntüle
+  view_your_dashboard_for_more_updates_html: "Daha çok güncelleme için <a href='%{url}'>kontrol panelini görüntüle</a>"
   view_your_inbox: Gelen kutunuzu görüntüleyin
   view_your_observations: Gözlemlerini görüntüle
   view_your_year_stats: "%{year} İstatistiklerinizi Görüntüleyin"
@@ -7170,8 +7169,8 @@ tr:
           Çünkü siz bir iNaturalist bağışçısısınız, kimliğinizi doğrulamak için mevcut bağışınızı kullanabildik.
     welcome:
       index:
-        connect_with_nature: Doğa ile Bağ Kurun
-        explore_and_share: Doğal dünyadan gözlemlerinizi keşfedin ve paylaşın.
+        connect_with_nature: Doğa ile Bağ Kur
+        explore_and_share: Keşfet ve doğal dünyadan gözlemlerini paylaş.
         observations_to_date: 'Bugüne Kadar Yapılan Gözlemler'
         species_observed: 'Gözlemlenen Tür'
         people_signed_up: 'Kaydolan Kişi'
@@ -7198,8 +7197,7 @@ tr:
         hold_an_event: İnsanların mümkün olduğunca çok tür bulmaya çalıştığı bir etkinlik düzenle.
         works_on_all_your_devices: Tüm Cihazlarınızda Çalışır
         install_our_mobile_apps: |
-          Mobil uygulamalarımızı yükleyin, bu sayede hücresel veri veya kablosuz bağlantı olmadan 
-          her zaman gözlem yapabilirsiniz.
+          Mobil uygulamalarımızı yükle, böylece hücresel veri ya da kablosuz ağ olmasa bile her zaman gözlem yapabilirsin.
         who_uses_site_name: "%{site_name}'i Kimler Kullanıyor?"
         what_are_you_waiting_for: Daha fazla bekleme!
         join_today: Bugün Katıl

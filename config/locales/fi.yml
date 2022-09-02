@@ -4615,6 +4615,10 @@ fi:
   view_all_fields: Näytä kaikki kentät
   view_all_flags: Näytä kaikki liput
   view_all_members: Näytä kaikki jäsenet
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Näytä kaikki %{count}"
+    other: "Näytä kaikki %{count}"
   view_all_observations: Näytä kaikki havainnot
   view_all_photocount_photos: "Näytä kaikki %{photo_count} kuvaa"
   view_assessment: Näytä arviointi
