@@ -63,6 +63,22 @@ if( TIMEZONE ) {
   application.constant( "angularMomentConfig", { timezone: TIMEZONE });
 }
 
+function latLng2Point(latLng, map) {
+  var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+  var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+  var scale = Math.pow(2, map.getZoom());
+  var worldPoint = map.getProjection().fromLatLngToPoint(latLng);
+  return new google.maps.Point((worldPoint.x - bottomLeft.x) * scale, (worldPoint.y - topRight.y) * scale);
+}
+
+function point2LatLng(point, map) {
+  var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
+  var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
+  var scale = Math.pow(2, map.getZoom());
+  var worldPoint = new google.maps.Point(point.x / scale + bottomLeft.x, point.y / scale + topRight.y);
+  return map.getProjection().fromPointToLatLng(worldPoint);
+}
+
 application.controller( "SearchController", [ "ObservationsFactory", "PlacesFactory",
 "TaxaFactory", "shared", "$scope", "$rootScope", "$location", "$anchorScroll", "$uibPosition",
 function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $rootScope, $location, $anchorScroll ) {
@@ -85,6 +101,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     page: 1,
     spam: false
   };
+
   if ( typeof ( google ) !== "undefined" ) {
     $scope.mapBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng( -80, -179 ),
@@ -103,6 +120,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     "clickedMoreFiltersOpen" ];
 
   $scope.drawingManager = new google.maps.drawing.DrawingManager();
+  $scope.clearDrawingIcon = null;
   $scope.currentBoundaryShape = null;
   $scope.drawingPending = false;
   $scope.$watchGroup(['mapType', 'mapLabels', 'mapTerrain'], function() {
@@ -293,7 +311,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         }
       );
     } else {
-      // this will remove the autocomlete image since there's no taxon
+      // this will remove the autocomplete image since there's no taxon
       $scope.updateTaxonAutocomplete( );
       $scope.taxonInitialized = true;
     }
@@ -862,6 +880,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.drawingPending = false;
     $scope.disableRedoSearch = false;
     $scope.drawingManager.setMap( null );
+
+    if ( $scope.clearDrawingIcon ) {
+      $scope.clearDrawingIcon.setMap( null );
+    }
     $scope.removeSelectedBounds( );
   };
   $scope.onCompleteDrawing = function( ) {
@@ -1277,7 +1299,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
 }]);
 
 var boundaryBoxStyle = {
-  strokeColor: "#d77a3b",
+  strokeColor: "#f16f3a",
   strokeOpacity: 0.75,
   strokeWeight: 5,
   fillOpacity: 0
@@ -1347,6 +1369,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             $scope.delayedOnMove();
           } );
           $scope.map.addListener( "zoom_changed", function () {
+            if ($scope.clearDrawingIcon && $scope.selectedPlaceLayer) {
+              $scope.positionClearDrawingIcon($scope.selectedPlaceLayer);
+            }
             $scope.delayedOnMove();
           } );
           google.maps.event.addListener( $scope.drawingManager, "rectanglecomplete", function ( rectangle ) {
@@ -1357,10 +1382,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             $rootScope.$emit( "updateParamsForCurrentBounds" );
             $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
             $scope.refreshSelectedPlace();
+            $scope.initClearDrawingIcon(rectangle);
             google.maps.event.addListener( rectangle, "dragend", function () {
               $scope.enableFitToMapButton();
             } );
           } );
+
           google.maps.event.addListener( $scope.drawingManager, "circlecomplete", function ( circle ) {
             $scope.onCompleteDrawing();
             if ($scope.clearCircleIfInvalid(circle)) {
@@ -1656,9 +1683,53 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $rootScope.$emit( "searchForNearbyPlaces", options );
   };
 
+  $scope.initClearDrawingIcon = function ( shape ) {
+    var svgMarker = {
+      path: "m 175,175 c 9.4,-9.3 24.6,-9.3 33.1,0 l 47,47.1 L 303,175 c 9.4,-9.3 24.6,-9.3 33.1,0 10.2,9.4 10.2,24.6 0,33.1 l -46.2,47 46.2,47.9 c 10.2,9.4 10.2,24.6 0,33.1 -8.5,10.2 -23.7,10.2 -33.1,0 l -47.9,-46.2 -47,46.2 c -8.5,10.2 -23.7,10.2 -33.1,0 -9.3,-8.5 -9.3,-23.7 0,-33.1 l 47.1,-47.9 -47.1,-47 c -9.3,-8.5 -9.3,-23.7 0,-33.1 z m 337,81 C 512,397.4 397.4,512 256,512 114.6,512 0,397.4 0,256 0,114.6 114.6,0 256,0 397.4,0 512,114.6 512,256 Z M 256,48 C 141.1,48 48,141.1 48,256 48,370.9 141.1,464 256,464 370.9,464 464,370.9 464,256 464,141.1 370.9,48 256,48 Z",
+      scale: 0.04,
+      fillColor: "#f16f3a",
+      fillOpacity: 0.75,
+      strokeWeight: 1,
+      strokeColor: boundaryBoxStyle.strokeColor,
+      strokeOpacity: boundaryBoxStyle.strokeOpacity,
+      anchor: new google.maps.Point(256, 256)
+    };
+
+    $scope.clearDrawingIcon = new google.maps.Marker({
+      position: shape.getBounds().getCenter(),
+      icon: svgMarker,
+      map: $scope.map
+    });
+    $scope.positionClearDrawingIcon(shape);
+    $scope.$apply();
+
+    google.maps.event.addListener( $scope.clearDrawingIcon, "click", function ( ) {
+      $scope.clearDrawingIcon.setMap( null );
+      $scope.clearBoundary( );
+      $scope.$apply( );
+    });
+  };
+
+  $scope.positionClearDrawingIcon = (shape) => {
+    if ( !$scope.clearDrawingIcon ) {
+      return;
+    }
+
+    var ne = shape.getBounds().getNorthEast();
+    var sw = shape.getBounds().getSouthWest();
+
+    var topLeft = {
+      lat: ne.lat(),
+      lng: sw.lng()
+    };
+    const point = latLng2Point(topLeft, $scope.map);
+    const pos = point2LatLng({ x: point.x-20, y: point.y-20 }, $scope.map);
+    $scope.clearDrawingIcon.setPosition(pos);
+  };
+
   $scope.setMapLayers = function( align ) {
-    if( !$scope.map ) { return };
-    if( !$scope.$parent.parametersInitialized ) { return };
+    if( !$scope.map ) { return }
+    if( !$scope.$parent.parametersInitialized ) { return }
     window.inatTaxonMap.removeObservationLayers( $scope.map, { title: "Observations" } );
     var layerParams = ObservationsFactory.processParamsForAPI( $scope.params, $scope.possibleFields );
     layerParams.color = "iconic";
@@ -1739,11 +1810,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     var isDragging = false;
     selectedPlaceLayer.addListener( "bounds_changed", function () {
       if (!isDragging) {
-        if ($scope.clearCircleIfInvalid(selectedPlaceLayer)) {
+        if ($scope.clearCircleIfInvalid( selectedPlaceLayer )) {
           return;
         }
         $scope.refreshSelectedPlace( );
       }
+      $scope.positionClearDrawingIcon( selectedPlaceLayer );
     });
     selectedPlaceLayer.addListener( "dragstart", function () {
       isDragging = true;
@@ -1752,6 +1824,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       isDragging = false;
       $scope.refreshSelectedPlace( );
       $scope.enableFitToMapButton( );
+      $scope.positionClearDrawingIcon( selectedPlaceLayer );
     });
   };
   $scope.zoomIn = function( ) {
