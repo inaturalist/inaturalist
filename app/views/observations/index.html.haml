@@ -54,11 +54,11 @@
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace && selectedPlace.name", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name | characters:35 }}"
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearPlaceSearch( )" }
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng || params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
-            {{ shared.t('bounding_box') }}
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearDrawing( )" }
+            {{ shared.t('custom_boundary') }}
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearBoundary( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
@@ -149,30 +149,27 @@
             %span.map-shape-searches
               %div.shape-buttons
                 %button{
-                  "ng-click": "drawRegion( 'rectangle' )",
+                  "ng-click": "drawBoundary( 'rectangle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-rect {{ currentActiveDrawing != null ? 'is-active' : '' }}",
-                  "tooltip-enable" => "currentActiveDrawing == null",
-                  "uib-tooltip" => "{{ shared.t('draw_rectangular_range') }}"
+                  :class => "btn btn-default btn-rect {{ currentBoundaryShape != null ? 'is-active' : '' }}",
+                  "tooltip-enable" => "currentBoundaryShape == null",
+                  "uib-tooltip" => "{{ shared.t('draw_rectangular_boundary') }}"
                 }
-                  %img{ src: asset_path( "draw-rectangle-icon.png" ), "aria-hidden": "true" }
+                  %embed{src: image_path('draw-rect.svg'), width: 16, height: 16 }
                 %button{
-                  "ng-click": "drawRegion( 'circle' )",
+                  "ng-click": "drawBoundary( 'circle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-circle {{ currentActiveDrawing != null ? 'is-active' : '' }}",
-                  "tooltip-enable" => "currentActiveDrawing == null",
-                  "uib-tooltip" => "{{ shared.t('draw_circular_range') }}"
+                  :class => "btn btn-default btn-circle {{ currentBoundaryShape != null ? 'is-active' : '' }}",
+                  "tooltip-enable" => "currentBoundaryShape == null",
+                  "uib-tooltip" => "{{ shared.t('draw_circular_boundary') }}"
                 }
-                  %img{ src: asset_path( "draw-circle-icon" ), "aria-hidden": "true" }
+                  %embed{src: image_path('draw-circle.svg'), width: 16, height: 16 }
               %button{
                 "ng-click": "filterByBounds( )",
                 "ng-show": "viewing('observations', 'map')",
-                :class => "btn btn-default btn-fit-to-map {{ disableFitToMap ? 'is-active' : '' }}",
-                "tooltip-enable" => "!disableFitToMap",
-                "uib-tooltip" => "{{ shared.t('search_current_map_range') }}",
-                "tooltip-class": "search-current-map"
+                :class => "btn btn-default btn-fit-to-map {{ disableRedoSearch ? 'is-active' : '' }}",
               }
-                {{ shared.t("fit_to_map") }}
+                {{ shared.t("redo_search_in_map") }}
         .col-xs-6
     %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
