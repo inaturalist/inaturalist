@@ -754,7 +754,6 @@ tr:
   batch_edit_taxa_for_x_html: "%{x} için sınıfları toplu düzenle"
   batch_operations: Toplu İşlemler
   be_the_first_to_fave_this_observation: Bu gözlemi favori yapan ilk sen ol!
-  because_of: çünkü
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     Bu değişikliğin 10'dan çok istenmeyen anlaşmazlığa neden olacağını tahmin ettiğimiz için <strong>%{old_parent} üst soyunu içeren bir sınıf değişimi de yapmanı öneririz, örneğin %{new_parent} ile %{old_parent} üst soylarını bölmek gibi</strong>.
@@ -1494,6 +1493,8 @@ tr:
   disconnect: Bağlantıyı Kes
   disconnect_caps: BAĞLANTIYI KES
   disconnect_provider: "%{provider} bağlantısını kes"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Kapat
   display: Görünüm
   display_link_to_checklist: Proje sayfasından proje listesine bağlantıyı göster
   display_monthly_supporter_badge: Profilimde Aylık Destekçi Rozetini göster
@@ -1798,7 +1799,6 @@ tr:
   flag_this_photo: Bu Fotoğrafı İşaretle
   flag_this_place: Bu Konumu İşaretle
   flag_this_sound: Bu Sesi İşaretle
-  flagged: işaretli
   flagged_: İşaretli
   flagged_for_curation: Düzenleme için İşaretlendi
   flagged_taxon: İşaretlenmiş Sınıf
