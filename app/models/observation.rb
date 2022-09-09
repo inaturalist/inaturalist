@@ -2388,6 +2388,10 @@ class Observation < ApplicationRecord
   def user_login
     user.login
   end
+
+  def user_name
+    user.name
+  end
   
   def update_stats(options = {})
     idents = [self.identifications.to_a, options[:include]].flatten.compact.uniq
