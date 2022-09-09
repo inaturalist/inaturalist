@@ -2126,7 +2126,10 @@ class Taxon < ApplicationRecord
     last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
     return [] if last_committed_split.blank?
 
-    last_committed_split.output_taxa.map do | t |
+    last_committed_split.output_taxa.reject do |t|
+      # skip inactive output taxa when same as the source taxon to prevent an infinite loop
+      t.id == id && !t.is_active?
+    end.map do | t |
       t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     end.flatten.uniq
   end

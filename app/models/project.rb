@@ -536,12 +536,12 @@ class Project < ApplicationRecord
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
           if rule_value.strip.match( / / )
-            rule_value = Time.parse( rule_value )
+            rule_value = Time.parse( rule_value ) rescue nil
           else
-            rule_value = Date.parse( rule_value )
+            rule_value = Date.parse( rule_value ) rescue nil
             if rule == "rule_d2"
               # when d2 is a date w/o a time, we want to capture that in its own field
-              params[ "d2_date" ] = rule_value
+              params[ "d2_date" ] = rule_value unless rule_value.nil?
             end
           end
         elsif rule_value.is_a?( String )
@@ -549,7 +549,7 @@ class Project < ApplicationRecord
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value unless rule_value.nil?
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq
