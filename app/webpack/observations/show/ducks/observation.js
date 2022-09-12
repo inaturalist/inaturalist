@@ -118,7 +118,9 @@ const FIELDS = {
     user: USER_FIELDS
   },
   flags: {
-    id: true
+    id: true,
+    flag: true,
+    resolved: true
   },
   geojson: true,
   geoprivacy: true,
@@ -160,6 +162,7 @@ const FIELDS = {
   observed_time_zone: true,
   ofvs: {
     observation_field: {
+      allowed_values: true,
       datatype: true,
       description: true,
       name: true,
@@ -561,10 +564,11 @@ export function updateObservation( attributes ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const { testingApiV2 } = state.config;
     const payload = {
-      id: state.observation.id,
+      id: testingApiV2 ? state.observation.uuid : state.observation.id,
       ignore_photos: true,
-      observation: Object.assign( { }, { id: state.observation.id }, attributes )
+      observation: attributes
     };
     dispatch( callAPI( inatjs.observations.update, payload ) );
   };
@@ -733,6 +737,7 @@ export function confirmDeleteComment( uuid ) {
 export function doAddID( taxon, confirmForm, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    const { testingApiV2 } = state.config;
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( confirmForm && confirmForm.silenceCoarse ) {
       dispatch( updateSession( { prefers_skip_coarer_id_modal: true } ) );
@@ -755,7 +760,7 @@ export function doAddID( taxon, confirmForm, options = { } ) {
 
     const payload = {
       identification: {
-        observation_id: state.observation.id,
+        observation_id: testingApiV2 ? state.observation.uuid : state.observation.id,
         taxon_id: taxon.id,
         body: options.body,
         vision: !!taxon.isVisionResult,
@@ -1028,6 +1033,7 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const { testingApiV2 } = state.config;
     const newAnnotations = ( state.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
@@ -1038,7 +1044,7 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
 
     const payload = {
       resource_type: "Observation",
-      resource_id: state.observation.id,
+      resource_id: testingApiV2 ? state.observation.uuid : state.observation.id,
       controlled_attribute_id: controlledAttribute.id,
       controlled_value_id: controlledValue.id
     };
@@ -1266,6 +1272,7 @@ export function addObservationFieldValue( options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
+    const { testingApiV2 } = state.config;
     const newOfvs = _.clone( state.observation.ofvs );
     newOfvs.unshift( {
       datatype: options.observationField.datatype,
@@ -1277,9 +1284,11 @@ export function addObservationFieldValue( options ) {
     } );
     dispatch( setAttributes( { ofvs: newOfvs } ) );
     const payload = {
-      observation_field_id: options.observationField.id,
-      observation_id: state.observation.id,
-      value: options.value
+      observation_field_value: {
+        observation_field_id: options.observationField.id,
+        observation_id: testingApiV2 ? state.observation.uuid : state.observation.id,
+        value: options.value
+      }
     };
     dispatch( callAPI( inatjs.observation_field_values.create, payload ) );
   };
@@ -1289,6 +1298,7 @@ export function updateObservationFieldValue( id, options ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
+    const { testingApiV2 } = state.config;
     const newOfvs = state.observation.ofvs.map( ofv => (
       ofv.uuid === id ? {
         datatype: options.observationField.datatype,
@@ -1300,15 +1310,16 @@ export function updateObservationFieldValue( id, options ) {
       } : ofv ) );
     dispatch( setAttributes( { ofvs: newOfvs } ) );
     const payload = {
-      id,
-      observation_field_id: options.observationField.id,
-      observation_id: state.observation.id,
-      value: options.value
+      uuid: id,
+      observation_field_value: {
+        observation_field_id: options.observationField.id,
+        observation_id: testingApiV2 ? state.observation.uuid : state.observation.id,
+        value: options.value
+      }
     };
     dispatch( callAPI( inatjs.observation_field_values.update, payload ) );
   };
 }
-
 
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {

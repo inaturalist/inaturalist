@@ -745,7 +745,6 @@ export function updateObservationFieldValue( id, options ) {
   };
 }
 
-
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
