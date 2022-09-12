@@ -1528,6 +1528,8 @@ nl:
   disconnect: Ontkoppelen
   disconnect_caps: ONTKOPPELEN
   disconnect_provider: "Verbinding verbreken met %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Afwijzen
   display: Tonen
   display_link_to_checklist: Toon link naar de projectlijst van de project pagina
   display_monthly_supporter_badge: Toon status als maandelijkse supporter op mijn profiel
@@ -5203,6 +5205,12 @@ nl:
   user_observed_on_on_date_in_place: |
     %{user} nam één waar op %{date} in %{place}
   user_suggested_an_id: "%{user} heeft een ID voorgesteld"
+  user_trusts_this_project_for_none: Lid staat niet toe dat dit project verborgen coördinaten krijgt.
+  user_trusts_this_project_for_any: |
+    De gebruiker vertrouwt dit project met verborgen coördinaten die om wat voor reden dan ook verborgen zijn.
+  user_trusts_this_project_for_taxon: |
+    De gebruiker vertrouwt dit project alleen op verborgen coördinaten die
+    werden vertroebeld vanwege bedreigde taxa.
   user_trusts_you_with_their_private_coordinates: "%{user} vertrouwt je hun verborgen coördinaten toe"
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
@@ -5233,6 +5241,10 @@ nl:
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
   view_all_members: Alle leden weergeven
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Toon alle %{count}"
+    other: "Toon alle %{count}"
   view_all_observations: Alle waarnemingen weergeven
   view_all_photocount_photos: "Alle %{photo_count} foto's weergeven"
   view_assessment: Beoordeling bekijken
@@ -6047,6 +6059,9 @@ nl:
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         user_id: Unieke identifier voor de waarnemer
         user_login: Gebruikersnaam van de waarnemer
+        user_name: |
+          Naam van de waarnemer, meestal gebruikt voor attributie op de site.
+          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsklasse van deze waarneming. Zie het Help-gedeelte voor details over betekenis
