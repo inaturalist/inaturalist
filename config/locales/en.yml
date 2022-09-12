@@ -5597,6 +5597,12 @@ en:
   user_observed_on_on_date_in_place: |
     %{user} observed one on %{date} in %{place}
   user_suggested_an_id: "%{user} suggested an ID"
+  user_trusts_this_project_for_none: User does not trust this project with hidden coordinates.
+  user_trusts_this_project_for_any: |
+    User trusts this project with hidden coordinates that were obscured for any reason.
+  user_trusts_this_project_for_taxon: |
+    User only trusts this project with hidden coordinates that were obscured
+    because of threatened taxa.
   user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
@@ -6612,6 +6618,9 @@ en:
         out_of_range: Whether or not this observation lies outside the taxon's known range
         user_id: Unique identifier for the observer
         user_login: Username of the observer
+        user_name: |
+          Name of the observer, generally used for attribution on the site.
+          This is an optional field and may be a pseudonym.
         created_at: Datetime observation was created
         updated_at: Datetime observation was last updated
         quality_grade: Quality grade of this observation. See Help section for details on what this means

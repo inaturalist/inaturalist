@@ -1626,7 +1626,11 @@ module ApplicationHelper
     translation = I18n.t( key, **options )
     en = I18n.t( key, **options.merge( locale: "en" ) )
     default_is_lower = en == en.downcase
-    return translation if lower_requested && default_is_lower
+    lower_requested_and_default_is_lower = lower_requested && default_is_lower
+    upper_requested_and_default_is_upper = !lower_requested && !default_is_lower
+    if lower_requested_and_default_is_lower || upper_requested_and_default_is_upper
+      return translation
+    end
 
     I18n.t( "#{key}_", **options )
   end
