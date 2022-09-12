@@ -151,23 +151,23 @@
                 %button{
                   "ng-click": "drawBoundary( 'rectangle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-rect {{ currentBoundaryShape != null ? 'is-active' : '' }}",
-                  "tooltip-enable" => "currentBoundaryShape == null",
+                  :class => "btn btn-default btn-rect {{ drawing.disabled ? 'disabled' : '' }}",
+                  "tooltip-enable" => "!drawing.disabled",
                   "uib-tooltip" => "{{ shared.t('draw_rectangular_boundary') }}"
                 }
                   %embed{src: image_path('draw-rect.svg'), width: 16, height: 16 }
                 %button{
                   "ng-click": "drawBoundary( 'circle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-circle {{ currentBoundaryShape != null ? 'is-active' : '' }}",
-                  "tooltip-enable" => "currentBoundaryShape == null",
+                  :class => "btn btn-default btn-circle {{ drawing.disabled ? 'disabled' : '' }}",
+                  "tooltip-enable" => "!drawing.disabled",
                   "uib-tooltip" => "{{ shared.t('draw_circular_boundary') }}"
                 }
                   %embed{src: image_path('draw-circle.svg'), width: 16, height: 16 }
               %button{
                 "ng-click": "filterByBounds( )",
                 "ng-show": "viewing('observations', 'map')",
-                :class => "btn btn-default btn-fit-to-map {{ disableRedoSearch ? 'is-active' : '' }}",
+                :class => "btn btn-default btn-fit-to-map {{ disableRedoSearch ? 'disabled' : '' }}",
               }
                 {{ shared.t("redo_search_in_map") }}
         .col-xs-6

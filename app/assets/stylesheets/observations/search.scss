@@ -712,11 +712,11 @@ inat-taxon { white-space: nowrap; }
       &:hover {
         background-color: $btn-orange-hover;
       }
-      &.is-active:hover {
+      &.disabled:hover {
         background-color: $btn-orange;
       }
     }
-    .is-active {
+    .disabled {
       opacity: 0.4;
       cursor: default;
     }
