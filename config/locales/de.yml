@@ -5066,6 +5066,11 @@ de:
   user_observed_on_on_date_in_place: |
     Von %{user} beobachtet am %{date} in %{place}
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
+  user_trusts_this_project_for_none: Der Benutzer vertraut diesem Projekt nicht die verborgenen Koordinaten an.
+  user_trusts_this_project_for_any: |
+    Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, egal auf welchem Grund die Verschleierung basiert.
+  user_trusts_this_project_for_taxon: |
+    Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, die aufgrund von Schutzkategorien verschleiert wurden
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
@@ -5877,6 +5882,9 @@ de:
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
         user_id: Eindeutige Kennung für diesen Beobachter
         user_login: Benutzername des Beobachters
+        user_name: |
+          Name des Beobachters, der in der Regel für die Zuordnung auf der Webseite verwendet wird.
+          Dies ist ein optionales Feld und der Name kann auch ein Pseudonym sein.
         created_at: Datetime des Erstellen der Beobachtung
         updated_at: Datetime der Aktualisierung der Beobachtung
         quality_grade: Qualitätsbewertung dieser Beobachtung. Siehe im Hilfe-Abschnitt für Details, was das genau bedeutet
