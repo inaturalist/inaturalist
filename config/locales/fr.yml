@@ -5171,6 +5171,11 @@ fr:
   user_observed_on_on_date_in_place: |
     %{user} en a observé un le %{date} à %{place}
   user_suggested_an_id: "%{user} a suggéré un ID"
+  user_trusts_this_project_for_none: L'utilisateur ne donne pas à ce projet l'accès à ses coordonnées masquées.
+  user_trusts_this_project_for_any: |
+    L'utilisateur donne à ce projet l'accès à ses coordonnées masquées, quelle que soit la raison pour laquelle elles ont été occultées.
+  user_trusts_this_project_for_taxon: |
+    L'utilisateur ne donne à ce projet l'accès à ses coordonnées masquées que si celles-ci ont été occultées parce qu'un taxon est menacé.
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
     L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
@@ -6075,6 +6080,8 @@ fr:
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
         user_id: Identificateur unique de l’observateur
         user_login: Nom d'utilisateur de l'observateur
+        user_name: |
+          Nom de l'observateur, généralement utilisé pour mentionner la source sur le site. Ce champ est facultatif et il peut s'agir d'un pseudonyme.
         created_at: Horodatage de la création de l’observation
         updated_at: Horodatage de la dernière mise à jour de l’observation
         quality_grade: Niveau de qualité de cette observation. Consultez la section Aide pour obtenir plus de détails sur ce que ça signifie
