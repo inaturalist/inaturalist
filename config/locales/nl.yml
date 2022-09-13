@@ -5209,8 +5209,8 @@ nl:
   user_trusts_this_project_for_any: |
     De gebruiker vertrouwt dit project met verborgen coördinaten die om wat voor reden dan ook verborgen zijn.
   user_trusts_this_project_for_taxon: |
-    De gebruiker vertrouwt dit project alleen op verborgen coördinaten die
-    werden vertroebeld vanwege bedreigde taxa.
+    De gebruiker vertrouwt dit project alleen verborgen coördinaten toe die
+    werden vervaagd vanwege bedreigde taxa.
   user_trusts_you_with_their_private_coordinates: "%{user} vertrouwt je hun verborgen coördinaten toe"
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
@@ -5241,10 +5241,6 @@ nl:
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
   view_all_members: Alle leden weergeven
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Toon alle %{count}"
-    other: "Toon alle %{count}"
   view_all_observations: Alle waarnemingen weergeven
   view_all_photocount_photos: "Alle %{photo_count} foto's weergeven"
   view_assessment: Beoordeling bekijken
@@ -6060,7 +6056,7 @@ nl:
         user_id: Unieke identifier voor de waarnemer
         user_login: Gebruikersnaam van de waarnemer
         user_name: |
-          Naam van de waarnemer, meestal gebruikt voor attributie op de site.
+          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
           Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
