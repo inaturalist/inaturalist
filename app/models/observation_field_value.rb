@@ -2,7 +2,7 @@ class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   
-  belongs_to :observation, :inverse_of => :observation_field_values
+  belongs_to_with_uuid :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
   has_updater

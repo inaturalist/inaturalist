@@ -212,7 +212,7 @@ class Suggestions extends React.Component {
     }
     return (
       <div className="Suggestions">
-        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
+        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : ""}`}>
           <div className="suggestions-list" tabIndex="-1">
             <div className="suggestions-inner">
               <ChooserPopover
