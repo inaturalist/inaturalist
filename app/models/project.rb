@@ -370,13 +370,16 @@ class Project < ApplicationRecord
   end
 
   def set_observation_requirements_updated_at( options = {} )
+    # If this is a new record, we want to enable coordinate access immediately
+    # if trust was enabled, so we backdate
+    # observation_requirements_updated_at
     if new_record?
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
-    pu_scope = project_users.joins(:stored_preferences).where(
+    trusting_project_users = project_users.joins(:stored_preferences).where(
       "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
       [
         ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
@@ -386,9 +389,14 @@ class Project < ApplicationRecord
     changed_from_trad_to_collection = project_type_changed? &&
       changes[:project_type].first.blank? &&
       %w(collection umbrella).include?( changes[:project_type].last )
-    if old_params == new_params && !prefers_user_trust_changed? && !options[:force] && !changed_from_trad_to_collection
+    if (
+      old_params == new_params &&
+      !prefers_user_trust_changed? &&
+      !options[:force] &&
+      !changed_from_trad_to_collection
+    )
       Rails.logger.debug "set_observation_requirements_updated_at: no change"
-    elsif pu_scope.exists?
+    elsif trusting_project_users.exists?
       Rails.logger.debug "set_observation_requirements_updated_at: trusting users exist, setting observation_requirements_updated_at to now"
       self.observation_requirements_updated_at = Time.now
     elsif changed_from_trad_to_collection
