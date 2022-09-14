@@ -644,6 +644,9 @@ th:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: ครอบคลุมหรือไม่?
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: โมเดลคอมพิวเตอร์วิทัศน์
   confirm_now: ยืนยันเลย
   connecting_to_facebook: "กำลังเชื่อมต่อ Facebook..."
   conservation_status: สถานะการอนุรักษ์
