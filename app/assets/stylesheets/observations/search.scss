@@ -1,3 +1,5 @@
+@import "../colors";
+
 #header {
   margin-bottom: 0px;
 }
@@ -41,7 +43,7 @@
   margin-top: 60px;
 }
 
-#obs-container .taxon.has-com-name .secondary-name { 
+#obs-container .taxon.has-com-name .secondary-name {
   color: #333;
 }
 
@@ -62,7 +64,7 @@
   background-color: #ccc;
   position: relative;
 }
-.grid .photo .icon, 
+.grid .photo .icon,
 .grid .photo:hover .icon,
 .grid .photo:active .icon,
 .grid .photo:visited .icon,
@@ -415,7 +417,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #stats-container .geo.selected {
   color: #fff;
-  border: 2px solid #f16f3a;
+  border: 2px solid $btn-orange;
   padding: 5px;
 }
 #stats-container .glyphicon-remove-sign {
@@ -587,7 +589,7 @@ inat-taxon { white-space: nowrap; }
   font-size: 16px;
 }
 
-.bootstrap #filters .radio, 
+.bootstrap #filters .radio,
 .bootstrap #filters .checkbox {
   margin: 0px 0 2px;
 }
@@ -597,7 +599,7 @@ inat-taxon { white-space: nowrap; }
 #filters-ranks {margin-bottom: 10px;}
 .bootstrap #filters .filters-dates label.radio {display: block; margin-left: 1.5em; margin-bottom: 10px;}
 .bootstrap #filters .filters-dates .form-control {
-  width: 100px; 
+  width: 100px;
   display: inline-block;
 }
 .bootstrap #filters .filters-dates .filters-dates-exact.form-control {width: 176px;}
@@ -690,11 +692,51 @@ inat-taxon { white-space: nowrap; }
   margin-left: 5px;
   color: rgba(0, 0, 0, .5);
 }
-
-#view-controls .btn-default.reload {
-  color: #fff;
-  background: #f16f3a;
-  margin-left: 10px;
+.shape-buttons {
+  display: inline-block;
+  margin-right: 2px;
+}
+#view-controls {
+  .map-shape-searches {
+    margin-left: 10px;
+    button {
+      color: #eee;
+      background: $btn-orange;
+      padding: 8px 7px 2px;
+      border: 0;
+      transition: background-color 0.2s ease-in-out;
+      &:focus {
+        border: 0;
+        outline: 0;
+      }
+      &:hover {
+        background-color: $btn-orange-hover;
+      }
+      &.disabled:hover {
+        background-color: $btn-orange;
+      }
+    }
+    .disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+  embed {
+    pointer-events: none;
+  }
+  .btn-rect {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .btn-circle {
+    margin-left: -3px;
+    border-left: 1px solid #ffb090 !important;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .btn-fit-to-map {
+    padding: 7px 7px 5px !important;
+  }
 }
 .btn .glyphicon {
   top: 3px;
@@ -705,23 +747,20 @@ inat-taxon { white-space: nowrap; }
 #subview-controls .btn-default, .btn.places {
   padding: 7px 12px 5px;
 }
-
 #view-controls.open .btn-default.places {
   color: #fff;
-  background: #f16f3a;
+  background: $btn-orange;
 }
-
 #place-name-input {margin-left: 0;}
 #place-name-input button {
-  background-color: #f16f3a;
+  background-color: $btn-orange;
   color: white;
   margin-left: 5px;
 }
-
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
-  padding: 2px 0px 1px 10px;
+  padding: 2px 0 1px 10px;
   position: relative;
   font-size: 12px !important;
   line-height: 17px !important;
@@ -739,9 +778,8 @@ inat-taxon { white-space: nowrap; }
   right: -15px;
   z-index: -1;
 }
-
 #obs-container .quality_grade {
-  padding: 1px 0px 1px 5px;
+  padding: 1px 0 1px 5px;
   font-size: 10px !important;
   line-height: 14px !important;
   margin-right: 20px;
@@ -752,7 +790,6 @@ inat-taxon { white-space: nowrap; }
   border-right-width: 5px;
   right: -10px;
 }
-
 .quality_grade.needs_id {
   background-color:#FFEE91;
   color:#85743D;
@@ -1070,13 +1107,13 @@ $photo-count-line-width: 1px;
 #filters-observation-fields .observation-field {
   background-color: #999;
   padding: 5px 28px 5px 5px;
-  margin-right: 10px;
+  margin-right: 8px;
   position: relative;
 }
 #filters-observation-fields .observation-field button {
   border: 0;
   background-color: #ccc;
-  padding: 0px 5px;
+  padding: 0 5px;
   position: absolute;
   right: 2px;
 }

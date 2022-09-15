@@ -54,11 +54,11 @@
           %span.geo.selected.ng-cloak{ "ng-if": "selectedPlace && selectedPlace.name", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
             = "{{ selectedPlace.name | characters:35 }}"
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedPlace( )" }
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearPlaceSearch( )" }
           %span.geo.selected.ng-cloak{ "ng-if": "params.swlng || params.lng", "ng-click": "changeView('observations', 'map')",
             "ng-class": "{ unclickable: viewing('observations', 'map') }" }
-            {{ shared.t('bounding_box') }}
-            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "removeSelectedBounds( )" }
+            {{ shared.t('custom_boundary') }}
+            %span.glyphicon.glyphicon-remove-sign{ "ng-click": "clearBoundary( )" }
         #obsstatcol.col-xs-2.statcol{ "ng-class": "{ active: viewing('observations') }", "ng-click": "changeView('observations')" }
           .stat
             .stat-value.ng-cloak= "{{ shared.numberWithCommas( totalObservations ) }}"
@@ -120,7 +120,6 @@
                     %input{ type: "checkbox", name: "mapTerrain", "ng-model" => "mapTerrain", "ng-disabled": "mapType != 'map'" }
                     {{ shared.t('terrain') | capitalize }}
 
-
             %button.button.btn-stateless.btn-default.dropdown-toggle.places{ "data-toggle": "dropdown", "ng-show": "viewing('observations', 'map')" }
               %span.glyphicon.glyphicon-globe.fa-spin{ "ng-class": "{ 'fa-spin': searchingNearbyPlaces }" }
               {{ shared.t('places_of_interest') }}
@@ -147,9 +146,30 @@
                     = "{{ p.placeTypeLabel( ) }}"
                 %span{ "ng-show": "!nearbyPlaces.community || nearbyPlaces.community.length == 0" }
                   {{ shared.t("no_places_available") }}
-            %button.button.btn-default.reload{ "ng-click": "filterByBounds( )", "ng-show": "viewing('observations', 'map') && !hideRedoSearch" }
-              %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
-              {{ shared.t('redo_search_in_map') }}
+            %span.map-shape-searches
+              %div.shape-buttons
+                %button{
+                  "ng-click": "drawBoundary( 'rectangle' )",
+                  "ng-show": "viewing('observations', 'map')",
+                  :class => "btn btn-default btn-rect {{ drawing.disabled ? 'disabled' : '' }}",
+                  "tooltip-enable" => "!drawing.disabled",
+                  "uib-tooltip" => "{{ shared.t('draw_rectangular_boundary') }}"
+                }
+                  %embed{src: image_path('draw-rect.svg'), width: 16, height: 16 }
+                %button{
+                  "ng-click": "drawBoundary( 'circle' )",
+                  "ng-show": "viewing('observations', 'map')",
+                  :class => "btn btn-default btn-circle {{ drawing.disabled ? 'disabled' : '' }}",
+                  "tooltip-enable" => "!drawing.disabled",
+                  "uib-tooltip" => "{{ shared.t('draw_circular_boundary') }}"
+                }
+                  %embed{src: image_path('draw-circle.svg'), width: 16, height: 16 }
+              %button{
+                "ng-click": "filterByBounds( )",
+                "ng-show": "viewing('observations', 'map')",
+                :class => "btn btn-default btn-fit-to-map {{ disableRedoSearch ? 'disabled' : '' }}",
+              }
+                {{ shared.t("redo_search_in_map") }}
         .col-xs-6
     %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
