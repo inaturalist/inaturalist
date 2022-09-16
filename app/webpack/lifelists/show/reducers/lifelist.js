@@ -402,7 +402,7 @@ export function setObservationSort( sort ) {
     } ) );
     const searchParams = {
       user_id: lifelist.user.id,
-      order_by: "observed_on",
+      order_by: "created_at",
       order: "desc"
     };
     if ( sort === "dateAsc" ) {
