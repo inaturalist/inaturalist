@@ -5158,6 +5158,12 @@ es-MX:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió un ID"
+  user_trusts_this_project_for_none: El usuario no confía en este proyecto con coordenadas ocultas.
+  user_trusts_this_project_for_any: |
+    El usuario confía en este proyecto con coordenadas ocultas que fueron ocultadas por cualquier razón.
+  user_trusts_this_project_for_taxon: |
+    El usuario solo confía en este proyecto con coordenadas ocultas que fueron oscurecidas
+    debido a taxa amenazados.
   user_trusts_you_with_their_private_coordinates: "%{user} te confío sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarte las coordenadas ocultas de todas sus observaciones.
@@ -6033,6 +6039,9 @@ es-MX:
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
         user_id: Identificador único para la observación
         user_login: Nombre de usuario del observador
+        user_name: |
+          Nombre del observador, generalmente utilizado para la atribución en el sitio.
+          Este es un campo opcional y puede ser un pseudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
         quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado

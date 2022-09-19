@@ -1499,6 +1499,8 @@ it:
   disconnect: Disconnetti
   disconnect_caps: DISCONNETTI
   disconnect_provider: "Disconnettere %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Scarta
   display: Visualizzazione
   display_link_to_checklist: Visualizza il link alla lista del progetto sulla pagina del progetto
   display_monthly_supporter_badge: Visualizza Distintivo di Sostenitore Mensile sul mio profilo
@@ -4470,6 +4472,8 @@ it:
   target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà interpretato come un'assenza. Per questo è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa in un gruppo della tua lista di obbiettivi, per favore rimuovila.
   task_deleted: Attività eliminata
   taxa: Taxa
+  taxa_show_obs_photo_search_tip: |
+    Consiglio: inserisci l'ID di un'osservazione nel campo di ricerca, se desideri scegliere le foto da un'osservazione specifica
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
   taxa_needing_curation: Taxa che necessitano di revisione
@@ -5085,6 +5089,11 @@ it:
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
   user_suggested_an_id: "%{user} ha suggerito una ID"
+  user_trusts_this_project_for_none: L'utente non si fida di questo progetto con coordinate nascoste.
+  user_trusts_this_project_for_any: |
+    L'utente si fida a rivelare le coordinate nascoste a questo progetto, oscurate per qualsiasi motivo.
+  user_trusts_this_project_for_taxon: |
+    L'utente si fida a rivelare le coordinate nascoste a questo progetto solo se oscurate perchè appartenenti a taxa minacciati.
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
@@ -5115,6 +5124,10 @@ it:
   view_all_fields: Visualizza Tutti I Campi
   view_all_flags: Mostra tutti i contrassegni
   view_all_members: Visualizza tutti i membri
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Visualizza Tutte %{count}"
+    other: "Visualizza Tutte %{count}"
   view_all_observations: Visualizza tutte le osservazioni
   view_all_photocount_photos: "Visualizza tutte le %{photo_count} foto"
   view_assessment: Visualizza la valutazione
@@ -5888,6 +5901,9 @@ it:
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto per il taxon
         user_id: Identificatore univoco dell'osservatore
         user_login: Nome utente dell'osservatore
+        user_name: |
+          Nome dell'osservatore, generalmente usato per attribuzione sul sito.
+          Questo è un campo facoltativo e può essere uno pseudonimo.
         created_at: Data e ora della creazione dell'osservazione
         updated_at: Data e ora in cui l’osservazione è stata modificata l’ultima volta
         quality_grade: Livello di qualità dell'osservazione. Controlla nella sezione Aiuto per maggiori dettagli

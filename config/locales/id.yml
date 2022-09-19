@@ -5041,6 +5041,11 @@ id:
   user_observed_on_on_date_in_place: |
     %{user} mengamatinya pada %{date} di %{place}
   user_suggested_an_id: "%{user} menyarankan sebuah ID"
+  user_trusts_this_project_for_none: Pengguna tidak mempercayakan proyek dengan koordinat tersembunyi ini.
+  user_trusts_this_project_for_any: |
+    Pengguna mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan untuk suatu alasan.
+  user_trusts_this_project_for_taxon: |
+    Pengguna hanya mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan karena takson terancam.
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
@@ -5832,6 +5837,9 @@ id:
         out_of_range: Apakah pengamatan ini terletak di luar jangkauan yang diketahui dari takson ini
         user_id: Tanda pengenal unik untuk pengamat
         user_login: Nama pengguna dari pengamat
+        user_name: |
+          Nama pengamat, biasanya digunakan untuk atribusi pada situs.
+          Ini adalah kolom opsional dan boleh berupa nama samaran.
         created_at: Tanggal dan waktu pengamatan telah dibuat
         updated_at: Tanggal dan waktu pengamatan terakhir diperbarui
         quality_grade: Tingkat kualitas pengamatan ini. Lihat bagian Bantuan untuk penjelasan tentang artinya

@@ -5268,6 +5268,11 @@ da:
   user_observed_on_on_date_in_place: |
     %{user} observeredes en den %{date} i %{place}
   user_suggested_an_id: "%{user} foreslog et ID"
+  user_trusts_this_project_for_none: Bruger har ikke tillid til dette projekt med skjulte koordinater.
+  user_trusts_this_project_for_any: |
+    Bruger stoler på dette projekt med skjulte koordinater, sløret af en uspecificeret årsag.
+  user_trusts_this_project_for_taxon: |
+    Bruger stoler kun på dette projekt med skjulte koordinater, sløret grundet truet taksa.
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
@@ -6159,6 +6164,9 @@ da:
         out_of_range: Hvorvidt eller ej denne observation ligger uden for taksonets kendte område
         user_id: Unik identifikator for observatøren
         user_login: Observatørens brugernavn
+        user_name: |
+          Navn på observatøren, normalt brugt til tilskrivning på webstedet.
+          Ikke-obligatorisk felt, hvis indhold kan være et pseudonym.
         created_at: Tidspunkt for observationens oprettelse
         updated_at: Tidspunkt for sidste opdatering af observationen
         quality_grade: Observationens kvalitetsklasse. Se hjælpesektionen for detaljer om hvad dette betyder

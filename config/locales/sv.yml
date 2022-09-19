@@ -5244,6 +5244,12 @@ sv:
   user_observed_on_on_date_in_place: |
     %{user} observerade en den %{date} i %{place}
   user_suggested_an_id: "%{user} föreslog en bestämning"
+  user_trusts_this_project_for_none: Användaren litar inte tillräckligt på detta projekt för att dela dolda koordinater.
+  user_trusts_this_project_for_any: |
+    Användaren litar på detta projekt tillräckligt för att dela dolda koordinater som diffuserats av någon anledning.
+  user_trusts_this_project_for_taxon: |
+    Användaren litar bara på detta projekt tillräckligt för att dela dolda koordinater som diffuserats
+    på grund av hotade taxa.
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
@@ -6078,6 +6084,9 @@ sv:
         out_of_range: Huruvida fyndet ligger utanför taxonets kända utbredningsområde eller inte
         user_id: Unik identifierare för observatören
         user_login: Observatörens användarnamn
+        user_name: |
+          Namn på observatören, används oftast för erkännande på webbplatsen.
+          Detta är ett valfritt fält och kan vara en pseudonym.
         created_at: Datum och tid då fyndet skapades
         updated_at: Datum och tid då fyndet senast uppdaterades
         quality_grade: Kvalitetsklass för detta fynd. Se Hjälpavsnittet för detaljer om vad detta innebär
