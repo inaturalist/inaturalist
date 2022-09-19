@@ -278,7 +278,7 @@ module DarwinCore
       end
 
       def eventTime
-        time_observed_at ? time_observed_at.iso8601.sub( /^.*T/, "" ) : nil
+        time_observed_at ? datetime.iso8601.sub( /^.*T/, "" ) : nil
       end
 
       def verbatimEventDate
