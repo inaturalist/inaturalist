@@ -1109,6 +1109,8 @@ bg:
   disconnect: Разедини
   disconnect_caps: РАЗЕДИНИ
   disconnect_provider: "Откачи %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Затвори
   display: Изглед
   display_link_to_checklist: Показвай препратка към проектния списък на страницата на проекта
   display_monthly_supporter_badge: Показвай значка „Ежемесечен поддръжник“ в профила ми
@@ -3794,6 +3796,11 @@ bg:
   user_observed_on_on_date_in_place: |
     %{user} го наблюдава на %{date} във %{place}
   user_suggested_an_id: "%{user} предложи ID"
+  user_trusts_this_project_for_none: Потребителят не доверява скритите си координати на проекта.
+  user_trusts_this_project_for_any: |
+    Потребителят доверява всичките си скрити координати на проекта.
+  user_trusts_this_project_for_taxon: |
+    Потребителят доверява на проекта само скрити заради застрашен таксон координати.
   user_trusts_you_with_their_private_coordinates: "%{user} ти доверява скритите си координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдателят е решил да Ви довери координатите на всичките си наблюдения.
@@ -4207,6 +4214,9 @@ bg:
         coordinates_obscured: "Дали координатите са замаскирани (заради геоповерителност или застрашен таксон) или не"
         user_id: Уникален идентификатор на наблюдателя
         user_login: Потребителско име на наблюдателя
+        user_name: |
+          Име на наблюдателя – обикновено се използва на сайта за указване на авторство.
+          Това е незадължително поле и може да бъде псевдоним.
         license: Лиценза, избран от наблюдателят, за това наблюдение
         url: Уебадрес на наблюдението
         image_url: Уебадрес на изображението по подразбиране
