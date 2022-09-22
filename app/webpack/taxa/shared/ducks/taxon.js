@@ -22,8 +22,20 @@ const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
 const SET_SPECIES = "taxa-show/taxon/SET_SPECIES";
 
+const CORE_TAXON_FIELDS = {
+  id: true,
+  name: true,
+  rank: true,
+  rank_level: true,
+  iconic_taxon_name: true,
+  preferred_common_name: true,
+  is_active: true,
+  extinct: true,
+  ancestor_ids: true
+};
+
 export default function reducer( state = { counts: {} }, action ) {
-  const newState = Object.assign( { }, state );
+  const newState = { ...state };
   switch ( action.type ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
@@ -301,27 +313,24 @@ export function fetchTaxon( taxon, options = { } ) {
     };
     if ( testingApiV2 ) {
       params.fields = {
-        id: true,
-        name: true,
-        rank: true,
-        rank_level: true,
-        iconic_taxon_name: true,
-        preferred_common_name: true,
-        is_active: true,
-        extinct: true,
+        ...CORE_TAXON_FIELDS,
+        complete_species_count: true,
+        observations_count: true,
+        complete_rank: true,
         default_photo: {
           url: true
         },
-        ancestor_ids: true,
         ancestors: {
-          id: true,
-          uuid: true,
-          name: true,
-          iconic_taxon_name: true,
-          is_active: true,
-          preferred_common_name: true,
-          rank: true,
-          rank_level: true
+          ...CORE_TAXON_FIELDS,
+          complete_species_count: true,
+          observations_count: true,
+          complete_rank: true
+        },
+        children: {
+          ...CORE_TAXON_FIELDS,
+          complete_species_count: true,
+          observations_count: true,
+          complete_rank: true
         },
         taxon_photos: {
           photo: {
@@ -334,7 +343,8 @@ export function fetchTaxon( taxon, options = { } ) {
               height: true
             },
             url: true
-          }
+          },
+          taxon: CORE_TAXON_FIELDS
         }
       };
     }
@@ -438,15 +448,7 @@ export function fetchTrending( ) {
       params.fields = {
         count: true,
         taxon: {
-          id: true,
-          name: true,
-          rank: true,
-          rank_level: true,
-          iconic_taxon_name: true,
-          preferred_common_name: true,
-          is_active: true,
-          extinct: true,
-          ancestor_ids: true,
+          ...CORE_TAXON_FIELDS,
           default_photo: {
             url: true
           }
@@ -476,15 +478,7 @@ export function fetchRare( ) {
       params.fields = {
         count: true,
         taxon: {
-          id: true,
-          name: true,
-          rank: true,
-          rank_level: true,
-          iconic_taxon_name: true,
-          preferred_common_name: true,
-          is_active: true,
-          extinct: true,
-          ancestor_ids: true,
+          ...CORE_TAXON_FIELDS,
           default_photo: {
             url: true
           }
@@ -517,15 +511,7 @@ export function fetchRecent( ) {
     if ( testingApiV2 ) {
       params.fields = {
         taxon: {
-          id: true,
-          name: true,
-          rank: true,
-          rank_level: true,
-          iconic_taxon_name: true,
-          preferred_common_name: true,
-          is_active: true,
-          extinct: true,
-          ancestor_ids: true,
+          ...CORE_TAXON_FIELDS,
           default_photo: {
             url: true
           }
@@ -556,15 +542,7 @@ export function fetchWanted( ) {
     };
     if ( testingApiV2 ) {
       params.fields = {
-        id: true,
-        name: true,
-        rank: true,
-        rank_level: true,
-        iconic_taxon_name: true,
-        preferred_common_name: true,
-        is_active: true,
-        extinct: true,
-        ancestor_ids: true,
+        ...CORE_TAXON_FIELDS,
         default_photo: {
           url: true
         }
@@ -593,15 +571,7 @@ export function fetchSimilar( ) {
       params.fields = {
         count: true,
         taxon: {
-          id: true,
-          name: true,
-          rank: true,
-          rank_level: true,
-          iconic_taxon_name: true,
-          preferred_common_name: true,
-          is_active: true,
-          extinct: true,
-          ancestor_ids: true,
+          ...CORE_TAXON_FIELDS,
           default_photo: {
             url: true
           }
