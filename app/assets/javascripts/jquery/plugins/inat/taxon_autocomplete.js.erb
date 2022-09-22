@@ -188,7 +188,7 @@ $.fn.taxonAutocomplete = function( options ) {
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
-    let apiBaseURL = "<%= CONFIG.node_api_url %>";
+    var apiBaseURL = "<%= CONFIG.node_api_url %>";
     if ( options.useAPIv2 ) {
       apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
       headers["X-HTTP-Method-Override"] = "GET";
