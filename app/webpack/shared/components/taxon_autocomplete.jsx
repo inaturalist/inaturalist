@@ -12,12 +12,14 @@ class TaxonAutocomplete extends React.Component {
   componentDidMount( ) {
     const { config } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, this.props, {
+    const opts = {
+      ...this.props,
       idEl: $( "input[name='taxon_id']", domNode ),
       preventEnterSubmit: true,
       react: true,
-      user: config && config.user
-    } );
+      user: config && config.user,
+      useAPIv2: config && config.testingApiV2
+    };
     $( "input[name='taxon_name']", domNode ).taxonAutocomplete( opts );
     this.fetchTaxon( );
   }

@@ -395,7 +395,7 @@ class Observation < ApplicationRecord
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
-        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids rescue []}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
@@ -517,6 +517,7 @@ class Observation < ApplicationRecord
           # keep a hash of all places for each taxon
           place_ids.each do |place_id|
             taxon_places[taxon_id][place_id] ||= places[place_id].dup
+            taxon_places[taxon_id][place_id] ||= { }
             taxon_places[taxon_id][place_id][means] = true
           end
           if means == "endemic"

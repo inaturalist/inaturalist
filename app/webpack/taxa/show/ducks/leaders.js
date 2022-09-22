@@ -42,7 +42,19 @@ export function setLeader( key, leader ) {
 
 export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {
-    const params = { ...defaultObservationParams( getState( ) ), per_page: 1 };
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = { ...defaultObservationParams( state ), per_page: 1 };
+    if ( testingApiV2 ) {
+      params.fields = {
+        observation_count: true,
+        user: {
+          id: true,
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.observations.observers( params )
       .then( response => dispatch( setLeader( "topObserver", response.results[0] ) ) );
   };
@@ -50,11 +62,23 @@ export function fetchTopObserver( ) {
 
 export function fetchTopIdentifier( ) {
   return function ( dispatch, getState ) {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
     const params = {
       ...defaultObservationParams( getState( ) ),
       own_observation: false,
       per_page: 1
     };
+    if ( testingApiV2 ) {
+      params.fields = {
+        observation_count: true,
+        user: {
+          id: true,
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.identifications.identifiers( params )
       .then( response => dispatch( setLeader( "topIdentifier", response.results[0] ) ) );
   };

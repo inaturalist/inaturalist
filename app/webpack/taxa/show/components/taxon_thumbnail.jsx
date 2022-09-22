@@ -8,7 +8,6 @@ import { urlForTaxon as utilUrlForTaxon } from "../../shared/util";
 
 const TaxonThumbnail = ( {
   taxon,
-  key,
   badgeText,
   badgeTip,
   height,
@@ -71,7 +70,7 @@ const TaxonThumbnail = ( {
     overlayDiv = ( <div className="overlay">{ overlay }</div > );
   }
   return (
-    <div key={key} className="TaxonThumbnail thumbnail">
+    <div key={`similar-taxon-thumbnail-${taxon.id}`} className="TaxonThumbnail thumbnail">
       { badge }
       <a href={urlForTaxon( taxon )} onClick={onClick}>{ img }</a>
       { overlayDiv }
@@ -82,8 +81,8 @@ const TaxonThumbnail = ( {
           noParens
           truncate={truncate}
           onClick={onClick}
-          user={ config.currentUser }
-          noInactive={ noInactive }
+          user={config.currentUser}
+          noInactive={noInactive}
         />
         { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>
@@ -93,7 +92,6 @@ const TaxonThumbnail = ( {
 
 TaxonThumbnail.propTypes = {
   taxon: PropTypes.object.isRequired,
-  key: PropTypes.string,
   badgeText: PropTypes.oneOfType( [
     PropTypes.object,
     PropTypes.string,

@@ -38,13 +38,12 @@ import brightnessesReducer from "../identify/ducks/brightnesses";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
-const relativeTime = Object.assign(
-  {},
-  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+const relativeTime = {
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
   shortRelativeTime
-);
+};
 moment.locale( I18n.locale );
-moment.updateLocale( moment.locale(), { relativeTime } );
+moment.updateLocale( moment.locale( ), { relativeTime } );
 
 const rootReducer = combineReducers( {
   commentIDPanel: commentIDPanelReducer,
@@ -100,7 +99,7 @@ if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ )
 ) {
-  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
   if ( defaultApiUrl ) {
     /* global INITIAL_OBSERVATION_UUID */

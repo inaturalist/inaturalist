@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import {
   createStore, compose, applyMiddleware, combineReducers
 } from "redux";
-import { Taxon } from "inaturalistjs";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "../shared/ducks/taxon";
@@ -16,6 +16,8 @@ import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
+
+const { Taxon } = inatjs;
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -45,6 +47,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
+}
+
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
 }
 
 /* global SERVER_PAYLOAD */

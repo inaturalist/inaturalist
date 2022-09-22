@@ -15,13 +15,13 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = state => ( {
+const defaultObservationParams = state => ( _.pickBy( {
   verifiable: true,
   taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
   place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
   preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
   locale: I18n.locale
-} );
+}, v => !_.isNil( v ) ) );
 
 const localizedPhotoAttribution = ( photo, options = { } ) => {
   const separator = options.separator || "";
@@ -124,7 +124,8 @@ const windowStateForTaxon = taxon => {
       iconic_taxon_name: taxon.iconic_taxon_name,
       rank_level: taxon.rank_level,
       rank: taxon.rank,
-      is_active: taxon.is_active
+      is_active: taxon.is_active,
+      ancestor_ids: taxon.ancestor_ids
     }
   };
   return {

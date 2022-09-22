@@ -9,6 +9,64 @@ import { setFlaggingModalState } from "../../../observations/show/ducks/flagging
 const SET_PROJECT = "projects-show/project/SET_PROJECT";
 const SET_ATTRIBUTES = "projects-show/project/SET_ATTRIBUTES";
 
+const TAXON_FIELDS = {
+  id: true,
+  name: true,
+  rank: true,
+  rank_level: true,
+  iconic_taxon_name: true,
+  preferred_common_name: true,
+  is_active: true,
+  extinct: true,
+  ancestor_ids: true,
+  default_photo: {
+    url: true
+  }
+};
+
+const SPECIES_COUNTS_FIELDS = {
+  count: true,
+  taxon: TAXON_FIELDS
+};
+
+const OBSERVATION_FIELDS = {
+  id: true,
+  observed_on: true,
+  non_owner_ids: true,
+  comments: true,
+  faves: true,
+  created_at_details: "all",
+  created_at: true,
+  created_time_zone: true,
+  observed_on_details: "all",
+  time_observed_at: true,
+  observed_time_zone: true,
+  place_guess: true,
+  latitude: true,
+  longitude: true,
+  photos: {
+    id: true,
+    uuid: true,
+    url: true,
+    license_code: true
+  },
+  taxon: {
+    id: true,
+    uuid: true,
+    name: true,
+    iconic_taxon_name: true,
+    is_active: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  user: {
+    id: true,
+    login: true,
+    name: true
+  }
+};
+
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
     case SET_PROJECT:
@@ -78,15 +136,19 @@ export function fetchCurrentProjectUser( ) {
 
 export function fetchPopularObservations( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
+    const { testingApiV2 } = config;
     if ( project.popular_observations_loaded ) { return null; }
     const params = {
       ...project.search_params,
       per_page: 47,
       popular: true,
-      order: "votes"
+      order_by: "votes"
     };
+    if ( testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
+    }
     return inatjs.observations.search( params ).then( response => {
       dispatch( setAttributes( {
         popular_observations_loaded: true,
@@ -98,13 +160,17 @@ export function fetchPopularObservations( ) {
 
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
+    const { testingApiV2 } = config;
     const params = {
       ...project.search_params,
       return_bounds: "true",
       per_page: 50
     };
+    if ( testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
+    }
     dispatch( setConfig( {
       observationFilters: {
         order_by: "created_at",
@@ -127,9 +193,13 @@ export function fetchFilteredObservations( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project ) { return null; }
+    const { testingApiV2 } = config;
     let params = { ...project.search_params, per_page: 50 };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );
+    }
+    if ( testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
     }
     dispatch( setAttributes( { filtered_observations_loaded: false } ) );
     return inatjs.observations.search( params ).then( response => {
@@ -156,6 +226,7 @@ export function infiniteScrollObservations( nextScrollIndex ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !project.filtered_observations_loaded ) { return null; }
+    const { testingApiV2 } = config;
     const total = project.filtered_observations.total_results;
     const loaded = project.filtered_observations.results.length;
     if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
@@ -169,6 +240,9 @@ export function infiniteScrollObservations( nextScrollIndex ) {
     };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );
+    }
+    if ( testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
     }
     return inatjs.observations.search( params ).then( response => {
       project.filtered_observations.results = project
@@ -184,8 +258,9 @@ export function infiniteScrollObservations( nextScrollIndex ) {
 
 export function infiniteScrollSpecies( nextScrollIndex ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project || !project.species_loaded ) { return null; }
+    const { testingApiV2 } = config;
     const total = project.species.total_results;
     const loaded = project.species.results.length;
     if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
@@ -197,6 +272,9 @@ export function infiniteScrollSpecies( nextScrollIndex ) {
       per_page: 50,
       page: project.species_page + 1
     };
+    if ( testingApiV2 ) {
+      params.fields = SPECIES_COUNTS_FIELDS;
+    }
     return inatjs.observations.speciesCounts( params ).then( response => {
       project.species.results = project
         .species.results.concat( response.results );
@@ -211,9 +289,13 @@ export function infiniteScrollSpecies( nextScrollIndex ) {
 
 export function fetchSpecies( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
+    const { testingApiV2 } = config;
     const params = { ...project.search_params, per_page: 50 };
+    if ( testingApiV2 ) {
+      params.fields = SPECIES_COUNTS_FIELDS;
+    }
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         species_loaded: true,
@@ -226,9 +308,19 @@ export function fetchSpecies( ) {
 
 export function fetchObservers( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
-    return inatjs.observations.observers( project.search_params ).then( response => {
+    const { testingApiV2 } = config;
+    const params = { ...project.search_params };
+    if ( testingApiV2 ) {
+      params.fields = {
+        user: {
+          login: true,
+          icon_url: true
+        }
+      };
+    }
+    return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
         observers_loaded: true,
         observers: response
@@ -239,9 +331,18 @@ export function fetchObservers( ) {
 
 export function fetchSpeciesObservers( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
+    const { testingApiV2 } = config;
     const params = { ...project.search_params, order_by: "species_count" };
+    if ( testingApiV2 ) {
+      params.fields = {
+        user: {
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
         species_observers_loaded: true,
@@ -253,8 +354,10 @@ export function fetchSpeciesObservers( ) {
 
 export function fetchIdentifiers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
+    if ( !project ) { return null; }
     if ( !project || project.all_identifiers_loaded ) { return null; }
+    const { testingApiV2 } = config;
     const params = {
       ...project.search_params,
       per_page: 0
@@ -262,7 +365,16 @@ export function fetchIdentifiers( noPageLimit = false ) {
     if ( noPageLimit ) {
       delete params.per_page;
     }
+    if ( testingApiV2 ) {
+      params.fields = {
+        user: {
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.observations.identifiers( params ).then( response => {
+      if ( getState( ).project.all_identifiers_loaded ) { return; }
       dispatch( setAttributes( {
         identifiers_loaded: true,
         identifiers: response,
@@ -274,9 +386,19 @@ export function fetchIdentifiers( noPageLimit = false ) {
 
 export function fetchPosts( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project || project.posts_loaded ) { return null; }
-    return inatjs.projects.posts( { id: project.id, per_page: 3 } ).then( response => {
+    const { testingApiV2 } = config;
+    const params = { id: project.id, per_page: 3 };
+    if ( testingApiV2 ) {
+      params.fields = {
+        id: true,
+        published_at: true,
+        title: true,
+        body: true
+      };
+    }
+    return inatjs.projects.posts( params ).then( response => {
       dispatch( setAttributes( {
         posts_loaded: true,
         posts: response
@@ -287,9 +409,20 @@ export function fetchPosts( ) {
 
 export function fetchIconicTaxaCounts( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project || project.iconic_taxa_species_counts_loaded ) { return null; }
-    return inatjs.observations.iconicTaxaSpeciesCounts( project.search_params ).then( response => {
+    const { testingApiV2 } = config;
+    const params = { ...project.search_params };
+    if ( testingApiV2 ) {
+      params.fields = {
+        count: true,
+        taxon: {
+          id: true,
+          name: true
+        }
+      };
+    }
+    return inatjs.observations.iconicTaxaSpeciesCounts( params ).then( response => {
       dispatch( setAttributes( {
         iconic_taxa_species_counts_loaded: true,
         iconic_taxa_species_counts: response
@@ -300,9 +433,24 @@ export function fetchIconicTaxaCounts( ) {
 
 export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
     if ( !project ) { return null; }
-    return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
+    const { testingApiV2 } = config;
+    const params = { ...project.search_params };
+    if ( testingApiV2 ) {
+      params.fields = {
+        observation_count: true,
+        species_count: true,
+        observers_count: true,
+        project: {
+          id: true,
+          title: true,
+          slug: true,
+          icon: true
+        }
+      };
+    }
+    return inatjs.observations.umbrellaProjectStats( params ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response
@@ -401,6 +549,9 @@ export function setSelectedTab( tab, options = { } ) {
     }
     if ( project.is_traditional ) {
       urlParams.collection_preview = true;
+    }
+    if ( config.testingApiV2 ) {
+      urlParams.test = "apiv2";
     }
     if ( !_.isEmpty( urlParams ) ) {
       newURL += `?${$.param( urlParams )}`;

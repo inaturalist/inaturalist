@@ -48,7 +48,7 @@ import ObservationModalContainer from "../containers/observation_modal_container
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import FlashMessage from "./flash_message";
 
-moment.locale( "en", {
+moment.updateLocale( "en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
