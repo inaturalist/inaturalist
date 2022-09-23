@@ -310,6 +310,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.place_id = "any";
       $scope.updatePlaceAutocomplete( );
     }
+
+    if ($scope.drawing.pending) {
+      $scope.drawing.manager.setMap( null );
+      $scope.drawing.pending = false;
+      $scope.$apply();
+    }
   });
   $scope.initializeTaxonParams = function( ) {
     if( $scope.params.taxon_id ) {
@@ -436,6 +442,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
     if( $scope.currentView != $scope.defaultView ) {
       newParams.push( [ "view", $scope.currentView ] );
+
+      if ($scope.drawing.pending) {
+        $scope.clearBoundary();
+      }
     }
     if( $scope.currentSubview != $scope.defaultSubview ) {
       newParams.push( [ "subview", $scope.currentSubview ] );
@@ -656,7 +666,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     if (processedParams.place_id) {
       $scope.removeClearIcon( );
-    }
+
+      if ($scope.drawing.pending) {
+        $scope.onCompleteDrawing();
+      }
+   }
     var isDefaultSearch = _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale );
     if ( isDefaultSearch ) {
       processedParams.ttl = 3600;
@@ -923,6 +937,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.radius = null;
     $scope.drawing.currentShape = "rectangle";
     $scope.drawing.disabled = true;
+    $scope.drawing.pending = false;
+    if ($scope.drawing.manager) {
+      $scope.drawing.manager.setMap( null );
+    }
     $scope.removeClearIcon( );
     $rootScope.$emit( "hideNearbyPlace" );
     $scope.removeSelectedPlace( );
