@@ -222,14 +222,14 @@ export function setObservationFilters( params ) {
   };
 }
 
-export function infiniteScrollObservations( nextScrollIndex ) {
+export function infiniteScrollObservations( previousScrollIndex, nextScrollIndex ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !project.filtered_observations_loaded ) { return null; }
     const { testingApiV2 } = config;
     const total = project.filtered_observations.total_results;
     const loaded = project.filtered_observations.results.length;
-    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
+    if ( previousScrollIndex >= total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
       return null;
     }
