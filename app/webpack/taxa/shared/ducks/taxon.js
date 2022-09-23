@@ -220,7 +220,9 @@ export function fetchTerms( options = { histograms: false } ) {
     const { testingApiV2 } = s.config;
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
     if ( s.config.chosenPlace ) {
-      params.place_id = s.config.chosenPlace.id;
+      params.place_id = testingApiV2
+        ? s.config.chosenPlace.uuid
+        : s.config.chosenPlace.id;
     }
     if ( options.histograms ) {
       params.unannotated = true;
@@ -337,6 +339,7 @@ export function fetchTaxon( taxon, options = { } ) {
             attribution: true,
             id: true,
             license_code: true,
+            small_url: true,
             medium_url: true,
             original_dimensions: {
               width: true,

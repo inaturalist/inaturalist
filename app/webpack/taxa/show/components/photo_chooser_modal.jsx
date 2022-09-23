@@ -90,6 +90,7 @@ class PhotoChooserModal extends React.Component {
   }
 
   fetchObservationPhotos( params, options ) {
+    const { config } = this.props;
     const { query, queryTaxon } = this.state;
     const queryParams = {
       page: options.page || 1,
@@ -113,6 +114,14 @@ class PhotoChooserModal extends React.Component {
     } else {
       queryParams.q = query;
       queryParams.search_on = "taxon_page_obs_photos";
+    }
+    if ( config.testingApiV2 ) {
+      queryParams.fields = {
+        photos: {
+          id: true,
+          url: true
+        }
+      };
     }
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
@@ -433,7 +442,8 @@ PhotoChooserModal.propTypes = {
   chosen: PropTypes.array,
   visible: PropTypes.bool,
   onSubmit: PropTypes.func,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  config: PropTypes.object
 };
 
 PhotoChooserModal.defaultProps = {

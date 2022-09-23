@@ -15,13 +15,22 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = state => ( _.pickBy( {
-  verifiable: true,
-  taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
-  place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
-  preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
-  locale: I18n.locale
-}, v => !_.isNil( v ) ) );
+const defaultObservationParams = state => {
+  const { config } = state;
+  const params = {
+    verifiable: true,
+    taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
+    place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
+    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
+    locale: I18n.locale
+  };
+  if ( state.config.chosenPlace ) {
+    params.place_id = config.testingApiV2
+      ? state.config.chosenPlace.uuid
+      : state.config.chosenPlace.id;
+  }
+  return _.pickBy( params, v => !_.isNil( v ) );
+};
 
 const localizedPhotoAttribution = ( photo, options = { } ) => {
   const separator = options.separator || "";

@@ -20,16 +20,16 @@ import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
+    { config && config.testingApiV2 && (
+      <FlashMessage
+        key="testing_apiv2"
+        title="Testing API V2"
+        message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/api-v2-feedback/21215"
+        type="warning"
+        html
+      />
+    ) }
     <Grid>
-      { config && config.testingApiV2 && (
-        <FlashMessage
-          key="testing_apiv2"
-          title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
-          type="warning"
-          html
-        />
-      ) }
       <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
