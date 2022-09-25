@@ -5059,6 +5059,11 @@ tr:
   user_observed_on_on_date_in_place: |
     %{user}, %{place} konumunda %{date} tarihinde bir tane gözlemledi
   user_suggested_an_id: "%{user} bir tanımlama önerdi"
+  user_trusts_this_project_for_none: Kullanıcı bu projeye gizli koordinatları ile güvenmiyor.
+  user_trusts_this_project_for_any: |
+    Kullanıcı bu projeye herhangi bir nedenle gizlenmiş gizli koordinatları ile güveniyor.
+  user_trusts_this_project_for_taxon: |
+    Kullanıcı bu projeye yalnızca tehdit altındaki sınıflar nedeniyle gizlenmiş koordinatlar ile güvenmektedir.
   user_trusts_you_with_their_private_coordinates: "%{user} gizli koordinatları konusunda sana güveniyor"
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci size tüm gözlemlerin gizli koordinatlarıyla güvenmeyi seçti.
@@ -5885,6 +5890,9 @@ tr:
         out_of_range: Bu gözlemin sınıfının bilinen yayılım alanının dışında olup olmadığı
         user_id: Gözlemci için benzersiz tanımlayıcı
         user_login: Gözlemcinin kullanıcı ismi
+        user_name: |
+          Gözlemcinin adı, sitede genelde atıfta bulunmak için kullanılır.
+          Bu isteğe bağlı bir alandır ve takma ad kullanılabilir.
         created_at: Tarih saat gözlemi oluşturuldu
         updated_at: Tarih saat gözlemi en son güncellendi
         quality_grade: Bu gözlemin nitelik sınıfı. Bunun ne anlama geldiğiyle ilgili ayrıntılar için Yardım bölümüne bakın
