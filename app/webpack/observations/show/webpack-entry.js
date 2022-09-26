@@ -40,7 +40,7 @@ import brightnessesReducer from "../identify/ducks/brightnesses";
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 const relativeTime = {
   ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
-  shortRelativeTime
+  ...shortRelativeTime
 };
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );

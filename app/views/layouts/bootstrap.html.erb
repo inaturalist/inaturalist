@@ -175,6 +175,7 @@
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
+          sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
           donor: <%= !!current_user.donorbox_donor_id %>
         };
