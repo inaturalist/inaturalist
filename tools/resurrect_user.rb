@@ -111,6 +111,21 @@ resurrection_cmds << "psql #{dbname} -c \"\\COPY guide_taxa (#{column_names.join
   resurrection_cmds << "psql #{dbname} -c \"\\COPY #{table_name} (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 end
 
+puts "Exporting from photo_metadata..."
+fname = "resurrect_#{user_id}-photo_metadata.csv"
+column_names = PhotoMetadata.column_names
+sql = <<-SQL
+  SELECT DISTINCT
+    #{column_names.map{|cn| "photo_metadata.#{cn}"}.join( ", " )}
+  FROM photo_metadata
+    JOIN photos ON photo_metadata.photo_id = photos.id
+  WHERE photos.user_id = #{user_id}
+SQL
+cmd = "psql #{dbname} -c \"COPY (#{sql.gsub(/\s+/, ' ')}) TO STDOUT WITH CSV\" > #{fname}"
+puts "\t#{cmd}"
+system cmd
+resurrection_cmds << "psql #{dbname} -c \"\\COPY photo_metadata (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
+
 # TODO restore subscriptions to user
 
 cmd = "tar cvzf resurrect_#{user_id}.tgz resurrect_#{user_id}-*"

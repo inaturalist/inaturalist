@@ -176,6 +176,23 @@ unless OPTS.skip.include?( "Photo" )
   puts "\t#{cmd}"
   system cmd
   resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY photos (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
+
+  puts "Exporting from photo_metadata..."
+  fname = "resurrect_#{session_id}-photo_metadata.csv"
+  column_names = PhotoMetadata.column_names
+  sql = <<-SQL
+    SELECT DISTINCT
+      #{column_names.map{|cn| "photo_metadata.#{cn}"}.join( ", " )}
+    FROM photo_metadata
+      JOIN photos ON photo_metadata.photo_id = photos.id
+      JOIN observation_photos ON observation_photos.photo_id = photos.id
+      JOIN observations ON observations.id = observation_photos.observation_id
+    WHERE #{@where.join(' AND ')}
+  SQL
+  cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
+  puts "\t#{cmd}"
+  system cmd
+  resurrection_cmds << "psql #{OPTS.dbname} -c \"\\COPY photo_metadata (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
 end
 
 unless OPTS.skip.include?( "ObservationPhoto" )
