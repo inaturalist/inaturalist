@@ -1487,6 +1487,8 @@ ca:
   disconnect: Desconnectar
   disconnect_caps: DESCONNECTAR
   disconnect_provider: "Desconnecteu-vos de %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Ignora
   display: Mostra
   display_link_to_checklist: Mostrar un enllaç a la llista del projecte des de la pàgina del projecte
   display_monthly_supporter_badge: Mostrar la Imatge del Patrocinador Mensual en el perfil
@@ -5071,6 +5073,11 @@ ca:
   user_observed_on_on_date_in_place: |
     %{user} observà un el %{date} a %{place}
   user_suggested_an_id: "%{user} ha suggerit una identificació"
+  user_trusts_this_project_for_none: L'usuari no confia en aquest projecte amb coordenades ocultes.
+  user_trusts_this_project_for_any: |
+    L'usuari confia en aquest projecte amb coordenades ocultes, les quals han estat amagades per alguna raó.
+  user_trusts_this_project_for_taxon: |
+    L'usuari únicament confia en aquest projecte amb coordenades amagades, que han estat ocultades per tractar-se d'un tàxon amenaçat.
   user_trusts_you_with_their_private_coordinates: "%{user} comparteix amb tu les seves coordenades ocultes"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'observador ha escollit compartir amb tu les coordenades ocultes de totes les seves observacions.
@@ -5889,6 +5896,9 @@ ca:
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució coneguda d'aquest tàxon, o no
         user_id: Identificador únic per a l'observador
         user_login: Nom de l'observador
+        user_name: |
+          Nom de l'observador, normalment emprat per l'atribució en el lloc.
+          Aquest és un camp opcional i pot ser un pseudònim,
         created_at: Moment en que es va crear l'observació
         updated_at: Moment en que l'observació es va actualitzar per última vegada
         quality_grade: Grau de qualitat d'aquesta observació. Vegeu la secció d'Ajuda per obtenir informació sobre el que significa això
