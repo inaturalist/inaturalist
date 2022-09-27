@@ -275,6 +275,7 @@ class Suggestions extends React.Component {
                 { query.source === "visual" ? null : (
                   <PlaceChooserPopover
                     container={$( ".ObservationModal" ).get( 0 )}
+                    config={config}
                     label={I18n.t( "place" )}
                     place={query.place}
                     withBoundaries
