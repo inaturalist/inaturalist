@@ -2899,7 +2899,7 @@ tr:
   #%{month} will be filled in the name of the month
   observation_brief_taxon_in_month_year_by_user: "%{taxon}: %{user} tarafından %{month} %{year} tarihinde"
   observation_brief_taxon_by_user: "%{user} tarafından %{taxon}"
-  observation_brief_taxon_from_place: "%{place} konumundan %{taxon}"
+  observation_brief_taxon_from_place: "Konum: %{place}, %{taxon}"
   observation_brief_taxon_from_place_by_user: "%{taxon}: %{user} tarafından ve %{place} konumundan"
   observation_brief_taxon_from_place_on_day: "%{day} gününde ve %{place} konumundan %{taxon}"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon}: %{user} tarafından %{day} gününden %{place} konumundan"
