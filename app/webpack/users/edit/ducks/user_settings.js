@@ -115,6 +115,7 @@ export function saveUserSettings( ) {
     delete params.user.blocked_user_ids;
     delete params.user.privileges;
     delete params.user.icon_url;
+    delete params.user.orcid;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth
