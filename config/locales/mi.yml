@@ -340,6 +340,7 @@ mi:
       october: Whiringa-ā-nuku
       november: Whiringa-ā-rangi
       december: Hakihea
+  date_is_accurate: He tika te rā
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
   date_time: Rā/Wā
@@ -351,7 +352,12 @@ mi:
   default_: Taunoa
   delete: Mukua
   delete_all: Mukua katoa
+  delete_photo: Mukua whakaahua
   delete_project: Mukua te kohinga tēnei
+  delete_user: Mukua kaiwhakamahi
+  delete_your_account: Mukua tōu pūkete
+  deleting: E muku ana...
+  deleting_verb: E muku ana
   desc: Heke
   descending: Whakaheke
   details: Taipitopito
@@ -475,13 +481,22 @@ mi:
   header_your_profile: Tāu kīwhaiaro
   help: Āwhina
   help_translate!: Āwhina e whakareo!
+  here_are_our_top_suggestions: Ānei ngā marohi ki runga
+  here_are_our_top_species_suggestions: Ānei ngā marohi momo ki runga
   hi_user: "Kia ora %{user}"
   #Verb, usually a button to hide an interface element
   hide: Huna
   high: Tiketike
   id_withdrawn: Kua maunuhia te tautuhi
   identify: Tautuhitia
+  identify_title: "Tautuhitia"
   identification: tautuhi
+  identification_by_user: Tautuhi nā %{user}
+  #Notification when an identification has been deleted
+  identification_deleted: Kua mukua te tautuhi
+  identification_saved: "Kua tiakina te tautuhi!"
+  #Notification when an identification has been updated
+  identification_updated: Kua whakahoutia te tautuhi!
   #Notification when an identification has been withdrawn
   identification_withdrawn: Kua maunu te tautuhi
   identifications: Tautuhi
@@ -546,10 +561,13 @@ mi:
   longitude_value: "Ahopau: %{longitude}"
   low: Pāpaku
   mammals: whāngote
+  manager: Kaiwhakahaere
+  managers: Ngā kaiwhakahaere
   managing_projects: Whakahaeretia kohinga
   map: Mahere
   maps:
     overlays:
+      all_observations: Ngā mauhanga katoa
       observations: Mauhanga
   mark_as_reviewed: Tohutia i kua arotake
   mark_all_as_reviewed: Tohutia katoa i kua arotake
@@ -615,6 +633,7 @@ mi:
   more_photos: Tonuhia ngā whakaahua
   name: Ingoa
   names: Ingoa
+  names_for_taxon_html: "Ingoa mō %{taxon}"
   new_conservation_status: Tūnga whāomoomo hōu
   new_flag_for: Kara hōu mō
   new_list: Tūtira hōu
@@ -638,6 +657,7 @@ mi:
   no_photos: Whakaahua kore
   no_projects_yet: E kore ngā kohinga anō!
   no_recent_activity: E kore ngā hohenga inātata nei
+  noble_curators: "Ngā kairauhī rangatira o %{site}"
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
   number_of_observers: "E hia ngā kaimātaki"
@@ -1386,9 +1406,13 @@ mi:
       confirmation: Kāore i te ōrite te kupuhipa
   number:
     human:
+      decimal_units:
+        format: '%n %u'
       format:
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
   time:
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
@@ -1403,9 +1427,14 @@ mi:
       messages:
         confirmation: Kāore i te ōrite te kupuhipa
   activerecord:
+    models:
+      #Noun
+      Flag: Kara
     attributes:
       conservation_status:
         place_id: Wāhi
+      flag:
+        flag: Kara
       observation:
         description: Kupu tīpoka
         observed_on: rā mātakitia
@@ -1415,6 +1444,8 @@ mi:
       project:
         end_time: Wā mutunga
         start_time: Wā tīmatanga
+      project_observation:
+        user_id: Kaitukua
       place:
         latitude: Ahopae
         longitude: Ahopau
