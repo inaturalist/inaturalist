@@ -39,10 +39,16 @@ export function setAppToDelete( id ) {
 }
 
 export function fetchAuthorizedApps( ) {
-  const params = { useAuth: true };
-  return dispatch => inatjs.authorized_applications.search( params ).then( ( { results } ) => {
-    dispatch( setApps( results ) );
-  } ).catch( e => console.log( `Failed to fetch authorized applications: ${e}` ) );
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const params = { };
+    if ( config.testingApiV2 ) {
+      params.fields = "all";
+    }
+    return inatjs.authorized_applications.search( params ).then( ( { results } ) => {
+      dispatch( setApps( results ) );
+    } ).catch( e => console.log( `Failed to fetch authorized applications: ${e}` ) );
+  };
 }
 
 export function deleteAuthorizedApp( ) {
@@ -57,10 +63,16 @@ export function deleteAuthorizedApp( ) {
 }
 
 export function fetchProviderApps( ) {
-  const params = { useAuth: true };
-  return dispatch => inatjs.provider_authorizations.search( params ).then( ( { results } ) => {
-    dispatch( setProviderApps( results ) );
-  } ).catch( e => console.log( `Failed to fetch provider authorizations: ${e}` ) );
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const params = { };
+    if ( config.testingApiV2 ) {
+      params.fields = "all";
+    }
+    return inatjs.provider_authorizations.search( params ).then( ( { results } ) => {
+      dispatch( setProviderApps( results ) );
+    } ).catch( e => console.log( `Failed to fetch provider authorizations: ${e}` ) );
+  };
 }
 
 export function deleteProviderApp( ) {

@@ -9,6 +9,7 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 /* global TIMEZONES */
 
 const Account = ( {
+  config,
   profile,
   handleCustomDropdownSelect,
   handleInputChange,
@@ -87,6 +88,7 @@ const Account = ( {
         <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
           <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
             initialPlaceID={profile.search_place_id}
             bootstrapClear
@@ -171,6 +173,7 @@ const Account = ( {
 };
 
 Account.propTypes = {
+  config: PropTypes.object,
   profile: PropTypes.object,
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,

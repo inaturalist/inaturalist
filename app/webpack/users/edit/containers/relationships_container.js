@@ -29,11 +29,11 @@ function mapDispatchToProps( dispatch ) {
       let params;
 
       if ( sort === "recently_added" ) {
-        params = { order_by: "users.login", order: "desc" };
+        params = { order_by: "friendships.id", order: "desc" };
       }
 
       if ( sort === "earliest_added" ) {
-        params = { order_by: "users.login", order: "asc" };
+        params = { order_by: "friendships.id", order: "asc" };
       }
 
       if ( sort === "a_to_z" ) {

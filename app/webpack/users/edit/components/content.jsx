@@ -20,6 +20,7 @@ const obsFields = {
 };
 
 const Content = ( {
+  config,
   profile,
   handleInputChange,
   handleCustomDropdownSelect,
@@ -216,6 +217,7 @@ const Content = ( {
           </select>
           <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
             initialPlaceID={profile.place_id}
             bootstrapClear
@@ -252,6 +254,7 @@ const Content = ( {
 };
 
 Content.propTypes = {
+  config: PropTypes.object,
   profile: PropTypes.object,
   handleInputChange: PropTypes.func,
   handleCustomDropdownSelect: PropTypes.func,

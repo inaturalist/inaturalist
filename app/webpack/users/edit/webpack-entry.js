@@ -1,4 +1,4 @@
-import _ from "lodash"
+import _ from "lodash";
 import "@babel/polyfill";
 import React from "react";
 import { render } from "react-dom";
@@ -11,7 +11,9 @@ import {
   combineReducers
 } from "redux";
 
+import inatjs from "inaturalistjs";
 import alertModal from "../../shared/ducks/alert_modal";
+import configReducer, { setConfig } from "../../shared/ducks/config";
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import sectionReducer, { setSelectedSectionFromHash } from "./ducks/app_sections";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
@@ -24,6 +26,7 @@ import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
+  config: configReducer,
   profile: userSettingsReducer,
   sites: sitesReducer,
   revokeAccess: revokeAccessModalReducer,
@@ -45,6 +48,29 @@ const store = createStore(
   ] ) )
 );
 
+if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+  store.dispatch( setConfig( {
+    currentUser: CURRENT_USER
+  } ) );
+}
+
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
+}
+
 if ( window.location.hash ) {
   store.dispatch( setSelectedSectionFromHash( window.location.hash ) );
 }
@@ -58,7 +84,6 @@ store.dispatch( fetchUserSettings( null ) );
 store.dispatch( fetchNetworkSites( ) );
 store.dispatch( fetchAuthorizedApps( ) );
 store.dispatch( fetchProviderApps( ) );
-store.dispatch( fetchRelationships( true ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension
