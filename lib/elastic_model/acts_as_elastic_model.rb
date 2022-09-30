@@ -54,6 +54,14 @@ module ActsAsElasticModel
         result_to_will_paginate_collection(result, options)
       end
 
+      def elastic_get( id, options = { } )
+        begin
+          __elasticsearch__.client.get( index: index_name, id: id )
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => a
+          nil
+        end
+      end
+
       # standard way to bulk index instances. Called without options it will
       # page through all instances 1000 at a time (default for find_in_batches)
       # You can also send options, including scope:

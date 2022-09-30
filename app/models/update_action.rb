@@ -254,26 +254,37 @@ class UpdateAction < ApplicationRecord
     UpdateAction.where(*args).delete_all
   end
 
-  def self.first_with_attributes(attrs, options = {})
+  def self.first_with_attributes( attrs, options = { } )
     return if CONFIG.has_subscribers == :disabled
-    skip_validations = options.delete(:skip_validations)
+    skip_validations = options.delete( :skip_validations )
     filters = UpdateAction.arel_attributes_to_es_filters( attrs )
-    if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
-      return action
+    # first search for a doc in Elasticsearch with these attributes
+    if es_action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first
+      return es_action
     end
+    # if none are found, see if one exists in the DB
+    if db_action = UpdateAction.where( attrs ).first
+      # use the primary key to GET the document from Elasticsearch
+      if es_action = UpdateAction.elastic_get( db_action.id )
+        # append the ES source to the ActiveRecord instance and return
+        db_action.es_source = es_action["_source"]
+        return db_action
+      end
+    end
+    # no match was found in Elasticsearch or the DB, so attempt to create it
     begin
-      action = UpdateAction.new(attrs.merge(created_at: Time.now, skip_indexing: true).merge(options))
-      if !action.save(validate: !skip_validations)
+      action = UpdateAction.new( attrs.merge(created_at: Time.now, skip_indexing: true ).merge( options ) )
+      if !action.save( validate: !skip_validations )
         return
       end
       action.created_but_not_indexed = true
       return action
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
       # caught a record not unique error. Try ES once more before returning
-      Logstasher.write_exception(e, reference: "UpdateAction.first_with_attributes RecordNotUnique")
+      Logstasher.write_exception( e, reference: "UpdateAction.first_with_attributes RecordNotUnique" )
       sleep( 1 )
       10.times do |iteration|
-        if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
+        if action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first
           return action
         else
           sleep( 1 )
