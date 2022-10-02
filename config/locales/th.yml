@@ -284,10 +284,10 @@ th:
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
   adding: "กำลังทำการเพิ่ม..."
   adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
-  admin: ผู้ดูแล
-  admin_s: กลุ่มผู้ดูแล
-  admin_only: ผู้ดูแลระบบเท่านั้น
-  admin_tools: เครื่องมือสำหรับผู้ดูแลระบบ
+  admin: แอดมิน
+  admin_s: กลุ่มแอดมิน
+  admin_only: แอดมินเท่านั้น
+  admin_tools: เครื่องมือสำหรับแอดมิน
   agree_: เห็นด้วย
   agree?: เห็นด้วย
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
@@ -381,8 +381,8 @@ th:
   all_taxa_in_this_guide: หน่วยอนุกรมวิธานทั้งหมดในคู่มือนี้
   all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
   all_updates: อัปเดตทั้งหมด
-  allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
-  allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
+  allow_curator_access: อนุญาตให้ผู้ดูแลเข้าถึงได้
+  allow_project_curators_to_view_your_private_coordinates: อนุญาตให้ผู้ดูแลโครงการดูพิกัดที่คุณซ่อนไว้
   alphabetical: ตามตัวอักษร
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
@@ -497,7 +497,7 @@ th:
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_taxon_change: คุณแน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนอันดับอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
-  are_you_sure_you_want_to_remove_curator: ยืนยันการลบ %{user} as a curator?
+  are_you_sure_you_want_to_remove_curator: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากการเป็นผู้ดูแล?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการ %{place}?"
@@ -571,7 +571,7 @@ th:
   cc_by_nc_sa_name: แสดงที่มา-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน
   cc_by_nd_name: แสดงที่มา-ไม่ดัดแปลง
   cc_by_sa_name: แสดงที่มา-อนุญาตแบบเดียวกัน
-  change_admin: เปลี่ยนผู้ดูแล
+  change_admin: เปลี่ยนแอดมิน
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
   change_descriptions:
@@ -1421,8 +1421,8 @@ th:
   no_observations: ไม่มีการสังเกต
   no_observations_yet: ยังไม่มีการสังเกต
   no_post_yet: ยังไม่มีโพสต์!
-  no_project_to_admin_current_user: "คุณไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
-  no_project_to_admin_login: "%{login} ไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
+  no_project_to_admin_current_user: "คุณไม่ได้เป็นแอดมินโครงการใด ๆ"
+  no_project_to_admin_login: "%{login} ไม่ได้เป็นแอดมินโครงการใด ๆ"
   no_relevant_annotations: ไม่มีหมายเหตุที่เกี่ยวข้อง
   no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
   no_species_on_this_list_for_owner: |
@@ -1463,6 +1463,7 @@ th:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
+  observation_requirements: ข้อกำหนดการสังเกต
   observation_without_media: การสังเกตที่ไม่มีสื่อ
   observations: การสังเกต
   observations_: การสังเกต
@@ -1493,7 +1494,7 @@ th:
     ผู้สังเกตอนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการที่เข้าร่วมเท่านั้น
   observer_short: ผู้สังเกต
   of_this_taxon: ของหน่วยฯ นี้
-  only_administrators_may_access_that_page: ผู้ดูแลเท่านั้นที่เข้าถึงหน้านั้นได้
+  only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   open_: เปิด
@@ -1656,10 +1657,11 @@ th:
   profile_picture: รูปโปรไฟล์
   project: โครงการ
   project_admins:
-    other: ผู้ดูแลโครงการ
+    other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
   project_cover: รูปหน้าปกโครงการ
   project_home: หน้าหลักโครงการ
+  project_icon: ไอคอนโครงการ
   project_journal: วารสารโครงการ
   project_list_defaults:
     title: "รายการตรวจสอบของ %{owner_name}"
@@ -1673,8 +1675,8 @@ th:
   #@vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
   #"admins" is equivalent to "administrates"
-  projects_user_admins: โครงการที่ %{user} เป็นผู้ดูแล
-  projects_you_admin: โครงการที่คุณเป็นผู้ดูแล
+  projects_user_admins: โครงการที่ %{user} เป็นแอดมิน
+  projects_you_admin: โครงการที่คุณเป็นแอดมิน
   protozoans: โปรโตซัว
   publish: เผยแพร่
   quality_grade: ระดับคุณภาพ
@@ -2388,7 +2390,7 @@ th:
           สงสัยว่าความเป็นส่วนตัวของพิกัดคืออะไรใช่ไหม? <a href="%{url}">เรียนรู้เพิ่มเติมในเอกสารของเรา</a>
     projects:
       edit:
-        admins_must_be_existing_members: ผู้ดูแลต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
+        admins_must_be_existing_members: แอดมินต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
         rules:
           has_media: มีสื่อ (รูปหรือเสียง)
           verifiable: ตรวจสอบได้
@@ -2396,12 +2398,18 @@ th:
         trust_allow_members_to_trust: |-
           อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
       new:
+        check_the_box_to_include_member_observations: |
+          ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
+          ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
         delete_project: ลบโครงการ
+        display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
-        multiple_project_administrators: ผู้ดูแลโครงการหลายคน
+        multiple_project_administrators: แอดมินโครงการหลายคน
         only_display_member_observations: |
           แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
+        or_drag_and_drop: (หรือลากแล้ววาง)
+        project_banner: ภาพหน้าปกโครงการ (PNG หรือ JPG)
         project_details: รายละเอียดโครงการ
         project_name: ชื่อโครงการ
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
@@ -2515,7 +2523,7 @@ th:
       minute: นาที
   errors:
     messages:
-      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   helpers:
     select:
       prompt: โปรดเลือก
@@ -2537,7 +2545,7 @@ th:
   activemodel:
     errors:
       messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   activerecord:
     models:
       #Software application that operates iNat on a user's behalf, e.g. the
@@ -2566,6 +2574,7 @@ th:
         title: หัวข้อ
       project:
         title: หัวข้อ
+        project_icon: ไอคอนโครงการ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
       source:
@@ -2578,7 +2587,7 @@ th:
         search_place_id: ค้นหาสถานที่
     errors:
       messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
       models:
         guide:
           attributes:
