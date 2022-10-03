@@ -28,6 +28,8 @@ if ( shortRelativeTime ) {
   moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
 
+var rectDeltaX, rectDeltaY, circleDeltaY;
+
 // defining the views
 application.directive( "resultsMap", function( ) {
   return {
@@ -107,7 +109,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     disabled: false,
     manager: new google.maps.drawing.DrawingManager(),
     currentShape: null,
-    clearIcon: null,
+    dragIcon: null,
     pending: false
   };
 
@@ -268,7 +270,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.toggleMoreFilters = function( ) {
     $scope.clickedMoreFiltersOpen = $scope.clickedMoreFiltersOpen == true ? false : true;
   };
-  // watch more filters to dermine whether to show them or not
+  // watch more filters to determine whether to show them or not
   $scope.$watchGroup( $scope.moreFiltersToWatch, function(newValues, oldValues, scope) {
     var pageInit = _.isEqual( newValues, oldValues );
     if ( $scope.clickedMoreFiltersOpen ) {
@@ -568,59 +570,62 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( !$scope.searchingStopped( ) ) { return false; }
     return $scope.pagination.total > $scope.pagination.perPage;
   };
-  $scope.positionClearDrawingIcon = function( shape, options ) {
-    if ( !$scope.drawing.clearIcon ) {
+  $scope.positionDragDrawingIcon = function( shape, options ) {
+    if ( !$scope.drawing.dragIcon ) {
       return;
     }
-    var ne = shape.getBounds().getNorthEast();
+    var isCircle = !!shape.setCenter;
+
+    var center = shape.getBounds().getCenter();
     var sw = shape.getBounds().getSouthWest();
-    var topLeft = {
-      lat: ne.lat(),
-      lng: sw.lng()
+    var ne = shape.getBounds().getNorthEast();
+    var bottomCenter = {
+      lat: sw.lat(),
+      lng: center.lng()
     };
-    var point = $scope.latLng2Point(topLeft, $scope.map);
-    var offset = $scope.drawing.currentShape === "rectangle" ? 20 : 10;
-    var latlng = $scope.point2LatLng({ x: point.x - offset, y: point.y - offset }, $scope.map);
+    var point = $scope.latLng2Point(bottomCenter, $scope.map);
+    var offset = 20; // TODO move to constant
+    var latlng = $scope.point2LatLng({ x: point.x, y: point.y + offset }, $scope.map);
+
+    if (isCircle) {
+      var c = shape.getBounds().getCenter();
+      var centerPoint = $scope.latLng2Point(c, $scope.map);
+      circleDeltaY = point.y - centerPoint.y;
+    } else {
+      var nePoint = $scope.latLng2Point(ne, $scope.map);
+      rectDeltaX = nePoint.x - point.x;
+      rectDeltaY = point.y - nePoint.y;
+    }
 
     if ( options && options.reappear ) {
-      $scope.drawing.clearIcon.setVisible( false );
-      $scope.drawing.clearIcon.setPosition( latlng );
+      $scope.drawing.dragIcon.setVisible( false );
+      $scope.drawing.dragIcon.setPosition( latlng );
       setTimeout( function ( ) {
-        $scope.drawing.clearIcon.setVisible( true );
+        $scope.drawing.dragIcon.setVisible( true );
       }, 500 );
     } else {
-      $scope.drawing.clearIcon.setPosition( latlng );
+      $scope.drawing.dragIcon.setPosition( latlng );
     }
   };
-  $scope.initClearDrawingIcon = function ( shape ) {
-    if ( $scope.drawing.clearIcon ) {
-      return;
+  $scope.positionDrawing = function ( dragIconPosition, shape ) {
+    var isCircle = !!shape.setCenter;
+    var dragIconPoint = $scope.latLng2Point(dragIconPosition, $scope.map);
+    var offset = 20;
+
+    if (isCircle) {
+      console.log("circle?", {
+        dragIconPoint: { x: dragIconPoint.x, y: dragIconPoint.y },
+        circleDeltaY: circleDeltaY,
+        offset: offset
+      });
+      var c = $scope.point2LatLng({x: dragIconPoint.x, y: dragIconPoint.y - circleDeltaY - offset}, $scope.map);
+      shape.setCenter(c);
+    } else {
+      var ne = $scope.point2LatLng({x: dragIconPoint.x + rectDeltaX, y: dragIconPoint.y - rectDeltaY - offset}, $scope.map);
+      var sw = $scope.point2LatLng({x: dragIconPoint.x - rectDeltaX, y: dragIconPoint.y - offset}, $scope.map);
+      var bounds = new google.maps.LatLngBounds(sw, ne);
+      shape.setBounds(bounds);
     }
-
-    var svgMarker = {
-      path: "m 175,175 c 9.4,-9.3 24.6,-9.3 33.1,0 l 47,47.1 L 303,175 c 9.4,-9.3 24.6,-9.3 33.1,0 10.2,9.4 10.2,24.6 0,33.1 l -46.2,47 46.2,47.9 c 10.2,9.4 10.2,24.6 0,33.1 -8.5,10.2 -23.7,10.2 -33.1,0 l -47.9,-46.2 -47,46.2 c -8.5,10.2 -23.7,10.2 -33.1,0 -9.3,-8.5 -9.3,-23.7 0,-33.1 l 47.1,-47.9 -47.1,-47 c -9.3,-8.5 -9.3,-23.7 0,-33.1 z m 337,81 C 512,397.4 397.4,512 256,512 114.6,512 0,397.4 0,256 0,114.6 114.6,0 256,0 397.4,0 512,114.6 512,256 Z M 256,48 C 141.1,48 48,141.1 48,256 48,370.9 141.1,464 256,464 370.9,464 464,370.9 464,256 464,141.1 370.9,48 256,48 Z",
-      scale: 0.04,
-      fillColor: "#f16f3a",
-      fillOpacity: 0.75,
-      strokeWeight: 1,
-      strokeColor: $scope.boundaryBoxStyle.strokeColor,
-      strokeOpacity: $scope.boundaryBoxStyle.strokeOpacity,
-      anchor: new google.maps.Point(256, 256)
-    };
-
-    $scope.drawing.clearIcon = new google.maps.Marker({
-      position: shape.getBounds().getCenter(),
-      icon: svgMarker,
-      map: $scope.map
-    });
-
-    $scope.positionClearDrawingIcon( shape );
-    $scope.$apply();
-
-    google.maps.event.addListener( $scope.drawing.clearIcon, "click", function ( ) {
-      $scope.clearBoundary( );
-      $scope.$apply( );
-    });
   };
   $scope.searchAndUpdateStats = function( options ) {
     if( $scope.searchDisabled ) { return true; }
@@ -665,7 +670,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.disableRedoSearch = false;
     }
     if (processedParams.place_id) {
-      $scope.removeClearIcon( );
+      $scope.removeDragIcon( );
 
       if ($scope.drawing.pending) {
         $scope.onCompleteDrawing();
@@ -900,7 +905,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         options: {
           rectangleOptions: _.extend({}, $scope.boundaryBoxStyle, {
             editable: true,
-            draggable: true,
+            draggable: false,
             suppressUndo: true
           })
         }
@@ -910,7 +915,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         options: {
           circleOptions: _.extend({}, $scope.boundaryBoxStyle, {
             editable: true,
-            draggable: true
+            draggable: false,
+            suppressUndo: true
           })
         }
       }
@@ -941,7 +947,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if ($scope.drawing.manager) {
       $scope.drawing.manager.setMap( null );
     }
-    $scope.removeClearIcon( );
+    $scope.removeDragIcon( );
     $rootScope.$emit( "hideNearbyPlace" );
     $scope.removeSelectedPlace( );
     $rootScope.$emit( "updateParamsForCurrentBounds" );
@@ -977,13 +983,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.drawing.currentShape = null;
     $scope.drawing.disabled = false;
     $scope.drawing.pending = false;
-    $scope.removeClearIcon( );
+    $scope.removeDragIcon( );
     $scope.removeSelectedBounds( );
   };
-  $scope.removeClearIcon = function( ) {
-    if ( $scope.drawing.clearIcon ) {
-      $scope.drawing.clearIcon.setMap( null );
-      $scope.drawing.clearIcon = null;
+  $scope.removeDragIcon = function( ) {
+    if ( $scope.drawing.dragIcon ) {
+      $scope.drawing.dragIcon.setMap( null );
+      $scope.drawing.dragIcon = null;
     }
   };
   $scope.onCompleteDrawing = function( ) {
@@ -1461,8 +1467,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             $scope.delayedOnMove();
           } );
           $scope.map.addListener( "zoom_changed", function () {
-            if ($scope.drawing.clearIcon && $scope.selectedPlaceLayer) {
-              $scope.positionClearDrawingIcon($scope.selectedPlaceLayer, { reappear: true });
+            if ($scope.drawing.dragIcon && $scope.selectedPlaceLayer) {
+              $scope.positionDragDrawingIcon($scope.selectedPlaceLayer, { reappear: true });
             }
             $scope.delayedOnMove();
             $scope.$parent.disableRedoSearch = $scope.map.getZoom() <= 2;
@@ -1475,7 +1481,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             $rootScope.$emit( "updateParamsForCurrentBounds" );
             $scope.refreshSelectedPlace( );
             google.maps.event.addListener( rectangle, "dragend", function () {
-              $scope.enableFitToMapButton( );
+              $scope.enableRedoSearchInMapButton( );
             } );
           } );
           google.maps.event.addListener( $scope.drawing.manager, "circlecomplete", function ( circle ) {
@@ -1483,6 +1489,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             if ($scope.clearCircleIfInvalid( circle )) {
               return;
             }
+
             $scope.removeSelectedPlace( );
             $scope.drawing.manager.setMap( null );
             $scope.selectedPlaceLayer = circle;
@@ -1519,6 +1526,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     var point = el.getBounds();
     var center = point.getCenter();
     $scope.$parent.params.lng = center.lng();
+    $scope.$parent.params.lat = center.lat();
     $scope.$parent.params.radius = el.getRadius() / 1000;
     $scope.$parent.selectedPlace = null;
     $scope.$parent.selectedPlaceLayer = null;
@@ -1546,6 +1554,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       options.params.nelat = options.bounds.getNorthEast().lat();
       options.params.nelng = options.bounds.getNorthEast().lng();
     }
+
     if (!( options.params.lat && options.params.lng )) {
       // search a little left of center
       shared.offsetCenter( {map: ( onMap ? $scope.map : null ), left: -130, up: 0}, function ( center ) {
@@ -1637,7 +1646,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       $scope.$parent.searchingNearbyPlaces = true;
       if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
     }
-    $scope.enableFitToMapButton( );
+    $scope.enableRedoSearchInMapButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
     $scope.mapBounds = $scope.map.getBounds( );
@@ -1649,7 +1658,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       }
     }, 500 );
   };
-  $scope.enableFitToMapButton = function( ) {
+  $scope.enableRedoSearchInMapButton = function( ) {
     var time = new Date( ).getTime( );
 
     // the map can align after searches and we don't want to quickly re-enable the `Redo Search` button. Wait a
@@ -1752,16 +1761,17 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     });
   };
   $scope.refreshSelectedPlace = function ( ) {
+    if (!$scope.selectedPlaceLayer) {
+      return;
+    }
+
     var options = {};
     if ( $scope.drawing.currentShape === "circle" ) {
       $scope.setCircleBounds($scope.selectedPlaceLayer);
-      var center = $scope.selectedPlaceLayer.getBounds().getCenter();
-      $scope.$parent.params.lat = center.lat();
-      $scope.$parent.params.lng = center.lng();
       options = {
         params: {
-          lat: center.lat(),
-          lng: center.lng()
+          lat: $scope.$parent.params.lat,
+          lng: $scope.$parent.params.lng
         }
       };
     } else {
@@ -1770,6 +1780,81 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       $scope.setBounds(ne, sw);
     }
     $rootScope.$emit( "searchForNearbyPlaces", options );
+  };
+
+  $scope.refreshSelectedPlaceHack = function ( shape ) {
+    var options = {};
+    if ( $scope.drawing.currentShape === "circle" ) {
+      var point = shape.getBounds();
+      var center = point.getCenter();
+
+      // $scope.params.lng = center.lng();
+      // $scope.params.lat = center.lat();
+      // $scope.params.radius = shape.getRadius() / 1000;
+      // $scope.selectedPlace = null;
+      // $scope.selectedPlaceLayer = null;
+      $scope.$parent.params.lng = center.lng();
+      $scope.$parent.params.lat = center.lat();
+      $scope.$parent.params.radius = shape.getRadius() / 1000;
+      $scope.$parent.selectedPlace = null;
+      $scope.$parent.selectedPlaceLayer = null;
+
+      options = {
+        params: {
+          lat: $scope.params.lat,
+          lng: $scope.params.lng
+        }
+      };
+    } else {
+      var ne = shape.getBounds().getNorthEast();
+      var sw = shape.getBounds().getSouthWest();
+      $scope.setBounds(ne, sw);
+    }
+    $rootScope.$emit( "searchForNearbyPlaces", options );
+  };
+
+  $scope.initDragIcon = function ( shape ) {
+    if ( $scope.drawing.dragIcon ) {
+      $scope.removeDragIcon();
+    }
+
+    // TODO - new icon
+    var svgMarker = {
+      scale: 0.8,
+      path: "M18 20v6h4l-6 6-6-6h4v-6zM14 12V6h-4l6-6 6 6h-4v6zM12 18H6v4l-6-6 6-6v4h6zM20 14h6v-4l6 6-6 6v-4h-6z",
+      fillColor: "#f16f3a",
+      fillOpacity: 0.75,
+      strokeWeight: 1,
+      strokeColor: $scope.boundaryBoxStyle.strokeColor,
+      strokeOpacity: $scope.boundaryBoxStyle.strokeOpacity,
+      anchor: new google.maps.Point(16, 16)
+    };
+
+    $scope.drawing.dragIcon = new google.maps.Marker({
+      position: shape.getBounds().getCenter(),
+      icon: svgMarker,
+      map: $scope.map,
+      draggable: true,
+      raiseOnDrag: false
+    });
+
+    $scope.positionDragDrawingIcon( shape );
+    $scope.$apply();
+
+    google.maps.event.addListener( $scope.drawing.dragIcon, "dragstart", function ( ) {
+      $scope.drawing.dragging = true;
+    });
+
+    google.maps.event.addListener( $scope.drawing.dragIcon, "drag", function ( dragIcon ) {
+      $scope.positionDrawing( dragIcon.latLng, shape );
+    });
+
+    google.maps.event.addListener( $scope.drawing.dragIcon, "dragend", function ( ) {
+      $scope.drawing.dragging = false;
+
+      var scope = angular.element(document.getElementById("map-legend-control")).scope();
+      $scope.refreshSelectedPlaceHack( scope.selectedPlaceLayer );
+    });
   };
 
   $scope.setMapLayers = function( align ) {
@@ -1817,8 +1902,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             east: parseFloat( $scope.params.nelng ),
             west: parseFloat( $scope.params.swlng )
           },
-          editable: isRegionConfigurable,
-          draggable: isRegionConfigurable
+          editable: isRegionConfigurable
         })
       );
       $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
@@ -1828,13 +1912,13 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         lng: parseFloat( $scope.params.lng )
       };
       var circleRadius = $scope.params.radius ? parseFloat( $scope.params.radius ) * 1000 : 10000;
+
       $scope.selectedPlaceLayer = new google.maps.Circle(
         _.extend( { }, $scope.boundaryBoxStyle, {
           map: $scope.map,
           radius: circleRadius,
           center: xMarkerPosition,
           editable: true,
-          draggable: true,
           suppressUndo: true
         })
       );
@@ -1851,33 +1935,39 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.$parent.delayedAlign = false;
   };
   $scope.initSelectedPlaceLayer = function ( selectedPlaceLayer ) {
-    // prevents unnecessarily pinging the API while the user resizes/moves the shapes around
-    var isDragging = false;
+    // called after resizing shape
     selectedPlaceLayer.addListener( "bounds_changed", function () {
-      if (!isDragging) {
-        if ($scope.clearCircleIfInvalid( selectedPlaceLayer )) {
-          $scope.clearBoundary( );
-          return;
-        }
-        $scope.refreshSelectedPlace( );
+      if ($scope.drawing.dragging) {
+        return;
       }
-      $scope.positionClearDrawingIcon( selectedPlaceLayer );
-    });
-    selectedPlaceLayer.addListener( "dragstart", function () {
-      isDragging = true;
-    });
-    selectedPlaceLayer.addListener( "dragend", function () {
-      isDragging = false;
+
+      console.log("here?");
+      if ($scope.clearCircleIfInvalid( selectedPlaceLayer )) {
+        $scope.clearBoundary( );
+        return;
+      }
       $scope.refreshSelectedPlace( );
-      $scope.enableFitToMapButton( );
-      $scope.positionClearDrawingIcon( selectedPlaceLayer );
+      $scope.positionDragDrawingIcon( selectedPlaceLayer );
     });
 
+    // selectedPlaceLayer.addListener( "dragstart", function () {
+    //   // isDragging = true;
+    // });
+    //
+    // selectedPlaceLayer.addListener( "dragend", function () {
+    //   console.log('maybe????')
+    //
+    //   // isDragging = false;
+    //   $scope.refreshSelectedPlace( );
+    //   $scope.enableFitToMapButton( );
+    //   $scope.positionClearDrawingIcon( selectedPlaceLayer );
+    // });
+
     // when there's a region in the query string on initial page load, we need a little time to ensure the shape is
-    // drawn before positioning the clear icon
+    // drawn before positioning the drag icon
     var timeout = $scope.$parent.mapLayersInitialized ? 0 : 600;
     setTimeout(function () {
-      $scope.initClearDrawingIcon( $scope.selectedPlaceLayer);
+      $scope.initDragIcon( $scope.selectedPlaceLayer );
     }, timeout);
   };
   $scope.zoomIn = function( ) {
