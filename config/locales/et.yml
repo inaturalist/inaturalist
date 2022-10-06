@@ -1128,6 +1128,7 @@ et:
   copyright_holder: Autoriõiguste valdaja
   copyright_info: Autoriõiguste info
   copyright_info_and_more: Autoriõiguste info, jms
+  copyright_infringement: Autoriõiguse rikkumine
   copyright_infringement_desc: Rikub autoriõiguste seadust või selle loojaks on keegi teine peale vaatluse tegija, kellele pole viidatud
   covered_by_a_taxon_framework_html: "Katab %{link}"
   covered_by_a_taxon_framework_link: "taksoniraamistik %{taxon_framework_rank} %{taxon_framework_name}"
@@ -1142,6 +1143,7 @@ et:
   create_a_query: Loo päring
   create_an_account: Loo konto
   create_an_atlas: Loo atlas
+  create_export: Loo eksport
   create_new_taxon: Loo uus takson
   create_observations: Loo vaatlus
   created: Loodud
@@ -1163,6 +1165,53 @@ et:
   curating: Kuraator
   curation: Kureerimine
   curator: Kuraator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    iNaturalisti lehekülje kuraatorid on usaldusväärsed vabatahtlikud, kellel on õigus muuta iNaturalisti taksonoomiat ja modereerida kasutajate loodud sisu. Lehe kuraatorid on iNaturalist jaoks üliolulised, sest tänu nendele püsib taksonoomia värske ning toimub suhtlus iNaturalisti lehel viisakatel alustel. Allpool on kuraatoriks olemise kirjeldus. Palun loe see läbi ning kui soovid kuraatoriks saada, siis loe läbi ka <a href="/pages/curator+guide" target="_blank">kuraatorite juhend</a>. Seejärel täida siinsel lehel olev vorm.
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Pead selgitama, miks soovid kuraatoriks saada
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html: Miks sa soovid olla kuraator?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Kui soovid muuta iNaturalisti taksonoomiat, siis too palun mõni näide muutustest, mida teha tahad ning lisa muutuste põhjenduseks viited allikatele. Kui see antud juhul sobib, siis viita taksonoomia institutsioonidele, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">mis on kirjas kuraatorite juhendis</a>. Kui sa viiteid ei lisa, siis ei võeta su avaldust ka arutluse alla.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Kui soovid muuta rahvapäraseid nimesid, siis too mõni näide planeeritavatest muutustest
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Kui soovid modereerida iNaturalisti kasutajate käitumist, siis too näiteid mõnedest kogukonna reeglite eiramistest ning paku välja, mida sina sellises olukorras teeksid
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Kuidas kuraator oma õigused kaotab
+  curator_application_how_curators_lose_their_powers_desc: |
+    iNaturalisti meeskond võib kuraatorilt õigused ära võtta, kui kuraator korduvalt:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Eirab kuraatorite juhendis toodud reegleid.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Ei käitu ise korralikult ja eeskujulikult.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust (oled teinud %{num_idents}). Kui vastad mõlemale nõudmisele, tule sellele lehele tagasi ning esita avaldus.
+  curator_application_inelligible_error: |
+    Selleks, et kandideerida lehekülje kuraatoriks, peab su konto olema rohkem kui 60 päeva vana ning sa pead olema teinud kasutajate vaatlustele (kaasaarvatud enda omadele) vähemalt 100 täpsustavat määratlust.
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Kuraatori avaldus edastatud
+  #Header
+  curator_application_what_curators_can_do: Mida kuraatorid teha saavad
+  #Header
+  curator_application_what_curators_cannot_do: Mida kuraatorid teha ei saa
+  #Title of a page where people apply to become a curator
+  curator_application_title: Taotlus kuraatoriks saamiseks
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1178,6 +1227,7 @@ et:
   customize_location: Täpsusta kohta
   darr_apply_darr: "&darr; Kinnita &darr;"
   daily_users: Kasutajaid päevas
+  danger_zone: Ohtlikud valikud
   dashboard: Töölaud
   data_deficient: Puudulikud andmed
   data_quality: Andmete kvaliteet
@@ -1186,6 +1236,7 @@ et:
   datatype: Andmetüüp
   date_: Kuupäev
   date_added: Lisamiskuupäev
+  date_authorized: Kinnitamise kuupäev
   date_created: Loomiskuupäev
   date_format:
     date_long:
@@ -1216,6 +1267,7 @@ et:
       december: Detsember
   date_is_accurate: Kuupäev on täpne
   date_joined: Liitumiskuupäev
+  date_obscured_notice: Kuupäev on varjatud, et säästa isiku või organismi privaatsust
   date_observed: Vaatluskuupäev
   date_observed_: Vaatluskuupäev
   date_observed_on: vaadeldud kuupäeval
@@ -1230,12 +1282,25 @@ et:
   date_range: Kuupäevavahemik
   date_specified: Kuupäev määratud
   date_time: Kuupäev/kellaaeg
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: "%{d1} – %{d2}"
+  date_updated: Viimati muudetud
   day: Päev
+  decrease_brightness: Vähenda heledust
   #Default option
   default: vaikimisi
+  #Default option
+  default_: Vaikimisi
+  default_display_time_zone: Vaikimisi kuvatav ajavöönd.
   default_invite_comment: "Hea foto! Peaksid selle postitama lehele %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Vaikimisi vaatluslitsents
   default_photo_license: Vaikimisi fotolitsents
+  default_search_place: Vaikimisi otsingukoht
+  default_search_place_description: |
+    Selles kohas tehakse alamsektsioonides Avasta ja Määratle vaikimisi sinu otsingus.
   default_sound_license: Vaikimisi helilitsents
   default_time_zone_desc: |
     See on vaikimisi ajavöönd. Lõplik ajavöönd määratakse vaatluse asukoha põhiselt selle salvestamisel.
@@ -1290,6 +1355,8 @@ et:
   disable: Lülita välja
   disagree_: Ei nõustu
   disconnect_provider: "Katkesta ühendus %{provider} kontoga"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Sulge
   display_link_to_checklist: Näita projekti lehel viidet projekti nimekirjale
   display_monthly_supporter_badge: Näita profiili juures igakuise toetaja medalit
   display_name: Kuvatav nimi
@@ -3782,6 +3849,11 @@ et:
   user_is_a_naturalist: "Kasutaja %{user} on loodusloolane!"
   user_muted: Kasutaja vaigistatud
   user_suggested_an_id: "%{user} pakkus määratlust"
+  user_trusts_this_project_for_none: Kasutaja ei usalda oma varjatud koorinaate sellele projektile
+  user_trusts_this_project_for_any: |
+    Kasutaja usaldab sellele projektile kõik muidu mingil põhjusel varjatud koordinaadid.
+  user_trusts_this_project_for_taxon: |
+    Kasutaja usaldab sellele projektile ainult need varjatud koordinaadid, mille põhjuseks olid ohustatud liigid.
   user_trusts_you_with_their_private_coordinates: "Kasutaja %{user} usaldab sind oma peidetud koordinaatidega"
   user_trusts_you_with_their_private_coordinates_desc: |
     Kasutaja on otsustanud usaldata sulle kõigi oma vaatluste peidetud koordinaadid
@@ -4304,6 +4376,8 @@ et:
         out_of_range: Kas vaatlus asub väljaspool taksoni teadaolevaid piirkondi
         user_id: Vaatluse unikaalne tunnus
         user_login: Vaatleja kasutajatunnus
+        user_name: |
+          Vaatleja nimi, mida enamasti kasutatakse leheküljel vaatluste kellelegi omistamiseks. See on valikuline väli ja võib sisalda pseudonüümi.
         created_at: Vaatluse loomise kuupäev ja kellaaeg
         updated_at: Vaatluse viimase uuendamise kuupäev ja kellaaeg
         quality_grade: Vaatuse kvaliteedihinnang. Vaata abi sektsioonist selle täpsemat seletust

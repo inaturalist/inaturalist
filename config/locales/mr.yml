@@ -424,6 +424,8 @@ mr:
   any_date: कोणतीही
   #Label for an option to show content with any establishment means
   any_establishment: कोणतीही
+  #Label for an option to show/include content by any user
+  any_user: कोणतेही
   anyone: कोणीही
   apply_app_owner: लागू करा
   #Button label and section header when submitting a form to request to be a
@@ -508,6 +510,8 @@ mr:
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
         जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
+  #Label for a button that dismisses an alert or popup
+  dismiss: बाद करा
   edit_conservation_status: संवर्धन स्थिती बदला
   edit_observations: निरीक्षणात बदल करा
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
@@ -540,9 +544,12 @@ mr:
   learn_more: अधिक जाणून घ्या
   lexicons:
     marathi: मराठी
+    persian: पर्शियन
+    swahili: स्वाहिली
   list: यादी
   lists: याद्या
   locales:
+    mi: माओरी
     mr: मराठी
   log_in: लॉग इन करा
   #Status message shown while logging in
@@ -608,6 +615,7 @@ mr:
   privacy: गोपनीयता
   profile: प्रोफाइल
   projects: प्रकल्प
+  radius_km: त्रिज्या (किमी)
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: नोंद
   result_window_too_large_error: |
@@ -620,6 +628,8 @@ mr:
   sign_up: साइन अप करा
   site_stats: साइट आकडेवारी
   suspend_user_html: निलंबित %{user}
+  taxa_show_obs_photo_search_tip: |
+    टीप: तुम्हाला विशिष्ट निरीक्षणातून फोटो निवडायचा असल्यास शोध क्षेत्रात निरीक्षणाचा अनुक्रमांक भरा.
   taxa_info: वर्गांबद्दलची माहिती
   taxon_change_commit_may_still_be_processing: |
     वर्ग बदल निश्चिती प्रक्रिया चालू असल्याने कदाचित काही नोंदी अद्ययावत झालेल्या नसतील हे ध्यानात घ्या.
@@ -701,6 +711,8 @@ mr:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_sydney: सिडनी वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: जागतिक समन्वित वेळ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: मध्य युरोपीय वेळ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: पूर्व युरोपीय वेळ
@@ -749,7 +761,13 @@ mr:
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
   upload: अपलोड करा
+  user_trusts_this_project_for_none: वापरकर्त्याचा गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास नाही.
+  user_trusts_this_project_for_any: |
+    कोणत्याही कारणास्तव अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत वापरकर्ता या प्रकल्पावर विश्वास ठेवतो.
+  user_trusts_this_project_for_taxon: |
+    वापरकर्ता केवळ धोक्यात असलेल्या वर्गांसाठी अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास ठेवतो.
   username: वापरकर्ता नाव
+  view_all_fields: सर्व जागा पहा
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   video_tutorials: माहितीपर व्हिडीओ
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
@@ -759,6 +777,11 @@ mr:
   your_observations: माझी निरीक्षणे
   your_recent_projects: माझे अलीकडील प्रकल्प
   views:
+    observations:
+      field_descriptions:
+        user_name: |
+          निरीक्षकाचे नाव, सामान्यत: साइटवर श्रेय देण्यासाठी वापरले जाते.
+          हे एक ऐच्छिक क्षेत्र आहे आणि ते टोपणनाव असू शकते.
     stats:
       year:
         compare_desc: |

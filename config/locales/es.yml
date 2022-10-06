@@ -1511,6 +1511,8 @@ es:
   disconnect: Desconectar
   disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconectarse de %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Descartar
   display: Muestra
   display_link_to_checklist: Mostrar enlace a la lista del proyecto desde la página del proyecto
   display_monthly_supporter_badge: Mostrar Imagen del Patrocinador Mensual en el perfil
@@ -5152,6 +5154,11 @@ es:
   user_observed_on_on_date_in_place: |
     %{user} observó uno el %{date}, en %{place}
   user_suggested_an_id: "%{user} sugirió una identificación"
+  user_trusts_this_project_for_none: El usuario no confía de esta proyecto con coordenadas ocultas.
+  user_trusts_this_project_for_any: |
+    El usuario confía en este proyecto con coordenadas ocultas que han sido ocultadas por alguna razón.
+  user_trusts_this_project_for_taxon: |
+    El usuario únicamente confía en este proyecto con coordenadas ocultas que han sido ocultadas por tratarse de taxones amenazados.
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
@@ -6010,6 +6017,9 @@ es:
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
         user_id: Identificador único para la observación
         user_login: Nombre de usuario del observador
+        user_name: |
+          Nombre del observador, generalmente utilizado para la atribución en el sitio.
+          Este es un campo opcional y puede ser un pseudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
         quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado

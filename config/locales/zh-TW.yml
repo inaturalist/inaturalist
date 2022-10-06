@@ -1354,6 +1354,8 @@ zh-TW:
   disconnect: 取消連結
   disconnect_caps: 取消連結
   disconnect_provider: "中斷連接%{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: 關閉
   display: 顯示
   display_link_to_checklist: 顯示連至來自於專案頁面之專案清單的連結
   display_monthly_supporter_badge: 在我的個人檔案上顯示每月贊助者徽章
@@ -1371,6 +1373,8 @@ zh-TW:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: 贊助
+  donate_again_caps: 再次捐款
+  donate_again_today_caps: 今天再次捐款
   done: 完成
   dont_have_an_account_sign_up_html: 還沒有帳號嗎？現在就<strong>註冊</strong>。
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
@@ -1402,6 +1406,8 @@ zh-TW:
   each_place_displays_all_species_inat_knows: "任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在 %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來篩選物種。"
   earliest_added: 最早加入的
   edit: 編輯
+  #Title of the moderation note editor
+  edit_moderator_note: 編輯管理者註記
   edit_a_batch_of_observations: 編輯批量觀察
   edit_account_settings_and_profile: "編輯帳號設定&amp;個人檔案"
   edit_assessment: 編輯評估
@@ -1410,6 +1416,7 @@ zh-TW:
   edit_body: 編輯正文
   edit_comment: 編輯您的評論
   edit_complete_set_for_taxon_in_place_html: "編輯 %{taxon} 在 %{place} 的完整名錄集"
+  edit_conservation_status: 編輯保育等級
   edit_custom_project_fields: 編輯自訂專案欄位
   edit_field: 編輯欄位
   edit_license: 編輯許可協議
@@ -1954,6 +1961,7 @@ zh-TW:
   item_flagged_notice_html: |
     這已被標記為垃圾訊息且不再公開可見。您仍可以看到它的原因出於這是由您所創建，或是您的身份為網站策展人。若您認為目前的情況有誤，請<a href="mailto:%{help_email}" class="contact">聯絡我們</a>。
     <a href="%{manage_flags_path}">管理標記</a>
+  jobs: 徵才
   join: 加入
   join_and_add_an_observation_to_project_html: 參與並加入一筆觀察記錄至%{project}專案
   join_project: 加入此專案
@@ -4486,6 +4494,34 @@ zh-TW:
   threatened: 受威脅
   time_: 時間
   time_ago: "%{time} 前"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: 南非時間(SAST)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: 歐洲東部時間(EET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: 歐洲中部時間(CET)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: 歐洲中部時間(CET)
   #As in the title of a book or a blog post
   title: 標題
   title_and_description: "標題與描述"
@@ -6009,7 +6045,7 @@ zh-TW:
         this_has_been_flagged_as_spam: 此已被標記為垃圾訊息
       not_found:
         sorry_that_doesnt_exist: 很抱歉，那不存在！
-        even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼬鼠工具也找不到任何東西！
+        even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼴鼠工具也找不到任何東西！
     stats:
       index:
         active_desc: 代表在前 30 日所建立的鑑定、觀察、評論、或發佈文章

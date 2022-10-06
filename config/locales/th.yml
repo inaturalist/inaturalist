@@ -284,10 +284,10 @@ th:
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
   adding: "กำลังทำการเพิ่ม..."
   adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
-  admin: ผู้ดูแล
-  admin_s: กลุ่มผู้ดูแล
-  admin_only: ผู้ดูแลระบบเท่านั้น
-  admin_tools: เครื่องมือสำหรับผู้ดูแลระบบ
+  admin: แอดมิน
+  admin_s: กลุ่มแอดมิน
+  admin_only: แอดมินเท่านั้น
+  admin_tools: เครื่องมือสำหรับแอดมิน
   agree_: เห็นด้วย
   agree?: เห็นด้วย
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
@@ -303,34 +303,34 @@ th:
   all_places: "สถานที่ทั้งหมด"
   all_projects: โครงการทั้งหมด
   all_rank_added_to_the_database:
-    phylum: ไฟล่า (Phyla) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subphylum: ไฟล่าย่อย (Subphyla) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    superclass: ชั้นใหญ่ (Superclass) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    class: ชั้น (Class) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subclass: ชั้นย่อย (Subclass) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    infraclass: ชั้นระหว่างอันดับ (Infraclasses) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    superorder: อันดับใหญ่ (Superorder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    order: อันดับ (Order) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    suborder: อันดับย่อย (Suborder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    infraorder: อันดับระหว่างวงศ์ (Infraorder) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    superfamily: วงศ์ใหญ่ (Superfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    epifamily: อันดับระหว่างครอบครัว (epifamily) ทั้งหมดถูกเพิ่มไปยังฐานข้อมูล
-    family: วงศ์ (Family) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    subfamily: วงศ์ย่อย (Subfamily) ทั้งหมดที่เพิ่มสู่ฐานข้อมูล
-    supertribe: เผ่าใหญ่ (Supertribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    tribe: เผ่า (Tribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subtribe: เผ่าย่อย (Subtribes) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    genus: พันธุ์ (Genera) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    genushybrid: สกุลลูกผสม (Genushybrids) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subgenus: พันธุ์ย่อย (Subgenera) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    section: หมู่ (Section) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subsection: หมู่ย่อย (Subsection) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    complex: คอมเพล็กซ์ (Complexe) ทั้งหมดที่เพิ่มลงในฐานข้อมูล
-    species: ชนิด (Species) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    hybrid: ลูกผสม (Hybrids) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    subspecies: ชนิดย่อยทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
-    variety: พันธุ์ (Variety) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมุล
-    form: แบบ (Form) ทั้งหมดที่เพิ่มเข้าสู่ฐานข้อมูล
+    phylum: ไฟลัมทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subphylum: ไฟลัมย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    superclass: ชั้นใหญ่ทั้งหมดที่เพิ่มลงฐานข้อมูล
+    class: ชั้นทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subclass: ชั้นย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    infraclass: ชั้นฐานทั้งหมดที่เพิ่มลงฐานข้อมูล
+    superorder: อันดับใหญ่ทั้งหมดที่เพิ่มลงฐานข้อมูล
+    order: อันดับทั้งหมดที่เพิ่มลงฐานข้อมูล
+    suborder: อันดับย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    infraorder: อันดับฐานทั้งหมดที่เพิ่มลงฐานข้อมูล
+    superfamily: วงศ์ใหญ่ทั้งหมดที่เพิ่มลงฐานข้อมูล
+    epifamily: วงศ์บนทั้งหมดที่เพิ่มลงฐานข้อมูล
+    family: วงศ์ทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subfamily: วงศ์ย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    supertribe: เผ่าใหญ่ทั้งหมดที่เพิ่มลงฐานข้อมูล
+    tribe: เผ่าทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subtribe: เผ่าย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    genus: สกุลทั้งหมดที่เพิ่มลงฐานข้อมูล
+    genushybrid: สกุลผสมทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subgenus: สกุลย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    section: ส่วนทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subsection: ส่วนย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    complex: ชนิดเชิงซ้อนทั้งหมดที่เพิ่มลงฐานข้อมูล
+    species: ชนิดทั้งหมดที่เพิ่มลงฐานข้อมูล
+    hybrid: ลูกผสมทั้งหมดที่เพิ่มลงฐานข้อมูล
+    subspecies: ชนิดย่อยทั้งหมดที่เพิ่มลงฐานข้อมูล
+    variety: พันธุ์ทั้งหมดที่เพิ่มเข้าลงฐานข้อมูล
+    form: แบบทั้งหมดที่เพิ่มลงฐานข้อมูล
   all_rights_reserved: สงวนลิขสิทธิ์ทั้งหมด
   all_taxa:
     amphibians: สัตว์สะเทินน้ำสะเทินบก
@@ -381,8 +381,8 @@ th:
   all_taxa_in_this_guide: หน่วยอนุกรมวิธานทั้งหมดในคู่มือนี้
   all_taxonomic_groups: "&laquo; กลุ่มอนุกรมวิธานทั้งหมด"
   all_updates: อัปเดตทั้งหมด
-  allow_curator_access: ให้สิทธิแก่ผู้ดูแลระบบ
-  allow_project_curators_to_view_your_private_coordinates: ให้สิทธิแก่ผู้ดูแลโครงการเข้าดูตำแหน่งที่ตั้งของคุณที่ซ่อนไว้
+  allow_curator_access: อนุญาตให้ผู้ดูแลเข้าถึงได้
+  allow_project_curators_to_view_your_private_coordinates: อนุญาตให้ผู้ดูแลโครงการดูพิกัดที่คุณซ่อนไว้
   alphabetical: ตามตัวอักษร
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
@@ -497,7 +497,7 @@ th:
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_taxon_change: คุณแน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนอันดับอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
-  are_you_sure_you_want_to_remove_curator: ยืนยันการลบ %{user} as a curator?
+  are_you_sure_you_want_to_remove_curator: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากการเป็นผู้ดูแล?
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการ %{place}?"
@@ -571,7 +571,7 @@ th:
   cc_by_nc_sa_name: แสดงที่มา-ไม่ใช้เพื่อการค้า-อนุญาตแบบเดียวกัน
   cc_by_nd_name: แสดงที่มา-ไม่ดัดแปลง
   cc_by_sa_name: แสดงที่มา-อนุญาตแบบเดียวกัน
-  change_admin: เปลี่ยนผู้ดูแล
+  change_admin: เปลี่ยนแอดมิน
   #Button to change the cover (or banner) image for a project
   change_cover: เปลี่ยนภาพหน้าปก
   change_descriptions:
@@ -735,6 +735,7 @@ th:
     attribution_noderivs_license: สัญญาอนุญาตประเภทแสดงที่มา-ไม่ดัดแปลง
   copyright_info: ข้อมูลลิขสิทธิ์
   copyright_info_and_more: ข้อมูลลิขสิทธิ์และอื่น ๆ
+  copyright_infringement: มีการละเมิดลิขสิทธิ์
   create: สร้าง
   create_a_guide: สร้างคู่มือ
   create_a_new_place: สร้างสถานที่ใหม่
@@ -1261,9 +1262,11 @@ th:
   location: ตำแหน่ง
   location_is_accurate: ตำแหน่งถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
+  location_is_public: เปิดเผยตำแหน่ง
   location_is_obscured: ตำแหน่งคลุมเครือ
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
+  login_slash_username: ลงชื่อเข้าใช้ / ชื่อผู้ใช้
   long: ลองจิจูด
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
@@ -1306,6 +1309,8 @@ th:
   message_from_user_on_date: จาก %{user} เมื่อ %{date}
   messages: ข้อความ
   misidentifications: การจำแนกผิด
+  #Label shown when a date has not been entered
+  missing_date: ไม่มีวันที่
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: ผู้ควบคุม / ผู้รายงาน
   momentjs:
@@ -1392,6 +1397,7 @@ th:
   new_taxon_name_for: ชื่อหน่วยอนุกรมวิธานใหม่สำหรับ
   new_users: ผู้ใช้งานใหม่
   new_users_in_year: "ผู้ใช้งานใหม่ในปี %{year}"
+  new_users_w_7_obs: ผู้ใช้งานใหม่ที่มี 7 การสังเกต
   newly_added_species: ชนิดที่เพิ่มใหม่
   newly_observed_species: ชนิดที่พบใหม่
   newly_observed_species_in_year: "ชนิดที่เพิ่มใหม่ในปี %{year}"
@@ -1420,14 +1426,17 @@ th:
   no_new_messages: ยังไม่มีข้อความใหม่
   no_observations: ไม่มีการสังเกต
   no_observations_yet: ยังไม่มีการสังเกต
+  no_photo: ไม่มีรูปถ่าย
+  no_photos: ไม่มีรูปถ่าย
   no_post_yet: ยังไม่มีโพสต์!
-  no_project_to_admin_current_user: "คุณไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
-  no_project_to_admin_login: "%{login} ไม่ได้เป็นผู้ดูแลโครงการใด ๆ"
+  no_project_to_admin_current_user: "คุณไม่ได้เป็นแอดมินโครงการใด ๆ"
+  no_project_to_admin_login: "%{login} ไม่ได้เป็นแอดมินโครงการใด ๆ"
   no_relevant_annotations: ไม่มีหมายเหตุที่เกี่ยวข้อง
   no_species_on_this_list: ยังไม่มีชนิดในรายการนี้!
   no_species_on_this_list_for_owner: |
     คุณสามารถเริ่มต้นเพิ่มชนิดไปที่รายการโดยใช้เครื่องมือ "เพิ่มไปที่รายการของคุณ" ทางด้านขวา
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
+  no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
@@ -1463,6 +1472,7 @@ th:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
+  observation_requirements: ข้อกำหนดการสังเกต
   observation_without_media: การสังเกตที่ไม่มีสื่อ
   observations: การสังเกต
   observations_: การสังเกต
@@ -1493,7 +1503,7 @@ th:
     ผู้สังเกตอนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการที่เข้าร่วมเท่านั้น
   observer_short: ผู้สังเกต
   of_this_taxon: ของหน่วยฯ นี้
-  only_administrators_may_access_that_page: ผู้ดูแลเท่านั้นที่เข้าถึงหน้านั้นได้
+  only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
   open_: เปิด
@@ -1656,10 +1666,11 @@ th:
   profile_picture: รูปโปรไฟล์
   project: โครงการ
   project_admins:
-    other: ผู้ดูแลโครงการ
+    other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
   project_cover: รูปหน้าปกโครงการ
   project_home: หน้าหลักโครงการ
+  project_icon: ไอคอนโครงการ
   project_journal: วารสารโครงการ
   project_list_defaults:
     title: "รายการตรวจสอบของ %{owner_name}"
@@ -1673,8 +1684,8 @@ th:
   #@vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
   #"admins" is equivalent to "administrates"
-  projects_user_admins: โครงการที่ %{user} เป็นผู้ดูแล
-  projects_you_admin: โครงการที่คุณเป็นผู้ดูแล
+  projects_user_admins: โครงการที่ %{user} เป็นแอดมิน
+  projects_you_admin: โครงการที่คุณเป็นแอดมิน
   protozoans: โปรโตซัว
   publish: เผยแพร่
   quality_grade: ระดับคุณภาพ
@@ -1814,6 +1825,7 @@ th:
   reason: เหตุผล
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
   recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
+  recent_new_users: ผู้ใช้งานใหม่ล่าสุด
   recent_observations: การสังเกตล่าสุด
   recent_observations_: การสังเกตล่าสุด
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
@@ -1916,6 +1928,7 @@ th:
   show_no_annotation: แสดง "ไม่มีหมายเหตุ"
   show_off_your_recent_observations: อวดการสังเกตล่าสุดบนบล็อกหรือเว็บไซต์ของคุณ!
   show_only: แสดงเฉพาะ
+  show_relative_proportions_of_all_observations: แสดงสัดส่วนสัมพัทธ์ของการสังเกตทั้งหมด
   show_taxa_from_both: (แสดงหน่วยอนุกรมวิธานจากทั้งสองรายการ)
   show_uncountable_species: แสดงชนิดที่นับไม่ได้
   showing_taxa_from_place: "แสดงหน่วยอนุกรมวิธานจาก %{place}"
@@ -1934,11 +1947,13 @@ th:
     การสังเกตที่ไม่มีรูปหรือเสียงจะไม่แสดงในผลการค้นหาเริ่มต้น และการสังเกตที่ไม่มีการจำแนกชนิดใด ๆ อาจทำให้ผู้เชี่ยวชาญค้นหาไม่เจอด้วย อย่างน้อยการจำแนกชนิดแบบคร่าว ๆ เช่น "พืช" ก็จะช่วยให้ผู้เชี่ยวชาญด้านพืชค้นเจอการสังเกตของคุณได้
   some_other_reason: อธิบายเหตุผลอื่น ๆ ข้างล่างนี้ได้
   some_rights_reserved: สงวนลิขสิทธิ์บางประการ
+  something: ไม่ทราบ
   sorry_we_dont_have_any_metadata_for_that_photo: "ขออภัย เราไม่มีข้อมูลอภิพันธุ์ที่ใช้ตั้งคุณสมบัติการสังเกตสำหรับรูปนั้นได้"
   sort_by: เรียงตาม
   sorting_by: เรียงตาม
   sounds:
     add_media: เพิ่มสื่อ
+    no_photos_sounds: ไม่มีรูปหรือเสียง
     photos_sounds: รูปถ่าย / เสียง
     select_one_or_more_sounds: เลือกอย่างน้อยหนึ่งเสียง
     selected_sounds: เสียงที่ถูกเลือก
@@ -2021,6 +2036,7 @@ th:
   taxon_ranks: ลำดับอนุกรมวิธาน
   taxon_search: การค้นหาหน่วยอนุกรมวิธาน
   taxon_search_results_for: ผลการค้นหาหน่วยอนุกรมวิธานสำหรับ
+  taxon_name_was_deleted: ลบชื่อหน่วยอนุกรมวิธานแล้ว
   taxonomic_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   taxonomy_details: รายละเอียดหน่วยอนุกรมวิธาน
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
@@ -2200,6 +2216,7 @@ th:
   user1_and_user2_faved_this_observation: "%{user1} และ %{user2} เพิ่มการสังเกตนี้เข้ารายการโปรด"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, และ %{x_others} เพิ่มการสังเกตนี้เข้ารายการโปรด"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
+  user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
@@ -2372,8 +2389,16 @@ th:
     messages:
       from: จาก
     observations:
+      compare:
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: รวม
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: แนวนอน
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: แนวตั้ง
       field_descriptions:
         scientific_name: "ชื่อวิทยาศาสตร์ของหน่วยอนุกรมวิธานที่สังเกตอ้างอิงจากเว็บไซต์นี้"
+        user_login: ชื่อผู้ใช้ของผู้สังเกต
       import:
         date_column_format: YYYY-MM-DD HH:MM
       show:
@@ -2388,7 +2413,7 @@ th:
           สงสัยว่าความเป็นส่วนตัวของพิกัดคืออะไรใช่ไหม? <a href="%{url}">เรียนรู้เพิ่มเติมในเอกสารของเรา</a>
     projects:
       edit:
-        admins_must_be_existing_members: ผู้ดูแลต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
+        admins_must_be_existing_members: แอดมินต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
         rules:
           has_media: มีสื่อ (รูปหรือเสียง)
           verifiable: ตรวจสอบได้
@@ -2396,12 +2421,18 @@ th:
         trust_allow_members_to_trust: |-
           อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
       new:
+        check_the_box_to_include_member_observations: |
+          ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
+          ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
         delete_project: ลบโครงการ
+        display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
-        multiple_project_administrators: ผู้ดูแลโครงการหลายคน
+        multiple_project_administrators: แอดมินโครงการหลายคน
         only_display_member_observations: |
           แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
+        or_drag_and_drop: (หรือลากแล้ววาง)
+        project_banner: ภาพหน้าปกโครงการ (PNG หรือ JPG)
         project_details: รายละเอียดโครงการ
         project_name: ชื่อโครงการ
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
@@ -2427,6 +2458,8 @@ th:
         species_per_year: ชนิด / ปี
     taxa:
       show:
+        charts_help_history: |
+          แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนย้อนหลังสิบปีของหน่วยอนุกรมวิธาน ซึ่งอาจคลาดเคลื่อนได้ตามจำนวนผู้สังเกต โดยจะเห็นได้จากช่วงที่มีจำนวนการสังเกตมากผิดปกติ และถ้าช่วงใดมีจำนวนการสังเกตลดลงทั้งที่มีจำนวนผู้สังเกตเพิ่มขึ้น แสดงว่าความชุกชุมของประชากรอาจมีการเปลี่ยนแปลง
         frequency:
           research: ระดับงานวิจัย
           verifiable: ตรวจสอบได้
@@ -2515,7 +2548,7 @@ th:
       minute: นาที
   errors:
     messages:
-      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   helpers:
     select:
       prompt: โปรดเลือก
@@ -2537,7 +2570,7 @@ th:
   activemodel:
     errors:
       messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   activerecord:
     models:
       #Software application that operates iNat on a user's behalf, e.g. the
@@ -2566,11 +2599,17 @@ th:
         title: หัวข้อ
       project:
         title: หัวข้อ
+        project_icon: ไอคอนโครงการ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
       source:
         title: หัวข้อ
       taxon:
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: ลำดับขั้นที่สมบูรณ์
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: สถานะการอนุรักษ์
         wikipedia_title: หัวข้อวิกิพีเดีย
@@ -2578,7 +2617,7 @@ th:
         search_place_id: ค้นหาสถานที่
     errors:
       messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นผู้ดูแล
+        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
       models:
         guide:
           attributes:

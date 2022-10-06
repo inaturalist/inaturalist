@@ -1174,7 +1174,7 @@ zh-CN:
   date_created: 创建日期
   date_format:
     date_long:
-      january: '%{year} 一月 %{day}'
+      january: '%{year} 1月 %{day}'
       february: '%{year} 二月 %{day}'
       march: '%{year} 三月 %{day}'
       april: '%{year} 四月 %{day}'
@@ -5037,7 +5037,7 @@ zh-CN:
         receive_an_email_with_your_data_help: 您将收到一封电子邮件，其中包含您的导出数据作为附件。
         well_email_you: "好的，我们会在它就绪时给您发邮件。"
         taking_a_while: "这需要一段时间。 请尝试以下选项之一。"
-        date_range_help: "以YYYY-MM-DD的格式记录最早和最晚的观察日期，例如，2015年1月17日"
+        date_range_help: "以YYYY-MM-DD的格式记录最早和最晚的观察日期，例如：2015-01-17"
         created_on_help: "观察创建的时间，而不是已观察，例如2015-01-17、2015-01、2015"
       field_descriptions:
         id: "用于观察的唯一标识符"
@@ -5913,7 +5913,7 @@ zh-CN:
       #"one million and two and a half" this would be written as
       #"1,000,002.5" in English, and "," is the delimiter. This should not be
       #the same as the separator.
-      delimiter: '，'
+      delimiter: ','
       significant: false
       strip_insignificant_zeros: false
     human:
