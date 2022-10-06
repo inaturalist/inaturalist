@@ -5155,7 +5155,10 @@ fi:
           Etuliitteellä private_* merkityt kentät sisällytetään ainoastaan käyttäjän omiin rajauksiin, jos olet itse käyttäjä, tai projektin rajauksiin, jos olet projektin kuraattori.
         be_patient: |
           Olethan kärsivällinen, tämä saattaa kestää muutaman minuutin. Jos tämä kestää liian kauan, voit
+        check_back: |
+          Lataa tämä sivu uudelleen muutaman minuutin kuluttua, niin tiedoston pitäisi olla valmiina sivun alareunassa.
         receive_an_email_with_your_data: Vastaanota sähköpostia tiedoistasi
+        receive_an_email_with_your_data_help: Saat sähköpostiviestin, jossa havainnot ovat liitteenä.
         well_email_you: "Ok, lähetämme sinulle sähköpostia, kun se on valmis."
         taking_a_while: "Tässä kestää hetki. Kokeile jotain alla olevista vaihtoehdoista."
         date_range_help: "Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim. 17-01-2015"
