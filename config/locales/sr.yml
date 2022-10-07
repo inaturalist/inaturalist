@@ -24,6 +24,14 @@ sr:
     one: '%{count} Identifikacija'
     few: '%{count} Identifikacije'
     other: '%{count} Identifikacija'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Posmatrač'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Posmatrača'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Posmatrača'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -68,6 +76,10 @@ sr:
     one: '%{count} vrsta'
     few: '%{count} vrste'
     other: '%{count} vrsta'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> vrsta"
+    few: "<span class='count'>%{count}</span> vrste"
+    other: "<span class='count'>%{count}</span> vrsta"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} vrsta</a>"
     few: "<a href='%{url}'>%{count} vrste</a>"
@@ -84,11 +96,13 @@ sr:
     one: "<span class='count'>%{count}</span> promena taksona dodata"
     few: "<span class='count'>%{count}</span> promene taksona dodate"
     other: "<span class='count'>%{count}</span> promena taksona dodato"
+  _percent_ID_d: "% Identifikovano"
   a_community_for_naturalist: Zajednica prirodnjaka
   a_member_of_taxon_html: "pripadnik taksona %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A - Z"
+  about_licenses: O licencama
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "O %{place}"
@@ -112,6 +126,7 @@ sr:
   accuracy_meters: Preciznost (u metrima)
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktivnost
+  active: Aktivni
   active_users: Aktivni korisnici
   activity: Aktivnost
   add: Dodaj
@@ -402,6 +417,7 @@ sr:
   committed: Potvrđeno
   common_name: Narodni naziv
   community: Zajednica
+  community_guidelines: Smernice zajednice
   community_id_heading: Takson zajednice
   community_id_is_precise: Takson zajednice je precizan
   compare: Uporedi
@@ -497,6 +513,7 @@ sr:
   copyright_infringement: Povreda autorskih prava
   couldnt_find_that_taxon: Takson nije pronađen
   create: Kreiraj
+  create_an_account: Krеiraj nalog
   critically_endangered: Kritično ugrožena
   csv: CSV
   csv_file: CSV fajl
@@ -505,6 +522,7 @@ sr:
   curator_application_fields_explanation_html: Zašto želiš da budeš kustos?
   #Header
   curator_application_what_curators_can_do: Ovlašćenja kustosa
+  dashboard: Kontrolna tabla
   data_quality: Kvalitet podataka
   data_quality_assessment: Procena kvaliteta podataka
   date_: Datum
@@ -623,12 +641,14 @@ sr:
     invasive: Alohton
     native: Autohton
   everyone: sve
+  explore: Istraži
   extinct: izumro
   extinct_in_the_wild: Izumro u divljini
   facebook: Facebook
   facebook_options: Facebook opcije
   Family: Porodica
   favorite_taxa: Omiljeni taksoni
+  favorites: "Favoriti"
   failed: Neuspešno
   file: Fajl
   file_size: Veličina fajla
@@ -653,6 +673,7 @@ sr:
   geoprivacy: Geoprivatnost
   go_back: Nazad
   google: Google
+  grid: Mreža
   guides: Vodiči
   guidelines: Smernice
   header_your_observations: Tvoje opservacije
@@ -680,6 +701,7 @@ sr:
   identification_updated: Identifikacija ažurirana!
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikacija povučena.
+  identifications: Identifikacije
   import: Uvezi
   import_all_photos_as_observations: Uvezi sve slike kao opservacije
   import_from_csv: Uvezi iz CSV-a
@@ -698,6 +720,7 @@ sr:
   inappropriate_content: Neprikladan sadržaj?
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist aplikacije"
+  inaturalist_is_a_joint_initiative: "%{site_name} je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva."
   insects: insekti
   instagram: Instagram
   interactions: Interakcije
@@ -715,13 +738,16 @@ sr:
   join_project: Pridruži se ovom projektu
   #Prompt to join a specific project
   join_project?: Pridruži se %{project}?
+  join_the_largest_group_of_naturalists_in_the_world: Pridruži se navećoj grupi prirodnaka na svetu!
   join_this_project: Pridruži se ovom projektu
   'joined!': Pridružen!
+  journal: Dnevnik
   jpg_png_or_gif: "JPG, PNG, ili GIF"
   keyboard_shortcuts: Prečice na tastaturi
   kml: KML
   kml_file_size_error: "KML mora biti manji od 1 MB"
   label_colon: "%{label}:"
+  labels: Oznake
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Privatna lokacija
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -873,6 +899,8 @@ sr:
   longitude_value: "Geografska dužina: %{longitude}"
   mammals: sisari
   manage_your_projects: Upravljaj tvojim projektima
+  managing_projects: Upravljane projektima
+  map: Mapa
   maps:
     overlays:
       range: Opseg
@@ -880,6 +908,7 @@ sr:
   mark_all_as_reviewed: Označi sve kao pregledano
   mark_all_as_unreviewed: Označi sve kao nepregledano
   maverick: kontraš
+  meet: Upoznaj
   #As in members of a project
   members: Članovi
   membership_model: Tip članstva
@@ -1031,9 +1060,11 @@ sr:
     follow_panel_title_local: Prati Prirodnjake u blizini
     follow_panel_title_global: Prati neke aktivne prirodnjake
     following_panel_title: Budi u toku sa ljudima, taksonima, i mestima
+    youve_got_updates_panel_body_p1: Budi u toku sa...
   only_you: Samo ti
   open_: Otvoren
   optional: opciono
+  or: ili
   orange: narandžasta
   order: Poređaj
   order_by: Poređaj po
@@ -1047,6 +1078,7 @@ sr:
   password: Lozinka
   password_confirmation: 'Potvrda lozinke'
   paste: Nalepi
+  people: Ljudi
   per_day: Dnevno
   per_month: Mesečno
   per_week: Nedeljno
@@ -1061,6 +1093,14 @@ sr:
     large: velika
     original: original
   photos_updated: Fotografije ažurirane.
+  pi_consent_desc_title: O ličnim podacima
+  pi_consent_desc_html: |
+    <p>Čuvamo lične podatke kao što su korisnička imena i imejl adrese da bismo upravljali nalozima na ovom sajtu, i da bi se uskladili sa zakonima o privatnosti potrebno je označiti ovo polje kako biste potvrdili da se slažete sa korišćenjem ličnih podataka na taj način. Da biste saznali više o tome koje podatke prikupljamo i kako ih koristimo, pročitajte <a href='%{privacy_url}' target='_blank'>Politku privatnosti</a> kao i naše <a href='%{terms_url}' target='_blank'>Uslove korišćenja</a>.</p>
+    <p> Nije moguće imati iNaturalist nalog bez pomenutog čuvanja ličnih podataka i jedini načlin da opozovete vašu saglasnost je da izbrišete vaš nalog.</p>
+  pi_consent_label: |
+    Saglasan sam da iNaturalist čuva i obrađuje ograničenu količinu mojih ličnih podataka kako bi upravljao mojim nalogom
+  pi_consent_child_label: |
+    Saglasan sam da iNaturalist čuva i obrađuje ograničenu količinu ličnih podataka mog deteta kako bi upravljao nalogom mog deteta
   pink: roze
   place: Mesto
   place_deleted: Mesto izbrisano.
@@ -1387,6 +1427,7 @@ sr:
   save_changes: Sačuvaj izmene
   save_comment: Sačuvaj komentar
   save_draft: Sačuvaj nacrt
+  search: Pretraga
   search_results_for: Rezultati pretrage za
   search_results_for_query: 'Rezultati pretrage za "%{query}"'
   search_species: Pretraži vrste
@@ -1420,8 +1461,11 @@ sr:
   show_active_and_inactive_taxa: Prikaži aktivne i neaktivne taksone
   show_hidden_content: Prikaži sakriveni sadržaj
   show_keyboard_shortcuts: Prikaži prečice na tastaturi
+  sign_out: Odjavi se
+  sign_up: Registruj se
   sizes: Veličine
   small: mali
+  site_stats: Statistika sajta
   some_rights_reserved: neka prava zadržana
   something: Nešto
   something_: nešto
@@ -1452,6 +1496,7 @@ sr:
   table_of_contents: Sadržaj
   tags: Oznake
   taxa: Taksoni
+  taxa_info: Informacije o taksonima
   taxon: Takson
   taxon_geoprivacy: Geoprivatnost taksona
   taxon_deleted: Takson izbrisan.
@@ -1469,6 +1514,7 @@ sr:
   taxonomic_order: taksonomski red
   taxonomic_status: taksonomski status
   taxonomy_settings: taksonomska podešavanja
+  teachers_guide: Vodič za nastavnike
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
   tell_us_why: Reci nam zašto...
   terms: Uslovi
@@ -1504,6 +1550,9 @@ sr:
   tools: Alati
   top_identifiers: Prvi identifikator
   top_identifiers_of_taxon: Prvi identifikator taksona %{taxon}
+  tos_privacy_guidelines_label: |
+    Slažem se sa <a href="/terms" target="_blank">Uslovima korišćenja</a> i
+    <a href="/privacy" target="_blank">Politikom privatnosti</a>, i pregledao/la sam <a href="/pages/community+guidelines" target="_blank">Smernice zajednice</a>.
   total_observations: Ukupno opservacija
   twitter: Twitter
   two_thirds: 2/3
@@ -1551,6 +1600,7 @@ sr:
   user_invited_you_to_join_project: "%{user} te je pozvao da se pridružiš projektu %{project}"
   user_is_a_naturalist: "%{user} je prirodnjak!"
   user_suggested_an_id: "%{user} je predložio ID"
+  username: Korisničko Ime
   value: Vrednost
   values: Vrednosti
   view: Pogledaj
@@ -1612,6 +1662,7 @@ sr:
   your_projects: Tvoji projekti
   your_google_account: tvoj Google nalog
   your_profile_was_successfully_updated: Tvoj profil je uspešno ažuriran.
+  your_recent_projects: Tvoji skorašni projekti
   views:
     guides:
       pdf_layouts:
@@ -1705,6 +1756,9 @@ sr:
     welcome:
       index:
         connect_with_nature: Poveži se sa prirodom
+        observations_to_date: 'Opservacija do sad'
+        species_observed: 'vrsta zabeleženo'
+        people_signed_up: 'registrovanih korisnika'
         how_it_works: Kako funkcioniše
         record_your_observations: Zabeleži svoju opservaciju
         share_with_fellow_naturalists: Podeli sa drugim prirodnjacima
@@ -1713,8 +1767,12 @@ sr:
         nature_at_your_fingertips: Priroda na dohvat ruke
         keep_track: Vodi evidenciju
         create_useful_data: Kreiraj korisne podatke
+        connect_with_experts: Poveži se sa ekspertima koji mogu da identifikuju organizme koje zabeležiš.
         become_a_citizen_scientist: Postani građanski naučnik
         learn_about_nature: Saznaj više o prirodi
+        build_your_knowledge: Proširi svoje znanje kroz komunikaciju sa drugim prirodnjacima i pomažući drugima.
+        run_a_bioblitz: Organizuj Bioblitz
+        hold_an_event: Organizuj takmičenje gde je zadatak zabeležiti što više vrsta.
         works_on_all_your_devices: Radi na svim tvojim uređajima
         install_our_mobile_apps: |
           Instaliraj našu mobilnu aplikaciju tako da možeš uvek napraviti opservaciju, čak i bez dometa ili wifi-ja.
