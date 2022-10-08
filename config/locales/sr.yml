@@ -127,6 +127,10 @@ sr:
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktivnost
   active: Aktivni
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktivno
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktivan
   active_users: Aktivni korisnici
   activity: Aktivnost
   add: Dodaj
@@ -184,11 +188,14 @@ sr:
   added_on_datetime: "Dodato %{datetime}"
   added_to_favorites_html: |
     Dodato u <a href="%{url}">favorite</a>
+  adding: "Dodaje se..."
   adjust_brightness: Podesi svetlinu
   admin: Administrator
   admin_s: Administrator(i)
   admin_only: Samo administrator
   admin_tools: Administrativni alati
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Povezane organizacije
   agree_: Slažem se
   agree?: Slažete se?
   agree_with_current_taxon: Složi se sa trenutnim taksonom
@@ -224,6 +231,7 @@ sr:
     other_animals: Druge životinje
     plants: Biljke
     protozoans: Protozoe
+    ray_finned_fishes: Zrakoperke
     reptiles: Reptili
     life: Život
     x_plantae:
@@ -234,6 +242,10 @@ sr:
       one: "%{count} životinja"
       few: "%{count} životinje"
       other: "%{count} životinja"
+    x_mollusca:
+      one: "%{count} mekušac"
+      few: "%{count} mekušca"
+      other: "%{count} mekušaca"
     x_amphibia:
       one: "%{count} vodozemac"
       few: "%{count} vodozemca"
@@ -280,6 +292,7 @@ sr:
   all_updates: Sva ažuriranja
   allowed_html: Dozvoljen HTML
   allowed_values: Dozvoljene vrednosti
+  almost_there_: Skoro smo završili...
   alphabetical: Alfabetski
   alphabetical_order: Alfabetski redosled
   already_have_an_account_log_in_html: Već ste registrovani? <strong>Ulogujte se</strong>
@@ -302,6 +315,8 @@ sr:
   #curator
   apply_curator: Prijavi se
   apply_to_selected: Primeni na označeno
+  apply_geoprivacy: Primeni geoprivatnost
+  apply_darr: "Primeni &darr;"
   appropriate?: Prikladno?
   arachnids: arahnidi
   are_you_sure?: Da li ste sigurni?
@@ -317,16 +332,19 @@ sr:
   are_you_sure_you_want_to_delete_this_post: Da li sigurno želiš da izbrišeš ovu objavu?
   are_you_sure_you_want_to_delete_this_taxon_change: Da li sigurno želiš da izbrišeš ovu promenu taksona?
   are_you_sure_you_want_to_remove_all_tags: Da li sigurno želiš da ukloniš sve oznake?
+  are_you_sure_you_want_to_remove_from_project: Da li sigurno želiš da ukloniš %{user} iz ovog projekta?
   associated_observations: Povezane opservacije
   associated_taxa: Povezani taksoni
   attention: Pažnja
   you_sure_delete_list: Da li sigurno želiš da izbrišeš ovu listu?
   you_sure_delete_taxon_from_list?: "Da li sigurno želiš da ukloniš %{taxon} takson sa liste?"
+  asc: Rastući
   ascending: Rastući
   assessment: procena
   assessment_was_deleted: Procena je izbrisana.
   assessment_x: "%{assessment} procena"
   assessments: procene
+  associations: Udruženja
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
@@ -334,11 +352,16 @@ sr:
   authority_list:
     iucn_red_list: IUCN crvena lista
     cites: CITES
+  automatic_short: Automatski
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Sr. vrednost
   back: Nazad
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bio: Biografija
   bio_description: Reci drugim iNaturalist članovima nešto o sebi!
+  bioblitz: Bioblitz
   birds: ptice
   birthday: Rođendan
   black: crna
@@ -390,9 +413,11 @@ sr:
   choose_columns: Izaberi kolone
   choose_file: Izaberi fajl
   choose_files: Izaberi fajlove
+  choose_photos_for_this_taxon: Izaberi fotografije za ovaj takson
   choose_tags: Izaberi oznake
   choose_taxon: Izaberi takson
   classification: Klasifikacija
+  clear: ukloni
   clear_filters: Ukloni filtere
   clear_search: Izbriši pretragu
   click_the_map: "<strong>Klikni na mapu</strong> da dodaš lokaciju."
@@ -411,6 +436,7 @@ sr:
   comments: Komentari
   comments_by_me: Moji komentari
   comments_have_been_disabled: Komentari su onemogućeni
+  comments_on_my_observations: Komentari na mojim opservacijama
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Potvrdi
   #Adjective describing a taxon change that has been committed
@@ -425,6 +451,16 @@ sr:
   comparing: upoređivanje
   comparing_list_to_list: "Upoređivanje %{list1} sa %{list2}"
   comparing_versions_x_and_y: "Upoređivanje verzija %{x} i %{y}"
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Kompletno
+  completed: Završeno
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: Potpuna?
+  comprehensive_list: Potpuna lista
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model kompjuterske vizije
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Uključen
   #Status of a taxon that the Computer Vision Model cannot yet recognize
@@ -435,6 +471,7 @@ sr:
   confirm_membership: Potvrdi članstvo
   confirm_new_password: Potvrdi novu lozinku
   confirm_now: Potvrdi sada
+  confirm_your_info: Potvrdi svoje podatke
   confirming_ids: Potvrdni ID-jevi
   confirming_ids_description: Ako isključiš ovu opciju, nećeš dobijati obaveštenja o ID-jevima koji se poklapaju sa tvojim.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -457,6 +494,7 @@ sr:
   content_hidden: Sadržaj sakriven
   content_type: Tip sadržaja
   continue: Nastavi
+  continue_to_site: Nastavi do %{site_name}
   controlled_term_labels:
     sex: Pol
     male: Mužjak
@@ -488,6 +526,7 @@ sr:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Košuljica
   controlled_term_definitions:
+    fruiting: Voćke vidljive i još uvek na biljci
     organism: Ceo ili deo organizma
     track: Otisci organizma na zemlji ili snegu
     molt: Odbačena koža ili egzoskelet
@@ -513,7 +552,11 @@ sr:
   copyright_infringement: Povreda autorskih prava
   couldnt_find_that_taxon: Takson nije pronađen
   create: Kreiraj
+  create_a_guide: Kreiraj vodič
+  create_a_new_taxon: Kreiraj novi takson
   create_an_account: Krеiraj nalog
+  create_new_taxon: Kreiraj novi takson
+  created: Kreirano
   critically_endangered: Kritično ugrožena
   csv: CSV
   csv_file: CSV fajl
@@ -522,10 +565,14 @@ sr:
   curator_application_fields_explanation_html: Zašto želiš da budeš kustos?
   #Header
   curator_application_what_curators_can_do: Ovlašćenja kustosa
+  daily_users: Korisnika dnevno
   dashboard: Kontrolna tabla
   data_quality: Kvalitet podataka
   data_quality_assessment: Procena kvaliteta podataka
+  datatype: Tip podataka
   date_: Datum
+  date_added: Datumu postavljanja
+  date_created: Kreirano datuma
   date_format:
     date_long:
       january: Januar %{day} %{year}
@@ -562,15 +609,20 @@ sr:
     #Contextual help for a button navigating to the next month in a date picker
     nextText: Sledeće
     range: Opseg
+  date_updated: Datum ažuriran
   day: Dan
   #Default option
   default: podrazumevano
   #Default option
   default_: Podrazumevano
+  default_search_place: Podrazumevano mesto potrage
+  default_sound_license: Podrazumevana licenca za zvukove
   definitions: Definicije
   delete: Izbriši
   delete_all: Izbriši sve
   delete_conversation: Izbriši konverzaciju
+  #Button to delete the cover (or banner) image for a project
+  delete_cover?: izbriši naslovnu fotografiju?
   delete_icon?: Izbriši ikonicu?
   delete_photo: Izbriši sliku
   delete_project: Izbriši projekat
@@ -583,8 +635,15 @@ sr:
   deleted_user: izbriši korisnika
   deleting: Brisanje...
   deleting_verb: Brisanje
+  deny: Odbij
+  desc: Opadajući
+  descending: Opadajući
+  describe_purpose: Opiši namenu ovog projekta.
   description: Opis
+  description_slash_tags: Opis / Oznake
+  description_tags_more: "Opis, Oznake,&amp; Više"
   desription: Opis
+  destination: Destinacija
   destroy: Uništi
   details: Detalji
   deviation: Devijacija
@@ -592,8 +651,16 @@ sr:
     failure:
       already_authenticated: 'Već si prijavljen/a.'
       invalid: 'Pogrešan imejl ili lozinka.'
+    sessions:
+      signed_in: 'Prijavljivanje uspešno.'
+      signed_out: 'Odjavljivanje uspešno.'
     passwords:
       updated_not_active: 'Vaša lozinka je uspešno promenjena'
+    registrations:
+      updated: 'Uspešno si ažurirao/la tvoj profil.'
+    mailer:
+      reset_password_instructions:
+        subject: 'Uputstva za resetovanje lozinke'
   devise_reset_password_instructions_hello_email: Zdravo %{email}
   devise_unlock_instructions_unlock: Otključaj profil
   disable: Onemogući
@@ -612,6 +679,7 @@ sr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: DONIRAJ
+  donate_again_today_caps: DONIRAJ OPET DANAS
   done: Gotovo
   dont_have_an_account_sign_up_html: Nemaš nalog? <strong>Registruj se.</strong>
   download: Preuzmi
@@ -627,10 +695,34 @@ sr:
   duration_value: "Trajanje: %{duration} minut(a)"
   edit: Izmeni
   edit_comment: Izmeni svoj komentar
+  edit_notes: Uredi beleške
   edit_observations: Uredi opservacije
   edit_photos: Izmeni slike
+  edit_place: Uredi mesto
+  edit_project: Uredi projekat
+  edit_remove: Uredi/Ukloni
+  edit_selected: Uredi označeno
+  edit_source: Uredi izvor
+  edit_taxa: Uredi taksone
+  edit_taxon: Uredi takson
+  edit_taxon_link: Uredi link taksona
+  edit_taxon_range: Uredi opseg taksona
+  edit_the_observation: Uredi opservaciju
+  edit_your_account_and_profile_html: "Uredi tvoj nalog & profil"
+  edit_your_default_settings: "Uredi podrazumevana podešavanja"
+  edit_your_identification: Uredi tvoje identifikacije
+  editing_project: Uređivanje %{project}
+  editing_taxon: Uređivanje %{taxon}
+  editors: Urednici
   email: Imejl
   email_description: Vaš imejl neće biti podeljen sa drugim iNaturalist korisnicima
+  email_copyright: "Copyright &copy; %{x}, sva prava zadržana"
+  email_notifications: Imejl obaveštenja
+  embed: 'Ugradi'
+  enable_offline_access: Omogući offline pristup
+  enable_offline_access_for_mobile: Omogući offline pristup za mobilni uređaj
+  end: Do
+  end_date_time: Datum i vreme završetka
   endangered: Ugrožen
   endemic: Endemski
   endemic_to_x: "Endemski u %{x}"
@@ -641,20 +733,51 @@ sr:
     invasive: Alohton
     native: Autohton
   everyone: sve
+  everyone_: Svi
+  everywhere: svuda
+  exact: Tačan
+  exact_date: Tačan datum
+  except: osim
+  exclude_places: Izostavi mesta
+  exclude_projects: Izostavi projekte
+  exclude_taxa: Izostavi taksone
+  exclude_users: Izostavi korisnike
+  exclusion_filters: Izostavi filtere
+  exit_full_screen: "izađi iz rеžima cеlog еkrana"
   explore: Istraži
+  export: Izvezi
+  export_observations: Izvezi opservacije
+  export_with_private_coordinates: Izvezi sa skrivenim koordinatama
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Spoljne aplikacije
   extinct: izumro
   extinct_in_the_wild: Izumro u divljini
   facebook: Facebook
+  facebook_account_information: Informacije sa tvog Facebook naloga
   facebook_options: Facebook opcije
+  'false': 'Netačno'
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Favoritima
   Family: Porodica
   favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
+  feature_this_project_: "Istakni ovaj projekat"
+  featured: Istaknuto
+  feedback: Povratne informacije
   failed: Neuspešno
+  fields: polja
+  fields_: Polja
   file: Fajl
   file_size: Veličina fajla
+  fill_out_your_profile: popuni tvoj profil
   #The name of a computer file
   filename: Naziv fajla
   filter: Filter
+  filter_by_place: Filtriraj po mestu
+  filter_by_taxon: Filtriraj po taksonu
+  filter_by_place_taxon_and_color: Filtriraj po mestu, taksonu, i boji pomoću kontrola.
+  filter_list_by_this_taxon: Filtriraj listu po ovom taksonu
   filters: Filteri
   find: Pronađi
   find_a_place: Pronađi mesto
@@ -662,24 +785,45 @@ sr:
   find_photos: Pronađi slike
   find_places: Pronađi mesta
   find_species: Pronađi vrstu
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: Objekat
+  flag_resolution: Razrešenje
+  flickr_identity: Flickr identitet
+  flickr_photo: Flickr fotografija
+  flickr_photos: Flickr fotografije
   follow: Prati
   follow_user: "Prati %{user}"
+  formatting: Formatiranje
   forgot_your_password: Zaboravili ste vašu lozinku?
   forum: Forum
   forum_categories:
     news_and_updates: Vesti & ažuriranja
     tutorials: Tutorijali
+  frequency: Učestalosti
+  from_list: Sa liste
+  from_photos: Iz slika
+  from_place: Sa mesta
+  from_soundcloud: Sa Soundcloud-a
+  full_screen: Ceo ekran
+  fungi:
+    one: gljiva
+    few: gljive
+    other: gljiva
+  gbif: GBIF
   Genus: Rod
   geoprivacy: Geoprivatnost
+  globally: Globalno
   go_back: Nazad
   google: Google
   grid: Mreža
+  group: Grupa
   guides: Vodiči
   guidelines: Smernice
   header_your_observations: Tvoje opservacije
   header_your_calendar: Tvoj kalendar
   header_your_favorites: Tvoji favoriti
   header_your_lists: Tvoje liste
+  header_your_journal: Tvoj dnevnik
   header_your_identifications: Tvoje identifikacije
   header_your_projects: Tvoji projekti
   header_your_profile: Tvoj profil
@@ -689,9 +833,18 @@ sr:
   #Verb, usually a button to hide an interface element
   hide: Sakrij
   hide_content: Sakrij sadržaj
+  high: Viši
+  highest_rank: Najviši rank
+  history: Istorija
+  home: Početna
+  icon: Ikonica
+  icon_size: Veličina ikonice
+  id: ID
   id_withdrawn: ID povučen
+  ids_by_taxon: ID-jevi po taksonu
   identify: Identifikuj
   identify_observations: "Identifikuj opservacije"
+  identify_title: "Identifikuj"
   identification: identifikacija
   identification_by_user: Identifikacija korisnika %{user}
   #Notification when an identification has been deleted
@@ -702,9 +855,19 @@ sr:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikacija povučena.
   identifications: Identifikacije
+  computer_vision_suggestion: Predlog kompjuterske vizije
+  ignore_and_continue: Zanemari i nastavi
   import: Uvezi
   import_all_photos_as_observations: Uvezi sve slike kao opservacije
+  import_as_an_observation: Uvezi kao opservaciju
+  import_as_another_observation: Uvezi kao drugu opservaciju
   import_from_csv: Uvezi iz CSV-a
+  import_observations: Uvezi opservacije
+  import_photos: Uvezi fotografije
+  import_tags_from_csv: Uvezi oznake iz CSV-ja
+  in_n: "u %{n}"
+  in_place_x: u %{place}
+  inaturalist_network: iNaturalist mreža
   #Label for messages you've received
   inbox: Poruke
   in_progress: u toku
@@ -724,10 +887,12 @@ sr:
   insects: insekti
   instagram: Instagram
   interactions: Interakcije
+  internal_server_error: Interna grеška sеrvеra
   invitation: Poziv
   invite: Pozovi
   invite_people: Pozovi ljude
   invite_people_to_project: "Pozovi ljude u %{project}"
+  iphone: iPhone
   is_not_following_anyone: ne prati nikoga.
   is_this_place_a_duplicate: Da li je ovo duplikat?
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -742,7 +907,9 @@ sr:
   join_this_project: Pridruži se ovom projektu
   'joined!': Pridružen!
   journal: Dnevnik
+  journal_posts: Rubrike dnevnika
   jpg_png_or_gif: "JPG, PNG, ili GIF"
+  keep_editing: Nastavi uredjivanje
   keyboard_shortcuts: Prečice na tastaturi
   kml: KML
   kml_file_size_error: "KML mora biti manji od 1 MB"
@@ -761,6 +928,7 @@ sr:
   last_active_with_date: "Poslednji put aktivan: %{date}"
   last_confirmed_observation: Poslednja potvrđena opservacija
   last_observation: Poslednja opservacija
+  last_observation_caps: ZADNJA OPSERVACIJA
   last_seen: Poslednji put viđen
   last_year: Prošla godina
   lat: GŠ
@@ -841,6 +1009,29 @@ sr:
     misima_paneati: misima-paneati
     mongolian: mongolski
     nahuatl: nahuatl
+    norwegian: norveški
+    persian: persijski
+    polish: poljski
+    portuguese: portugalski
+    romanian: rumunski
+    russian: ruski
+    santali: santali
+    setswana: secvana
+    sinhala: sinhala
+    slovak: slovački
+    slovenian: slovenački
+    spanish: španski
+    swahili: svahili
+    swedish: švedski
+    tagalog: tagalog
+    thai: tajlandski
+    turkish: turski
+    ukrainian: ukrajinski
+  less: Manje
+  license: Licenca
+  life: Život
+  linear_scale_label: Linearno
+  link: Link
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista izbrisana.
@@ -880,19 +1071,55 @@ sr:
     es-CO: španski (Kolumbija)
     es-MX: španski (Meksiko)
     et: estonski
+    fr: francuski
+    fr-CA: francuski (Kanada)
+    gl: galicijski
+    he: hebrejski
+    hu: mađarski
+    id: indonežanski
+    it: italijanski
+    ja: japanski
+    kn: kanada
+    ko: korejski
+    lb: luksemburški
+    lt: litvanski
+    lv: letonski
+    mi: maorski
+    mk: makedonski
+    mr: marati
+    nl: holandski
+    pl: poljski
+    pt: portugalski
+    pt-BR: portugalski (Brazil)
+    ru: ruski
+    sat: santali
+    sk: slovački
+    sl: slovenački
+    sq: albanski
+    sv: švedski
+    th: tajlandski
+    tr: turski
+    uk: ukrajinski
+    zh-CN: kineski (pojednostavljen)
+    zh-TW: kineski (tradicionalni)
   location: Lokacija
   location_is_accurate: Lokacija je precizna
   location_is_exact: lokacija je tačna
   location_is_public: Lokacija je javna
   location_is_obscured: Lokacija je prikrivena
   location_is_private: Lokacija je privatna
+  location_specified: Lokacija naznačena
   log_in: Uloguj se
   log_out: Izloguj se
   log_out_caps: IZLOGUJ SE
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Izloguj se iz %{site_name}?"
+  log_scale_label: Evidencija
+  #Status message shown while logging in
+  logging_in: Prijavljivanjе...
   logo:
     transparent_png: transparentan PNG
+    none: nema
   long: GD
   longitude: Geografska dužina
   longitude_in_decimal: 'Geografska dužina u decimalnom prikazu, npr. -122.123'
@@ -923,8 +1150,24 @@ sr:
   misidentifications: Pogrešne identifikacije
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
+  mobile: Mobilni
+  mollusks: mekušci
   momentjs:
     shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1s"
+      #Short text representing 1 minute in the past
+      m: "1min"
+      #Short text representing %d minutes in the past
+      mm: "%dm"
+      #Short text representing 1 hour in the past
+      h: "1h"
+      #Short text representing %d hours in the past
+      hh: "%dh"
+      #Short text representing 1 day in the past
+      d: "1d"
+      #Short text representing %d days in the past
+      dd: "%dd"
       #Short text representing 1 year in the past
       'y': "1g"
       #Short text representing %d years in the past
@@ -961,6 +1204,9 @@ sr:
   most_comments_and_faves: Najviše komentara i favorita
   most_observations: Najviše opservacija
   most_species: Najviše vrsta
+  n_ago: "pre %{n}"
+  name: Ime
+  native: autohton
   native_to_place: "Autohton u %{place}"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
@@ -988,12 +1234,24 @@ sr:
   new_post: Nova objava
   new_project: Novi projekat
   new_taxon_change: Nova izmena taksona
+  new_taxon_range: Novi opseg taksona
+  new_users: Novi korisnici
+  new_users_in_year: "Novi korisnici u %{year}"
+  newly_added: Novododati
+  next_observation: Sledeća opservacija
+  next_page: Sledeća strana
+  next_photo: Sledeća fotografija
+  next_tab: Sledeća kartica
+  'no': 'Ne'
+  no_but_it_is_a_member_of_taxon: "Ne, ali pripada %{taxon} taksonu"
+  no_comments_yet: Nema komentara.
   no_description: Nema opisa
   no_identifications: Nema identifikacija
   no_ids: "Broj ID-jeva"
   no_new_messages: Nema novih poruka
   no_observations: Nema opservacija
   no_observations_yet: Nema nijedne opservacije
+  no_photo: Nema fotografije
   no_projects_yet: Nema projekata
   no_subject_parens: "(Bez naslova)"
   no_taxa: Nema taksona
@@ -1101,6 +1359,11 @@ sr:
     Saglasan sam da iNaturalist čuva i obrađuje ograničenu količinu mojih ličnih podataka kako bi upravljao mojim nalogom
   pi_consent_child_label: |
     Saglasan sam da iNaturalist čuva i obrađuje ograničenu količinu ličnih podataka mog deteta kako bi upravljao nalogom mog deteta
+  data_transfer_consent_desc_title: O saglasnosti sa prenosom ličnih podataka
+  data_transfer_consent_label: |
+    Saglasan sam da se moji lični podaci prebace u Sjedinjene Američke Države
+  data_transfer_consent_child_label: |
+    Saglasan sam da se lični podaci mog deteta prebace u Sjedinjene Američke Države
   pink: roze
   place: Mesto
   place_deleted: Mesto izbrisano.
@@ -1644,6 +1907,8 @@ sr:
   year_month: godina/mesec
   yellow: žuta
   'yes': "Da"
+  yes_license_my_childs_observations: Da, licenciraj fotografije, zvukove i opservacije mog deteta tako da naučnici mogu da ih koriste (preporučeno)
+  yes_license_my_observations_so_scientists_can_use: Da, licenciraj moje fotografije, zvukove i opservacije tako da naučnici mogu da ih koriste (preporučeno)
   yir_millions_of_people_used_inaturalist: |
     Milioni ljudi ove godine su koristili iNaturalist i Seek da se povežu sa prirodom
   you_arent_a_member_of_that_project: Nisi član tog projekta.
@@ -1756,6 +2021,7 @@ sr:
     welcome:
       index:
         connect_with_nature: Poveži se sa prirodom
+        explore_and_share: Istražuj i podeli tvoje opservacije iz sveta prirode.
         observations_to_date: 'Opservacija do sad'
         species_observed: 'vrsta zabeleženo'
         people_signed_up: 'registrovanih korisnika'
@@ -1764,11 +2030,18 @@ sr:
         share_with_fellow_naturalists: Podeli sa drugim prirodnjacima
         discuss_your_findings: Diskutujte vaše pronalaske
         contribute_to_science: Daj doprinos nauci
+        science_desc_html: |
+          Svaka opservacija može doprineti nauci biodiverziteta, od najređeg leptira do uobičajenog dvorišnog korova. Delimo tvoje nalaze sa naučnim bazama podataka kao što je <a href='http://gbif.org' target='_blank'>Globalna informaciona baza biodiverziteta (GBIF)</a> kako bi olakšali naučnicima pronalaženje i korišćenje tih podataka. Sve što treba da uradiš je da zabeležiš nalaze.
         nature_at_your_fingertips: Priroda na dohvat ruke
         keep_track: Vodi evidenciju
+        record_your_encounters: |
+          Zabeleži tvoje susrete sa drugim organizmima i održavaj liste raznovrsnosti, sve to u ,,cloud-u''.
         create_useful_data: Kreiraj korisne podatke
+        help_scientists: Pomozi naučnicima i rukovodiocima resurca da razumeju kada i gde se organizmi sreću.
+        crowdsource_identifications: Identifikacije zajednice
         connect_with_experts: Poveži se sa ekspertima koji mogu da identifikuju organizme koje zabeležiš.
         become_a_citizen_scientist: Postani građanski naučnik
+        find_a_project: "Pronađi projekat sa zadatkom koji te interesuje, ili pokreni svoj."
         learn_about_nature: Saznaj više o prirodi
         build_your_knowledge: Proširi svoje znanje kroz komunikaciju sa drugim prirodnjacima i pomažući drugima.
         run_a_bioblitz: Organizuj Bioblitz
