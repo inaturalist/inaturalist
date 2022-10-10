@@ -187,7 +187,7 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
-    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 0 ) >= 0 );
+    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 10 ) >= 0 );
     let title = I18n.t( "no_suggestions_available" );
     if ( loading ) {
       title = I18n.t( "suggestions" );
@@ -228,10 +228,10 @@ class Suggestions extends React.Component {
                 postIconClass="fa fa-angle-down"
                 hideClear
                 setChoice={orderBy => {
-                  setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
+                  setQuery( { ...query, order_by: orderBy } );
                 }}
                 clearChoice={( ) => {
-                  setQuery( Object.assign( { }, query, { order_by: null } ) );
+                  setQuery( { ...query, order_by: null } );
                 }}
               />
               <div className="column-header">

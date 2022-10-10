@@ -12,8 +12,47 @@ const SET_REVIEWING = "identify/observations/set-reviewing";
 const SET_PLACES_BY_ID = "identify/observations/set-places-by-id";
 const SET_LAST_REQUEST_AT = "identify/observations/set-last-request-at";
 
+const OBSERVATION_FIELDS = {
+  id: true,
+  comments_count: true,
+  identifications_count: true,
+  place_ids: true,
+  private_place_ids: true,
+  observation_photos: {
+    id: true
+  },
+  photos: {
+    id: true,
+    uuid: true,
+    url: true
+  },
+  reviewed_by: true,
+  taxon: {
+    id: true,
+    uuid: true,
+    name: true,
+    iconic_taxon_name: true,
+    is_active: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true,
+    default_photo: {
+      attribution: true,
+      license_code: true,
+      url: true,
+      square_url: true
+    }
+  },
+  user: {
+    id: true,
+    login: true,
+    name: true,
+    icon_url: true
+  }
+};
+
 function receiveObservations( results ) {
-  return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
+  return { type: RECEIVE_OBSERVATIONS, ...results };
 }
 
 function setPlacesByID( placesByID ) {
@@ -26,12 +65,13 @@ function setLastRequestAt( lastRequestAt ) {
 
 function fetchObservationPlaces( ) {
   return function ( dispatch, getState ) {
+    const state = getState( );
     const observations = getState( ).observations.results;
     let placeIDs = _.compact( _.flattenDeep( observations.map(
       o => [o.place_ids, o.private_place_ids]
     ) ) );
     const existingPlaceIDs = _.keys( getState( ).observations.placesByID )
-      .map( pid => parseInt( pid, 0 ) );
+      .map( pid => parseInt( pid, 10 ) );
     placeIDs = _.take(
       _.uniq( _.without( placeIDs, ...existingPlaceIDs ) ),
       100
@@ -39,11 +79,20 @@ function fetchObservationPlaces( ) {
     if ( placeIDs.length === 0 ) {
       return Promise.resolve( );
     }
-    return iNaturalistJS.places.fetch(
-      placeIDs, { per_page: 100, no_geom: true }
-    ).then( response => {
-      dispatch( setPlacesByID( _.keyBy( response.results, "id" ) ) );
-    } );
+    const params = { per_page: 100, no_geom: true };
+    if ( state.config.testingApiV2 ) {
+      params.fields = {
+        id: true,
+        name: true,
+        display_name: true,
+        admin_level: true,
+        bbox_area: true
+      };
+    }
+    return iNaturalistJS.places.fetch( placeIDs, params )
+      .then( response => {
+        dispatch( setPlacesByID( _.keyBy( response.results, "id" ) ) );
+      } );
   };
 }
 
@@ -53,16 +102,20 @@ function fetchObservations( ) {
     const s = getState();
     const currentUser = s.config.currentUser ? s.config.currentUser : null;
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
-    const apiParams = Object.assign( {
+    const apiParams = {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale,
-      ttl: -1
-    }, paramsForSearch( s.searchParams.params ) );
+      ttl: -1,
+      ...paramsForSearch( s.searchParams.params )
+    };
     if ( s.config.blind ) {
       apiParams.order_by = "random";
       apiParams.quality_grade = "any";
       apiParams.page = 1;
+    }
+    if ( s.config.testingApiV2 ) {
+      apiParams.fields = OBSERVATION_FIELDS;
     }
     const thisRequestSentAt = new Date( );
     dispatch( setLastRequestAt( thisRequestSentAt ) );
@@ -151,7 +204,8 @@ function setReviewing( reviewing ) {
 }
 
 function setReviewed( results, apiMethod ) {
-  return dispatch => {
+  return function ( dispatch, getState ) {
+    const state = getState( );
     const lastResult = results.pop( );
     // B/c this was new to me, Promise.all takes an array of Promises and
     // creates another Promise that is fulfilled if all the promises in the
@@ -162,11 +216,14 @@ function setReviewed( results, apiMethod ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      results.map( o => apiMethod( { id: o.id } ) )
+      results.map( o => apiMethod( { id: state.config.testingApiV2 ? o.uuid : o.id } ) )
     )
       .then( ( ) => {
         if ( lastResult ) {
-          return apiMethod( { id: lastResult.id, wait_for_refresh: true } );
+          return apiMethod( {
+            id: state.config.testingApiV2 ? lastResult.uuid : lastResult.id,
+            wait_for_refresh: true
+          } );
         }
         return null;
       } )
@@ -187,8 +244,10 @@ function reviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: true } ) );
     dispatch( setReviewing( true ) );
-    const unreviewedResults = _.filter( getState( ).observations.results,
-      o => !o.reviewedByCurrentUser );
+    const unreviewedResults = _.filter(
+      getState( ).observations.results,
+      o => !o.reviewedByCurrentUser
+    );
     dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
     dispatch( setReviewed( unreviewedResults, iNaturalistJS.observations.review ) );
   };
@@ -198,8 +257,10 @@ function unreviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( setReviewing( true ) );
-    const reviewedResults = _.filter( getState( ).observations.results,
-      o => o.reviewedByCurrentUser );
+    const reviewedResults = _.filter(
+      getState( ).observations.results,
+      o => o.reviewedByCurrentUser
+    );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     dispatch( setReviewed( reviewedResults, iNaturalistJS.observations.unreview ) );
   };

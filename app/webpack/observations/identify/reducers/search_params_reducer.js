@@ -1,5 +1,3 @@
-/* global history */
-
 import _ from "lodash";
 import {
   UPDATE_SEARCH_PARAMS,
@@ -15,7 +13,7 @@ const DEFAULT_PARAMS = {
   page: 1,
   per_page: 30,
   iconic_taxa: [],
-  order_by: "observations.id",
+  order_by: "id",
   order: "desc",
   dateType: "any",
   createdDateType: "any",
@@ -87,6 +85,7 @@ const normalizeParams = params => {
   ) {
     delete newParams.without_term_id;
   }
+  delete newParams.test;
   return newParams;
 };
 
@@ -180,33 +179,43 @@ const searchParamsReducer = ( state = {
   let newState = state;
   switch ( action.type ) {
     case REPLACE_SEARCH_PARAMS:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, action.params )
-      } );
+      newState = {
+        default: { ...state.default },
+        params: { ...action.params }
+      };
       break;
     case UPDATE_SEARCH_PARAMS:
     case UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, action.params )
-      } );
+      newState = {
+        default: { ...state.default },
+        params: {
+          ...state.params,
+          ...action.params
+        }
+      };
       break;
     case RECEIVE_OBSERVATIONS:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, {
+      newState = {
+        default: { ...state.default },
+        params: {
+          ...state.params,
           page: action.page,
           per_page: action.perPage
-        } )
-      } );
+        }
+      };
       break;
     case UPDATE_DEFAULT_PARAMS: {
-      const newDefaults = Object.assign( {}, state.default, action.params );
-      newState = Object.assign( {}, {
+      const newDefaults = {
+        ...state.default,
+        ...action.params
+      };
+      newState = {
         default: newDefaults,
-        params: Object.assign( {}, newDefaults, state.params )
-      } );
+        params: {
+          ...newDefaults,
+          ...state.params
+        }
+      };
       break;
     }
     default:

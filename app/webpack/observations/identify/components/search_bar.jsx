@@ -72,10 +72,9 @@ class SearchBar extends React.Component {
 
         <span className="form-group">
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
-            initialPlaceID={
-              parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
-            }
+            initialPlaceID={params.place_id}
             bootstrapClear
             afterSelect={result => {
               updateSearchParams( { place_id: result.item.id } );
@@ -118,7 +117,6 @@ class SearchBar extends React.Component {
     );
   }
 }
-
 
 SearchBar.propTypes = {
   params: PropTypes.object,

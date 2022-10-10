@@ -11,13 +11,24 @@ import AlertModalContainer from "../../../shared/containers/alert_modal_containe
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
+import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import FlashMessage from "../../show/components/flash_message";
 
-const App = ( { blind, sideBarHidden, setSideBarHidden } ) => (
-  <div id="Identify" className={blind ? "blind" : ""}>
+const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
+  <div id="Identify" className={config.blind ? "blind" : ""}>
+    { config && config.testingApiV2 && (
+      <FlashMessage
+        key="testing_apiv2"
+        title="Testing API V2"
+        message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/v2-feedback/21215"
+        type="warning"
+        html
+      />
+    ) }
     <Grid fluid>
       <Row>
         <Col xs={12}>
-          <h2>{ blind ? "Identification Quality Experiment" : I18n.t( "identify_title" ) }</h2>
+          <h2>{ config.blind ? "Identification Quality Experiment" : I18n.t( "identify_title" ) }</h2>
         </Col>
       </Row>
       <Row>
@@ -32,7 +43,7 @@ const App = ( { blind, sideBarHidden, setSideBarHidden } ) => (
           <FinishedModalContainer />
         </div>
         <SideBar
-          blind={blind}
+          blind={config.blind}
           hidden={sideBarHidden}
           setSideBarHidden={setSideBarHidden}
         />
@@ -47,7 +58,7 @@ const App = ( { blind, sideBarHidden, setSideBarHidden } ) => (
 );
 
 App.propTypes = {
-  blind: PropTypes.bool,
+  config: PropTypes.object,
   sideBarHidden: PropTypes.bool,
   setSideBarHidden: PropTypes.func
 };

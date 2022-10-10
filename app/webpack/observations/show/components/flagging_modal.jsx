@@ -27,7 +27,12 @@ class FlaggingModal extends Component {
     const { state: propsState, createFlag } = this.props;
     const { item, radioOption } = propsState;
     const body = this.textarea && this.textarea.current && $( this.textarea.current ).val( );
-    createFlag( this.getItemClassName( ), item.id, radioOption, body );
+    createFlag(
+      this.getItemClassName( ),
+      item.id,
+      radioOption,
+      body
+    );
     this.close( );
   }
 

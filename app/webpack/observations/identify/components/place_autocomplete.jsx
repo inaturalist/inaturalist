@@ -92,7 +92,7 @@ PlaceAutocomplete.propTypes = {
   afterClear: PropTypes.func,
   // eslint-disable-next-line react/no-unused-prop-types
   initialSelection: PropTypes.object,
-  initialPlaceID: PropTypes.number,
+  initialPlaceID: PropTypes.any,
   className: PropTypes.string,
   placeholder: PropTypes.string,
   config: PropTypes.object

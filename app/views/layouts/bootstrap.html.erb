@@ -156,12 +156,12 @@
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
       PREFERRED_PLACE = <%= json_escape place.
-        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+        to_json(only: [:id, :uuid, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var PREFERRED_SEARCH_PLACE;
       <% if search_place = user_search_place || site_place -%>
       PREFERRED_SEARCH_PLACE = <%= json_escape search_place.
-        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+        to_json(only: [:id, :uuid, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>
