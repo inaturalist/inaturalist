@@ -63,7 +63,8 @@ const OBSERVATION_FIELDS = {
   user: {
     id: true,
     login: true,
-    name: true
+    name: true,
+    icon_url: true
   }
 };
 
