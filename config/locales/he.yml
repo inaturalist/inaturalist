@@ -1385,6 +1385,10 @@ he:
   disable_comments: חסימת הערות
   disable_comments_desc: למנוע הוספת הערות מידי משתמשים
   disagree_: לא מסכים/מה
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: ניתוק
+  disconnect_caps: ניתוק
   disconnect_provider: "ניתוק %{provider}"
   display: תצוגה
   display_link_to_checklist: הצגת בעמוד הפרויקט קישור לרשימת הפרויקט
@@ -1575,8 +1579,11 @@ he:
   fields_can_only_be_edited_by_the_people_who: שדות ניתנים לעריכה רק על ידי יוצריהם או אוצרי האתר
   fields_merged: שדות אוחדו
   file: קובץ
+  file_size: גודל קובץ
   file_should_be_in_the_following_format: "הקובץ צריך להיות בפורמט הבא: שם הטקסון, תיאור"
   fill_out_your_profile: השלם הגדרות פרופיל
+  #The name of a computer file
+  filename: שם קובץ
   filter: סינון
   filter_by_curator_identification: סינון לפי אוצר.ת
   filter_by_place: סינון לפי מקום
@@ -1606,8 +1613,10 @@ he:
   flag: סמן
   flag_as_inappropriate: סימון כלא הולם
   flag_an_item: סימון פריט
+  flag_as_spammer: סימון כשולח.ת ספאם
   #Label for the date/time when a flag was created
   flag_created: דגל מיוצר
+  flag_deleted: הסימון נמחק
   flag_description: סימון תוכן זה על מנת לאפשר לאוצרים לבדוק זאת.
   flag_for_check_list_title_html: |
     סימון לרשימת מינים: %{title}
@@ -1702,6 +1711,7 @@ he:
     two: פטריות
     many: פטריות
     other: פטריות
+  gbif: GBIF
   generate_taxonomic_tags_for_flickr: יצירת תגיות טקסונומיות לתמונות ה Flickr שלך.
   generate_your_stats: יצירת סטטיסטיקה
   Genus: סוג
@@ -1783,6 +1793,8 @@ he:
   highest_rank: הדירוג הגבוה ביותר
   history: היסטוריה
   home: דף הבית
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: "שעות להתאים:"
   i_dont_know_but_i_am_sure_this_is_taxon: לא יודע/ת אבל בטוח/ה שזה %{taxon}
   icon: אייקון
   icon_size: גודל האייקון
@@ -1851,7 +1863,13 @@ he:
   in_the_past: בעבר
   in_the_past_week: בשבוע החולף
   inactive: לא פעיל
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: לא פעיל
   inactive_taxon: טקסון לא פעיל
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: לא פעיל
   inappropriate_content: תוכן בלתי-הולם?
   inat_user_profile: "הפרופיל של %{user} ב%{site_name}"
   inaturalist_activity_notifications: "התראות פעילות %{site_name}"
@@ -1946,14 +1964,17 @@ he:
     scientific_names: שמות מדעיים
     afrikaans: אפריקאנס
     albanian: אלבנית
+    armenian: ארמנית
     belarusian: בלארוסית
     bengali: בנגלית
+    bulgarian: בולגרית
     catalan: קטלנית
     cebuano: קובנית
     chinese_simplified: סינית (מופשטת)
     chinese_traditional: סינית (מסורתית)
     creole_french: קריאולית (צרפתית)
     creole_portuguese: קריאולית (פורטגזית)
+    croatian: קרואטית
     czech: צ'כית
     danish: דנית
     davawenyo: דבאוניו
@@ -1962,12 +1983,14 @@ he:
     estonian: אסטונית
     finnish: פינית
     french: צרפתית
+    galician: גליציאנית
     gela: גלה
     german: גרמנית
     greek: יוונית
     hawaiian: הוואית
     hebrew: עברית
     hiligaynon: היליגניון
+    hungarian: הונגרית
     icelandic: איסלנדית
     ilokano: אילוקאנו
     italian: איטלקית
@@ -1975,22 +1998,30 @@ he:
     korean: קוראנית
     lithuanian: ליטאית
     luxembourgish: לוקסמבורגית
+    malay: מָלָאִית
+    malayalam: מלאיאלאם
     maltese: מלטזית
     maori: מאורית
     marathi: מארטית
+    maya: כלים בסגנון Maya
     misima_paneati: מיסימה-פנאטית
+    mongolian: מונגולית
     norwegian: נורבגית
     occitan: אוקיטנית
     pangasinan: פנגסיננית
     portuguese: פורטוגזית
     romanian: רומנית
     russian: רוסית
+    setswana: טסואנה
+    slovenian: סלובנית
     spanish: ספרדית
     swedish: שבדית
     tagalog: טגלוגית
     tahitian: טהיטית
+    thai: תאילנדית
     tokelauan: טוקלאואית
     turkish: טורקית
+    ukrainian: אוקראינית
     waray_waray: ווראי-ווראי
   less: פחות
   licensed_site_photos: "תמונות ברשיון מ%{site_name}"
@@ -2021,11 +2052,13 @@ he:
     photo: תמונה
   list_was_successfully_created: הרשימה נוצרה בהצלחה.
   listed_taxon: טקסון רשום
+  listing_lists: רשימת רישומים
   listing_taxa: רושם טקסונים
   lists: רשימות
   lists_by_login:
     title:
       current_user: הרשימות שלך
+      login: רשימות לפי %{login}
   load: טעינה
   loading: "טעינה..."
   loading_flickr_photos: "טוען תמונות מ Flickr..."
@@ -2059,12 +2092,14 @@ he:
     fr-CA: צרפתית (קנדה)
     gl: גליציאנית
     he: עברית
+    hu: הונגרית
     id: אינדונזית
     it: איטלקית
     ja: יפנית
     ko: קוראנית
     lb: לוקסמבורגית
     lt: ליטאית
+    mi: מאורית
     mk: מקדונית
     mr: מארטית
     nb: נורווגית - בוקמאל
@@ -2075,9 +2110,12 @@ he:
     pt-BR: פורטוגזית (ברזיל)
     ru: רוסית
     sk: סלובקית
+    sl: סלובנית
     sq: אלבנית
     sv: שוודית
+    th: תאילנדית
     tr: טורקית
+    uk: אוקראינית
     zh-CN: סינית (מופשטת)
     zh-TW: סינית (מסורתית)
   locality_notes: הערות על המקום
@@ -2091,6 +2129,8 @@ he:
   log_in: כניסה לחשבון
   log_out: יציאה
   log_scale_label: יומן
+  #Status message shown while logging in
+  logging_in: מתחבר...
   login_slash_username: שם מתשמש
   logo:
     logo: סמליל
@@ -2207,6 +2247,12 @@ he:
       'y': "שנה אחת"
       #Short text representing %d years in the past
       yy: "%dשנים"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "MMMM D"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
   month: חודש
   monthly_supporter_since_date_html: |
     <a href="%{url}">תומכ.ת על בסיס חודשי</a> מאז %{date}
@@ -2242,6 +2288,8 @@ he:
   must_be_observed_before: שנצפה לפני %{operand}
   must_be_less_than_x_MB: "חייב להיות קטן מ %{x} MB"
   must_have_observation_field: "חובה ששדה התצפית '%{operand}' ימולא"
+  must_have_photos: חייב להכיל תמונות
+  must_have_sounds: חייב להכיל קולות
   must_have_x: "חייב להכיל %{x}"
   mute_removed: ביטול השתקה
   muted_users: משתמשים מושתקים
@@ -2302,10 +2350,12 @@ he:
   new_password: סיסמה חדשה
   new_post: פוסט חדש
   new_project: פרויקט חדש
+  new_project_asset: נכס פרויקט חדש
   new_source: מקור חדש
   new_species_added_in_interval: מין חדש הוסף ב%{interval}
   new_species_added_in_interval_x_of_y: מין חדש הוסף ב%{interval} (%{x} מ %{y} מוצגים)
   new_taxon_change: שינוי טקסון חדש
+  new_taxon_link: קישור טקסון חדש
   new_taxon_name_for: שם טקסון חדש ל
   new_trip: סקר חדש
   new_updates_in_the_last_24_hours_from: "עדכונים חדשים מ%{site_name} ב 24 השעות האחרונות"
@@ -2317,10 +2367,14 @@ he:
   newly_observed_species: מינים חדשים שנצפו
   newly_observed_species_in_year: "מינים חדשים שנוספו ב %{year}"
   next: הבא
+  next_date_short: הבא
   next_observation: תצפית הבאה
   next_page: לעמוד הבא
+  next_page_short: הבא
   next_photo: לתמונה הבאה
+  next_post_short: הבא
   next_tab: ללשונית הבאה
+  next_taxon_short: הבא
   'no': 'לא'
   no_but_it_is_a_member_of_taxon: "לא, אבל הוא שייך ל%{taxon}"
   no_comments_yet: לא קיימות הערות בינתיים
@@ -2367,6 +2421,7 @@ he:
   no_project_selected: טרם נבחר פרוייקט
   no_project_to_admin_current_user: "אין לך זכויות אדמיניסטרציה באף פרוייקט"
   no_projects_yet: אין פרוייקטים עדיין
+  no_attached_range: אין תפוצה מצורפת
   no_recent_activity: אין פעילות לאחרונה
   no_relevant_annotations: אין תוויות רלוונטיות
   no_reply_yet: עדיין אין תגובה
@@ -2655,6 +2710,8 @@ he:
   photo_urls_repaired: URL של התמונה תוקן
   photos_chosen_for_this_taxon: תמונות שנבחרו לטקסון זה
   photos_from: תמונות מ
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: תמונות נעולות
   photos_of_taxon_html: "תמונות של %{taxon}"
   photos_or_sounds: תמונות או קולות
   photos_or_sounds?: תמונות או קולות?
@@ -2724,6 +2781,10 @@ he:
       country: מדינה
       County: מחוז
       county: מחוז
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: מחוז
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: מחוז
       District: אזור/מועצה
       district: אזור/מועצה
       Division: חלוקה
@@ -2734,6 +2795,8 @@ he:
       estate: אחוזה
       Governorate: ממשל
       governorate: ממשל
+      Historical_County: ארץ היסטורית
+      historical_county: ארץ היסטורית
       Historical_State: ארץ היסטורית
       historical_state: ארץ היסטורית
       Historical_Town: עיר היסטורית
@@ -2762,6 +2825,8 @@ he:
       open_space: שטח פתוח
       Parish: קהילה
       parish: קהילה
+      Prefecture: מחוז
+      prefecture: מחוז
       Prefecture_City: עיר פריפקטורה
       prefecture_city: עיר פריפקטורה
       Point_of_Interest: מקום בעל עיניין
@@ -3840,6 +3905,7 @@ he:
   type_place_name: הקלד שם של המקום
   type_source_name: הקלד שם מקור
   type_source_title: "יש להקליד שם מקור"
+  type_species_name: "נא להקליד שם של מין"
   type_taxon_name: "הקלד שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
   umbrella_projects: פרויקטי מטריה
@@ -3958,6 +4024,12 @@ he:
   view_all_fields: צפייה בכל השדות
   view_all_flags: צפייה בכל השדות
   view_all_members: הצגת כל המשתמשות.ים
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "צפייה בכל %{n}"
+    two: "צפייה בכל %{n}"
+    many: "צפייה בכל %{n}"
+    other: "צפייה בכל %{n}"
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
   view_assessment: צפייה הערכה
@@ -4178,6 +4250,7 @@ he:
   your_contributions_to_project: "התרומות שלך ל%{project_title}"
   your_default: ברירת המחדל שלך
   your_email_address: כתובת הדוא"ל שלך
+  your_favorites: המועדפים שלך
   your_flickr_account: חשבון הFlickr שלך
   your_flickr_photos_have_been_tagged: תמונות ה Flickr שלך תויגו!
   your_hard_drive: הכונן הקשיח שלך
@@ -4242,6 +4315,19 @@ he:
       sorts:
         default: סדר המדריך
         alphaname: שמות המינים בסדר אלף-ביתי
+    lifelists:
+      list_view: תצוגת רשימה
+      tree_view: תצוגת עץ
+      observed_rank: '%{rank} נצפה'
+      filter_by: סינון לפי
+      dropdowns:
+        sort: מיון
+        taxonomic: טקסונומי
+        name: שם
+        most_observed: נצפים ביותר
+        least_observed: הכי פחות נצפים
+        show: הצגה
+        full_taxonomy: טקסונומיה מלאה
     lists:
       show:
         project_list_desc: |
@@ -4280,6 +4366,8 @@ he:
         about_missing_taxa: אודות טקסונים חסרים
         #Label for a visualization that combines multiple series of data in a single chart
         combined: שילוב
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: שדה תאריך
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: אופקי
         #Date range to aggregate by, e.g. observations per month vs. observations per week
@@ -4481,6 +4569,7 @@ he:
       collection: אוסף
       umbrella: מטריה
       tracks_multiple_projects: לעקוב אחרי מספר פרוייקטים
+      projects_included: פרויקטים כלולים
       confirm_leave:
         keep_observations_label: |
           השאירו את התצפיות שלכם בפרוייקט זה
@@ -4672,17 +4761,26 @@ he:
         donors: תורמות ותורמים
         donors_guide_label_our_goal_is_1000: היעד שלנו הוא 1,000 תורמים חוזרים בחודש
         include_usa: כולל ארה"ב
+        growth_by_country_title: צמיחה לפי מדינה
         growth_title: צמיחה
         new_species_desc_html: |
           מינים אשר נצפו בפעם הראשונה בשנה הזאת. יש להקליק על חודש כדי לראות כמה מהמינים החדשים שנוספו החודש. ניתן לראות גם את המספר המצטבר של סך כל המינים שנצפו, או לחזור אחורה כדי לראות מינים חדשים אחרים. גרף זה מראה מינים מתצפיות ברות-אימות לפי החודש שבו הועלו ל%{site_name} (ולא לפי זמן התצפית). הוא לא מחשיב טקסונים ברמות יותר גבוהות או נמוכות, כך שתצפית אשר זוהתה כ"יונק" לא תיכלל, ו<i>Canis lupus</i> ssp/ <i>arctos</i> ייחשב פשוט <i>Canis lupus</i>.
+        new_species_per_year_by_date_added: לפי תאריך הוספה
+        new_species_per_year_by_date_observed: לפי תאריך צפייה
         obs_in_year: תצפ' ב%{year}
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: חד-פעמי
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
+        percent_of_total_growth: "% מתוך כלל הצמיחה"
+        observations_per_year_by_date_added: לפי תאריך הוספה
+        observations_per_year_by_date_observed: לפי תאריך צפייה
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: רצף תצפיות
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: חוזר
+        species_per_year: מינים / שנה
+        species_per_year_by_date_added: לפי תאריך הוספה
+        species_per_year_by_date_observed: לפי תאריך צפייה
         stats_generated_datetime: הנתונים נוצרו ב%{datetime}
         store_prompt: |
           רוצה להשוויץ בגאוות ה-iNat שלך בכל מקום? בוא.י לראות את החנות של iNaturalist!
@@ -4719,6 +4817,15 @@ he:
           "Plant Phenology=Flower Budding": ניצן פרחים
           "Plant Phenology=Flowering": פריחה
           "Plant Phenology=Fruiting": עם פירות
+          "Life Stage=Adult": בוגר
+          "Life Stage=Egg": ביצה
+          "Life Stage=Larva": זחל
+          "Life Stage=Juvenile": צעיר
+          "Life Stage=Nymph": נימפה
+          "Life Stage=Pupa": גולם
+          "Life Stage=Subimago": טרום-בוגר
+          "Sex=Female": נקבה
+          "Sex=Male": זכר
           unannotated: ללא תווית
         photo_chooser_modal_desc: |
           ניתן לגרור תמונות משמאל לכאן, או לגרור כדי לסדר אותן מחדש כאן.
@@ -5244,6 +5351,10 @@ he:
       CompleteSet: סט שלם
       #Noun
       Flag: דגל
+      #Action taken by a moderator in response to a flag or concern with
+      #immediate consequences in functionality, e.g. hiding an offensive
+      #comment without deleting it
+      ModeratorAction: פעולת מנהל.ת
       TaxonLink: קישור אודות טקסון
     attributes:
       assessment:
@@ -5268,6 +5379,8 @@ he:
       listed_taxon:
         occurrence_status_level: סטטוס הופעה
         establishment_means: דרכי התבססות
+      message:
+        body: גוף הטקסט
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
@@ -5279,6 +5392,18 @@ he:
         observed_on: תאריך צפייה
       observation_field_value:
         value: 'ערך'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: בתור
+        #Inputs to an export task, e.g. the query and the columns
+        inputs: קלט
+      oauth_application:
+        #Unique identifier for an application
+        uid: מזהה
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: חסוי
       place_taxon_name:
         position: מיקום
       post:
@@ -5330,7 +5455,11 @@ he:
         locked: נעול
         name: שם
         parent_id: זיהוי אב
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: תמונות נעולות?
         rank: דרגה
+        source_id: זיהוי מקור
         source_identifier: מזהה מקור
         source_url: URL המקור
         #Identifier of the taxon framework relationship record associated
@@ -5424,6 +5553,8 @@ he:
               not_supported_for_this_kind_of_content: לא קיימת תמיכה עבור תוכן זה
             base:
               only_staff_can_unhide: רק צוות iNaturalist יכול לבטל הסתרת תוכן מוסתר
+            user_id:
+              must_be_a_curator: חייב.ת להיות אוצר.ת
         observation:
           attributes:
             base:
@@ -5683,6 +5814,7 @@ he:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+  wikimedia: ויקימדיה
   wild: בר
   will_paginate:
     previous_label: "&#8592; קודם"
