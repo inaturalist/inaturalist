@@ -551,12 +551,14 @@ class FiltersButton extends React.Component {
             <PlaceAutocomplete
               resetOnChange={false}
               initialPlaceID={
-                parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
+                params.place_id && params.place_id !== "any" ? params.place_id : null
               }
               bootstrapClear
               className={params.place_id ? "filter-changed" : ""}
               afterSelect={result => {
-                updateSearchParams( { place_id: result.item.id } );
+                updateSearchParams( {
+                  place_id: config.testingApiV2 ? result.item.uuid : result.item.id
+                } );
               }}
               afterUnselect={( ) => {
                 updateSearchParams( { place_id: null } );

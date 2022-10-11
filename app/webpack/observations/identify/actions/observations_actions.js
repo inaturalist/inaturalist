@@ -111,12 +111,20 @@ function fetchObservations( ) {
     };
     if ( s.config.blind ) {
       apiParams.order_by = "random";
-      apiParams.quality_grade = "any";
+      delete apiParams.quality_grade;
       apiParams.page = 1;
     }
     if ( s.config.testingApiV2 ) {
       apiParams.fields = OBSERVATION_FIELDS;
     }
+    _.each( apiParams, ( v, k ) => {
+      if ( _.isNull( v ) || v === "" || v === "any" ) {
+        delete apiParams[k];
+      } else if ( /license$/.test( k ) ) {
+        apiParams[k] = _.toLower( v );
+      }
+    } );
+    delete apiParams.createdDateType;
     const thisRequestSentAt = new Date( );
     dispatch( setLastRequestAt( thisRequestSentAt ) );
     return iNaturalistJS.observations.search( apiParams )
