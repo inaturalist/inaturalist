@@ -408,9 +408,8 @@ class User < ApplicationRecord
   end
 
   def download_remote_icon
-    io = open(URI.parse(self.icon_url))
     Timeout::timeout(10) do
-      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.icon = URI( self.icon_url )
     end
     true
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)

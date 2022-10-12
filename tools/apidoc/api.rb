@@ -131,7 +131,7 @@ def api(name, &block)
   @api = Api.new(name)
   @api.instance_eval(&block)
   haml_path = File.join(File.dirname(__FILE__), "api.haml")
-  haml = open(haml_path).read
+  haml = File.open( haml_path ).read
   engine = Haml::Engine.new(haml)
   puts engine.render @api
 end

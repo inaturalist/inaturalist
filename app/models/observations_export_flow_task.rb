@@ -62,7 +62,7 @@ class ObservationsExportFlowTask < FlowTask
       csv_archive
     end
     logger.info "ObservationsExportFlowTask #{id}: Created archive at #{archive_path}" if @debug
-    open(archive_path) do |f|
+    File.open( archive_path ) do |f|
       self.outputs.create!(:file => f)
     end
     logger.info "ObservationsExportFlowTask #{id}: Created outputs" if @debug
@@ -144,7 +144,7 @@ class ObservationsExportFlowTask < FlowTask
     site = user.site || Site.default
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     search_params = params.merge( viewer: user, authenticate: user )
-    open(json_path, "w") do |f|
+    File.open( json_path, "w" ) do |f|
       f << "["
       first = true
       for_each_observation( search_params ) do |observation|

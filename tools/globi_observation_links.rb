@@ -34,7 +34,7 @@ while true do
   logger.info
   logger.info url
   logger.info
-  data = JSON.parse(open(url).read)
+  data = JSON.parse( Net::HTTP.get( URI( url ) ) )
   records = data['data']
   break if records.size == 0
   observation_ids = []

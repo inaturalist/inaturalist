@@ -2179,7 +2179,7 @@ describe Observation do
       observation = Observation.make!( defaults )
       Observation.make!
       path = Observation.generate_csv_for( observation.user )
-      txt = open( path ).read
+      txt = File.open( path ).read
       expect( txt ).not_to match( /private_latitude/ )
       expect( txt ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )

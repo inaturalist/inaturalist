@@ -280,9 +280,8 @@ class LocalPhoto < Photo
       raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
-    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
-      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.file = URI( url )
     end
   end
 

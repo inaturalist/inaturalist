@@ -135,7 +135,7 @@ describe ObservationsExportFlowTask do
       expect(output).not_to be_blank
       expect(output.file.path).to be =~ /json.zip$/
       expect {
-        JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
+        JSON.parse( File.open( File.join( ft.work_path, "#{ft.basename}.json" ) ).read )
       }.not_to raise_error
     end
 

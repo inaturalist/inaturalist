@@ -72,7 +72,7 @@ SQL
 
 tmpdir_path = Dir.mktmpdir
 log_path = File.join( tmpdir_path, "output.log" )
-LOG_F = open( log_path, "w" )
+LOG_F = File.open( log_path, "w" )
 
 def log( msg )
   out = "[#{(Time.now - START).round}s] #{msg}"
@@ -477,7 +477,7 @@ end
 
 log "Exporting README"
 readme_path = File.join( tmpdir_path, "readme.txt" )
-open( readme_path, "w" ) do |f|
+File.open( readme_path, "w" ) do |f|
   f << <<-EOT
 INATURALIST VISION TRAINING DATA
 

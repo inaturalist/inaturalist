@@ -232,7 +232,7 @@ namespace :inaturalist do
       next unless f =~ /\.(rb|erb|haml)$/
       # Ignore an existing translations file
       # next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n\.)?t[\(\s]*([\:"'])([A-z_\.\d\?\!]+)/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }
@@ -421,7 +421,7 @@ namespace :inaturalist do
       next if f =~ /\-webpack.js$/
       # Ignore an existing translations file
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
@@ -435,7 +435,7 @@ namespace :inaturalist do
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
       # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?
