@@ -2543,6 +2543,8 @@ sr:
       filtered_by: Filtrirano po
       restrict_to_taxon: Ograniči na %{taxon}
       no_observations_found_in_place: Nijedna opservacija nije nađena za %{place}
+      all_observations_in_this_taxon: Sve opservacije u ovom taksonu
+      observations_of_exactly_this_taxon: Opservacije tačno ovog taksona
       dropdowns:
         sort: Sortiraj
         taxonomic: taksonomski
@@ -2555,6 +2557,9 @@ sr:
       from: Od
       to: Za
       subject_body: Naslov / Telo
+      index:
+        show_messages_from_user: Prikaži poruke primljene od %{user}
+        show_messages_to_user: Prikaži poruke poslate %{user}
     observations:
       community_id:
         disagreement: Neslaganje
