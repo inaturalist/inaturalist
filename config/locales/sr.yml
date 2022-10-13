@@ -2539,10 +2539,15 @@ sr:
       observations_at_this_taxon: Opservacije ovog taksona
       observations_within_this_taxon: Opservacije u okviru ovog taksona
       all_observations: Sve opservacije
+      total_observations: Ukupno opservacija
       filter_by: Filtriraj po
       filtered_by: Filtrirano po
       restrict_to_taxon: Ograniči na %{taxon}
       no_observations_found_in_place: Nijedna opservacija nije nađena za %{place}
+      no_species_found_in_place: Nijedna vrsta nije nađena za %{place}
+      no_unobserved_species_in_place: Nijedna nezabeležena vrsta za %{place}.
+      no_unobserved_species_within_this_taxon: Nijedna nezabeležena vrsta u okviru ovog taksona.
+      no_unobserved_species_within_this_taxon_in_place: Nijedna nezabeležena vrsta u okviru ovog taksona za %{place}.
       all_observations_in_this_taxon: Sve opservacije u ovom taksonu
       observations_of_exactly_this_taxon: Opservacije tačno ovog taksona
       dropdowns:
@@ -2562,6 +2567,7 @@ sr:
         show_messages_to_user: Prikaži poruke poslate %{user}
     observations:
       community_id:
+        agreement: Slaganje
         disagreement: Neslaganje
         identification_count: Brojač identifikacija
         score: Rezultat
@@ -2574,6 +2580,7 @@ sr:
         horizontal: Horizontalno
         #Date range to aggregate by, e.g. observations per month vs. observations per week
         interval: Interval
+        total_taxa: Ukupno taksona
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikalno
         #Count of how many taxa are present in an observation search
@@ -2597,6 +2604,11 @@ sr:
         image_url: URL podrazumevane slike
       import:
         date_column_format: GGGG-MM-DD SS:MM
+    emailer:
+      collection_project_changed_for_trusting_member:
+        wondering_what_this_means_html: |
+          Pitaš se šta je geoprivatnost?
+          <a href="%{url}">Saznaj više u našoj dokumentaciji</a>.
     projects:
       project_type: Tip projekta
       collection: Kolekcija
