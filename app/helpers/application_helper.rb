@@ -345,9 +345,13 @@ module ApplicationHelper
     }.to_sentence.capitalize
   end
 
+  # Like simple_format with different treatment for tables, lists, and pre,
+  # specifically it applies a class to table elements, tries to strip
+  # whitespace within td, th, and li tags, and omits formatting for the
+  # contents of <pre> tags
   def simple_format_with_structure( text, options )
     new_text = ""
-    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
+    chunks = text.split( /(<table.*table>|<ul.*ul>|<ol.*ol>|<pre.*pre>)/m )
     chunks.each do |chunk|
       if chunk =~ /<(table|ul|ol)>/
         html = Nokogiri::HTML::DocumentFragment.parse( chunk )
@@ -355,6 +359,8 @@ module ApplicationHelper
           table["class"] = "#{html.at_css( "table" )["class"]} table".strip
         end
         html.css( "td, th, li" ).each do |node|
+          # If a td, th, or li has a line breaks inside of it, remove them
+          # with DocumentFragment and replace the node contents
           if node.content.strip =~ /\n/
             new_content = Nokogiri::HTML::DocumentFragment.
               parse( simple_format_with_structure( node.children.to_s, options ).html_safe )
