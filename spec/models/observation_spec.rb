@@ -4126,6 +4126,14 @@ describe Observation do
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
 
+    it "generates mention updates for observations with photos" do
+      u = User.make!
+      o = after_delayed_job_finishes( ignore_run_at: true ) {
+        make_research_grade_observation( description: "hey @#{ u.login }" )
+      }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+    end
+
     it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
