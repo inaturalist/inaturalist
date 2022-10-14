@@ -420,6 +420,7 @@ class Taxon < ApplicationRecord
     "larva",
     "lichen",
     "lizard",
+    "orange",
     "pinecone",
     "pupa",
     "pupae",
