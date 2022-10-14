@@ -336,7 +336,7 @@ class IdentificationsController < ApplicationController
   def bold
     url = "http://boldsystems.org/index.php/Ids_xml?db=#{params[:db]}&sequence=#{params[:sequence]}"
     xml = begin
-      Nokogiri::XML(open(url))
+      Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
     rescue URI::InvalidURIError => e
       "<error>#{e.message}</error>"
     end

@@ -5,7 +5,7 @@ describe PicasaPhoto do
 
   describe "to_observation" do
     before(:all) do
-      open( File.join( File.dirname(__FILE__), "..", "fixtures", "google_photos_library_photo.json" ) ) do |f|
+      File.open( File.join( File.dirname(__FILE__), "..", "fixtures", "google_photos_library_photo.json" ) ) do |f|
         @fixture = JSON.parse( f.read )
       end
     end

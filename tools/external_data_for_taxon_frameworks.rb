@@ -4,7 +4,7 @@ require 'zip'
 
 def get_external_taxa_powo_to_genus(other_taxon_frameworks)
   family_status_key = Hash.new
-  content = open('https://storage.googleapis.com/powop-content/backbone/taxonomyFamilyGenus.zip')
+  content = Net::HTTP.get( URI( "https://storage.googleapis.com/powop-content/backbone/taxonomyFamilyGenus.zip" ) )
   Zip::File.open_buffer(content) do |zip|
     zip.each do |entry|
       if entry.name == "taxon.txt"
@@ -18,7 +18,7 @@ def get_external_taxa_powo_to_genus(other_taxon_frameworks)
   end
 
   external_taxa = []
-  content = open('https://storage.googleapis.com/powop-content/backbone/taxonFamilyGenus.zip')
+  content = Net::HTTP.get( URI( "https://storage.googleapis.com/powop-content/backbone/taxonFamilyGenus.zip" ) )
   Zip::File.open_buffer(content) do |zip|
     zip.each do |entry|
       if entry.name == "taxon.txt"
@@ -42,7 +42,7 @@ def get_external_taxa_powo_to_genus(other_taxon_frameworks)
   end
 
   status_key = Hash.new
-  content = open('https://storage.googleapis.com/powop-content/backbone/taxonomyWCS.zip')
+  content = Net::HTTP.get( URI( "https://storage.googleapis.com/powop-content/backbone/taxonomyWCS.zip" ) )
   Zip::File.open_buffer(content) do |zip|
     zip.each do |entry|
       if entry.name == "taxon.txt"
@@ -55,7 +55,7 @@ def get_external_taxa_powo_to_genus(other_taxon_frameworks)
     end
   end
 
-  content = open('https://storage.googleapis.com/powop-content/backbone/taxonWCS.zip')
+  content = Net::HTTP.get( URI( "https://storage.googleapis.com/powop-content/backbone/taxonWCS.zip" ) )
   Zip::File.open_buffer(content) do |zip|
     zip.each do |entry|
       if entry.name == "taxon.txt"
@@ -112,7 +112,7 @@ def get_external_taxa_rd(other_taxon_frameworks)
   puts "Downdloading data from Reptile Database..."
   external_taxa = []
   url = "http://reptile-database.reptarium.cz/interfaces/export/taxa.csv"
-  CSV.new(open(url), :headers => :first_row, :col_sep => ";").each do |row|
+  CSV.new( Net::HTTP.get( URI( url ) ), :headers => :first_row, :col_sep => ";").each do |row|
     name = row['taxon_id'].split("_").join(" ")
     unless known_extinct.include? name
       rank = row['infraspecific_epithet'].nil? ? "species" : "subspecies"

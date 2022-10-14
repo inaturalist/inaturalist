@@ -324,7 +324,7 @@ def test_place_kml(size = :default)
   </Document>
 </kml>
   XML
-  open( path, "w" ) do |f|
+  File.open( path, "w" ) do |f|
     f << kml
   end
   Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )

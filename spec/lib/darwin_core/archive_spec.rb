@@ -8,14 +8,14 @@ describe DarwinCore::Archive, "make_metadata" do
   it "should include an archive license if specified" do
     license = "CC0"
     archive = DarwinCore::Archive.new( license: license )
-    xml = Nokogiri::XML( open( archive.make_metadata ) )
+    xml = Nokogiri::XML( File.open( archive.make_metadata ) )
     rights_elt = xml.at_xpath( "//intellectualRights" )
     expect( rights_elt.to_s ).to match /#{ FakeView.url_for_license(license) }/
   end
 
   it "should include a contact from the default config" do
     archive = DarwinCore::Archive.new
-    xml = Nokogiri::XML( open( archive.make_metadata ) )
+    xml = Nokogiri::XML( File.open( archive.make_metadata ) )
     contact_elt = xml.at_xpath( "//contact" )
     expect( contact_elt.to_s ).to match /#{ Site.default.contact[:first_name] }/
   end
@@ -24,25 +24,25 @@ end
 describe DarwinCore::Archive, "make_descriptor" do
   it "should include the Simple Multimedia extension" do
     archive = DarwinCore::Archive.new( extensions: %w(SimpleMultimedia) )
-    xml = Nokogiri::XML(open(archive.make_descriptor))
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://rs.gbif.org/terms/1.0/Multimedia'
   end
   it "should include the ObservationFields extension" do
     archive = DarwinCore::Archive.new(extensions: %w(ObservationFields))
-    xml = Nokogiri::XML(open(archive.make_descriptor))
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://www.inaturalist.org/observation_fields'
   end
   it "should include the ProjectObservations extension" do
     archive = DarwinCore::Archive.new(extensions: %w(ProjectObservations))
-    xml = Nokogiri::XML(open(archive.make_descriptor))
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
     extension_elt = xml.at_xpath('//xmlns:extension')
     expect( extension_elt['rowType'] ).to eq 'http://www.inaturalist.org/project_observations'
   end
   it "should include multiple extensions" do
     archive = DarwinCore::Archive.new(extensions: %w(ObservationFields SimpleMultimedia))
-    xml = Nokogiri::XML(open(archive.make_descriptor))
+    xml = Nokogiri::XML( File.open( archive.make_descriptor ) )
     row_types = xml.xpath('//xmlns:extension').map{|elt| elt['rowType']}
     expect( row_types ).to include 'http://www.inaturalist.org/observation_fields'
     expect( row_types ).to include 'http://rs.gbif.org/terms/1.0/Multimedia'

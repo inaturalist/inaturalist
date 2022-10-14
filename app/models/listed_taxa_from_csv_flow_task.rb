@@ -44,7 +44,7 @@ class ListedTaxaFromCsvFlowTask < FlowTask
   rescue ArgumentError => e
     raise e unless e.message =~ /invalid byte sequence in UTF-8/
     # if there's an encoding issue we'll try to load the entire file and adjust the encoding
-    content = open(file_input.file.path).read
+    content = File.open( file_input.file.path ).read
     utf_content = if content.encoding.name == 'UTF-8'
       # if Ruby thinks it's UTF-8 but it obviously isn't, we'll assume it's LATIN1
       content.force_encoding('ISO-8859-1')

@@ -1726,7 +1726,7 @@ class TaxaController < ApplicationController
     @genus_name, @species_name = taxon_name.name.split
     url = "http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"
     Rails.logger.info "[INFO #{Time.now}] AmphibiaWeb request: #{url}"
-    xml = Nokogiri::XML(open(url))
+    xml = Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
     if xml.blank? || xml.at(:error)
       get_amphibiaweb(taxon_names)
     else
