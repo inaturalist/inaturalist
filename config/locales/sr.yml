@@ -2818,6 +2818,9 @@ sr:
       not_a_number: nije broj
       odd: mora biti neparno
       taken: već postoji
+  helpers:
+    submit:
+      create: Kreiraj %{model}
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -2874,17 +2877,23 @@ sr:
     attributes:
       assessment:
         description: Opis
+      assessment_section:
+        title: Naslov
+        body: Telo
       blocked_user:
         #The user who has been blocked
         blocked_user: Blokirani korisnik
       conservation_status:
         status: Status
         description: Opis
+        place_id: Mesto
         url: URL
         geoprivacy: Geoprivatnost
         iucn: IUCN ekvivalent
       flag:
         reason: Razlog
+      guide:
+        published_at: Publikacija
       message:
         subject: Naslov
         body: Telo
@@ -2910,6 +2919,9 @@ sr:
         confidential: Poverljivo
       place_taxon_name:
         position: Pozicija
+      post:
+        title: Naslov
+        body: Sadržaj
       project:
         title: Naslov
         project_icon: Ikonica projekta
@@ -2921,6 +2933,8 @@ sr:
       place:
         code: Kod
         display_name: Korisničko ime
+        latitude: Geografska širina
+        longitude: Geografska dužina
         name: Ime
       source:
         title: Naslov
@@ -2933,9 +2947,16 @@ sr:
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: Fotografije zaključane?
+        rank: Rang
+        source_url: URL izvora
+      taxon_name:
+        name: Ime
+        position: Pozicija
+        source_url: URL izvora
       user:
         email: Imejl
         login: Korisničko ime
+        name: Ime
         time_zone: Vremenska zona
         place_id: Mesto
     errors:
@@ -2944,4 +2965,53 @@ sr:
         blank: ne može biti prazno
         empty: ne možе biti prazno
         even: mora biti parno
+        exclusion: je rezervisano
         greater_than: mora biti veće od %{count}
+        invalid: je neispravno
+        not_a_number: nije broj
+        odd: mora biti neparno
+        taken: već postoji
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              invalid_uri: "mora biti ispravan URI."
+              relative_uri: "mora biti apsolutni URI."
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: "vodič može imati maksimalno 500 taksona"
+        moderator_action:
+          attributes:
+            user_id:
+              must_be_a_curator: mora biti kustos
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: ne može biti prazno
+        taxon_name:
+          attributes:
+            lexicon:
+              should_be_in_english: mora biti na engleskom
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: samoglasnik
+        con: suglasnik
+      "@gender":
+        m: muški
+        f: ženski
+        "n": srednji
+  #Title of a section warning the user about something
+  warning_title: Upozorenje
+  wild: Divlje
+  will_paginate:
+    previous_label: "&#8592; Prethodni"
+    next_label: "Sledeći &#8594;"
+    page_gap: "&hellip;"
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z - A
+  zoom_in: Uvećaj
+  zoom_out: Umanji
+  zoom_photo: Uvećaj sliku
