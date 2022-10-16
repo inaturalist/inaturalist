@@ -2960,19 +2960,35 @@ sr:
         login: Korisničko ime
         name: Ime
         time_zone: Vremenska zona
+        search_place_id: Pretraži mesto
         place_id: Mesto
     errors:
+      format: '%{attribute} %{message}'
       messages:
         accepted: mora biti prihvaćeno
         blank: ne može biti prazno
         empty: ne možе biti prazno
+        equal_to: mora biti jednako %{count}
         even: mora biti parno
         exclusion: je rezervisano
         greater_than: mora biti veće od %{count}
+        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
         invalid: je neispravno
+        less_than: mora biti manje od %{count}
+        less_than_or_equal_to: mora biti manje od ili jednako %{count}
+        new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
         not_a_number: nije broj
         odd: mora biti neparno
+        record_invalid: 'Potvrda neuspela: %{errors}'
         taken: već postoji
+        too_long:
+          one: je predugačko (maksimalno %{count} karakter)
+          few: je predugačko (maksimalno %{count} karaktera)
+          other: je predugačko (maksimalno %{count} karaktera)
+        too_short:
+          one: je prekratko (minimalno %{count} karakter)
+          few: je prekratko (minimalno %{count} karaktera)
+          other: je prekratko (minimalno %{count} karaktera)
       models:
         application:
           attributes:
@@ -2985,16 +3001,86 @@ sr:
               guide_has_too_many_taxa: "vodič može imati maksimalno 500 taksona"
         moderator_action:
           attributes:
+            base:
+              staff_cannot_be_suspended: Osoblje ne može biti suspendovano
             user_id:
               must_be_a_curator: mora biti kustos
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "koordinate ne mogu biti 0,0"
+            observed_on:
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: mora biti u okviru poslednjih 130 godina
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: "DNK samo može sadržati karaktere A, T, C, ili G"
+              date_format: |
+                mora biti u formatu YYYY-MM-DD za datum polje ("%{observation_field_name}"
+                u tvojoj opservaciji "%{observation_species_guess}")
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: ne može biti prazno
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                samo kustos ovog taksona može izmeniti
         taxon_name:
           attributes:
             lexicon:
+              should_not_contain_commas_or_slashes: ne može sadržati tačku ili kosu crtu
               should_be_in_english: mora biti na engleskom
+        taxon_range:
+          attributes:
+            iucn_relationship:
+              must_be_an_accepted_value: mora biti dozvoljena vrednost
+            taxon_id:
+              already_has_a_range: već ima opseg
+        user:
+          attributes:
+            email:
+              domain_is_not_supported: domen nije podržan
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: Već si blokirao/la tog korisnika
+  doorkeeper:
+    scopes:
+      account_delete: |
+        Da obriše tvoj nalog umesto tebe.
+    flash:
+      applications:
+        create:
+          #Application as in a software application
+          notice: 'Aplikacija kreirana.'
+        destroy:
+          #Application as in a software application
+          notice: 'Aplikacija izbrisana.'
+        update:
+          #Application as in a software application
+          notice: 'Aplikacija ažurirana.'
+      authorized_applications:
+        destroy:
+          #Application as in a software application
+          notice: 'Aplikacija povučena.'
   i18n:
     inflections:
       "@vow_or_con":
@@ -3006,6 +3092,7 @@ sr:
         "n": srednji
   #Title of a section warning the user about something
   warning_title: Upozorenje
+  wikimedia: Wikimedija
   wild: Divlje
   will_paginate:
     previous_label: "&#8592; Prethodni"
