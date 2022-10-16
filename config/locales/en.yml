@@ -899,7 +899,6 @@ en:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   # Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: bold text
-  bounding_box: Bounding Box
   breadcrumbs: Breadcrumbs
   # This is a description of the "head" property of Custom Project Fields, i.e.
   # the customizable content that will replace top section of the project detail
@@ -1517,6 +1516,7 @@ en:
     private and obscured contributions to this project.
   curator_identification: Curator identification
   current_flags: Current Flags
+  custom_boundary: Custom Boundary
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: Project customizations added
   custom_project_was_successfully_updated: Project customizations updated
@@ -1748,6 +1748,8 @@ en:
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
+  draw_circular_boundary: Draw circular boundary
+  draw_rectangular_boundary: Draw rectangular boundary
   drawings: Drawings
   duplicate_verb: Duplicate
   duration_value: "Duration: %{duration} minutes"
@@ -4422,6 +4424,7 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  reset: Reset
   reset_filters_short: Reset
   reset_brightness: Reset Brightness
   reset_search_filters: Reset Search Filters

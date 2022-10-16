@@ -1,3 +1,5 @@
+@import "../../colors";
+
 $bg-color: #727272;
 $changed-color: #74ac00;
 
@@ -124,7 +126,7 @@ $changed-color: #74ac00;
     .dropdown-menu.places {
       width: 500px;
       left: 0px;
-      background: #f16f3a;
+      background: $btn-orange;
       color: #fff;
       line-height: 1.2em;
     }
@@ -181,7 +183,7 @@ $changed-color: #74ac00;
         font-weight: bold;
       }
     }
-    
+
     .filters-row {
       display: flex;
     }
