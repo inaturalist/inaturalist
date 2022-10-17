@@ -2031,6 +2031,10 @@ nl:
       maverick: |
         Taxon is geen afstammeling of voorouder van het gemeenschapstaxon, d.w.z. de gemeenschap is het niet
         eens met dit taxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "ID 2 van taxon <strong>E</strong> zal een onbedoelde onenigheid zijn met ID 1 van taxon <strong>B</strong> na de verandering van de voorouders"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 van taxon <strong>E</strong> zal een onbedoelde onenigheid zijn met ID 1 van taxon <strong>B</strong> na de taxonwissel"
   id_withdrawn: ID ingetrokken
   ids_by_taxon: ID's volgens taxon
   identify: Determineer
@@ -2655,6 +2659,9 @@ nl:
   most_observed_introduced_species: Meest waargenomen geïntroduceerde soorten
   most_observed_threatened_species: Meest waargenomen bedreigde soorten
   move_input_children_to_output?: Verplaats de kinderen naar de export?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Het verplaatsen van %{child} van %{old_parent} zou strikter maken met wat we bedoelen met
+    %{old_parent}. Er zijn %{id_count} IDs van %{old_parent}.
   multiple: meerdere
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
