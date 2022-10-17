@@ -347,8 +347,8 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 
 .bootstrap #filter-container > button.btn-default {
-  background-color: #727272;
-  border-color: #727272;
+  background-color: $btn-grey;
+  border-color: $btn-grey;
   color: #eee;
   position: relative;
 }
@@ -734,8 +734,16 @@ inat-taxon { white-space: nowrap; }
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
-  .btn-fit-to-map {
+  .btn-redo-search {
     padding: 7px 7px 5px !important;
+  }
+  button.btn-clear-shape {
+    padding: 7px 7px 5px !important;
+    background-color: $btn-grey;
+    &:hover {
+      background-color: $btn-grey;
+      color: white;
+    }
   }
 }
 .btn .glyphicon {

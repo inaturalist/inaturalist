@@ -28,8 +28,6 @@ if ( shortRelativeTime ) {
   moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
 
-var rectDeltaX, rectDeltaY, circleDeltaY;
-
 // defining the views
 application.directive( "resultsMap", function( ) {
   return {
@@ -87,6 +85,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     page: 1,
     spam: false
   };
+  $scope.earthRadiusInKm = 6371;
+  $scope.dragIconOffset = 20;
+  $scope.dragRectDeltaXInPx = null;
+  $scope.dragRectDeltaYInPx = null;
+  $scope.dragCircleDeltaInKm = null;
 
   if ( typeof ( google ) !== "undefined" ) {
     $scope.mapBounds = new google.maps.LatLngBounds(
@@ -104,15 +107,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     "params.photo_license", "params.reviewed", "params.created_on",
     "params.created_month", "params.created_d1", "params.created_d2",
     "clickedMoreFiltersOpen" ];
-
   $scope.drawing = {
     disabled: false,
     manager: new google.maps.drawing.DrawingManager(),
     currentShape: null,
     dragIcon: null,
-    pending: false
+    pendingDrawing: null,
   };
-
   $scope.$watchGroup(['mapType', 'mapLabels', 'mapTerrain'], function() {
     $rootScope.$emit( "setMapType", $scope.mapType, $scope.mapLabels, $scope.mapTerrain );
   });
@@ -123,23 +124,46 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.matchUrlState( );      // set the right view
   };
   // small usability improvement for people who use their keyboards. Allows users to ESC out of drawing a shape after
-  // clicking the icon
+  // havng clicked a shape icon
   $( document ).keydown( function( e ) {
-    if ( e.key === "Escape") {
+    if( e.key === "Escape" ) {
       var scope = angular.element(document.getElementsByClassName("map-shape-searches")[0]).scope();
-      if (scope.drawing.pending && scope.currentSubview === "map") {
+      if(scope.drawing.pendingDrawing && scope.currentSubview === "map") {
         scope.clearBoundary();
         scope.$apply();
       }
     }
   });
-  // shared styles for map places and shapes. Needed to be inline for Google
+  // shared styles for map places and shapes. Needed to be inline for Google styling
   $scope.boundaryBoxStyle = {
     strokeColor: "#f16f3a",
-    strokeOpacity: 0.75,
+    strokeOpacity: 0.8,
     strokeWeight: 5,
     fillOpacity: 0
   };
+  $scope.shapeMap = {
+    rectangle: {
+      mode: google.maps.drawing.OverlayType.RECTANGLE,
+      options: {
+        rectangleOptions: _.extend({}, $scope.boundaryBoxStyle, {
+          editable: true,
+          draggable: false,
+          suppressUndo: true
+        })
+      }
+    },
+    circle: {
+      mode: google.maps.drawing.OverlayType.CIRCLE,
+      options: {
+        circleOptions: _.extend({}, $scope.boundaryBoxStyle, {
+          editable: true,
+          draggable: false,
+          suppressUndo: true
+        })
+      }
+    }
+  };
+
   // once the initial state is prepared from the URL and params loaded
   $scope.afterParametersInitialized = function( ) {
     if( $scope.taxonInitialized && $scope.placeInitialized &&
@@ -176,6 +200,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $( "#filters input[name='taxon_name']" ).focus( ).click( );
     }
   };
+  $scope.toRadians = function (degrees) { return degrees * Math.PI / 180; };
+  $scope.toDegrees = function (radians) { return radians * 180 / Math.PI; };
   $scope.latLng2Point = function ( latLng, map ) {
     var topRight = map.getProjection().fromLatLngToPoint(map.getBounds().getNorthEast());
     var bottomLeft = map.getProjection().fromLatLngToPoint(map.getBounds().getSouthWest());
@@ -190,12 +216,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var worldPoint = new google.maps.Point(point.x / scale + bottomLeft.x, point.y / scale + topRight.y);
     return map.getProjection().fromPointToLatLng(worldPoint);
   };
+  $scope.getHaversineDistanceInKm = function (point1, point2) {
+    var lat1Rad = $scope.toRadians(point1.lat);
+    var lat2Rad = $scope.toRadians(point2.lat);
+    var latDiff = lat2Rad - lat1Rad;
+    var lonDiff = $scope.toRadians(point2.lng - point1.lng);
+    return 2 * $scope.earthRadiusInKm * Math.asin(Math.sqrt(Math.sin(latDiff/2)*Math.sin(latDiff/2)+Math.cos(lat1Rad)*Math.cos(lat2Rad)*Math.sin(lonDiff/2)*Math.sin(lonDiff/2)));
+  };
   $scope.getCircleBounds = function (lat, lng, radius) {
-    var toRadians = function (degrees) { return degrees * Math.PI / 180; };
-    var toDegrees = function (radians) { return radians * 180 / Math.PI; }
-    var earthRadius = 6371;
-    var deltaLat = toDegrees(radius / earthRadius);
-    var deltaLng = toDegrees(radius / earthRadius / Math.cos(toRadians(lat)));
+    var deltaLat = $scope.toDegrees(radius / $scope.earthRadiusInKm);
+    var deltaLng = $scope.toDegrees(radius / $scope.earthRadiusInKm / Math.cos($scope.toRadians(lat)));
     var sw = new google.maps.LatLng(lat - deltaLat, lng - deltaLng);
     var ne = new google.maps.LatLng(lat + deltaLat, lng + deltaLng);
     return new google.maps.LatLngBounds(sw, ne);
@@ -302,7 +332,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( $scope.selectedPlace && $scope.selectedPlace.id ) {
       if( $scope.params.place_id != $scope.selectedPlace.id ) {
         $scope.mapBounds = null;
-        $scope.mapBoundsIcon = null;
         $scope.alignMapOnSearch = true;
         $scope.params.place_id = $scope.selectedPlace.id;
         $scope.updatePlaceAutocomplete( );
@@ -312,10 +341,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.params.place_id = "any";
       $scope.updatePlaceAutocomplete( );
     }
-
-    if ($scope.drawing.pending) {
+    if( $scope.drawing.pendingDrawing ) {
       $scope.drawing.manager.setMap( null );
-      $scope.drawing.pending = false;
+      $scope.drawing.pendingDrawing = null;
       $scope.$apply();
     }
   });
@@ -444,8 +472,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
     if( $scope.currentView != $scope.defaultView ) {
       newParams.push( [ "view", $scope.currentView ] );
-
-      if ($scope.drawing.pending) {
+      if( $scope.drawing.pendingDrawing ) {
         $scope.clearBoundary();
       }
     }
@@ -479,8 +506,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       currentState = { params: stateParams,
         selectedPlace: JSON.stringify( $scope.selectedPlace ),
         selectedTaxon: JSON.stringify( $scope.selectedTaxon ),
-        mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null,
-        mapBoundsIcon: $scope.mapBoundsIcon };
+        mapBounds: $scope.mapBounds ? $scope.mapBounds.toJSON( ) : null };
       currentSearch = urlParams;
     }
 
@@ -488,11 +514,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id',
       'swlat', 'swlng', 'nelat', 'nelng', 'page' ];
     for (var i = skippableParams.length - 1; i >= 0; i--) {
-      if ( currentSearch[ skippableParams[i] ] ) {
+      if( currentSearch[ skippableParams[i] ] ) {
         $scope.numFiltersSet -= 1;
       }
     }
-    if ( currentSearch.iconic_taxa && currentSearch.iconic_taxa.split(',').length > 1 ) {
+    if( currentSearch.iconic_taxa && currentSearch.iconic_taxa.split(',').length > 1 ) {
       $scope.numFiltersSet += currentSearch.iconic_taxa.split(',').length - 1;
     }
 
@@ -571,58 +597,65 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     return $scope.pagination.total > $scope.pagination.perPage;
   };
   $scope.positionDragDrawingIcon = function( shape, options ) {
-    if ( !$scope.drawing.dragIcon ) {
+    if( !$scope.drawing.dragIcon ) {
       return;
     }
     var isCircle = !!shape.setCenter;
-
-    var center = shape.getBounds().getCenter();
+    var shapeCenter = shape.getBounds().getCenter();
     var sw = shape.getBounds().getSouthWest();
     var ne = shape.getBounds().getNorthEast();
     var bottomCenter = {
       lat: sw.lat(),
-      lng: center.lng()
+      lng: shapeCenter.lng()
     };
     var point = $scope.latLng2Point(bottomCenter, $scope.map);
-    var offset = 20; // TODO move to constant
-    var latlng = $scope.point2LatLng({ x: point.x, y: point.y + offset }, $scope.map);
-
-    if (isCircle) {
-      var c = shape.getBounds().getCenter();
-      var centerPoint = $scope.latLng2Point(c, $scope.map);
-      circleDeltaY = point.y - centerPoint.y;
-    } else {
+    var dragIconLatLng = $scope.point2LatLng({ x: point.x, y: point.y + $scope.dragIconOffset }, $scope.map);
+    if( isCircle ) {
+      $scope.dragCircleDeltaInKm = $scope.getHaversineDistanceInKm(
+          { lat: sw.lat(), lng: bottomCenter.lng },
+          { lat: shapeCenter.lat(), lng: shapeCenter.lng() }
+      );
+    } else{
       var nePoint = $scope.latLng2Point(ne, $scope.map);
-      rectDeltaX = nePoint.x - point.x;
-      rectDeltaY = point.y - nePoint.y;
+      $scope.dragRectDeltaXInPx = nePoint.x - point.x;
+      $scope.dragRectDeltaYInPx = point.y - nePoint.y;
     }
-
-    if ( options && options.reappear ) {
+    if( options && options.reappear ) {
       $scope.drawing.dragIcon.setVisible( false );
-      $scope.drawing.dragIcon.setPosition( latlng );
+      $scope.drawing.dragIcon.setPosition( dragIconLatLng );
       setTimeout( function ( ) {
         $scope.drawing.dragIcon.setVisible( true );
       }, 500 );
-    } else {
-      $scope.drawing.dragIcon.setPosition( latlng );
+    } else{
+      $scope.drawing.dragIcon.setPosition( dragIconLatLng );
     }
   };
   $scope.positionDrawing = function ( dragIconPosition, shape ) {
     var isCircle = !!shape.setCenter;
     var dragIconPoint = $scope.latLng2Point(dragIconPosition, $scope.map);
-    var offset = 20;
-
-    if (isCircle) {
-      console.log("circle?", {
-        dragIconPoint: { x: dragIconPoint.x, y: dragIconPoint.y },
-        circleDeltaY: circleDeltaY,
-        offset: offset
+    if( isCircle ) {
+      // locate bottom of where new circle should be drawn. This should be placed exactly {$scope.dragIconOffset}px
+      // above the drag icon, regardless of current latitude
+      var circleBottomLatLng = $scope.point2LatLng({ x: dragIconPoint.x, y: dragIconPoint.y - $scope.dragIconOffset }, $scope.map);
+      var circleBottomLatRadians = $scope.toRadians(circleBottomLatLng.lat());
+      var newCircleCenterLatRadians = Math.asin(
+          Math.sin(circleBottomLatRadians) *
+          Math.cos($scope.dragCircleDeltaInKm/$scope.earthRadiusInKm) + Math.cos(circleBottomLatRadians) *
+          Math.sin($scope.dragCircleDeltaInKm/$scope.earthRadiusInKm)
+      );
+      shape.setCenter({
+        lat: $scope.toDegrees(newCircleCenterLatRadians),
+        lng: dragIconPosition.lng()
       });
-      var c = $scope.point2LatLng({x: dragIconPoint.x, y: dragIconPoint.y - circleDeltaY - offset}, $scope.map);
-      shape.setCenter(c);
-    } else {
-      var ne = $scope.point2LatLng({x: dragIconPoint.x + rectDeltaX, y: dragIconPoint.y - rectDeltaY - offset}, $scope.map);
-      var sw = $scope.point2LatLng({x: dragIconPoint.x - rectDeltaX, y: dragIconPoint.y - offset}, $scope.map);
+    }else{
+      var ne = $scope.point2LatLng({
+        x: dragIconPoint.x + $scope.dragRectDeltaXInPx,
+        y: dragIconPoint.y - $scope.dragRectDeltaYInPx - $scope.dragIconOffset
+      }, $scope.map);
+      var sw = $scope.point2LatLng({
+        x: dragIconPoint.x - $scope.dragRectDeltaXInPx,
+        y: dragIconPoint.y - $scope.dragIconOffset
+      }, $scope.map);
       var bounds = new google.maps.LatLngBounds(sw, ne);
       shape.setBounds(bounds);
     }
@@ -663,17 +696,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       processedParamsWithoutLocale, iNaturalist.localeParams( ) );
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
-    if ( processedParams.place_id || processedParams.swlat ) {
+    if( processedParams.place_id || processedParams.swlat ) {
       $scope.drawing.disabled = true;
     }
-    if ( processedParams.place_id ) {
+    if( processedParams.place_id ) {
       $scope.disableRedoSearch = false;
     }
-    if (processedParams.place_id) {
+    if( processedParams.place_id ) {
       $scope.removeDragIcon( );
-
-      if ($scope.drawing.pending) {
-        $scope.onCompleteDrawing();
+      if( $scope.drawing.pendingDrawing ) {
+        $scope.drawing.pendingDrawing = null;
       }
    }
     var isDefaultSearch = _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale );
@@ -891,66 +923,55 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.removeSelectedBounds( );
     $scope.updatePlaceAutocomplete( );
   };
+  $scope.getDrawingManagerOptions = function (shape) {
+    return _.extend({
+      drawingMode: $scope.shapeMap[shape].mode,
+      drawingControl: false,
+      markerOptions: {
+        icon: ""
+      },
+      drawingControlOptions: {
+        position: google.maps.ControlPosition.TOP_CENTER,
+        drawingModes: [$scope.shapeMap[shape].mode]
+      }
+    }, $scope.shapeMap[shape].options);
+  };
   $scope.drawBoundary = function( shape ) {
-    if ($scope.drawing.currentShape !== null) {
+    // here the user is unclicking a drawing button after it had been selected, but nothing was drawn
+    if ($scope.drawing.pendingDrawing && $scope.drawing.pendingDrawing === shape) {
+      if ($scope.drawing.currentShape) {
+        $scope.drawing.manager.setMap( null );
+        $scope.drawing.disabled = false;
+        $scope.drawing.pendingDrawing = null;
+      } else {
+        $scope.clearBoundary();
+      }
       return;
     }
-    $scope.drawing.currentShape = shape;
-    $scope.drawing.pending = true;
-    $scope.drawing.disabled = true;
 
-    var shapeMap = {
-      rectangle: {
-        mode: google.maps.drawing.OverlayType.RECTANGLE,
-        options: {
-          rectangleOptions: _.extend({}, $scope.boundaryBoxStyle, {
-            editable: true,
-            draggable: false,
-            suppressUndo: true
-          })
-        }
-      },
-      circle: {
-        mode: google.maps.drawing.OverlayType.CIRCLE,
-        options: {
-          circleOptions: _.extend({}, $scope.boundaryBoxStyle, {
-            editable: true,
-            draggable: false,
-            suppressUndo: true
-          })
-        }
-      }
-    };
-    $rootScope.$emit( "hideNearbyPlace" );
-    $scope.drawing.manager.setOptions(
-      _.extend( {
-        drawingMode: shapeMap[shape].mode,
-        drawingControl: false,
-        markerOptions: {
-          icon: ""
-        },
-        drawingControlOptions: {
-          position: google.maps.ControlPosition.TOP_CENTER,
-          drawingModes: [shapeMap[shape].mode]
-        }
-      }, shapeMap[shape].options )
-    );
+    $scope.drawing.pendingDrawing = shape;
+    $scope.drawing.disabled = true;
+    if (!$scope.drawing.currentShape) {
+      $rootScope.$emit("hideNearbyPlace");
+    }
+    $scope.drawing.manager.setOptions($scope.getDrawingManagerOptions(shape));
     $scope.drawing.manager.setMap($rootScope.map);
   };
+
   $scope.filterByBounds = function( ) {
     $scope.params.lat = null;
     $scope.params.lng = null;
     $scope.params.radius = null;
     $scope.drawing.currentShape = "rectangle";
     $scope.drawing.disabled = true;
-    $scope.drawing.pending = false;
+    $scope.drawing.pendingDrawing = null;
     if ($scope.drawing.manager) {
       $scope.drawing.manager.setMap( null );
     }
     $scope.removeDragIcon( );
     $rootScope.$emit( "hideNearbyPlace" );
     $scope.removeSelectedPlace( );
-    $rootScope.$emit( "updateParamsForCurrentBounds" );
+    $rootScope.$emit( "updateParamsForCurrentRect" );
     $scope.map.setZoom( $scope.map.getZoom() - 1 );
   };
   $scope.removeSelectedPlace = function( ) {
@@ -960,7 +981,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.selectedPlace = null;
     $scope.selectedPlaceLayer = null;
     $scope.mapBounds = null;
-    $scope.mapBoundsIcon = null;
   };
   $scope.clearPlaceSearch = function( ) {
     $scope.removeSelectedPlace( );
@@ -976,13 +996,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.params.lng = null;
     $scope.params.radius = null;
     $scope.mapBounds = null;
-    $scope.mapBoundsIcon = null;
   };
   $scope.clearBoundary = function( ) {
     $scope.drawing.manager.setMap( null );
     $scope.drawing.currentShape = null;
     $scope.drawing.disabled = false;
-    $scope.drawing.pending = false;
+    $scope.drawing.pendingDrawing = null;
     $scope.removeDragIcon( );
     $scope.removeSelectedBounds( );
   };
@@ -991,9 +1010,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.drawing.dragIcon.setMap( null );
       $scope.drawing.dragIcon = null;
     }
-  };
-  $scope.onCompleteDrawing = function( ) {
-    $scope.drawing.pending = false;
   };
   $scope.orderBy = function( order ) {
     if ($scope.params.order_by == order) {
@@ -1016,7 +1032,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         uncheckAllText: I18n.t( "none" ),
         open: function(event, ui) {
           $scope.params.dateType = 'month';
-          $(event.target).parents('label:first').click( );
+          $(event.target).parents('label:first').click();
         }
       });
       $( "#filters select[multiple]" ).not('.multiselectified').addClass('multiselectified');
@@ -1127,18 +1143,21 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // if the searched place is specific enough to have an address
       if( $scope.searchedPlace.adr_address &&
           $scope.searchedPlace.adr_address.match( /address/) ) {
-        // add an X
-        $scope.mapBoundsIcon = true;
         // align the map straight away w/o looking for a best place to choose
         $scope.mapBounds = bounds;
-        $rootScope.$emit( "updateParamsForCurrentBounds" );
+        $rootScope.$emit( "updateParamsForCurrentRect" );
         $rootScope.$emit( "alignMap" );
       } else {
-        // no X marker on the map
-        $scope.mapBoundsIcon = null;
         var name = ( _.isObject( $scope.searchedPlace ) ?
           $scope.searchedPlace.name : $scope.searchedPlace ).toLowerCase( );
         var options = { bounds: bounds, params: { per_page: 1, name: name, lat: location.lat(), lng: location.lng() } };
+        $scope.drawing.currentShape = null;
+        $scope.drawing.manager.setMap( null );
+        $scope.drawing.currentShape = null;
+        $scope.drawing.disabled = false;
+        $scope.drawing.pendingDrawing = null;
+        $scope.removeDragIcon( );
+        $scope.removeSelectedBounds( );
         // search for a best nearby place with a similar name
         $rootScope.$emit( "searchForNearbyPlaces", options, function( response ) {
           if( !response || !response.data || !response.data.results ) {
@@ -1150,7 +1169,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
             $scope.filterByPlace( response.data.results.community[ 0 ] );
           } else {
             $scope.mapBounds = bounds;
-            $rootScope.$emit( "updateParamsForCurrentBounds" );
+            $rootScope.$emit( "updateParamsForCurrentRect" );
             $rootScope.$emit( "alignMap" );
           }
         });
@@ -1283,8 +1302,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       }
       // we could set place and taxon below, and that should not run searches
       $scope.searchDisabled = true;
-      $scope.mapBoundsIcon = state.mapBoundsIcon;
-      // resture the bounds we had to store as JSON
+      // restore the bounds we had to store as JSON
       if( state.selectedPlace != $scope.selectedPlace ) {
         $scope.filterByPlace( state.selectedPlace );
       }
@@ -1406,8 +1424,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
 
 application.controller( "MapController", [ "ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
 function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
-  $rootScope.$on( "updateParamsForCurrentBounds", function () {
-    $scope.updateParamsForCurrentBounds();
+  $rootScope.$on( "updateParamsForCurrentRect", function () {
+    $scope.updateParamsForCurrentRect();
   } );
   $rootScope.$on( "offsetCenter", function ( event, left, up ) {
     // As of Google Maps v3.32, we need to wait for all animations to be
@@ -1419,13 +1437,11 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } );
   } );
   $scope.setupMap = function () {
-    if ($scope.map) {
-      return;
-    }
+    if( $scope.map ) { return; }
     var defaultMapType = PREFERRED_MAP_TYPE || (
-        typeof ( google ) !== "undefined" && google.maps.MapTypeId.LIGHT
+      typeof ( google ) !== "undefined" && google.maps.MapTypeId.LIGHT
     );
-    $( "#map" ).taxonMap( {
+    $( "#map" ).taxonMap({
       placement: "observations-search",
       urlCoords: false,
       mapType: defaultMapType,
@@ -1437,28 +1453,28 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       infoWindowCallback: $scope.infoWindowCallback,
       minZoom: 2
     } );
-    if (typeof ( google ) === "undefined") return;
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.map = $( "#map" ).data( "taxonMap" );
-    $rootScope.map = $scope.map;  // TODO awkward workaround to expose it within callback functions
-    $scope.map.mapTypes.set( iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels );
-    $scope.map.mapTypes.set( iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light );
+    $rootScope.map = $scope.map;
+    $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT_NO_LABELS, iNaturalist.Map.MapTypes.light_no_labels);
+    $scope.map.mapTypes.set(iNaturalist.Map.MapTypes.LIGHT, iNaturalist.Map.MapTypes.light);
     // preparing the mapType, Labels, and Terrain buttons initial state
     // which can change depending on the user session/preferences
-    if (defaultMapType == google.maps.MapTypeId.SATELLITE ||
-        defaultMapType == google.maps.MapTypeId.HYBRID) {
+    if( defaultMapType == google.maps.MapTypeId.SATELLITE ||
+        defaultMapType == google.maps.MapTypeId.HYBRID ) {
       $scope.$parent.mapType = "satellite";
     }
-    if (defaultMapType == iNaturalist.Map.MapTypes.LIGHT_NO_LABELS ||
-        defaultMapType == google.maps.MapTypeId.SATELLITE) {
+    if( defaultMapType == iNaturalist.Map.MapTypes.LIGHT_NO_LABELS ||
+        defaultMapType == google.maps.MapTypeId.SATELLITE ) {
       $scope.$parent.mapLabels = false;
     }
-    if (defaultMapType == google.maps.MapTypeId.TERRAIN) {
+    if( defaultMapType == google.maps.MapTypeId.TERRAIN ) {
       $scope.$parent.mapTerrain = true;
     }
     // waiting a bit after creating the map to initialize the layers
     // to avoid issues with map aligning, letting the browser catch up
-    setTimeout( function () {
-      if (!$scope.mapLayersInitialized) {
+    setTimeout( function( ) {
+      if( !$scope.mapLayersInitialized ) {
         $scope.setMapLayers( true );
         // more delays before enabling onMoves so setMapLayers
         // can finish aligning the map if it needs to
@@ -1474,33 +1490,41 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
             $scope.$parent.disableRedoSearch = $scope.map.getZoom() <= 2;
           } );
           google.maps.event.addListener( $scope.drawing.manager, "rectanglecomplete", function ( rectangle ) {
-            $scope.onCompleteDrawing( );
-            $scope.removeSelectedPlace( );
+            $scope.drawing.pendingDrawing = null;
+            if ($scope.selectedPlace) {
+              $scope.$parent.selectedPlace = null;
+            }
+            if ($scope.selectedPlaceLayer) {
+              $scope.selectedPlaceLayer.setMap(null);
+            }
+            $scope.drawing.currentShape = "rectangle";
             $scope.drawing.manager.setMap( null );
             $scope.selectedPlaceLayer = rectangle;
-            $rootScope.$emit( "updateParamsForCurrentBounds" );
             $scope.refreshSelectedPlace( );
-            google.maps.event.addListener( rectangle, "dragend", function () {
-              $scope.enableRedoSearchInMapButton( );
-            } );
           } );
           google.maps.event.addListener( $scope.drawing.manager, "circlecomplete", function ( circle ) {
-            $scope.onCompleteDrawing( );
+            $scope.drawing.pendingDrawing = null;
+            if ($scope.selectedPlace) {
+              $scope.$parent.selectedPlace = null;
+            }
+            if ($scope.selectedPlaceLayer) {
+              $scope.selectedPlaceLayer.setMap( null );
+            }
             if ($scope.clearCircleIfInvalid( circle )) {
               return;
             }
-
-            $scope.removeSelectedPlace( );
+            $scope.drawing.currentShape = "circle";
             $scope.drawing.manager.setMap( null );
+            $scope.clearShapeBounds( );
             $scope.selectedPlaceLayer = circle;
             $scope.refreshSelectedPlace( );
           } );
         }, 500 );
-        iNaturalist.Legend( $( '#map-legend-container' ).get( 0 ), $scope.map, {hideFeatured: true} );
+        iNaturalist.Legend($('#map-legend-container').get(0), $scope.map, {hideFeatured: true});
       }
-    }, 300 );
+    }, 300);
   }
-  $scope.updateParamsForCurrentBounds = function () {
+  $scope.updateParamsForCurrentRect = function () {
     var bounds = $scope.$parent.mapBounds;
     if (!bounds && $scope.$parent.viewing( "observations", "map" ) && $scope.map) {
       bounds = $scope.map.getBounds();
@@ -1508,13 +1532,22 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if (!bounds) {
       return;
     }
-    // just making sure we have real bounds
     $scope.$parent.mapBounds = bounds;
     var ne = bounds.getNorthEast(),
         sw = bounds.getSouthWest();
-    $scope.setBounds( ne, sw );
+    $scope.setRectBounds( ne, sw );
   };
-  $scope.setBounds = function ( ne, sw ) {
+  $scope.clearShapeBounds = function () {
+    $scope.$parent.params.swlng = null;
+    $scope.$parent.params.swlat = null;
+    $scope.$parent.params.nelng = null;
+    $scope.$parent.params.nelat = null;
+    $scope.$parent.params.lat = null;
+    $scope.$parent.params.lng = null;
+    $scope.$parent.params.radius = null;
+  };
+  $scope.setRectBounds = function ( ne, sw ) {
+    $scope.clearShapeBounds( );
     $scope.$parent.params.swlng = sw.lng();
     $scope.$parent.params.swlat = sw.lat();
     $scope.$parent.params.nelng = ne.lng();
@@ -1533,37 +1566,36 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $rootScope.$on( "searchForNearbyPlaces", function ( event, options, callback ) {
     $scope.searchForNearbyPlaces( options, callback );
-  } );
-  $scope.searchForNearbyPlaces = function ( options, callback ) {
-    if (typeof ( google ) === "undefined") return;
+  });
+  $scope.searchForNearbyPlaces = function( options, callback ) {
+    if ( typeof ( google ) === "undefined" ) return;
     $scope.$parent.searchingNearbyPlaces = true;
-    var onMap = $scope.viewing( "observations", "map" );
-    if ($scope.$parent.placeSearchBox && $scope.map && onMap) {
-      $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds() );
+    var onMap = $scope.viewing("observations", "map");
+    if( $scope.$parent.placeSearchBox && $scope.map && onMap ) {
+      $scope.$parent.placeSearchBox.setBounds( $scope.map.getBounds( ) );
     }
-    options = options || {};
-    options.params = options.params || {};
-    if (onMap) {
-      options.bounds = options.bounds || $scope.mapBounds || $scope.map.getBounds();
-    } else if ($scope.mapBounds) {
+    options = options || { };
+    options.params = options.params || { };
+    if( onMap ) {
+      options.bounds = options.bounds || $scope.mapBounds || $scope.map.getBounds( );
+    } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }
-    if (options.bounds && $scope.drawing.currentShape !== "circle") {
-      options.params.swlat = options.bounds.getSouthWest().lat();
-      options.params.swlng = options.bounds.getSouthWest().lng();
-      options.params.nelat = options.bounds.getNorthEast().lat();
-      options.params.nelng = options.bounds.getNorthEast().lng();
+    if( options.bounds && $scope.drawing.currentShape !== "circle" ) {
+      options.params.swlat = options.bounds.getSouthWest( ).lat( );
+      options.params.swlng = options.bounds.getSouthWest( ).lng( );
+      options.params.nelat = options.bounds.getNorthEast( ).lat( );
+      options.params.nelng = options.bounds.getNorthEast( ).lng( );
     }
-
-    if (!( options.params.lat && options.params.lng )) {
+    if( !( options.params.lat && options.params.lng ) ) {
       // search a little left of center
-      shared.offsetCenter( {map: ( onMap ? $scope.map : null ), left: -130, up: 0}, function ( center ) {
-        if (center) {
-          options.params.lat = center.lat();
-          options.params.lng = center.lng();
+      shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
+        if( center ) {
+          options.params.lat = center.lat( );
+          options.params.lng = center.lng( );
         }
         $scope.nearbyPlaceSearch( options, callback );
-      } );
+      });
     } else {
       $scope.nearbyPlaceSearch( options, callback );
     }
@@ -1575,8 +1607,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     var center = circle.getBounds().getCenter();
     if (center.lat() === 0 || center.lng() === 0) {
       circle.setMap( null );
-      $scope.clearBoundary();
-      $scope.$apply();
+      $scope.clearBoundary( );
+      $scope.removeDragIcon( );
+      $scope.$apply( );
       return true;
     }
     return false;
@@ -1628,7 +1661,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $rootScope.$on( "setMapType", function( event, mapType, mapLabels, mapTerrain ) {
     if ( !$scope.map ) { return; };
     var mapTypeId;
-    if (mapType == "map") {
+    if (mapType == 'map') {
       if (mapTerrain) {
         mapTypeId = google.maps.MapTypeId.TERRAIN;
       } else {
@@ -1672,6 +1705,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       if(!$scope.$parent.$$phase) { $scope.$parent.$digest( ); }
     }
   };
+
   $scope.alignMap = function( ) {
     // don't attempt aligning if we're not viewing the map
     if( $scope.mapLayersInitialized && $scope.$parent.viewing( "observations", "map" ) ) {
@@ -1704,6 +1738,10 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         $scope.$parent.mapBounds = bounds;
       }
       $scope.$parent.mapNeedsAligning = false;
+    }
+
+    if ($scope.map) {
+      $scope.$parent.disableRedoSearch = $scope.map.getZoom() <= 2;
     }
     $rootScope.$emit( "searchForNearbyPlaces" );
   };
@@ -1761,56 +1799,17 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     });
   };
   $scope.refreshSelectedPlace = function ( ) {
-    if (!$scope.selectedPlaceLayer) {
+    if ( !$scope.selectedPlaceLayer ) {
       return;
     }
-
-    var options = {};
     if ( $scope.drawing.currentShape === "circle" ) {
       $scope.setCircleBounds($scope.selectedPlaceLayer);
-      options = {
-        params: {
-          lat: $scope.$parent.params.lat,
-          lng: $scope.$parent.params.lng
-        }
-      };
     } else {
       var ne = $scope.selectedPlaceLayer.getBounds().getNorthEast();
       var sw = $scope.selectedPlaceLayer.getBounds().getSouthWest();
-      $scope.setBounds(ne, sw);
+      $scope.setRectBounds(ne, sw);
     }
-    $rootScope.$emit( "searchForNearbyPlaces", options );
-  };
-
-  $scope.refreshSelectedPlaceHack = function ( shape ) {
-    var options = {};
-    if ( $scope.drawing.currentShape === "circle" ) {
-      var point = shape.getBounds();
-      var center = point.getCenter();
-
-      // $scope.params.lng = center.lng();
-      // $scope.params.lat = center.lat();
-      // $scope.params.radius = shape.getRadius() / 1000;
-      // $scope.selectedPlace = null;
-      // $scope.selectedPlaceLayer = null;
-      $scope.$parent.params.lng = center.lng();
-      $scope.$parent.params.lat = center.lat();
-      $scope.$parent.params.radius = shape.getRadius() / 1000;
-      $scope.$parent.selectedPlace = null;
-      $scope.$parent.selectedPlaceLayer = null;
-
-      options = {
-        params: {
-          lat: $scope.params.lat,
-          lng: $scope.params.lng
-        }
-      };
-    } else {
-      var ne = shape.getBounds().getNorthEast();
-      var sw = shape.getBounds().getSouthWest();
-      $scope.setBounds(ne, sw);
-    }
-    $rootScope.$emit( "searchForNearbyPlaces", options );
+    $rootScope.$emit( "searchForNearbyPlaces" );
   };
 
   $scope.initDragIcon = function ( shape ) {
@@ -1818,13 +1817,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       $scope.removeDragIcon();
     }
 
-    // TODO - new icon
     var svgMarker = {
       scale: 0.8,
-      path: "M18 20v6h4l-6 6-6-6h4v-6zM14 12V6h-4l6-6 6 6h-4v6zM12 18H6v4l-6-6 6-6v4h6zM20 14h6v-4l6 6-6 6v-4h-6z",
+      path: "M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm6 20v-2h-4v4h2l-4 4-4-4h2v-4h-4v2l-4-4 4-4v2h4v-4h-2l4-4 4 4h-2v4h4v-2l4 4-4 4z",
       fillColor: "#f16f3a",
-      fillOpacity: 0.75,
-      strokeWeight: 1,
+      fillOpacity: 0.8,
+      strokeWeight: 0,
       strokeColor: $scope.boundaryBoxStyle.strokeColor,
       strokeOpacity: $scope.boundaryBoxStyle.strokeOpacity,
       anchor: new google.maps.Point(16, 16)
@@ -1837,23 +1835,20 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       draggable: true,
       raiseOnDrag: false
     });
-
     $scope.positionDragDrawingIcon( shape );
     $scope.$apply();
-
     google.maps.event.addListener( $scope.drawing.dragIcon, "dragstart", function ( ) {
       $scope.drawing.dragging = true;
     });
-
     google.maps.event.addListener( $scope.drawing.dragIcon, "drag", function ( dragIcon ) {
       $scope.positionDrawing( dragIcon.latLng, shape );
     });
-
     google.maps.event.addListener( $scope.drawing.dragIcon, "dragend", function ( ) {
       $scope.drawing.dragging = false;
-
-      var scope = angular.element(document.getElementById("map-legend-control")).scope();
-      $scope.refreshSelectedPlaceHack( scope.selectedPlaceLayer );
+      if ($scope.clearCircleIfInvalid($scope.selectedPlaceLayer)) {
+        return;
+      }
+      $scope.refreshSelectedPlace( );
     });
   };
 
@@ -1875,8 +1870,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     // fully remove any existing data layer
     if( $scope.selectedPlaceLayer ) { $scope.selectedPlaceLayer.setMap( null ); }
     $scope.selectedPlaceLayer = null;
-    var xMarkerPosition;
     $scope.selectedPlaceLayer = new google.maps.Data({ style: $scope.boundaryBoxStyle });
+
     // draw the polygon for the current place
     if( $scope.$parent.selectedPlace ) {
       var c = { type: "Feature", geometry: $scope.$parent.selectedPlace.geometry_geojson };
@@ -1887,7 +1882,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       if ($scope.selectedPlaceLayer) {
         $scope.removeSelectedPlace();
       }
-
       // DrawingManager chokes when the resizable/editable region is the full map. This catches when the user clicks
       // Redo Search in Map for a fully zoomed out map
       var isRegionConfigurable = Math.abs($scope.params.nelat) !== Math.abs($scope.params.swlat) && Math.abs($scope.params.nelng) !== Math.abs($scope.params.swlng);
@@ -1905,19 +1899,19 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
           editable: isRegionConfigurable
         })
       );
+      $scope.drawing.currentShape = "rectangle";
       $scope.initSelectedPlaceLayer( $scope.selectedPlaceLayer );
     } else if( $scope.params.lat && $scope.params.lng ) {
-      xMarkerPosition = {
-        lat: parseFloat( $scope.params.lat ),
-        lng: parseFloat( $scope.params.lng )
-      };
       var circleRadius = $scope.params.radius ? parseFloat( $scope.params.radius ) * 1000 : 10000;
 
       $scope.selectedPlaceLayer = new google.maps.Circle(
         _.extend( { }, $scope.boundaryBoxStyle, {
           map: $scope.map,
           radius: circleRadius,
-          center: xMarkerPosition,
+          center: {
+            lat: parseFloat( $scope.params.lat ),
+            lng: parseFloat( $scope.params.lng )
+          },
           editable: true,
           suppressUndo: true
         })
@@ -1937,37 +1931,21 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.initSelectedPlaceLayer = function ( selectedPlaceLayer ) {
     // called after resizing shape
     selectedPlaceLayer.addListener( "bounds_changed", function () {
-      if ($scope.drawing.dragging) {
+      if( $scope.drawing.dragging ) {
         return;
       }
-
-      console.log("here?");
-      if ($scope.clearCircleIfInvalid( selectedPlaceLayer )) {
-        $scope.clearBoundary( );
+      if( $scope.clearCircleIfInvalid( selectedPlaceLayer ) ) {
         return;
       }
       $scope.refreshSelectedPlace( );
       $scope.positionDragDrawingIcon( selectedPlaceLayer );
     });
 
-    // selectedPlaceLayer.addListener( "dragstart", function () {
-    //   // isDragging = true;
-    // });
-    //
-    // selectedPlaceLayer.addListener( "dragend", function () {
-    //   console.log('maybe????')
-    //
-    //   // isDragging = false;
-    //   $scope.refreshSelectedPlace( );
-    //   $scope.enableFitToMapButton( );
-    //   $scope.positionClearDrawingIcon( selectedPlaceLayer );
-    // });
-
     // when there's a region in the query string on initial page load, we need a little time to ensure the shape is
     // drawn before positioning the drag icon
     var timeout = $scope.$parent.mapLayersInitialized ? 0 : 600;
     setTimeout(function () {
-      $scope.initDragIcon( $scope.selectedPlaceLayer );
+      $scope.initDragIcon($scope.selectedPlaceLayer);
     }, timeout);
   };
   $scope.zoomIn = function( ) {
@@ -1983,12 +1961,11 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     if( typeof( navigator.geolocation ) != "undefined" ) {
       var getCurrentPositionSuccess = function( location ) {
         $scope.findingUserLocation = false;
-        var pos = {
-          lat: location.coords.latitude,
-          lng: location.coords.longitude
-        };
         var circle = new google.maps.Circle({
-          center: pos,
+          center: {
+            lat: location.coords.latitude,
+            lng: location.coords.longitude
+          },
           radius: (location.accuracy*10) || 1000
         });
         $scope.map.fitBounds( circle.getBounds( ) );

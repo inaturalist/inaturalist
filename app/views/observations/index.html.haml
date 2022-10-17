@@ -151,25 +151,31 @@
                 %button{
                   "ng-click": "drawBoundary( 'rectangle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-rect {{ drawing.disabled ? 'disabled' : '' }}",
-                  "tooltip-enable" => "!drawing.disabled",
+                  :class => "btn btn-default btn-rect {{ drawing.pendingDrawing === 'rectangle' ? 'disabled' : '' }}",
+                  "tooltip-enable" => "drawing.pendingDrawing !== 'rectangle'",
                   "uib-tooltip" => "{{ shared.t('draw_rectangular_boundary') }}"
                 }
                   %embed{src: image_path('draw-rect.svg'), width: 16, height: 16 }
                 %button{
                   "ng-click": "drawBoundary( 'circle' )",
                   "ng-show": "viewing('observations', 'map')",
-                  :class => "btn btn-default btn-circle {{ drawing.disabled ? 'disabled' : '' }}",
-                  "tooltip-enable" => "!drawing.disabled",
+                  :class => "btn btn-default btn-circle {{ drawing.pendingDrawing === 'circle' ? 'disabled' : '' }}",
+                  "tooltip-enable" => "drawing.pendingDrawing !== 'circle'",
                   "uib-tooltip" => "{{ shared.t('draw_circular_boundary') }}"
                 }
                   %embed{src: image_path('draw-circle.svg'), width: 16, height: 16 }
               %button{
                 "ng-click": "filterByBounds( )",
                 "ng-show": "viewing('observations', 'map')",
-                :class => "btn btn-default btn-fit-to-map {{ disableRedoSearch ? 'disabled' : '' }}",
+                :class => "btn btn-default btn-redo-search {{ disableRedoSearch ? 'disabled' : '' }}",
               }
                 {{ shared.t("redo_search_in_map") }}
+              %button{
+                "ng-click": "clearBoundary( )",
+                "ng-show": "viewing('observations', 'map') && drawing.currentShape !== null",
+                :class => "btn btn-default btn-clear-shape",
+              }
+                {{ shared.t("reset") }}
         .col-xs-6
     %div#observations-map{ "results-map": true, "ng-show": "viewing('observations', 'map')", "ng-controller": "MapController" }
     %div{ "results-grid": true, "ng-show": "viewing('observations', 'grid')" }
