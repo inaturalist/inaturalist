@@ -1473,11 +1473,29 @@ class TaxaController < ApplicationController
   def try_show
     name, format = params[:q].to_s.sanitize_encoding.split('_').join(' ').split('.')
     request.format = format if request.format.blank? && !format.blank?
-    name = name.to_s.downcase
+    # If this is not a show URL, the taxon should still be the first segment
+    name = name.to_s.downcase.split( "/" ).first
     @taxon = Taxon.single_taxon_for_name(name)
     
     # Redirect to a canonical form
     if @taxon
+      # If this is not a show URL, try to redirect to a canonical version of that url
+      if params[:q].include?( "/" ) && request.get?
+        url_pieces = params[:q].split( "/" )
+        url_pieces.shift
+        new_path = "/taxa/#{@taxon.to_param}/#{url_pieces.join( "/" )}"
+        begin
+          recognized_route = Rails.application.routes.recognize_path( new_path )
+          if recognized_route && recognized_route[:action] != "try_show"
+            redirect_to new_path
+          else
+            render_404
+          end
+        rescue ActionController::RoutingError
+          render_404
+        end
+        return
+      end
       canonical = @taxon.name.split.join( "_" )
       taxon_names ||= @taxon.taxon_names.limit(100)
       acceptable_names = [canonical] + taxon_names.map{|tn| tn.name.split.join('_')}
@@ -1499,11 +1517,11 @@ class TaxaController < ApplicationController
     # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
     unless @taxon
       return redirect_to :action => 'search', :q => name
-    else
-      params.delete(:q)
-      return_here
-      show
     end
+
+    params.delete(:q)
+    return_here
+    show
   end
   
 ## Protected / private actions ###############################################
