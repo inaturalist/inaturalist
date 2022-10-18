@@ -149,7 +149,7 @@ Rails.application.routes.draw do
     get "users/new", to: redirect( "signup" ), as: "new_user"
     # This *should* be a redirect, but that is messing with the way we're doing
     # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
-    get "/forgot_password", to: "devise/passwords#new", as: "forgot_password"
+    get "/forgot_password", to: "users/passwords#new", as: "forgot_password"
     put "users/update_session", to: "users#update_session"
   end
 
