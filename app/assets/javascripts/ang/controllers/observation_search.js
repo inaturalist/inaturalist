@@ -90,6 +90,16 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.dragRectDeltaXInPx = null;
   $scope.dragRectDeltaYInPx = null;
   $scope.dragCircleDeltaInKm = null;
+  $scope.dragIconMarker = new google.maps.Marker({
+    position: { lat: 0, lng: 0 },
+    icon: {
+      anchor: { x: 12, y: 12 },
+      url: "assets/drag-icon.png",
+      scaledSize: { width: 24, height: 24 }
+    },
+    draggable: true,
+    raiseOnDrag: false
+  });
 
   if ( typeof ( google ) !== "undefined" ) {
     $scope.mapBounds = new google.maps.LatLngBounds(
@@ -1007,8 +1017,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.removeDragIcon = function( ) {
     if ( $scope.drawing.dragIcon ) {
-      $scope.drawing.dragIcon.setMap( null );
-      $scope.drawing.dragIcon = null;
+      $scope.drawing.dragIcon.setVisible(false);
     }
   };
   $scope.orderBy = function( order ) {
@@ -1817,24 +1826,11 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       $scope.removeDragIcon();
     }
 
-    var svgMarker = {
-      scale: 0.8,
-      path: "M16 0C7.164 0 0 7.164 0 16s7.164 16 16 16 16-7.164 16-16S24.836 0 16 0zm6 20v-2h-4v4h2l-4 4-4-4h2v-4h-4v2l-4-4 4-4v2h4v-4h-2l4-4 4 4h-2v4h4v-2l4 4-4 4z",
-      fillColor: "#f16f3a",
-      fillOpacity: 0.8,
-      strokeWeight: 0,
-      strokeColor: $scope.boundaryBoxStyle.strokeColor,
-      strokeOpacity: $scope.boundaryBoxStyle.strokeOpacity,
-      anchor: new google.maps.Point(16, 16)
-    };
+    $scope.dragIconMarker.setMap($scope.map);
+    $scope.dragIconMarker.setPosition(shape.getBounds().getCenter());
+    $scope.drawing.dragIcon = $scope.dragIconMarker;
+    $scope.drawing.dragIcon.setVisible(true);
 
-    $scope.drawing.dragIcon = new google.maps.Marker({
-      position: shape.getBounds().getCenter(),
-      icon: svgMarker,
-      map: $scope.map,
-      draggable: true,
-      raiseOnDrag: false
-    });
     $scope.positionDragDrawingIcon( shape );
     $scope.$apply();
     google.maps.event.addListener( $scope.drawing.dragIcon, "dragstart", function ( ) {
@@ -1886,7 +1882,6 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       // Redo Search in Map for a fully zoomed out map
       var isRegionConfigurable = Math.abs($scope.params.nelat) !== Math.abs($scope.params.swlat) && Math.abs($scope.params.nelng) !== Math.abs($scope.params.swlng);
 
-      // google.maps.Rectangle seems more reliable than using GeoJSON here
       $scope.selectedPlaceLayer = new google.maps.Rectangle(
         _.extend( { }, $scope.boundaryBoxStyle, {
           map: $scope.map,

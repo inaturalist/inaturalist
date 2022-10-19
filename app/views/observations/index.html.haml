@@ -169,6 +169,7 @@
                 "ng-show": "viewing('observations', 'map')",
                 :class => "btn btn-default btn-redo-search {{ disableRedoSearch ? 'disabled' : '' }}",
               }
+                %span.glyphicon.glyphicon-repeat{ "aria-hidden": "true" }
                 {{ shared.t("redo_search_in_map") }}
               %button{
                 "ng-click": "clearBoundary( )",

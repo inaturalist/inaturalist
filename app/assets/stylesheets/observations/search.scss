@@ -736,13 +736,16 @@ inat-taxon { white-space: nowrap; }
   }
   .btn-redo-search {
     padding: 7px 7px 5px !important;
+    .glyphicon {
+      margin-right: 2px;
+    }
   }
   button.btn-clear-shape {
     padding: 7px 7px 5px !important;
+    color: white;
     background-color: $btn-grey;
     &:hover {
       background-color: $btn-grey;
-      color: white;
     }
   }
 }
