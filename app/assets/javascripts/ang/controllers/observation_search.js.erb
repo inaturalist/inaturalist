@@ -94,7 +94,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     position: { lat: 0, lng: 0 },
     icon: {
       anchor: { x: 12, y: 12 },
-      url: "assets/drag-icon.png",
+      url: "<%= asset_path('drag-icon.svg') %>",
       scaledSize: { width: 24, height: 24 }
     },
     draggable: true,
@@ -1299,6 +1299,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setupBrowserStateBehavior = function( ) {
     window.onpopstate = function( event ) {
+      if ( $scope.drawing.currentShape ) {
+        $scope.removeDragIcon( );
+        $scope.$digest( );
+      }
       var state = _.extend( { }, event.state || $scope.initialBrowserState );
       var previousParams = _.extend( { }, $scope.defaultParams, state.params );
       // needed to serialize some objects for storing in browser state
@@ -1878,10 +1882,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       if ($scope.selectedPlaceLayer) {
         $scope.removeSelectedPlace();
       }
-      // DrawingManager chokes when the resizable/editable region is the full map. This catches when the user clicks
       // Redo Search in Map for a fully zoomed out map
       var isRegionConfigurable = Math.abs($scope.params.nelat) !== Math.abs($scope.params.swlat) && Math.abs($scope.params.nelng) !== Math.abs($scope.params.swlng);
-
       $scope.selectedPlaceLayer = new google.maps.Rectangle(
         _.extend( { }, $scope.boundaryBoxStyle, {
           map: $scope.map,
