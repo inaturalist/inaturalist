@@ -803,7 +803,6 @@ nl:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: dikgedrukte tekst
-  bounding_box: Kaartuitsnede
   breadcrumbs: Broodkruimels
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -1353,6 +1352,7 @@ nl:
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
   curator_identification: Curatordeterminatie
   current_flags: Huidige meldingen
+  custom_boundary: Aangepaste grens
   custom_project_fields: Aangepaste projectvelden
   custom_project_was_successfully_created: Projectaanpassingen toegevoegd
   custom_project_was_successfully_updated: Projectaanpassingen bijgewerkt
@@ -1576,6 +1576,8 @@ nl:
   draft_saved: Kladversie bewaard!
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
+  draw_circular_boundary: Teken een cirkelvormige grens
+  draw_rectangular_boundary: Teken een rechthoekige grens
   drawings: Tekeningen
   duplicate_verb: Dupliceren
   duration_value: "Tijdsduur: %{duration} minuten"
@@ -2031,6 +2033,10 @@ nl:
       maverick: |
         Taxon is geen afstammeling of voorouder van het gemeenschapstaxon, d.w.z. de gemeenschap is het niet
         eens met dit taxon.
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "ID 2 van taxon <strong>E</strong> zal een onbedoelde onenigheid zijn met ID 1 van taxon <strong>B</strong> na de verandering van de voorouders"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "ID 2 van taxon <strong>E</strong> zal een onbedoelde onenigheid zijn met ID 1 van taxon <strong>B</strong> na de taxonwissel"
   id_withdrawn: ID ingetrokken
   ids_by_taxon: ID's volgens taxon
   identify: Determineer
@@ -2655,6 +2661,9 @@ nl:
   most_observed_introduced_species: Meest waargenomen geïntroduceerde soorten
   most_observed_threatened_species: Meest waargenomen bedreigde soorten
   move_input_children_to_output?: Verplaats de kinderen naar de export?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Het verplaatsen van %{child} van %{old_parent} zou strikter maken met wat we bedoelen met
+    %{old_parent}. Er zijn %{id_count} IDs van %{old_parent}.
   multiple: meerdere
   multiple_select_option: '-- meerdere --'
   multiple_taxa_for_taxon_change: "Meerdere taxa (invoer voor wisseling/samenvoeging, uitvoer voor opsplitsing)"
@@ -4124,6 +4133,7 @@ nl:
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
+  reset: Herstel
   reset_filters_short: Reset
   reset_brightness: Helderheid herstellen
   reset_search_filters: Reset zoekfilters

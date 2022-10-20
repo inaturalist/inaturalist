@@ -858,7 +858,6 @@ uk:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: жирний шрифт
-  bounding_box: Обмежувальна рамка
   breadcrumbs: Навігаційний ланцюжок
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -6865,7 +6864,7 @@ uk:
       4: ср
       5: чт
       6: пт
-      7: нд
+      7: сб
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'
