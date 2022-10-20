@@ -782,7 +782,6 @@ tr:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: kalın yazı
-  bounding_box: Karakter Kutusu
   breadcrumbs: Gezinme ipuçları
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -1318,6 +1317,7 @@ tr:
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
+  custom_boundary: Özel Sınır
   custom_project_fields: Özel Proje Alanları
   custom_project_was_successfully_created: Proje özelleştirmeleri eklendi
   custom_project_was_successfully_updated: Proje özelleştirmeleri güncellendi
@@ -1540,6 +1540,8 @@ tr:
   draft_saved: Taslak kaydedildi!
   drafts: Taslaklar
   drag_and_drop_some_photos_or_sounds: Bazı fotoğrafları ya da sesleri sürükleyip bırak
+  draw_circular_boundary: Dairesel bir sınır çizin
+  draw_rectangular_boundary: Dörtgen bir sınır çizin
   drawings: Çizimler
   duplicate_verb: Çoğalt
   duration_value: "Süre: %{duration} dakika"
@@ -4033,6 +4035,7 @@ tr:
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri nitelik değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
+  reset: Sıfırla
   reset_filters_short: Sıfırla
   reset_brightness: Parlaklığı Sıfırla
   reset_search_filters: Arama Filtrelerini Sıfırla
