@@ -1517,6 +1517,7 @@ en:
     private and obscured contributions to this project.
   curator_identification: Curator identification
   current_flags: Current Flags
+  # Label for a custom boundary for an observation search
   custom_boundary: Custom Boundary
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: Project customizations added
@@ -1751,7 +1752,9 @@ en:
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
+  # Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Draw circular boundary
+  # Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Draw rectangular boundary
   drawings: Drawings
   duplicate_verb: Duplicate
@@ -4426,6 +4429,7 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  # Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Reset
   reset_brightness: Reset Brightness
