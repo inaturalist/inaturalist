@@ -137,7 +137,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   // havng clicked a shape icon
   $( document ).keydown( function( e ) {
     if( e.key === "Escape" ) {
-      var scope = angular.element(document.getElementsByClassName("map-shape-searches")[0]).scope();
+      var scope = angular.element(document.getElementsByClassName("map-shape-controls")[0]).scope();
       if(scope.drawing.pendingDrawing && scope.currentSubview === "map") {
         scope.clearBoundary();
         scope.$apply();

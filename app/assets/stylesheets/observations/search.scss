@@ -1,5 +1,8 @@
 @import "../colors";
 
+body {
+  min-width: 980px;
+}
 #header {
   margin-bottom: 0px;
 }
@@ -142,12 +145,18 @@
     line-height: 142px;
     font-size: 112px;
   }
+  .bootstrap .container {
+    width: 100%;
+  }
 }
 @media (min-width: 1200px) {
   .bootstrap-10 .grid .photo {
     height: 212px;
     line-height: 180px;
     font-size: 112px;
+  }
+  .bootstrap .container {
+    width: 1170px;
   }
 }
 .grid .caption {
@@ -279,7 +288,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #map-controls {
   position: absolute;
-  top: 75px;
+  top: 95px;
   left: 15px;
 }
 .btn [class^="icon-"],
@@ -344,6 +353,9 @@ inat-taxon.split-taxon .icon {display: none;}
 #filter-container,
 #filters .primary-filters {
   margin-top: 20px;
+}
+#filters .form-control {
+  display: inline-block;
 }
 
 .bootstrap #filter-container > button.btn-default {
@@ -697,10 +709,21 @@ inat-taxon { white-space: nowrap; }
   margin-right: 2px;
 }
 #view-controls {
-  .map-shape-searches {
-    margin-left: 10px;
+  #subview-controls {
+    float: left;
+    margin-right: 3px;
+    padding-bottom : 2px;
+  }
+  #primary-map-controls {
+    float: left;
+    margin-right: 12px;
+    padding-bottom: 2px;
+  }
+  #map-shape-controls {
+    padding-top: 1px;
+    float: left;
     button {
-      color: #eee;
+      color: #fff;
       background: $btn-orange;
       padding: 8px 7px 2px;
       border: 0;
@@ -720,6 +743,14 @@ inat-taxon { white-space: nowrap; }
       opacity: 0.4;
       cursor: default;
     }
+    button.btn-clear-shape {
+      padding: 7px 7px 5px !important;
+      color: white;
+      background-color: $btn-grey;
+      &:hover {
+        background-color: $btn-grey;
+      }
+    }
   }
   embed {
     pointer-events: none;
@@ -729,7 +760,7 @@ inat-taxon { white-space: nowrap; }
     border-bottom-right-radius: 0;
   }
   .btn-circle {
-    margin-left: -3px;
+    margin-left: 0;
     border-left: 1px solid #ffb090 !important;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
@@ -739,14 +770,6 @@ inat-taxon { white-space: nowrap; }
     .glyphicon {
       margin-right: 2px;
       color: white;
-    }
-  }
-  button.btn-clear-shape {
-    padding: 7px 7px 5px !important;
-    color: white;
-    background-color: $btn-grey;
-    &:hover {
-      background-color: $btn-grey;
     }
   }
 }
@@ -1103,7 +1126,7 @@ $photo-count-line-width: 1px;
 }
 
 .bootstrap .btn-icon-stupidity {
-  padding: 4px 10.5px 3px;
+  padding: 4px 10.5px 2px;
 }
 .bootstrap .btn-icon-stupidity i { font-size: 18px; }
 .bootstrap .btn-icon-stupidity i.fa {
