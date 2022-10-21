@@ -131,7 +131,6 @@ group :test, :development, :prod_dev do
   gem "puma"
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "thin"
 end
 
 group :development do
