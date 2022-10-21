@@ -203,7 +203,7 @@ th:
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: เพิ่มข้อความที่เป็นตัวเอียง
   add_muted_users: เพิ่มผู้ใช้ที่ถูกปิดกั้น
-  add_new_lexicon: เพิ่มศัพท์เฉพาะใหม่
+  add_new_lexicon: เพิ่มภาษา/ศัพท์เฉพาะใหม่
   add_new_photos_by_their_ids: เพิ่มรูปภาพใหม่จาก Flickr (องค์กรไม่แสวงกำไรที่สนับสนุนการใช้เนื้อหาโดยไม่ถูกจำกัดจากสัญญาอนุญาต)
   add_new_place: เพิ่มสถานที่ใหม่
   add_new_rule: เพิ่มกติกาใหม่
@@ -254,7 +254,7 @@ th:
   add_taxon_batch_to: "เพิ่มชุดลำดับขั้นทางอนุกรมวิธานใน %{list}"
   add_taxon_range: เพิ่มช่วงอันดับขั้นทางอนุกรมวิธาน
   add_taxonomic_tags_to: "เพิ่มแท็กอนุกรมวิธานไปที่รูปจาก Flickr &raquo;"
-  add_to_a_scheme: เพิ่มเข้าไปในแผนการ
+  add_to_a_scheme: เพิ่มเข้าไปในแบบแผน
   add_to_a_project: เพิ่มเข้าโครงการ
   add_to_calendar: เพิ่มลงในปฎิทิน
   add_to_checklist: เพิ่มลงในรายการตรวจสอบ
@@ -632,8 +632,8 @@ th:
   community: ชุมชน
   community_guidelines: วิธีใช้งานสำหรับชุมชน
   community_id_heading: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกัน
-  community_id_at_species_or_lower?: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า?
-  community_id_at_species_level_or_lower: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า
+  community_id_at_species_or_lower?: เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า?
+  community_id_at_species_level_or_lower: เป็นหน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า
   community_id_is_precise: หน่วยอนุกรมวิธานที่ชุมชนเห็นพ้องกันและจำแนกได้แม่นยำ
   community_supported_id: หน่วยอนุกรมวิธานที่ชุมชนสนับสนุน?
   compare: เปรียบเทียบ
@@ -869,6 +869,7 @@ th:
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
   edit_your_default_settings: "แก้ไขการตั้งค่าเริ่มต้นของคุณ"
+  edit_your_identification: แก้ไขการจำแนกของคุณ
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
@@ -919,6 +920,7 @@ th:
   facebook: Facebook
   facebook_account_information: ข้อมูลบัญชี Facebook ของคุณ
   facebook_options: ตัวเลือก Facebook
+  'false': 'เท็จ'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
   Family: วงศ์
@@ -1059,7 +1061,15 @@ th:
   identify_observations: "จำแนกการสังเกต"
   identify_observations_by_these_users: จำแนกการสังเกตโดยผู้ใช้งานเหล่านี้
   identify_title: "จำแนกชนิด"
+  identification: การจำแนก
+  identification_by_user: การจำแนกโดย %{user}
+  #Notification when an identification has been deleted
+  identification_deleted: ลบการจำแนกแล้ว
   identification_saved: "บันทึกการจำแนกแล้ว!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: เลิกซ่อนข้อความประกอบการจำแนก
+  #Notification when an identification has been updated
+  identification_updated: อัปเดตการจำแนกแล้ว!
   #Notification when an identification has been withdrawn
   identification_withdrawn: ถอนการจำแนกแล้ว
   identifications: การจำแนก
@@ -1124,6 +1134,7 @@ th:
   leave_this_project: ออกจากโครงการนี้
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
+  lexicon: ภาษา/ศัพท์เฉพาะ
   lexicons:
     scientific_names: ชื่อวิทยาศาสตร์
     afrikaans: ภาษาอาฟรีกานส์
@@ -1384,6 +1395,7 @@ th:
   new_check_list: รายการตรวจสอบใหม่
   new_check_list_for: "สร้างรายการตรวจสอบใหม่สำหรับ %{place} &raquo;"
   new_journal_post: โพสต์วารสารใหม่
+  new_lexicon: ภาษา/ศัพท์เฉพาะใหม่
   new_list: รายการใหม่
   new_members: "สมาชิกใหม่"
   new_message: ข้อความใหม่
@@ -1545,6 +1557,10 @@ th:
       #kueda
       #added an ID to an observation by loarie
       with_observation: เพิ่ม<strong>การจำแนก</strong>ไปที่%{observation_link}ของ %{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: เพิ่ม<strong>การจำแนก</strong>
   per_day: ต่อวัน
   person: ผู้ใช้งาน
   per_page: "จำนวนต่อหน้า"
@@ -1886,6 +1902,8 @@ th:
   saved: บันทึกแล้ว
   saving_num_of_count_observations:
     other: กำลังบันทึก %{num} จาก %{count} การสังเกต...
+  schemes: แบบแผน
+  schemes_including: แบบแผนที่มี
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: ชื่อวิทยาศาสตร์
   search: ค้นหา
@@ -1906,6 +1924,12 @@ th:
   search_this_taxon: ค้นหาหน่วยอนุกรมวิธานนี้
   searching: "กำลังค้นหา..."
   seasonality: ตามฤดูกาล
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "%{noun}ของคุณ"
   seen_nearby: พบในบริเวณใกล้เคียง
   select: เลือก
   select_all: เลือกทั้งหมด
@@ -2034,6 +2058,8 @@ th:
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: แผนที่การกระจายของบัญชีแดง IUCN สำหรับหน่วยอนุกรมวิธานนี้ไม่เหมาะสม
   taxon_range_guidelines_learn_more_about_taxon_ranges: เรียนรู้เพิ่มเติมเกี่ยวกับช่วงหน่วยอนุกรมวิธาน
   taxon_ranks: ลำดับอนุกรมวิธาน
+  taxon_scheme: แบบแผนหน่วยอนุกรมวิธาน
+  taxon_schemes: "แบบแผนหน่วยอนุกรมวิธาน"
   taxon_search: การค้นหาหน่วยอนุกรมวิธาน
   taxon_search_results_for: ผลการค้นหาหน่วยอนุกรมวิธานสำหรับ
   taxon_name_was_deleted: ลบชื่อหน่วยอนุกรมวิธานแล้ว
@@ -2041,6 +2067,7 @@ th:
   taxonomy_details: รายละเอียดหน่วยอนุกรมวิธาน
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
   tell_the_world_a_little_about_yourself: บอกเราเกี่ยวกับตัวคุณ
+  tell_us_why: อธิบายเหตุผล...
   terms_service: ข้อตกลงการใช้งาน
   terrain: ภูมิประเทศ
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
@@ -2175,6 +2202,7 @@ th:
   total_observations: การสังเกตทั้งหมด
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  'true': 'จริง'
   trends: แนวโน้ม
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   type_place_name: พิมพ์ชื่อสถานที่
@@ -2341,6 +2369,7 @@ th:
   your_default: ค่าเริ่มต้นของคุณ
   your_hard_drive: อุปกรณ์ของคุณ
   your_home: หน้าหลักของคุณ
+  your_identification: การจำแนกของคุณ
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
   your_observations: การสังเกตของคุณ
@@ -2389,6 +2418,8 @@ th:
     messages:
       from: จาก
     observations:
+      community_id:
+        identification_count: จำนวนการจำแนก
       compare:
         #Label for a visualization that combines multiple series of data in a single chart
         combined: รวม
@@ -2458,6 +2489,8 @@ th:
         species_per_year: ชนิด / ปี
     taxa:
       show:
+        charts_help_seasonality: |
+          แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนของหน่วยอนุกรมวิธาน อย่าลืมว่าจำนวนการสังเกตขึ้นอยู่กับเวลาที่พบสิ่งมีชีวิตและความสนใจที่จะสังเกตของผู้คนด้วย เช่น การพบนกบ่อยมากในเดือนพฤษภาคมอาจเป็นเพราะผู้คนเลือกสำรวจในเดือน พ.ค. มากกว่าเดือนอื่น ๆ หรือแมลงปอที่พบในเดือนมิถุนายนบ่อยกว่าเดือนมกราคมอาจเป็นเพราะมีผู้สังเกตจากซีกโลกเหนือมากกว่าซีกโลกใต้ ซึ่งไม่ได้แปลว่าในเดือน มิ.ย. จะมีจำนวนแมลงปอมากกว่าเดือนอื่น ๆ จึงต้องตรวจสอบแผนที่ประกอบการพิจารณาแผนภูมิเหล่านี้ด้วย และไม่ควรเชื่อแผนภูมิที่มีจำนวนการสังเกตน้อย และ/หรือมีจำนวนการสังเกตที่ "ตรวจสอบได้" กับจำนวนการสังเกต "ระดับงานวิจัย" แตกต่างกันมากเกินไป
         charts_help_history: |
           แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนย้อนหลังสิบปีของหน่วยอนุกรมวิธาน ซึ่งอาจคลาดเคลื่อนได้ตามจำนวนผู้สังเกต โดยจะเห็นได้จากช่วงที่มีจำนวนการสังเกตมากผิดปกติ และถ้าช่วงใดมีจำนวนการสังเกตลดลงทั้งที่มีจำนวนผู้สังเกตเพิ่มขึ้น แสดงว่าความชุกชุมของประชากรอาจมีการเปลี่ยนแปลง
         frequency:
@@ -2613,6 +2646,8 @@ th:
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: สถานะการอนุรักษ์
         wikipedia_title: หัวข้อวิกิพีเดีย
+      taxon_name:
+        lexicon: ภาษา/ศัพท์เฉพาะ
       user:
         search_place_id: ค้นหาสถานที่
     errors:
