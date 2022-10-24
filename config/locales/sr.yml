@@ -582,6 +582,7 @@ sr:
   curator_application_fields_explanation_html: Zašto želiš da budeš kustos?
   #Header
   curator_application_what_curators_can_do: Ovlašćenja kustosa
+  custom_boundary: Posebna granica
   daily_users: Korisnika dnevno
   dashboard: Kontrolna tabla
   data_quality: Kvalitet podataka
@@ -707,6 +708,8 @@ sr:
   draft_: Nacrt
   draft_saved: Nacrt sačuvan!
   drafts: Nacrt
+  draw_circular_boundary: Iscrtaj kružnu granicu
+  draw_rectangular_boundary: Iscrtaj pravougaonu granicu
   drawings: Crteži
   duplicate_verb: Dupliraj
   duration_value: "Trajanje: %{duration} minut(a)"
@@ -934,6 +937,8 @@ sr:
   join_this_project: Pridruži se ovom projektu
   'joined!': Pridružen!
   journal: Dnevnik
+  journal_post: Rubrika dnevnika
+  journal_post_deleted: Rubrika dnevnika izbrisana.
   journal_posts: Rubrike dnevnika
   jpg_png_or_gif: "JPG, PNG, ili GIF"
   keep_editing: Nastavi uredjivanje
@@ -1242,6 +1247,7 @@ sr:
   more_from_x: Više od %{x}
   more_info: Više informacija
   more_info_title: Više informacija
+  more_journal_posts: Prikaži više rubrika dnevnika
   more_observations: Više opservacija
   more_photos: Više fotografija
   more_than_a_week_ago: Pre više od nedelju dana
@@ -1279,6 +1285,7 @@ sr:
   new_application: Nova aplikacija
   new_assessment: Nova procena
   new_guide: Novi vodič
+  new_journal_post: Nova rubrika dnevnika
   new_list: Nova lista
   new_members: "Novi članovi"
   new_message: Nova poruka
@@ -1312,6 +1319,7 @@ sr:
   no_description: Nema opisa
   no_identifications: Nema identifikacija
   no_ids: "Broj ID-jeva"
+  no_journal_posts_yet: Nema rubrika dnevnika
   no_license_all_rights_reserved: Bez licence (sva prava zadržana)
   no_matching_article_from_x: "Nema takvog članka na %{x}"
   no_matching_observations: Nema takvih opservacija.
@@ -2023,6 +2031,7 @@ sr:
   required_: Obavezno
   required_field: obavezno polje
   research_grade: Formalan nalaz
+  reset: Resetuj
   reset_filters_short: Resetuj
   reset_brightness: Resetuj svetlinu
   reset_search_filters: Resetuj filtere pretrage
@@ -2390,6 +2399,7 @@ sr:
   users_favorites: "Favoriti korisnika %{user}"
   users_id: "ID-jevi korisnika %{user}"
   users_identifications: "Identifikacije korisnika %{user}"
+  users_journal: "Dnevnik korisnika %{user}"
   users_profile: "Profil korisnika %{user}"
   users_projects: "Projekti korisnika %{user}"
   value: Vrednost
@@ -2479,6 +2489,7 @@ sr:
     one: "%{x} od %{count} zabeleženo"
     few: "%{x} od %{count} zabeleženo"
     other: "%{x} od %{count} zabeleženo"
+  x_project_journal: "%{project} %{name}"
   x_wrote_a_new_post_html: "%{x} je napisao/la novu objavu"
   year: Godina
   year_month: godina/mesec
@@ -2499,33 +2510,98 @@ sr:
   you_are_no_longer_following_x: "Više ne pratiš %{friend}."
   you_arent_a_member_of_that_project: Nisi član tog projekta.
   you_arent_following_that_person: "Ne pratiš tu osobu."
+  you_can_accept_invitations: Ovde možeš prihvatiti poziv
+  you_can_choose_observations_associated: Izaberi opservacije koje ćeš dodati ovoj rubrici dnevnika.
+  you_can_only_destroy_taxa_you_created2: |
+    Možeš izbrisati samo taksone koje si kreirao/la i koji nisu povezani sa promenom taksona, identifikacijama, ili drugim sadržajem
   you_can_only_block_three_users: Možeš blokirati maksimalno 3 korisnika
+  you_cant_delete_a_project_list: "Ne možeš izbrisati listu projekta"
+  you_cant_leave_a_project_you_created: Ne možeš napustiti projekat koji si kreirao/la.
+  you_cant_rotate_photos_hostde_outside: "Ne mogu se rotirati fotografije hostovane izvan %{site_name}."
+  you_cannot_delete_taxa_involved_in_taxon_changes: Ne možeš izbrisati takson koji je u procesu promene taksona ili koji sadrži taksone koji su u procesu promene taksona
+  you_curate_a_project_that_contains_this_observation: Kustos si projekta koji sadrži ovu opservaciju
+  you_curate_a_project_that_contains_this_observation_desc: |
+    Možeš videti prikrivene koordinate kada si kustos projekta koji sadrži tu opservaciju i posmatrač izabere da deli koordinate sa kustosima projekta.
   you_didnt_select_any_observations: Nisi označio nijednu opservaciju
   you_dont_have_permission_to_do_that: Nemaš dozvolu da uradiš to.
+  you_dont_have_permission_to_edit_that_observation: "Nemaš dozvolu da izmeniš tu opservaciju."
+  you_dont_have_permission_to_edit_that_project: Nemaš dozvolu da izmeniš taj projekat.
+  you_dont_have_permission_to_edit_that_taxon: |
+    Nemaš dozvolu da izmeniš tuaj takson. Kontaktiraj nekog od kustosa projekta ili označi takson da bi zahtevao promenu.
+  you_dont_have_permission_to_edit_those_photos: Nemaš dozvolu da izmeniš te fotografije.
   you_faved_this: Dodato u favorite!
   you_have_left_x_project: "Napustio si %{project}"
+  you_havent_linked_your_inaturalist_google_account: "Nisi povezao/la tvoj %{site_name} nalog sa Google nalogom"
   you_joined_this_project: Pridružio si se ovom projektu!
+  you_must_be_a_member_of_this_project_to_do_that: Moraš biti član ovog projekta da bi to uradio
+  you_must_fill_out_the_required_fields: Popuni obavezna polja
+  you_must_have_a_header_row: Moraš imati red zaglavlja
+  you_must_select_at_least_one_taxon: Selektuj bar jedan takson
+  you_must_specify_and_confirm_a_new_password: Unesi i potvrdti novu lozinku.
+  you_need_to_have_linked_flickr_account: Moraš imati povezan Flickr nalog da bi tagovao/la slike.
+  you_need_to_select_some_observations_first: Prvo moraš selektovati neku opservaciju.
+  you_retain_full_copyright: "Zadržavaš sva prava na tvoj sadržaj osim onih prava dodeljenih %{site_name} u našim uslovima korišćenja."
+  you_retain_full_copyright_over_your_content: "Zadržavaš sva prava na tvoj sadržaj osim onih prava dodeljenih %{site_name} u našim uslovima korišćenja."
+  you_should_delete_this_taxon_change: |
+    Verovatno bi trebalo izbrisati ovu promenu taksona ili bar naći rešenje sa osobom/osobama koje su napravile drugu promenu/ne.
+  you_sure_delete_check_list: "Da li sigurno želiš da izbrišeš ovaj spisak? Neko je možda uložio puno truda praveći je..."
+  you_sure_delete_comment?: Da li sigurno želiš da izbrišeš ovaj komentar?
+  you_sure_delete_identification?: Da li sigurno želiš da izbrišeš ovu identifikaciju?
   you_sure_delete_project?: Da li sigurno želiš da izbrišeš ovaj projekat?
   you_sure_delete_this_observation: "Da li sigurno želiš da izbrišeš ovu opservaciju"
+  you_sure_remove_taxon_from?: "Da li sigurno želiš da izbrišeš ovaj takson sa %{list}?"
+  youll_need_to_link: Moraš povezati
+  youve_joined_the_x_project: "Pridruđio si se %{project_invitation} projektu i tvoja opservacija je dodata"
+  your_account_has_been_activated: Tvoj nalog je aktiviran!
+  your_account_has_been_verified: "Tvoj %{site_name} nalog je verifikovan. Prijavi se da bi nastavio/la."
+  your_activation_code_was_missing: "Tvoj aktivacioni kod nije pronađen. Prati link naveden u imejlu."
+  your_browser_does_not_support_the_audio_element: Tvoj pretraživač ne podržava zvučne elemente.
+  your_comment_was_saved: Tvoj sadržaj je sačuvan
   your_content: Tvoj sadržaj
+  your_contributions_to_project: "Tvoji doprinosi projektu %{project_title}"
   your_email_address: Tvoja imejl adresa
   your_favorites: Tvoji favoriti
   your_flickr_account: tvoj Flickr nalog
   your_hard_drive: tvoj hard disk
-  your_home: Tvoja početna strana
+  your_home: Početna strana
   your_id: Tvoj ID
   your_identification: Tvoja identifikacija
   your_membership: Tvoje članstvo
   your_name_was_saved: Tvoje ime je sačuvano
   your_observations: Tvoje opservacije
+  your_observations_couldnt_be_added_to_that_project: "Tvoje opservacije ne mogu biti dodate u taj projekat: %{errors}"
   your_projects: Tvoji projekti
   your_google_account: tvoj Google nalog
   your_google_account_info: Informacije sa tvog Google naloga
+  your_pinned_locations: Tvoje sačuvane lokacije
   your_profile_was_successfully_updated: Tvoj profil je uspešno ažuriran.
   your_recent_projects: Tvoji skorašni projekti
   your_tags: Tvoje oznake
+  youre_not_following_anyone: |-
+    Za sad ne pratiš nikoga. Praćenjem drugih prirodnjaka ti omogućava da budeš u toku sa njihovim opservacijama. Saznaj šta ljudi <a href="%{observations_path}">posmatraju</a> i stekni nove <a href="%{people_path}">prijatelje</a>.
+  youre_not_following_anyone_on_inat: Za sad ne pratiš nikog na %{site_name}!
+  youve_linked_your_inaturalist_google_account: "Povezao/la si tvoj %{site_name} nalog sa Google nalogom. To ti omogućava da povežeš tvoje Google fotografije sa %{site_name} opservacijama."
+  youve_successfully_linked_your_provider_account: "Uspečno si povezao/la tvoj %{provider} nalog"
+  verifiable: Argumentovane
+  verifiable_observations: Argumentovane opservacije
   views:
+    views: 'Pregledi'
     donate:
+      donate_short_desc: "Doniraj sada da bi podržao!"
+      donate_desc_html: |
+        <p class="lead">
+        <strong>iNaturalist je jedna od najvećih svetskih zajednica posvećena istraživanju biodiverziteta. Hvala ti što si deo nje!</strong>
+        </p>
+        <p class="lead">
+        Ako veruješ u snagu razmene znanja i stvaranja neprocenjivih podataka o biodiverzitetu ove globalne zajednice ljubitelja prirode, razmotri kupovinu jednog ili više poklona online, ili pogledaj <a
+        href="https://www.inaturalist.org/pages/giving">druge načine da pomogneš</a>.
+        </p>
+        <p class="lead">
+        Tvoja donacija pomaže iNaturalist kako se zajednica uvećava, od unapređenja kompjuterske vizije i uvođenja novih opcija do održavanja servera i plaćanja osoblja.
+        </p>
+        <p class="text-muted">
+        iNaturalist je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva. Sve donacije prima Akademija nauka u Kaliforniji, 501(c)(3) otpisivanje poreza za neprofitne organizacije sa sedištem u Sjedinjenim Američkim Državama (Tax ID: 94-1156258).
+        </p>
       post_donate_social_media_text: Podržavam iNaturalist zato što...
     guides:
       pdf_layouts:
@@ -2701,6 +2777,8 @@ sr:
         notification_preferences_mentions: Spominjanja
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Poruke
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Rubrike dnevnika projekta
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: taksonomske promene
         #Checkbox label for user preference about what to receive in the daily email update
