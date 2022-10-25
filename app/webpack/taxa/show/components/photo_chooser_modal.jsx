@@ -78,7 +78,7 @@ class PhotoChooserModal extends React.Component {
     this.setState( { page: options.page || 1, photos: [] } );
     switch ( chosenProvider ) {
       case "inat":
-        this.fetchObservationPhotos( { quality_grade: "any" }, options );
+        this.fetchObservationPhotos( { }, options );
         break;
       case "inat-rg": {
         this.fetchObservationPhotos( { quality_grade: "research" }, options );

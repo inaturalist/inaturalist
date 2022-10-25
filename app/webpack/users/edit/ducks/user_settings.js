@@ -113,6 +113,7 @@ export function saveUserSettings( ) {
     delete params.user.roles;
     delete params.user.monthly_supporter;
     delete params.user.blocked_user_ids;
+    delete params.user.muted_user_ids;
     delete params.user.privileges;
     delete params.user.icon_url;
     delete params.user.orcid;
