@@ -88,6 +88,10 @@ sr:
     one: "<a href='%{url}'>%{count} vrsta</a>"
     few: "<a href='%{url}'>%{count} vrste</a>"
     other: "<a href='%{url}'>%{count} vrsta</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} preporuka filtrirana po:"
+    few: "%{count} preporuke filtrirane po:"
+    other: "%{count} preporuka filtriranih po:"
   x_taxa:
     one: "%{count} takson"
     few: "%{count} taksona"
@@ -123,6 +127,7 @@ sr:
   about_places: O mestima
   about_taxon_ranges: O opsezima taksona
   about_the_network: O mreži
+  about_this_bioblitz: O ovom bioblitz-u
   about_this_map: O ovoj mapi
   about_this_project: O ovom projektu
   about_trusting_projects_options_any: Sve tvoje opservacije u ovom projektu
@@ -2258,12 +2263,26 @@ sr:
   that_observation_hasnt_been_added_this_project: Opservacija nije dodata u ovaj projekat.
   that_observation_no_longer_exists: Opservacija više ne postoji.
   that_project_doesnt_exist: "Nepostojeći projekat."
+  the_user_x_has_been_suspended: "Korisnik %{user} je suspendovan"
   the_world: Svet
   then_keybord_sequence: onda
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: to
+  this_bioblitz_beings_in: Bioblitz počinje u
+  this_is_taking_forever: Ovo traje predugo. Molimo pokušaj kasnije.
   this_is_your_observation: Ovo je tvoja opservacija
+  this_is_your_observation_desc: Uvek možeš da vidiš koordinate tvojih opservacija.
   this_list_is_empty!: Lista je prazna!
   this_observation: Ova opservacija
+  this_observation_was_created_using: "Ova opservacija je kreirana pomoću:"
+  this_photo_is_already_associated: Ova fotografija je već povezana sa nekom od tvojih opservacija.
+  this_taxon_has_more_than_1000_alt: |
+    Postoji više od 1000 opservacija povezanih sa ovim taksonom tako da će promena potrajati. Da li si siguran/la da je neophodna?
   this_taxon_has_no_default_photo: Ovaj takson nema podrazumevanu fotografiju!
   this_taxon_is_inactive_this_means: |
     Ovaj takson je <strong>neaktivan</strong>. To znači da su ga %{site_name} kustosi zamenili sa aktuelnijim konceptom.
@@ -2290,6 +2309,22 @@ sr:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_athens: Istočnoevropsko vreme
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Srеdnjoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Srеdnjoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Srеdnjoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Istočnoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Istočnoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Zapadnoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Zapadnoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Srеdnjoevropsko vreme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_paris: Srеdnjoevropsko vreme
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_prague: Srеdnjoevropsko vreme
@@ -2311,9 +2346,13 @@ sr:
   tools: Alati
   top_identifiers: Prvi identifikator
   top_identifiers_of_taxon: Prvi identifikator taksona %{taxon}
+  top_observer_caps: NAJBOLJI POSMATRAČ
+  top_observers: Najbolji posmatrači
   tos_privacy_guidelines_label: |
     Slažem se sa <a href="/terms" target="_blank">Uslovima korišćenja</a> i
     <a href="/privacy" target="_blank">Politikom privatnosti</a>, i pregledao/la sam <a href="/pages/community+guidelines" target="_blank">Smernice zajednice</a>.
+  total: Ukupno
+  totals: Ukupno
   total_observations: Ukupno opservacija
   'true': 'Tačno'
   trusted: Pouzdanost
@@ -2327,7 +2366,13 @@ sr:
   uicn_red_list_status: "Status na IUCN crvenoj listi:"
   unblock: Odblokiraj
   unclassified: Neklasifikovani
+  unhide_content: Otkrij sadržaj
+  unique_observers: jedinstveni posmatrači
+  unknown: Nеpoznato
+  unknown_error: Nepoznata greška
   unfollow: Otprati
+  updates_notification_email_subject: "%{prefix} Nova ažuriranja %{date}"
+  updating: Ažuriranje...
   unsubscribe: Odjavi se
   update: Ažuriraj
   update_observations: Ažuriraj opservacije
@@ -2343,6 +2388,7 @@ sr:
   updated: Ažurirano
   updated_by: Ažurirao/la
   updated_daily: Dnevno ažuriranje
+  updated_photo: Ažuriraj fotografiju
   upload: Otpremi
   upload_a_csv_file: Otpremi CSV fajl
   upload_new_photo: Otpremi novu fotografiju
@@ -2357,6 +2403,7 @@ sr:
       add: Dodaj opservaciju/je
       combine: Kombinuj označene opservacije
       duplicate: Dupliraj označene opservacije
+      photo_failed: Neuspelo otpremanje fotografije
       remove: Ukloni označene opservacije
       remove_observation: Ukloni opservacije
       remove_photo: Ukloni sliku
@@ -2389,7 +2436,12 @@ sr:
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
   user_invited_you_to_join_html: "%{user} te je pozvao da se pridružiš"
   user_invited_you_to_join_project: "%{user} te je pozvao da se pridružiš projektu %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} te je pozvao da se pridružiš ovom projektu %{date}"
   user_is_a_naturalist: "%{user} je prirodnjak!"
+  user_is_now_the_admin_for_project_html: |
+    <strong>%{user}</strong> je sada administrator projekta %{project}
+  user_is_now_a_curator_for_project_html: |
+    <strong>%{user}</strong> je sada kustos projekta %{project}
   user_muted: Korisnik ućutkan
   user_suggested_an_id: "%{user} je predložio ID"
   username: Korisničko Ime
@@ -2404,6 +2456,7 @@ sr:
   users_projects: "Projekti korisnika %{user}"
   value: Vrednost
   values: Vrednosti
+  verbing_x_of_y: "%{verb} %{x} od %{y}..."
   view: Pogledaj
   view_all: Pogledaj sve
   view_all_members: Pogledaj sve članove
@@ -2414,6 +2467,7 @@ sr:
   view_full_observation: Pogledaj celu opservaciju
   view_full_size_photo: Pogledaj fotografiju u punoj veličini
   view_journal: Pogledaj dnevnik
+  view_license: Pogledaj licencu
   view_lists: Pogledaj liste
   view_more: Pogledaj više
   view_more_about_x: "Pogledaj više o %{x}"
@@ -2430,21 +2484,28 @@ sr:
   view_your_dashboard: Pogledaj tvoju kontrolnu tablu
   view_your_inbox: Pogledaj tvoje prijemno sanduče
   view_your_observations: Pogledaj tvoje opservacije
+  view_your_year_stats: "Pogledaj tvoju statistiku iz %{year}"
   view_yours: Pogledaj tvoje
+  view_all_of_your_observations_from_x: "Pogledaj sve tvoje opservacije iz %{x}"
   video_tutorials: Video tutorijali
   visually_similar: Vizuelno slični
   vulnerable: Ugroženi
+  w_photos_only: sa fotografijama
+  w_sounds: sa zvukovima
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Tražene
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
   we_also_support: |
     Takođe podržavamo <a href="http://flickr.com">Flickr</a>, <a href="http://photos.google.com">Google slike</a>, i <a href="http://facebook.com">Facebook</a> za hostovanje slika.
+  we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
+  we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
   weather: Vreme
   website: Veb stranica
   week_of_date: "Nedelja %{date}"
   welcome: Dobrodošli
   welcome_back!: Dobrodošli nazad!
   welcome_to_inat: "Dobrodošli na %{site_name}!"
+  welcome_to_guides: "Dobrodošli u %{site_name} vodiče"
   welcome_to_x_project: "Dobrodošli u %{project}"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Prilično smo sigurni da pripada rodu
@@ -2466,11 +2527,25 @@ sr:
   what_did_you_see?: <em>Šta</em> si video/la?
   what_do_you_think: Šta misliš?
   what_to_keep: Šta zadržati
+  whats_this?: Šta je ovo?
+  when: Kada
+  when_did_you_see_it?: Kada je to bilo?
+  when_did_you_see_them?: <em>Kada</em> si ih video/la?
+  where: Gde
+  where_were_they?: Gde je bilo?
+  where_were_you?: Gde je to bilo?
+  white: bela
+  who_can_see_the_coordinates: Ko može videti koordinate
+  who_helped_user_the_most: "Ko je najvie pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao/la"
   why_the_coordinates_are_obscured: Zašto su koordinate sakrivene?
+  with: sa
   withdraw: Povuci
   withdrawing: Povlačenje...
+  with_errors: Sa greškama
   worldwide: Globalno
+  would_you_like_to: Da li bi želeo/la
+  would_you_prefer_to_view_common_names_used_in_place_html: Da li radije želiš da vidiš narodne nazive u <strong>%{place}</strong>?
   x_blog: "Blog %{x}"
   x_deleted: "%{x} je izbrisan"
   x_does_not_exist: "\"%{x}\" ne postoji"
@@ -2505,7 +2580,13 @@ sr:
   yir_donate_inaturalist_needs_your_support: iNaturalist-u je potrebna tvoja podrška
   yir_millions_of_people_used_inaturalist: |
     Milioni ljudi ove godine su koristili iNaturalist i Seek da se povežu sa prirodom
+  you: tebe
   you_: Tebe
+  you_are_now_following_x: "Sada pratiš %{friend_user}."
+  you_are_now_the_admin_for_project_html: |
+    <strong>ti</strong> si sada administrator projekta %{project}
+  you_are_now_a_curator_for_project_html: |
+    <strong>ti</strong> si sada kustos projekta %{project}
   you_are_already_a_member_of_this_project: "Već si član ovog projekta!"
   you_are_no_longer_following_x: "Više ne pratiš %{friend}."
   you_arent_a_member_of_that_project: Nisi član tog projekta.
@@ -2586,6 +2667,18 @@ sr:
   verifiable_observations: Argumentovane opservacije
   views:
     views: 'Pregledi'
+    custom_projects:
+      edit:
+        custom_project_fields_warning: |
+          Pažnja: dodavanje Javascript-a i CSS-a na stranu tvog projekta može ozbiljno pokvariti izgled strane i potencijalno omogućiti širenje zlonamernog softvera ljudima koji posete stranu. Ako ne razumeš za šta je namenjen određeni deo koda, najbolje je da ga ne dodaješ.
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Planiraš li da koristiš %{site_name} u nastavne svrhe?
+          community_guidelines_html: |
+            <a href="%{url}">Pogledaj smernice zajednice</a> za savete kako održati iNaturalist kao prijateljsko i prijatno mesto.
+          please_read_the_teachers_guide_html: |
+            Ako je tako, pročitaj naš<a href="%{url}">Vodič za nastavnike</a> za savete o upotrebi %{site_name} u nastavne svrhe.
     donate:
       donate_short_desc: "Doniraj sada da bi podržao!"
       donate_desc_html: |
@@ -2734,17 +2827,26 @@ sr:
     stats:
       year:
         compared_to_previous_years: Uporedi sa prethodnim godinama
+        donate_title: "Posebna zahvalnost svima koji nam pomažu"
         donors: Donatori
         donors_guide_label_our_goal_is_1000: Naš cilj je 1000 redovnih donatora mesečno
         inaturalist_network: iNaturalist mreža
         growth_by_country_title: Rast po državi
+        growth_in_year_obs: "Porast u %{year} (ops.)"
         growth_title: Rast
         new_species_per_year: Nove vrste / godini
+        obs_in_year: Ops. u %{year}
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: Jednokratno
+        percent_growth_in_year: "% rasta u %{year}"
         percent_of_total_growth: "% ukupnog rasta"
         observations_per_year: Opservacije / godini
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Redovni
         species_per_year: Vrsta / godini
+        species_per_year_by_date_added: Po datumu dodavanja
+        species_per_year_by_date_observed: Po datumu posmatranja
+        stats_generated_datetime: Statistika generisana %{datetime}
         translators_title: Prevodioci
     taxa:
       show:
