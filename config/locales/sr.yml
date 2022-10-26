@@ -2775,11 +2775,29 @@ sr:
         image_url: URL podrazumevane slike
       import:
         date_column_format: GGGG-MM-DD SS:MM
+        decimal_degrees_format: dd.dddd
+      show:
+        identification_count_desc: 'broj identifikacija za individualni takson'
+        flagged_photos_desc_html: |
+          Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
     emailer:
       collection_project_changed_for_trusting_member:
         wondering_what_this_means_html: |
           Pitaš se šta je geoprivatnost?
           <a href="%{url}">Saznaj više u našoj dokumentaciji</a>.
+      observations_export_notification:
+        your_observations_export_failed_html: |
+          Izvoz tvojih opservacija nije uspeo. Poseti stranu <a href="%{url}">Izvoz opservacija</a> gde ćeš naći listu tvojih izvoza.
+      parental_consent:
+        subject: Tvoje dete bi volelo da koristi iNaturalist
+      user_parent_confirmation:
+        subject: iNaturalist nalog tvog deteta je aktiviran
+      users_updates_suspended:
+        message: |
+          Nisi bio/la dugo aktivan/na na %{site_name} pa smo obustavili tvoja praćenja. Da bi nastavio/la da dobijaš obaveštenja o aktivnostima na sajtu, <a href="%{login_url}">uloguj se na svoj nalog</a>.
+    photos:
+      forbidden_notice_html: |
+        Trenutno nemamo dozvolu da pristupimo ovim fotografijama. Možda ćeš trebati da diskonektuješ i opet konektuješ tvoj nalog u <a href="/users/edit">podešavanjima</a> kako bi dobili dozvolu.
     projects:
       project_type: Tip projekta
       collection: Kolekcija
@@ -2798,6 +2816,11 @@ sr:
         delete_project: Izbriši projekat
         display_project_name: Prikaži naziv projekta
         duplicate_project: Dupliraj projekat
+        name_placeholder: Ptice Čikaga, Neverovatni Vilini Konjici, itd.
+        note_these_users_will_be_able_to_edit: |
+          Napomena: ovi korisnici će moći da izmene SVE detalje projekta uključujući administratore.
+        note_about_unselected_filters: |
+          Napomena: Ako ne označiš takson, mesto ili člana, svi će biti uključeni po podrazumevanim podešavanjima.
         or_drag_and_drop: (ili prevuci i spusti)
         project_background_color: Pozadina rezimea projekta
         project_banner: Naslovna slika projekta (PNG ili JPG)
@@ -2822,9 +2845,21 @@ sr:
       blocked:
         youve_been_blocked: Blokiran/a si
         youve_blocked: Blokirao/la si ovu osobu
+      spam:
+        this_has_been_flagged_as_spam: Ovo je označeno kao nepoželjan sadržaj
       not_found:
         sorry_that_doesnt_exist: Ups, to ne postoji!
     stats:
+      index:
+        iphone_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist iPhone aplikacije</a>
+        new_users_desc: Registrovani do danas
+        obs_1_day_desc: "Opservacije kreirane u jednom danu"
+        obs_desc: Kreirane u poslednjih 7 dana
+        obs_id_d_desc: Kreirane u poslednjih 7 dana i imaju ID (može biti i autorov)
+        recent_w_0_obs: Skorašnji bez opservacija
+        recent_w_0_obs_desc: Registrovani u poslednjih 7 dana i bez opservacija
+        recent_w_7_obs: Skorašnji sa >= 7 opservacija
+        recent_w_7_obs_desc: Registrovani u poslednjih 7 dana i sa >= 7 opservacija
       year:
         compared_to_previous_years: Uporedi sa prethodnim godinama
         donate_title: "Posebna zahvalnost svima koji nam pomažu"
@@ -2841,36 +2876,69 @@ sr:
         percent_growth_in_year: "% rasta u %{year}"
         percent_of_total_growth: "% ukupnog rasta"
         observations_per_year: Opservacije / godini
+        observation_streaks_color_desc: |
+          Boja predstavlja broj dana na logaritamskoj skali
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Redovni
         species_per_year: Vrsta / godini
         species_per_year_by_date_added: Po datumu dodavanja
         species_per_year_by_date_observed: Po datumu posmatranja
         stats_generated_datetime: Statistika generisana %{datetime}
+        store_prompt: |
+          Hoćeš da pokažeš da si deo iNaturalist-a gde god odeš? Pogledaj iNat prodavnicu!
         translators_title: Prevodioci
+        translators_desc: |
+          Da li znaš da je iNaturalist preveden na %{x_languages}, skoro u celosti su preveli %{x_people}, od kojih neki uopšte ne koriste iNat? Evo svih divnih prevodilaca koji su doprineli prevodu ove godine sa brojem reči koje je svaki od njih preveo za
+          %{website_link_tag}sajt%{link_tag_end}, iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} i
+          %{android_link_tag}Android%{link_tag_end} aplikacije, kao i
+          %{seek_link_tag}Seek%{link_tag_end}. Da bi video sve ljude koji su doprinelu prevodu na sve jezike, uključujući one iz prošlih godina kao i one sa Translatewiki, poseti %{view_all_web_link_tag}web verzija%{link_tag_end} i %{view_all_mobile_link_tag}mobile verzija%{link_tag_end} repozitorijume koda.
+        translators_desc_for_site: |
+          Da li znaš da su skoro u celosti %{site_name} preveli %{x_people}? Evo svih divnih prevodilaca koji su doprineli prevodu ove godine sa brojem reči koje je svaki od njih preveo za
+          %{website_link_tag}sajt%{link_tag_end}, iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} i
+          %{android_link_tag}Android%{link_tag_end} aplikacije, kao i
+          %{seek_link_tag}Seek%{link_tag_end}. Da bi video sve ljude koji su doprinelu prevodu na sve jezike, uključujući one iz prošlih godina kao i one sa Translatewiki, poseti %{view_all_web_link_tag}web verzija%{link_tag_end} i %{view_all_mobile_link_tag}mobile verzija%{link_tag_end} repozitorijume koda.
+        translators_prompt: |
+          Ako želiš da pomogneš u prevođenju, %{link_tag}pogledaj kako%{link_tag_end}
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Dodavanje statusa ugroženosti višem nivou taksona utiče na opservacije svih vrsta unutar tog taksona. Molimo te da ne dodaješ statuse taksonima koji sadrže vrste koje nemaju status ugroženosti jer će tako koordinate opservacija tih vrsta biti nepotrebno skrivene.
       show:
+        discoveries_desc: "Najskorije novoidentifikovane vrste u ovom taksonu"
         frequency:
+          verifiable: Argumentovane
           "Alive or Dead=Alive": Živ
           "Alive or Dead=Dead": Mrtav
           "Plant Phenology=No Evidence": Nema dokaza
           "Life Stage=Adult": Odrastao
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Larva
+          "Life Stage=Nymph": Nimfa
           "Life Stage=Pupa": Lutka
           "Sex=Cannot Be Determined": Ne može se utvrditi
           "Sex=Female": Ženka
           "Sex=Male": Mužjak
+        trending_desc: Takson sa najviše opservacija u prethodnom mesecu
+        trending_in_place_desc_html: Takson sa najviše opservacija u prethodnom mesecu u <a href="%{url}">%{place}</a>
+        wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
     users:
       delete:
         by_deleting_your_account_you_will_remove: |
           Brisanjem tvog profila uklanjaš
+        furthermore_cannot_undo_html: |
+          Takođe, <strong>ovaj korak ne može biti poništen.</strong> Ako se u nekom trenutku predomisliš, nećeš moći da povratiš tvoj sadržaj.
+        settings_and_mute_html: |
+          Ako dobijaš previše obaveštenja od ovog sajta, možeš <a href="/users/edit">izmeniti podešavanja</a> da bi isključio/la određena obaveštenja ili da ti ne bi više slali imejlove. Ako imaš problema konkretno sa nekom osobom na sajtu, možeš je <a href="/users/edit">ućutati</a> umesto brisanja svog naloga.
         still_want_to_delete_html: |
           Ako ipak želiš da izbrišeš tvoj nalog, unesi <code>%{confirmation_code}</code> ispod i klikni na dugme da izbrišeš tvoj nalog i sve tvoje podatke.
         type_confirmation_code: Unesi %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: |
           Unesi "%{confirmation_code}" da bi izbrisao/la tvoj nalog
       edit:
+        name_place_help_html: |
+          Daj priorite narodnim nazivima za ovo mesto.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentari
         #Checkbox label for user preference about what to receive in the daily email update
@@ -2882,11 +2950,17 @@ sr:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Rubrike dnevnika projekta
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Kada projekat doda tvoju opservaciju
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: taksonomske promene
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Opservacije ljudi koje pratim
         project_addition_preferences:
+          any: Bilo koji
           joined: Projekti kojima si se pridružio/la
+          none: "Nijedan, samo ti možeš dodati svoju opservaciju u projekte"
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Podatke o pretraživaču kao što je naziv, verzija
       show:
         this_user_was_banned: Korisnik je suspendovan
     user_parents:
@@ -2896,8 +2970,13 @@ sr:
         create_minor_account: Kreiraj dečji profil
         parent_information_private: Informacije o roditelju (privatno)
         step1_title: KREIRAJ NALOG ZA TVOJE DETE
+        step2_title: POTVRDI IDENTITET KREDITNOM KARTICOM
+        step2_desc: |
+          Da bi potvrdio/la identitet kao punoletna osoba, trebalo bi da pošalješ donaciju iNaturalist-u od najmanje 1 USD preko tvoje kreditne kartice. Ovo je najlakši način za potvrdu identiteta i omogućava nam da budemo u skladu sa zakonima o privatnosti. Obrati pažnju da uneseš istu imejl adresu koja je uneta kao glavna u prethodnom koraku.
         step3_title: SAČEKAJ IMEJL POTVRDE
         step3_donor_title: NALOG TVOG DETETA JE AKTIVIRAN
+        step3_donor_desc: |
+          Pošto si iNaturalist donator, uspešno smo verifikovali tvoj identitet kroz tvoju prethodnu donaciju.
     welcome:
       index:
         connect_with_nature: Poveži se sa prirodom
@@ -2971,6 +3050,15 @@ sr:
       5: Čet
       6: Pet
       7: Sub
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%Y-%m-%d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%B %d, %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%b %d'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%b %e"
     month_names:
       - 
       - Januar
