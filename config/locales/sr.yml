@@ -36,6 +36,10 @@ sr:
     one: "%{count} jezik"
     few: "%{count} jezika"
     other: "%{count} jezika"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> rubrika dnevnika'
+    few: '<span class="count">%{count}</span> rubrike dnevnika'
+    other: '<span class="count">%{count}</span> rubrika dnevnika'
   x_matching_taxa:
     one: '%{count} takson se poklapa'
     few: '%{count} taksona se poklapaju'
@@ -118,6 +122,7 @@ sr:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A - Z"
+  about_conservation_status: O statusu ugroženosti
   about_licenses: O licencama
   #Header for a section describing taxon names
   about_names: O nazivima
@@ -144,6 +149,8 @@ sr:
   accept_community_identifications: Prihvati identifikacije zajednice
   accuracy: Preciznost
   accuracy_meters: Preciznost (u metrima)
+  accuracy_of_the_coordinates: |
+    Preciznost koordinata u metrima. Možeš je izmeniti klikom na "uredi" link iznad ili klikom na marker mape i povlačenjem slajdera. Krug treba da bude te veličine tako da si potpuno siguran/na da zahvata mesto gde si bio/la.
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aktivnost
   actions: Radnje
@@ -168,15 +175,19 @@ sr:
   add_an_observation_of: "Dodaj opservaciju %{taxon}"
   add_an_observation_to_project_html: Dodaj opservaciju u %{project}
   add_another_photo: Dodaj drugu fotografiju
+  add_blocked_users: Dodaj korisnika na listu blokiranih
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Dodaj podebljan tekst
   add_conservation_status: Dodaj status ugroženosti
   add_editor: Dodaj urednika
   add_description: "Dodaj %{description_name}"
+  add_from_your_observations: Dodaj iz tvojih opservacija
   add_link: Dodaj link
+  add_higher_level_taxon: Dodaj takson višeg nivoa (npr. "ptice")
   add_id: Dodaj ID
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dodaj zakošen tekst
+  add_muted_users: Dodaj korisnika na listu ućutkanih
   add_new_place: Dodaj novom mesto
   add_new_rule: Dodaj novo pravilo
   add_new_taxon_name: Dodaj novi naziv taksona
@@ -184,6 +195,11 @@ sr:
   add_obs_from_a_list: Dodaj ops. sa liste
   add_observations: Dodaj opservacije
   add_observations_project: Dodaj opservacije u ovaj projekat
+  #Prompt to add a new journal post
+  add_one: Dodaj novu!
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: Dodaj novu
   add_photos: Dodaj slike
   add_place: Dodaj mesto
   #As in a Taxon Framework Relationship
@@ -379,6 +395,7 @@ sr:
   #of values, and not a synonym of "typical" or "normal"
   avg: Sr. vrednost
   back: Nazad
+  back_to_your_journal: Nazad do tvog dnevnika
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bio: Biografija
@@ -859,8 +876,13 @@ sr:
   header_your_identifications: Tvoje identifikacije
   header_your_projects: Tvoji projekti
   header_your_profile: Tvoj profil
+  heads_up_this_photo_is_already_associated_with: "Napomena: ova fotografija je već deo <a target='_blank' href='%{url}'>druge opservacije</a>"
   help: Pomoć
+  help_confirm_observations!: Pomozi u potvrđivanju opservacija!
+  help_support_inaturalist: "Podrži iNaturalist"
   help_translate!: Pomozi u prevođenju!
+  here_are_our_top_suggestions: Ovo su naše najbolje preporuke
+  hex_color_eg: Hex kod boje, npr. 65644F
   hi_user: "Zdravo %{user}"
   #Verb, usually a button to hide an interface element
   hide: Sakrij
@@ -869,6 +891,7 @@ sr:
   highest_rank: Najviši rank
   history: Istorija
   home: Početna
+  i_dont_know_but_i_am_sure_this_is_taxon: Ne znam ali je sigurno %{taxon}
   icon: Ikonica
   icon_size: Veličina ikonice
   id: ID
@@ -882,14 +905,19 @@ sr:
   #Notification when an identification has been deleted
   identification_deleted: Identifikacija izbrisana.
   identification_saved: "Identifikacija sačuvana!"
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Tekst identifikacije otkriven
   #Notification when an identification has been updated
   identification_updated: Identifikacija ažurirana!
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikacija povučena.
   identifications: Identifikacije
   computer_vision_suggestion: Predlog kompjuterske vizije
+  identifiers: Identifikatori
   ids: "ID-jevi"
   ignore_and_continue: Zanemari i nastavi
+  ignore_times: Ignoriši vremena
+  image_must_be_exactly: Slika može biti maksimalno 950px x 400px
   import: Uvezi
   import_all_photos_as_observations: Uvezi sve slike kao opservacije
   import_as_an_observation: Uvezi kao opservaciju
@@ -903,7 +931,13 @@ sr:
   inaturalist_network: iNaturalist mreža
   #Label for messages you've received
   inbox: Poruke
+  include_places: Uključi ova mesta
+  include_taxa: Uključi ove taksone
+  include_users: Uključi ove korisnike
+  including: uključujući
+  increase_brightness: Povećaj osvetljenost
   in_progress: u toku
+  in_the_past: u prošlosti
   in_the_past_week: U poslednjih nedelju dana
   inactive: Neaktivno
   #Status of a complete set that is not available for general use on iNat, e.g.
@@ -919,16 +953,23 @@ sr:
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist aplikacije"
   inaturalist_is_a_joint_initiative: "%{site_name} je združena inicijativa Akademije nauka u Kaliforniji i Nacionalnog geografskog društva."
+  inaturalist_places: "%{site_name} mesta"
+  info: Informacije
   insects: insekti
   instagram: Instagram
   interactions: Interakcije
   internal_server_error: Interna grеška sеrvеra
+  introduced: Invazivna
+  introduced_in_place: "Invazivna u %{place}"
   invitation: Poziv
   invite: Pozovi
   invite_people: Pozovi ljude
   invite_people_to_project: "Pozovi ljude u %{project}"
+  invited_x: "Pozvan %{x}"
   iphone: iPhone
   is_not_following_anyone: ne prati nikoga.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li su navedeni dokazi potvrđuju da je ovo %{taxon}?
+  is_this_offensive_html: 'Da li je ovo<a href="/help#inappropriate">neprikladno</a>, nepoželjan softver ili uvredljivo?'
   is_this_place_a_duplicate: Da li je ovo duplikat?
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: zakošen tekst
@@ -941,11 +982,14 @@ sr:
   join_the_largest_group_of_naturalists_in_the_world: Pridruži se navećoj grupi prirodnaka na svetu!
   join_this_project: Pridruži se ovom projektu
   'joined!': Pridružen!
+  joined_projects: Projekti čiji si član
+  joined_with_date: "Pridružen: %{date}"
   journal: Dnevnik
   journal_post: Rubrika dnevnika
   journal_post_deleted: Rubrika dnevnika izbrisana.
   journal_posts: Rubrike dnevnika
   jpg_png_or_gif: "JPG, PNG, ili GIF"
+  just_added!: Upravo dodato!
   keep_editing: Nastavi uredjivanje
   keyboard_shortcuts: Prečice na tastaturi
   kml: KML
@@ -990,10 +1034,14 @@ sr:
   learn_about_the_species_live_in: Saznaj više o vrstama koje žive u
   learn_more: Saznaj više
   learn_more_raquo: "Saznaj više &raquo;"
+  learn_what_these_licenses_mean: Saznaj šta ove licence znače
   least_concern: Najmanji rizik
   leave: Napusti
   leave_a_comment: Ostavi komentar
   leave_this_project: Napusti ovaj projekat
+  legacy_authentication_notice_html: |
+    Izgleda da koristiš lozinku od starije verzije ovog sajta. Molimo te da <a href="%{url}">promeniš lozinku</a> na novoj verziji.
+  let_us_walk_you_through: Dozvoli nam da te provedemo kroz glavne aspekte ovog sajta.
   lexicon: Rečnik
   lexicon_cannot_contain_words: "ne može sadržati sledeće reči: %{words}"
   lexicons:
@@ -1047,6 +1095,9 @@ sr:
     mongolian: mongolski
     nahuatl: nahuatl
     norwegian: norveški
+    occitan: oksitanski
+    ojibwe: odžibva
+    palauan: palauanski
     persian: persijski
     polish: poljski
     portuguese: portugalski
@@ -1061,10 +1112,14 @@ sr:
     swahili: svahili
     swedish: švedski
     tagalog: tagalog
+    tahitian: tahićanski
     thai: tajlandski
+    tokelauan: tokelauanski
     turkish: turski
     ukrainian: ukrajinski
+    visayan: visajanski
   less: Manje
+  licensed_site_photos: "Licencirane %{site_name} fotografije"
   license: Licenca
   licensing: Licenciranje
   licensing_your_content_gives_others_legal: "Licenciranje tvog sadržaja daje drugima zakonsko pravo da ga koriste pod uslovom da se pridržavaju uslova licence. %{site_name} koristi tvoj sadržaj sa Creative Commons licencom da deli podatke sa partnerima kao što je "
@@ -1132,7 +1187,9 @@ sr:
     mi: maorski
     mk: makedonski
     mr: marati
+    nb: norveški (bukmol)
     nl: holandski
+    oc: oksitanski
     pl: poljski
     pt: portugalski
     pt-BR: portugalski (Brazil)
@@ -1189,6 +1246,10 @@ sr:
   mark_all_as_unreviewed: Označi sve kao nepregledano
   maverick: kontraš
   meet: Upoznaj
+  member_of_the_inaturalist_network_html: |
+    Član <a href="%{url}">iNaturalist mreže</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Član %{partial_inat_network_tag_html}iNaturalist mreže</a>, združena inicijativa %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Članovi
   membership_model: Tip članstva
@@ -1200,6 +1261,8 @@ sr:
   message_from_user_at_time: Od %{user} u %{time}
   message_from_user_on_date: Od %{user} %{date}
   messages: Poruke
+  messages_new_correspondent_personal: |
+    Ne deli svoje privatne podatke sa ljudima kojima ne veruješ.
   misidentifications: Pogrešne identifikacije
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
@@ -1669,6 +1732,10 @@ sr:
     equatorial_guinea: Ekvatorijalna Gvineja
     eritrea: Eritreja
     estonia: Estonija
+    ethiopia: Etiopija
+    europe: Evropa
+    falkland_islands: Foklandska Ostrva
+    faroe_islands: Farska Ostrva
     fiji: Fidži
     finland: Finska
     france: Francuska
@@ -1857,8 +1924,17 @@ sr:
   please_be_careful!: Budi oprezan/na!
   please_confirm_your_inat_username: "Molimo potvrdi tvoje %{site_name} korisničko ime"
   please_explain_why_you_want_to_hide_this: Objasni zašto želiš da sakriješ ovo
+  popular: Popularne
+  position: Pozicija
+  #Post is a noun
+  post_from_journal_by_parent_html: Objava iz <a href="%{url}">dnevnika %{parent}</a>
+  #Post is a noun
+  post_from_your_journal_html: Objava iz <a href="%{url}">tvog dnevnika</a>
   posted_by: Postavio
   posted_on: Postavljeno
+  posts: Objave
+  powered_by: Pokreće
+  press: Štampa
   preview: Pregled
   previous_observation: Prethodna opservacija
   previous_page: Prethodna strana
@@ -1873,6 +1949,7 @@ sr:
   profile_picture: Profilna slika
   project: Projekat
   project_cover: Naslovna fotografija projekta
+  project_curators: Kustosi projekta
   project_group_label: Grupa
   project_home: Početna strana projekta
   project_icon: Ikonica projekta
@@ -3052,13 +3129,19 @@ sr:
       7: Sub
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%Y-%m-%d'
+      default: '%d.%m.%Y.'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y'
+      long: '%d. %B %Y'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b %d'
+      short: '%d. %b'
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      compact: "%b %e"
+      compact: "%e. %b"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short_with_year: '%d. %b %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_year: '%B %Y'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      month_day_year: '%d. %B %Y'
     month_names:
       - 
       - Januar
@@ -3085,12 +3168,31 @@ sr:
       year: Godina
   errors:
     messages:
+      exclusion: je rezervisano
+      greater_than: mora biti veće od %{count}
+      greater_than_or_equal_to: mora biti veće od ili jednako %{count}
+      inclusion: nije na listi
+      invalid: je neispravno
+      less_than: mora biti manje od %{count}
+      less_than_or_equal_to: mora biti manje od ili jednako %{count}
+      new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
       not_a_number: nije broj
       odd: mora biti neparno
+      only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
+      record_invalid: 'Potvrda neuspela: %{errors}'
+      requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
       taken: već postoji
+    template:
+      body: 'Bilo je problema sa sledećim poljima:'
   helpers:
+    defaults:
+      title: "OVO JE NASLOV"
+    select:
+      prompt: Molimo odaberite
     submit:
       create: Kreiraj %{model}
+      submit: Sačuvaj %{model}
+      update: Ažuriraj %{model}
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -3106,11 +3208,20 @@ sr:
       separator: ','
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number} kg"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number} M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number} G"
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: Milijarda
           million: Milion
+          quadrillion: Kvadrilion
           thousand: Hiljadu
           trillion: Trilion
       format:
@@ -3118,6 +3229,7 @@ sr:
         significant: true
         strip_insignificant_zeros: true
       storage_units:
+        format: '%n %u'
         units:
           byte:
             one: Bajt
@@ -3137,12 +3249,23 @@ sr:
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        accepted: mora biti prihvaćeno
         blank: ne može biti prazno
+        confirmation: ne poklapa se sa lozinkom
         empty: ne možе biti prazno
+        equal_to: mora biti jednako %{count}
         even: mora biti parno
         exclusion: je rezervisano
         greater_than: mora biti veće od %{count}
+        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
+        invalid: je neispravno
+        less_than: mora biti manje od %{count}
+        less_than_or_equal_to: mora biti manje od ili jednako %{count}
+        new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
+        not_a_number: nije broj
+        odd: mora biti neparno
   activerecord:
     attributes:
       assessment:
@@ -3235,6 +3358,7 @@ sr:
       messages:
         accepted: mora biti prihvaćeno
         blank: ne može biti prazno
+        confirmation: ne poklapa se sa lozinkom
         empty: ne možе biti prazno
         equal_to: mora biti jednako %{count}
         even: mora biti parno
@@ -3247,7 +3371,9 @@ sr:
         new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
         not_a_number: nije broj
         odd: mora biti neparno
+        only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
         record_invalid: 'Potvrda neuspela: %{errors}'
+        requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
         taken: već postoji
         too_long:
           one: je predugačko (maksimalno %{count} karakter)
@@ -3257,6 +3383,8 @@ sr:
           one: je prekratko (minimalno %{count} karakter)
           few: je prekratko (minimalno %{count} karaktera)
           other: je prekratko (minimalno %{count} karaktera)
+      template:
+        body: 'Bilo je problema sa sledećim poljima:'
       models:
         application:
           attributes:
@@ -3291,6 +3419,7 @@ sr:
           attributes:
             geom:
               cannot_be_blank: ne može biti prazno
+              must_have_more_than_three_points: mora imati više od 3 poena
         taxon:
           attributes:
             rank:
