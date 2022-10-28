@@ -1422,6 +1422,7 @@ he:
   display_name: שם תצוגה
   display_name_description: שם זה יוצג בפרופיל שלך וישמש לשיוך זכויות יוצרים
   distance_traveled_value: "מרחק שעבר: %{distance} מטר"
+  distance_traveled: "מרחק שעבר (מטרים)"
   documentation_for_developers_html: דוקומנטציה בשביל <a href="/pages/developers">מפתחות.ים</a>
   do_not_show_this_message_again: לא להציג את ההודעה הזאת שוב
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -1446,6 +1447,7 @@ he:
   download_kml: הורד KML
   downstream_coverage_rank: 'דרגת כיסוי במורד העץ הטקסונומי:'
   downstream_coverage_colon_rank: "כיסוי במורד העץ הטקסונומי: דרגת %{rank}"
+  downstream_deviations: סטיות במורד העץ
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
@@ -1527,6 +1529,7 @@ he:
   email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
+  embed_this_assessment: הטבעת הערכה זו
   embed_widget_project: הטבעת ווידג'ט לפרויקט זה באתר שלך
   enable_offline_access: אפשר גישה לא מקוונת
   enable_offline_access_for_mobile: אפשר גישה לא מקוונת מטלפון נייד
@@ -1645,6 +1648,7 @@ he:
   find_unsuitable_observations: מציאת תצפיות שאינן מתאימות
   find_your_current_location: מציאת המיקום הנוכחי
   finished: סיימת
+  finished_with_page: סיים עם העמוד
   first_confirmed_inat_observation: "התצפית הראשונה שאושרה ב%{site_name}"
   first_connect_your_provider_account_to_your_site: "ראשית יש לחבר את חשבון ה%{provider} ל%{site_name}"
   first_inat_observation: "תצפית ראשונה ב%{site_name}"
@@ -2360,7 +2364,13 @@ he:
       #Short text representing %d years in the past
       yy: "%dשנים"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone_no_year: "MMMM D h:mma z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "MMM D, YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "MMMM D, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2458,6 +2468,7 @@ he:
   new_check_list: רשימת מינים חדשה
   new_check_list_for: "יצירת רשימת מינים חדשה עבור %{place} &raquo;"
   new_comment_on_a_parent_by_user_link: תגובה חדשה על @vow_or_con{vow:an|a} %{parent} מאת %{user_link}
+  new_conservation_status: סטטוס שימור חדש
   new_flag_for: סימון חדש ל
   new_guide: מדריך חדש
   new_journal_post: פוסט חדש
@@ -2475,12 +2486,14 @@ he:
   new_post: פוסט חדש
   new_project: פרויקט חדש
   new_project_asset: נכס פרויקט חדש
+  new_project_asset_for: נכס פרויקט חדש עבור
   new_source: מקור חדש
   new_species_added_in_interval: מין חדש הוסף ב%{interval}
   new_species_added_in_interval_x_of_y: מין חדש הוסף ב%{interval} (%{x} מ %{y} מוצגים)
   new_taxon_change: שינוי טקסון חדש
   new_taxon_link: קישור טקסון חדש
   new_taxon_name_for: שם טקסון חדש ל
+  new_taxon_range: תפוצת טקסון חדשה
   new_taxonomic_change: שינוי טקסונומי חדש (טיוטה)
   new_trip: סקר חדש
   new_updates_in_the_last_24_hours_from: "עדכונים חדשים מ%{site_name} ב 24 השעות האחרונות"
@@ -2507,6 +2520,7 @@ he:
   no_curators_yet: אוצרים טרם הוגדרו!
   no_description: ללא תיאור
   no_flags: אין דגלים כעת
+  no_flickr_photos_tagged: אין תמונות פליקר מתויגות!
   no_identifications: אין זיהויים
   no_identifications_added:
     current_user: לא הוספת זיהויים לתצפיות של אחרים
@@ -2518,6 +2532,7 @@ he:
   no_favorites_added:
     current_user: טרם הוספת מועדפים.
     user: "%{user} טרם הוסיף מועדפים."
+  no_journal_posts_yet: אין עדיין פוסטים
   no_license_all_rights_reserved: אין רשיון (כל הזכויות שמורות)
   no_managers_set: לא הוגדרו מנהלים
   no_matching_observations: אין תצפיות מתאימות.
@@ -2533,6 +2548,7 @@ he:
   no_more_taxa_to_load: לא נותרו טקסונים לטעינה!
   no_more_results_found: לא נמצאו תוצאות נוספות
   no_new_messages: אין הודעות חדשות
+  no_new_parent_specified: לא צוין הורה חדש
   no_observations: אין תצפיות
   no_observations_from_this_place_yet: אין עדיין תצפיות ממקום זה.
   no_observations_matching_those_ids: אף תצפית לא התאימה לתכונות אלו.
@@ -2550,6 +2566,7 @@ he:
   no_project_to_admin_current_user: "אין לך זכויות אדמיניסטרציה באף פרוייקט"
   no_projects_yet: אין פרוייקטים עדיין
   no_attached_range: אין תפוצה מצורפת
+  no_range_data_available: אין נתוני תפוצה זמינים.
   no_recent_activity: אין פעילות לאחרונה
   no_relevant_annotations: אין תוויות רלוונטיות
   no_reply_yet: עדיין אין תגובה
@@ -2566,11 +2583,16 @@ he:
   no_taxa: אין טקסון
   no_taxa_listed: אין טקסונים ברשימה
   no_taxa_selected: אף טקסה לא נבחרה!
+  no_taxa_with_unknown_relationships: אין טקסונים עם מערכות יחסים לא ידועות
+  no_taxon_framework_relationships: אין יחס מסגרות טקסון
+  no_users_found_with_those_filters: לא נמצאו יוזרים במסננים ההם
   no_wikipedia_page_for_taxon: אין ערך בויקיפידיה לטקסון זה.
+  noble_curators: "האוצרות והאוצרים של %{site}"
   non_human?: לא בן אדם?
   none: אף לא אחד
   none_found: לא נמצא דבר
   normal: רגיל
+  not_atlased: לא באטלס
   not_completed: טרם הושלם
   not_evaluated: טרם הוערך
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
@@ -2599,12 +2621,23 @@ he:
   observation: תצפית
   observation_: הבחנה
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
+  observation_aggregation: צבירת תצפית
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: תצפית על-ידי %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: תצפית &copy; %{user}
   observation_brief_something_on_day: "משהו ביום %{day}"
+  observation_brief_something_on_day_at_time: "משהו ב%{day} בשעה %{time}"
   observation_brief_something_on_day_at_time_by_user: "משהו ביום %{day} בשעה %{time} על ידי %{user}"
   observation_brief_something_on_day_by_user: "משהו ביום %{day} על ידי %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_something_in_month_year: "משהו ב%{month} %{year}"
   observation_brief_something_by_user: "משהו מאת %{user}"
   observation_brief_something_from_place: "משהו מ%{place}"
   observation_brief_something_from_place_by_user: "משהו מ %{place} על ידי %{user}"
@@ -2613,8 +2646,11 @@ he:
   observation_brief_something_from_place_on_day_at_time: "משהו מ%{place} ביום%{day} בשעה %{time}"
   observation_brief_something_from_place_on_day_at_time_by_user: "משהו מ%{place} ביום %{day} בשעה %{time} על ידי %{user}"
   observation_brief_taxon_on_day: "%{taxon} ביום %{day}"
+  observation_brief_taxon_on_day_at_time: "%{taxon} ב%{day} בשעה %{time}"
   observation_brief_taxon_on_day_at_time_by_user: "%{taxon} ביום %{day} בשעה %{time} על ידי %{user}"
   observation_brief_taxon_on_day_by_user: "%{taxon} ביום %{day} על ידי %{user}"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_in_month_year: "%{taxon} ב%{month} %{year}"
   observation_brief_taxon_by_user: "%{taxon} על ידי %{user}"
   observation_brief_taxon_from_place: "%{taxon} מ%{place}"
   observation_brief_taxon_from_place_by_user: "%{taxon} מ%{place} על ידי %{user}"
@@ -2670,10 +2706,12 @@ he:
   observation_must_dotdotdot: התצפית חייבת...
   observations_needing_curation: תצפיות שנדרשת אצירה עבורן
   observations_observed_this_month: תצפיות <em>שנצפו</em> החודש, לא שנוספו החודש. צאו לטבע!
+  observations_of_relatives: תצפיות של קרובים
   observations_of_taxon: "תצפיות של %{taxon_name}"
   observations_per_month: תצפיות / חודש
   observations_removed_from_the_project: "תצפיות שהוסרו מהפרוייקט %{project}"
   observations_saved: תצפית/יות נשמרו!
+  observations_specifying_this_field: תצפיות המפרטות שדה זה
   observations_text_search_warning: |
     חיפושים של טקסט (מילים) יוצרים תוצאות מוזרות כשמצורפים עם פילטרים נוספים. אם את/ה מעוניין/ת לחפש מין מסוים, אנא השתמש/י בפילטר הטקסון.
   observations_this_year_vs_last_year: תצפיות משנה זו בהשוואה לשנה הקודמת
@@ -2681,6 +2719,7 @@ he:
   observations_w: תצפיות עם
   observations_w_field: תצפיות עם שדה
   observations_was_successfully_updated: תצפית/יות עודכנו בהצלחה.
+  observations_widget: וידג'ט תצפיות
   observations_with_this_field: תצפיות עם שדה זה
   observations_with_this_field_and_value: תצפיות עם שדה וערך זה
   observations_without_media: תצפיות ללא תמונה/מדיה
@@ -2712,6 +2751,8 @@ he:
   off_caps: "כבוי"
   official_blog: בלוג רשמי
   offline_access_enabled: גישה לא מקוונת אפשרית
+  #Button label to offset the date/time of observations by a set number of hours
+  offset_time_verb: הסטה
   old_observation_form: טופס תצפית ישן (לא בשימוש)
   ok: "אישור"
   on_caps: "פעיל"
@@ -2757,9 +2798,11 @@ he:
   only_show_events_that_last_less_than_2_weeks: הצגת אירועים שנמשכים פחות משבועיים
   only_show_for_species_subspecies_varieties_etc: הצג רק עבור מינים, תתי-מינים, זנים וכו'
   only_show_taxa_fom_this_list: "הצגת נתונים מטקסונים אלה בלבד"
+  only_showing_taxa_from: מציג רק טקסונים מרשימה זו
   only_staff_can_edit_large_places: רק צוות האתר יכול לערוך מקומות גדולים
   only_staff_can_edit_standard_places: רק אנשי צוות יכולים לשנות מקומות סטנדרתיות
   only_the_owner_of_this_list_can_do_that: רק בעלי הרשימה יכולים לעשות את זה. אל תהיו רעים.
+  only_view_nearby_suggestions: צפייה בהצעות מהסביבה בלבד
   only_you: רק את/ה
   open: פתיחה
   open_: פתיחה
@@ -2778,6 +2821,7 @@ he:
   organisms: אורגניזמים
   original: מקור
   originally_flagged_by: דגל מסומן על ידי
+  original_page_url_for_this_photo: "קישור מקורי עבור תמונה זו."
   original_rights_holder: בעלי זכויות מקוריים
   original_url_for_this_map: URL מקורים למפה זו
   organism_appears_captive_cultivated: נראה כי הפרט בשבי / מתורבת
@@ -2823,6 +2867,11 @@ he:
       #kueda
       #added an ID to an observation by loarie
       with_observation: הוסיפ.ה <strong>זיהוי</strong> ל%{observation_link} על ידי%{user_link}
+      #The same as people_added.identification.with_observation, except it
+      #covers the rare situation in which we have an update for an
+      #identification but the observation has been deleted
+      without_observation: הוסיפ.ה <strong>זיהוי</strong>
+    post: יצרו %{post_link}
   per_day: ליום
   per_month: לחודש
   per_week: לשבוע
@@ -2904,6 +2953,8 @@ he:
       colloquial: סיגנון דיבור
       Commune: מחוז מנהלי
       commune: מחוז מנהלי
+      Constituency: אזור בחירות
+      constituency: אזור בחירות
       Continent: יבשת
       continent: יבשת
       Country: מדינה
@@ -2914,6 +2965,14 @@ he:
       Delegation: מחוז
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       delegation: מחוז
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      Department_Segment: מקטע מחלקה
+      #Added by mistake with some GADM place types, but subsequently used
+      #by some of our users. Assume it's a type of place contained within
+      #a "department"
+      department_segment: מקטע מחלקה
       District: אזור/מועצה
       district: אזור/מועצה
       Division: חלוקה
@@ -2954,6 +3013,10 @@ he:
       open_space: שטח פתוח
       Parish: קהילה
       parish: קהילה
+      #https://en.wikipedia.org/wiki/Poblacion
+      Poblacion: מרכז העיר
+      #https://en.wikipedia.org/wiki/Poblacion
+      poblacion: מרכז העיר
       Prefecture: מחוז
       prefecture: מחוז
       Prefecture_City: עיר פריפקטורה
@@ -2964,6 +3027,8 @@ he:
       postal_code: מיקוד
       Province: פרובינציה
       province: פרובינציה
+      Regency: שלטון
+      regency: שלטון
       Region: אזור
       region: אזור
       Republic: רפובליקה
@@ -2998,6 +3063,8 @@ he:
       undefined: לא מוגדר
       Unknown: לא ידוע
       unknown: לא ידוע
+      Village_block: רובע
+      village_block: רובע
       Zone: איזור
       zone: אזור
   place_guess: ניחוש מקום
@@ -3026,6 +3093,7 @@ he:
     argentina: ארגנטינה
     armenia: ארמניה
     aruba: ארובה
+    asia: אסיה
     australia: אוסטרליה
     austria: אוסטריה
     azerbaijan: אזרביג'ן
@@ -3304,11 +3372,15 @@ he:
   preview: תצוגה מקדימה
   preview_observations_with_these_observation_requirements: תצוגת מוקדמת של תצפיות העומדות בדרישות אלה
   previewing: "מציג..."
+  previous_date_short: קודם
   prev: קודם
   previous_observation: תצפית קודמת
   previous_page: דף קודם
+  previous_page_short: קודם
   previous_photo: תמונה קודמת
+  previous_post_short: קודם
   previous_tab: לשונית קודמת
+  previous_taxon_short: קודם
   print_verb: הדפסה
   privacy: פרטיות
   private: פרטי
@@ -3329,9 +3401,11 @@ he:
     other: מנהלי פרוייקט
   project_aggregator_filter_error: |
     לא ניתן להשתמש בקיבוץ תצפיות אוטומטי אלא אם הפרויקט משויך למקום בגודל סביר, או אם הפרויקט מאפשר תצפיות מטקסונים מסוימים או טקסונים המופיעים ברשימה.
+  project_assessments: הערכות פרויקט
   project_assets: נכסי הפרויקט
   project_coordinate_access_warning: |
     גישה למיקם הקואורדינטות חשובה למדענים, אולם יכולה להיות מנוצלת לרעה על ידי ציד לא חוקי. אנא וודאו כי אתם בוטחים בכל אוצרי הפרוייקט בטרם אתם בוטחים בו.
+  project_cover: עמוד השער של הפרויקט
   project_created_on: פרוייקט זה נוצר ב%{date}
   project_curator_tools: כלי אצירה לפרוייקט
   project_curators: אוצרות ואוצרי הפרוייקט
@@ -4148,6 +4222,8 @@ he:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: זמן קולומביה
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: שעון החוף המערבי (מקסיקו)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: זמן גואטמלה
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: זמן בוליביה
@@ -4161,11 +4237,52 @@ he:
   time_zone_asia_bangkok: זמן בנגקוק
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_hong_kong: זמן הונג קונג
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: שעון מזרח אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: זמן טורקיה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: שעון מזרח אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: שעון מערב אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: שעון מערב אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: זמן מוסקבה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: שעון מזרח אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: שעון מרכז אירופה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: זמן סמואה
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: זמן ניו זילנד
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: שעון הוואי
   #As in the title of a book or a blog post
   title: כותרת
   title_and_description: "כותרת ותיאור"
   to_add_comments: להוספת הערות
   to_add_ids: להוספת זיהויים
+  to_configure_your_widget: לקנפג את הוידג'ט שלך.
   to_recipient: אל
   today: היום
   too_many_results: יותר מדי תוצאות
@@ -4193,6 +4310,7 @@ he:
   #Noun
   trust: אמון
   trusted: מהימן
+  trusted_project?: פרויקט מהימן?
   trust_this_person_with_your_private_coordinates: לבטוח באדם זה עם הקואורדינטות המוסתרות שלך
   trust_this_project_with_your_private_coordinates?: לבטוח בפרויקט זה עם קואורדינטות מוסתרות?
   trust_with_private_coordinates: לבטוח עם קואורדינטות מוסתרות
@@ -4211,6 +4329,8 @@ he:
   unable_to_save_comment: לצערנו ההודעה לא נשמרה.
   unblock: ביטול חסימה
   unclassified: לא מסווג
+  ungrafted_taxa: טקסונים שלא הורכבו
+  unhide_content: ביטול הסתרת תוכן
   unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
   unique_observers: מתצפתים יחודיים
   unknown: לא ידוע
@@ -4220,12 +4340,16 @@ he:
   unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
   unmute: ביטול השתקה
+  updates_notification_email_subject: "%{prefix} עדכונים חדשים %{date}"
   updating: מתעדכן...
   unprocessable: לא ניתן לעיבוד
   unpublish: ביטול פרסום
+  #Undo the action of resolving a flag
+  unresolve: הסרת פתרון
   unreview_all: ביטול הסקירה של הכול
   unsubscribe: ביטול מנוי
   unsubscribe_from_emails_like_this: הסר מתפוצת דברי דואר מסוג זה
+  unsuspend_user: ביטול השהיית יוזר
   unsuspend_user_html: בטול השהיית %{user}
   upcoming_bioblitzes: ביובליצים עתידיים
   update: עדכון
@@ -4239,6 +4363,14 @@ he:
   update_selected_taxa: עדכון טקסונים נבחרים
   update_subscription: עדכון מנויי
   update_subscription_preferences: עדכון העדפות הרשמה
+  update_x_selected_taxa:
+    one: "עדכון טקסון נבחר"
+    two: "עדכון %{count} טקסונים נבחרים"
+    many: "עדכון %{count} טקסונים נבחרים"
+    other: "עדכון %{count} טקסונים נבחרים"
+  update_your_content: עדכון התוכן שלך
+  update_with_eol_content: עדכון באמצעות תוכן EOL
+  update_with_site_content: "עדכון עם תוכן מ%{site_name}"
   updated: עודכן
   updated_by: עודכן על ידי
   updated_by_user_on_date_html: עודכן על-ידי %{user} בתאריך %{date}
@@ -4248,6 +4380,7 @@ he:
   upload_a_csv_file: העלאת קובץ CSV
   upload_new_photo: העלאת תמונה חדשה
   upload_photo: העלאת תמונה
+  upload_range: העלאת תפוצה
   uploaded_by: הועלה על־ידי
   uploader:
     errors:
@@ -4256,11 +4389,17 @@ he:
       add: הוספת תצפית (או תצפיות)
       combine: שילוב התצפיות שנבחרו
       duplicate: שכפול התצפיות הנבחרות
+      photo_failed: נכשלה העלאת התמונה
       remove: הסרת התצפיות שנבחרו
       remove_observation: הסרת התצפית
       remove_photo: הסרת התמונה
       select_all: בחירת כל התצפיות
       upload_failed: העלאה נכשלה
+  uploading_num_of_count_photos:
+    one: מעלה תמונה...
+    two: מעלה %{num} מתוך %{count} תמונות...
+    many: מעלה %{num} מתוך %{count} תמונות...
+    other: מעלה %{num} מתוך %{count} תמונות...
   url_of_this_taxon_on_the_source_website: URL של טקסון זה באתר המקור
   usage_stats: סטטיסטיקות שימוש
   use_this_form_to_create_a_new: |
@@ -4277,6 +4416,9 @@ he:
   user_added_a_fave_html: "%{user} הוסיף למעודפים"
   user_added_a_flag_html: "הודעה סומנה על ידי %{user}"
   user_added_a_x: "%{user} הוסיף/ה %{x}"
+  user_added_a_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
+  user_added_a_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
+  user_added_an_identification_html: "%{user} הוסיפ.ה זיהוי"
   user_added_an_observation_field_value_html: "ערך בשדה תצפית הוסף על ידי %{user}"
   user_added_an_observation_html: "%{user}העלה תצפית"
   user_added_an_x: "%{user} הוסיף/ה %{x}"
@@ -4339,6 +4481,7 @@ he:
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
   view_assessment: צפייה הערכה
+  view_check_list_page: צפייה בעמוד רשימת הפעולות לביצוע שלך
   view_contributions: צפייה בתרומות
   view_details: הצגת פרטים
   view_dynamic_lifelist_: לצפייה ברשימת חיים דינאמית
@@ -4379,6 +4522,8 @@ he:
   view_taxon_page: צפייה בדף הטקסון
   view_user_observations: "הצגת התצפיות של %{user}"
   view_x: "הצגת %{x}"
+  view_year_stats_for_site: "צפייה בסטטיסטיקות %{site} לשנת %{year}"
+  view_your_dashboard: צפייה בלוח המחוונים שלך
   view_your_inbox: לתיבת הדואר הנכנס
   view_your_observations: הצגת התצפיות שלך
   view_your_year_stats: "הצגת הסטטיסטיקות שלך לשנת %{year}"
@@ -4668,11 +4813,13 @@ he:
       unobserved_species: מינים שלא נצפו
       all_species: כל המינים
       all_unobserved_species: כל המינים שלא נצפו
+      observations_within_this_taxon: תצפיות בתוך טקסון זה
       all_observations: כל התצפיות
       total_observations: סה"כ תצפיות
       filter_by: סינון לפי
       filtered_by: סינון לפי
       restrict_to_leaf_taxa: להגביל לטקסוני קצה
+      restrict_to_taxon: הגבלה ל%{taxon}
       exporting_all_x_taxa:
         one: מייצא טקסון %{count}
         two: מייצא את כל %{count} הטקסונים
@@ -4687,6 +4834,7 @@ he:
       all_observations_in_this_taxon: כל התצפיות בטקסון זה
       focus_tree_on_this_taxon: מיקוד העץ על טקסון זה
       expand_all_nodes_in_this_branch: להרחיב את כל הצמתים בענף זה
+      collapse_this_branch: כיווץ ענף זה
       dropdowns:
         sort: מיון
         taxonomic: טקסונומי
@@ -5215,6 +5363,7 @@ he:
           "Life Stage=Pupa": גולם
           "Life Stage=Subimago": טרום-בוגר
           "Life Stage=Teneral": לאחר השלה
+          "Sex=Cannot Be Determined": לא ניתן לקביעה
           "Sex=Female": נקבה
           "Sex=Male": זכר
           unannotated: ללא תווית
