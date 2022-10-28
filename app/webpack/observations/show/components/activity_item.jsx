@@ -629,7 +629,7 @@ class ActivityItem extends React.Component {
           </Panel.Heading>
           <Panel.Body>
             {taxonChange}
-            <div className="contents">
+            <div className={`contents ${item.api_status ? "loading" : ""}`}>
               {contents}
             </div>
           </Panel.Body>
