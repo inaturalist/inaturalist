@@ -607,7 +607,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     return $scope.pagination.total > $scope.pagination.perPage;
   };
   $scope.positionDragDrawingIcon = function( shape, options ) {
-    if( !$scope.drawing.dragIcon ) {
+    if( !$scope.drawing.dragIcon || !_.isFunction( shape.getBounds ) ) {
       return;
     }
     var isCircle = !!shape.setCenter;
@@ -1974,5 +1974,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
       $scope.findingUserLocation = true;
       navigator.geolocation.getCurrentPosition(getCurrentPositionSuccess, getCurrentPositionFailure);
     }
+  };
+  $scope.toggleFullscreen = function( ) {
+    $scope.fullscreen = !$scope.fullscreen;
+    if ( typeof ( google ) === "undefined" ) return;
+    setTimeout( function( ) {
+      google.maps.event.trigger( $scope.map, "resize" );
+    }, 100 );
   };
 }]);
