@@ -160,6 +160,9 @@ body > [role="dialog"] .ActivityItem {
     .contents {
       padding: 15px;
       line-height: 0;
+      &.loading {
+        opacity: 0.5;
+      }
       .content {
         display: block;
         overflow: hidden;
@@ -288,6 +291,9 @@ body > [role="dialog"] .ActivityItem.withdrawn {
 .ActivityItemMenu,
 body > [role="dialog"] .ActivityItemMenu {
   border-left: 1px solid $border-grey;
+  .loading_spinner {
+    margin: 4px 0px 1px 12px;
+  }
   .search {
     line-height: 24px;
     white-space: nowrap;
