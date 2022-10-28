@@ -1,25 +1,36 @@
 /* eslint-disable */
 
 var iNatAPI = angular.module( "iNatAPI", [ ]);
+iNatAPI.constant( "testingApiV2", ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ ) );
 
-iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter",
-function( $http, $rootScope, $filter ) {
-  var basicGet = function( url, options ) {
-    options = options || { };
-    if( options.cache !== true ) { options.cache = false; }
+iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter", "testingApiV2",
+function( $http, $rootScope, $filter, testingApiV2 ) {
+  var basicGet = function( url, params ) {
+    params = params || { };
     var config = {
-      cache: options.cache,
       timeout: 60000 // 60 second timeout
     };
     var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
-    if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
-      var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
-      if ( apiToken ) {
-        config.headers = {
-          Authorization: apiToken
-        }
+    if ( testingApiV2 ) {
+      apiURL = apiURL.replace( "/v1", "/v2" );
+      if ( params.fields ) {
+        params.fields = rison.encode( params.fields );
+      }
+    } else {
+      delete params.fields
+    }
+    var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+    if ( apiToken ) {
+      config.headers = {
+        Authorization: apiToken
       }
     }
+    url = apiURL + url;
+    if ( !_.isEmpty( params ) ) {
+      url += "?" + $.param( params );
+    }
+
     return $http.get( url, config ).then(
       function( response ) {
         return response;

@@ -1435,7 +1435,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
               iwOpts.pixelOffset = new google.maps.Size(0, 0);
             }
             if( options.infoWindowCallback ) {
-              return options.infoWindowCallback( map, iw, latLng, o.data['id'], iwOpts );
+              return options.infoWindowCallback( map, iw, latLng, o.data, iwOpts );
             }
             $.ajax({
               url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',

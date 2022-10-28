@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var application = angular.module( "ProjectStats", [
   "templates",
   "iNatAPI"

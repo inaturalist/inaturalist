@@ -1,12 +1,27 @@
-iNatAPI.factory(  "PlacesFactory", [ "shared", function( shared ) {
+/* eslint-disable */
+
+iNatAPI.constant( "V2_PLACE_FIELDS", {
+  id: true,
+  uuid: true,
+  slug: true,
+  name: true,
+  geometry_geojson: true
+} );
+
+iNatAPI.factory(  "PlacesFactory", [
+  "shared",
+  "V2_PLACE_FIELDS",
+  function(
+    shared,
+    V2_PLACE_FIELDS
+  ) {
   var show = function( id ) {
-    var url = "<%= CONFIG.node_api_url %>/places/" + id;
-    return shared.basicGet( url );
+    var url = "/places/" + id;
+    return shared.basicGet( url, { fields: V2_PLACE_FIELDS } );
   };
   var nearby = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/places/nearby";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
+    var url = "/places/nearby";
+    return shared.basicGet( url, _.extend( { }, params ) );
   };
   var responseToInstances = function( response ) {
     if( !( response && response.data && response.data.results ) ) {

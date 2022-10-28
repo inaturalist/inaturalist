@@ -109,7 +109,7 @@
           .col-xs-6
             %select#params-order-by.form-control{"ng-model" => "params.order_by", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': ( params.order_by !== defaultParams.order_by ) }"}
               - ( ObservationsController::ORDER_BY_FIELDS - %w( species_guess project id ) ).each do |f|
-                - value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
+                - value = %w(created_at observations.id id).include?(f) ? 'id' : f
                 - default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
                 - key = default.parameterize.underscore
                 %option{ value: value }
@@ -233,7 +233,7 @@
                   %option{ value: '' }
                     {{ shared.t( 'all' ) }}
                   - for code, name, desc in Observation::LICENSES do
-                    %option{ value: code }= code
+                    %option{ value: code.downcase }= code
               %label.sectionlabel
                 {{ shared.t( 'reviewed' ) }}
               .form-group{ "ng-class" => "{ 'filter-changed': params.reviewed }" }

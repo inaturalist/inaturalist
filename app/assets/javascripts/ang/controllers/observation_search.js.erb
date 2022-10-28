@@ -80,7 +80,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $rootScope.mapTerrain = false;
   $scope.defaultParams = {
     verifiable: true,
-    order_by: "observations.id",
+    order_by: "id",
     order: "desc",
     page: 1,
     spam: false
@@ -1435,8 +1435,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.preInitialize( );
 }]);
 
-application.controller( "MapController", [ "ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
-function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
+application.controller( "MapController", [ "ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope", "testingApiV2",
+function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 ) {
   $rootScope.$on( "updateParamsForCurrentRect", function () {
     $scope.updateParamsForCurrentRect();
   } );
@@ -1594,22 +1594,11 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }
-    if( options.bounds && $scope.drawing.currentShape !== "circle" ) {
+    if( options.bounds ) {
       options.params.swlat = options.bounds.getSouthWest( ).lat( );
       options.params.swlng = options.bounds.getSouthWest( ).lng( );
       options.params.nelat = options.bounds.getNorthEast( ).lat( );
       options.params.nelng = options.bounds.getNorthEast( ).lng( );
-    }
-    if( !( options.params.lat && options.params.lng ) ) {
-      // search a little left of center
-      shared.offsetCenter({ map: (onMap ? $scope.map : null), left: -130, up: 0 }, function( center ) {
-        if( center ) {
-          options.params.lat = center.lat( );
-          options.params.lng = center.lng( );
-        }
-        $scope.nearbyPlaceSearch( options, callback );
-      });
-    } else {
       $scope.nearbyPlaceSearch( options, callback );
     }
   };
@@ -1781,7 +1770,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } else {
       iwOpts.pixelOffset = new google.maps.Size( 0, 0 );
     }
-    $scope.infoWindowCallback( $scope.map, iw, latLng, o.id, iwOpts );
+    $scope.infoWindowCallback( $scope.map, iw, latLng, o, iwOpts );
   });
   $rootScope.$on( "hideInfowindow", function( event, o ) {
     $scope.snippetInfoWindowObservation = null;
@@ -1792,11 +1781,12 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   $scope.infoWindowCallbackStartTime;
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
-  $scope.infoWindowCallback = function( map, iw, latLng, observation_id, options ) {
+  $scope.infoWindowCallback = function( map, iw, latLng, observation, options ) {
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>" +
       I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
     $scope.infoWindowCallbackStartTime =  time;
+    var observation_id = testingApiV2 ? observation.uuid : observation.id;
     ObservationsFactory.show( observation_id, iNaturalist.localeParams( ) ).then( function( response ) {
       observations = ObservationsFactory.responseToInstances( response );
       if( observations.length > 0 ) {

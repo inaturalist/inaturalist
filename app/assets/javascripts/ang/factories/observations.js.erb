@@ -1,30 +1,116 @@
 /* eslint-disable */
 
-iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
+iNatAPI.constant( "V2_OBSERVATION_FIELDS", {
+  id: true,
+  quality_grade: true,
+  identifications_count: true,
+  faves_count: true,
+  comments_count: true,
+  time_observed_at: true,
+  observed_time_zone: true,
+  created_at: true,
+  created_time_zone: true,
+  created_at_details: "all",
+  observed_on: true,
+  observed_on_details: "all",
+  geoprivacy: true,
+  obscured: true,
+  location: true,
+  place_guess: true,
+  private_geojson: true,
+  user: {
+    id: true,
+    login: true,
+    icon_url: true
+  },
+  photos: {
+    id: true,
+    url: true
+  },
+  sounds: {
+    id: true
+  },
+  taxon: {
+    name: true,
+    preferred_common_name: true,
+    iconic_taxon_id: true
+  }
+} );
+
+iNatAPI.constant( "V2_TAXON_FIELDS", {
+  ancestry: true,
+  ancestor_ids: true,
+  ancestors: {
+    id: true,
+    uuid: true,
+    name: true,
+    iconic_taxon_name: true,
+    is_active: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  default_photo: {
+    attribution: true,
+    license_code: true,
+    url: true,
+    medium_url: true
+  },
+  conservation_status: {
+    status: true
+  },
+  establishment_means: {
+    establishment_means: true
+  },
+  iconic_taxon_name: true,
+  id: true,
+  is_active: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+} );
+
+iNatAPI.constant( "V2_USER_FIELDS", {
+  id: true,
+  name: true,
+  login: true,
+  icon_url: true
+} );
+
+
+iNatAPI.factory(  "ObservationsFactory", [
+  "shared",
+  "testingApiV2",
+  "V2_OBSERVATION_FIELDS",
+  "V2_TAXON_FIELDS",
+  "V2_USER_FIELDS",
+  function(
+    shared,
+    testingApiV2,
+    V2_OBSERVATION_FIELDS,
+    V2_TAXON_FIELDS,
+    V2_USER_FIELDS
+  ) {
   var show = function( id, params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/" + id;
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url, { cache: true } );
+    var url = "/observations/" + id;
+    return shared.basicGet( url, _.extend( { }, params, { fields: V2_OBSERVATION_FIELDS } ) );
   };
   var search = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
+    var url = "/observations";
+    return shared.basicGet( url, _.extend( { }, params, { fields: V2_OBSERVATION_FIELDS } ) );
   };
   var speciesCounts = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/species_counts";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
+    var url = "/observations/species_counts";
+    return shared.basicGet( url, _.extend( { }, params, { fields: { taxon: V2_TAXON_FIELDS } } ) );
   };
   var identifiers = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/identifiers";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
+    var url = "/observations/identifiers";
+    return shared.basicGet( url, _.extend( { }, params, { fields: { user: V2_USER_FIELDS } } ) );
   };
   var observers = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/observers";
-    if( params ) { url += "?" + $.param(params); }
-    return shared.basicGet( url );
+    var url = "/observations/observers";
+    return shared.basicGet( url, _.extend( { }, params, { fields: { user: V2_USER_FIELDS } } ) );
   };
   var responseToInstances = function( response ) {
     if( !( response && response.data && response.data.results ) ) {
@@ -38,9 +124,6 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
   // values suitable for submission to the observations API endpoints
   var processParamsForAPI = function( p, possibleFields ) {
     var params = _.extend( { }, this.processParams( p, possibleFields ) );
-    if( params.place_id == "any" ) {
-      delete params.place_id;
-    }
     if( p.per_page ) { params.per_page = p.per_page; }
     return params;
   };
@@ -136,7 +219,11 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
     if( !_.isUndefined( params.reviewed ) && !params.viewer_id && CURRENT_USER ) {
       params.viewer_id = CURRENT_USER.id;
     }
-    return params;
+    // remove any params that are null, undefined, or whose value is "any"
+    // as they will not affect search results and are not allowed in APIv2
+    return _.omitBy( params, function( value ) {
+      return value === "any" || _.isNull( value ) || _.isUndefined( value );
+    } );
   };
   var hasSpatialParams = function( params ) {
     return params.place_id || params.latitude || params.lat || params.swlat;

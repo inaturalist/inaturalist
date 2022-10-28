@@ -1,6 +1,7 @@
 - content_for :title do
   = @shareable_title = t(:observations)
 - content_for :extrajs do
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/rison/0.1.0/rison.min.js"
   = javascript_include_tag "angular_includes_bundle"
   = javascript_include_tag "angular_bundle"
   :javascript

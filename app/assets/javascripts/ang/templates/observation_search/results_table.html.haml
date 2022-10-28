@@ -12,7 +12,7 @@
           {{ shared.t('observed') | capitalize }}
         %th.place
           {{ shared.t('place') | capitalize }}
-        %th{ :class => "added sortable {{ params.order_by == 'observations.id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy( 'observations.id' )" }
+        %th{ :class => "added sortable {{ params.order_by == 'id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy( 'id' )" }
           {{ shared.t('added') | capitalize }}
     %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching || pagination.stopped", "infinite-scroll-distance": 1 }
       %tr{ "ng-repeat": "o in observations" }
@@ -46,7 +46,7 @@
         %td.place
           %span{ "ng-bind-html": "o.placeIcon() | sanitize" }
           {{ o.displayPlace( ) }}
-        %td{ :class => "{{ params.order_by == 'observations.id' ? 'sorting' : '' }}" }
+        %td{ :class => "{{ params.order_by == 'id' ? 'sorting' : '' }}" }
           %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", time: "o.created_at", obscured: "o.obscured && !o.private_geojson" }
   .spinner.ng-cloak{ "ng-show": "pagination.searching" }
     %span.fa.fa-spin.fa-refresh
