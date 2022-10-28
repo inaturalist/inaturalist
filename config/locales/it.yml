@@ -548,6 +548,8 @@ it:
   #Label for an option to show/include content by any user
   any_user: Qualsiasi
   anyone: Chiunque
+  app_owner_application_explanation_required: |
+    Devi fornire una spiegazione più dettagliata di ciò che desideri costruire.
   app_owner_application_about_p1a_html: |
     Le app iNaturalist consentono l'uso autenticato dell'API iNaturalist. Questo
     ti consente di effettuare chiamate API che fanno cose come creare osservazioni o
@@ -1321,6 +1323,7 @@ it:
   curators_can_remove_observations_from: I curatori possono rimuovere le osservazioni dal progetto e le loro identificazioni sono indicate a fianco delle osservazioni nella pagina del progetto. I curatori possono anche accedere alle coordinate private e oscurate delle osservazioni.
   curator_identification: Identificazione del curatore
   current_flags: Segnalazione corrente
+  custom_boundary: Confine Personalizzato
   custom_project_fields: Campi personalizzati del progetto
   custom_project_was_successfully_created: Personalizzazioni del progetto aggiunte
   custom_project_was_successfully_updated: Personalizzazioni del progetto aggiornate
@@ -1543,6 +1546,8 @@ it:
   draft_saved: Bozza salvata!
   drafts: Bozze
   drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
+  draw_circular_boundary: Disegna confine circolare
+  draw_rectangular_boundary: Disegna confine rettangolare
   drawings: Bozze
   duplicate_verb: Duplica
   duration_value: "Durata: %{duration} minuti"
@@ -4051,6 +4056,7 @@ it:
   research_grade_tooltip_html: 'Le osservazioni di "Livello Ricerca" hanno contenuto multimediale, una posizione, una data, e un consenso della comunità su una precisa identificazione (di solito a livello di specie). <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   research_grade_observations_have: 'le osservazioni ad un "Livello ricerca" hanno foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere la valutazione della qualità dei dati'
   research_grade_qualification: Qualifica di Livello ricerca
+  reset: Azzera
   reset_filters_short: Azzera
   reset_brightness: Reimposta luminosità
   reset_search_filters: Resetta i filtri di ricerca
