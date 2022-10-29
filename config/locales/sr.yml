@@ -260,6 +260,7 @@ sr:
     animals: Životinje
     arachnids: Arahnidi
     birds: Ptice
+    chromista: Hromisti
     fungi: Gljive
     fungi_including_lichens: Gljive uključujući lišaje
     insects: Insekti
@@ -1421,6 +1422,9 @@ sr:
   number_of_observations: Broj opservacija
   number_of_observers_value: "Broj posmatrača: %{number}"
   number_of_observers: "Broj posmatrača"
+  obs: Ops.
+  obs_id_d: Ops. sa ID-jem
+  obscured: Prikriveno
   obscured_or_private: prikriveno ili privatno
   observation: Opservacija
   observation_: opservacija
@@ -1435,6 +1439,8 @@ sr:
   #@this could also be translated like "Observation by %{user} (copyright)" or
   #@something.
   observation_attribution_copyright_html: Opservacija &copy; %{user}
+  observation_belongs_to_project_requiring_field: |
+    Opservacija pripada projektu u kom je ovo polje obavezno. Ona mora biti uklonjena iz tog projekta pre brisanja vrednosti ovog polja.
   observation_brief_something_on_day: "Nešto primećeno %{day}"
   observation_brief_something_on_day_at_time: "Nešto primećeno %{day} u %{time}"
   observation_brief_something_on_day_at_time_by_user: "Nešto primećeno %{day} u %{time} od strane %{user}"
@@ -1496,23 +1502,45 @@ sr:
     npr. 2019-10-29 13:12:21
   observation_removed_from_the_project: "Opservacija uklonjena iz \"%{project}\" projekta"
   observation_requirements: Zahtevi za opservacije
+  #Label for a field showing the date when the observation requirements for a
+  #project were last updated
+  observation_requirements_updated_at: 'Zahtevi za opservacije ažurirani:'
   observation_rules: Pravila za opservacije
+  observation_rules_description: |
+    Možeš definisati pravila koje opservacije mogu biti dodate u ovaj projekat, npr. ograničiti opservacije na određeno mesto ili takson. Ako tip pravila obuhvata više pravila, opservacija će biti prihvaćena ako zadovoljava bar jedno pravilo. Na primer, ako su pravila "mora biti vodozemac" ili "mora biti reptil", u projekat će biti prihvaćene opservacije i reptila i vodozemaca.
   observation_was_deleted: Opservacija je izbrisana.
   observations: Opservacije
   observations_: opservacije
   observations_added_by_x_html: "Opservacije dodate od strane %{x}"
+  observations_by: Opservacije od
   observations_by_user: "Opservacije korisnika %{user}"
   observations_deleted: Opservacije izbrisane.
+  observations_from_people_taxa_and_places_youre_following: "Opservacije ljudi, mesta i taksona koje pratiš"
+  observations_from_this_place: Opservacije na ovom mestu
+  observations_from_this_project: Opservacije iz ovog projekta
+  observations_in_this_project_must: 'Opservacije u ovom projektu moraju zadovoljiti sledeće kriterijume:'
   observations_map: Opservacije / mapa
   observation_must_dotdotdot: Opservacija mora...
   observations_observed_this_month: Opservacije <em>načinjene</em> ovog meseca, ne dodate ovog meseca. Izađi u prirodu!
   observations_of_taxon: "Opservacije %{taxon_name}"
+  observations_removed_from_the_project: "Opservacije uklonjene iz projekta \"%{project}\""
   observations_saved: Opservacija/je sačuvana/e!
+  observations_this_year_vs_last_year: Ovogodišnje opservacije u poređenju sa prošlom godinom
+  observations_total: Ukupno opservacija
+  observations_w: Opservacije sa
   observations_was_successfully_updated: Opservacija/je uspešno ažurirana/e.
+  observed: Zabeleženo
   observed_by: Opservacija od strane
+  observed_on: Zabeleženo
+  observer: Posmatrač
   observers: Posmatrači
+  observer_prefers_no_project_addition: |
+    Posmatrač ne dozvoljava drugima da dodaju opservacije u projekte.
+  observer_prefers_addition_to_projects_joined: |
+    Posmatrač dozvoljava ljudima da dodaju njegove/njene opservacije u projekte samo ako je član projekta.
   observer_short: Posmatrač
   occurrence_status_descriptions:
+    absent: Ne sreće se u oblasti
     common: Često se sreće
     doubtful: Pretpostavlja se da se sreće ali su dokazi upitni
     irregular: Prisustvo nepredvidivo, uključujući lutalice; može se često sretati u nekim godinama a u nekim uopšte ne
@@ -1590,12 +1618,30 @@ sr:
   other: Drugo
   other_animals: druge životinje
   other_names: Druga imena
+  other_species_commonly_misidentified_as_this_species: Druge vrste često pomešane sa ovom vrstom
+  other_species_commonly_misidentified_as_this_species_in_place_html: Druge vrste često pomešane sa ovom vrstom u<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_complex: Drugi taksoni često pomešani sa ovim kompleksom
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: Drugi taksoni često pomešani sa ovim kompleksom u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus: Drugi taksoni često pomešani sa ovim rodom
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: Drugi taksoni često pomešani sa ovim rodom u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genushybrid: Drugi taksoni često pomešani sa ovim hibridnim rodom
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: Drugi taksoni često pomešani sa ovim hibridnim rodom u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_hybrid: Drugi taksoni često pomešani sa ovim hibridom
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: Drugi taksoni često pomešani sa ovim hibridom u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Drugi taksoni često pomešani sa ovim %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Drugi taksoni često pomešani sa ovim %{rank} u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_species: Drugi taksoni često pomešani sa ovom vrstom
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: Drugi taksoni često pomešani sa ovom vrstom u <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_subgenus: Drugi taksoni često pomešani sa ovim podrodom
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: Drugi taksoni često pomešani sa ovim podrodom u <a href="%{url}">%{place}</a>
   our_blog: Naš blog
   overview: Pregled
+  overlapping_atlases: Preklapajući atlasi
   owner: Vlasnik
   #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
   parent: Roditelj
   parental_consent:
+    must_specify_email: Navedi imejl adresu
     invalid_email: Pogrešan format imejl-a
   password: Lozinka
   password_confirmation: 'Potvrda lozinke'
@@ -1604,12 +1650,23 @@ sr:
   people_following_user: "Ljudi koji prate %{user}"
   people_user_follows: "Ljudi koje %{user} prati"
   people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: dodata <a href="%{observation_url}">opservacija</a>
     identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: dodat <strong>ID</strong> za %{observation_link} od strane %{user_link}
       #The same as people_added.identification.with_observation, except it
       #covers the rare situation in which we have an update for an
       #identification but the observation has been deleted
       without_observation: dodat <strong>ID</strong>
     post: napravljen %{post_link}
+    comment:
+      with_by: komentarisao/la na %{comment_subject_link} od strane %{by_link}
+      without_by: komentarisao/la na %{comment_subject_link}
   per_day: Dnevno
   per_month: Mesečno
   per_week: Nedeljno
@@ -1691,6 +1748,8 @@ sr:
       country: država
       County: Okrug
       county: okrug
+      District: Okrug
+      district: okrug
       Intersection: Raskrsnica
       intersection: raskrsnica
       Island: Ostrvo
@@ -2102,25 +2161,33 @@ sr:
     subkingdom: Podcarstvo
     phylum: Tip
     subphylum: Podtip
+    superclass: nadklasa
     class: Klasa
     subclass: Podklasa
     infraclass: Infraklasa
+    superorder: nadred
     order: Red
     suborder: Podred
     infraorder: Infrared
+    parvorder: parvred
+    superfamily: nadporodica
     family: Porodica
     x_families:
       one: Porodica
       few: Porodice
       other: Porodica
     subfamily: Potporodica
+    supertribe: nadpleme
     tribe: Pleme
+    subtribe: potpleme
     genus: Rod
     x_genera:
       one: rod
       few: roda
       other: rodova
+    genushybrid: hibridni rod
     subgenus: Podrod
+    complex: Kompleks
     #Singular
     species: Vrsta
     x_species:
@@ -2141,26 +2208,40 @@ sr:
   ranks_lowercase_phylum: tip
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
   ranks_lowercase_subphylum: podtip
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: nadklasa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
   ranks_lowercase_class: klasa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
   ranks_lowercase_subclass: podklasa
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: potklasa
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: nadred
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
   ranks_lowercase_order: red
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: podred
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infrared
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: nadporodica
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
   ranks_lowercase_family: porodica
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: potporodica
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: nadpleme
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: pleme
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
   ranks_lowercase_subtribe: potpleme
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: rod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: hibridni rod
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
   ranks_lowercase_subgenus: podrod
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
@@ -2175,6 +2256,7 @@ sr:
   ranks_lowercase_hybrid: hibrid
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: podvrsta
+  ranges: Opsezi
   ray_finned_fishes: zrakoperke
   read_more: Pročitaj više
   real_time_discussions: Diskusije u realnom vremenu
@@ -2184,6 +2266,7 @@ sr:
   receive_email_notifications_description: "Ako ovo isključiš, nećeš više dobijati imejl notifikacije od %{site_name}"
   receive_updates_from_this_project: Primaj obaveštenja o ovom projektu
   recent: Nedavno
+  recent_evidence_of_organism: Nedavni trag organizma
   recent_observations: Nedavne opservacije
   recent_observations_: Nedavne opservacije
   recent_post: Nedavne objave
@@ -2204,6 +2287,7 @@ sr:
   relationships:
     match: poklapanje
     error: greška
+  remarks_optional: 'Beleške <span class="small description">(opcionalno)</span>'
   remember_me: Zapamti me
   remove: Ukloni
   remove_all_tags: Ukloni sve oznake
@@ -2221,6 +2305,7 @@ sr:
   remove_selected: Ukloni označeno
   remove_tags: Ukloni oznake
   removed: Uklonjeno
+  removed_project_user: Uklonjeni korisnici projekta
   removing: "Uklanjanje..."
   replace_parentesis: (zameni)
   reply: Odgovori
@@ -2260,6 +2345,7 @@ sr:
     must_be_captive: mora biti u zatočeništvu / kultivisano
     must_be_identified: mora biti identifikovano
     must_be_on_list: mora biti na listi
+    must_be_in: mora biti u taksonu
     must_be_coordinates_shareable_by_project_curators: posmatrač mora dozvoliti kustosima projekta da vide koordinate.
     must_be_wild: mora biti u divljini
   satellite: satelit
@@ -2282,6 +2368,7 @@ sr:
     one: Čuvanje opservacije...
     few: Čuvanje %{num} od %{count} opservacije
     other: Čuvanje %{num} od %{count} opservacija
+  scale_colon: "Razmera:"
   schemes: Šeme
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Naučni naziv
@@ -2293,6 +2380,8 @@ sr:
   search_for_species: Pretraži vrste
   search_observations: "Pretraži opservacije"
   search_projects: Pretraži projekte
+  #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
+  search_reasons: Pretraži razloge
   search_results_for: Rezultati pretrage za
   search_results_for_query: 'Rezultati pretrage za "%{query}"'
   search_species: Pretraži vrste
@@ -2311,6 +2400,7 @@ sr:
   seek: Seek
   select: Izaberi
   select_all: Izaberi sve
+  select_at_least_one: Označi bar jedno
   select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
   select_none: Izaberi ništa
   select_options: Izaberi opciju
@@ -2354,6 +2444,8 @@ sr:
   sizes: Veličine
   skip_to_next_page: "Preskoči do sledeće stranice"
   small: mali
+  #People who administrate a particular iNaturalist Network partner
+  site_admins: Administratori sajta
   site_name_place: "%{site_name} mesto"
   site_site_admin: "%{site_name} Administrator sajta"
   site_staff: "%{site_name} osoblje"
@@ -2364,6 +2456,7 @@ sr:
     iNaturalist mreža je kolekcija lokalnih sajtova koji su potpuno povezani sa globalnom iNaturalist zajednicom. Ti sajtovi imaju punu podršku lokalnih institucija koji promovišu lokalnu upotrebu i omogućavaju upotrebu podataka sa iNaturalist-a što ide u korist proučavanju lokalnog biodiverziteta. Imaju pristup pravim koordinatama u okviru njihovih geografskih oblasti koje su automatski skrivene od javnog pristupa kako bi se zaštitile ugrožene vrste.
   some_observations_failed_to_save: Neke opservacije nisu sačuvane
   some_of_those_photos_couldnt_be_saved: "Neke fotografije nisu mogle biti sačuvane: %{error}"
+  some_other_reason: Neki drugi razlog (objasni ispod).
   some_rights_reserved: neka prava zadržana
   something: Nešto
   something_: nešto
@@ -2402,28 +2495,44 @@ sr:
     in_text: 'npr. Greene, 2000'
   source_url: URL izvora
   sources: Izvori
+  sources_youve_added: Izvori koje si dodao/la
   spam: Neželjena pošta
   #Plural
   species: Vrste
   species_by_category: vrste po kategoriji
+  species_from_around_the_world: Vrste iz celog sveta
+  species_name_cap: Naziv vrste
+  species_names: nazivi vrsta
   species_search: Pretraga vrsta
+  species_taxon_name: Vrsta / Naziv taksona
+  species_unknown: Vrsta nepoznata
+  standard: Standardni
   start: Od
+  start_a_new_project: Započni novi projekat
+  start_a_project: Započni projekat
+  start_typing_someones_name: "Počni da kucaš nečije ime..."
+  stats: Statistika
   status: Status
   status_globally: '"%{status}" globalno'
   status_in_place: '"%{status}" u %{place}'
   stop_editing: Prekini uređivanje
   stop_following_user: "Ne prati više korisnika %{user}"
   stop_testing: Prekini testiranje
+  submission_model_description: Ko može dodati opservacije u tvoj projekat?
   submit_observations:
     one: Dodaj 1 opservaciju
     few: Dodaj %{count} opservacije
     other: Dodaj %{count} opservacija
   subscribe_to_a_taxon: Prati takson
   subscribe_to_a_place: Prati mesto
+  subscribe_to_observations_from_this_place_html: <a>Prati</a> opservacije iz ovog mesta
+  subscribe_to_observations_in_a_place: Prati sve opservacije dodate u okviru ovog mesta. Takođe možeš dodati opcioni filter taksona (npr. 'škorpije iz Teksasa').
   subscribe_to_this: Prati ovo
+  successfully_changed_your_password: Uspešno promenjena lozinka.
   suggest_an_identification: Predloži identifikaciju
   suggestions: Predlozi
   summary: Rezime
+  supporting: Podržava
   suspend_user: Suspenduj korisnika
   suspend_user_html: Suspenduj %{user}
   sync: Sinhronizuj?
@@ -2433,26 +2542,116 @@ sr:
   #Noun, as in "add a tag to this observation"
   tag: oznaka
   tags: Oznake
+  take_me_facebook: Da, odvedi me na Facebook!
+  take_me_flickr!: Da, odvedi me na Flickr!
+  task_deleted: Zadatak izbrisan
   taxa: Taksoni
   taxa_info: Informacije o taksonima
+  taxa_observed: zabeleženi taksoni
   taxon: Takson
   taxon_geoprivacy: Geoprivatnost taksona
+  taxon_is_a_rank: "%{taxon} je %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} je %{rank} u %{iconic_taxon} sa 1 opservacijom"
+    few: "%{taxon} je %{rank} u %{iconic_taxon} sa %{count} opservacije"
+    other: "%{taxon} je %{rank} u %{iconic_taxon} sa %{count} opservacija"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} je %{rank} vodozemaca sa 1 opservacijom"
+    few: "%{taxon} je %{rank} vodozemaca sa %{count} opservacije"
+    other: "%{taxon} je %{rank} vodozemaca sa %{count} opservacija"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} je %{rank} ptica sa 1 opservacijom"
+    few: "%{taxon} je %{rank} ptica sa %{count} opservacije"
+    other: "%{taxon} je %{rank} ptica sa %{count} opservacija"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} je %{rank} sisara sa 1 opservacijom"
+    few: "%{taxon} je %{rank} sisara sa %{count} opservacije"
+    other: "%{taxon} je %{rank} sisara sa %{count} opservacija"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} je %{rank} reptila sa 1 opservacijom"
+    few: "%{taxon} je %{rank} reptila sa %{count} opservacije"
+    other: "%{taxon} je %{rank} reptila sa %{count} opservacija"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} je %{rank} biljaka sa 1 opservacijom"
+    few: "%{taxon} je %{rank} biljaka sa %{count} opservacije"
+    other: "%{taxon} je %{rank} biljaka sa %{count} opservacija"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} je %{rank} zrakoperki sa 1 opservacijom"
+    few: "%{taxon} je %{rank} zrakoperki sa %{count} opservacije"
+    other: "%{taxon} je %{rank} zrakoperki sa %{count} opservacija"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} je %{rank} životinja sa 1 opservacijom"
+    few: "%{taxon} je %{rank} životinja sa %{count} opservacije"
+    other: "%{taxon} je %{rank} životinja sa %{count} opservacija"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} je %{rank} insekata sa 1 opservacijom"
+    few: "%{taxon} je %{rank} insekata sa %{count} opservacije"
+    other: "%{taxon} je %{rank} insekata sa %{count} opservacija"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} je %{rank} arahnida sa 1 opservacijom"
+    few: "%{taxon} je %{rank} arahnida sa %{count} opservacije"
+    other: "%{taxon} je %{rank} arahnida sa %{count} opservacija"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} je %{rank} gljiva sa 1 opservacijom"
+    few: "%{taxon} je %{rank} gljiva sa %{count} opservacije"
+    other: "%{taxon} je %{rank} gljiva sa %{count} opservacija"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} je %{rank} protozoa sa 1 opservacijom"
+    few: "%{taxon} je %{rank} protozoa sa %{count} opservacije"
+    other: "%{taxon} je %{rank} protozoa sa %{count} opservacija"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} je %{rank} mekušaca sa 1 opservacijom"
+    few: "%{taxon} je %{rank} mekušaca sa %{count} opservacije"
+    other: "%{taxon} je %{rank} mekušaca sa %{count} opservacija"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} je %{rank} hromista (smeđe alge i srodnici) sa 1 opservacijom"
+    few: "%{taxon} je %{rank} hromista (smeđe alge i srodnici) sa %{count} opservacije"
+    other: "%{taxon} je %{rank} hromista (smeđe alge i srodnici) sa %{count} opservacija"
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: "%{taxon} je carstvo života sa 1 opservacijom"
+    few: "%{taxon} je carstvo života sa %{count} opservacije"
+    other: "%{taxon} je carstvo života sa %{count} opservacija"
+  taxon_is_threatened_coordinates_hidden: Takson je ugrožen, koordinate skrivene po podrazumevanim podešavanjima
+  taxon_is_threatened_coordinates_obscured: Takson je ugrožen, koordinate prikrivene po podrazumevanim podešavanjima
   taxonomy: Taksonomija
+  taxon_change_must_be_committed_to_update_records: Promena taksona mora biti potvrđena da bi se ažurirao registar
+  taxon_change_title_taxon_swap: Zamena taksona %{id}
   taxon_deleted: Takson izbrisan.
   taxon_doesnt_have_a_range: Takson nema opseg
   taxon_id: Takson ID
   taxon_ids: Takson ID-jevi
+  taxon_map:
+    overlays: Preklapanja
   taxon_changes: Promene taksona
   taxon_colors: Boje taksona
+  taxon_curators: Kustosi taksona
   taxon_framework_deviations_with_count_html: "Devijacije: %{count}"
+  taxon_name: Naziv taksona
+  taxon_name_must_match_an_existing_taxon_in_our_database: Naziv taksona se mora poklapati sa postojećim taksonom u našoj bazi podataka
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> zabeležio/la
+  taxon_observed_by_user: "%{taxon} zabeležio/la %{user}"
+  taxon_photos_updated: Fotografije taksona ažurirane!
   taxon_range: Opseg taksona
+  taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: Mapa za ovaj takson na IUCN crvenoj listi nije odgovarajuća
+  taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ovaj takson nije na IUCN crvenoj listi
+  taxon_range_guidelines_learn_more_about_taxon_ranges: Saznaj više o opsezima taksona
+  taxon_ranks: Rangovi taksona
+  taxon_removed_from_list: Takson uklonjen sa liste.
+  taxon_search: Pretraga taksona
+  taxon_search_results_for: Rezultati pretrage taksona za
   taxon_split: podela taksona
   taxon_swap: zamena taksona
+  taxon_name_was_deleted: Naziv taksona izbrisan.
+  taxon_name_was_successfully_updated: Naziv taksona je uspešno ažuriran.
+  taxon_was_successfully_created: Takson je uspešno kreiran.
   taxonomic: taksonomski
   taxonomic_changes: taksonomske promene
   taxonomic_groups: taksonomske grupe
   taxonomic_order: taksonomski red
   taxonomic_status: taksonomski status
+  taxonomy_details: Detalji taksona
+  taxonomy_details_for: Detalji taksona za
   taxonomy_settings: taksonomska podešavanja
   teachers_guide: Vodič za nastavnike
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
@@ -2462,13 +2661,25 @@ sr:
   terms_service: Uslovi korišćenja
   terrain: teren
   text: Tekst
+  #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
+  text_formatting_controls: Kontrole za formatiranje teksta
+  text_editing_controls: Kontrole za uređivanje teksta
   thanks!: Hvala!
+  thanks_from_all_of_us_here_at: Hvala od svih nas ovde u
   that_photo_doesnt_exist: Nepostojeća fotografija.
   that_observation_doesnt_exist: Nepostojeća opservacija.
   that_observation_doesnt_have_any_photos: "Opservacija nema nijednu fotografiju."
   that_observation_hasnt_been_added_this_project: Opservacija nije dodata u ovaj projekat.
   that_observation_no_longer_exists: Opservacija više ne postoji.
   that_project_doesnt_exist: "Nepostojeći projekat."
+  thats_not_a_real_date: To nije stvaran datum!
+  the_following_observations_could: "Sledeće opservacije nisu mogle biti dodate u %{link}"
+  the_name_of_the_taxon_dashes: Ime taksona, razmaci zamenjeni crticama.
+  the_name_of_the_taxon_underscores: Ime taksona, razmaci zamenjeni donjim crtama.
+  the_observation_was_already_added_to_that_project: Opservacija nje već dodata u taj projekat.
+  the_people_of_inat: "%{site_name} ljudi"
+  the_species_listed_below_were_not_found_in_the_site_database: |
+    Vrste nabrojane ispod nisu nađene u %{site_name} bazi podataka
   the_user_x_has_been_suspended: "Korisnik %{user} je suspendovan"
   the_world: Svet
   then_keybord_sequence: onda
