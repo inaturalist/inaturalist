@@ -548,6 +548,8 @@ es-MX:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquier persona
+  app_owner_application_explanation_required: |
+    Debes proporcionar una explicación más detallada de lo que quieres construir.
   app_owner_application_about_p1a_html: |
     Las aplicaciones iNaturalist permiten el uso autenticado de la API de iNaturalist. Esta
     te permite hacer llamadas API que hacen cosas como crear observaciones o
@@ -1343,6 +1345,7 @@ es-MX:
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
   current_flags: Advertencias actuales
+  custom_boundary: Límite personalizado
   custom_project_fields: Campos a la medida del proyecto
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
@@ -1568,6 +1571,8 @@ es-MX:
   draft_saved: '¡Guardado en borrador!'
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  draw_circular_boundary: Dibujar límite circular
+  draw_rectangular_boundary: Dibujar límite rectangular
   drawings: Dibujos
   duplicate_verb: Duplicado
   duration_value: "Duración: %{duration} minutos"
@@ -4104,6 +4109,7 @@ es-MX:
   research_grade_tooltip_html: 'Las observaciones de "Grado de Investigación" tienen medios, ubicación, una fecha y el consenso de la comunidad sobre su identificación precisa (generalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   research_grade_observations_have: 'Las observaciones con "grado de Investigación" tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale para ver la evaluación de calidad de los datos.'
   research_grade_qualification: Calificación de Grado de Investigación
+  reset: Restablecer
   reset_filters_short: Restablecer
   reset_brightness: Restablecer brillo
   reset_search_filters: Restablecer los filtros de búsqueda
