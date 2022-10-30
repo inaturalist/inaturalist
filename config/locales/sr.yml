@@ -446,6 +446,8 @@ sr:
     replace_with: zameni sa
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zamenjen sa
+    input_taxon_was_dropped_html: "%{input_taxon} je poništen"
+    input_taxon_will_be_dropped_html: "%{input_taxon} će biti poništen"
   change_your_password: Promeni lozinku
   #Plural noun, as in changes to a taxon record over time
   changes: Izmene
@@ -2615,9 +2617,11 @@ sr:
   taxon_is_threatened_coordinates_obscured: Takson je ugrožen, koordinate prikrivene po podrazumevanim podešavanjima
   taxonomy: Taksonomija
   taxon_change_must_be_committed_to_update_records: Promena taksona mora biti potvrđena da bi se ažurirao registar
+  taxon_change_title_taxon_drop: Poništen takson %{id}
   taxon_change_title_taxon_swap: Zamena taksona %{id}
   taxon_deleted: Takson izbrisan.
   taxon_doesnt_have_a_range: Takson nema opseg
+  taxon_drop: poništen takson
   taxon_id: Takson ID
   taxon_ids: Takson ID-jevi
   taxon_map:
@@ -2683,6 +2687,7 @@ sr:
   the_user_x_has_been_suspended: "Korisnik %{user} je suspendovan"
   the_world: Svet
   then_keybord_sequence: onda
+  there_were_some_problems_with_these_files: "Bilo je problema sa ovim fajlovima:"
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "kueda's
   #identifications", but we generally handle those with more specific
@@ -2691,6 +2696,7 @@ sr:
   third_person_possessive_singular: "%{object_phrase} %{noun}"
   this: to
   this_bioblitz_beings_in: Bioblitz počinje u
+  this_is_how_taxon_names_will_be_displayed: Kako će ti nazivi taksona biti prikazani na %{site_name}
   this_is_taking_forever: Ovo traje predugo. Molimo pokušaj kasnije.
   this_is_your_observation: Ovo je tvoja opservacija
   this_is_your_observation_desc: Uvek možeš da vidiš koordinate tvojih opservacija.
@@ -2912,10 +2918,18 @@ sr:
   view_lists: Pogledaj liste
   view_more: Pogledaj više
   view_more_about_x: "Pogledaj više o %{x}"
+  view_more_observations_near_x_place: "Pogledaj opservacije u blizini %{place} na <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_project: "Pogledaj više opservacija iz %{project} na <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Pogledaj više opservacija %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_observation: Pogledaj opservaciju
   view_observations: Pogledaj opservacije
   view_observations_of_this_taxon_by: Pogledaj opservacije ovog taksona od strane
+  view_original: "Prikaži original"
+  view_place: Pogledaj mesto
   view_post: Pogledaj objavu
+  view_projects_from_place: "Pogledaj projekte u %{place}"
+  view_sample: Vidi primer
+  view_stats: Vidi statistiku
   view_taxon_change: Pogledaj izmenu taksona
   view_taxon_changes: Pogledaj izmene taksona
   view_taxon_page: Pogledaj stranicu taksona
@@ -2976,6 +2990,7 @@ sr:
   where_were_they?: Gde je bilo?
   where_were_you?: Gde je to bilo?
   white: bela
+  who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
   who_helped_user_the_most: "Ko je najvie pomogao korisniku %{user}"
   who_user_helped_the_most: "Kome je %{user} najviše pomogao/la"
@@ -3006,17 +3021,26 @@ sr:
     few: "%{x} od %{count} zabeleženo"
     other: "%{x} od %{count} zabeleženo"
   x_project_journal: "%{project} %{name}"
+  x_sent_you_a_new_message_on_y_html: "%{x} ti je poslao/la novu poruku na %{y}: "
   x_wrote_a_new_post_html: "%{x} je napisao/la novu objavu"
   year: Godina
   year_month: godina/mesec
+  year_on_site: "Godina na %{site} %{year}"
   yellow: žuta
   'yes': "Da"
+  yes_find_them!: "Da, pronađi ih!"
   yes_i_want_to_join: Da, želim da se pridružim
   yes_license_my_childs_observations: Da, licenciraj fotografije, zvukove i opservacije mog deteta tako da naučnici mogu da ih koriste (preporučeno)
   yes_license_my_observations_so_scientists_can_use: Da, licenciraj moje fotografije, zvukove i opservacije tako da naučnici mogu da ih koriste (preporučeno)
+  yes_reject_it: Da, odbaci
   yesterday: Juče
+  yir_donate_banner_inaturalist_in_year: "INATURALIST U %{year}:"
   #"You" is singular
   yir_donate_banner_all_thanks: Sve zahvaljujući ljudima kao što si ti!
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist napreduje zahvaljujući ljudima kao to si ti!
+  #"You" is singular
+  yir_donate_banner_you_helped_inaturalist_thrive: Pomogao/la si iNaturalist-u da napreduje ove godine. Hvala!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist-u je potrebna tvoja podrška
   yir_millions_of_people_used_inaturalist: |
@@ -3099,6 +3123,7 @@ sr:
   your_profile_was_successfully_updated: Tvoj profil je uspešno ažuriran.
   your_recent_projects: Tvoji skorašni projekti
   your_tags: Tvoje oznake
+  yours: Tvoj
   youre_not_following_anyone: |-
     Za sad ne pratiš nikoga. Praćenjem drugih prirodnjaka ti omogućava da budeš u toku sa njihovim opservacijama. Saznaj šta ljudi <a href="%{observations_path}">posmatraju</a> i stekni nove <a href="%{people_path}">prijatelje</a>.
   youre_not_following_anyone_on_inat: Za sad ne pratiš nikog na %{site_name}!
@@ -3168,8 +3193,10 @@ sr:
         name: Ime
         most_observed: Najviše nalaza
         least_observed: Najmanje nalaza
+        ancestry: Poreklo
         show: Prikaži
         simplified_tree: Pojednostavljeno stablo
+        full_taxonomy: Puna taksonomija
     messages:
       from: Od
       to: Za
@@ -3177,6 +3204,12 @@ sr:
       index:
         show_messages_from_user: Prikaži poruke primljene od %{user}
         show_messages_to_user: Prikaži poruke poslate %{user}
+    oauth:
+      authorizations:
+        new:
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          more_about_application: Više o %{application}
     observations:
       community_id:
         agreement: Slaganje
@@ -3214,6 +3247,8 @@ sr:
         user_login: Korisničko ime posmatrača
         url: URL opservacije
         image_url: URL podrazumevane slike
+      identify:
+        review_all_tooltip: "Označi sve opservacije na strani kao pregledane"
       import:
         date_column_format: GGGG-MM-DD SS:MM
         decimal_degrees_format: dd.dddd
@@ -3248,9 +3283,13 @@ sr:
           Ostavi tvoje opservacije u ovom projektu
         remove_observations_label: |
           Ukloni sve tvoje opservacije iz obog projekta
+        revoke_observations_label: |
+          Ostavi opservacije u ovom projektu ali spreči kustose da vide njihove skrivene koordinate
       edit:
         no_curators: |
           Trenutno nema kustosa projekta. Ako želiš da odrediš neku osobu kao administratora, oni se prvo moraju pridružiti ovom projektu i moraš ih postaviti za kustosa.
+        rules:
+          captive: biti u zatočeništvu / kultivisano
       new:
         are_you_sure_you_want_to_delete: Da li sigurno želiš da izbrišeš ovaj projekat?
         data_visualizations: Vizuelizacija podataka
