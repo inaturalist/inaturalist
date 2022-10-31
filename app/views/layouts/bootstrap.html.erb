@@ -3,7 +3,9 @@
       xml:lang="<%= I18n.locale %>"
       lang="<%= I18n.locale %>"
       xmlns:fb="http://www.facebook.com/2008/fbml"
-      xmlns:og="http://ogp.me/ns#">
+      xmlns:og="http://ogp.me/ns#"
+      dir="<%= @rtl ? "rtl" : "ltr" %>"
+      >
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
@@ -16,6 +18,7 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag "bootstrap-rtl.min" if @rtl %>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>

@@ -1,0 +1,13 @@
+$isRTL: false !default;
+@mixin rtl {
+  @if $isRTL {
+    @if & {
+      & {
+        @content;
+      }
+    }
+    @else {
+      @content;
+    }
+  }
+}

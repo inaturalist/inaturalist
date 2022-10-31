@@ -9,11 +9,11 @@
     - unless resource.errors[:password].blank?
       .error= formatted_error_sentence_for( resource, :password )
   .form-group.checkbox
-    = link_to t(:forgot_your_password), new_password_path( resource_name ), class: "pull-right"
     - if devise_mapping.rememberable?
       %label
         = f.check_box :remember_me
         = t(:remember_me)
+    = link_to t(:forgot_your_password), new_password_path( resource_name )
   .form-group.centered
     = f.submit t(:log_in), class: "btn btn-inat btn-primary btn-lg"
   .form-group.centered

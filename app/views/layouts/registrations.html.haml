@@ -1,5 +1,5 @@
 - content_for :extracss do
-  = stylesheet_link_tag "users/registrations"
+  = stylesheet_link_tag "users/registrations#{"-rtl" if @rtl}"
 - content_for(:extrajs) do
   = javascript_include_tag "users/registrations"
 - content_for( :content ) do

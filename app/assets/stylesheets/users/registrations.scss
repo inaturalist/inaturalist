@@ -1,5 +1,6 @@
 @import "../colors";
 @import "../responsive";
+@import "../_rtl";
 
 #header {
   margin-bottom: 0;
@@ -29,10 +30,13 @@
     .usericon {
       width: 76px;
       height: 76px;
-      margin-right: 20px;
+      margin: 0 20px 0 0;
       background-size: cover;
       background-position: center;
       border-radius: 100px;
+      @include rtl {
+        margin: 0 0 0 20px;
+      }
     }
 
     .details {
@@ -74,9 +78,17 @@
     background-color: #f8f8f8;
     color: #666;
     border-radius: 7px;
-    padding-left: 41.3px;
     font-size: 15px;
     font-weight: 100;
+    padding-left: 41.3px;
+    @include rtl {
+      padding-left: inherit;
+      padding-right: 41.3px;
+    }
+  }
+  .form-group.checkbox {
+    display: flex;
+    justify-content: space-between;
   }
   .form-group.text-field {
     position: relative;
@@ -85,6 +97,10 @@
     position: absolute; 
     top: 8px;
     left: 13px;
+    @include rtl {
+      left: auto;
+      right: 13px;
+    }
     font: normal normal normal 14px/1 FontAwesome;
     color: $inat-green;
     font-size: 18px;
@@ -223,14 +239,19 @@
     justify-content: space-between;
     padding: 16px;
     i {
-      margin-right: 10px;
       font-size: 25px;
       line-height: 25px;
     }
     img {
       width: 25px;
       height: 25px;
-      margin-right: 10px;
+    }
+    i,
+    img {
+      margin: 0 10px 0 0;
+      @include rtl {
+        margin: 0 0 0 10px;
+      }
     }
     &.google {
       background-color: white;
@@ -238,7 +259,10 @@
     }
     &.facebook {
       i {
-        margin-left: 4px;
+        margin: 0 0 0 4px;
+        @include rtl {
+          margin: 0 4px 0 0;
+        }
       }
     }
     .btntext {

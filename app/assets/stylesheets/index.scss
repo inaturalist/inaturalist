@@ -9,6 +9,12 @@
 */
 @import "colors";
 @import "shared/google_maps";
+$right: "right";
+$before: "before";
+[dir=rtl] {
+  $right: "left";
+  $before: "after";
+}
 body {
   margin: 0;
   padding: 0;

@@ -3,7 +3,8 @@
     xml:lang="<%= I18n.locale %>"
     lang="<%= I18n.locale %>"
     xmlns:fb="http://www.facebook.com/2008/fbml"
-    xmlns:og="http://ogp.me/ns#">
+    xmlns:og="http://ogp.me/ns#"
+    dir="<%= @rtl ? "rtl" : "ltr" %>">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <% if CONFIG.facebook && CONFIG.facebook.namespace %><%= CONFIG.facebook.namespace %>: http://ogp.me/ns/fb/<%= CONFIG.facebook.namespace %>#<% end %>">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
