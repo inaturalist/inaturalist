@@ -955,6 +955,7 @@ hu:
   #Title of a page where people apply to become a curator
   curator_application_title: Kurátor alkalmazás
   curators: Gondnokok
+  custom_boundary: Tetszőleges határolókeret
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
   darr_apply_darr: "&darr; Alkalmaz &darr;"
@@ -1143,6 +1144,8 @@ hu:
   draft_saved: Piszkozat elmentve!
   drafts: Piszkozatok
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
+  draw_circular_boundary: Kör alakú határolókeret rajzolása
+  draw_rectangular_boundary: Négyszög alakú határolókeret rajzolása
   drawings: Rajzok
   duplicate_verb: Másolás
   duration_value: "Hossz: %{duration} perc"
@@ -2885,6 +2888,7 @@ hu:
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
+  project_settings: Projektbeállítások
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3115,6 +3119,7 @@ hu:
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
   research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
   research_grade_qualification: A tudományos szint követelményei
+  reset: Visszaállítás
   reset_filters_short: Visszaállítás
   reset_search_filters: Szűrők visszaállítása
   resolved: Megoldva
@@ -3587,6 +3592,7 @@ hu:
   trusted: Megbízható
   trust_this_person_with_your_private_coordinates: Engedélyezd ennek a személynek, hogy láthassa rejtett koordinátáidat
   trust_this_project_with_your_private_coordinates?: Engedélyezed ennek a projektnek, hogy láthassák rejtett koordinátáidat?
+  trust_with_private_coordinates: Rejtett koordináták megosztása
   twitter: Twitter
   two_thirds: 2/3
   #As in a category, not as in a keyboard
@@ -4357,8 +4363,14 @@ hu:
           any: Bármely
           joined: Projektek, melyekhez csatlakoztál
           none: "Egyik sem, csak te adhatod hozzá megfigyeléseidet projektekhez"
+        prefers_community_taxa_desc: |
+          Az %{site_name} rögzíti, hogy miként azonosítod a megfigyeléseidet, és azt is, hogy a közösség miként azonosítja azokat. Ha nem szeretnéd, hogy a közösségi azonosítás felülírja a saját meghatározásodat, azt itt megadhatod. A felhasználók továbbra is hozzáadhatnak meghatározásokat, de a megfigyeléseid a te meghatározásodat fogják viselni. Ez azt is jelenti, hogy a megfigyeléseid csak akkor lesznek tudományos szintűek, ha a te meghatározásod egyezik a közösség meghatározásával.
         prefers_no_tracking_label: Harmadik féltől származó szolgáltatásokkal ne gyűjtsön adatokat az alkalmazás működéséről.
+        project_settings_desc: |
+          Ez a beállítás nem ad hozzáférész a projekteknek a rejtett koordinátákhoz, és nem engedélyezi az értesítések küldését. Ezek engedélyezéséhez csatlakoznod kell a projekthez, vagy egyesével engedélyezned kell ezeket.
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
+        this_only_applies_to_traditional_projects: |
+          Ez csak hagyományos projektekre vonatkozik. Megfigyeléseket nem tudsz kivenni az ernyőprojektekből, amelyek lényegében mentett keresések. Bővebben <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">itt</a>.
       recent:
         about_recent_users: Rólunk
       show:
