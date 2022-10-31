@@ -3502,6 +3502,26 @@ pl:
   taxon: Takson
   taxon_autocomplete_placeholder: Ptaki, monarcha, itp.
   taxon_geoprivacy: Geoprywatność taksonu
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} to %{rank} płazów z 1 obserwacją"
+    few: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} płazów z %{count} obserwacji"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} to %{rank} ptaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ptaków z %{count} obserwacji"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} to %{rank} ssaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ssaków z %{count} obserwacji"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} to %{rank} gadów z 1 obserwacją"
+    few: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} gadów z %{count} obserwacji"
   taxon_is_threatened_coordinates_hidden: Takson jest zagrożony, współrzędne są domyślnie ukryte
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taksonów zasugerowanych w oznaczeniach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
