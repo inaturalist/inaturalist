@@ -1311,6 +1311,7 @@ ca:
   curators_can_remove_observations_from: Els supervisors poden eliminar observacions del projecte i les seves identificacions es mostren en certes vistes (com a referència). A més, poden veure les coordenades enfosquides o privades del projecte.
   curator_identification: Identificació del supervisor
   current_flags: Etiquetes actuals
+  #Label for a custom boundary for an observation search
   custom_boundary: Límit personalitzat
   custom_project_fields: Camps de projecte personalitzats
   custom_project_was_successfully_created: El projecte de l'usuari s'ha creat satisfactòriament.
@@ -1534,7 +1535,9 @@ ca:
   draft_saved: Esborrany desat!
   drafts: Esborranys
   drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Dibuixa un límit circular
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Dibuixa un límit rectangular
   drawings: Dibuixos
   duplicate_verb: Duplicat
@@ -4040,6 +4043,7 @@ ca:
   research_grade_tooltip_html: 'Les observacions qualificades com a "Grau de Recerca" tenen imatges o sons, localització i data, i la seva identificació precisa ha estat consensuada per la comunitat (normalment a nivell específic). <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
   research_grade_observations_have: 'Les observacions amb "Grau de recerca" disposen de data, foto, coordenades i una ID recolzada per la comunitat. Feu clic aquí per veure l''avaluació de la qualitat de les dades.'
   research_grade_qualification: Qualificació de Grau de Recerca
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Restablir
   reset_filters_short: Restablir
   reset_brightness: Restablir brillantor
