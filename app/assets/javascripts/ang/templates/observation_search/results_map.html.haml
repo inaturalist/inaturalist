@@ -25,7 +25,7 @@
       .col-xs-4.col-xs-offset-8
         #obs
           .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || pagination.searching || pagination.stopped", "infinite-scroll-parent": "true" }
-            %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "showInfowindow( o )", "ng-mouseleave": "hideInfowindow( )" }
+            %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "o.mappable ? showInfowindow( o ) : undefined", "ng-mouseleave": "hideInfowindow( )" }
           .spinner.ng-cloak{ "ng-show": "pagination.searching" }
             %span.fa.fa-spin.fa-refresh
           .noresults.text-muted.ng-cloak{ "ng-show": "noObservations( )" }

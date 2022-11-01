@@ -603,7 +603,7 @@ class ActivityItem extends React.Component {
             <UserImage user={item.user} linkTarget={linkTarget} />
           )}
         </div>
-        <Panel className={panelClass}>
+        <Panel className={`${panelClass} ${item.api_status ? "loading" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
@@ -629,7 +629,7 @@ class ActivityItem extends React.Component {
           </Panel.Heading>
           <Panel.Body>
             {taxonChange}
-            <div className={`contents ${item.api_status ? "loading" : ""}`}>
+            <div className="contents">
               {contents}
             </div>
           </Panel.Body>

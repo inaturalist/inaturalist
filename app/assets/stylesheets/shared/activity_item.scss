@@ -2,6 +2,11 @@
 
 .ActivityItem,
 body > [role="dialog"] .ActivityItem {
+  .panel.loading {
+    .panel-title > span, .panel-title > .time, .panel-body {
+      opacity: 0.5;
+    }
+  }
   &.comment {
     overflow: inherit;
   }
@@ -160,9 +165,6 @@ body > [role="dialog"] .ActivityItem {
     .contents {
       padding: 15px;
       line-height: 0;
-      &.loading {
-        opacity: 0.5;
-      }
       .content {
         display: block;
         overflow: hidden;
