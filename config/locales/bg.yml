@@ -499,9 +499,11 @@ bg:
   #curator
   apply_curator: Кандидатстване
   apply_to_selected: Приложи към избраното
+  apply_captive_cultivated: "Приложи в плен/култивиран"
   apply_fields: Приложи полетата
   apply_geoprivacy: Приложи геоповерителност
   apply_darr: "Приложи &darr;"
+  apply_these_settings_to_all: Приложи настройките към всичките наблюдения по-долу
   appropriate?: Уместно?
   arachnids: паякообразни
   archives: Архиви
@@ -592,6 +594,7 @@ bg:
   be_the_first_to_fave_this_observation: Станете първият добавил наблюдението в Любими!
   become_a_donor_caps: СТАНЕТЕ ДАРИТЕЛ
   become_a_donor_today_caps: СТАНЕТЕ ДАРИТЕЛ ДНЕС
+  before_importing_photos: преди да импортирате снимки
   bg_color: Цвят на фона
   bio: Биография
   bio_description: Разкажете на останалите повече за себе си!
@@ -1372,6 +1375,7 @@ bg:
   frequency: Честота
   from_a_place: от място
   from_flickr_facebook_etc: От Flickr, Facebook и др.
+  from_list: От списък
   from_photos: От снимки
   from_place: От място
   from_soundcloud: От Soundcloud
@@ -2343,6 +2347,12 @@ bg:
   output_taxon: Изходящ таксон
   overview: Общ преглед
   owner: Собственик
+  #One level up in a hierarchy, e.g. the genus Homo is the parent of the species Homo sapiens, or the state of California is the parent of Alameda County
+  parent: Родител
+  #Name of the entity one level up in a hierarchy, generally used for a parent taxon
+  parent_name: Име на родител
+  parental_consent:
+    invalid_email: Неправилен формат на имейл
   password: Парола
   password_confirmation: 'Потвърждение на паролата'
   paste_in_a_bunch_of_names: Копирай няколко имена, по едно на ред, и натисни бутона!
@@ -2445,6 +2455,8 @@ bg:
       colloquial: разговорно
       Commune: Комуна
       commune: комуна
+      Constituency: Избирателен район
+      constituency: избирателен район
       Continent: Континент
       continent: континент
       Country: Държава
@@ -2811,8 +2823,18 @@ bg:
     zimbabwe: Зимбабве
   places_of_interest: Места представляващи интерес
   places_merged_successfully: Местата са успешно слети!
+  places_warning_export_complex_boundary_html: |
+    Ако се опитвате да експортирате наблюдения от сложни граници – вместо това, бихте могли да ги <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">изтеглите от GBIF</a>, където можете да използвате произволни граници. Можете също да ги експортирате от iNat използвайки съществуващо място или ограничителен правоъгълник и да ги филтрирате допълнително след като ги изтеглите.
+  places_warning_look_for_existing_html: |
+    Потърсете за <a href="/search?source[]=places">съществуващи места</a>, за да се уверите, че не създавате дубликат. Вече имаме места за всички континенти, държави и няколко административни нива в държавите.
+  places_warning_projects_can_have_multiple_places: |
+    Ако се опитвате да създадете място за границите на проект, имайте предвид, че проектите могат да комбинират няколко места. Например, ако искате да създадете проект за Австралия и Нова Зеландия – можете просто да създадете филтри за двете места, вместо да създавате ново място.
+  places_warning_new_places_are_slow_html: |
+    Новите места са една от основните причини на забавяне на iNat, така че <strong>моля, обмислете възможността да не създавате ново място</strong>. Малки места, съдържащи само няколко хиляди наблюдения, обикновено не са проблем, но ако създадете място съдържащо много наблюдения – ще забавите iNat за всички потребители. Ето няколко алтернативи:
   places_warning_quota: |
     Можете да създадете само три места на ден.
+  places_warning_the_future: |
+    Така или иначе, ще трябва да ограничим създаването на места в бъдеще, имайки предвид скоростта на разрастване на iNat.
   plants: растения
   please_confirm_your_inat_username: "Моля потвърдете Вашето потребителско име на %{site_name}"
   please_fix_your_csv_and_try_again: Моля поправете Вашия CSV и опитайте отново.
@@ -3077,6 +3099,7 @@ bg:
   repair_broken_urls: Поправи неработещи връзки
   repair_doesnt_work_for_that_kind_of_photo: Възстановяването не е възможно за такива снимка
   repair_external_photos: Възстанови външни снимки
+  replace_parentesis: (замени)
   reptiles: влечуги
   required: задължително
   required_: Задължително
@@ -4034,6 +4057,7 @@ bg:
   you_sure_delete_comment?: Сигурни ли сте, че искате да изтриете този коментар?
   you_sure_delete_identification?: Сигурни ли сте, че искате да изтриете това разпознаване?
   you_sure_delete_project?: Сигурни ли сте, че искате да изтриете този проект?
+  youll_need_to_link: Ще трябва да свържете
   youve_joined_the_x_project: "Присъединихте се към проекта %{project_invitation} и наблюдението Ви беше добавено"
   your_account_has_been_activated: Вашият акаунт е активиран!
   your_activation_code_was_missing: "Липсва активационен код. Моля, използвайте препратката във Вашата електронна поща."
