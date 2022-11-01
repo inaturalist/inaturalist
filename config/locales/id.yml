@@ -1286,6 +1286,7 @@ id:
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
   curator_identification: Identifikasi kurator
   current_flags: Tanda Saat Ini
+  #Label for a custom boundary for an observation search
   custom_boundary: Batas Kustom
   custom_project_fields: Proyek Kolom Kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
@@ -1511,7 +1512,9 @@ id:
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
   drag_and_drop_some_photos_or_sounds: Seret & lepas foto atau suara
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Gambar batas bulat
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Gambar batas persegi
   drawings: Gambar
   duplicate_verb: Duplikat
@@ -4028,6 +4031,7 @@ id:
   research_grade_tooltip_html: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan konsensus komunitas pada sebuah identifikasi yang pasti (biasanya pada tingkat spesies). <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
   research_grade_observations_have: 'Pengamatan "Kelas Riset" memiliki tanggal, foto, koordinat dan ID dari komunitas. Klik untuk melihat penilaian kualitas data.'
   research_grade_qualification: Kualifikasi Kelas Riset
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Atur Ulang
   reset_filters_short: Atur Ulang
   reset_brightness: Atur Ulang Kecerahan
