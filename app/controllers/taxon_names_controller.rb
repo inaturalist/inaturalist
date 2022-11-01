@@ -96,7 +96,7 @@ class TaxonNamesController < ApplicationController
     @synonyms = TaxonName.
       joins( "LEFT OUTER JOIN taxa ON taxa.id = taxon_names.taxon_id" ).
       where( "taxa.id IS NOT NULL" ).
-      where( name: @taxon_name.name ).
+      where( "lower(taxon_names.name) = ? ", @taxon_name.name.downcase ).
       where( "taxon_names.id != ?", @taxon_name.id ).
       page( 1 )
   end
