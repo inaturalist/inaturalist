@@ -489,7 +489,13 @@ class UsersController < ApplicationController
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
-          forum_feedback_category = @discourse_data[:categories].values.detect{|c| c["name"] == "Forum Feedback"}
+          discourse_ignored_category_names = [
+            "Forum Feedback",
+            "Nature Talk"
+          ]
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+            discourse_ignored_category_names.include?( c["name"] )
+          end.map{ |c| c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
@@ -504,8 +510,7 @@ class UsersController < ApplicationController
             # Remove posts in the Forum Feedback category
             (
               !t["category_id"] ||
-              !forum_feedback_category ||
-              t["category_id"] != forum_feedback_category["id"]
+              !discourse_ignored_category_ids.include?( t["category_id"] )
             )
           }[0..5]
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
