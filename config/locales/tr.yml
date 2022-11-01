@@ -1317,6 +1317,7 @@ tr:
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
+  #Label for a custom boundary for an observation search
   custom_boundary: Özel Sınır
   custom_project_fields: Özel Proje Alanları
   custom_project_was_successfully_created: Proje özelleştirmeleri eklendi
@@ -1540,7 +1541,9 @@ tr:
   draft_saved: Taslak kaydedildi!
   drafts: Taslaklar
   drag_and_drop_some_photos_or_sounds: Bazı fotoğrafları ya da sesleri sürükleyip bırak
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Dairesel bir sınır çizin
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Dörtgen bir sınır çizin
   drawings: Çizimler
   duplicate_verb: Çoğalt
@@ -4035,6 +4038,7 @@ tr:
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri nitelik değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Sıfırla
   reset_filters_short: Sıfırla
   reset_brightness: Parlaklığı Sıfırla
