@@ -955,6 +955,7 @@ hu:
   #Title of a page where people apply to become a curator
   curator_application_title: Kurátor alkalmazás
   curators: Gondnokok
+  #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
@@ -1144,7 +1145,9 @@ hu:
   draft_saved: Piszkozat elmentve!
   drafts: Piszkozatok
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Kör alakú határolókeret rajzolása
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Négyszög alakú határolókeret rajzolása
   drawings: Rajzok
   duplicate_verb: Másolás
@@ -1640,7 +1643,7 @@ hu:
   lexicon: Szókészlet
   lexicon_cannot_contain_words: "nem tartalmazhatja ezeket a szavakat: %{words}"
   lexicons:
-    scientific_names: Tudományos név
+    scientific_names: Tudományos nevek
     albanian: Albán
     arabic: Arab
     armenian: Örmény
@@ -3119,6 +3122,7 @@ hu:
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
   research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
   research_grade_qualification: A tudományos szint követelményei
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Visszaállítás
   reset_filters_short: Visszaállítás
   reset_search_filters: Szűrők visszaállítása
