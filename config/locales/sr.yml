@@ -1762,6 +1762,7 @@ sr:
     romanian:
     russian:
     santali:
+    serbian: srpski
     setswana: secvana
     sinhala: sinhala
     slovak: slovački
@@ -1856,6 +1857,7 @@ sr:
     sk: slovački
     sl: slovenački
     sq: albanski
+    sr: srpski
     sv: švedski
     th: tajlandski
     tr: turski
@@ -1870,6 +1872,10 @@ sr:
   location_is_private: Lokacija je privatna
   location_specified: Lokacija naznačena
   log_in: Uloguj se
+  log_in_or_sign_up_to_add_comments_html: |
+    <a href="/login">Uloguj se</a> ili <a href="/signup">prijavi</a> da dodaš komentar.
+  log_in_or_sign_up_to_add_identifications_html: |
+    <a href="/login">Uloguj se</a> ili <a href="/signup">prijavi</a> da dodaš identifikaciju.
   log_out: Izloguj se
   log_out_caps: IZLOGUJ SE
   #Application is a mobile app the user has authorized to access their iNat account
@@ -1890,6 +1896,7 @@ sr:
   manage_your_projects: Upravljaj tvojim projektima
   managing_projects: Upravljane projektima
   map: Mapa
+  map_legend: Legenda mape
   map_marker_size: Veličina markera na mapi
   map_of_observations: Mapa opservacija
   maps:
