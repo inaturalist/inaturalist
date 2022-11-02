@@ -1783,8 +1783,14 @@ sr:
   licensing: Licenciranje
   licensing_your_content_gives_others_legal: "Licenciranje tvog sadržaja daje drugima zakonsko pravo da ga koriste pod uslovom da se pridržavaju uslova licence. %{site_name} koristi tvoj sadržaj sa Creative Commons licencom da deli podatke sa partnerima kao što je "
   life: Život
+  life_list: "Lista života korisnika %{user}"
   linear_scale_label: Linearno
   link: Link
+  link_your_facebook_account: Poveži svoj Facebook nalog
+  link_your_flickr_account: Poveži svoj Fllickr nalog
+  link_your_google_account: Poveži svoj Google nalog
+  linked_facebook: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Facebook nalogom."
+  linked_flickr: "Tvoj %{site_name} nalog je trenutno povezan sa tvojim Flickr nalogom."
   linkedin: LinkedIn
   list: Lista
   list_deleted: Lista izbrisana.
@@ -1892,6 +1898,7 @@ sr:
   longitude_value: "Geografska dužina: %{longitude}"
   low: Niži
   lowest_rank: Najniži rang
+  make_a_new_place: Napravi novo mesto
   mammals: sisari
   manage_your_projects: Upravljaj tvojim projektima
   managing_projects: Upravljane projektima
@@ -1903,6 +1910,7 @@ sr:
     overlays:
       all_observations: Sve opservacije
       every_publicly_visible_observation: Svaka javno vidljiva opservacija kreirana u iNaturalist mreži
+      featured_observations: Istaknute opservacije
       gbif_network: GBIF mreža
       observations: Opservacije
       range: Opseg
@@ -1986,6 +1994,7 @@ sr:
   more_than_a_week_ago: Pre više od nedelju dana
   most_agree: većinski potvrdne
   most_browser_print_pdf: "Napomena: većina pretraživača ima opciju da odštampa u PDF"
+  most_disagree: većina se ne slaže
   most_comments_and_faves: Najviše komentara i favorita
   most_observations: Najviše opservacija
   most_species: Najviše vrsta
@@ -3209,6 +3218,9 @@ sr:
   stop_editing: Prekini uređivanje
   stop_following_user: "Ne prati više korisnika %{user}"
   stop_testing: Prekini testiranje
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: PRODAVNICA
   submission_model_description: Ko može dodati opservacije u tvoj projekat?
   submit_observations:
     one: Dodaj 1 opservaciju
@@ -3561,6 +3573,7 @@ sr:
   user_blocked: Korisnik blokiran
   user_commented: "%{user} je komentarisao"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
+  user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} je dodao u favorite %{noun} od %{owner}"
   user_faved_this_observation: "%{user} je doda opservaciju u favorite"
@@ -3823,7 +3836,7 @@ sr:
   your_google_account_info: Informacije sa tvog Google naloga
   your_pinned_locations: Tvoje sačuvane lokacije
   your_profile_was_successfully_updated: Tvoj profil je uspešno ažuriran.
-  your_recent_projects: Tvoji skorašni projekti
+  your_recent_projects: Tvoji skorašnji projekti
   your_tags: Tvoje oznake
   yours: Tvoj
   youre_not_following_anyone: |-
