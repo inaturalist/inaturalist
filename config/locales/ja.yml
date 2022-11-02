@@ -1,99 +1,15 @@
 ja:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "%{count}件の変更"
-  x_comments:
-    other: '%{count}件のコメント'
-  x_faves:
-    other: '%{count}件のお気に入り'
-  x_flags_resolved_html:
-    other: "<span class='count'>%{count}</span> 件のフラグを解決"
-  x_identifications:
-    other: '%{count} 件の同定'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span>件の同定'
-  x_identifications_:
-    other: '%{count} 同定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> 同定者'
-  x_languages:
-    other: "%{count} 言語"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} ライフリスト初"
-  x_journal_posts_html:
-    other: '<span class="count">%{count}</span>件の日記'
-  x_matching_taxa:
-    other: '%{count}件の該当する分類群'
-  x_matching_taxa_html:
-    other: '<span class="count">%{count}</span>件の該当する分類群'
-  x_misidentifications_of_this_species:
-    other: "この種の鑑定に間違いが%{count}件"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
-  x_misidentifications_of_species_in_this_rank:
-    other: "%この%{rank}中誤同定は%{count}件"
-  x_observations:
-    other: "%{count}件の観察記録"
-  x_observations_:
-    other: "%{count}件の観察記録"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span>件の観察記録"
-  x_observations_link_html:
-    other: "<a href='%{url}'>%{count}件の観察記録</a>"
-  x_observations_reviewed_html:
-    other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> 観察者'
-  x_others:
-    other: "その他%{count}人"
-  x_people:
-    other: "%{count} 人"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
-  x_photos:
-    other: "%{count}枚の写真"
-  x_new_species:
-    other: "%{count}件の新種"
-  x_new_users:
-    other: '%{count} 新規ユーザー'
-  x_species:
-    other: '%{count}種'
-  x_species_html:
-    other: "<span class='count'>%{count}</span>種"
-  x_species_link_html:
-    other: "<a href='%{url}'>%{count}種</a>"
-  x_suggestions_filtered_by_colon:
-    other: "%{count}件の提案を検出:"
-  x_taxa:
-    other: "%{count} 種"
-  x_taxa_observed_html:
-    other: "<span class='count'>%{count}</span>件の観察済分類群"
-  x_research_grade_observations_html:
-    other: "<span class='count'>%{count}</span>件の研究用観察記録"
-  x_research_grade_observations_to_species_html:
-    other: "<span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録"
-  x_sounds:
-    other: "%{count} 音声"
-  x_taxa_curated_html:
-    other: "<span class='count'>%{count}</span> つの分類群を整理"
-  x_taxa_matching_current_filters:
-    other: "%{count}件の現在の絞込みに該当する分類群"
-  x_taxon_changes_added_html:
-    other: "<span class='count'>%{count}</span> 件の分類群変更を追加"
-  _100_day_trends: 100日の傾向
-  _percent_ID_d: "%件判定済み"
-  a_community_for_naturalist: ナチュラリストのコミュニティ
+  x_people_helped_user_with_y_ids_html: ""
+  _100_day_trends:
+  _percent_ID_d: ""
+  a_community_for_naturalist:
   a_default_taxon_name_will_automatically_created: |
-    当分類群の学名がデフォルト名となります。
-    保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
-  a_flag_for_x: "%{x}用のフラグ"
-  a_member_of_taxon_html: "%{taxon} のメンバー"
+
+  a_flag_for_x: ""
+  a_member_of_taxon_html: ""
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "アルファベット昇順"
+  a_to_z: ""
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -113,1667 +29,1739 @@ ja:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "%{resource}"
-  about: 詳細
-  about_charts: 図表について
-  about_community_taxa: コミュニティ分類群について
-  about_complete_taxa: 完全な分類群とは
-  about_conservation_status: 保全状況について
-  about_editing_observation_fields: 観察記録欄の編集
+  activity_snipped_resource_with_indefinite_article: ""
+  about:
+  about_charts:
+  about_community_taxa:
+  about_complete_taxa:
+  about_conservation_status:
+  about_editing_observation_fields:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: 定着方法について
-  about_license_options: ライセンスのオプションについて
-  about_licenses: ライセンスについて
+  about_establishment_means:
+  about_license_options:
+  about_licenses:
   #Header for a section describing taxon names
-  about_names: 名称について
+  about_names:
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
-  about_place: "%{place}について"
-  about_places: 場所について
-  about_taxon_ranges: 分類群の分布・生息区域について
-  about_the_network: ネットワークについて
-  about_this_bioblitz: このバイオブリッツについて
-  about_this_map: この地図について
-  about_this_project: このプロジェクトについて
-  about_trusting_projects: Trust Projectsについて
-  about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
+  about_place: ""
+  about_places:
+  about_taxon_ranges:
+  about_taxon_ranges_desc: |
+
+  about_the_network:
+  about_this_bioblitz:
+  about_this_map:
+  about_this_project:
+  about_trips_html: |
+
+  about_trusting_projects:
+  about_trusting_projects_options_any:
   about_trusting_projects_options_any_desc: |-
-    これには、あなたが位置情報プライバシーを「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
+
   about_trusting_projects_options_taxon: |-
-    このプロジェクトのあなたの観察記録のうち、絶滅危惧種のため場所が不明瞭なもののみ
+
   about_trusting_projects_options_taxon_desc: |-
-    多くのプロジェクトでは、絶滅のおそれのある分類群を観察しているために、不明瞭になっている座標にアクセスする必要があります。
+
   about_trusting_projects_overview: |-
-    隠された座標へのアクセスを許可することで、このプロジェクトの管理者は、このプロジェクトでのあなたの観察記録について、正確な座標を見ることができます。これは、科学者や資源管理者が分析や意思決定のために正確な座標へのアクセスを必要とする状況において、非常に重要なことです。
+
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+
+  about_trusting_projects_warning: |-
+
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    非表示の座標を共有するか選択できます
+
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: '精度（m）'
-  account: アカウント
-  account_creation: アカウント作成
-  account_settings: アカウント設定
-  accept_community_identifications: コミュニティ同定を承諾
-  accuracy: 精度
-  accuracy_meters: 精度（m）
+  acc: ''
+  account:
+  account_creation:
+  account_settings:
+  accept_community_identifications:
+  accuracy:
+  accuracy_meters:
   accuracy_of_the_coordinates: |
-    座標の誤差、単位はメートル。画面上部の「編集」ボタンを押すか、地図のマーカを押してハンドルを押したまま引くと修正できます。円は大きめにして、自分の現在地がその中に入るようにします。
+
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action: 操作
-  actions: 操作
-  active: 活動中
+  action:
+  actions:
+  active:
   #Status of a complete set that is available for use
-  active_complete_set_status: 有効
+  active_complete_set_status:
   #Status of a taxon that is available for use on iNat
-  active_taxon_status: 有効
-  active_users: 活動中の利用者
-  activity: 活動
-  adapted_by_name_from_a_work_by_original: "%{original}による記載を根拠に%{name}が適用"
-  add: 追加
-  add_a_batch_of_observations: 観察記録を一括追加
-  add_a_batch_of_taxa: 分類群の一括追加
+  active_taxon_status:
+  active_users:
+  activity:
+  adapted_by_name_from_a_work_by_original: ""
+  add:
+  add_a_batch_of_observations:
+  add_a_batch_of_taxa:
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list: 箇条書きにする
-  add_a_comment: コメントの追加
-  add_a_field: フィールドの追加
-  add_a_flag: フラグを追加
+  add_a_bulleted_list:
+  add_a_comment:
+  add_a_field:
+  add_a_flag:
   #Tool tip for a button that adds a link to a text area
-  add_a_link: リンクを追加
-  add_a_name: 名前を追加
-  add_a_note: ノートを追加
-  add_a_new_change_group: 新規変更グループを追加
+  add_a_link:
+  add_a_name:
+  add_a_note:
+  add_a_new_change_group:
   #Tool tip for a button that adds a numbered list to a text area
-  add_a_numbered_list: 番号付き箇条書きにする
-  add_a_single_observation: 1件の観測記録を追加。
-  add_a_taxon: 分類群を追加
+  add_a_numbered_list:
+  add_a_single_observation:
+  add_a_taxon:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    名前を変更したい場合は、<a target="_blank" href="%{url}">分類群の入れ替え</a>を追加します。
-  add_an_assessment: 評定を追加
-  add_an_identification: 同定を追加
-  add_an_observation: 観察記録の追加
-  add_an_observation_of: "%{taxon}の観察記録を追加"
-  add_an_observation_to_project_html: 観察記録を%{project} に追加
-  add_annotations_for_x: '「%{x}」の注釈を追加'
-  add_annotations_for_controlled_attribute:
-    sex: '「性別」の注釈を追加'
-    plant_phenology: '「植物季節学」の注釈を追加'
-    life_stage: '「生育段階」の注釈を追加'
-  add_another_flag: フラグをさらに追加
-  add_another_photo: 写真をもう1枚追加
-  add_another_section: セクションを追加
-  add_another_subscription: もう一つのフォローを追加
+
+  add_an_assessment:
+  add_an_identification:
+  add_an_observation:
+  add_an_observation_of: ""
+  add_an_observation_to_project_html:
+  add_annotations_for_x:
+  add_another_flag:
+  add_another_photo:
+  add_another_section:
+  add_another_subscription:
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: アセットを追加
-  add_batch: 一括追加
-  add_blocked_users: ブロックするユーザーを追加
+  add_asset:
+  add_batch:
+  add_blocked_users:
   #Tool tip for a button that adds bold text to a text area
-  add_bold_text: 太字にする
-  add_comma_separated_tags: "カンマ区切りタグを追加"
-  add_comment: コメントを追加
-  add_conservation_status: 保全状況を追加
-  add_custom_project_fields: プロジェクト専用フィールドを追加
-  add_edit_flags: フラグの追加・編集
-  add_editor: 編集者を追加
-  add_description: "%{description_name}を追加"
-  add_from_your_observations: 自分の観測記録から追加
-  add_link: リンクを追加
-  add_higher_level_taxon: より高い階級の分類群を追加（例：鳥類）
-  add_id: 同定を追加
+  add_bold_text:
+  add_comma_separated_tags: ""
+  add_comment:
+  add_conservation_status:
+  add_custom_project_fields:
+  add_edit_flags:
+  add_editor:
+  add_description: ""
+  add_from_your_observations:
+  add_link:
+  add_higher_level_taxon:
+  add_id:
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text: 斜体にする
-  add_muted_users: ミュートするユーザーを追加
-  add_new_lexicon: 新しい言語を追加
-  add_new_photos_by_their_ids: Flickr IDを検索して画像を追加（Creative Commonsを遵守すること）
-  add_new_place: 新しい場所を追加
-  add_new_rule: 新しいルールを追加
-  add_new_source: "新規ソースを追加..."
-  add_new_taxon_name: 新規タクソン(分類群)名を追加
-  add_notes_about_this_taxon: この場所におけるこの分類群についての記述（例：どこで、いつ確認できるのか）
-  add_obs_from_a_link: "次のリストから観測記録を追加：%{link}"
-  add_obs_from_a_list: リストから観測記録を追加
-  add_observations: 観察記録を追加
-  add_observations_by_checking_off: リストから削除した種に観察記録を追加
-  add_observations_project: このプロジェクトに観測記録を追加
+  add_italic_text:
+  add_muted_users:
+  add_new_lexicon:
+  add_new_photos_by_their_ids:
+  add_new_place:
+  add_new_rule:
+  add_new_source: ""
+  add_new_taxon_name:
+  add_notes_about_this_taxon:
+  add_obs_from_a_link: ""
+  add_obs_from_a_list:
+  add_observations:
+  add_observations_by_checking_off:
+  add_observations_project:
   #Prompt to add a new journal post
-  add_one: 1件、追加しよう！
+  add_one:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: 今すぐ追加
-  add_photos: 写真を追加
-  add_place: 場所を追加
-  add_alive_or_dead_alive_annotation: '"生死：生きている"の注釈を追加する'
-  add_alive_or_dead_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
-  add_alive_or_dead_dead_annotation: '"生死：死んでいる"の注釈を追加する'
-  add_plant_phenology_budding_annotation: '"植物季節学：つぼみ"の注釈を追加する'
-  add_plant_phenology_flower_budding_annotation: '"植物季節学：つぼみ"の注釈を追加する'
-  add_plant_phenology_flowering_annotation: '"植物季節学：開花中（花あり）"の注釈を追加する'
-  add_plant_phenology_fruiting_annotation: '"植物季節学：果実あり"の注釈を追加する'
-  add_plant_phenology_no_evidence_of_flowering_annotation: '"植物季節学：開花の証拠がない" の注釈を追加する'
-  add_life_stage_adult_annotation: '“ライフステージ: 成体・成虫”の注釈を追加する'
-  add_life_stage_teneral_annotation: '“ライフステージ: テネラル (脱皮したての成虫/成体)”の注釈を追加する'
-  add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
-  add_life_stage_pupa_annotation: '“ライフステージ: 蛹”の注釈を追加する'
-  add_life_stage_nymph_annotation: '“ライフステージ: 幼虫・幼体・幼生・若虫 (Nymph)”の注釈を追加する'
-  add_life_stage_larva_annotation: '“ライフステージ: 幼虫・幼生 (Larva)”の注釈を追加する'
-  add_life_stage_juvenile_annotation: '幼虫・幼体 (Juvenile)'
-  add_life_stage_egg_annotation: '“ライフステージ: 卵”の注釈を追加する'
+  add_one_now:
+  add_photos:
+  add_place:
+  add_alive_or_dead_alive_annotation: ''
+  add_alive_or_dead_cannot_be_determined_annotation: ''
+  add_alive_or_dead_dead_annotation: ''
+  add_plant_phenology_budding_annotation: ''
+  add_plant_phenology_flower_budding_annotation: ''
+  add_plant_phenology_flowering_annotation: ''
+  add_plant_phenology_fruiting_annotation: ''
+  add_plant_phenology_no_evidence_of_flowering_annotation: ''
+  add_life_stage_adult_annotation: ''
+  add_life_stage_teneral_annotation: ''
+  add_life_stage_subimago_annotation: ''
+  add_life_stage_pupa_annotation: ''
+  add_life_stage_nymph_annotation: ''
+  add_life_stage_larva_annotation: ''
+  add_life_stage_juvenile_annotation: ''
+  add_life_stage_egg_annotation: ''
+  add_evidence_of_presence_organism_annotation: ''
+  add_evidence_of_presence_feather_annotation: ''
+  add_evidence_of_presence_gall_annotation: ''
+  add_evidence_of_presence_scat_annotation: ''
+  add_evidence_of_presence_track_annotation: ''
+  add_evidence_of_presence_bone_annotation: ''
+  add_evidence_of_presence_molt_annotation: ''
   #As in a Taxon Framework Relationship
-  add_relationship: '新規関連'
+  add_relationship: ''
   #As in a Guide Section
-  add_section: 新規セクション
-  add_several_observations_at_once: 同時に複数の観察記録を追加する。
-  add_sex_female_annotation: '“性別: メス”の注釈を追加する'
-  add_sex_male_annotation: '“性別: オス”の注釈を追加する'
-  add_sex_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
-  add_some_now: 今すぐ追加する
-  add_tag: 新規タグ
-  add_tags: タグを追加
-  add_tags_to_selected_taxa: 選択されている分類群にタグを追加
-  add_taxa: 分類群を追加
-  add_taxon_batch_to: "分類群を一括で%{list}に追加"
-  add_taxon_range: 分類群の分布・生息区域を追加
-  add_taxonomic_tags_to: "選択されたFlickr写真に分類群タグを付ける &raquo;"
-  add_to_a_scheme: スキームに追加
-  add_to_a_project: プロジェクトに追加
-  add_to_calendar: カレンダーに追加
-  add_to_checklist: チェックリストに追加
-  add_to_favorites: お気に入りに追加
-  add_to_list: リストに追加
-  add_to_project: プロジェクトに追加
-  add_to_your_list: 自分のリストに追加
+  add_section:
+  add_several_observations_at_once:
+  add_sex_female_annotation: ''
+  add_sex_male_annotation: ''
+  add_sex_cannot_be_determined_annotation: ''
+  add_some_now:
+  add_tag:
+  add_tags:
+  add_tags_to_selected_taxa:
+  add_taxa:
+  add_taxon_batch_to: ""
+  add_taxon_range:
+  add_taxonomic_tags_to: ""
+  add_to_a_scheme:
+  add_to_a_project:
+  add_to_calendar:
+  add_to_checklist:
+  add_to_favorites:
+  add_to_list:
+  add_to_project:
+  add_to_your_list:
   add_your_email_to_get: |
-    メールを追加すると、コミュニティから観察のフィードバックを得ることができます。
-    共有したくない方は、すぐにチェックしてみてください！
-  add_your_own_observations_at: "自分が観察したものを%{site_name}に追加しましょう"
-  added: 追加されました
-  added!: 追加されました！
+
+  add_your_own_observations_at: ""
+  added:
+  added!:
   added_as_a_part_of_a_taxon_change_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">分類群の変更</a>の一部として追加されました
+
   added_as_a_part_of_a_taxon_merge_html: |
-    追加先：
-    <a target="%{target}" class="%{class}" href="%{url}">分類群の統合</a>
+
   added_as_a_part_of_a_taxon_split_html: |
-    追加先：
-    <a target="%{target}" class="%{class}" href="%{url}">分類群の分割</a>
+
   added_as_a_part_of_a_taxon_swap_html: |
-    追加先：
-    <a target="%{target}" class="%{class}" href="%{url}">分類群の入れ替え</a>
-  added_by: '追加者:'
-  added_by_user_on_date_html: "%{user}さんが%{date}に追加しました"
-  added_on_datetime: "追加日時%{datetime}"
+
+  added_by:
+  added_by_user_on_date_html: ""
+  added_on_datetime: ""
   added_to_favorites_html: |
-    <a href="%{url}">お気に入り</a>に追加しました
-  adding: "追加しています..."
-  adjust_brightness: 明るさを調節
-  admin: 管理者
-  admin_s: 管理者
-  admin_only: 管理者のみ
-  admin_tools: 管理者ツール
-  agree_: 同意
-  agree?: 賛成する
-  agree_with_current_taxon: 現在の分類群に賛成する
-  agreeing: 賛成しています...
-  aka: 別名
-  all: すべて
-  all_comments: すべてのコメント
-  all_flags_must_be_resolved: すべてのフラグを解決する必要があります
-  all_life: すべての生き物
-  all_names: すべての名前
-  all_observations: すべての観察記録
-  all_photos: すべての写真
-  all_places: "すべての場所"
-  all_projects: すべてのプロジェクト
-  all_rank_added_to_the_database:
-    phylum: データベースに追加した門の合計
-    subphylum: データベースに追加した亜門の合計
-    superclass: データベースに追加した上綱の合計
-    class: データベースに追加した綱の合計
-    subclass: データベースに追加した亜綱の合計
-    infraclass: データベースに追加した下綱の合計
-    superorder: データベースに追加した上目の合計
-    order: データベースに追加した目の合計
-    suborder: データベースに追加した亜目の合計
-    infraorder: データベースに追加した下目の合計
-    superfamily: データベースに追加した上科の合計
-    epifamily: データベースに追加されたすべての外科
-    family: データベースに追加した科の合計
-    subfamily: データベースに追加した亜科の合計
-    supertribe: データベースに追加した上族/上連の合計
-    tribe: データベースに追加した族/連の合計
-    subtribe: データベースに追加した亜族/亜連の合計
-    genus: データベースに追加した属の合計
-    genushybrid: データベースに追加された属間雑種の合計
-    subgenus: データベースに追加した亜属の合計
-    section: データベースに追加した節の合計
-    subsection: データベースに追加した亜節の合計
-    complex: データベースに追加されたすべての種群
-    species: データベースに追加した種の合計
-    hybrid: データベースに追加した交雑種の合計
-    subspecies: データベースに追加した亜種の合計
-    variety: データベースに追加した変種の合計
-    form: データベースに追加した形態の合計
-  all_rights_reserved: 著作権を全て留保する
-  all_taxa:
-    amphibians: 両生類
-    animals: 動物
-    arachnids: クモ綱
-    birds: 鳥類
-    chromista: クロミスタ
-    fungi: 菌類
-    fungi_including_lichens: 地衣類を含む菌類
-    insects: 昆虫類
-    mammals: 哺乳類
-    mollusks: 軟体動物
-    other_animals: その他の動物
-    plants: 植物
-    protozoans: 原生動物
-    ray_finned_fishes: 条鰭綱
-    reptiles: 爬虫類
-    life: 生命
-    x_plantae:
-      other: "%{count}件の植物"
-    x_animalia:
-      other: "%{count}件の動物"
-    x_mollusca:
-      other: "%{count}件の軟体動物"
-    x_amphibia:
-      other: "%{count} 両生類"
-    x_mammalia:
-      other: "%{count}件の哺乳類"
-    x_actinopterygii:
-      other: "側棘鰭上目%{count}種"
-    x_reptilia:
-      other: "%{count}件の爬虫類"
-    x_aves:
-      other: "%{count}羽の鳥"
-    x_insecta:
-      other: "%{count}頭の昆虫類"
-    x_arachnida:
-      other: "%{count}匹のクモ類"
-    x_fungi:
-      other: "%{count}種の菌類"
-    x_chromista:
-      other: "クロミスタ%{count}類"
-    x_protozoa:
-      other: "%{count}件の原生動物"
-    x_other_animals:
-      other: "%{count}件のその他の動物"
-  all_taxa_: すべての分類群
-  all_taxa_in_this_guide: このガイド内のすべての分類群
-  all_taxonomic_groups: "&laquo; すべての分類群"
-  all_updates: すべての更新情報
-  allow_curator_access: キュレーター管理者アクセスを許可
-  allow_project_curators_to_view_your_private_coordinates: プロジェクトのキュレーター管理者に非表示の位置情報の閲覧を許可
-  allowed_establish_means_values: 使用可能な定着状況の値
-  allowed_html: 使用可能なHTML
-  allowed_occurrence_status_values: 使用可能な分布状況の値
-  allowed_values: 許可される値
-  almost_there_: もう少しです
-  alphabetical: アルファベット順
-  alphabetical_order: アルファベット順
-  already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
-  amphibians: 両生類
-  analyze_ids: 分析ID
-  ancestor_taxon: 祖先の分類群
-  and: そして
-  and_other_taxa: "&amp; その他の分類群"
-  android: Android
-  animals: 動物
-  annotation: 注釈
-  annotations: より詳細な情報
-  announcement_was_successfully_created: お知らせは無事作成されました
-  announcement_was_successfully_updated: お知らせは無事更新されました
-  announcements: お知らせ
+
+  adding: ""
+  adjust_brightness:
+  admin:
+  admin_s:
+  admin_only:
+  admin_tools:
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations:
+  agree_:
+  agree?:
+  agree_with_current_taxon:
+  agreeing:
+  aka:
+  #Noun, title of a popup alerting you to something
+  alert:
+  all:
+  all_comments:
+  all_flags_must_be_resolved:
+  all_life:
+  all_names:
+  all_observations:
+  all_photos:
+  all_places: ""
+  all_projects:
+  all_rights_reserved:
+  all_taxa_:
+  all_taxa_in_this_guide:
+  all_taxonomic_groups: ""
+  all_updates:
+  allow_curator_access:
+  allow_project_curators_to_view_your_private_coordinates:
+  allowed_establish_means_values:
+  allowed_html:
+  allowed_occurrence_status_values:
+  allowed_values:
+  almost_there_:
+  alphabetical:
+  alphabetical_order:
+  already_have_an_account_log_in_html:
+  amphibians:
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes:
+  analyze_ids:
+  ancestor_taxon:
+  and:
+  and_other_taxa: ""
+  android:
+  animals:
+  annotation:
+  annotations:
+  announcement_was_successfully_created:
+  announcement_was_successfully_updated:
+  announcements:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any: すべて
+  any:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_: すべて
+  any_:
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute: すべて
+  any_annotation_attribute:
   #Label for an option to show content with any annotation value
-  any_annotation_value: すべて
+  any_annotation_value:
   #Label for an option to show content from any date
-  any_date: 指定なし
+  any_date:
   #Label for an option to show content with any establishment means
-  any_establishment: すべて
+  any_establishment:
   #Label for an option to show content with any license
-  any_license: すべて
+  any_license:
   #Label for an option to show content with photos, sounds, or neither
-  any_media: 全てのメディア
+  any_media:
   #Label for an option to show content from any project
-  any_project: すべて
+  any_project:
   #Label for an option to show content with any quality grade
-  any_quality_grade: すべて
+  any_quality_grade:
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: すべて
+  any_reviewed:
   #Label for an option to show/include content by any user
-  any_user: すべて
-  anyone: 誰でも
-  app_owner_application_success: アプリ所有者の申請書が送信されました
+  any_user:
+  anyone:
+  app_owner_application_explanation_required: |
+
+  app_owner_application_about_p1a_html: |
+
+  app_owner_application_about_p2_html: |
+
+  app_owner_application_inelligible: |
+
+  app_owner_application_fields_explanation_html:
+  app_owner_application_success:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  application: アプリケーション
+  application:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  applications: アプリケーション
-  apply_app_owner: 適用
+  applications:
+  apply_app_owner:
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: 適用
-  apply_to_selected: 選択された項目に適応
-  apply_captive_cultivated: "飼育/栽培として付ける"
-  apply_fields: フィールドを適用する
-  apply_geoprivacy: 位置情報プライバシーを適用させる
-  apply_darr: "適用 &darr;"
-  apply_establishment_means_to_descendant_places: "定着状況を下級場所にも適用"
-  apply_these_settings_to_all: この設定を以下の観測記録すべてに適用する
-  appropriate?: 適切？
-  arachnids: クモ綱
-  archives: アーカイブ
-  are_you_really_sure_want_delete_this_user: このユーザーとそのコンテンツを削除して本当によろしいですか？
-  are_you_sure?: 本当によろしいですか？
-  are_you_sure_no_undo: 本当によろしいですか？このアクションは取り消しできません。
-  are_you_sure_delete_post: この投稿を削除して本当によろしいですか？
-  are_you_sure_delete_taxon_move_associates: "%{taxonname} (%{taxonid}) を削除して分類群に関連するすべての事柄（名称、写真など）を移動してもよろしいですか？"
-  are_you_sure_delete_this_place: この場所を削除して本当によろしいですか？
-  are_you_sure_leave_this_project: このプロジェクトを退会して本当によろしいですか？
-  are_you_sure_merge_these_places: この場所を統合して本当によろしいですか？この操作は元に戻すことができません。
-  are_you_sure_remove_photo: "この写真を本当に削除してよろしいですか？"
-  are_you_sure_remove_relationship: このリレーションシップを削除してもよろしいですか? これにより、このユーザーのフォローが解除され、非表示の座標へのアクセスが有効になっていた場合は無効になります。
-  are_you_sure_remove_taxon_from_list: "リストからこの分類群を削除して本当によろしいですか？"
+  apply_curator:
+  apply_to_be_an_app_owner:
+  apply_to_create_applications_title:
+  apply_to_selected:
+  apply_captive_cultivated: ""
+  apply_fields:
+  apply_geoprivacy:
+  apply_darr: ""
+  apply_establishment_means_to_descendant_places: ""
+  apply_these_settings_to_all:
+  appropriate?:
+  arachnids:
+  archives:
+  are_you_really_sure_want_delete_this_user:
+  are_you_sure?:
+  are_you_sure_no_undo:
+  are_you_sure_delete_conservation_status: |
+
+  are_you_sure_delete_post:
+  are_you_sure_delete_taxon_move_associates: ""
+  are_you_sure_delete_this_place:
+  are_you_sure_leave_this_project:
+  are_you_sure_merge_these_places:
+  are_you_sure_remove_photo: ""
+  are_you_sure_remove_relationship:
+  are_you_sure_remove_taxon_from_list: ""
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
+
   are_you_sure_unresolve_flag?: |
-    このフラグを解除してもよろしいですか？これにより、このフラグから解決と解決したユーザが削除されます。
-  are_you_sure_want_delete_taxon: "この分類群を削除して本当によろしいですか？"
+
+  are_you_sure_want_delete_taxon: ""
   are_you_sure_want_delete_taxon_descendant_taxa: |
-    この分類群を削除してもよろしいですか? 下位の分類群が含まれます。
+
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-    この分類群を削除してもよろしいですか? 下位の分類群と同定があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-    この分類群を削除してもよろしいですか? 下位の分類群、同定および観察記録があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-    この分類群を削除してもよろしいですか? 下位の分類群と記載された分類群があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-    この分類群を削除してもよろしいですか? 下位の分類群、記載された分類群および同定があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-    この分類群を削除してもよろしいですか? 下位の分類群、記載された分類群、同定および観察記録があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-    この分類群を削除してもよろしいですか? 下位の分類群、記載された分類群および観察記録があります。
+
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-    この分類群を削除してもよろしいですか? 下位の分類群と観察記録があります。
+
   are_you_sure_want_delete_taxon_identifications: |
-    この分類群を削除してもよろしいですか? 同定があります。
+
   are_you_sure_want_delete_taxon_identifications_observations: |
-    この分類群を削除してもよろしいですか? 同定および観察記録があります。
+
   are_you_sure_want_delete_taxon_listed_taxa: |
-    この分類群を削除してもよろしいですか? 分類群は記載されています。
+
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-    この分類群を削除してもよろしいですか? 記載された分類群と同定があります。
+
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-    この分類群を削除してもよろしいですか? 記載された分類群、同定および観察記録があります。
+
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-    この分類群を削除してもよろしいですか? 分類群と観察記録が存在します。
+
   are_you_sure_want_delete_taxon_observations: |
-    この分類群を削除してもよろしいですか? 観察記録があります。
-  are_you_sure_want_delete_taxon_link: この分類群リンクを削除して本当によろしいですか？
-  are_you_sure_want_delete_this_name: この名前を削除して本当によろしいですか？
-  are_you_sure_want_delete_this_range: この分布・生息区域を削除して本当によろしいですか？
-  are_you_sure_you_want_to_commit_this_change: この変更を確定させて本当によろしいですか？後で取り消すことができません。
-  are_you_sure_you_want_to_delete_this: この項目を本当に削除してよろしいですか？
-  are_you_sure_you_want_to_delete_this_assessment?: この評定を削除して本当によろしいですか？
-  are_you_sure_you_want_to_delete_this_photo?: この写真を本当に削除してよろしいですか？
-  are_you_sure_you_want_to_delete_this_post: この投稿を削除して本当によろしいですか？
-  are_you_sure_you_want_to_delete_this_taxon_change: この分類群変更を削除して本当によろしいですか？
-  are_you_sure_you_want_to_remove_all_tags: すべてのタグを外して本当によろしいですか？
-  are_you_sure_you_want_to_remove_curator: '%{user}さんからキュレーター管理の権限を取消しても本当によろしいですか？'
-  are_you_sure_you_want_to_remove_from_project: このプロジェクトから%{user}さんを退会させて本当によろしいですか？
-  are_you_sure_you_want_to_remove_manager: '%{user}さんから管理の権限を取消しても本当によろしいですか？'
+
+  are_you_sure_want_delete_taxon_link:
+  are_you_sure_want_delete_this_name:
+  are_you_sure_want_delete_this_range:
+  are_you_sure_you_want_to_commit_this_change:
+  are_you_sure_you_want_to_delete_this:
+  are_you_sure_you_want_to_delete_this_assessment?:
+  are_you_sure_you_want_to_delete_this_photo?:
+  are_you_sure_you_want_to_delete_this_post:
+  are_you_sure_you_want_to_delete_this_taxon_change:
+  are_you_sure_you_want_to_remove_all_tags:
+  are_you_sure_you_want_to_remove_curator:
+  are_you_sure_you_want_to_remove_from_project:
+  are_you_sure_you_want_to_remove_manager:
   are_you_sure_you_want_to_remove_spammer: |
-    このユーザーを信用して本当によろしいですか。これまで付いていたスパムフラグは解消されます。
-  are_you_sure_you_want_to_remove_these_x_taxa?: "この%{x}個の分類群を削除して本当によろしいですか？"
+
+  are_you_sure_you_want_to_remove_these_x_taxa?: ""
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-    %{project} からこの観測記録を削除して本当によろしいですか？
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "%{place}のチェックリストからこの分類群を削除して本当によろしいですか？"
-  associated_observations: 関連している観測記録
-  associated_taxa: 関連する分類群
-  attention: 注意
-  you_sure_delete_list: このリストを削除して本当によろしいですか？
-  you_sure_delete_taxon_from_list?: "リストから%{taxon}を削除して本当によろしいですか？"
-  asc: 昇順
-  ascending: 昇順
-  assessment: 評価
-  assessment_has_benn_completed: 評価は完了しました
-  assessment_sections: 評定欄
-  assessment_was_deleted: 評価は削除されました
-  assessment_was_successfully_created: 評価は無事作成されました
-  assessment_was_successfully_updated: 評価は変更されました
-  assessment_x: "%{assessment}評定"
-  assessments: 評価
-  associations: 関連情報
-  atlas_for_taxon_html: '%{taxon} の一覧'
+
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
+  associated_observations:
+  associated_taxa:
+  attention:
+  you_sure_delete_list:
+  you_sure_delete_taxon_from_list?: ""
+  asc:
+  ascending:
+  assessment:
+  assessment_has_benn_completed:
+  assessment_sections:
+  assessment_was_deleted:
+  assessment_was_successfully_created:
+  assessment_was_successfully_updated:
+  assessment_x: ""
+  assessments:
+  associations:
+  atlased:
+  atlas_for_taxon_html:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: Atom
-  attached_taxon: 関連する分類群
+  atom:
+  attached_taxon:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute: 属性
-  attribution: 帰属
-  authority_list:
-    iucn_red_list: IUCNレッドリスト
-    cites: ワシントン条約（CITES）
-  authorize: 承認
-  authorize_permissions_from_provider: "%{provider}の権限を承認"
-  automatic_short: 自動
-  automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
-  automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
+  attribute:
+  attribution:
+  authorize:
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce:
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+
+  authorize_permissions_from_provider: ""
+  automatic_short:
+  automatically_add_observations_to_this_project:
+  automatically_update_my_content_for_taxon_changes:
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg: 平均
-  back: 戻る
-  back_to_all_species: すべての種に戻る
-  back_to_editing_observation: 観測記録の編集に戻る
-  back_to_friends: 友人に戻る
-  back_to_flags_html: "&laquo; フラグに戻る"
-  back_to_lists: "%{name}リストに戻る"
-  back_to_observation: 観測記録に戻る
-  back_to_observation_fields: 観測記録フィールドに戻る
-  back_to_people: ユーザー一覧に戻る
-  back_to_places: 場所一覧に戻る
-  back_to_possessive_user_profile: "%{possuser}のプロフィールに戻る"
-  back_to_post: '&laquo; 投稿に戻る'
-  back_to_projects: プロジェクト一覧に戻る
-  back_to_suggestions: 提案に戻る
-  back_to_taxon: "%{defaulttaxon}に戻る"
-  back_to_taxon_changes: "分類群変更履歴へ戻る"
-  back_to_taxon_framework_for_x: "%{taxon_name} のタクソン・フレームワークに戻る"
-  back_to_users_calendar: "%{user}のカレンダーに戻る"
-  back_to_users_lists: "%{user}のリストに戻る"
-  back_to_viewing: "<i>%{taxon}</i>に戻る"
-  back_to_x: "%{noun}に戻る"
-  back_to_x_assessment: "%{project}の評定に戻る"
-  back_to_x_history: "%{x}の履歴へ戻る"
-  back_to_x_journal: "%{user}さんの日記へ戻る"
-  back_to_x_blog: "%{x}のブログに戻る"
-  back_to_your_calendar: カレンダーに戻る
-  back_to_your_dashboard: 自分のダッシュボードに戻る
-  back_to_your_lists: 自分のリストに戻る
-  back_to_your_journal: 自分の日記に戻る
-  back_to_your_observations: 自分の観察記録に戻る
-  back_to_your_profile: 自分のプロフィールに戻る
-  badges: バッジ
+  avg:
+  back:
+  back_to_applications: ""
+  back_to_all_species:
+  back_to_editing_observation:
+  back_to_friends:
+  back_to_flags_html: ""
+  back_to_lists: ""
+  back_to_observation:
+  back_to_observation_fields:
+  back_to_people:
+  back_to_places:
+  back_to_possessive_user_profile: ""
+  back_to_post: ''
+  back_to_projects:
+  back_to_suggestions:
+  back_to_taxon: ""
+  back_to_taxon_changes: ""
+  back_to_taxon_framework_for_x: ""
+  back_to_users_calendar: ""
+  back_to_users_lists: ""
+  back_to_viewing: ""
+  back_to_x: ""
+  back_to_x_assessment: ""
+  back_to_x_history: ""
+  back_to_x_journal: ""
+  back_to_x_blog: ""
+  back_to_your_calendar:
+  back_to_your_dashboard:
+  back_to_your_lists:
+  back_to_your_journal:
+  back_to_your_observations:
+  back_to_your_profile:
+  badges:
   based_on_the_evidence_can_id_be_improved: |
-    証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
-  batch: 一括
-  batch_edit: 一括編集
+
+  batch:
+  batch_edit:
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: "%{x}の分類群一括編集"
-  batch_operations: 一括操作
-  be_the_first_to_fave_this_observation: この観察記録の最初のお気に入り登録者になろう！
-  become_a_donor_caps: 寄付はこちら
-  become_a_donor_today_caps: 寄付はこちら
-  before_importing_photos: 写真をインポートする前に
-  bg_color: 背景色
-  bio: プロフィール
-  bio_description: iNaturalistで他のユーザーに自分のことを伝えよう！
-  bioblitz: バイオビリッツ（生物観察会）
-  birds: 鳥類
-  birthday: 誕生日
-  black: 黒
-  block_removed: ブロックを削除しました
-  blocked_users: ブロックしたユーザー
-  blog_widget: ブログ用のウィジェット
-  blue: 青
-  blue_butterfly_etc: "青, チョウチョウ, など"
-  body: 本文
+  batch_edit_taxa_for_x_html: ""
+  batch_operations:
+  be_the_first_to_fave_this_observation:
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+
+  become_a_donor_caps:
+  become_a_donor_today_caps:
+  before_importing_photos:
+  bg_color:
+  bio:
+  bio_description:
+  bioblitz:
+  birds:
+  birthday:
+  black:
+  block_removed:
+  blocked_users:
+  blog_widget:
+  blue:
+  blue_butterfly_etc: ""
+  body:
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
-  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  bold_label_colon_value_html: ""
   #Text inserted into a textarea when the bold button is clicked but no text was selected
-  bold_text: ボールド体
-  breadcrumbs: パンくずリスト
-  brief_caption: 短い説明
-  brown: 褐
-  browse: 閲覧
-  browse_all_projects: すべてのプロジェクトを閲覧
-  browse_all_species: すべての種を見る
-  browse_observations: 観察記録を見る
-  browse_people: ユーザーを見る
-  browse_projects: プロジェクト一覧
-  browse_species_that_occur_near_this_observation: この観察記録近隣の種を表示
-  built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
-  bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
-  by: '投稿者:'
-  by_everyone: 全てのユーザー
-  by_user: "%{user}さんによる"
-  by_you: あなた
-  calendar: カレンダー
-  calendars_only_show_x_observations_at_time: カレンダーは一度に%{x} 個の観察記録のみを表示します
-  callback_url: コールバックURL
-  cancel: キャンセル
-  cant_edit_or_delete_hidden_content: サイト管理者によって非表示にされているコンテンツを編集または削除することはできません。
-  cant_flag_an_object_that_doesnt_exist: 存在しないオブジェクトはフラグ付けできません
-  cant_merge_a_taxon_with_itself: 同じ分類群と統合できません
-  captive: 飼育
-  captive_cultivated: 飼育／栽培
-  captive_observations: 捕獲観察
-  card: カード
-  casual: カジュアル
-  casual_: カジュアル
-  casual_tooltip_html: '"カジュアル"の観察記録は、メディア、位置、または日付が欠けていたり、その他の理由で "研究用" または "要同定" グレードの品質要件を満たしていません。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
-  categories: カテゴリ
-  cc_0_description: "このライセンスはあなたの著作物をパブリックドメインに解放するため、他の人たちはあなたの著作物を、たとえ営利目的であっても、許可を得ることも信用を与えることもなく、コピー、変更、配布、実行することができます。これは、提供されるライセンスの中で最も融通の利くものです。認可された材料の最大限の普及と使用のために推奨されます。"
-  cc_0_name: 著作権なし(CC0)
-  cc_attribution_license: クリエイティブ・コモンズ 表示ライセンス
-  cc_by_description: "このライセンスは、営利目的であってもオリジナルの作品だと認められている限りは、他の人たちがあなたの作品を配布したり、リミックスしたり、微調整したり、あなたの作品を基に構築したりすることを可能にします。"
-  cc_by_name: 表示
-  cc_by_nc_description: "このライセンスでは、他の人たちがあなたの作品を非商業的にリミックス、微調整、構築することができ、彼らの新しい作品もあなたを認め、非商業的でなければなりませんが、彼らの派生作品を同じ条件でライセンスする必要はありません。"
-  cc_by_nc_name: 表示—非営利
-  cc_by_nc_nd_description: "このライセンスは6つの主なライセンスの中で最も制限が厳しく、他の人があなたの作品をダウンロードして共有できるのは、彼らがあなたを信用している限りに限られますが、彼らはそれらを変更したり、商業的に使用することはできません。"
-  cc_by_nc_nd_name: 表示—非営利—改変禁止
-  cc_by_nc_sa_description: "このライセンスでは、他の人たちがあなたの作品を非商業的にリミックスしたり、微調整したり、上に構築したりすることができますが、それは彼らがあなたを信用し、彼らの新しい作品を同一の条件の下でライセンスする限りです。"
-  cc_by_nc_sa_name: 表示—非営利—継承
-  cc_by_nd_name: 表示—改変禁止
-  cc_by_sa_description: "このライセンスは、商業目的であっても、他の人があなたの作品を再編集、調整、構築することを可能にします。あなたの作品をベースにした新しい作品はすべて同じライセンスが適用されるため、派生作品であっても商用利用が可能です。"
-  cc_by_sa_name: 表示—継承
-  cc_used_under_a: "クリエイティブ・コモンズ："
-  change_admin: 管理者を変更
+  bold_text:
+  breadcrumbs:
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
+  breadcrumbs_description: ""
+  brief_caption:
+  brown:
+  browse:
+  browse_all_projects:
+  browse_all_species:
+  browse_observations:
+  browse_people:
+  browse_projects:
+  browse_species_that_occur_near_this_observation:
+  built_with_site_guides_html: ""
+  bulk_import_of_filename_is_complete: ""
+  by:
+  by_everyone:
+  by_user: ""
+  by_you:
+  calendar:
+  calendars_only_show_x_observations_at_time:
+  callback_url:
+  cancel:
+  cant_edit_or_delete_hidden_content:
+  cant_flag_an_object_that_doesnt_exist:
+  cant_merge_a_taxon_with_itself:
+  captive:
+  captive_cultivated:
+  captive_observations:
+  card:
+  casual:
+  casual_:
+  casual_tooltip_html: ''
+  categories:
+  cc_0_description: ""
+  cc_0_name:
+  cc_attribution_license:
+  cc_by_description: ""
+  cc_by_name:
+  cc_by_nc_description: ""
+  cc_by_nc_name:
+  cc_by_nc_nd_description: ""
+  cc_by_nc_nd_name:
+  cc_by_nc_sa_description: ""
+  cc_by_nc_sa_name:
+  cc_by_nd_description: ""
+  cc_by_nd_name:
+  cc_by_sa_description: ""
+  cc_by_sa_name:
+  cc_used_under_a: ""
+  change_admin:
   #Button to change the cover (or banner) image for a project
-  change_cover: カバーを変更
-  change_descriptions:
-    split: 古い分類群が複数の新しい分類群に分割されます
-    merge: いくつかの古い分類群が一つの新しい分類群にまとめる
-    swap: 入力分類群を出力分類群に置き換え
-    drop: 現在は完全に廃止された分類群。過去の記録またはデータ提供先との互換性のために保存されます。
-    stage: 変更グループの一部としてリリースするための非アクティブなコンセプトを準備する
-  change_geoprivacy: '位置情報プライバシーを変更する'
-  change_group: グループを変更
-  change_icon: アイコンを変更
-  change_password: パスワードを変更
-  change_types:
-    activated_soon: 準備中
-    change_types: 変更の種類
-    split: 分割
-    merge: 統合
-    swap: 差し替え
-    stage: 段階
-    drop: 削除
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: 次から分割する
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: 次に分割する
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: 次に統合する
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: 次に統合された
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: 置き換えられた
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '置換用:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_with: 置換後
-    staged: 段階的な
-    input_taxon_was_split_into_output_taxa_html: "%{input_taxon}は%{output_taxa}に分割されました"
-    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}を%{output_taxa}に分割します"
-    input_taxon_was_dropped_html: "%{input_taxon} は削除されました"
-    input_taxon_will_be_dropped_html: "%{input_taxon} は削除されます"
-    input_taxon_will_be_activated_soon_html: "%{input_taxon} はまもなく有効になります"
-    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon}は%{output_taxon}と置き換えられました"
-    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}は%{output_taxon}に置き換えられます"
-    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されました"
-    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}は%{output_taxon}に統合されます"
-  change_your_password: パスワードを変更
+  change_cover:
+  change_geoprivacy: ''
+  change_group:
+  change_icon:
+  change_password:
+  change_your_password:
   #Plural noun, as in changes to a taxon record over time
-  changes: 更新履歴
-  changing_the_geoprivacy: '地理的条件を変えることで、他人からの自分の観測地点の見え方が変わります。'
-  check_above_for_errors: 上記のエラーをチェック
-  check_back_soon: お早めに!
-  check_here_to_autoload_description: Wikipediaから説明を自動ロードするには、ここをチェックします。分類群の学名が非科学的な単語であったり、「Parus」のように平凡なスペルミスであったりする場合は、このチェックボックスをオフにするとよいでしょう。
-  check_here_to_autoload_photos: Flickrから写真を自動でロードするにはここをチェックしてください。分類群の学名が非科学的な単語であったり、「Parus」のように平凡なスペルミスであったりする場合は、このチェックボックスをオフにするとよいでしょう。
-  check_list: チェックリスト
-  check_list_description: このリストに表示する上位の分類群を選択します。たとえば、鳥類の場合は「Aves」、両生類の場合は「Amphibia」などです。このリストを設定すると、この分類群に含まれない分類群は許可されません。たとえば、鳥のリストを作成した場合、カエルを追加することはできません。
-  check_list_for_individual_taxa_that: 'この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）'
-  check_list_for_taxon_html: "%{taxon} のチェックリスト"
+  changes:
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent:
+  changing_the_geoprivacy: ''
+  check_above_for_errors:
+  check_back_soon:
+  check_here_to_autoload_description:
+  check_here_to_autoload_photos:
+  check_list:
+  check_list_description:
+  check_list_for_individual_taxa_that: ''
+  check_list_for_taxon_html: ""
   check_lists_must_belong_to_a_place: |
-    チェックリストは場所に所属しなければなりません。新規チェックリストを作るには、場所のデフォルトチェックリストから、「新規チェックリストを作成」のリンクをクリックしてください。
-  check_list_place: "%{place} チェックリスト"
-  check_list_updated: チェックリスト更新されました！
-  check_lists_for: "その他の%{place}のチェックリスト"
-  check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
+
+  check_list_place: ""
+  check_list_updated:
+  check_lists_for: ""
+  check_out_the_inat_store:
+  check_out_what_the_observation:
   check_this_box_if_html: |
-    アップロードされたコンテンツに対する<a
-    href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>クリエイティブ・コモンズ表示-非営利ライセンス</a>を適用する場合、このチェックボックスをオンにします。つまり、誰でも許可を得ることなく、あなたの写真や観察結果をコピーして再利用することができます。別のライセンスを選択したり、後でライセンスを削除することもできますが、これは研究者と共有するのに最適なライセンスです。
-  checklist: チェックリスト
-  choose_a_field: フィールドの選択
-  choose_a_list_above: 上記からリストを選択してください。
-  choose_a_place: 場所を選ぶ
-  choose_a_taxon: 分類群を選択（任意）
-  choose_columns: 列の選択
-  choose_file: ファイルを選択
-  choose_files: ファイルを選択
-  choose_from_your_lists: 自分のリストから選択
-  choose_photos_for_this_taxon: 分類群の写真を選択
-  choose_photos_to_tag_from_photostream: フォトストリームの中からタグする写真を選択
-  choose_rule: ルールを選択
-  choose_subjects: 対象を選択
-  choose_tags: タグを選択
-  choose_taxon: 分類群を選択してください
-  choose_what_kind_of_change_youre_creating: "変更の種類を選択してください"
-  cid_d_to_genus: 属レベルのコミュニティ同定
-  citation: 引用
-  classification: 分類
-  clear: クリア
-  clear_filters: フィルタをクリア
-  clear_search: 検索フィルターを解除
-  click_the_map: "場所を追加するには、<strong>マップをクリック</strong>"
-  close: 閉じる
-  code: コード
-  colors: 色
-  columns: 列
-  combine: 統合
-  comma_separated_please: カンマ区切りでお願いします
+
+  checklist:
+  choose_a_field:
+  choose_a_list_above:
+  choose_a_place:
+  choose_a_taxon:
+  choose_columns:
+  choose_file:
+  choose_files:
+  choose_from_your_lists:
+  choose_photos_for_this_taxon:
+  choose_photos_to_tag_from_photostream:
+  choose_rule:
+  choose_subjects:
+  choose_tags:
+  choose_taxon:
+  choose_what_kind_of_change_youre_creating: ""
+  cid_d_to_genus:
+  citation:
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+
+  classification:
+  clear:
+  clear_filters:
+  clear_search:
+  click_the_map: ""
+  close:
+  code:
+  colors:
+  columns:
+  combine:
+  comma_separated_list_of_tracking_codes: |
+
+  comma_separated_please:
   #Noun, used to label a comment or a comment field in a form
-  comment: コメント
+  comment:
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_: コメント
-  comment_deleted: コメント削除されました
+  comment_:
+  comment_deleted:
   #Notice when a comment has been hidden by moderators
-  comment_hidden: コメントを非表示
+  comment_hidden:
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden: コメントの再表示
-  comments: コメント
-  comments_by_me: 自分のコメント
-  comments_have_been_disabled: コメントが無効になっています
-  comments_on_my_observations: 自分の観察記録のコメント
-  commercial_solicitation: セールス、どこにも繋がらないリンクなど。
+  comment_unhidden:
+  comments:
+  comments_by_me:
+  comments_have_been_disabled:
+  comments_on_my_observations:
+  commercial_solicitation:
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: 確定
+  commit:
   #Adjective describing a taxon change that has been committed
-  committed: 確定済
-  committed_by_user_on_date_html: '%{user} さんが %{date} にコミットしました'
+  committed:
+  committed_by_user_on_date_html:
   #Label for date the taxon change was committed
-  committed_on: '%{date} にコミットされました'
+  committed_on:
+  committed_taxon_changes_cannot_be_deleted:
   #Status message while a taxon change is being committed
-  committing: 確定中...
-  common_name: 一般名
-  community: コミュニティ
-  community_curated: コミュニティ管理
-  community_guidelines: コミュニティガイドライン
-  community_id_heading: コミュニティ分類群
-  community_id_at_species_or_lower?: 種以下の階級によるコミュニティ分類の有無は？
-  community_id_at_species_level_or_lower: 種以下の階級によるコミュニティ分類
-  community_id_is_precise: コミュニティ分類群は正確である
-  community_moderation_settings: コミュニティモデレーション設定
-  community_supported_id: コミュニティが支持する分類ですか？
-  compare: 比較
-  compare_with: 次と比較する：
-  comparing: 比較しています
-  comparing_list_to_list: "%{list1} と%{list2}を比較しています"
-  comparing_versions_x_and_y: "バージョン%{x}とバージョン %{y}を比較しています"
-  compiled_by_name: "編集者：%{name}"
+  committing:
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result:
+  common_name:
+  community:
+  community_curated:
+  community_guidelines:
+  community_id_heading:
+  community_id_at_species_or_lower?:
+  community_id_at_species_level_or_lower:
+  community_id_is_precise:
+  community_moderation_settings:
+  community_supported_id:
+  compare:
+  compare_with:
+  comparing:
+  comparing_list_to_list: ""
+  comparing_versions_x_and_y: ""
+  compiled_by_name: ""
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete: 完了
-  complete_set_for_taxon_in_place_html: "%{place} での %{taxon} の完全なセット"
-  completed: 完了
-  completed_at: 完了
+  complete:
+  complete_set_for_taxon_in_place_html: ""
+  completed:
+  completed_at:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?: 完全？
-  comprehensive_list: 包括リスト
+  comprehensive?:
+  comprehensive_check_list_for_taxon_html: |
+
+  comprehensive_list:
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model:
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included: 含む
+  computer_vision_model_included:
+  computer_vision_model_included_desc: |
+
   #Status of a taxon that the Computer Vision Model cannot yet recognize
-  computer_vision_model_pending: 保留
-  confidential: 機密
-  configure: 設定する
-  configure_a_widget_to_show: Webサイトまたはブログに%{site_name} の観察記録を表示するようウィジェットを設定します。埋め込まれたCSSをHTMLの<code>&lt;head&gt;</code>に含める必要があるかもしれません。CSSを自由に編集してください。
-  confirm: 確認
-  confirm_membership: 会員の確認
-  confirm_new_password: パスワード再入力
-  confirm_now: 今すぐ確認
-  confirm_your_info: 登録情報をご確認ください
-  confirming_ids: IDの確認
-  confirming_ids_description: これをオフにすると、自分と一致するIDについては通知されなくなります。
+  computer_vision_model_pending:
+  computer_vision_model_pending_desc: |
+
+  concept_status:
+  confidential:
+  configure:
+  configure_a_widget_to_show:
+  confirm:
+  confirm_membership:
+  confirm_new_password:
+  confirm_now:
+  confirm_your_info:
+  confirming_ids:
+  confirming_ids_description:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
-  connect: 接続
-  connect_to_provider: "%{provider}に接続"
+  connect:
+  connect_to_provider: ""
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 関連づけられたアカウント
-  connected_accounts_description: 関連づけられたアカウントは、サインイン、写真のインポート、その他の機能をサポートするためにiNaturalistにアクセスを許可した他のアプリやウェブサイトのアカウントです。
-  connected_accounts_titlecase: 関連づけられたアカウント
-  connecting_flickr: "Flickrに接続中..."
-  connect_to_flickr_again_to_authorize_write_permissions: Flickrに再接続して書き込み権限を承認してください
-  connecting_to_facebook: "Facebookに接続中..."
-  connecting_your_inat_account_to_accounts_other_sites: "%{site_name} アカウントを他のサイトのアカウントに連携すると、それらのサイトの認証情報を使用して%{site_name} にログインできます。"
-  cannot_be_changed_during_a_content_freeze: コンテンツ凍結中は変更できません
-  conservation_status: 保全状況
-  conservation_status_descriptions:
-    status: ステータスコード、ランクなど。EやCRのようなショートコードが存在する場合は、それを使用してください。それらが無い場合は完全なステータス、例えば endangered や critically endangered を使用してください。
-    description: 記載理由
-    place: このステータスが制限されている場所。
-    url: 保全状況を明記するウェブページのURL
+  connected_accounts:
+  connected_accounts_description:
+  connected_accounts_titlecase:
+  connecting_flickr: ""
+  connect_to_flickr_again_to_authorize_write_permissions:
+  connecting_to_facebook: ""
+  connecting_your_inat_account_to_accounts_other_sites: ""
+  cannot_be_changed_during_a_content_freeze:
+  conservation_status:
+  conservation_status_created:
+  conservation_status_deleted:
+  conservation_status_updated:
   conservation_status_geoprivacy_desc: |
-    この場所でのこの分類群のすべての観察記録に適用されるデフォルトの地理情報プライバシー
-  contact_support: サポートへのお問い合わせ
-  contain_all_descendants?: リストにはこの場所で生息する当分類群のすべての種が含まれていますか？
+
+  contact_support:
+  contain_all_descendants?:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
-  content: 内容
-  content_and_display: コンテンツと表示
-  content_author: コンテンツの作成者
-  content_hidden: コンテンツ非表示
+  content:
+  content_and_display:
+  content_author:
+  content_hidden:
   content_hidden_by_user_on_date_because_reason_html: |
-    %{date} に%{user}さんがコンテンツを非表示にしました。理由："%{reason} "
-  content_type: コンテンツの種類
+
+  content_type:
   user_hid_this_item_because_reason_html: |
-    %{user}さんは%{item} を非表示にしました。理由："%{reason} "
+
   user_unhid_this_item_because_reason_html: |
-    %{user}さんは%{item} を表示しました。理由："%{reason} "
-  continue: 続行
-  continue_to_site: '%{site_name} に進む'
-  contributor_cannot_be_found: 提供者が見つかりません
-  contributors_to_project: "%{project}への貢献者"
-  controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_sex: 指定なし
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_plant_phenology: 指定なし
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_life_stage: 指定なし
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_alive_or_dead: 指定なし
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_evidence_of_presence: 指定なし
-    sex: 性別
-    male: オス
-    female: メス
-    plant_phenology: 植物季節学
-    budding: 出芽
-    flower_budding: つぼみ
-    flowering: 開花中
-    fruiting: 果実あり
-    life_stage: ライフステージ
-    adult: 成体・成虫
-    teneral: 脱皮直後
-    subimago: 亜成虫
-    pupa: 蛹
-    no_evidence_of_flowering: 開花していない（花なし）
-    nymph: 幼虫・幼体・幼生・若虫 (Nymph)
-    larva: 幼虫・幼生 (Larva)
-    egg: 卵
-    juvenile: 幼虫・幼体 (Juvenile)
-    alive_or_dead: 生死
-    alive: 生存
-    dead: 死亡
-    cannot_be_determined: 判別不能
-    evidence_of_presence: 存在の証拠
-    #As in the feather on a bird
-    feather: 羽毛
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
-    organism: 生物
-    #Fecal matter, not regurgitated matter
-    scat: 糞
-    #Impression made by the organism on the ground or in snow, like a footprint
-    track: 足跡
-    #Endoskeletal remains, like a deer bone
-    bone: 骨
-    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
-    #plumage in a bird or seasonal hair/fur in a mammal
-    molt: 抜け殻
-  controlled_term_definitions:
-    alive: 生物は生きており、差し迫った死の兆候はない
-    dead: 生物は死んでいるか、瀕死である
-    flower_budding: 花芽は見えるが開いていない
-    flowering: 花が開いていて植物に付いている
-    fruiting: 植物に果実が付いている
-    no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
-    cannot_be_determined: 提供された証拠から判断することはできません
-    organism: 生物の本体またはその一部
-    scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
-    track: 地面や雪面に残された生物の圧痕
-    molt: 脱ぎ捨てられた皮膚または外骨格
-  controls: 設定
-  convert: 変換
-  coordinate_systems: 座標システム
-  coordinates: 緯度経度
-  copy: コピー
-  copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
-  copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
-  copy_guide_taxon_to: ガイド分類群を次の場所にコピーする：
-  copyright:
-    some_rights_reserved: いくつかの権利を保有
-    some_rights_reserved_by: "(c) %{name}, いくつかの権利を保有 (%{license_short})"
-    all_rights_reserved: "(c) %{name}, 全ての権利を保有"
-    no_known_copyright_restrictions: "%{name}, 著作権の制限は報告されていない (%{license_name})"
-    no_known_copyright_restrictions_text: "著作権の制限は報告されていません"
-    no_rights_reserved: 何の権利も保有しない
-    no_rights_reserved_by: "%{name}, 何の権利も保有しません %{license_name}"
-    anonymous: 匿名
-    public_domain: パブリックドメイン
-    copyright: 著作権
-    no_copyright: 著作権なし(CC0)
-    attribution_noncommercial_sharealike_license: 表示 - 非営利 - 継承
-    attribution_noncommercial_license: 表示 - 非営利
-    attribution_noncommercial_noderivs_license: 表示 - 非営利 - 改変禁止
-    attribution_license: 表示ライセンス
-    attribution_sharealike_license: 表示 - 継承
-    attribution_noderivs_license: 表示 - 改変禁止
-    gnu_free_documentation_license: GNUフリー文書利用許諾契約書
-  copyright_holder: 著作権保持者
-  copyright_info: 著作権情報
-  copyright_info_and_more: 著作権情報など
-  copyright_infringement: 著作権侵害
-  copyright_infringement_desc: 著作権法に違反するか、またはオブザーバー以外の人が作成したものであり、帰属性がありません
-  covered_by_a_taxon_framework_html: "%{link} に覆われています"
-  couldnt_change_your_password: "パスワードを変えることができませんでした：%{e}"
-  couldnt_find_a_user_matching_x_param: "%{id}というユーザーが見つかりません"
-  couldnt_find_that_taxon: お探しのタクソンが見つかりません
-  create: 作成
-  create_a_guide: ガイドを作成
-  create_a_new_field: 新規フィールドを作成
-  create_a_new_place: 新規場所を作成
-  create_a_new_taxon: 新規分類群を作成
-  create_a_query: クエリーを作成
-  create_an_account: アカウント作成
-  create_an_atlas: 地図を作成
-  create_new_taxon: 新規タクソン作成
-  create_observations: 観測記録を作成
-  created: 作成日時
-  created_by: 作成者：
-  created_by_user_on_date: 作成者:%{user}さん 作成日:%{date}
-  created_on: '作成日:'
-  creating_your_account: "アカウントを作成しています..."
-  creative_commons_flickr_tagged: Flickrにタグ付けされたクリエイティブ・コモンズの写真があります
-  creative_commons_unless_otherwise_noted: "特に明記されていない限り、クリエイティブ・コモンズです。"
-  critically_endangered: 絶滅危惧IA類
-  css_description: 他のCSSより後にページに挿入されます
-  csv: CSV
-  csv_file: CSVファイル
-  csv_should_not_contain_a_header_row: ヘッダー行のないCSVでお願いします
-  cumulative_ids: "累積ID:%{total} 件中%{count} 件"
-  curate_observations: 観察記録を管理
-  curate_taxa: 分類群を管理
-  curate_user: キュレーター管理者
-  curating: キュレーター管理中
-  curation: キュレーター管理
-  curator: キュレーター管理者
+
+  continue:
+  continue_to_site:
+  contributor_cannot_be_found:
+  contributors_to_project: ""
+  controls:
+  convert:
+  coordinate_systems:
+  coordinates:
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label:
+  coords_viewable_for_proj_desc: |
+
+  copy:
+  copy_and_paste_the_following_code_to:
+  copy_and_paste_this_into_your_own_html:
+  copy_guide_taxon_to:
+  copyright_holder:
+  copyright_info:
+  copyright_info_and_more:
+  copyright_infringement:
+  copyright_infringement_desc:
+  covered_by_a_taxon_framework_html: ""
+  covered_by_a_taxon_framework_link: ""
+  couldnt_change_your_password: ""
+  couldnt_find_a_user_matching_x_param: ""
+  couldnt_find_that_taxon:
+  create:
+  create_a_guide:
+  create_a_new_field:
+  create_a_new_place:
+  create_a_new_taxon:
+  create_a_query:
+  create_an_account:
+  create_an_atlas:
+  create_export:
+  create_new_taxon:
+  create_observations:
+  created:
+  created_by:
+  created_by_user_on_date:
+  created_on:
+  creating_your_account: ""
+  creative_commons_flickr_tagged:
+  creative_commons_unless_otherwise_noted: ""
+  critically_endangered:
+  css_description:
+  csv:
+  csv_file:
+  csv_should_not_contain_a_header_row:
+  cumulative_ids: ""
+  curate_observations:
+  curate_taxa:
+  curate_user:
+  curating:
+  curation:
+  curator:
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-    iNaturalistのキュレーター管理者は、iNaturalistの分類を編集し、ユーザーのコンテンツを監視する能力を持つ、信頼されたボランティアです。キュレーター管理者はiNaturalistにとって不可欠な存在であり、分類を最新の状態に保ち、iNaturalistの議論を適切かつ丁寧なものにするために活躍しています。以下はキュレーター管理者であることの意味を説明したものです。もしあなたがキュレーター管理者になりたいのであれば、<a href="/pages/curator+guide" target="_blank">キュレーターガイド</a>をよく読んで、このページの申請書に記入してください。
+
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html:
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+
   #Header
-  curator_application_what_curators_can_do: キュレーター管理者ができること
+  curator_application_how_curators_lose_their_powers: |
+
+  curator_application_how_curators_lose_their_powers_desc: |
+
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+
+  curator_application_inelligible_error: |
+
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success:
   #Header
-  curator_application_what_curators_cannot_do: キュレーター管理者ができないこと
-  curators_changed_for_x_html: "%{x}のキュレーターが変わりました"
-  curators: キュレーター管理者
-  curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
-  curator_identification: キューレータによるID
-  current_flags: 現在のフラグ
-  custom_project_fields: プロジェクト専用フィールド
-  custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
-  custom_project_was_successfully_updated: カスタムプロジェクトは無事更新されました。
-  customize_location: 場所をカスタマイズ
-  darr_apply_darr: "&darr; 適用 &darr;"
-  daily_users: 日ごとの利用者
-  dashboard: ダッシュボード
-  data_deficient: データ不足
-  data_quality: データ品質
-  data_quality_assessment: データ品質評価
-  data_used: "使用データ："
-  datatype: データタイプ
-  date_: 日付
-  date_added: 投稿日
-  date_authorized: 承認日
-  date_created: 作成日
-  date_format:
-    date_long:
-      january: '%{year}年1月%{day}日'
-      february: '%{year}年2月%{day}日'
-      march: '%{year}年3月%{day}日'
-      april: '%{year}年4月%{day}日'
-      may: '%{year}年5月%{day}日'
-      june: '%{year}年6月%{day}日'
-      july: '%{year}年7月%{day}日'
-      august: '%{year}年8月%{day}日'
-      september: '%{year}年9月%{day}日'
-      october: '%{year}年10月%{day}日'
-      november: '%{year}年11月%{day}日'
-      december: '%{year}年12月%{day}日'
-    month:
-      january: 1月
-      february: 2月
-      march: 3月
-      april: 4月
-      may: 5月
-      june: 6月
-      july: 7月
-      august: 8月
-      september: 9月
-      october: 10月
-      november: 11月
-      december: 12月
-  date_is_accurate: 正確な日付
-  date_joined: 追加日
-  date_observed: 観測された日付
-  date_observed_: 観測日
-  date_observed_on: 観測された日付
-  date_picker:
-    closeText: 閉じる
-    currentText: 今日
-    #Contextual help for a button navigating to the previous month in a date picker
-    prevText: 前へ
-    #Contextual help for a button navigating to the next month in a date picker
-    nextText: 次へ
-    range: 範囲
-  date_range: 期間
-  date_specified: 指定日
-  date_time: 日付と時刻
+  curator_application_what_curators_can_do:
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html:
+  curator_application_what_curators_can_do_hide_comments_html: |
+
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+
+  #Header
+  curator_application_what_curators_cannot_do:
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+
+  #Title of a page where people apply to become a curator
+  curator_application_title:
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+
+  curators_changed_for_x_html: ""
+  curators:
+  curators_can_remove_observations_from:
+  curator_identification:
+  current_flags:
+  #Label for a custom boundary for an observation search
+  custom_boundary:
+  custom_project_fields:
+  custom_project_was_successfully_created:
+  custom_project_was_successfully_updated:
+  customize_location:
+  darr_apply_darr: ""
+  daily_users:
+  danger_zone:
+  dashboard:
+  data_deficient:
+  data_quality:
+  data_quality_assessment:
+  data_used: ""
+  datatype:
+  date_:
+  date_added:
+  date_authorized:
+  date_created:
+  date_is_accurate:
+  date_joined:
+  date_obscured_notice:
+  date_observed:
+  date_observed_:
+  date_observed_on:
+  date_range:
+  date_specified:
+  date_time:
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
-  date_to_date: "%{d1} - %{d2}"
-  date_updated: 更新日
-  day: 日
-  decrease_brightness: 輝度を下げる
+  date_to_date: ""
+  date_updated:
+  day:
+  decrease_brightness:
   #Default option
-  default: 既定
-  default_invite_comment: "いい写真ですね！よかったら、%{site_name}に投稿してみませんか？\n{{INVITE_LINK}}"
-  default_observation_license: デフォルトの観察記録ライセンス
-  default_photo_license: デフォルトの写真ライセンス
-  default_search_place: デフォルトの検索場所
+  default:
+  #Default option
+  default_:
+  default_display_time_zone:
+  default_invite_comment: ""
+  default_observation_license:
+  default_photo_license:
+  default_search_place:
   default_search_place_description: |
-    これは、探索と同定でのすべての検索のデフォルトの場所になります。
-  default_sound_license: 規定音声ライセンス
-  defaults_to_your_name_or_username: デフォルトとして自分の名前またユーザ名になります
-  defines_a_taxon_framework_for: '%{taxon_name} のタクソン・フレームワークを定義する'
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: '%{source} をソースとする %{taxon} のタクソン・フレームワークを定義する'
-  definitions: 定義
-  delete: 削除
-  delete_all: すべて削除
-  delete_conversation: このやりとりを削除
+
+  default_sound_license:
+  default_time_zone_desc: |
+
+  defaults_to_your_name_or_username:
+  defines_a_taxon_framework_for:
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
+  definitions:
+  delete:
+  delete_all:
+  delete_conversation:
   #Button to delete the cover (or banner) image for a project
-  delete_cover?: 表紙を削除しますか？
-  delete_icon?: アイコンを削除？
-  delete_photo: 写真を削除
-  delete_project: このプロジェクトを削除
-  delete_selected: 選択された項目を削除
+  delete_cover?:
+  delete_icon?:
+  delete_photo:
+  delete_project:
+  #Label for a button to delete a taxon range
+  delete_range:
+  delete_selected:
   delete_taxon_and_merge_most_data_html: |
-    <i>%{taxon}</i>を削除し、そのデータの大部分を別の分類群にマージします。このツールは<strong>重複した分類群の削除</strong>に使用します。シノニムを削除したい場合は、タクソンスワップを作成してください。<strong>注意してください！</strong>分類群の削除は非常に破壊的です。詳細は<a href="%{curator_url}">キュレーターガイド</a>をご覧ください。
-  delete_user: ユーザー削除
-  delete_your_account: このアカウントを削除
-  deleted_synonyms: 削除されたシノニム
-  deleted_user: ユーザー削除されました
-  deleted_vote: 削除された投票
-  deleting: 削除しています...
-  deleting_verb: 削除しています
-  deny: 拒否
-  desc: 降順
-  descending: 降順
-  describe_purpose: このプロジェクトの目的を説明してください
-  describe_your_interest_in_nature: 自然への関心を説明してください
-  description: 説明
-  description_from: 説明提供先：
-  description_sections: 説明セクション
-  description_slash_tags: 説明／タグ
-  description_tags_more: "説明／タグ／その他情報"
-  desription: 説明
-  destroy: 破棄
-  details: 詳細
-  deviation: 逸脱
-  devise:
-    failure:
-      user:
-        suspended: あなたのアカウントは使用停止されました。
-  discoveries: 発見
-  did_you_mean: 'もしかして:'
-  did_you_photos_flickr?: Flickrに写真をアップしていませんか？
-  disable: 無効
-  disable_comments: コメントの無効化
-  disable_comments_desc: 新しいコメントを追加できないようにする
-  disagree_: 同意しない
-  disconnect_provider: "%{provider}とリンク解除"
-  display: 表示
-  display_link_to_checklist: プロジェクトページにプロジェクトリストのリンクを表示
-  display_monthly_supporter_badge: プロフィールにマンスリーサポーターバッジを表示する
-  display_name: 表示名
-  display_name_description: 著作権表示のためだけでなく、プロフィールにも表示される名前です
-  distance_traveled_value: "移動距離：%{distance} m"
-  distance_traveled: "移動距離（m）"
-  documentation_for_developers_html: <a href="/pages/developers">開発者</a>のドキュメント
-  do_not_show_this_message_again: 今後このメッセージを表示しない
+
+  delete_user:
+  delete_your_account:
+  deleted_synonyms:
+  deleted_user:
+  deleted_vote:
+  deleting:
+  deleting_verb:
+  deny:
+  desc:
+  descending:
+  describe_purpose:
+  describe_your_interest_in_nature:
+  description:
+  description_from:
+  description_sections:
+  description_slash_tags:
+  description_tags_more: ""
+  desription:
+  destination:
+  destroy:
+  details:
+  deviation:
+  devise_reset_password_instructions_hello_email:
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+
+  devise_reset_password_instructions_your_password_wont_change_until: |
+
+  devise_unlock_instructions_your_account_has_been_locked: |
+
+  devise_unlock_instructions_click_the_link: |
+
+  devise_unlock_instructions_unlock:
+  discoveries:
+  did_you_mean: ''
+  did_you_photos_flickr?:
+  disable:
+  disable_comments:
+  disable_comments_desc:
+  disagree_:
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect:
+  disconnect_caps:
+  disconnect_provider: ""
+  #Label for a button that dismisses an alert or popup
+  dismiss:
+  display:
+  display_link_to_checklist:
+  display_monthly_supporter_badge:
+  display_name:
+  display_name_description:
+  distance_traveled_value: ""
+  distance_traveled: ""
+  documentation_for_developers_html:
+  do_not_show_this_message_again:
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    あなたは線虫の研究者ですか？ それともフジツボの世界一の分類専門家ですか？ かわいい花を見るのは好きですか？ プロフィールを記入すると、誰かの同定を手伝ったとき、あなたの人柄を信頼してもらいやすくなります。
-  doesnt_have_default_photo: 規定の写真が定められていません
-  doh_something_went_wrong: エラーが発生しました。
-  doh_something_went_wrong_error: "エラーが発生しました："
+
+  doesnt_have_default_photo:
+  doh_something_went_wrong:
+  doh_something_went_wrong_error: ""
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: 寄付
-  done: 完了
-  dont_have_an_account_sign_up_html: アカウントがありませんか？ <strong>新規登録</strong>
-  dont_use_double_quotes: その他の場所で二重引用符を使用しないでください。
+  donate:
+  donate_again_caps:
+  donate_again_today_caps:
+  done:
+  dont_have_an_account_sign_up_html:
+  dont_use_double_quotes:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it: ドロップ
-  download: ダウンロード
+  drop_it:
+  download:
   download_bulk_import_template_html: |
-    <a href="/observations/import?project_id=%{project_id}#csv_import">一括アップローダ</a>で使用するための<a href="%{url}">テンプレートをダウンロード</a>
-  download_csv: CSVファイルでダウンロード
-  download_csv_template: CSVテンプレートをダウンロード
-  download_kml: KMLファイルでダウンロード
+
+  download_csv:
+  download_csv_template:
+  download_kml:
+  downstream_coverage_rank:
+  downstream_coverage_colon_rank: ""
+  downstream_deviations:
+  downstream_deviations_for_taxon: ""
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa: 下位のフラグ付き分類群
-  draft: 下書き
-  draft_: 下書き
-  draft_saved: 下書きが保存されました
-  drafts: 下書き
-  drag_and_drop_some_photos_or_sounds: 写真や音声をドラッグ&ドロップする
-  drawings: 描画
-  duplicate_verb: 複製
-  duration_value: "持続時間:%{duration} 分"
-  each_place_displays_all_species_inat_knows: "各場所のページには、%{site_name} でその場所から知られているすべての種が表示されます。その中には、その種の豊富さ、保全状況、および%{site_name} でその場所からその種を最初に観察した人に関する情報が含まれます。分類群、色、保全状況、または単純な古い検索で種をフィルタできます。"
-  edit: 編集
-  edit_a_batch_of_observations: 観察記録の一括編集
-  edit_account_settings_and_profile: "アカウント設定・プロフィール編集"
-  edit_assessment: 評定を編集
-  edit_atlas: 地図を編集
-  edit_atlas_for_taxon_html: '%{taxon} の地図を編集'
-  edit_body: 本文を編集
-  edit_comment: コメントを編集
-  edit_complete_set_for_taxon_in_place_html: "%{place} での %{taxon} の完全なセットを編集"
-  edit_custom_project_fields: プロジェクト専用フィールドを編集
-  edit_field: フィールドを編集
-  edit_license: ライセンスを編集
-  edit_multiple_dates: 複数の日付を編集
-  edit_multiple_descriptions: 複数の説明欄を編集
-  edit_multiple_locations: 複数の場所を編集
-  edit_multiple_species: 複数の種を編集
-  edit_notes: メモを編集
-  edit_observations: 観察記録を編集
-  edit_photos: 写真を編集
-  edit_photos_for_observation_id: "%{obs_id}観測記録の写真を編集"
-  edit_place: 場所を編集
-  edit_project: プロジェクトを編集
-  edit_remove: 編集／削除
-  edit_selected: 選択した項目を編集
-  edit_source: ソースを編集
-  edit_taxa: 分類群を編集
-  edit_taxon: 分類群を編集
-  edit_taxon_framework: 分類群フレームワークを編集
-  edit_taxon_link: 分類群リンクを編集
-  edit_taxon_range: 分類群の分布・生息区域を編集
-  edit_the_observation: 観察記録を編集
-  edit_your_account_and_profile_html: "個人設定とプロフィールを編集"
-  edit_your_default_settings: "既定の設定を編集"
-  edit_your_global_project_settings: プロジェクトのグローバル設定を変更
-  edit_your_identification: 同定を編集
-  edit_your_settings_for_this_project: このプロジェクトの個人設定を編集
-  edited_by_name_html: "%{name}によって編集されました"
+  downstream_flagged_covered_taxa:
+  draft:
+  draft_:
+  draft_saved:
+  drafts:
+  drag_and_drop_some_photos_or_sounds:
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary:
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary:
+  drawings:
+  duplicate_verb:
+  duration_value: ""
+  each_place_displays_all_species_inat_knows: ""
+  earliest_added:
+  edit:
+  #Title of the moderation note editor
+  edit_moderator_note:
+  edit_a_batch_of_observations:
+  edit_account_settings_and_profile: ""
+  edit_assessment:
+  edit_atlas:
+  edit_atlas_for_taxon_html:
+  edit_body:
+  edit_comment:
+  edit_complete_set_for_taxon_in_place_html: ""
+  edit_conservation_status:
+  edit_custom_project_fields:
+  edit_field:
+  edit_license:
+  edit_multiple_dates:
+  edit_multiple_descriptions:
+  edit_multiple_locations:
+  edit_multiple_species:
+  edit_notes:
+  edit_observations:
+  edit_photos:
+  edit_photos_for_observation_id: ""
+  edit_place:
+  edit_project:
+  edit_remove:
+  edit_selected:
+  edit_source:
+  edit_taxa:
+  edit_taxon:
+  edit_taxon_framework:
+  edit_taxon_link:
+  edit_taxon_range:
+  edit_the_observation:
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+
+  edit_your_account_and_profile_html: ""
+  edit_your_default_settings: ""
+  edit_your_global_project_settings:
+  edit_your_identification:
+  edit_your_settings_for_this_project:
+  edited_by_name_html: ""
   edited_by_name_some_rights_reserved_html: |
-    編集者:%{name} 、いくつかの権利を保有(%{license})
-  editing: 編集中
-  editing_announcement: お知らせを編集中
-  editing_custom_project_fields_for: プロジェクト専用フィールド編集中：
-  editing_observation_field: 観測記録のフィールドを編集中
-  editing_observation_id: "%{obs_id}の観測記録を編集中"
-  editing_observations:
-    other: '<span class="count">%{count}</span>件の観察記録を編集中：'
-  editing_project: '%{project}を編集中'
-  editing_project_asset: プロジェクトアセット編集中：
-  editing_subscription_to_x_html: "%{x}のフォローを編集中"
-  editing_taxon_link: タクソンリンクを編集中
-  editing_taxon_name_for_taxon_html: '%{taxon}の分類群名 " %{name} " を編集'
-  editing_this: '%{elem}を編集中'
-  editing_x_in_y: "%{y}の中の%{x}を編集中"
-  editors: 編集者
-  either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
-  eligible_for_research_grade: 研究用候補
-  email: 電子メール
-  email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
-  email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
-  email_copyright: "Copyright &copy; %{x}, all rights reserved"
-  email_notifications: メール通知
-  embed: '埋め込む'
-  embed_place_widget: 場所ウィジェットを埋め込む
-  embed_this_assessment: 評定を埋め込む
-  embed_widget_project: プロジェクトのウィジェットをホームページに掲載しましょう
-  enable_offline_access: オフラインアクセスを有効にする
-  enable_offline_access_for_mobile: モバイル用にオフラインアクセスを有効にする
-  encompassing_places: 観察記録の属する場所
-  end: 終了
-  end_date_time: 終了日時
-  endangered: 絶滅危惧IB類
-  endemic: 固有種
-  endemic_to_x: "%{x}の固有種"
+
+  editing:
+  editing_announcement:
+  editing_custom_project_fields_for:
+  editing_observation_field:
+  editing_observation_id: ""
+  editing_project:
+  editing_project_asset:
+  editing_subscription_to_x_html: ""
+  editing_taxon:
+  editing_taxon_link:
+  editing_taxon_name_for_taxon_html:
+  editing_taxon_range_for_taxon_html:
+  editing_this:
+  editing_x_in_y: ""
+  editors:
+  either_that_user_doesnt_exist_or: ""
+  eligible_for_research_grade:
+  email:
+  email_description:
+  email_address_for_comments_and_other_feedback:
+  email_copyright: ""
+  email_notifications:
+  embed: ''
+  embed_place_widget:
+  embed_this_assessment:
+  embed_widget_project:
+  enable_offline_access:
+  enable_offline_access_for_mobile:
+  encompassing_places:
+  end:
+  end_date_time:
+  endangered:
+  endemic:
+  endemic_to_x: ""
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol: EOL
-  eol_collection_url: "EOLコレクションURL"
-  error_updating_photo: "写真更新にエラーが発生しました：%{photo_errors}"
-  establishment:
-    endemic: 固有種
-    establishment: 定着
-    introduced: 外来種
-    invasive: 外来種
-    managed: 管理種
-    native: 在来種
-    naturalised: 帰化種
-  establishment_means: 定着方法
+  eol:
+  eol_collection_url: ""
+  error_updating_photo: ""
+  establishment_means:
   establishment_means_describes_how: |
-    特定の場所において、分類群がどのようにして定着したのかを示す。用語についての<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">詳しい説明</a>はDarwinCoreをご参照ください。
-  event_in_progress: 進行中のイベント
-  event_stats: イベントの統計情報
-  event_url: イベントURL
-  events_only: イベントのみ
-  everyone: 全てのユーザー
-  everyone_: みんな
-  everyone_journal_posts: みんなの日記
-  everywhere: すべての場所
-  exact: 完全一致
-  exact_date: 正確な日付
-  exact_rank: 階級指定
-  except: を除いて
-  exclude_places: 場所を除く
-  exclude_projects: プロジェクトを除く
-  exclude_taxa: 分類群を除く
-  exclude_users: ユーザーを除く
-  exclusion_filters: 除外フィルター
-  existing_flags: 既存のフラグ
-  exit_full_screen: "全画面表示を終了"
-  explore: 探索
-  export: エクスポート
-  export_observations: 観測記録をエクスポート
-  export_with_private_coordinates: 非公開位置情報付きのエきクスポート
-  exporting: "エクスポート中..."
+
+  estimate_which_input: |
+
+  event_in_progress:
+  event_stats:
+  event_url:
+  events_only:
+  everyone:
+  everyone_:
+  everyone_journal_posts:
+  everywhere:
+  exact:
+  exact_date:
+  exact_rank:
+  except:
+  exclude_places:
+  exclude_projects:
+  exclude_taxa:
+  exclude_users:
+  exclusion_filters:
+  existing_flags:
+  exit_full_screen: ""
+  examples_of_data_use_by_network_members:
+  examples_of_ranking_organizations:
+  explore:
+  export:
+  export_observations:
+  export_with_private_coordinates:
+  exporting: ""
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
-  external_applications: 外部アプリケーション
-  extinct: 絶滅
-  extinct_in_the_wild: 野生絶滅
-  extra_properties: その他のプロパティー
-  evidence_of_organism: 生物の証拠
-  facebook: Facebook
-  facebook_account_information: あなたのFacebookアカウント情報
-  facebook_account_not_linked: "%{user}さんのFacebookアカウントとのリンクが解除されたため、%{site_name}に写真のアクセス権限がありません。"
-  facebook_access_token_expired: "アクセストークンの有効期限が切れています。%{user}さんはFacebookアカウントを再リンクする必要があります。"
-  facebook_needs_the_owner_of_that_photo_to: Facebookは、その写真の所有者が%{site_name_short} への接続を再確認する必要があります。
-  facebook_options: Facebook設定
-  failed_to_find_your_location: 現在地を特定できませんでした。
-  failed_to_repair_photo: "写真の修復作業は失敗しました: %{errors}"
-  failed_to_save_record: "記録の保存に失敗しました。しばらくしてからもう一度お試しください。"
-  'false': '偽'
+  external_applications:
+  external_applications_description: |
+
+  external_taxon_including_children:
+  extinct:
+  extinct_in_the_wild:
+  extra_properties:
+  evidence_of_organism:
+  facebook:
+  facebook_account_information:
+  facebook_account_not_linked: ""
+  facebook_access_token_expired: ""
+  facebook_needs_the_owner_of_that_photo_to:
+  facebook_options:
+  facebook_photo_import_disabled_notice: |
+
+  failed_to_find_your_location:
+  failed_to_repair_photo: ""
+  failed_to_save_record: ""
+  failed_to_save_record_with_errors: ""
+  failed_to_unlink_your_account:
+  'false': ''
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves: お気に入り
-  Family: 科
-  favorite_taxa: お気に入り分類群
-  favorites: "お気に入り"
-  featured: 注目
+  faves:
+  Family:
+  favorite_taxa:
+  favorites: ""
+  feature_this_project_: ""
+  featured:
   #Title for a button or section describing the "featured" status of a project
-  featuring: 特長
-  feedback: フィードバック
+  featuring:
+  feedback:
   #Plural noun, as in Atom and RSS feeds
-  feeds: 'フィード'
-  failed: 失敗しました
+  feeds: ''
+  failed:
   field_note: |
-    <strong>注:</strong>フィールドを作成する場合は、重複を避けるため他のユーザーが既に作成していないかどうかを確認してください。
-  fields: フィールド
-  fields_: フィールド
-  fields_can_only_be_edited_by_the_people_who: フィールド設定を変更できるのは、作成者及びサイトキュレーター管理者のみです。
-  fields_merged: フィールドが統合されました
-  file: ファイル
-  file_should_be_in_the_following_format: "ファイルは次のフォーマットでなければなりません: taxon name, description"
-  fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
-  fill_out_your_profile: あなたのプロフィールを完成しましょう
-  filter: 絞り込む
-  filter_by_curator_identification: キュレーターの同定で絞り込む
-  filter_by_place: 場所でフィルター
-  filter_by_taxon: 分類群でフィルタ
-  filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
-  filter_list_by_this_taxon: この分類群でリストをフィルター
-  filtering: フィルター中
-  filters: フィルター
-  find: 検索
-  find_a_guide: ガイドを探す
-  find_a_place: 場所を探す
-  find_guides: ガイドを探す
-  find_new_place_to_explore: 新しい場所を探してみよう！
-  find_observations: 観測記録を探す
-  find_photos: 写真を探す
-  find_places: 場所を探す
-  find_some_people_to_follow: "フォローするユーザーを探す"
-  find_species: 種を探す
-  find_suitable_observations: 適切な観察記録を検索
-  find_unsuitable_observations: 不適切な観察記録を検索
-  find_your_current_location: 現在地を取得
-  finished: 完了
-  first_confirmed_inat_observation: "%{site_name}で初めて確認された観察記録"
-  first_connect_your_provider_account_to_your_site: "まず、%{provider}のアカウントを%{site_name}と接続しましょう。"
-  first_inat_observation: "初めての%{site_name}観察記録"
-  first_observer: 初観測者
+
+  fields:
+  fields_:
+  fields_can_only_be_edited_by_the_people_who:
+  fields_merged:
+  file:
+  file_size:
+  file_should_be_in_the_following_format: ""
+  fill_out_project_observation_fields:
+  fill_out_your_profile:
+  #The name of a computer file
+  filename:
+  filter:
+  filter_by_curator_identification:
+  filter_by_place:
+  filter_by_taxon:
+  filter_by_place_taxon_and_color:
+  filter_list_by_this_taxon:
+  filtering:
+  filters:
+  find:
+  find_a_guide:
+  find_a_place:
+  find_guides:
+  find_new_place_to_explore:
+  find_observations:
+  find_photos:
+  find_places:
+  find_some_people_to_follow: ""
+  find_species:
+  find_suitable_observations:
+  find_unsuitable_observations:
+  find_your_current_location:
+  finished:
+  finished_with_page:
+  first_confirmed_inat_observation: ""
+  first_connect_your_provider_account_to_your_site: ""
+  first_inat_observation: ""
+  first_observer:
   #Verb form, as in "Flag this item"
-  flag: フラグ
-  flag_as_inappropriate: 不適切なフラグ
-  flag_an_item: 項目をフラグ
-  flag_as_spammer: 荒らしのフラグを付ける
-  flag_as_non_spammer: 荒らしではないことを示すフラグを付ける
+  flag:
+  flag_as_inappropriate:
+  flag_an_item:
+  flag_as_spammer:
+  flag_as_non_spammer:
   #Label for the date/time when a flag was created
-  flag_created: フラグ作成
-  flag_description: このコンテンツにフラグを付けて、問題があることを管理者に知らせます。
+  flag_created:
+  flag_deleted:
+  flag_description:
+  flag_comment_description:
   flag_for_check_list_title_html: |
-    チェックリストのフラグ: %{title}
-  flag_for_comment_id_html: <a href="%{url}">コメント%{id}</a>のフラグ
-  flag_for_curation: 要キュレーター管理のフラグを付ける
-  flag_for_identification_id_html: <a href="%{url}">同定%{id}</a>のフラグ
+
+  flag_for_comment_id_html:
+  flag_for_comment_id_deleted:
+  flag_for_curation:
+  flag_for_guide_title_html: |
+
+  flag_for_identification_id_html:
   flag_for_life_list_title_html: |
-    ライフリストのフラグ: %{title}
+
   flag_for_list_title_html: |
-    リストのフラグ: %{title}
-  flag_for_message_id_html: <a href="%{url}">メッセージ%{id}</a>のフラグ
+
+  flag_for_message_id_html:
   flag_for_observation_title_html: |
-    観察記録のフラグ: %{title}
-  flag_for_photo_id_html: <a href="%{url}">写真%{id}</a>のフラグ
+
+  flag_for_photo_id_html:
+  flag_for_place_title_html: |
+
   flag_for_post_title_html: |
-    投稿のフラグ: %{title}
+
   flag_for_project_title_html: |
-    プロジェクトのフラグ: %{title}
-  flag_for_guide_section_id_html: <a href="%{url}">ガイドセクション %{id}</a>のフラグ
-  flag_for_sound_id_html: <a href="%{url}">音声%{id}</a>のフラグ
+
+  flag_for_guide_section_id_html:
+  flag_for_sound_id_html:
   flag_for_taxon_title_html: |
-    分類群のフラグ: %{title}
+
   flag_for_user_title_html: |
-    ユーザーのフラグ: %{title}
-  flag_it!: フラグを付ける！
-  flag_marked_as_resolved_html: '<strong>解決済み</strong><span class="meta">としてマークされたフラグ</span>'
+
+  flag_it!:
+  flag_marked_as_resolved_html: ''
   #Label for the object that was flagged, e.g. a table header
-  flag_object: 対象
-  flag_reason: "&ldquo; 私がこの %{record} にフラグを立てるのは、"
-  flag_resolution: 解決策
-  flag_saved: フラグが保存されました
-  flag_saved_thanks_html: フラグを保存しました。ありがとう! <a href="%{url}" class="readmore">フラグを見る</a>
-  flag_this_observation: この観察記録にフラグ
-  flag_this_photo: この写真にフラグ付け
-  flag_this_sound: このサウンドにフラグを付ける
-  flagged_: フラグ付き
-  flagged_for_curation: 要キュレーター管理としてフラグ付け済み
-  flagged_taxon: フラグ付き分類群
-  flagged_thing_explanation: "次の理由により、この%{thing}にフラグが付けられました："
+  flag_object:
+  flag_reason: ""
+  flag_resolution:
+  flag_saved:
+  flag_saved_thanks_html:
+  flag_this_observation:
+  flag_this_photo:
+  flag_this_place:
+  flag_this_sound:
+  flagged_:
+  flagged_for_curation:
+  flagged_taxon:
+  flagged_thing_explanation: ""
   flagging_desc: |
-    フラグを付けることで、ボランティアのサイト管理者に知らせることができます。
-    同定、データ品質評価、またはコンテンツ作成者との会話によって対処できる問題にはフラグを付けないでください。
-  flagger: フラグ付けたユーザー：
-  flags: フラグ
-  flags_explanation: "%{site_name} ユーザーはキュレーター管理者やスタッフに注意が必要であることをフラグを通して伝えることができます。"
-  flags_for_x_html: '%{x} へのフラグ'
-  flags_on_users_content: "%{user}さんのコンテンツに付けられたフラグ"
-  flickr_account_information: あなたのFlickrアカウント情報
-  flickr_has_no_creative_commons: Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません
-  flickr_identity: Flickrアイデンティティー
-  flickr_needs_to_confirm: "Flickrは、アカウントを %{site_name} に接続したいかどうかを確認する必要があります。"
-  flickr_photo: Flickr写真
-  flickr_photos: Flickr写真
-  flickr_style: Flickr式
-  flickr_tagger: Flickrタグ付け機能
-  flickr_tags: Flickrタグ
-  fluid_layout: 可変レイアウト
+
+  flagger:
+  flags:
+  flags_with_count:
+  flags_explanation: ""
+  flags_for_x_html:
+  flags_on_users_content: ""
+  flickr_account_information:
+  flickr_has_no_creative_commons:
+  flickr_identity:
+  flickr_needs_to_confirm: ""
+  flickr_photo:
+  flickr_photos:
+  flickr_style:
+  flickr_tagger:
+  flickr_tags:
+  fluid_layout:
   #Adjective, as in a fluid layout of images
-  fluid: 可変
-  follow: フォロー
-  follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
-  follow_user: "%{user}さんをフォロー"
-  followers: フォロワー
-  following: フォロー中
-  following_x_people:
-    other: '%{count}人をフォロー中People'
-  for_a_taxon: 分類群用
-  formatting: フォーマット
-  forgot_your_password: パスワードを忘れた場合
-  forum: フォーラム
-  forum_categories:
-    bug_reports: バグ報告
-    feature_requests: 機能のリクエスト
-    nature_talk: ネイチャートーク
-    news_and_updates: ニュース&アップデート
-    tutorials: チュートリアル
+  fluid:
+  follow:
+  follow_receive_updates_about_new_observations:
+  follow_user: ""
+  followers:
+  following:
+  for_a_taxon:
+  formatting:
+  forgot_your_password:
+  forum:
   forum_desc: |
-    フォーラムはヘルプやサポートを含め、iNatそのものについて議論する場です。
-    機能のリクエスト、バグ報告、アナウンスなど。
-  frequency: 出現頻度
-  from_a_place: 場所から
-  from_eol_collection: EOLコレクションより
-  from_flickr_facebook_etc: Flickr、Facebookなどから
-  from_list: リストから
-  from_photos: 写真から
-  from_place: 場所から
-  from_soundcloud: Soundcloudから
-  full_screen: 全画面表示
-  fungi:
-    other: 菌類
-  gbif_occurrences: GBIF発生データ
-  generate_taxonomic_tags_for_flickr: あなたのFlickr写真のための分類群タグを作成
-  generate_widget: ウィジェットを作成
-  generate_your_stats: 統計を生成
-  generating_mobile_archive: "モバイルアーカイブを作成中"
-  Genus: 属
-  geoprivacy: 位置情報プライバシー
-  geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
-  geoprivacy_is_obscured_desc: 観察者は、座標を曖昧にすることを選択しました。
-  geoprivacy_is_private: 位置情報プライバシーはプライベート
-  geoprivacy_is_private_desc: 観察者は座標を隠すことを選択しました。
-  georeferenced: 位置データありますか？
-  get_started: 始めよう
-  getting_started_guide: 初めてのユーザーガイド
+
+  frequency:
+  from_a_place:
+  from_eol_collection:
+  from_flickr_facebook_etc:
+  from_list:
+  from_photos:
+  from_place:
+  from_soundcloud:
+  full_screen:
+  gbif:
+  gbif_occurrences:
+  generate_taxonomic_tags_for_flickr:
+  generate_widget:
+  generate_your_stats:
+  generating_mobile_archive: ""
+  Genus:
+  geoprivacy:
+  geoprivacy_is_obscured:
+  geoprivacy_is_obscured_desc:
+  geoprivacy_is_private:
+  geoprivacy_is_private_desc:
+  georeferenced:
+  get_started:
+  getting_started_guide:
   #Prompt to donate money on a montly basis
-  give_monthly_caps: 毎月の寄付
+  give_monthly_caps:
   #Prompt to donate money once
-  give_now_caps: 今すぐ寄付
-  global_names: グローバル名
-  globally: 世界中
-  go: 実行
-  go_back: 戻る
-  going_to_your_observations: あなたの観察記録へ移行中
-  good_choice_for_sharing: 科学者にデータ共有できるのでオススメ
-  google: Google
-  got_it!: 了解
-  got_your_data_somewhere_else?: 別のところでデータを保存していますか？お手伝いできます。
-  graft: 融合
-  grant_role: "に%{role}役割を%{grant}しました"
-  grid: グリッド
-  grid_layout: グリッドレイアウト
-  grid_tooltip: グリッド表示
-  group: グループ
-  grouping: グループ化
-  guides: ガイド
-  guide_compiled_by: ガイド作成者
-  guide_deleted: ガイドは削除されました
-  guide_will_be_deleted: 後ほどガイドは削除されます。大きなガイドの場合、多少時間かかることがあります。
-  guide_taxon: ガイドの分類群
-  guide_was_successfully_created: ガイドは無事作成されました
-  guide_was_successfully_published: ガイドは無事公開されました
-  guide_was_successfully_updated: ガイドは無事更新されました
-  guidelines: ガイドライン
-  has_already_been_flagged_by: こちらはすでにフラグ付けられました
-  has_id_supported_by_two_or_more: 複数の同定で支持されている
-  has_one_or_more_faves: お気に入り登録件数が1件以上
-  has_photo: 写真あり
-  has_photos: 写真あり
-  has_photo_and_sound: 写真・音声あり
-  has_photos_or_sounds: 写真または音声あり
-  has_sound: 音声あり
-  has_sounds: 音声あり
-  hasnt_contributed_any_observations: はまだこのプロジェクトに観察記録を提供していません
-  header_your_observations: 自分の観察記録
-  header_your_calendar: 自分のカレンダー
-  header_your_favorites: お気に入り
-  header_your_lists: あなたのリスト
-  header_your_journal: あなたの日記
-  header_your_identifications: あなたの同定
-  header_your_projects: あなたのプロジェクト
-  header_your_profile: あなたのプロフィール
-  heads_up: お知らせ
-  heads_up_this_photo_has_been_flagged: "お知らせ：この写真はフラグ付けられました"
-  heads_up_this_photo_is_already_associated_with: "注意: この写真は既に<a target='_blank' href='%{url}'>別の観察記録</a>と関連づけられている。"
-  help: ヘルプ
-  help_confirm_observations!: 観測を記録しましょう！
-  help_support_inaturalist: "iNaturalistを支援する"
-  help_translate!: 翻訳を手伝ってください!
-  here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
-  here_are_our_top_suggestions: これらが上位の提案です
-  here_are_our_top_species_suggestions: 最も優れた種の提案は次のとおりです
-  hex_color_eg: 16進色、例：65644F
-  hi_user: "こんにちは、%{user}さん"
+  give_now_caps:
+  global_names:
+  globally:
+  go:
+  go_back:
+  going_to_your_observations:
+  good_choice_for_sharing:
+  google:
+  google_maps_not_loaded_error: |
+
+  got_it!:
+  got_your_data_somewhere_else?:
+  graft:
+  graft_taxon:
+  grafting_attemps_to_insert_this_taxon:
+  grant_role: ""
+  grid:
+  grid_layout:
+  grid_tooltip:
+  group:
+  grouping:
+  guides:
+  guide_compiled_by:
+  guide_deleted:
+  guide_will_be_deleted:
+  guide_taxon:
+  guide_was_successfully_created:
+  guide_was_successfully_published:
+  guide_was_successfully_updated:
+  guidelines:
+  has_already_been_flagged_by:
+  has_id_supported_by_two_or_more:
+  has_one_or_more_faves:
+  has_photo:
+  has_photos:
+  has_photo_and_sound:
+  has_photos_or_sounds:
+  has_sound:
+  has_sounds:
+  hasnt_contributed_any_observations:
+  header_your_observations:
+  header_your_calendar:
+  header_your_favorites:
+  header_your_lists:
+  header_your_journal:
+  header_your_identifications:
+  header_your_projects:
+  header_your_profile:
+  heads_up:
+  heads_up_automatable_draft_split_notice_html: |
+
+  heads_up_non_automatable_draft_split_notice_html: |
+
+  heads_up_automatable_split_notice_html: |
+
+  heads_up_observose_taxon_change_html: |
+
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+
+  heads_up_this_photo_has_been_flagged: ""
+  heads_up_this_photo_is_already_associated_with: ""
+  heads_up_you_have_multiple: ""
+  help:
+  help_confirm_observations!:
+  help_support_inaturalist: ""
+  help_translate!:
+  here_are_3_examples:
+  here_are_our_top_suggestions:
+  here_are_our_top_species_suggestions:
+  hex_color_eg:
+  hi_user: ""
   #Verb, usually a button to hide an interface element
-  hide: 非表示
-  hide_content: コンテンツを非表示
+  hide:
+  hide_content:
   hide_desc: |
-    コンテンツを非表示にすると、そのコンテンツはパブリックビューから削除されますが、ユーザーは何かが非表示になっていることを確認でき、サイト管理者およびコンテンツの作成者は非表示のコンテンツを確認できます。一般に、これは記述されたコンテンツにのみ適用されます。たとえば、同定のコンテンツを非表示にした場合、同定は表示されたままですが、同定者による注釈は非表示になります。元に戻すことはできず、一度非表示にしたコンテンツを再表示できるのはサイトのスタッフだけです。そのため操作には注意し、非常に好ましくないコンテンツにのみ使用してください。
+
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation:
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total: 現在の総計を非表示
-  hide_uncountable_species: 数えられない種を非表示
-  high: 高
-  highest_rank: 最高位階級
-  highlights_and_stats_from_year_on_site: "%{year} の%{site} のハイライトと統計"
-  history: 履歴
-  home: ホーム
-  however_there_were_some_issues: "しかし、問題がありました：%{issues}"
-  i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
-  icon: アイコン
-  icon_size: アイコンの大きさ
-  iconic_taxon: 代表的な分類群
-  id: 同定
-  id_categories:
-    tooltips:
-      leading: |
-        分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。
-      maverick: |
-        分類群はコミュニティ分類群の下位でも上位でもありません。すなわち、コミュニティはこの分類群に同意しません。
-  id_withdrawn: 同定の撤回
-  ids_by_taxon: 分類群別ID
-  identify: 同定する
-  identify_observations: "観察記録をID判定"
-  identify_observations_by_these_users: ユーザーによる観察記録の同定
-  identify_title: "ID判定"
-  identification: 同定
-  identification_by_user: '%{user}さんの同定'
+  hide_running_total:
+  hide_uncountable_species:
+  high:
+  highest_rank:
+  highlights_and_stats_from_year_on_site: ""
+  history:
+  home:
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: ""
+  however_there_were_some_issues: ""
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+
+  i_dont_know_but_i_am_sure_this_is_taxon:
+  icon:
+  icon_size:
+  iconic_taxon:
+  id:
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: ""
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: ""
+  id_withdrawn:
+  ids_by_taxon:
+  identify:
+  identify_observations: ""
+  identify_observations_by_these_users:
+  identify_title: ""
+  identification:
+  identification_by_user:
   #Notification when an identification has been deleted
-  identification_deleted: 同定が削除されました
-  identification_saved: "判定が保存されました！"
+  identification_deleted:
+  identification_saved: ""
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden:
   #Notification when an identification has been updated
-  identification_updated: 同定が更新されました
-  identification_user_short: 同定ユーザー
+  identification_updated:
+  identification_user_short:
   #Notification when an identification has been withdrawn
-  identification_withdrawn: 同定が撤回されました。
-  identifications: 同定
-  computer_vision_suggestion: コンピュータビジョンの提案
+  identification_withdrawn:
+  identifications:
+  computer_vision_suggestion:
   computer_vision_suggestion_desc: |
-    コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
-  identifiers: ID判定者
-  identotron: らくらくID判定
-  identotron_help: らくらくID判定ヘルプ
-  ids: "ID"
-  ids_made_for_others: 他のユーザーへ提案したID
+
+  identifiers:
+  identotron:
+  identotron_for:
+  identotron_help:
+  ids: ""
+  ids_made_for_others:
   if_for_some_reason_a_user_doesnt_agree: |
-    何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ、研究用として使用可能になります。
-  if_matches_come_from_a_comprehensive_list: 包括的なリストからのマッチの場合、緑色のバーがここに表示されます。
-  if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
-  if_you_have_any_trouble_with_the_site_check_out: 'ご質問がある場合は、<a href="%{help_url}">ヘルプセクション</a>を参照するか、<a href="%{feedback_url}">フィードバックグループ</a>にメッセージを投稿してください。'
-  if_your_project_is: プロジェクトが特定の場所に関するものである場合は、マップをクリックするか、手動で座標を入力して設定します。
-  ignore_and_continue: 無視して続行
-  ignore_times: 時間を無視する
-  image_must_be_exactly: 画像の大きさは高さ400px以下、幅はちょうど950pxでなけれなりません。
-  import: インポート
-  import_all_photos_as_observations: すべての写真を観測記録としてインポート
-  import_as_an_observation: 観測記録としてインポート
-  import_as_another_observation: 新しい観測記録としてインポートしますか？
-  import_date_time_location_taxonomic: "この写真から日付、時間、場所、説明、分類群情報を読み込む。"
-  import_from_csv: CSVからインポート
-  import_from_other_photo_sites: 他の写真ウェブサイトからインポート
-  import_observations: 観測記録をインポート
-  import_observations_from_a_photo: 写真共有サイト及びパソコンの写真ファイルから観察記録をインポート
-  import_photos: 写真をインポート
-  import_ranges: 範囲の読み込み
-  import_sections: セクションのインポート
-  import_tags_from_csv: CSVからタグをインポート
-  importing: "インポート中..."
-  improving: 改善
-  in_n: "%{n}に"
-  in_place_x: '%{place} で'
-  inaturalist_network: iNaturalistネットワーク
-  inaturalist_network_affiliation: iNaturalistネットワーク所属
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+
+  if_matches_come_from_a_comprehensive_list:
+  if_this_is_a_scientific_name:
+  if_this_link_will_apply_to_descendant:
+  if_you_have_any_trouble_with_the_site_check_out: ''
+  if_your_project_is:
+  ignore_and_continue:
+  ignore_times:
+  image_must_be_exactly:
+  image_size_control:
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  imperiled:
+  import:
+  import_all_photos_as_observations:
+  import_as_an_observation:
+  import_as_another_observation:
+  import_date_time_location_taxonomic: ""
+  import_from_csv:
+  import_from_other_photo_sites:
+  import_observations:
+  import_observations_from_a_photo:
+  import_photos:
+  import_ranges:
+  import_sections:
+  import_tags_from_csv:
+  importing: ""
+  improving:
+  in_n: ""
+  in_place_x:
+  inaturalist_network:
+  inaturalist_network_affiliation:
   #Label for messages you've received
-  inbox: 受信箱
-  include_places: 場所を含む
-  include_projects: プロジェクトを含む
-  include_suggestions_not_seen_nearby: 近くで見られない候補を含める
-  include_taxa: 分類群を含む
-  include_users: ユーザーを含む
-  including: 次を含む：
-  increase_brightness: 輝度を上げる
-  in_progress: 処理中
-  in_the_past: ここ
-  in_the_past_week: 最近1週間以内
-  inactive: 廃止
-  inactive_taxon: 無効な分類群
-  inactive_taxon_concepts_are: 廃止された分類群概念は分類学上は無効と見なされた、または分類群変更待ちの状態です。廃止された分類群は履歴継承や、一部のパートナーサイトとの互換性を維持するために残してあります。
-  inappropriate_content: 不適切な内容ですか?
-  inat_account_action: "%{site_name}&#58;アカウント&#58;%{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。"
-  inat_user_profile: "%{site_name}: %{user}さんのプロフィール"
+  inbox:
+  include_places:
+  include_projects:
+  include_suggestions_not_seen_nearby:
+  include_taxa:
+  include_users:
+  including:
+  increase_brightness:
+  in_progress:
+  in_the_past:
+  in_the_past_week:
+  inactive:
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status:
+  inactive_taxon:
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status:
+  inactive_taxon_concepts_are:
+  inappropriate_content:
+  inat_account_action: ""
+  inat_believes_this_is_a_complete_listing: ""
+  inat_user_profile: ""
+  inaturalist_activity_notifications: ""
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
-  inaturalist_applications: "iNaturalist アプリケーション"
-  inaturalist_is_a_joint_initiative: "%{site_name} はカリフォルニア科学アカデミーとナショナル ジオグラフィック協会によって共同設立されたものです。"
-  inaturalist_places: "%{site_name} 場所"
-  info: 情報
-  input_taxon: 分類群を入力
-  insects: 昆虫類
-  insect_life_stage: 昆虫の変態段階
-  instagram: Instagram
+  inaturalist_applications: ""
+  inaturalist_is_a_joint_initiative: ""
+  inaturalist_places: ""
+  info:
+  input_taxon:
+  insects:
+  insect_life_stage:
+  instagram:
   #Tool tip for a button that inserts quoted text into a text area
-  insert_a_quote: 引用を挿入
-  interactions: 連携
-  internal_server_error: サーバー内部エラー
-  introduced: 外来種
-  introduced_in_place: "%{place}の外来種"
-  invitation: 招待
-  invite: 招待する
-  invite_people: ユーザーを紹介する
-  invite_people_to_project: "%{project}にメンバーを招待"
+  insert_a_quote:
+  interactions:
+  internal_server_error:
+  internal_taxon_including_descendants:
+  internal_taxon_rank:
+  introduced:
+  introduced_in_place: ""
+  invitation:
+  invite:
+  invite_people:
+  invite_people_to_project: ""
   #Type of project where people can only join after they have been invited
-  inviteonly: 招待のみ
-  invited_x: "%{x}を招待しました"
-  iphone: iPhone
-  is_not_following_anyone: 誰もフォローしていません
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: この観察記録には%{taxon} であると同定するのに十分な情報がありますか？
-  is_this_offensive_html: 'この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
-  is_this_place_a_duplicate: この場所は重複していますか？
-  it_can_now_be_used_for_research: 研究に利用できるようになり、他のサイトでも紹介されるようになります。
+  inviteonly:
+  invited_x: ""
+  iphone:
+  is_not_following_anyone:
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
+  is_this_offensive_html: ''
+  is_this_place_a_duplicate:
+  it_can_now_be_used_for_research:
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text:
   item_flagged_notice_html: |
-    これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、サイトの管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。<a href="%{manage_flags_path}">フラグの管理</a>
-  join: 参加
-  join_and_add_an_observation_to_project_html: '%{project} への参加と観察記録の追加'
-  join_project: このプロジェクトに参加する
+
+  jobs:
+  join:
+  join_and_add_an_observation_to_project_html:
+  join_project:
   #Prompt to join a specific project
-  join_project?: '%{project}に参加しますか？'
-  join_the_largest_group_of_naturalists_in_the_world: 世界最大のナチュラリストグループに参加してみませんか？
-  join_this_project: このプロジェクトに参加
-  'joined!': 参加しました！
-  joined_projects: 参加したプロジェクト
-  joined_with_date: "登録日: %{date}"
-  journal: 日記
-  journal_archives_for: 日記のアーカイブ：
-  journal_post: 日記
-  journal_post_deleted: 日記が削除されました
-  journal_posts: 日記
-  jpg_png_or_gif: "JPG、PNG、またはGIF"
-  jump_to_letter: 次の文字に移動
-  just_a_reminder: このプロジェクトの観察情報の非表示座標を表示する権限がプロジェクト管理者に与えられている可能性があるため、念のためにお知らせします。
-  just_added!: 新しく追加！
-  keep_editing: 編集を続行
-  keyboard_shortcuts: キーボード ショートカット
-  kml: KML
-  kml_file_size_error: "1MBより少ないKMLでなければなりません"
-  label_colon: "%{label}"
-  labels: ラベル
-  label_to_group_a_batch_of_taxon_changes: 分類群の変更を一括してグループ化するためのラベル
+  join_project?:
+  join_the_largest_group_of_naturalists_in_the_world:
+  join_this_project:
+  'joined!':
+  joined_projects:
+  joined_with_date: ""
+  journal:
+  journal_archives_for:
+  journal_post:
+  journal_post_deleted:
+  journal_posts:
+  jpg_png_or_gif: ""
+  jump_to_letter:
+  just_a_reminder:
+  just_added!:
+  keep_editing:
+  keyboard_shortcuts:
+  kml:
+  kml_file_size_error: ""
+  label_colon: ""
+  labels:
+  label_to_group_a_batch_of_taxon_changes:
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: 位置情報は非公開
+  location_private:
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
-  lock_zoom_level: ズームレベルを固定
-  language_slash_locale: 言語/地域
-  language_slash_locale_description: あなたの地域に基づいて、iNaturalist全体の言語と日付の書式設定を設定します。ページが更新されると変更が反映されます。
-  language_slash_type: 言語／種類
+  lock_zoom_level:
+  language_slash_locale:
+  language_slash_locale_description:
+  language_slash_type:
   #Large photo size
-  large: 大
-  last_active_with_date: "最後の活動: %{date}"
-  last_confirmed_observation: 最後に確認された観察記録
-  last_observation: 最終観察記録
-  last_observation_caps: 最終観察記録
-  last_seen: 最終観察時
-  last_year: 昨年
-  lat: '緯度:'
-  latitude: 緯度
-  latitude_in_decimals: '緯度（10進表記）（例：38.123）'
-  latitude_slash_y_coord_slash_northing: 緯度/y座標/北距
-  latitude_value: "緯度: %{latitude}"
+  large:
+  last_active_with_date: ""
+  last_confirmed_observation:
+  last_observation:
+  last_observation_caps:
+  last_seen:
+  last_year:
+  lat:
+  latitude:
+  latitude_in_decimals: ''
+  latitude_slash_y_coord_slash_northing:
+  latitude_value: ""
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers: レイヤー
-  layout: レイアウト
-  leaderboard: リーダーボード
-  leaderboard_for_x: "%{x}の達人"
-  leaderboards: リーダーボード
-  leading: 主導
-  learn: 学習
-  learn_about_the_species_live_in: 次の場所で生息する生き物について学ぶ：
-  learn_more: もっと詳しく
-  learn_more_raquo: "もっと詳しく &raquo;"
-  learn_what_these_licenses_mean: 各種ライセンスについて
-  least_concern: 低危険種/<br />軽度懸念
-  leave: 退会する
-  leave_a_comment: コメントする
-  leave_this_project: このプロジェクトを退会
+  layers:
+  layout:
+  leaderboard:
+  leaderboard_for_x: ""
+  leaderboards:
+  leading:
+  learn:
+  learn_about_the_species_live_in:
+  learn_more:
+  learn_more_raquo: ""
+  learn_what_these_licenses_mean:
+  least_concern:
+  leave:
+  leave_a_comment:
+  leave_this_project:
   #Terminal nodes in a taxonomic tree
-  leaves: 末端ノード
+  leaves:
   legacy_authentication_notice_html: |
-    このWebサイトの古いバージョンのパスワードを使用しているようです。
-    新しいバージョンのパスワードを忘れずに<a href="%{url}">変更してください</a>。
-  let_us_walk_you_through: このサイトの主な機能をご紹介します。
-  lexicon: 言語
+
+  let_us_walk_you_through:
+  lexicon:
+  lexicon_cannot_contain_words: ""
   lexicons:
-    scientific_names: 学名
-    afrikaans: アフリカーンス語
-    albanian: アルバニア語
-    bengali: ベンガル語
-    catalan: カタロニア語
-    cebuano: セブアノ語
-    chinese_simplified: 中国語 (簡体字)
-    chinese_traditional: 中国語 (繁体字)
-    creole_french: クレオール語（フランス語）
-    creole_portuguese: クレオール語（ポルトガル語）
-    czech: チェコ語
-    danish: デンマーク語
-    davawenyo: ダバオ語
-    dutch: オランダ語
-    english: 英語
-    estonian: エストニア語
-    finnish: フィンランド語
-    french: フランス語
-    gela: ゲラ語
-    german: ドイツ語
-    greek: ギリシャ語
-    hawaiian: ハワイ語
-    hebrew: ヘブライ語
-    hiligaynon: ヒリガイノン語
-    icelandic: アイスランド語
-    ilokano: イロカノ語
-    italian: イタリア語
-    japanese: 日本語
-    korean: 韓国語
-    lithuanian: リトアニア語
-    luxembourgish: ルクセンブルク語
-    maltese: マルタ語
-    maori: マオリ語
-    misima_paneati: ミシマパネアティ語
-    norwegian: ノルウェー語
-    occitan: オック語
-    pangasinan: パンガシナン語
-    portuguese: ポルトガル語
-    romanian: ルーマニア語
-    russian: ロシア語
+    scientific_names:
+    afrikaans:
+    albanian:
+    arabic:
+    armenian:
+    belarusian:
+    bengali:
+    bulgarian:
+    catalan:
+    cebuano:
+    chinese_simplified:
+    chinese_traditional:
+    creole_french:
+    creole_portuguese:
+    croatian:
+    czech:
+    danish:
+    davawenyo:
+    dutch:
+    english:
+    estonian:
+    faroese:
+    finnish:
+    french:
+    galician:
+    gela:
+    german:
+    greek:
+    hawaiian:
+    hebrew:
+    hiligaynon:
+    hungarian:
+    icelandic:
+    ilokano:
+    indonesian:
+    italian:
+    japanese:
+    kannada:
+    korean:
+    latvian:
+    lithuanian:
+    luxembourgish:
+    malay:
+    malayalam:
+    maltese:
+    maori:
+    marathi:
+    maya:
+    misima_paneati:
+    mongolian:
+    nahuatl:
+    norwegian:
+    occitan:
+    ojibwe:
+    palauan:
+    pangasinan:
+    persian:
+    polish:
+    portuguese:
+    romanian:
+    russian:
+    santali:
     spanish: スペイン語
     swedish: スウェーデン語
     tagalog: タガログ語
