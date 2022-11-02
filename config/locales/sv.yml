@@ -1,144 +1,15 @@
 sv:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} ändring"
-    other: "%{count} ändringar"
-  x_comments:
-    one: '%{count} kommentar'
-    other: '%{count} kommentarer'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> kommentar'
-    other: '<span class="count">%{count}</span> kommentarer'
-  x_faves:
-    one: '%{count} favorit'
-    other: '%{count} favoriter'
-  x_flags_resolved_html:
-    one: "<span class='count'>%{count}</span> flagga löst"
-    other: "<span class='count'>%{count}</span> flaggor lösta"
-  x_identifications:
-    one: '%{count} bestämning'
-    other: '%{count} bestämningar'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> bestämning'
-    other: '<span class="count">%{count}</span> bestämningar'
-  x_identifications_:
-    one: '%{count} bestämning'
-    other: '%{count} bestämningar'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
-  x_languages:
-    one: "%{count} språk"
-    other: "%{count} språk"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} först i livslistan"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} första i livslistan"
-  x_journal_posts_html:
-    one: '<span class="count">%{count}</span> dagboksinlägg'
-    other: '<span class="count">%{count}</span> dagboksinlägg'
-  x_matching_taxa:
-    one: '%{count} matchande taxon'
-    other: '%{count} matchande taxa'
-  x_matching_taxa_html:
-    one: '<span class="count">%{count}</span> matchande taxon'
-    other: '<span class="count">%{count}</span> matchande taxa'
-  x_misidentifications_of_this_species:
-    one: "%{count} felbestämning av denna art"
-    other: "%{count} felbestämningar av denna art"
-  x_misidentifications_of_species_in_this_genus:
-    one: "%{count} felbestämning av art i detta släkte"
-    other: "%{count} felbestämningar av arter i detta släkte"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
-  x_misidentifications_of_species_in_this_rank:
-    one: "%{count} felbestämning av art i denna %{rank}"
-    other: "%{count} felbestämningar av arter i denna %{rank}"
-  x_observations:
-    one: "%{count} fynd"
-    other: "%{count} fynd"
-  x_observations_:
-    one: "%{count} fynd"
-    other: "%{count} fynd"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> fynd"
-    other: "<span class='count'>%{count}</span> fynd"
-  x_observations_link_html:
-    one: "<a href='%{url}'>%{count} fynd</a>"
-    other: "<a href='%{url}'>%{count} fynd</a>"
-  x_observations_reviewed_html:
-    one: "<span class='count'>%{count}</span> fynd granskat"
-    other: "<span class='count'>%{count}</span> fynd granskade"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatör'
-    other: '<span class="count">%{count}</span> observatörer'
-  x_others:
-    one: "%{count} annan"
-    other: "%{count} andra"
-  x_people:
-    one: "%{count} person"
-    other: "%{count} personer"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
-  x_photos:
-    one: "%{count} bild"
-    other: "%{count} bilder"
-  x_new_species:
-    one: "%{count} ny art"
-    other: "%{count} nya arter"
-  x_new_users:
-    one: '%{count} ny användare'
-    other: '%{count} nya användare'
-  x_species:
-    one: '%{count} art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> art"
-    other: "<span class='count'>%{count}</span> arter"
-  x_species_link_html:
-    one: "<a href='%{url}'>%{count} art</a>"
-    other: "<a href='%{url}'>%{count} arter</a>"
-  x_suggestions_filtered_by_colon:
-    one: "%{count} förslag filtrerades på:"
-    other: "%{count} förslag filtrerades på:"
-  x_taxa:
-    one: "%{count} taxon"
-    other: "%{count} taxa"
-  x_taxa_observed_html:
-    one: "<span class='count'>%{count}</span> observerat taxon"
-    other: "<span class='count'>%{count}</span> observerade taxa"
-  x_research_grade_observations_html:
-    one: "<span class='count'>%{count}</span> fynd av forskningsklass"
-    other: "<span class='count'>%{count}</span> fynd av forskningsklass"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>%{count}</span> fynd av forskningsklass bestämt till art eller lägre"
-    other: "<span class='count'>%{count}</span> fynd av forskningsklass bestämda till art eller lägre"
-  x_sounds:
-    one: "%{count} ljud"
-    other: "%{count} ljud"
-  x_taxa_curated_html:
-    one: "<span class='count'>%{count}</span> förvaltat taxon"
-    other: "<span class='count'>%{count}</span> förvaltade taxa"
-  x_taxa_matching_current_filters:
-    one: "%{count} taxon matchar nuvarande filter"
-    other: "%{count} taxa matchar nuvarande filter"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>%{count}</span> taxonändring tillagd"
-    other: "<span class='count'>%{count}</span> taxonändringar tillagda"
-  _100_day_trends: 100-dagarstrend
-  _percent_ID_d: "% bestämda"
-  a_community_for_naturalist: En community för naturforskare
+  x_people_helped_user_with_y_ids_html: ""
+  _100_day_trends:
+  _percent_ID_d: ""
+  a_community_for_naturalist:
   a_default_taxon_name_will_automatically_created: |
-    Ett standardtaxonnamn kommer automatiskt skapas utifrån detta taxons vetenskapliga namn. När du har sparat detta nya taxon kommer du kunna lägga till andra namn här (vardagliga namn, vetenskapliga synonymer osv.)
-  a_flag_for_x: "en flagga för %{x}"
-  a_member_of_taxon_html: "en medlem i %{taxon}"
+
+  a_flag_for_x: ""
+  a_member_of_taxon_html: ""
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "A till Ö"
+  a_to_z: ""
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -158,2204 +29,1739 @@ sv:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: "@gender{n:en|r:ett} %{resource}"
-  about: Om
-  about_charts: Om diagram
-  about_community_taxa: Om community-taxa
-  about_complete_taxa: Om kompletta taxa
-  about_conservation_status: Om bevarandestatus
-  about_editing_observation_fields: Om redigering av fyndfält
+  activity_snipped_resource_with_indefinite_article: ""
+  about:
+  about_charts:
+  about_community_taxa:
+  about_complete_taxa:
+  about_conservation_status:
+  about_editing_observation_fields:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: Om invandringshistoria
-  about_license_options: Om licensalternativ
-  about_licenses: Om licenser
+  about_establishment_means:
+  about_license_options:
+  about_licenses:
   #Header for a section describing taxon names
-  about_names: Om namn
+  about_names:
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
-  about_place: "Om %{place}"
-  about_places: Om fyndplatser
-  about_taxon_ranges: Om taxons utbredningsområde
+  about_place: ""
+  about_places:
+  about_taxon_ranges:
   about_taxon_ranges_desc: |
-    Taxons utbredningsområde förmedlar den globala utbredningen av ett taxon. Källan till dessa utbredningsområden är oftast IUCNs Rödlista.
-  about_the_network: Om Nätverket
-  about_this_bioblitz: Om denna bioblitz
-  about_this_map: Om denna karta
-  about_this_project: Om detta projekt
+
+  about_the_network:
+  about_this_bioblitz:
+  about_this_map:
+  about_this_project:
   about_trips_html: |
-    <h4>
-    Resor gör det möjligt att spara närvaro/frånvaro-data genom att lägga till omständigheterna kring dina fynd
-    </h4>
-    <p>
-    <strong>Varför</strong> Närvaro/frånvaro-data innehåller information om insats vilket är användbart vid vetenskapliga analyser såsom modellering av utbredning (vanliga iNaturalist-fynd är 'endast närvaro'-data).
-    </p>
-    <p>
-    <strong>Hur</strong> En resa ger sammanhang till ditt fynd genom att spara:
-    </p>
-    <ul>
-    <li><strong>Det</strong> du letade efter (mållista)</li>
-    <li><strong>Var</strong> du letade (sökområde)</li>
-    <li><strong>När</strong> du letade (sökintervall)</li>
-    </ul>
-    <p>
-    Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera närvaro/frånvaro-data från resor' för att generera en tabell med närvaro/frånvaro-data för arter från resor med tillhörande fynd. <a href='%{url}'>Läs mer</a>
-    </p>
-  about_trusting_projects: Om att lita på projekt
-  about_trusting_projects_options_any: Alla dina fynd i detta projekt
+
+  about_trusting_projects:
+  about_trusting_projects_options_any:
   about_trusting_projects_options_any_desc: |-
-    Detta inkluderar fynd där du har satt koordinatsekretess till "diffuserad" eller "privat", t.ex. fynd från din bakgård eller platser som du inte vill att någon annan ska känna till.
+
   about_trusting_projects_options_taxon: |-
-    Endast de av dina fynd i detta projekt vars koordinater är dolda på grund av hotade taxa
+
   about_trusting_projects_options_taxon_desc: |-
-    Många projekt behöver bara tillgång till koordinater som är diffuserade eftersom fyndet är av ett hotat taxon.
+
   about_trusting_projects_overview: |-
-    Genom att ge tillgång till dina dolda koordinater kan detta projekts ledare se den verkliga, odiffuserade fyndplatsen för dina fynd i detta projekt. Detta
-    är oerhört viktigt i situationer där forskare eller resursförvaltare behöver tillgång till exakta koordinater för analys och beslutsfattande.
+
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-    De projektledare som kommer att ha tillgång till dina dolda koordinater är:
+
   about_trusting_projects_warning: |-
-    Märk väl att projektledare kan ändra projektparametrarna så att vilket som helst av dina fynd inkluderas, och de kan lägga till och ta bort projektledare när som helst. Du kommer att få meddelanden om dessa ändringar, men i praktiken anförtror du detta projekt med dina privata koordinatuppgifter, så var försiktig.
+
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-    Du kan välja att dela dolda koordinater för
+
   #Header for a section describing unintended disagreements
-  about_unintended_disagreements: Om oavsiktlig oenighet
+  about_unintended_disagreements:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: 'Noggr (m)'
-  account: Konto
-  account_creation: Att skapa konto
-  account_settings: Kontoinställningar
-  accept_community_identifications: Acceptera community-bestämningar
-  accuracy: Noggrannhet
-  accuracy_meters: Noggrannhet (meter)
+  acc: ''
+  account:
+  account_creation:
+  account_settings:
+  accept_community_identifications:
+  accuracy:
+  accuracy_meters:
   accuracy_of_the_coordinates: |
-    Koordinaternas noggrannhet i meter. Du kan redigera detta genom att klicka på "redigera"-länken ovan eller genom att klicka på kartmarkören och dra i handtagen. Försök att göra cirkeln så stor att du är säker på att du var någonstans inne i den.
+
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action: Åtgärd
-  actions: Åtgärder
-  active: Aktiva
+  action:
+  actions:
+  active:
   #Status of a complete set that is available for use
-  active_complete_set_status: Aktivt
+  active_complete_set_status:
   #Status of a taxon that is available for use on iNat
-  active_taxon_status: Aktivt
-  active_users: Aktiva användare
-  activity: Aktivitet
-  adapted_by_name_from_a_work_by_original: "Antaget av %{name} från ett verk av %{original}"
-  add: Lägg till
-  add_a_batch_of_observations: Lägg till flera fynd
-  add_a_batch_of_taxa: Lägg till flera taxa
+  active_taxon_status:
+  active_users:
+  activity:
+  adapted_by_name_from_a_work_by_original: ""
+  add:
+  add_a_batch_of_observations:
+  add_a_batch_of_taxa:
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list: Lägg till en punktlista
-  add_a_comment: Lägg till en kommentar
-  add_a_field: Lägg till ett fält
-  add_a_flag: Lägg till en flagga
+  add_a_bulleted_list:
+  add_a_comment:
+  add_a_field:
+  add_a_flag:
   #Tool tip for a button that adds a link to a text area
-  add_a_link: Lägg till en länk
-  add_a_name: Lägg till ett namn
-  add_a_note: Lägg till en anteckning
-  add_a_new_change_group: Lägg till en ny ändringsgrupp
+  add_a_link:
+  add_a_name:
+  add_a_note:
+  add_a_new_change_group:
   #Tool tip for a button that adds a numbered list to a text area
-  add_a_numbered_list: Lägg till en numrerad lista
-  add_a_single_observation: Lägg till ett enskilt fynd.
-  add_a_taxon: Lägg till ett taxon
+  add_a_numbered_list:
+  add_a_single_observation:
+  add_a_taxon:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    Lägg till ett <a target="_blank" href="%{url}">taxonbyte</a> om du vill ändra namnet
-  add_an_assessment: Lägg till en bedömning
-  add_an_identification: Lägg till bestämning
-  add_an_observation: Lägg till ett fynd
-  add_an_observation_of: "Lägg till ett fynd av %{taxon}"
-  add_an_observation_to_project_html: Lägg till ett fynd till %{project}
-  add_annotations_for_x: Lägg till noteringar för "%{x}"
-  add_annotations_for_controlled_attribute:
-    sex: Lägg till anteckningar för "Kön"
-    plant_phenology: Lägg till anteckningar för "Växtfenologi"
-    life_stage: Lägg till anteckningar för "Livsform"
-    evidence_of_presence: Lägg till anteckningar om "Stöd för förekomst"
-  add_another_flag: Lägg till ytterligare en flagga
-  add_another_photo: Lägg till ytterligare en bild
-  add_another_section: Lägg till ytterligare ett avsnitt
-  add_another_subscription: Lägg till ytterligare en prenumeration
+
+  add_an_assessment:
+  add_an_identification:
+  add_an_observation:
+  add_an_observation_of: ""
+  add_an_observation_to_project_html:
+  add_annotations_for_x:
+  add_another_flag:
+  add_another_photo:
+  add_another_section:
+  add_another_subscription:
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: Lägg till projektmaterial
-  add_batch: Lägg till flera på en gång
-  add_blocked_users: Lägg till blockerade användare
+  add_asset:
+  add_batch:
+  add_blocked_users:
   #Tool tip for a button that adds bold text to a text area
-  add_bold_text: Lägg till fet text
-  add_comma_separated_tags: "Lägg till kommaseparerade taggningar"
-  add_comment: Lägg till en kommentar
-  add_conservation_status: Lägg till bevarandestatus
-  add_custom_project_fields: Lägg till anpassade projektfält
-  add_edit_flags: Lägg till/Ändra flaggor
-  add_editor: Lägg till redigerare
-  add_description: "Lägg till %{description_name}"
-  add_from_your_observations: Lägg till från dina fynd
-  add_link: Lägg till länk
-  add_higher_level_taxon: Lägg till ett taxon på högre nivå (t.ex. "fåglar")
-  add_id: Lägg till bestämning
+  add_bold_text:
+  add_comma_separated_tags: ""
+  add_comment:
+  add_conservation_status:
+  add_custom_project_fields:
+  add_edit_flags:
+  add_editor:
+  add_description: ""
+  add_from_your_observations:
+  add_link:
+  add_higher_level_taxon:
+  add_id:
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text: Lägg till kursiv text
-  add_muted_users: Lägg till tystade användare
-  add_new_lexicon: Lägg till nytt lexikon
-  add_new_photos_by_their_ids: Lägg till nya bilder via deras Flickr-Id (måste vara Creative Commons!)
-  add_new_place: Lägg till en ny fyndplats
-  add_new_rule: Lägg till en ny regel
-  add_new_source: "Lägg till en ny källa..."
-  add_new_taxon_name: Lägg till ett nytt taxonnamn
-  add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna fyndplats, t.ex. var och när det påträffas.
-  add_obs_from_a_link: "Lägg till obs från lista: %{link}"
-  add_obs_from_a_list: Lägg till obs från en lista
-  add_observations: Lägg till fynd
-  add_observations_by_checking_off: Lägg till fynd genom att markera arter i en lista.
-  add_observations_project: Lägg till fynd till detta projekt
+  add_italic_text:
+  add_muted_users:
+  add_new_lexicon:
+  add_new_photos_by_their_ids:
+  add_new_place:
+  add_new_rule:
+  add_new_source: ""
+  add_new_taxon_name:
+  add_notes_about_this_taxon:
+  add_obs_from_a_link: ""
+  add_obs_from_a_list:
+  add_observations:
+  add_observations_by_checking_off:
+  add_observations_project:
   #Prompt to add a new journal post
-  add_one: Lägg till en!
+  add_one:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now: Lägg till en nu
-  add_photos: Lägg till bilder
-  add_place: Lägg till fyndplats
-  add_alive_or_dead_alive_annotation: 'Lägg till anteckningen "Levande eller Död: Levande"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till anteckningen "Levande eller Död: Kan inte avgöras"'
-  add_alive_or_dead_dead_annotation: 'Lägg till anteckningen "Levande eller Död: Död"'
-  add_plant_phenology_budding_annotation: 'Lägg till anteckningen "Växtfenologi: Knoppbristning"'
-  add_plant_phenology_flower_budding_annotation: 'Lägg till anteckningen "Växtfenologi: Blomknopp"'
-  add_plant_phenology_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Blomning"'
-  add_plant_phenology_fruiting_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
-  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
-  add_life_stage_adult_annotation: 'Lägg till anteckningen "Livsstadium: Adult"'
-  add_life_stage_teneral_annotation: 'Lägg till anteckningen "Livsstadium: teneral"'
-  add_life_stage_subimago_annotation: 'Lägg till anteckningen "Livsstadium: subimago"'
-  add_life_stage_pupa_annotation: 'Lägg till anteckningen "Livsstadium: Puppa"'
-  add_life_stage_nymph_annotation: 'Lägg till anteckningen "Livsstadium: Nymf"'
-  add_life_stage_larva_annotation: 'Lägg till anteckningen "Livsstadium: Larv"'
-  add_life_stage_juvenile_annotation: 'Lägg till anteckningen "Livsstadium: Juvenil"'
-  add_life_stage_egg_annotation: 'Lägg till anteckningen "Livsstadium: Ägg"'
-  add_evidence_of_presence_organism_annotation: 'Lägg till "Stöd för förekomst: organism"-anteckning'
-  add_evidence_of_presence_feather_annotation: 'Lägg till "Stöd för förekomst: fjäder"-anteckning'
-  add_evidence_of_presence_gall_annotation: 'Lägg till "Stöd för förekomst: gall"-anteckning'
-  add_evidence_of_presence_scat_annotation: 'Lägg till "Stöd för förekomst: spillning"-anteckning'
-  add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
-  add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
-  add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
+  add_one_now:
+  add_photos:
+  add_place:
+  add_alive_or_dead_alive_annotation: ''
+  add_alive_or_dead_cannot_be_determined_annotation: ''
+  add_alive_or_dead_dead_annotation: ''
+  add_plant_phenology_budding_annotation: ''
+  add_plant_phenology_flower_budding_annotation: ''
+  add_plant_phenology_flowering_annotation: ''
+  add_plant_phenology_fruiting_annotation: ''
+  add_plant_phenology_no_evidence_of_flowering_annotation: ''
+  add_life_stage_adult_annotation: ''
+  add_life_stage_teneral_annotation: ''
+  add_life_stage_subimago_annotation: ''
+  add_life_stage_pupa_annotation: ''
+  add_life_stage_nymph_annotation: ''
+  add_life_stage_larva_annotation: ''
+  add_life_stage_juvenile_annotation: ''
+  add_life_stage_egg_annotation: ''
+  add_evidence_of_presence_organism_annotation: ''
+  add_evidence_of_presence_feather_annotation: ''
+  add_evidence_of_presence_gall_annotation: ''
+  add_evidence_of_presence_scat_annotation: ''
+  add_evidence_of_presence_track_annotation: ''
+  add_evidence_of_presence_bone_annotation: ''
+  add_evidence_of_presence_molt_annotation: ''
   #As in a Taxon Framework Relationship
-  add_relationship: 'Lägg till en relation'
+  add_relationship: ''
   #As in a Guide Section
-  add_section: Lägg till avsnitt
-  add_several_observations_at_once: Lägg till flera fynd på en gång.
-  add_sex_female_annotation: 'Lägg till anteckningen "Kön: Hona"'
-  add_sex_male_annotation: 'Lägg till anteckningen "Kön: Hane"'
-  add_sex_cannot_be_determined_annotation: 'Lägg till anteckningen "Kön: Kan inte fastställas"'
-  add_some_now: Lägg till lite nu
-  add_tag: Lägg till taggning
-  add_tags: Lägg till taggningar
-  add_tags_to_selected_taxa: Lägg till taggningar till valda taxa
-  add_taxa: Lägg till taxa
-  add_taxon_batch_to: "Lägg till flera taxa till %{list}"
-  add_taxon_range: Lägg till område för taxon
-  add_taxonomic_tags_to: "Lägg taxonomiska taggningar till valda Flickr-bilder &raquo;"
-  add_to_a_scheme: Lägg till i en checklista
-  add_to_a_project: Lägg till i ett projekt
-  add_to_calendar: Lägg till i kalender
-  add_to_checklist: Lägg till i checklista
-  add_to_favorites: Lägg till i favoriter
-  add_to_list: Lägg till i lista
-  add_to_project: Lägg till i projekt
-  add_to_your_list: Lägg till i din lista
+  add_section:
+  add_several_observations_at_once:
+  add_sex_female_annotation: ''
+  add_sex_male_annotation: ''
+  add_sex_cannot_be_determined_annotation: ''
+  add_some_now:
+  add_tag:
+  add_tags:
+  add_tags_to_selected_taxa:
+  add_taxa:
+  add_taxon_batch_to: ""
+  add_taxon_range:
+  add_taxonomic_tags_to: ""
+  add_to_a_scheme:
+  add_to_a_project:
+  add_to_calendar:
+  add_to_checklist:
+  add_to_favorites:
+  add_to_list:
+  add_to_project:
+  add_to_your_list:
   add_your_email_to_get: |
-    Lägg till din e-postadress för att få respons på ditt fynd från communityn. Om du helst inte vill dela den, kolla igen snart!
-  add_your_own_observations_at: "Lägg till dina egna fynd på %{site_name}"
-  added: Tillagd
-  added!: Tillagd!
+
+  add_your_own_observations_at: ""
+  added:
+  added!:
   added_as_a_part_of_a_taxon_change_html: |
-    Lades till som en del av en
-    <a target="%{target}" class="%{class}" href="%{url}">taxonändring</a>
+
   added_as_a_part_of_a_taxon_merge_html: |
-    Lades till som en del av en
-    <a target="%{target}" class="%{class}" href="%{url}">taxonhopslagning</a>
+
   added_as_a_part_of_a_taxon_split_html: |
-    Lades till som en del av en
-    <a target="%{target}" class="%{class}" href="%{url}">taxonuppdelning</a>
+
   added_as_a_part_of_a_taxon_swap_html: |
-    Lades till som en del av ett
-    <a target="%{target}" class="%{class}" href="%{url}">taxonbyte</a>
-  added_by: Tillagd av
-  added_by_user_on_date_html: "Tillagd av %{user} den %{date}"
-  added_on_datetime: "Tillagd den %{datetime}"
+
+  added_by:
+  added_by_user_on_date_html: ""
+  added_on_datetime: ""
   added_to_favorites_html: |
-    Tillagd i <a href="%{url}">favoriter</a>
-  adding: "Lägger till..."
-  adjust_brightness: Ställ in ljusstyrka
-  admin: Admin
-  admin_s: Administratör(er)
-  admin_only: Endast admin
-  admin_tools: Admin-verktyg
+
+  adding: ""
+  adjust_brightness:
+  admin:
+  admin_s:
+  admin_only:
+  admin_tools:
   #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations: Anknutna organisationer
-  agree_: Håller med
-  agree?: Håller du med?
-  agree_with_current_taxon: Håll med om aktuellt taxon
-  agreeing: Håller med...
-  aka: även känd som
+  affiliated_organizations:
+  agree_:
+  agree?:
+  agree_with_current_taxon:
+  agreeing:
+  aka:
   #Noun, title of a popup alerting you to something
-  alert: OBS!
-  all: Alla
-  all_comments: Alla kommentarer
-  all_flags_must_be_resolved: Alla flaggor måste vara lösta
-  all_life: Allt liv
-  all_names: Alla namn
-  all_observations: Alla fynd
-  all_photos: Alla bilder
-  all_places: "Alla fyndplatser"
-  all_projects: Alla projekt
-  all_rank_added_to_the_database:
-    phylum: All fyla har lagts till i databasen
-    subphylum: All underfyla har lagts till i databasen
-    superclass: Alla överklasser har lagts till i databasen
-    class: har klasser har lagts till i databasen
-    subclass: Alla underklasser har lagts till i databasen
-    infraclass: Alla infraklasser har lagts till i databasen
-    superorder: Alla överordningar har lagts till i databasen
-    order: Alla ordningar har lagts till i databasen
-    suborder: Alla underordningar har lagts till i databasen
-    infraorder: Alla infraordningar har lagts till i databasen
-    superfamily: Alla överfamiljer har lagts till i databasen
-    epifamily: All epifamiljer har lagts till i databasen
-    family: Alla familjer har lagts till i databasen
-    subfamily: Alla underfamiljer har lagts till i databasen
-    supertribe: Alla övertribusar har lagts till i databasen
-    tribe: Alla tribusar har lagts till i databasen
-    subtribe: Alla undertribusar har lagts till i databasen
-    genus: Alla släkten har lagts till i databasen
-    genushybrid: Alla släkteshybrider har lagts till i databasen
-    subgenus: Alla undersläkten har lagts till i databasen
-    section: Alla sektioner har lagts till i databasen
-    subsection: Alla undersektioner har lagts till i databasen
-    complex: Alla komplex har lagts till i databasen
-    species: Alla arter har lagts till i databasen
-    hybrid: Alla hybrider har lagts till i databasen
-    subspecies: Alla underarter har lagts till i databasen
-    variety: Alla varieteter har lagts till i databasen
-    form: Alla former har lagts till i databasen
-  all_rights_reserved: alla rättigheter förbehållna
-  all_taxa:
-    amphibians: Groddjur
-    animals: Djur
-    arachnids: Spindeldjur
-    birds: Fåglar
-    chromista: Kromister
-    fungi: Svampar
-    fungi_including_lichens: Svampar inklusive lavar
-    insects: Insekter
-    mammals: Däggdjur
-    mollusks: Blötdjur
-    other_animals: Andra djur
-    plants: Växter
-    protozoans: Protozoer
-    ray_finned_fishes: Strålfeniga fiskar
-    reptiles: Reptiler
-    life: Liv
-    x_plantae:
-      one: "%{count} växt"
-      other: "%{count} växter"
-    x_animalia:
-      one: "%{count} djur"
-      other: "%{count} djur"
-    x_mollusca:
-      one: "%{count} blötdjur"
-      other: "%{count} blötdjur"
-    x_amphibia:
-      one: "%{count} groddjur"
-      other: "%{count} groddjur"
-    x_mammalia:
-      one: "%{count} däggdjur"
-      other: "%{count} däggdjur"
-    x_actinopterygii:
-      one: "%{count} strålfenig fisk"
-      other: "%{count} strålfeniga fiskar"
-    x_reptilia:
-      one: "%{count} reptil"
-      other: "%{count} reptiler"
-    x_aves:
-      one: "%{count} fågel"
-      other: "%{count} fåglar"
-    x_insecta:
-      one: "%{count} insekt"
-      other: "%{count} insekter"
-    x_arachnida:
-      one: "%{count} spindel"
-      other: "%{count} spindlar"
-    x_fungi:
-      one: "%{count} svamp"
-      other: "%{count} svampar"
-    x_chromista:
-      one: "%{count} kromist"
-      other: "%{count} kromister"
-    x_protozoa:
-      one: "%{count} protozo"
-      other: "%{count} protozoer"
-    x_other_animals:
-      one: "%{count} annat djur"
-      other: "%{count} andra djur"
-  all_taxa_: Alla taxa
-  all_taxa_in_this_guide: Alla taxa i denna guide
-  all_taxonomic_groups: "&laquo; Alla taxonomiska grupper"
-  all_updates: Alla uppdateringar
-  allow_curator_access: Tillåt åtkomst för förvaltare
-  allow_project_curators_to_view_your_private_coordinates: Tillåt projektförvaltare att se dina dolda koordinater
-  allowed_establish_means_values: Tillåtna värden för invandringshistoria
-  allowed_html: Tillåten HTML
-  allowed_occurrence_status_values: Tillåtna värden för förekomststatus
-  allowed_values: Tillåtna värden
-  almost_there_: Nästan klart...
-  alphabetical: Alfabetisk
-  alphabetical_order: Alfabetisk ordning
-  already_have_an_account_log_in_html: Har du redan ett konto? <strong>Logga in.</strong>
-  amphibians: groddjur
+  alert:
+  all:
+  all_comments:
+  all_flags_must_be_resolved:
+  all_life:
+  all_names:
+  all_observations:
+  all_photos:
+  all_places: ""
+  all_projects:
+  all_rights_reserved:
+  all_taxa_:
+  all_taxa_in_this_guide:
+  all_taxonomic_groups: ""
+  all_updates:
+  allow_curator_access:
+  allow_project_curators_to_view_your_private_coordinates:
+  allowed_establish_means_values:
+  allowed_html:
+  allowed_occurrence_status_values:
+  allowed_values:
+  almost_there_:
+  alphabetical:
+  alphabetical_order:
+  already_have_an_account_log_in_html:
+  amphibians:
   #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
   #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
   #as disagreements with existing IDs of the thinned descendant.
-  analyze_clashes: Undersök oavsiktlig oenighet
-  analyze_ids: Analysera ID:n
-  ancestor_taxon: Överliggande taxon
-  and: och
-  and_other_taxa: "&amp;Andra taxa"
-  android: Android
-  animals: Djur
-  annotation: Anteckning
-  annotations: Anteckningar
-  announcement_was_successfully_created: Lyckades skapa meddelandet.
-  announcement_was_successfully_updated: Lyckades uppdatera meddelandet.
-  announcements: Meddelanden
+  analyze_clashes:
+  analyze_ids:
+  ancestor_taxon:
+  and:
+  and_other_taxa: ""
+  android:
+  animals:
+  annotation:
+  annotations:
+  announcement_was_successfully_created:
+  announcement_was_successfully_updated:
+  announcements:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any: alla
+  any:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_: Vilken som helst
+  any_:
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute: Alla
+  any_annotation_attribute:
   #Label for an option to show content with any annotation value
-  any_annotation_value: Alla
+  any_annotation_value:
   #Label for an option to show content from any date
-  any_date: Alla
+  any_date:
   #Label for an option to show content with any establishment means
-  any_establishment: Alla
+  any_establishment:
   #Label for an option to show content with any license
-  any_license: Alla
+  any_license:
   #Label for an option to show content with photos, sounds, or neither
-  any_media: Alla
+  any_media:
   #Label for an option to show content from any project
-  any_project: Alla
+  any_project:
   #Label for an option to show content with any quality grade
-  any_quality_grade: Alla
+  any_quality_grade:
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed: Alla
+  any_reviewed:
   #Label for an option to show/include content by any user
-  any_user: Alla
-  anyone: Vem som helst
+  any_user:
+  anyone:
+  app_owner_application_explanation_required: |
+
   app_owner_application_about_p1a_html: |
-    iNaturalist-appar tillåter autentiserad användning av iNaturalist-API:et. Detta
-    låter dig göra API-anrop som kan skapa observationer eller
-    artbestämningar. Vanlig användningsfall inkluderar stationära eller mobila
-    appar som innehåller funktionalitet där användaren kan skapa iNaturalist-observationer.
-    Sådant innehåll måste skapas under riktig mänsklig inblandning eller tillsyn.
-    För mer information, läs våra <a href="/pages/community+guidelines"
-    target="_blank">community-riktlinjer</a>, som förbjuder maskingenererade
-    observationer, bestämningar och kommentarer.
+
   app_owner_application_about_p2_html: |
-    Från och med 2022 kräver vi manuellt godkännande för användare som vill göra API-klienter.
-    För att skapa tredje parts-appar måste du först skicka in en ansökan för att bli
-    en "appägare". Den här ansökan ska beskriva funktionaliteten i din föreslagna app
-    och hur du planerar att använda den. För att kunna skicka in en ansökan måste ditt konto vara
-    minst 2 månader gammalt och ha gjort minst 10 <a href="/pages/help#identification"
-    target="_blank">förbättringsbestämningar</a> under den senaste månaden. Vi kan komma att
-    ställa uppföljningsfrågor om din plan och vi förbehåller oss rätten att avslå ansökningar av vilken
-    anledning som helst.
+
   app_owner_application_inelligible: |
-    För att kunna skicka in en ansökan måste ditt konto vara minst 2 månader gammalt och
-    ha gjort minst 10 förbättringsbestämningar under den senaste månaden.
-  app_owner_application_fields_explanation_html: Beskriv vilken funktionalitet din app kommer att ha och hur du planerar att använda den.
-  app_owner_application_success: Appägares ansökan inskickad
+
+  app_owner_application_fields_explanation_html:
+  app_owner_application_success:
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  application: Applikation
+  application:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  applications: Applikationer
-  apply_app_owner: Ansök
+  applications:
+  apply_app_owner:
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: Ansök
-  apply_to_be_an_app_owner: Ansök om att bli en Appägare
-  apply_to_create_applications_title: Ansök om att göra applikationer
-  apply_to_selected: Tillämpa på valda
-  apply_captive_cultivated: "Tillämpa i fångenskap / odlad"
-  apply_fields: Tillämpa fält
-  apply_geoprivacy: Tillämpa koordinatsekretess
-  apply_darr: "Tillämpa &darr;"
-  apply_establishment_means_to_descendant_places: "Tillämpa invandringshistoria på omfattade fyndplatser"
-  apply_these_settings_to_all: Tillämpa dessa inställningar på alla fynd nedan.
-  appropriate?: Passande?
-  arachnids: spindeldjur
-  archives: Arkiv
-  are_you_really_sure_want_delete_this_user: Är du verkligen helt säker på att du vill ta bort denna användare och allt dess innehåll?
-  are_you_sure?: Är du säker?
-  are_you_sure_no_undo: Är du säker? Detta kan inte ångras.
+  apply_curator:
+  apply_to_be_an_app_owner:
+  apply_to_create_applications_title:
+  apply_to_selected:
+  apply_captive_cultivated: ""
+  apply_fields:
+  apply_geoprivacy:
+  apply_darr: ""
+  apply_establishment_means_to_descendant_places: ""
+  apply_these_settings_to_all:
+  appropriate?:
+  arachnids:
+  archives:
+  are_you_really_sure_want_delete_this_user:
+  are_you_sure?:
+  are_you_sure_no_undo:
   are_you_sure_delete_conservation_status: |
-    Är du säker på att du vill ta bort denna bevarandestatus? Det kan ändra
-    diffuseringen av fynd av detta taxon och taxa under det.
-  are_you_sure_delete_post: Är du säker på att du vill radera detta inlägg?
-  are_you_sure_delete_taxon_move_associates: "Är du säker på att du vill radera %{taxonname} (%{taxonid}) och flytta allt tillhörande?"
-  are_you_sure_delete_this_place: Är du säker på att du vill radera denna fyndplats?
-  are_you_sure_leave_this_project: Är du säker på att du vill lämna detta projekt?
-  are_you_sure_merge_these_places: Är du säker på att du vill slå ihop dessa fyndplatser? Det går inte att ångra.
-  are_you_sure_remove_photo: "Är du säker på att du vill ta bort denna bild?"
-  are_you_sure_remove_relationship: Är du säker på att du vill ta bort denna relation? Du kommer inte längre att följa denna person och åtkomst till dina dolda koordinater återkallas i de fall du hade aktiverat det.
-  are_you_sure_remove_taxon_from_list: "Är du säker på att du vill ta bort detta taxon från listan?"
+
+  are_you_sure_delete_post:
+  are_you_sure_delete_taxon_move_associates: ""
+  are_you_sure_delete_this_place:
+  are_you_sure_leave_this_project:
+  are_you_sure_merge_these_places:
+  are_you_sure_remove_photo: ""
+  are_you_sure_remove_relationship:
+  are_you_sure_remove_taxon_from_list: ""
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    Är du säker? Sidan kommer att laddas om och dina ändringar kan gå förlorade.
+
   are_you_sure_unresolve_flag?: |
-    Är du säker på att du vill ångra lösningen för den här flaggan? Det
-    kommer att ta bort lösningen och dess användare från flaggan.
-  are_you_sure_want_delete_taxon: "Är du säker på att du vill radera detta taxon?"
+
+  are_you_sure_want_delete_taxon: ""
   are_you_sure_want_delete_taxon_descendant_taxa: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa.
+
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och bestämningar.
+
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, bestämningar och fynd.
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och förekommer i listor.
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, och bestämningar samt förekommer i listor.
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, bestämningar och fynd samt förekommer i listor.
+
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa, fynd och förekommer i listor.
+
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-    Är du säker på att du vill radera detta taxon? Det har underliggande taxa och fynd.
+
   are_you_sure_want_delete_taxon_identifications: |
-    Är du säker på att du vill radera detta taxon? Det har bestämningar.
+
   are_you_sure_want_delete_taxon_identifications_observations: |
-    Är du säker på att du vill radera detta taxon? Det har bestämningar och fynd.
+
   are_you_sure_want_delete_taxon_listed_taxa: |
-    Är du säker på att du vill radera detta taxon? Det förekommer i listor.
+
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-    Är du säker på att du vill radera detta taxon? Det har bestämningar och förekommer i listor
+
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-    Är du säker på att du vill radera detta taxon? Det har bestämningar, fynd och förekommer i listor.
+
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-    Är du säker på att du vill racdera detta taxon? Det har fynd och förekommer i listor.
+
   are_you_sure_want_delete_taxon_observations: |
-    Är du säker på att du vill radera detta taxon? Det har fynd.
-  are_you_sure_want_delete_taxon_link: Är du säker på att du vill radera denna taxonlänk?
-  are_you_sure_want_delete_this_name: Är du säker på att du vill radera detta namn?
-  are_you_sure_want_delete_this_range: Är du säker på att du vill radera det här området?
-  are_you_sure_you_want_to_commit_this_change: Är du säker på att du vill bekräfta den här ändringen? Det går inte att ångra.
-  are_you_sure_you_want_to_delete_this: Är du säker på att du vill radera detta?
-  are_you_sure_you_want_to_delete_this_assessment?: Är du säker på att du vill radera bedömningen?
-  are_you_sure_you_want_to_delete_this_photo?: Är du säker på att du vill radera denna bild?
-  are_you_sure_you_want_to_delete_this_post: Är du säker på att du vill radera detta inlägg?
-  are_you_sure_you_want_to_delete_this_taxon_change: Är du säker på att du vill radera denna taxonändring?
-  are_you_sure_you_want_to_remove_all_tags: Är du säker på att du vill ta bort alla taggningar?
-  are_you_sure_you_want_to_remove_curator: Är du säker på att du vill ta bort %{user} som en förvaltare?
-  are_you_sure_you_want_to_remove_from_project: Är du säker på att du vill ta bort %{user} från detta projekt?
-  are_you_sure_you_want_to_remove_manager: Är du säker på att du vill ta bort %{user} som ledare?
+
+  are_you_sure_want_delete_taxon_link:
+  are_you_sure_want_delete_this_name:
+  are_you_sure_want_delete_this_range:
+  are_you_sure_you_want_to_commit_this_change:
+  are_you_sure_you_want_to_delete_this:
+  are_you_sure_you_want_to_delete_this_assessment?:
+  are_you_sure_you_want_to_delete_this_photo?:
+  are_you_sure_you_want_to_delete_this_post:
+  are_you_sure_you_want_to_delete_this_taxon_change:
+  are_you_sure_you_want_to_remove_all_tags:
+  are_you_sure_you_want_to_remove_curator:
+  are_you_sure_you_want_to_remove_from_project:
+  are_you_sure_you_want_to_remove_manager:
   are_you_sure_you_want_to_remove_spammer: |
-    Är du säker på att du anser denna användare vara hedervärd?
-    Eventuella spam-flaggor på användarens innehåll kommer avlägsnas.
-  are_you_sure_you_want_to_remove_these_x_taxa?: "Är du säker på att du vill ta bort dessa %{x} taxa?"
+
+  are_you_sure_you_want_to_remove_these_x_taxa?: ""
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-    Är du säker på att du vill ta bort detta fynd från %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
-  associated_observations: Tillhörande fynd
-  associated_taxa: Tillhörande taxa
-  attention: Märk väl
-  you_sure_delete_list: Är du säker på att du vill radera denna lista?
-  you_sure_delete_taxon_from_list?: "Är du säker på att du vill ta bort %{taxon} från listan?"
-  asc: Stigande
-  ascending: Stigande
-  assessment: bedömning
-  assessment_has_benn_completed: Bedömningen är slutförd
-  assessment_sections: Bedömningsdelar
-  assessment_was_deleted: Bedömningen raderades.
-  assessment_was_successfully_created: Lyckades skapa bedömning.
-  assessment_was_successfully_updated: Lyckades uppdatera bedömning.
-  assessment_x: "%{assessment}-bedömning"
-  assessments: bedömningar
-  associations: Kopplingar
-  atlased: Med atlas
-  atlas_for_taxon_html: Atlas för %{taxon}
+
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
+  associated_observations:
+  associated_taxa:
+  attention:
+  you_sure_delete_list:
+  you_sure_delete_taxon_from_list?: ""
+  asc:
+  ascending:
+  assessment:
+  assessment_has_benn_completed:
+  assessment_sections:
+  assessment_was_deleted:
+  assessment_was_successfully_created:
+  assessment_was_successfully_updated:
+  assessment_x: ""
+  assessments:
+  associations:
+  atlased:
+  atlas_for_taxon_html:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: Atom
-  attached_taxon: Bifogat taxon
+  atom:
+  attached_taxon:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute: Attribut
-  attribution: Erkännande
-  authority_list:
-    iucn_red_list: IUCN:s Röda lista
-    natureserve: NatureServe
-    cites: CITES
-  authorize: Auktorisera
+  attribute:
+  attribution:
+  authorize:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce: Auktorisera med PKCE
+  authorize_with_pkce:
   #Explanation for how to use the PKCE authorization link. All variables are
   #code that must match the content of the link and thus cannot be
   #translated.
   authorize_with_pkce_desc_html: |
-    (Använd <code>%{code_challenge}</code> som
-    <code>%{code_verifier_param}</code>) Obs: detta är ett grundläggande exempel. I produktionskod
-    måste du använda <code>%{code_challenge_method}</code> och hasha
-    <code>%{code_challenge_param}</code> korrekt.
-  authorize_permissions_from_provider: "Godkänn tillstånd från %{provider}"
-  automatic_short: Auto
-  automatically_add_observations_to_this_project: Lägg till fynd automatiskt till detta projekt
-  automatically_update_my_content_for_taxon_changes: Uppdatera automatiskt mitt innehåll vid taxonändringar
+
+  authorize_permissions_from_provider: ""
+  automatic_short:
+  automatically_add_observations_to_this_project:
+  automatically_update_my_content_for_taxon_changes:
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg: Medel
-  back: Tillbaka
-  back_to_applications: "&laquo; Tillbaka till applikationer"
-  back_to_all_species: Tillbaka till alla arter
-  back_to_editing_observation: Tillbaka till redigering av fynd
-  back_to_friends: Tillbaka till vänner
-  back_to_flags_html: "&laquo; Tillbaka till flaggor"
-  back_to_lists: "Tillbaka till %{name}-listor"
-  back_to_observation: Tillbaka till fyndet
-  back_to_observation_fields: Tillbaka till fyndfält
-  back_to_people: Tillbaka till personer
-  back_to_places: Tillbaka till fyndplatser
-  back_to_possessive_user_profile: "Tillbaka till %{possuser}s profil"
-  back_to_post: '&laquo; Tillbaka till inlägg'
-  back_to_projects: Tillbaka till projekten
-  back_to_suggestions: Tillbaka till förslag
-  back_to_taxon: "Tillbaka till %{defaulttaxon}"
-  back_to_taxon_changes: "Tillbaka till taxonändringar"
-  back_to_taxon_framework_for_x: "Tillbaka till taxonkontexten för %{taxon_name}"
-  back_to_users_calendar: "Tillbaka till %{user}s kalender"
-  back_to_users_lists: "Tillbaka till %{user}s listor"
-  back_to_viewing: "Tillbaka till visning av <i>%{taxon}</i>"
-  back_to_x: "Tillbaka till %{noun}"
-  back_to_x_assessment: "Tillbaka till %{project}-bedömningar"
-  back_to_x_history: "Tillbaka till %{x}s historik"
-  back_to_x_journal: "Tillbaka till %{user}s dagbok"
-  back_to_x_blog: "Tillbaka till %{x}s blogg"
-  back_to_your_calendar: Tillbaka till din kalender
-  back_to_your_dashboard: Tillbaka till din anslagstavla
-  back_to_your_lists: Tillbaka till dina listor
-  back_to_your_journal: Tillbaka till din dagbok
-  back_to_your_observations: Tillbaka till dina fynd
-  back_to_your_profile: Tillbaka till din profil
-  badges: Märken
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
-      kommer att resultera i <strong>%{count} oavsiktlig oenighet</strong> för bestämningar av %{child}.
-    other: |
-      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
-      kommer att resultera i <strong>%{count} oavsiktliga oenigheter</strong> för bestämningar av %{child}.
+  avg:
+  back:
+  back_to_applications: ""
+  back_to_all_species:
+  back_to_editing_observation:
+  back_to_friends:
+  back_to_flags_html: ""
+  back_to_lists: ""
+  back_to_observation:
+  back_to_observation_fields:
+  back_to_people:
+  back_to_places:
+  back_to_possessive_user_profile: ""
+  back_to_post: ''
+  back_to_projects:
+  back_to_suggestions:
+  back_to_taxon: ""
+  back_to_taxon_changes: ""
+  back_to_taxon_framework_for_x: ""
+  back_to_users_calendar: ""
+  back_to_users_lists: ""
+  back_to_viewing: ""
+  back_to_x: ""
+  back_to_x_assessment: ""
+  back_to_x_history: ""
+  back_to_x_journal: ""
+  back_to_x_blog: ""
+  back_to_your_calendar:
+  back_to_your_dashboard:
+  back_to_your_lists:
+  back_to_your_journal:
+  back_to_your_observations:
+  back_to_your_profile:
+  badges:
   based_on_the_evidence_can_id_be_improved: |
-    Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
-  batch: Batch
-  batch_edit: Redigera flera i taget
+
+  batch:
+  batch_edit:
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: "Redigera flera taxa för %{x}"
-  batch_operations: Batch-funktioner
-  be_the_first_to_fave_this_observation: Var först med att göra det här fyndet till favorit!
+  batch_edit_taxa_for_x_html: ""
+  batch_operations:
+  be_the_first_to_fave_this_observation:
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
-    Eftersom vi uppskattar att denna förändring kommer att resultera i mer än 10 oavsiktliga
-    oenigheter, <strong>rekommenderar vi att du också gör en taxonändring med
-    %{old_parent}, t.ex. särskilja %{new_parent} från %{old_parent}</strong>.
+
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_dont_act_html: |
-    Eftersom vi uppskattar att denna förändring kommer att resultera i 10 eller färre oavsiktliga
-    oenigheter, <strong>är det förmodligen inte nödvändigt att bekräfta en taxonändring som
-    berör %{old_parent}</strong>.
-  become_a_donor_caps: BLI BIDRAGSGIVARE
-  become_a_donor_today_caps: BLI BIDRAGSGIVARE IDAG
-  before_importing_photos: innan bildimport
-  bg_color: Bakgrundsfärg
-  bio: Biografi
-  bio_description: Berätta om dig själv för andra användare på iNaturalist!
-  bioblitz: Bioblitz
-  birds: fåglar
-  birthday: Födelsedag
-  black: svart
-  block_removed: Blockering togs bort
-  blocked_users: Blockerade användare
-  blog_widget: Blogg-widget
-  blue: blå
-  blue_butterfly_etc: "blå, fjäril, etc."
-  body: Innehåll
+
+  become_a_donor_caps:
+  become_a_donor_today_caps:
+  before_importing_photos:
+  bg_color:
+  bio:
+  bio_description:
+  bioblitz:
+  birds:
+  birthday:
+  black:
+  block_removed:
+  blocked_users:
+  blog_widget:
+  blue:
+  blue_butterfly_etc: ""
+  body:
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
-  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
+  bold_label_colon_value_html: ""
   #Text inserted into a textarea when the bold button is clicked but no text was selected
-  bold_text: fet text
-  breadcrumbs: Brödsmulor
+  bold_text:
+  breadcrumbs:
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
   #page where the project title and a button to add an observation are usually
   #shown
-  breadcrumbs_description: "Detta kommer att ersätta h1 och standard åtgärdsanrop, se alltså till att inkludera dem om de är viktiga för detta projekt och kom ihåg att max tillåten bredd är 950px"
-  brief_caption: Kort bildtext
-  brown: brun
-  browse: Bläddra
-  browse_all_projects: Bläddra bland alla projekt
-  browse_all_species: Bläddra bland alla arter
-  browse_observations: Bläddra bland fynd
-  browse_people: Bläddra bland personer
-  browse_projects: Bläddra bland projekt
-  browse_species_that_occur_near_this_observation: Bläddra bland arter som förekommer i närheten av detta fynd.
-  built_with_site_guides_html: "Byggt med <a href='%{url}'>%{site_name} Guides</a>"
-  bulk_import_of_filename_is_complete: "Bulkimport av %{filename} är klar"
-  by: av
-  by_everyone: Av alla
-  by_user: "Av %{user}"
-  by_you: Av dig
-  calendar: Kalender
-  calendars_only_show_x_observations_at_time: Kalendrar visar endast %{x} fynd åt gången
-  callback_url: Återanrops-URL
-  cancel: Avbryt
-  cant_edit_or_delete_hidden_content: Du kan inte redigera eller ta bort innehåll som har dolts av webbplatsens förvaltare
-  cant_flag_an_object_that_doesnt_exist: Det går inte att flagga ett objekt som inte existerar
-  cant_merge_a_taxon_with_itself: Inte möjligt att slå ihop ett taxon med sig självt.
-  captive: I fångenskap
-  captive_cultivated: I fångenskap / Odlad
-  captive_observations: Fynd i fångenskap
-  card: Kort
-  casual: informell
-  casual_: Grundklass
-  casual_tooltip_html: 'Fynd av grundklass saknar media, fyndplats eller datum, eller uppfyller inte kraven för "Forsknings-" eller "Behöver bestämning-"klass av andra skäl. <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
-  categories: Kategorier
-  cc_0_description: "Denna licens gör ditt verk publikt tillgängligt, så att andra kan kopiera, ändra, sprida och uppföra ditt verk, även för kommersiella ändamål, allt utan att be om tillstånd eller erkänna dig. Detta är den mest tillåtande licens som erbjuds. Rekommenderas för maximal spridning och användning av licensierat material."
-  cc_0_name: Ingen upphovsrätt (CC0)
-  cc_attribution_license: Creative Commons Erkännande-licens
-  cc_by_description: "Denna licens låter andra sprida, remixa, anpassa och bygga vidare på ditt verk, även kommersiellt, så länge de erkänner dig som den ursprungliga upphovsmannen."
-  cc_by_name: Erkännande
-  cc_by_nc_description: "Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk för icke-kommersiella syften, och även om deras nya verk också måste erkänna dig som upphovsman och vara icke-kommersiella, måste de inte licensiera sina bearbetningar på samma villkor."
-  cc_by_nc_name: Erkännande-IckeKommersiell
-  cc_by_nc_nd_description: "Denna licens är den mest restriktiva av våra sex huvudlicenser. Den tillåter bara andra att ladda ner dina verk och dela dem med andra så länge de erkänner dig som upphovsman. De får inte ändra dem på något sätt eller använda dem kommersiellt."
-  cc_by_nc_nd_name: Erkännande-Ickekommersiell-IngaBearbetningar
-  cc_by_nc_sa_description: "Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk i icke-kommersiella syften så länge de erkänner dig och licensierar sina bearbetningar på samma villkor."
-  cc_by_nc_sa_name: Erkännande-IckeKommersiell-DelaLika
-  cc_by_nd_description: "Denna licens tillåter vidaredistribution, kommersiell och icke-kommersiell, så länge verket sprids oförändrat och i sin helhet, samt att du erkänns som upphovsman."
-  cc_by_nd_name: Erkännande-IngaBearbetningar
-  cc_by_sa_description: "Denna licens låter andra remixa, anpassa och bygga vidare på ditt verk, även för kommersiella syften, så länge de erkänner dig som upphovsman och licensierar sina nya skapelser på identiska villkor. Alla nya verk som baseras på ditt verk kommer att ha samma licens och alla bearbetningar kommer därför också att tillåta kommersiell användning."
-  cc_by_sa_name: Erkännande-DelaLika
-  cc_used_under_a: "Creative Commons, används under en "
-  change_admin: Ändra admin
+  breadcrumbs_description: ""
+  brief_caption:
+  brown:
+  browse:
+  browse_all_projects:
+  browse_all_species:
+  browse_observations:
+  browse_people:
+  browse_projects:
+  browse_species_that_occur_near_this_observation:
+  built_with_site_guides_html: ""
+  bulk_import_of_filename_is_complete: ""
+  by:
+  by_everyone:
+  by_user: ""
+  by_you:
+  calendar:
+  calendars_only_show_x_observations_at_time:
+  callback_url:
+  cancel:
+  cant_edit_or_delete_hidden_content:
+  cant_flag_an_object_that_doesnt_exist:
+  cant_merge_a_taxon_with_itself:
+  captive:
+  captive_cultivated:
+  captive_observations:
+  card:
+  casual:
+  casual_:
+  casual_tooltip_html: ''
+  categories:
+  cc_0_description: ""
+  cc_0_name:
+  cc_attribution_license:
+  cc_by_description: ""
+  cc_by_name:
+  cc_by_nc_description: ""
+  cc_by_nc_name:
+  cc_by_nc_nd_description: ""
+  cc_by_nc_nd_name:
+  cc_by_nc_sa_description: ""
+  cc_by_nc_sa_name:
+  cc_by_nd_description: ""
+  cc_by_nd_name:
+  cc_by_sa_description: ""
+  cc_by_sa_name:
+  cc_used_under_a: ""
+  change_admin:
   #Button to change the cover (or banner) image for a project
-  change_cover: Ändra omslag
-  change_descriptions:
-    split: Gammalt taxon uppdelat i flera nya taxa
-    merge: Flera gamla taxa hopslagna till ett nytt taxon
-    swap: Ersätt ingående taxon med utgående taxon
-    drop: Ej accepterat taxonkoncept, upprätthålls för historiska ändamål eller kompatibilitet med samarbetspartner
-    stage: Förbered ett inaktivt koncept för att släppas som del av en förändringsgrupp
-  change_geoprivacy: 'Ändra koordinatsekretess'
-  change_group: Ändra grupp
-  change_icon: Ändra ikon
-  change_password: Ändra lösenord
-  change_types:
-    activated_soon: aktiveras snart
-    change_types: Typer av förändringar
-    split: Uppdelning
-    merge: Hopslagning
-    swap: Byte
-    stage: Förberedelse
-    drop: Inaktivering
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: uppdelning från
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: uppdelning till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: slå ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: slogs ihop till
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: ersattes av
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: ersätt med
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_with: ersatt av
-    dropped: inaktiverades
-    staged: förberett
-    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} delades upp i %{output_taxa}"
-    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} kommer att delas upp i %{output_taxa}"
-    input_taxon_was_dropped_html: "%{input_taxon} inaktiverades"
-    input_taxon_will_be_dropped_html: "%{input_taxon} kommer att inaktiveras"
-    input_taxon_will_be_activated_soon_html: "%{input_taxon} kommer att aktiveras snart"
-    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} ersattes av %{output_taxon}"
-    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} kommer att ersättas av %{output_taxon}"
-    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} slogs ihop med %{output_taxon}"
-    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} kommer att slås ihop med %{output_taxon}"
-  change_your_password: Ändra ditt lösenord
+  change_cover:
+  change_geoprivacy: ''
+  change_group:
+  change_icon:
+  change_password:
+  change_your_password:
   #Plural noun, as in changes to a taxon record over time
-  changes: Ändringar
+  changes:
   #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent: Att ändra ursprung till den föräldern kan resultera i oavsiktliga oenigheter, analysera dem först vilket kan ta ett tag.
-  changing_the_geoprivacy: 'Ändring av koordinatsekretess förändrar hur andra personer ser ditt fynds position.'
-  check_above_for_errors: Kolla efter fel ovan
-  check_back_soon: Kolla snart igen!
-  check_here_to_autoload_description: Markera här för att automatiskt ladda Wikipedias beskrivningen. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
-  check_here_to_autoload_photos: Markera här för att automatiskt ladda bilder från Flickr. Du bör kanske undvika detta när ett taxons vetenskapliga namn samtidigt är ett icke-vetenskapligt ord eller en vanlig felstavning, som "Parus".
-  check_list: Kolla lista
-  check_list_description: Välj ett taxon på högre nivå som du vill visa i den här listan, som "Aves" för fåglar eller "Amphibia" för groddjur. Väl inställt kommer listan inte att tillåta taxa som inte tillhör gruppen. Till exempel, om du skapar en lista över fåglar kommer du inte att kunna lägga till några grodor.
-  check_list_for_individual_taxa_that: 'Checklistor för enskilda taxa som finns här, t.ex. "Fåglar i %{place}".'
-  check_list_for_taxon_html: "Checklista för %{taxon}"
+  changing_the_ancestry_to_that_parent:
+  changing_the_geoprivacy: ''
+  check_above_for_errors:
+  check_back_soon:
+  check_here_to_autoload_description:
+  check_here_to_autoload_photos:
+  check_list:
+  check_list_description:
+  check_list_for_individual_taxa_that: ''
+  check_list_for_taxon_html: ""
   check_lists_must_belong_to_a_place: |
-    Checklistor måste tillhöra en fyndplats. För att skapa en ny checklista, besök
-    en lokals standardchecklista och klicka på länken 'Skapa en ny checklista'.
-  check_list_place: "%{place}-checklista"
-  check_list_updated: Checklistan uppdaterades!
-  check_lists_for: "Andra checklistor för %{place}"
-  check_out_the_inat_store: Kolla in iNaturalist-butiken
-  check_out_what_the_observation: Kolla hur fyndet du försöker bestämma ser ut.
+
+  check_list_place: ""
+  check_list_updated:
+  check_lists_for: ""
+  check_out_the_inat_store:
+  check_out_what_the_observation:
   check_this_box_if_html: |
-    Markera denna ruta om du vill tillämpa en <a
-    href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>Creative Commons Erkännande Ickekommersiell-licens</a> för uppladdat innehåll. Detta innebär att vem som helst kan kopiera och återanvända dina bilder och/eller fynd utan att be om tillstånd så länge de anger dig som upphovsman och inte använder verken kommersiellt. Du kan välja en annan licens eller ta bort licensen senare, men detta är den bästa licensen för att dela med forskare.
-  checklist: Checklista
-  choose_a_field: Välj ett fält
-  choose_a_list_above: Välj en lista ovan.
-  choose_a_place: Välj en fyndplats
-  choose_a_taxon: Välj ett taxon (valfritt)
-  choose_columns: Välj kolumner
-  choose_file: Välj fil
-  choose_files: Välj filer
-  choose_from_your_lists: Välj från dina listor
-  choose_photos_for_this_taxon: Välj bilder för detta taxon
-  choose_photos_to_tag_from_photostream: Välj bilder att tagga ur din bildström
-  choose_rule: Välj en regel
-  choose_subjects: Välj ämnen
-  choose_tags: Välj taggar
-  choose_taxon: Välj ett taxon
-  choose_what_kind_of_change_youre_creating: "Välj vilken typ av förändring du vill göra."
-  cid_d_to_genus: Kollektivt bestämd till släkte
-  citation: Citering
+
+  checklist:
+  choose_a_field:
+  choose_a_list_above:
+  choose_a_place:
+  choose_a_taxon:
+  choose_columns:
+  choose_file:
+  choose_files:
+  choose_from_your_lists:
+  choose_photos_for_this_taxon:
+  choose_photos_to_tag_from_photostream:
+  choose_rule:
+  choose_subjects:
+  choose_tags:
+  choose_taxon:
+  choose_what_kind_of_change_youre_creating: ""
+  cid_d_to_genus:
+  citation:
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
-    Oavsiktliga oenigheter uppstår när en förälder <strong>(B)</strong> gallras
-    genom flytt av ett barn <strong>(E)</strong> till en annan del av det
-    taxonomiska trädet, vilket resulterar i att befintliga bestämningar av föräldern tolkas
-    som oenigheter med befintliga bestämningar av det flyttade barnet.
+
   #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
-    Oavsiktliga oenigheter uppstår när en förälder <strong>(B)</strong> gallras
-    genom att byta plats på ett barn <strong>(E)</strong> till en annan del av det
-    taxonomiska trädet, med resultatet att befintliga bestämningar av föräldern tolkas
-    som oenigheter med befintliga bestämningar av det utbytta barnet.
-  classification: Klassificering
-  clear: rensa
-  clear_filters: Rensa filter
-  clear_search: Rensa sökning
-  click_the_map: "<strong>Klicka på kartan</strong> för att lägga till en fyndplats."
-  close: Stäng
-  code: Kod
-  colors: Färger
-  columns: Kolumner
-  combine: Kombinera
+
+  classification:
+  clear:
+  clear_filters:
+  clear_search:
+  click_the_map: ""
+  close:
+  code:
+  colors:
+  columns:
+  combine:
   comma_separated_list_of_tracking_codes: |
-    Kommaseparerad lista med spårningskoder. Lägg till dessa om du vill lägga till en spårningskod när du sänder personer till det nya fyndformuläret, t.ex. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
-    Du kan använda detta för att spåra deltagande från olika håll. Du kan komma åt dessa koder när du laddar ner projektets fynd som CSV.
-  comma_separated_please: Kommaseparerad, tack
+
+  comma_separated_please:
   #Noun, used to label a comment or a comment field in a form
-  comment: kommentar
+  comment:
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_: Kommentera
-  comment_deleted: Kommentar raderad
+  comment_:
+  comment_deleted:
   #Notice when a comment has been hidden by moderators
-  comment_hidden: Kommentar dold
+  comment_hidden:
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden: Kommentar synliggjord
-  comments: Kommentarer
-  comments_by_me: Kommentarer av mig
-  comments_have_been_disabled: Kommentarer har inaktiverats
-  comments_on_my_observations: Kommentarer på mina fynd
-  commercial_solicitation: Kommersiella förfrågningar, länkar som inte leder någonstans, m.m.
+  comment_unhidden:
+  comments:
+  comments_by_me:
+  comments_have_been_disabled:
+  comments_on_my_observations:
+  commercial_solicitation:
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: Bekräfta
+  commit:
   #Adjective describing a taxon change that has been committed
-  committed: Bekräftad
-  committed_by_user_on_date_html: Bekräftad av %{user} den %{date}
+  committed:
+  committed_by_user_on_date_html:
   #Label for date the taxon change was committed
-  committed_on: Bekräftad den %{date}
-  committed_taxon_changes_cannot_be_deleted: Bekräftade taxonändringar kan inte raderas
+  committed_on:
+  committed_taxon_changes_cannot_be_deleted:
   #Status message while a taxon change is being committed
-  committing: Bekräftar...
+  committing:
   #disagreements are identifications that disagree with previous identifications on the same observation
   #committing refers to committing a taxon swap
-  committing_this_swap_may_result: Att bekräfta kan resultera i oavsiktliga oenigheter, undersök dem först vilket kan ta ett tag.
-  common_name: Vardagligt namn
-  community: Community
-  community_curated: Community-förvaltad
-  community_guidelines: Communityns riktlinjer
-  community_id_heading: Community-taxon
-  community_id_at_species_or_lower?: Community-taxon på artnivå eller lägre?
-  community_id_at_species_level_or_lower: Community-taxon på artnivå eller lägre
-  community_id_is_precise: Community-taxon är exakt
-  community_moderation_settings: Inställningar för community-moderering
-  community_supported_id: Taxon med stöd från communityn?
-  compare: Jämför
-  compare_with: Jämför med
-  comparing: jämför
-  comparing_list_to_list: "Jämför %{list1} med %{list2}"
-  comparing_versions_x_and_y: "Jämför versionerna %{x} och %{y}"
-  compiled_by_name: "Sammanställt av %{name}"
+  committing_this_swap_may_result:
+  common_name:
+  community:
+  community_curated:
+  community_guidelines:
+  community_id_heading:
+  community_id_at_species_or_lower?:
+  community_id_at_species_level_or_lower:
+  community_id_is_precise:
+  community_moderation_settings:
+  community_supported_id:
+  compare:
+  compare_with:
+  comparing:
+  comparing_list_to_list: ""
+  comparing_versions_x_and_y: ""
+  compiled_by_name: ""
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete: Komplett
-  complete_set_for_taxon_in_place_html: "Komplett uppsättning %{taxon} i %{place}"
-  completed: Slutförd
-  completed_at: Slutfördes den
+  complete:
+  complete_set_for_taxon_in_place_html: ""
+  completed:
+  completed_at:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?: Fullständig?
+  comprehensive?:
   comprehensive_check_list_for_taxon_html: |
-    <span class="comprehensive_notice" data-tip="%{tip}">Fullständig</span>
-    checklista för %{taxon}
-  comprehensive_list: Fullständig lista
+
+  comprehensive_list:
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model: Bildigenkänningsmodell
+  computer_vision_model:
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included: Inkluderad
+  computer_vision_model_included:
   computer_vision_model_included_desc: |
-    Den nuvarande bildigenkänningsmodellen känner till detta taxon, så det kan
-    ingå i automatiserade förslag med "Visuellt liknande"-etiketten.
+
   #Status of a taxon that the Computer Vision Model cannot yet recognize
-  computer_vision_model_pending: Väntar
+  computer_vision_model_pending:
   computer_vision_model_pending_desc: |
-    Den nuvarande bildigenkänningsmodellen känner inte till detta taxon, så även om
-    det kan inkluderas i automatiserade förslag med "Närliggande"-etiketten,
-    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven på
-    modellinkludering förändras med varje modell, men generellt bygger inkludering på
-    antal observationer, så för att öka chansen att detta taxon blir
-    inkluderat till nästa modellträning, lägga till eller bestäm fler fynd
-    av detta taxon.
-  concept_status: Konceptets status
-  confidential: Konfidentiell
-  configure: Konfigurera
-  configure_a_widget_to_show: Konfigurera en widget för att visa %{site_name}-fynd på din webbplats eller blogg. Du kan behöva inkludera den inbyggda CSS:en i <code>&lt;head&gt;</code> i din HTML. Skriv gärna om CSS-koden.
-  confirm: Bekräfta
-  confirm_membership: Bekräfta medlemskap
-  confirm_new_password: Bekräfta nytt lösenord
-  confirm_now: Bekräfta nu
-  confirm_your_info: Bekräfta din info
-  confirming_ids: Bekräftande bestämningar
-  confirming_ids_description: Om du stänger av detta kommer du inte längre att meddelas om bestämningar som stämmer med din.
+
+  concept_status:
+  confidential:
+  configure:
+  configure_a_widget_to_show:
+  confirm:
+  confirm_membership:
+  confirm_new_password:
+  confirm_now:
+  confirm_your_info:
+  confirming_ids:
+  confirming_ids_description:
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
-  connect: Koppla
-  connect_to_provider: "Koppla till %{provider}"
+  connect:
+  connect_to_provider: ""
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Kopplade konton
-  connected_accounts_description: Kopplade konton är dina konton i andra appar eller webbplatser som du har låtit iNaturalist ha tillgång till för att kunna stödja inloggning, bildimport eller annan funktionalitet åt dig.
-  connected_accounts_titlecase: Kopplade Konton
-  connecting_flickr: "Kopplar till Flickr... "
-  connect_to_flickr_again_to_authorize_write_permissions: Koppla till Flickr igen för att godkänna skrivrättigheter
-  connecting_to_facebook: "Kopplar till Facebook..."
-  connecting_your_inat_account_to_accounts_other_sites: "Genom att koppla ditt %{site_name}-konto till konton på andra webbplatser kan du logga in till %{site_name} med inloggningsuppgifterna från dessa webbplatser."
-  cannot_be_changed_during_a_content_freeze: Kan inte ändras när innehåll är fryst
-  conservation_status: Bevarandestatus
-  conservation_status_created: Bevarandestatus skapad
-  conservation_status_deleted: Bevarandestatus raderad
-  conservation_status_updated: Bevarandestatus uppdaterad
-  conservation_status_descriptions:
-    status: Statuskod, rang, etc. Om en kortkod som E eller CR finns, använd den, men om inte, använd den fullständiga statusen, t.ex. starkt hotad eller akut hotad.
-    description: Kort beskrivning av varför detta är med på listan.
-    authority: |
-      Organisation som fastställt denna status. Använd autocomplete för att välja en befintlig auktoritet innan du lägger till en ny. Du kan hoppa över detta om *du* vill anges som auktoriteten.
-    place: Fyndplats som denna status är begränsad till.
-    url: URL till en sida som beskriver denna status.
-    geoprivacy: |
-      Standard koordinatsekretess för fynd av detta taxon. Notera att koordinatsekretess som är knuten till en fyndplats av kontinent-, land- eller statsnivå kan åsidosätta en status som är global eller knuten till fyndplats på högre nivå.
-    iucn: |
-      Motsvarande IUCN-rödlistekod. Detta är inte den faktiska IUCN-bedömningen,
-      bara den IUCN-kod som bäst matchar det hot om som denna status implicerar vid utlämnande av koordinater. Detta kommer att åsidosätta koordinatsekretessen om det är "Livskraftig" eller lägre, så om du vill dölja observationer av detta
-      taxon, sätt det till "Nära hotad" eller högre.
+  connected_accounts:
+  connected_accounts_description:
+  connected_accounts_titlecase:
+  connecting_flickr: ""
+  connect_to_flickr_again_to_authorize_write_permissions:
+  connecting_to_facebook: ""
+  connecting_your_inat_account_to_accounts_other_sites: ""
+  cannot_be_changed_during_a_content_freeze:
+  conservation_status:
+  conservation_status_created:
+  conservation_status_deleted:
+  conservation_status_updated:
   conservation_status_geoprivacy_desc: |
-    Standard koordinatsekretess tillämpas på alla fynd av detta taxon på denna plats
-  contact_support: Kontakta support
-  contain_all_descendants?: För detta taxon, innehåller checklistan alla här påträffade underliggande taxa?
+
+  contact_support:
+  contain_all_descendants?:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
-  content: Innehåll
-  content_and_display: Innehåll & Visning
-  content_author: Författare av innehåll
-  content_hidden: Dolt innehåll
+  content:
+  content_and_display:
+  content_author:
+  content_hidden:
   content_hidden_by_user_on_date_because_reason_html: |
-    Innehåll dolt av %{user} den %{date} på grund av: "%{reason}"
-  content_type: Innehållstyp
+
+  content_type:
   user_hid_this_item_because_reason_html: |
-    %{user} dolde detta %{item} på grund av "%{reason}"
+
   user_unhid_this_item_because_reason_html: |
-    %{user} tog fram detta %{item} på grund av "%{reason}"
-  continue: Fortsätt
-  continue_to_site: Fortsätt till %{site_name}
-  contributor_cannot_be_found: Bidragsgivare kan inte hittas
-  contributors_to_project: "Bidragsgivare till %{project}"
-  controlled_term_labels:
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_sex: Alla
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_plant_phenology: Alla
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_life_stage: Alla
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_alive_or_dead: Alla
-    #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_evidence_of_presence: Alla
-    sex: Kön
-    male: Hane
-    female: Hona
-    plant_phenology: Växtfenologi
-    budding: Knoppbristning
-    flower_budding: Blomknopp
-    flowering: Blomning
-    fruiting: I frukt
-    life_stage: Livsstadium
-    adult: Adult
-    teneral: Teneral
-    subimago: Subimago
-    pupa: Puppa
-    no_evidence_of_flowering: Inga tecken på blomning
-    nymph: Nymf
-    larva: Larv
-    egg: Ägg
-    juvenile: Juvenil
-    alive_or_dead: Levande eller död
-    alive: Levande
-    dead: Död
-    cannot_be_determined: Kan inte avgöras
-    evidence_of_presence: Stöd för förekomst
-    #As in the feather on a bird
-    feather: Fjäder
-    #Abnormal growth
-    gall: Gall
-    #Refers to an observation that depicts the actual organism and not some
-    #kind of secondary evidence like a footprint
-    organism: Organism
-    #Fecal matter, not regurgitated matter
-    scat: Spillning
-    #Impression made by the organism on the ground or in snow, like a footprint
-    track: Spår
-    #Endoskeletal remains, like a deer bone
-    bone: Benrester
-    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
-    #plumage in a bird or seasonal hair/fur in a mammal
-    molt: Ömsskinn/exuvium
-  controlled_term_definitions:
-    alive: Levande organism som inte uppvisar tecken på snar död
-    dead: Död organism eller visar tecken på snar död
-    flower_budding: Blomknoppar är synliga men inte öppna
-    flowering: Blommor synliga, öppna och fortfarande kvar på växten
-    fruiting: Frukt synlig och kvarsittande
-    no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
-    teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
-    cannot_be_determined: Kan inte bestämmas utifrån angiven information
-    feather: En eller flera fjädrar som inte sitter fast på en organism
-    organism: Hela eller delar av en organism
-    scat: Avföring (inte spybollar eller andra uppstötningar)
-    track: Avtryck i marken eller snön av en organism
-    bone: |
-      Mest kvarlämningar av inre skelett; delvis synligt ben från en i övrigt intakt organism bör anges som "organism"
-    molt: Kvarlämning av skinn eller exoskelett
-    gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
-  controls: Kontroller
-  convert: Konvertera
-  coordinate_systems: Koordinatsystem
-  coordinates: Koordinater
+
+  continue:
+  continue_to_site:
+  contributor_cannot_be_found:
+  contributors_to_project: ""
+  controls:
+  convert:
+  coordinate_systems:
+  coordinates:
   #A filter option that only shows observations for which the viewer has
   #permission to see the "true" or "hidden" coordinates for observations in a
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
-  coords_viewable_for_proj_label: Endast m. fullständiga koordinater
+  coords_viewable_for_proj_label:
   coords_viewable_for_proj_desc: |
-    Visa bara fynd från detta projekt för vilka du kan se de "verkliga" koordinaterna, inklusive odiffuserade fynd, diffuserade fynd av personer som litar på dig, diffuserade fynd av personer som anförtror detta projekt med allt, och fynd som är diffuserade p.g.a. hotade taxa av användare som bara anförtror detta projekt med fynd som diffuserats p.g.a. hotade taxa.
-  copy: Kopiera
-  copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
-  copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
-  copy_guide_taxon_to: Kopiera guidetaxon till...
-  copyright:
-    some_rights_reserved: vissa rättigheter förbehållna
-    some_rights_reserved_by: "(c) %{name}, vissa rättigheter förbehållna (%{license_short})"
-    all_rights_reserved: "(c) %{name}, alla rättigheter förbehållna"
-    no_known_copyright_restrictions: "%{name}, inga kända upphovsrättsliga begränsningar (%{license_name})"
-    no_known_copyright_restrictions_text: "inga kända upphovsrättsliga begränsningar"
-    no_rights_reserved: inga rättigheter förbehållna
-    no_rights_reserved_by: "%{name}, inga rättigheter förbehållna (%{license_name})"
-    anonymous: anonym
-    public_domain: allmängods
-    copyright: upphovsrätt
-    no_copyright: ingen upphovsrätt (CC0)
-    attribution_noncommercial_sharealike_license: Erkännande-IckeKommersiell-DelaLika Licens
-    attribution_noncommercial_license: Erkännande-IckeKommersiell licens
-    attribution_noncommercial_noderivs_license: Erkännande-Ickekommersiell-IngaBearbetningar Licens
-    attribution_license: Erkännande licens
-    attribution_sharealike_license: Erkännande-DelaLika Licens
-    attribution_noderivs_license: Erkännande-IngaBearbetningar
-    gnu_free_documentation_license: GNU Free Documentation License
-  copyright_holder: Upphovsrättsinnehavare
-  copyright_info: Upphovsrättsinformation
-  copyright_info_and_more: Upphovsrättsinformation m.m.
-  copyright_infringement: Upphovsrättsintrång
-  copyright_infringement_desc: Bryter mot lagen om upphovsrätt eller skapades av någon annan än observatören och saknar erkännande
-  covered_by_a_taxon_framework_html: "Ingår i en %{link}"
-  covered_by_a_taxon_framework_link: "taxonkontext för %{taxon_framework_rank} %{taxon_framework_name}"
-  couldnt_change_your_password: "Kunde inte ändra ditt lösenord: %{e}"
-  couldnt_find_a_user_matching_x_param: "Kunde inte hitta en användare med %{id}"
-  couldnt_find_that_taxon: Kunde inte hitta detta taxon.
-  create: Skapa
-  create_a_guide: Skapa en guide
-  create_a_new_field: Skapa ett nytt fält
-  create_a_new_place: Skapa en ny fyndplats
-  create_a_new_taxon: Skapa ett nytt taxon
-  create_a_query: Skapa en fråga
-  create_an_account: Skapa ett konto
-  create_an_atlas: Skapa en atlas
-  create_export: Skapa export
-  create_new_taxon: Skapa ett nytt taxon
-  create_observations: Skapa fynd
-  created: Skapad
-  created_by: Skapad av
-  created_by_user_on_date: Skapad av %{user} den %{date}
-  created_on: Skapad den
-  creating_your_account: "Skapar ditt konto..."
-  creative_commons_flickr_tagged: Creative Commons Flickr-bilder taggade
-  creative_commons_unless_otherwise_noted: "Creative Commons om inte annat anges."
-  critically_endangered: Akut hotad
-  css_description: Detta kommer att inkluderas efter all annan css på sidan.
-  csv: CSV
-  csv_file: CSV-fil
-  csv_should_not_contain_a_header_row: CSV ska inte innehålla en rubrikrad
-  cumulative_ids: "Samlade bestämningar: %{count} av %{total}"
-  curate_observations: Hantera fynd
-  curate_taxa: Hantera taxa
-  curate_user: Hantera användare
-  curating: Hanterar
-  curation: Hantera
-  curator: Förvaltare
+
+  copy:
+  copy_and_paste_the_following_code_to:
+  copy_and_paste_this_into_your_own_html:
+  copy_guide_taxon_to:
+  copyright_holder:
+  copyright_info:
+  copyright_info_and_more:
+  copyright_infringement:
+  copyright_infringement_desc:
+  covered_by_a_taxon_framework_html: ""
+  covered_by_a_taxon_framework_link: ""
+  couldnt_change_your_password: ""
+  couldnt_find_a_user_matching_x_param: ""
+  couldnt_find_that_taxon:
+  create:
+  create_a_guide:
+  create_a_new_field:
+  create_a_new_place:
+  create_a_new_taxon:
+  create_a_query:
+  create_an_account:
+  create_an_atlas:
+  create_export:
+  create_new_taxon:
+  create_observations:
+  created:
+  created_by:
+  created_by_user_on_date:
+  created_on:
+  creating_your_account: ""
+  creative_commons_flickr_tagged:
+  creative_commons_unless_otherwise_noted: ""
+  critically_endangered:
+  css_description:
+  csv:
+  csv_file:
+  csv_should_not_contain_a_header_row:
+  cumulative_ids: ""
+  curate_observations:
+  curate_taxa:
+  curate_user:
+  curating:
+  curation:
+  curator:
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-    Förvaltare av iNaturalists webbplats är betrodda volontärer som har möjlighet att redigera iNaturalists taxonomi och moderera användarinnehåll.
-    Webbplatsförvaltarna är grundläggande för iNaturalist eftersom de håller taxonomin uppdaterad och diskussionen på iNaturalist anständig och städad.
-    Nedan följer en beskrivning av vad det innebär att vara förvaltare. Var vänlig läs det och, om du vill bli förvaltare, läs noga igenom 
-    <a href="/pages/curator+guide" target="_blank">Förvaltarvägledningen</a>
-    och fyll sedan i ansökan på denna sida.
+
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-    Du behöver förklara varför du vill bli förvaltare
+
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html: Varför vill du bli förvaltare?
+  curator_application_fields_explanation_html:
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Om du vill redigera iNaturalists taxonomi, ge ett exempel eller två på taxonomiska ändringar du skulle vilja genomföra och inkludera källor till dina föreslagna förändringar. Om möjligt, ange etablerade taxonomiska auktoriteter <a href="https://www.inaturalist.se/pages/f%C3%B6rvaltarguide#policies">som angivet i Förvaltarvägledningen</a>. Om du inte inkluderar några källor kommer din ansökan inte att beaktas.
+
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-    Om du vill redigera vardagliga namn, ge ett exempel eller två på ändringar som du vill göra
+
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-    Om du vill moderera beteende på iNaturalist, ge ett exempel eller två på överträdelser av Communityns riktlinjer samt vad du skulle göra i dessa situationer
+
   #Header
   curator_application_how_curators_lose_their_powers: |
-    Hur en förvaltare blir av med sina befogenheter
+
   curator_application_how_curators_lose_their_powers_desc: |
-    iNat-personal kan ta bort en förvaltares befogenheter om hen upprepade gånger:
+
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
-    Bortser från policyer i förvaltarvägledningen.
+
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
-    Underlåter att själv uppträda på lämpligt sätt.
+
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna (du har lagt till %{num_idents}). När du har uppfyllt båda dessa krav, kom tillbaka hit och du kommer då att kunna skicka in ansökan.
+
   curator_application_inelligible_error: |
-    För att kunna ansöka om att bli förvaltare måste du haft ett konto i 60 dagar eller mer och har lagt till 100 förbättrande bestämningar till någons fynd, inklusive dina egna.
+
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: Förvaltaransökan inskickad
+  curator_application_success:
   #Header
-  curator_application_what_curators_can_do: Vad förvaltare kan göra
+  curator_application_what_curators_can_do:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons koordinatsekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.'
+  curator_application_what_curators_can_do_edit_taxonomy_html:
   curator_application_what_curators_can_do_hide_comments_html: |
-    Dölja kommentarer och stänga av användare för att de bryter mot <a
-    href="/pages/community+guidelines" target="_blank">Communityns
-    riktlinjer</a>.
+
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_resolve_flags_html: |
-    Lösa <a href="/flags" target="_blank">flaggor</a> på taxa och användarinnehåll.
+
   #Description of a curator's ability to edit wiki pages; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_wiki_html: |
-    Skapa och redigera wikisidor, såsom <a href="/pages/help"
-    target="_blank">iNaturalists FAQ-sida</a>.
+
   #Description of a curator's ability to edit places; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Redigera community-förvaltade fyndplatser och ladda upp KML-filer större än 1 MB
-    (men mindre än 5 MB).
+
   #Header
-  curator_application_what_curators_cannot_do: Vad förvaltare inte kan göra
+  curator_application_what_curators_cannot_do:
   #Description of the fact that a curator cannot change certain attributes of
   #observations any more than anyone else can; part of a list of things
   #curators can do, so you might imagine it is preceded with "Curators
   #cannot..."
   curator_application_what_curators_cannot_do_change_observations_html: |
-    Påverka Community-taxon eller Datakvalitet för ett fynd mer än någon annan användare kan.
+
   #Description of the fact that a curator cannot commit taxon changes for
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-    Genomföra taxonändringar på <a href="/pages/curator+guide#completetaxa"
-    target="_blank">kompletta taxa</a>.
+
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
-    Radera innehåll skapat av andra användare.
+
   #Description of the fact that a curator cannot read other peoples' messages;
   #part of a list of things curators can do, so you might imagine it is
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
-    Läsa direktmeddelanden av andra användare.
+
   #Title of a page where people apply to become a curator
-  curator_application_title: Förvaltaransökan
+  curator_application_title:
   #Header followed by a list
   curator_application_you_should_apply_if: |
-    Du bör endast söka för att bli förvaltare om:
+
   curator_application_you_should_apply_if_you_are_a_regular_user: |
-    Du har lagt till bestämningar och/eller fynd i några månader och har för avsikt att fortsätta.
+
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
-    Du ställer upp på och kan utföra förvaltararbete regelbundet. Om du endast vill lägga till några få taxa, be istället nuvarande förvaltare att addera dem genom att lägga till flaggor till taxa på högre nivå.
+
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
-    Du kan uppföra dig lämpligt på iNaturalist och följa Communityns riktlinjer.
-    Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
-    exemplarisk användare av iNaturalist.
-  curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
-  curators: Förvaltare
-  curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
-  curator_identification: Förvaltarbestämning
-  current_flags: Nuvarande flaggningar
-  custom_project_fields: Anpassade projektfält
-  custom_project_was_successfully_created: Projektanpassningar tillagda
-  custom_project_was_successfully_updated: Projektanpassningar uppdaterade
-  customize_location: Anpassa fyndplats
-  darr_apply_darr: "&darr; Använd &darr;"
-  daily_users: Dagliga användare
-  danger_zone: Farozon
-  dashboard: Kontrollpanel
-  data_deficient: Kunskapsbrist
-  data_quality: Datakvalitet
-  data_quality_assessment: Bedömning av datakvalitet
-  data_used: "Data som används:"
-  datatype: Datatyp
-  date_: Datum
-  date_added: Tillagd datum
-  date_authorized: Auktoriseringsdatum
-  date_created: Skapad datum
-  date_format:
-    date_long:
-      january: '%{day} januari %{year}'
-      february: '%{day} februari %{year}'
-      march: '%{day} mars %{year}'
-      april: '%{day} april %{year}'
-      may: '%{day} maj %{year}'
-      june: '%{day} juni %{year}'
-      july: '%{day} juli %{year}'
-      august: '%{day} augusti %{year}'
-      september: '%{day} september %{year}'
-      october: '%{day} oktober %{year}'
-      november: '%{day} november %{year}'
-      december: '%{day} december %{year}'
-    month:
-      january: januari
-      february: februari
-      march: mars
-      april: april
-      may: maj
-      june: juni
-      july: juli
-      august: augusti
-      september: september
-      october: oktober
-      november: november
-      december: december
-  date_is_accurate: Datum är korrekt
-  date_joined: Datum gick med
-  date_obscured_notice: Datum diffuserat p.g.a. personlig eller organismsekretess
-  date_observed: Datum observerad
-  date_observed_: Datum observerad
-  date_observed_on: datum observerad på
-  date_picker:
-    closeText: Stäng
-    currentText: Idag
-    #Contextual help for a button navigating to the previous month in a date picker
-    prevText: Föreg.
-    #Contextual help for a button navigating to the next month in a date picker
-    nextText: Nästa
-    range: Intervall
-  date_range: Datumintervall
-  date_specified: Angivet datum
-  date_time: Datum/Tid
+
+  curators_changed_for_x_html: ""
+  curators:
+  curators_can_remove_observations_from:
+  curator_identification:
+  current_flags:
+  #Label for a custom boundary for an observation search
+  custom_boundary:
+  custom_project_fields:
+  custom_project_was_successfully_created:
+  custom_project_was_successfully_updated:
+  customize_location:
+  darr_apply_darr: ""
+  daily_users:
+  danger_zone:
+  dashboard:
+  data_deficient:
+  data_quality:
+  data_quality_assessment:
+  data_used: ""
+  datatype:
+  date_:
+  date_added:
+  date_authorized:
+  date_created:
+  date_is_accurate:
+  date_joined:
+  date_obscured_notice:
+  date_observed:
+  date_observed_:
+  date_observed_on:
+  date_range:
+  date_specified:
+  date_time:
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
-  date_to_date: "%{d1}–%{d2}"
-  date_updated: Uppdateringsdatum
-  day: Dag
-  decrease_brightness: Minska ljusstyrkan
+  date_to_date: ""
+  date_updated:
+  day:
+  decrease_brightness:
   #Default option
-  default: standard
+  default:
   #Default option
-  default_: Standard
-  default_display_time_zone: Standardtidszon för visning
-  default_invite_comment: "Snygg bild! Du borde lägga upp den på %{site_name}: {{INVITE_LINK}}"
-  default_observation_license: Standard fyndlicens
-  default_photo_license: Standard bildlicens
-  default_search_place: Standard sökplats
+  default_:
+  default_display_time_zone:
+  default_invite_comment: ""
+  default_observation_license:
+  default_photo_license:
+  default_search_place:
   default_search_place_description: |
-    Detta kommer att vara din standardfyndplats för alla sökningar i Utforska och Artbestäm.
-  default_sound_license: Standard ljudlicens
+
+  default_sound_license:
   default_time_zone_desc: |
-    Detta är standardtidszonen. Den slutliga tidszonen kommer att bestämmas
-    baserat på fyndets plats när det sparas.
-  defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
-  defines_a_taxon_framework_for: Definierar en taxonkontext för %{taxon_name}
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definierar en taxonkontext för %{taxon} som kommer från %{source}
-  definitions: Definitioner
-  delete: Radera
-  delete_all: Radera alla
-  delete_conversation: Radera konversation
+
+  defaults_to_your_name_or_username:
+  defines_a_taxon_framework_for:
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
+  definitions:
+  delete:
+  delete_all:
+  delete_conversation:
   #Button to delete the cover (or banner) image for a project
-  delete_cover?: radera omslag?
-  delete_icon?: Radera ikon?
-  delete_photo: Radera bild
-  delete_project: Radera detta projekt
+  delete_cover?:
+  delete_icon?:
+  delete_photo:
+  delete_project:
   #Label for a button to delete a taxon range
-  delete_range: Ta bort utbredningsområde
-  delete_selected: Radera valda
+  delete_range:
+  delete_selected:
   delete_taxon_and_merge_most_data_html: |
-    Radera <i>%{taxon}</i> och slå ihop merparten av dess data med ett annat taxon. Använd
-    det här verktyget för <strong>att ta bort dubblettaxa</strong>. Om du vill
-    ta bort en föråldrad synonym, vänligen gör ett taxonbyte. <strong>VAR
-    FÖRSIKTIG!</strong> Att ta bort taxa kan vara mycket destruktivt. Se
-    <a href="%{curator_url}">Förvaltarvägledningen</a> för mer information.
-  delete_user: Radera användare
-  delete_your_account: Radera ditt konto
-  deleted_synonyms: Raderade synonymer
-  deleted_user: raderade användare
-  deleted_vote: Raderad röst
-  deleting: Raderar...
-  deleting_verb: Raderar
-  deny: Neka
-  desc: Beskr
-  descending: Fallande
-  describe_purpose: Ange syftet med detta projekt.
-  describe_your_interest_in_nature: Beskriv ditt intresse för naturen!
-  description: Beskrivning
-  description_from: Beskrivning från
-  description_sections: Beskrivningsdelar
-  description_slash_tags: Beskrivning / Taggar
-  description_tags_more: "Beskrivning, taggar och mer"
-  desription: Beskrivning
-  destination: Destination
-  destroy: Förstör
-  details: Detaljer
-  deviation: Avvikelse
-  devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Om din e-postadress finns i vår databas, kommer du att få ett e-postmeddelande
-        med instruktioner för hur du bekräftar din e-postadress om några
-        minuter.
-    failure:
-      already_authenticated: 'Du är redan inloggad.'
-      unauthenticated: 'Du måste logga in eller registrera dig för att kunna fortsätta.'
-      invalid: 'Ogiltig e-postadress eller lösenord.'
-      invalid_token: 'Ogiltig autentiseringstoken.'
-      user:
-        suspended: Ditt konto har blivit avstängt
-    sessions:
-      signed_in: 'Inloggningen lyckades.'
-      signed_out: 'Utloggningen lyckades.'
-    passwords:
-      send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
-      updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
-      updated_not_active: 'Ditt lösenord har ändrats.'
-      send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
-      no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
-    registrations:
-      signed_up: 'Välkommen! Du har lyckats registrera dig.'
-      updated: 'Ditt konto har uppdaterats.'
-      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
-    mailer:
-      confirmation_instructions:
-        subject: 'Instruktioner för bekräftelse'
-      reset_password_instructions:
-        subject: 'Instruktioner för återställning av lösenord'
-  devise_reset_password_instructions_hello_email: Hej %{email}
+
+  delete_user:
+  delete_your_account:
+  deleted_synonyms:
+  deleted_user:
+  deleted_vote:
+  deleting:
+  deleting_verb:
+  deny:
+  desc:
+  descending:
+  describe_purpose:
+  describe_your_interest_in_nature:
+  description:
+  description_from:
+  description_sections:
+  description_slash_tags:
+  description_tags_more: ""
+  desription:
+  destination:
+  destroy:
+  details:
+  deviation:
+  devise_reset_password_instructions_hello_email:
   devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
+
   devise_reset_password_instructions_if_you_didnt_request_this: |
-    Om du inte har begärt detta, vänligen ignorera detta mail.
+
   devise_reset_password_instructions_your_password_wont_change_until: |
-    Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
+
   devise_unlock_instructions_your_account_has_been_locked: |
-    Ditt konto har låsts på grund av ett för stort antal misslyckade inloggningsförsök.
+
   devise_unlock_instructions_click_the_link: |
-    Klicka på länken nedan för att låsa upp ditt konto
-  devise_unlock_instructions_unlock: Lås upp ditt konto
-  discoveries: Upptäckter
-  did_you_mean: 'Menade du'
-  did_you_photos_flickr?: Har du lagt några bilder på Flickr?
-  disable: Inaktivera
-  disable_comments: Inaktivera kommentarer
-  disable_comments_desc: Förhindra personer från att lägga till nya kommentarer
-  disagree_: Håller inte med
+
+  devise_unlock_instructions_unlock:
+  discoveries:
+  did_you_mean: ''
+  did_you_photos_flickr?:
+  disable:
+  disable_comments:
+  disable_comments_desc:
+  disagree_:
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
-  disconnect: Koppla ifrån
-  disconnect_caps: KOPPLA IFRÅN
-  disconnect_provider: "Koppla från %{provider}"
+  disconnect:
+  disconnect_caps:
+  disconnect_provider: ""
   #Label for a button that dismisses an alert or popup
-  dismiss: Avfärda
-  display: Visning
-  display_link_to_checklist: Visa länk till projektlistan från projektsidan
-  display_monthly_supporter_badge: Visa månatlig bidragsgivare-märket på profilen
-  display_name: Visa Namn
-  display_name_description: Det här är det namn som kommer att visas på din profil samt i upphovsrättssammanhang
-  distance_traveled_value: "Tillryggalagt avstånd: %{distance}m"
-  distance_traveled: "Tillryggalagt avstånd (m)"
-  documentation_for_developers_html: Dokumentation för <a href="/pages/developers">utvecklare</a>
-  do_not_show_this_message_again: Visa inte detta meddelande igen
+  dismiss:
+  display:
+  display_link_to_checklist:
+  display_monthly_supporter_badge:
+  display_name:
+  display_name_description:
+  distance_traveled_value: ""
+  distance_traveled: ""
+  documentation_for_developers_html:
+  do_not_show_this_message_again:
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Studerar du nematoder? Är du världens främsta expert på havstulpaners
-    taxonomi? Gillar du helt enkelt att titta på vackra blommor? Genom att fylla i din
-    profil blir du personligare och trovärdigare när du
-    hjälper personer med bestämningar.
-  doesnt_have_default_photo: har ingen standardbild ännu.
-  doh_something_went_wrong: Typiskt, något gick fel.
-  doh_something_went_wrong_error: "Typiskt, något gick fel: %{error}"
+
+  doesnt_have_default_photo:
+  doh_something_went_wrong:
+  doh_something_went_wrong_error: ""
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: DONERA
-  donate_again_caps: DONERA IGEN
-  donate_again_today_caps: DONERA IGEN IDAG
-  done: Klar
-  dont_have_an_account_sign_up_html: Har du inte ett konto? <strong>Registrera dig.</strong>
-  dont_use_double_quotes: Använd inte dubbla citat någon annanstans
+  donate:
+  donate_again_caps:
+  donate_again_today_caps:
+  done:
+  dont_have_an_account_sign_up_html:
+  dont_use_double_quotes:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it: Släpp den
-  download: Ladda ned
+  drop_it:
+  download:
   download_bulk_import_template_html: |
-    <a href="%{url}">Ladda ner mall</a> för användning i
-    <a href="/observations/import?project_id=%{project_id}#csv_import">bulkuppladdaren</a>
-  download_csv: Ladda ned CSV
-  download_csv_template: Ladda ned CSV-mall
-  download_kml: Ladda ned KML
-  downstream_coverage_rank: Lägsta inkluderade rang
-  downstream_coverage_colon_rank: "Lägsta inkluderade: rang %{rank}"
-  downstream_deviations: Underliggande avvikelser
-  downstream_deviations_for_taxon: "Underliggande avvikelser för %{taxon}"
+
+  download_csv:
+  download_csv_template:
+  download_kml:
+  downstream_coverage_rank:
+  downstream_coverage_colon_rank: ""
+  downstream_deviations:
+  downstream_deviations_for_taxon: ""
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa: Underliggande flaggade taxa
-  draft: utkast
-  draft_: Utkast
-  draft_saved: Utkast sparat!
-  drafts: Utkast
-  drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
-  drawings: Skisser
-  duplicate_verb: Duplicera
-  duration_value: "Varaktigthet: %{duration} minuter"
-  each_place_displays_all_species_inat_knows: "Varje fyndplatssida visar alla arter %{site_name} känner till från den fyndplatsen, inklusive information om deras antal, bevarandestatus och vem som var först med att observera den arten från den fyndplatsen på %{site_name}. Du kan filtrera arterna efter taxonomisk grupp, färg, bevarandestatus eller genom gammal hederlig sökning."
-  earliest_added: Tidigast tillagda
-  edit: Redigera
+  downstream_flagged_covered_taxa:
+  draft:
+  draft_:
+  draft_saved:
+  drafts:
+  drag_and_drop_some_photos_or_sounds:
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary:
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary:
+  drawings:
+  duplicate_verb:
+  duration_value: ""
+  each_place_displays_all_species_inat_knows: ""
+  earliest_added:
+  edit:
   #Title of the moderation note editor
-  edit_moderator_note: Redigera moderatoranteckning
-  edit_a_batch_of_observations: Redigera flera fynd i taget
-  edit_account_settings_and_profile: "Redigera kontoinställningar och profil"
-  edit_assessment: Redigera bedömning
-  edit_atlas: Redigera atlas
-  edit_atlas_for_taxon_html: Redigera atlas för %{taxon}
-  edit_body: Redigera innehåll
-  edit_comment: Redigera din kommentar
-  edit_complete_set_for_taxon_in_place_html: "Redigera komplett uppsättning för %{taxon} i %{place}"
-  edit_conservation_status: Redigera bevarandestatus
-  edit_custom_project_fields: Redigera anpassade projektfält
-  edit_field: Redigera fält
-  edit_license: Redigera licens
-  edit_multiple_dates: Redigera flera datum
-  edit_multiple_descriptions: Redigera flera anteckningar
-  edit_multiple_locations: Redigera flera fyndplatser
-  edit_multiple_species: Redigera flera arter
-  edit_notes: Redigera anteckningar
-  edit_observations: Redigera fynd
-  edit_photos: Redigera bilder
-  edit_photos_for_observation_id: "Redigera bilder för fynd %{obs_id}"
-  edit_place: Redigera fyndplats
-  edit_project: Redigera projekt
-  edit_remove: Redigera/Ta bort
-  edit_selected: Redigera valda
-  edit_source: Redigera källa
-  edit_taxa: Redigera taxa
-  edit_taxon: Redigera taxon
-  edit_taxon_framework: Redigera taxonkontext
-  edit_taxon_link: Redigera taxonlänk
-  edit_taxon_range: Redigera taxons utbredningsområde
-  edit_the_observation: Redigera fyndet
+  edit_moderator_note:
+  edit_a_batch_of_observations:
+  edit_account_settings_and_profile: ""
+  edit_assessment:
+  edit_atlas:
+  edit_atlas_for_taxon_html:
+  edit_body:
+  edit_comment:
+  edit_complete_set_for_taxon_in_place_html: ""
+  edit_conservation_status:
+  edit_custom_project_fields:
+  edit_field:
+  edit_license:
+  edit_multiple_dates:
+  edit_multiple_descriptions:
+  edit_multiple_locations:
+  edit_multiple_species:
+  edit_notes:
+  edit_observations:
+  edit_photos:
+  edit_photos_for_observation_id: ""
+  edit_place:
+  edit_project:
+  edit_remove:
+  edit_selected:
+  edit_source:
+  edit_taxa:
+  edit_taxon:
+  edit_taxon_framework:
+  edit_taxon_link:
+  edit_taxon_range:
+  edit_the_observation:
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
-    Redigera detta taxon efter du skapat det för att lägga till bevarandestatus
-  edit_your_account_and_profile_html: "Redigera ditt konto och profil"
-  edit_your_default_settings: "Ändra dina standardinställningar"
-  edit_your_global_project_settings: Redigera dina globala projektinställningar
-  edit_your_identification: Redigera din bestämning
-  edit_your_settings_for_this_project: Ändra dina inställningar för detta projekt
-  edited_by_name_html: "Redigerad av %{name}"
+
+  edit_your_account_and_profile_html: ""
+  edit_your_default_settings: ""
+  edit_your_global_project_settings:
+  edit_your_identification:
+  edit_your_settings_for_this_project:
+  edited_by_name_html: ""
   edited_by_name_some_rights_reserved_html: |
-    Redigerad av %{name}, vissa rättigheter förbehållna (%{license})
-  editing: Redigerar
-  editing_announcement: Redigerar meddelande
-  editing_custom_project_fields_for: Redigerar anpassade projektfält för
-  editing_observation_field: Redigerar fyndfält
-  editing_observation_id: "Redigerar fynd %{obs_id}"
-  editing_observations:
-    one: 'Redigerar <span class="count">1</span> fynd:'
-    other: 'Redigerar <span class="count">%{count}</span> fynd:'
-  editing_project: Redigerar %{project}
-  editing_project_asset: Redigerar projekttillgång för
-  editing_subscription_to_x_html: "Redigerar prenumeration på %{x}"
-  editing_taxon: Redigerar %{taxon}
-  editing_taxon_link: Redigerar taxonlänk
-  editing_taxon_name_for_taxon_html: Redigerar taxonnamn "%{name}" för %{taxon}
-  editing_taxon_range_for_taxon_html: Redigerar utbredningsområde för %{taxon}
-  editing_this: Redigerar %{elem}
-  editing_x_in_y: "Redigerar %{x} i %{y}"
-  editors: Redigerare
-  either_that_user_doesnt_exist_or: "Antingen existerar inte den användaren, eller så följer du den redan."
-  eligible_for_research_grade: Berättigad till forskningsklass
-  email: E-post
-  email_description: Din e-post delas inte med andra användare på iNaturalist
-  email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
-  email_copyright: "Upphovsrätt &copy; %{x}, alla rättigheter förbehållna"
-  email_notifications: E-postaviseringar
-  embed: 'Bädda in'
-  embed_place_widget: Bädda in fyndplats-widget
-  embed_this_assessment: Bädda in denna bedömning
-  embed_widget_project: Bädda in en widget för detta projekt på din webbplats
-  enable_offline_access: Aktivera offline-åtkomst
-  enable_offline_access_for_mobile: Aktivera offline-åtkomst för mobil
-  encompassing_places: Omslutande platser
-  end: Slut
-  end_date_time: Slutdatum/-tid
-  endangered: Hotad
-  endemic: Endemisk
-  endemic_to_x: "Endemisk för %{x}"
+
+  editing:
+  editing_announcement:
+  editing_custom_project_fields_for:
+  editing_observation_field:
+  editing_observation_id: ""
+  editing_project:
+  editing_project_asset:
+  editing_subscription_to_x_html: ""
+  editing_taxon:
+  editing_taxon_link:
+  editing_taxon_name_for_taxon_html:
+  editing_taxon_range_for_taxon_html:
+  editing_this:
+  editing_x_in_y: ""
+  editors:
+  either_that_user_doesnt_exist_or: ""
+  eligible_for_research_grade:
+  email:
+  email_description:
+  email_address_for_comments_and_other_feedback:
+  email_copyright: ""
+  email_notifications:
+  embed: ''
+  embed_place_widget:
+  embed_this_assessment:
+  embed_widget_project:
+  enable_offline_access:
+  enable_offline_access_for_mobile:
+  encompassing_places:
+  end:
+  end_date_time:
+  endangered:
+  endemic:
+  endemic_to_x: ""
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol: EOL
-  eol_collection_url: "URL för EOL-samling"
-  error_updating_photo: "Fel vid uppdatering av bild: %{photo_errors}"
-  establishment:
-    endemic: Endemisk
-    establishment: Invandringshistoria
-    introduced: Införd
-    invasive: Invasiv
-    managed: Kultiverad
-    native: Inhemsk
-    naturalised: Naturaliserad
-  establishment_means: Invandringshistoria
+  eol:
+  eol_collection_url: ""
+  error_updating_photo: ""
+  establishment_means:
   establishment_means_describes_how: |
-    Invandringshistoria beskriver hur ett taxon etablerades i ett område.
-    Se DarwinCore för <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mer information om terminologi</a>.
-  establishment_means_descriptions:
-    native: utvecklad i denna region eller inkommen utan människans hjälp
-    endemic: inhemsk och förekommer ingen annanstans
-    introduced: inkommen till regionen med människans hjälp
+
   estimate_which_input: |
-    Uppskatta vilka intaxon-id:n som kommer att ersättas med vilka uttaxa och vilka som kommer att hänvisas till en gemensam förfader när uppdelningen är antagen. Detta kan ta en stund att beräkna. Länkar till fynd begränsas till uppsättningar om 200.
-  event_in_progress: Händelse pågår
-  event_stats: Händelsestatistik
-  event_url: Händelse-URL
-  events_only: Endast händelser
-  everyone: alla
-  everyone_: Alla
-  everyone_journal_posts: Allas dagboksinlägg
-  everywhere: överallt
-  exact: Exakt
-  exact_date: Exakt datum
-  exact_rank: Exakt rang
-  except: förutom
-  exclude_places: Uteslut fyndplatser
-  exclude_projects: Uteslut projekt
-  exclude_taxa: Uteslut taxa
-  exclude_users: Uteslut användare
-  exclusion_filters: Exkluderingsfilter
-  existing_flags: Befintliga flaggor
-  exit_full_screen: "Avsluta helskärmsläge"
-  examples_of_data_use_by_network_members: Exempel på dataanvändning av Nätverksmedlemmar
-  examples_of_ranking_organizations: Exempel på hotbedömande organisationer
-  explore: Utforska
-  export: Exportera
-  export_observations: Exportera fynd
-  export_with_private_coordinates: Exportera med dolda koordinater
-  exporting: "Exporterar..."
+
+  event_in_progress:
+  event_stats:
+  event_url:
+  events_only:
+  everyone:
+  everyone_:
+  everyone_journal_posts:
+  everywhere:
+  exact:
+  exact_date:
+  exact_rank:
+  except:
+  exclude_places:
+  exclude_projects:
+  exclude_taxa:
+  exclude_users:
+  exclusion_filters:
+  existing_flags:
+  exit_full_screen: ""
+  examples_of_data_use_by_network_members:
+  examples_of_ranking_organizations:
+  explore:
+  export:
+  export_observations:
+  export_with_private_coordinates:
+  exporting: ""
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
-  external_applications: Externa applikationer
+  external_applications:
   external_applications_description: |
-    Externa applikationer är program från tredje part som du har gett behörighet att komma åt ditt iNaturalist-konto. I allmänhet kan de göra allt med ditt konto som du kan, så se till att du litar på apputvecklare innan du ger dem tillstånd.
-  external_taxon_including_children: Externt taxon (inklusive barn)
-  extinct: utdöd
-  extinct_in_the_wild: Utdöd i vilt tillstånd
-  extra_properties: Ytterligare egenskaper
-  evidence_of_organism: Belägg för organism
-  facebook: Facebook
-  facebook_account_information: Din Facebook-kontoinformation
-  facebook_account_not_linked: "%{user} har inte längre ett kopplat Facebook-konto, varför %{site_name} inte har behörighet att komma åt denna bild."
-  facebook_access_token_expired: "Åtkomsttoken har löpt ut. %{user} måste länka sitt Facebook-konto igen."
-  facebook_needs_the_owner_of_that_photo_to: Facebook behöver få ägaren av den bilden att bekräfta sin koppling till %{site_name_short}.
-  facebook_options: Facebook-inställningar
+
+  external_taxon_including_children:
+  extinct:
+  extinct_in_the_wild:
+  extra_properties:
+  evidence_of_organism:
+  facebook:
+  facebook_account_information:
+  facebook_account_not_linked: ""
+  facebook_access_token_expired: ""
+  facebook_needs_the_owner_of_that_photo_to:
+  facebook_options:
   facebook_photo_import_disabled_notice: |
-    I november 2020 krävde Facebook att vi skulle visa att vi verkligen behövde
-    tillgång till bilder, och vi kunde inte genomföra det på grund av
-    problem med Facebooks verifieringssystem. Det innebär att vi inte längre kan
-    stödja import av bilder från Facebook.
-  failed_to_find_your_location: Kunde inte att hitta din position.
-  failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
-  failed_to_save_record: "Lyckades inte att spara posten. Försök igen senare."
-  failed_to_save_record_with_errors: "Lyckades inte spara posten: %{errors}"
-  failed_to_unlink_your_account: Lyckades inte koppla ifrån ditt konto
-  'false': 'Falskt'
+
+  failed_to_find_your_location:
+  failed_to_repair_photo: ""
+  failed_to_save_record: ""
+  failed_to_save_record_with_errors: ""
+  failed_to_unlink_your_account:
+  'false': ''
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves: Favoriter
-  Family: Familj
-  favorite_taxa: Favorittaxa
-  favorites: "Favoriter"
-  feature_this_project_: "Uppmärksamma detta projekt"
-  featured: Uppmärksammat
+  faves:
+  Family:
+  favorite_taxa:
+  favorites: ""
+  feature_this_project_: ""
+  featured:
   #Title for a button or section describing the "featured" status of a project
-  featuring: Uppmärksamhet
-  feedback: Återkoppling
+  featuring:
+  feedback:
   #Plural noun, as in Atom and RSS feeds
-  feeds: 'Flöden'
-  failed: Misslyckades
+  feeds: ''
+  failed:
   field_note: |
-    <strong>Obs:</strong> Om du vill skapa ett fält, kontrollera först om
-    någon annan redan hade gjort det för att undvika dubbletter.
-  fields: fält
-  fields_: Fält
-  fields_can_only_be_edited_by_the_people_who: Fält kan endast redigeras av de som skapade dem samt webbplatsens förvaltare
-  fields_merged: Fält sammanslagna
-  file: Fil
-  file_size: Filstorlek
-  file_should_be_in_the_following_format: "Filen ska ha följande format: taxonnamn, beskrivning"
-  fill_out_project_observation_fields: Fyll i projektfyndfält
-  fill_out_your_profile: slutför din profil
+
+  fields:
+  fields_:
+  fields_can_only_be_edited_by_the_people_who:
+  fields_merged:
+  file:
+  file_size:
+  file_should_be_in_the_following_format: ""
+  fill_out_project_observation_fields:
+  fill_out_your_profile:
   #The name of a computer file
-  filename: Filnamn
-  filter: Filter
-  filter_by_curator_identification: Filtrera på förvaltares bestämning
-  filter_by_place: Filtrera på fyndplats
-  filter_by_taxon: Filtrera på taxon
-  filter_by_place_taxon_and_color: Filtrera på fyndplats, taxon och färg med kontrollerna.
-  filter_list_by_this_taxon: Filtrera listan på detta taxon
-  filtering: Filtrering
-  filters: Filter
-  find: Hitta
-  find_a_guide: Hitta en guide
-  find_a_place: Hitta en fyndplats
-  find_guides: Hitta guider
-  find_new_place_to_explore: Hitta en ny fyndplats att utforska!
-  find_observations: Hitta fynd
-  find_photos: Hitta bilder
-  find_places: Hitta fyndplatser
-  find_some_people_to_follow: "Hitta några personer att följa"
-  find_species: Hitta arter
-  find_suitable_observations: Hitta lämpliga fynd
-  find_unsuitable_observations: Hitta olämpliga fynd
-  find_your_current_location: Hitta din aktuella position
-  finished: Slutfört
-  finished_with_page: Klar med sida
-  first_confirmed_inat_observation: "Första bekräftade %{site_name}-fyndet"
-  first_connect_your_provider_account_to_your_site: "Koppla först ditt %{provider}-konto till %{site_name}:"
-  first_inat_observation: "Första %{site_name}-fyndet"
-  first_observer: 1:a observatör
+  filename:
+  filter:
+  filter_by_curator_identification:
+  filter_by_place:
+  filter_by_taxon:
+  filter_by_place_taxon_and_color:
+  filter_list_by_this_taxon:
+  filtering:
+  filters:
+  find:
+  find_a_guide:
+  find_a_place:
+  find_guides:
+  find_new_place_to_explore:
+  find_observations:
+  find_photos:
+  find_places:
+  find_some_people_to_follow: ""
+  find_species:
+  find_suitable_observations:
+  find_unsuitable_observations:
+  find_your_current_location:
+  finished:
+  finished_with_page:
+  first_confirmed_inat_observation: ""
+  first_connect_your_provider_account_to_your_site: ""
+  first_inat_observation: ""
+  first_observer:
   #Verb form, as in "Flag this item"
-  flag: Flagga
-  flag_as_inappropriate: Flagga som olämpligt
-  flag_an_item: Flagga ett objekt
-  flag_as_spammer: Flagga som spammare
-  flag_as_non_spammer: Flagga som icke-spammare
+  flag:
+  flag_as_inappropriate:
+  flag_an_item:
+  flag_as_spammer:
+  flag_as_non_spammer:
   #Label for the date/time when a flag was created
-  flag_created: Flagga skapad
-  flag_deleted: Flagga raderad
-  flag_description: Flagga detta innehåll så att förvaltarna får reda på att det är något fel med det.
-  flag_comment_description: Lägg till en valfri kommentar till denna flagga som ytterligare förklarar varför du lägger till den och länkar till bevis som stöd.
+  flag_created:
+  flag_deleted:
+  flag_description:
+  flag_comment_description:
   flag_for_check_list_title_html: |
-    Flagga för checklista: %{title}
-  flag_for_comment_id_html: Flagga för <a href="%{url}">kommentar %{id}</a>
-  flag_for_comment_id_deleted: Flagga för kommentar %{id} (raderad)
-  flag_for_curation: Flagga för förvaltning
+
+  flag_for_comment_id_html:
+  flag_for_comment_id_deleted:
+  flag_for_curation:
   flag_for_guide_title_html: |
-    Flagga för guide: %{title}
-  flag_for_identification_id_html: Flagga för <a href="%{url}">bestämning %{id}</a>
+
+  flag_for_identification_id_html:
   flag_for_life_list_title_html: |
-    Flagga för livslista: %{title}
+
   flag_for_list_title_html: |
-    Flagga för lista: %{title}
-  flag_for_message_id_html: Flagga för <a href="%{url}">meddelande %{id}</a>
+
+  flag_for_message_id_html:
   flag_for_observation_title_html: |
-    Flagga för fynd: %{title}
-  flag_for_photo_id_html: Flagga för <a href="%{url}">bild %{id}</a>
+
+  flag_for_photo_id_html:
   flag_for_place_title_html: |
-    Flagga för fyndplats: %{title}
+
   flag_for_post_title_html: |
-    Flagga för inlägg: %{title}
+
   flag_for_project_title_html: |
-    Flagga för projekt: %{title}
-  flag_for_guide_section_id_html: Flagga för <a href="%{url}">guidesektion %{id}</a>
-  flag_for_sound_id_html: Flagga för <a href="%{url}">ljud %{id}</a>
+
+  flag_for_guide_section_id_html:
+  flag_for_sound_id_html:
   flag_for_taxon_title_html: |
-    Flagga för taxon: %{title}
+
   flag_for_user_title_html: |
-    Flagga för användare: %{title}
-  flag_it!: Flagga det!
-  flag_marked_as_resolved_html: '<span class="meta">Flagga markerad som</span> <strong>löst.</strong>'
+
+  flag_it!:
+  flag_marked_as_resolved_html: ''
   #Label for the object that was flagged, e.g. a table header
-  flag_object: Objekt
-  flag_reason: "&ldquo;Jag flaggar detta %{record} eftersom"
-  flag_resolution: Lösning
-  flag_saved: Flagga sparad
-  flag_saved_thanks_html: Flagga sparad. Tack! <a href="%{url}" class="readmore">Visa flagga</a>
-  flag_this_observation: Flagga detta fynd
-  flag_this_photo: Flagga denna bild
-  flag_this_place: Flagga denna fyndplats
-  flag_this_sound: Flagga detta ljud
-  flagged_: Flaggad
-  flagged_for_curation: Flaggad för förvaltning
-  flagged_taxon: Flaggat taxon
-  flagged_thing_explanation: "Användare har flaggat denna %{thing} eftersom"
+  flag_object:
+  flag_reason: ""
+  flag_resolution:
+  flag_saved:
+  flag_saved_thanks_html:
+  flag_this_observation:
+  flag_this_photo:
+  flag_this_place:
+  flag_this_sound:
+  flagged_:
+  flagged_for_curation:
+  flagged_taxon:
+  flagged_thing_explanation: ""
   flagging_desc: |
-    Med flaggning kan man uppmärksamma något hos webbplatsen frivilliga förvaltare.
-    Flagga inte problem som du kan avhjälpa med bestämningar, bedömning av datakvalitet eller genom att prata med den som har gjort innehållet.
-  flagger: Flaggare
-  flags: Flaggor
-  flags_with_count: Flaggor (%{count})
-  flags_explanation: "%{site_name}-användare flaggar saker som behöver uppmärksammas av webbplatsens förvaltare och/eller administratörer."
-  flags_for_x_html: Flaggor för %{x}
-  flags_on_users_content: "Flaggor på %{user}s innehåll"
-  flickr_account_information: Din Flickr-kontoinformation
-  flickr_has_no_creative_commons: Flickr har inga Creative Commons-licensierade bilder från denna fyndplats.
-  flickr_identity: Flickr-identitet
-  flickr_needs_to_confirm: "Flickr måste bekräfta att du vill ha ditt konto kopplat till %{site_name}."
-  flickr_photo: Flickr-bild
-  flickr_photos: Flickr-bilder
-  flickr_style: Flickr-stil
-  flickr_tagger: Flickr-taggare
-  flickr_tags: Flickr-taggar
-  fluid_layout: Responsiv design
+
+  flagger:
+  flags:
+  flags_with_count:
+  flags_explanation: ""
+  flags_for_x_html:
+  flags_on_users_content: ""
+  flickr_account_information:
+  flickr_has_no_creative_commons:
+  flickr_identity:
+  flickr_needs_to_confirm: ""
+  flickr_photo:
+  flickr_photos:
+  flickr_style:
+  flickr_tagger:
+  flickr_tags:
+  fluid_layout:
   #Adjective, as in a fluid layout of images
-  fluid: responsiv
-  follow: Följ
-  follow_receive_updates_about_new_observations: Följ (få uppdateringar om nya fynd)
-  follow_user: "Följ %{user}"
-  followers: Följare
-  following: Följer
-  following_x_people:
-    one: 'Följer 1 person'
-    other: 'Följer %{count} personer'
-  for_a_taxon: för ett taxon
-  formatting: Formatering
-  forgot_your_password: Glömt ditt lösenord?
-  forum: Forum
-  forum_categories:
-    bug_reports: Buggrapporter
-    feature_requests: Funktionsförslag
-    forum_feedback: Forumåterkoppling
-    forum_moderation: Forummoderering
-    nature_talk: Natursnack
-    news_and_updates: Nyheter & uppdateringar
-    tutorials: Handledningar
+  fluid:
+  follow:
+  follow_receive_updates_about_new_observations:
+  follow_user: ""
+  followers:
+  following:
+  for_a_taxon:
+  formatting:
+  forgot_your_password:
+  forum:
   forum_desc: |
-    Forumet är en plats för diskussioner om iNat, inklusive hjälp & support, funktionsförslag, buggrapporter, meddelanden med mera.
-  frequency: Frekvens
-  from_a_place: från en fyndplats
-  from_eol_collection: Från EOL-samling
-  from_flickr_facebook_etc: Från Flickr, Facebook, etc.
-  from_list: Från lista
-  from_photos: Från bilder
-  from_place: Från fyndplats
-  from_soundcloud: Från Soundcloud
-  full_screen: Helskärm
-  fungi:
-    one: svamp
-    other: svampar
-  gbif: GBIF
-  gbif_occurrences: GBIF-förekomster
-  generate_taxonomic_tags_for_flickr: Generera taxonomiska taggningar för dina Flickr-bilder.
-  generate_widget: Generera widget
-  generate_your_stats: Generera din statistik
-  generating_mobile_archive: "Genererar mobilt arkiv"
-  Genus: Släkte
-  geoprivacy: Koordinatsekretess
-  geoprivacy_is_obscured: Koordinatsekretess är diffuserad
-  geoprivacy_is_obscured_desc: Observatören har valt att diffusera koordinaterna.
-  geoprivacy_is_private: Koordinatsekretess är privat
-  geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
-  georeferenced: Koordinatsatt?
-  get_started: Kom igång
-  getting_started_guide: Komma igång-guide
+
+  frequency:
+  from_a_place:
+  from_eol_collection:
+  from_flickr_facebook_etc:
+  from_list:
+  from_photos:
+  from_place:
+  from_soundcloud:
+  full_screen:
+  gbif:
+  gbif_occurrences:
+  generate_taxonomic_tags_for_flickr:
+  generate_widget:
+  generate_your_stats:
+  generating_mobile_archive: ""
+  Genus:
+  geoprivacy:
+  geoprivacy_is_obscured:
+  geoprivacy_is_obscured_desc:
+  geoprivacy_is_private:
+  geoprivacy_is_private_desc:
+  georeferenced:
+  get_started:
+  getting_started_guide:
   #Prompt to donate money on a montly basis
-  give_monthly_caps: GE MÅNADSVIS
+  give_monthly_caps:
   #Prompt to donate money once
-  give_now_caps: GE NU
-  global_names: Globala namn
-  globally: Globalt
-  go: Kör
-  go_back: Gå tillbaka
-  going_to_your_observations: Till dina fynd...
-  good_choice_for_sharing: Bra val för att dela med forskare
-  google: Google
+  give_now_caps:
+  global_names:
+  globally:
+  go:
+  go_back:
+  going_to_your_observations:
+  good_choice_for_sharing:
+  google:
   google_maps_not_loaded_error: |
-    Google Maps laddade inte. Du kan ha blockerat åtkomst till Google Maps
-    med ett webbläsartillägg eller en brandvägg, eller så blockerar något annat 
-    åtkomst som t.ex. din internetleverantör.
-  got_it!: Uppfattat!
-  got_your_data_somewhere_else?: Har du dina uppgifter någon annanstans? Vi kan hjälpa till.
-  graft: Ympa
-  graft_taxon: Ympa %{taxon}
-  grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till vårt taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
-  grant_role: "%{grant} %{role} roll"
-  grid: Rutnät
-  grid_layout: Rutnätslayout
-  grid_tooltip: Visa rutnätsvy
-  group: Grupp
-  grouping: Gruppering
-  guides: Guider
-  guide_compiled_by: Guide sammanställd av
-  guide_deleted: Guide borttagen
-  guide_will_be_deleted: Guiden kommer att raderas. Det tar ett tag för större guider.
-  guide_taxon: Guidetaxon
-  guide_was_successfully_created: Lyckades skapa guide.
-  guide_was_successfully_published: Lyckades publicera guide.
-  guide_was_successfully_updated: Lyckades uppdatera guide.
-  guidelines: Riktlinjer
-  has_already_been_flagged_by: har redan flaggats av
-  has_id_supported_by_two_or_more: Med bestämning stödd av två eller fler
-  has_one_or_more_faves: Har en eller flera favoriter
-  has_photo: Har bild
-  has_photos: Har bilder
-  has_photo_and_sound: Har både bild och ljud
-  has_photos_or_sounds: Har bilder eller ljud
-  has_sound: Har ljud
-  has_sounds: Har ljud
-  hasnt_contributed_any_observations: har inte bidragit med några fynd till detta projekt.
-  header_your_observations: Dina fynd
-  header_your_calendar: Din kalender
-  header_your_favorites: Dina favoriter
-  header_your_lists: Dina listor
-  header_your_journal: Din dagbok
-  header_your_identifications: Dina bestämningar
-  header_your_projects: Dina projekt
-  header_your_profile: Din profil
-  heads_up: Obs
+
+  got_it!:
+  got_your_data_somewhere_else?:
+  graft:
+  graft_taxon:
+  grafting_attemps_to_insert_this_taxon:
+  grant_role: ""
+  grid:
+  grid_layout:
+  grid_tooltip:
+  group:
+  grouping:
+  guides:
+  guide_compiled_by:
+  guide_deleted:
+  guide_will_be_deleted:
+  guide_taxon:
+  guide_was_successfully_created:
+  guide_was_successfully_published:
+  guide_was_successfully_updated:
+  guidelines:
+  has_already_been_flagged_by:
+  has_id_supported_by_two_or_more:
+  has_one_or_more_faves:
+  has_photo:
+  has_photos:
+  has_photo_and_sound:
+  has_photos_or_sounds:
+  has_sound:
+  has_sounds:
+  hasnt_contributed_any_observations:
+  header_your_observations:
+  header_your_calendar:
+  header_your_favorites:
+  header_your_lists:
+  header_your_journal:
+  header_your_identifications:
+  header_your_projects:
+  header_your_profile:
+  heads_up:
   heads_up_automatable_draft_split_notice_html: |
-    <strong>OBS!</strong> När du bekräftar denna ändring kommer bestämningar
-    att fördelas till uttaxa baserat på deras atlaser. Om några eller alla
-    uttaxa saknar atlaser, eller om atlaser överlappar för en viss post,
-    kommer bestämningarna att läggas på närmast gemensamma
-    föräldrataxon (%{taxon})
+
   heads_up_non_automatable_draft_split_notice_html: |
-    <strong>OBS!</strong> Denna taxonuppdelning har uttaxa som antingen
-    inte har atlaser eller inte delar en gemensam förfader, så posterna knutna till dess intaxa kan inte automatiskt tilldelas uttaxa när denna uppdelning är bekräftad och communityn kommer att behöva göra nya bestämningar för dessa poster.
+
   heads_up_automatable_split_notice_html: |
-    <strong>OBS!</strong> Vissa eller alla av bestämningarna som påverkas av
-    denna uppdelning kan ha ersatts med bestämningar av %{taxon}. Detta
-    händer när vi inte automatiskt kan tilldela en bestämning till ett
-    uttaxon.
+
   heads_up_observose_taxon_change_html: |
-    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
-    ändring har mer än %{observose_taxon_threshold} underliggande fynd.
-    Endast administratörer eller förvaltare av den taxonkontexten kan bekräfta denna ändring.
+
   heads_up_taxon_change_inputs_covered_by_framework_html: |
-    <strong>OBS!</strong> Ett eller flera av de intaxa som berörs av denna
-    ändring är del av en <a href="%{framework_url}">taxonkontext</a>. Endast
-    administratörer eller förvaltare av den taxonkontexten kan bekräfta ändringar som påverkar ingående taxa. Kontakta en av detta taxons förvaltare för att bekräfta ändringen.
-  heads_up_there_are_other_draft_taxon_changes_html:
-    one: "<strong>OBS!</strong> det finns %{count} annat utkast till taxonändring med samma intaxa:"
-    other: "<strong>OBS!</strong> det finns %{count} andra utkast till taxonändring med samma intaxa:"
-  heads_up_this_photo_has_been_flagged: "OBS: denna bild har flaggats."
-  heads_up_this_photo_is_already_associated_with: "Obs: denna bild är redan knuten till <a target='_blank' href='%{url}'>ett annat fynd</a>"
-  heads_up_you_have_multiple: "Obs: Du har flera taxonomiska maskintaggningar för identiska ranger. De är färgkodade efter rang nedan."
-  help: Hjälp
-  help_confirm_observations!: Hjälp till att bekräfta fynd!
-  help_support_inaturalist: "Hjälp till att stödja iNaturalist"
-  help_translate!: Hjälp till med översättning!
-  here_are_3_examples: Här är 3 exempel på bra utformade data
-  here_are_our_top_suggestions: Här är våra bästa förslag
-  here_are_our_top_species_suggestions: Här är våra bästa förslag på arter
-  hex_color_eg: Hex-färg, t.ex. 65644F
-  hi_user: "Hej %{user}"
+
+  heads_up_this_photo_has_been_flagged: ""
+  heads_up_this_photo_is_already_associated_with: ""
+  heads_up_you_have_multiple: ""
+  help:
+  help_confirm_observations!:
+  help_support_inaturalist: ""
+  help_translate!:
+  here_are_3_examples:
+  here_are_our_top_suggestions:
+  here_are_our_top_species_suggestions:
+  hex_color_eg:
+  hi_user: ""
   #Verb, usually a button to hide an interface element
-  hide: Dölj
-  hide_content: Dölj innehåll
+  hide:
+  hide_content:
   hide_desc: |
-    Att dölja innehåll kommer att ta bort det från publik visning, men man kommer fortfarande att kunna se att något dolts, och webbplatsens förvaltare samt författaren till innehållet kommer fortfarande att kunna se det dolda innehållet. Normalt gäller detta endast skriftligt innehåll, t.ex. om du döljer innehållet i en bestämning är den fortfarande synlig medan determinatörens kommentarer är dolda. Du kan inte ångra detta, och endast webbplatsens personal kan ta fram innehåll när det väl har dolts, så var försiktig och använd endast detta för mycket stötande innehåll.
+
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Dölj "Utan anteckning"
+  hide_no_annotation:
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total: Dölj löpande total
-  hide_uncountable_species: Dölj arter som inte kan räknas
-  high: Hög
-  highest_rank: Högsta rang
-  highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
-  history: Historik
-  home: Hem
+  hide_running_total:
+  hide_uncountable_species:
+  high:
+  highest_rank:
+  highlights_and_stats_from_year_on_site: ""
+  history:
+  home:
   #Label showing hours adjusted in the time shifter in the Uploader
-  hours_to_adjust: "Timmar att justera:"
-  however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
+  hours_to_adjust: ""
+  however_there_were_some_issues: ""
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   however_you_may_want_to_commit_html: |
-    Du kanske vill kommentera fynden med oavsiktliga oenigheter som länkas
-    ovan för att uppmärksamma artbestämmare att omfattningen av %{old_parent}
-    begränsades.
-  i_dont_know_but_i_am_sure_this_is_taxon: Jag vet inte men jag är säker på att detta är %{taxon}
-  icon: Ikon
-  icon_size: Ikonstorlek
-  iconic_taxon: Organismgrupp
-  id: Bestämning
-  id_categories:
-    tooltips:
-      leading: |
-        Taxon härstammar från community-taxonet. Denna bestämning kan leda till det rätta svaret.
-      improving: |
-        Första förslaget för detta taxon som communityn håller med om. Detta bidrar till att
-        förbättra community-taxonet.
-      maverick: |
-        Taxon är varken under- eller överliggande community-taxonet, d.v.s. communityn
-        håller inte med om detta taxon.
+
+  i_dont_know_but_i_am_sure_this_is_taxon:
+  icon:
+  icon_size:
+  iconic_taxon:
+  id:
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_move_html: "Bestämning 2 av taxon <strong>E</strong> kommer att bli en oavsiktlig oenighet med bestämning 1 av taxon <strong>B</strong> efter förändringen av ursprung"
+  id_two_of_taxon_move_html: ""
   #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_swap_html: "Bestämning 2 av taxon <strong>E</strong> kommer att bli en oavsiktlig oenighet med bestämning 1 av taxon <strong>B</strong> efter taxonbytet"
-  id_withdrawn: Bestämning ångrad
-  ids_by_taxon: Bestämningar per taxon
-  identify: Artbestämning
-  identify_observations: "Bestäm fynd"
-  identify_observations_by_these_users: Bestäm dessa användares fynd
-  identify_title: "Bestäm"
-  identification: bestämning
-  identification_by_user: Bestämning av %{user}
+  id_two_of_taxon_swap_html: ""
+  id_withdrawn:
+  ids_by_taxon:
+  identify:
+  identify_observations: ""
+  identify_observations_by_these_users:
+  identify_title: ""
+  identification:
+  identification_by_user:
   #Notification when an identification has been deleted
-  identification_deleted: Bestämning raderad.
-  identification_saved: "Bestämning sparad!"
+  identification_deleted:
+  identification_saved: ""
   #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Bestämningstext synliggjord
+  identification_text_hidden:
   #Notification when an identification has been updated
-  identification_updated: Bestämning uppdaterad!
-  identification_user_short: Best. användare
+  identification_updated:
+  identification_user_short:
   #Notification when an identification has been withdrawn
-  identification_withdrawn: Bestämning ångrad.
-  identifications: Bestämningar
-  computer_vision_suggestion: Bildigenkänningsförslag
+  identification_withdrawn:
+  identifications:
+  computer_vision_suggestion:
   computer_vision_suggestion_desc: |
-    Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
-  identifiers: Determinatörer
-  identotron: Identotron
-  identotron_for: Identotron för
-  identotron_help: Hjälp med Identotron
-  ids: "Bestämningar"
-  ids_made_for_others: Bestämningar gjorda för andra
+
+  identifiers:
+  identotron:
+  identotron_for:
+  identotron_help:
+  ids: ""
+  ids_made_for_others:
   if_for_some_reason_a_user_doesnt_agree: |
-    Om du av någon anledning inte håller med om community-taxonet, kan du avvisa den, vilket innebär att din artbestämning är den som används för länkning till andra fynd, uppdatering av livslistor, etc. Det betyder också att ditt fynd bara kan uppnå forskningsklass när communityn håller med dig.
+
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_moves_html: |
-    Om gallring av en förälder resulterar i mer än 10 oavsiktliga oenigheter, bör
-    du dela upp föräldern efter att ha flyttat barnet för att ersätta befintliga bestämningar av
-    föräldern <strong>(B)</strong> med bestämningar som inte är oeniga.
+
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_swaps_html: |
-    Om gallring av en förälder resulterar i mer än 10 oavsiktliga oenigheter, bör
-    du dela upp föräldern efter att ha bytt ut barnet för att ersätta befintliga bestämningar
-    av föräldern <strong>(B)</strong> med bestämningar som inte är oeniga.
-  if_matches_come_from_a_comprehensive_list: Om matchningar kommer från en fullständig lista visas en grön list här.
-  if_this_is_a_scientific_name: Om detta är ett vetenskapligt namn, är det för närvarande accepterat?
-  if_this_link_will_apply_to_descendant: Om denna länk ska gälla för underliggande taxa, kan du använda taggningar enligt mall för att fylla i taxonnamnet i URL:en
-  if_you_have_any_trouble_with_the_site_check_out: 'Om du har några frågor, kolla i vår <a href="%{help_url}">hjälpavdelning</a> eller gör ett inlägg i vår <a href="%{feedback_url}">feedback-grupp</a>.'
-  if_your_project_is: Om ditt projekt handlar om en viss fyndplats, ange koordinaterna genom att klicka på kartan eller ange dem manuellt.
-  ignore_and_continue: Ignorera och fortsätt
-  ignore_times: Ignorera tider
-  image_must_be_exactly: bilden måste vara exakt 950px bred och högst 400px hög
-  image_size_control: Kontroll av bildstorlek
+
+  if_matches_come_from_a_comprehensive_list:
+  if_this_is_a_scientific_name:
+  if_this_link_will_apply_to_descendant:
+  if_you_have_any_trouble_with_the_site_check_out: ''
+  if_your_project_is:
+  ignore_and_continue:
+  ignore_times:
+  image_must_be_exactly:
+  image_size_control:
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
-  imperiled: Äventyrad
-  import: Importera
-  import_all_photos_as_observations: Importera alla bilder som fynd
-  import_as_an_observation: Importera som ett fynd
-  import_as_another_observation: Importera som ett annat fynd?
-  import_date_time_location_taxonomic: "Importera datum, tid, position, beskrivning och taxonomisk information från denna bild."
-  import_from_csv: Importera från CSV
-  import_from_other_photo_sites: Importera från andra fotosajter
-  import_observations: Importera fynd
-  import_observations_from_a_photo: Importera fynd från en bildleverantör eller en fil på din dator.
-  import_photos: Importera bilder
-  import_ranges: Importera områden
-  import_sections: Importera avsnitt
-  import_tags_from_csv: Importera taggningar från CSV
-  importing: "Importerar..."
-  improving: Förbättrar
-  in_n: "i %{n}"
-  in_place_x: i %{place}
-  inaturalist_network: iNaturalist-nätverket
-  inaturalist_network_affiliation: iNaturalist-nätverksanknytning
+  imperiled:
+  import:
+  import_all_photos_as_observations:
+  import_as_an_observation:
+  import_as_another_observation:
+  import_date_time_location_taxonomic: ""
+  import_from_csv:
+  import_from_other_photo_sites:
+  import_observations:
+  import_observations_from_a_photo:
+  import_photos:
+  import_ranges:
+  import_sections:
+  import_tags_from_csv:
+  importing: ""
+  improving:
+  in_n: ""
+  in_place_x:
+  inaturalist_network:
+  inaturalist_network_affiliation:
   #Label for messages you've received
-  inbox: Inkorg
-  include_places: Inkludera fyndplatser
-  include_projects: Inkludera projekt
-  include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
-  include_taxa: Inkludera taxa
-  include_users: Inkludera användare
-  including: inklusive
-  increase_brightness: Öka ljusstyrkan
-  in_progress: pågår
-  in_the_past: förr i tiden
-  in_the_past_week: Under senaste veckan
-  inactive: Inaktiv
+  inbox:
+  include_places:
+  include_projects:
+  include_suggestions_not_seen_nearby:
+  include_taxa:
+  include_users:
+  including:
+  increase_brightness:
+  in_progress:
+  in_the_past:
+  in_the_past_week:
+  inactive:
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status: Inaktivt
-  inactive_taxon: Inaktivt taxon
+  inactive_complete_set_status:
+  inactive_taxon:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status: Inaktivt
-  inactive_taxon_concepts_are: Inaktiva taxonkoncept är antingen taxonomiskt föråldrade eller förbereds för en taxonändring. Föråldrade koncept behålls för att upprätthålla historik samt för kompatibilitet med vissa partnerwebbplatser.
-  inappropriate_content: Olämpligt innehåll?
-  inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name} anser att detta är en fullständig lista över detta taxon på denna fyndplats."
-  inat_user_profile: "%{site_name}: %{user}'s profil"
-  inaturalist_activity_notifications: "%{site_name} aktivitetsaviseringar"
+  inactive_taxon_status:
+  inactive_taxon_concepts_are:
+  inappropriate_content:
+  inat_account_action: ""
+  inat_believes_this_is_a_complete_listing: ""
+  inat_user_profile: ""
+  inaturalist_activity_notifications: ""
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
-  inaturalist_applications: "iNaturalist-applikationer"
-  inaturalist_is_a_joint_initiative: "%{site_name} är ett gemensamt initiativ av California Academy of Sciences och National Geographic Society"
-  inaturalist_places: "%{site_name}-fyndplatser"
-  info: Info
-  input_taxon: Ingångstaxon
-  insects: insekter
-  insect_life_stage: Insektsstadium
-  instagram: Instagram
+  inaturalist_applications: ""
+  inaturalist_is_a_joint_initiative: ""
+  inaturalist_places: ""
+  info:
+  input_taxon:
+  insects:
+  insect_life_stage:
+  instagram:
   #Tool tip for a button that inserts quoted text into a text area
-  insert_a_quote: Infoga ett citat
-  interactions: Interaktioner
-  internal_server_error: Internt serverfel
-  internal_taxon_including_descendants: Internt taxon (inklusive underliggande)
-  internal_taxon_rank: Intern taxonrang
-  introduced: Införd
-  introduced_in_place: "Införd till %{place}"
-  invitation: Inbjudan
-  invite: bjud in
-  invite_people: Bjud in personer
-  invite_people_to_project: "Bjud in personer till %{project}"
+  insert_a_quote:
+  interactions:
+  internal_server_error:
+  internal_taxon_including_descendants:
+  internal_taxon_rank:
+  introduced:
+  introduced_in_place: ""
+  invitation:
+  invite:
+  invite_people:
+  invite_people_to_project: ""
   #Type of project where people can only join after they have been invited
-  inviteonly: endast inbjudna
-  invited_x: "%{x} inbjudna"
-  iphone: iPhone
-  is_not_following_anyone: följer inte någon.
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
-  is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
-  is_this_place_a_duplicate: Är denna fyndplats en dubblett?
-  it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
+  inviteonly:
+  invited_x: ""
+  iphone:
+  is_not_following_anyone:
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
+  is_this_offensive_html: ''
+  is_this_place_a_duplicate:
+  it_can_now_be_used_for_research:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
-  italic_text: kursiv text
+  italic_text:
   item_flagged_notice_html: |
-    Detta fynd har flaggats som spam och är inte längre
-    publikt synlig. Du kan se den eftersom du skapade den, eller är en webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen <a href="mailto:%{help_email}" class="contact">kontakta oss</a>.
-    <a href="%{manage_flags_path}">Hantera flaggor</a>
-  jobs: Jobb
-  join: Gå med
-  join_and_add_an_observation_to_project_html: Gå med och lägg till en fynd till %{project}
-  join_project: Gå med i detta projekt
+
+  jobs:
+  join:
+  join_and_add_an_observation_to_project_html:
+  join_project:
   #Prompt to join a specific project
-  join_project?: Gå med i %{project}?
-  join_the_largest_group_of_naturalists_in_the_world: Gå med i den största gruppen naturforskare i världen!
-  join_this_project: Gå med i detta projekt
-  'joined!': Ansluten!
-  joined_projects: Projekt ansluten till
-  joined_with_date: "Gick med: %{date}"
-  journal: Dagbok
-  journal_archives_for: Dagboksarkiv för
-  journal_post: Dagboksinlägg
-  journal_post_deleted: Dagboksinlägg raderat.
-  journal_posts: Dagboksinlägg
-  jpg_png_or_gif: "JPG, PNG eller GIF"
-  jump_to_letter: Hoppa till bokstav
-  just_a_reminder: En liten påminnelse, eftersom du kanske har gett projektförvaltarna behörighet att se dina fynds dolda koordinaterna i detta projekt.
-  just_added!: Lades just till!
-  keep_editing: Fortsätt redigera
-  keyboard_shortcuts: Kortkommandon
-  kml: KML
-  kml_file_size_error: "KML måste vara mindre än 1 MB"
-  label_colon: "%{label}:"
-  labels: Etiketter
-  label_to_group_a_batch_of_taxon_changes: Etikett för att gruppera flera taxonändringar
+  join_project?:
+  join_the_largest_group_of_naturalists_in_the_world:
+  join_this_project:
+  'joined!':
+  joined_projects:
+  joined_with_date: ""
+  journal:
+  journal_archives_for:
+  journal_post:
+  journal_post_deleted:
+  journal_posts:
+  jpg_png_or_gif: ""
+  jump_to_letter:
+  just_a_reminder:
+  just_added!:
+  keep_editing:
+  keyboard_shortcuts:
+  kml:
+  kml_file_size_error: ""
+  label_colon: ""
+  labels:
+  label_to_group_a_batch_of_taxon_changes:
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: Privat fyndplats
+  location_private:
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown: Saknar position
+  location_unknown:
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
-  lock_zoom_level: Lås zoomnivå
-  language_slash_locale: Språk/Plats
-  language_slash_locale_description: Detta anger inställningar för språk och datumformatering för iNaturalist baserat på din plats. Ändringar kommer att träda i kraft när sidan har uppdaterats.
-  language_slash_type: Språk / Typ
+  lock_zoom_level:
+  language_slash_locale:
+  language_slash_locale_description:
+  language_slash_type:
   #Large photo size
-  large: stor
-  last_active_with_date: "Senast aktiv: %{date}"
-  last_confirmed_observation: Senast bekräftade fynd
-  last_observation: Senaste fynd
-  last_observation_caps: SENASTE FYND
-  last_seen: Senast sedd
-  last_year: Senaste året
-  lat: Lat
-  latitude: Latitud
-  latitude_in_decimals: 'Latitud i decimalgrader, t.ex. 38.123'
-  latitude_slash_y_coord_slash_northing: Latitud / y-koord / nordlig
-  latitude_value: "Latitud: %{latitude}"
+  large:
+  last_active_with_date: ""
+  last_confirmed_observation:
+  last_observation:
+  last_observation_caps:
+  last_seen:
+  last_year:
+  lat:
+  latitude:
+  latitude_in_decimals: ''
+  latitude_slash_y_coord_slash_northing:
+  latitude_value: ""
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers: Lager
-  layout: Layout
-  leaderboard: Topplista
-  leaderboard_for_x: "Topplista för %{x}"
-  leaderboards: Topplistor
-  leaderboard_most:
-    species_in_month_year: Flest arter i %{month_year}
-    species_in_year: Flest arter %{year}
-    observations_in_month_year: Flest fynd i %{month_year}
-    observations_in_year: Flest fynd %{year}
-    identifications_in_month_year: Flest bestämningar i %{month_year}
-    identifications_in_year: Flest bestämningar %{year}
-  leading: Leder
-  learn: Lär dig
-  learn_about_the_species_live_in: Lär dig om arterna som lever i
-  learn_more: Läs mer
-  learn_more_raquo: "Lär dig mer &raquo;"
-  learn_what_these_licenses_mean: Lär dig vad dessa licenser innebär
-  least_concern: Livskraftig
-  leave: Lämna
-  leave_a_comment: Lämna en kommentar
-  leave_this_project: Lämna detta projekt
+  layers:
+  layout:
+  leaderboard:
+  leaderboard_for_x: ""
+  leaderboards:
+  leading:
+  learn:
+  learn_about_the_species_live_in:
+  learn_more:
+  learn_more_raquo: ""
+  learn_what_these_licenses_mean:
+  least_concern:
+  leave:
+  leave_a_comment:
+  leave_this_project:
   #Terminal nodes in a taxonomic tree
-  leaves: löv
+  leaves:
   legacy_authentication_notice_html: |
-    Det ser ut som om du använder ett lösenord från en äldre version av denna webbplats.
-    Kom ihåg att <a href="%{url}">ändra ditt lösenord</a> för den nya versionen.
-  let_us_walk_you_through: Låt oss gå igenom de viktigaste funktionerna på denna webbplats.
-  lexicon: Lexikon
-  lexicon_cannot_contain_words: "kan inte innehålla följande ord: %{words}"
+
+  let_us_walk_you_through:
+  lexicon:
+  lexicon_cannot_contain_words: ""
   lexicons:
-    scientific_names: Vetenskapliga namn
-    afrikaans: Afrikaans
-    albanian: Albanska
-    arabic: Arabiska
-    armenian: Armeniska
-    belarusian: Belarusiska
-    bengali: Bengaliska
-    bulgarian: Bulgariska
-    catalan: Katalanska
-    cebuano: Cebuano
-    chinese_simplified: Kinesiska (förenklad)
-    chinese_traditional: Kinesiska (traditionell)
-    creole_french: kreol (Franska)
-    creole_portuguese: kreol (Portugisiska)
-    croatian: Kroatiska
-    czech: Tjeckiska
-    danish: Danska
-    davawenyo: Davawenyo
-    dutch: Holländska
-    english: Engelska
-    estonian: Estniska
-    faroese: Färöiska
-    finnish: Finska
-    french: Franska
-    galician: Galiciska
-    gela: Gela
-    german: Tyska
-    greek: Grekiska
-    hawaiian: Hawaiiska
-    hebrew: Hebreiska
-    hiligaynon: Hiligaynon
-    hungarian: Ungerska
-    icelandic: Isländska
-    ilokano: Ilokano
-    indonesian: Indonesiska
-    italian: Italienska
-    japanese: Japanska
-    kannada: Kannada
-    korean: Koreanska
-    latvian: Lettiska
-    lithuanian: Litauiska
-    luxembourgish: Luxemburgiska
-    malay: Malajiska
-    malayalam: Malayalam
-    maltese: Maltesiska
-    maori: Maori
-    marathi: Marathi
-    maya: Maya
-    misima_paneati: Misima-paneati
-    mongolian: Mongoliska
-    nahuatl: Nahuatl
-    norwegian: Norska
-    occitan: Occitanska
-    ojibwe: Ojibwe
-    palauan: Palauiska
-    pangasinan: Pangasinan
-    persian: Persiska
-    polish: Polska
-    portuguese: Portugisiska
-    romanian: Rumänska
-    russian: Ryska
-    santali: santali
+    scientific_names:
+    afrikaans:
+    albanian:
+    arabic:
+    armenian:
+    belarusian:
+    bengali:
+    bulgarian:
+    catalan:
+    cebuano:
+    chinese_simplified:
+    chinese_traditional:
+    creole_french:
+    creole_portuguese:
+    croatian:
+    czech:
+    danish:
+    davawenyo:
+    dutch:
+    english:
+    estonian:
+    faroese:
+    finnish:
+    french:
+    galician:
+    gela:
+    german:
+    greek:
+    hawaiian:
+    hebrew:
+    hiligaynon:
+    hungarian:
+    icelandic:
+    ilokano:
+    indonesian:
+    italian:
+    japanese:
+    kannada:
+    korean:
+    latvian:
+    lithuanian:
+    luxembourgish:
+    malay:
+    malayalam:
+    maltese:
+    maori:
+    marathi:
+    maya:
+    misima_paneati:
+    mongolian:
+    nahuatl:
+    norwegian:
+    occitan:
+    ojibwe:
+    palauan:
+    pangasinan:
+    persian:
+    polish:
+    portuguese:
+    romanian:
+    russian:
+    santali:
     setswana: Setswana
     sinhala: Singalesiska
     slovak: Slovakiska
