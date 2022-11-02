@@ -1,1199 +1,1767 @@
 ko:
-  x_comments:
-    other: '댓글 %{count} 개'
-  x_comments_html:
-    other: '댓글 <span class="count">%{count}</span> 개'
-  x_faves:
-    other: '즐겨찾기 %{count} 개'
-  x_flags_resolved_html:
-    other: "플래그 <span class='count'>%{count}</span>개를 해결함"
-  x_identifications:
-    other: '동정 %{count} 개'
-  x_identifications_html:
-    other: '동정 <span class="count">%{count}</span> 개'
-  x_identifications_:
-    other: '동정 %{count} 개'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span>'
-  x_journal_posts_html:
-    other: '일지 포스팅 <span class="count">%{count}</span> 개'
-  x_matching_taxa:
-    other: '일치하는 분류군 %{count} 개'
-  x_matching_taxa_html:
-    other: '<span class="count">%{count}</span> 일치하는 분류군'
-  x_misidentifications_of_this_species:
-    other: "이 종의 오동정 %{count} 개"
-  #This is a fallback. Most of the time we'll use
-  #x_misidentifications_of_species_in_this_genus
-  x_misidentifications_of_species_in_this_rank:
-    other: "%{rank} 에 속하는 종의 오동정 %{count} 개"
-  x_observations:
-    other: "관찰 %{count} 개"
-  x_observations_:
-    other: "관찰 %{count} 개"
-  x_observations_html:
-    other: "관찰 <span class='count'>%{count}</span> 개"
-  x_observations_link_html:
-    other: "<a href='%{url}'>관찰 %{count} 개</a>"
-  x_observations_reviewed_html:
-    other: "검토한 관찰 <span class='count'>%{count}</span> 개"
-  x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span>'
-  x_others:
-    other: "외 %{count} 명"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
-  x_photos:
-    other: "사진 %{count} 개"
-  x_new_species:
-    other: "새로운 종 %{count} 종"
-  x_species:
-    other: '%{count} 종'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> 종"
-  x_species_link_html:
-    other: "<a href='%{url}'>%{count} 종</a>"
-  x_suggestions_filtered_by_colon:
-    other: "다음 필터에 의해서 %{count} 개가 제안됨:"
-  x_taxa_observed_html:
-    other: "<span class='count'>%{count}</span> 개의 분류군이 관찰됨"
-  x_research_grade_observations_html:
-    other: "<span class='count'>%{count}</span> 연구 자료 등급 관찰"
-  x_research_grade_observations_to_species_html:
-    other: "종 수준 이상으로 동정된 연구 자료 등급 관찰 <span class='count'>%{count}</span> 개"
-  x_taxa_curated_html:
-    other: "분류군 <span class='count'>%{count}</span>개를 큐레이션함"
-  x_taxa_matching_current_filters:
-    other: "현재 검색 필터와 일치하는 %{count} 개의 분류군"
-  x_taxon_changes_added_html:
-    other: "분류군 변경사항 <span class='count'>%{count}</span>개를 추가함"
-  _100_day_trends: 지난 100일간 동향
-  a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
+  x_people_helped_user_with_y_ids_html: ""
+  _100_day_trends:
+  _percent_ID_d: ""
+  a_community_for_naturalist:
   a_default_taxon_name_will_automatically_created: |
-    학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을 저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
-  a_flag_for_x: "%{x}을 위한 플래그"
-  a_member_of_taxon_html: "%{taxon}에 속함"
-  about: 소개
-  about_charts: 차트에 대하여
-  about_community_taxa: 공동체 분류군에 대하여
-  about_complete_taxa: 완전한 분류군에 대하여
-  about_conservation_status: 보전 상태에 대하여
-  about_editing_observation_fields: 관찰 필드 편집에 대하여
+
+  a_flag_for_x: ""
+  a_member_of_taxon_html: ""
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: ""
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: ""
+  about:
+  about_charts:
+  about_community_taxa:
+  about_complete_taxa:
+  about_conservation_status:
+  about_editing_observation_fields:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: 서식 상태에 대하여
-  about_licenses: 라이선스 정보
+  about_establishment_means:
+  about_license_options:
+  about_licenses:
   #Header for a section describing taxon names
-  about_names: 이름에 대하여
-  about_places: 장소에 대하여
-  about_this_bioblitz: 이 바이오블리츠에 대하여
-  about_this_map: 이 지도에 대하여
-  about_this_project: 이 프로젝트에 대하여
+  about_names:
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: ""
+  about_places:
+  about_taxon_ranges:
+  about_taxon_ranges_desc: |
+
+  about_the_network:
+  about_this_bioblitz:
+  about_this_map:
+  about_this_project:
+  about_trips_html: |
+
+  about_trusting_projects:
+  about_trusting_projects_options_any:
+  about_trusting_projects_options_any_desc: |-
+
+  about_trusting_projects_options_taxon: |-
+
+  about_trusting_projects_options_taxon_desc: |-
+
+  about_trusting_projects_overview: |-
+
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+
+  about_trusting_projects_warning: |-
+
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: '정확도 (m)'
-  account: 계정
-  account_creation: iNaturalist에 가입한 날짜
-  account_settings: 계정 및 프로필 편집
-  accept_community_identifications: 공동체 동정 승인
-  accuracy: 정확성
-  accuracy_meters: 정확도 (미터)
+  acc: ''
+  account:
+  account_creation:
+  account_settings:
+  accept_community_identifications:
+  accuracy:
+  accuracy_meters:
   accuracy_of_the_coordinates: |
-    미터로 나타낸 좌표의 정확도. 정확도는 위의 편집 링크를 클릭하거나 지도 마커를 클릭한 후 가장자리를 드래그해서 편집할 수 있습니다. 원 안에 자신의 실제 위치가 확실히 들어가도록 설정해 주세요.
-  actions: 동작
-  active: 활성
-  active_users: 활동적인 사용자
-  activity: 활동
-  adapted_by_name_from_a_work_by_original: "%{original}의 연구를 바탕으로 %{name}님이 적용함"
-  add: 추가
-  add_a_batch_of_observations: 관찰을 여러 개 추가하기
-  add_a_batch_of_taxa: 분류군을 여러 개 추가하기
-  add_a_comment: 댓글 추가
-  add_a_field: 필드 추가
-  add_a_flag: 플래그 달기
+
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action:
+  actions:
+  active:
+  #Status of a complete set that is available for use
+  active_complete_set_status:
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status:
+  active_users:
+  activity:
+  adapted_by_name_from_a_work_by_original: ""
+  add:
+  add_a_batch_of_observations:
+  add_a_batch_of_taxa:
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list:
+  add_a_comment:
+  add_a_field:
+  add_a_flag:
   #Tool tip for a button that adds a link to a text area
-  add_a_link: 링크 추가
-  add_a_name: 이름 추가하기
-  add_a_new_change_group: 새로운 변화 그룹 추가하기
-  add_a_single_observation: 관찰 하나를 추가합니다.
-  add_a_taxon: 분류군 추가하기
+  add_a_link:
+  add_a_name:
+  add_a_note:
+  add_a_new_change_group:
+  #Tool tip for a button that adds a numbered list to a text area
+  add_a_numbered_list:
+  add_a_single_observation:
+  add_a_taxon:
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    이름을 바꾸고 싶다면 <a target="_blank" href="%{url}">taxon swap</a>을 추가하십시오
-  add_an_assessment: 평가 추가하기
-  add_an_identification: 동정 추가하기
-  add_an_observation: 관찰 추가하기
-  add_an_observation_of: "%{taxon} 관찰을 추가하기"
-  add_another_flag: 다른 플래그 달기
-  add_another_photo: 다른 사진 추가하기
-  add_another_section: 다른 구역 추가하기
-  add_another_subscription: 다른 구독 추가하기
+
+  add_an_assessment:
+  add_an_identification:
+  add_an_observation:
+  add_an_observation_of: ""
+  add_an_observation_to_project_html:
+  add_annotations_for_x:
+  add_another_flag:
+  add_another_photo:
+  add_another_section:
+  add_another_subscription:
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: 자산 추가하기
-  add_batch: 여러 개 추가하기
-  add_comma_separated_tags: "쉼표로 구분된 태그 추가하기"
-  add_comment: 댓글 추가
-  add_conservation_status: 보전 상태 추가하기
-  add_custom_project_fields: 사용자 지정 프로젝트 필드 추가하기
-  add_edit_flags: 플래그 추가/편집
-  add_editor: 편집자 추가
-  add_description: "%{description_name} 추가하기"
-  add_from_your_observations: 내 관찰에서 추가하기
-  add_link: 링크 추가
-  add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
-  add_id: 동정 추가하기
-  add_new_lexicon: 새로운 언어 추가하기
-  add_new_photos_by_their_ids: 플리커 ID를 이용해 새로운 사진 추가하기 (크리에이티브 커먼즈에 속해야 함!)
-  add_new_place: 새로운 장소 추가하기
-  add_new_rule: 새로운 규칙 추가하기
-  add_new_source: "새로운 출처 추가하기..."
-  add_new_taxon_name: 새로운 분류군 이름 추가하기
-  add_notes_about_this_taxon: '이 장소에 있는 분류군에 대해 메모 추가하기 (예: 언제 어디서 나타나는지)'
-  add_obs_from_a_link: "목록에서 관찰 추가하기: %{link}"
-  add_obs_from_a_list: 목록에서 관찰 추가하기
-  add_observations: 관찰 추가하기
-  add_observations_by_checking_off: 목록에서 종을 선택해 관찰을 추가하기
-  add_observations_project: 이 프로젝트에 관찰 추가하기
+  add_asset:
+  add_batch:
+  add_blocked_users:
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text:
+  add_comma_separated_tags: ""
+  add_comment:
+  add_conservation_status:
+  add_custom_project_fields:
+  add_edit_flags:
+  add_editor:
+  add_description: ""
+  add_from_your_observations:
+  add_link:
+  add_higher_level_taxon:
+  add_id:
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text:
+  add_muted_users:
+  add_new_lexicon:
+  add_new_photos_by_their_ids:
+  add_new_place:
+  add_new_rule:
+  add_new_source: ""
+  add_new_taxon_name:
+  add_notes_about_this_taxon:
+  add_obs_from_a_link: ""
+  add_obs_from_a_list:
+  add_observations:
+  add_observations_by_checking_off:
+  add_observations_project:
   #Prompt to add a new journal post
-  add_one: 하나 추가하기!
-  add_photos: 사진 추가하기
-  add_place: 장소 추가하기
-  add_alive_or_dead_alive_annotation: '생존 여부: 살아있음'
-  add_alive_or_dead_cannot_be_determined_annotation: '생존 여부: 확인할 수 없음'
-  add_alive_or_dead_dead_annotation: '생존 여부: 죽음'
-  add_life_stage_adult_annotation: '성장 단계: 성체'
-  add_life_stage_teneral_annotation: '성장 단계: 우화 직후'
-  add_life_stage_subimago_annotation: '성장 단계: 준성체'
-  add_life_stage_pupa_annotation: '성장 단계: 번데기'
-  add_life_stage_nymph_annotation: '성장 단계: 약충'
-  add_life_stage_larva_annotation: '성장 단계: 애벌레'
-  add_life_stage_juvenile_annotation: '성장 단계: 아성체'
-  add_life_stage_egg_annotation: '성장 단계: 알'
+  add_one:
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now:
+  add_photos:
+  add_place:
+  add_alive_or_dead_alive_annotation: ''
+  add_alive_or_dead_cannot_be_determined_annotation: ''
+  add_alive_or_dead_dead_annotation: ''
+  add_plant_phenology_budding_annotation: ''
+  add_plant_phenology_flower_budding_annotation: ''
+  add_plant_phenology_flowering_annotation: ''
+  add_plant_phenology_fruiting_annotation: ''
+  add_plant_phenology_no_evidence_of_flowering_annotation: ''
+  add_life_stage_adult_annotation: ''
+  add_life_stage_teneral_annotation: ''
+  add_life_stage_subimago_annotation: ''
+  add_life_stage_pupa_annotation: ''
+  add_life_stage_nymph_annotation: ''
+  add_life_stage_larva_annotation: ''
+  add_life_stage_juvenile_annotation: ''
+  add_life_stage_egg_annotation: ''
+  add_evidence_of_presence_organism_annotation: ''
+  add_evidence_of_presence_feather_annotation: ''
+  add_evidence_of_presence_gall_annotation: ''
+  add_evidence_of_presence_scat_annotation: ''
+  add_evidence_of_presence_track_annotation: ''
+  add_evidence_of_presence_bone_annotation: ''
+  add_evidence_of_presence_molt_annotation: ''
   #As in a Taxon Framework Relationship
-  add_relationship: '관계 추가'
-  add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
-  add_sex_female_annotation: '성별: 암컷'
-  add_sex_male_annotation: '성별: 수컷'
-  add_some_now: 지금 추가하기
-  add_tag: 태그 추가
-  add_tags: 태그 추가하기
-  add_tags_to_selected_taxa: 선택된 분류군에 태그 추가하기
-  add_taxa: 분류군 추가하기
-  add_taxon_batch_to: "분류군 여러 개를 %{list}에 추가하기"
-  add_taxon_range: 분류군 범위를 추가하기
-  add_taxonomic_tags_to: "선택된 Flickr 사진에 분류군 태그 추가하기"
-  add_to_a_scheme: 계획에 추가하기
-  add_to_a_project: 프로젝트에 추가하기
-  add_to_calendar: 달력에 추가하기
-  add_to_checklist: 체크리스트에 추가하기
-  add_to_favorites: 즐겨찾기에 추가하기
-  add_to_list: 목록에 추가하기
-  add_to_project: 프로젝트에 추가하기
-  add_to_your_list: 내 목록에 추가하기
+  add_relationship: ''
+  #As in a Guide Section
+  add_section:
+  add_several_observations_at_once:
+  add_sex_female_annotation: ''
+  add_sex_male_annotation: ''
+  add_sex_cannot_be_determined_annotation: ''
+  add_some_now:
+  add_tag:
+  add_tags:
+  add_tags_to_selected_taxa:
+  add_taxa:
+  add_taxon_batch_to: ""
+  add_taxon_range:
+  add_taxonomic_tags_to: ""
+  add_to_a_scheme:
+  add_to_a_project:
+  add_to_calendar:
+  add_to_checklist:
+  add_to_favorites:
+  add_to_list:
+  add_to_project:
+  add_to_your_list:
   add_your_email_to_get: |
-    이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 나중에 확인해 주세요!
-  add_your_own_observations_at: "%{site_name}에 내 관찰 추가하기"
-  added: 업로드 날짜
-  added!: 추가되었습니다!
+
+  add_your_own_observations_at: ""
+  added:
+  added!:
   added_as_a_part_of_a_taxon_change_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 변경</a>으로 인하여 변경됨
+
   added_as_a_part_of_a_taxon_merge_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 병합</a>으로 인하여 변경됨
+
   added_as_a_part_of_a_taxon_split_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 분리</a>로 인하여 변경됨
+
   added_as_a_part_of_a_taxon_swap_html: |
-    <a target="%{target}" class="%{class}" href="%{url}">분류군 교체</a>로 인하여 변경됨
-  added_by: 추가한 사용자
-  added_by_user_on_date_html: "%{date}에 %{user}님이 추가함"
+
+  added_by:
+  added_by_user_on_date_html: ""
+  added_on_datetime: ""
   added_to_favorites_html: |
-    <a href="%{url}">즐겨찾기</a>에 추가됨
-  adding: "추가 중..."
-  adjust_brightness: 밝기 조정
-  admin: 관리자
-  admin_s: 관리자
-  admin_only: 관리자 전용
-  admin_tools: 관리자 도구
-  agree_: 동의
-  agree?: 동의하십니까?
-  agree_with_current_taxon: 현재 분류군에 동의
-  agreeing: 동의 중...
-  aka: 다른 말로
-  all: 모두
-  all_comments: 모든 댓글
-  all_flags_must_be_resolved: 모든 플래그는 해결되어야 합니다
-  all_life: 모든 생명
-  all_names: 모든 이름
-  all_observations: 모든 관찰
-  all_photos: 모든 사진
-  all_places: "모든 장소"
-  all_projects: 모든 프로젝트
-  all_rank_added_to_the_database:
-    phylum: 데이터베이스에 추가된 모든 문
-    subphylum: 데이터베이스에 추가된 모든 아문
-    superclass: 데이터베이스에 추가된 모든 상강
-    class: 데이터베이스에 추가된 모든 강
-    subclass: 데이터베이스에 추가된 모든 아강
-    infraclass: 데이터베이스에 추가된 모든 하강
-    superorder: 데이터베이스에 추가된 모든 상목
-    order: 데이터베이스에 추가된 모든 목
-    suborder: 데이터베이스에 추가된 모든 아목
-    infraorder: 데이터베이스에 추가된 모든 하목
-    superfamily: 데이터베이스에 추과된 모든 상과
-    epifamily: 데이터베이스에 추가된 모든 고과(高科)
-    family: 데이터베이스에 추가된 모든 과
-    subfamily: 데이터베이스에 추가된 모든 아과
-    supertribe: 데이터베이스에 추가된 모든 주족
-    tribe: 데이터베이스에 추가된 모든 족
-    subtribe: 데이터베이스에 추과된 모든 아족
-    genus: 데이터베이스에 추가된 모든 속
-    genushybrid: 데이터베이스에 추가된 모든 속간 잡종
-    subgenus: 데이터베이스에 추가된 모든 아속
-    section: 데이터베이스에 추가된 모든 절(Section)
-    subsection: 데이터베이스에 추가된 모든 아절(Subsection)
-    complex: 데이터베이스에 추가된 모든 복합군
-    species: 데이터베이스에 추가된 모든 종
-    hybrid: 데이터베이스에 추가된 모든 잡종
-    subspecies: 모든 하위 분류군이 데이터베이스에 추가됨
-    variety: 데이터베이스에 추가된 모든 품종
-  all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
-  all_taxa:
-    amphibians: 양서류
-    animals: 동물
-    arachnids: 거미
-    birds: 조류
-    chromista: 크로미스타
-    fungi: 진균류
-    fungi_including_lichens: 지의류를 포함한 진균류
-    insects: 곤충
-    mammals: 포유류
-    mollusks: 연체동물
-    other_animals: 다른 동물들
-    plants: 식물
-    protozoans: 원생동물
-    ray_finned_fishes: 조기류
-    reptiles: 파충류
-    life: 생명
-  all_taxa_: 모든 분류군
-  all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
-  all_taxonomic_groups: "&laquo; 모든 분류학적 그룹"
-  all_updates: 모든 업데이트
-  allow_curator_access: 큐레이터 엑세스 허용
-  allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함
-  allowed_establish_means_values: 허용한 설정 평균값
-  allowed_html: 허용한 HTML
-  allowed_occurrence_status_values: 허용한 발생 상태값
-  allowed_values: 허용한 값
-  almost_there_: 거의 다 왔습니다...
-  alphabetical: 알파벳순
-  alphabetical_order: 알파벳순 정렬
-  already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
-  amphibians: 양서류
-  ancestor_taxon: 조상 분류군
-  and: 그리고
-  and_other_taxa: "&amp; 다른 분류군"
-  android: 안드로이드
-  animals: 동물
-  annotation: 주석
-  annotations: 주석
-  announcement_was_successfully_created: 공지가 성공적으로 만들어졌습니다.
-  announcement_was_successfully_updated: 공지가 성공적으로 업데이트되었습니다.
-  announcements: 공지
+
+  adding: ""
+  adjust_brightness:
+  admin:
+  admin_s:
+  admin_only:
+  admin_tools:
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations:
+  agree_:
+  agree?:
+  agree_with_current_taxon:
+  agreeing:
+  aka:
+  #Noun, title of a popup alerting you to something
+  alert:
+  all:
+  all_comments:
+  all_flags_must_be_resolved:
+  all_life:
+  all_names:
+  all_observations:
+  all_photos:
+  all_places: ""
+  all_projects:
+  all_rights_reserved:
+  all_taxa_:
+  all_taxa_in_this_guide:
+  all_taxonomic_groups: ""
+  all_updates:
+  allow_curator_access:
+  allow_project_curators_to_view_your_private_coordinates:
+  allowed_establish_means_values:
+  allowed_html:
+  allowed_occurrence_status_values:
+  allowed_values:
+  almost_there_:
+  alphabetical:
+  alphabetical_order:
+  already_have_an_account_log_in_html:
+  amphibians:
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes:
+  analyze_ids:
+  ancestor_taxon:
+  and:
+  and_other_taxa: ""
+  android:
+  animals:
+  annotation:
+  annotations:
+  announcement_was_successfully_created:
+  announcement_was_successfully_updated:
+  announcements:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any: 모두
+  any:
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_: 모두
-  apply_to_selected: 선택에 적용
-  apply_captive_cultivated: "포획됨 / 사육됨 적용"
-  apply_fields: 필드 적용
-  apply_geoprivacy: 위치보호 적용
-  apply_darr: "적용 &darr;"
-  apply_these_settings_to_all: 이 설정을 아래 모든 관찰에 적용
-  appropriate?: 적절한가요?
-  arachnids: 거미
-  archives: 기록 보관소
-  are_you_really_sure_want_delete_this_user: 정말 이 사용자와 모든 정보를 삭제할까요? 정말 확실한가요?
-  are_you_sure?: 확실합니까?
-  are_you_sure_no_undo: 확실합니까? 이 동작은 취소할 수 없습니다.
-  are_you_sure_delete_post: 이 게시글을 삭제하겠습니까?
-  are_you_sure_delete_taxon_move_associates: "이 %{taxonname} (%{taxonid})와(과) 관련 모든 정보를 이동하겠습니까?"
-  are_you_sure_delete_this_place: 이 장소를 삭제하겠습니까?
-  are_you_sure_leave_this_project: 정말 이 프로젝트를 떠나겠습니까?
-  are_you_sure_merge_these_places: 이 장소들을 병합하시겠습니까? 이것은 되돌릴 수 없습니다.
-  are_you_sure_remove_photo: "이 사진을 삭제하겠습니까?"
-  are_you_sure_remove_taxon_from_list: "이 분류군을 목록에서 삭제하겠습니까?"
+  any_:
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute:
+  #Label for an option to show content with any annotation value
+  any_annotation_value:
+  #Label for an option to show content from any date
+  any_date:
+  #Label for an option to show content with any establishment means
+  any_establishment:
+  #Label for an option to show content with any license
+  any_license:
+  #Label for an option to show content with photos, sounds, or neither
+  any_media:
+  #Label for an option to show content from any project
+  any_project:
+  #Label for an option to show content with any quality grade
+  any_quality_grade:
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed:
+  #Label for an option to show/include content by any user
+  any_user:
+  anyone:
+  app_owner_application_explanation_required: |
+
+  app_owner_application_about_p1a_html: |
+
+  app_owner_application_about_p2_html: |
+
+  app_owner_application_inelligible: |
+
+  app_owner_application_fields_explanation_html:
+  app_owner_application_success:
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application:
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications:
+  apply_app_owner:
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator:
+  apply_to_be_an_app_owner:
+  apply_to_create_applications_title:
+  apply_to_selected:
+  apply_captive_cultivated: ""
+  apply_fields:
+  apply_geoprivacy:
+  apply_darr: ""
+  apply_establishment_means_to_descendant_places: ""
+  apply_these_settings_to_all:
+  appropriate?:
+  arachnids:
+  archives:
+  are_you_really_sure_want_delete_this_user:
+  are_you_sure?:
+  are_you_sure_no_undo:
+  are_you_sure_delete_conservation_status: |
+
+  are_you_sure_delete_post:
+  are_you_sure_delete_taxon_move_associates: ""
+  are_you_sure_delete_this_place:
+  are_you_sure_leave_this_project:
+  are_you_sure_merge_these_places:
+  are_you_sure_remove_photo: ""
+  are_you_sure_remove_relationship:
+  are_you_sure_remove_taxon_from_list: ""
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-    확실한가요? 이것은 페이지를 새로 불러오기 때문에 변경사항을 일부 잃을 수 있습니다.
-  are_you_sure_want_delete_taxon: "이 분류군을 삭제하겠습니까?"
-  are_you_sure_want_delete_taxon_link: 이 분류군 링크를 삭제하겠습니까?
-  are_you_sure_want_delete_this_name: 이 이름을 삭제하겠습니까?
-  are_you_sure_want_delete_this_range: 이 범위를 삭제하겠습니까?
-  are_you_sure_you_want_to_commit_this_change: 이 변동을 저장하겠습니까? 되돌릴 수 없습니다.
-  are_you_sure_you_want_to_delete_this: 정말 삭제하겠습니까?
-  are_you_sure_you_want_to_delete_this_assessment?: 이 평가를 삭제하겠습니까?
-  are_you_sure_you_want_to_delete_this_photo?: 이 사진을 삭제하겠습니까?
-  are_you_sure_you_want_to_delete_this_post: 이 게시물을 삭제하겠습니까?
-  are_you_sure_you_want_to_delete_this_taxon_change: 분류군 변동사항을 저장하겠습니까?
-  are_you_sure_you_want_to_remove_all_tags: 모든 태그를 삭제하시겠습니까?
-  are_you_sure_you_want_to_remove_curator: 정말 %{user}님의 큐레이터 권한을 삭제하시겠습니까?
-  are_you_sure_you_want_to_remove_from_project: 정말 %{user}님을 이 프로젝트에서 제거하시겠습니까?
-  are_you_sure_you_want_to_remove_manager: 정말 %{user}을(를) 매니저에서 제거하겠습니까?
+
+  are_you_sure_unresolve_flag?: |
+
+  are_you_sure_want_delete_taxon: ""
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
+
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+
+  are_you_sure_want_delete_taxon_identifications: |
+
+  are_you_sure_want_delete_taxon_identifications_observations: |
+
+  are_you_sure_want_delete_taxon_listed_taxa: |
+
+  are_you_sure_want_delete_taxon_listed_taxa_identifications: |
+
+  are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
+
+  are_you_sure_want_delete_taxon_listed_taxa_observations: |
+
+  are_you_sure_want_delete_taxon_observations: |
+
+  are_you_sure_want_delete_taxon_link:
+  are_you_sure_want_delete_this_name:
+  are_you_sure_want_delete_this_range:
+  are_you_sure_you_want_to_commit_this_change:
+  are_you_sure_you_want_to_delete_this:
+  are_you_sure_you_want_to_delete_this_assessment?:
+  are_you_sure_you_want_to_delete_this_photo?:
+  are_you_sure_you_want_to_delete_this_post:
+  are_you_sure_you_want_to_delete_this_taxon_change:
+  are_you_sure_you_want_to_remove_all_tags:
+  are_you_sure_you_want_to_remove_curator:
+  are_you_sure_you_want_to_remove_from_project:
+  are_you_sure_you_want_to_remove_manager:
   are_you_sure_you_want_to_remove_spammer: |
-    이 사용자를 신뢰할 수 있습니까?
-    이 사용자의 콘텐츠의 스팸 플래그가 해결됩니다.
-  are_you_sure_you_want_to_remove_these_x_taxa?: "%{x}개의 분류군을 삭제하겠습니까?"
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "이 분류군을 %{place}의 체크리스트에서 제거하겠습니까?"
-  associated_observations: 관련된 관찰
-  associated_taxa: 관련된 분류군
-  attention: 주의
-  you_sure_delete_list: 이 목록을 삭제하겠습니까?
-  you_sure_delete_taxon_from_list?: "정말 목록에서 %{taxon}을(를) 삭제하겠습니까?"
-  asc: 오름차순
-  ascending: 오름차순
-  assessment: 평가
-  assessment_has_benn_completed: 평가 완료되었습니다.
-  assessment_sections: 평가 항목
-  assessment_was_deleted: 평가가 삭제되었습니다.
-  assessment_was_successfully_created: 평가가 성공적으로 만들어졌습니다.
-  assessment_was_successfully_updated: 평가가 성공적으로 업데이트되었습니다.
-  assessment_x: "%{assessment} 평가"
-  assessments: 평가
-  associations: 협회
+
+  are_you_sure_you_want_to_remove_these_x_taxa?: ""
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
+  associated_observations:
+  associated_taxa:
+  attention:
+  you_sure_delete_list:
+  you_sure_delete_taxon_from_list?: ""
+  asc:
+  ascending:
+  assessment:
+  assessment_has_benn_completed:
+  assessment_sections:
+  assessment_was_deleted:
+  assessment_was_successfully_created:
+  assessment_was_successfully_updated:
+  assessment_x: ""
+  assessments:
+  associations:
+  atlased:
+  atlas_for_taxon_html:
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom: 아톰
+  atom:
+  attached_taxon:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute: 특성
-  authority_list:
-    iucn_red_list: IUCN 적색 목록
-  authorize_permissions_from_provider: "%{provider}의 허용을 수락함"
-  automatic_short: 자동
-  automatically_add_observations_to_this_project: 이 프로젝트에 자동으로 관찰 추가
-  automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
-  back: 뒤로 가기
-  back_to_all_species: 모든 종으로 돌아가기
-  back_to_editing_observation: 관찰 편집하기로 돌아가기
-  back_to_friends: 친구들로 돌아가기
-  back_to_lists: "%{name} 목록으로 돌아가기"
-  back_to_observation: 관찰로 돌아가기
-  back_to_observation_fields: 관찰 분야들로 돌아가기
-  back_to_people: 사람들로 돌아가기
-  back_to_places: 장소들로 돌아가기
-  back_to_possessive_user_profile: "%{possuser}의 프로파일로 돌아가기"
-  back_to_post: '&laquo; 포스트로 돌아가기'
-  back_to_projects: 프로젝트틀로 돌아가기
-  back_to_suggestions: 제안으로 돌아가기
-  back_to_taxon: "%{defaulttaxon}(으)로 돌아가기"
-  back_to_taxon_changes: "분류군 변화들로 돌아가기"
-  back_to_viewing: "<i>%{taxon}</i> 보기로 돌아가기"
-  back_to_x: "%{noun}(으)로 돌아가기"
-  back_to_x_assessment: "%{project} 평가들로 돌아가기"
-  back_to_x_history: "%{x} 역사로 돌아가기"
-  back_to_x_journal: "%{user}의 일지로 돌아가기"
-  back_to_x_blog: "%{x}의 블로그로 돌아가기"
-  back_to_your_dashboard: 내 대시보드로 돌아가기
-  back_to_your_lists: 내 목록으로 돌아가기
-  back_to_your_journal: 너의 일지로 돌아가기
-  back_to_your_observations: 내 관찰로 돌아가기
-  back_to_your_profile: 내 프로필로 돌아가기
-  batch: 일괄
-  batch_edit: 일괄 편집
+  attribute:
+  attribution:
+  authorize:
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce:
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+
+  authorize_permissions_from_provider: ""
+  automatic_short:
+  automatically_add_observations_to_this_project:
+  automatically_update_my_content_for_taxon_changes:
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg:
+  back:
+  back_to_applications: ""
+  back_to_all_species:
+  back_to_editing_observation:
+  back_to_friends:
+  back_to_flags_html: ""
+  back_to_lists: ""
+  back_to_observation:
+  back_to_observation_fields:
+  back_to_people:
+  back_to_places:
+  back_to_possessive_user_profile: ""
+  back_to_post: ''
+  back_to_projects:
+  back_to_suggestions:
+  back_to_taxon: ""
+  back_to_taxon_changes: ""
+  back_to_taxon_framework_for_x: ""
+  back_to_users_calendar: ""
+  back_to_users_lists: ""
+  back_to_viewing: ""
+  back_to_x: ""
+  back_to_x_assessment: ""
+  back_to_x_history: ""
+  back_to_x_journal: ""
+  back_to_x_blog: ""
+  back_to_your_calendar:
+  back_to_your_dashboard:
+  back_to_your_lists:
+  back_to_your_journal:
+  back_to_your_observations:
+  back_to_your_profile:
+  badges:
+  based_on_the_evidence_can_id_be_improved: |
+
+  batch:
+  batch_edit:
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: "%{x}로 분류군 일괄 편집"
-  batch_operations: 일괄 운영
-  before_importing_photos: 사진을 불러오기 전에
-  bg_color: 배경 색
-  bioblitz: 바이오블릿츠
-  birds: 조류
-  birthday: 생일
-  black: 검정
-  block_removed: 차단 제거됨
-  blocked_users: 차단된 사용자
-  blog_widget: 블로그 위젯
-  blue: 파랑
-  blue_butterfly_etc: "파랑, 나비 등."
-  body: 본문
-  breadcrumbs: 빵 부스러기
-  brief_caption: 간결한 캡션
-  brown: 갈색
-  browse: 찾아보기
-  browse_all_projects: 모든 프로젝트 찾아보기
-  browse_all_species: 모든 종 찾아보기
-  browse_observations: 관찰 찾아보기
-  browse_people: 사람 찾아보기
-  browse_projects: 프로젝트 검색
-  browse_species_that_occur_near_this_observation: 이 관찰 주변에서 서식하는 종 검색
-  by_everyone: 모두
-  by_you: 내가
-  calendar: 달력
-  calendars_only_show_x_observations_at_time: 달력은 한번에 %{x} 개의 관찰만을 보여줍니다
-  cancel: 취소
-  cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
-  cant_merge_a_taxon_with_itself: 분류군은 자기 자신과 병합할 수 없습니다.
-  captive: 사육됨
-  captive_cultivated: 포획됨 / 사육됨
-  card: 카드
-  casual: 비공식적 등급
-  casual_: 비공식적 등급
-  categories: 분류
-  cc_0_description: "이 라이선스는 작품을 퍼블릭 도메인에 공개함으로써 허락을 구하거나 원작자를 표시하지 않고도 다른 사람들이 상업적인 목적을 포함하여 작품을 복사, 변경, 배포, 공연할 수 있습니다. 이것은 제공되는 라이선스들 가운데 가장 포괄적입니다. 최대한의 보급 및 라이선스된 자료의 이용에 권장됩니다."
-  cc_0_name: 저작권 없음 (CC0)
-  cc_attribution_license: 크리에이티브 커먼즈 저작자표시 라이선스
-  cc_by_description: "이 라이선스는 저작자를 표시한다면 상업적인 목적을 포함해 배급, 재배치, 변경, 추가할 수 있도록 한다."
-  cc_by_name: 저작자표시
-  cc_by_nc_description: "이 라이선스는 상업적인 목적을 제외하고 재배치, 변경, 추가할 수 있게 한다. 저작자 표시를 해야 하지만, 결과물도 같은 라이선스를 사용할 필요는 없다."
-  cc_by_nc_name: 저작자표시-비상업적
-  cc_by_nc_nd_description: "이 라이선스는 6가지의 주요 라이선스 중에서 가장 제한적이다. 저작자를 표시해야만 다운로드와 공유가 가능하고 어떠한 변경도 해서는 안 되며 상업적으로 쓸 수 없다."
-  cc_by_nc_nd_name: 저작자표시-비상업적-변경불가
-  cc_by_nc_sa_description: "이 라이선스는 저작자를 표시했을 때 비상업적 목적으로 다른 사람들이 재배치, 변경, 추가할 수 있도록 한다. 새로운 결과물도 같은 라이선스를 적용해야 한다."
-  cc_by_nc_sa_name: 저작자표시-비상업적-같은공유
-  cc_by_nd_description: "이 라이선스는 저작자 표시를 하고 변경하지 않을 경우 상업적, 비상업적 목적으로 배급이 가능하게 한다."
-  cc_by_nd_name: 저작자표시-변경불가
-  cc_by_sa_description: "이 라이선스는 저작자를 표시하고 같은 라이선스를 사용할 경우 상업적인 목적을 포함해 재배치, 변경, 추가할 수 있도록 한다. 새로운 결과물도 같은 라이선스를 사용하기 때문에 상업적 이용이 가능하다."
-  cc_by_sa_name: 저작자표시-같은공유
-  cc_used_under_a: "크리에이티브 커먼즈"
-  change_admin: 관리자 변경
+  batch_edit_taxa_for_x_html: ""
+  batch_operations:
+  be_the_first_to_fave_this_observation:
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+
+  become_a_donor_caps:
+  become_a_donor_today_caps:
+  before_importing_photos:
+  bg_color:
+  bio:
+  bio_description:
+  bioblitz:
+  birds:
+  birthday:
+  black:
+  block_removed:
+  blocked_users:
+  blog_widget:
+  blue:
+  blue_butterfly_etc: ""
+  body:
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: ""
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text:
+  breadcrumbs:
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
+  breadcrumbs_description: ""
+  brief_caption:
+  brown:
+  browse:
+  browse_all_projects:
+  browse_all_species:
+  browse_observations:
+  browse_people:
+  browse_projects:
+  browse_species_that_occur_near_this_observation:
+  built_with_site_guides_html: ""
+  bulk_import_of_filename_is_complete: ""
+  by:
+  by_everyone:
+  by_user: ""
+  by_you:
+  calendar:
+  calendars_only_show_x_observations_at_time:
+  callback_url:
+  cancel:
+  cant_edit_or_delete_hidden_content:
+  cant_flag_an_object_that_doesnt_exist:
+  cant_merge_a_taxon_with_itself:
+  captive:
+  captive_cultivated:
+  captive_observations:
+  card:
+  casual:
+  casual_:
+  casual_tooltip_html: ''
+  categories:
+  cc_0_description: ""
+  cc_0_name:
+  cc_attribution_license:
+  cc_by_description: ""
+  cc_by_name:
+  cc_by_nc_description: ""
+  cc_by_nc_name:
+  cc_by_nc_nd_description: ""
+  cc_by_nc_nd_name:
+  cc_by_nc_sa_description: ""
+  cc_by_nc_sa_name:
+  cc_by_nd_description: ""
+  cc_by_nd_name:
+  cc_by_sa_description: ""
+  cc_by_sa_name:
+  cc_used_under_a: ""
+  change_admin:
   #Button to change the cover (or banner) image for a project
-  change_cover: 겉표지 변경
-  change_descriptions:
-    split: 구 분류군을 여러 개의 새로운 분류군으로 나눔
-    merge: 여러 개의 분류군을 하나의 분류군으로 통합
-    drop: '완전히 유효하지 않은 분류군 개념: 역사적 목적이나 파트너 호환성을 위해 유지'
-  change_geoprivacy: '위치보호 변경'
-  change_group: 그룹 바꾸기
-  change_icon: 아이콘 변경
-  change_password: 비밀번호 변경
-  change_types:
-    activated_soon: 곧 활성화
-    change_types: 유형 변경
-    split: 분할
-    merge: 병합
-    swap: 대체
-    stage: 단계
-    drop: 포기
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: '다음에서 분할:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_into: '다음으로 분할:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: '다음으로 병합하기:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merged_into: '다음으로 병합됨:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: '다음으로 교체:'
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: '바꾸기:'
-    dropped: 포기함
-    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
-    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} 는 %{output_taxon}과 병합될 것입니다."
-  change_your_password: 비밀번호 바꾸기
-  changing_the_geoprivacy: '위치보호를 변경하면 다른 사람이 사용자의 관찰 위치를 보는 방식이 변경됩니다.'
-  check_above_for_errors: 오류에 대해서는 상단을 확인하십시오
-  check_here_to_autoload_description: 위키백과에서 설명을 자동으로 가져오려면 여기에 체크하십시오. 분류군의 학명이 비과학 용어거나 흔한 오타일 경우 체크하지 않는 것이 좋습니다.
-  check_here_to_autoload_photos: 플리커에서 자동으로 사진을 업로드하려면 체크하세요. 학명이 일반적으로 쓰는 단어이거나 흔한 오타일 경우 체크하지 않는 것이 좋습니다.
-  check_list: 체크리스트
-  check_list_description: 목록에 표시할 상위 분류군을 선택하세요. 예를 들어, 조류의 경우 Aves, 양서류의 경우 Amphibia를 넣으면 됩니다. 선택 후 이 분류군이 아닌 관찰을 여기에 추가할 수 없습니다. 예를 들어, 새 목록을 만들 경우 어떠한 개구리도 해당 목록에 넣을 수 없습니다.
-  check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
+  change_cover:
+  change_geoprivacy: ''
+  change_group:
+  change_icon:
+  change_password:
+  change_your_password:
+  #Plural noun, as in changes to a taxon record over time
+  changes:
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent:
+  changing_the_geoprivacy: ''
+  check_above_for_errors:
+  check_back_soon:
+  check_here_to_autoload_description:
+  check_here_to_autoload_photos:
+  check_list:
+  check_list_description:
+  check_list_for_individual_taxa_that: ''
+  check_list_for_taxon_html: ""
   check_lists_must_belong_to_a_place: |
-    체크리스트는 장소를 지정해야 합니다. 새로운 체크리스트를 만들기 위해 기본 체크스트에 들어가서 '새로운 체크리스트' 링크를 선택하세요.
-  check_list_place: "%{place} 체크리스트"
-  check_list_updated: 체크리스트가 업데이트되었습니다!
-  check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
-  checklist: 체크리스트
-  choose_a_field: 필드 선택
-  choose_a_list_above: 목록을 선택하세요.
-  choose_a_place: 장소를 선택하세요.
-  choose_a_taxon: 분류군을 선택하세요.
-  choose_columns: 열 선택
-  choose_file: 파일 선택
-  choose_files: 파일 선택
-  choose_from_your_lists: 나의 목록에서 선택하기
-  choose_photos_for_this_taxon: 이 분류군을 위한 사진을 선택
-  choose_photos_to_tag_from_photostream: 내 사진 목록에서 태그할 사진 선택
-  choose_rule: 규칙 선택
-  choose_subjects: 대상 선택
-  choose_tags: 태그 선택
-  choose_taxon: 분류군 선택
-  choose_what_kind_of_change_youre_creating: "어떤 변화를 생성할지 선택해 주세요."
-  citation: 인용
-  classification: 분류
-  clear: 지우기
-  clear_filters: 필터 지움
-  clear_search: 검색 지우기
-  click_the_map: "<strong>지도를 클릭하여</strong> 장소를 추가하세요."
-  close: 닫기
-  code: 코드
-  colors: 색깔
-  columns: 열
-  combine: 병합
-  comma_separated_please: 쉼표로 분리해주세요
+
+  check_list_place: ""
+  check_list_updated:
+  check_lists_for: ""
+  check_out_the_inat_store:
+  check_out_what_the_observation:
+  check_this_box_if_html: |
+
+  checklist:
+  choose_a_field:
+  choose_a_list_above:
+  choose_a_place:
+  choose_a_taxon:
+  choose_columns:
+  choose_file:
+  choose_files:
+  choose_from_your_lists:
+  choose_photos_for_this_taxon:
+  choose_photos_to_tag_from_photostream:
+  choose_rule:
+  choose_subjects:
+  choose_tags:
+  choose_taxon:
+  choose_what_kind_of_change_youre_creating: ""
+  cid_d_to_genus:
+  citation:
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+
+  classification:
+  clear:
+  clear_filters:
+  clear_search:
+  click_the_map: ""
+  close:
+  code:
+  colors:
+  columns:
+  combine:
+  comma_separated_list_of_tracking_codes: |
+
+  comma_separated_please:
   #Noun, used to label a comment or a comment field in a form
-  comment: 댓글
+  comment:
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_: 댓글
-  comment_deleted: 댓글 삭제됨
-  comments: 댓글
-  comments_by_me: 내가 작성한 댓글
-  comments_on_my_observations: 내 관찰에 달린 댓글
-  community: 공동체
-  community_curated: 공동으로 큐레이션됨
-  community_guidelines: 공동체 지침
-  community_id_heading: 공동체 ID
-  compare: 비교하기
-  compare_with: '다음과 비교:'
-  comparing: 비교 중
-  comparing_list_to_list: "%{list1}와 %{list2}를 비교"
-  comparing_versions_x_and_y: "%{x}와 %{y} 버전 비교"
-  compiled_by_name: "%{name}에 의해서 편집"
-  completed: 완료
-  completed_at: 완료
+  comment_:
+  comment_deleted:
+  #Notice when a comment has been hidden by moderators
+  comment_hidden:
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden:
+  comments:
+  comments_by_me:
+  comments_have_been_disabled:
+  comments_on_my_observations:
+  commercial_solicitation:
+  #Second person verb to commit a taxon change, i.e. the change has been executed
+  commit:
+  #Adjective describing a taxon change that has been committed
+  committed:
+  committed_by_user_on_date_html:
+  #Label for date the taxon change was committed
+  committed_on:
+  committed_taxon_changes_cannot_be_deleted:
+  #Status message while a taxon change is being committed
+  committing:
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result:
+  common_name:
+  community:
+  community_curated:
+  community_guidelines:
+  community_id_heading:
+  community_id_at_species_or_lower?:
+  community_id_at_species_level_or_lower:
+  community_id_is_precise:
+  community_moderation_settings:
+  community_supported_id:
+  compare:
+  compare_with:
+  comparing:
+  comparing_list_to_list: ""
+  comparing_versions_x_and_y: ""
+  compiled_by_name: ""
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete:
+  complete_set_for_taxon_in_place_html: ""
+  completed:
+  completed_at:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?: 포괄적?
-  comprehensive_list: 포괄적 목록
-  concept_status: 컨셉 상태
-  configure: 설정
-  configure_a_widget_to_show: 위젯을 조정하여 당신의 웹사이트나 블로그에 %{site_name} 관찰을 보일 수 있습니다. 내장된 CSS를 HTML의 <code>&lt;head&gt;</code>에 포함시켜야 할 수도 있습니다. CSS는 자유롭게 편집할 수 있습니다.
-  confirm: 확정
-  confirm_membership: 멤버십 확인
-  confirm_new_password: 새로운 비밀번호 확인
-  confirm_now: 지금 확인
-  confirm_your_info: 정보 확인
-  connect_to_provider: "%{provider}에 연결"
+  comprehensive?:
+  comprehensive_check_list_for_taxon_html: |
+
+  comprehensive_list:
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model:
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included:
+  computer_vision_model_included_desc: |
+
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending:
+  computer_vision_model_pending_desc: |
+
+  concept_status:
+  confidential:
+  configure:
+  configure_a_widget_to_show:
+  confirm:
+  confirm_membership:
+  confirm_new_password:
+  confirm_now:
+  confirm_your_info:
+  confirming_ids:
+  confirming_ids_description:
+  #Label for a button to connect your iNat account to another account, e.g.
+  #connecting to Flickr
+  connect:
+  connect_to_provider: ""
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 연결된 계정
-  connecting_flickr: "플리커에 연결 중..."
-  connecting_to_facebook: "페이스북에 연결 중..."
-  connecting_your_inat_account_to_accounts_other_sites: " %{site_name} 계정을 다른 계정에 연결하면 %{site_name}에 다른 계정의 정보로 로그인할 수 있습니다."
-  conservation_status: 보존 상태
-  conservation_status_descriptions:
-    description: 목록에 포함된 이유를 명시
-    place: 보존 상태 제한지역
-    url: 보전 상태를 설명하는 페이지의 URL
-  contact_support: 연락 지원
-  contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
-  continue: 계속
-  continue_to_site: '%{site_name}(으)로 계속하기'
-  contributor_cannot_be_found: 기여자 찾을 수 없음
-  contributors_to_project: "%{project}의 기여자들"
-  controlled_term_labels:
-    sex: 성별
-    male: 수컷
-    female: 암컷
-    life_stage: 성장 단계
-    adult: 성체
-    teneral: 우화 직후
-    subimago: 준성체
-    pupa: 번데기
-    nymph: 약충
-    larva: 약충
-    egg: 알
-    juvenile: 아성체
-    alive_or_dead: 생존 여부
-    alive: 살아있음
-    dead: 죽음
-    cannot_be_determined: 확인할 수 없음
-  controls: 제어
-  convert: 변환
-  coordinate_systems: 좌표계
-  coordinates: 좌표
-  copy: 복사
-  copy_and_paste_the_following_code_to: 다음 코드를 복사 붙이기해서 이 평가를 다른 웹 페이지에 내장하세요.
-  copy_and_paste_this_into_your_own_html: 이것을 복사해서 당신의 HTML에 붙여 넣으십시오.
-  copy_guide_taxon_to: 가이드 분류군 복사
-  copyright:
-    some_rights_reserved: 일부 권리 보유
-    some_rights_reserved_by: "(c) %{name}, 일부 권리 보유 (%{license_short})"
-    all_rights_reserved: "(c) %{name}, 모든 권리 보유"
-    no_known_copyright_restrictions: "%{name}, 알려진 저작권 제한 없음 (%{license_name})"
-    no_known_copyright_restrictions_text: "알려진 저작권 제한 없음"
-    no_rights_reserved: 저작권 보유 없음
-    no_rights_reserved_by: "%{name}, 권리 보유하지 않음 (%{license_name})"
-    anonymous: 익명
-    public_domain: 퍼블릭 도메인
-    copyright: 저작권
-    no_copyright: 저작권 없음 (CC0)
-    attribution_noncommercial_sharealike_license: 저작권표시-비상업적-같은공유 라이선스
-    attribution_noncommercial_license: 저작권표시-비상업적 라이선스
-    attribution_noncommercial_noderivs_license: 저작권표시-비상업적-변경불가 라이선스
-    attribution_license: 저작권표시 라이선스
-    attribution_sharealike_license: 저작권표시-같은공유 라이선스
-    attribution_noderivs_license: 저작권표시-비상업적 라이선스
-    gnu_free_documentation_license: GNU 자유 문서 사용 허가서
-  copyright_holder: 저작권자
-  copyright_info: 저작권 정보
-  copyright_info_and_more: 저작권 정보 및 추가 정보
-  copyright_infringement: 저작권 침해
-  copyright_infringement_desc: 저작권법 위반 혹은 관찰자 외의 사람이 만든 후 저작권을 표시하지 않음
-  couldnt_change_your_password: "비밀번호를 변경하지 못하였습니다: %{e}"
-  couldnt_find_a_user_matching_x_param: "%{id}와(과) 일치하는 사용자를 찾을 수 없습니다"
-  couldnt_find_that_taxon: 분류군을 찾지 못했습니다.
-  create: 만들기
-  create_a_guide: 가이드 만들기
-  create_a_new_field: 새로운 필드 생성
-  create_a_new_place: 새로운 장소 생성
-  create_a_new_taxon: 새로운 분류군 생성
-  create_a_query: 질문 생성
-  create_an_account: 계정 만들기
-  create_new_taxon: 새로운 분류군 생성
-  create_observations: 관찰 생성
-  created: 생성함
-  created_by: '작성자:'
-  created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
-  created_on: '작성일:'
-  creating_your_account: "계정 만드는 중..."
-  creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
-  creative_commons_unless_otherwise_noted: "별도의 언급이 없으면 크리에이티브 커먼즈입니다."
-  critically_endangered: 절멸 위급(CR)
-  csv_file: CSV 파일
-  csv_should_not_contain_a_header_row: CSV는 헤더 열을 포함하고 있으면 안 됩니다.
-  curate_observations: 큐레이터 관찰
-  curate_taxa: 분류군 큐레이션하기
-  curating: 큐레이팅
-  curation: 큐레이션
-  curator: 큐레이터
-  curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
-  curators: 큐레이터
-  curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
-  curator_identification: 큐레이터 확인
-  current_flags: 현재 플래그
-  custom_project_fields: 자체지정한 프로젝트 필드
-  custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
-  custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
-  darr_apply_darr: "&darr; 적용 &darr;"
-  dashboard: 대시보드
-  data_deficient: 정보부족(DD)
-  data_quality: 데이터 품질
-  data_quality_assessment: 데이터 품질 평가
-  data_used: "사용된 데이터:"
-  datatype: 데이터 유형
-  date_: 날짜
-  date_added: 추가한 날짜
-  date_created: 만든 날짜
-  date_format:
-    date_long:
-      january: '%{year} 1월 %{day}'
-      february: '%{year} 2월 %{day}'
-      march: '%{year} 3월 %{day}'
-      april: '%{year} 4월 %{day}'
-      may: '%{year} 5월 %{day}'
-      june: '%{year} 6월 %{day}'
-      july: '%{year} 7월 %{day}'
-      august: '%{year} 8월 %{day}'
-      september: '%{year} 9월 %{day}'
-      october: '%{year} 10월 %{day}'
-      november: '%{year} 11월 %{day}'
-      december: '%{year} 12월 %{day}'
-    month:
-      january: 1월
-      february: 2월
-      march: 3월
-      april: 4월
-      may: 5월
-      june: 6월
-      july: 7월
-      august: 8월
-      september: 9월
-      october: 10월
-      november: 11월
-      december: 12월
-  date_is_accurate: 날짜가 정확함
-  date_joined: 가입일
-  date_observed: 관찰된 날짜
-  date_observed_: 관찰된 날짜
-  date_observed_on: '관찰 날짜:'
-  date_picker:
-    closeText: 닫기
-    currentText: 오늘
-    #Contextual help for a button navigating to the previous month in a date picker
-    prevText: 이전
-    #Contextual help for a button navigating to the next month in a date picker
-    nextText: 다음
-    range: 범위
-  date_range: 날짜 범위
-  date_time: 날짜/시간
-  date_updated: 업데이트한 날짜
-  day: 일
-  decrease_brightness: 밝기 줄이기
+  connected_accounts:
+  connected_accounts_description:
+  connected_accounts_titlecase:
+  connecting_flickr: ""
+  connect_to_flickr_again_to_authorize_write_permissions:
+  connecting_to_facebook: ""
+  connecting_your_inat_account_to_accounts_other_sites: ""
+  cannot_be_changed_during_a_content_freeze:
+  conservation_status:
+  conservation_status_created:
+  conservation_status_deleted:
+  conservation_status_updated:
+  conservation_status_geoprivacy_desc: |
+
+  contact_support:
+  contain_all_descendants?:
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content:
+  content_and_display:
+  content_author:
+  content_hidden:
+  content_hidden_by_user_on_date_because_reason_html: |
+
+  content_type:
+  user_hid_this_item_because_reason_html: |
+
+  user_unhid_this_item_because_reason_html: |
+
+  continue:
+  continue_to_site:
+  contributor_cannot_be_found:
+  contributors_to_project: ""
+  controls:
+  convert:
+  coordinate_systems:
+  coordinates:
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label:
+  coords_viewable_for_proj_desc: |
+
+  copy:
+  copy_and_paste_the_following_code_to:
+  copy_and_paste_this_into_your_own_html:
+  copy_guide_taxon_to:
+  copyright_holder:
+  copyright_info:
+  copyright_info_and_more:
+  copyright_infringement:
+  copyright_infringement_desc:
+  covered_by_a_taxon_framework_html: ""
+  covered_by_a_taxon_framework_link: ""
+  couldnt_change_your_password: ""
+  couldnt_find_a_user_matching_x_param: ""
+  couldnt_find_that_taxon:
+  create:
+  create_a_guide:
+  create_a_new_field:
+  create_a_new_place:
+  create_a_new_taxon:
+  create_a_query:
+  create_an_account:
+  create_an_atlas:
+  create_export:
+  create_new_taxon:
+  create_observations:
+  created:
+  created_by:
+  created_by_user_on_date:
+  created_on:
+  creating_your_account: ""
+  creative_commons_flickr_tagged:
+  creative_commons_unless_otherwise_noted: ""
+  critically_endangered:
+  css_description:
+  csv:
+  csv_file:
+  csv_should_not_contain_a_header_row:
+  cumulative_ids: ""
+  curate_observations:
+  curate_taxa:
+  curate_user:
+  curating:
+  curation:
+  curator:
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_explanation_html:
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+
+  curator_application_how_curators_lose_their_powers_desc: |
+
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+
+  curator_application_inelligible_error: |
+
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success:
+  #Header
+  curator_application_what_curators_can_do:
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html:
+  curator_application_what_curators_can_do_hide_comments_html: |
+
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+
+  #Header
+  curator_application_what_curators_cannot_do:
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+
+  #Title of a page where people apply to become a curator
+  curator_application_title:
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+
+  curators_changed_for_x_html: ""
+  curators:
+  curators_can_remove_observations_from:
+  curator_identification:
+  current_flags:
+  #Label for a custom boundary for an observation search
+  custom_boundary:
+  custom_project_fields:
+  custom_project_was_successfully_created:
+  custom_project_was_successfully_updated:
+  customize_location:
+  darr_apply_darr: ""
+  daily_users:
+  danger_zone:
+  dashboard:
+  data_deficient:
+  data_quality:
+  data_quality_assessment:
+  data_used: ""
+  datatype:
+  date_:
+  date_added:
+  date_authorized:
+  date_created:
+  date_is_accurate:
+  date_joined:
+  date_obscured_notice:
+  date_observed:
+  date_observed_:
+  date_observed_on:
+  date_range:
+  date_specified:
+  date_time:
+  #Express a date range. d1 and d2 could be any expression of dates, so better
+  #to use the most flexible form possible here, e.g. not something like "d1 to
+  #d2" if "to" might be translated differently for different values of d1 and
+  #d2
+  date_to_date: ""
+  date_updated:
+  day:
+  decrease_brightness:
   #Default option
-  default: 기본값
-  default_invite_comment: "좋은 사진이네요! %{site_name}에 업로드하세요: {{INVITE_LINK}}"
-  default_observation_license: 기본 관찰 라이선스
-  default_photo_license: 사진 라이선스 기본값
-  default_sound_license: 음원 라이선스 기본값
-  defaults_to_your_name_or_username: 기본 이름/아이디
-  definitions: 정의
-  delete: 삭제
-  delete_all: 모두 삭제
-  delete_conversation: 대화 내역 삭제
+  default:
+  #Default option
+  default_:
+  default_display_time_zone:
+  default_invite_comment: ""
+  default_observation_license:
+  default_photo_license:
+  default_search_place:
+  default_search_place_description: |
+
+  default_sound_license:
+  default_time_zone_desc: |
+
+  defaults_to_your_name_or_username:
+  defines_a_taxon_framework_for:
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
+  definitions:
+  delete:
+  delete_all:
+  delete_conversation:
   #Button to delete the cover (or banner) image for a project
-  delete_cover?: 겉표지 삭제?
-  delete_icon?: 아이콘을 삭제하시겠습니까?
-  delete_photo: 사진을 삭제하시겠습니까?
-  delete_project: 이 프로젝트를 제거하시겠습니까?
-  delete_selected: 선택한 것을 삭제
+  delete_cover?:
+  delete_icon?:
+  delete_photo:
+  delete_project:
+  #Label for a button to delete a taxon range
+  delete_range:
+  delete_selected:
   delete_taxon_and_merge_most_data_html: |
-    <i>%{taxon}</i> 삭제하고 그것의 대부분의 데이터를 다른 분류군 안으로 병합합니다. <strong>중복되는 분류군을 제거</strong>하기 위해 이 도구를 사용합니다. 오래된 동의어를 제거하고자 한다면, 분류군 교환을 만드시기 바랍니다. <strong>조심합니다!</strong> 분류군을 삭제하는 것은 매우 파괴적일 수 있습니다. 자세한 사항은 <a href="%{curator_url}">큐레이터 안내서</a>를 확인합니다.
-  delete_user: 사용자 삭제
-  delete_your_account: 계정 지우기
-  deleted_synonyms: 삭제된 동의어
-  deleted_user: 삭제된 사용자
-  deleted_vote: 삭제된 표
-  deleting: 삭제 중...
-  deleting_verb: 삭제 중
-  deny: 거부
-  desc: 내림차순
-  descending: 내림차순
-  describe_purpose: 이 프로젝트 목적을 설명하세요.
-  describe_your_interest_in_nature: 자연에 대한 관심을 표현해요!
-  description: 설명
-  description_from: 설명
-  description_slash_tags: 설명/태그
-  description_tags_more: "설명, 태그, &amp; 더 보기"
-  desription: 설명
-  destroy: 파괴
-  details: 자세한 사항
-  devise:
-    failure:
-      user:
-        suspended: 당신의 계정은 일시 중지되었습니다.
-  did_you_mean: '이것을 찾으셨나요:'
-  did_you_photos_flickr?: 플리커에 사진을 올렸나요?
-  disable: 비활성화
-  disagree_: 동의하지 않음
-  disconnect_provider: "%{provider} 연결 끊기"
-  display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
-  distance_traveled: "여행한 거리 (m)"
-  documentation_for_developers_html: <a href="/pages/developers">개발자</a>를 위한 문서
-  do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
+
+  delete_user:
+  delete_your_account:
+  deleted_synonyms:
+  deleted_user:
+  deleted_vote:
+  deleting:
+  deleting_verb:
+  deny:
+  desc:
+  descending:
+  describe_purpose:
+  describe_your_interest_in_nature:
+  description:
+  description_from:
+  description_sections:
+  description_slash_tags:
+  description_tags_more: ""
+  desription:
+  destination:
+  destroy:
+  details:
+  deviation:
+  devise_reset_password_instructions_hello_email:
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+
+  devise_reset_password_instructions_your_password_wont_change_until: |
+
+  devise_unlock_instructions_your_account_has_been_locked: |
+
+  devise_unlock_instructions_click_the_link: |
+
+  devise_unlock_instructions_unlock:
+  discoveries:
+  did_you_mean: ''
+  did_you_photos_flickr?:
+  disable:
+  disable_comments:
+  disable_comments_desc:
+  disagree_:
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect:
+  disconnect_caps:
+  disconnect_provider: ""
+  #Label for a button that dismisses an alert or popup
+  dismiss:
+  display:
+  display_link_to_checklist:
+  display_monthly_supporter_badge:
+  display_name:
+  display_name_description:
+  distance_traveled_value: ""
+  distance_traveled: ""
+  documentation_for_developers_html:
+  do_not_show_this_message_again:
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    프로필을 채우는 것은 개성을 주고, 동정을 도울 때 신뢰성을 줍니다.
-  doesnt_have_default_photo: 기본 사진이 없습니다.
-  doh_something_went_wrong: 문제가 생겼습니다.
-  doh_something_went_wrong_error: "무언가 잘못되었습니다: %{error}"
+
+  doesnt_have_default_photo:
+  doh_something_went_wrong:
+  doh_something_went_wrong_error: ""
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate: 기부하기
-  done: 완료
-  dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
-  dont_use_double_quotes: 따옴표를 사용하지 마세요.
+  donate:
+  donate_again_caps:
+  donate_again_today_caps:
+  done:
+  dont_have_an_account_sign_up_html:
+  dont_use_double_quotes:
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it: 버리기
-  download: 다운로드
-  download_csv: CSV 다운로드
-  download_csv_template: CSV 양식 다운로드
-  download_kml: KML 다운로드
-  draft: 초안
-  draft_: 초안
-  draft_saved: 초안이 저장되었습니다!
-  drafts: 초안
-  drag_and_drop_some_photos_or_sounds: 사진이나 소리를 끌어서 놓으십시오
-  edit: 수정
-  edit_a_batch_of_observations: 관찰 모음 편집
-  edit_account_settings_and_profile: "계정 및 프로필 설정"
-  edit_assessment: 평가 편집
-  edit_body: 본문 편집
-  edit_comment: 내 댓글 편집
-  edit_custom_project_fields: 사용자 지정 프로젝트 필드 편집
-  edit_field: 분야 편집
-  edit_license: 라이선스 수정
-  edit_multiple_dates: 다수의 날짜 편집
-  edit_multiple_descriptions: 여러 설명 편집
-  edit_multiple_locations: 다수의 장소 편집
-  edit_multiple_species: 다수의 종 편집
-  edit_notes: 메모 편집
-  edit_photos: 사진 편집
-  edit_photos_for_observation_id: "관찰 %{obs_id}의 사진 편집"
-  edit_place: 장소 수정
-  edit_project: 프로젝트 편집
-  edit_remove: 편집/삭제
-  edit_selected: 선택 항목 편집
-  edit_source: 출처 편집
-  edit_taxa: 분류군 편집
-  edit_taxon_link: 분류군 링크 편집
-  edit_taxon_range: 분류군 범위 편집
-  edit_the_observation: 관찰 편집
-  edit_your_account_and_profile_html: "계정 및 프로필 편집"
-  edit_your_default_settings: "내 기본 설정 편집하기"
-  edit_your_global_project_settings: 내 전체 프로젝트 설정 편집
-  edit_your_identification: 내 동정 편집
-  edit_your_settings_for_this_project: 이 프로젝트에 대한 내 설정 편집
-  edited_by_name_html: "편집자 : %{name}"
-  editing: 편집
-  editing_announcement: 공지 편집
-  editing_custom_project_fields_for: 자체적 프로젝트 필드 편집
-  editing_observation_field: 관찰 필드 편집
-  editing_observation_id: "관찰 편집 %{obs_id}"
-  editing_project: '%{project} 편집'
-  editing_project_asset: 을 위한 프로젝트 자산 편집
-  editing_subscription_to_x_html: "%{x}의 구독 편집"
-  editing_taxon_link: 분류군 링크 편집
-  editing_this: '%{elem} 편집'
-  editing_x_in_y: "%{y}에서 %{x} 편집"
-  editors: 편집자
-  either_that_user_doesnt_exist_or: "사용자가 존재하지 않거나 이미 팔로잉하고 있습니다."
-  eligible_for_research_grade: 연구 자료 등급을 받을 자격이 있다.
-  email: 이메일
-  email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
-  email_copyright: "저작권 &copy; %{x}, 모든 권리 보유"
-  embed: '내장'
-  embed_place_widget: 장소 위젯 내장
-  embed_this_assessment: 이 평가 내장
-  embed_widget_project: 이 프로젝트를 위한 위젯을 당신의 웹사이트에 내장
-  enable_offline_access: 오프라인 접근 허용
-  enable_offline_access_for_mobile: 모바일 오프라인 접근 허용
-  end: 종료
-  end_date_time: 끝 날짜 / 시간
-  endangered: 절멸위기(EN)
-  endemic: 고유종
-  endemic_to_x: "%{x}의 토착종"
-  eol_collection_url: "EOL 모음 URL"
-  error_updating_photo: "사진 업데이트 오류: %{photo_errors}"
-  establishment:
-    endemic: 고유종
-    establishment: 상태
-    introduced: 도입종
-    invasive: 외래종
-    managed: 관리됨
-    native: 토착종
-    naturalised: 토착화됨
+  drop_it:
+  download:
+  download_bulk_import_template_html: |
+
+  download_csv:
+  download_csv_template:
+  download_kml:
+  downstream_coverage_rank:
+  downstream_coverage_colon_rank: ""
+  downstream_deviations:
+  downstream_deviations_for_taxon: ""
+  #Label for a link to taxa that are descendants ("downstream") of the current
+  #taxon that are covered by the same Taxon Framework
+  downstream_flagged_covered_taxa:
+  draft:
+  draft_:
+  draft_saved:
+  drafts:
+  drag_and_drop_some_photos_or_sounds:
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary:
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary:
+  drawings:
+  duplicate_verb:
+  duration_value: ""
+  each_place_displays_all_species_inat_knows: ""
+  earliest_added:
+  edit:
+  #Title of the moderation note editor
+  edit_moderator_note:
+  edit_a_batch_of_observations:
+  edit_account_settings_and_profile: ""
+  edit_assessment:
+  edit_atlas:
+  edit_atlas_for_taxon_html:
+  edit_body:
+  edit_comment:
+  edit_complete_set_for_taxon_in_place_html: ""
+  edit_conservation_status:
+  edit_custom_project_fields:
+  edit_field:
+  edit_license:
+  edit_multiple_dates:
+  edit_multiple_descriptions:
+  edit_multiple_locations:
+  edit_multiple_species:
+  edit_notes:
+  edit_observations:
+  edit_photos:
+  edit_photos_for_observation_id: ""
+  edit_place:
+  edit_project:
+  edit_remove:
+  edit_selected:
+  edit_source:
+  edit_taxa:
+  edit_taxon:
+  edit_taxon_framework:
+  edit_taxon_link:
+  edit_taxon_range:
+  edit_the_observation:
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+
+  edit_your_account_and_profile_html: ""
+  edit_your_default_settings: ""
+  edit_your_global_project_settings:
+  edit_your_identification:
+  edit_your_settings_for_this_project:
+  edited_by_name_html: ""
+  edited_by_name_some_rights_reserved_html: |
+
+  editing:
+  editing_announcement:
+  editing_custom_project_fields_for:
+  editing_observation_field:
+  editing_observation_id: ""
+  editing_project:
+  editing_project_asset:
+  editing_subscription_to_x_html: ""
+  editing_taxon:
+  editing_taxon_link:
+  editing_taxon_name_for_taxon_html:
+  editing_taxon_range_for_taxon_html:
+  editing_this:
+  editing_x_in_y: ""
+  editors:
+  either_that_user_doesnt_exist_or: ""
+  eligible_for_research_grade:
+  email:
+  email_description:
+  email_address_for_comments_and_other_feedback:
+  email_copyright: ""
+  email_notifications:
+  embed: ''
+  embed_place_widget:
+  embed_this_assessment:
+  embed_widget_project:
+  enable_offline_access:
+  enable_offline_access_for_mobile:
+  encompassing_places:
+  end:
+  end_date_time:
+  endangered:
+  endemic:
+  endemic_to_x: ""
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol:
+  eol_collection_url: ""
+  error_updating_photo: ""
+  establishment_means:
   establishment_means_describes_how: |
-    확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를 통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a> 확인할 수 있다.
-  event_in_progress: 진행 중인 이벤트
-  event_stats: 이벤트 통계
-  event_url: 이벤트 URL
-  events_only: 이벤트만
-  everyone: 모두
-  everyone_: 모두
-  everyone_journal_posts: 모든 사람의 일지 포스트
-  everywhere: 모든 곳
-  exact: 정확하게
-  exact_date: 정확한 날짜
-  exact_rank: 정확한 랭크
-  exclusion_filters: 제외 필터
-  existing_flags: 기존 플래그
-  exit_full_screen: "전체 화면에서 나가기"
-  explore: 둘러보기
-  export: 내보내기
-  export_observations: 관찰 내보내기
-  export_with_private_coordinates: 비공개 좌표와 함께 내보내기
-  exporting: "내보내는 중..."
-  extinct: 절멸(EX)
-  extinct_in_the_wild: 야생절멸(EW)
-  extra_properties: 추가 특징들
-  facebook: 페이스북
-  facebook_account_information: 페이스북 계정 정보
-  facebook_account_not_linked: "%{user}님이 더 이상 연결된 페이스북 계정이 없기 때문에 %{site_name}이(가) 이 사진을 접근할 권한이 없습니다."
-  facebook_access_token_expired: "접근 기간이 만료되었습니다. %{user}는 다시 본인의 페이스북 계정을 연결해야 합니다."
-  facebook_needs_the_owner_of_that_photo_to: 페이스북이 사진의 저작권 소유자가 %{site_name_short}과의 관계를 재확인하는 것을 필요합니다.
-  facebook_options: 페이스북 옵션
-  failed_to_find_your_location: 당신의 위치를 찾는데 실패하였습니다.
-  failed_to_repair_photo: "사진을 수리하는데 실패했습니다. %{errors}"
-  failed_to_save_record: "기록을 저장하는데 실패했습니다. 나중에 다시 시도해주십시오."
-  'false': '거짓'
+
+  estimate_which_input: |
+
+  event_in_progress:
+  event_stats:
+  event_url:
+  events_only:
+  everyone:
+  everyone_:
+  everyone_journal_posts:
+  everywhere:
+  exact:
+  exact_date:
+  exact_rank:
+  except:
+  exclude_places:
+  exclude_projects:
+  exclude_taxa:
+  exclude_users:
+  exclusion_filters:
+  existing_flags:
+  exit_full_screen: ""
+  examples_of_data_use_by_network_members:
+  examples_of_ranking_organizations:
+  explore:
+  export:
+  export_observations:
+  export_with_private_coordinates:
+  exporting: ""
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications:
+  external_applications_description: |
+
+  external_taxon_including_children:
+  extinct:
+  extinct_in_the_wild:
+  extra_properties:
+  evidence_of_organism:
+  facebook:
+  facebook_account_information:
+  facebook_account_not_linked: ""
+  facebook_access_token_expired: ""
+  facebook_needs_the_owner_of_that_photo_to:
+  facebook_options:
+  facebook_photo_import_disabled_notice: |
+
+  failed_to_find_your_location:
+  failed_to_repair_photo: ""
+  failed_to_save_record: ""
+  failed_to_save_record_with_errors: ""
+  failed_to_unlink_your_account:
+  'false': ''
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves: 즐겨찾기
-  Family: 과
-  favorite_taxa: 좋아하는 분류군
-  favorites: "즐겨찾기"
-  feedback: 피드백
+  faves:
+  Family:
+  favorite_taxa:
+  favorites: ""
+  feature_this_project_: ""
+  featured:
+  #Title for a button or section describing the "featured" status of a project
+  featuring:
+  feedback:
   #Plural noun, as in Atom and RSS feeds
-  feeds: '피드'
-  failed: 실패
+  feeds: ''
+  failed:
   field_note: |
-    <strong>Note:</strong> 필드를 만들고 싶다면 다른 사람이 이미 만들었는지 확인하여 이중으로 만들어지는 것을 방지하십시오.
-  fields: 필드
-  fields_: 필드
-  fields_can_only_be_edited_by_the_people_who: 필드는 만든이와 사이트 큐레이터만 편집할 수 있습니다.
-  fields_merged: 필드 병합
-  file: 파일
-  file_should_be_in_the_following_format: "파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명"
-  fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
-  fill_out_your_profile: 프로파일을 완성하십시오
-  filter: 필터
-  filter_by_curator_identification: 큐레이터 동정으로 필터
-  filter_by_place: 장소로 필터
-  filter_by_taxon: 분류군별 필터
-  filter_by_place_taxon_and_color: 제어 장치를 이용하여 장소, 분류군, 색으로 필터
-  filter_list_by_this_taxon: 목록을 분류군으로 필터
-  filtering: 필터링
-  filters: 필터
-  find: 찾기
-  find_a_guide: 가이드 찾기
-  find_a_place: 장소 찾기
-  find_guides: 가이드들 찾기
-  find_new_place_to_explore: 새롭게 탐험할 곳을 찾아보세요!
-  find_observations: 관찰 찾기
-  find_photos: 사진 찾기
-  find_places: 장소들 찾기
-  find_some_people_to_follow: "팔로우할 사람들 찾기"
-  find_species: 종 찾기
-  find_suitable_observations: 적합한 관찰 방식 찾기
-  find_unsuitable_observations: 비적합한 관찰 방식 찾기
-  find_your_current_location: 현 장소 찾기
-  finished: 완료
-  finished_with_page: 페이지 완료
-  first_confirmed_inat_observation: "첫 번째 확인된 %{site_name} 관찰"
-  first_connect_your_provider_account_to_your_site: "먼저, %{provider} 계정을 %{site_name}과 연결하세요;"
-  first_inat_observation: "첫 번째 %{site_name} 관찰"
-  first_observer: 첫 번째 관찰자
+
+  fields:
+  fields_:
+  fields_can_only_be_edited_by_the_people_who:
+  fields_merged:
+  file:
+  file_size:
+  file_should_be_in_the_following_format: ""
+  fill_out_project_observation_fields:
+  fill_out_your_profile:
+  #The name of a computer file
+  filename:
+  filter:
+  filter_by_curator_identification:
+  filter_by_place:
+  filter_by_taxon:
+  filter_by_place_taxon_and_color:
+  filter_list_by_this_taxon:
+  filtering:
+  filters:
+  find:
+  find_a_guide:
+  find_a_place:
+  find_guides:
+  find_new_place_to_explore:
+  find_observations:
+  find_photos:
+  find_places:
+  find_some_people_to_follow: ""
+  find_species:
+  find_suitable_observations:
+  find_unsuitable_observations:
+  find_your_current_location:
+  finished:
+  finished_with_page:
+  first_confirmed_inat_observation: ""
+  first_connect_your_provider_account_to_your_site: ""
+  first_inat_observation: ""
+  first_observer:
   #Verb form, as in "Flag this item"
-  flag: 플래그
-  flag_as_inappropriate: 부적절한 것으로 표시
-  flag_an_item: 항목을 플래그
-  flag_as_spammer: 스패머로 표시
-  flag_as_non_spammer: 비스패머로 플래그
-  flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
-  flag_for_curation: 큐레이션 대상으로 플래그
-  flag_it!: 플래그!
-  flag_reason: "&ldquo; %{record}를 플래그하는 이유는"
-  flag_saved: 플래그 저장됨
-  flag_this_observation: 이 관찰에 플래그를 달기
-  flag_this_photo: 이 사진 플래그
-  flag_this_sound: 이 소리 플래그
-  flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
-  flagged_thing_explanation: "사용자들이 이 %{thing}을(를) 플래그한 이유는"
-  flagger: 플래그한 사용자
-  flags: 플래그들
-  flags_explanation: "%{site_name} 사용자들은 오류를 발견했을 때 플래그를 합니다. 여기 큐래이터들이 아직 해결하지 않은 사안들이 있습니다."
-  flags_on_users_content: "%{user}의 콘텐츠에 달린 플래그들"
-  flickr_account_information: Flickr 계정 정보
-  flickr_has_no_creative_commons: Flickr는 이곳에서 크리에이티브 커먼즈 인증된 사진들이 없습니다.
-  flickr_identity: Flickr 신원
-  flickr_needs_to_confirm: "Flickr가 당신의 계정을 %{site_name}에 연결하는 것을 확인하고자 합니다."
-  flickr_photo: Flickr 사진
-  flickr_photos: Flickr 사진
-  flickr_style: Flickr-스타일
-  flickr_tagger: Flickr 태그 단 사용자
-  flickr_tags: Flickr 태그
+  flag:
+  flag_as_inappropriate:
+  flag_an_item:
+  flag_as_spammer:
+  flag_as_non_spammer:
+  #Label for the date/time when a flag was created
+  flag_created:
+  flag_deleted:
+  flag_description:
+  flag_comment_description:
+  flag_for_check_list_title_html: |
+
+  flag_for_comment_id_html:
+  flag_for_comment_id_deleted:
+  flag_for_curation:
+  flag_for_guide_title_html: |
+
+  flag_for_identification_id_html:
+  flag_for_life_list_title_html: |
+
+  flag_for_list_title_html: |
+
+  flag_for_message_id_html:
+  flag_for_observation_title_html: |
+
+  flag_for_photo_id_html:
+  flag_for_place_title_html: |
+
+  flag_for_post_title_html: |
+
+  flag_for_project_title_html: |
+
+  flag_for_guide_section_id_html:
+  flag_for_sound_id_html:
+  flag_for_taxon_title_html: |
+
+  flag_for_user_title_html: |
+
+  flag_it!:
+  flag_marked_as_resolved_html: ''
+  #Label for the object that was flagged, e.g. a table header
+  flag_object:
+  flag_reason: ""
+  flag_resolution:
+  flag_saved:
+  flag_saved_thanks_html:
+  flag_this_observation:
+  flag_this_photo:
+  flag_this_place:
+  flag_this_sound:
+  flagged_:
+  flagged_for_curation:
+  flagged_taxon:
+  flagged_thing_explanation: ""
+  flagging_desc: |
+
+  flagger:
+  flags:
+  flags_with_count:
+  flags_explanation: ""
+  flags_for_x_html:
+  flags_on_users_content: ""
+  flickr_account_information:
+  flickr_has_no_creative_commons:
+  flickr_identity:
+  flickr_needs_to_confirm: ""
+  flickr_photo:
+  flickr_photos:
+  flickr_style:
+  flickr_tagger:
+  flickr_tags:
+  fluid_layout:
   #Adjective, as in a fluid layout of images
-  fluid: 유체
-  follow: 팔로우
-  follow_user: "%{user} 팔로우"
-  followers: 팔로어
-  following: 팔로잉
-  following_x_people:
-    other: '%{count}명을 팔로우함'
-  formatting: 서식 지정
-  forgot_your_password: 비밀번호를 잊으셨나요?
-  forum: 포럼
-  forum_categories:
-    bug_reports: 버그 보고
-    feature_requests: 기능 요청
-    news_and_updates: 소식 및 업데이트
-  frequency: 주기
-  from_a_place: 어떤 장소로부터
-  from_eol_collection: EOL 모음집으로부터
-  from_flickr_facebook_etc: Flickr, Facebook 등으로부터
-  from_list: 목록으로부터
-  from_photos: 사진들로부터
-  from_place: 장소로부터
-  from_soundcloud: 사운드클라우드로부터
-  full_screen: 전체 화면
-  gbif_occurrences: GBIF 발생건들
-  generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
-  generate_widget: 위젯 생성하기
-  generating_mobile_archive: "모바일 아카이브를 생성"
-  Genus: 속
-  geoprivacy: 지역 개인 정보
-  get_started: 시작하기
-  global_names: 세계적 이름들
-  globally: 세계적으로
-  go: 가기
-  go_back: 돌아가기
-  going_to_your_observations: 내 관찰들로 가는 중...
-  good_choice_for_sharing: 과학자들과 공유하는 것은 좋은 선택입니다
-  google: 구글
-  got_it!: 알겠습니다!
-  got_your_data_somewhere_else?: 다른 곳에서 데이터를 가져왔습니까? 우리가 도울 수 있습니다.
-  grid: 격자
-  grid_layout: 격자 레이아웃
-  grid_tooltip: 격자 레이아웃 보기
-  group: 그룹
-  guides: 가이드
-  guide_compiled_by: 가이드 엮은이는
-  guide_deleted: 가이드 삭제됨
-  guide_will_be_deleted: 가이드가 삭제될 것입니다. 큰 가이드일 수록 오래걸립니다.
-  guide_was_successfully_created: 가이드가 성공적으로 만들어졌습니다.
-  guide_was_successfully_published: 가이드가 성공적으로 출판되었습니다.
-  guide_was_successfully_updated: 가이드가 성공적으로 업데이트되었습니다.
-  guidelines: 가이드라인
-  has_already_been_flagged_by: 에 의해 이미 플래그함
-  has_one_or_more_faves: 하나 이상의 '좋아요'가 있음
-  has_photo: 사진이 있음
-  has_photos: 사진이 있음
-  has_photo_and_sound: 사진과 소리가 모두 있음
-  has_photos_or_sounds: 사진이나 음원이 있음
-  has_sound: 소리가 있음
-  has_sounds: 소리가 있음
-  hasnt_contributed_any_observations: 이 프로젝트에 관찰을 게시하지 않았습니다.
-  header_your_observations: 내 관찰
-  header_your_calendar: 내 달력
-  header_your_favorites: 내 즐겨찾기
-  header_your_lists: 내 목록
-  header_your_journal: 나의 일지
-  header_your_identifications: 나의 동정
-  header_your_projects: 나의 프로젝트
-  header_your_profile: 나의 프로필
-  heads_up: 주의
-  heads_up_this_photo_has_been_flagged: "주의: 이 사진은 플래그되었습니다."
-  heads_up_this_photo_is_already_associated_with: "주의: 이 사진은 이미 <a target='_blank' href='%{url}'>다른 관찰</a>와 연결되어 있습니다."
-  heads_up_you_have_multiple: "주의: 당신은 동일한 랭크들에 대해 다수의 분류학상의 기작 태그가 달려 있습니다. 랭크에 따라 아래에 색으로 구분되어있습니다."
-  help: 도움말
-  help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
-  help_support_inaturalist: "iNaturalist 후원하기"
-  here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
-  hi_user: "%{user}님, 안녕하세요."
-  hide_content: 내용 숨기기
-  hide_uncountable_species: 셀 수 없는 종을 숨기기
-  high: 높음
-  highest_rank: 가장 높은 랭크
-  history: 역사
-  home: 처음으로
-  however_there_were_some_issues: "하지만, 몇 가지 문제가 있었습니다: %{issues}"
-  icon: 아이콘
-  icon_size: 아이콘 크긱
-  iconic_taxon: 특정 분류군
-  identify: 동정하기
-  identify_title: "동정하기"
-  identification: 동정
+  fluid:
+  follow:
+  follow_receive_updates_about_new_observations:
+  follow_user: ""
+  followers:
+  following:
+  for_a_taxon:
+  formatting:
+  forgot_your_password:
+  forum:
+  forum_desc: |
+
+  frequency:
+  from_a_place:
+  from_eol_collection:
+  from_flickr_facebook_etc:
+  from_list:
+  from_photos:
+  from_place:
+  from_soundcloud:
+  full_screen:
+  gbif:
+  gbif_occurrences:
+  generate_taxonomic_tags_for_flickr:
+  generate_widget:
+  generate_your_stats:
+  generating_mobile_archive: ""
+  Genus:
+  geoprivacy:
+  geoprivacy_is_obscured:
+  geoprivacy_is_obscured_desc:
+  geoprivacy_is_private:
+  geoprivacy_is_private_desc:
+  georeferenced:
+  get_started:
+  getting_started_guide:
+  #Prompt to donate money on a montly basis
+  give_monthly_caps:
+  #Prompt to donate money once
+  give_now_caps:
+  global_names:
+  globally:
+  go:
+  go_back:
+  going_to_your_observations:
+  good_choice_for_sharing:
+  google:
+  google_maps_not_loaded_error: |
+
+  got_it!:
+  got_your_data_somewhere_else?:
+  graft:
+  graft_taxon:
+  grafting_attemps_to_insert_this_taxon:
+  grant_role: ""
+  grid:
+  grid_layout:
+  grid_tooltip:
+  group:
+  grouping:
+  guides:
+  guide_compiled_by:
+  guide_deleted:
+  guide_will_be_deleted:
+  guide_taxon:
+  guide_was_successfully_created:
+  guide_was_successfully_published:
+  guide_was_successfully_updated:
+  guidelines:
+  has_already_been_flagged_by:
+  has_id_supported_by_two_or_more:
+  has_one_or_more_faves:
+  has_photo:
+  has_photos:
+  has_photo_and_sound:
+  has_photos_or_sounds:
+  has_sound:
+  has_sounds:
+  hasnt_contributed_any_observations:
+  header_your_observations:
+  header_your_calendar:
+  header_your_favorites:
+  header_your_lists:
+  header_your_journal:
+  header_your_identifications:
+  header_your_projects:
+  header_your_profile:
+  heads_up:
+  heads_up_automatable_draft_split_notice_html: |
+
+  heads_up_non_automatable_draft_split_notice_html: |
+
+  heads_up_automatable_split_notice_html: |
+
+  heads_up_observose_taxon_change_html: |
+
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+
+  heads_up_this_photo_has_been_flagged: ""
+  heads_up_this_photo_is_already_associated_with: ""
+  heads_up_you_have_multiple: ""
+  help:
+  help_confirm_observations!:
+  help_support_inaturalist: ""
+  help_translate!:
+  here_are_3_examples:
+  here_are_our_top_suggestions:
+  here_are_our_top_species_suggestions:
+  hex_color_eg:
+  hi_user: ""
+  #Verb, usually a button to hide an interface element
+  hide:
+  hide_content:
+  hide_desc: |
+
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation:
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total:
+  hide_uncountable_species:
+  high:
+  highest_rank:
+  highlights_and_stats_from_year_on_site: ""
+  history:
+  home:
+  #Label showing hours adjusted in the time shifter in the Uploader
+  hours_to_adjust: ""
+  however_there_were_some_issues: ""
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+
+  i_dont_know_but_i_am_sure_this_is_taxon:
+  icon:
+  icon_size:
+  iconic_taxon:
+  id:
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: ""
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: ""
+  id_withdrawn:
+  ids_by_taxon:
+  identify:
+  identify_observations: ""
+  identify_observations_by_these_users:
+  identify_title: ""
+  identification:
+  identification_by_user:
   #Notification when an identification has been deleted
-  identification_deleted: 동정 삭제됨
-  identification_saved: "동정 저장됨"
+  identification_deleted:
+  identification_saved: ""
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden:
   #Notification when an identification has been updated
-  identification_updated: 동정 업데이트됨
-  identifications: 동정
-  identifiers: 동정한 사용자들
-  if_this_is_a_scientific_name: 이것이 학명이라면, 현재 받아들여지는 학명인가요?
-  if_this_link_will_apply_to_descendant: 이 링크가 후손 분류군들에 적용되는 것이라면, 형식 태그로 URL에 분류군 이름을 기입할 수 있습니다.
-  if_you_have_any_trouble_with_the_site_check_out: '질문이 있으시다면, <a href="%{help_url}">도움말 문단</a>을 확인하시거나, <a href="%{feedback_url}">피드백 그룹</a>에 글을 남겨주세요.'
-  if_your_project_is: 프로젝트가 특정한 장소에 대한 것이라면 지도를 클릭하여 좌표를 설정하거나 직접 입력해주세요.
-  ignore_and_continue: 무시하고 계속하기
-  ignore_times: 시간 무시
-  image_must_be_exactly: 그림은 너비의 경우 정확히 950px, 높이는 최대 400px이어야 합니다.
-  import: 가져오기
-  import_all_photos_as_observations: 모든 사진을 관찰로 들여오기
-  import_as_an_observation: 관찰로 들여오기
-  import_as_another_observation: 다른 관찰로 들여올 것입니까?
-  import_date_time_location_taxonomic: "이 사진에서 날짜, 시간, 장소, 설명, 그리고 분류학적 정보를 들여온다."
-  import_from_csv: CSV에서 가져오기
-  import_from_other_photo_sites: 다른 사이트들에서 사진 들여오기
-  import_observations: 관찰 들여오기
-  import_observations_from_a_photo: 컴퓨터에 있는 파일이나 사진 제공자부터 관찰 가져오기
-  import_photos: 사진 가져오기
-  import_tags_from_csv: CSV로부터 태그 가져오기
-  importing: "가져오는 중..."
-  improving: 개선 중
+  identification_updated:
+  identification_user_short:
+  #Notification when an identification has been withdrawn
+  identification_withdrawn:
+  identifications:
+  computer_vision_suggestion:
+  computer_vision_suggestion_desc: |
+
+  identifiers:
+  identotron:
+  identotron_for:
+  identotron_help:
+  ids: ""
+  ids_made_for_others:
+  if_for_some_reason_a_user_doesnt_agree: |
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+
+  if_matches_come_from_a_comprehensive_list:
+  if_this_is_a_scientific_name:
+  if_this_link_will_apply_to_descendant:
+  if_you_have_any_trouble_with_the_site_check_out: ''
+  if_your_project_is:
+  ignore_and_continue:
+  ignore_times:
+  image_must_be_exactly:
+  image_size_control:
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
+  imperiled:
+  import:
+  import_all_photos_as_observations:
+  import_as_an_observation:
+  import_as_another_observation:
+  import_date_time_location_taxonomic: ""
+  import_from_csv:
+  import_from_other_photo_sites:
+  import_observations:
+  import_observations_from_a_photo:
+  import_photos:
+  import_ranges:
+  import_sections:
+  import_tags_from_csv:
+  importing: ""
+  improving:
+  in_n: ""
+  in_place_x:
+  inaturalist_network:
+  inaturalist_network_affiliation:
   #Label for messages you've received
-  inbox: 받은 쪽지함
-  in_progress: 진행 중
-  in_the_past_week: 지난 한 주 동안
-  inactive: 비활성
-  inactive_taxon: 비활성 분류군
-  inappropriate_content: 내용이 부적절합니까?
-  inat_account_action: "%{site_name} &#58; 계정 &#58; %{action_name}"
-  inat_believes_this_is_a_complete_listing: "%{site_name}은 이것이 이 분류군의 모든 것의 목록이라고 합니다."
-  inat_user_profile: "%{site_name}: %{user}의 프로파일"
-  inaturalist_places: "%{site_name} 장소들"
-  info: 정보
-  insects: 곤충
-  insect_life_stage: 곤충 성장 단계
-  internal_server_error: 내부 서버 오류
-  introduced: 도입종
-  introduced_in_place: "%{place} 에 도입됨"
-  invitation: 초대장
-  invite: 초대
-  invite_people: 사용자들 초대
-  invite_people_to_project: "%{project}(으)로 사용자 초대"
+  inbox:
+  include_places:
+  include_projects:
+  include_suggestions_not_seen_nearby:
+  include_taxa:
+  include_users:
+  including:
+  increase_brightness:
+  in_progress:
+  in_the_past:
+  in_the_past_week:
+  inactive:
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status:
+  inactive_taxon:
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status:
+  inactive_taxon_concepts_are:
+  inappropriate_content:
+  inat_account_action: ""
+  inat_believes_this_is_a_complete_listing: ""
+  inat_user_profile: ""
+  inaturalist_activity_notifications: ""
+  #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
+  inaturalist_applications: ""
+  inaturalist_is_a_joint_initiative: ""
+  inaturalist_places: ""
+  info:
+  input_taxon:
+  insects:
+  insect_life_stage:
+  instagram:
+  #Tool tip for a button that inserts quoted text into a text area
+  insert_a_quote:
+  interactions:
+  internal_server_error:
+  internal_taxon_including_descendants:
+  internal_taxon_rank:
+  introduced:
+  introduced_in_place: ""
+  invitation:
+  invite:
+  invite_people:
+  invite_people_to_project: ""
   #Type of project where people can only join after they have been invited
-  inviteonly: 초대로만 가능
-  invited_x: "%{x}을(를) 초대했습니다."
-  iphone: 아이폰
-  is_not_following_anyone: 은 아무도 팔로잉하고 있지 않습니다.
-  is_this_offensive_html: '이것이 <a href="/help#inappropriate">부적절</a>하거나, 스팸, 또는 불쾌합니까?'
-  is_this_place_a_duplicate: 이 장소는 중복되었나요?
-  it_can_now_be_used_for_research: 이제 연구를 위해 사용하거나 다른 웹사이트에 실을 수 있습니다
+  inviteonly:
+  invited_x: ""
+  iphone:
+  is_not_following_anyone:
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
+  is_this_offensive_html: ''
+  is_this_place_a_duplicate:
+  it_can_now_be_used_for_research:
+  #Text inserted into a textarea when the italic button is clicked but no text was selected
+  italic_text:
   item_flagged_notice_html: |
-    스팸으로 표시되어 더 이상 공개되지 않습니다.
-    당신이 만든 사람이거나 사이트 큐레이터이기 때문에 볼 수 있습니다.
-    스팸이 실수라고 생각되신다면
-    <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
-    <a href="%{manage_flags_path}">표시 관리</a>
-  join: 가입하기
-  join_project: 이 프로젝트 가입하기
-  join_this_project: 이 프로젝트 가입하기
-  'joined!': 가입했습니다!
-  joined_projects: 참가한 프로젝트
-  joined_with_date: "가입일: %{date}"
-  journal: 일지
-  journal_archives_for: '일지 저장소:'
-  journal_post: 일지 포스트
-  journal_post_deleted: 일지 포스트 삭제
-  jpg_png_or_gif: "JPG, PNG나 GIF"
-  just_added!: 추가했습니다!
-  keep_editing: 편집 계속
-  keyboard_shortcuts: 단축 키
-  kml_file_size_error: "KML은 1MB보다 크기가 작아야 합니다."
-  labels: 라벨
+
+  jobs:
+  join:
+  join_and_add_an_observation_to_project_html:
+  join_project:
+  #Prompt to join a specific project
+  join_project?:
+  join_the_largest_group_of_naturalists_in_the_world:
+  join_this_project:
+  'joined!':
+  joined_projects:
+  joined_with_date: ""
+  journal:
+  journal_archives_for:
+  journal_post:
+  journal_post_deleted:
+  journal_posts:
+  jpg_png_or_gif: ""
+  jump_to_letter:
+  just_a_reminder:
+  just_added!:
+  keep_editing:
+  keyboard_shortcuts:
+  kml:
+  kml_file_size_error: ""
+  label_colon: ""
+  labels:
+  label_to_group_a_batch_of_taxon_changes:
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private: 위치 비공개
-  language_slash_type: 언어 / 유형
+  location_private:
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown:
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level:
+  language_slash_locale:
+  language_slash_locale_description:
+  language_slash_type:
   #Large photo size
-  large: 크게
-  last_active_with_date: "마지막 활동일: %{date}"
-  last_confirmed_observation: 마지막으로 확인된 관찰
-  last_observation: 마지막 관찰
-  last_year: 지난 해
-  lat: 위도
-  latitude: 위도
-  latitude_value: "위도: %{latitude}"
-  layout: 배치 (레이아웃)
-  learn_more: 더 알아보기
-  least_concern: 관심 대상
-  leave: 떠나기
-  leave_a_comment: 댓글 달기
-  leave_this_project: 프로젝트 떠나기
-  let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
-  lexicon: 언어
+  large:
+  last_active_with_date: ""
+  last_confirmed_observation:
+  last_observation:
+  last_observation_caps:
+  last_seen:
+  last_year:
+  lat:
+  latitude:
+  latitude_in_decimals: ''
+  latitude_slash_y_coord_slash_northing:
+  latitude_value: ""
+  #As in map layers, i.e. layers of data that might be overlayed on a map
+  layers:
+  layout:
+  leaderboard:
+  leaderboard_for_x: ""
+  leaderboards:
+  leading:
+  learn:
+  learn_about_the_species_live_in:
+  learn_more:
+  learn_more_raquo: ""
+  learn_what_these_licenses_mean:
+  least_concern:
+  leave:
+  leave_a_comment:
+  leave_this_project:
+  #Terminal nodes in a taxonomic tree
+  leaves:
+  legacy_authentication_notice_html: |
+
+  let_us_walk_you_through:
+  lexicon:
+  lexicon_cannot_contain_words: ""
   lexicons:
-    scientific_names: 학명
-    albanian: 알바니아어
-    bengali: 벵골어
-    chinese_simplified: 중국어(간체)
-    chinese_traditional: 중국어(정체)
-    czech: 체코어
-    danish: 덴마크어
-    dutch: 네덜란드어
-    english: 영어
-    estonian: 에스토니아어
-    finnish: 핀란드어
-    french: 프랑스어
-    german: 독일어
-    greek: 그리스어
-    hawaiian: 하와이어
-    hebrew: 히브리어
-    icelandic: 아이슬란드어
-    italian: 이탈리아어
-    japanese: 일본어
-    korean: 한국어
-    lithuanian: 리투아니아어
-    luxembourgish: 룩셈부르크어
-    maltese: 몰타어
-    maori: 마오리어
-    norwegian: 노르웨이어
-    portuguese: 포르투갈어
-    romanian: 루마니아어
-    russian: 러시아어
+    scientific_names:
+    afrikaans:
+    albanian:
+    arabic:
+    armenian:
+    belarusian:
+    bengali:
+    bulgarian:
+    catalan:
+    cebuano:
+    chinese_simplified:
+    chinese_traditional:
+    creole_french:
+    creole_portuguese:
+    croatian:
+    czech:
+    danish:
+    davawenyo:
+    dutch:
+    english:
+    estonian:
+    faroese:
+    finnish:
+    french:
+    galician:
+    gela:
+    german:
+    greek:
+    hawaiian:
+    hebrew:
+    hiligaynon:
+    hungarian:
+    icelandic:
+    ilokano:
+    indonesian:
+    italian:
+    japanese:
+    kannada:
+    korean:
+    latvian:
+    lithuanian:
+    luxembourgish:
+    malay:
+    malayalam:
+    maltese:
+    maori:
+    marathi:
+    maya:
+    misima_paneati:
+    mongolian:
+    nahuatl:
+    norwegian:
+    occitan:
+    ojibwe:
+    palauan:
+    pangasinan:
+    persian:
+    polish:
+    portuguese:
+    romanian:
+    russian:
+    santali:
     spanish: 스페인어
     swedish: 스웨덴어
     tagalog: 타갈로그어
