@@ -1323,6 +1323,8 @@ it:
   curators_can_remove_observations_from: I curatori possono rimuovere le osservazioni dal progetto e le loro identificazioni sono indicate a fianco delle osservazioni nella pagina del progetto. I curatori possono anche accedere alle coordinate private e oscurate delle osservazioni.
   curator_identification: Identificazione del curatore
   current_flags: Segnalazione corrente
+  #Label for a custom boundary for an observation search
+  custom_boundary: Confine Personalizzato
   custom_project_fields: Campi personalizzati del progetto
   custom_project_was_successfully_created: Personalizzazioni del progetto aggiunte
   custom_project_was_successfully_updated: Personalizzazioni del progetto aggiornate
@@ -1545,6 +1547,10 @@ it:
   draft_saved: Bozza salvata!
   drafts: Bozze
   drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Disegna un confine circolare
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Disegna un confine rettangolare
   drawings: Bozze
   duplicate_verb: Duplica
   duration_value: "Durata: %{duration} minuti"
@@ -2273,6 +2279,7 @@ it:
     romanian: Rumeno
     russian: Russo
     santali: Santali
+    serbian: Serbo
     setswana: Setswana
     sinhala: Singalese
     slovak: Slovacco
@@ -2394,6 +2401,7 @@ it:
     sk: Slovacco
     sl: Sloveno
     sq: Albanese
+    sr: Serbo
     sv: Svedese
     th: Thailandese
     tr: Turco
@@ -3667,6 +3675,8 @@ it:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">scaricarli da GBIF in alternativa</a>, dove puoi disegnare dei confini arbitrari, oppure di esportarli da iNat usando luoghi esistenti o un riquadro di delimitazione, e quindi filtrarli successivamente una volta scaricati.
   places_warning_look_for_existing_html: |
     Cerca <a href="/search?source[]=places">tra i luoghi esistenti</a> per assicurarti di non creare un duplicato. Abbiamo già i luoghi per tutti i continenti e gli stati, così come per i due livelli amministrativi sottostanti.
+  places_warning_please_keep_in_mind: |
+    Sei pregato di tenere a mente le seguenti limitazioni:
   places_warning_projects_can_have_multiple_places: |
     Se stai cercando di creare un luogo per definire un area per un progetto, considera che i progetti possono essere composti da più luoghi. Per esempio, se vuoi realizzare un progetto che includa la Nuova Zelanda e l'Australia, puoi solo aggiungere le regole per questi due luoghi invece di crearne uno nuovo.
   places_warning_new_places_are_slow_html: |
@@ -4053,6 +4063,8 @@ it:
   research_grade_tooltip_html: 'Le osservazioni di "Livello Ricerca" hanno contenuto multimediale, una posizione, una data, e un consenso della comunità su una precisa identificazione (di solito a livello di specie). <a href="https://www.inaturalist.org/pages/help#quality">Scopri di più sui livelli di qualità</a>'
   research_grade_observations_have: 'le osservazioni ad un "Livello ricerca" hanno foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere la valutazione della qualità dei dati'
   research_grade_qualification: Qualifica di Livello ricerca
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Ripristina
   reset_filters_short: Azzera
   reset_brightness: Reimposta luminosità
   reset_search_filters: Resetta i filtri di ricerca
