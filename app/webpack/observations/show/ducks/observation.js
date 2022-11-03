@@ -699,7 +699,10 @@ export function deleteComment( uuid ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newComments = _.map( state.observation.comments, c => (
-      c.uuid === uuid ? Object.assign( { }, c, { api_status: "deleting" } ) : c
+      c.uuid === uuid ? {
+        ...c,
+        api_status: "deleting"
+      } : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
     dispatch( callAPI( inatjs.comments.delete, { uuid } ) );
@@ -711,7 +714,11 @@ export function editComment( uuid, body ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newComments = state.observation.comments.map( c => (
-      c.uuid === uuid ? Object.assign( { }, c, { body } ) : c
+      c.uuid === uuid ? {
+        ...c,
+        body,
+        api_status: "saving"
+      } : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
     dispatch( callAPI( inatjs.comments.update, {
@@ -816,10 +823,19 @@ export function deleteID( uuid, options = { } ) {
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     let newIdentifications;
     if ( options.delete ) {
-      newIdentifications = state.observation.identifications.filter( i => ( i.uuid !== uuid ) );
+      newIdentifications = _.map( state.observation.identifications, i => (
+        i.uuid === uuid ? {
+          ...i,
+          api_status: "deleting"
+        } : i
+      ) );
     } else {
       newIdentifications = _.map( state.observation.identifications, i => (
-        i.uuid === uuid ? Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
+        i.uuid === uuid ? {
+          ...i,
+          current: false,
+          api_status: "deleting"
+        } : i
       ) );
     }
     dispatch( setAttributes( { identifications: newIdentifications } ) );
@@ -832,7 +848,11 @@ export function editID( uuid, body ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newIdentifications = state.observation.identifications.map( i => (
-      i.uuid === uuid ? Object.assign( { }, i, { body } ) : i
+      i.uuid === uuid ? {
+        ...i,
+        body,
+        api_status: "saving"
+      } : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
     dispatch( callAPI( inatjs.identifications.update, { uuid, identification: { body } } ) );

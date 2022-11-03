@@ -20,6 +20,13 @@ const ActivityItemMenu = ( {
   unhideContent
 } ) => {
   if ( !item ) { return ( <div /> ); }
+  if ( item.api_status ) {
+    return (
+      <div className="ActivityItemMenu">
+        <div className="loading_spinner" />
+      </div>
+    );
+  }
   const isID = !!item.taxon;
   const menuItems = [];
   const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
@@ -319,7 +326,7 @@ const ActivityItemMenu = ( {
               unhideContent( item );
             }
           }}
-          disabled={!!item.api_status || _.isEmpty( menuItems )}
+          disabled={_.isEmpty( menuItems )}
         >
           <Dropdown.Toggle noCaret>
             <i className="fa fa-chevron-down" />

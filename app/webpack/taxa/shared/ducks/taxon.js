@@ -319,6 +319,7 @@ export function fetchTaxon( taxon, options = { } ) {
         complete_species_count: true,
         observations_count: true,
         complete_rank: true,
+        flag_counts: "all",
         default_photo: {
           url: true
         },
