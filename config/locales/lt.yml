@@ -1,1767 +1,2033 @@
 lt:
-  x_people_helped_user_with_y_ids_html: ""
-  _100_day_trends:
-  _percent_ID_d: ""
-  a_community_for_naturalist:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} pakeitimas"
+    few: "%{count} pakeitimai"
+    many: "%{count} pakeitimai"
+    other: "%{count} pakeitimai"
+  x_comments:
+    one: '%{count} komentaras'
+    few: '%{count} komentarai'
+    many: '%{count} komentarai'
+    other: '%{count} komentarai(-ų)'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentaras'
+    few: '<span class="count">%{count}</span> komentarai'
+    many: '<span class="count">%{count}</span> komentarai'
+    other: '<span class="count">%{count}</span> komentarai'
+  x_faves:
+    one: '%{count} pamėgimas'
+    few: '%{count} pamėgimai'
+    many: '%{count} pamėgimai'
+    other: '%{count} pamėgimai'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> žymė išspręsta"
+    few: "<span class='count'>%{count}</span> žymės išspręstos"
+    many: "<span class='count'>%{count}</span> žymės išspręstos"
+    other: "<span class='count'>%{count}</span> žymės išspręstos"
+  x_identifications:
+    one: '%{count} identifikacija'
+    few: '%{count} identifikacijos'
+    many: '%{count} identifikacijos'
+    other: '%{count} identifikacijos'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identifikacija'
+    few: '<span class="count">%{count}</span> identifikacijos'
+    many: '<span class="count">%{count}</span> identifikacijos'
+    other: '<span class="count">%{count}</span> identifikacijos'
+  x_identifications_:
+    one: '%{count} identifikacija'
+    few: '%{count} identifikacijos'
+    many: '%{count} identifikacijos'
+    other: '%{count} identifikacijos'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> identifikuotojas'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> identifikuotojai'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> identifikuotojai'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> identifikuotojai'
+  x_languages:
+    one: "%{count} kalba"
+    few: "%{count} kalbos"
+    many: "%{count} kalbos"
+    other: "%{count} kalbos"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} gyvenimo sąrašo pirmasis"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} gyvenimo sąraše pirmieji"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "%{count} gyvenimo sąraše pirmieji"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} gyvenimo sąraše pirmieji"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> žurnalo įrašas'
+    few: '<span class="count">%{count}</span> žurnalo įrašai'
+    many: '<span class="count">%{count}</span> žurnalo įrašai'
+    other: '<span class="count">%{count}</span> žurnalo įrašai'
+  x_matching_taxa:
+    one: '%{count} sutampantis taksonas'
+    few: '%{count} sutampantys taksonai'
+    many: '%{count} sutampantys taksonai'
+    other: '%{count} sutampantys taksonai'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> sutampantis taksonas'
+    few: '<span class="count">%{count}</span> sutampantys taksonai'
+    many: '<span class="count">%{count}</span> sutampantys taksonai'
+    other: '<span class="count">%{count}</span> sutampantys taksonai'
+  x_misidentifications_of_this_species:
+    one: "%{count} neteisinga šios rūšies identifikacija"
+    few: "%{count} neteisingos šios rūšies identifikacijos"
+    many: "%{count} neteisingos šios rūšies identifikacijos"
+    other: "%{count} neteisingos šios rūšies identifikacijos"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} neteisinga rūšies identifikacija šiame %{rank}"
+    few: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
+    many: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
+    other: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
+  x_observations:
+    one: "%{count} stebėjimas"
+    few: "%{count} stebėjimai"
+    many: "%{count} stebėjimai"
+    other: "%{count} stebėjimai"
+  x_observations_:
+    one: "%{count} Stebėjimas"
+    few: "%{count} Stebėjimai"
+    many: "%{count} Stebėjimai"
+    other: "%{count} Stebėjimai"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> stebėjimas"
+    few: "<span class='count'>%{count}</span> stebėjimai"
+    many: "<span class='count'>%{count}</span> stebėjimai"
+    other: "<span class='count'>%{count}</span> stebėjimai"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} stebėjimas</a>"
+    few: "<a href='%{url}'>%{count} stebėjimai</a>"
+    many: "<a href='%{url}'>%{count} stebėjimai</a>"
+    other: "<a href='%{url}'>%{count} stebėjimai</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> stebėjimas peržiūrėtas"
+    few: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
+    many: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
+    other: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Stebėtojas'
+    few: '<span class="count">%{count}</span> Stebėtojai'
+    many: '<span class="count">%{count}</span> Stebėtojai'
+    other: '<span class="count">%{count}</span> Stebėtojai'
+  x_others:
+    one: "%{count} kitas"
+    few: "%{count} kiti"
+    many: "%{count} kiti"
+    other: "%{count} kiti"
+  x_people:
+    one: "%{count} žmogus"
+    few: "%{count} žmonės"
+    many: "%{count} žmonės"
+    other: "%{count} žmonės"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
+  x_photos:
+    one: "%{count} nuotrauka"
+    few: "%{count} nuotraukos"
+    many: "%{count} nuotraukos"
+    other: "%{count} nuotraukos"
+  x_new_species:
+    one: "%{count} Nauja rūšis"
+    few: "%{count} Naujos rūšys"
+    many: "%{count} Naujos rūšys"
+    other: "%{count} Naujos rūšys"
+  x_new_users:
+    one: '%{count} Naujas Vartotojas'
+    few: '%{count} Nauji vartotojai'
+    many: '%{count} Nauji vartotojai'
+    other: '%{count} Nauji vartotojai'
+  x_species:
+    one: '%{count} Rūšis'
+    few: '%{count} Rūšys'
+    many: '%{count} Rūšys'
+    other: '%{count} Rūšys'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> rūšis"
+    few: "<span class='count'>%{count}</span> rūšys"
+    many: "<span class='count'>%{count}</span> rūšys"
+    other: "<span class='count'>%{count}</span> rūšys"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} rūšis</a>"
+    few: "<a href='%{url}'>%{count} rūšys</a>"
+    many: "<a href='%{url}'>%{count} rūšys</a>"
+    other: "<a href='%{url}'>%{count} rūšys</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} Pasiūlymas atrinktas pagal:"
+    few: "%{count} Pasiūlymai atrinkti pagal:"
+    many: "%{count} Pasiūlymai atrinkti pagal:"
+    other: "%{count} Pasiūlymai atrinkti pagal:"
+  x_taxa:
+    one: "%{count} taksonas"
+    few: "%{count} taksonai"
+    many: "%{count} taksonai"
+    other: "%{count} taksonai"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> stebėtas taksonas"
+    few: "<span class='count'>%{count}</span> stebėti taksonai"
+    many: "<span class='count'>%{count}</span> stebėti taksonai"
+    other: "<span class='count'>%{count}</span> stebėti taksonai"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> identifikuotas stebėjimas"
+    few: "<span class='count'>%{count}</span>"
+    many: "<span class='count'>%{count}</span>"
+    other: "<span class='count'>%{count}</span> identifikuoti(-ų) stebėjimai(-ų)"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> identifikuotas stebėjimas iki rūšies ar žemesnio taksono"
+    few: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
+    many: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
+    other: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
+  x_sounds:
+    one: "%{count} garsas"
+    few: "%{count} garsai"
+    many: "%{count} garsai"
+    other: "%{count} garsai"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> kuruojamas taksonas"
+    few: "<span class='count'>%{count}</span> kuruojami taksonai"
+    many: "<span class='count'>%{count}</span> kuruojami taksonai"
+    other: "<span class='count'>%{count}</span> kuruojami taksonai"
+  x_taxa_matching_current_filters:
+    one: "%{count} taksonas atitinka dabartinius filtrus"
+    few: "%{count} taksonai atitinka dabartinius filtrus"
+    many: "%{count} taksonai atitinka dabartinius filtrus"
+    other: "%{count} taksonai atitinka dabartinius filtrus"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> pridėtas taksono pakeitimas"
+    few: "<span class='count'>%{count}</span> pridėti taksono pakeitimai"
+    many: "<span class='count'>%{count}</span> pridėti taksono pakeitimai"
+    other: "<span class='count'>%{count}</span> pridėti taksono pakeitimai"
+  _100_day_trends: 100 dienų tendencijos
+  _percent_ID_d: "% su ID"
+  a_community_for_naturalist: Gamtininkų bendruomenė
   a_default_taxon_name_will_automatically_created: |
-
-  a_flag_for_x: ""
-  a_member_of_taxon_html: ""
+    Numatytasis taksono pavadinimas bus automatiškai sukurtas iš šio taksono mokslinio pavadinimo požymių. 
+    Kai jūs išsaugojote šį naują taksoną, jūs galėsite čia pridėti kitus pavadinimus (panašūs pavadinimai, pasenę moksliniai pavadinimai ir t.t.).
+  a_flag_for_x: "%{x} žymė"
+  a_member_of_taxon_html: " %{taxon} narys"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: ""
-  #Used as a noun phrase in sentences like "kueda added a comment to *an
-  #observation*". %{resource} could be any of the following:
-  #* assessment_section
-  #* atlas
-  #* listed_taxon
-  #* observation
-  #* observation_field
-  #* post
-  #* taxon_change
-  #* taxon_drop
-  #* taxon_link
-  #* taxon_merge
-  #* taxon_split
-  #* taxon_stage
-  #* taxon_swap
-  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
-  #to add masculine, feminine, and neuter forms of articles. I realize this is
-  #an awkward way to translate something, but fixing it will have to wait for
-  #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: ""
-  about:
-  about_charts:
-  about_community_taxa:
-  about_complete_taxa:
-  about_conservation_status:
-  about_editing_observation_fields:
+  a_to_z: "A - Z"
+  about: Apie
+  about_charts: Apie Diagramas
+  about_community_taxa: Apie bendrijos taksonus
+  about_complete_taxa: Apie pilnus taksonus
+  about_conservation_status: Apie apsaugos statusą
+  about_editing_observation_fields: Apie stebėjimo laukų redagavimą
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means:
-  about_license_options:
-  about_licenses:
+  about_establishment_means: Apie įkūrimo priemones
+  about_license_options: Apie licenzijos nustatymus
+  about_licenses: Apie licencijas
   #Header for a section describing taxon names
-  about_names:
+  about_names: Apie pavadinimus
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
-  about_place: ""
-  about_places:
-  about_taxon_ranges:
-  about_taxon_ranges_desc: |
-
-  about_the_network:
-  about_this_bioblitz:
-  about_this_map:
-  about_this_project:
+  about_place: "Apie %{place}"
+  about_places: Apie vietas
+  about_the_network: Apie tinklą
+  about_this_bioblitz: Apie šį bioblicą
+  about_this_map: Apie šį žemėlapį
+  about_this_project: Apie šį projektą
   about_trips_html: |
-
-  about_trusting_projects:
-  about_trusting_projects_options_any:
+    <h4>
+    Kelionės leidžia rinkti stebėjimo duomenis, pridedant kontekstą prie
+    jūsų pastebėjimų.
+    </h4>
+    <p>
+    <strong>Todėl</strong> stebėjimo duomenys apima informaciją apie
+    mėginių ėmimo sąlygas, naudingas atliekant mokslinę analizę, pavyzdžiui, paskirstymo
+    modeliavimą (neapdoroti iNaturalistiniai stebėjimai yra „tik lokacijos" duomenys).
+    </p>
+    <p>
+    <strong>Kas</strong> saugoma kelionės duomenyse, norit sukurti kontekstinę stebėjimo informaciją:
+    </p>
+    <ul>
+    <li><strong>Ką</strong> jūs tikėjotės aptikti (stebėjimų sąrašas)</li>
+    <li><strong>Kur</strong> vykdėte stebėjimą (paieškos vieta)</li>
+    <li><strong>Kada</strong> vykdėte stebėjimą (stebėjimo intervalai)</li>
+    </ul>
+    <p>
+    Kelionės tikslų sąraše esančios rūšys, kurias aptikote planuotoje paieškos vietoje ir planuotu laiku, laikomos aptiktomis rūšimis. Tuo tarpu nepastebėtos, sąraše esančios rūšys yra laikomos neaptiktomis rūšimis. 
+    Spustelėkite „Pateikti aptikimo-neaptikimo duomenis lentelėje“, kad sukurtumėte
+    kelionių ir susijusių rūšių buvimo ir nebuvimo įrašų lentelę. <a href='%{url}'>Sužinokite daugiau</a>
+    </p>
+  about_trusting_projects: Apie projekto duomenų prieinamumą
+  about_trusting_projects_options_any: Visi jūsų stebėjimai šiame projekte
   about_trusting_projects_options_any_desc: |-
-
+    Tai apima stebėjimus, kai buvimo vietos privatumą nustatėte kaip „neskelbiamą“
+    arba „privatus“, pvz. stebėjimai iš jūsų kiemo ar vietų, apie kurias nenorite visiems skelbti.
   about_trusting_projects_options_taxon: |-
-
+    Tik jūsų stebėjimai šiame projekte, kurie yra paslėptomis koordinatėmis
+    dėl nykstančių taksonų
   about_trusting_projects_options_taxon_desc: |-
-
+    Daugeliui projektų tiesiog reikia prieigos prie koordinačių, kurios yra paslėptos, nes
+    buvo stebėtas saugomas taksonas.
   about_trusting_projects_overview: |-
-
+    Suteikdami prieigą prie savo paslėptų koordinačių, leidžiate projekto prižiūrėtojui matyti tikslias, o ne abstrakčias stebėjimu lokacijas. Tai itin svarbu kai mokslininkai vykdo tyrimus ir reikalingi tikslūs duomenys sprendimams priimti.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-
+    Projekto prižiūrėtojai, kurie galės matyti jūsų paslėptas koordinates, yra:
   about_trusting_projects_warning: |-
-
+    Atkreipkite dėmesį, kad projekto prižiūrėtojas gali pakeisti projekto parametrus ir pridėti bet kokius jūsų stebėjimus prie projekto. Taip pat projekto prižiūrėtojas gali bet kada pridėti kitus projekto prižiūrėtojus. Jūs būsite informuotas apie tokius pasikeitimus, tačiau atkreipkite dėmesį, kad projektui suteikiate visą informacija apie tikslias lokacijas.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-
-  #Header for a section describing unintended disagreements
-  about_unintended_disagreements:
+    Jūs galite pasirinkti viešinti informaciją apie koordinates
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: ''
-  account:
-  account_creation:
-  account_settings:
-  accept_community_identifications:
-  accuracy:
-  accuracy_meters:
+  acc: 'Tiksl. (m)'
+  account: Paskyra
+  account_creation: Paskyros sukūrimas
+  account_settings: Paskyros nustatymai
+  accept_community_identifications: Sutikti su bendruomenės identifikacija
+  accuracy: Tikslumas
+  accuracy_meters: Tikslumas (metrais)
   accuracy_of_the_coordinates: |
-
+    Koordinačių tikslumas metrais. Gali tai redaguoti paspausdami nuorodą „redaguoti“ aukščiau arba paspausdami ant žemėlapio žymeklio ir tempdami rankenas. Pasistenkite, kad apskritimas būtų tokio dydžio, kad būtumėte tikras, kad buvote jo viduje.
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action:
-  actions:
-  active:
+  action: Veiksmas
+  actions: Veiksmai
+  active: Aktyvus
   #Status of a complete set that is available for use
-  active_complete_set_status:
+  active_complete_set_status: Aktyvus
   #Status of a taxon that is available for use on iNat
-  active_taxon_status:
-  active_users:
-  activity:
-  adapted_by_name_from_a_work_by_original: ""
-  add:
-  add_a_batch_of_observations:
-  add_a_batch_of_taxa:
+  active_taxon_status: Aktyvus
+  active_users: Aktyvūs vartotojai
+  activity: Veikla
+  adapted_by_name_from_a_work_by_original: "Pritaikė %{name} iš %{original} darbo"
+  add: Pridėti
+  add_a_batch_of_observations: Pridėti stebėjimų seriją
+  add_a_batch_of_taxa: Pridėti taksonų seriją
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list:
-  add_a_comment:
-  add_a_field:
-  add_a_flag:
+  add_a_bulleted_list: Pridėti suženklintą sąrašą
+  add_a_comment: Pridėti komentarą
+  add_a_field: Pridėti lauką
+  add_a_flag: Pridėti žymę
   #Tool tip for a button that adds a link to a text area
-  add_a_link:
-  add_a_name:
-  add_a_note:
-  add_a_new_change_group:
+  add_a_link: Pridėti nuorodą
+  add_a_name: Pridėti pavadinimą
+  add_a_note: Pridėti užrašą
+  add_a_new_change_group: Pridėti naują kaitos grupė
   #Tool tip for a button that adds a numbered list to a text area
-  add_a_numbered_list:
-  add_a_single_observation:
-  add_a_taxon:
+  add_a_numbered_list: Pridėti sunumeruotą sąrašą
+  add_a_single_observation: Pridėti vieną stebėjimą.
+  add_a_taxon: Pridėti taksoną
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-
-  add_an_assessment:
-  add_an_identification:
-  add_an_observation:
-  add_an_observation_of: ""
-  add_an_observation_to_project_html:
-  add_annotations_for_x:
-  add_another_flag:
-  add_another_photo:
-  add_another_section:
-  add_another_subscription:
+    Pridėkite <a target="_blank" href="%{url}">taksono keitimą</a> jei norite pakeisti pavadinimą
+  add_an_assessment: Pridėti įvertinimą
+  add_an_identification: Pridėti identifikaciją
+  add_an_observation: Pridėti stebėjimą
+  add_an_observation_of: "Pridėti %{taxon} stebėjimą"
+  add_an_observation_to_project_html: Pridėti Stebėjima prie %{project}
+  add_annotations_for_x: Pridėti papildomos informacijos apie "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Pridėti papildomos informacijos apie „lytį“
+    plant_phenology: Pridėti pastabą prie „Augalų fenologija“
+    life_stage: Pridėti pastabą prie „Gyvenimo stadija“
+    evidence_of_presence: Pridėti pastabas prie "Organizmo buvimo įrodymai"
+  add_another_flag: Pridėti dar vieną žymę
+  add_another_photo: Pridėti dar vieną nuotrauką
+  add_another_section: Pridėti dar vieną skyrių
+  add_another_subscription: Pridėti dar vieną prenumeratą
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset:
-  add_batch:
-  add_blocked_users:
+  add_asset: Pridėti Projekto Priedų
+  add_batch: Pridėti grupę
+  add_blocked_users: Pridėti blokuojamus naudotojus
   #Tool tip for a button that adds bold text to a text area
-  add_bold_text:
-  add_comma_separated_tags: ""
-  add_comment:
-  add_conservation_status:
-  add_custom_project_fields:
-  add_edit_flags:
-  add_editor:
-  add_description: ""
-  add_from_your_observations:
-  add_link:
-  add_higher_level_taxon:
-  add_id:
+  add_bold_text: Pridėti paryškintą tekstą
+  add_comma_separated_tags: "Pridėti kableliais arskirtas žymes"
+  add_comment: Pridėti komentarą
+  add_conservation_status: Pridėti apsaugos statusą
+  add_custom_project_fields: Pridėti pritaikytus projekto laukus
+  add_edit_flags: Pridėti/Redaguoti žymes
+  add_editor: Pridėti autorių
+  add_description: "Pridėti %{description_name}"
+  add_from_your_observations: Pridėti iš savo stebėjimų
+  add_link: Pridėti Nuorodą
+  add_higher_level_taxon: Pridėti aukštesnio lygio taksoną (pvz. "paukščiai")
+  add_id: Pridėti ID
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text:
-  add_muted_users:
-  add_new_lexicon:
-  add_new_photos_by_their_ids:
-  add_new_place:
-  add_new_rule:
-  add_new_source: ""
-  add_new_taxon_name:
-  add_notes_about_this_taxon:
-  add_obs_from_a_link: ""
-  add_obs_from_a_list:
-  add_observations:
-  add_observations_by_checking_off:
-  add_observations_project:
+  add_italic_text: Pridėti pakreiptą tekstą
+  add_muted_users: Pridėti nesekamus naudotojus
+  add_new_lexicon: Pridėti naują žodyną
+  add_new_photos_by_their_ids: Pridėti naujų nuotraukų pagal jų Flickr Id (būtinas Creative Commons!)
+  add_new_place: Pridėti naują vietą
+  add_new_rule: Pridėti naują taisyklę
+  add_new_source: "Pridėti naują šaltinį..."
+  add_new_taxon_name: Pridėti naują taksono pavadinimą
+  add_notes_about_this_taxon: 'Pridėti užrašų apie šį taksoną šioje vietoje, pvz.: kur ir kada jis randamas.'
+  add_obs_from_a_link: "Pridėti stebėjimus iš sąrašo: %{link}"
+  add_obs_from_a_list: Pridėti stebėjimus iš sąrašo
+  add_observations: Pridėti stebėjimus
+  add_observations_by_checking_off: Pridėti stebėjimus patikrinant rūšis sąraše.
+  add_observations_project: Pridėti stebėjimą šiam projektui
   #Prompt to add a new journal post
-  add_one:
+  add_one: Pridėti!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now:
-  add_photos:
-  add_place:
-  add_alive_or_dead_alive_annotation: ''
-  add_alive_or_dead_cannot_be_determined_annotation: ''
-  add_alive_or_dead_dead_annotation: ''
-  add_plant_phenology_budding_annotation: ''
-  add_plant_phenology_flower_budding_annotation: ''
-  add_plant_phenology_flowering_annotation: ''
-  add_plant_phenology_fruiting_annotation: ''
-  add_plant_phenology_no_evidence_of_flowering_annotation: ''
-  add_life_stage_adult_annotation: ''
-  add_life_stage_teneral_annotation: ''
-  add_life_stage_subimago_annotation: ''
-  add_life_stage_pupa_annotation: ''
-  add_life_stage_nymph_annotation: ''
-  add_life_stage_larva_annotation: ''
-  add_life_stage_juvenile_annotation: ''
-  add_life_stage_egg_annotation: ''
-  add_evidence_of_presence_organism_annotation: ''
-  add_evidence_of_presence_feather_annotation: ''
-  add_evidence_of_presence_gall_annotation: ''
-  add_evidence_of_presence_scat_annotation: ''
-  add_evidence_of_presence_track_annotation: ''
-  add_evidence_of_presence_bone_annotation: ''
-  add_evidence_of_presence_molt_annotation: ''
+  add_one_now: Pridėti dabar
+  add_photos: Pridėti nuotraukas
+  add_place: Pridėti vietovę
+  add_alive_or_dead_alive_annotation: 'Pridėti pastabą: „Gyvas ar miręs: Gyvas“'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Pridėti pastabą: „Gyvas ar miręs; negalima nustatyti“'
+  add_alive_or_dead_dead_annotation: 'Pridėti pastabą: „Gyvas ar miręs; miręs“'
+  add_plant_phenology_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta“ pastabą'
+  add_plant_phenology_flower_budding_annotation: 'Pridėti „Augalų fenologija: sprogsta žiedai“ pastabą'
+  add_plant_phenology_flowering_annotation: 'Pridėti „Augalų fenologija: žydi“ pastabą'
+  add_plant_phenology_fruiting_annotation: 'Pridėti pastabą „Augalo fenologija: vaisių vedimas“'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Pridėti „Augalų fenologija: Nėra žydėjimo požymių“ pastabą'
+  add_life_stage_adult_annotation: 'Pridėti „Amžiaus tarpsnis: Suaugęs“ papildomą informaciją'
+  add_life_stage_teneral_annotation: 'Pridėti „Amžiaus tarpsnis: išsinėręs“ papildomą informaciją'
+  add_life_stage_subimago_annotation: 'Pridėti „Amžiaus tarpsnis: subimago“ papildomą informaciją'
+  add_life_stage_pupa_annotation: 'Pridėti „Amžiaus tarpsnis: Lėliukė“ papildomą informaciją'
+  add_life_stage_nymph_annotation: 'Pridėti „Amžiaus tarpsnis: Nimfa“ papildomą informaciją'
+  add_life_stage_larva_annotation: 'Pridėti „Amžiaus tarpsnis: Lerva“ papildomą informaciją'
+  add_life_stage_juvenile_annotation: 'Pridėti „Amžiaus tarpsnis: Jauniklis“ papildomą informaciją'
+  add_life_stage_egg_annotation: 'Pridėti „Amžiaus tarpsnis: Kiaušinis“ papildomą informaciją'
+  add_evidence_of_presence_organism_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pats organizmas“'
+  add_evidence_of_presence_feather_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: plunksna“'
+  add_evidence_of_presence_gall_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: galas“'
+  add_evidence_of_presence_scat_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išmatos“'
+  add_evidence_of_presence_track_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: pėdsakai“'
+  add_evidence_of_presence_bone_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: kaulas“'
+  add_evidence_of_presence_molt_annotation: 'Pridėti pastabą: „Organizmo buvimo įrodymai: išnara“'
   #As in a Taxon Framework Relationship
-  add_relationship: ''
+  add_relationship: 'Pridėti ryšį'
   #As in a Guide Section
-  add_section:
-  add_several_observations_at_once:
-  add_sex_female_annotation: ''
-  add_sex_male_annotation: ''
-  add_sex_cannot_be_determined_annotation: ''
-  add_some_now:
-  add_tag:
-  add_tags:
-  add_tags_to_selected_taxa:
-  add_taxa:
-  add_taxon_batch_to: ""
-  add_taxon_range:
-  add_taxonomic_tags_to: ""
-  add_to_a_scheme:
-  add_to_a_project:
-  add_to_calendar:
-  add_to_checklist:
-  add_to_favorites:
-  add_to_list:
-  add_to_project:
-  add_to_your_list:
+  add_section: Pridėti skyrių
+  add_several_observations_at_once: Pridėti keletą stebėjimų vienu metu.
+  add_sex_female_annotation: 'Pridėti „Lytis: patelė“ pastabą'
+  add_sex_male_annotation: 'Pridėti „Lytis: patinėlis“ pastabą'
+  add_sex_cannot_be_determined_annotation: 'Pridėti „Lytis: negali būti nustatyta“ pastabą'
+  add_some_now: Pridėti keletą dabar
+  add_tag: Pridėti žymą
+  add_tags: Pridėti žymes
+  add_tags_to_selected_taxa: Pridėti žymes pasirinktiems taksonams
+  add_taxa: Pridėti taksoną
+  add_taxon_batch_to: "Pridėti taksonų grupę %{list}"
+  add_taxon_range: Pridėti taksono arealą
+  add_taxonomic_tags_to: "Pridėti taksonomines žymas pasirinktoms Flickr nuotraukoms &raquo;"
+  add_to_a_scheme: Pridėti prie schemos
+  add_to_a_project: Pridėti į projektą
+  add_to_calendar: Pridėti į kalendorių
+  add_to_checklist: Pridėti prie kontrolinio sąrašo
+  add_to_favorites: Pridėti į mėgstamiausius
+  add_to_list: Pridėti į sąrašą
+  add_to_project: Pridėti į projektą
+  add_to_your_list: Pridėti į jūsų sąrašą
   add_your_email_to_get: |
-
-  add_your_own_observations_at: ""
-  added:
-  added!:
+    Pridėkite savo el. pašto adresą norėdami iš bendruomenės gauti atsiliepimą apie stebėjimą.
+    Jei nenorite nurodyti, netrukus patikrinkite vėl!
+  add_your_own_observations_at: "Pridėkite savo stebėjimą prie %{site_name}"
+  added: Pridėta
+  added!: Pridėta!
   added_as_a_part_of_a_taxon_change_html: |
-
+    Pridėtas kaip dalis 
+    <a target="%{target}" class="%{class}" href="%{url}">taksono pakeitimo</a>
   added_as_a_part_of_a_taxon_merge_html: |
-
+    Pridėtas kaip dalis 
+    <a target="%{target}" class="%{class}" href="%{url}">taksono sujungimo</a>
   added_as_a_part_of_a_taxon_split_html: |
-
+    Pridėtas kaip dalis 
+    <a target="%{target}" class="%{class}" href="%{url}">taksono išskyrimo</a>
   added_as_a_part_of_a_taxon_swap_html: |
-
-  added_by:
-  added_by_user_on_date_html: ""
-  added_on_datetime: ""
+    Pridėtas kaip dalis 
+    <a target="%{target}" class="%{class}" href="%{url}">taksono apkeitimo</a>
+  added_by: Pridėjo
+  added_by_user_on_date_html: "Pridėjo %{user}, %{date}"
+  added_on_datetime: "Įkelta: %{datetime}"
   added_to_favorites_html: |
-
-  adding: ""
-  adjust_brightness:
-  admin:
-  admin_s:
-  admin_only:
-  admin_tools:
+    Pridėta į <a href="%{url}">mėgstamiausius</a>
+  adding: "Pridedama..."
+  adjust_brightness: Sureguliuoti ryškumą
+  admin: Administratorius
+  admin_s: Administratorius(-iai)
+  admin_only: Tik administratorius
+  admin_tools: Administratoriaus Įrankiai
   #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations:
-  agree_:
-  agree?:
-  agree_with_current_taxon:
-  agreeing:
-  aka:
+  affiliated_organizations: Susijusios organizacijos
+  agree_: Sutikti
+  agree?: Sutinkate?
+  agree_with_current_taxon: Pritarti esamam taksonui
+  agreeing: Sutinkama...
+  aka: dar žinomas kaip
   #Noun, title of a popup alerting you to something
-  alert:
-  all:
-  all_comments:
-  all_flags_must_be_resolved:
-  all_life:
-  all_names:
-  all_observations:
-  all_photos:
-  all_places: ""
-  all_projects:
-  all_rights_reserved:
-  all_taxa_:
-  all_taxa_in_this_guide:
-  all_taxonomic_groups: ""
-  all_updates:
-  allow_curator_access:
-  allow_project_curators_to_view_your_private_coordinates:
-  allowed_establish_means_values:
-  allowed_html:
-  allowed_occurrence_status_values:
-  allowed_values:
-  almost_there_:
-  alphabetical:
-  alphabetical_order:
-  already_have_an_account_log_in_html:
-  amphibians:
-  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
-  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
-  #as disagreements with existing IDs of the thinned descendant.
-  analyze_clashes:
-  analyze_ids:
-  ancestor_taxon:
-  and:
-  and_other_taxa: ""
-  android:
-  animals:
-  annotation:
-  annotations:
-  announcement_was_successfully_created:
-  announcement_was_successfully_updated:
-  announcements:
+  alert: Įspėjimas
+  all: Visi
+  all_comments: Visi komentarai
+  all_flags_must_be_resolved: Visos žymės turi būti išspręstos
+  all_life: Visa gyvybė
+  all_names: Visi vardai
+  all_observations: Visi stebėjimai
+  all_photos: Visos nuotraukos
+  all_places: "Visos vietos"
+  all_projects: Visi projektai
+  all_rank_added_to_the_database:
+    phylum: Visi tipai pridėti į duomenų bazę
+    subphylum: Visi potipiai pridėti į duomenų bazę
+    superclass: Visi antklasiai pridėti į duomenų bazę
+    class: Visos klasės pridėtos į duomenų bazę
+    subclass: Visi poklasiai pridėti į duomenų bazę
+    infraclass: Visos infraklasės pridėtos į duomenų bazę
+    superorder: Visi antbūriai pridėti į duomenų bazę
+    order: Visos eilės pridėtos į duomenų bazę
+    suborder: Visi pobūriai pridėti į duomenų bazę
+    infraorder: Visi infrabūriai pridėti į duomenų bazę
+    superfamily: Visi antšeimiai pridėti į duomenų bazę
+    epifamily: Visi antšeimiai pridėti į duomenų bazę
+    family: Visos šeimos pridėtos į duomenų bazę
+    subfamily: Visi pošeimiai pridėti į duomenų bazę
+    supertribe: Visi antgenčiai pridėti į duomenų bazę
+    tribe: Visos gentys pridėtos į duomenų bazę
+    subtribe: Visi pogenčiai pridėti į duomenų bazę
+    genus: Visos gentys pridėtos į duomenų bazę
+    genushybrid: Visi genties hibridai pridėti į duomenų bazę
+    subgenus: Visi pogenčiai pridėti į duomenų bazę
+    section: Visi skyriai pridėti į duomenų bazę
+    subsection: Visi poskyriai pridėti į duomenų bazę
+    complex: Visi kompleksai pridėti į duomenų bazę
+    species: Visos rūšys pridėtos į duomenų bazę
+    hybrid: Visi hibridai pridėti į duomenų bazę
+    subspecies: Visi porūšiai pridėti į duomenų bazę
+    variety: Visi varietetai pridėti į duomenų bazę
+    form: Visos formos pridėtos į duomenų bazę
+  all_rights_reserved: Visos teisės saugomos
+  all_taxa:
+    amphibians: Varliagyviai
+    animals: Gyvūnai
+    arachnids: Voragyviai
+    birds: Paukščiai
+    chromista: Chromistai
+    fungi: Grybai
+    fungi_including_lichens: Grybai ir kerpės
+    insects: Vabzdžiai
+    mammals: Žinduoliai
+    mollusks: Moliuskai
+    other_animals: Kiti gyvūnai
+    plants: Augalai
+    protozoans: Pirmuonys
+    ray_finned_fishes: Stipinpelekės žuvys
+    reptiles: Ropliai
+    life: Gyvybė
+    x_plantae:
+      one: "%{count} augalas"
+      few: "%{count} augalai"
+      many: "%{count} augalai"
+      other: "%{count} augalai"
+    x_animalia:
+      one: "%{count} gyvūnas"
+      few: "%{count} gyvūnai"
+      many: "%{count} gyvūnai"
+      other: "%{count} gyvūnai"
+    x_mollusca:
+      one: "%{count} moliuskas"
+      few: "%{count} moliuskai"
+      many: "%{count} moliuskai"
+      other: "%{count} moliuskai"
+    x_amphibia:
+      one: "%{count} varliagyvis"
+      few: "%{count} varliagyviai"
+      many: "%{count} varliagyviai"
+      other: "%{count} varliagyviai"
+    x_mammalia:
+      one: "%{count} žinduolis"
+      few: "%{count} žinduoliai"
+      many: "%{count} žinduoliai"
+      other: "%{count} žinduoliai"
+    x_actinopterygii:
+      one: "%{count} stipinpelekė žuvis"
+      few: "%{count} stipinpelekės žuvys"
+      many: "%{count} stipinpelekės žuvys"
+      other: "%{count} stipinpelekės žuvys"
+    x_reptilia:
+      one: "%{count} roplys"
+      few: "%{count} ropliai"
+      many: "%{count} ropliai"
+      other: "%{count} ropliai"
+    x_aves:
+      one: "%{count} paukštis"
+      few: "%{count} paukščiai"
+      many: "%{count} paukščiai"
+      other: "%{count} paukščiai"
+    x_insecta:
+      one: "%{count} vabzdys"
+      few: "%{count} vabzdžiai"
+      many: "%{count} vabzdžiai"
+      other: "%{count} vabzdžiai"
+    x_arachnida:
+      one: "%{count} voragyvis"
+      few: "%{count} voragyviai"
+      many: "%{count} voragyviai"
+      other: "%{count} voragyviai"
+    x_fungi:
+      one: "%{count} grybas"
+      few: "%{count} grybai"
+      many: "%{count} grybai"
+      other: "%{count} grybai"
+    x_chromista:
+      one: "%{count} chromistas"
+      few: "%{count} chromistai"
+      many: "%{count} chromistai"
+      other: "%{count} chromistai"
+    x_protozoa:
+      one: "%{count} pirmuonis"
+      few: "%{count} pirmuonys"
+      many: "%{count} pirmuonys"
+      other: "%{count} pirmuonys"
+    x_other_animals:
+      one: "%{count} kitas gyvūnas"
+      few: "%{count} kiti gyvūnai"
+      many: "%{count} kiti gyvūnai"
+      other: "%{count} kiti gyvūnai"
+  all_taxa_: Visi taksonai
+  all_taxa_in_this_guide: Visi taksonai šiame gide
+  all_taxonomic_groups: "&laquo; Visos taksonominės grupės"
+  all_updates: Visi Atnaujinimai
+  allow_curator_access: Leisti kuratoriaus prieigą
+  allow_project_curators_to_view_your_private_coordinates: Leisti projekto kuratoriams peržiūrėti privačias koordinates
+  allowed_establish_means_values: Leidžiama nustatyti reikšmes
+  allowed_html: Leidžiamas HTML
+  allowed_occurrence_status_values: Leistinos įvykio būsenos vertės
+  allowed_values: Leistinos reikšmės
+  almost_there_: Jau beveik...
+  alphabetical: Abėcėlinis
+  alphabetical_order: Abėcėlės tvarka
+  already_have_an_account_log_in_html: Jau turite paskyrą? <strong>Log in.</strong>
+  amphibians: varliagyviai
+  ancestor_taxon: Ankstesnis taksonas
+  and: ir
+  and_other_taxa: "&amp; Kitas taksonas"
+  android: Android
+  animals: Gyvūnai
+  annotation: Komentaras
+  annotations: Pastabos
+  announcement_was_successfully_created: Skelbimas buvo sėkmingai sukurtas.
+  announcement_was_successfully_updated: Skelbimas buvo sėkmingai atnaujintas.
+  announcements: Skelbimai
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any:
+  any: nesvarbu
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_:
+  any_: Bet kuris
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute:
+  any_annotation_attribute: Bet koks
   #Label for an option to show content with any annotation value
-  any_annotation_value:
+  any_annotation_value: Bet koks
   #Label for an option to show content from any date
-  any_date:
+  any_date: Bet kuri
   #Label for an option to show content with any establishment means
-  any_establishment:
+  any_establishment: Nesvarbu
   #Label for an option to show content with any license
-  any_license:
+  any_license: Bet kokia
   #Label for an option to show content with photos, sounds, or neither
-  any_media:
+  any_media: Bet kokia
   #Label for an option to show content from any project
-  any_project:
+  any_project: Bet kuris
   #Label for an option to show content with any quality grade
-  any_quality_grade:
+  any_quality_grade: Bet kokia
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed:
+  any_reviewed: Bet koks
   #Label for an option to show/include content by any user
-  any_user:
-  anyone:
-  app_owner_application_explanation_required: |
-
-  app_owner_application_about_p1a_html: |
-
-  app_owner_application_about_p2_html: |
-
-  app_owner_application_inelligible: |
-
-  app_owner_application_fields_explanation_html:
-  app_owner_application_success:
+  any_user: Bet kuris
+  anyone: Betkuris
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  application:
+  application: Programėlė
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  applications:
-  apply_app_owner:
+  applications: Programėlės
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator:
-  apply_to_be_an_app_owner:
-  apply_to_create_applications_title:
-  apply_to_selected:
-  apply_captive_cultivated: ""
-  apply_fields:
-  apply_geoprivacy:
-  apply_darr: ""
-  apply_establishment_means_to_descendant_places: ""
-  apply_these_settings_to_all:
-  appropriate?:
-  arachnids:
-  archives:
-  are_you_really_sure_want_delete_this_user:
-  are_you_sure?:
-  are_you_sure_no_undo:
-  are_you_sure_delete_conservation_status: |
-
-  are_you_sure_delete_post:
-  are_you_sure_delete_taxon_move_associates: ""
-  are_you_sure_delete_this_place:
-  are_you_sure_leave_this_project:
-  are_you_sure_merge_these_places:
-  are_you_sure_remove_photo: ""
-  are_you_sure_remove_relationship:
-  are_you_sure_remove_taxon_from_list: ""
+  apply_curator: Pateikti
+  apply_to_selected: Taikyti pasirinktiems
+  apply_captive_cultivated: "Pritaikyti naminius/kultivuojamus"
+  apply_fields: Taikyti laukus
+  apply_geoprivacy: Taikyti vietos privatumą
+  apply_darr: "Taikyti &darr;"
+  apply_establishment_means_to_descendant_places: "Taikyti įsitvirtinimo priemones palikuonių vietose"
+  apply_these_settings_to_all: Taikyti šias nuostatas visiems žemiau esantiems stebėjimams
+  appropriate?: Tinkamas?
+  arachnids: voragyviai
+  archives: Archyvai
+  are_you_really_sure_want_delete_this_user: Ar tikrai norite ištrinti šį vartotoją ir visą jų turinį?
+  are_you_sure?: Ar tikrai?
+  are_you_sure_no_undo: Ar tikrai? To negalima atstatyti.
+  are_you_sure_delete_post: Ar tikrai norite ištrinti šį įrašą?
+  are_you_sure_delete_taxon_move_associates: "Ar tikrai norite ištrinti %{taxonname} (%{taxonid}) ir perkelti visą su šiuo taksonu susijusią informaciją?"
+  are_you_sure_delete_this_place: Ar tikrai norite ištrinti šią vietą?
+  are_you_sure_leave_this_project: Ar tikrai norite palikti šį projektą?
+  are_you_sure_merge_these_places: Ar esate tikri, kad norite sujungti šias vietas? To negalima atstatyti.
+  are_you_sure_remove_photo: "Ar tikrai norite pašalinti šią nuotrauką?"
+  are_you_sure_remove_relationship: Ar tikrain norite panaikinti šiuos santykius? Jūs nebeseksite šio žmogaus ir bus atšaukta prieiga prie privačių koordinačių, jeigu turėjote tokią prieigą.
+  are_you_sure_remove_taxon_from_list: "Ar tikrai norite ištrinti šį taksoną iš sąrašo?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-
+    Ar tikrai? Tai perkraus puslapį ir jūs galite prarasti kai kuriuos savo pakeitimus.
   are_you_sure_unresolve_flag?: |
-
-  are_you_sure_want_delete_taxon: ""
+    Ar tikrai norite šia žymę pažymėti kaip neišspręstą? Tai panaikins sprendimą ir tai atlikusį vartotoją iš šios žymės.
+  are_you_sure_want_delete_taxon: "Ar tikrai norite ištrinti šį taksoną?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų ir identifikacijų.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų, identifikacijų ir stebėjimų.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų, identifikacijų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų, identifikacijų, stebėjimų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų, stebėjimų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi žemesnių taksonų ir stebėjimų.
   are_you_sure_want_delete_taxon_identifications: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi identifikacijų.
   are_you_sure_want_delete_taxon_identifications_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi identifikacijų ir stebėjimų.
   are_you_sure_want_delete_taxon_listed_taxa: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi identifikacijų ir buvo įtrauktas į sąrašus
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi identifikacijų, stebėjimų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-
+    Ar tikrai norite ištrinti šį taksoną? Jis turi stebėjimų ir buvo įtrauktas į sąrašus.
   are_you_sure_want_delete_taxon_observations: |
-
-  are_you_sure_want_delete_taxon_link:
-  are_you_sure_want_delete_this_name:
-  are_you_sure_want_delete_this_range:
-  are_you_sure_you_want_to_commit_this_change:
-  are_you_sure_you_want_to_delete_this:
-  are_you_sure_you_want_to_delete_this_assessment?:
-  are_you_sure_you_want_to_delete_this_photo?:
-  are_you_sure_you_want_to_delete_this_post:
-  are_you_sure_you_want_to_delete_this_taxon_change:
-  are_you_sure_you_want_to_remove_all_tags:
-  are_you_sure_you_want_to_remove_curator:
-  are_you_sure_you_want_to_remove_from_project:
-  are_you_sure_you_want_to_remove_manager:
+    Ar tikrai norite ištrinti šį taksoną? Jis turi stebėjimų.
+  are_you_sure_want_delete_taxon_link: Ar tikrai norite ištrinti šio taksono nuorodą?
+  are_you_sure_want_delete_this_name: Ar tikrai norite ištrinti šį pavadinimą?
+  are_you_sure_want_delete_this_range: Ar tikrai norite ištrinti šį intervalą?
+  are_you_sure_you_want_to_commit_this_change: Ar tikrai norite atlikti šį pakeitimą? Tai negali būti atstatyta.
+  are_you_sure_you_want_to_delete_this: Ar tikrai norite tai ištrinti?
+  are_you_sure_you_want_to_delete_this_assessment?: Ar tikrai norite ištrinti šį vertinimą?
+  are_you_sure_you_want_to_delete_this_photo?: Ar tikrai norite ištrinti šią nuotrauką?
+  are_you_sure_you_want_to_delete_this_post: Ar tikrai norite ištrinti šį įrašą?
+  are_you_sure_you_want_to_delete_this_taxon_change: Ar tikrai norite ištrinti šio taksono pakeitimą?
+  are_you_sure_you_want_to_remove_all_tags: Ar tikrai norite pašalinti visas žymes?
+  are_you_sure_you_want_to_remove_curator: Ar tikrai norite pašalinti %{user} kaip kuratorių?
+  are_you_sure_you_want_to_remove_from_project: Ar tikrai norite pašalinti %{user} iš šio projekto?
+  are_you_sure_you_want_to_remove_manager: Ar tikrai norite pašalinti %{user} kaip valdytoją?
   are_you_sure_you_want_to_remove_spammer: |
-
-  are_you_sure_you_want_to_remove_these_x_taxa?: ""
+    Ar tikrai laikote šį vartotoją patikimu?
+    Visi šlamšto pranešimai jų turinyje bus išspręsti.
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Ar tikrai norite ištrinti šiuos %{x} taksonus?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
-  associated_observations:
-  associated_taxa:
-  attention:
-  you_sure_delete_list:
-  you_sure_delete_taxon_from_list?: ""
-  asc:
-  ascending:
-  assessment:
-  assessment_has_benn_completed:
-  assessment_sections:
-  assessment_was_deleted:
-  assessment_was_successfully_created:
-  assessment_was_successfully_updated:
-  assessment_x: ""
-  assessments:
-  associations:
-  atlased:
-  atlas_for_taxon_html:
+    Ar tikrai norite panaikinti šį stebėjimą iš projekto %{project}?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ar tikrai norite ištrinti šį taksoną iš %{place} kontrolinio sąrašo?"
+  associated_observations: Susiję stebėjimai
+  associated_taxa: Susiję taksonai
+  attention: Dėmesio
+  you_sure_delete_list: Ar tikrai norite ištrinti šį sąrašą?
+  you_sure_delete_taxon_from_list?: "Ar tikrai norite ištrinti %{taxon} iš sąrašo?"
+  asc: Did.
+  ascending: didėjančia tvarka
+  assessment: įvertinimas
+  assessment_has_benn_completed: Vertinimas buvo baigtas
+  assessment_sections: Vertinimo skyriai
+  assessment_was_deleted: Vertinimas buvo ištrintas.
+  assessment_was_successfully_created: Vertinimas buvo sėkmingai sukurtas.
+  assessment_was_successfully_updated: Vertinimas buvo sėkmingai atnaujintas.
+  assessment_x: "%{assessment} vertinimas"
+  assessments: vertinimai
+  associations: Asociacijos
+  atlas_for_taxon_html: '%{taxon} atlasas'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom:
-  attached_taxon:
+  atom: Atom
+  attached_taxon: Susietas taksonas
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute:
-  attribution:
-  authorize:
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce:
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
-  authorize_with_pkce_desc_html: |
-
-  authorize_permissions_from_provider: ""
-  automatic_short:
-  automatically_add_observations_to_this_project:
-  automatically_update_my_content_for_taxon_changes:
+  attribute: Atributas
+  attribution: Požymis
+  authority_list:
+    iucn_red_list: IUCN Raudonasis Sąrašas
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Autorizuoti
+  authorize_permissions_from_provider: "Leisti teises iš %{provider}"
+  automatic_short: Auto
+  automatically_add_observations_to_this_project: Pridėti stebėjimus prie šio projekto automatiškai
+  automatically_update_my_content_for_taxon_changes: Automatiškai atnaujinti mano turinį esant taksonų pokyčiams
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg:
-  back:
-  back_to_applications: ""
-  back_to_all_species:
-  back_to_editing_observation:
-  back_to_friends:
-  back_to_flags_html: ""
-  back_to_lists: ""
-  back_to_observation:
-  back_to_observation_fields:
-  back_to_people:
-  back_to_places:
-  back_to_possessive_user_profile: ""
-  back_to_post: ''
-  back_to_projects:
-  back_to_suggestions:
-  back_to_taxon: ""
-  back_to_taxon_changes: ""
-  back_to_taxon_framework_for_x: ""
-  back_to_users_calendar: ""
-  back_to_users_lists: ""
-  back_to_viewing: ""
-  back_to_x: ""
-  back_to_x_assessment: ""
-  back_to_x_history: ""
-  back_to_x_journal: ""
-  back_to_x_blog: ""
-  back_to_your_calendar:
-  back_to_your_dashboard:
-  back_to_your_lists:
-  back_to_your_journal:
-  back_to_your_observations:
-  back_to_your_profile:
-  badges:
+  avg: Vidurkis
+  back: Atgal
+  back_to_all_species: Atgal į visas rūšis
+  back_to_editing_observation: Grįžti prie stebėjimo redagavimo
+  back_to_friends: Grįžti prie draugų
+  back_to_flags_html: "&laquo; Atgal prie žymų"
+  back_to_lists: "Atgal į %{name} sąrašus"
+  back_to_observation: Atgal į stebėjimą
+  back_to_observation_fields: Atgal į stebėjimo laukus
+  back_to_people: Atgal į žmones
+  back_to_places: Atgal į vietas
+  back_to_possessive_user_profile: "Atgal į %{possuser} profilį"
+  back_to_post: '&laquo; Atgal į įrašą'
+  back_to_projects: Atgal į projektus
+  back_to_suggestions: Atgal prie pasiūlymų
+  back_to_taxon: "Atgal į %{defaulttaxon}"
+  back_to_taxon_changes: "Atgal į taksonų pakeitimus"
+  back_to_taxon_framework_for_x: "Sugrįžti prie taksono %{taxon_name} struktūros"
+  back_to_users_calendar: "Atgal į %{user} kalendorių"
+  back_to_users_lists: "Atgal į %{user} sąrašus"
+  back_to_viewing: "Atgal į <i>%{taxon}</i> peržiūrą"
+  back_to_x: "Atgal į %{noun}"
+  back_to_x_assessment: "Atgal į %{project} vertinimus"
+  back_to_x_history: "Atgal į %{x} istoriją"
+  back_to_x_journal: "Atgal į %{user} žurnalą"
+  back_to_x_blog: "Atgal į %{x} tinklaraštį"
+  back_to_your_calendar: Atgal į jūsų kalendorių
+  back_to_your_dashboard: Grįžti į valdymo skydą
+  back_to_your_lists: Atgal į savo sąrašus
+  back_to_your_journal: Atgal į savo žurnalą
+  back_to_your_observations: Atgal prie mano stebėjimų
+  back_to_your_profile: Atgal į savo profilį
+  badges: Ženkleliai
   based_on_the_evidence_can_id_be_improved: |
-
-  batch:
-  batch_edit:
+    Ar gali būti patvirtintas ar patobulintas bendruomenės taksonas, remiantis įrodymais?
+  batch: Grupė
+  batch_edit: Redaguoti grupę
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: ""
-  batch_operations:
-  be_the_first_to_fave_this_observation:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_act_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_dont_act_html: |
-
-  become_a_donor_caps:
-  become_a_donor_today_caps:
-  before_importing_photos:
-  bg_color:
-  bio:
-  bio_description:
-  bioblitz:
-  birds:
-  birthday:
-  black:
-  block_removed:
-  blocked_users:
-  blog_widget:
-  blue:
-  blue_butterfly_etc: ""
-  body:
+  batch_edit_taxa_for_x_html: "Grupinis taksonų redagavimas %{x}"
+  batch_operations: Grupinės operacijos
+  be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
+  before_importing_photos: prieš importuodami nuotraukas
+  bg_color: Fono Spalva
+  bio: Apie mane
+  bio_description: Papasakok kitiems iNaturalist naudotojams apie save
+  bioblitz: Bioblicas
+  birds: paukščiai
+  birthday: Gimtadienis
+  black: juoda
+  block_removed: Blokavimas panaikintas
+  blocked_users: Blokuoti naudotojai
+  blog_widget: Tinklaraščio valdiklis
+  blue: mėlyna
+  blue_butterfly_etc: "mėlyna, drugelis ir t. t."
+  body: Tekstas
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
-  bold_label_colon_value_html: ""
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
-  bold_text:
-  breadcrumbs:
+  bold_text: paryškintasis tekstas
+  breadcrumbs: Kelio žymos
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
   #page where the project title and a button to add an observation are usually
   #shown
-  breadcrumbs_description: ""
-  brief_caption:
-  brown:
-  browse:
-  browse_all_projects:
-  browse_all_species:
-  browse_observations:
-  browse_people:
-  browse_projects:
-  browse_species_that_occur_near_this_observation:
-  built_with_site_guides_html: ""
-  bulk_import_of_filename_is_complete: ""
-  by:
-  by_everyone:
-  by_user: ""
-  by_you:
-  calendar:
-  calendars_only_show_x_observations_at_time:
-  callback_url:
-  cancel:
-  cant_edit_or_delete_hidden_content:
-  cant_flag_an_object_that_doesnt_exist:
-  cant_merge_a_taxon_with_itself:
-  captive:
-  captive_cultivated:
-  captive_observations:
-  card:
-  casual:
-  casual_:
-  casual_tooltip_html: ''
-  categories:
-  cc_0_description: ""
-  cc_0_name:
-  cc_attribution_license:
-  cc_by_description: ""
-  cc_by_name:
-  cc_by_nc_description: ""
-  cc_by_nc_name:
-  cc_by_nc_nd_description: ""
-  cc_by_nc_nd_name:
-  cc_by_nc_sa_description: ""
-  cc_by_nc_sa_name:
-  cc_by_nd_description: ""
-  cc_by_nd_name:
-  cc_by_sa_description: ""
-  cc_by_sa_name:
-  cc_used_under_a: ""
-  change_admin:
+  breadcrumbs_description: "Tai pakeis „h1“ ir numatytuosius raginimus veikti (CTA), todėl būtinai įtraukite juos, jei jie yra svarbūs šiam projektui, ir nepamirškite, kad maksimalus leistinas plotis yra 950 taškų (px)."
+  brief_caption: Trumpa antraštė
+  brown: ruda
+  browse: Naršyti
+  browse_all_projects: Naršyti visus projektus
+  browse_all_species: Peržiūrėti visas rūšis
+  browse_observations: Naršyti stebėjimus
+  browse_people: Naršyti Žmones
+  browse_projects: Naršyti Projektus
+  browse_species_that_occur_near_this_observation: Naršyti rūšis, esančias šalia šio stebėjimo
+  built_with_site_guides_html: "Sukurtas su <a href='%{url}'>%{site_name} Vadovais</a>"
+  bulk_import_of_filename_is_complete: "Masinis %{filename} importas įvykdytas"
+  by: po
+  by_everyone: Pagal visus
+  by_user: "Pagal %{user}"
+  by_you: Tavo
+  calendar: Kalendorius
+  calendars_only_show_x_observations_at_time: Kalendorius rodo tik %{x} stebėjimus(-ų) vienu metu
+  cancel: Atšaukti
+  cant_edit_or_delete_hidden_content: Jūs negalite redaguoti ar ištrinti turinio, kuris buvo paslėptas puslapio kuratorių
+  cant_flag_an_object_that_doesnt_exist: Negalima pažymėti objekto, kuris neegzistuoja
+  cant_merge_a_taxon_with_itself: Negalima apjungti taksono su savimi.
+  captive: Naminis
+  captive_cultivated: Naminis / kultivuojamas
+  captive_observations: Stebėjimai nelaisvėje
+  card: Kortelė
+  casual: netinkamas
+  casual_: Netinkamas
+  casual_tooltip_html: 'Stebėjimui trūksta medijos, vietovės, datos arba neatitinka „Tyrimo“ ir „Trūksta ID“ kokybės įvertinimo dėl kitų priežasčių. <a href="https://www.inaturalist.org/pages/help#quality">Sužinokite daugiau apie kokybės įvertinimą</a>'
+  categories: Kategorijos
+  cc_0_name: Nėra Autorinių Teisių (CC0)
+  cc_attribution_license: Creative Commons Attribution licencija
+  cc_by_name: Požymis
+  cc_by_nc_name: Pobūdis-Ne komercinis
+  cc_by_nc_nd_name: Pobūdis-Ne komercinis-Be nukrypimų
+  cc_by_nc_sa_description: "Ši licencija leidžia kitiems nekomerciniais tikslais adaptuoti, keisti ir pernaudoti jūsų kūrinį, jei jie jus pamini ir licencijuoja savo naujus kūrinius tokiomis pačiomis sąlygomis."
+  cc_by_nc_sa_name: Pobūdis-Ne komercinis-Platinti nekeičiant
+  cc_used_under_a: "„Creative Commons“, naudojamas pagal "
+  change_admin: Keisti Administratorių
   #Button to change the cover (or banner) image for a project
-  change_cover:
-  change_geoprivacy: ''
-  change_group:
-  change_icon:
-  change_password:
-  change_your_password:
+  change_cover: Keisti viršelį
+  change_descriptions:
+    split: Senas taksonas, padalintas į keletą naujų taksonų
+    merge: Keletas senų taksonų apjungti į vieną naują taksoną
+    swap: Pakeiskite įvesties taksoną išvesties taksonu
+    drop: Taksono koncepcija visiškai negaliojanti, išlaikyta istoriniais tikslais ar partnerių suderinamumui
+    stage: Paruoškite neaktyvią koncepciją išleidimui, kaip pakeitimų grupės dalį
+  change_geoprivacy: 'Pakeisti vietos privatumą'
+  change_group: Keisti grupę
+  change_icon: Keisti ikoną
+  change_password: Keisti Slaptažodį
+  change_types:
+    activated_soon: aktyvuotas greitai
+    change_types: Keisti tipus
+    split: Išskirti
+    merge: Sujungti
+    swap: Apkeisti
+    stage: Etapas
+    drop: Išmetimas
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: Atskirti nuo
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: atskirti į
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: prijungti prie
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: prijungta prie
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: pakeista
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: pakeisti į
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: pakeista į
+    dropped: išmestas
+    staged: Įvykdyta
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} buvo padalintas į %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} bus padalintas į %{output_taxa}"
+    input_taxon_was_dropped_html: "%{input_taxon} buvo išmestas"
+    input_taxon_will_be_dropped_html: "%{input_taxon} bus išmestas"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon} netrukus bus aktyvuotas"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon} buvo pakeistas į %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon} bus pakeistas į %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} buvo sujungtas į %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} bus sujungtas į %{output_taxon}"
+  change_your_password: Keisti Savo Slaptažodį
   #Plural noun, as in changes to a taxon record over time
-  changes:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent:
-  changing_the_geoprivacy: ''
-  check_above_for_errors:
-  check_back_soon:
-  check_here_to_autoload_description:
-  check_here_to_autoload_photos:
-  check_list:
-  check_list_description:
-  check_list_for_individual_taxa_that: ''
-  check_list_for_taxon_html: ""
+  changes: Pakeitimai
+  changing_the_geoprivacy: 'Vietos privatumo pakeitimas lemia, kaip kiti žmonės mato jūsų stebėjimo vietą.'
+  check_above_for_errors: Patikrinkite, ar nėra klaidų
+  check_back_soon: Patikrinkite netrukus!
+  check_here_to_autoload_description: Pažymėkite, kad automatiškai užsikrautų aprašymas iš Vikipedijos. Atžymėkite, jeigu taksono mokslinis pavadinimas taip pat yra nemokslinis žodis arba dažnai klaidingai įvedamas žodis, pavyzdžiui „Parus“.
+  check_here_to_autoload_photos: Pažymėkite, kad automatiškai užsikrautų nuotraukos iš Flickr. Atžymėkite, jeigu taksono mokslinis pavadinimas taip pat yra nemokslinis žodis arba dažnai klaidingai įvedamas žodis, pavyzdžiui „Parus“.
+  check_list: Kontrolinis sąrašas
+  check_list_description: Pasirinkite aukštesnio lygio taksoną, kurį norėtumėte matyti šiame sąraše, pvz. "Aves" paukščiams ar "Amphibia" varliagyviams. Taip nustačius, šiame sąraše nebus galimi taksonai, nepriklausantys nuradytam taksonui. Pavyzdžiui, jei sukursite paukščių sąrašą, jūs negalėsite pridėti prie jo varlių.
+  check_list_for_individual_taxa_that: 'Patikrinkite atskirus taksonus, kurie čia gyvena, pvz.: „%{place} paukščiai“.'
+  check_list_for_taxon_html: "%{taxon} kontrolinis sąrašas"
   check_lists_must_belong_to_a_place: |
-
-  check_list_place: ""
-  check_list_updated:
-  check_lists_for: ""
-  check_out_the_inat_store:
-  check_out_what_the_observation:
-  check_this_box_if_html: |
-
-  checklist:
-  choose_a_field:
-  choose_a_list_above:
-  choose_a_place:
-  choose_a_taxon:
-  choose_columns:
-  choose_file:
-  choose_files:
-  choose_from_your_lists:
-  choose_photos_for_this_taxon:
-  choose_photos_to_tag_from_photostream:
-  choose_rule:
-  choose_subjects:
-  choose_tags:
-  choose_taxon:
-  choose_what_kind_of_change_youre_creating: ""
-  cid_d_to_genus:
-  citation:
-  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  clashes_occur_for_moves_html: |
-
-  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
-  clashes_occur_for_swaps_html: |
-
-  classification:
-  clear:
-  clear_filters:
-  clear_search:
-  click_the_map: ""
-  close:
-  code:
-  colors:
-  columns:
-  combine:
-  comma_separated_list_of_tracking_codes: |
-
-  comma_separated_please:
+    Kontrolinis sąrašas turi priklausyti kokia nors vietai. Jei norite sukurti naują kontrolinį sąrašą, apsilankykite vietos numatytame kontroliniame sąraše ir paspauskite „Sukurti naują kontrolinį sąrašą“.
+  check_list_place: "%{place} kontrolinis sąrašas"
+  check_list_updated: Kontrolinis sąrašas atnaujintas!
+  check_lists_for: "Kiti %{place} kontroliniai sąrašai"
+  check_out_the_inat_store: Apsilankykite iNaturalist parduotuvėje
+  check_out_what_the_observation: Patikrinkite kaip atrodo stebėjimas, kurį bandote įdentifikuoti.
+  checklist: Kontrolinis sąrašas
+  choose_a_field: Pasirinkite lauką
+  choose_a_list_above: Pasirinkite sąrašą viršuje.
+  choose_a_place: Pasirinkite vietą
+  choose_a_taxon: Pasirinkite taksoną (nebūtinas)
+  choose_columns: Pasirinkti stulpelius
+  choose_file: Pasirinkite failą
+  choose_files: Pasirinkite failus
+  choose_from_your_lists: Pasirinkite iš savo sąrašų
+  choose_photos_for_this_taxon: Parinkite nuotraukas šiam taksonui
+  choose_photos_to_tag_from_photostream: Pasirinkite nuotraukas, kurias norite pažymėti iš savo nuotraukų srauto
+  choose_rule: Pasirinkite taisyklę
+  choose_subjects: Pasirinkite temas
+  choose_tags: Pasirinkite žymes
+  choose_taxon: Pasirinkite taksoną
+  choose_what_kind_of_change_youre_creating: "Pasirinkite kokį pakeitimą atliekate."
+  cid_d_to_genus: BID iki genties
+  citation: Citata
+  classification: Klasifikacija
+  clear: išvalyti
+  clear_filters: Valyti filtrus
+  clear_search: Valyti paiešką
+  click_the_map: "<strong>Paspauskite ant žemėlapio</strong>, kad pridėtumėte vietą."
+  close: Uždaryti
+  code: Kodas
+  colors: Spalvos
+  columns: Stulpeliai
+  combine: Sujungti
+  comma_separated_please: Prašome atskirti kableliais
   #Noun, used to label a comment or a comment field in a form
-  comment:
+  comment: komentaras
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_:
-  comment_deleted:
+  comment_: Komentuoti
+  comment_deleted: Komentaras ištrintas
   #Notice when a comment has been hidden by moderators
-  comment_hidden:
+  comment_hidden: Komentaras paslėptas
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden:
-  comments:
-  comments_by_me:
-  comments_have_been_disabled:
-  comments_on_my_observations:
-  commercial_solicitation:
+  comment_unhidden: Komentaras nebepaslėptas
+  comments: Komentarai
+  comments_by_me: Mano komentarai
+  comments_have_been_disabled: Komentarai buvo išjungti
+  comments_on_my_observations: Mano stebėjimo komentarai
+  commercial_solicitation: Reklamos, neveikiančios nuorodos ir t. t.
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit:
+  commit: Patvirtinti
   #Adjective describing a taxon change that has been committed
-  committed:
-  committed_by_user_on_date_html:
+  committed: Patvirtinta
   #Label for date the taxon change was committed
-  committed_on:
-  committed_taxon_changes_cannot_be_deleted:
+  committed_on: Patvirtinta %{date}
   #Status message while a taxon change is being committed
-  committing:
-  #disagreements are identifications that disagree with previous identifications on the same observation
-  #committing refers to committing a taxon swap
-  committing_this_swap_may_result:
-  common_name:
-  community:
-  community_curated:
-  community_guidelines:
-  community_id_heading:
-  community_id_at_species_or_lower?:
-  community_id_at_species_level_or_lower:
-  community_id_is_precise:
-  community_moderation_settings:
-  community_supported_id:
-  compare:
-  compare_with:
-  comparing:
-  comparing_list_to_list: ""
-  comparing_versions_x_and_y: ""
-  compiled_by_name: ""
+  committing: Tvirtinama...
+  common_name: Dažnas vardas
+  community: Bendruomenė
+  community_curated: Kuruojamas Bendruomenės
+  community_guidelines: Bendruomenės gairės
+  community_id_heading: Bendruomenės taksonas
+  community_id_at_species_or_lower?: Bendruomenės ID rūšies lygmenyje ar žemiau?
+  community_id_at_species_level_or_lower: Bendruomenės ID rūšies lygmenyje ar žemiau
+  community_id_is_precise: Bendruomenės taksonas yra tikslus
+  community_moderation_settings: Bendruomenės Moderavimo Nustatymai
+  community_supported_id: Bendruomenės patvirtintas taksonas?
+  compare: Palyginti
+  compare_with: Lyginti su
+  comparing: lyginama
+  comparing_list_to_list: "Lyginama %{list1} su %{list2}"
+  comparing_versions_x_and_y: "Lyginama versijas %{x} ir %{y}"
+  compiled_by_name: "Sudarė %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete:
-  complete_set_for_taxon_in_place_html: ""
-  completed:
-  completed_at:
+  complete: Atlikta
+  complete_set_for_taxon_in_place_html: "Užbaigtas taksono: %{taxon} rinkinys vietovėje: %{place}"
+  completed: Baigtas
+  completed_at: Baigta
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?:
+  comprehensive?: Išsamus?
   comprehensive_check_list_for_taxon_html: |
-
-  comprehensive_list:
+    <span class="comprehensive_notice" data-tip="%{tip}">Išsamus</span> %{taxon} kontrolinis sąrašas
+  comprehensive_list: Išsamus sąrašas
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model:
+  computer_vision_model: Kompiuterinio matymo modelis
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included:
+  computer_vision_model_included: Įtrauktas
   computer_vision_model_included_desc: |
-
+    Dabartinis kompiuterinio matymo modelis žino apie šį taksoną, todėl jis gali būti įtrauktas į automatinius pasiūlymus su etikete „vizualiai panašus“.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
-  computer_vision_model_pending:
+  computer_vision_model_pending: Laukiama
   computer_vision_model_pending_desc: |
-
-  concept_status:
-  confidential:
-  configure:
-  configure_a_widget_to_show:
-  confirm:
-  confirm_membership:
-  confirm_new_password:
-  confirm_now:
-  confirm_your_info:
-  confirming_ids:
-  confirming_ids_description:
+    Dabartinis kompiuterinio matymo modelis nežino apie šį taksoną, taigi, nors šis taksonas gali būti įtrauktas į automatinių pasiūlymų sąrašą su etikete „netoliese“, prie jo nebus etiketės „vizualiai panašus“. Kiekvienam modeliui galioja skirtingos įtrauktimo taisyklės, tačiau dažniausiai įtraukimas priklauso nuo stebėjimų skaičiaus, todėl, norint padidinti galimybę šiam taksonui būti įtrauktam kito modelio mokymo metu, įkelkite arba identifikuokite daugiau šio taksono stebėjimų.
+  concept_status: Koncepcijos Būsena
+  confidential: Konfidencialu
+  configure: Konfigūruoti
+  configure_a_widget_to_show: Konfiguruoti valdiklį, kad jis rodytų %{site_name} stebėjimus jūsų tinklalapyje ar tinklaraštyje. Jums gali reikėti įtraukti įterptą CSS <code>&lt;head&gt;</code> jūsų HTML. Nesivaržykite perrašyti CSS.
+  confirm: Patvirtinti
+  confirm_membership: Patvirtinti narystę
+  confirm_new_password: Patvirtinkite Naują Slaptažodį
+  confirm_now: Patvirtinti dabar
+  confirm_your_info: Patvirtinkite savo informaciją
+  confirming_ids: Identifikacijų patvirtinimai
+  confirming_ids_description: Jei išjungsite, daugiau nebegausite pranešimų apie jūsų identifikacijų patvirtinimus.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
-  connect:
-  connect_to_provider: ""
+  connect: Sujungti
+  connect_to_provider: "Prisijungti prie %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts:
-  connected_accounts_description:
-  connected_accounts_titlecase:
-  connecting_flickr: ""
-  connect_to_flickr_again_to_authorize_write_permissions:
-  connecting_to_facebook: ""
-  connecting_your_inat_account_to_accounts_other_sites: ""
-  cannot_be_changed_during_a_content_freeze:
-  conservation_status:
-  conservation_status_created:
-  conservation_status_deleted:
-  conservation_status_updated:
+  connected_accounts: Prijungtos paskyros
+  connected_accounts_description: Prijungtos paskyros yra kitų programėlių ar tinklalapių paskyros, kurias leidote pasiekti iNaturalist prisijungimo, nuotraukų įkėlimo ar kitais tikslais.
+  connected_accounts_titlecase: Prijungtos paskyros
+  connecting_flickr: "Prisijungiama prie Flickr..."
+  connect_to_flickr_again_to_authorize_write_permissions: Dar kartą prisijunkite prie „Flickr“, kad galėtumėte autorizuoti rašymo teises
+  connecting_to_facebook: "Prisijungiama prie Facebook..."
+  connecting_your_inat_account_to_accounts_other_sites: "Sujungus jūsų %{site_name} paskyrą su kitų tinklalapių paskyromis leis jums prisijungti prie %{site_name} naudojantis kitų tinklalapių įgaliojimais."
+  cannot_be_changed_during_a_content_freeze: negali būti pakeista, kai turinys užšaldytas
+  conservation_status: Apsaugos statusas
+  conservation_status_descriptions:
+    status: 'Statuso kodas, rangas ir t. t. Jeigu sutrumpinimai, kaip E ar CR egzistuoja, naudokite juos. Kitu atveju naudokite pilną statusą, pvz.: nykstantis arba grėsmingai nykstantis.'
+    description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
+    authority: |
+      Organizacija, kuri paskelbė šį statusą. Naudokite automatinio užbaigimo funkciją, kad pasirinktumėte egzistuojantį autoritetą, prieš pridedant naują. Galite praleisti, jeigu *jūs* norite būti laikomas autoritetu.
+    place: Vietovė, kurioje galioja šis statusas.
+    url: Puslapio, apibūdinančio šią būseną, URL.
   conservation_status_geoprivacy_desc: |
-
-  contact_support:
-  contain_all_descendants?:
+    Numatytasis vietos privatumas taikomas visiems šio taksono stebėjimams šioje vietovėje
+  contact_support: Susisiekti su pagalba
+  contain_all_descendants?: Ar šiame kontroliniame sąraše yra visi čia aptinkami šio taksono palikuonys?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
-  content:
-  content_and_display:
-  content_author:
-  content_hidden:
+  content: Turinys
+  content_and_display: Turinys ir rodymas
+  content_author: Turinio autorius
+  content_hidden: Turinys paslėptas
   content_hidden_by_user_on_date_because_reason_html: |
-
-  content_type:
+    %{date} turinį paslėpė %{user}, nes: "%{reason}"
+  content_type: Turinio tipas
   user_hid_this_item_because_reason_html: |
-
+    %{user} paslėpė %{item}, nes „%{reason}“
   user_unhid_this_item_because_reason_html: |
-
-  continue:
-  continue_to_site:
-  contributor_cannot_be_found:
-  contributors_to_project: ""
-  controls:
-  convert:
-  coordinate_systems:
-  coordinates:
+    %{user} nebeslepia %{item}, nes „%{reason}“
+  continue: Tęsti
+  continue_to_site: Tęsti į %{site_name}
+  contributor_cannot_be_found: Įnašai negali būti rasti
+  contributors_to_project: "%{project} įnašai"
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Nesvarbu
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Nesvarbu
+    sex: Lytis
+    male: Vyr.
+    female: Mot.
+    plant_phenology: Augalo fenologija
+    budding: Sprogsta
+    flower_budding: Su sprogstančiais žiedais
+    flowering: Žydintis
+    fruiting: Su vaisiais
+    life_stage: Gyvenimo stadija
+    adult: Subrendęs
+    teneral: Išsinėręs
+    subimago: Subimago
+    pupa: Lėliukė
+    no_evidence_of_flowering: Nėra žydėjimo požymių
+    nymph: Nimfa
+    larva: Lerva
+    egg: Kiaušinis
+    juvenile: Jaunas
+    alive_or_dead: Gyvas ar miręs
+    alive: Gyvas
+    dead: Miręs
+    cannot_be_determined: Negali būti nustatyta
+    evidence_of_presence: Organizmo buvimo įrodymai
+    #As in the feather on a bird
+    feather: Plunksna
+    #Abnormal growth
+    gall: Galas
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organizmas
+    #Fecal matter, not regurgitated matter
+    scat: Išmatos
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Pėdsakai
+    #Endoskeletal remains, like a deer bone
+    bone: Kaulas
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Išnara
+  controlled_term_definitions:
+    alive: Organizmas yra gyvas ir nėra jokių artėjančios mirties ženklų
+    dead: Organizmas yra miręs arba yra artėjančios mirties ženklų
+    flower_budding: Žiediniai pumpurai yra matomi, bet ne išsiskleidę
+    flowering: Žiedai matomi, prasiskleidę ir vis dar prisitvirtinę prie augalo
+    fruiting: Vaisiai matomi ir vis dar prisitvirtinę prie augalo
+    no_evidence_of_flowering: Nuotraukoje nesimato jokių dauginimosi struktūrų
+    teneral: Suaugėlis neseniai išsinėrė, bet dar nepasiekė pilnos brandos
+    cannot_be_determined: Negali būti nustatyta iš pateiktų įrodymų
+    feather: Viena ar daugiau plunksnų, neprisitvirtinusių prie organizmo
+    organism: Visas organizmas arba jo dalis
+    scat: Išmatos (ne pelėdų išvamos ar kitos nesuvirškitos medžiagos)
+    track: Organimo palikta žymė žemėje arba sniege
+    bone: |
+      Daugiausia endoskeleto liekanos; dalinis kaulo atsidengimas daugiau nepažeistame organizme turėtų būti įvardijamas kaip „organizmas“
+    molt: Numesta oda arba egzoskeletas
+    gall: Parazitinių organizmų sukelta augalo audinio deformacija
+  controls: Valdikliai
+  convert: Konvertuoti
+  coordinate_systems: Koordinačių sistemos
+  coordinates: Koordinatės
   #A filter option that only shows observations for which the viewer has
   #permission to see the "true" or "hidden" coordinates for observations in a
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
-  coords_viewable_for_proj_label:
-  coords_viewable_for_proj_desc: |
-
-  copy:
-  copy_and_paste_the_following_code_to:
-  copy_and_paste_this_into_your_own_html:
-  copy_guide_taxon_to:
-  copyright_holder:
-  copyright_info:
-  copyright_info_and_more:
-  copyright_infringement:
-  copyright_infringement_desc:
-  covered_by_a_taxon_framework_html: ""
-  covered_by_a_taxon_framework_link: ""
-  couldnt_change_your_password: ""
-  couldnt_find_a_user_matching_x_param: ""
-  couldnt_find_that_taxon:
-  create:
-  create_a_guide:
-  create_a_new_field:
-  create_a_new_place:
-  create_a_new_taxon:
-  create_a_query:
-  create_an_account:
-  create_an_atlas:
-  create_export:
-  create_new_taxon:
-  create_observations:
-  created:
-  created_by:
-  created_by_user_on_date:
-  created_on:
-  creating_your_account: ""
-  creative_commons_flickr_tagged:
-  creative_commons_unless_otherwise_noted: ""
-  critically_endangered:
-  css_description:
-  csv:
-  csv_file:
-  csv_should_not_contain_a_header_row:
-  cumulative_ids: ""
-  curate_observations:
-  curate_taxa:
-  curate_user:
-  curating:
-  curation:
-  curator:
-  #A paragraph summarizing what curators are
-  curator_application_about_site_curators_desc_html: |
-
+  coords_viewable_for_proj_label: Tik su pilnomis koordinatėmis
+  copy: Kopijuoti
+  copy_and_paste_the_following_code_to: Nukopijuokite ir įklijuokite šį kodą, kad įterptumėte šį vertinimą į kitą tinklalapį.
+  copy_and_paste_this_into_your_own_html: Nukopijuokite ir įklijuokite tai į savo HTML.
+  copy_guide_taxon_to: Nukopijuokite vadovo taksoną į...
+  copyright:
+    some_rights_reserved: kai kurios teisės saugomos
+    some_rights_reserved_by: "(c) %{name}, kai kurios teisės saugomos (%{license_short})"
+    all_rights_reserved: "(c) %{name}, visos teisės saugomos"
+    no_known_copyright_restrictions: "%{name}, nėra žinomų autorinių teisių apribojimų (%{license_name})"
+    no_known_copyright_restrictions_text: "Nėra jokių žinomų autorinių teisių apribojimų"
+    no_rights_reserved: teisės nesaugomos
+    no_rights_reserved_by: "%{name}, teisės nesaugomos (%{license_name})"
+    anonymous: anonimas
+    public_domain: viešas domenas
+    copyright: autorinės teisės
+    no_copyright: nėra autorinių teisių (CC0)
+  copyright_holder: Autorystės teisių savininkas
+  copyright_info: Autorinių teisių informacija
+  copyright_info_and_more: Autorinių teisių informacija ir daugiau
+  copyright_infringement: Autorinių teisių pažeidimas
+  copyright_infringement_desc: Pažeidžia autorių teisių įstatymą ar buvo sukurtas kito asmens nei stebėtojas, bet trūksta atribucijos
+  covered_by_a_taxon_framework_html: "Apimamas %{link}"
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank}%{taxon_framework_name} taksono struktūra"
+  couldnt_change_your_password: "Negalima pakeisti jūsų slaptažodžio: %{e}"
+  couldnt_find_a_user_matching_x_param: "Nepavyko rasti vartotojo atitinkančio %{id}"
+  couldnt_find_that_taxon: Taksonas nerastas
+  create: Kurti
+  create_a_guide: Kurti gidą
+  create_a_new_field: Kurti naują lauką
+  create_a_new_place: Kurti naują vietą
+  create_a_new_taxon: Sukurti naują taksoną
+  create_a_query: Kurti užklausą
+  create_an_account: Kurti paskyrą
+  create_an_atlas: Sukurti atlasą
+  create_export: Sukurti eksportą
+  create_new_taxon: Sukurti naują taksoną
+  create_observations: Sukurti stebėjimą
+  created: Sukurta
+  created_by: Sukūrė
+  created_by_user_on_date: '%{date} sukūrė %{user}'
+  created_on: Sukurta
+  creating_your_account: "Jūsų paskyra kuriama..."
+  critically_endangered: Grėsmingai nykstantis
+  csv: CSV
+  csv_file: CSV failas
+  csv_should_not_contain_a_header_row: CSV faile neturėtų būti antraštinės eilutės
+  cumulative_ids: "Kumuliacinis ID: %{count} iš %{total}"
+  curate_observations: Kuruoti stebėjimus
+  curate_taxa: Kuruoti taksonus
+  curate_user: Kuruoti vartotoją
+  curating: Kuruojama
+  curation: Kuravimas
+  curator: Kuratorius
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-
+    Turite paaiškinti, kodėl norite tapti kuratoriumi
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html:
+  curator_application_fields_explanation_html: Kodėl norite tapti kuratoriumi?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-
-  #Prompt for information when applying to be a curator
-  curator_application_fields_name_examples_html: |
-
-  #Prompt for information when applying to be a curator
-  curator_application_fields_moderation_examples_html: |
-
+    Jei norite redaguoti „iNaturalist“ taksonomiją, pateikite vieną ar du taksonomijos pakeitimų, kuriuos norite atlikti, pavyzdžius ir nurodykite šaltinį(-ius). Jei pakeitimas atitinka reikalavimus, nurodykite atitinkamą taksonomijos autorių, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">įvardytą Kuratoriaus gairėse</a>. Jei nenurodysite šaltinių, jūsų siūlomi pakeitimai nebus svarstomi.
   #Header
   curator_application_how_curators_lose_their_powers: |
-
-  curator_application_how_curators_lose_their_powers_desc: |
-
-  #Description of one way a curator may lose their curator status; part of list
-  #of things, so you might imagine it is preceded with "iNat staff may remove
-  #curatorial powers if a curator repeatedly..."
-  curator_application_how_curators_lose_ignore_policies: |
-
-  #Description of one way a curator may lose their curator status; part of list
-  #of things, so you might imagine it is preceded with "iNat staff may remove
-  #curatorial powers if a curator repeatedly..."
-  curator_application_how_curators_bad_behavior: |
-
-  #Message shown when the viewer is not yet elligible to apply to become a
-  #curator
-  curator_application_inelligible: |
-
-  curator_application_inelligible_error: |
-
+    Kaip kuratorius praranda savo galias
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success:
+  curator_application_success: Kuratoriaus paraiška pateikta
   #Header
-  curator_application_what_curators_can_do:
-  #Description of a curator's ability to edit the taxonomy; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html:
-  curator_application_what_curators_can_do_hide_comments_html: |
-
-  #Description of a curator's ability to resolve flags; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_resolve_flags_html: |
-
-  #Description of a curator's ability to edit wiki pages; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_wiki_html: |
-
-  #Description of a curator's ability to edit places; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_places_html: |
-
+  curator_application_what_curators_can_do: Ką gali kuratoriai
   #Header
-  curator_application_what_curators_cannot_do:
-  #Description of the fact that a curator cannot change certain attributes of
-  #observations any more than anyone else can; part of a list of things
-  #curators can do, so you might imagine it is preceded with "Curators
-  #cannot..."
-  curator_application_what_curators_cannot_do_change_observations_html: |
-
-  #Description of the fact that a curator cannot commit taxon changes for
-  #complete taxa; part of a list of things curators can do, so you might
-  #imagine it is preceded with "Curators cannot..."
-  curator_application_what_curators_cannot_do_commit_complete_html: |
-
+  curator_application_what_curators_cannot_do: Ko negali kuratoriai
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
-
+    Ištrinti kitų vartotojų sukurtą turinį
   #Description of the fact that a curator cannot read other peoples' messages;
   #part of a list of things curators can do, so you might imagine it is
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
-
+    Skaityti kitų žmonių žinučių.
   #Title of a page where people apply to become a curator
-  curator_application_title:
-  #Header followed by a list
-  curator_application_you_should_apply_if: |
-
-  curator_application_you_should_apply_if_you_are_a_regular_user: |
-
-  #A requirement for becoming a curator; part of a list, so you might imagine
-  #it is preceded with "You should apply to be a curator if..."
-  curator_application_you_should_apply_if_committed: |
-
-  #A requirement for becoming a curator; part of a list, so you might imagine
-  #it is preceded with "You should apply to be a curator if..."
-  curator_application_you_should_apply_if_you_can_behave: |
-
-  curators_changed_for_x_html: ""
-  curators:
-  curators_can_remove_observations_from:
-  curator_identification:
-  current_flags:
-  #Label for a custom boundary for an observation search
-  custom_boundary:
-  custom_project_fields:
-  custom_project_was_successfully_created:
-  custom_project_was_successfully_updated:
-  customize_location:
-  darr_apply_darr: ""
-  daily_users:
-  danger_zone:
-  dashboard:
-  data_deficient:
-  data_quality:
-  data_quality_assessment:
-  data_used: ""
-  datatype:
-  date_:
-  date_added:
-  date_authorized:
-  date_created:
-  date_is_accurate:
-  date_joined:
-  date_obscured_notice:
-  date_observed:
-  date_observed_:
-  date_observed_on:
-  date_range:
-  date_specified:
-  date_time:
+  curator_application_title: Kuratoriaus paraiška
+  curators_changed_for_x_html: "Kuratoriai keičiami kas %{x}"
+  curators: Kuratoriai
+  curator_identification: Kuratorius identifikavimas
+  current_flags: Dabartinės žymės
+  custom_project_fields: Sukurti projekto laukai
+  customize_location: Pasirinkti vietą
+  darr_apply_darr: "&darr; Taikyti &darr;"
+  daily_users: Vartotojų kasdien
+  danger_zone: Pavojinga zona
+  dashboard: Valdymo skydas
+  data_deficient: Trūksta duomenų
+  data_quality: Duomenų kokybė
+  data_quality_assessment: Duomenų kokybės įvertinimas
+  data_used: "Naudota data:"
+  datatype: Duomenų Tipas
+  date_: Data
+  date_added: Įkėlimo data
+  date_authorized: Įgaliojimo data
+  date_created: data sukurta
+  date_format:
+    date_long:
+      january: Sausis %{day} %{year}
+      february: Vasaris  %{day} %{year}
+      march: Kovas %{day} %{year}
+      april: Balandis %{day} %{year}
+      may: Gegužė %{day} %{year}
+      june: Birželis %{day} %{year}
+      july: Liepa %{day} %{year}
+      august: Rugpjūtis %{day} %{year}
+      september: Rugsėjis %{day} %{year}
+      october: Spalis %{day} %{year}
+      november: Lapkritis %{day} %{year}
+      december: Gruodis %{day} %{year}
+    month:
+      january: Sausis
+      february: Vasaris
+      march: Kovas
+      april: Balandis
+      may: Gegužė
+      june: Birželis
+      july: Liepa
+      august: Rugpjūtis
+      september: Rugsėjis
+      october: Spalis
+      november: Lapkritis
+      december: Gruodis
+  date_is_accurate: Data tiksli
+  date_joined: Prisijungimo data
+  date_observed: Stebėjimo data
+  date_observed_: Stebėjimo data
+  date_observed_on: Stebėjimo data
+  date_picker:
+    closeText: Uždaryti
+    currentText: Šiandien
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: Ankst.
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Kitas
+    range: Periodas
+  date_range: Periodas
+  date_specified: Data nurodyta
+  date_time: Data/Laikas
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
-  date_to_date: ""
-  date_updated:
-  day:
-  decrease_brightness:
+  date_to_date: "%{d1} - %{d2}"
+  date_updated: Data atnaujinta
+  day: Diena
+  decrease_brightness: Sumažinti ryškumą
   #Default option
-  default:
+  default: numatytas
   #Default option
-  default_:
-  default_display_time_zone:
-  default_invite_comment: ""
-  default_observation_license:
-  default_photo_license:
-  default_search_place:
-  default_search_place_description: |
-
-  default_sound_license:
-  default_time_zone_desc: |
-
-  defaults_to_your_name_or_username:
-  defines_a_taxon_framework_for:
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
-  definitions:
-  delete:
-  delete_all:
-  delete_conversation:
+  default_: Numatytasis
+  default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
+  default_observation_license: Numatytoji stebėjimo licencija
+  default_photo_license: Numatytoji nuotraukos licencija
+  default_sound_license: Numatytoji garso licencija
+  defaults_to_your_name_or_username: Naudoja arba jūsų vardą arba vartotojo vardą
+  defines_a_taxon_framework_for: Apibrėžia %{taxon_name} taksono struktūrą
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Apibrėžia %{taxon} taksono struktūrą, naudojantis šaltiniu %{source}
+  definitions: Apibrėžimai
+  delete: Ištrinti
+  delete_all: Ištrinti visus
+  delete_conversation: Ištrinti pokalbį
   #Button to delete the cover (or banner) image for a project
-  delete_cover?:
-  delete_icon?:
-  delete_photo:
-  delete_project:
-  #Label for a button to delete a taxon range
-  delete_range:
-  delete_selected:
+  delete_cover?: ištrinti viršelį?
+  delete_icon?: Ištrinti ikoną?
+  delete_photo: Ištrinti nuotrauką
+  delete_project: Ištrinti šį projektą
+  delete_selected: Ištrinti Pasirinktus
   delete_taxon_and_merge_most_data_html: |
-
-  delete_user:
-  delete_your_account:
-  deleted_synonyms:
-  deleted_user:
-  deleted_vote:
-  deleting:
-  deleting_verb:
-  deny:
-  desc:
-  descending:
-  describe_purpose:
-  describe_your_interest_in_nature:
-  description:
-  description_from:
-  description_sections:
-  description_slash_tags:
-  description_tags_more: ""
-  desription:
-  destination:
-  destroy:
-  details:
-  deviation:
-  devise_reset_password_instructions_hello_email:
+    Ištrinti <i>%{taxon}</i> ir perkelti daugumą informacijos į kitą taksoną. Naudokite šį įrankį <strong>naikinant pasikartojančius taksonus</strong>. Jeigu norite ištrinti pasenusį sinonimą, prašome naudoti taksono sukeitimo įrankį. <strong>BŪKITE ATSARGŪS!</strong> Taksonų naikinimas gali padaryti daug žalos. Skaitykite <a href="%{curator_url}">Kuratorių gidą</a>, kad sužinotumėte daugiau.
+  delete_user: Ištrinti vartotoją
+  delete_your_account: Ištrinti savo paskyrą
+  deleted_synonyms: Ištrinti sinonimus
+  deleted_user: ištrinti vartotoją
+  deleted_vote: Ištrinti balsą
+  deleting: Trinama...
+  deleting_verb: Trinama
+  deny: Atmesti
+  desc: Maž.
+  descending: Mažėjančia tvarka
+  describe_purpose: Apibūdinkite šio projekto tikslą.
+  describe_your_interest_in_nature: Apibūdinkite savo susidomėjimą gamta.
+  description: Aprašymas
+  description_from: Aprašymas iš
+  description_slash_tags: Aprašymas / Žymos
+  description_tags_more: "Aprašymas, Žymos, &amp; Daugiau"
+  desription: Aprašymas
+  destroy: Sunaikinti
+  details: Informacija
+  deviation: Nuokrypis
+  devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jei jūsų el. pašto adresas saugojamas mūsų duomenų bazėje, netrukus gausite el. laišką su jūsų el. pašto patvirtinimo instrukcijomis.
+    failure:
+      already_authenticated: 'Jūs jau esate prisijungęs.'
+      unauthenticated: 'Prieš tęsiant, Jums reikia prisijungti arba užsiregistruoti.'
+      invalid: 'Neteisingas el. paštas arba slaptažodis.'
+      invalid_token: 'Neteisingas autentifikavimo prieigos raktas.'
+      user:
+        suspended: Jūsų paskyra buvo laikinai sustabdyta
+    sessions:
+      signed_in: 'Prisijungta sėkmingai.'
+      signed_out: 'Atsijungta sėkmingai.'
+    passwords:
+      send_instructions: 'Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.'
+      updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jūs dabar esate prisijungę.'
+      updated_not_active: 'Jūsų slaptažodis buvo sėkmingai pakeistas.'
+      send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
+      no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
+    registrations:
+      signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
+      updated: 'Jūsų paskyra sėkmingai atnaujinta.'
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Patvirtinimo instrukcijos'
+      reset_password_instructions:
+        subject: 'Atstatyti slaptažodžio instrukcijas'
+  devise_reset_password_instructions_hello_email: Sveiki, %{email},
   devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-
+    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_if_you_didnt_request_this: |
-
+    Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
   devise_reset_password_instructions_your_password_wont_change_until: |
-
-  devise_unlock_instructions_your_account_has_been_locked: |
-
-  devise_unlock_instructions_click_the_link: |
-
-  devise_unlock_instructions_unlock:
-  discoveries:
-  did_you_mean: ''
-  did_you_photos_flickr?:
-  disable:
-  disable_comments:
-  disable_comments_desc:
-  disagree_:
+    Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
+  devise_unlock_instructions_unlock: Atblokuoti paskyrą
+  discoveries: Atradimai
+  did_you_mean: 'Ar turėjote omenyje'
+  did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
+  disable: Išjungti
+  disable_comments: Išjungti komentarus
+  disable_comments_desc: Neleisk žmonėms pridėti daugiau komentarų
+  disagree_: Nesutikti
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
-  disconnect:
-  disconnect_caps:
-  disconnect_provider: ""
-  #Label for a button that dismisses an alert or popup
-  dismiss:
-  display:
-  display_link_to_checklist:
-  display_monthly_supporter_badge:
-  display_name:
-  display_name_description:
-  distance_traveled_value: ""
-  distance_traveled: ""
-  documentation_for_developers_html:
-  do_not_show_this_message_again:
+  disconnect: Atsijungti
+  disconnect_caps: ATSIJUNGTI
+  disconnect_provider: "Atjungti %{provider}"
+  display: Rodymas
+  display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
+  display_name: Rodomas vardas
+  distance_traveled_value: "Nukeliautas atstumas: %{distance}m"
+  distance_traveled: "Nukeliautas atstumas (m)"
+  documentation_for_developers_html: Dokumentacija <a href="/pages/developers">programuotojams</a>
+  do_not_show_this_message_again: Daugiau neberodyti šio pranešimo
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-
-  doesnt_have_default_photo:
-  doh_something_went_wrong:
-  doh_something_went_wrong_error: ""
+    Tyrinėjate apvaliasias kirmeles? Esate geriausias pasaulyje ūsakojų taksonomijos ekspertas? Tiesiog mėgstate žiūrėti į gražias gėles? Papildoma informacija paskyroje suteikia asmenybės ir padeda žmonėms įvertinti jūsų identifikacijų patikimumą.
+  doesnt_have_default_photo: dar neturi numatytosios nuotraukos.
+  doh_something_went_wrong: Oi, kažkas nutiko.
+  doh_something_went_wrong_error: "Oi, kažkas nepavyko: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate:
-  donate_again_caps:
-  donate_again_today_caps:
-  done:
-  dont_have_an_account_sign_up_html:
-  dont_use_double_quotes:
+  donate: PAREMTI
+  donate_again_caps: PAREMTI VĖL
+  donate_again_today_caps: PAREMTI VĖL ŠIANDIEN
+  done: Baigta
+  dont_have_an_account_sign_up_html: Neturite paskyros? <strong>Užsiregistruokite.</strong>
+  dont_use_double_quotes: Daugiau niekur nenaudoti dvigubų kabučių
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it:
-  download:
+  drop_it: Įmesti
+  download: Atsisiųsti
   download_bulk_import_template_html: |
-
-  download_csv:
-  download_csv_template:
-  download_kml:
-  downstream_coverage_rank:
-  downstream_coverage_colon_rank: ""
-  downstream_deviations:
-  downstream_deviations_for_taxon: ""
-  #Label for a link to taxa that are descendants ("downstream") of the current
-  #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa:
-  draft:
-  draft_:
-  draft_saved:
-  drafts:
-  drag_and_drop_some_photos_or_sounds:
-  #Button label for drawing a circular boundary for an observation search
-  draw_circular_boundary:
-  #Button label for drawing a rectangular boundary for an observation search
-  draw_rectangular_boundary:
-  drawings:
-  duplicate_verb:
-  duration_value: ""
-  each_place_displays_all_species_inat_knows: ""
-  earliest_added:
-  edit:
+    <a href="%{url}">Atsisiųskite šabloną</a> <a href="/observations/import?project_id=%{project_id}#csv_import"> masinio įkėlėjo</a> naudojimui
+  download_csv: Atsisiųsti CSV
+  download_csv_template: Atsisiųsti CSV šabloną
+  download_kml: Atsisiųsti KML
+  draft: ruošinys
+  draft_: Ruošinys
+  draft_saved: Ruošinys išsaugotas!
+  drafts: Ruošiniai
+  drag_and_drop_some_photos_or_sounds: Užvilkite ir įmeskite nuotraukas arba garsus
+  drawings: Brėžiniai
+  duplicate_verb: Dublikatas
+  duration_value: "Trukmė: %{duration} minutės"
+  each_place_displays_all_species_inat_knows: "Kiekvienas vietos puslapis parodo visas rūšis, kurias %{site_name} žino toje vietoje, įskaitant informaciją apie jų gausumą, apsaugos statusą ir tai, kas buvo pirmasis %{site_name} vartotojas, stebėjęs tas rūšis. Jūs galite filtruoti rūšis pagal taksonominę grupę, spalvą, apsaugos statusą arba naudotis paprasta paieška."
+  edit: Redaguoti
   #Title of the moderation note editor
-  edit_moderator_note:
-  edit_a_batch_of_observations:
-  edit_account_settings_and_profile: ""
-  edit_assessment:
-  edit_atlas:
-  edit_atlas_for_taxon_html:
-  edit_body:
-  edit_comment:
-  edit_complete_set_for_taxon_in_place_html: ""
-  edit_conservation_status:
-  edit_custom_project_fields:
-  edit_field:
-  edit_license:
-  edit_multiple_dates:
-  edit_multiple_descriptions:
-  edit_multiple_locations:
-  edit_multiple_species:
-  edit_notes:
-  edit_observations:
-  edit_photos:
-  edit_photos_for_observation_id: ""
-  edit_place:
-  edit_project:
-  edit_remove:
-  edit_selected:
-  edit_source:
-  edit_taxa:
-  edit_taxon:
-  edit_taxon_framework:
-  edit_taxon_link:
-  edit_taxon_range:
-  edit_the_observation:
-  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
-
-  edit_your_account_and_profile_html: ""
-  edit_your_default_settings: ""
-  edit_your_global_project_settings:
-  edit_your_identification:
-  edit_your_settings_for_this_project:
-  edited_by_name_html: ""
+  edit_moderator_note: Redaguoti moderatoriaus pastabas
+  edit_a_batch_of_observations: Redaguoti grupę stebėjimų
+  edit_account_settings_and_profile: "Redaguoti paskyros nustatymus ir profilį"
+  edit_assessment: Redaguoti įvertinimą
+  edit_atlas: Redaguoti atlasą
+  edit_atlas_for_taxon_html: Redaguoti taksono %{taxon} atlasą
+  edit_body: Redaguoti turinį
+  edit_comment: Redaguoti savo komentarą
+  edit_complete_set_for_taxon_in_place_html: "Redaguoti užbaigtus taksono: %{taxon} rinkinius vietovėje: %{place}"
+  edit_custom_project_fields: Redaguoti pritaikytus projekto laukus
+  edit_field: Redaguoti lauką
+  edit_license: Redaguoti licenciją
+  edit_multiple_dates: Redaguoti kelias datas
+  edit_multiple_descriptions: Redaguoti kelius užrašus
+  edit_multiple_locations: Redaguoti kelias vietas
+  edit_multiple_species: Redaguoti kelias rūšis
+  edit_notes: Redaguoti užrašus
+  edit_observations: Redaguoti stebėjimus
+  edit_photos: Redaguoti nuotraukas
+  edit_photos_for_observation_id: "Redaguoti stebėjimo nuotraukas %{obs_id}"
+  edit_place: Redaguoti vietą
+  edit_project: Redaguoti projektą
+  edit_remove: Redaguoti/Šalinti
+  edit_selected: Redaguoti pasirinktus
+  edit_source: Redaguoti šaltinį
+  edit_taxa: Redaguoti taksonus
+  edit_taxon: Redaguoti taksoną
+  edit_taxon_framework: Redaguoti taksono struktūrą
+  edit_taxon_link: Redaguoti taksono nuorodą
+  edit_taxon_range: Redaguoti taksono arealą
+  edit_the_observation: Redaguoti stebėjimą
+  edit_your_account_and_profile_html: "Redaguoti Savo Paskyrą ir Profilį"
+  edit_your_default_settings: "Redaguoti savo numatytuosius nustatymus"
+  edit_your_global_project_settings: Redaguoti savo bendrus projekto nustatymus
+  edit_your_identification: Redaguoti savo identifikaciją
+  edit_your_settings_for_this_project: Redaguoti savo nustatymus šiam projektui
+  edited_by_name_html: "Redagavo %{name}"
   edited_by_name_some_rights_reserved_html: |
-
-  editing:
-  editing_announcement:
-  editing_custom_project_fields_for:
-  editing_observation_field:
-  editing_observation_id: ""
-  editing_project:
-  editing_project_asset:
-  editing_subscription_to_x_html: ""
-  editing_taxon:
-  editing_taxon_link:
-  editing_taxon_name_for_taxon_html:
-  editing_taxon_range_for_taxon_html:
-  editing_this:
-  editing_x_in_y: ""
-  editors:
-  either_that_user_doesnt_exist_or: ""
-  eligible_for_research_grade:
-  email:
-  email_description:
-  email_address_for_comments_and_other_feedback:
-  email_copyright: ""
-  email_notifications:
-  embed: ''
-  embed_place_widget:
-  embed_this_assessment:
-  embed_widget_project:
-  enable_offline_access:
-  enable_offline_access_for_mobile:
-  encompassing_places:
-  end:
-  end_date_time:
-  endangered:
-  endemic:
-  endemic_to_x: ""
-  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol:
-  eol_collection_url: ""
-  error_updating_photo: ""
-  establishment_means:
-  establishment_means_describes_how: |
-
-  estimate_which_input: |
-
-  event_in_progress:
-  event_stats:
-  event_url:
-  events_only:
-  everyone:
-  everyone_:
-  everyone_journal_posts:
-  everywhere:
-  exact:
-  exact_date:
-  exact_rank:
-  except:
-  exclude_places:
-  exclude_projects:
-  exclude_taxa:
-  exclude_users:
-  exclusion_filters:
-  existing_flags:
-  exit_full_screen: ""
-  examples_of_data_use_by_network_members:
-  examples_of_ranking_organizations:
-  explore:
-  export:
-  export_observations:
-  export_with_private_coordinates:
-  exporting: ""
-  #A third-party app or service the user has authorized to access their iNat
-  #account, e.g. Flickr
-  external_applications:
-  external_applications_description: |
-
-  external_taxon_including_children:
-  extinct:
-  extinct_in_the_wild:
-  extra_properties:
-  evidence_of_organism:
-  facebook:
-  facebook_account_information:
-  facebook_account_not_linked: ""
-  facebook_access_token_expired: ""
-  facebook_needs_the_owner_of_that_photo_to:
-  facebook_options:
-  facebook_photo_import_disabled_notice: |
-
-  failed_to_find_your_location:
-  failed_to_repair_photo: ""
-  failed_to_save_record: ""
-  failed_to_save_record_with_errors: ""
-  failed_to_unlink_your_account:
-  'false': ''
+    Redagavo %{name}, kai kurios teisės saugomos (%{license})
+  editing: Redaguojama
+  editing_announcement: Redagavimo skelbimas
+  editing_custom_project_fields_for: Redaguojama pritaikyti projekto laukai
+  editing_observation_field: Redaguojamas stebėjimo laukas
+  editing_observation_id: "Redaguojamas stebėjimas %{obs_id}"
+  editing_observations:
+    one: 'Redaguojamas <span class="count">1</span> stebėjimas:'
+    few: 'Redaguojami <span class="count">%{count}</span> stebėjimai:'
+    many: 'Redaguojami <span class="count">%{count}</span> stebėjimai:'
+    other: 'Redaguojami <span class="count">%{count}</span> stebėjimai:'
+  editing_project: Redaguojama %{project}
+  editing_project_asset: Redaguojama Projekto Atributą
+  editing_subscription_to_x_html: "Redaguojama %{x} prenumerata"
+  editing_taxon: Redaguojamas %{taxon}
+  editing_taxon_link: Redaguojama taksono nuorodą
+  editing_taxon_name_for_taxon_html: Redaguojamas taksono %{taxon} pavadinimas „%{name}“
+  editing_this: Redaguojama %{elem}
+  editing_x_in_y: "Redaguojama %{x} %{y}"
+  editors: Redaktoriai
+  either_that_user_doesnt_exist_or: "Arba šis vartotojas neegzistuoja arba jūs jau jį sekate."
+  eligible_for_research_grade: Tinkamas identifikavimui
+  email: El. paštas
+  email_address_for_comments_and_other_feedback: El. pašto adresai komentarams ir kitiems atsiliepimams.
+  email_copyright: "Autorinės teisės &copy; %{x}, visos teisės saugomos"
+  email_notifications: El. pašto pranešimai
+  embed: 'Įterpti'
+  embed_place_widget: Įterpti vietos valdiklį
+  embed_this_assessment: Įterpti šį vertinimą
+  embed_widget_project: Įterpti šio projekto valdiklį savo svetainėje
+  enable_offline_access: Įgalinti prieigą neprisijungus
+  enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
+  encompassing_places: Apimamos vietos
+  end: Pabaiga
+  end_date_time: Pabaigos data / laikas
+  endangered: Nykstantis
+  endemic: Endeminis
+  endemic_to_x: "Endeminis vietovėje: %{x}"
+  eol_collection_url: "EOL kolekcijos URL"
+  error_updating_photo: "Klaida atnaujinant nuotrauką: %{photo_errors}"
+  establishment:
+    endemic: Endeminis
+    establishment: Įsikūrimas
+    introduced: Introdukuotas
+    invasive: Invazinis
+    managed: Kontroliuojamas
+    native: Vietinis
+    naturalised: Natūralizavęsis
+  establishment_means: Įsikūrimo būdas
+  event_in_progress: Renginys vyksta
+  event_stats: Renginio Statistika
+  event_url: Renginio URL
+  events_only: Tik renginiai
+  everyone: visi
+  everyone_: Visi
+  everyone_journal_posts: Visų žurnalo įrašai
+  everywhere: visur
+  exact: Tikslus
+  exact_date: Tiksli data
+  exact_rank: Tikslus rangas
+  except: išskyrus
+  exclude_places: Neįtraukti vietų
+  exclude_projects: Neįtraukti projektų
+  exclude_taxa: Neįtraukti taksonų
+  exclude_users: Neįtraukti vartotojų
+  existing_flags: Esamos žymės
+  exit_full_screen: "Išeiti iš viso ekrano režimo"
+  explore: Tyrinėti
+  export: Eksportuoti
+  export_observations: Eksportuoti stebėjimus
+  export_with_private_coordinates: Eksportuoti su privačiomis koordinatėmis
+  exporting: "Eksportuojama..."
+  extinct: išnykę
+  extinct_in_the_wild: išnykę laisvėje
+  extra_properties: Papildomos Savybės
+  evidence_of_organism: Organizmo buvimo įrodymai
+  facebook: Facebook
+  facebook_account_information: Jūsų Facebook Paskyros Informacija
+  facebook_account_not_linked: "%{user} nebeturi susietos facebook paskyros, todėl %{site_name} nebeturi leidimo prieiti prie šios nuotraukos."
+  facebook_access_token_expired: "Prieigos rakto galiojimas baigėsi. %{user} turi sujungti savo Facebook paskyrą iš naujo."
+  facebook_needs_the_owner_of_that_photo_to: Facebook reikia, kad tos nuotraukos savininkas patvirtintu savo prieigą prie %{site_name_short} iš naujo.
+  facebook_options: Facebook Pasirinktys
+  failed_to_find_your_location: Nepavyko rasti jūsų vietos.
+  failed_to_repair_photo: "Nepavyko pataisyti nuotraukos: %{errors}"
+  failed_to_save_record: "Nepavyko įrašyti įrašo. Prašome pabandyti vėliau."
+  failed_to_save_record_with_errors: "Nepavyko išsaugoti įrašo: %{errors}"
+  failed_to_unlink_your_account: Nepavyko atsieti jūsų paskyros
+  'false': 'Ne'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves:
-  Family:
-  favorite_taxa:
-  favorites: ""
-  feature_this_project_: ""
-  featured:
+  faves: Pamėgimai
+  Family: Šeima
+  favorite_taxa: Mėgiamiausi taksonai
+  favorites: "Mėgstamiausi"
+  feature_this_project_: "Siūlyti šį projektą"
+  featured: Siūlomi
   #Title for a button or section describing the "featured" status of a project
-  featuring:
-  feedback:
+  featuring: Siūloma
+  feedback: Atsiliepimai
   #Plural noun, as in Atom and RSS feeds
-  feeds: ''
-  failed:
+  feeds: 'Srautai'
+  failed: Nepavyko
   field_note: |
-
-  fields:
-  fields_:
-  fields_can_only_be_edited_by_the_people_who:
-  fields_merged:
-  file:
-  file_size:
-  file_should_be_in_the_following_format: ""
-  fill_out_project_observation_fields:
-  fill_out_your_profile:
-  #The name of a computer file
-  filename:
-  filter:
-  filter_by_curator_identification:
-  filter_by_place:
-  filter_by_taxon:
-  filter_by_place_taxon_and_color:
-  filter_list_by_this_taxon:
-  filtering:
-  filters:
-  find:
-  find_a_guide:
-  find_a_place:
-  find_guides:
-  find_new_place_to_explore:
-  find_observations:
-  find_photos:
-  find_places:
-  find_some_people_to_follow: ""
-  find_species:
-  find_suitable_observations:
-  find_unsuitable_observations:
-  find_your_current_location:
-  finished:
-  finished_with_page:
-  first_confirmed_inat_observation: ""
-  first_connect_your_provider_account_to_your_site: ""
-  first_inat_observation: ""
-  first_observer:
+    <strong>Pastaba:</strong> Jei norite sukurti lauką, patikrinkite ar kas nors kitas to dar nepadarė, kad būtų išvengta dublikatų.
+  fields: laukai
+  fields_: Sritys
+  fields_can_only_be_edited_by_the_people_who: Laukai gali būti redaguojami tik tų žmonių, kurie juos sukūrė arba puslapio kuratorių
+  fields_merged: Laukai sujungti
+  file: Failas
+  file_size: Failo dydis
+  file_should_be_in_the_following_format: "Failas turi būti tokio formato: taksono pavadinimas, aprašymas"
+  fill_out_project_observation_fields: Užpildyti projekto stebėjimo laukus
+  fill_out_your_profile: užbaigti savo profilį
+  filter: Filtras
+  filter_by_curator_identification: Filtruoti pagal kuratoriaus identifikavimą
+  filter_by_place: Filtruoti pagal vietą
+  filter_by_taxon: Filtruoti pagal taksoną
+  filter_by_place_taxon_and_color: Filtruokite pagal vietą, taksoną ir spalvą naudodami kontroles.
+  filter_list_by_this_taxon: Filtruoti sąrašą pagal šį taksoną
+  filtering: Filtruojama
+  filters: Filtrai
+  find: Rasti
+  find_a_guide: Rasti gidą
+  find_a_place: Rasti Vietą
+  find_guides: Rasti Gidus
+  find_new_place_to_explore: Rasti naują vietą tyrinėjimui!
+  find_observations: Rasti stebėjimų
+  find_photos: Rasti Nuotraukas
+  find_places: Rasti vietas
+  find_some_people_to_follow: "Rasti žmonių sekimui"
+  find_species: Rasti rūšis
+  find_suitable_observations: Rasti tinkamų stebėjimų
+  find_unsuitable_observations: Rasti netinkamų stebėjimų
+  find_your_current_location: Rasti dabartinę savo vietą
+  finished: Baigta
+  finished_with_page: Su Puslapiu Baigta
+  first_confirmed_inat_observation: "Pirmas patvirtintas %{site_name} stebėjimas"
+  first_connect_your_provider_account_to_your_site: "Pirma prijunkite savo %{provider} paskyrą prie %{site_name}:"
+  first_inat_observation: "Pirmas %{site_name} stebėjimas"
+  first_observer: Pirmas stebėtojas
   #Verb form, as in "Flag this item"
-  flag:
-  flag_as_inappropriate:
-  flag_an_item:
-  flag_as_spammer:
-  flag_as_non_spammer:
+  flag: Pažymėti
+  flag_as_inappropriate: Žymėti kaip nepriimtiną
+  flag_an_item: Žymėti elementą
+  flag_as_spammer: Žymėti kaip šlamštą
+  flag_as_non_spammer: Žymėti kaip ne šlamštą
   #Label for the date/time when a flag was created
-  flag_created:
-  flag_deleted:
-  flag_description:
-  flag_comment_description:
+  flag_created: Žymė sukurta
+  flag_deleted: Žymė ištrinta
+  flag_description: Pažymėkite šį turinį, kad praneštumėte kuratoriams, jog kažkas su juo yra blogai.
   flag_for_check_list_title_html: |
-
-  flag_for_comment_id_html:
-  flag_for_comment_id_deleted:
-  flag_for_curation:
+    Žymė dėl kontrolinio sąrašo: %{title}
+  flag_for_comment_id_html: Žymė dėl <a href="%{url}">komentaro %{id}</a>
+  flag_for_comment_id_deleted: Žymė komentarui %{id} (ištrinta)
+  flag_for_curation: Pažymėti kuravimui
   flag_for_guide_title_html: |
-
-  flag_for_identification_id_html:
+    Žymėdėl vadovo: %{title}
+  flag_for_identification_id_html: Žymė dėl <a href="%{url}">identifikacijos %{id}</a>
   flag_for_life_list_title_html: |
-
+    Žymė dėl gyvenimo sąrašo: %{title}
   flag_for_list_title_html: |
-
-  flag_for_message_id_html:
+    Žymė dėl sąrašo: %{title}
+  flag_for_message_id_html: Žymė dėl <a href="%{url}">žinutės %{id}</a>
   flag_for_observation_title_html: |
-
-  flag_for_photo_id_html:
-  flag_for_place_title_html: |
-
+    Žymė dėl stebėjimo: %{title}
+  flag_for_photo_id_html: Žymė dėl <a href="%{url}">nuotraukos %{id}</a>
   flag_for_post_title_html: |
-
+    Žymė dėl įrašo: %{title}
   flag_for_project_title_html: |
-
-  flag_for_guide_section_id_html:
-  flag_for_sound_id_html:
+    Žymė dėl projekto: %{title}
+  flag_for_guide_section_id_html: Žymė dėl <a href="%{url}">vadovo skilties %{id}</a>
+  flag_for_sound_id_html: Žymė dėl <a href="%{url}">garso %{id}</a>
   flag_for_taxon_title_html: |
-
+    Žymė dėl taksono: %{title}
   flag_for_user_title_html: |
-
-  flag_it!:
-  flag_marked_as_resolved_html: ''
+    Žymė dėl vartotojo: %{title}
+  flag_it!: Pažymėkite tai!
+  flag_marked_as_resolved_html: '<span class="meta">Žymė nustatyta kaip</span> <strong>išspręsta.</strong>'
   #Label for the object that was flagged, e.g. a table header
-  flag_object:
-  flag_reason: ""
-  flag_resolution:
-  flag_saved:
-  flag_saved_thanks_html:
-  flag_this_observation:
-  flag_this_photo:
-  flag_this_place:
-  flag_this_sound:
-  flagged_:
-  flagged_for_curation:
-  flagged_taxon:
-  flagged_thing_explanation: ""
+  flag_object: Objektas
+  flag_reason: "&ldquo;Aš tai žymiu %{record}, nes"
+  flag_resolution: Sprendimas
+  flag_saved: Žymė išsaugota
+  flag_saved_thanks_html: Žymė išsaugota. Ačiū! <a href="%{url}" class="readmore">Rodyti žymę</a>
+  flag_this_observation: Pažymėti šį stebėjimą
+  flag_this_photo: Pažymėti šią nuotrauką
+  flag_this_place: Pažymėti šią vietą
+  flag_this_sound: Žymėti šį garsą
+  flagged_: Pažymėta
+  flagged_for_curation: Pažymėta kuravimui
+  flagged_taxon: Pažymėtas taksonas
+  flagged_thing_explanation: "Vartotojai tai pažymėjo %{thing}, nes"
   flagging_desc: |
-
-  flagger:
-  flags:
-  flags_with_count:
-  flags_explanation: ""
-  flags_for_x_html:
-  flags_on_users_content: ""
-  flickr_account_information:
-  flickr_has_no_creative_commons:
-  flickr_identity:
-  flickr_needs_to_confirm: ""
-  flickr_photo:
-  flickr_photos:
-  flickr_style:
-  flickr_tagger:
-  flickr_tags:
-  fluid_layout:
-  #Adjective, as in a fluid layout of images
-  fluid:
-  follow:
-  follow_receive_updates_about_new_observations:
-  follow_user: ""
-  followers:
-  following:
-  for_a_taxon:
-  formatting:
-  forgot_your_password:
-  forum:
+    Žymėjimas atkreipia sąvanorių kuratorių dėmesį į problemą.
+    Prašome nežymėti problemų, kurios gali būti išspręstos su identifikacija, duomenų kokybės įvertinimu arba kalbant su žmogumi, kuris sukūrė šį turinį.
+  flagger: Žymėtojas
+  flags: Žymės
+  flags_with_count: Žymės (%{count})
+  flags_explanation: "%{site_name} vartotojai pažymi objektus, kai su jais kažkas ne taip. Štai keletas problemų, kurios dar nebuvo išspręstos kuratorių."
+  flags_for_x_html: Žymės dėl %{x}
+  flags_on_users_content: "Žymės %{user} turinyje"
+  flickr_account_information: Jūsų Flickr Paskyros Informacija
+  flickr_identity: Flickr Tapatybė
+  flickr_needs_to_confirm: "Flickr reikia patvirtinimo, kad jūs norite savo paskyrą prijungti prie %{site_name}."
+  flickr_photo: Flickr Nuotrauka
+  flickr_photos: Flickr Nuotraukos
+  flickr_tagger: Flickr Žymeklis
+  flickr_tags: Flickr Žymės
+  follow: Sekti
+  follow_receive_updates_about_new_observations: Sekti (gauti naujienas apie naujus stebėjimus)
+  follow_user: "Sekti %{user}"
+  followers: Sekėjai
+  following: sekama
+  following_x_people:
+    one: 'Sekamas 1 žmogus'
+    few: 'Sekami %{count} žmonės'
+    many: 'Sekami %{count} žmonės'
+    other: 'Sekami %{count} žmonės'
+  for_a_taxon: taksonui
+  formatting: Formatuojama
+  forgot_your_password: Pamiršote savo slaptažodį?
+  forum: Forumas
+  forum_categories:
+    bug_reports: Klaidų ataskaitos
+    feature_requests: Funkcijų užklausos
+    forum_feedback: Forumo atsiliepimai
+    forum_moderation: Forumo Moderacija
+    nature_talk: Pokalbiai apie gamtą
+    news_and_updates: Naujienos
+    tutorials: Pamokos
   forum_desc: |
-
-  frequency:
-  from_a_place:
-  from_eol_collection:
-  from_flickr_facebook_etc:
-  from_list:
-  from_photos:
-  from_place:
-  from_soundcloud:
-  full_screen:
-  gbif:
-  gbif_occurrences:
-  generate_taxonomic_tags_for_flickr:
-  generate_widget:
-  generate_your_stats:
-  generating_mobile_archive: ""
-  Genus:
-  geoprivacy:
-  geoprivacy_is_obscured:
-  geoprivacy_is_obscured_desc:
-  geoprivacy_is_private:
-  geoprivacy_is_private_desc:
-  georeferenced:
-  get_started:
-  getting_started_guide:
+    Forumas yra vieta, kurioje galima diskutuoti apie iNat, padėti vieni kitiems, siūlyti idėjas tinklalapiui, pranešti apie klaidas ir t. t.
+  frequency: Dažnumas
+  from_a_place: iš vietos
+  from_eol_collection: Iš EOL kolekcijos
+  from_flickr_facebook_etc: Iš Flickr, Facebook ir t.t.
+  from_list: Iš sąrašo
+  from_photos: Iš Nuotraukų
+  from_place: Iš vietos
+  from_soundcloud: Iš Soundcloud
+  full_screen: Visas Ekranas
+  fungi:
+    one: grybas
+    few: grybai
+    many: grybai
+    other: grybai
+  generate_taxonomic_tags_for_flickr: Sukurti taksonomines žymes jūsų Flickr nuotraukoms.
+  generate_widget: Kurti valdiklį
+  generate_your_stats: Sugeneruoti Jūsų Statistiką
+  generating_mobile_archive: "Generuojamas mobilus archyvas"
+  Genus: Gentis
+  geoprivacy: Vietos privatumas
+  geoprivacy_is_obscured: Vietos privatumas yra paslėptas
+  geoprivacy_is_obscured_desc: Stebėtojas pasirinko paslėpti koordinates.
+  geoprivacy_is_private: Vietos privatumas yra privatus
+  geoprivacy_is_private_desc: Stebėtojas koordinates padarė privačiomis.
+  get_started: Pradėti
+  getting_started_guide: Darbo Pradžios Vadovas
   #Prompt to donate money on a montly basis
-  give_monthly_caps:
+  give_monthly_caps: AUKOTI KARTĄ PER MĖNESĮ
   #Prompt to donate money once
-  give_now_caps:
-  global_names:
-  globally:
-  go:
-  go_back:
-  going_to_your_observations:
-  good_choice_for_sharing:
-  google:
-  google_maps_not_loaded_error: |
-
-  got_it!:
-  got_your_data_somewhere_else?:
-  graft:
-  graft_taxon:
-  grafting_attemps_to_insert_this_taxon:
-  grant_role: ""
-  grid:
-  grid_layout:
-  grid_tooltip:
-  group:
-  grouping:
-  guides:
-  guide_compiled_by:
-  guide_deleted:
-  guide_will_be_deleted:
-  guide_taxon:
-  guide_was_successfully_created:
-  guide_was_successfully_published:
-  guide_was_successfully_updated:
-  guidelines:
-  has_already_been_flagged_by:
-  has_id_supported_by_two_or_more:
-  has_one_or_more_faves:
-  has_photo:
-  has_photos:
-  has_photo_and_sound:
-  has_photos_or_sounds:
-  has_sound:
-  has_sounds:
-  hasnt_contributed_any_observations:
-  header_your_observations:
-  header_your_calendar:
-  header_your_favorites:
-  header_your_lists:
-  header_your_journal:
-  header_your_identifications:
-  header_your_projects:
-  header_your_profile:
-  heads_up:
-  heads_up_automatable_draft_split_notice_html: |
-
-  heads_up_non_automatable_draft_split_notice_html: |
-
-  heads_up_automatable_split_notice_html: |
-
-  heads_up_observose_taxon_change_html: |
-
-  heads_up_taxon_change_inputs_covered_by_framework_html: |
-
-  heads_up_this_photo_has_been_flagged: ""
-  heads_up_this_photo_is_already_associated_with: ""
-  heads_up_you_have_multiple: ""
-  help:
-  help_confirm_observations!:
-  help_support_inaturalist: ""
-  help_translate!:
-  here_are_3_examples:
-  here_are_our_top_suggestions:
-  here_are_our_top_species_suggestions:
-  hex_color_eg:
-  hi_user: ""
+  give_now_caps: AUKOTI DABAR
+  global_names: Pasauliniai pavadinimai
+  globally: visame pasaulyje
+  go: Eiti
+  go_back: Grįžti
+  going_to_your_observations: Atidaromi jūsų stebėjimai...
+  good_choice_for_sharing: Geras pasirinkimas dalintis su mokslininkais
+  google: Google
+  got_it!: Aišku!
+  got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
+  graft: Prijungti
+  graft_taxon: Prijungti %{taxon}
+  grant_role: "%{grant} %{role} vaidmenį"
+  grid: Tinklelis
+  grid_layout: Tinklelio išdėstymas
+  grid_tooltip: Rodyti tinklelyje
+  group: Grupė
+  grouping: Grupavimas
+  guides: Gidai
+  guide_compiled_by: Gidas sukurtas
+  guide_deleted: Gidas ištrintas
+  guide_will_be_deleted: Gidas bus ištrintas. Tai šiek tiek užtrunka, jei gidas didelis.
+  guide_taxon: Vadovo taksonas
+  guide_was_successfully_created: Gidas buvo sėkmingai sukurtas.
+  guide_was_successfully_published: Gidas buvo sėkmingai paskelbtas.
+  guide_was_successfully_updated: Gidas buvo sėkmingai atnaujintas.
+  guidelines: Gairės
+  has_already_been_flagged_by: jau buvo pažymėtas
+  has_id_supported_by_two_or_more: Identifikacijai pritaria du ar daugiau vartotojų
+  has_one_or_more_faves: Turi vieną ar daugiau pamėgimus
+  has_photo: Turi nuotraukų
+  has_photos: Turi nuotraukų
+  has_photo_and_sound: Turi nuotraukų ir garsų
+  has_photos_or_sounds: Turi nuotraukų ar garsų
+  has_sound: Turi garsų
+  has_sounds: Turi garsų
+  hasnt_contributed_any_observations: neprisidėjo stebėjimais prie šio projekto.
+  header_your_observations: Jūsų stebėjimai
+  header_your_calendar: Jūsų kalendorius
+  header_your_favorites: Jūsų pamėgimai
+  header_your_lists: Jūsų sąrašai
+  header_your_journal: Jūsų žurnalai
+  header_your_identifications: Jūsų identifikacijos
+  header_your_projects: Jūsų projektai
+  header_your_profile: Jūsų profilis
+  heads_up: Dėmesio
+  heads_up_this_photo_has_been_flagged: "DĖMESIO: ši nuotrauka buvo pažymėta."
+  heads_up_this_photo_is_already_associated_with: "Dėmesio: ši nuotrauka jau yra susieta su <a target='_blank' href='%{url}'>kitu stebėjimu</a>"
+  help: Pagalba
+  help_confirm_observations!: Padėk identifikuoti stebėjimus!
+  help_support_inaturalist: "Padėkite palaikyti iNaturalist"
+  help_translate!: Padėkite išversti!
+  here_are_3_examples: Štai 3 gerai suformuotų duomenų pavyzdžiai
+  here_are_our_top_species_suggestions: Čia yra mūsų top rūšies pasiūlymai
+  hex_color_eg: Hex spalva, pvz., 65644F
+  hi_user: "Labas, %{user}"
   #Verb, usually a button to hide an interface element
-  hide:
-  hide_content:
+  hide: Paslėpti
+  hide_content: Paslėpti turinį
   hide_desc: |
-
-  #Option to hide data series that show "No Annotation" data, i.e. records that
-  #have no annotation
-  hide_no_annotation:
-  #Label for a button to hide the running total of an accumulation chart
-  hide_running_total:
-  hide_uncountable_species:
-  high:
-  highest_rank:
-  highlights_and_stats_from_year_on_site: ""
-  history:
-  home:
-  #Label showing hours adjusted in the time shifter in the Uploader
-  hours_to_adjust: ""
-  however_there_were_some_issues: ""
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  however_you_may_want_to_commit_html: |
-
-  i_dont_know_but_i_am_sure_this_is_taxon:
-  icon:
-  icon_size:
-  iconic_taxon:
-  id:
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_move_html: ""
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_swap_html: ""
-  id_withdrawn:
-  ids_by_taxon:
-  identify:
-  identify_observations: ""
-  identify_observations_by_these_users:
-  identify_title: ""
-  identification:
-  identification_by_user:
+    Paslėptas turinys bus nematomas viešai, tačiau žmonės vis tiek matys, kad kažkas buvo paslėpta, o tinklalapio kuratoriai ir turinio autoriai ir toliau galės matyti tai, kas paslėpta. Dažniausiai tai galioja tik rašytiniam turiniui, pvz.: jeigu paslėpiate identifikacijos turinį, pati identifikacija ir toliau matoma, tačiau identifikuotojo pastabos būna paslėptos. Paslėptą turini vėl matomu gali padaryti tik tinklalapio personalas, jūs to padaryti negalite, todėl būkite atsargūs ir slėpkite tik tikrai nepageidautiną turinį.
+  hide_uncountable_species: Paslėpti nepriskaičiuojamas rūšis
+  high: Aukštas
+  highest_rank: Aukščiausias rangas
+  highlights_and_stats_from_year_on_site: "Svarbiausi %{site} momentai ir statistika iš %{year} metų"
+  history: Istorija
+  home: Pradžia
+  however_there_were_some_issues: "Tačiau, kilo keletas problemų: %{issues}"
+  i_dont_know_but_i_am_sure_this_is_taxon: Nežinau, bet esu įsitikinęs, kad čia %{taxon}
+  icon: Ikona
+  icon_size: Ikonos dydis
+  id: ID
+  id_categories:
+    tooltips:
+      leading: |
+        Šis taksonas yra bendruomenės taksono palikuonis. Ši identifikacija gali vesti link teisingo atsakymo.
+      maverick: |
+        Taksonas ne giminingas bendruomenės taksonui, t.y. bendruomenė nesutinka su šiuo taksonu.
+  id_withdrawn: ID atšauktas
+  ids_by_taxon: Taxon ID
+  identify: Identifikuoti
+  identify_observations: "Identifikuoti stebėjimus"
+  identify_observations_by_these_users: Identifikuoti šių vartotojų stebėjimus
+  identify_title: "Identifikuoti"
+  identification: identifikaciją
+  identification_by_user: Identifikuota %{user}
   #Notification when an identification has been deleted
-  identification_deleted:
-  identification_saved: ""
+  identification_deleted: Identifikacija ištrinta.
+  identification_saved: "Identifikacija išsaugota!"
   #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden:
+  identification_text_hidden: Identifikacijos tekstas nebepaslėptas
   #Notification when an identification has been updated
-  identification_updated:
-  identification_user_short:
+  identification_updated: Identifikacija atnaujinta!
+  identification_user_short: Ident. vartotojas
   #Notification when an identification has been withdrawn
-  identification_withdrawn:
-  identifications:
-  computer_vision_suggestion:
-  computer_vision_suggestion_desc: |
-
-  identifiers:
-  identotron:
-  identotron_for:
-  identotron_help:
-  ids: ""
-  ids_made_for_others:
+  identification_withdrawn: Identifikacija atsiimta.
+  identifications: Identifikacijos
+  computer_vision_suggestion: Kompiuterinio matymo pasiūlymas
+  identifiers: Identifikuotojai
+  ids: "ID"
+  ids_made_for_others: Identifikavimai atlikti kitiems
   if_for_some_reason_a_user_doesnt_agree: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_moves_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_swaps_html: |
-
-  if_matches_come_from_a_comprehensive_list:
-  if_this_is_a_scientific_name:
-  if_this_link_will_apply_to_descendant:
-  if_you_have_any_trouble_with_the_site_check_out: ''
-  if_your_project_is:
-  ignore_and_continue:
-  ignore_times:
-  image_must_be_exactly:
-  image_size_control:
-  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
-  imperiled:
-  import:
-  import_all_photos_as_observations:
-  import_as_an_observation:
-  import_as_another_observation:
-  import_date_time_location_taxonomic: ""
-  import_from_csv:
-  import_from_other_photo_sites:
-  import_observations:
-  import_observations_from_a_photo:
-  import_photos:
-  import_ranges:
-  import_sections:
-  import_tags_from_csv:
-  importing: ""
-  improving:
-  in_n: ""
-  in_place_x:
-  inaturalist_network:
-  inaturalist_network_affiliation:
+    Jeigu, dėl kokios nors priežasties, nesutinkate su bendruomenės taksonu, galite jį atmesti. Tai reiškia, kad jūsų ID bus siejama su kitais stebėjimas, naudojama jūsų gyvybės sąraše ir t. t. Tai taip pat reiškia, jog stebėjimas gali tapti identifikuotu tik tada, jeigu bendruomenė sutiks
+    su jumis.
+  if_matches_come_from_a_comprehensive_list: Jei atitikmuo yra iš išsamaus sąrašo, čia atsiras žalia juostelė.
+  if_this_is_a_scientific_name: Jei tai mokslinis pavadinimas, ar jis šiuo metu laikomas oficialiu?
+  if_you_have_any_trouble_with_the_site_check_out: 'Jeigu turite kokių nors klausimų, prašome apsilankyti <a href="%{help_url}">pagalbos skyriuje</a> arba parašyti žinutę <a href="%{feedback_url}">grįžtamojo ryšio grupei</a>.'
+  if_your_project_is: Jeigu jūsų projektas yra apie tam tikrą vietovę, pažymėkite koordinates paspausdami ant žemėlapio arba įvesdami jas rankiniu būdu.
+  ignore_and_continue: Ignoruoti ir tęsti
+  ignore_times: Ignoruoti laikus
+  image_must_be_exactly: paveikslėlis turi būti lygiai 950px pločio ir daugiausiai 400px aukščio
+  image_size_control: Paveikslo dydžio valdymas
+  import: Importuoti
+  import_all_photos_as_observations: Importuoti visas nuotraukas kaip stebėjimus
+  import_as_an_observation: Importuoti kaip stebėjimą
+  import_as_another_observation: Importuoti kaip kitą stebėjimą?
+  import_date_time_location_taxonomic: "Importuoti datą, laiką, vietą, aprašymą ir taksonominę informaciją iš šios nuotraukos."
+  import_from_csv: Importuoti iš CSV
+  import_from_other_photo_sites: Importuoti iš kitų nuotraukų tinklalapių
+  import_observations: Importuoti stebėjimus
+  import_observations_from_a_photo: Importuoti stebėjimus iš nuotraukų teikėjo arba failo jūsų kompiuteryje.
+  import_photos: Importuoti nuotraukas
+  import_ranges: Importuoti ribas
+  import_sections: Importuoti skyrius
+  import_tags_from_csv: Importuoti žymes iš CSV
+  importing: "Importuojama..."
+  improving: Patobulintas
+  inaturalist_network: iNaturalist tinklas
+  inaturalist_network_affiliation: Pasirinkite iNaturalist tinklo priskyrimą
   #Label for messages you've received
-  inbox:
-  include_places:
-  include_projects:
-  include_suggestions_not_seen_nearby:
-  include_taxa:
-  include_users:
-  including:
-  increase_brightness:
-  in_progress:
-  in_the_past:
-  in_the_past_week:
-  inactive:
+  inbox: Žinutės
+  include_places: Įtraukti vietas
+  include_projects: Įtraukti projektus
+  include_taxa: Įtraukti taksonus
+  include_users: Įtraukti vartotojus
+  including: įskaitant
+  increase_brightness: Padidinti ryškumą
+  in_progress: vykdoma
+  in_the_past: praeityje
+  in_the_past_week: praėjusioje savaitėje
+  inactive: Neaktyvus
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status:
-  inactive_taxon:
+  inactive_complete_set_status: Neaktyvus
+  inactive_taxon: Neaktyvus taksonas
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status:
-  inactive_taxon_concepts_are:
-  inappropriate_content:
-  inat_account_action: ""
-  inat_believes_this_is_a_complete_listing: ""
-  inat_user_profile: ""
-  inaturalist_activity_notifications: ""
+  inactive_taxon_status: Neaktyvus
+  inappropriate_content: Nepriimtinas turinys?
+  inat_account_action: "%{site_name} &#58; Vartotojas &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name} mano, jog tai yra pilnas šio taksono sąrašas šioje vietoje."
+  inat_user_profile: "%{site_name}: %{user} profilis"
+  inaturalist_activity_notifications: "Pranešimai apie %{site_name} veiklą"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
-  inaturalist_applications: ""
-  inaturalist_is_a_joint_initiative: ""
-  inaturalist_places: ""
-  info:
-  input_taxon:
-  insects:
-  insect_life_stage:
-  instagram:
+  inaturalist_applications: "iNaturalist programėlės"
+  inaturalist_is_a_joint_initiative: "%{site_name} yra bendra California Academy of Sciences ir National Geographic Society iniciatyva."
+  inaturalist_places: "%{site_name} vietos"
+  info: Informacija
+  insects: vabzdžiai
+  insect_life_stage: Vabzdžio gyvenimo ciklo stadija
+  instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
-  insert_a_quote:
-  interactions:
-  internal_server_error:
-  internal_taxon_including_descendants:
-  internal_taxon_rank:
-  introduced:
-  introduced_in_place: ""
-  invitation:
-  invite:
-  invite_people:
-  invite_people_to_project: ""
+  insert_a_quote: Įterpti citatą
+  interactions: Sąveikos
+  internal_server_error: Vidinė Serverio Klaida
+  introduced: Introdukuotas
+  introduced_in_place: "Introdukuotas vietovėje: %{place}"
+  invitation: Kvietimas
+  invite: pakviesti
+  invite_people: Pakviesti žmonių
+  invite_people_to_project: "Pakviesti žmonių į %{project}"
   #Type of project where people can only join after they have been invited
-  inviteonly:
-  invited_x: ""
-  iphone:
-  is_not_following_anyone:
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
-  is_this_offensive_html: ''
-  is_this_place_a_duplicate:
-  it_can_now_be_used_for_research:
+  inviteonly: tik su pakvietimais
+  invited_x: "Pakviestas %{x}"
+  iphone: iPhone
+  is_not_following_anyone: nieko neseka.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Ar yra pateikta pakankamai įrodymų, kad čia yra %{taxon}?
+  is_this_offensive_html: 'Ar tai <a href="/help#inappropriate"> yra nepriimtina</a>, šlamštas arba įžeidžiantis turinys?'
+  is_this_place_a_duplicate: Ar ši vieta yra dublikatas?
+  it_can_now_be_used_for_research: Tai dabar gali būti naudojama moksliniams tyrimams ir rodoma kituose tinklalapiuose
   #Text inserted into a textarea when the italic button is clicked but no text was selected
-  italic_text:
+  italic_text: pakreiptas tekstas
   item_flagged_notice_html: |
-
-  jobs:
-  join:
-  join_and_add_an_observation_to_project_html:
-  join_project:
+    Tai buvo pažymėta kaip šlamštas ir nebėra viešai matoma. Jūs tai galite matyti, nes sukūrėte tai, arba esate tinklalapio kuratorius. Jeigu manote, kai tai yra klaida, prašome <a href="mailto:%{help_email}" class="contact">susisiekite su mumis</a>. <a href="%{manage_flags_path}">Valdykite žymes</a>
+  join: Jungtis
+  join_and_add_an_observation_to_project_html: Prisijuk ir pridėk stebėjimą į %{project}
+  join_project: Prisijunkite prie šio projekto
   #Prompt to join a specific project
-  join_project?:
-  join_the_largest_group_of_naturalists_in_the_world:
-  join_this_project:
-  'joined!':
-  joined_projects:
-  joined_with_date: ""
-  journal:
-  journal_archives_for:
-  journal_post:
-  journal_post_deleted:
-  journal_posts:
-  jpg_png_or_gif: ""
-  jump_to_letter:
-  just_a_reminder:
-  just_added!:
-  keep_editing:
-  keyboard_shortcuts:
-  kml:
-  kml_file_size_error: ""
-  label_colon: ""
-  labels:
-  label_to_group_a_batch_of_taxon_changes:
+  join_project?: Prisijungti prie %{project}?
+  join_the_largest_group_of_naturalists_in_the_world: Prisijunk prie didžiausios gamtininkų bendruomenės pasaulyje!
+  join_this_project: Prisijunkite prie šio projekto
+  'joined!': Prisijungta!
+  joined_projects: Projektai, prie kurių prisijungėte
+  joined_with_date: "Prisijungta: %{date}"
+  journal: Žurnalas
+  journal_archives_for: Žurnalo archyvas skirtas
+  journal_post: Žurnalo įrašas
+  journal_post_deleted: Žurnalo įrašas ištrintas.
+  journal_posts: Žurnalo įrašai
+  jpg_png_or_gif: "JPG, PNG arba GIF"
+  jump_to_letter: Pereikite prie laiško
+  just_a_reminder: Tik priminimas, nes galbūt projekto kuratoriams suteikėte leidimą peržiūrėti paslėptas jūsų stebėjimų šiame projekte koordinates.
+  just_added!: Ką tik pridėta!
+  keep_editing: Tęsti redagavimą
+  keyboard_shortcuts: Spartieji klavišai
+  kml: KML
+  kml_file_size_error: "KML turi būti ne didesnis negu 1 MB"
+  label_colon: "%{label}:"
+  labels: Etiketės
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private:
-  #Label shown when a location has not been entered. Originally "unknown" in
-  #English but we switched to "missing" to convey that a complete observation
-  #*should* have a location
-  location_unknown:
-  #Option to lock the zoom level for maps on Identify so the zoom level remains
-  #the same as you move from one observation to another
-  lock_zoom_level:
-  language_slash_locale:
-  language_slash_locale_description:
-  language_slash_type:
+  location_private: Vieta yra privati
+  language_slash_type: Kalba / Tipas
   #Large photo size
-  large:
-  last_active_with_date: ""
-  last_confirmed_observation:
-  last_observation:
-  last_observation_caps:
-  last_seen:
-  last_year:
-  lat:
-  latitude:
-  latitude_in_decimals: ''
-  latitude_slash_y_coord_slash_northing:
-  latitude_value: ""
+  large: didelė
+  last_active_with_date: "Paskutinį kartą aktyvus: %{date}"
+  last_confirmed_observation: Paskutinis patvirtintas stebėjimas
+  last_observation: Paskutinis stebėjimas
+  last_observation_caps: PASKUTINIS STEBĖJIMAS
+  last_seen: Paskutinį kartą matytas
+  last_year: Praeitais Metais
+  lat: Pl
+  latitude: Platuma
+  latitude_in_decimals: 'Platuma dešimtainiais laipsniais, pvz.: 38.123'
+  latitude_slash_y_coord_slash_northing: Platuma / y koordinatė
+  latitude_value: "Platuma: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers:
-  layout:
-  leaderboard:
-  leaderboard_for_x: ""
-  leaderboards:
-  leading:
-  learn:
-  learn_about_the_species_live_in:
-  learn_more:
-  learn_more_raquo: ""
-  learn_what_these_licenses_mean:
-  least_concern:
-  leave:
-  leave_a_comment:
-  leave_this_project:
-  #Terminal nodes in a taxonomic tree
-  leaves:
-  legacy_authentication_notice_html: |
-
-  let_us_walk_you_through:
-  lexicon:
-  lexicon_cannot_contain_words: ""
+  layers: Sluoksniai
+  layout: Išdėstymas
+  leaderboard: Pirmaujančiųjų sarašas
+  leaderboard_for_x: "%{x} pirmaujančiųjų sarašas"
+  leaderboards: Pirmaujančiųjų sarašai
+  leading: Vedantis
+  learn: Sužinoti
+  learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
+  learn_more: Sužinokite daugiau
+  learn_more_raquo: "Sužinokite daugiau &raquo;"
+  learn_what_these_licenses_mean: Sužinokite, ką reiškia šios licencijos
+  least_concern: Nekeliantis susirūpinimo
+  leave: Išeiti
+  leave_a_comment: Palikti komentarą
+  leave_this_project: Palikite šį projektą
+  let_us_walk_you_through: Leiskite jums pristatyti pagrindines puslapio funkcijas.
+  lexicon: Leksikonas
   lexicons:
-    scientific_names:
-    afrikaans:
-    albanian:
-    arabic:
-    armenian:
-    belarusian:
-    bengali:
-    bulgarian:
-    catalan:
-    cebuano:
-    chinese_simplified:
-    chinese_traditional:
-    creole_french:
-    creole_portuguese:
-    croatian:
-    czech:
-    danish:
-    davawenyo:
-    dutch:
-    english:
-    estonian:
-    faroese:
-    finnish:
-    french:
-    galician:
-    gela:
-    german:
-    greek:
-    hawaiian:
-    hebrew:
-    hiligaynon:
-    hungarian:
-    icelandic:
-    ilokano:
-    indonesian:
-    italian:
-    japanese:
-    kannada:
-    korean:
-    latvian:
-    lithuanian:
-    luxembourgish:
-    malay:
-    malayalam:
-    maltese:
-    maori:
-    marathi:
-    maya:
-    misima_paneati:
-    mongolian:
-    nahuatl:
-    norwegian:
-    occitan:
-    ojibwe:
-    palauan:
-    pangasinan:
-    persian:
-    polish:
-    portuguese:
-    romanian:
-    russian:
-    santali:
+    scientific_names: Moksliniai pavadinimai
+    afrikaans: Afrikanų
+    albanian: Albanų
+    arabic: Arabų
+    bengali: Bengalų
+    catalan: Katalonų
+    cebuano: Sebuanų
+    chinese_simplified: Kinų (supaprastinta)
+    chinese_traditional: Kinų (tradicinė)
+    creole_french: kreolų (Prancūzų)
+    creole_portuguese: kreolų (Portugalų)
+    czech: Čekų
+    danish: Danų
+    dutch: Olandų
+    english: Anglų
+    estonian: Estų
+    finnish: Suomių
+    french: Prancūzų
+    galician: Galisų
+    german: Vokiečių
+    greek: Graikų
+    hawaiian: Havajiečių
+    hebrew: Hebrajų
+    icelandic: Islandiečių
+    indonesian: Indoneziečių
+    italian: Italų
+    japanese: Japonų
+    korean: Korėjiečių
+    latvian: Latvių
+    lithuanian: Lietuvių
+    luxembourgish: Liuksemburgiečių
+    malay: Malajų
+    malayalam: Malajalių
+    maltese: Maltiečių
+    maori: Maorių
+    mongolian: Mongolų
+    norwegian: Norvegų
+    occitan: Oksitanų
+    pangasinan: Pangasinanas
+    polish: Lenkų
+    portuguese: Portugalų
+    romanian: Rumunų
+    russian: Rusų
     sinhala: Sinhalų
     slovak: Slovakų
     slovenian: Slovėnų
