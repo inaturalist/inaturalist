@@ -443,6 +443,7 @@ sr:
   back_to_your_profile: Nazad na tvoj profil
   based_on_the_evidence_can_id_be_improved: |
     Na osnovu priloženih dokaza, može li se takson zajednice potvrditi ili unaprediti?
+  be_the_first_to_fave_this_observation: Prvi/va dodaj ovu opservaciju u favorite!
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bio: Biografija
@@ -667,7 +668,7 @@ sr:
   data_quality_assessment: Procena kvaliteta podataka
   datatype: Tip podataka
   date_: Datum
-  date_added: Datumu postavljanja
+  date_added: Datum dodavanja
   date_created: Kreirano datuma
   date_format:
     date_long:
@@ -697,6 +698,8 @@ sr:
       november: Novembar
       december: Decembar
   date_is_accurate: Datum je ispravan
+  date_observed: Datum zapažanja
+  date_observed_: Datum zapažanja
   date_picker:
     closeText: Zatvori
     currentText: Danas
@@ -862,7 +865,7 @@ sr:
   failed_to_find_your_location: Nije nađena tvoja lokacija.
   'false': 'Netačno'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves: Favoritima
+  faves: Favoriti
   Family: Porodica
   favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
@@ -942,7 +945,10 @@ sr:
   guides: Vodiči
   guidelines: Smernice
   has_id_supported_by_two_or_more: Ima ID podržan od strane dvoje ili više
+  has_one_or_more_faves: Ima jedan ili više favorita
+  has_photos: Ima fotografije
   has_photos_or_sounds: Ima fotografije ili zvuke
+  has_sounds: Ima zvukove
   header_your_observations: Tvoje opservacije
   header_your_calendar: Tvoj kalendar
   header_your_favorites: Tvoji favoriti
@@ -2173,8 +2179,6 @@ sr:
     zambia: Zambija
     zimbabwe: Zimbabve
   places_of_interest: Mesta od značaja
-  places_warning_please_keep_in_mind: |
-    Imaj u vidu sledeća ograničenja:
   plants: biljke
   please_ask_your_parents_for_permission: Molimo pitaj roditelje za dozvolu
   #Title to a section warning a user to exercise caution
@@ -2238,6 +2242,8 @@ sr:
   project_was_successfully_updated: Projekat je uspešno ažuriran.
   project_x_was_delete: "%{project} je izbrisan (molimo sačekaj par minuta kako bi se uklonio sa sajta)"
   projects: Projekti
+  projects_description: |
+    Projekti ti omogućavaju da okupiš opservacije sa drugim ljudima na %{site_name}. Bilo da započinješ inicijativu građanske nauke ili želiš da vodiš evidenciju ptica u tvom kraju, projekti su pravi način za to.
   #@vow_or_con should work on %{place}
   projects_from_place: "Projekti u %{place}"
   #"admins" is equivalent to "administrates"
@@ -3417,7 +3423,7 @@ sr:
         review_all_tooltip: "Označi sve opservacije na strani kao pregledane"
         you_reviewed_message: "Pregledao/la si %{reviewed} od %{pageTotal} opservacija na ovoj strani od ukupno %{total} opservacija"
       import:
-        date_column_format: GGGG-MM-DD SS:MM
+        date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
         identification_count_desc: 'broj identifikacija za individualni takson'
@@ -4032,7 +4038,7 @@ sr:
         reason: Razlog
       observation:
         description: Napomene
-        observed_on: Datum opažanja
+        observed_on: Datum zapažanja
       observation_field_value:
         value: 'vrednost'
       observations_export_flow_task:
