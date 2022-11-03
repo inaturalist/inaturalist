@@ -155,6 +155,7 @@ sr:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Saznaj više
+  about_community_taxa: O taksonu zajednice
   about_conservation_status: O statusu ugroženosti
   about_licenses: O licencama
   #Header for a section describing taxon names
@@ -289,6 +290,7 @@ sr:
     subclass: Sve podklase dodate u bazu podataka
     order: Svi redovi dodati u bazu podataka
     suborder: Svi podredovi dodati u bazu podataka
+    superfamily: Sve nadporodice dodate u bazu podataka
     family: Sve porodice dodate u bazu podataka
   all_rights_reserved: sva prava zadržana
   all_taxa:
@@ -1408,6 +1410,7 @@ sr:
   month: Mesec
   months: Meseci
   more: Više
+  more_about_sharing: Više o deljenju
   more_filters: Više filtera
   more_from_x: Više od %{x}
   more_info: Više informacija
@@ -2179,6 +2182,8 @@ sr:
     zambia: Zambija
     zimbabwe: Zimbabve
   places_of_interest: Mesta od značaja
+  places_warning_please_keep_in_mind: |
+    Imaj u vidu sledeća ograničenja:
   plants: biljke
   please_ask_your_parents_for_permission: Molimo pitaj roditelje za dozvolu
   #Title to a section warning a user to exercise caution
@@ -3011,7 +3016,6 @@ sr:
   user_added_a_x: "%{user} je dodao/la %{x}"
   user_added_a_x_to_noun_by_html: "%{user} je dodao/la %{x} na %{noun} od strane %{by}"
   user_added_a_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} od strane %{by}"
-  user_added_a_x_to_noun_by_you_html: "%{user} je dodao/la %{x} na %{noun} od strane %{by}"
   user_added_a_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun} od strane %{by}"
   user_added_an_identification_html: "%{user} je dodao identifikaciju"
   user_added_an_observation_html: "%{user} je dodao opservaciju"
@@ -3391,6 +3395,7 @@ sr:
         your_id_does_not_match: |
           Tvoj ID (<span class="bold">%{taxon_name}</span>) se ne poklapa sa ID-jem zajednice
       compare:
+        about_missing_taxa: O taksonima koji nedostaju
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Kombinovano
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
