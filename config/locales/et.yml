@@ -1238,6 +1238,8 @@ et:
   curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid ja varjatud tõeliseid koordinaate.
   curator_identification: Kuraatoritunnus
   current_flags: Praegused märkused
+  #Label for a custom boundary for an observation search
+  custom_boundary: Erikujuline piirjoon
   custom_project_fields: Projekti spetsiaalväljad
   custom_project_was_successfully_created: Spetsiaalse projekti loomine õnnestus.
   custom_project_was_successfully_updated: Spetsiaalse projekti uuendamine õnnestus.
@@ -1408,6 +1410,10 @@ et:
   draft_saved: Visand salvestatud!
   drafts: Visandid
   drag_and_drop_some_photos_or_sounds: Lohista siia mõned fotod või helid
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Tee ümmargune piirjoon
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Tee nelinurkne piirjoon
   drawings: Joonistused
   duplicate_verb: Kopeeri
   each_place_displays_all_species_inat_knows: "Igal koha lehel on äratoodud kõik liigid, mida %{site_name} teab seal leiduvat, kaasarvatud info nende arvukuse ja kaitsestaatuse kohta ning liigi esmavaatluse teinud isiku nimi meie andmebaasis. Liike saab filtreerida taksonoomilise grupi, värvi, kaitsestaatuse järgi või neid leida lihtsalt otsingu abil."
@@ -1518,6 +1524,11 @@ et:
   export_observations: Ekspordi vaatlused
   export_with_private_coordinates: Ekspordi peidetud koordinaatidega
   exporting: "Eksportin..."
+  #A third-party app or service the user has authorized to access their iNat
+  #account, e.g. Flickr
+  external_applications: Välised rakendused
+  external_applications_description: |
+    Välised rakendused on kolmandate osapoolte rakendused, millel oled lubanud sinuna iNaturalisti kontot kasutada. Üldiselt saavad nad teha sinu kontoga kõik mida sinagi saad, nii et ole veendunud, et usaldad nende rakenduste loojaid, enne kui neile selle loa annad.
   extinct: väljasurnud
   extinct_in_the_wild: Looduses väljasurnud
   extra_properties: Lisaomadused
@@ -1881,6 +1892,8 @@ et:
   label_to_group_a_batch_of_taxon_changes: Silt, millega grupeeritakse taksonimuudatuste kogumit
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: Asukoht privaatne
+  language_slash_locale: Keel/Asukoht
+  language_slash_locale_description: See määrab sinu keele- ja kuupäeva formaadi eelistused igal pool iNaturalistis. Muutus on nähtav peale lehe värskendamist.
   language_slash_type: Keel / Tüüp
   #Large photo size
   large: suur
@@ -1964,6 +1977,7 @@ et:
     portuguese: Portugali
     romanian: Rumeenia
     russian: Vene
+    serbian: Serbia
     sinhala: Singali
     spanish: Hispaania
     swahili: Suahiili
@@ -2059,6 +2073,7 @@ et:
     pt-BR: Portugali (Brasilia)
     ru: Vene
     sq: Albaania
+    sr: Serbia
     sv: Rootsi
     zh-CN: Hiina (lihtsustatud)
     zh-TW: Hiina (traditsiooniline)
@@ -2161,6 +2176,8 @@ et:
   merging_places: Ühendan kohti
   message: Teade
   messages: Teated
+  messages_new_correspondent_personal: |
+    Ära avalda enda isiklikku infot inimestele, keda sa ei usalda.
   misidentifications: Valed määratlused
   misleading_or_illegal_content_html: |
     Eksitav või illegaalne sisu, rassiline või rahvuslik vihakõne, jne. Meie "sobiliku" määratluse nägemiseks vaata <a href="/help#inappropriate">KKKd</a>.
@@ -2656,6 +2673,36 @@ et:
     large: suur
     original: algne
   photos_updated: Fotod värskendatud.
+  pi_consent_desc_title: Isikuandmetest
+  pi_consent_desc_html: |
+    <p>
+    Salvestame isikuandmeid nagu kasutajatunnused ja e-posti aadressid, et meie lehe kontosid hallata. Selleks, et olla vastavuses privaatsusseadustega, peame sult paluma sellesse kasti linnuke panna, mis näitaks, et sa nõustud enda isikuandmete kasutamisega. Kui soovid rohkem teada, millist infot me kogume ja kuidas seda kasutame, siis palun loe meie <a href='%{privacy_url}' target='_blank'>privaatsuspoliitikat</a> ja <a href='%{terms_url}' target='_blank'>kasutustingimusi</a>.
+    </p>
+    <p>
+    Kuna iNaturalisti kontot ei ole võimalik omada ilma isikuandmeid salvestamata, siis ainus võimalus sellest nõusolekust taganemiseks on enda konto kustutamine.
+    </p>
+  pi_consent_label: |
+    Luban iNaturalistil salvestada ja töödelda piiratud kujul endaga seotud andmeid, et nad saaksid minu kontot hallata.
+  pi_consent_child_label: |
+    Luban iNaturalistil salvestada ja töödelda piiratud kujul enda lapsega seotud andmeid, et nad saaksid tema kontot hallata.
+  data_transfer_consent_desc_title: IIsikuandmete edasikandmisega nõustumisest
+  data_transfer_consent_desc_html: |
+    <p>
+    Mõned isikuandmete kaitse seadused nagu Euroopa Liidu isikuandmete kaitse üldmäärus (GDPR) nõuavad otsesõnalist nõusolekut isikuandmete edasi kandmiseks enda jurisdiktsioon alt teiste jurisdiktsioonide alla, mille puhul ei peeta nende andmete kaitstust piisavaks. Alates aastast <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> ei pea Euroopa Liit enam Ameerika Ühendriike jurisdiktsiooniks, mis pakuks isikuandmetele adekvaatset seadusandlikku kaitset, kuna USA valitsusel on võimalik jälgida riigi sisenevaid andmeid. On võimalik, et teiste jurisdiktsioonide arvamus on sama.
+    </p>
+    <p>
+    iNaturalisti kasutamine nõuab sinu isikuandmete nagu e-posti aadress salvestamist. Kõiki iNaturalisti andmeid hoitakse Ameerika Ühendriikides ning me ei saa olla kindlad, millises jurisdiktsioonis sina iNaturalisti kasutades asud. Seega, et olla vastavuses seadustega nagu GDPR, pead sa kinnitama, et mõistad seda riski ja nõustud sellega ning oled nõus oma isikuandmete edastamisega iNaturalisti USAs asuvatesse serveritesse.
+    </p>
+    <p>
+    Kui soovid rohkem teada, millist infot me kogume ja kuidas seda kasutame, siis palun loe meie <a href='%{privacy_url}' target='_blank'>privaatsuspoliitikat</a> ja <a href='%{terms_url}' target='_blank'>kasutustingimusi</a>.
+    </p>
+    <p>
+    Kuna iNaturalisti kontot ei ole võimalik omada ilma isikuandmeid salvestamata, siis ainus võimalus sellest nõusolekust taganemiseks on enda konto kustutamine.
+    </p>
+  data_transfer_consent_label: |
+    Luban enda isikliku info Ameerika Ühendriikidesse saatmisega
+  data_transfer_consent_child_label: |
+    Luban enda lapse isikliku info Ameerika Ühendriikidesse saatmisega
   pin_verb: Säilita
   pink: roosa
   pinned_locations_desc: |
@@ -2965,6 +3012,8 @@ et:
     zambia: Sambia
   places_of_interest: Huviväärsused
   places_merged_successfully: Kohtade ühendamine õnnestus!
+  places_warning_please_keep_in_mind: |
+    Pea palun meeles järgnevaid piiranguid:
   plants: taimed
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
   please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Request that a known child ask their parents for permission to use this service
@@ -3240,6 +3289,8 @@ et:
   research_grade_short_html: "T<span class='full'>eaduskõlbulik</span>"
   research_grade_observations_have: '"Teaduskõlbulikel" vaatlustel on kuupäev, foto, koordinaadid ning kogukondlikult kinnitatud määratlus. Vajuta siia, et näha andmete kvaliteedihinnangut.'
   research_grade_qualification: Teaduskõlbulikuse tingimused
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Tühjenda
   reset_search_filters: Tühista otsingufiltrid
   resolve: Lahenda
   resolve_this_flag: Lahenda märkus
@@ -3253,6 +3304,10 @@ et:
   review_identifications_of_taxon_html: |
     Kontrolli määratlusi taksonis <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Kontrollitud
+  #Application is a third-party app or service the user has authorized to
+  #access their iNat account
+  revoke_external_application: "Keela %{site_name}?"
+  revoke_privacy_consent_warning: "Ainus viis sellest nõustumisest taganeda on enda konto ja kõigi seotund andmete kustutamine."
   rg_observations: Teaduskõlbulikud vaatlused
   role: Roll
   rotate_left: Pööra vasakule
@@ -3290,6 +3345,7 @@ et:
   save_settings_caps: SALVESTA SÄTTED
   save_trip: Salvesta reis
   saved: Salvestatud
+  saved_at_time: Salvestatud %{time}
   saving: "Salvestan..."
   saving_num_of_count_observations:
     one: Salvestan vaatlust...
@@ -3747,6 +3803,7 @@ et:
   these_folks_kindly_volunteer_to: Need inimesed pakuvad lahkelt oma vabatahtliku aega, et hallata meie taksonoomiat ning tegeleda muude probleemidega.
   these_observations_have_not_been_uploaded_yet: |
     Neid vaatluseid pole veel üles laetud.
+  third_party_tracking: Kolmandate osapoolte jälgimine
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "kueda's
   #identifications", but we generally handle those with more specific
@@ -4983,6 +5040,7 @@ et:
         curators_can_see: |
           Pea meeles, et projekti kuraatorid näevad nende vaatluste priivatseid ja varjatud koordinaate, mida sa projekti lisad.
       edit:
+        about_third_party_tracking: Kolmandate osapoolte jälgimisest
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Kui meelt muudada, võid alati <a href='/users/edit'>muuta oma sätteid</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -4997,6 +5055,9 @@ et:
           </p>
         licensing_desc_html: |
           Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.
+        monthly_supporter_desc_html: |
+          iNaturalisti igakuised toetajad teevad automaatseid igakuiseid annetusi, mille adressaadiks on California Teaduste Akadeemia (Ameerika Ühendriikide maksuameti tunnus 94-1156258), millega toetatakse iNaturalisti ja iNaturalisti võrgustikku kuuluvate lehtede mittetulunduslikku tegevust.
+          <a href="%{url}">Igakuiseks toetajaks saamiseks vajuta siia</a>. Kui oleme sinu toetuse kinnitanud, saad panna sellesse kasti linnukese, et näidata oma profiili juures vastavat märget. NB! Pead Donorbox-i lehel kasutama täpselt sama e-posti aadressit nagu iNaturalistis, et saaksime kinnitada, et sinust on saanud igakuine toetaja.
         muting_desc_html: |
           <p>
           Kellegi vaigistamisel ei saa sa enam teateid nende tegevuse kohta nagu sinu vaatluste kommenteerimine, sulle sõnumite saatmine, sinu mainimine, jne. Vaigistamisega saad kedagi ignoreerida, ilma et sa neil midagi teha keelaks.
@@ -5014,6 +5075,23 @@ et:
           any: Kõik
           joined: Projektid, millega oled liitunud
           none: "Ei ühelegi, ainult sina saad enda vaatluseid projektidesse lisada"
+        prefers_no_tracking_label: Ärge koguge kolmandate osapoolte rakenduste abil stabiilsus- ja kasutusandmeid.
+        prefers_no_tracking_label_desc_we_use: |
+          Kasutame erinevaid kolmandate osapoolte pakutavaid teenuseid, et jälgida meie tarkvara stabiilsust ning märgata selle vigu ja probleeme. Nende osapoolte hulgas on:
+        prefers_no_tracking_label_desc_info_we_share: |
+          Muuhulgas võime nende kolmandate osapooltega jagada järgnevat infot:
+        prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
+          IP-aadresseid (mille abil saab asukohta määrata vaid linna täpsusega ning jälgida sind erinevatel lehtedel ja erinevates teenustes; pane tähele, et oleme Google Analytics'is sisse lülitanud <a href="https://support.google.com/analytics/answer/2763052">IP anonümiseerimise</a>; Firebase Crashlytics <a href="https://firebase.google.com/support/privacy">võib ajutiselt sinu IP-aadresseid salvestada</a>)
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          Veebilehitseja andmed nagu selle tootja, mudel ja versioon
+        prefers_no_tracking_label_desc_info_we_share_crash_details: |
+          Kokku jooksmise andmed nagu selle põhjustanud koodirida
+        prefers_no_tracking_label_desc_info_we_share_device_details: |
+          Seadme andmed nagu mobiiltelefoni tootja ja mudel
+        prefers_no_tracking_label_desc_value_html: |
+          <strong>Need kolmandate osapoolte teenused on meile tohutult olulised</strong>, sest nende abil hoiame suhteliselt väikese meeskonnaga iNaturalist stabiilse ja toimivana. Mobiilsete seadmete puhul pole meil pea mingit muud võimalust saamaks teadma probleemidest, kuna meie tarkvara jookseb seadmetele, mida meie ise ei kontrolli. Mõnikord pole me mõnest probleemist isegi teadlikud, kuni nende teenuste andmed seda meile näitavad. <strong>Seda infot jagades aitad sa meil teenindada nii ennast kui terve iNaturalisti kogukonda.</strong>
+        prefers_no_tracking_label_desc_limits: |
+          Pane tähele, et see säte on seotud vaid analüütiliste andmete ja kokkujooksmise infoga, mida neile ettevõtetele saadame. Kõik iNaturalisti serverid on meile andnud ja neid majutab Microsoft, kõiki iNaturalisti pilte majutab Amazon ning pea kõik iNaturalisti kaardid tulevad Google'ilt, mis tähendab, et iga kord, kui iNaturalists mõnda vaatlust uurid, kasutad sa nende ettevõtete teenuseid ning avaldad neile ka vähemalt oma IP aadressi (iPhone'i rakenduses kasutame Apple'i kaarte). Ilma nende ettevõtete poolt pakutavate teenusteta iNaturalisti eeldatavasti ei eksisteeriks ning kuigi me saame piirata milliseid ja mis koguses andmeid sa nendega iNaturalisti kasutades jagad, ei saa me andmete edastamist täielikult kinni keerata.
         project_settings_desc: |
           Pea meeles, et see ei anna projektidele luba näha sinu peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead projektidega liituma või andma neile igale ühele eraldi load.
         taxon_change_desc: |
@@ -5424,6 +5502,10 @@ et:
         not_an_integer: peab olema täisarv
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
+      template:
+        header:
+          one: '%{count} viga ei lubanud salvestada: %{model}'
+          other: '%{count} viga ei lubanud salvestada: %{model}'
       models:
         guide:
           attributes:
@@ -5461,6 +5543,13 @@ et:
                 peab postitamiseks olema kasutajaks registreerunud vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka postitada.
         project_observation:
           attributes:
+            base:
+              #We show this error message when someone tries to add an
+              #observation to a collection or umbrella project, which are
+              #basically saved searches so you don't have to add anything to
+              #them
+              collection_and_umbrella_projects_do_not_allow_direct_submission: |
+                kogumis- ja ülemprojektid ei luba andmete otsesisestamist
             user_id:
               must_be_curator: peab olema selle projekti kuraator
             observation_id:
@@ -5502,6 +5591,10 @@ et:
                 peab algama tähega, ei tohi sisalda tühikuid ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
             email:
               must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
+  doorkeeper:
+    scopes:
+      login: |
+        Kasutada infot, mille abil saab siseneda kolmandate osapoolte teenustesse nagu näiteks sinu siinse kontoga seotud e-posti aadress, kasutajatunnus, nimi ja ikoon.
   i18n:
     inflections:
       "@gender":
