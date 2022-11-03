@@ -1352,6 +1352,8 @@ nl:
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
   curator_identification: Curatordeterminatie
   current_flags: Huidige meldingen
+  #Label for a custom boundary for an observation search
+  custom_boundary: Grens naar Eigen Wens
   custom_project_fields: Aangepaste projectvelden
   custom_project_was_successfully_created: Projectaanpassingen toegevoegd
   custom_project_was_successfully_updated: Projectaanpassingen bijgewerkt
@@ -1575,6 +1577,10 @@ nl:
   draft_saved: Kladversie bewaard!
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Teken een cirkelvormige grens
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Teken een rechthoekige grens
   drawings: Tekeningen
   duplicate_verb: Dupliceren
   duration_value: "Tijdsduur: %{duration} minuten"
@@ -2304,6 +2310,7 @@ nl:
     romanian: Roemeens
     russian: Russisch
     santali: Santali
+    serbian: Servisch
     setswana: Setswana
     sinhala: Singalees
     slovak: Slowaaks
@@ -2425,6 +2432,7 @@ nl:
     sk: Slowaaks
     sl: Sloveens
     sq: Albanees
+    sr: Servisch
     sv: Zweeds
     th: Thai
     tr: Turks
@@ -4130,6 +4138,8 @@ nl:
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Reset
   reset_filters_short: Reset
   reset_brightness: Helderheid herstellen
   reset_search_filters: Reset zoekfilters
