@@ -1,15 +1,103 @@
 zh-CN:
-  x_people_helped_user_with_y_ids_html: ""
-  _100_day_trends:
-  _percent_ID_d: ""
-  a_community_for_naturalist:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "%{count} 更改"
+  x_comments:
+    other: '%{count} 条评论'
+  x_comments_html:
+    other: '<span class="count">%{count}</span> 评论'
+  x_faves:
+    other: '%{count} 次喜爱'
+  x_flags_resolved_html:
+    other: "<span class='count'>%{count}</span>个标记已解决"
+  x_identifications:
+    other: '%{count} 次鉴定'
+  x_identifications_html:
+    other: '<span class="count">%{count}</span> 个标识'
+  x_identifications_:
+    other: '%{count} 次鉴定'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>个鉴定者'
+  x_languages:
+    other: "%{count} 种语言"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} 个物种为首次观察到"
+  x_journal_posts_html:
+    other: '<span class="count">%{count}</span>个日记帖子'
+  x_matching_taxa:
+    other: '%{count} 个匹配的分类群'
+  x_matching_taxa_html:
+    other: '<span class="count">%{count}</span> 个匹配的分类群'
+  x_misidentifications_of_this_species:
+    other: "该物种的%{count}个错误鉴定"
+  x_misidentifications_of_species_in_this_genus:
+    other: "%{count}该属中的错误物种鉴定"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    other: "在%{rank}中有%{count}个错误鉴定"
+  x_observations:
+    other: "%{count} 次观察"
+  x_observations_:
+    other: "%{count} 次观察"
+  x_observations_html:
+    other: "<span class='count'>%{count}</span> 次观察"
+  x_observations_link_html:
+    other: "<a href='%{url}'>%{count} 次观察</a>"
+  x_observations_reviewed_html:
+    other: "<span class='count'>%{count}</span> 次观察已复核"
+  x_observers_html:
+    other: '<span class="count">%{count}</span> 观察者'
+  x_others:
+    other: "%{count}个其他的"
+  x_people:
+    other: "%{count} 人"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} 人</strong> 用 <strong>%{y} 个鉴定</strong>帮助了 %{user}"
+  x_photos:
+    other: "%{count} 张照片"
+  x_new_species:
+    other: "%{count} 个新物种"
+  x_new_users:
+    other: '%{count} 个新用户'
+  x_species:
+    other: '%{count} 种物种'
+  x_species_html:
+    other: "<span class='count'>%{count}</span> 种物种"
+  x_species_link_html:
+    other: "<a href='%{url}'>%{count} 种物种</a>"
+  x_suggestions_filtered_by_colon:
+    other: "%{count}个建议过滤者："
+  x_taxa:
+    other: "%{count} 个分类单元"
+  x_taxa_observed_html:
+    other: "<span class='count'>%{count}</span> 个分类群已观察"
+  x_research_grade_observations_html:
+    other: "<span class='count'>%{count}</span> 个研究级观察</span>"
+  x_research_grade_observations_to_species_html:
+    other: "<span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>"
+  x_sounds:
+    other: "%{count} 条音频"
+  x_taxa_curated_html:
+    other: "<span class='count'>%{count}</span>个分类单元已有馆长"
+  x_taxa_matching_current_filters:
+    other: "%{count} 个分类群匹配当前的过滤器"
+  x_taxon_changes_added_html:
+    other: "<span class='count'>%{count}</span> 个分类单元变化已增加"
+  _100_day_trends: 100天动态
+  _percent_ID_d: "% 已鉴定"
+  a_community_for_naturalist: 一个自然爱好者的社区
   a_default_taxon_name_will_automatically_created: |
-
-  a_flag_for_x: ""
-  a_member_of_taxon_html: ""
+    一个来自归属于此分类的学名的默认分类名称将被创建。
+    当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
+  a_flag_for_x: "用于%{x}的旗帜"
+  a_member_of_taxon_html: "%{taxon} 的成员"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: ""
+  a_to_z: "A 到 Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -29,1739 +117,1910 @@ zh-CN:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: ""
-  about:
-  about_charts:
-  about_community_taxa:
-  about_complete_taxa:
-  about_conservation_status:
-  about_editing_observation_fields:
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: 关于
+  about_charts: 关于图表
+  about_community_taxa: 关于社区分类群
+  about_complete_taxa: 关于比较分类群
+  about_conservation_status: 保护状态
+  about_editing_observation_fields: 关于编辑观察字段
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means:
-  about_license_options:
-  about_licenses:
+  about_establishment_means: 关于确立意思
+  about_license_options: 关于许可证选项
+  about_licenses: 关于许可协议
   #Header for a section describing taxon names
-  about_names:
+  about_names: 关于名称
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
-  about_place: ""
-  about_places:
-  about_taxon_ranges:
+  about_place: "关于%{place}"
+  about_places: 关于地点
+  about_taxon_ranges: 关于分类阶元的范围
   about_taxon_ranges_desc: |
-
-  about_the_network:
-  about_this_bioblitz:
-  about_this_map:
-  about_this_project:
+    分类单位范围指的是一个分类阶元内的生物在全球范围内的分布。分类单位范围通常来自于世界自然保护联盟的红色名录。
+  about_the_network: 关于我们
+  about_this_bioblitz: 关于此bioblitz
+  about_this_map: 关于此地图
+  about_this_project: 关于这个项目
   about_trips_html: |
-
-  about_trusting_projects:
-  about_trusting_projects_options_any:
+    <h4>
+    探索功能使你能够通过添加观察场景的描述，收集未出现或出现情况下的数据。
+    </h4>
+    <p>
+    <strong>为什么</strong>有些未出现或者出现情况下的数据包含了可以帮助物种采样的信息。这些信息对于像物种分布模型等科学家们日后的分析有着极大的帮助。（未经处理的iNaturalist观察记录均为“出现的”数据。）
+    </p>
+    <p>
+    <strong>怎么做</strong>你可以在探索过程中记录以下信息：
+    </p>
+    <ul>
+    <li><strong>有什么</strong>你在寻找（目标物种列表）</li>
+    <li><strong>在哪里</strong>你在（探索地点）寻找</li>
+    <li><strong>时间</strong>你寻找了（多长时间）</li>
+    </ul>
+    <p>
+    那些你能够在搜寻地点范围内找到的目标物种将被视为出现。与之相反，在你的目标物种列表上但并未被观察到的物种会被视为未出现。点击“显示过往探索中的物种踪迹”以查看从探索和有关观察中获得的物种出现记录表单。<a href='%{url}'>了解更多</a>
+    </p>
+  about_trusting_projects: 关于信任的项目
+  about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
-
+    包括将地理位置设置为“隐藏”或 “私密”的观察，例如在您的后院发现的或其它不想让其他人知道具体坐标的观察。
   about_trusting_projects_options_taxon: |-
-
+    只有你那些在项目中因受威胁等级而模糊了坐标的观察
   about_trusting_projects_options_taxon_desc: |-
-
+    许多项目只需要访问模糊的坐标，因为观测描述了一个受威胁的分类群。
   about_trusting_projects_overview: |-
-
+    授权您的隐藏坐标将使此项目的管理者能够查看您在该项目中观察的准确坐标。对于科学家和资源管理者来说，了解准确的观察坐标对数据分析和决策决定是非常重要的。
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-
+    可以访问您的隐藏坐标的项目管理者：
   about_trusting_projects_warning: |-
-
+    请注意，项目管理员可以通过更改项目参数来包括您的任何观察，且他们可以在任何时间
+    添加或解除项目管理员。您将收到有关这些更改的通知，但您是基本上将观察的私密位置数据分享给本项目，所以请务必谨慎。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-
-  #Header for a section describing unintended disagreements
-  about_unintended_disagreements:
+    您可以因以下原因选择共享隐藏坐标
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: ''
-  account:
-  account_creation:
-  account_settings:
-  accept_community_identifications:
-  accuracy:
-  accuracy_meters:
+  acc: '精度（米）'
+  account: 账户
+  account_creation: 创建账户
+  account_settings: 账户设置
+  accept_community_identifications: 接受来自社区的鉴定
+  accuracy: 准确性
+  accuracy_meters: 精确度（米）
   accuracy_of_the_coordinates: |
-
+    坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action:
-  actions:
-  active:
+  action: 操作
+  actions: 操作
+  active: 激活
   #Status of a complete set that is available for use
-  active_complete_set_status:
+  active_complete_set_status: 有效的
   #Status of a taxon that is available for use on iNat
-  active_taxon_status:
-  active_users:
-  activity:
-  adapted_by_name_from_a_work_by_original: ""
-  add:
-  add_a_batch_of_observations:
-  add_a_batch_of_taxa:
+  active_taxon_status: 有效的
+  active_users: 活跃用户
+  activity: 活跃
+  adapted_by_name_from_a_work_by_original: "改编自由 %{original} 创作的作品 %{name}"
+  add: 添加
+  add_a_batch_of_observations: 新增一批观察记录
+  add_a_batch_of_taxa: 批量添加分类单元
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list:
-  add_a_comment:
-  add_a_field:
-  add_a_flag:
+  add_a_bulleted_list: 添加符号列表
+  add_a_comment: 添加一条评论
+  add_a_field: 添加字段
+  add_a_flag: 添加一个标记
   #Tool tip for a button that adds a link to a text area
-  add_a_link:
-  add_a_name:
-  add_a_note:
-  add_a_new_change_group:
+  add_a_link: 添加一个链接
+  add_a_name: 添加名字
+  add_a_note: 添加备注
+  add_a_new_change_group: 添加一个新的更改组
   #Tool tip for a button that adds a numbered list to a text area
-  add_a_numbered_list:
-  add_a_single_observation:
-  add_a_taxon:
+  add_a_numbered_list: 添加编号列表
+  add_a_single_observation: 添加一个单独的观察。
+  add_a_taxon: 加入一个分类
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-
-  add_an_assessment:
-  add_an_identification:
-  add_an_observation:
-  add_an_observation_of: ""
-  add_an_observation_to_project_html:
-  add_annotations_for_x:
-  add_another_flag:
-  add_another_photo:
-  add_another_section:
-  add_another_subscription:
+    添加<a target="_blank" href="%{url}">分类单元交换</a>是否想要更改名称
+  add_an_assessment: 添加一个评估
+  add_an_identification: 新增物种鉴定
+  add_an_observation: 添加一个观察
+  add_an_observation_of: "添加 %{taxon} 的观察"
+  add_an_observation_to_project_html: 为项目 %{project} 新增一项观察记录
+  add_annotations_for_x: 添加用于“%{x}”的注释
+  add_annotations_for_controlled_attribute:
+    sex: 添加用于“性”的注释
+    plant_phenology: 为“植物物候学”添加注释
+    life_stage: 为“生命阶段”添加注释
+    evidence_of_presence: 添加注释到“存在的证据”中
+  add_another_flag: 添加其他标记
+  add_another_photo: 添加其他照片
+  add_another_section: 添加其他部分
+  add_another_subscription: 添加其他订阅
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset:
-  add_batch:
-  add_blocked_users:
+  add_asset: 添加优点
+  add_batch: 添加批量
+  add_blocked_users: 添加被屏蔽的用户
   #Tool tip for a button that adds bold text to a text area
-  add_bold_text:
-  add_comma_separated_tags: ""
-  add_comment:
-  add_conservation_status:
-  add_custom_project_fields:
-  add_edit_flags:
-  add_editor:
-  add_description: ""
-  add_from_your_observations:
-  add_link:
-  add_higher_level_taxon:
-  add_id:
+  add_bold_text: 添加粗体文本
+  add_comma_separated_tags: "添加逗号分隔的标签"
+  add_comment: 添加一条评论
+  add_conservation_status: 添加保护状态
+  add_custom_project_fields: 添加自定义项目字段
+  add_edit_flags: 添加/编辑标记
+  add_editor: 添加编辑器
+  add_description: "添加 %{description_name}"
+  add_from_your_observations: 从您的观察中添加
+  add_link: 添加链接
+  add_higher_level_taxon: 加入一个更高级分类（例如：“鸟类”）
+  add_id: 新增鉴定
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text:
-  add_muted_users:
-  add_new_lexicon:
-  add_new_photos_by_their_ids:
-  add_new_place:
-  add_new_rule:
-  add_new_source: ""
-  add_new_taxon_name:
-  add_notes_about_this_taxon:
-  add_obs_from_a_link: ""
-  add_obs_from_a_list:
-  add_observations:
-  add_observations_by_checking_off:
-  add_observations_project:
+  add_italic_text: 添加斜体文本
+  add_muted_users: 添加被禁言的用户
+  add_new_lexicon: 添加新的专属词汇
+  add_new_photos_by_their_ids: 通过他们的Flickr ID添加新的照片（必须是知识共享授权！）
+  add_new_place: 添加一处新的地点
+  add_new_rule: 添加一条新规则
+  add_new_source: "添加新的来源……"
+  add_new_taxon_name: 添加一个新分类名称
+  add_notes_about_this_taxon: 添加有关在此地点的此分类单元的注释，例如它何地何时发生。
+  add_obs_from_a_link: "从列表添加观察：%{link}"
+  add_obs_from_a_list: 从列表中添加观察
+  add_observations: 添加观察
+  add_observations_by_checking_off: 通过检查来自列表的物种来添加观察。
+  add_observations_project: 在该项目中添加观察
   #Prompt to add a new journal post
-  add_one:
+  add_one: 添加一个！
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now:
-  add_photos:
-  add_place:
-  add_alive_or_dead_alive_annotation: ''
-  add_alive_or_dead_cannot_be_determined_annotation: ''
-  add_alive_or_dead_dead_annotation: ''
-  add_plant_phenology_budding_annotation: ''
-  add_plant_phenology_flower_budding_annotation: ''
-  add_plant_phenology_flowering_annotation: ''
-  add_plant_phenology_fruiting_annotation: ''
-  add_plant_phenology_no_evidence_of_flowering_annotation: ''
-  add_life_stage_adult_annotation: ''
-  add_life_stage_teneral_annotation: ''
-  add_life_stage_subimago_annotation: ''
-  add_life_stage_pupa_annotation: ''
-  add_life_stage_nymph_annotation: ''
-  add_life_stage_larva_annotation: ''
-  add_life_stage_juvenile_annotation: ''
-  add_life_stage_egg_annotation: ''
-  add_evidence_of_presence_organism_annotation: ''
-  add_evidence_of_presence_feather_annotation: ''
-  add_evidence_of_presence_gall_annotation: ''
-  add_evidence_of_presence_scat_annotation: ''
-  add_evidence_of_presence_track_annotation: ''
-  add_evidence_of_presence_bone_annotation: ''
-  add_evidence_of_presence_molt_annotation: ''
+  add_one_now: 现在添加一个
+  add_photos: 添加照片
+  add_place: 添加地点
+  add_alive_or_dead_alive_annotation: '添加注释 "活体或死亡:活体"'
+  add_alive_or_dead_cannot_be_determined_annotation: '添加注释 "活体或死亡: 不确定"'
+  add_alive_or_dead_dead_annotation: '添加注释 "活体或死亡: 死亡"'
+  add_plant_phenology_budding_annotation: '添加“植物物候学：发芽”注释'
+  add_plant_phenology_flower_budding_annotation: '添加注释"植物物候: 花苞"'
+  add_plant_phenology_flowering_annotation: '添加“植物物候学：开花”注释'
+  add_plant_phenology_fruiting_annotation: '添加“植物物候学：结果”注释'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '添加“植物物候学：无开花迹象”的注释'
+  add_life_stage_adult_annotation: '添加“生命阶段：成人”注释'
+  add_life_stage_teneral_annotation: '添加“生命阶段：幼虫”注释'
+  add_life_stage_subimago_annotation: '添加“生命阶段：亚成虫”注释'
+  add_life_stage_pupa_annotation: '添加“生命阶段：蛹”注释'
+  add_life_stage_nymph_annotation: '添加“生活期：若虫”注解'
+  add_life_stage_larva_annotation: '添加“生活期：幼虫”注解'
+  add_life_stage_juvenile_annotation: '添加“生命阶段：青少年”注释'
+  add_life_stage_egg_annotation: '为“生命阶段：卵”添加注释'
+  add_evidence_of_presence_organism_annotation: '添加“出现记录的证据：生物”的注释'
+  add_evidence_of_presence_feather_annotation: '添加“出现记录的证据：羽毛”的注释'
+  add_evidence_of_presence_gall_annotation: '添加“出现记录的证据：虫瘿”的注释'
+  add_evidence_of_presence_scat_annotation: '添加“出现记录的证据：排泄物”的注释'
+  add_evidence_of_presence_track_annotation: '添加“出现记录的证据：足迹”的注释'
+  add_evidence_of_presence_bone_annotation: '添加“出现记录的证据：骨骼”的注释'
+  add_evidence_of_presence_molt_annotation: '添加“出现记录的证据：蜕皮”的注释'
   #As in a Taxon Framework Relationship
-  add_relationship: ''
+  add_relationship: '添加关系'
   #As in a Guide Section
-  add_section:
-  add_several_observations_at_once:
-  add_sex_female_annotation: ''
-  add_sex_male_annotation: ''
-  add_sex_cannot_be_determined_annotation: ''
-  add_some_now:
-  add_tag:
-  add_tags:
-  add_tags_to_selected_taxa:
-  add_taxa:
-  add_taxon_batch_to: ""
-  add_taxon_range:
-  add_taxonomic_tags_to: ""
-  add_to_a_scheme:
-  add_to_a_project:
-  add_to_calendar:
-  add_to_checklist:
-  add_to_favorites:
-  add_to_list:
-  add_to_project:
-  add_to_your_list:
+  add_section: 添加章节
+  add_several_observations_at_once: 马上添加几个观察。
+  add_sex_female_annotation: '添加“性别：女”注释'
+  add_sex_male_annotation: '添加“性别：男”注释'
+  add_sex_cannot_be_determined_annotation: '添加“性别：无法确定”注释'
+  add_some_now: 现在添加一些
+  add_tag: 添加标签
+  add_tags: 添加标签
+  add_tags_to_selected_taxa: 添加标签至选定的分类群
+  add_taxa: 添加分类
+  add_taxon_batch_to: "批量添加分类单元至 %{list}"
+  add_taxon_range: 添加分类范围
+  add_taxonomic_tags_to: "对已经选定的Flickr照片添加分类学标签"
+  add_to_a_scheme: 添加到计划
+  add_to_a_project: 添加至一个项目
+  add_to_calendar: 添加至日历
+  add_to_checklist: 添加至检查表
+  add_to_favorites: 添加至收藏夹
+  add_to_list: 添加至列表
+  add_to_project: 添加至项目
+  add_to_your_list: 加入到您的列表
   add_your_email_to_get: |
-
-  add_your_own_observations_at: ""
-  added:
-  added!:
+    添加您的电子邮件以获取来自社区的对您的观察的反馈。
+    如果您不希望分享它，请尽快核对！
+  add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
+  added: 提交日期
+  added!: 已添加！
   added_as_a_part_of_a_taxon_change_html: |
-
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元变更</a>
   added_as_a_part_of_a_taxon_merge_html: |
-
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元合并</a>
   added_as_a_part_of_a_taxon_split_html: |
-
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元拆分</a>
   added_as_a_part_of_a_taxon_swap_html: |
-
-  added_by:
-  added_by_user_on_date_html: ""
-  added_on_datetime: ""
+    添加为
+    <a target="%{target}" class="%{class}" href="%{url}">分类单元互换</a>
+  added_by: 添加自
+  added_by_user_on_date_html: "由%{user}加入于%{date}"
+  added_on_datetime: "添加于 %{datetime}"
   added_to_favorites_html: |
-
-  adding: ""
-  adjust_brightness:
-  admin:
-  admin_s:
-  admin_only:
-  admin_tools:
+    已添加至<a href="%{url}">收藏夹</a>
+  adding: "正在添加……"
+  adjust_brightness: 调整亮度
+  admin: 管理员
+  admin_s: 管理员
+  admin_only: 仅限管理员
+  admin_tools: 管理员工具
   #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations:
-  agree_:
-  agree?:
-  agree_with_current_taxon:
-  agreeing:
-  aka:
+  affiliated_organizations: 附属机构
+  agree_: 同意
+  agree?: 是否同意？
+  agree_with_current_taxon: 同意当前的分类单元
+  agreeing: 正在同意……
+  aka: 也就是
   #Noun, title of a popup alerting you to something
-  alert:
-  all:
-  all_comments:
-  all_flags_must_be_resolved:
-  all_life:
-  all_names:
-  all_observations:
-  all_photos:
-  all_places: ""
-  all_projects:
-  all_rights_reserved:
-  all_taxa_:
-  all_taxa_in_this_guide:
-  all_taxonomic_groups: ""
-  all_updates:
-  allow_curator_access:
-  allow_project_curators_to_view_your_private_coordinates:
-  allowed_establish_means_values:
-  allowed_html:
-  allowed_occurrence_status_values:
-  allowed_values:
-  almost_there_:
-  alphabetical:
-  alphabetical_order:
-  already_have_an_account_log_in_html:
-  amphibians:
-  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
-  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
-  #as disagreements with existing IDs of the thinned descendant.
-  analyze_clashes:
-  analyze_ids:
-  ancestor_taxon:
-  and:
-  and_other_taxa: ""
-  android:
-  animals:
-  annotation:
-  annotations:
-  announcement_was_successfully_created:
-  announcement_was_successfully_updated:
-  announcements:
+  alert: 提醒
+  all: 全部
+  all_comments: 所有评论
+  all_flags_must_be_resolved: 所有标记必须解决
+  all_life: 一生
+  all_names: 所有名字
+  all_observations: 所有观察
+  all_photos: 所有照片
+  all_places: "所有地点"
+  all_projects: 所有项目
+  all_rank_added_to_the_database:
+    phylum: 所有门已添加到数据库
+    subphylum: 所有亚门已添加到数据库
+    superclass: 所有总纲已添加到数据库
+    class: 所有纲已添加到数据库
+    subclass: 所有亚纲已添加到数据库
+    infraclass: 所有次亚纲已添加到数据库
+    superorder: 所有总目已添加到数据库
+    order: 所有目已添加到数据库
+    suborder: 所有亚目已添加到数据库
+    infraorder: 所有次亚目已添加到数据库
+    superfamily: 所有总科已添加到数据库
+    epifamily: 所有领科已添加到数据库
+    family: 所有科已添加到数据库
+    subfamily: 所有亚科已添加到数据库
+    supertribe: 所有总族已添加到数据库
+    tribe: 所有族已添加到数据库
+    subtribe: 所有亚族已添加到数据库
+    genus: 所有属已添加到数据库
+    genushybrid: 所有杂种属已添加到数据库
+    subgenus: 所有亚属已添加到数据库
+    section: 所有节已添加到数据库
+    subsection: 所有亚组已添加到数据库
+    complex: 所有相关单位已添加到数据库
+    species: 所有物种已添加到数据库
+    hybrid: 所有杂种体已添加到数据库
+    subspecies: 所有亚种属已添加到数据库
+    variety: 所有变种属已添加到数据库
+    form: 所有型已添加到数据库
+  all_rights_reserved: 保留所有权利
+  all_taxa:
+    amphibians: 两栖动物
+    animals: 动物
+    arachnids: 蛛形类
+    birds: 鸟类
+    chromista: 假菌
+    fungi: 真菌
+    fungi_including_lichens: 真菌（包括地衣）
+    insects: 昆虫
+    mammals: 哺乳动物
+    mollusks: 软体动物
+    other_animals: 其他动物
+    plants: 植物
+    protozoans: 原生动物
+    ray_finned_fishes: 条鳍鱼类
+    reptiles: 爬行动物
+    life: 生命
+    x_plantae:
+      other: "%{count} 种植物"
+    x_animalia:
+      other: "%{count} 种动物"
+    x_mollusca:
+      other: "%{count} 种软体动物"
+    x_amphibia:
+      other: "%{count} 种两栖动物"
+    x_mammalia:
+      other: "%{count} 种哺乳动物"
+    x_actinopterygii:
+      other: "%{count} 种辐鳍鱼"
+    x_reptilia:
+      other: "%{count} 种爬行动物"
+    x_aves:
+      other: "%{count} 种鸟类"
+    x_insecta:
+      other: "%{count} 种昆虫"
+    x_arachnida:
+      other: "%{count} 种蛛形纲动物"
+    x_fungi:
+      other: "%{count} 种真菌"
+    x_chromista:
+      other: "%{count} 种原藻"
+    x_protozoa:
+      other: "%{count} 种原生动物"
+    x_other_animals:
+      other: "%{count} 种其他动物"
+  all_taxa_: 所有分类群
+  all_taxa_in_this_guide: 该指引中所有分类
+  all_taxonomic_groups: "&laquo; 所有分类组"
+  all_updates: 所有更新
+  allow_curator_access: 允许馆长访问
+  allow_project_curators_to_view_your_private_coordinates: 允许项目馆长查看您的私人坐标信息
+  allowed_establish_means_values: 被允许的建立手段值
+  allowed_html: 允许的HTML
+  allowed_occurrence_status_values: 被允许的发生状态值
+  allowed_values: 允许的值
+  almost_there_: 即将完成...
+  alphabetical: 按字母排序
+  alphabetical_order: 按字母顺序
+  already_have_an_account_log_in_html: 已有账户? <strong>请登录。</strong>
+  amphibians: 两栖动物
+  analyze_ids: 过往记录分析
+  ancestor_taxon: 祖先分类
+  and: 和
+  and_other_taxa: "&amp; 其他分类"
+  android: 安卓
+  animals: 动物
+  annotation: 注解
+  annotations: 注释
+  announcement_was_successfully_created: 已成功创建公告。
+  announcement_was_successfully_updated: 公告已成功更新。
+  announcements: 公告
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any:
+  any: 任何
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_:
+  any_: 任何
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute:
+  any_annotation_attribute: 任何
   #Label for an option to show content with any annotation value
-  any_annotation_value:
+  any_annotation_value: 任何
   #Label for an option to show content from any date
-  any_date:
+  any_date: 任何
   #Label for an option to show content with any establishment means
-  any_establishment:
+  any_establishment: 任意
   #Label for an option to show content with any license
-  any_license:
+  any_license: 任意授权
   #Label for an option to show content with photos, sounds, or neither
-  any_media:
+  any_media: 任何
   #Label for an option to show content from any project
-  any_project:
+  any_project: 任何
   #Label for an option to show content with any quality grade
-  any_quality_grade:
+  any_quality_grade: 任意
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed:
+  any_reviewed: 任意
   #Label for an option to show/include content by any user
-  any_user:
-  anyone:
-  app_owner_application_explanation_required: |
-
+  any_user: 任意
+  anyone: 任何人
   app_owner_application_about_p1a_html: |
-
+    iNaturalist应用软件允许经过授权的API使用。这允许您通过调用API来完成物种观察或者物种识认记录的创建。通常情况下，用户可以在移动端或者电脑端的应用创建iNaturalist观察记录。记录中的内容必须在真人的参与或者监管下生成。更多细节请阅读我们的<a href="/pages/community+guidelines"
+    target="_blank">社区指导手册</a>禁止机器生成的物种观察记录、物种识认记录和评论。
   app_owner_application_about_p2_html: |
-
+    自2022年，希望使用API客户端的用户需要通过我们的人工审批。为了创建第三方应用程序，您必须首先提交一份申请，以成为 "应用程序所有者"。这份申请应包含该应用程序的功能，以及您计划如何使用它。在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次<a href="/pages/help#identification"
+    target="_blank">改进鉴定（Improving identifications）</a>。我们可能会对您的计划提出后续问题，并保留以任何理由拒绝申请的权利。
   app_owner_application_inelligible: |
-
-  app_owner_application_fields_explanation_html:
-  app_owner_application_success:
+    在提交申请前，您的账户注册时间需至少已有2个月，并在过去的一个月里完成了10次改进鉴定（Improving identifications）。
+  app_owner_application_fields_explanation_html: 描述您的应用将具有的功能以及您计划如何使用它。
+  app_owner_application_success: 应用程序所有者的申请已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  application:
+  application: 应用程序
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  applications:
-  apply_app_owner:
+  applications: 应用程序
+  apply_app_owner: 申请
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator:
-  apply_to_be_an_app_owner:
-  apply_to_create_applications_title:
-  apply_to_selected:
-  apply_captive_cultivated: ""
-  apply_fields:
-  apply_geoprivacy:
-  apply_darr: ""
-  apply_establishment_means_to_descendant_places: ""
-  apply_these_settings_to_all:
-  appropriate?:
-  arachnids:
-  archives:
-  are_you_really_sure_want_delete_this_user:
-  are_you_sure?:
-  are_you_sure_no_undo:
-  are_you_sure_delete_conservation_status: |
-
-  are_you_sure_delete_post:
-  are_you_sure_delete_taxon_move_associates: ""
-  are_you_sure_delete_this_place:
-  are_you_sure_leave_this_project:
-  are_you_sure_merge_these_places:
-  are_you_sure_remove_photo: ""
-  are_you_sure_remove_relationship:
-  are_you_sure_remove_taxon_from_list: ""
+  apply_curator: 申请
+  apply_to_be_an_app_owner: 申请成为应用程序所有者
+  apply_to_create_applications_title: 申请创建应用
+  apply_to_selected: 申请选择
+  apply_captive_cultivated: "应用俘虏 / 耕作"
+  apply_fields: 申请字段
+  apply_geoprivacy: 应用位置隐私
+  apply_darr: "申请 &darr;"
+  apply_establishment_means_to_descendant_places: "将建立手段应用于后裔的地点"
+  apply_these_settings_to_all: 将这些设置应用于下面所有的观察记录
+  appropriate?: 适当么？
+  arachnids: 蛛形纲
+  archives: 档案
+  are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
+  are_you_sure?: 您确定么？
+  are_you_sure_no_undo: 您确定么？这不能恢复。
+  are_you_sure_delete_post: 您确定要删除此帖子么？
+  are_you_sure_delete_taxon_move_associates: "您确定您要删除%{taxonname}（%{taxonid}），并移除所有它的关联项吗？"
+  are_you_sure_delete_this_place: 您确定要删除此地点么？
+  are_you_sure_leave_this_project: 您确定要离开这个项目么？
+  are_you_sure_merge_these_places: 您确定要合并这些地点么？它不能被撤销。
+  are_you_sure_remove_photo: "您确定要移除这张照片么？"
+  are_you_sure_remove_relationship: 您确定要解除此关系吗？ 这将取消关注此人并撤销对您隐藏坐标的访问。
+  are_you_sure_remove_taxon_from_list: "您确定要从列表中移除这个分类单元吗？"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-
+    您确定么？这将重新加载页面，您可能会丢失您的一些更改。
   are_you_sure_unresolve_flag?: |
-
-  are_you_sure_want_delete_taxon: ""
+    你确定要将这个旗标问题标志为未解决吗？这将会把目前的解决方案以及解决此事的用户从旗标问题中移除出去。
+  are_you_sure_want_delete_taxon: "您确定要删除这个分类单元吗？"
   are_you_sure_want_delete_taxon_descendant_taxa: |
-
+    您确定要删除这个有派生分类的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-
+    您确定要删除这个有派生分类和鉴定的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-
+    您确定要删除这个有派生分类，鉴定，和观察的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-
+    您确定要删除这个有派生分类和已列出分类群的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-
+    您确定要删除这个有派生分类，已列出分类群，和鉴定的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-
+    您确定要删除这个有派生分类，鉴定，已列出分类群，和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-
+    您确定要删除这个有派生分类，已列出分类群，和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-
+    您确定要删除这个有派生分类和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_identifications: |
-
+    您确定要删除这个有鉴定的分类群吗？
   are_you_sure_want_delete_taxon_identifications_observations: |
-
+    您确定要删除这个有鉴定和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_listed_taxa: |
-
+    您确定要删除这个有已列出分类群的分类群吗？
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-
+    您确定要删除这个有已列出分类群和鉴定的分类群吗？
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-
+    您确定要删除这个有已列出分类群，鉴定，和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-
+    您确定要删除这个有已列出分类群和观察记录的分类群吗？
   are_you_sure_want_delete_taxon_observations: |
-
-  are_you_sure_want_delete_taxon_link:
-  are_you_sure_want_delete_this_name:
-  are_you_sure_want_delete_this_range:
-  are_you_sure_you_want_to_commit_this_change:
-  are_you_sure_you_want_to_delete_this:
-  are_you_sure_you_want_to_delete_this_assessment?:
-  are_you_sure_you_want_to_delete_this_photo?:
-  are_you_sure_you_want_to_delete_this_post:
-  are_you_sure_you_want_to_delete_this_taxon_change:
-  are_you_sure_you_want_to_remove_all_tags:
-  are_you_sure_you_want_to_remove_curator:
-  are_you_sure_you_want_to_remove_from_project:
-  are_you_sure_you_want_to_remove_manager:
+    您确定要删除这个有观察记录的分类群吗？
+  are_you_sure_want_delete_taxon_link: 您确定要删除此分类链接么？
+  are_you_sure_want_delete_this_name: 您确定要删除此名称吗？
+  are_you_sure_want_delete_this_range: 您确定要删除此范围吗？
+  are_you_sure_you_want_to_commit_this_change: 您确定要进行这个改动吗？此操作不能撤销。
+  are_you_sure_you_want_to_delete_this: 您确信您要删除这个么？
+  are_you_sure_you_want_to_delete_this_assessment?: 您确定您想要删除此评估吗？
+  are_you_sure_you_want_to_delete_this_photo?: 您确定要删除这张照片么？
+  are_you_sure_you_want_to_delete_this_post: 您确定要删除此投稿么？
+  are_you_sure_you_want_to_delete_this_taxon_change: 您确定要删除此分类单元更改么？
+  are_you_sure_you_want_to_remove_all_tags: 您确定您要移除所有标签么？
+  are_you_sure_you_want_to_remove_curator: 您确定要移除 %{user} 的管理员身份吗？
+  are_you_sure_you_want_to_remove_from_project: 您确定要从此项目中移除 %{user} 吗？
+  are_you_sure_you_want_to_remove_manager: 您确定要移除作为经理的 %{user} 么？
   are_you_sure_you_want_to_remove_spammer: |
-
-  are_you_sure_you_want_to_remove_these_x_taxa?: ""
+    您确定您认为此用户可信吗？
+    如果如此，他们所有垃圾邮件标志将会被去除。
+  are_you_sure_you_want_to_remove_these_x_taxa?: "您确定要移除这 %{x} 个分类群么？"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
-  associated_observations:
-  associated_taxa:
-  attention:
-  you_sure_delete_list:
-  you_sure_delete_taxon_from_list?: ""
-  asc:
-  ascending:
-  assessment:
-  assessment_has_benn_completed:
-  assessment_sections:
-  assessment_was_deleted:
-  assessment_was_successfully_created:
-  assessment_was_successfully_updated:
-  assessment_x: ""
-  assessments:
-  associations:
-  atlased:
-  atlas_for_taxon_html:
+    您确定要从%{project}中移除这条观察记录吗？
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "您确定要从%{place}的名录中移除这个分类单元吗？"
+  associated_observations: 相关观察
+  associated_taxa: 相关分类群
+  attention: 关注
+  you_sure_delete_list: 您确定要删除此列表吗？
+  you_sure_delete_taxon_from_list?: "您确定要从列表中移除%{taxon}吗？"
+  asc: 升
+  ascending: 升序
+  assessment: 评定
+  assessment_has_benn_completed: 评定已完成
+  assessment_sections: 评定区间
+  assessment_was_deleted: 评定已删除。
+  assessment_was_successfully_created: 已成功创建评价。
+  assessment_was_successfully_updated: 评定已成功更新。
+  assessment_x: "%{assessment} 评定"
+  assessments: 评定
+  associations: 关联
+  atlased: 有地图集
+  atlas_for_taxon_html: '%{taxon} 的 地图集'
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom:
-  attached_taxon:
+  atom: 原子
+  attached_taxon: 附加分类单元
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute:
-  attribution:
-  authorize:
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce:
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
-  authorize_with_pkce_desc_html: |
-
-  authorize_permissions_from_provider: ""
-  automatic_short:
-  automatically_add_observations_to_this_project:
-  automatically_update_my_content_for_taxon_changes:
+  attribute: 属性
+  attribution: 署名
+  authority_list:
+    iucn_red_list: IUCN红色名录
+    natureserve: NatureServe
+    cites: 引用
+  authorize: 授权
+  authorize_permissions_from_provider: "来自%{provider}的授权权限"
+  automatic_short: 自动
+  automatically_add_observations_to_this_project: 自动添加观察至此项目
+  automatically_update_my_content_for_taxon_changes: 自动更新我的内容，以为分类单元更改
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg:
-  back:
-  back_to_applications: ""
-  back_to_all_species:
-  back_to_editing_observation:
-  back_to_friends:
-  back_to_flags_html: ""
-  back_to_lists: ""
-  back_to_observation:
-  back_to_observation_fields:
-  back_to_people:
-  back_to_places:
-  back_to_possessive_user_profile: ""
-  back_to_post: ''
-  back_to_projects:
-  back_to_suggestions:
-  back_to_taxon: ""
-  back_to_taxon_changes: ""
-  back_to_taxon_framework_for_x: ""
-  back_to_users_calendar: ""
-  back_to_users_lists: ""
-  back_to_viewing: ""
-  back_to_x: ""
-  back_to_x_assessment: ""
-  back_to_x_history: ""
-  back_to_x_journal: ""
-  back_to_x_blog: ""
-  back_to_your_calendar:
-  back_to_your_dashboard:
-  back_to_your_lists:
-  back_to_your_journal:
-  back_to_your_observations:
-  back_to_your_profile:
-  badges:
+  avg: 平均值
+  back: 返回
+  back_to_all_species: 返回所有物种
+  back_to_editing_observation: 回到编辑观察
+  back_to_friends: 返回到朋友
+  back_to_flags_html: "&laquo; 返回标记"
+  back_to_lists: "回到 %{name} 列表"
+  back_to_observation: 回到观察
+  back_to_observation_fields: 回到观察字段
+  back_to_people: 回到人们
+  back_to_places: 回到地点
+  back_to_possessive_user_profile: "回到 %{possuser} 的详细信息"
+  back_to_post: '&laquo; 回到发布'
+  back_to_projects: 回到项目
+  back_to_suggestions: 返回建议
+  back_to_taxon: "回到 %{defaulttaxon}"
+  back_to_taxon_changes: "回到分类单元更改"
+  back_to_taxon_framework_for_x: "返回 %{taxon_name} 的分类框架"
+  back_to_users_calendar: "返回 %{user}的日历"
+  back_to_users_lists: "返回 %{user} 的列表"
+  back_to_viewing: "回到查看 <i>%{taxon}</i>"
+  back_to_x: "回到 %{noun}"
+  back_to_x_assessment: "回到 %{project} 评价"
+  back_to_x_history: "回到 %{x} 历史"
+  back_to_x_journal: "回到 %{user} 的日记"
+  back_to_x_blog: "返回至 %{x} 的博客"
+  back_to_your_calendar: 返回您的日历
+  back_to_your_dashboard: 返回您的控制面板
+  back_to_your_lists: 回到您的列表
+  back_to_your_journal: 回到您的日记
+  back_to_your_observations: 回到您的观察
+  back_to_your_profile: 回到您的详细信息
+  badges: 徽章
   based_on_the_evidence_can_id_be_improved: |
-
-  batch:
-  batch_edit:
+    基于现有证据, 社区身份证还能被确认或改进吗？
+  batch: 批
+  batch_edit: 批量编辑
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: ""
-  batch_operations:
-  be_the_first_to_fave_this_observation:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_act_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_dont_act_html: |
-
-  become_a_donor_caps:
-  become_a_donor_today_caps:
-  before_importing_photos:
-  bg_color:
-  bio:
-  bio_description:
-  bioblitz:
-  birds:
-  birthday:
-  black:
-  block_removed:
-  blocked_users:
-  blog_widget:
-  blue:
-  blue_butterfly_etc: ""
-  body:
+  batch_edit_taxa_for_x_html: "为 %{x} 批处理编辑分类"
+  batch_operations: 批操作
+  be_the_first_to_fave_this_observation: 成为最先将此观察列为最爱的人！
+  become_a_donor_caps: 成为一个捐助者
+  become_a_donor_today_caps: 现在成为一个捐助者
+  before_importing_photos: 在导入照片前
+  bg_color: 背景颜色
+  bio: 个人简介
+  bio_description: 向其他iNaturalist用户介绍自己！
+  bioblitz: 生物限时寻
+  birds: 鸟
+  birthday: 生日
+  black: 黑色
+  block_removed: 封禁已移除
+  blocked_users: 封禁的用户
+  blog_widget: 博客小部件
+  blue: 蓝色
+  blue_butterfly_etc: "蓝色、蝴蝶等"
+  body: 身体
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
-  bold_label_colon_value_html: ""
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
-  bold_text:
-  breadcrumbs:
+  bold_text: 加粗文本
+  breadcrumbs: 面包屑
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
   #page where the project title and a button to add an observation are usually
   #shown
-  breadcrumbs_description: ""
-  brief_caption:
-  brown:
-  browse:
-  browse_all_projects:
-  browse_all_species:
-  browse_observations:
-  browse_people:
-  browse_projects:
-  browse_species_that_occur_near_this_observation:
-  built_with_site_guides_html: ""
-  bulk_import_of_filename_is_complete: ""
-  by:
-  by_everyone:
-  by_user: ""
-  by_you:
-  calendar:
-  calendars_only_show_x_observations_at_time:
-  callback_url:
-  cancel:
-  cant_edit_or_delete_hidden_content:
-  cant_flag_an_object_that_doesnt_exist:
-  cant_merge_a_taxon_with_itself:
-  captive:
-  captive_cultivated:
-  captive_observations:
-  card:
-  casual:
-  casual_:
-  casual_tooltip_html: ''
-  categories:
-  cc_0_description: ""
-  cc_0_name:
-  cc_attribution_license:
-  cc_by_description: ""
-  cc_by_name:
-  cc_by_nc_description: ""
-  cc_by_nc_name:
-  cc_by_nc_nd_description: ""
-  cc_by_nc_nd_name:
-  cc_by_nc_sa_description: ""
-  cc_by_nc_sa_name:
-  cc_by_nd_description: ""
-  cc_by_nd_name:
-  cc_by_sa_description: ""
-  cc_by_sa_name:
-  cc_used_under_a: ""
-  change_admin:
+  breadcrumbs_description: "这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px"
+  brief_caption: 简要描述
+  brown: 棕色
+  browse: 浏览
+  browse_all_projects: 浏览所有项目
+  browse_all_species: 浏览所有物种
+  browse_observations: 浏览订阅
+  browse_people: 浏览人们
+  browse_projects: 浏览项目
+  browse_species_that_occur_near_this_observation: 浏览这条观察记录附近出现的物种
+  built_with_site_guides_html: "使用指南<a href='%{url}'>%{site_name} 来打造</a>"
+  bulk_import_of_filename_is_complete: "%{filename} 的大量导入完成"
+  by: 由
+  by_everyone: 由任何人
+  by_user: "由 %{user}"
+  by_you: 由您
+  calendar: 日历
+  calendars_only_show_x_observations_at_time: 日历每次只显示%{x}个观察
+  cancel: 取消
+  cant_edit_or_delete_hidden_content: 您不能编辑或删除被站点管理员隐藏的内容
+  cant_flag_an_object_that_doesnt_exist: 无法给不存在的对象进行标注
+  cant_merge_a_taxon_with_itself: 不能将分类单元合并到它本身。
+  captive: 捕获
+  captive_cultivated: 捕获的 / 种植的
+  captive_observations: 圈养生物观察记录
+  card: 卡
+  casual: 非正式的
+  casual_: 非正式的
+  casual_tooltip_html: '“隐藏”观测缺少媒体、位置或日期，或由于其他原因不符合“研究”或“需要ID”质量等级的要求。 <a href="https://www.inaturalist.org/pages/help#quality">了解更多关于质量等级</a>'
+  categories: 分类
+  cc_0_description: "该许可协议会将您的作品发布至公有领域，这样其他人可以复制、修改、发布和执行您的工作，甚至商业目的，所有行为不需要请求许可或向您提供报酬。这是提供的许可协议中最具适应性的。推荐用于大规模传播和授权材料的使用。"
+  cc_0_name: 无版权（CC0）
+  cc_attribution_license: 知识共享署名许可协议
+  cc_by_description: "该许可协议允许其他人发行、修改、转换或以您的作品为基础进行创作，甚至商业目的，只要他们依您的原创进行创作的话。"
+  cc_by_name: 署名
+  cc_by_nc_description: "该许可协议允许其他人修改、转换或以您的作品为基础进行创作，但不能用于商业目的，并且虽然他们的新作品也必须基于您，及非商业性使用，但它们不需要依据相同条款授权他们的衍生作品。"
+  cc_by_nc_name: 署名-非商业性使用
+  cc_by_nc_nd_description: "该许可协议是六种主流许可协议中限制最大的，只允许其他人根据您的协议下载您的作品并与其他人分享，但他们不能以任何方式更改它，或以商业目的使用。"
+  cc_by_nc_nd_name: 署名-非商业性使用-禁止演绎
+  cc_by_nc_sa_description: "该许可协议允许其他人修改、转换或以本作品为基础进行创作，但不能用于商业目的，只要他们依您的作品创作，并使用相同条款授权他们的新作品的话。"
+  cc_by_nc_sa_name: 署名-非商业性使用-相同方式共享
+  cc_by_nd_description: "该许可协议允许再分发，无论是商业目的还是非商业目的，只要它根据您的协议，完整地保持不变的话。"
+  cc_by_nd_name: 署名-禁止演绎
+  cc_by_sa_description: "该许可协议允许其他人修改、转换或以您的作品为基础进行创作，甚至商业目的，只要他们依您的作品创作，并使用相同条款授权他们的新作品的话。所有基于您的新作品将携带相同的许可协议，因此所有衍生作品也将允许商业目的使用。"
+  cc_by_sa_name: 署名-相同方式共享
+  cc_used_under_a: "知识共享，使用"
+  change_admin: 更改管理员
   #Button to change the cover (or banner) image for a project
-  change_cover:
-  change_geoprivacy: ''
-  change_group:
-  change_icon:
-  change_password:
-  change_your_password:
+  change_cover: 更改封面
+  change_descriptions:
+    split: 旧分类单元分成多个新分类单元
+    merge: 若干旧分类单元合并成一个新的分类单元
+    swap: 用输出分类单元替换输入分类单元
+    drop: 分类单元概念完全无效，因历史目的或伙伴兼容性而维护
+    stage: 准备一个待用的学说，并将其发布成为一个修改组的一部分
+  change_geoprivacy: '更改位置隐私'
+  change_group: 更改组
+  change_icon: 更改图标
+  change_password: 更改密码
+  change_types:
+    activated_soon: 刚刚被激活
+    change_types: 更改种类
+    split: 拆分
+    merge: 合并
+    swap: 交换
+    stage: 举行
+    drop: 放弃
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: 拆分自
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: 拆分至
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: 合并至
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: 已合并至
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: 取代自
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: 替代为
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: 替代为
+    dropped: 已放弃
+    staged: 已上演
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon}已拆分至%{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon}将被拆分至%{output_taxa}"
+    input_taxon_was_dropped_html: "%{input_taxon}已抛弃"
+    input_taxon_will_be_dropped_html: "%{input_taxon}将被抛弃"
+    input_taxon_will_be_activated_soon_html: "%{input_taxon}将很快被激活"
+    input_taxon_was_replaced_by_output_taxon_html: "%{input_taxon}已替换为%{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "%{input_taxon}将被替换为%{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "%{input_taxa}已合并至%{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa}将被合并至%{output_taxon}"
+  change_your_password: 更改您的密码
   #Plural noun, as in changes to a taxon record over time
-  changes:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent:
-  changing_the_geoprivacy: ''
-  check_above_for_errors:
-  check_back_soon:
-  check_here_to_autoload_description:
-  check_here_to_autoload_photos:
-  check_list:
-  check_list_description:
-  check_list_for_individual_taxa_that: ''
-  check_list_for_taxon_html: ""
+  changes: 更新历史
+  changing_the_geoprivacy: '更改位置隐私会改变其他人看见您观察位置的方式。'
+  check_above_for_errors: 检查上方错误
+  check_back_soon: 随时回来看看！
+  check_here_to_autoload_description: 点击此处以从维基百科自动加载描述。如果一个分类单元的学名和某个非学术名词或常见的误拼写重名时（例如“Parus”），您或许希望取消勾选这一项。
+  check_here_to_autoload_photos: 点击此处以从Flickr自动加载照片。如果一个分类单元的学名和某个非学术名词或常见的误拼写重名时（例如“Parus”），您或许希望取消勾选这一项。
+  check_list: 监视列表
+  check_list_description: 选择您想在此列表中列入的高阶分类单元，如为鸟类选择“Aves”，为两栖动物选择“Amphibia”。一旦做这样的设置，不再这一分类单元中之下的分类单元便不允许列入列表。例如，如果您创建了一个鸟类列表，那么就不能再向其中添加蛙类。
+  check_list_for_individual_taxa_that: '在此地栖息的某一个分类单元的名录，例如，“%{place}的鸟类”。'
+  check_list_for_taxon_html: "查看 %{taxon} 列表"
   check_lists_must_belong_to_a_place: |
-
-  check_list_place: ""
-  check_list_updated:
-  check_lists_for: ""
-  check_out_the_inat_store:
-  check_out_what_the_observation:
-  check_this_box_if_html: |
-
-  checklist:
-  choose_a_field:
-  choose_a_list_above:
-  choose_a_place:
-  choose_a_taxon:
-  choose_columns:
-  choose_file:
-  choose_files:
-  choose_from_your_lists:
-  choose_photos_for_this_taxon:
-  choose_photos_to_tag_from_photostream:
-  choose_rule:
-  choose_subjects:
-  choose_tags:
-  choose_taxon:
-  choose_what_kind_of_change_youre_creating: ""
-  cid_d_to_genus:
-  citation:
-  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  clashes_occur_for_moves_html: |
-
-  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
-  clashes_occur_for_swaps_html: |
-
-  classification:
-  clear:
-  clear_filters:
-  clear_search:
-  click_the_map: ""
-  close:
-  code:
-  colors:
-  columns:
-  combine:
+    名录必须属于某一个地点。要创建一个新名录，请访问该地点的默认名录，并点击“创建新名录”的链接。
+  check_list_place: "%{place} 监视列表"
+  check_list_updated: 监视列表已更新！
+  check_lists_for: "用于%{place}的其他检查表"
+  check_out_the_inat_store: 去iNaturalist商店看看
+  check_out_what_the_observation: 检查您要鉴定的观察记录外形。
+  checklist: 检查表
+  choose_a_field: 选择字段
+  choose_a_list_above: 在上方选择一个列表。
+  choose_a_place: 选择一个地方
+  choose_a_taxon: 选择一个分类单元（可选）
+  choose_columns: 选择列
+  choose_file: 选择文件
+  choose_files: 选择文件
+  choose_from_your_lists: 从您的列表中选择
+  choose_photos_for_this_taxon: 为这个分类单元选择照片
+  choose_photos_to_tag_from_photostream: 从您的照片流中选择照片并进行标记
+  choose_rule: 选择一条规则
+  choose_subjects: 选择学科
+  choose_tags: 选择标签
+  choose_taxon: 选择一个分类单元
+  choose_what_kind_of_change_youre_creating: "选择您正在创建什么类型的更新。"
+  cid_d_to_genus: CID'd至类
+  citation: 引用
+  classification: 分类
+  clear: 清除
+  clear_filters: 清除筛选
+  clear_search: 清空搜索
+  click_the_map: "<strong>点击地图</strong>以增加一个地点。"
+  close: 关闭
+  code: 代码
+  colors: 颜色
+  columns: 列数
+  combine: 结合
   comma_separated_list_of_tracking_codes: |
-
-  comma_separated_please:
+    以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
+  comma_separated_please: 请以逗号分隔
   #Noun, used to label a comment or a comment field in a form
-  comment:
+  comment: 评论
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_:
-  comment_deleted:
+  comment_: 评论
+  comment_deleted: 评论已删除
   #Notice when a comment has been hidden by moderators
-  comment_hidden:
+  comment_hidden: 内容已隐藏
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden:
-  comments:
-  comments_by_me:
-  comments_have_been_disabled:
-  comments_on_my_observations:
-  commercial_solicitation:
+  comment_unhidden: 评论已取消隐藏
+  comments: 评论
+  comments_by_me: 由我做出的评论
+  comments_have_been_disabled: 评论已禁用
+  comments_on_my_observations: 在我的观察上做出的评论
+  commercial_solicitation: 商业征集，链接至任何地方等
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit:
+  commit: 提交
   #Adjective describing a taxon change that has been committed
-  committed:
-  committed_by_user_on_date_html:
+  committed: 已提交
+  committed_by_user_on_date_html: 由 %{user} 在 %{date} 提交
   #Label for date the taxon change was committed
-  committed_on:
-  committed_taxon_changes_cannot_be_deleted:
+  committed_on: 提交于%{date}
+  committed_taxon_changes_cannot_be_deleted: 已提交的分类单元更改无法删除
   #Status message while a taxon change is being committed
-  committing:
-  #disagreements are identifications that disagree with previous identifications on the same observation
-  #committing refers to committing a taxon swap
-  committing_this_swap_may_result:
-  common_name:
-  community:
-  community_curated:
-  community_guidelines:
-  community_id_heading:
-  community_id_at_species_or_lower?:
-  community_id_at_species_level_or_lower:
-  community_id_is_precise:
-  community_moderation_settings:
-  community_supported_id:
-  compare:
-  compare_with:
-  comparing:
-  comparing_list_to_list: ""
-  comparing_versions_x_and_y: ""
-  compiled_by_name: ""
+  committing: 提交中……
+  common_name: 常用名
+  community: 社区
+  community_curated: 社区策划
+  community_guidelines: 社群指引
+  community_id_heading: 社群ID
+  community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
+  community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
+  community_id_is_precise: 社区分类单元是精确的
+  community_moderation_settings: 社群管制设置
+  community_supported_id: 社区支持的ID么？
+  compare: 比较
+  compare_with: 比较
+  comparing: 比较
+  comparing_list_to_list: "比较 %{list1} 与 %{list2}"
+  comparing_versions_x_and_y: "比较版本 %{x} 和 %{y}"
+  compiled_by_name: "由 %{name} 编译"
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete:
-  complete_set_for_taxon_in_place_html: ""
-  completed:
-  completed_at:
+  complete: 完成
+  complete_set_for_taxon_in_place_html: "在%{place} %{taxon}的完整名录集"
+  completed: 已完成
+  completed_at: 完成于
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?:
+  comprehensive?: 综合分析？
   comprehensive_check_list_for_taxon_html: |
-
-  comprehensive_list:
+    <span class="comprehensive_notice" data-tip="%{tip}">完整的</span> %{taxon} 名录
+  comprehensive_list: 综合分析列表
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model:
+  computer_vision_model: 计算机视觉模型
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included:
-  computer_vision_model_included_desc: |
-
+  computer_vision_model_included: 包含
   #Status of a taxon that the Computer Vision Model cannot yet recognize
-  computer_vision_model_pending:
-  computer_vision_model_pending_desc: |
-
-  concept_status:
-  confidential:
-  configure:
-  configure_a_widget_to_show:
-  confirm:
-  confirm_membership:
-  confirm_new_password:
-  confirm_now:
-  confirm_your_info:
-  confirming_ids:
-  confirming_ids_description:
+  computer_vision_model_pending: 待确认
+  concept_status: 概念状态
+  configure: 配置
+  configure_a_widget_to_show: 配置小部件以在您的网站或博客显示 %{site_name} 观察。您可能必须在您的HTML的<code>&lt;head&gt;</code>中包含嵌入式CSS。请随意重写CSS。
+  confirm: 确认
+  confirm_membership: 确认会员
+  confirm_new_password: 确认新密码
+  confirm_now: 现在确认
+  confirm_your_info: 确认您的信息
+  confirming_ids: 鉴定确认
+  confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
-  connect:
-  connect_to_provider: ""
+  connect: 绑定
+  connect_to_provider: "连接至 %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts:
-  connected_accounts_description:
-  connected_accounts_titlecase:
-  connecting_flickr: ""
-  connect_to_flickr_again_to_authorize_write_permissions:
-  connecting_to_facebook: ""
-  connecting_your_inat_account_to_accounts_other_sites: ""
-  cannot_be_changed_during_a_content_freeze:
-  conservation_status:
-  conservation_status_created:
-  conservation_status_deleted:
-  conservation_status_updated:
+  connected_accounts: 已连接账户
+  connected_accounts_titlecase: 已关联的账号
+  connecting_flickr: "正在连接至Flickr..."
+  connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
+  connecting_to_facebook: "连接至Facebook..."
+  connecting_your_inat_account_to_accounts_other_sites: "连接您的 %{site_name} 账户至其他网站上的账户将允许您使用您来自这些网站上的凭据登录 %{site_name}。"
+  cannot_be_changed_during_a_content_freeze: 内容锁定期间无法被更改
+  conservation_status: 保护状态
+  conservation_status_descriptions:
+    status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
+    description: 简单描述为什么列出这个。
+    place: 此状态受限制的地点。
+    url: 描述此状态的页面的URL。
   conservation_status_geoprivacy_desc: |
-
-  contact_support:
-  contain_all_descendants?:
+    默认的地理敏感信息应用到该地址的所有观察到的分类上
+  contact_support: 联系客服支持
+  contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
-  content:
-  content_and_display:
-  content_author:
-  content_hidden:
+  content: 内容
+  content_and_display: 内容和显示
+  content_author: 内容作者
+  content_hidden: 内容已被隐藏
   content_hidden_by_user_on_date_because_reason_html: |
-
-  content_type:
+    內容由 %{user} 于 %{date} 隐藏，原因："%{reason}"
+  content_type: 内容类型
   user_hid_this_item_because_reason_html: |
-
+    %{user} 隐藏此 %{item} ，因为"%{reason}"
   user_unhid_this_item_because_reason_html: |
-
-  continue:
-  continue_to_site:
-  contributor_cannot_be_found:
-  contributors_to_project: ""
-  controls:
-  convert:
-  coordinate_systems:
-  coordinates:
+    %{user} 取消隐藏此 %{item}， 因为"%{reason}"
+  continue: 继续
+  continue_to_site: 继续 %{site_name}
+  contributor_cannot_be_found: 找不到贡献者
+  contributors_to_project: "贡献至 %{project}"
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: 任意
+    sex: 性别
+    male: 雄性
+    female: 雌性
+    plant_phenology: 植物物候学
+    budding: 发芽
+    flower_budding: 花芽
+    flowering: 开花
+    fruiting: 果实
+    life_stage: 生命阶段
+    adult: 成体
+    teneral: 幼体
+    subimago: 亚成虫
+    pupa: 蛹
+    no_evidence_of_flowering: 没有开花迹象
+    nymph: 若虫
+    larva: 幼虫/幼体
+    egg: 卵
+    juvenile: 亚成体
+    alive_or_dead: 活体或死亡
+    alive: 活体
+    dead: 死亡
+    cannot_be_determined: 无法判断
+    evidence_of_presence: 出现记录的证据
+    #As in the feather on a bird
+    feather: 羽毛
+    #Abnormal growth
+    gall: 虫瘿
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: 生物
+    #Fecal matter, not regurgitated matter
+    scat: 排泄物
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: 足迹
+    #Endoskeletal remains, like a deer bone
+    bone: 骨骼
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: 蜕皮
+  controlled_term_definitions:
+    alive: 生物还活着，并且没有死亡的征兆
+    dead: 生物已经死亡或有死亡征兆
+    flower_budding: 花苞可见但未绽放
+    flowering: 花朵可见，已绽放，并且仍然连接在植株上
+    fruiting: 果实可见并仍连接在植株上
+    no_evidence_of_flowering: 媒体没有显示出繁殖结构
+    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
+    cannot_be_determined: 无法根据已提供的证据确认。
+    feather: 一根或多根不附于生物身上的羽毛
+    organism: 整个或部分生物体
+    scat: 排泄物（非鸮类食丸或其它呕吐物）
+    track: 由生物在地面或雪地上留下的印痕
+    molt: 蜕下的皮或外骨骼
+    gall: 植物因受病原刺激或虫害而出现的局部增生
+  controls: 控制
+  convert: 转换
+  coordinate_systems: 坐标系
+  coordinates: 坐标
   #A filter option that only shows observations for which the viewer has
   #permission to see the "true" or "hidden" coordinates for observations in a
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
-  coords_viewable_for_proj_label:
-  coords_viewable_for_proj_desc: |
-
-  copy:
-  copy_and_paste_the_following_code_to:
-  copy_and_paste_this_into_your_own_html:
-  copy_guide_taxon_to:
-  copyright_holder:
-  copyright_info:
-  copyright_info_and_more:
-  copyright_infringement:
-  copyright_infringement_desc:
-  covered_by_a_taxon_framework_html: ""
-  covered_by_a_taxon_framework_link: ""
-  couldnt_change_your_password: ""
-  couldnt_find_a_user_matching_x_param: ""
-  couldnt_find_that_taxon:
-  create:
-  create_a_guide:
-  create_a_new_field:
-  create_a_new_place:
-  create_a_new_taxon:
-  create_a_query:
-  create_an_account:
-  create_an_atlas:
-  create_export:
-  create_new_taxon:
-  create_observations:
-  created:
-  created_by:
-  created_by_user_on_date:
-  created_on:
-  creating_your_account: ""
-  creative_commons_flickr_tagged:
-  creative_commons_unless_otherwise_noted: ""
-  critically_endangered:
-  css_description:
-  csv:
-  csv_file:
-  csv_should_not_contain_a_header_row:
-  cumulative_ids: ""
-  curate_observations:
-  curate_taxa:
-  curate_user:
-  curating:
-  curation:
-  curator:
-  #A paragraph summarizing what curators are
-  curator_application_about_site_curators_desc_html: |
-
+  coords_viewable_for_proj_label: 仅适用于 w/ 完整坐标
+  copy: 复制
+  copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
+  copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
+  copy_guide_taxon_to: 把指南的分类单元复制到……
+  copyright:
+    some_rights_reserved: 保留部分权利
+    some_rights_reserved_by: "(c) %{name}，保留部分权利（%{license_short}）"
+    all_rights_reserved: "版权所有 (c) %{name}，保留所有权利"
+    no_known_copyright_restrictions: "%{name}，没有已知的版权限制（%{license_name}）"
+    no_known_copyright_restrictions_text: "没有已知的版权限制"
+    no_rights_reserved: 不保留任何权利
+    no_rights_reserved_by: "%{name}，不保留任何权利（%{license_name}）"
+    anonymous: 匿名
+    public_domain: 公有领域
+    copyright: 版权
+    no_copyright: 无版权（CC0）
+    attribution_noncommercial_sharealike_license: 署名-非商业性使用-相同方式共享许可协议
+    attribution_noncommercial_license: 署名-非商业性使用许可协议
+    attribution_noncommercial_noderivs_license: 署名-非商业性使用-禁止演绎许可协议
+    attribution_license: 署名许可协议
+    attribution_sharealike_license: 署名-相同方式共享许可协议
+    attribution_noderivs_license: 署名-禁止演绎许可协议
+    gnu_free_documentation_license: GNU自由文档协议
+  copyright_holder: 版权所有人
+  copyright_info: 版权信息
+  copyright_info_and_more: 版权信息及更多
+  copyright_infringement: 侵犯版权
+  copyright_infringement_desc: 违反版权法，或者由观察者以外的人创作并且缺乏归属
+  covered_by_a_taxon_framework_html: "由%{link}涵盖"
+  covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name}的物种分类框架"
+  couldnt_change_your_password: "无法更改您的密码：%{e}"
+  couldnt_find_a_user_matching_x_param: "找不到符合%{id}的用户"
+  couldnt_find_that_taxon: 找不到这个分类单元。
+  create: 创建
+  create_a_guide: 创建指导
+  create_a_new_field: 创建一个新字段
+  create_a_new_place: 创建一个新地点
+  create_a_new_taxon: 创建一个新分类单元
+  create_a_query: 创建查询
+  create_an_account: 创建一个账户
+  create_an_atlas: 创建地图集
+  create_export: 创建导出
+  create_new_taxon: 创建一个新分类单元
+  create_observations: 创建观察
+  created: 已创建
+  created_by: 创建由
+  created_by_user_on_date: 由%{user}于%{date}创建
+  created_on: 创建于
+  creating_your_account: "创建您的账户……"
+  creative_commons_flickr_tagged: 知识共享Flickr照片已标记
+  creative_commons_unless_otherwise_noted: "知识共享，除非另有声明。"
+  critically_endangered: 极度濒危
+  css_description: 这将在页面的所有其他CSS都包含后才包含。
+  csv: CSV
+  csv_file: CSV文件
+  csv_should_not_contain_a_header_row: CSV不应该包含标题行
+  cumulative_ids: "累计ID：%{count}个，共%{total}个"
+  curate_observations: 助理观察
+  curate_taxa: 助理分类群
+  curate_user: 策展用户
+  curating: 助理
+  curation: 管理
+  curator: 管理员
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-
+    您需要解释为什么要成为管理员
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html:
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-
+  curator_application_fields_explanation_html: 为什么你想成为管理员？
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-
+    如果你想要编辑常用名，请为你想更改的内容提供一两个例子
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-
+    如果您想要在iNaturalist上规范他人的行为， 请提供一两个违反社区准则的例子以及您在这些
+    种情况下会做些什么。
   #Header
   curator_application_how_curators_lose_their_powers: |
-
+    什么会导致管理员失去管理权力
   curator_application_how_curators_lose_their_powers_desc: |
-
+    iNat 管理员可能被取消管理权如果他们经常：
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
-
-  #Description of one way a curator may lose their curator status; part of list
-  #of things, so you might imagine it is preceded with "iNat staff may remove
-  #curatorial powers if a curator repeatedly..."
-  curator_application_how_curators_bad_behavior: |
-
+    无视管理指南中的原则。
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible: |
-
-  curator_application_inelligible_error: |
-
+    您需要拥有一个建立60天以上并且提供过超过100个鉴定的账号（包括自己的观察，目前您已添加了%{num_idents}）来申请管理员。如果您的账号两项都符合，可以回到本页面提交申请。
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success:
+  curator_application_success: 管理员申请已提交
   #Header
-  curator_application_what_curators_can_do:
-  #Description of a curator's ability to edit the taxonomy; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html:
+  curator_application_what_curators_can_do: 管理员可以做什么
   curator_application_what_curators_can_do_hide_comments_html: |
-
+    对违反了 <a
+    href="/pages/community+guidelines" target="_blank">社区
+    指南</a> 的用户隐藏评论并暂时停权
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_resolve_flags_html: |
-
-  #Description of a curator's ability to edit wiki pages; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_wiki_html: |
-
-  #Description of a curator's ability to edit places; part of a list of
-  #things curators can do, so you might imagine it is preceded with "Curators
-  #can..."
-  curator_application_what_curators_can_do_edit_places_html: |
-
+    解决在此分类群的 <a href="/flags" target="_blank">标记</a>和用户内容。
   #Header
-  curator_application_what_curators_cannot_do:
-  #Description of the fact that a curator cannot change certain attributes of
-  #observations any more than anyone else can; part of a list of things
-  #curators can do, so you might imagine it is preceded with "Curators
-  #cannot..."
-  curator_application_what_curators_cannot_do_change_observations_html: |
-
-  #Description of the fact that a curator cannot commit taxon changes for
-  #complete taxa; part of a list of things curators can do, so you might
-  #imagine it is preceded with "Curators cannot..."
-  curator_application_what_curators_cannot_do_commit_complete_html: |
-
+  curator_application_what_curators_cannot_do: 管理员不能做什么
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
-
+    删除其他用户制作的内容。
   #Description of the fact that a curator cannot read other peoples' messages;
   #part of a list of things curators can do, so you might imagine it is
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
-
+    直接读取其他人发送的消息。
   #Title of a page where people apply to become a curator
-  curator_application_title:
+  curator_application_title: 申请管理员
   #Header followed by a list
   curator_application_you_should_apply_if: |
-
+    当符合以下条件，您将有资格申请成为管理员：
   curator_application_you_should_apply_if_you_are_a_regular_user: |
-
-  #A requirement for becoming a curator; part of a list, so you might imagine
-  #it is preceded with "You should apply to be a curator if..."
-  curator_application_you_should_apply_if_committed: |
-
-  #A requirement for becoming a curator; part of a list, so you might imagine
-  #it is preceded with "You should apply to be a curator if..."
-  curator_application_you_should_apply_if_you_can_behave: |
-
-  curators_changed_for_x_html: ""
-  curators:
-  curators_can_remove_observations_from:
-  curator_identification:
-  current_flags:
-  #Label for a custom boundary for an observation search
-  custom_boundary:
-  custom_project_fields:
-  custom_project_was_successfully_created:
-  custom_project_was_successfully_updated:
-  customize_location:
-  darr_apply_darr: ""
-  daily_users:
-  danger_zone:
-  dashboard:
-  data_deficient:
-  data_quality:
-  data_quality_assessment:
-  data_used: ""
-  datatype:
-  date_:
-  date_added:
-  date_authorized:
-  date_created:
-  date_is_accurate:
-  date_joined:
-  date_obscured_notice:
-  date_observed:
-  date_observed_:
-  date_observed_on:
-  date_range:
-  date_specified:
-  date_time:
+    您已经持续数月添加鉴定和（或）观察记录并将继续这么做。
+  curators_changed_for_x_html: "为%{x}工作的馆长已更改"
+  curators: 馆长
+  curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
+  curator_identification: 馆长鉴定
+  current_flags: 当前标记
+  custom_project_fields: 自定义项目字段
+  custom_project_was_successfully_created: 已成功创建定制项目。
+  custom_project_was_successfully_updated: 已成功更新自定义项目。
+  customize_location: 自定义位置
+  darr_apply_darr: "&darr; 申请 &darr;"
+  daily_users: 日常用户
+  danger_zone: 危险操作区
+  dashboard: 仪表板
+  data_deficient: 数据有缺陷
+  data_quality: 数据质量
+  data_quality_assessment: 数据质量评价
+  data_used: "使用资料："
+  datatype: 数据类型
+  date_: 日期
+  date_added: 日期已加入
+  date_authorized: 授权日期
+  date_created: 创建日期
+  date_format:
+    date_long:
+      january: '%{year} 1月 %{day}'
+      february: '%{year} 二月 %{day}'
+      march: '%{year} 三月 %{day}'
+      april: '%{year} 四月 %{day}'
+      may: '%{year} 五月 %{day}'
+      june: '%{year} 六月 %{day}'
+      july: '%{year} 七月 %{day}'
+      august: '%{year} 八月 %{day}'
+      september: '%{year} 九月 %{day}'
+      october: '%{year} 十月 %{day}'
+      november: '%{year} 十一月 %{day}'
+      december: '%{year} 十二月 %{day}'
+    month:
+      january: 一月
+      february: 二月
+      march: 三月
+      april: 四月
+      may: 五月
+      june: 六月
+      july: 七月
+      august: 八月
+      september: 九月
+      october: 十月
+      november: 十一月
+      december: 十二月
+  date_is_accurate: 日期是精确的
+  date_joined: 加入日期
+  date_obscured_notice: 为保护特定用户或生物的隐私，日期已被隐藏
+  date_observed: 观察日期
+  date_observed_: 观察日期
+  date_observed_on: 数据观察于
+  date_picker:
+    closeText: 关闭
+    currentText: 今天
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: 上一个
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: 下一个
+    range: 范围
+  date_range: 数据范围
+  date_specified: 已指定日期
+  date_time: 日期/时间
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
-  date_to_date: ""
-  date_updated:
-  day:
-  decrease_brightness:
+  date_to_date: "%{d1} - %{d2}"
+  date_updated: 更新日期
+  day: 日
+  decrease_brightness: 降低亮度
   #Default option
-  default:
+  default: 默认
   #Default option
-  default_:
-  default_display_time_zone:
-  default_invite_comment: ""
-  default_observation_license:
-  default_photo_license:
-  default_search_place:
+  default_: 默认设置
+  default_invite_comment: "好照片！您应该将其发布至%{site_name}：{{INVITE_LINK}}"
+  default_observation_license: 默认观察协议
+  default_photo_license: 默认照片协议
+  default_search_place: 默认搜索地点
   default_search_place_description: |
-
-  default_sound_license:
-  default_time_zone_desc: |
-
-  defaults_to_your_name_or_username:
-  defines_a_taxon_framework_for:
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
-  definitions:
-  delete:
-  delete_all:
-  delete_conversation:
+    这会是您在探索和鉴定中的默认搜索地点。
+  default_sound_license: 默认声音协议
+  defaults_to_your_name_or_username: 默认为您的名字或用户名
+  defines_a_taxon_framework_for: 定义用于%{taxon_name}的物种分类框架
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: 根据来源 %{source} 来定义 %{taxon} 的分类群框架
+  definitions: 定义
+  delete: 删除
+  delete_all: 删除所有
+  delete_conversation: 删除会话
   #Button to delete the cover (or banner) image for a project
-  delete_cover?:
-  delete_icon?:
-  delete_photo:
-  delete_project:
+  delete_cover?: 删除封面么？
+  delete_icon?: 删除图标？
+  delete_photo: 删除照片
+  delete_project: 删除这个项目
   #Label for a button to delete a taxon range
-  delete_range:
-  delete_selected:
+  delete_range: 删除分布范围
+  delete_selected: 删除所选
   delete_taxon_and_merge_most_data_html: |
-
-  delete_user:
-  delete_your_account:
-  deleted_synonyms:
-  deleted_user:
-  deleted_vote:
-  deleting:
-  deleting_verb:
-  deny:
-  desc:
-  descending:
-  describe_purpose:
-  describe_your_interest_in_nature:
-  description:
-  description_from:
-  description_sections:
-  description_slash_tags:
-  description_tags_more: ""
-  desription:
-  destination:
-  destroy:
-  details:
-  deviation:
-  devise_reset_password_instructions_hello_email:
+    删除<i>%{taxon}</i>，并将其数据合并到另一个分类单元。这个工具是用于<strong>移除重复的分类单元</strong>的。如果您要移除某个同物异名，请创建一个分类交换组。<strong>请谨慎操作！</strong>删除分类单元的后果可能十分严重。请仔细阅读<a href="%{curator_url}">《巡视员工作指南》</a>中的具体内容。
+  delete_user: 删除用户
+  delete_your_account: 删除您的账户
+  deleted_synonyms: 删除异名
+  deleted_user: 删除用户
+  deleted_vote: 已删除投票
+  deleting: 删除中……
+  deleting_verb: 删除中
+  deny: 拒绝
+  desc: 描述
+  descending: 降序
+  describe_purpose: 描述此项目的目的。
+  describe_your_interest_in_nature: 描述您在自然中的兴趣！
+  description: 描述
+  description_from: 描述自
+  description_sections: 描述章节
+  description_slash_tags: 描述 / 标签
+  description_tags_more: "描述、标签以及更多"
+  desription: 描述
+  destroy: 破坏
+  details: 详情
+  deviation: 偏差
+  devise:
+    failure:
+      already_authenticated: '您已经登录'
+      unauthenticated: '您需要登录或注册才能继续。'
+      invalid: '电子邮箱或密码无效。'
+      invalid_token: '无效的认证安全码'
+      user:
+        suspended: 您的账户已被停用
+    sessions:
+      signed_in: '登录成功。'
+      signed_out: '已成功登出。'
+    passwords:
+      send_instructions: '您将很快收到一封关于如何重设密码的电子邮件说明。'
+      updated: '您已成功修改密码，现在您已成功登录。'
+      updated_not_active: '您已成功修改密码。'
+      send_paranoid_instructions: "如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。"
+      no_token: "您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。"
+    registrations:
+      signed_up: '欢迎！您已注册成功。'
+      updated: '您已成功更新您的帐户。'
+      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
+    mailer:
+      confirmation_instructions:
+        subject: '确认说明'
+      reset_password_instructions:
+        subject: '重设密码的说明'
+  devise_reset_password_instructions_hello_email: 您好 %{email}
   devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-
+    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_if_you_didnt_request_this: |
-
+    如果您没有提出这个请求，请忽略这个电子邮件。
   devise_reset_password_instructions_your_password_wont_change_until: |
-
+    在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
   devise_unlock_instructions_your_account_has_been_locked: |
-
+    因登录失败次数过多，您的帐户已被锁定。
   devise_unlock_instructions_click_the_link: |
-
-  devise_unlock_instructions_unlock:
-  discoveries:
-  did_you_mean: ''
-  did_you_photos_flickr?:
-  disable:
-  disable_comments:
-  disable_comments_desc:
-  disagree_:
+    点击以下链接解锁您的账号
+  devise_unlock_instructions_unlock: 解锁您的帐户
+  discoveries: 发现
+  did_you_mean: '您是不是要找'
+  did_you_photos_flickr?: 您在Flickr上放照片了么？
+  disable: 停用
+  disable_comments: 禁用评论
+  disable_comments_desc: 阻止人们添加新评论
+  disagree_: 不同意
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
-  disconnect:
-  disconnect_caps:
-  disconnect_provider: ""
-  #Label for a button that dismisses an alert or popup
-  dismiss:
-  display:
-  display_link_to_checklist:
-  display_monthly_supporter_badge:
-  display_name:
-  display_name_description:
-  distance_traveled_value: ""
-  distance_traveled: ""
-  documentation_for_developers_html:
-  do_not_show_this_message_again:
+  disconnect: 断开连接
+  disconnect_caps: 断开连接
+  disconnect_provider: "取消连接 %{provider}"
+  display: 界面设置
+  display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
+  display_monthly_supporter_badge: 在个人资料上显示每月支持者徽章
+  display_name: 显示名称
+  display_name_description: 这是将要显示在您的个人资料以及版权归属上的名称
+  distance_traveled_value: "行程距离: %{distance}米"
+  distance_traveled: "行程距离(米)"
+  documentation_for_developers_html: 面向<a href="/pages/developers">开发者</a>的文档
+  do_not_show_this_message_again: 不要再次显示这条消息
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-
-  doesnt_have_default_photo:
-  doh_something_went_wrong:
-  doh_something_went_wrong_error: ""
+    您是线虫研究者吗？您是世界上顶尖的藤壶分类专家吗？您喜欢观察美丽的花朵吗？您可以在您的个人档案中写一些您的个人情况，您在帮助别人进行物种鉴定时，这帮助人们确定您的可信性。
+  doesnt_have_default_photo: 尚无默认的照片。
+  doh_something_went_wrong: 生气啊，发生了一些错误。
+  doh_something_went_wrong_error: "哎呀, 出错了: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate:
-  donate_again_caps:
-  donate_again_today_caps:
-  done:
-  dont_have_an_account_sign_up_html:
-  dont_use_double_quotes:
+  donate: 捐款
+  donate_again_caps: 再次捐款
+  done: 完成
+  dont_have_an_account_sign_up_html: 没有帐户？ <strong>注册</strong>
+  dont_use_double_quotes: 不要在其他地方使用双引号
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it:
-  download:
+  drop_it: 放弃它
+  download: 下载
   download_bulk_import_template_html: |
-
-  download_csv:
-  download_csv_template:
-  download_kml:
-  downstream_coverage_rank:
-  downstream_coverage_colon_rank: ""
-  downstream_deviations:
-  downstream_deviations_for_taxon: ""
-  #Label for a link to taxa that are descendants ("downstream") of the current
-  #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa:
-  draft:
-  draft_:
-  draft_saved:
-  drafts:
-  drag_and_drop_some_photos_or_sounds:
-  #Button label for drawing a circular boundary for an observation search
-  draw_circular_boundary:
-  #Button label for drawing a rectangular boundary for an observation search
-  draw_rectangular_boundary:
-  drawings:
-  duplicate_verb:
-  duration_value: ""
-  each_place_displays_all_species_inat_knows: ""
-  earliest_added:
-  edit:
-  #Title of the moderation note editor
-  edit_moderator_note:
-  edit_a_batch_of_observations:
-  edit_account_settings_and_profile: ""
-  edit_assessment:
-  edit_atlas:
-  edit_atlas_for_taxon_html:
-  edit_body:
-  edit_comment:
-  edit_complete_set_for_taxon_in_place_html: ""
-  edit_conservation_status:
-  edit_custom_project_fields:
-  edit_field:
-  edit_license:
-  edit_multiple_dates:
-  edit_multiple_descriptions:
-  edit_multiple_locations:
-  edit_multiple_species:
-  edit_notes:
-  edit_observations:
-  edit_photos:
-  edit_photos_for_observation_id: ""
-  edit_place:
-  edit_project:
-  edit_remove:
-  edit_selected:
-  edit_source:
-  edit_taxa:
-  edit_taxon:
-  edit_taxon_framework:
-  edit_taxon_link:
-  edit_taxon_range:
-  edit_the_observation:
-  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
-
-  edit_your_account_and_profile_html: ""
-  edit_your_default_settings: ""
-  edit_your_global_project_settings:
-  edit_your_identification:
-  edit_your_settings_for_this_project:
-  edited_by_name_html: ""
+    <a href="%{url}">下载模板</a>用于<a href="/observations/import?project_id=%{project_id}#csv_import">大量上传</a>
+  download_csv: 下载CSV
+  download_csv_template: 下载CSV模板
+  download_kml: 下载KML
+  downstream_coverage_rank: 下游覆盖率等级
+  downstream_deviations: 下游偏差
+  draft: 草稿
+  draft_: 草稿
+  draft_saved: 草稿已保存！
+  drafts: 草稿
+  drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
+  drawings: 绘画
+  duplicate_verb: 复制
+  duration_value: "持续时间：%{duration}分钟"
+  each_place_displays_all_species_inat_knows: "每个地点页面都会显示%{site_name}已知的该地点所有分类单元的相关信息，包括其丰度，保护状态以及谁首先在%{site_name}上从该地点发现了该分类单元的信息。您可以通过分类群，颜色，保护状态等条件来检索分类单元，或通过旧版的普通搜索检索分类单元。"
+  earliest_added: 最早添加
+  edit: 编辑
+  edit_a_batch_of_observations: 批量编辑观察记录
+  edit_account_settings_and_profile: "编辑账户设置和详细信息"
+  edit_assessment: 编辑评估
+  edit_atlas: 编辑地图集
+  edit_atlas_for_taxon_html: 编辑 %{taxon} 的地图集
+  edit_body: 编辑正文
+  edit_comment: 编辑您的评论
+  edit_complete_set_for_taxon_in_place_html: "编辑 %{taxon} 在 %{place} 的完整名录集"
+  edit_custom_project_fields: 编辑自定义项目字段
+  edit_field: 编辑字段
+  edit_license: 编辑许可协议
+  edit_multiple_dates: 编辑多个日期
+  edit_multiple_descriptions: 编辑多个描述
+  edit_multiple_locations: 编辑多个位置
+  edit_multiple_species: 编辑多个物种
+  edit_notes: 编辑注释
+  edit_observations: 编辑观察
+  edit_photos: 编辑照片
+  edit_photos_for_observation_id: "编辑%{obs_id}这一观察记录的照片"
+  edit_place: 编辑地点
+  edit_project: 编辑项目
+  edit_remove: 编辑/移除
+  edit_selected: 编辑选定的
+  edit_source: 编辑来源
+  edit_taxa: 编辑分类群
+  edit_taxon: 编辑分类群
+  edit_taxon_framework: 编辑分类框架
+  edit_taxon_link: 编辑分类单元链接
+  edit_taxon_range: 编辑分类单元范围
+  edit_the_observation: 编辑观察
+  edit_your_account_and_profile_html: "编辑您的帐户和详细信息"
+  edit_your_default_settings: "编辑您的默认设置"
+  edit_your_global_project_settings: 编辑您的全域项目设置
+  edit_your_identification: 编辑您的身份证明
+  edit_your_settings_for_this_project: 编辑您用于此项目的设置
+  edited_by_name_html: "由%{name}编辑"
   edited_by_name_some_rights_reserved_html: |
-
-  editing:
-  editing_announcement:
-  editing_custom_project_fields_for:
-  editing_observation_field:
-  editing_observation_id: ""
-  editing_project:
-  editing_project_asset:
-  editing_subscription_to_x_html: ""
-  editing_taxon:
-  editing_taxon_link:
-  editing_taxon_name_for_taxon_html:
-  editing_taxon_range_for_taxon_html:
-  editing_this:
-  editing_x_in_y: ""
-  editors:
-  either_that_user_doesnt_exist_or: ""
-  eligible_for_research_grade:
-  email:
-  email_description:
-  email_address_for_comments_and_other_feedback:
-  email_copyright: ""
-  email_notifications:
-  embed: ''
-  embed_place_widget:
-  embed_this_assessment:
-  embed_widget_project:
-  enable_offline_access:
-  enable_offline_access_for_mobile:
-  encompassing_places:
-  end:
-  end_date_time:
-  endangered:
-  endemic:
-  endemic_to_x: ""
+    由%{name}编辑，保留部分权利（%{license}）
+  editing: 编辑中
+  editing_announcement: 编辑公告
+  editing_custom_project_fields_for: 编辑自定义项目字段
+  editing_observation_field: 编辑观察记录字段
+  editing_observation_id: "编辑观察记录%{obs_id}"
+  editing_observations:
+    other: '正在编辑 <span class="count">%{count}</span> 份观察：'
+  editing_project: 编辑 %{project}
+  editing_project_asset: 编辑项目集
+  editing_subscription_to_x_html: "编辑对%{x}的订阅"
+  editing_taxon: 编辑 %{taxon}
+  editing_taxon_link: 正在编辑分类链接
+  editing_taxon_name_for_taxon_html: 修改 %{taxon} 的分类群名称「%{name}」
+  editing_this: 正在编辑 %{elem}
+  editing_x_in_y: "正在%{y}编辑%{x}中"
+  editors: 编辑者
+  either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
+  eligible_for_research_grade: 符合研究级资格
+  email: 电子邮件
+  email_description: 您的电子邮件不会显示给其他iNaturalist用户
+  email_address_for_comments_and_other_feedback: 接收评论和其他反馈的email地址
+  email_copyright: "版权所有 &copy; %{x}，保留所有权利"
+  email_notifications: 电子邮件通知
+  embed: '已嵌入'
+  embed_place_widget: 嵌入地点小部件
+  embed_this_assessment: 嵌入此评估
+  embed_widget_project: 在您的网站嵌入到此项目的小部件
+  enable_offline_access: 启用离线访问
+  enable_offline_access_for_mobile: 为移动设备启用离线访问
+  encompassing_places: 包围地点
+  end: 结束
+  end_date_time: 结束日期/时间
+  endangered: 濒危
+  endemic: 地方性
+  endemic_to_x: "%{x}的特有种"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol:
-  eol_collection_url: ""
-  error_updating_photo: ""
-  establishment_means:
+  eol: 生命大百科
+  eol_collection_url: "EOL收藏URL"
+  error_updating_photo: "上传图片时出错：%{photo_errors}"
+  establishment:
+    endemic: 特产
+    establishment: 确立
+    introduced: 引进
+    invasive: 攻击性
+    managed: 管理
+    native: 本地
+    naturalised: 归化
+  establishment_means: 建立手段
   establishment_means_describes_how: |
-
-  estimate_which_input: |
-
-  event_in_progress:
-  event_stats:
-  event_url:
-  events_only:
-  everyone:
-  everyone_:
-  everyone_journal_posts:
-  everywhere:
-  exact:
-  exact_date:
-  exact_rank:
-  except:
-  exclude_places:
-  exclude_projects:
-  exclude_taxa:
-  exclude_users:
-  exclusion_filters:
-  existing_flags:
-  exit_full_screen: ""
-  examples_of_data_use_by_network_members:
-  examples_of_ranking_organizations:
-  explore:
-  export:
-  export_observations:
-  export_with_private_coordinates:
-  exporting: ""
+    确立意思是描述如何在一个地区建立分类单元。
+    参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
+  event_in_progress: 正在进行中的活动
+  event_stats: 活动统计
+  event_url: 活动URL
+  events_only: 仅活动
+  everyone: 任何人
+  everyone_: 大家
+  everyone_journal_posts: 每个人的日志
+  everywhere: 任意地方
+  exact: 准确
+  exact_date: 具体日期
+  exact_rank: 精密排名
+  except: 除外
+  exclude_places: 排除地点
+  exclude_projects: 排除项目
+  exclude_taxa: 排除的分类群
+  exclude_users: 排除用户
+  exclusion_filters: 排除过滤器
+  existing_flags: 现有标记
+  exit_full_screen: "退出全屏"
+  examples_of_ranking_organizations: 排名机构的例子
+  explore: 探索
+  export: 导出
+  export_observations: 导出观察记录
+  export_with_private_coordinates: 带私有坐标导出
+  exporting: "正在导出……"
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
-  external_applications:
-  external_applications_description: |
-
-  external_taxon_including_children:
-  extinct:
-  extinct_in_the_wild:
-  extra_properties:
-  evidence_of_organism:
-  facebook:
-  facebook_account_information:
-  facebook_account_not_linked: ""
-  facebook_access_token_expired: ""
-  facebook_needs_the_owner_of_that_photo_to:
-  facebook_options:
-  facebook_photo_import_disabled_notice: |
-
-  failed_to_find_your_location:
-  failed_to_repair_photo: ""
-  failed_to_save_record: ""
-  failed_to_save_record_with_errors: ""
-  failed_to_unlink_your_account:
-  'false': ''
+  external_applications: 外部应用程序
+  external_taxon_including_children: 外部分类（包含子项）
+  extinct: 灭绝
+  extinct_in_the_wild: 野外灭绝
+  extra_properties: 额外属性
+  evidence_of_organism: 生物证据
+  facebook: 脸书
+  facebook_account_information: 您的Facebook账户信息
+  facebook_account_not_linked: "%{user}不再有一个链接facebook的账户，因此%{site_name}并无权限访问此照片。"
+  facebook_access_token_expired: "访问令牌已过期。%{user}需要重新连接他们的Facebook账户。"
+  facebook_needs_the_owner_of_that_photo_to: Facebook需要照片的主人再次确认至%{site_name_short}的连接。
+  facebook_options: Facebook选项
+  failed_to_find_your_location: 无法找到您的位置。
+  failed_to_repair_photo: "修复照片失败：%{errors}"
+  failed_to_save_record: "保存记录失败。请重试。"
+  failed_to_save_record_with_errors: "保存记录失败： %{errors}"
+  failed_to_unlink_your_account: 取消您的帐户链接失败
+  'false': '否'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves:
-  Family:
-  favorite_taxa:
-  favorites: ""
-  feature_this_project_: ""
-  featured:
+  faves: 喜爱
+  Family: 家庭
+  favorite_taxa: 已收藏的分类单元
+  favorites: "喜爱"
+  feature_this_project_: "突出此项目"
+  featured: 特色
   #Title for a button or section describing the "featured" status of a project
-  featuring:
-  feedback:
+  featuring: 精选
+  feedback: 反馈
   #Plural noun, as in Atom and RSS feeds
-  feeds: ''
-  failed:
+  feeds: '源'
+  failed: 失败
   field_note: |
-
-  fields:
-  fields_:
-  fields_can_only_be_edited_by_the_people_who:
-  fields_merged:
-  file:
-  file_size:
-  file_should_be_in_the_following_format: ""
-  fill_out_project_observation_fields:
-  fill_out_your_profile:
+    <strong>请注意：</strong>如果您要创建一个新字段，请检查是否其他人已经创建过，以避免重复。
+  fields: 字段
+  fields_: 字段
+  fields_can_only_be_edited_by_the_people_who: 字段只能由创建者和站点巡视员编辑
+  fields_merged: 字段已合并
+  file: 文件
+  file_size: 文件大小
+  file_should_be_in_the_following_format: "文件应该为以下格式：分类单元名称、描述"
+  fill_out_project_observation_fields: 填写项目观察领域
+  fill_out_your_profile: 完成您的个人资料
   #The name of a computer file
-  filename:
-  filter:
-  filter_by_curator_identification:
-  filter_by_place:
-  filter_by_taxon:
-  filter_by_place_taxon_and_color:
-  filter_list_by_this_taxon:
-  filtering:
-  filters:
-  find:
-  find_a_guide:
-  find_a_place:
-  find_guides:
-  find_new_place_to_explore:
-  find_observations:
-  find_photos:
-  find_places:
-  find_some_people_to_follow: ""
-  find_species:
-  find_suitable_observations:
-  find_unsuitable_observations:
-  find_your_current_location:
-  finished:
-  finished_with_page:
-  first_confirmed_inat_observation: ""
-  first_connect_your_provider_account_to_your_site: ""
-  first_inat_observation: ""
-  first_observer:
+  filename: 文件名
+  filter: 过滤器
+  filter_by_curator_identification: 按巡视员的鉴定进行筛选
+  filter_by_place: 按地点筛选
+  filter_by_taxon: 按分类单元过滤
+  filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
+  filter_list_by_this_taxon: 按这一分类单元筛选列表
+  filtering: 过滤中
+  filters: 过滤器
+  find: 查找
+  find_a_guide: 查找一个指南
+  find_a_place: 找到一个地点
+  find_guides: 查找指南
+  find_new_place_to_explore: 去探索新的地点！
+  find_observations: 寻找观察
+  find_photos: 查找照片
+  find_places: 找到地点
+  find_some_people_to_follow: "寻找一些人以关注"
+  find_species: 查找物种
+  find_suitable_observations: 找到合适的观察
+  find_unsuitable_observations: 查找不适当的观察
+  find_your_current_location: 找到您当前的位置
+  finished: 已结束
+  finished_with_page: 通过页面结束
+  first_confirmed_inat_observation: "第一条被确认的%{site_name}观察记录"
+  first_connect_your_provider_account_to_your_site: "首先，将您的%{provider}账户连接到%{site_name}："
+  first_inat_observation: "第一个%{site_name}观察"
+  first_observer: 第一个观察者
   #Verb form, as in "Flag this item"
-  flag:
-  flag_as_inappropriate:
-  flag_an_item:
-  flag_as_spammer:
-  flag_as_non_spammer:
+  flag: 标记
+  flag_as_inappropriate: 标记不当内容
+  flag_an_item: 标记一个项目
+  flag_as_spammer: 标记为破坏者
+  flag_as_non_spammer: 标记为非破坏者
   #Label for the date/time when a flag was created
-  flag_created:
-  flag_deleted:
-  flag_description:
-  flag_comment_description:
+  flag_created: 标记已创建
+  flag_description: 标记此内容以让馆长知道它有些东西是错误的。
   flag_for_check_list_title_html: |
-
-  flag_for_comment_id_html:
-  flag_for_comment_id_deleted:
-  flag_for_curation:
+    标记检查列表： %{title}
+  flag_for_comment_id_html: 标记此 <a href="%{url}">评论 %{id}</a>
+  flag_for_comment_id_deleted: 标记评论 %{id} (已删除)
+  flag_for_curation: 标记管理
   flag_for_guide_title_html: |
-
-  flag_for_identification_id_html:
+    标记此指南：%{title}
+  flag_for_identification_id_html: 标记此 <a href="%{url}">鉴定 %{id}</a>
   flag_for_life_list_title_html: |
-
+    标记此生物名录：%{title}
   flag_for_list_title_html: |
-
-  flag_for_message_id_html:
+    标记此名录：%{title}
+  flag_for_message_id_html: 标记此 <a href="%{url}">信息 %{id}</a>
   flag_for_observation_title_html: |
-
-  flag_for_photo_id_html:
-  flag_for_place_title_html: |
-
+    标记此观察记录：%{title}
+  flag_for_photo_id_html: 标记此 <a href="%{url}">照片 %{id}</a>
   flag_for_post_title_html: |
-
+    标记此帖：%{title}
   flag_for_project_title_html: |
-
-  flag_for_guide_section_id_html:
-  flag_for_sound_id_html:
+    标记此项目：%{title}
+  flag_for_guide_section_id_html: 标记此<a href="%{url}">指南段落 %{id}</a>
+  flag_for_sound_id_html: 标记此<a href="%{url}">声音 %{id}</a>
   flag_for_taxon_title_html: |
-
+    标记此分类群：%{title}
   flag_for_user_title_html: |
-
-  flag_it!:
-  flag_marked_as_resolved_html: ''
+    标记此用户：%{title}
+  flag_it!: 标记它！
+  flag_marked_as_resolved_html: '<span class="meta">将其标记为</span><strong>已解决。</strong>'
   #Label for the object that was flagged, e.g. a table header
-  flag_object:
-  flag_reason: ""
-  flag_resolution:
-  flag_saved:
-  flag_saved_thanks_html:
-  flag_this_observation:
-  flag_this_photo:
-  flag_this_place:
-  flag_this_sound:
-  flagged_:
-  flagged_for_curation:
-  flagged_taxon:
-  flagged_thing_explanation: ""
+  flag_object: 项目
+  flag_reason: "&ldquo;我正在标记这个%{record}，因为"
+  flag_resolution: 解决
+  flag_saved: 标记已保存。
+  flag_saved_thanks_html: 标记已储存，谢谢！<a href="%{url}" class="readmore">检查标记</a>
+  flag_this_observation: 标记此观察
+  flag_this_photo: 标记这张照片
+  flag_this_sound: 标记此声音
+  flagged_: 已标记
+  flagged_for_curation: 已标记管理
+  flagged_taxon: 已标记生物分类群
+  flagged_thing_explanation: "用户已标记此 %{thing} 因为"
   flagging_desc: |
-
-  flagger:
-  flags:
-  flags_with_count:
-  flags_explanation: ""
-  flags_for_x_html:
-  flags_on_users_content: ""
-  flickr_account_information:
-  flickr_has_no_creative_commons:
-  flickr_identity:
-  flickr_needs_to_confirm: ""
-  flickr_photo:
-  flickr_photos:
-  flickr_style:
-  flickr_tagger:
-  flickr_tags:
-  fluid_layout:
+    标记是用来引起网站负责人志愿者的注意的。
+    请不要标记一些您可以通过鉴定、资料品质估计、或是与内容建立人互相讨论来解决的问题。
+  flagger: 标记者
+  flags: 标记
+  flags_with_count: 标记（%{count}）
+  flags_explanation: "%{site_name}用户会在当他们发现某事物不正确时标记它。这里有一些尚未被馆长解决的问题。"
+  flags_for_x_html: 标记%{x}
+  flags_on_users_content: "在 %{user} 的内容上标记"
+  flickr_account_information: 您的Flickr账户信息
+  flickr_has_no_creative_commons: Flickr没有来自此地区的，知识共享许可协议授权的照片。
+  flickr_identity: Flickr身份
+  flickr_needs_to_confirm: "Flickr需要确认您想要将您的账户连接到%{site_name}。"
+  flickr_photo: Flickr 照片
+  flickr_photos: Flickr 照片
+  flickr_style: Flickr样式
+  flickr_tagger: Flickr 贴标签者
+  flickr_tags: Flickr 标签
+  fluid_layout: 流动布局
   #Adjective, as in a fluid layout of images
-  fluid:
-  follow:
-  follow_receive_updates_about_new_observations:
-  follow_user: ""
-  followers:
-  following:
-  for_a_taxon:
-  formatting:
-  forgot_your_password:
-  forum:
+  fluid: 液体
+  follow: 关注
+  follow_receive_updates_about_new_observations: 关注（接收有关新观察的更新）
+  follow_user: "关注%{user}"
+  followers: 关注者
+  following: 关注中
+  following_x_people:
+    other: '关注 %{count} 人'
+  for_a_taxon: 用于一个分类
+  formatting: 格式化
+  forgot_your_password: 忘记密码？
+  forum: 论坛
+  forum_categories:
+    bug_reports: 报告错误
+    feature_requests: 功能​​​​​​​​​​​请求
+    forum_feedback: 论坛反馈
+    forum_moderation: 论坛管理员
+    nature_talk: 自然讨论
+    news_and_updates: 最新消息和更新
+    tutorials: 教程
   forum_desc: |
-
-  frequency:
-  from_a_place:
-  from_eol_collection:
-  from_flickr_facebook_etc:
-  from_list:
-  from_photos:
-  from_place:
-  from_soundcloud:
-  full_screen:
-  gbif:
-  gbif_occurrences:
-  generate_taxonomic_tags_for_flickr:
-  generate_widget:
-  generate_your_stats:
-  generating_mobile_archive: ""
-  Genus:
-  geoprivacy:
-  geoprivacy_is_obscured:
-  geoprivacy_is_obscured_desc:
-  geoprivacy_is_private:
-  geoprivacy_is_private_desc:
-  georeferenced:
-  get_started:
-  getting_started_guide:
+    此论坛是用來讨论 iNaturalist 本身的地方，包含帮助和支持，功能请求、错误报告、公告、以及其它。
+  frequency: 频率
+  from_a_place: 来自一个地方
+  from_eol_collection: 来自EOL收藏
+  from_flickr_facebook_etc: 来自Flickr、Facebook等
+  from_list: 来自列表
+  from_photos: 来自照片
+  from_place: 来自地方
+  from_soundcloud: 来自Soundcloud
+  full_screen: 全屏
+  fungi:
+    other: 真菌
+  gbif: GBIF
+  gbif_occurrences: GBIF发现
+  generate_taxonomic_tags_for_flickr: 为您的Flickr照片生成分类学标签
+  generate_widget: 生成小部件
+  generate_your_stats: 生成您的统计
+  generating_mobile_archive: "生成移动存档"
+  Genus: 类
+  geoprivacy: 位置隐私
+  geoprivacy_is_obscured: 地理信息隐私权为模糊处理
+  geoprivacy_is_obscured_desc: 观察者选择模糊坐标
+  geoprivacy_is_private: 位置隐私为私有
+  geoprivacy_is_private_desc: 观察者选择隐藏坐标。
+  georeferenced: 有地理参考么？
+  get_started: 入门
+  getting_started_guide: 入门指导
   #Prompt to donate money on a montly basis
-  give_monthly_caps:
+  give_monthly_caps: 每月捐款
   #Prompt to donate money once
-  give_now_caps:
-  global_names:
-  globally:
-  go:
-  go_back:
-  going_to_your_observations:
-  good_choice_for_sharing:
-  google:
-  google_maps_not_loaded_error: |
-
-  got_it!:
-  got_your_data_somewhere_else?:
-  graft:
-  graft_taxon:
-  grafting_attemps_to_insert_this_taxon:
-  grant_role: ""
-  grid:
-  grid_layout:
-  grid_tooltip:
-  group:
-  grouping:
-  guides:
-  guide_compiled_by:
-  guide_deleted:
-  guide_will_be_deleted:
-  guide_taxon:
-  guide_was_successfully_created:
-  guide_was_successfully_published:
-  guide_was_successfully_updated:
-  guidelines:
-  has_already_been_flagged_by:
-  has_id_supported_by_two_or_more:
-  has_one_or_more_faves:
-  has_photo:
-  has_photos:
-  has_photo_and_sound:
-  has_photos_or_sounds:
-  has_sound:
-  has_sounds:
-  hasnt_contributed_any_observations:
-  header_your_observations:
-  header_your_calendar:
-  header_your_favorites:
-  header_your_lists:
-  header_your_journal:
-  header_your_identifications:
-  header_your_projects:
-  header_your_profile:
-  heads_up:
-  heads_up_automatable_draft_split_notice_html: |
-
-  heads_up_non_automatable_draft_split_notice_html: |
-
-  heads_up_automatable_split_notice_html: |
-
-  heads_up_observose_taxon_change_html: |
-
-  heads_up_taxon_change_inputs_covered_by_framework_html: |
-
-  heads_up_this_photo_has_been_flagged: ""
-  heads_up_this_photo_is_already_associated_with: ""
-  heads_up_you_have_multiple: ""
-  help:
-  help_confirm_observations!:
-  help_support_inaturalist: ""
-  help_translate!:
-  here_are_3_examples:
-  here_are_our_top_suggestions:
-  here_are_our_top_species_suggestions:
-  hex_color_eg:
-  hi_user: ""
+  give_now_caps: 立即捐款
+  global_names: 全域名称
+  globally: 全域
+  go: 前往
+  go_back: 返回
+  going_to_your_observations: 去往您的观察记录……
+  good_choice_for_sharing: 感谢和科学家们共享数据
+  google: Google
+  got_it!: 明白了！
+  got_your_data_somewhere_else?: 在别的地方找到了您的数据？我们可以帮助。
+  graft: 移植
+  graft_taxon: 转移 %{taxon}
+  grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
+  grant_role: "%{grant} %{role}角色"
+  grid: 网格
+  grid_layout: 网格布局
+  grid_tooltip: 显示网格预览
+  group: 组
+  grouping: 正在分组
+  guides: 指南
+  guide_compiled_by: 此指南由下列用户编辑
+  guide_deleted: 指南已删除
+  guide_will_be_deleted: 指南会被删除。较大的指南可能花费较长的时间。
+  guide_taxon: 指导分类单元
+  guide_was_successfully_created: 已成功创建指南。
+  guide_was_successfully_published: 指南已经成功发布。
+  guide_was_successfully_updated: 指南已成功更新。
+  guidelines: 指南
+  has_already_been_flagged_by: 已被标记，标记者
+  has_id_supported_by_two_or_more: 由两个或以上ID所支持
+  has_one_or_more_faves: 有一个或更多喜爱
+  has_photo: 有照片
+  has_photos: 有照片
+  has_photo_and_sound: 有照片和声音
+  has_photos_or_sounds: 有照片或音频
+  has_sound: 有声音
+  has_sounds: 有声音
+  hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
+  header_your_observations: 您的观察记录
+  header_your_calendar: 您的日历
+  header_your_favorites: 您的收藏夹
+  header_your_lists: 您的列表
+  header_your_journal: 您的日记
+  header_your_identifications: 你的鉴定
+  header_your_projects: 您的项目
+  header_your_profile: 你的个人资料
+  heads_up: 小心
+  heads_up_this_photo_has_been_flagged: "请注意：这张照片已被标记过。"
+  heads_up_this_photo_is_already_associated_with: "请注意：这张照片已经同<a target='_blank' href='%{url}'>另一条观察记录</a>进行过关联"
+  heads_up_you_have_multiple: "请注意：您有多个关于鉴定状态等级的分类学机读标签。这些标签是按下列状态等级进行颜色编码的。"
+  help: 帮助
+  help_confirm_observations!: 帮助确认观察！
+  help_support_inaturalist: "帮助支持 iNaturalist"
+  help_translate!: 协助翻译
+  here_are_3_examples: 这里是3个格式良好数据的例子
+  here_are_our_top_suggestions: 这是我们的最佳建议
+  here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
+  hex_color_eg: 十六进制颜色代码，例如：65644F
+  hi_user: "您好，%{user}"
   #Verb, usually a button to hide an interface element
-  hide:
-  hide_content:
+  hide: 隐藏
+  hide_content: 隐藏内容
   hide_desc: |
-
+    隐藏的内容无法被公众查看，但人们仍然能看到有东西被隐藏，且网站管理员和内容作者仍然可以看到被隐藏的内容。通常这会被应用到文字内容，举个例子，如果您选择隐藏一个鉴定，这个鉴定仍然可以显示但鉴定者的备注内容将会被隐藏。仅有网站的工作人员可以解除隐藏，所以当您使用这个功能的时候请深思熟虑，最好仅将其用在非常令人反感的内容上。
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation:
+  hide_no_annotation: 隐藏“无批注”
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total:
-  hide_uncountable_species:
-  high:
-  highest_rank:
-  highlights_and_stats_from_year_on_site: ""
-  history:
-  home:
+  hide_running_total: 隐藏运行总计
+  hide_uncountable_species: 隐藏无法计数的物种
+  high: 高
+  highest_rank: 最高等级
+  highlights_and_stats_from_year_on_site: "来自 %{site} 在 %{year} 年的要点与统计数据"
+  history: 历史
+  home: 首页
   #Label showing hours adjusted in the time shifter in the Uploader
-  hours_to_adjust: ""
-  however_there_were_some_issues: ""
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  however_you_may_want_to_commit_html: |
-
-  i_dont_know_but_i_am_sure_this_is_taxon:
-  icon:
-  icon_size:
-  iconic_taxon:
-  id:
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_move_html: ""
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_swap_html: ""
-  id_withdrawn:
-  ids_by_taxon:
-  identify:
-  identify_observations: ""
-  identify_observations_by_these_users:
-  identify_title: ""
-  identification:
-  identification_by_user:
+  hours_to_adjust: "要调整的小时："
+  however_there_were_some_issues: "然而，这里有一些问题：%{issues}"
+  i_dont_know_but_i_am_sure_this_is_taxon: 我不知道，但我确信这是%{taxon}
+  icon: 图标
+  icon_size: 图标大小
+  iconic_taxon: 标志性的分类单元
+  id: 鉴定
+  id_categories:
+    tooltips:
+      leading: |
+        分类单元来自社区分类单元。这种认同更有可能产生正确的结果。
+      improving: |
+        此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
+      maverick: |
+        分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
+  id_withdrawn: ID撤回
+  ids_by_taxon: ID（按分类单元排序）
+  identify: 鉴定
+  identify_observations: "对观察记录进行鉴定"
+  identify_observations_by_these_users: 鉴定这些用户的观察结果
+  identify_title: "鉴定"
+  identification: 鉴定
+  identification_by_user: 由 %{user} 做出的物种鉴定
   #Notification when an identification has been deleted
-  identification_deleted:
-  identification_saved: ""
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden:
+  identification_deleted: 身份验证已删除。
+  identification_saved: "身份验证已保存！"
   #Notification when an identification has been updated
-  identification_updated:
-  identification_user_short:
+  identification_updated: 鉴定已更新！
+  identification_user_short: 鉴别用户
   #Notification when an identification has been withdrawn
-  identification_withdrawn:
-  identifications:
-  computer_vision_suggestion:
-  computer_vision_suggestion_desc: |
-
-  identifiers:
-  identotron:
-  identotron_for:
-  identotron_help:
-  ids: ""
-  ids_made_for_others:
+  identification_withdrawn: 身份验证已放弃。
+  identifications: 鉴定
+  computer_vision_suggestion: 电脑视觉建议
+  identifiers: 标识符
+  identotron: 鉴定器
+  identotron_for: Identotron 为
+  identotron_help: Identotron帮助
+  ids: "ID"
+  ids_made_for_others: 由其他人做出的ID
   if_for_some_reason_a_user_doesnt_agree: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_moves_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_swaps_html: |
-
-  if_matches_come_from_a_comprehensive_list:
-  if_this_is_a_scientific_name:
-  if_this_link_will_apply_to_descendant:
-  if_you_have_any_trouble_with_the_site_check_out: ''
-  if_your_project_is:
-  ignore_and_continue:
-  ignore_times:
-  image_must_be_exactly:
-  image_size_control:
+    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
+  if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
+  if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
+  if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
+  if_you_have_any_trouble_with_the_site_check_out: '如果您有任何问题，请您查看我们的<a href="%{help_url}">帮助区</a>或在我们的<a href="%{feedback_url}">反馈群组</a>提交信息。'
+  if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
+  ignore_and_continue: 忽略并继续
+  ignore_times: 忽略时间
+  image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
+  image_size_control: 图片大小控制
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
-  imperiled:
-  import:
-  import_all_photos_as_observations:
-  import_as_an_observation:
-  import_as_another_observation:
-  import_date_time_location_taxonomic: ""
-  import_from_csv:
-  import_from_other_photo_sites:
-  import_observations:
-  import_observations_from_a_photo:
-  import_photos:
-  import_ranges:
-  import_sections:
-  import_tags_from_csv:
-  importing: ""
-  improving:
-  in_n: ""
-  in_place_x:
-  inaturalist_network:
-  inaturalist_network_affiliation:
+  imperiled: 危及
+  import: 导入
+  import_all_photos_as_observations: 将所有照片导入为观察
+  import_as_an_observation: 作为观察导入
+  import_as_another_observation: 作为其他观察导入么？
+  import_date_time_location_taxonomic: "从此照片导入日期、时间、位置、描述和分类信息。"
+  import_from_csv: 从CSV导入
+  import_from_other_photo_sites: 从其他照片网站导入
+  import_observations: 导入观察
+  import_observations_from_a_photo: 从照片提供者或您电脑中的文件导入观察。
+  import_photos: 导入照片
+  import_ranges: 导入范围
+  import_sections: 导入章节
+  import_tags_from_csv: 从CSV导入标签
+  importing: "正在导入..."
+  improving: 正在改进
+  in_n: "在 %{n}"
+  in_place_x: 在 %{place}
+  inaturalist_network: iNaturalist 网络
+  inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
-  inbox:
-  include_places:
-  include_projects:
-  include_suggestions_not_seen_nearby:
-  include_taxa:
-  include_users:
-  including:
-  increase_brightness:
-  in_progress:
-  in_the_past:
-  in_the_past_week:
-  inactive:
+  inbox: 收件箱
+  include_places: 包含的地点
+  include_projects: 包含的项目
+  include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
+  include_taxa: 包含分类
+  include_users: 包含用户
+  including: 包括
+  increase_brightness: 增加亮度
+  in_progress: 进行中
+  in_the_past: 在过去
+  in_the_past_week: 在上周
+  inactive: 不活跃
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status:
-  inactive_taxon:
+  inactive_complete_set_status: 未启用
+  inactive_taxon: 不活跃的分类单元
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status:
-  inactive_taxon_concepts_are:
-  inappropriate_content:
-  inat_account_action: ""
-  inat_believes_this_is_a_complete_listing: ""
-  inat_user_profile: ""
-  inaturalist_activity_notifications: ""
+  inactive_taxon_status: 无效
+  inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
+  inappropriate_content: 不适当的内容？
+  inat_account_action: "%{site_name} &#58; 账户 &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name}相信这是此地区内，这种分类单元的完整列表。"
+  inat_user_profile: "%{site_name}：%{user}的详细资料"
+  inaturalist_activity_notifications: "%{site_name} 活动通知"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
-  inaturalist_applications: ""
-  inaturalist_is_a_joint_initiative: ""
-  inaturalist_places: ""
-  info:
-  input_taxon:
-  insects:
-  insect_life_stage:
-  instagram:
+  inaturalist_applications: "iNaturalist 应用程序"
+  inaturalist_is_a_joint_initiative: "%{site_name}由加利福尼亚州科学院与美国国家地理学会共同创办。"
+  inaturalist_places: "%{site_name} 地点"
+  info: 信息
+  input_taxon: 输入分类单元
+  insects: 昆虫
+  insect_life_stage: 昆虫生命阶段
+  instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
-  insert_a_quote:
-  interactions:
-  internal_server_error:
-  internal_taxon_including_descendants:
-  internal_taxon_rank:
-  introduced:
-  introduced_in_place: ""
-  invitation:
-  invite:
-  invite_people:
-  invite_people_to_project: ""
+  insert_a_quote: 插入引用
+  interactions: 互动
+  internal_server_error: 内部服务器错误
+  internal_taxon_including_descendants: 内部分类(包括派生)
+  internal_taxon_rank: 内部分类等级
+  introduced: 引进
+  introduced_in_place: "在%{place}中引进"
+  invitation: 引诱
+  invite: 邀请
+  invite_people: 邀请人们
+  invite_people_to_project: "邀请人们至 %{project}"
   #Type of project where people can only join after they have been invited
-  inviteonly:
-  invited_x: ""
-  iphone:
-  is_not_following_anyone:
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
-  is_this_offensive_html: ''
-  is_this_place_a_duplicate:
-  it_can_now_be_used_for_research:
+  inviteonly: 仅邀请
+  invited_x: "已邀请 %{x}"
+  iphone: iPhone
+  is_not_following_anyone: 未关注任何人。
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
+  is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
+  is_this_place_a_duplicate: 此地点是否重复？
+  it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   #Text inserted into a textarea when the italic button is clicked but no text was selected
-  italic_text:
+  italic_text: 斜体文本
   item_flagged_notice_html: |
-
-  jobs:
-  join:
-  join_and_add_an_observation_to_project_html:
-  join_project:
+    这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
+    <a href="%{manage_flags_path}">管理标签</a>
+  join: 加入
+  join_and_add_an_observation_to_project_html: 加入并添加观察到 %{project}
+  join_project: 加入这个项目
   #Prompt to join a specific project
-  join_project?:
-  join_the_largest_group_of_naturalists_in_the_world:
-  join_this_project:
-  'joined!':
-  joined_projects:
-  joined_with_date: ""
-  journal:
-  journal_archives_for:
-  journal_post:
-  journal_post_deleted:
-  journal_posts:
-  jpg_png_or_gif: ""
-  jump_to_letter:
-  just_a_reminder:
-  just_added!:
-  keep_editing:
-  keyboard_shortcuts:
-  kml:
-  kml_file_size_error: ""
-  label_colon: ""
-  labels:
-  label_to_group_a_batch_of_taxon_changes:
+  join_project?: 加入 %{project} 吗？
+  join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的自然爱好者社群
+  join_this_project: 加入这个项目
+  'joined!': 已加入！
+  joined_projects: 加入的项目
+  joined_with_date: "加入于：%{date}"
+  journal: 日记
+  journal_archives_for: 日记存档，用于
+  journal_post: 日记发布
+  journal_post_deleted: 日记帖子已删除。
+  journal_posts: 日记帖子
+  jpg_png_or_gif: "JPG、PNG或GIF"
+  jump_to_letter: 跳转至信件
+  just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
+  just_added!: 添加了！
+  keep_editing: 保持编辑
+  keyboard_shortcuts: 键盘快捷键
+  kml: KML
+  kml_file_size_error: "KML 大小必须小于 1 MB"
+  label_colon: "%{label}:"
+  labels: 标签
+  label_to_group_a_batch_of_taxon_changes: 为一组分类单元的变化进行标记
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private:
+  location_private: 位置是私有的
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown:
+  location_unknown: 缺少位置信息
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
-  lock_zoom_level:
-  language_slash_locale:
-  language_slash_locale_description:
-  language_slash_type:
+  lock_zoom_level: 锁定缩放等级
+  language_slash_locale: 本地语言
+  language_slash_type: 语言/种类
   #Large photo size
-  large:
-  last_active_with_date: ""
-  last_confirmed_observation:
-  last_observation:
-  last_observation_caps:
-  last_seen:
-  last_year:
-  lat:
-  latitude:
-  latitude_in_decimals: ''
-  latitude_slash_y_coord_slash_northing:
-  latitude_value: ""
+  large: 大
+  last_active_with_date: "上次活跃：%{date}"
+  last_confirmed_observation: 最近确认的观察
+  last_observation: 最近观察
+  last_observation_caps: 最近一笔观察记录
+  last_seen: 上次看见
+  last_year: 去年
+  lat: 纬度
+  latitude: 纬度
+  latitude_in_decimals: '以十进制度数表示的纬度，例如：38.123'
+  latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
+  latitude_value: "纬度: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers:
-  layout:
-  leaderboard:
-  leaderboard_for_x: ""
-  leaderboards:
-  leading:
-  learn:
-  learn_about_the_species_live_in:
-  learn_more:
-  learn_more_raquo: ""
-  learn_what_these_licenses_mean:
-  least_concern:
-  leave:
-  leave_a_comment:
-  leave_this_project:
+  layers: 图层
+  layout: 布局
+  leaderboard: 排行榜
+  leaderboard_for_x: "用于 %{x} 的排行榜"
+  leaderboards: 排行榜
+  leaderboard_most:
+    species_in_year: 在 %{year}记录的最多物种
+    observations_in_month_year: 在%{month_year} 中记录到最多的观察记录
+    observations_in_year: 在%{year} 中记录到最多的观察记录
+    identifications_in_month_year: 在%{month_year} 做出的最多的鉴定
+    identifications_in_year: 在%{year} 中做出的最多的鉴定
+  leading: 领先的意见
+  learn: 学习
+  learn_about_the_species_live_in: 了解有关居住于此的物种
+  learn_more: 了解更多
+  learn_more_raquo: "了解更多 &raquo;"
+  learn_what_these_licenses_mean: 了解这些授权协议是什么意思
+  least_concern: 无需担心
+  leave: 离开
+  leave_a_comment: 留下评论
+  leave_this_project: 离开这个项目
   #Terminal nodes in a taxonomic tree
-  leaves:
+  leaves: 叶节点
   legacy_authentication_notice_html: |
-
-  let_us_walk_you_through:
-  lexicon:
-  lexicon_cannot_contain_words: ""
+    看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
+  let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
+  lexicon: 词典
   lexicons:
-    scientific_names:
-    afrikaans:
-    albanian:
-    arabic:
-    armenian:
-    belarusian:
-    bengali:
-    bulgarian:
-    catalan:
-    cebuano:
-    chinese_simplified:
-    chinese_traditional:
-    creole_french:
-    creole_portuguese:
-    croatian:
-    czech:
-    danish:
-    davawenyo:
-    dutch:
-    english:
-    estonian:
-    faroese:
-    finnish:
-    french:
-    galician:
-    gela:
-    german:
-    greek:
-    hawaiian:
-    hebrew:
-    hiligaynon:
-    hungarian:
-    icelandic:
-    ilokano:
-    indonesian:
-    italian:
-    japanese:
-    kannada:
-    korean:
-    latvian:
-    lithuanian:
-    luxembourgish:
-    malay:
-    malayalam:
-    maltese:
-    maori:
-    marathi:
-    maya:
-    misima_paneati:
-    mongolian:
-    nahuatl:
-    norwegian:
-    occitan:
-    ojibwe:
-    palauan:
-    pangasinan:
-    persian:
-    polish:
-    portuguese:
-    romanian:
-    russian:
-    santali:
+    scientific_names: 学名
+    afrikaans: 南非语
+    albanian: 阿尔巴尼亚语
+    arabic: 阿拉伯语
+    armenian: 亚美尼亚语
+    belarusian: 白俄罗斯语
+    bengali: 孟加拉语
+    bulgarian: 保加利亚语
+    catalan: 加泰罗尼亚语
+    cebuano: 宿务语
+    chinese_simplified: 简体中文
+    chinese_traditional: 繁体中文
+    creole_french: 克里奥尔语（法语）
+    creole_portuguese: 克里奥尔语（葡萄牙语）
+    croatian: 克罗地亚语
+    czech: 捷克语
+    danish: 丹麦语
+    davawenyo: Davawenyo语
+    dutch: 荷兰语
+    english: 英语
+    estonian: 爱沙尼亚语
+    faroese: 法罗语
+    finnish: 芬兰语
+    french: 法语
+    galician: 加利西亚语
+    gela: Gela语
+    german: 德语
+    greek: 希腊语
+    hawaiian: 夏威夷语
+    hebrew: 希伯来语
+    hiligaynon: 希利盖农语
+    hungarian: 匈牙利语
+    icelandic: 冰岛语
+    ilokano: 伊洛卡诺语
+    indonesian: 印尼语
+    italian: 意大利语
+    japanese: 日语
+    kannada: 卡纳达语
+    korean: 韩语
+    latvian: 拉脱维亚语
+    lithuanian: 立陶宛语
+    luxembourgish: 卢森堡语
+    malay: 马来语
+    malayalam: 马拉雅拉姆语
+    maltese: 马耳他语
+    maori: 毛利语
+    marathi: 马拉地语
+    maya: 玛雅语
+    misima_paneati: 米斯马-帕尼阿梯语
+    mongolian: 蒙古语
+    nahuatl: 纳瓦特尔文
+    norwegian: 挪威语
+    occitan: 奥克语
+    ojibwe: 奥吉布瓦语
+    palauan: 帕劳语
+    pangasinan: 邦阿西楠语
+    polish: 波兰语
+    portuguese: 葡萄牙语
+    romanian: 罗马尼亚语
+    russian: 俄语
+    santali: 桑塔利语
     setswana: 茨瓦纳语
     sinhala: 僧伽罗语
     slovak: 斯洛伐克语
