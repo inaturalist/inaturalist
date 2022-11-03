@@ -1,15 +1,137 @@
 fi:
-  x_people_helped_user_with_y_ids_html: ""
-  _100_day_trends:
-  _percent_ID_d: ""
-  a_community_for_naturalist:
+  x_comments:
+    one: '1 kommentti'
+    other: '%{count} kommenttia'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> kommentti'
+    other: '<span class="count">%{count}</span> kommenttia'
+  x_faves:
+    one: '1 suositus'
+    other: '%{count} suositusta'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> lippu ratkaistu"
+    other: "<span class='count'>%{count}</span> lippua ratkaistu"
+  x_identifications:
+    one: '1 tunnistus'
+    other: '%{count} tunnistusta'
+  x_identifications_html:
+    one: '<span class="count">1</span> tunnistus'
+    other: '<span class="count">%{count}</span> tunnistusta'
+  x_identifications_:
+    one: '1 tunnistus'
+    other: '%{count} tunnistusta'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> tunnistaja'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> tunnistajaa'
+  x_languages:
+    one: "%{count} kieli"
+    other: "%{count} kielet"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} uusi taksoni sinulle"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} uutta taksonia sinulle"
+  x_journal_posts_html:
+    one: '<span class="count">1</span> päiväkirjamerkintä'
+    other: '<span class="count">%{count}</span> päiväkirjamerkintää'
+  x_matching_taxa:
+    one: '1 vastaava taksoni'
+    other: '%{count} vastaavaa taksonia'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span> vastaava taksoni'
+    other: '<span class="count">%{count}</span> vastaavaa taksonia'
+  x_misidentifications_of_this_species:
+    one: "1 virheellinen tämän lajin tunnistus"
+    other: "%{count} virheellistä tämän lajin tunnistusta"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} virheellinen tunnistus lajista tasolla %{rank}"
+    other: "%{count} virheellistä tunnistusta lajista tasolla %{rank}"
+  x_observations:
+    one: "1 havainto"
+    other: "%{count} havaintoa"
+  x_observations_:
+    one: "1 havainto"
+    other: "%{count} havaintoa"
+  x_observations_html:
+    one: "<span class='count'>1</span> havainto"
+    other: "<span class='count'>%{count}</span> havaintoa"
+  x_observations_link_html:
+    one: "<a href='%{url}'>1 havainto</a>"
+    other: "<a href='%{url}'>%{count} havaintoa</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>1</span> havainto tarkistettu"
+    other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> havainnoija'
+    other: '<span class="count">%{count}</span> havainnoijaa'
+  x_others:
+    one: "1 muu"
+    other: "%{count} muuta"
+  x_people:
+    one: "%{count} henkilö"
+    other: "%{count} henkilöt"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi tunnistuksessa käyttäjää %{user} <strong>%{y}</strong>"
+  x_photos:
+    one: "1 kuva"
+    other: "%{count} kuvaa"
+  x_new_species:
+    one: "1 uusi laji"
+    other: "%{count} uutta lajia"
+  x_new_users:
+    one: '%{count} uusi käyttäjä'
+    other: '%{count} uutta käyttäjää'
+  x_species:
+    one: '1 laji'
+    other: '%{count} lajia'
+  x_species_html:
+    one: "<span class='count'>1</span> laji"
+    other: "<span class='count'>%{count}</span> lajia"
+  x_species_link_html:
+    one: "<a href='%{url}'>1 laji</a>"
+    other: "<a href='%{url}'>%{count} lajia</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 ehdotus, perustuen suodattimiin:"
+    other: "%{count} ehdotusta, perustuen suodattimiin:"
+  x_taxa:
+    one: "%{count} taksoni"
+    other: "%{count} taksonia"
+  x_taxa_observed_html:
+    one: "<span class='count'>1</span> taksoni havaittu"
+    other: "<span class='count'>%{count}</span> taksonia havaittu"
+  x_research_grade_observations_html:
+    one: "<span class='count'>1</span> tutkimutason havainto"
+    other: "<span class='count'>%{count}</span> tutkimustason havaintoa"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>1</span> tutkimustason havainto tunnistettu lajin tasolle tai sitä tarkemmin"
+    other: "<span class='count'>%{count}</span> tutkimustason havaintoa tunnistettu lajilleen tai sitä tarkemmin"
+  x_sounds:
+    one: "%{count} äänite"
+    other: "%{count} äänitettä"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> taksoni kuratoitu"
+    other: "<span class='count'>%{count}</span> taksonia kuratoitu"
+  x_taxa_matching_current_filters:
+    one: "1 taksoni vastaa tämänhetkisiä suodattimia"
+    other: "%{count} taksonia vastaa tämänhetkisiä suodattimia"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> taksonimuutos lisätty"
+    other: "<span class='count'>%{count}</span> taksonimuutosta lisätty"
+  _100_day_trends: 100 päivän kehitys
+  _percent_ID_d: "% tunnistettu"
+  a_community_for_naturalist: Luontoharrastajien yhteisö
   a_default_taxon_name_will_automatically_created: |
-
-  a_flag_for_x: ""
-  a_member_of_taxon_html: ""
+    Oletusarvoinen taksonin nimi luodaan automaattisesti tämän taksonin tieteellisestä nimestä. Kun olet tallentanut tämän uuden taksonin, voit lisätä muita nimiä (yleiskieliset nimet, vanhentuneet tieteelliset nimet, jne).
+  a_flag_for_x: "lippu kohteelle %{x}"
+  a_member_of_taxon_html: "%{taxon} jäsen"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: ""
+  a_to_z: "A–Ö"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -29,1739 +151,2001 @@ fi:
   #to add masculine, feminine, and neuter forms of articles. I realize this is
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
-  activity_snipped_resource_with_indefinite_article: ""
-  about:
-  about_charts:
-  about_community_taxa:
-  about_complete_taxa:
-  about_conservation_status:
-  about_editing_observation_fields:
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: Tietoja
+  about_charts: Tietoja kaavioista
+  about_community_taxa: Tietoja yhteisön taksoneista
+  about_complete_taxa: Tietoja täydellisistä taksoneista
+  about_conservation_status: Tietoja suojelutasosta
+  about_editing_observation_fields: Tietoja havaintokenttien muokkaamisesta
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means:
-  about_license_options:
-  about_licenses:
+  about_establishment_means: Tietoja perustamisen keinoista
+  about_license_options: Tietoa lisenssivaihtoehdoista
+  about_licenses: Tietoja lisensseistä
   #Header for a section describing taxon names
-  about_names:
+  about_names: Tietoja nimistä
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
-  about_place: ""
-  about_places:
-  about_taxon_ranges:
+  about_place: "Tietoja %{place}"
+  about_places: Tietoja paikoista
+  about_taxon_ranges: Tietoja taksonin alueesta
   about_taxon_ranges_desc: |
-
-  about_the_network:
-  about_this_bioblitz:
-  about_this_map:
-  about_this_project:
+    Taksonin alue kuvaa taksonin maailmanlaajuista levinneisyyttä. Tiedot tulevat tyypillisesti IUCN Punaisesta kirjasta.
+  about_this_bioblitz: Tietoja tästä projektista
+  about_this_map: Tietoja tästä kartasta
+  about_this_project: Tietoja tästä projektista
   about_trips_html: |
-
-  about_trusting_projects:
-  about_trusting_projects_options_any:
+    <h4>
+    Tallennettaessa tietoja Retkenä, voi "laji havaittu" -tiedon lisäksi tallentaa myös "lajia ei havaittu" -tietoja (nollahavainto) lisäämällä sisältöä havaitoihisin.
+    </h4>
+    <p>
+    <strong>Why</strong> Havaittu-ei havaittu tiedonkeruu viestii aineiston käyttäjälle havaintotiedon kattavasta keräystavasta ja lisää tiedon käytettävyyttä etenkin tieteellisissä analyyseissä kuten eliölajien levinneisyyden mallinuksessa. (tavallisesti iNaturalist- havainnot sisältävät vain havaittu-tietoa).
+    </p>
+    <p>
+    <strong>How</strong> Retken avulla voi lisätä sisältöä havaintoosi tallennetamalla:
+    </p>
+    <ul>
+    <li><strong>Mitä</strong> olit etsimässä (lista kohdelajeista)</li>
+    <li><strong>Missä</strong> olit havainnoimassa (havaintoalue)</li>
+    <li><strong>Milloin</strong> olit havainnoimassa (havaintoaikaväli)</li>
+    </ul>
+    <p>
+    Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
+    </p>
+  about_trusting_projects: Tietoa projekteihin luottamisesta
+  about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
-
+    Tämä sisältää havaintoja, joissa olet asettanut sijainnin tietosuojatasoksi "karkeistettu" tai "yksityinen", esim. havaintoja takapihaltasi tai paikkoja, joita et halua muiden ihmisten tietävän.
   about_trusting_projects_options_taxon: |-
-
+    Vain sinun havaintosi tässä projektissa, joiden koordinaatit on karkeistettu, koska taksoni on uhanalainen
   about_trusting_projects_options_taxon_desc: |-
-
+    Monet projektit tarvitsevat pääsyn karkeistettuihin koordinaatteihin, koska havainto koskee uhanalaista taksonia.
   about_trusting_projects_overview: |-
-
+    Pääsy piilotettuihin koordinaatteihin mahdollistaa sen, että tämän projektin johtajat näkevät havaintojesi tarkat, karkeistamattomat sijainnit tässä projektissa. Tämä on erittäin tärkeää tilanteissa, joissa tutkijat tarvitsevat tarkkoja koordinaatteja analyysia tai
+    päätöksentekoa varten.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
-
+    Projektin vastuuhenkilöt, joilla on pääsy piilotettuihin koordinaatteihin, ovat:
   about_trusting_projects_warning: |-
-
+    Huomaa, että projektien vastuuhenkilöt voivat muuttaa projektin parametreja sisältääkseen minkä tahansa havaintojasi, ja he voivat lisätä tai poistaa vastuuhenkilöitä milloin tahansa. Saat ilmoituksia näistä muutoksista, mutta luotat pääasiassa tähän projektiin yksityisten sijaintitietojesi kanssa, joten ole varovainen.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
-
-  #Header for a section describing unintended disagreements
-  about_unintended_disagreements:
+    Voit halutessasi jakaa piilotetut koordinaatit
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: ''
-  account:
-  account_creation:
-  account_settings:
-  accept_community_identifications:
-  accuracy:
-  accuracy_meters:
+  acc: 'Tarkkuus (m)'
+  account: Käyttäjätunnus
+  account_creation: Tunnuksen luominen
+  account_settings: Tiliasetukset
+  accept_community_identifications: Hyväksy yhteisömääritykset
+  accuracy: Tarkkuus
+  accuracy_meters: Tarkkuus (metreinä)
   accuracy_of_the_coordinates: |
-
+    Koordinaattien tarkkuus metreinä. Voit muokata tätä napsauttamalla "muokkaa" - linkkiä tai klikkaamalla karttamerkintää ja vetämällä kahvoista. Yritä tehdä ympyrä tarpeeksi isoksi, jotta olet varma, että olit jossain sen sisällä.
   #Noun, as in "Ken-ichi's action was not acceptable"
-  action:
-  actions:
-  active:
+  action: Toiminto
+  actions: Toiminnot
+  active: Aktiivinen
   #Status of a complete set that is available for use
-  active_complete_set_status:
+  active_complete_set_status: Aktiivinen
   #Status of a taxon that is available for use on iNat
-  active_taxon_status:
-  active_users:
-  activity:
-  adapted_by_name_from_a_work_by_original: ""
-  add:
-  add_a_batch_of_observations:
-  add_a_batch_of_taxa:
+  active_taxon_status: Aktiivinen
+  active_users: Aktiiviset käyttäjät
+  activity: Toiminta
+  adapted_by_name_from_a_work_by_original: "Muokannut %{name} käyttäjän %{original} työstä"
+  add: Lisää
+  add_a_batch_of_observations: Tallenna erä havaintoja
+  add_a_batch_of_taxa: Lisää erä taksoneita
   #Tool tip for a button that adds a bulleted list to a text area
-  add_a_bulleted_list:
-  add_a_comment:
-  add_a_field:
-  add_a_flag:
+  add_a_bulleted_list: Lisää lista ranskalaisin viivoin
+  add_a_comment: Lisää kommentti
+  add_a_field: Lisää kenttä
+  add_a_flag: Lisää lippu
   #Tool tip for a button that adds a link to a text area
-  add_a_link:
-  add_a_name:
-  add_a_note:
-  add_a_new_change_group:
+  add_a_link: Lisää linkki
+  add_a_name: Lisää nimi
+  add_a_note: Lisää muistiinpano
+  add_a_new_change_group: Lisää uusi muutosryhmä
   #Tool tip for a button that adds a numbered list to a text area
-  add_a_numbered_list:
-  add_a_single_observation:
-  add_a_taxon:
+  add_a_numbered_list: Lisää numeroitu lista
+  add_a_single_observation: Lisää yksittäinen havainto.
+  add_a_taxon: Lisää taksoni
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-
-  add_an_assessment:
-  add_an_identification:
-  add_an_observation:
-  add_an_observation_of: ""
-  add_an_observation_to_project_html:
-  add_annotations_for_x:
-  add_another_flag:
-  add_another_photo:
-  add_another_section:
-  add_another_subscription:
+    Lisää a <a target="_blank" href="%{url}">taksonivaihto</a> jos haluat vaihtaa nimeä
+  add_an_assessment: Lisää arviointi
+  add_an_identification: Lisää tunnistus
+  add_an_observation: Lisää havainto
+  add_an_observation_of: "Lisää havainto taksonista %{taxon}"
+  add_an_observation_to_project_html: Lisää havainto projektiin %{project}
+  add_annotations_for_x: Lisää merkintä havainnolle "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Lisää merkintä sukupuolesta
+    plant_phenology: Lisää merkintä kasvin fenologiasta
+    life_stage: Lisää merkintä elinvaiheesta
+    evidence_of_presence: Lisää kommentti kohtaan "Todiste läsnäolosta"
+  add_another_flag: Lisää toinen lippu
+  add_another_photo: Lisää toinen kuva
+  add_another_section: Lisää toinen jakso
+  add_another_subscription: Lisää toinen tilaus
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset:
-  add_batch:
-  add_blocked_users:
+  add_asset: Lisää ominaisuus
+  add_batch: Lisää erä
+  add_blocked_users: Lisää estettävä käyttäjä
   #Tool tip for a button that adds bold text to a text area
-  add_bold_text:
-  add_comma_separated_tags: ""
-  add_comment:
-  add_conservation_status:
-  add_custom_project_fields:
-  add_edit_flags:
-  add_editor:
-  add_description: ""
-  add_from_your_observations:
-  add_link:
-  add_higher_level_taxon:
-  add_id:
+  add_bold_text: Lisää lihavoitu teksti
+  add_comma_separated_tags: "Lisää pilkulla erotellut tunnisteet"
+  add_comment: Lisää kommentti
+  add_conservation_status: Lisää suojelutaso
+  add_custom_project_fields: Lisää mukautettuja projektikenttiä
+  add_edit_flags: Lisää/muokkaa merkintöjä
+  add_editor: Lisää muokkaaja
+  add_description: "Lisää %{description_name}"
+  add_from_your_observations: Lisää omista havainnoista
+  add_link: Lisää linkki
+  add_higher_level_taxon: Lisää korkeamman tason taksoni (esim. "linnut")
+  add_id: Lisää tunnistus
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text:
-  add_muted_users:
-  add_new_lexicon:
-  add_new_photos_by_their_ids:
-  add_new_place:
-  add_new_rule:
-  add_new_source: ""
-  add_new_taxon_name:
-  add_notes_about_this_taxon:
-  add_obs_from_a_link: ""
-  add_obs_from_a_list:
-  add_observations:
-  add_observations_by_checking_off:
-  add_observations_project:
+  add_italic_text: Lisää kursivoitu teksti
+  add_muted_users: Lisää hiljennettävä käyttäjä
+  add_new_lexicon: Lisää uusi sanakirja
+  add_new_photos_by_their_ids: Lisää uusia kuvia niiden Flickr ID'eillä (on oltava Creative Commons!)
+  add_new_place: Lisää uusi paikka
+  add_new_rule: Lisää uusi sääntö
+  add_new_source: "Lisää uusi lähde..."
+  add_new_taxon_name: Lisää uusi taksonin nimi
+  add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa, esim. missä ja milloin se tapahtuu.
+  add_obs_from_a_link: "Lisää havainto luettelosta: %{link}"
+  add_obs_from_a_list: Lisää havainto luettelosta
+  add_observations: Tallenna havaintoja
+  add_observations_by_checking_off: Tallenna havaintoja ruksaamalla lajeja luettelosta.
+  add_observations_project: Tallenna havaintoja tähän projektiin
   #Prompt to add a new journal post
-  add_one:
+  add_one: Lisää yksi!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
-  add_one_now:
-  add_photos:
-  add_place:
-  add_alive_or_dead_alive_annotation: ''
-  add_alive_or_dead_cannot_be_determined_annotation: ''
-  add_alive_or_dead_dead_annotation: ''
-  add_plant_phenology_budding_annotation: ''
-  add_plant_phenology_flower_budding_annotation: ''
-  add_plant_phenology_flowering_annotation: ''
-  add_plant_phenology_fruiting_annotation: ''
-  add_plant_phenology_no_evidence_of_flowering_annotation: ''
-  add_life_stage_adult_annotation: ''
-  add_life_stage_teneral_annotation: ''
-  add_life_stage_subimago_annotation: ''
-  add_life_stage_pupa_annotation: ''
-  add_life_stage_nymph_annotation: ''
-  add_life_stage_larva_annotation: ''
-  add_life_stage_juvenile_annotation: ''
-  add_life_stage_egg_annotation: ''
-  add_evidence_of_presence_organism_annotation: ''
-  add_evidence_of_presence_feather_annotation: ''
-  add_evidence_of_presence_gall_annotation: ''
-  add_evidence_of_presence_scat_annotation: ''
-  add_evidence_of_presence_track_annotation: ''
-  add_evidence_of_presence_bone_annotation: ''
-  add_evidence_of_presence_molt_annotation: ''
+  add_one_now: Lisää yksi nyt
+  add_photos: Lisää valokuvia
+  add_place: Lisää paikka
+  add_alive_or_dead_alive_annotation: 'Lisää "elävä tai kuollut: elävä" -merkintä'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Lisää "elävä tai kuollut: ei voida määrittää" -merkintä'
+  add_alive_or_dead_dead_annotation: 'Lisää "elävä tai kuollut: kuollut" -merkintä'
+  add_plant_phenology_budding_annotation: 'Lisää "Kasvin fenologia: Verso puhkeamssa" selitys'
+  add_plant_phenology_flower_budding_annotation: 'Lisää "Kasvin fenologia: Kukka puhkeamssa" selitys'
+  add_plant_phenology_flowering_annotation: 'Lisää "Plant Phenology: Flowering" selitys'
+  add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
+  add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
+  add_life_stage_adult_annotation: 'Lisää "Life Stage: Adult" selitys'
+  add_life_stage_teneral_annotation: 'Lisää "Life Stage: teneral" selitys'
+  add_life_stage_subimago_annotation: 'Lisää "Life Stage: subimago" selitys'
+  add_life_stage_pupa_annotation: 'Lisää "Life Stage: Pupa" selitys'
+  add_life_stage_nymph_annotation: 'Lisää "Life Stage: Nymph" selitys'
+  add_life_stage_larva_annotation: 'Lisää "Life Stage: Larva" selitys'
+  add_life_stage_juvenile_annotation: 'Lisää "Life Stage: Juvenile" selitys'
+  add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
+  add_evidence_of_presence_organism_annotation: 'Lisää "Todiste läsnäolosta: eliö" -kommentti'
+  add_evidence_of_presence_feather_annotation: 'Lisää "Todiste läsnäolosta: sulka" -kommentti'
+  add_evidence_of_presence_gall_annotation: 'Lisää "Todiste läsnäolosta: äkämä" -kommentti'
+  add_evidence_of_presence_scat_annotation: 'Lisää "Todiste läsnäolosta: jätös" -kommentti'
+  add_evidence_of_presence_track_annotation: 'Lisää "Todiste läsnäolosta: jälki" -kommentti'
+  add_evidence_of_presence_bone_annotation: 'Lisää "Todiste läsnäolosta: luu" -kommentti'
+  add_evidence_of_presence_molt_annotation: 'Lisää "Todiste läsnäolosta: nahka" -kommentti'
   #As in a Taxon Framework Relationship
-  add_relationship: ''
+  add_relationship: 'Lisää suhde'
   #As in a Guide Section
-  add_section:
-  add_several_observations_at_once:
-  add_sex_female_annotation: ''
-  add_sex_male_annotation: ''
-  add_sex_cannot_be_determined_annotation: ''
-  add_some_now:
-  add_tag:
-  add_tags:
-  add_tags_to_selected_taxa:
-  add_taxa:
-  add_taxon_batch_to: ""
-  add_taxon_range:
-  add_taxonomic_tags_to: ""
-  add_to_a_scheme:
-  add_to_a_project:
-  add_to_calendar:
-  add_to_checklist:
-  add_to_favorites:
-  add_to_list:
-  add_to_project:
-  add_to_your_list:
+  add_section: Lisää osa
+  add_several_observations_at_once: Tallenna useita havaintoja kerralla.
+  add_sex_female_annotation: 'Lisää merkintä "Sukupuoli: Naaras"'
+  add_sex_male_annotation: 'Lisää merkintä "Sukupuoli: Koiras"'
+  add_sex_cannot_be_determined_annotation: 'Lisää "sukupuoli: ei voida määrittää" -merkintä'
+  add_some_now: Lisää jotain nyt
+  add_tag: Lisää merkintä
+  add_tags: Lisää tageja
+  add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
+  add_taxa: Lisää taksoni
+  add_taxon_batch_to: "Lisää taksonierä luetteloon %{list}"
+  add_taxon_range: Lisää taksonin levinneisyysalue
+  add_taxonomic_tags_to: "Lisää taksonomisia tunnisteita valittuihin Flickr-kuviin &raquo;"
+  add_to_a_scheme: Lisää järjestelmään
+  add_to_a_project: Lisää projektiin
+  add_to_calendar: Lisää kalenteriin
+  add_to_checklist: Lisää tarkkailulistalle
+  add_to_favorites: Lisää suosikkeihin
+  add_to_list: Lisää listaan
+  add_to_project: Lisää projektiin
+  add_to_your_list: Lisää luetteloosi
   add_your_email_to_get: |
-
-  add_your_own_observations_at: ""
-  added:
-  added!:
+    Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
+    Jos et halua jakaa sitä, seuraa tätä sivustoa säännöllisesti.
+  add_your_own_observations_at: "Tallenna omia havaintojasi %{site_name}iin"
+  added: Lisätty
+  added!: Lisätty!
   added_as_a_part_of_a_taxon_change_html: |
-
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksonin muutosta</a>
   added_as_a_part_of_a_taxon_merge_html: |
-
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksoneiden yhdistämistä</a>
   added_as_a_part_of_a_taxon_split_html: |
-
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksonin splittausta</a>
   added_as_a_part_of_a_taxon_swap_html: |
-
-  added_by:
-  added_by_user_on_date_html: ""
-  added_on_datetime: ""
+    Lisätty osana
+    <a target="%{target}" class="%{class}" href="%{url}">taksoneiden swappausta</a>
+  added_by: Lisännyt
+  added_by_user_on_date_html: "Lisännyt %{user} %{date}"
+  added_on_datetime: "Lisätty %{datetime}"
   added_to_favorites_html: |
-
-  adding: ""
-  adjust_brightness:
-  admin:
-  admin_s:
-  admin_only:
-  admin_tools:
+    Lisätty <a href="%{url}">suosikkeihin</a>
+  adding: "Lisätään..."
+  adjust_brightness: Säädä kirkkautta
+  admin: Ylläpitäjä
+  admin_s: Ylläpitäjä(t)
+  admin_only: Vain ylläpidolle
+  admin_tools: Hallintatyökalut
   #Organizations affiliated with an iNaturalist Network member or similar entity
-  affiliated_organizations:
-  agree_:
-  agree?:
-  agree_with_current_taxon:
-  agreeing:
-  aka:
+  affiliated_organizations: Kumppaniorganisaatiot
+  agree_: Samaa mieltä
+  agree?: Samaa mieltä?
+  agree_with_current_taxon: Samaa mieltä tämän tunnistuksen kanssa
+  agreeing: Samaa mieltä...
+  aka: tunnetaan myös nimellä
   #Noun, title of a popup alerting you to something
-  alert:
-  all:
-  all_comments:
-  all_flags_must_be_resolved:
-  all_life:
-  all_names:
-  all_observations:
-  all_photos:
-  all_places: ""
-  all_projects:
-  all_rights_reserved:
-  all_taxa_:
-  all_taxa_in_this_guide:
-  all_taxonomic_groups: ""
-  all_updates:
-  allow_curator_access:
-  allow_project_curators_to_view_your_private_coordinates:
-  allowed_establish_means_values:
-  allowed_html:
-  allowed_occurrence_status_values:
-  allowed_values:
-  almost_there_:
-  alphabetical:
-  alphabetical_order:
-  already_have_an_account_log_in_html:
-  amphibians:
-  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
-  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
-  #as disagreements with existing IDs of the thinned descendant.
-  analyze_clashes:
-  analyze_ids:
-  ancestor_taxon:
-  and:
-  and_other_taxa: ""
-  android:
-  animals:
-  annotation:
-  annotations:
-  announcement_was_successfully_created:
-  announcement_was_successfully_updated:
-  announcements:
+  alert: Varoitus
+  all: Kaikki
+  all_comments: Kaikki kommentit
+  all_flags_must_be_resolved: Kaikki liput on ratkaistava
+  all_life: Kaikki elämänmuodot
+  all_names: Kaikki Nimet
+  all_observations: Kaikki havainnot
+  all_photos: Kaikki kuvat
+  all_places: "Kaikki paikat"
+  all_projects: Kaikki projektit
+  all_rank_added_to_the_database:
+    phylum: Kaikki pääjaksot lisätty tietokantaan
+    subphylum: Kaikki alajaksot lisätty tietokantaan
+    superclass: Kaikki yläluokat lisätty tietokantaan
+    class: Kaikki luokat lisätty tietokantaan
+    subclass: Kaikki alaluokat lisätty tietokantaan
+    infraclass: Kaikki osaluokat lisätty tietokantaan
+    superorder: Kaikki ylälahkot lisätty tietokantaan
+    order: Kaikki lahkot lisätty tietokantaan
+    suborder: Kaikki alalahkot lisätty tietokantaan
+    infraorder: Kaikki osalahkot lisätty tietokantaan
+    superfamily: Kaikki yläheimot lisätty tietokantaan
+    epifamily: Kaikki epiheimot lisätty tietokantaan
+    family: Kaikki heimot lisätty tietokantaan
+    subfamily: Kaikki alaheimot lisätty tietokantaan
+    supertribe: Kaikki ylätribukset lisätty tietokantaan
+    tribe: Kaikki heimot lisätty tietokantaan
+    subtribe: Kaikki alatribukset lisätty tietokantaan
+    genus: Kaikki suvut lisätty tietokantaan
+    genushybrid: Kaikki risteymäsuvut lisätty tietokantaan
+    subgenus: Kaikki alasuvut lisätty tietokantaan
+    section: Kaikki jaksot lisätty tietokantaan
+    subsection: Kaikki välitasot lisätty tietokantaan
+    complex: Kaikki yhdistelmät lisätty tietokantaan
+    species: Kaikki lajit lisätty tietokantaan
+    hybrid: Kaikki risteymät lisätty tietokantaan
+    subspecies: Kaikki alalajit lisätty tietokantaan
+    variety: Kaikki lajikkeet lisätty tietokantaan
+    form: Kaikki muodot lisätty tietokantaan
+  all_rights_reserved: Kaikki oikeudet pidätetään
+  all_taxa:
+    amphibians: Sammakkoeläimet
+    animals: Eläimet
+    arachnids: Hämähäkkieläimet
+    birds: Linnut
+    chromista: Chromista
+    fungi: Sienet
+    fungi_including_lichens: Sienet, mukaanlukien jäkälät
+    insects: Hyönteiset
+    mammals: Nisäkkäät
+    mollusks: Nilviäiset
+    other_animals: Muut eläimet
+    plants: Kasvit
+    protozoans: Alkueläimet
+    ray_finned_fishes: Viuhkaeväiset
+    reptiles: Matelijat
+    life: Elämä
+    x_plantae:
+      one: "1 kasvi"
+      other: "%{count} kasvia"
+    x_animalia:
+      one: "1 eläin"
+      other: "%{count} eläintä"
+    x_mollusca:
+      one: "1 nilviäinen"
+      other: "%{count} nilviäistä"
+    x_amphibia:
+      one: "1 sammakkoeläin"
+      other: "%{count} sammakkoeläintä"
+    x_mammalia:
+      one: "1 nisäkäs"
+      other: "%{count} nisäkästä"
+    x_actinopterygii:
+      one: "1 viuhkaeväinen"
+      other: "%{count} viuhkaeväistä"
+    x_reptilia:
+      one: "1 matelijat"
+      other: "%{count} matelijaa"
+    x_aves:
+      one: "1 lintu"
+      other: "%{count} lintua"
+    x_insecta:
+      one: "1 hyönteinen"
+      other: "%{count} hyönteistä"
+    x_arachnida:
+      one: "1 hämähäkkieläin"
+      other: "%{count} hämähäkkieläintä"
+    x_fungi:
+      one: "1 sieni"
+      other: "%{count} sientä"
+    x_chromista:
+      one: "1 chromista eliöryhmään kuuluva"
+      other: "%{count} chromista eliöryhmään kuuluvaa"
+    x_protozoa:
+      one: "1 alkueläin"
+      other: "%{count} alkueläintä"
+    x_other_animals:
+      one: "1 muu eläinlaji"
+      other: "%{count} muuta eläinlajia"
+  all_taxa_: Kaikki taksonit
+  all_taxa_in_this_guide: Kaikki taksonit tässä oppaassa
+  all_taxonomic_groups: "&laquo; Kaikki taksonomiset ryhmät"
+  all_updates: Kaikki päivitykset
+  allow_curator_access: Salli kuraattorin pääsy
+  allow_project_curators_to_view_your_private_coordinates: Salli projektin kuraattorien katsoa piilotettuja koordinaattejasi
+  allowed_establish_means_values: Sallitut arvot vakiintuneisuudelle
+  allowed_html: Sallitut HTML-koodit
+  allowed_occurrence_status_values: Sallitut arvot esiintymisen tilalle
+  allowed_values: Sallitut arvot
+  almost_there_: Melkein siellä...
+  alphabetical: Aakkosjärjestyksessä
+  alphabetical_order: Aakkosjärjestys
+  already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
+  amphibians: sammakkoeläimet
+  ancestor_taxon: Ylempi taksoni
+  and: ja
+  and_other_taxa: "&amp; muut taksonit"
+  android: Android
+  animals: Eläimet
+  annotation: Merkintä
+  annotations: Merkinnät
+  announcement_was_successfully_created: Ilmoituksen laatiminen onnistui.
+  announcement_was_successfully_updated: Ilmoituksen päivittäminen onnistui.
+  announcements: Ilmoitukset
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any:
+  any: mikä tahansa
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
-  any_:
+  any_: Mikä tahansa
   #Label for an option to show content with any annotation attribute
-  any_annotation_attribute:
+  any_annotation_attribute: Mikä tahansa
   #Label for an option to show content with any annotation value
-  any_annotation_value:
+  any_annotation_value: Mikä tahansa
   #Label for an option to show content from any date
-  any_date:
+  any_date: Mikä tahansa
   #Label for an option to show content with any establishment means
-  any_establishment:
+  any_establishment: Mikä tahansa
   #Label for an option to show content with any license
-  any_license:
+  any_license: Mikä tahansa
   #Label for an option to show content with photos, sounds, or neither
-  any_media:
+  any_media: Mikä tahansa
   #Label for an option to show content from any project
-  any_project:
+  any_project: Mikä tahansa
   #Label for an option to show content with any quality grade
-  any_quality_grade:
+  any_quality_grade: Mikä tahansa
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
-  any_reviewed:
+  any_reviewed: Mikä tahansa
   #Label for an option to show/include content by any user
-  any_user:
-  anyone:
-  app_owner_application_explanation_required: |
-
-  app_owner_application_about_p1a_html: |
-
+  any_user: Mikä tahansa
+  anyone: Kuka tahansa
   app_owner_application_about_p2_html: |
-
+    Vuodesta 2022 lähtien vaadimme manuaalista hyväksyntää käyttäjille, jotka haluavat tehdä API-sovelluksia. Jotta voit luoda kolmannen osapuolen sovelluksia, sinun on ensin lähetettävä hakemus. Hakemuksen tulisi kuvata suunnitellun sovelluksen toiminnallisuutta ja sitä, mihin aiot käyttää sitä. Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 <a href="/pages/help#identification"target="_blank">tunnistuksen parantamista</a> viime kuussa. Saatamme kysyä jatkokysymyksiä suunnitelmastasi ja varaamme oikeuden hylätä hakemuksen mistä tahansa syystä.
   app_owner_application_inelligible: |
-
-  app_owner_application_fields_explanation_html:
-  app_owner_application_success:
+    Hakemuksen tekemiseksi tilisi on oltava vähintään 2 kuukautta vanha, ja sen on täytynyt tehdä vähintään 10 tunnistuksen parantamista viime kuussa.
+  app_owner_application_fields_explanation_html: Kuvaile sovelluksesi toiminnallisuus ja miten aiot käyttää sitä.
+  app_owner_application_success: Sovelluksen omistajan hakemus lähetetty
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  application:
+  application: Sovellus
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
-  applications:
-  apply_app_owner:
+  applications: Sovellukset
+  apply_app_owner: Hae
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator:
-  apply_to_be_an_app_owner:
-  apply_to_create_applications_title:
-  apply_to_selected:
-  apply_captive_cultivated: ""
-  apply_fields:
-  apply_geoprivacy:
-  apply_darr: ""
-  apply_establishment_means_to_descendant_places: ""
-  apply_these_settings_to_all:
-  appropriate?:
-  arachnids:
-  archives:
-  are_you_really_sure_want_delete_this_user:
-  are_you_sure?:
-  are_you_sure_no_undo:
+  apply_curator: Hyväksy
+  apply_to_be_an_app_owner: Hae sovelluksen omistajaksi
+  apply_to_selected: Käytä valittuihin
+  apply_captive_cultivated: "Lisää vangittu / viljelty -merkintä"
+  apply_fields: Hyväksy kentät
+  apply_geoprivacy: Käytä sijainnin tietosuojaa
+  apply_darr: "Hyväksy &darr;"
+  apply_establishment_means_to_descendant_places: "Päivitä vakiintuneisuus alemmille paikoille"
+  apply_these_settings_to_all: Ota käyttöön nämä asetukset kaikissa alla olevissa havainnoissa
+  appropriate?: Sopiva?
+  arachnids: hämähäkkieläimet
+  archives: Arkistot
+  are_you_really_sure_want_delete_this_user: Oletko todella aivan varma että haluat poistaa tämän käyttäjän ja kaikki hänen aineistonsa?
+  are_you_sure?: Oletko varma?
+  are_you_sure_no_undo: Oletko varma? Tätä ei voi perua.
   are_you_sure_delete_conservation_status: |
-
-  are_you_sure_delete_post:
-  are_you_sure_delete_taxon_move_associates: ""
-  are_you_sure_delete_this_place:
-  are_you_sure_leave_this_project:
-  are_you_sure_merge_these_places:
-  are_you_sure_remove_photo: ""
-  are_you_sure_remove_relationship:
-  are_you_sure_remove_taxon_from_list: ""
+    Oletko varma, että haluat poistaa tämän uhanalaisuusluokan? Tämä voi muuttaa tämän taksonin ja sen lapsitaksonien havaintojen karkeistuksiin.
+  are_you_sure_delete_post: Haluatko varmasti poistaa tämän julkaisun?
+  are_you_sure_delete_taxon_move_associates: "Haluatko varmasti poistaa taksonin %{taxonname} (%{taxonid}), ja siirtää kaikki sen kumppanit?"
+  are_you_sure_delete_this_place: Haluatko varmasti poistaa tämän paikan?
+  are_you_sure_leave_this_project: Haluatko varmasti lähteä pois tästä projektista?
+  are_you_sure_merge_these_places: Haluatko varmasti yhdistää nämä paikat? Tätä ei voi perua.
+  are_you_sure_remove_photo: "Haluatko varmasti poistaa tämän kuvan?"
+  are_you_sure_remove_relationship: Oletko varma, että haluat lopettaa tämän yhteistyösuhteen? Samalla lopetat hänen seuraamisensa ja poistat häneltä oikeuden nähdä havaintojesi salattuja koordinaatteja, jos olet aiemmin antanut sellaisen oikeuden.
+  are_you_sure_remove_taxon_from_list: "Haluatko varmasti poistaa tämän taksonin luettelosta?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
-
+    Oletko varma? Tämä lataa sivun uudelleen, saatat menettää joitakin muutoksistasi.
   are_you_sure_unresolve_flag?: |
-
-  are_you_sure_want_delete_taxon: ""
+    Olet varma että haluat poistaa tämän lipun ratkaisun? Tämä poistaa myös ratkaisun tehneen käyttäjän tästä lipusta.
+  are_you_sure_want_delete_taxon: "Haluatko varmasti poistaa tämän taksonin?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita ja sitä on käytetty havaintojen tunnistuksiin.
   are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita, tunnistuksia ja havaintoja.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia sekä alempia taksoneita.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita, alempia taksoneita ja tunnistuksia.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_identifications_observations: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita, alempia taksoneita, tunnistuksia ja havaintoja.
   are_you_sure_want_delete_taxon_descendant_taxa_listed_taxa_observations: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita, alempia taksoneita ja havaintoja.
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sillä on alempia taksoneita ja havaintoja.
   are_you_sure_want_delete_taxon_identifications: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sitä on käytetty havaintojen tunnistuksiin.
   are_you_sure_want_delete_taxon_identifications_observations: |
-
+    Haluatko varmasti poistaa tämän taksonin? Sillä havaintoja ja sitä on käytetty tunnistuksiin.
   are_you_sure_want_delete_taxon_listed_taxa: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita.
   are_you_sure_want_delete_taxon_listed_taxa_identifications: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita ja sitä on käytetty tunnistuksiin.
   are_you_sure_want_delete_taxon_listed_taxa_identifications_observations: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita, tunnistuksia ja havaintoja.
   are_you_sure_want_delete_taxon_listed_taxa_observations: |
-
+    Oletko varma että haluat poistaa tämän taksonin? Siihen kuuluu luetteloissa mukana olevia taksoneita ja havaintoja.
   are_you_sure_want_delete_taxon_observations: |
-
-  are_you_sure_want_delete_taxon_link:
-  are_you_sure_want_delete_this_name:
-  are_you_sure_want_delete_this_range:
-  are_you_sure_you_want_to_commit_this_change:
-  are_you_sure_you_want_to_delete_this:
-  are_you_sure_you_want_to_delete_this_assessment?:
-  are_you_sure_you_want_to_delete_this_photo?:
-  are_you_sure_you_want_to_delete_this_post:
-  are_you_sure_you_want_to_delete_this_taxon_change:
-  are_you_sure_you_want_to_remove_all_tags:
-  are_you_sure_you_want_to_remove_curator:
-  are_you_sure_you_want_to_remove_from_project:
-  are_you_sure_you_want_to_remove_manager:
+    Haluatko varmasti poistaa tämän taksonin? Sillä on havaintoja.
+  are_you_sure_want_delete_taxon_link: Oletko varma, että haluat poistaa tämän taksonin linkin?
+  are_you_sure_want_delete_this_name: Haluatko varmasti poistaa tämän nimen?
+  are_you_sure_want_delete_this_range: Oletko varma, että haluat poistaa tämän alueen?
+  are_you_sure_you_want_to_commit_this_change: Oletko varma, että haluat tehdä tämän muutoksen? Tätä ei voi perua.
+  are_you_sure_you_want_to_delete_this: Haluatko varmasti poistaa tämän?
+  are_you_sure_you_want_to_delete_this_assessment?: Haluatko varmasti poistaa tämän arvioinnin?
+  are_you_sure_you_want_to_delete_this_photo?: Haluatko varmasti poistaa tämän kuvan?
+  are_you_sure_you_want_to_delete_this_post: Haluatko varmasti poistaa tämän kirjoituksen?
+  are_you_sure_you_want_to_delete_this_taxon_change: Haluatko varmasti poistaa tämän taksonimuutoksen?
+  are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tunnisteet?
+  are_you_sure_you_want_to_remove_curator: Haluatko varmasti poistaa käyttäjältä %{user} kuraattorin oikeudet?
+  are_you_sure_you_want_to_remove_from_project: Haluatko varmasti poistaa käyttäjän %{user} tästä projektista?
+  are_you_sure_you_want_to_remove_manager: Haluatko varmasti poistaa käyttäjältä %{user} managerin oikeudet?
   are_you_sure_you_want_to_remove_spammer: |
-
-  are_you_sure_you_want_to_remove_these_x_taxa?: ""
+    Oletko varma, että pidät tätä käyttäjää kunniallisena?
+    Kaikki roskapostiliput hänen sisällössään ratkaistaan.
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Haluatko varmasti poistaa nämä %{x} taksonia?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: ""
-  associated_observations:
-  associated_taxa:
-  attention:
-  you_sure_delete_list:
-  you_sure_delete_taxon_from_list?: ""
-  asc:
-  ascending:
-  assessment:
-  assessment_has_benn_completed:
-  assessment_sections:
-  assessment_was_deleted:
-  assessment_was_successfully_created:
-  assessment_was_successfully_updated:
-  assessment_x: ""
-  assessments:
-  associations:
-  atlased:
-  atlas_for_taxon_html:
+    Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
+  associated_observations: Liittyvät havainnot
+  associated_taxa: Liittyvät taksonit
+  attention: Huom
+  you_sure_delete_list: Haluatko varmasti poistaa tämän luettelon?
+  you_sure_delete_taxon_from_list?: "Haluatko varmasti poistaa taksonin %{taxon} luettelosta?"
+  asc: Nouseva
+  ascending: Nouseva
+  assessment: arviointi
+  assessment_has_benn_completed: Arviointi on saatu päätökseen
+  assessment_sections: Arvioinnin osat
+  assessment_was_deleted: Arviointi poistettiin.
+  assessment_was_successfully_created: Arviointi luotiin onnistuneesti.
+  assessment_was_successfully_updated: Arviointi päivitettiin onnistuneesti.
+  assessment_x: "%{assessment} arviointi"
+  assessments: arvioinnit
+  associations: Yhdistykset
+  atlas_for_taxon_html: Atlas taksonille%{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
-  atom:
-  attached_taxon:
+  atom: Atom
+  attached_taxon: Liitetty taksoni
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
-  attribute:
-  attribution:
-  authorize:
-  #Second-person verb to authorize an application to access an iNat account
-  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
-  authorize_with_pkce:
-  #Explanation for how to use the PKCE authorization link. All variables are
-  #code that must match the content of the link and thus cannot be
-  #translated.
-  authorize_with_pkce_desc_html: |
-
-  authorize_permissions_from_provider: ""
-  automatic_short:
-  automatically_add_observations_to_this_project:
-  automatically_update_my_content_for_taxon_changes:
+  attribute: Määrite
+  attribution: Nimeäminen
+  authority_list:
+    iucn_red_list: IUCN Uhanalaisuusluokitus
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Valtuuta
+  authorize_permissions_from_provider: "Valtuuta %{provider} käyttöoikeudet"
+  automatic_short: Auto
+  automatically_add_observations_to_this_project: Lisää automaattisesti kaikki havainnot tähän projektiin
+  automatically_update_my_content_for_taxon_changes: Päivitä taksonimuutokset automaattisesti omiin havaintoihini.
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg:
-  back:
-  back_to_applications: ""
-  back_to_all_species:
-  back_to_editing_observation:
-  back_to_friends:
-  back_to_flags_html: ""
-  back_to_lists: ""
-  back_to_observation:
-  back_to_observation_fields:
-  back_to_people:
-  back_to_places:
-  back_to_possessive_user_profile: ""
-  back_to_post: ''
-  back_to_projects:
-  back_to_suggestions:
-  back_to_taxon: ""
-  back_to_taxon_changes: ""
-  back_to_taxon_framework_for_x: ""
-  back_to_users_calendar: ""
-  back_to_users_lists: ""
-  back_to_viewing: ""
-  back_to_x: ""
-  back_to_x_assessment: ""
-  back_to_x_history: ""
-  back_to_x_journal: ""
-  back_to_x_blog: ""
-  back_to_your_calendar:
-  back_to_your_dashboard:
-  back_to_your_lists:
-  back_to_your_journal:
-  back_to_your_observations:
-  back_to_your_profile:
-  badges:
+  avg: Keskiarvo
+  back: Takaisin
+  back_to_applications: "&laquo; Takaisin hakemuksiin"
+  back_to_all_species: Takaisin kaikkiin lajeihin
+  back_to_editing_observation: Takaisin muokkaamaan havaintoa
+  back_to_friends: Takaisin ystäviin
+  back_to_flags_html: "&laquo; Takaisin lippuihin"
+  back_to_lists: "Takaisin käyttäjän %{name} listoihin"
+  back_to_observation: Takaisin havaintoon
+  back_to_observation_fields: Takaisin havaintokenttiin
+  back_to_people: Takaisin ihmisiin
+  back_to_places: Takaisin paikkoihin
+  back_to_possessive_user_profile: "Takaisin %{possuser}:n profiiliin"
+  back_to_post: '&laquo; Takaisin viestiin'
+  back_to_projects: Takaisin projekteihin
+  back_to_suggestions: Takaisin ehdotuksiin
+  back_to_taxon: "Takaisin %{defaulttaxon}"
+  back_to_taxon_changes: "Takaisin taksonin muutoksiin"
+  back_to_taxon_framework_for_x: "Takaisin %{taxon_name} taksonomiarunkoon"
+  back_to_users_calendar: "Takaisin käyttäjän %{user} kalenteriin"
+  back_to_users_lists: "Takaisin käyttäjän %{user} listoihin"
+  back_to_viewing: "Takaisin katsomaan taksonia <i>%{taxon}</i>"
+  back_to_x: "Takaisin %{noun}"
+  back_to_x_assessment: "Takaisin projektin %{project} arviointiin"
+  back_to_x_history: "Takaisin artikkelin %{x} historiaan"
+  back_to_x_journal: "Takaisin käyttäjän %{user} päiväkirjaan"
+  back_to_x_blog: "Takaisin sivun %{x} blogiin"
+  back_to_your_calendar: Takaisin kalenteriin
+  back_to_your_dashboard: Takaisin omaan kojelautaan
+  back_to_your_lists: Takaisin omiin luetteloihin
+  back_to_your_journal: Takaisin päiväkirjaasi
+  back_to_your_observations: Takaisin omiin havaintoihin
+  back_to_your_profile: Takaisin profiiliisi
+  badges: Merkit
   based_on_the_evidence_can_id_be_improved: |
-
-  batch:
-  batch_edit:
+    Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
+  batch: Erä
+  batch_edit: Erän muokkaus
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: ""
-  batch_operations:
-  be_the_first_to_fave_this_observation:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_act_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  because_we_estimate_this_change_dont_act_html: |
-
-  become_a_donor_caps:
-  become_a_donor_today_caps:
-  before_importing_photos:
-  bg_color:
-  bio:
-  bio_description:
-  bioblitz:
-  birds:
-  birthday:
-  black:
-  block_removed:
-  blocked_users:
-  blog_widget:
-  blue:
-  blue_butterfly_etc: ""
-  body:
+  batch_edit_taxa_for_x_html: "Massamuokkaa taksoneita kohteelle %{x}"
+  batch_operations: Erätoiminnot
+  be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
+  before_importing_photos: ennen kuvien tuontia
+  bg_color: Taustaväri
+  bio: Kuvaus
+  bio_description: Kerro muille iNaturalistin käyttäjille itsestäsi!
+  bioblitz: Bioblitz
+  birds: linnut
+  birthday: Syntymäpäivä
+  black: musta
+  block_removed: Esto poistettu
+  blocked_users: Estetyt käyttäjät
+  blog_widget: Blogi-pienoisohjelma
+  blue: sininen
+  blue_butterfly_etc: "sininen, perhonen, jne."
+  body: Leipäteksti
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
-  bold_label_colon_value_html: ""
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
-  bold_text:
-  breadcrumbs:
+  bold_text: lihavoitu teksti
+  breadcrumbs: Leivänmurut
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
   #page where the project title and a button to add an observation are usually
   #shown
-  breadcrumbs_description: ""
-  brief_caption:
-  brown:
-  browse:
-  browse_all_projects:
-  browse_all_species:
-  browse_observations:
-  browse_people:
-  browse_projects:
-  browse_species_that_occur_near_this_observation:
-  built_with_site_guides_html: ""
-  bulk_import_of_filename_is_complete: ""
-  by:
-  by_everyone:
-  by_user: ""
-  by_you:
-  calendar:
-  calendars_only_show_x_observations_at_time:
-  callback_url:
-  cancel:
-  cant_edit_or_delete_hidden_content:
-  cant_flag_an_object_that_doesnt_exist:
-  cant_merge_a_taxon_with_itself:
-  captive:
-  captive_cultivated:
-  captive_observations:
-  card:
-  casual:
-  casual_:
-  casual_tooltip_html: ''
-  categories:
-  cc_0_description: ""
-  cc_0_name:
-  cc_attribution_license:
-  cc_by_description: ""
-  cc_by_name:
-  cc_by_nc_description: ""
-  cc_by_nc_name:
-  cc_by_nc_nd_description: ""
-  cc_by_nc_nd_name:
-  cc_by_nc_sa_description: ""
-  cc_by_nc_sa_name:
-  cc_by_nd_description: ""
-  cc_by_nd_name:
-  cc_by_sa_description: ""
-  cc_by_sa_name:
-  cc_used_under_a: ""
-  change_admin:
+  breadcrumbs_description: "Tässä yliajetaan h1 ja oletuksena olevat toimintakehotukset (\"calls to action\"), joten lisää nämä jos ne ovat tärkeitä tälle projektille ja muista että maksimileveys on 950px"
+  brief_caption: Lyhyt kuvaus
+  brown: ruskea
+  browse: Selaa
+  browse_all_projects: Selaa kaikkia projekteja
+  browse_all_species: Selaa kaikkia lajeja
+  browse_observations: Selaa havaintoja
+  browse_people: Selaa henkilöitä
+  browse_projects: Selaa projekteja
+  browse_species_that_occur_near_this_observation: Selaa lajeja, jotka esiintyvät tämän havainnon lähellä.
+  built_with_site_guides_html: "Rakennettu <a href='%{url}'>%{site_name} oppailla</a>"
+  bulk_import_of_filename_is_complete: "Tiedoston %{filename} massasiirto on valmis"
+  by: käyttäjältä
+  by_everyone: Kaikkien
+  by_user: "käyttäjältä %{user}"
+  by_you: Sinun
+  calendar: Kalenteri
+  calendars_only_show_x_observations_at_time: Kalenterit näyttävät vain %{x} havaintoa kerrallaan
+  callback_url: Takaisinkutsu-URL
+  cancel: Peruuta
+  cant_edit_or_delete_hidden_content: Et voi muokata tai poistaa sisältöä, jonka sivuston kuraattorit ovat piilottaneet
+  cant_flag_an_object_that_doesnt_exist: Olematonta kohdetta ei voi liputtaa.
+  cant_merge_a_taxon_with_itself: Ei voi yhdistää taksonia itsensä kanssa.
+  captive: Vangittu
+  captive_cultivated: Vangittu / viljelty
+  captive_observations: Ei-luonnonvaraiset havainnot
+  card: Kortti
+  casual: epämuodollinen
+  casual_: Epämuodollinen
+  casual_tooltip_html: '"Epämuodollisista havainnoista" puuttuu media, sijainti tai päivämäärä, tai ne eivät täytä "Tutkimustaso"- tai "Tarvitsee tunnistuksen"-laatuluokkia muista syistä. <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
+  categories: Luokat
+  cc_0_description: "Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä."
+  cc_0_name: Ei tekijänoikeutta (CC0)
+  cc_attribution_license: Creative Commons Nimeä -lisenssi
+  cc_by_description: "Tämä lisenssi antaa muille oikeuden levittää, muokata ja käyttää pohjana teostasi, myös kaupallisessa tarkoituksessa, kunhan he käytön yhteydessä mainitsevat nimesi alkuperäisen teoksen tekijänä."
+  cc_by_name: Nimeä
+  cc_by_nc_description: "Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa. Vaikka nimesi on mainittava uuden teoksen esittämisen yhteydessä ja esittämisen on oltava ei-kaupallinen, uutta teosta ei tarvitse lisensoida samoilla ehdoilla kuin alkupeäistä."
+  cc_by_nc_name: Nimeä-EiKaupallinen
+  cc_by_nc_nd_description: "Tämä lisenssi on kuudesta tärkeimmästä lisenssistä rajoittavin. Se antaa muille oikeuden tallentaa ja jakaa teostasi sillä edellytyksellä, että nimesi mainitaan jakamisen yhteydessä. Muilla ei ole oikeutta muokata teostasi millään tavalla eikä käyttää sitä kaupallisiin tarkoituksiin."
+  cc_by_nc_nd_name: Nimeä-EiKaupallinen-EiMuutoksia
+  cc_by_nc_sa_description: "Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisessa tarkoituksessa, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä."
+  cc_by_nc_sa_name: Nimeä-EiKaupallinen-JaaSamoin
+  cc_by_nd_description: "Tämä lisenssi sallii kaupallisen ja epäkaupallisen uudelleenjakelun kunhan se esitetään muokkaamatta ja kokonaisena sekä sinut tekijänä mainittuna."
+  cc_by_nd_name: Nimeä-EiMuutoksia
+  cc_by_sa_description: "Tämä lisenssi antaa muille oikeuden muokata ja käyttää pohjana teostasi ei-kaupallisiin ja kaupallisiin tarkoituksiin, kunhan nimesi mainitaan alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä. Teokseesi pohjautuvia uusia teoksia voidaan siis käyttää myös kaupallisiin tarkoituksiin."
+  cc_by_sa_name: Nimeä-JaaSamoin
+  cc_used_under_a: "Creative Commons, käytetty lisenssillä"
+  change_admin: Vaihda ylläpitäjä
   #Button to change the cover (or banner) image for a project
-  change_cover:
-  change_geoprivacy: ''
-  change_group:
-  change_icon:
-  change_password:
-  change_your_password:
-  #Plural noun, as in changes to a taxon record over time
-  changes:
-  #disagreements are identifications that disagree with other identifications on the same observation
-  changing_the_ancestry_to_that_parent:
-  changing_the_geoprivacy: ''
-  check_above_for_errors:
-  check_back_soon:
-  check_here_to_autoload_description:
-  check_here_to_autoload_photos:
-  check_list:
-  check_list_description:
-  check_list_for_individual_taxa_that: ''
-  check_list_for_taxon_html: ""
+  change_cover: Vaihda kansikuva
+  change_descriptions:
+    split: Vanha taksoni jaettu osaksi useita uusia taksoneita
+    merge: Useita vanhoja taksoneita yhdistetty yhdeksi uudeksi taksoniksi
+    drop: Taksonin käsite täysin virheellinen, säilytetään historiallisia tarkoituksia varten tai kumppanin yhteensopivuuden takaamiseksi
+    stage: Luo staattinen konsepti julkaistavaksi osana muunnosryhmää
+  change_geoprivacy: 'Muuta sijainnin tietosuojaa.'
+  change_group: Vaihda ryhmä
+  change_icon: Vaihda profiilikuva
+  change_password: Vaihda salasana
+  change_types:
+    activated_soon: aktivoituu pian
+    change_types: Vaihda tyyppejä
+    split: Jaa
+    merge: Yhdistä
+    swap: Vaihda
+    stage: Vaihe
+    drop: Pudota
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_from: jakaa
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    split_into: jakaa
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merge_into: yhdistää
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: yhdistetty
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: korvattu
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: 'Korvaa seuraavalla:'
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: 'korvattu seuraavalla:'
+    dropped: pudonnut
+    staged: lavastettu
+    input_taxon_was_split_into_output_taxa_html: "%{input_taxon} jaettiin %{output_taxa}"
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} jaetaan %{output_taxa}"
+    input_taxon_was_dropped_html: "taksoni %{input_taxon} poistettiin"
+    input_taxon_will_be_dropped_html: "taksoni %{input_taxon} poistettiin"
+    input_taxon_will_be_activated_soon_html: "taksoni %{input_taxon} aktivoidaan pian"
+    input_taxon_was_replaced_by_output_taxon_html: "taksoni %{input_taxon} korvattiin taksonilla %{output_taxon}"
+    input_taxon_will_be_replaced_by_output_taxon_html: "taksoni %{input_taxon} tullaan korvaamaan taksonilla %{output_taxon}"
+    input_taxa_were_merged_into_output_taxon_html: "taksonit %{input_taxa} yhdistettiin taksoniin %{output_taxon}"
+    input_taxa_will_be_merged_into_output_taxon_html: "taksoni %{input_taxa} tullaan yhdistämään taksoniin %{output_taxon}"
+  change_your_password: Vaihda salasanasi
+  changing_the_geoprivacy: 'Sijainnin tietosuojan muuttaminen vaikuttaa siihen miten muut ihmiset näkevät havaintopaikkasi sijainnin.'
+  check_above_for_errors: Tarkista virheet ylempää
+  check_back_soon: Tulethan pian takaisin!
+  check_here_to_autoload_description: Valitse tämä ladataksesi kuvaus automaattisesti Wikipediasta. Saatat haluta poistaa valinnan kun taksonin nimi ei ole tieteellinen nimi tai se on väärin kirjoitettu.
+  check_here_to_autoload_photos: Valitse tämä ladataksesi kuvia automaattisesti Flickr'istä. Saatat haluta poistaa valinnan kun taksonin nimi ei ole tieteellinen nimi tai se on väärin kirjoitettu, kuten "Parus".
+  check_list: Lajiluettelo
+  check_list_description: Valitse ylemmän tason taksoni jonka haluat näyttää tässä listassa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet tehnyt sen, tämä luettelo ei salli taksoneita jotka eivät kuulu tähän taksoniin. Esimerkiksi, jos luot listan linnuista, et voi lisätä siihen sammakoita.
+  check_list_for_individual_taxa_that: 'Lajilistat yksittäisistä taksoneista, jotka elävät täällä, esim. "Paikan %{place}" linnut.'
+  check_list_for_taxon_html: "Lajiluettelo, joka kuuluu %{taxon}"
   check_lists_must_belong_to_a_place: |
-
-  check_list_place: ""
-  check_list_updated:
-  check_lists_for: ""
-  check_out_the_inat_store:
-  check_out_what_the_observation:
+    Lajilistojen on kuuluttava paikkoihin. Luodaksesi uuden lajiluettelon, mene paikan oletuslajiluetteloon ja klikkaa linkkiä  "Luo uusi lajiluettelo".
+  check_list_place: "%{place} Lajiluettelo"
+  check_list_updated: Lajiluettelo päivitetty!
+  check_lists_for: "Muut lajilistat paikalle %{place}"
+  check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa, näyttävät
   check_this_box_if_html: |
-
-  checklist:
-  choose_a_field:
-  choose_a_list_above:
-  choose_a_place:
-  choose_a_taxon:
-  choose_columns:
-  choose_file:
-  choose_files:
-  choose_from_your_lists:
-  choose_photos_for_this_taxon:
-  choose_photos_to_tag_from_photostream:
-  choose_rule:
-  choose_subjects:
-  choose_tags:
-  choose_taxon:
-  choose_what_kind_of_change_youre_creating: ""
-  cid_d_to_genus:
-  citation:
-  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  clashes_occur_for_moves_html: |
-
-  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
-  clashes_occur_for_swaps_html: |
-
-  classification:
-  clear:
-  clear_filters:
-  clear_search:
-  click_the_map: ""
-  close:
-  code:
-  colors:
-  columns:
-  combine:
+    Laita ruksi tähän jos haluat käyttää <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Nimeä-Epäkaupallinen -lisenssiä</a> palveluun lisäämääsi sisältöön. Tämä tarkoittaa että kuka tahansa voi kopioida ja käyttää valokuviasi ja/tai havaintojasi pyytämättä erikseen lupaa, kunhan he viittaavat sinuun tiedon lähteenä eivätkä käytä niitä kaupallisesti. Voit valita erilaisen lisenssin tai poistaa lisenssin myöhemmin, mutta tämä on hyvä lisenssi tiedon jakamiseen tutkijoille.
+  checklist: Lajiluettelo
+  choose_a_field: Valitse kenttä
+  choose_a_list_above: Valitse luettelo yläpuolelta.
+  choose_a_place: Valitse paikka
+  choose_a_taxon: Valitse taksoni (valinnainen)
+  choose_columns: Valitse sarakkeet
+  choose_file: Valitse tiedosto
+  choose_files: Valitse tiedostot
+  choose_from_your_lists: Valitse luetteloistasi
+  choose_photos_for_this_taxon: Valitse kuvat tälle taksoninille
+  choose_photos_to_tag_from_photostream: Valitse kuvia tagattaviksi valokuvavirrastasi
+  choose_rule: Valitse sääntö
+  choose_subjects: Valitse aiheet
+  choose_tags: Valitse tunnisteet
+  choose_taxon: Valitse taksoni
+  choose_what_kind_of_change_youre_creating: "Valitse millaisia muutoksia olet luomassa."
+  cid_d_to_genus: Yhteisötunnistettu suvulle
+  citation: Viittaus
+  classification: Luokitus
+  clear: tyhjennä
+  clear_filters: Tyhjennä suodattimet
+  clear_search: Tyhjennä haku
+  click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
+  close: Sulje
+  code: Koodi
+  colors: Värit
+  columns: Sarakkeet
+  combine: Yhdistä
   comma_separated_list_of_tracking_codes: |
-
-  comma_separated_please:
+    Pilkuilla erotettu luettelo seurantakoodeista. Lisää nämä jos haluat lisätä seurantakoodin lähtettäessäsi ihmisiä uudelle havaintolomakkeelle, esim. %{root_url}observations/new?project_id=%{project_id}&tracking_code=seurantakoodisi123.
+    Voit käyttää tätä seurataksei osallistumista erilaisista lähteistä. Pääset käsiksi näihin koodeihin kun lataat projektin havaintoja itsellesi CSV-tiedostona.
+  comma_separated_please: Pilkulla erotettu, kiitos
   #Noun, used to label a comment or a comment field in a form
-  comment:
+  comment: kommentti
   #Verb, generally a label on a button that allows the user to add a comment
-  comment_:
-  comment_deleted:
+  comment_: Kommentti
+  comment_deleted: Kommentti poistettu
   #Notice when a comment has been hidden by moderators
-  comment_hidden:
+  comment_hidden: Kommentti piilotettu
   #Notice when a comment has been unhidden by moderators
-  comment_unhidden:
-  comments:
-  comments_by_me:
-  comments_have_been_disabled:
-  comments_on_my_observations:
-  commercial_solicitation:
+  comment_unhidden: Kommentti näkyvissä
+  comments: Kommentit
+  comments_by_me: Omat kommentit
+  comments_have_been_disabled: Kommentointi poistettu käytöstä
+  comments_on_my_observations: Kommentit omissa havainnoissani
+  commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit:
+  commit: Sitoutua
   #Adjective describing a taxon change that has been committed
-  committed:
-  committed_by_user_on_date_html:
+  committed: Sitoutunut
+  committed_by_user_on_date_html: Tallentanut %{user} %{date}
   #Label for date the taxon change was committed
-  committed_on:
-  committed_taxon_changes_cannot_be_deleted:
+  committed_on: Tehty %{date}
   #Status message while a taxon change is being committed
-  committing:
-  #disagreements are identifications that disagree with previous identifications on the same observation
-  #committing refers to committing a taxon swap
-  committing_this_swap_may_result:
-  common_name:
-  community:
-  community_curated:
-  community_guidelines:
-  community_id_heading:
-  community_id_at_species_or_lower?:
-  community_id_at_species_level_or_lower:
-  community_id_is_precise:
-  community_moderation_settings:
-  community_supported_id:
-  compare:
-  compare_with:
-  comparing:
-  comparing_list_to_list: ""
-  comparing_versions_x_and_y: ""
-  compiled_by_name: ""
+  committing: Suoritetaan...
+  common_name: Yleiskielinen nimi
+  community: Yhteisö
+  community_curated: Yhteisön kuratoimat
+  community_guidelines: Yhteisön pelisäännöt
+  community_id_heading: Yhteisön taksoni
+  community_id_at_species_or_lower?: Yhteisö tunnistanut lajilleen tai alemmalle tasolle?
+  community_id_at_species_level_or_lower: Yhteisö on tunnistanut havainnon lajilleen tai tarkemmin
+  community_id_is_precise: Yhteisön taksoni on tarkka
+  community_moderation_settings: Yhteisön moderointiasetukset
+  community_supported_id: Yhteisö-tuettu taksoni?
+  compare: Vertaa
+  compare_with: Vertaa
+  comparing: verrataan
+  comparing_list_to_list: "Verrataan luetteloa %{list1} luettelosta %{list2}"
+  comparing_versions_x_and_y: "Verrataan versioita %{x} ja %{y}"
+  compiled_by_name: "Koostanut %{name}"
   #Adjective, e.g. "this Taxon Framework is complete"
-  complete:
-  complete_set_for_taxon_in_place_html: ""
-  completed:
-  completed_at:
+  complete: Valmis
+  complete_set_for_taxon_in_place_html: "Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
+  completed: Valmis
+  completed_at: Valmistunut
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
-  comprehensive?:
-  comprehensive_check_list_for_taxon_html: |
-
-  comprehensive_list:
+  comprehensive?: Kattava?
+  comprehensive_list: Kattava luettelo
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model:
+  computer_vision_model: Tietokonenäkömalli
   #Status of a taxon that the Computer Vision Model can recognize
-  computer_vision_model_included:
+  computer_vision_model_included: Sisältyy
   computer_vision_model_included_desc: |
-
+    Nykyinen tietokonenäkömalli tuntee tämän taksonin, joten se saattaa olla mukana automaattisissa ehdotuksissa "Samannäköinen" -tarralla.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
-  computer_vision_model_pending:
+  computer_vision_model_pending: Odottaa
   computer_vision_model_pending_desc: |
-
-  concept_status:
-  confidential:
-  configure:
-  configure_a_widget_to_show:
-  confirm:
-  confirm_membership:
-  confirm_new_password:
-  confirm_now:
-  confirm_your_info:
-  confirming_ids:
-  confirming_ids_description:
+    Nykyinen tietokonenäkömalli ei tunne tätä taksonia, joten vaikka se voi olla mukana automaattisissa ehdotuksissa "Lähistöllä"-tarralla, se ei saa "Samannäköinen"-tarraa. Tietokonenäkömalliin mukaanottamista koskevat vaatimukset vaihtelevat kullakin mallilla, mutta yleisesti mukaanottaminen perustuu havaintojen lukumäärään, joten parantaaksesi tämän taksonin mukaanpääsyä seuraavaan mallin koulutukseen, lisää havaintoja tästä taksonista tai tee lisää tunnistuksia.
+  concept_status: Konseptin tila
+  confidential: Luottamuksellinen
+  configure: Määritä
+  configure_a_widget_to_show: Määritä pienoisohjelma joka näyttää %{site_name} havainnot verkkosivullasi tai blogissasi. Saatat joutua sisällyttämään sulautetun CSS:n <code>&lt;head&gt;</code> osioon HTML:ssäsi. Voit vapaasti uudelleenkirjoittaa CSS:n.
+  confirm: Vahvista
+  confirm_membership: Vahvista jäsenyys
+  confirm_new_password: Vahvista uusi salasana
+  confirm_now: Vahvista nyt
+  confirm_your_info: Vahvista tietosi
+  confirming_ids: Tunnistusten vahvistus
+  confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
-  connect:
-  connect_to_provider: ""
+  connect: Yhdistä
+  connect_to_provider: "Yhdistä palveluun %{provider}"
   #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts:
-  connected_accounts_description:
-  connected_accounts_titlecase:
-  connecting_flickr: ""
-  connect_to_flickr_again_to_authorize_write_permissions:
-  connecting_to_facebook: ""
-  connecting_your_inat_account_to_accounts_other_sites: ""
-  cannot_be_changed_during_a_content_freeze:
-  conservation_status:
-  conservation_status_created:
-  conservation_status_deleted:
-  conservation_status_updated:
+  connected_accounts: Yhdistetyt tilit
+  connected_accounts_titlecase: Yhdistetyt käyttäjätilit
+  connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
+  connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
+  connecting_to_facebook: "Yhdistetään Facebookiin..."
+  connecting_your_inat_account_to_accounts_other_sites: "Yhdistämällä %{site_name}-tilisi muiden sivustojen tileihin sallii sinun kirjautua %{site_name}iin käyttämällä pääsytietojasi näiltä sivustoilta."
+  cannot_be_changed_during_a_content_freeze: Tätä ei voi väliaikaisesti muuttaa sisällön jäädytyksen aikana
+  conservation_status: Uhanalaisuusluokitus
+  conservation_status_created: Uhanalaisuusluokka lisätty
+  conservation_status_deleted: Uhanalaisuusluokka poistettu
+  conservation_status_updated: Uhanalaisuusluokka päivitetty
+  conservation_status_descriptions:
+    status: Esim. uhanlaisuusluokan koodi tai merkki. Jos käytettävissä on lyhyt määre, kuten E tai CR, käytä sitä, jos sellaista ei ole, kirjota koko merkitys, kuten erittäin uhanalainen tai äärimmäisen uhanalainen.
+    description: Kirjoita lyhyt kuvaus luokitteluun johtaneista syistä.
+    place: Paikka, johon tämä status on rajattu.
+    url: URL-sivusto, jossa luokittelut on määritelty.
   conservation_status_geoprivacy_desc: |
-
-  contact_support:
-  contain_all_descendants?:
+    Kaikille tämän paikan ja taksonin havainnoille on asetettu oletusarvoinen sijainnin tietosuoja
+  contact_support: Ota yhteyttä käyttäjätukeen
+  contain_all_descendants?: Sisältääkö tämä pinnalista kaikki tällä paikalla esiintyvät tätä taksonia alemmat taksonit?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
-  content:
-  content_and_display:
-  content_author:
-  content_hidden:
+  content: Sisältö
+  content_and_display: Sisältö ja näyttö
+  content_author: Sisällöntuottaja
+  content_hidden: Sisältö piilotettu
   content_hidden_by_user_on_date_because_reason_html: |
-
-  content_type:
+    %{user} on piilottanut sisällön %{date} koska: %{reason}
+  content_type: Sisältötyyppi
   user_hid_this_item_because_reason_html: |
-
+    %{user} piilotti tämän %{item}n koska: "%{reason}"
   user_unhid_this_item_because_reason_html: |
-
-  continue:
-  continue_to_site:
-  contributor_cannot_be_found:
-  contributors_to_project: ""
-  controls:
-  convert:
-  coordinate_systems:
-  coordinates:
-  #A filter option that only shows observations for which the viewer has
-  #permission to see the "true" or "hidden" coordinates for observations in a
-  #particular project, i.e. anythign unobscured as well as anything obscured
-  #that the viewer has permission to see
-  coords_viewable_for_proj_label:
-  coords_viewable_for_proj_desc: |
-
-  copy:
-  copy_and_paste_the_following_code_to:
-  copy_and_paste_this_into_your_own_html:
-  copy_guide_taxon_to:
-  copyright_holder:
-  copyright_info:
-  copyright_info_and_more:
-  copyright_infringement:
-  copyright_infringement_desc:
-  covered_by_a_taxon_framework_html: ""
-  covered_by_a_taxon_framework_link: ""
-  couldnt_change_your_password: ""
-  couldnt_find_a_user_matching_x_param: ""
-  couldnt_find_that_taxon:
-  create:
-  create_a_guide:
-  create_a_new_field:
-  create_a_new_place:
-  create_a_new_taxon:
-  create_a_query:
-  create_an_account:
-  create_an_atlas:
-  create_export:
-  create_new_taxon:
-  create_observations:
-  created:
-  created_by:
-  created_by_user_on_date:
-  created_on:
-  creating_your_account: ""
-  creative_commons_flickr_tagged:
-  creative_commons_unless_otherwise_noted: ""
-  critically_endangered:
-  css_description:
-  csv:
-  csv_file:
-  csv_should_not_contain_a_header_row:
-  cumulative_ids: ""
-  curate_observations:
-  curate_taxa:
-  curate_user:
-  curating:
-  curation:
-  curator:
+    %{user} poisti piilotuksen tältä %{item}lta, koska: "%{reason}"
+  continue: Jatka
+  continue_to_site: Jatka %{site_name}iin
+  contributor_cannot_be_found: Osallistujaa ei löydy
+  contributors_to_project: "Projektin %{project} osallistujat"
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Mikä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Mikä tahansa
+    sex: Sukupuoli
+    male: Koiras
+    female: Naaras
+    plant_phenology: Kasvin fenologia
+    budding: Verso puhkeamassa
+    flower_budding: Kukka puhkeamassa
+    flowering: Kukinta
+    fruiting: Hedelmiä
+    life_stage: Elinvaihe
+    adult: Aikuinen
+    teneral: Teneraali (vastakuoriutunut hyönteinen)
+    subimago: Alaimago
+    pupa: Kotelo
+    no_evidence_of_flowering: Ei näyttöä kukinnasta
+    nymph: Nymfi
+    larva: Toukka
+    egg: Muna
+    juvenile: Nuori
+    alive_or_dead: Elävä vai kuollut
+    alive: Elävä
+    dead: Kuollut
+    cannot_be_determined: Ei voida tunnistaa
+    evidence_of_presence: Todiste läsnäolosta
+    #As in the feather on a bird
+    feather: Sulka
+    #Abnormal growth
+    gall: Äkämä
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Eliö
+    #Fecal matter, not regurgitated matter
+    scat: Jätös
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Jälki
+    #Endoskeletal remains, like a deer bone
+    bone: Luu
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: Nahka
+  controlled_term_definitions:
+    alive: Eliö on elossa eikä ole kuolemassa
+    dead: Eliö on kuollut tai kuolemassa
+    flower_budding: Nuput näkyvissä, mutta eivät auenneita
+    flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
+    fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    no_evidence_of_flowering: Kuvissa ei näy genitaaleja
+    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
+    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
+    organism: Kokonainen eliö tai eliön osa
+    scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
+    track: Eliön jälki maassa tai lumessa
+    bone: |
+      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
+    molt: Hylätty nahka tai ulkoinen tukiranka
+    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
+  controls: Ohjaimet
+  convert: Muunna
+  coordinate_systems: Koordinaattijärjestelmät
+  coordinates: Koordinaatit
+  copy: Kopioi
+  copy_and_paste_the_following_code_to: Kopioi ja liitä seuraava koodi upottaaksesi tämän arvioinnin toiseen verkkosivuun.
+  copy_and_paste_this_into_your_own_html: Kopioi ja liitä tämä omaan HTML-koodiisi.
+  copy_guide_taxon_to: Kopioi oppaan taksoni...
+  copyright:
+    some_rights_reserved: osa oikeuksista pidätetään
+    some_rights_reserved_by: "(c) %{name}, osa oikeuksista pidätetään (%{license_short})"
+    all_rights_reserved: "(c) %{name}, kaikki oikeudet pidätetään"
+    no_known_copyright_restrictions: "%{name}, ei tunnettuja tekijänoikeusrajoituksia (%{license_name})"
+    no_known_copyright_restrictions_text: "ei tunnettuja tekijänoikeusrajoituksia"
+    no_rights_reserved: Oikeuksia ei pidätetä
+    no_rights_reserved_by: "%{name}, oikeuksia ei pidätetä (%{license_name})"
+    anonymous: Anonyymi
+    public_domain: Tekijänoikeudeton
+    copyright: tekijänoikeus
+    no_copyright: ei tekijänoikeutta (CC0)
+    attribution_noncommercial_sharealike_license: Nimeä-EiKaupallinen-JaaSamoin -lisenssi
+    attribution_noncommercial_license: Nimeä-EiKaupallinen -lisenssi
+    attribution_noncommercial_noderivs_license: Nimeä-EiKaupallinen-EiMuutoksia -lisenssi
+    attribution_license: Nimeä-lisenssi
+    attribution_sharealike_license: Nimeä-JaaSamoin -lisenssi
+    attribution_noderivs_license: Nimeä-EiMuutoksia -lisenssi
+    gnu_free_documentation_license: GNU Free Documentation -lisenssi
+  copyright_holder: Tekijänoikeuden omistaja
+  copyright_info: Tekijänoikeustiedot
+  copyright_info_and_more: Tekijänoikeustiedot ja muuta
+  copyright_infringement: Tekijänoikeusloukkaus
+  copyright_infringement_desc: Loukkaa tekijänoikeuslakia tai luotiin jonkun muun kuin havainnoijan toimesta ja on vailla nimeämistä
+  covered_by_a_taxon_framework_html: "Perustuu taksonitietokantaan %{link}"
+  covered_by_a_taxon_framework_link: "taksonikehys taksonille %{taxon_framework_rank} %{taxon_framework_name}"
+  couldnt_change_your_password: "Ei voitu vaihtaa salasanaasi: %{e}"
+  couldnt_find_a_user_matching_x_param: "Emme löytäneet käyttäjää %{id}"
+  couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
+  create: Luo
+  create_a_guide: Luo opas
+  create_a_new_field: Luo uusi kenttä
+  create_a_new_place: Luo uusi paikka
+  create_a_new_taxon: Luo uusi taksoni
+  create_a_query: Luo kysely
+  create_an_account: Luo käyttäjätunnus
+  create_an_atlas: Luo atlas
+  create_export: Luo havaintotiedosto
+  create_new_taxon: Luo uusi taksoni
+  create_observations: Luo havaintoja
+  created: Luotu
+  created_by: Luonut
+  created_by_user_on_date: Lisännyt %{user} %{date}
+  created_on: Luotu
+  creating_your_account: "Käyttäjätunnustasi luodaan..."
+  creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
+  creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
+  critically_endangered: Äärimmäisen uhanalainen
+  css_description: Tämä liitetään sivulle kaiken muun css-muotoilun jälkeen.
+  csv: CSV
+  csv_file: CSV-tiedosto
+  csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
+  cumulative_ids: "Kumulatiiviset tunnistukset: %{count}/%{total}"
+  curate_observations: Kuratoi havaintoja
+  curate_taxa: Kuratoi taksoneita
+  curate_user: Kuratoi käyttäjää
+  curating: Kuratointi
+  curation: Kuratointi
+  curator: Kuraattori
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-
+    iNaturalist-sivuston kuraattorit ovat luotettuja vapaaehtoisia, jotka ylläpitävät iNaturalistin taksonomiaa ja moderoivat käyttäjäsisältöä. Sivuston kuraattorit ovat tärkeä osa iNaturalistia, koska he pitävät taksonomian ajan tasalla ja iNaturalistin keskustelun asianmukaisena ja kohteliaania. Alla on kuvaus siitä, mitä kuraattorina olo tarkoittaa. Tutustu siihen ja, jos haluat kuraattoriksi, lue huolellisesti läpi
+    <a href="/pages/curator+guide" target="_blank">kuraattorin opas</a> ja täytä sitten hakemus tällä sivulla.
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
-
+    Kerro, miksi haluat kuraattoriksi
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html:
-  #Prompt for information when applying to be a curator
-  curator_application_fields_taxonomy_examples_html: |
-
+  curator_application_fields_explanation_html: Miksi haluat olla kuraattori?
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
-
+    Jos haluat muokata kansankielisiä nimiä, anna esimerkki tai kaksi
+    muutoksista, jotka haluaisit tehdä
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-
+    Jos haluat moderoida keskustelua iNaturalistissa, osoita esimerkki
+    tai kaksi yhteisön sääntöjen rikkomisesta, ja kerro mitä tekisit kyseisissä
+    tilanteissa
   #Header
   curator_application_how_curators_lose_their_powers: |
-
+    Miten kuraattori menettää valtaansa
   curator_application_how_curators_lose_their_powers_desc: |
-
+    iNat-henkilöstö voi poistaa kuraattorivaltuudet, jos kuraattori toistuvasti:
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_lose_ignore_policies: |
-
+    Jättää huomioimatta kuraattori-oppaassa kerrotut toimintatavat.
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
-
+    Ei itse käyttäydy asianmukaisesti
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible: |
-
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi (olet lisännyt %{num_idents}). Kun olet
+    täyttänyt molemmat vaatimukset, voit lähettää hakemuksen.
   curator_application_inelligible_error: |
-
+    Voidaksesi hakea sivuston kuraattoriksi, sinulla on oltava ollut tili 60
+    päivää tai kauemmin ja olet lisännyt 100 tunnistusta kenen tahansa
+    havaintoihin, mukaan lukien omasi.
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success:
+  curator_application_success: Kuraattorihakemus lähetetty
   #Header
-  curator_application_what_curators_can_do:
+  curator_application_what_curators_can_do: Mitä kuraattorit voivat tehdä
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html:
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Muokata iNaturalistin taksonomiaa kuraattorioppaan <a href="/pages/curator+guide#policies" target="_blank">Politiikat -osiossa</a>esitettyjen käytäntöjen mukaisesti. Tämä tarkoittaa, että he voivat lisätä, jakaa, vaihtaa, yhdistää, deaktivoida ja poistaa taksoneja iNaturalistissa. He voivat myös muokata suojelustatuksia ja taksonin geoprivacy, sekä muokata ja hallita kenen tahansa käyttäjän lisäämiä kansankielisiä nimiä.'
   curator_application_what_curators_can_do_hide_comments_html: |
-
+    Piilottaa kommentteja ja jäädyttää käyttäjätilin <a
+    href="/pages/community+guidelines" target="_blank">yhteisön
+    suuntaviivojen</a> rikkomisesta.
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_resolve_flags_html: |
-
+    Ratkaista taksoneita ja käyttäjäsisältöjä koskevat <a href="/flags" target="_blank">liput</a>.
   #Description of a curator's ability to edit wiki pages; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_wiki_html: |
-
+    Luoda ja muokata wikisivuja, kuten <a href="/pages/help"
+    target="_blank">iNaturalist FAQ sivu</a>.
   #Description of a curator's ability to edit places; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-
+    Muokata yhteisökuratoituja paikkoja ja ladata KML-tiedostoja, jotka ovat suurempia kuin 1 Mt (mutta
+    pienempiä kuin 5 Mt).
   #Header
-  curator_application_what_curators_cannot_do:
+  curator_application_what_curators_cannot_do: Mitä kuraattorit eivät voi tehdä
   #Description of the fact that a curator cannot change certain attributes of
   #observations any more than anyone else can; part of a list of things
   #curators can do, so you might imagine it is preceded with "Curators
   #cannot..."
   curator_application_what_curators_cannot_do_change_observations_html: |
-
+    Vaikuttaa yhteisötaksonin tai havainnon tietojen laatuun enemmän kuin kuka tahansa muu käyttäjä.
+    .
   #Description of the fact that a curator cannot commit taxon changes for
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-
+    Tehdä muutoksia <a href="/pages/curator+guide#completetaxa"
+    target="_blank">täydellisille taksoneille</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
-
+    Poistaa muiden käyttäjien tekemää sisältöä.
   #Description of the fact that a curator cannot read other peoples' messages;
   #part of a list of things curators can do, so you might imagine it is
   #preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_read_messages_html: |
-
+    Lukea muiden käyttäjien yksityisviestejä.
   #Title of a page where people apply to become a curator
-  curator_application_title:
+  curator_application_title: Kuraattorihakemus
   #Header followed by a list
   curator_application_you_should_apply_if: |
-
+    Sinun pitäisi hakea kuraattoriksi vain jos:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
-
+    Olet lisännyt tunnistuksia ja/tai havaintoja muutaman kuukauden
+    ja aiot jatkaa.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
-
+    Olet halukas ja kykenevä kuratoimaan säännöllisesti. Jos
+    haluat vain lisätä muutaman taksonin, pyydä nykyisiä kuraattoreita lisäämään
+    taksonit liputtamalla korkeamman tason taksonit.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
-
-  curators_changed_for_x_html: ""
-  curators:
-  curators_can_remove_observations_from:
-  curator_identification:
-  current_flags:
+    Osaat toimia asianmukaisesti ja noudatat yhteisösääntöjä. Yhdessä kuraattorivaltuuksien kanssa tulee oletus siitä, että
+    olet esimerkillinen iNaturalist-käyttäjä.
+  curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
+  curators: Kuraattorit
+  curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
+  curator_identification: Kuraattorin tunnistus
+  current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
-  custom_boundary:
-  custom_project_fields:
-  custom_project_was_successfully_created:
-  custom_project_was_successfully_updated:
-  customize_location:
-  darr_apply_darr: ""
-  daily_users:
-  danger_zone:
-  dashboard:
-  data_deficient:
-  data_quality:
-  data_quality_assessment:
-  data_used: ""
-  datatype:
-  date_:
-  date_added:
-  date_authorized:
-  date_created:
-  date_is_accurate:
-  date_joined:
-  date_obscured_notice:
-  date_observed:
-  date_observed_:
-  date_observed_on:
-  date_range:
-  date_specified:
-  date_time:
+  custom_boundary: Valinnainen rajaus
+  custom_project_fields: Mukautetut projektikentät
+  custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
+  custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
+  customize_location: Muokkaa sijaintia
+  darr_apply_darr: "&darr; Käytä &darr;"
+  daily_users: Päivittäiskäyttäjät
+  danger_zone: Vaaravyöhyke
+  dashboard: Kojelauta
+  data_deficient: Puutteellisesti tunnettu
+  data_quality: Tiedon laatu
+  data_quality_assessment: Tietojen laatuarvio
+  data_used: "Datan käyttö:"
+  datatype: Tietotyyppi
+  date_: Päivämäärä
+  date_added: Lisäyspäivämäärä
+  date_authorized: Varmennuspäivämäärä
+  date_created: Luontipäiväys
+  date_format:
+    date_long:
+      january: '%{day}. tammikuuta %{year}'
+      february: '%{day}. helmikuuta %{year}'
+      march: '%{day}. maaliskuuta %{year}'
+      april: '%{day}. huhtikuuta %{year}'
+      may: '%{day}. toukokuuta %{year}'
+      june: '%{day}. kesäkuuta %{year}'
+      july: '%{day}. heinäkuuta %{year}'
+      august: '%{day}. elokuuta %{year}'
+      september: '%{day}. syyskuuta %{year}'
+      october: '%{day}. lokakuuta %{year}'
+      november: '%{day}. marraskuuta %{year}'
+      december: '%{day}. joulukuuta %{year}'
+    month:
+      january: tammikuu
+      february: helmikuu
+      march: maaliskuu
+      april: huhtikuu
+      may: toukokuu
+      june: kesäkuu
+      july: heinäkuu
+      august: elokuu
+      september: syyskuu
+      october: lokakuu
+      november: marraskuu
+      december: joulukuu
+  date_is_accurate: Päivämäärä on oikea
+  date_joined: Liittymispäivä
+  date_obscured_notice: Päivämäärä piilotettu henkilön tai eliön yksityisyyden suojaamiseksi
+  date_observed: Havaintopäivämäärä
+  date_observed_: Havaintopäivämäärä
+  date_observed_on: Havaintopäivämäärä
+  date_picker:
+    closeText: Sulje
+    currentText: Tänään
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: Edellinen
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Seuraava
+    range: Aikaväli
+  date_range: Ajanjakso
+  date_specified: Päivämäärä määritetty
+  date_time: Päivämäärä/aika
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
   #d2" if "to" might be translated differently for different values of d1 and
   #d2
-  date_to_date: ""
-  date_updated:
-  day:
-  decrease_brightness:
+  date_to_date: "%{d1} - %{d2}"
+  date_updated: Päivityspäiväys
+  day: Päivä
+  decrease_brightness: Vähennä kirkkautta
   #Default option
-  default:
+  default: oletus
   #Default option
-  default_:
-  default_display_time_zone:
-  default_invite_comment: ""
-  default_observation_license:
-  default_photo_license:
-  default_search_place:
+  default_: Oletus
+  default_display_time_zone: Näytä oletusaikavyöhyke
+  default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin: {{INVITE_LINK}}"
+  default_observation_license: Oletuslisenssi havainnoille
+  default_photo_license: Oletuslisenssi kuville
+  default_search_place: Haun oletussijainti
   default_search_place_description: |
-
-  default_sound_license:
-  default_time_zone_desc: |
-
-  defaults_to_your_name_or_username:
-  defines_a_taxon_framework_for:
-  defines_a_taxon_framework_for_taxon_sourced_to_source_html:
-  definitions:
-  delete:
-  delete_all:
-  delete_conversation:
+    Tämä on oletussijaintisi kaikille hauille kohdassa "Tutki".
+  default_sound_license: Oletuslisenssi äänille
+  defaults_to_your_name_or_username: Oletuksena nimesi tai käyttäjätunnuksesi
+  defines_a_taxon_framework_for: Määrittää taksonikehyksen taksonille %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Määrittää taksonikäsitteen taksonille %{taxon}, jonka lähdeaineisto on %{source}
+  definitions: Määritelmät
+  delete: Poista
+  delete_all: Poista kaikki
+  delete_conversation: Poista keskustelu
   #Button to delete the cover (or banner) image for a project
-  delete_cover?:
-  delete_icon?:
-  delete_photo:
-  delete_project:
+  delete_cover?: poista kansikuva?
+  delete_icon?: Poista kuvake?
+  delete_photo: Poista kuva
+  delete_project: Poista tämä projekti
   #Label for a button to delete a taxon range
-  delete_range:
-  delete_selected:
+  delete_range: Poista alue
+  delete_selected: Poista valitut
   delete_taxon_and_merge_most_data_html: |
-
-  delete_user:
-  delete_your_account:
-  deleted_synonyms:
-  deleted_user:
-  deleted_vote:
-  deleting:
-  deleting_verb:
-  deny:
-  desc:
-  descending:
-  describe_purpose:
-  describe_your_interest_in_nature:
-  description:
-  description_from:
-  description_sections:
-  description_slash_tags:
-  description_tags_more: ""
-  desription:
-  destination:
-  destroy:
-  details:
-  deviation:
-  devise_reset_password_instructions_hello_email:
+    Poista taksoni %{taxon} ja yhdistä valtaosa sen tiedoista toiseen taksoniin. Käytä tätä työkalua <strong>poistaaksesi kaksinkertaiset taksonit</strong>. Jos haluat poistaa vanhentuneen synonyymin, ole ystävällinen ja luo taksonin vaihto. <strong>OLE VAROVAINEN!</strong> Taksoneiden poisto voi olla erittäin tuhoisaa. Tarkista <a href="%{curator_url}">Kuraattorioppaasta</a> lisätietoja.
+  delete_user: Poista käyttäjä
+  delete_your_account: Poista käyttäjätunnuksesi
+  deleted_synonyms: Poistettu synonyymit
+  deleted_user: poistettu käyttäjä
+  deleted_vote: Poistettu äänestys
+  deleting: Poistaa...
+  deleting_verb: Poistaminen
+  deny: Estä
+  desc: Laskeva
+  descending: Laskeva
+  describe_purpose: Kuvaile tämän projektin tarkoitus.
+  describe_your_interest_in_nature: Kuvaile kiinnostuksesi luontoa kohtaan!
+  description: Kuvaus
+  description_from: Kuvauksen lähde on
+  description_sections: Kuvausosiot
+  description_slash_tags: Kuvaus / tunnisteet
+  description_tags_more: "Kuvaus, tunnisteet, &amp; muuta"
+  desription: Kuvaus
+  destroy: Tuhoa
+  details: Tiedot
+  deviation: Poikkeama
+  devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin kuluttua sähköpostiviestin, jossa on ohjeet sähköpostiosoitteesi vahvistamiseen.
+    failure:
+      already_authenticated: 'Olet jo kirjautunut sisään.'
+      unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
+      invalid: 'Väärä sähköposti tai salasana.'
+      invalid_token: 'Todennuskoodi ei kelpaa.'
+      user:
+        suspended: Käyttäjätunnuksesi on suljettu
+    sessions:
+      signed_in: 'Sisäänkirjautuminen onnistui.'
+      signed_out: 'Uloskirjautuminen onnistui.'
+    passwords:
+      send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.'
+      updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
+      updated_not_active: 'Salasanasi on vaihdettu onnistuneesti.'
+      send_paranoid_instructions: "Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen."
+      no_token: "Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä."
+    registrations:
+      signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
+      updated: 'Päivitit tilisi onnistuneesti.'
+      destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
+    mailer:
+      confirmation_instructions:
+        subject: 'Vahvistusohjeet'
+      reset_password_instructions:
+        subject: 'Ohjeet salasanan nollaukseen'
+  devise_reset_password_instructions_hello_email: Hei %{email}
   devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-
+    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
   devise_reset_password_instructions_if_you_didnt_request_this: |
-
+    Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
   devise_reset_password_instructions_your_password_wont_change_until: |
-
+    Salasanasi ei muutu, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden.
   devise_unlock_instructions_your_account_has_been_locked: |
-
+    Käyttäjätilisi on lukittu, koska epäonnistuneita kirjautumisyrityksiä oli liian monta.
   devise_unlock_instructions_click_the_link: |
-
-  devise_unlock_instructions_unlock:
-  discoveries:
-  did_you_mean: ''
-  did_you_photos_flickr?:
-  disable:
-  disable_comments:
-  disable_comments_desc:
-  disagree_:
-  #Label for a button to disconnect your iNat account from another account,
-  #e.g. disconnecting your Flickr account
-  disconnect:
-  disconnect_caps:
-  disconnect_provider: ""
-  #Label for a button that dismisses an alert or popup
-  dismiss:
-  display:
-  display_link_to_checklist:
-  display_monthly_supporter_badge:
-  display_name:
-  display_name_description:
-  distance_traveled_value: ""
-  distance_traveled: ""
-  documentation_for_developers_html:
-  do_not_show_this_message_again:
+    Poista tilisi lukitus alla olevasta linkistä:
+  devise_unlock_instructions_unlock: Poista tilin lukitus
+  discoveries: Löydöt
+  did_you_mean: 'Tarkoititko'
+  did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
+  disable: Poista käytöstä
+  disable_comments: Poista kommentit käytöstä
+  disable_comments_desc: Estä käyttäjiä lisäämästä uusia kommentteja
+  disagree_: Eri mieltä
+  disconnect_provider: "Katkaise yhteys palveluun %{provider}"
+  display: Näyttö
+  display_link_to_checklist: Näytä linkki projektiluetteloon projektisivulta
+  display_monthly_supporter_badge: Näytä kuukausilahjoittajastatukseni profiilissani
+  display_name: Näyttönimi
+  display_name_description: Tämä nimi näytetään niin profiilissasi kuin tekijänoikeudenkin kohdalla
+  distance_traveled_value: "Kuljettu matka: %{distance}m"
+  distance_traveled: "Kuljettu matka (m)"
+  documentation_for_developers_html: Dokumentaatio <a href="/pages/developers">kehittäjille</a>
+  do_not_show_this_message_again: Älä näytä tätä viestiä uudelleen
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-
-  doesnt_have_default_photo:
-  doh_something_went_wrong:
-  doh_something_went_wrong_error: ""
+    Tutkitko sukkulamatoja? Oletko maailman johtava asiantuntija siimajalkaisten taksonomiassa? Vai tykkäätkö vain katsella kauniita kukkia? Profiilisi täydentäminen luo hieman persoonallisuutta ja auttaa lisäämään uskottavuuttasi, kun autat ihmisiä tunnistuksissa.
+  doesnt_have_default_photo: ei ole vielä oletuskuvaa.
+  doh_something_went_wrong: Pahus, jotain meni pieleen.
+  doh_something_went_wrong_error: "D'oh, jotain meni vikaan: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
-  donate:
-  donate_again_caps:
-  donate_again_today_caps:
-  done:
-  dont_have_an_account_sign_up_html:
-  dont_use_double_quotes:
+  donate: LAHJOITA
+  done: Valmis
+  dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
+  dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it:
-  download:
+  drop_it: Pudota se
+  download: Lataa
   download_bulk_import_template_html: |
-
-  download_csv:
-  download_csv_template:
-  download_kml:
-  downstream_coverage_rank:
-  downstream_coverage_colon_rank: ""
-  downstream_deviations:
-  downstream_deviations_for_taxon: ""
+    <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää 
+    <a href="/observations/import?project_id=%{project_id}#csv_import">massalatausta</a>
+  download_csv: Lataa CSV
+  download_csv_template: Lataa CSV-malli
+  download_kml: Lataa KML
+  downstream_coverage_rank: Alempi taksonominen taso
+  downstream_coverage_colon_rank: "Alempi taksonominen taso%{rank}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa:
-  draft:
-  draft_:
-  draft_saved:
-  drafts:
-  drag_and_drop_some_photos_or_sounds:
+  downstream_flagged_covered_taxa: Alemmat liputetut taksonit
+  draft: luonnos
+  draft_: Luonnos
+  draft_saved: Luonnos tallennettu!
+  drafts: Luonnokset
+  drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
   #Button label for drawing a circular boundary for an observation search
-  draw_circular_boundary:
+  draw_circular_boundary: Piirrä ympyrä
   #Button label for drawing a rectangular boundary for an observation search
-  draw_rectangular_boundary:
-  drawings:
-  duplicate_verb:
-  duration_value: ""
-  each_place_displays_all_species_inat_knows: ""
-  earliest_added:
-  edit:
+  draw_rectangular_boundary: Piirrä suorakulmio
+  drawings: Piirrokset
+  duplicate_verb: Monista
+  duration_value: "Kesto: %{duration} minuuttia"
+  each_place_displays_all_species_inat_knows: "Kukin paikkasivu näyttää kaikki lajit, jotka %{site_name} tietää tästä paikasta, mukaan lukien tiedot niiden runsaudesta, suojelutilasta ja kuka ensimmäisenä havaitsi tämän lajin tästä paikasta %{site_name}issa. Voit suodattaa lajeja taksonomisen ryhmän, värin, suojelutilan, tai pelkän vanhan haun mukaan."
+  earliest_added: Aikaisin lisätty
+  edit: Muokkaa
   #Title of the moderation note editor
-  edit_moderator_note:
-  edit_a_batch_of_observations:
-  edit_account_settings_and_profile: ""
-  edit_assessment:
-  edit_atlas:
-  edit_atlas_for_taxon_html:
-  edit_body:
-  edit_comment:
-  edit_complete_set_for_taxon_in_place_html: ""
-  edit_conservation_status:
-  edit_custom_project_fields:
-  edit_field:
-  edit_license:
-  edit_multiple_dates:
-  edit_multiple_descriptions:
-  edit_multiple_locations:
-  edit_multiple_species:
-  edit_notes:
-  edit_observations:
-  edit_photos:
-  edit_photos_for_observation_id: ""
-  edit_place:
-  edit_project:
-  edit_remove:
-  edit_selected:
-  edit_source:
-  edit_taxa:
-  edit_taxon:
-  edit_taxon_framework:
-  edit_taxon_link:
-  edit_taxon_range:
-  edit_the_observation:
+  edit_moderator_note: Muokkaa valvojan muistiinpanoa
+  edit_a_batch_of_observations: Muokkaa erä havaintoja
+  edit_account_settings_and_profile: "Muokkaa tiliä &amp; profiilia"
+  edit_assessment: Muokkaa arviointia
+  edit_atlas: Muokkaa atlasta
+  edit_body: Muokkaa kappaletta
+  edit_comment: Muokkaa kommenttiasi
+  edit_complete_set_for_taxon_in_place_html: "Muuta tietoja kohdassa Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
+  edit_conservation_status: Muokkaa uhanalaisuusluokkaa
+  edit_custom_project_fields: Muokkaa mukautettuja projektikenttiä
+  edit_field: Muokkaa kenttää
+  edit_license: Muokkaa lisenssiä
+  edit_multiple_dates: Muokkaa useita päivämääriä
+  edit_multiple_descriptions: Muokkaa useita kuvauksia
+  edit_multiple_locations: Muokkaa useita paikkoja
+  edit_multiple_species: Muokkaa useita lajeja
+  edit_notes: Muokkaa muistiinpanoja
+  edit_observations: Muokkaa havaintoja
+  edit_photos: Muokkaa valokuvia
+  edit_photos_for_observation_id: "Muokkaa havaintoon %{obs_id} liittyviä valokuvia"
+  edit_place: Muokkaa paikkaa
+  edit_project: Muokkaa projektia
+  edit_remove: Muokkaa/Poista
+  edit_selected: Muokkaa valittua
+  edit_source: Muokkaa lähdettä
+  edit_taxa: Muokkaa taksoneja
+  edit_taxon: Muokkaa taksonia
+  edit_taxon_link: Muokkaa taksonin linkkiä
+  edit_taxon_range: Muokkaa taksonin levinneisyyttä
+  edit_the_observation: Muokkaa havaintoa
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
-
-  edit_your_account_and_profile_html: ""
-  edit_your_default_settings: ""
-  edit_your_global_project_settings:
-  edit_your_identification:
-  edit_your_settings_for_this_project:
-  edited_by_name_html: ""
+    Muokkaa tätä taksonia, kun olet luonut sen, jotta voit lisätä uhanalaisuusluokan
+  edit_your_account_and_profile_html: "Muokkaa tiliäsi ja profiiliasi"
+  edit_your_default_settings: "Muokka oletusasetuksiasi"
+  edit_your_global_project_settings: Muokkaa yleisiä projektiasetuksiasi
+  edit_your_identification: Muokkaa tunnistustasi
+  edit_your_settings_for_this_project: Muokkaa asetuksiasi tässä projektissa
+  edited_by_name_html: "Muokannut %{name}"
   edited_by_name_some_rights_reserved_html: |
-
-  editing:
-  editing_announcement:
-  editing_custom_project_fields_for:
-  editing_observation_field:
-  editing_observation_id: ""
-  editing_project:
-  editing_project_asset:
-  editing_subscription_to_x_html: ""
-  editing_taxon:
-  editing_taxon_link:
-  editing_taxon_name_for_taxon_html:
-  editing_taxon_range_for_taxon_html:
-  editing_this:
-  editing_x_in_y: ""
-  editors:
-  either_that_user_doesnt_exist_or: ""
-  eligible_for_research_grade:
-  email:
-  email_description:
-  email_address_for_comments_and_other_feedback:
-  email_copyright: ""
-  email_notifications:
-  embed: ''
-  embed_place_widget:
-  embed_this_assessment:
-  embed_widget_project:
-  enable_offline_access:
-  enable_offline_access_for_mobile:
-  encompassing_places:
-  end:
-  end_date_time:
-  endangered:
-  endemic:
-  endemic_to_x: ""
+    Muokannut %{name}, osa oikeuksista pidätetään (%{license})
+  editing: Muokataan
+  editing_announcement: Muokataan ilmoitusta
+  editing_custom_project_fields_for: Muokataan mukautettuja projektikenttiä projektille
+  editing_observation_field: Muokataan havaintokenttää
+  editing_observation_id: "Muokataan havaintoa %{obs_id}"
+  editing_observations:
+    one: 'Muokataan <span class="count">1</span> havaintoa:'
+    other: 'Muokataan <span class="count">%{count}</span> havaintoa:'
+  editing_project: Muokataan projektia %{project}
+  editing_project_asset: Muokataan projektitiedostoja
+  editing_subscription_to_x_html: "Muokataan tilausta kohteelle %{x}"
+  editing_taxon: Muokataan taksonia %{taxon}
+  editing_taxon_link: Muokataan Taksonin Linkkiä
+  editing_taxon_range_for_taxon_html: Muokkaa taksonin %{taxon} aluetta
+  editing_this: Muokataan %{elem}
+  editing_x_in_y: "Muokataan %{x} %{y}:ssä"
+  editors: Muokkaajat
+  either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
+  eligible_for_research_grade: Sovelias tutkimustasolle
+  email: Sähköposti
+  email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
+  email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
+  email_notifications: Sähköposti-ilmoitukset
+  embed: 'Upota'
+  embed_place_widget: Upota paikkapienoisohjelma
+  embed_this_assessment: Upota tämä arviointi
+  embed_widget_project: Upota pienoisohjelma tälle projektille verkkosivustossasi
+  enable_offline_access: Ota offline-yhteys käyttöön
+  enable_offline_access_for_mobile: Ota offline-yhteys käyttöön mobiililaitteille
+  encompassing_places: Ympäröivät paikat
+  end: Päättyy
+  end_date_time: Päättymispäivä / aika
+  endangered: Erittäin uhanalainen
+  endemic: Endeeminen
+  endemic_to_x: "Endeeminen paikassa %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
-  eol:
-  eol_collection_url: ""
-  error_updating_photo: ""
-  establishment_means:
+  eol: EOL
+  eol_collection_url: "EOL-kokoelman URL-osoite"
+  error_updating_photo: "Virhe %{photo_errors} päivitettäessä kuvaa"
+  establishment:
+    endemic: Endeeminen
+    establishment: Vakiintuneisuus
+    introduced: Vieraslaji
+    invasive: Vieraslaji
+    managed: Hoidettu
+    native: Alkuperäinen
+    naturalised: Luonnonmukaistunut
+  establishment_means: Lajin alkuperä
   establishment_means_describes_how: |
-
-  estimate_which_input: |
-
-  event_in_progress:
-  event_stats:
-  event_url:
-  events_only:
-  everyone:
-  everyone_:
-  everyone_journal_posts:
-  everywhere:
-  exact:
-  exact_date:
-  exact_rank:
-  except:
-  exclude_places:
-  exclude_projects:
-  exclude_taxa:
-  exclude_users:
-  exclusion_filters:
-  existing_flags:
-  exit_full_screen: ""
-  examples_of_data_use_by_network_members:
-  examples_of_ranking_organizations:
-  explore:
-  export:
-  export_observations:
-  export_with_private_coordinates:
-  exporting: ""
+    Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
+  event_in_progress: Tapahtuma käynnissä
+  event_stats: Tapahtuman tilastot
+  event_url: Tapahtuman URL
+  events_only: Vain tapahtumat
+  everyone: jokainen
+  everyone_: Kaikki
+  everyone_journal_posts: Kaikkien päiväkirjamerkinnät
+  everywhere: kaikkialla
+  exact: Tarkka
+  exact_date: Tarkka päiväys
+  exact_rank: Tarkka arvo
+  except: paitsi
+  exclude_places: Rajaa pois paikat
+  exclude_projects: Rajaa pois projektit
+  exclude_taxa: Rajaa pois taksonit
+  exclude_users: Rajaa pois käyttäjät
+  exclusion_filters: Poissulkevat suotimet
+  existing_flags: Nykyiset liput
+  exit_full_screen: "Poistu kokoruututilasta"
+  explore: Tutki
+  export: Lataa
+  export_observations: Lataa havaintotiedosto
+  export_with_private_coordinates: Vie piilotettuja koordinaatteja
+  exporting: "Luodaan..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
-  external_applications:
+  external_applications: Ulkopuolinen sovellus
   external_applications_description: |
-
-  external_taxon_including_children:
-  extinct:
-  extinct_in_the_wild:
-  extra_properties:
-  evidence_of_organism:
-  facebook:
-  facebook_account_information:
-  facebook_account_not_linked: ""
-  facebook_access_token_expired: ""
-  facebook_needs_the_owner_of_that_photo_to:
-  facebook_options:
+    Ulkoiset sovellukset ovat kolmannen osapuolen ohjelmistosovelluksia, jotka olet valtuuttanut käyttämään iNaturalist-tiliäsi puolestasi. Yleensä ne voivat tehdä tililläsi kaiken saman kuin itsekin, joten varmista, että luotat sovelluskehittäjiin, ennen kuin myönnät luvan.
+  extinct: kuollut sukupuuttoon
+  extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
+  extra_properties: Lisäominaisuudet
+  evidence_of_organism: Näyttö eliöstä
+  facebook: Facebook
+  facebook_account_information: Oman Facebook-tilisi tiedot
+  facebook_account_not_linked: "Käyttäjällä %{user} ei ole enää linkitettyä Facebook-tiliä, joten %{site_name}lla ei ole lupaa saada tätä kuvaa."
+  facebook_access_token_expired: "Pääsyoikeus on vanhentunut. Käyttäjän %{user} täytyy linkittää Facebook-tilinsä uudelleen."
+  facebook_needs_the_owner_of_that_photo_to: Facebook haluaa että kuvan omistaja vahvistaa yhteyden %{site_name_short}iin uudelleen.
+  facebook_options: Facebook-asetukset
   facebook_photo_import_disabled_notice: |
-
-  failed_to_find_your_location:
-  failed_to_repair_photo: ""
-  failed_to_save_record: ""
-  failed_to_save_record_with_errors: ""
-  failed_to_unlink_your_account:
-  'false': ''
+    Marraskuussa 2020 Facebook vaati meitä vahvistamaan, että todella tarvitsimme
+    pääsyn valokuviin, emmekä pystyneet viemään vahvistusprosessia loppuun
+    Facebookin varmentamisjärjestelmän ongelmien vuoksi. Tämän seurauksena emme voi enää
+    tukea kuvien tuomista Facebookista.
+  failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
+  failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
+  failed_to_save_record: "Tallennus epäonnistui. Ole hyvä ja kokeile myöhemmin uudelleen."
+  failed_to_save_record_with_errors: "Tallennus epäonnistui: %{errors}"
+  'false': 'Ei'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
-  faves:
-  Family:
-  favorite_taxa:
-  favorites: ""
-  feature_this_project_: ""
-  featured:
-  #Title for a button or section describing the "featured" status of a project
-  featuring:
-  feedback:
+  faves: Suosikit
+  Family: Heimo
+  favorite_taxa: Suosikkitaksonit
+  favorites: "Suosikit"
+  feature_this_project_: "Nosta tämä projekti esille"
+  featured: Esittelyssä
+  feedback: Palaute
   #Plural noun, as in Atom and RSS feeds
-  feeds: ''
-  failed:
+  feeds: 'Syötteet'
+  failed: Epäonnistui
   field_note: |
-
-  fields:
-  fields_:
-  fields_can_only_be_edited_by_the_people_who:
-  fields_merged:
-  file:
-  file_size:
-  file_should_be_in_the_following_format: ""
-  fill_out_project_observation_fields:
-  fill_out_your_profile:
+    <strong>Huom:</strong> 
+    Jos haluat luoda kentän, tarkista onko joku muu on jo luonut sellaisen.
+  fields: kentät
+  fields_: Kentät
+  fields_can_only_be_edited_by_the_people_who: Kenttiä voivat muokata vain henkilöt, jotka ovat luoneet ne ja sivuston kuraattorit
+  fields_merged: Kentät yhdistetään
+  file: Tiedosto
+  file_size: Tiedostokoko
+  file_should_be_in_the_following_format: "Tiedoston pitäisi olla seuraavassa muodossa: taksonin nimi, kuvaus"
+  fill_out_project_observation_fields: Täytä projektin havaintokentät
+  fill_out_your_profile: täydennä profiilisi
   #The name of a computer file
-  filename:
-  filter:
-  filter_by_curator_identification:
-  filter_by_place:
-  filter_by_taxon:
-  filter_by_place_taxon_and_color:
-  filter_list_by_this_taxon:
-  filtering:
-  filters:
-  find:
-  find_a_guide:
-  find_a_place:
-  find_guides:
-  find_new_place_to_explore:
-  find_observations:
-  find_photos:
-  find_places:
-  find_some_people_to_follow: ""
-  find_species:
-  find_suitable_observations:
-  find_unsuitable_observations:
-  find_your_current_location:
-  finished:
-  finished_with_page:
-  first_confirmed_inat_observation: ""
-  first_connect_your_provider_account_to_your_site: ""
-  first_inat_observation: ""
-  first_observer:
+  filename: Tiedostonimi
+  filter: Suodata
+  filter_by_curator_identification: Suodata kuraattorin tekemän tunnistuksen perusteella
+  filter_by_place: Suodata paikan mukaan
+  filter_by_taxon: Suodata taksonin mukaan
+  filter_by_place_taxon_and_color: Suodata paikan, taksonin ja värin mukaan käyttämällä ohjaimia.
+  filter_list_by_this_taxon: Suodata luettelo tällä taksonilla
+  filtering: Suodatus
+  filters: Suodattimet
+  find: Hae
+  find_a_guide: Löydä opas
+  find_a_place: Hae paikkaa
+  find_guides: Löydä oppaita
+  find_new_place_to_explore: Löydä uusi tutkittava paikka!
+  find_observations: Löydä havaintoja
+  find_photos: Hae valokuvia
+  find_places: Löydä paikkoja
+  find_some_people_to_follow: "Hae seurattavia henkilöitä"
+  find_species: Hae lajeja
+  find_suitable_observations: Hae sopivia havaintoja
+  find_unsuitable_observations: Löydä sopimattomia havaintoja
+  find_your_current_location: Hae tämänhetkinen sijaintisi
+  finished: Valmis
+  finished_with_page: Sivu Valmis
+  first_confirmed_inat_observation: "Ensimmäinen varmistettu havainto paikalla %{site_name}"
+  first_connect_your_provider_account_to_your_site: "Ensin, yhdistä %{provider}-tilisi %{site_name}iin:"
+  first_inat_observation: "Ensimmäinen %{site_name}-havainto"
+  first_observer: 1. havainnoitsija
   #Verb form, as in "Flag this item"
-  flag:
-  flag_as_inappropriate:
-  flag_an_item:
-  flag_as_spammer:
-  flag_as_non_spammer:
+  flag: Lippu
+  flag_as_inappropriate: Liputa sopimattomana
+  flag_an_item: Liputa kohde
+  flag_as_spammer: Liputa spammaajaksi
+  flag_as_non_spammer: Liputa ei-spammaajaksi
   #Label for the date/time when a flag was created
-  flag_created:
-  flag_deleted:
-  flag_description:
-  flag_comment_description:
+  flag_created: Huomautus (lippu) luotu
+  flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
   flag_for_check_list_title_html: |
-
-  flag_for_comment_id_html:
-  flag_for_comment_id_deleted:
-  flag_for_curation:
+    Lippu lajiluettelolle: %{title}
+  flag_for_comment_id_html: Lippu <a href="%{url}">kommentille %{id}</a>
+  flag_for_comment_id_deleted: "Flag for Comment (deleted)\nHuomautus (lippu) kommentointia varten %{id} (poistettu)"
+  flag_for_curation: Liputa kuraattorin tarkastusta varten
   flag_for_guide_title_html: |
-
-  flag_for_identification_id_html:
+    Lippu oppaalle: %{title}
+  flag_for_identification_id_html: Lippu <a href="%{url}">tunnistukselle %{id}</a>
   flag_for_life_list_title_html: |
-
+    Lippu pinnalistalle: %{title}
   flag_for_list_title_html: |
-
-  flag_for_message_id_html:
+    Lippu luettelolle: %{title}
+  flag_for_message_id_html: Lippu <a href="%{url}">viestille %{id}</a>
   flag_for_observation_title_html: |
-
-  flag_for_photo_id_html:
+    Lippu havainnolle: %{title}
+  flag_for_photo_id_html: Lippu <a href="%{url}">valokuvalle %{id}</a>
   flag_for_place_title_html: |
-
+    Lippu paikalle: %{title}
   flag_for_post_title_html: |
-
+    Lippu viestille: %{title}
   flag_for_project_title_html: |
-
-  flag_for_guide_section_id_html:
-  flag_for_sound_id_html:
+    Lippu projektille: %{title}
+  flag_for_guide_section_id_html: Lippu <a href="%{url}">oppaan osiolle%{id}</a>
+  flag_for_sound_id_html: Lippu <a href="%{url}">äänitteelle %{id}</a>
   flag_for_taxon_title_html: |
-
+    Lippu taksonille: %{title}
   flag_for_user_title_html: |
-
-  flag_it!:
-  flag_marked_as_resolved_html: ''
+    Merkitse tarkistettavaksi käyttäjä: %{title}
+  flag_it!: Liputa!
+  flag_marked_as_resolved_html: '<span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>'
   #Label for the object that was flagged, e.g. a table header
-  flag_object:
-  flag_reason: ""
-  flag_resolution:
-  flag_saved:
-  flag_saved_thanks_html:
-  flag_this_observation:
-  flag_this_photo:
-  flag_this_place:
-  flag_this_sound:
-  flagged_:
-  flagged_for_curation:
-  flagged_taxon:
-  flagged_thing_explanation: ""
+  flag_object: Kohde
+  flag_reason: "&ldquo;Liputan tämän: %{record}, koska"
+  flag_resolution: Ratkaisu
+  flag_saved: Lippu tallennettu
+  flag_saved_thanks_html: Lippu tallennettu. Kiitos! <a href="%{url}" class="readmore">Katso lippua</a>
+  flag_this_observation: Liputa tämä havainto.
+  flag_this_photo: Liputa tämä kuva
+  flag_this_place: Liputa tämä paikka
+  flag_this_sound: Liputa tämä ääni
+  flagged_: Liputettu
+  flagged_for_curation: Liputettu kuraattorin tarkastusta varten
+  flagged_taxon: Liputettu taksoni
+  flagged_thing_explanation: "Käyttäjät ovat liputtaneet tämän: %{thing}, koska"
   flagging_desc: |
-
-  flagger:
-  flags:
-  flags_with_count:
-  flags_explanation: ""
-  flags_for_x_html:
-  flags_on_users_content: ""
-  flickr_account_information:
-  flickr_has_no_creative_commons:
-  flickr_identity:
-  flickr_needs_to_confirm: ""
-  flickr_photo:
-  flickr_photos:
-  flickr_style:
-  flickr_tagger:
-  flickr_tags:
-  fluid_layout:
+    Liputus merkitsee havainnon niin, että kuraattorit voivat tarkistaa sen. Ole hyvä äläkä liputa ongelmia, jotka voisit ratkaista tunnistuksilla, laatuarviolla tai ottamalla yhteyttä havainnon tekijään.
+  flagger: Liputtaja
+  flags: Liput
+  flags_with_count: (%{count}) lippua
+  flags_explanation: "%{site_name}in käyttäjät liputtavat asioita, jotka tarvitsevat huomiota sivuston kuraattoreilta ja/tai sivuston ylläpitäjiltä."
+  flags_for_x_html: Liput kohteelle %{x}
+  flags_on_users_content: "Liput käyttäjän %{user} sisällössä"
+  flickr_account_information: Flickr-tilisi tiedot
+  flickr_has_no_creative_commons: Flickr:issä ei ole Creative Commons -lisensoituja kuvia tästä paikasta.
+  flickr_identity: Flickr-identiteetti
+  flickr_needs_to_confirm: "Flickr haluaa varmistaa että haluat liittää tilisi sivustoon %{site_name}"
+  flickr_photo: Flickr Valokuva
+  flickr_photos: Flickr-valokuvia
+  flickr_style: Flickr-tyyli
+  flickr_tagger: Flickr-tagienlisääjä
+  flickr_tags: Flickr-tunnisteet
+  fluid_layout: Virtaava asettelu
   #Adjective, as in a fluid layout of images
-  fluid:
-  follow:
-  follow_receive_updates_about_new_observations:
-  follow_user: ""
-  followers:
-  following:
-  for_a_taxon:
-  formatting:
-  forgot_your_password:
-  forum:
+  fluid: neste
+  follow: Seuraa
+  follow_receive_updates_about_new_observations: Seuraa (saat päivityksiä uusista havainnoista)
+  follow_user: "Seuraa käyttäjää %{user}"
+  followers: Seuraajat
+  following: Seuraamasi
+  following_x_people:
+    one: 'Seurataan 1 henkilöä'
+    other: 'Seurataan %{count} henkilöä'
+  for_a_taxon: taksonille
+  formatting: Muotoilu
+  forgot_your_password: Unohditko salasanasi?
+  forum: Foorumi
+  forum_categories:
+    bug_reports: Bugiraportit
+    feature_requests: Päivitysehdotukset
+    forum_feedback: Foorumin palaute
+    forum_moderation: Foorumin moderointi
+    nature_talk: Keskustelua luonnosta
+    news_and_updates: Uutiset & päivitykset
+    tutorials: Oppaat
   forum_desc: |
-
-  frequency:
-  from_a_place:
-  from_eol_collection:
-  from_flickr_facebook_etc:
-  from_list:
-  from_photos:
-  from_place:
-  from_soundcloud:
-  full_screen:
-  gbif:
-  gbif_occurrences:
-  generate_taxonomic_tags_for_flickr:
-  generate_widget:
-  generate_your_stats:
-  generating_mobile_archive: ""
-  Genus:
-  geoprivacy:
-  geoprivacy_is_obscured:
-  geoprivacy_is_obscured_desc:
-  geoprivacy_is_private:
-  geoprivacy_is_private_desc:
-  georeferenced:
-  get_started:
-  getting_started_guide:
+    iNaturalistin foorumilla voi keskustella englanniksi iNaturalistin käytöstä ja luontoharrastuksesta. Lajitietokeskuksen foorumilla (foorumi.laji.fi) voi keskustella suomeksi.
+  frequency: Lukumäärä
+  from_a_place: paikasta
+  from_eol_collection: EOL-kokoelmasta
+  from_flickr_facebook_etc: Flickristä, Facebookista, yms.
+  from_list: Luettelosta
+  from_photos: Kuvista
+  from_place: Paikasta
+  from_soundcloud: Soundcloudista
+  full_screen: Koko ruutu
+  fungi:
+    one: sieni
+    other: sientä
+  gbif: GBIF
+  gbif_occurrences: GBIF:n esiintymistiedot
+  generate_taxonomic_tags_for_flickr: Luo taksonomisia tunnisteita Flickr-kuviisi.
+  generate_widget: Luo pienoisohjelma
+  generate_your_stats: Tuota tilastosi
+  generating_mobile_archive: "Luodaan mobiiliarkistoa"
+  Genus: Suku
+  geoprivacy: Sijainnin tietosuoja
+  geoprivacy_is_obscured: 'Sijainnin tietosuoja: karkeistettu'
+  geoprivacy_is_obscured_desc: Havainnoija on karkeistanut koordinaatit.
+  geoprivacy_is_private: 'Sijainnin tietosuoja: yksityinen'
+  geoprivacy_is_private_desc: Havainnoija on piilottanut koordinaatit.
+  georeferenced: Paikannettu?
+  get_started: Aloita
+  getting_started_guide: Aloitusopas
   #Prompt to donate money on a montly basis
-  give_monthly_caps:
+  give_monthly_caps: LAHJOITA KUUKAUSITTAIN
   #Prompt to donate money once
-  give_now_caps:
-  global_names:
-  globally:
-  go:
-  go_back:
-  going_to_your_observations:
-  good_choice_for_sharing:
-  google:
+  give_now_caps: LAHJOITA NYT
+  global_names: Maailmanlaajuiset nimet
+  globally: Maailmanlaajuisesti
+  go: Siirry
+  go_back: Mene takaisin
+  going_to_your_observations: Siirrytään havaintoihisi ...
+  good_choice_for_sharing: Hyvä valinta tiedon jakamiseen tutkijoiden kanssa
+  google: Google
   google_maps_not_loaded_error: |
-
-  got_it!:
-  got_your_data_somewhere_else?:
-  graft:
-  graft_taxon:
-  grafting_attemps_to_insert_this_taxon:
-  grant_role: ""
-  grid:
-  grid_layout:
-  grid_tooltip:
-  group:
-  grouping:
-  guides:
-  guide_compiled_by:
-  guide_deleted:
-  guide_will_be_deleted:
-  guide_taxon:
-  guide_was_successfully_created:
-  guide_was_successfully_published:
-  guide_was_successfully_updated:
-  guidelines:
-  has_already_been_flagged_by:
-  has_id_supported_by_two_or_more:
-  has_one_or_more_faves:
-  has_photo:
-  has_photos:
-  has_photo_and_sound:
-  has_photos_or_sounds:
-  has_sound:
-  has_sounds:
-  hasnt_contributed_any_observations:
-  header_your_observations:
-  header_your_calendar:
-  header_your_favorites:
-  header_your_lists:
-  header_your_journal:
-  header_your_identifications:
-  header_your_projects:
-  header_your_profile:
-  heads_up:
-  heads_up_automatable_draft_split_notice_html: |
-
-  heads_up_non_automatable_draft_split_notice_html: |
-
-  heads_up_automatable_split_notice_html: |
-
-  heads_up_observose_taxon_change_html: |
-
-  heads_up_taxon_change_inputs_covered_by_framework_html: |
-
-  heads_up_this_photo_has_been_flagged: ""
-  heads_up_this_photo_is_already_associated_with: ""
-  heads_up_you_have_multiple: ""
-  help:
-  help_confirm_observations!:
-  help_support_inaturalist: ""
-  help_translate!:
-  here_are_3_examples:
-  here_are_our_top_suggestions:
-  here_are_our_top_species_suggestions:
-  hex_color_eg:
-  hi_user: ""
+    Google Maps ei käynnistynyt. Olet saattanut estää pääsyn Google Mapsiin
+    selaimen laajennuksella tai palomuurilla, tai jokin muu estää pääsyn
+    kuten Internet-palveluntarjoaja.
+  got_it!: Selvä!
+  got_your_data_somewhere_else?: Ovatko sinun tietosi jossain muualla? Me voimme auttaa.
+  graft: Liitos
+  grant_role: "%{grant} %{role} roolin"
+  grid: Ruudukko
+  grid_layout: Ruudukkoasettelu
+  grid_tooltip: Näytä ruudukkonäkymä
+  group: Ryhmä
+  grouping: Ryhmittely
+  guides: Oppaat
+  guide_compiled_by: Oppaan koonnut
+  guide_deleted: Opas poistettu
+  guide_will_be_deleted: Opas poistetaan. Suurten oppaiden poistaminen kestää hetken.
+  guide_taxon: Taksoniopas
+  guide_was_successfully_created: Oppaan teko onnistui.
+  guide_was_successfully_published: Oppaan julkaisu onnistui.
+  guide_was_successfully_updated: Oppaan päivitys onnistui.
+  guidelines: Pelisäännöt
+  has_already_been_flagged_by: tämän on jo liputtanut
+  has_id_supported_by_two_or_more: Kaksi tai useampi kannattaa samaa tunnistusta
+  has_one_or_more_faves: On yksi tai useampi suosittelu
+  has_photo: Kuvia
+  has_photos: Kuvia
+  has_photo_and_sound: Sekä kuvia että ääniä
+  has_photos_or_sounds: Kuvia tai ääniä
+  has_sound: Ääni
+  has_sounds: Ääniä
+  hasnt_contributed_any_observations: ei ole avustanut yhdelläkään havainnolla tätä projektia.
+  header_your_observations: Omat havainnot
+  header_your_calendar: Oma kalenteri
+  header_your_favorites: Omat suosikit
+  header_your_lists: Oma luettelo
+  header_your_journal: Oma päiväkirja
+  header_your_identifications: Omat tunnistukset
+  header_your_projects: Omat projektit
+  header_your_profile: Oma profiili
+  heads_up: Huomio
+  heads_up_this_photo_has_been_flagged: "Tämä kuva on liputettu."
+  heads_up_this_photo_is_already_associated_with: "Huomio: tämä kuva on jo yhdistetty <a target='_blank' href='%{url}'>toisen havainnon</a> kanssa"
+  help: Apua
+  help_confirm_observations!: Auta vahvistamaan havaintoja!
+  help_support_inaturalist: "Auta tukemaan iNaturalistia"
+  help_translate!: Auta kääntämisessä!
+  here_are_3_examples: Tässä on kolme esimerkkiä hyvin järjestetystä tiedosta
+  here_are_our_top_suggestions: Tässä ovat parhaat suosituksemme
+  here_are_our_top_species_suggestions: Tässä ovat parhaat lajiehdotuksemme
+  hex_color_eg: Hex-väri, esim. 65644F
+  hi_user: "Hei %{user}"
   #Verb, usually a button to hide an interface element
-  hide:
-  hide_content:
+  hide: Piilota
+  hide_content: Piilota sisältö
   hide_desc: |
-
+    Sisällön piilottaminen aiheuttaa sen, että tiedot eivät ole julkisesti näkyvillä. Sen sijaan näkyvillä on tieto siitä, että jotakin on piilotettu. Sivuston kuraattorit ja sisällön tallentaja voivat edelleen nähdä piilotetun sisällön. Sääntöä sovelletaan lähinnä tekstuaaliseen sisältöön: esimerkiksi, jos piilotat määrityksen, määritys on edelleen näkyvillä mutta sen kommentit piilotetaan. Et voi perua tätä toimintoa. Ainoastaan sivuston ylläpitäjät voivat palauttaa piilotetun sisällön julkisesti näkyväksi, joten ole varovainen toiminnon kanssa ja käytä sitä ainoastaan arkaluontoiselle sisällölle.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation:
+  hide_no_annotation: Piilota "Ei merkintöjä"
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total:
-  hide_uncountable_species:
-  high:
-  highest_rank:
-  highlights_and_stats_from_year_on_site: ""
-  history:
-  home:
-  #Label showing hours adjusted in the time shifter in the Uploader
-  hours_to_adjust: ""
-  however_there_were_some_issues: ""
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  however_you_may_want_to_commit_html: |
-
-  i_dont_know_but_i_am_sure_this_is_taxon:
-  icon:
-  icon_size:
-  iconic_taxon:
-  id:
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_move_html: ""
-  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
-  id_two_of_taxon_swap_html: ""
-  id_withdrawn:
-  ids_by_taxon:
-  identify:
-  identify_observations: ""
-  identify_observations_by_these_users:
-  identify_title: ""
-  identification:
-  identification_by_user:
+  hide_running_total: Piilota kumulatiivinen yhteismäärä
+  hide_uncountable_species: Piilota ei-laskettavat lajit
+  high: Korkea
+  highest_rank: Korkein arvo
+  highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
+  history: Historia
+  home: Etusivu
+  i_dont_know_but_i_am_sure_this_is_taxon: En tiedä, mutta olen varma että tämä kuuluu taksoniin %{taxon}
+  icon: Kuvake
+  icon_size: Kuvakkeen koko
+  iconic_taxon: Ikoninen taksoni
+  id: Tunnistus
+  id_categories:
+    tooltips:
+      leading: |
+        Taksoni polveutuu yhteisön taksonista. Tämä tunnistus voisi johtaa kohti
+        oikeaa vastausta.
+  id_withdrawn: Tunnistus peruutettu
+  ids_by_taxon: Tunnistuksia per taksoni
+  identify: Tunnistus
+  identify_observations: "Tunnista havaintoja"
+  identify_observations_by_these_users: Tunnista havaintoja, joita nämä havainnoijat ovat tehneet
+  identify_title: "Tunnistus"
+  identification: tunnistus
+  identification_by_user: Käyttäjän %{user} tunnistus
   #Notification when an identification has been deleted
-  identification_deleted:
-  identification_saved: ""
+  identification_deleted: Tunnistus poistettu.
+  identification_saved: "Tunnistus tallennettu!"
   #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden:
+  identification_text_hidden: Määritysteksti piilotettu
   #Notification when an identification has been updated
-  identification_updated:
-  identification_user_short:
+  identification_updated: Tunnistus päivitetty!
+  identification_user_short: Tunnist. käyttäjä
   #Notification when an identification has been withdrawn
-  identification_withdrawn:
-  identifications:
-  computer_vision_suggestion:
+  identification_withdrawn: Tunnistus peruutettu.
+  identifications: Tunnistukset
+  computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
-
-  identifiers:
-  identotron:
-  identotron_for:
-  identotron_help:
-  ids: ""
-  ids_made_for_others:
+    Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
+  identifiers: Tunnistajaa
+  identotron: Identotron
+  identotron_help: Identotron ohje
+  ids: "Tunnistukset"
+  ids_made_for_others: muille tehtyä tunnistusta
   if_for_some_reason_a_user_doesnt_agree: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_moves_html: |
-
-  #disagreements are identifications that disagree with other identifications on the same observation
-  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
-  if_narrowing_a_parent_for_swaps_html: |
-
-  if_matches_come_from_a_comprehensive_list:
-  if_this_is_a_scientific_name:
-  if_this_link_will_apply_to_descendant:
-  if_you_have_any_trouble_with_the_site_check_out: ''
-  if_your_project_is:
-  ignore_and_continue:
-  ignore_times:
-  image_must_be_exactly:
-  image_size_control:
+    Jos jotain syystä et hyväksy yhteisön tunnistusta, voit hylätä sen, mikä tarkoittaa, että omaa tunnistustasi käytetään linkittämään muihin havaintoihin, päivittämään pinnalistoja jne. Voit kuitenkin saada havainnollesi Tutkimustaso-merkinnän vain, jos yhteisö on samaa mieltä kanssasi.
+  if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty tällä hetkellä?
+  if_this_link_will_apply_to_descendant: Jos tämä linkki koskee lapsitaksoneja, voit käyttää mallitunnisteita täyttääksesi taksonin nimen URL-osoitteessa.
+  if_you_have_any_trouble_with_the_site_check_out: 'Jos sinulla on kysyttävää, tutustu <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.'
+  if_your_project_is: Jos projekti koskee tiettyä paikkaa, aseta koordinaatit klikkaamalla karttaa tai syöttämällä ne manuaalisesti.
+  ignore_and_continue: Hylkää ja jatka
+  ignore_times: Jätä kellonaika huomioimatta
+  image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px korkea
+  image_size_control: Kuvan koon hallinta
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
-  imperiled:
-  import:
-  import_all_photos_as_observations:
-  import_as_an_observation:
-  import_as_another_observation:
-  import_date_time_location_taxonomic: ""
-  import_from_csv:
-  import_from_other_photo_sites:
-  import_observations:
-  import_observations_from_a_photo:
-  import_photos:
-  import_ranges:
-  import_sections:
-  import_tags_from_csv:
-  importing: ""
-  improving:
-  in_n: ""
-  in_place_x:
-  inaturalist_network:
-  inaturalist_network_affiliation:
+  imperiled: Vaarantunut
+  import: Tuo
+  import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
+  import_as_an_observation: Tuo havaintona
+  import_as_another_observation: Tuo toisena havaintona?
+  import_date_time_location_taxonomic: "Tuo päivämäärä, aika, sijainti, kuvaus, ja taksonomista tietoa tästä kuvasta."
+  import_from_csv: Tuo CSV-tiedostosta
+  import_from_other_photo_sites: Tuo muista kuvasivustoista
+  import_observations: Tuo havaintoja
+  import_observations_from_a_photo: Tuo havaintoja valokuvan tarjoajalta tai tiedostosta tietokoneeltasi.
+  import_photos: Tuo kuvia
+  import_tags_from_csv: Tuo tunnisteet CSV-tiedostosta
+  importing: "Tuodaan..."
+  improving: Parannus
+  in_n: "paikassa %{n}"
+  in_place_x: paikassa %{place}
+  inaturalist_network: iNaturalist-verkosto
+  inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
-  inbox:
-  include_places:
-  include_projects:
-  include_suggestions_not_seen_nearby:
-  include_taxa:
-  include_users:
-  including:
-  increase_brightness:
-  in_progress:
-  in_the_past:
-  in_the_past_week:
-  inactive:
+  inbox: Saapuneet
+  include_places: Sisällytä paikat
+  include_projects: Sisällytä projektit
+  include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
+  include_taxa: Sisällytä taksonit
+  include_users: Sisällytä käyttäjät
+  including: mukaan lukien
+  increase_brightness: Lisää kirkkautta
+  in_progress: käynnissä
+  in_the_past: aiemmin
+  in_the_past_week: Menneellä viikolla
+  inactive: Ei käytössä
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
-  inactive_complete_set_status:
-  inactive_taxon:
+  inactive_complete_set_status: Ei käytössä
+  inactive_taxon: Epäaktiivinen taksoni
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
-  inactive_taxon_status:
-  inactive_taxon_concepts_are:
-  inappropriate_content:
-  inat_account_action: ""
-  inat_believes_this_is_a_complete_listing: ""
-  inat_user_profile: ""
-  inaturalist_activity_notifications: ""
+  inactive_taxon_status: Ei käytössä
+  inactive_taxon_concepts_are: Käytöstä poistetut taksonikonseptit ovat joko taksonomisesti vanhentuneita tai ne on luotu taksonimuutoksia varten. Vanhentuneet taksonikonseptit säilytetään historian ja joidenkin kumppanisivujen yhteensopivuuden vuoksi.
+  inappropriate_content: Sopimatonta sisältöä?
+  inat_account_action: "%{site_name} &#58; Tili &#58; %{action_name}"
+  inat_believes_this_is_a_complete_listing: "%{site_name} uskoo, että tämä on täydellinen luettelo tästä taksonista tässä paikassa."
+  inat_user_profile: "%{site_name}: Käyttäjän %{user} profiili"
+  inaturalist_activity_notifications: "%{site_name} tapahtumailmoitukset"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
-  inaturalist_applications: ""
-  inaturalist_is_a_joint_initiative: ""
-  inaturalist_places: ""
-  info:
-  input_taxon:
-  insects:
-  insect_life_stage:
-  instagram:
+  inaturalist_applications: "iNaturalist sovellukset"
+  inaturalist_is_a_joint_initiative: "%{site_name} on Kalifornian tiedeakatemian ja National Geographic Societyn yhteinen aloite."
+  inaturalist_places: "%{site_name} Paikat"
+  info: Tiedot
+  input_taxon: Syötä taksoni
+  insects: hyönteiset
+  insect_life_stage: Hyönteisen elinvaihe
+  instagram: Instagram
   #Tool tip for a button that inserts quoted text into a text area
-  insert_a_quote:
-  interactions:
-  internal_server_error:
-  internal_taxon_including_descendants:
-  internal_taxon_rank:
-  introduced:
-  introduced_in_place: ""
-  invitation:
-  invite:
-  invite_people:
-  invite_people_to_project: ""
+  insert_a_quote: Lisää lainaus
+  interactions: Vuorovaikutukset
+  internal_server_error: Sisäinen palvelinvirhe
+  internal_taxon_including_descendants: Sisäinen taksoni (mukaan lukien alemmat taksonit)
+  internal_taxon_rank: Sisäinen taksonin taso
+  introduced: Vieraslaji
+  introduced_in_place: "Vieraslaji paikassa %{place}"
+  invitation: Kutsu
+  invite: kutsu
+  invite_people: Kutsu ihmisiä
+  invite_people_to_project: "Kutsu ihmisiä projektiin %{project}"
   #Type of project where people can only join after they have been invited
-  inviteonly:
-  invited_x: ""
-  iphone:
-  is_not_following_anyone:
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon:
-  is_this_offensive_html: ''
-  is_this_place_a_duplicate:
-  it_can_now_be_used_for_research:
+  inviteonly: vain kutsusta
+  invited_x: "Kutsuttu %{x}"
+  iphone: iPhone
+  is_not_following_anyone: ei seuraa ketään.
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?
+  is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
+  is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
+  it_can_now_be_used_for_research: Havainto jaetaan GBIF:iin ja sitä voidaan käyttää tutkimukseen myös sen kautta.
   #Text inserted into a textarea when the italic button is clicked but no text was selected
-  italic_text:
+  italic_text: kursivoitu teksti
   item_flagged_notice_html: |
-
-  jobs:
-  join:
-  join_and_add_an_observation_to_project_html:
-  join_project:
+    Tämä on liputettu roskapostina eikä enää ole
+    julkisesti nähtävissä. Voit nähdä sen, koska olet luonut sen, tai olet
+    sivuston kuraattori. Jos luulet, että tämä on erehdys,
+    <a href="mailto:%{help_email}" class="contact"ota yhteyttä meihin</a>.
+    <a href="%{manage_flags_path}">Hallitse lippuja</a>
+  join: Liity
+  join_and_add_an_observation_to_project_html: Liity ja lisää havainto projektiin %{project}
+  join_project: Liity tähän projektiin
   #Prompt to join a specific project
-  join_project?:
-  join_the_largest_group_of_naturalists_in_the_world:
-  join_this_project:
-  'joined!':
-  joined_projects:
-  joined_with_date: ""
-  journal:
-  journal_archives_for:
-  journal_post:
-  journal_post_deleted:
-  journal_posts:
-  jpg_png_or_gif: ""
-  jump_to_letter:
-  just_a_reminder:
-  just_added!:
-  keep_editing:
-  keyboard_shortcuts:
-  kml:
-  kml_file_size_error: ""
-  label_colon: ""
-  labels:
-  label_to_group_a_batch_of_taxon_changes:
+  join_project?: Liity projektiin %{project}?
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luontoharrastajien yhteisöön!
+  join_this_project: Liity tähän projektiin
+  'joined!': Liitytty!
+  joined_projects: Liitytyt projektit
+  joined_with_date: "Liittynyt: %{date}"
+  journal: Päiväkirja
+  journal_archives_for: Päiväkirja-arkisto kohteelle
+  journal_post: Päiväkirjamerkintä
+  journal_post_deleted: Päiväkirjamerkintä poistettu
+  journal_posts: Päiväkirjamerkinnät
+  jpg_png_or_gif: "JPG, PNG tai GIF"
+  jump_to_letter: Hypppää kirjeeseen
+  just_a_reminder: Tämä on vain muistutus, koska olet voinut antaa projektin kuraattoreille oikeudet tarkistella havaintojesi piilotettuja koordinaatteja tässä projektissa.
+  just_added!: Juuri lisätty!
+  keep_editing: Jatka muokkaamista
+  keyboard_shortcuts: Pikanäppäimet
+  kml: KML
+  kml_file_size_error: "KML:n on oltava kooltaan pienempi kuin 1 MT"
+  label_colon: "%{label}:"
+  labels: Merkinnät
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
-  location_private:
+  location_private: Yksityinen sijainti
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
-  location_unknown:
+  location_unknown: Puuttuva sijainti
   #Option to lock the zoom level for maps on Identify so the zoom level remains
   #the same as you move from one observation to another
-  lock_zoom_level:
-  language_slash_locale:
-  language_slash_locale_description:
-  language_slash_type:
+  lock_zoom_level: Lukitse zoomaustaso
+  language_slash_locale: Kieli/sijainti
+  language_slash_locale_description: Tämä asettaa kielesi ja päivämääräasetuksesi iNaturalistissa perustuen sijaintiisi. Muutokset tulevat voimaan, kun sivu on päivitetty.
+  language_slash_type: Kieli / Tyyppi
   #Large photo size
-  large:
-  last_active_with_date: ""
-  last_confirmed_observation:
-  last_observation:
-  last_observation_caps:
-  last_seen:
-  last_year:
-  lat:
-  latitude:
-  latitude_in_decimals: ''
-  latitude_slash_y_coord_slash_northing:
-  latitude_value: ""
+  large: suuri
+  last_active_with_date: "Viimeksi aktiivinen: %{date}"
+  last_confirmed_observation: Viimeinen vahvistettu havainto
+  last_observation: Viimeisin havainto
+  last_observation_caps: VIIMEISIN HAVAINTO
+  last_seen: Nähty viimeksi
+  last_year: Viime vuosi
+  lat: Leveysaste
+  latitude: Leveysaste
+  latitude_in_decimals: 'Leveyttä desimaaliasteina, esim. 38.123'
+  latitude_slash_y_coord_slash_northing: Leveysaste / y-koordinaatti / pohjoiseen
+  latitude_value: "Leveysaste: %{latitude}"
   #As in map layers, i.e. layers of data that might be overlayed on a map
-  layers:
-  layout:
-  leaderboard:
-  leaderboard_for_x: ""
-  leaderboards:
-  leading:
-  learn:
-  learn_about_the_species_live_in:
-  learn_more:
-  learn_more_raquo: ""
-  learn_what_these_licenses_mean:
-  least_concern:
-  leave:
-  leave_a_comment:
-  leave_this_project:
+  layers: Tasot
+  layout: Pohja
+  leaderboard: Tulostaulukko
+  leaderboard_for_x: "%{x}:n tulostaulu"
+  leaderboards: Tulostaulukot
+  leaderboard_most:
+    species_in_month_year: Eniten lajeja %{month_year}
+    species_in_year: Eniten lajeja %{year}
+    observations_in_month_year: Eniten havaintoja %{month_year}
+    observations_in_year: Eniten havaintoja %{year}
+    identifications_in_month_year: Eniten tunnistuksia %{month_year}
+    identifications_in_year: Eniten tunnistuksia %{year}
+  leading: Johtava
+  learn: Opi
+  learn_about_the_species_live_in: Opi lajeista, jotka elävät paikassa
+  learn_more: Lue lisää
+  learn_more_raquo: "Lisätietoja &raquo;"
+  learn_what_these_licenses_mean: Opi, mitä nämä lisenssit tarkoittavat
+  least_concern: Elinvoimainen
+  leave: Poistu
+  leave_a_comment: Jätä kommentti
+  leave_this_project: Jätä tämä projekti
   #Terminal nodes in a taxonomic tree
-  leaves:
+  leaves: lehdet
   legacy_authentication_notice_html: |
-
-  let_us_walk_you_through:
-  lexicon:
-  lexicon_cannot_contain_words: ""
+    Näyttää siltä, että käytät salasanaa verkkosivuston vanhasta versiosta.
+    Muista <a href="%{url}">vaihtaa salasanasi</a> uudelle versiolle.
+  let_us_walk_you_through: Tutustu tämän sivuston tärkeimpiin ominaisuuksiin.
+  lexicon: Sanakirja
   lexicons:
-    scientific_names:
-    afrikaans:
-    albanian:
-    arabic:
-    armenian:
-    belarusian:
-    bengali:
-    bulgarian:
-    catalan:
-    cebuano:
-    chinese_simplified:
-    chinese_traditional:
-    creole_french:
-    creole_portuguese:
-    croatian:
-    czech:
-    danish:
-    davawenyo:
-    dutch:
-    english:
-    estonian:
-    faroese:
-    finnish:
-    french:
-    galician:
-    gela:
-    german:
-    greek:
-    hawaiian:
-    hebrew:
-    hiligaynon:
-    hungarian:
-    icelandic:
-    ilokano:
-    indonesian:
-    italian:
-    japanese:
-    kannada:
-    korean:
-    latvian:
-    lithuanian:
-    luxembourgish:
-    malay:
-    malayalam:
-    maltese:
-    maori:
-    marathi:
-    maya:
-    misima_paneati:
-    mongolian:
-    nahuatl:
-    norwegian:
-    occitan:
-    ojibwe:
-    palauan:
-    pangasinan:
-    persian:
-    polish:
-    portuguese:
-    romanian:
-    russian:
-    santali:
+    scientific_names: Tieteelliset nimet
+    afrikaans: Afrikaans
+    albanian: Albania
+    arabic: Arabia
+    armenian: Armenia
+    belarusian: Valkovenäjä
+    bengali: Bengali
+    bulgarian: Bulgaria
+    catalan: Katalaani
+    cebuano: Cebuano
+    chinese_simplified: Kiina (yksinkertaistettu)
+    chinese_traditional: Kiina (perinteinen)
+    creole_french: kreoli (Ranska)
+    creole_portuguese: kreoli (Portugali)
+    croatian: Kroatia
+    czech: Tsekki
+    danish: Tanska
+    davawenyo: Davawenyo
+    dutch: Hollanti
+    english: Englanti
+    estonian: Viro
+    faroese: Fääri
+    finnish: Suomi
+    french: Ranska
+    galician: Galicia
+    german: Saksa
+    greek: Kreikka
+    hawaiian: Havaiji
+    hebrew: Heprea
+    hiligaynon: Hiligaino
+    hungarian: Unkari
+    icelandic: Islanti
+    ilokano: Ilokano
+    indonesian: Indonesia
+    italian: Italia
+    japanese: Japani
+    kannada: Kannada
+    korean: Korea
+    latvian: Latvia
+    lithuanian: Liettua
+    luxembourgish: Luksemburgi
+    malay: Malaiji
+    malayalam: Malajalam
+    maltese: Malta
+    maori: Maori
+    marathi: Marathi
+    maya: Maya
+    misima_paneati: Misima-paneati
+    mongolian: Mongolia
+    nahuatl: Nahuatlkieli
+    norwegian: Norja
+    occitan: Oksitaani
+    ojibwe: Ojibwe
+    palauan: Palau
+    pangasinan: Pangasinan
+    persian: persia
+    polish: Puola
+    portuguese: Portugali
+    romanian: Romania
+    russian: Venäjä
+    santali: santali
+    serbian: Serbia
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
@@ -1876,6 +2260,7 @@ fi:
     sk: slovakia
     sl: Slovenia
     sq: albania
+    sr: Serbia
     sv: ruotsi
     th: Thai
     tr: turkki
@@ -3048,6 +3433,8 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_please_keep_in_mind: |
+    Huomioi seuraavat rajoitukset:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
   places_warning_the_future: |
@@ -3396,6 +3783,8 @@ fi:
   research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Palauta
   reset_filters_short: Palauta
   reset_brightness: Palauta kirkkaus normaaliksi
   reset_search_filters: Tyhjennä hakusuodattimet
