@@ -2231,6 +2231,7 @@ hu:
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   observations_without_media: Megfigyelés fénykép/hang nélkül
+  observationcounts_refreshed: Megfigyelések száma frissítve
   observed: Megfigyelve
   observed_by: 'Megfigyelte:'
   observed_on: 'Megfigyelve:'
@@ -3064,6 +3065,7 @@ hu:
   red: piros
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
+  refresh: Frissít
   refreshing: frissül
   regenerate_stats: Statisztikák újragenerálása
   reject?: Elutasítod?
@@ -3442,6 +3444,7 @@ hu:
   this_taxon_has_no_default_photo: Ennek a taxonnak nincs alapértelmezett fotója!
   this_taxon_name_was_originally_imported: "Ez a taxonnév eredetileg egy külső névszolgáltatótól volt importálva:"
   this_taxon_was_originally_imported_from: "Ez a taxon eredetileg egy külső névszolgáltatótól volt importálva:"
+  this_will_refresh_listed_taxa: Ez frissíteni fogja a taxonok listáját ezen a listán. Ez eltart egy darabig ezért kérünk csak ritkán használd és csak kis listákon.
   #Application is an app or service the user has authorized to access their
   #iNat account
   this_will_sign_you_out_current_session: Ez kiléptet a jelen munkamenetedből ebben ez alkalmazásban.
@@ -3938,6 +3941,8 @@ hu:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Legyél havi támogatója az iNaturalist-nak
     guides:
+      generating_mobile_archive_tip_html: |
+        Ez eltart egy darabig, ezért kérünk frissítsd ezt a lapot pár perc múlva.
       mobile_downloads_tip_html: |
         Ez az útmutató letölthető a mobilalkalmazásra internet nélküli használatra.
       pdf_layouts:
