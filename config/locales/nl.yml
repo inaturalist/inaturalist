@@ -3738,6 +3738,8 @@ nl:
     Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
     een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
     land.
+  places_warning_please_keep_in_mind: |
+    Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
     Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
     meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
@@ -4806,6 +4808,8 @@ nl:
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
     prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
   then_keybord_sequence: dan
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Er zijn momenteel geen ID's van mogelijke oudertaxa.
   there_are_x_synonyms_html:
     one: "Er is <span class='count'>1</span> synoniem</span>"
     other: "Er zijn <span class='count'>%{count}</span> synoniemen</span>"
