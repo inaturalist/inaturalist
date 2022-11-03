@@ -1361,6 +1361,8 @@ da:
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
   curator_identification: Kurator identifikation
   current_flags: Aktuelle markeringer
+  #Label for a custom boundary for an observation search
+  custom_boundary: Tilpasset grænse
   custom_project_fields: Standardfelter for projekt
   custom_project_was_successfully_created: Brugerdefineret projekt blev oprettet.
   custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
@@ -1589,6 +1591,10 @@ da:
   draft_saved: Kladde gemt!
   drafts: Kladder
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Tegn cirkulær grænse
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Tegn rektangulær grænse
   drawings: Skitser
   duplicate_verb: Kopiér
   duration_value: "Varighed:%{duration} minutter"
@@ -2334,6 +2340,7 @@ da:
     romanian: Rumænsk
     russian: Russisk
     santali: Santali
+    serbian: Serbisk
     setswana: Setswana
     sinhala: Singalesisk
     slovak: Slovakisk
@@ -2455,6 +2462,7 @@ da:
     sk: Slovakisk
     sl: Slovensk
     sq: Albansk
+    sr: Serbisk
     sv: Svensk
     th: Thailandsk
     tr: Tyrkisk
@@ -4151,6 +4159,8 @@ da:
   research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
   research_grade_qualification: Kvalifikation til Forskningskvalitet
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Nulstil
   reset_filters_short: Nulstil
   reset_brightness: Nulstil lysstyrke
   reset_search_filters: Nulstil søgefiltre
