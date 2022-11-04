@@ -1257,6 +1257,8 @@ fi:
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
+  #Label for a custom boundary for an observation search
+  custom_boundary: Valinnainen rajaus
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
@@ -1467,6 +1469,10 @@ fi:
   draft_saved: Luonnos tallennettu!
   drafts: Luonnokset
   drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Piirrä ympyrä
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Piirrä suorakulmio
   drawings: Piirrokset
   duplicate_verb: Monista
   duration_value: "Kesto: %{duration} minuuttia"
@@ -2139,6 +2145,7 @@ fi:
     romanian: Romania
     russian: Venäjä
     santali: santali
+    serbian: Serbia
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
@@ -2253,6 +2260,7 @@ fi:
     sk: slovakia
     sl: Slovenia
     sq: albania
+    sr: Serbia
     sv: ruotsi
     th: Thai
     tr: turkki
@@ -3425,6 +3433,8 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_please_keep_in_mind: |
+    Huomioi seuraavat rajoitukset:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
   places_warning_the_future: |
@@ -3773,6 +3783,8 @@ fi:
   research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Palauta
   reset_filters_short: Palauta
   reset_brightness: Palauta kirkkaus normaaliksi
   reset_search_filters: Tyhjennä hakusuodattimet

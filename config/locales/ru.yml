@@ -662,6 +662,8 @@ ru:
   #Label for an option to show/include content by any user
   any_user: Любой
   anyone: Любой
+  app_owner_application_explanation_required: |
+    Вы должны предоставить более подробное объяснение того, что вы хотите создать.
   app_owner_application_about_p1a_html: |
     Приложения iNaturalist дают возможность аутентифицированного использования API iNaturalist. Это позволяет вам выполнять вызовы API, для выполнения таких действий, как создание наблюдений или идентификаций. Обычными вариантами использования являются настольные приложения или мобильные приложения, которые включают в себя функции создания наблюдений iNaturalist для своих пользователей. Этот контент должен создаваться при реальном человеческом участии или надзоре. Пожалуйста, для получения более подробной информации ознакомьтесь с нашими <a href="/pages/community+guidelines"
     target="_blank">Рекомендациями сообщества</a>, которые запрещают машинную генерацию наблюдений, идентификаций и комментариев .
@@ -1433,6 +1435,8 @@ ru:
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
+  #Label for a custom boundary for an observation search
+  custom_boundary: Произвольная граница
   custom_project_fields: Пользовательские Поля Проекта
   custom_project_was_successfully_created: CustomProject был успешно создан.
   custom_project_was_successfully_updated: CustomProject был успешно обновлён.
@@ -1656,6 +1660,10 @@ ru:
   draft_saved: Черновик сохранен!
   drafts: Черновики
   drag_and_drop_some_photos_or_sounds: Перетащите и отпустите несколько фото или звуков
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Нарисовать границу в виде круга
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Нарисовать прямоугольную границу
   drawings: Рисунки
   duplicate_verb: Задвоить
   duration_value: "Длительность: %{duration} мин"
@@ -2393,6 +2401,7 @@ ru:
     romanian: Румынский
     russian: Русский
     santali: Сантали
+    serbian: Сербский
     setswana: Тсвана
     sinhala: Сингальский
     slovak: Словацкий
@@ -2514,6 +2523,7 @@ ru:
     sk: Словацкий
     sl: Словенский
     sq: албанский
+    sr: Сербский
     sv: Шведский
     th: Тайский
     tr: Турецкий
@@ -3786,6 +3796,8 @@ ru:
     где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
   places_warning_look_for_existing_html: |
     Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_please_keep_in_mind: |
+    Пожалуйста, помните о следующих ограничениях:
   places_warning_projects_can_have_multiple_places: |
     Когда вы пытаетесь создать место для границы проекта, проекты могут состоять из нескольких мест. Например, если вы хотите сделать проект для Новой Зеландии и Австралии, вы можете просто добавить требования для двух мест вместо того, чтобы создавать новые.
   places_warning_new_places_are_slow_html: |
@@ -4189,6 +4201,8 @@ ru:
   research_grade_tooltip_html: 'Наблюдения "Исследовательского уровня" содержат медиа, местоположение и дату, и имеется консенсус сообщества по поводу точной идентификации (обычно на уровне вида).<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
   research_grade_observations_have: 'Наблюдения "Исследовательского уровня" содержат дату, фото, координаты и поддерживаемую сообществом идентификацию. Нажмите, чтобы увидеть оценку качества данных.'
   research_grade_qualification: Качество исследовательского уровня
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Сброс
   reset_filters_short: Сбросить
   reset_brightness: Сбросить яркость
   reset_search_filters: Сбросить фильтры поиска

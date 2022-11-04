@@ -1287,6 +1287,8 @@ de:
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Desweiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_identification: Bestimmung des Kurators
   current_flags: Aktuelle Meldungen
+  #Label for a custom boundary for an observation search
+  custom_boundary: angepasste Gebietsgrenze
   custom_project_fields: Benutzerdefinierte Projektfelder
   custom_project_was_successfully_created: Eigenes Projekt wurde erfolgreich erstellt.
   custom_project_was_successfully_updated: Eigenes Projekt wurde erfolgreich aktualisiert.
@@ -1504,6 +1506,10 @@ de:
   draft_saved: Entwurf gespeichert!
   drafts: Entwürfe
   drag_and_drop_some_photos_or_sounds: durch "Ziehen & Ablegen" Bilder oder Audio-Dateien hinzufügen
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: kreisförmige Gebiets-Auswahl
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: rechteckige Gebiets-Auswahl
   drawings: Zeichnungen
   duplicate_verb: Duplizieren
   duration_value: "Dauer: %{duration} Minuten"
@@ -2206,6 +2212,7 @@ de:
     romanian: Rumänisch
     russian: Russisch
     santali: Santali
+    serbian: Serbisch
     setswana: Setswana
     sinhala: Singhalesisch
     slovak: Slowakisch
@@ -2327,6 +2334,7 @@ de:
     sk: Slowakisch
     sl: Slowenisch
     sq: Albanisch
+    sr: Serbisch
     sv: Schwedisch
     th: Thailändisch
     tr: Türkisch
@@ -3620,6 +3628,8 @@ de:
   places_warning_look_for_existing_html: |
     Suche nach bereits <a href="/search?source[]=places">existierenden Gebieten</a> um sicherzustellen, dass kein Duplikat erstellet wird. Für alle Kontinente und Staaten gibt es bereits entsprechende Gebiete, ebenso jeweils zwei Verwaltungsebenen unterhalb der
     Staatsebene.
+  places_warning_please_keep_in_mind: |
+    Bitte beachte die folgenden Einschränkungen:
   places_warning_projects_can_have_multiple_places: |
     Bevor du versuchst, einen Ort für eine Projektgrenze anzulegen: Projekte können mehrere Gebiete umfassen. Wenn du z.B. ein Projekt für Neuseeland und Australien machen möchtest - anstatt ein neues Gebiet anzulegen kannst du einfach nur die Bedingungen für diese zwei Orte hinzufügen.
   places_warning_new_places_are_slow_html: |
@@ -4013,6 +4023,8 @@ de:
   research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Zurücksetzen
   reset_filters_short: Zurücksetzen
   reset_brightness: Helligkeit zurücksetzen
   reset_search_filters: Suchfilter zurücksetzen

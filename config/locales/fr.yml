@@ -553,6 +553,8 @@ fr:
   #Label for an option to show/include content by any user
   any_user: Tous
   anyone: Tout le monde
+  app_owner_application_explanation_required: |
+    Vous devez fournir une explication plus détaillée de ce que vous voulez construire.
   app_owner_application_about_p1a_html: |
     Les applications iNaturalist permettent l'utilisation authentifiée de l'API iNaturalist. Cela vous permet de faire des appels API qui font des choses comme créer des observations ou des identifications. Les utilisations habituelles sont des applications comme des applications de bureau ou des applications mobiles qui comprennent des fonctionnalités permettant à leurs utilisateurs de créer des observations iNaturalist. Ce contenu doit être produit avec une implication ou une surveillance humaine réelle. Pour en savoir plus, veuillez lire les <a href="/pages/community+guidelines"
     target="_blank">Règles de la communauté</a> qui interdisent les observations, identifications et commentaires générés par ordinateur.
@@ -1344,6 +1346,8 @@ fr:
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
   curator_identification: Identification du responsable de l’organisation
   current_flags: Signalements actuels
+  #Label for a custom boundary for an observation search
+  custom_boundary: Périmètre personnalisé
   custom_project_fields: Champs de projet personnalisés
   custom_project_was_successfully_created: Le projet personnalisé a bien été créé.
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à jour.
@@ -1570,6 +1574,10 @@ fr:
   draft_saved: Brouillon enregistré!
   drafts: Brouillons
   drag_and_drop_some_photos_or_sounds: Glisser et déposer quelques photos ou sons
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Dessiner un périmètre circulaire
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Dessiner un périmètre rectangulaire
   drawings: Croquis
   duplicate_verb: Dupliquer
   duration_value: "Durée : %{duration} minutes"
@@ -2317,6 +2325,7 @@ fr:
     romanian: Roumain
     russian: Russe
     santali: Santâlî
+    serbian: Serbe
     setswana: tswana
     sinhala: Singhalais
     slovak: Slovaque
@@ -2438,6 +2447,7 @@ fr:
     sk: Slovaque
     sl: slovène
     sq: Albanais
+    sr: Serbe
     sv: Suédois
     th: Thaï
     tr: Turc
@@ -3730,6 +3740,8 @@ fr:
     Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
     que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
     continents et pays, et deux niveaux administratifs inférieurs au pays.
+  places_warning_please_keep_in_mind: |
+    Veuillez garder à l'esprit les restrictions suivantes :
   places_warning_projects_can_have_multiple_places: |
     Si vous essayez de créer un lieu pour délimiter un projet, notez que les projets peuvent être composés de plusieurs lieux. Par exemple, si vous voulez faire un projet pour la Nouvelle-Zélande et l'Australie, vous pouvez simplement ajouter des conditions pour ces deux lieux au lieu d'en créer un nouveau.
   places_warning_new_places_are_slow_html: |
@@ -4118,6 +4130,7 @@ fr:
   research_grade_tooltip_html: 'Les observations « niveau de recherche » sont documentées et ont un lieu, une date ainsi qu''une identification précise (en général au rang de l''espèce) qui fait l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   research_grade_observations_have: 'Les observations de « calibre recherche » ont une date, une photo, des coordonnées et une identification reconnue par la communauté. Cliquer dessus pour voir l’évaluation de la garantie des données.'
   research_grade_qualification: Classification en niveau recherche
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Réinitialiser
   reset_filters_short: Réinitialiser
   reset_brightness: Réinitialiser la luminosité

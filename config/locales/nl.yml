@@ -1352,6 +1352,7 @@ nl:
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
   curator_identification: Curatordeterminatie
   current_flags: Huidige meldingen
+  #Label for a custom boundary for an observation search
   custom_boundary: Grens naar Eigen Wens
   custom_project_fields: Aangepaste projectvelden
   custom_project_was_successfully_created: Projectaanpassingen toegevoegd
@@ -1576,7 +1577,9 @@ nl:
   draft_saved: Kladversie bewaard!
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Teken een cirkelvormige grens
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Teken een rechthoekige grens
   drawings: Tekeningen
   duplicate_verb: Dupliceren
@@ -2307,6 +2310,7 @@ nl:
     romanian: Roemeens
     russian: Russisch
     santali: Santali
+    serbian: Servisch
     setswana: Setswana
     sinhala: Singalees
     slovak: Slowaaks
@@ -2428,6 +2432,7 @@ nl:
     sk: Slowaaks
     sl: Sloveens
     sq: Albanees
+    sr: Servisch
     sv: Zweeds
     th: Thai
     tr: Turks
@@ -3114,7 +3119,7 @@ nl:
     comments_panel_title: Nieuwsgierig welke discussies plaatsvinden op %{site_name}?
     comments_panel_body: "<p>%{site_name} staat volledig in het teken van het delen en bespreken van waarnemingen van flora en fauna. Hieronder staan discussies die nu gaande zijn. (Let op: je wordt automatisch geabonneerd op discussies waar je opmerkingen of determinaties aan bijdraagt. Beheer deze updates in het gedeelte 'Abonnementen' aan de rechterkant.)</p>"
     updates_by_you_panel_title: Dit tabblad is een snelle manier om alleen nieuws over je eigen inhoud te zien.
-    updates_by_you_panel_body: Hou er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of plaatsen waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
+    updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of plaatsen waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
     youve_got_updates_panel_title: Er zijn updates!
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
     youve_got_updates_panel_body_p2: |
@@ -3733,6 +3738,8 @@ nl:
     Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
     een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
     land.
+  places_warning_please_keep_in_mind: |
+    Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
     Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
     meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
@@ -4133,7 +4140,8 @@ nl:
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
-  reset: Herstel
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Reset
   reset_filters_short: Reset
   reset_brightness: Helderheid herstellen
   reset_search_filters: Reset zoekfilters
@@ -4800,6 +4808,8 @@ nl:
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
     prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
   then_keybord_sequence: dan
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Er zijn momenteel geen ID's van mogelijke oudertaxa.
   there_are_x_synonyms_html:
     one: "Er is <span class='count'>1</span> synoniem</span>"
     other: "Er zijn <span class='count'>%{count}</span> synoniemen</span>"
@@ -5440,7 +5450,7 @@ nl:
   x_project_stats: "%{project} Statistieken"
   x_sent_you_a_new_message_on_y_html: "%{x} heeft je een nieuw bericht gestuurd op %{y}: "
   x_site_is_a_social_network_for_naturalist: |
-    %{site} is een sociaal netwerk voor naturalisten! Hou je waarnemingen van planten en dieren bij, deel ze met vrienden en onderzoekers, en leer over de wereld van de natuur.
+    %{site} is een sociaal netwerk voor naturalisten! Houd je waarnemingen van planten en dieren bij, deel ze met vrienden en onderzoekers, en leer over de wereld van de natuur.
   x_wrote_a_new_post_html: "%{x} heeft een nieuw bericht geschreven"
   x_wrote_y_new_posts_html: "%{x} plaatste %{y} nieuwe berichten"
   year: Jaar
@@ -6225,7 +6235,7 @@ nl:
         <p class='ui'>Je kunt dit waarnemingsveld bewerken omdat je het hebt gemaakt of omdat je een sitecurator bent. Als je een sitecurator bent, volg dan deze richtlijnen</p>
         <ol>
         <li>Voer geen willekeurige naamswijzigingen door (bijv. het veranderen van "eten" in "nectar eten") </li>
-        <li>Hou er rekening mee dat waarnemingsvelden kunnen worden gebruikt voor waarnemingen van elk taxon, dus probeer taxonspecifieke terminologie te vermijden</li>
+        <li>Houd er rekening mee dat waarnemingsvelden kunnen worden gebruikt voor waarnemingen van elk taxon, dus probeer taxonspecifieke terminologie te vermijden</li>
         <li>Verwijder geen velden die mensen gebruiken</li>
         <li>Vertaal geen bestaande veldnamen in verschillende talen. Engels is de lingua franca van deze site. Als je echt een veld wilt dat hetzelfde concept bevat maar in een andere taal, maak dan een nieuw waarnemingsveld aan.</li>
         </ol>
@@ -6389,7 +6399,7 @@ nl:
         remove_observations_label: |
           Verwijder al je waarnemingen uit dit project
         remove_observations_desc_html: |
-          Hou er rekening mee dat projectcuratoren nog steeds je waarnemingen aan hun project kunnen toevoegen zolang je <a href="/users/edit">accountinstellingen</a> niet gewijzigd zijn.
+          Houd er rekening mee dat projectcuratoren nog steeds je waarnemingen aan hun project kunnen toevoegen zolang je <a href="/users/edit">accountinstellingen</a> niet gewijzigd zijn.
         revoke_observations_label: |
           Voeg al je waarnemingen toe aan dit project maar voorkom dat curatoren de verborgen coördinaten kunnen bekijken
         revoke_observations_desc: |
@@ -7203,7 +7213,7 @@ nl:
         species_observed: 'Waargenomen soorten'
         people_signed_up: 'Mensen aangemeld'
         how_it_works: Hoe het werkt
-        record_your_observations: Hou je waarnemingen bij
+        record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
         discuss_your_findings: Bespreek je bevindingen
         contribute_to_science: Draag bij aan onderzoek
@@ -7216,7 +7226,7 @@ nl:
         nature_at_your_fingertips: De natuur binnen handbereik
         keep_track: Blijf op de hoogte
         record_your_encounters: |
-          Registreer je ontmoetingen met andere organismen en hou levenslijsten bij, allemaal in de cloud.
+          Registreer je ontmoetingen met andere organismen en houd levenslijsten bij, allemaal in de cloud.
         create_useful_data: Draag bij met nuttige gegevens
         help_scientists: Help wetenschappers en beheerders te begrijpen waar en wanneer organismen voorkomen.
         crowdsource_identifications: Krijg hulp bij het determineren
@@ -7225,7 +7235,7 @@ nl:
         find_a_project: "Zoek een project met een doel dat je interesseert, of begin zelf een project."
         learn_about_nature: Leer over de natuur
         build_your_knowledge: Bouw je kennis op door met andere naturalisten te praten en anderen te helpen.
-        run_a_bioblitz: Hou een bioblitz
+        run_a_bioblitz: Houd een bioblitz
         hold_an_event: Organiseer een evenement waarbij de deelnemers zoveel mogelijk soorten proberen te verzamelen.
         works_on_all_your_devices: Werkt op al je apparaten
         install_our_mobile_apps: |

@@ -2231,6 +2231,7 @@ hu:
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
   observations_without_media: Megfigyelés fénykép/hang nélkül
+  observationcounts_refreshed: Megfigyelések száma frissítve
   observed: Megfigyelve
   observed_by: 'Megfigyelte:'
   observed_on: 'Megfigyelve:'
@@ -2556,7 +2557,7 @@ hu:
   place_imported: Hely betöltve!
   place_must_have_a_boundary_defined: A helynek rendelkeznie kell határvonallal.
   place_name: Hely neve
-  place_notes: Hely megjegyzései
+  place_notes: Helymegjegyzés
   place_updated: Hely frissítve!
   placement: Elhelyezés
   places: Helyek
@@ -2885,6 +2886,7 @@ hu:
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
+  project_settings: Projektbeállítások
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3063,6 +3065,7 @@ hu:
   red: piros
   redo_search_in_map: Újrakeresés a térképen
   redo_search_in_map_area: Újrakeresés a térképterületen
+  refresh: Frissít
   refreshing: frissül
   regenerate_stats: Statisztikák újragenerálása
   reject?: Elutasítod?
@@ -3086,6 +3089,9 @@ hu:
   remove_from_project: Eltávolítás a projektből
   remove_this_section: E paragrafus eltávolítása
   remove_manager: Menedzser eltávolítása
+  remove_observations:
+    one: Törölsz 1 megfigyelést?
+    other: Törölsz %{count} megfigyelést?
   remove_photo: Fénykép eltávolítása
   remove_place: Hely eltávolítása
   remove_range: Intervallum eltávoltása
@@ -3438,6 +3444,7 @@ hu:
   this_taxon_has_no_default_photo: Ennek a taxonnak nincs alapértelmezett fotója!
   this_taxon_name_was_originally_imported: "Ez a taxonnév eredetileg egy külső névszolgáltatótól volt importálva:"
   this_taxon_was_originally_imported_from: "Ez a taxon eredetileg egy külső névszolgáltatótól volt importálva:"
+  this_will_refresh_listed_taxa: Ez frissíteni fogja a taxonok listáját ezen a listán. Ez eltart egy darabig ezért kérünk csak ritkán használd és csak kis listákon.
   #Application is an app or service the user has authorized to access their
   #iNat account
   this_will_sign_you_out_current_session: Ez kiléptet a jelen munkamenetedből ebben ez alkalmazásban.
@@ -3587,6 +3594,7 @@ hu:
   trusted: Megbízható
   trust_this_person_with_your_private_coordinates: Engedélyezd ennek a személynek, hogy láthassa rejtett koordinátáidat
   trust_this_project_with_your_private_coordinates?: Engedélyezed ennek a projektnek, hogy láthassák rejtett koordinátáidat?
+  trust_with_private_coordinates: Rejtett koordináták megosztása
   twitter: Twitter
   two_thirds: 2/3
   #As in a category, not as in a keyboard
@@ -3933,6 +3941,8 @@ hu:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Legyél havi támogatója az iNaturalist-nak
     guides:
+      generating_mobile_archive_tip_html: |
+        Ez eltart egy darabig, ezért kérünk frissítsd ezt a lapot pár perc múlva.
       mobile_downloads_tip_html: |
         Ez az útmutató letölthető a mobilalkalmazásra internet nélküli használatra.
       pdf_layouts:
@@ -4357,8 +4367,14 @@ hu:
           any: Bármely
           joined: Projektek, melyekhez csatlakoztál
           none: "Egyik sem, csak te adhatod hozzá megfigyeléseidet projektekhez"
+        prefers_community_taxa_desc: |
+          Az %{site_name} rögzíti, hogy miként azonosítod a megfigyeléseidet, és azt is, hogy a közösség miként azonosítja azokat. Ha nem szeretnéd, hogy a közösségi azonosítás felülírja a saját meghatározásodat, azt itt megadhatod. A felhasználók továbbra is hozzáadhatnak meghatározásokat, de a megfigyeléseid a te meghatározásodat fogják viselni. Ez azt is jelenti, hogy a megfigyeléseid csak akkor lesznek tudományos szintűek, ha a te meghatározásod egyezik a közösség meghatározásával.
         prefers_no_tracking_label: Harmadik féltől származó szolgáltatásokkal ne gyűjtsön adatokat az alkalmazás működéséről.
+        project_settings_desc: |
+          Ez a beállítás nem ad hozzáférész a projekteknek a rejtett koordinátákhoz, és nem engedélyezi az értesítések küldését. Ezek engedélyezéséhez csatlakoznod kell a projekthez, vagy egyesével engedélyezned kell ezeket.
         same_day_geoprivacy_protection: Azonos napi helymegjelenítés védettsége
+        this_only_applies_to_traditional_projects: |
+          Ez csak hagyományos projektekre vonatkozik. Megfigyeléseket nem tudsz kivenni az ernyőprojektekből, amelyek lényegében mentett keresések. Bővebben <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">itt</a>.
       recent:
         about_recent_users: Rólunk
       show:

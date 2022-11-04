@@ -2010,6 +2010,10 @@ pl:
   life_list: "Lista życiowa użytkownika %{user}"
   linear_scale_label: Liniowo
   link: Łącze
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Link do kodu autoryzacyjnego
   link_your_facebook_account: Połącz swoje konto Facebook
   link_your_flickr_account: Połącz swoje konto Flickr
   link_your_google_account: Połącz swoje konto Google
@@ -2018,6 +2022,8 @@ pl:
   linked_facebook_password: "Nigdy nie będziemy cię prosić o twoje hasło do Facebooka (ale Facebook może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Facebook.com). Nie będziemy też zmieniać twoich danych na Facebooku, chyba że będziesz tego chcieć."
   linked_flickr: "Twoje konto na %{site_name} jest obecnie połączone z twoim kontem na Flickrze."
   linked_flickr_password_html: "<strong>Nigdy nie będziemy cię prosić o twoje hasło do Flickra</strong> (ale Flickr może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linkowany tekst
   linkedin: LikedIn
   list: Lista
   list_deleted: Lista usunięta.
@@ -3300,6 +3306,8 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Resetuj
   reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
@@ -3502,6 +3510,66 @@ pl:
   taxon: Takson
   taxon_autocomplete_placeholder: Ptaki, monarcha, itp.
   taxon_geoprivacy: Geoprywatność taksonu
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} to %{rank} płazów z 1 obserwacją"
+    few: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} płazów z %{count} obserwacji"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} to %{rank} ptaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ptaków z %{count} obserwacji"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} to %{rank} ssaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ssaków z %{count} obserwacji"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} to %{rank} gadów z 1 obserwacją"
+    few: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} gadów z %{count} obserwacji"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} to %{rank} roślin z 1 obserwacją"
+    few: "%{taxon} to %{rank} roślin z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} roślin z %{count} obserwacji"
+    other: "%{taxon} to %{rank} roślin z %{count} obserwacji"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} to %{rank} promieniopłetwych z 1 obserwacją"
+    few: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacji"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} to %{rank} zwierząt z 1 obserwacją"
+    few: "%{taxon} to %{rank} zwierząt z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} zwierząt z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} zwierząt z %{count} obserwacji"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} to %{rank} owadów z 1 obserwacją"
+    few: "%{taxon} to %{rank} owadów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} owadów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} owadów z %{count} obserwacji"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} to %{rank} pajęczaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} pajęczaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} pajęczaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} pajęczaków z %{count} obserwacji"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} to %{rank} grzybów z 1 obserwacją"
+    few: "%{taxon} to %{rank} grzybów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} grzybów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} grzybów z %{count} obserwacji"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} to %{rank} pierwotniaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacji"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} to %{rank} mięczaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} mięczaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} mięczaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} mięczaków z %{count} obserwacji"
   taxon_is_threatened_coordinates_hidden: Takson jest zagrożony, współrzędne są domyślnie ukryte
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taksonów zasugerowanych w oznaczeniach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
@@ -3564,6 +3632,8 @@ pl:
   the_community_id_requires_at_least_two_identifications: Oznaczenie społeczności wymaga co najmniej dwóch oznaczeń.
   the_following_observations_could: "Następujące obserwacje nie mogły zostać dodane do %{link}"
   the_following_photos_have_been_tagged: "Następujące zdjęcia zostały otagowane:"
+  the_name_of_the_taxon_dashes: Nazwa taksonu, spacje zastąpione myślnikami.
+  the_name_of_the_taxon_underscores: Nazwa taksonu, spacje zastąpione podkreśleniami.
   the_observation_was_already_added_to_that_project: Obserwacja została już dodana do tego projektu.
   the_people_of_inat: "Ludzie z %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |

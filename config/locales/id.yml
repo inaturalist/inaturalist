@@ -194,7 +194,7 @@ id:
   account: Akun
   account_creation: Pembentukan Akun
   account_settings: Pengaturan Akun
-  accept_community_identifications: Terima identifikasi dari komunitas
+  accept_community_identifications: Terima identifikasi komunitas
   accuracy: Akurasi
   accuracy_meters: Akurasi (meter)
   accuracy_of_the_coordinates: |
@@ -1286,6 +1286,7 @@ id:
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
   curator_identification: Identifikasi kurator
   current_flags: Tanda Saat Ini
+  #Label for a custom boundary for an observation search
   custom_boundary: Batas Kustom
   custom_project_fields: Proyek Kolom Kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
@@ -1511,7 +1512,9 @@ id:
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
   drag_and_drop_some_photos_or_sounds: Seret & lepas foto atau suara
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Gambar batas bulat
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Gambar batas persegi
   drawings: Gambar
   duplicate_verb: Duplikat
@@ -2241,6 +2244,7 @@ id:
     romanian: Romania
     russian: Rusia
     santali: Santali
+    serbian: Bahasa Serbia
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
@@ -2362,6 +2366,7 @@ id:
     sk: Slovakia
     sl: Slovenia
     sq: Albania
+    sr: Bahasa Serbia
     sv: Swedia
     th: Thai
     tr: Turki
@@ -3652,6 +3657,8 @@ id:
     Jika Anda sedang mencoba untuk mengekspor pengamatan dari batasan yang kompleks, pikirkan kembali untuk <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">mengunduhnya saja dari GBIF</a>, di mana Anda dapat menggambar batasan semau Anda, atau mengekspornya dari iNat menggunakan tempat yang sudah ada, lalu menyaring datanya lagi ketika Anda sudah mengunduhnya.
   places_warning_look_for_existing_html: |
     Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, hingga dua tingkat administratif di bawah negara.
+  places_warning_please_keep_in_mind: |
+    Harap perhatikan larangan-larangan berikut:
   places_warning_projects_can_have_multiple_places: |
     Jika Anda ingin membuat sebuah tempat untuk batasan proyek, proyek dapat berisi beberapa tempat. Contohnya, jika Anda ingin membuat proyek untuk Selandia Baru dan Australia, Anda dapat menambahkan persyaratan untuk dua tempat sekaligus tanpa harus membuat baru lagi.
   places_warning_new_places_are_slow_html: |
@@ -4028,6 +4035,7 @@ id:
   research_grade_tooltip_html: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan konsensus komunitas pada sebuah identifikasi yang pasti (biasanya pada tingkat spesies). <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
   research_grade_observations_have: 'Pengamatan "Kelas Riset" memiliki tanggal, foto, koordinat dan ID dari komunitas. Klik untuk melihat penilaian kualitas data.'
   research_grade_qualification: Kualifikasi Kelas Riset
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Atur Ulang
   reset_filters_short: Atur Ulang
   reset_brightness: Atur Ulang Kecerahan

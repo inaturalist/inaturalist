@@ -1,4 +1,8 @@
 pt-BR:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} modificação"
+    other: "%{count} modificações"
   x_comments:
     one: '%{count} comentário'
     other: '%{count} comentários'
@@ -546,6 +550,8 @@ pt-BR:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  app_owner_application_explanation_required: |
+    Você deve explicar mais detalhadamente o que pretende construir.
   app_owner_application_about_p1a_html: |
     Aplicativos iNaturalist permitem o uso autenticado da API do iNaturalist. Isso
     permite que se façam chamadas de API que possibilitam fazer coisas tais como criar observações ou identificações.
@@ -1529,6 +1535,8 @@ pt-BR:
   disconnect: Desconectar
   disconnect_caps: DESCONECTAR
   disconnect_provider: "Desconecte-se de %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Fechar
   display: Exibição
   display_link_to_checklist: Mostra link para a lista do projeto a partir da página
   display_monthly_supporter_badge: Exibir o status de apoiador mensal no perfil
@@ -5211,6 +5219,10 @@ pt-BR:
   view_all_fields: Ver todos os campos
   view_all_flags: Ver Todas as Sinalizações
   view_all_members: Ver todos os membros
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Ver todos %{count}"
+    other: "Ver todos %{count}"
   view_all_observations: Ver todas observações
   view_all_photocount_photos: "Exibir todas as %{photo_count} fotos"
   view_assessment: Ver avaliação

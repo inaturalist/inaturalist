@@ -4,6 +4,8 @@ ja:
     other: "%{count}件の変更"
   x_comments:
     other: '%{count}件のコメント'
+  x_comments_html:
+    other: '<span class="count">%{count}</span> コメント'
   x_faves:
     other: '%{count}件のお気に入り'
   x_flags_resolved_html:
@@ -147,6 +149,10 @@ ja:
     多くのプロジェクトでは、絶滅のおそれのある分類群を観察しているために、不明瞭になっている座標にアクセスする必要があります。
   about_trusting_projects_overview: |-
     隠された座標へのアクセスを許可することで、このプロジェクトの管理者は、このプロジェクトでのあなたの観察記録について、正確な座標を見ることができます。これは、科学者や資源管理者が分析や意思決定のために正確な座標へのアクセスを必要とする状況において、非常に重要なことです。
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    非表示の座標にアクセスできるプロジェクトマネージャーは次のとおりです。
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     非表示の座標を共有するか選択できます
@@ -751,6 +757,7 @@ ja:
   check_list_place: "%{place} チェックリスト"
   check_list_updated: チェックリスト更新されました！
   check_lists_for: "その他の%{place}のチェックリスト"
+  check_out_the_inat_store: iNaturalistストアをチェック
   check_out_what_the_observation: あなたが同定しようとしている観察がどのように見えるか確認してみてください。
   check_this_box_if_html: |
     アップロードされたコンテンツに対する<a
@@ -833,6 +840,9 @@ ja:
   #species in the taxon and place it purports to
   comprehensive?: 完全？
   comprehensive_list: 包括リスト
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: コンピュータビジョンモデル
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: 含む
   #Status of a taxon that the Computer Vision Model cannot yet recognize
@@ -922,6 +932,8 @@ ja:
     evidence_of_presence: 存在の証拠
     #As in the feather on a bird
     feather: 羽毛
+    #Abnormal growth
+    gall: 虫こぶ（虫癭）
     #Refers to an observation that depicts the actual organism and not some
     #kind of secondary evidence like a footprint
     organism: 生物
@@ -946,6 +958,7 @@ ja:
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
     track: 地面や雪面に残された生物の圧痕
     molt: 脱ぎ捨てられた皮膚または外骨格
+    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
   controls: 設定
   convert: 変換
   coordinate_systems: 座標システム
@@ -1023,6 +1036,8 @@ ja:
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
   curator_identification: キューレータによるID
   current_flags: 現在のフラグ
+  #Label for a custom boundary for an observation search
+  custom_boundary: カスタムの境界線
   custom_project_fields: プロジェクト専用フィールド
   custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
   custom_project_was_successfully_updated: カスタムプロジェクトは無事更新されました。
@@ -1136,9 +1151,21 @@ ja:
   details: 詳細
   deviation: 逸脱
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
+      already_authenticated: 'すでにログインしています。'
       user:
         suspended: あなたのアカウントは使用停止されました。
+    sessions:
+      signed_in: '正常にログインしました。'
+    passwords:
+      updated: 'パスワードは正常に変更されました。既にログイン済みです。'
+    registrations:
+      signed_up: 'ようこそ！正常に登録完了しました。'
   discoveries: 発見
   did_you_mean: 'もしかして:'
   did_you_photos_flickr?: Flickrに写真をアップしていませんか？
@@ -1184,6 +1211,10 @@ ja:
   draft_saved: 下書きが保存されました
   drafts: 下書き
   drag_and_drop_some_photos_or_sounds: 写真や音声をドラッグ&ドロップする
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: 円形の境界線を描く
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: 長方形の境界を描く
   drawings: 描画
   duplicate_verb: 複製
   duration_value: "持続時間:%{duration} 分"
@@ -1774,6 +1805,7 @@ ja:
     portuguese: ポルトガル語
     romanian: ルーマニア語
     russian: ロシア語
+    serbian: セルビア語
     spanish: スペイン語
     swedish: スウェーデン語
     tagalog: タガログ語
@@ -1866,6 +1898,7 @@ ja:
     ru: ロシア語
     sk: スロバキア語
     sq: アルバニア語
+    sr: セルビア語
     sv: スウェーデン語
     tr: トルコ語
     zh-CN: 中国語 (簡体字)
@@ -2892,6 +2925,8 @@ ja:
     zimbabwe: ジンバブエ
   places_of_interest: 注目の場所
   places_merged_successfully: 場所は無事統合できました！
+  places_warning_please_keep_in_mind: |
+    以下の説明をご確認ください:
   plants: 植物
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Request that a known child ask their parents for permission to use this service
@@ -4289,6 +4324,7 @@ ja:
         iphone_desc_html: iPhoneの<a href="%{url}">iNaturalistアプリ</a>で作成
         med_ttcid: TTCIDの中央値
         med_ttid: TTIDの中央値
+        new_users_desc: その日に登録したユーザー数
         obs_1_day_desc: "1日に作成された観察記録"
         obs_cid_d_desc: 過去7 日間に作成されたコミュニティ同定がある観察記録
         #Short for "observations community-identified to genus"
@@ -4297,7 +4333,11 @@ ja:
         obs_desc: 過去7日間に作成された観察記録
         obs_id_d_desc: 過去7日間に作成されたIDを持つ観察記録(観察者によるIDを含める)
         observations_1_week_moving_window: 1週間ごとの観察記録数
+        observers_desc: 当日に観察記録を投稿したユーザー数
         other_desc_html: <a href="%{url}">開発者が作成した</a>他のアプリケーションを経由して作成
+        recent_desc: 7日以内の登録者数
+        recent_w_0_obs_desc: 7日以内に登録し、まだ一つも観察記録を投稿していないユーザー数
+        recent_w_7_obs_desc: 7日以内に登録し、7件以上の観察記録を投稿したユーザー数
         TTCID_desc: 誰かにコミュニティ分類群と一致する同定をしてもらう準備ができました
         TTID_desc: 誰かに同定してもらう準備ができました
         TTID_note: |

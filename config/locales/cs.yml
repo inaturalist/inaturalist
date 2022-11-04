@@ -1468,6 +1468,7 @@ cs:
   curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
   curator_identification: Identifikace kurátora
   current_flags: Aktuální označení
+  #Label for a custom boundary for an observation search
   custom_boundary: Vlastní ohraničení
   custom_project_fields: Pole vlastního projektu
   custom_project_was_successfully_created: Vlastní projekt byl úspěšně vytvořen.
@@ -1692,7 +1693,9 @@ cs:
   draft_saved: koncept uložen!
   drafts: koncepty
   drag_and_drop_some_photos_or_sounds: Přetáhnout fotky nebo zvuky
+  #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: Nakreslit hranici kružnicí
+  #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Nakreslit obdélníkovou hranici
   drawings: Kresby
   duplicate_verb: Duplikát
@@ -2428,6 +2431,7 @@ cs:
     romanian: rumunština
     russian: rusky
     santali: santálština
+    serbian: Srbština
     setswana: Setswanština
     sinhala: Sinhálština
     slovak: Slovenština
@@ -2549,6 +2553,7 @@ cs:
     sk: slovensky
     sl: slovinsky
     sq: albánsky
+    sr: srbsky
     sv: švédsky
     th: thajsky
     tr: turecky
@@ -3837,6 +3842,8 @@ cs:
     existujících míst nebo ohraničujícího obdélníku a pak data znovu filtrujte po stažení.
   places_warning_look_for_existing_html: |
     Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že nevytváříte duplikát. Již máme místa pro všechny světadíly a státy, a stejně tak i pro další dvě administrativní úrovně států.
+  places_warning_please_keep_in_mind: |
+    Mějte prosím na paměti následující omezení:
   places_warning_projects_can_have_multiple_places: |
     Pokud se snažíte vytvořit místo pro ohraničení projektu, pak projekty mohou být 
     složeny z více míst. Například, pokud chcete vytvořit projekt pro
@@ -4252,6 +4259,7 @@ cs:
   research_grade_tooltip_html: 'Pozorování „výzkumného stupně“ mají média, umístění, datum a konsensus komunity o přesné identifikaci (obvykle na úrovni druhu). <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   research_grade_observations_have: 'Pozorování „výzkumného stupně“ mají datum, fotku, souřadnice a identifikaci odsouhlasenou komunitou. Klikněte pro podrobnosti o hodnocení kvality údajů.'
   research_grade_qualification: Vymezení výzkumného stupně
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetovat
   reset_filters_short: Resetovat
   reset_brightness: Upravit jas
@@ -5349,6 +5357,7 @@ cs:
   user_observed_on_on_date_in_place: |
     %{user} pozoroval %{date} v %{place}
   user_suggested_an_id: "Uživatel %{user} navrhl ID"
+  user_trusts_this_project_for_none: Uživatel nevěří tomuto projektu se skrytými souřadnicemi.
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.

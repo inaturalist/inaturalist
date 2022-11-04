@@ -550,6 +550,8 @@ es:
   #Label for an option to show/include content by any user
   any_user: Cualquiera
   anyone: Cualquiera
+  app_owner_application_explanation_required: |
+    Debes proporcionar una explicación más detallada de lo que quieres construir.
   app_owner_application_about_p1a_html: |
     Las apps de iNaturalist permiten el uso autenticado de la API de iNaturalist. Esto te permite hacer llamadas API que hacen cosas como crear observaciones o identificaciones. Los casos comunes son apps como las de escritorio o de móvil que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe generarse con la participación humana real o supervisada. Por favor, para más detalles lee nuestras <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a> que prohíben observaciones, identificaciones y comentarios generados por máquinas.
   app_owner_application_about_p2_html: |
@@ -1332,6 +1334,8 @@ es:
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
   current_flags: Advertencias actuales
+  #Label for a custom boundary for an observation search
+  custom_boundary: Límite personalizado
   custom_project_fields: Campos de proyecto personalizados
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto personalizado fue actualizado exitosamente.
@@ -1556,6 +1560,10 @@ es:
   draft_saved: '¡Guardado en borrador!'
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Dibujar límite circular
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Dibujar límite rectangular
   drawings: Dibujos
   duplicate_verb: Duplicar
   duration_value: "Duración: %{duration} minutos"
@@ -2303,6 +2311,7 @@ es:
     romanian: Rumano
     russian: Ruso
     santali: Santalí
+    serbian: Serbio
     setswana: Setswana
     sinhala: Cingalés
     slovak: Eslovaco
@@ -2424,6 +2433,7 @@ es:
     sk: Eslovaco
     sl: Esloveno
     sq: Albanés
+    sr: Serbio
     sv: Sueco
     th: Tailandés
     tr: Turco
@@ -3712,6 +3722,8 @@ es:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
   places_warning_look_for_existing_html: |
     Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
+  places_warning_please_keep_in_mind: |
+    Tenga en cuenta las restricciones enumeradas a continuación:
   places_warning_projects_can_have_multiple_places: |
     Si estás intentando crear un lugar para un límite de proyecto, los proyectos pueden estar compuestos por múltiples lugares. Por ejemplo, si quieres hacer un proyecto para Nueva Zelanda y Australia, puedes añadir requisitos para dos lugares en lugar de hacer uno nuevo.
   places_warning_new_places_are_slow_html: |
@@ -4098,6 +4110,8 @@ es:
   research_grade_tooltip_html: 'Las observaciones de "Grado de Investigación" tienen medios, ubicación, una fecha y el consenso de la comunidad sobre su identificación precisa (generalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   research_grade_observations_have: 'Las observaciones de "grado de investigación" tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad. Haga clic para ver la evaluación de la calidad de LOS datos.'
   research_grade_qualification: Calificación de Grado de Investigación
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Restablecer
   reset_filters_short: Restablecer
   reset_brightness: Restablecer brillo
   reset_search_filters: Restablece filtros de búsqueda
