@@ -1317,6 +1317,8 @@ tr:
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
+  #Label for a custom boundary for an observation search
+  custom_boundary: Özel Sınır
   custom_project_fields: Özel Proje Alanları
   custom_project_was_successfully_created: Proje özelleştirmeleri eklendi
   custom_project_was_successfully_updated: Proje özelleştirmeleri güncellendi
@@ -1539,6 +1541,10 @@ tr:
   draft_saved: Taslak kaydedildi!
   drafts: Taslaklar
   drag_and_drop_some_photos_or_sounds: Bazı fotoğrafları ya da sesleri sürükleyip bırak
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Dairesel sınır çiz
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Dörtgen sınır çiz
   drawings: Çizimler
   duplicate_verb: Çoğalt
   duration_value: "Süre: %{duration} dakika"
@@ -2263,6 +2269,7 @@ tr:
     romanian: Rumence
     russian: Rusça
     santali: Santalice
+    serbian: Sırpça
     setswana: Setsvana
     sinhala: Sinhala
     slovak: Slovakça
@@ -2384,6 +2391,7 @@ tr:
     sk: Slovakça
     sl: Slovence
     sq: Arnavutça
+    sr: Sırpça
     sv: İsveççe
     th: Tayca
     tr: Türkçe
@@ -3647,6 +3655,8 @@ tr:
     Karmaşık bir sınırdan gözlemleri dışa aktarmaya çalışıyorsan, bunları keyfi sınırlar çizebileceğin <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF'ten indirmeyi</a> veya mevcut konumları ya da bir sınırlayıcı kutuyu kullanarak iNat'ten dışa aktarmayı ve ardından indirdikten sonra verileri tekrar filtrelemeyi düşün.
   places_warning_look_for_existing_html: |
     Kopya oluşturmadığından emin olmak için <a href="/search?source[]=places">mevcut konumlara</a> bak. Tüm kıtalar ve ülkelerin yanı sıra ülkenin altındaki iki idari düzey için zaten konumlarımız var.
+  places_warning_please_keep_in_mind: |
+    Lütfen aşağıdaki kısıtlamaları göz önünde bulundurun:
   places_warning_projects_can_have_multiple_places: |
     Bir proje sınırı için bir konum oluşturmaya çalışıyorsan, projeler birden çok konumdan oluşabilir. Örneğin, Yeni Zelanda ve Avustralya için bir proje yapmak istiyorsan, yeni bir proje yapmak yerine yalnızca iki konum için gereksinimler ekleyebilirsin.
   places_warning_new_places_are_slow_html: |
@@ -4032,6 +4042,8 @@ tr:
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri nitelik değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Sıfırla
   reset_filters_short: Sıfırla
   reset_brightness: Parlaklığı Sıfırla
   reset_search_filters: Arama Filtrelerini Sıfırla
@@ -5013,7 +5025,7 @@ tr:
   user_added_a_flag_html: "%{user} bir işaret ekledi"
   user_added_a_x: "%{user} bir %{x} ekledi"
   user_added_a_x_to_noun_by_html: "%{user}, senin tarafından yapılan %{noun}e %{x} ekledi"
-  user_added_a_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
   user_added_a_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
   user_added_an_identification_html: "%{user} bir tanımlama ekledi"
