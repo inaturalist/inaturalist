@@ -208,6 +208,7 @@ sr:
   add_a_batch_of_observations: Dodaj više opservacija
   add_a_batch_of_taxa: Dodaj više taksona
   add_a_comment: Dodaj komentar
+  add_a_flag: Prijavi
   #Tool tip for a button that adds a link to a text area
   add_a_link: Dodaj link
   add_a_name: Dodaj ime
@@ -1099,7 +1100,7 @@ sr:
   increase_brightness: Povećaj osvetljenost
   in_progress: u toku
   in_the_past: u prošlosti
-  in_the_past_week: U poslednjih nedelju dana
+  in_the_past_week: U proteklih nedelju dana
   inactive: Neaktivno
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
@@ -1553,6 +1554,7 @@ sr:
   new_taxon_change: Nova izmena taksona
   new_taxon_link: Novi link taksona
   new_taxon_range: Novi opseg taksona
+  new_updates_in_the_last_24_hours_from: "Novosti sa %{site_name} u protekla 24 sata"
   new_users: Novi korisnici
   new_users_in_year: "Novi korisnici u %{year}"
   new_users_w_7_obs: Novi korisnici sa 7 ops.
@@ -1765,7 +1767,7 @@ sr:
     follow_panel_title_local: Prati Prirodnjake u blizini
     follow_panel_title_global: Prati neke aktivne prirodnjake
     follow_panel_body: Ako posetiš ove profile i klikneš na dugme "Prati", bićeš obavešten kada oni budu postavljali opservacije
-    following_panel_title: Budi u toku sa ljudima, taksonima, i mestima
+    following_panel_title: Budi u toku sa ljudima, taksonima i mestima
     comments_panel_title: Želiš da saznaš kakve se diskusije vode na %{site_name}?
     updates_by_you_panel_title: Ovaj odeljak je zgodan da brzo pogledaš obaveštenja samo o tvom sadržaju.
     youve_got_updates_panel_title: Dobio/la si obaveštenja!
@@ -3070,7 +3072,7 @@ sr:
   unknown_error: Nepoznata greška
   unknown_rank: '(Nepoznat rang)'
   unfollow: Otprati
-  updates_notification_email_subject: "%{prefix} Nova ažuriranja %{date}"
+  updates_notification_email_subject: "%{prefix} Novosti %{date}"
   updating: Ažuriranje...
   unsubscribe: Odjavi se
   unsubscribe_from_emails_like_this: Odjavi se od ovakvih imejlova
@@ -3217,6 +3219,7 @@ sr:
   view_user_observations: "Pogledaj opservacije korisnika %{user}"
   view_x: "Pogledaj %{x}"
   view_your_dashboard: Pogledaj kontrolnu tablu
+  view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Pogledaj tvoju kontrolnu tablu</a> za više novosti"
   view_your_inbox: Pogledaj prijemno sanduče
   view_your_observations: Pogledaj tvoje opservacije
   view_your_year_stats: "Pogledaj tvoju statistiku iz %{year}"
@@ -3891,18 +3894,18 @@ sr:
       - Sub
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - Maj
-      - Jun
-      - Jul
-      - Avg
-      - Sep
-      - Okt
-      - Nov
-      - Dec
+      - jan
+      - feb
+      - mar
+      - apr
+      - maj
+      - jun
+      - jul
+      - avg
+      - sep
+      - okt
+      - nov
+      - dec
     day_names:
       - Nedelja
       - Ponedeljak
