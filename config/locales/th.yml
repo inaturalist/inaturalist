@@ -548,7 +548,7 @@ th:
   birds: นก
   birthday: วันเกิด
   blocked_users: ผู้ใช้ที่ถูกบล็อก
-  blue_butterfly_etc: "สีฟ้า, ผีเสื้อ, และอื่น ๆ"
+  blue_butterfly_etc: "สีฟ้า ผีเสื้อ ฯลฯ"
   browse_all_projects: เรียกดูโครงการทั้งหมด
   browse_all_species: ค้นดูชนิดทั้งหมด
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
@@ -1367,7 +1367,7 @@ th:
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
-  most_observations: ผู้ที่มีการสังเกตมากสุด
+  most_observations: ผู้ที่มีการสังเกตสูงสุด
   most_species: ผู้ที่พบจำนวนชนิดมากสุด
   most_observed_species: ชนิดที่พบมากสุด
   most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
@@ -1481,7 +1481,7 @@ th:
   observation_field: ข้อมูลเสริมการสังเกต
   observation_field_details: รายละเอียดข้อมูลเสริม
   observation_field_type_datetime: วันที่และเวลา
-  observation_fields: ข้อมูลเสริม
+  observation_fields: ข้อมูลเสริมการสังเกต
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
@@ -1610,6 +1610,7 @@ th:
     american_samoa: อเมริกันซามัว
     asia: เอเชีย
     azerbaijan: อาเซอร์ไบจาน
+    bangladesh: ประเทศบังกลาเทศ
     bhutan: ประเทศภูฏาน
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
     brunei: ประเทศบรูไน
@@ -2193,11 +2194,11 @@ th:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: เวลายุโรปกลาง
   today: วันนี้
-  top_identifier_caps: ผู้ที่มีการจำแนกมากสุด
-  top_identifiers: ผู้ที่มีการจำแนกมากสุด
-  top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon} มากสุด
-  top_observer_caps: ผู้ที่มีการสังเกตมากสุด
-  top_observers: ผู้ที่มีการสังเกตมากสุด
+  top_identifier_caps: ผู้ที่มีการจำแนกสูงสุด
+  top_identifiers: ผู้ที่มีการจำแนกสูงสุด
+  top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon} สูงสุด
+  top_observer_caps: ผู้ที่มีการสังเกตสูงสุด
+  top_observers: ผู้ที่มีการสังเกตสูงสุด
   totals: รวม
   total_members: สมาชิกทั้งหมด
   total_observations: การสังเกตทั้งหมด
@@ -2490,6 +2491,10 @@ th:
         species_per_year: ชนิด / ปี
     taxa:
       show:
+        about_conservation_status_desc: |
+          สถานะการอนุรักษ์คือการจัดระดับความเสี่ยงต่อการสูญพันธุ์สำหรับกลุ่มสิ่งมีชีวิต
+        about_establishment_desc: |
+          "การเข้ามาตั้งถิ่นฐาน" หมายถึงวิธีการที่สิ่งมีชีวิตเข้ามาอาศัยในพื้นที่ปัจจุบัน ชนิดพันธุ์ต่างถิ่นคือชนิดที่ถูกนำเข้ามาโดยมนุษย์ ชนิดพันธุ์พื้นเมืองคือชนิดที่เข้ามาเองตามธรรมชาติ ชนิดพันธุ์เฉพาะถิ่นคือชนิดที่พบประจำถิ่นเดียวและไม่พบที่อื่น
         charts_help_seasonality: |
           แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนของหน่วยอนุกรมวิธาน อย่าลืมว่าจำนวนการสังเกตขึ้นอยู่กับเวลาที่พบสิ่งมีชีวิตและความสนใจที่จะสังเกตของผู้คนด้วย เช่น การพบนกบ่อยมากในเดือนพฤษภาคมอาจเป็นเพราะผู้คนเลือกสำรวจในเดือน พ.ค. มากกว่าเดือนอื่น ๆ หรือแมลงปอที่พบในเดือนมิถุนายนบ่อยกว่าเดือนมกราคมอาจเป็นเพราะมีผู้สังเกตจากซีกโลกเหนือมากกว่าซีกโลกใต้ ซึ่งไม่ได้แปลว่าในเดือน มิ.ย. จะมีจำนวนแมลงปอมากกว่าเดือนอื่น ๆ จึงต้องตรวจสอบแผนที่ประกอบการพิจารณาแผนภูมิเหล่านี้ด้วย และไม่ควรเชื่อแผนภูมิที่มีจำนวนการสังเกตน้อย และ/หรือมีจำนวนการสังเกตที่ "ตรวจสอบได้" กับจำนวนการสังเกต "ระดับงานวิจัย" แตกต่างกันมากเกินไป
         charts_help_history: |
