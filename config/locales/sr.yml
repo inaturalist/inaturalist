@@ -211,7 +211,7 @@ sr:
   add_a_flag: Prijavi
   #Tool tip for a button that adds a link to a text area
   add_a_link: Dodaj link
-  add_a_name: Dodaj ime
+  add_a_name: Dodaj naziv
   add_a_note: Dodaj belešku
   add_a_single_observation: Dodaj opservaciju
   add_a_taxon: Dodaj takson
@@ -665,7 +665,6 @@ sr:
     male: Muški
     female: Ženski
     plant_phenology: Fenologija biljaka
-    budding: Kalemljenje
     flowering: Cvetanje
     life_stage: Faza života
     adult: Odrastao
@@ -782,7 +781,7 @@ sr:
     #Contextual help for a button navigating to the next month in a date picker
     nextText: Sledeće
     range: Opseg
-  date_updated: Datum ažuriran
+  date_updated: Datum ažuriranja
   day: Dan
   #Default option
   default: podrazumevano
@@ -1207,7 +1206,7 @@ sr:
   lexicon: Rečnik
   lexicon_cannot_contain_words: "ne može sadržati sledeće reči: %{words}"
   lexicons:
-    scientific_names: Naučna imena
+    scientific_names: Naučni nazivi
     afrikaans: Afrikans
     albanian: Albanski
     arabic: arapski
@@ -2442,7 +2441,7 @@ sr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
   ranks_lowercase_subclass: podklasa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
-  ranks_lowercase_infraclass: potklasa
+  ranks_lowercase_infraclass: infraklasa
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
   ranks_lowercase_superorder: nadred
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
@@ -3227,7 +3226,7 @@ sr:
   view_all_of_your_observations_from_x: "Pogledaj sve tvoje opservacije iz %{x}"
   video_tutorials: Video tutorijali
   visually_similar: Vizuelno slični
-  vulnerable: Ugroženi
+  vulnerable: Ranjiva
   w_photos_only: sa fotografijama
   w_sounds: sa zvukovima
   #Species that are "wanted," e.g. we know they exist but haven't been observed
