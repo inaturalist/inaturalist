@@ -3,7 +3,7 @@
 module PhotosHelper
   REJECTED_TAGS = ( ExifMetadata::REJECTED_TAGS + %i[dc dimensions] ).freeze
 
-  def metadata_table( photo )
+  def metadata_table_rows(photo )
     return unless photo.metadata.present?
 
     metadata = visible_metadata photo: photo, with_coords: coords_visible?( photo )
