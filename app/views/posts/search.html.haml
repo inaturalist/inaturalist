@@ -1,24 +1,24 @@
-- content_for(:title) do
-  =raw t(:everyone_journal_posts)
+- content_for :title do
+  = @title = t(:find_journal_posts)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   :css
     .post {margin-bottom: 1em;}
     .iconcol {width: 48px;}
 .container
-  .row
-    #pageheader.col-md-12
-      %h2= t(:everyone_journal_posts)
+  %ul.breadcrumb
+    %li
+      = link_to t(:journal_posts), journals_path
+      %li.active=t :search
   #post_search.row.stacked
-    .col-md-12
+    .col-xs-12
       %h1= @title
       = form_tag journal_search_path, method: :get, class: "form-search form-inline" do
         .input-group
-          = text_field_tag :q, params[:q], placeholder: 'Find a journal post', class: "form-control"
+          = text_field_tag :q, params[:q], placeholder: t(:find_a_journal_post), class: "form-control"
           .input-group-btn
             = submit_tag t(:search), class: "btn btn-primary"
   .row
     .col-md-12
       = render "posts/posts", posts: @posts, hard_truncate_length: 500
-      - if @posts.total_entries > @posts.size
-        = link_to t(:more), url_for( from: @posts.last.id ), class: "btn btn-default"
+      = will_paginate @posts

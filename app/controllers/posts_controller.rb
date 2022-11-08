@@ -230,7 +230,17 @@ class PostsController < ApplicationController
       paginate(page: params[:page] || 1, per_page: 10)
     get_archives
   end
-  
+
+  def search
+    @posts = Post.not_flagged_as_spam.published.dbsearch( params[:q] ).page( params[:page] ).
+      per_page( limited_per_page )
+    pagination_headers_for @posts
+    respond_to do | format |
+      format.html
+      format.json { render json: @posts }
+    end
+  end
+
   def browse
     @posts = Post.not_flagged_as_spam.published.page(params[:page] || 1).order('published_at DESC')
     @posts = @posts.where( "posts.id < ?", params[:from] ) unless params[:from].blank?
