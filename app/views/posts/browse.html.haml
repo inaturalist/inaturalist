@@ -5,20 +5,27 @@
   :css
     .post {margin-bottom: 1em;}
     .iconcol {width: 48px;}
+    .namecol {width: 100px;}
+    .bodycol {width: 650px;}
+    .bodycol p:first-child:before {content: '\201C \0020';font-size: 160%;color: #ddd;}
+    .morecol {width: 100px;}
+    .morecol p:first-child:before {content: '\201C \0020';font-size: 160%;visibility: hidden;}
 .container
   .row
     #pageheader.col-md-12
       %h2= t(:everyone_journal_posts)
-  #post_search.row.stacked
-    .col-md-12
-      %h1= @title
-      = form_tag journal_search_path, method: :get, class: "form-search form-inline" do
-        .input-group
-          = text_field_tag :q, params[:q], placeholder: 'Find a journal post', class: "form-control"
-          .input-group-btn
-            = submit_tag t(:search), class: "btn btn-primary"
   .row
     .col-md-12
-      = render "posts/posts", posts: @posts, hard_truncate_length: 500
+      - if !@posts.blank?
+        - for post in @posts
+          .media
+            - if post.parent_type == "Project"
+              = link_to(image_tag(post.parent.icon.url(:thumb), :class => 'usericon media-object img-rounded'), project_journal_path(post.parent), :class => "pull-left")
+            - else
+              = link_to(image_tag(post.user.icon.url(:thumb), :class => 'usericon media-object'), journal_by_login_path(post.user.login), :class => "pull-left")
+            .media-body
+              = render "posts/post", post: post, hard_truncate_length: 500
+      - else
+        #noposts.description= t(:no_one_posted_anything_yet)
       - if @posts.total_entries > @posts.size
         = link_to t(:more), url_for( from: @posts.last.id ), class: "btn btn-default"
