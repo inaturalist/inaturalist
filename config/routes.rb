@@ -499,7 +499,7 @@ Rails.application.routes.draw do
       get :for_user
     end
   end
-  get "/journal_search", to: "posts#search"
+  get "/posts/search", to: "posts#search"
   resources :posts,
     as: "journal_posts",
     path: "/journal/:login",
