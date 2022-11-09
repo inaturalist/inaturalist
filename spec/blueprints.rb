@@ -380,8 +380,10 @@ SavedLocation.blueprint do
 end
 
 Site.blueprint do
+  domain = Faker::Internet.domain_name
   name { Faker::Name.name }
-  url { "http://#{Faker::Internet.domain_name}" }
+  domain { domain }
+  url { "http://#{domain}" }
 end
 
 SiteAdmin.blueprint do

@@ -22,6 +22,10 @@ class DonateController < ApplicationController
   private
 
   def redirect_params
+    # if there is a redirect param then an attempt has already been made to
+    # include utm params on redirect, so do not attempt to redirect again
+    return nil if params[:redirect]
+
     # Ensure utm_source is set to the site domain, defaulting to the default
     # site's domain. Note that donorbox will not save *any* utm_ values unless
     # utm_source is not blank
@@ -34,7 +38,8 @@ class DonateController < ApplicationController
     if Site.default && @site && @site.id != Site.default.id
       {
         host: Site.default.domain,
-        utm_source: utm_source
+        utm_source: utm_source,
+        redirect: true
       }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
     elsif params[:utm_source].blank?
       # We're doing this because the donorbox iframe only seems to derive utm
@@ -43,7 +48,8 @@ class DonateController < ApplicationController
       {
         host: Site.default.domain,
         utm_source: utm_source,
-        utm_medium: "web"
+        utm_medium: "web",
+        redirect: true
       }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
     end
   end
