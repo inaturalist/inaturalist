@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   #   }
 
   layout "bootstrap"
-  
+
   def index
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     if @parent.is_a?(User)
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     per_page = 200 if per_page > 200
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page( per_page ).order( "published_at DESC" )
-    
+
     if !params[:newer_than].blank? && ( newer_than_post = Post.find_by_id( params[:newer_than] ) )
       @posts = @posts.where( "posts.published_at > ?", newer_than_post.published_at )
     end
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
 
     # Grab the monthly counts of all posts to show archives
     get_archives
-    
+
     if @parent == current_user || (@parent.respond_to?(:editable_by?) && @parent.editable_by?(current_user))
       @drafts = scope.unpublished.order("created_at DESC")
     end
@@ -58,7 +58,7 @@ class PostsController < ApplicationController
       format.json do
         render json: @posts, :include => {
           user: {
-            only: [:id, :login], 
+            only: [:id, :login],
             methods: [:user_icon_url, :medium_user_icon_url]
           },
           parent: {
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   def show
     case @post.parent_type
     when "User" && params[:login].blank?
@@ -92,7 +92,7 @@ class PostsController < ApplicationController
       redirect_to journal_post_path(@parent.login, @post)
       return
     end
-    
+
     unless @post.published_at
       if logged_in? && @post.user_id == current_user.id
         flash[:notice] ||= "Preview"
@@ -100,7 +100,7 @@ class PostsController < ApplicationController
         render_404 and return
       end
     end
-    
+
     respond_to do |format|
       format.html do
         @next = @post.parent.journal_posts.published.where("published_at > ?", @post.published_at || @post.updated_at).order("published_at ASC").first
@@ -122,7 +122,7 @@ class PostsController < ApplicationController
       format.json { render json: @post }
     end
   end
-  
+
   def new
     if @list = List.find_by_id(params[:list_id])
       @listed_taxa = @list.listed_taxa.includes(:taxon).limit(500)
@@ -131,7 +131,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   def create
     @post.parent ||= current_user
     @display_user = current_user
@@ -161,11 +161,11 @@ class PostsController < ApplicationController
       end
     end
   end
-    
+
   def edit
     @preview = params[:preview]
   end
-  
+
   def update
     @post.published_at = Time.now if params[:commit] == t(:publish)
     @post.published_at = nil if params[:commit] == t(:unpublish)
@@ -180,8 +180,8 @@ class PostsController < ApplicationController
       @observations ||= @post.observations.includes(:taxon, :photos)
       return render(action: 'edit')
     end
-    
-    # This will actually perform the updates / deletions, so it needs to 
+
+    # This will actually perform the updates / deletions, so it needs to
     # happen after preview rendering
     if @observations
       @post.observations = @observations
@@ -211,7 +211,7 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     @post.destroy
     respond_to do |format|
@@ -222,7 +222,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def archives
     @target_date = Date.parse("#{params[:year]}-#{params[:month]}-01")
     @posts = @parent.posts.
@@ -232,8 +232,9 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Post.not_flagged_as_spam.published.dbsearch( params[:q] ).page( params[:page] ).
-      per_page( limited_per_page )
+    @posts = Post.not_flagged_as_spam.
+      published.dbsearch( parent: @parent, q: params[:q] ).
+      page( params[:page] ).per_page( limited_per_page )
     pagination_headers_for @posts
     respond_to do | format |
       format.html
@@ -285,7 +286,7 @@ class PostsController < ApplicationController
       format.json do
         json = @posts.as_json(:include => {
           user: {
-            only: [ :id, :login ], 
+            only: [ :id, :login ],
             methods: [ :user_icon_url, :medium_user_icon_url ]
           },
           parent: {
@@ -308,9 +309,21 @@ class PostsController < ApplicationController
       end
     end
   end
-  
+
   private
-  
+
+  def parent_path( parent )
+    case parent
+    when Project
+      project_journal_path( parent.slug )
+    when User
+      journal_by_login_path( parent.login )
+    else
+      site_posts_path
+    end
+  end
+  helper_method :parent_path
+
   def get_archives(options = {})
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     @archives = scope.published.group("TO_CHAR(published_at, 'YYYY MM Month')").count
@@ -318,7 +331,7 @@ class PostsController < ApplicationController
       [month_str.split, count].flatten
     end
   end
-  
+
   def load_parent
     if params[:login]
       @display_user = User.find_by_login(params[:login])
@@ -347,7 +360,7 @@ class PostsController < ApplicationController
     end
     return render_404 if @parent.blank?
     if @parent.is_a?(Project)
-      @parent_display_name = @parent.title 
+      @parent_display_name = @parent.title
       @parent_slug = @parent.slug
     elsif @parent.is_a?(Site)
       @parent_display_name = @parent.name
@@ -366,7 +379,7 @@ class PostsController < ApplicationController
     @post.user ||= current_user
     true
   end
-  
+
   def load_post
     @post = Post.find_by_id(params[:id])
     render_404 and return unless @post
@@ -375,7 +388,7 @@ class PostsController < ApplicationController
     end
     true
   end
-  
+
   def owner_required
     return true if logged_in? && @post && @post.persisted? && @post.user.id == current_user.id
     return true if @parent.is_a?( Project ) && @parent.curated_by?( current_user )
