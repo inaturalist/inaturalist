@@ -1,5 +1,5 @@
 - content_for(:title) do
-  =raw t(:x_journal, user: @parent_display_name)
+  =raw t(:x_journal, user: @parent.journal_display_name)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   %style{:media => "screen", :type => "text/css"}
@@ -22,11 +22,11 @@
               = t(:no_post_yet)
               %br
               - if (@parent.is_a?(Project) && @display_project.editable_by?(current_user))
-                = link_to t(:add_one), new_project_journal_post_path(@parent_slug), |
-                  :id => "newpostbutton", :class => "default button"                |
-              - elsif logged_in? && current_user.login == @parent_display_name
-                = link_to t(:add_one), new_journal_post_path(@parent_slug), |
-                  :class => "default button"                                |
+                = link_to t(:add_one), new_project_journal_post_path(@parent.journal_slug), |
+                  id: "newpostbutton", class: "default button"                |
+              - elsif logged_in? && current_user.login == @parent.journal_display_name
+                = link_to t(:add_one), new_journal_post_path(@parent.journal_slug), |
+                  class: "default button"                                |
       = will_paginate @posts
     .col-md-4
       - unless @drafts.blank?

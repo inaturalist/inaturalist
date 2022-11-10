@@ -1441,7 +1441,7 @@ module ApplicationHelper
   end
 
   def post_parent_path( parent, options = {} )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_path( options.merge( project_id: parent_slug ) )
@@ -1453,7 +1453,7 @@ module ApplicationHelper
   end
 
   def post_archives_by_month_path( parent, year, month )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_archives_by_month_path( parent_slug, year, month )

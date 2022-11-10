@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -159,7 +161,6 @@ class User < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy

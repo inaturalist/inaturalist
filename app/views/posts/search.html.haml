@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = "#{t(:find_posts_for)} #{@parent_display_name}"
+  = @title = "#{t(:find_posts_for)} #{@parent.journal_display_name}"
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   :css
@@ -8,7 +8,7 @@
 .container
   %ul.breadcrumb
     %li
-      = link_to t(:journal_posts), parent_path(@parent)
+      = link_to t(:journal_posts), @parent.journal_path
       %li.active=t :search
   .row
     .col-xs-12

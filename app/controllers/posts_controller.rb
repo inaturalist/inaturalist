@@ -312,18 +312,6 @@ class PostsController < ApplicationController
 
   private
 
-  def parent_path( parent )
-    case parent
-    when Project
-      project_journal_path( parent.slug )
-    when User
-      journal_by_login_path( parent.login )
-    else
-      site_posts_path
-    end
-  end
-  helper_method :parent_path
-
   def get_archives(options = {})
     scope = @parent.is_a?(User) ? @parent.journal_posts : @parent.posts
     @archives = scope.published.group("TO_CHAR(published_at, 'YYYY MM Month')").count
@@ -347,29 +335,14 @@ class PostsController < ApplicationController
       @display_user ||= current_user
       @parent ||= current_user
     elsif params[:post] && params[:post][:parent_type] && params[:post][:parent_id]
-      @parent = case params[:post][:parent_type]
-      when "Project"
-        Project.find_by_id( params[:post][:parent_id] )
-      when "User"
-        User.find_by_id( params[:post][:parent_id] )
-      when "Site"
-        Site.find_by_id( params[:post][:parent_id] )
-      end
+      parent_type = params[:post][:parent_type].constantize
+      @parent = parent_type.find_by_id params[:post][:parent_id] if parent_type.include? HasJournal
     else
       @parent ||= @site
     end
     return render_404 if @parent.blank?
-    if @parent.is_a?(Project)
-      @parent_display_name = @parent.title
-      @parent_slug = @parent.slug
-    elsif @parent.is_a?(Site)
-      @parent_display_name = @parent.name
-      @parent_slug = @parent.name.to_param
-    else
-      @parent_display_name = @parent.login
-      @selected_user = @display_user
-      @parent_slug = @login = @parent.login
-    end
+
+    @selected_user = @display_user if @parent.is_a? User
     true
   end
 
@@ -391,18 +364,10 @@ class PostsController < ApplicationController
 
   def owner_required
     return true if logged_in? && @post && @post.persisted? && @post.user.id == current_user.id
-    return true if @parent.is_a?( Project ) && @parent.curated_by?( current_user )
-    return true if @parent.is_a?( Site ) && @parent.editable_by?( current_user )
-    return true if @parent.is_a?( User ) && @parent == current_user
+    return true if @parent.journal_owned_by? current_user
+
     flash[:error] = t(:you_dont_have_permission_to_do_that)
-    case @parent.class.name
-    when "Project"
-      redirect_to project_journal_path( @parent.slug )
-    when "User"
-      redirect_to journal_by_login_path( @parent.login )
-    else
-      redirect_to root_path
-    end
+    redirect_to @parent.journal_path
     false
   end
 
