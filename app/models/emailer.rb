@@ -240,9 +240,11 @@ class Emailer < ActionMailer::Base
     # You can specify the subject as an array so it can be translated in the
     # correct locale
     if opts[:subject].is_a?( Array )
-      opts[:subject].length == 1 ?
-        opts[:subject] = t( opts[:subject][0] ) :
-        opts[:subject] = t( opts[:subject][0], **opts[:subject][1] )
+      opts[:subject] = if opts[:subject].length == 1
+        t( opts[:subject][0] )
+      else
+        t( opts[:subject][0], **opts[:subject][1] )
+      end
     end
     mail( opts )
     reset_locale
@@ -295,9 +297,8 @@ class Emailer < ActionMailer::Base
 
   def set_site_specific_opts
     @site_name = @site.name
-    # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.unicode_normalize.gsub( /[^\x00-\x7F]/n, '' )} <#{@site.email_noreply}>",
+      from: "#{@site.name} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
   end
