@@ -1,4 +1,429 @@
 hr:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} promjena"
+    few: "%{count} promjene"
+    other: "%{count} promjena"
+  x_comments:
+    one: '%{count} komentar'
+    few: '%{count} komentara'
+    other: '%{count} komentara'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentar'
+    few: '<span class="count">%{count}</span> komentara'
+    other: '<span class="count">%{count}</span> komentara'
+  x_faves:
+    one: '%{count} favorit'
+    few: '%{count} favorita'
+    other: '%{count} favorita'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> prijava riješena"
+    few: "<span class='count'>%{count}</span> prijava riješeno"
+    other: "<span class='count'>%{count}</span> prijava riješeno"
+  x_identifications:
+    one: '%{count} identifikacija'
+    few: '%{count} identifikacije'
+    other: '%{count} identifikacija'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identifikacija'
+    few: '<span class="count">%{count}</span> identifikacije'
+    other: '<span class="count">%{count}</span> identifikacija'
+  x_identifications_:
+    one: '%{count} Identifikacija'
+    few: '%{count} Identifikacije'
+    other: '%{count} Identifikacija'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Identifikator'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Identifikatora'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Identifikatora'
+  x_languages:
+    one: "%{count} jezik"
+    few: "%{count} jezika"
+    other: "%{count} jezika"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} prvo opažanje taksona"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} prvih opažanja taksona"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} prvih opažanja taksona"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> objava u dnevniku'
+    few: '<span class="count">%{count}</span> objave u dnevniku'
+    other: '<span class="count">%{count}</span> objava u dnevniku'
+  x_matching_taxa:
+    one: '%{count} takson se poklapa'
+    few: '%{count} taksona se poklapa'
+    other: '%{count} taksona se poklapa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> takson se poklapa'
+    few: '<span class="count">%{count}</span> taksona se poklapaju'
+    other: '<span class="count">%{count}</span> taksona se poklapa'
+  x_misidentifications_of_this_species:
+    one: "%{count} pogrešna identifikacija ove vrste"
+    few: "%{count} pogrešne identifikacije ove vrste"
+    other: "%{count} pogrešne identifikacije ove vrste"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} pogrešna identifikacija vrste u ovom rodu"
+    few: "%{count} pogrešne identifikacije vrste u ovom rodu"
+    other: "%{count} pogrešne identifikacije vrste u ovom rodu"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} pogrešna identifikacija vrste u ovom %{rank}"
+    few: "%{count} pogrešne identifikacije vrste u ovom %{rank}"
+    other: "%{count} pogrešne identifikacije vrste u ovom %{rank}"
+  x_observations:
+    one: "%{count} opažanje"
+    few: "%{count} opažanja"
+    other: "%{count} opažanja"
+  x_observations_:
+    one: "%{count} Opažanje"
+    few: "%{count} Opažanja"
+    other: "%{count} Opažanja"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> opažanje"
+    few: "<span class='count'>%{count}</span> opažanja"
+    other: "<span class='count'>%{count}</span> opažanja"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} opažanje</a>"
+    few: "<a href='%{url}'>%{count} opažanja</a>"
+    other: "<a href='%{url}'>%{count} opažanja</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> pregledano opažanje"
+    few: "<span class='count'>%{count}</span> pregledanih opažanja"
+    other: "<span class='count'>%{count}</span> pregledana opažanja"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Promatrač'
+    few: '<span class="count">%{count}</span> Promatrača'
+    other: '<span class="count">%{count}</span> Promatrača'
+  x_others:
+    one: "%{count} drugi"
+    few: "%{count} drugih"
+    other: "%{count} drugih"
+  x_people:
+    one: "%{count} osoba"
+    few: "%{count} osobe"
+    other: "%{count} osoba"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ljudi</strong> pomoglo je %{user} sa <strong>%{y} identifikacijama</strong>"
+  x_photos:
+    one: "%{count} fotografija"
+    few: "%{count} fotografije"
+    other: "%{count} fotografija"
+  x_new_species:
+    one: "%{count} nova vrsta"
+    few: "%{count} nove vrste"
+    other: "%{count} novih vrsta"
+  x_new_users:
+    one: '%{count} novi korisnik'
+    few: '%{count} nova korisnika'
+    other: '%{count} novih korisnika'
+  x_species:
+    one: '%{count} vrsta'
+    few: '%{count} vrste'
+    other: '%{count} vrsta'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> vrsta"
+    few: "<span class='count'>%{count}</span> vrste"
+    other: "<span class='count'>%{count}</span> vrsta"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} vrsta</a>"
+    few: "<a href='%{url}'>%{count} vrste</a>"
+    other: "<a href='%{url}'>%{count} vrsta</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} prijedlog filtriran prema:"
+    few: "%{count} prijedloga filtrirana prema:"
+    other: "%{count} prijedloga filtrirana prema:"
+  x_taxa:
+    one: "%{count} takson"
+    few: "%{count} taksona"
+    other: "%{count} taksona"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> zabilježeni takson"
+    few: "<span class='count'>%{count}</span> zabilježena taksona"
+    other: "<span class='count'>%{count}</span> zabilježena taksona"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> istraživački-ocijenjeno opažanje"
+    few: "<span class='count'>%{count}</span> istraživački-ocijenjena opažanja"
+    other: "<span class='count'>%{count}</span> istraživački-ocijenjenih opažanja"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> istraživački-ocijenjeno opažanje identificirano do razine vrste ili niže"
+    few: "<span class='count'>%{count}</span> istraživački-ocijenjena opažanja identificirana do razine vrste ili niže"
+    other: "<span class='count'>%{count}</span> istraživački-ocijenjenih opažanja identificirano do razine vrste ili niže"
+  x_sounds:
+    one: "%{count} zvučni zapis"
+    few: "%{count} zvučnih zapisa"
+    other: "%{count} zvučnih zapisa"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> takson kuriran"
+    few: "<span class='count'>%{count}</span> taksona kurirano"
+    other: "<span class='count'>%{count}</span> taksona kurirano"
+  x_taxa_matching_current_filters:
+    one: "%{count} takson se podudara s trenutnim filtrima"
+    few: "%{count} taksona se podudaraju s trenutnim filtrima"
+    other: "%{count} taksona se podudara s trenutnim filtrima"
+  about_licenses: O licencama
+  account_settings: Postavke računa
+  add_observations: Dodaj opažanja
+  add_to_favorites: Dodaj u favorite
+  added_to_favorites_html: |
+    Dodano u <a href="%{url}">favorite</a>
+  all_observations: Sva opažanja
+  already_have_an_account_log_in_html: Već ste registrirani? <strong>Prijavite se.</strong>
+  back_to_possessive_user_profile: "Natrag na profil korisnika %{possuser}"
+  back_to_your_observations: Natrag na tvoja opažanja
+  back_to_your_profile: Natrag na profil
+  birthday: Rođendan
+  calendar: Kalendar
+  casual_tooltip_html: '"Ležernim" opažanjima nedostaju fotografije, lokacija ili datum, ili jednostavno ne ispunjavaju zahtjeve ocjena kvalitete "istraživačke ocjene" ili "potrebne identifikacije" iz drugih razloga. <a href="https://www.inaturalist.org/pages/help#quality">Saznajte više o ocjenama kvalitete</a>'
+  check_this_box_if_html: |
+    Označite ovaj okvir ako želite primijeniti <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution - Nekomercijalnu licencu</a> za preneseni sadržaj. To znači da svatko može kopirati i ponovno koristiti vaše fotografije i/ili opažanja bez traženja dopuštenja sve dok vam odaju priznanje da ste vi autor te ne može koristiti radove u komercijalne svrhe. Licencu možete kasnije ukloniti ili ju zamijeniti nekom drugom, ali ovo je svakako najbolja opcija za dijeljenje sa znanstvenicima i istraživačima.
+  community: Zajednica
+  community_guidelines: Smjernice zajednice
+  create_an_account: Stvorite račun
+  dashboard: Nadzorna ploča
+  display_monthly_supporter_badge: Prikaži mjesečnu značku podrške na profilu
+  display_name_description: Ovo je ime koje će biti prikazano na tvojem profilu, uključujući i za atribuciju autorskih prava
+  edit_account_settings_and_profile: "Uredi postavke i profil"
+  edit_observations: Uredi opažanja
+  edit_your_account_and_profile_html: "Uredi svoj račun i profil"
+  email: E-pošta
+  explore: Istraži
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Broj favorita
+  favorite_taxa: Omiljeni taksoni
+  favorites: "Favoriti"
+  fill_out_your_profile: ispuni svoj profil
+  following: Pratiš
+  following_x_people:
+    one: 'Prati 1 osobu'
+    few: 'Prati %{count} ljudi'
+    other: 'Prati %{count} ljudi'
+  forum: Forum
+  grid: Mreža
+  guides: Vodiči
+  header_your_observations: Tvoja opažanja
+  header_your_favorites: Tvoji favoriti
+  header_your_profile: Tvoj profil
+  help: Pomoć
+  home: Naslovnica
+  identify: Identificiraj
+  identify_observations: "Identificiraj opažanja"
+  identifications: Identifikacije
+  inat_user_profile: "%{site_name}: profil korisnika %{user}"
+  inaturalist_is_a_joint_initiative: "%{site_name} je zajednička inicijativa Kalifornijske akademije znanosti i Društva National Geographic."
+  join_the_largest_group_of_naturalists_in_the_world: Pridružite se najvećoj skupini prirodoslovaca na svijetu!
+  journal: Dnevnik
+  journal_posts: Objave u dnevniku
+  labels: Etikete
+  learn: Saznaj
+  learn_more: Saznaj više
+  list: Popis
+  lists: Popisi
+  log_in: Prijavi se
+  managing_projects: Upravljanje projektima
+  map: Karta
+  maps:
+    overlays:
+      all_observations: Sva opažanja
+      featured_observations: Istaknuta opažanja
+      observations: Opažanja
+  meet: Upoznaj
+  more: Više
+  more_observations: Više opažanja
+  most_observations: Najviše opažanja
+  nearby_observations_: Obližnja opažanja
+  new_observations: Nova opažanja
+  no_favorites_added:
+    current_user: Nisi još dodao niti jedan favorit.
+    user: "%{user} nije dodao favorite."
+  observations: Opažanja
+  observations_: opažanja
+  observations_added_by_x_html: "Opažanja koja je dodao %{x}"
+  observations_annotated_with_annotation: "Opažanja pribilježena sa %{annotation}"
+  observations_by: Opažanja korisnika
+  observations_deleted: Opažanja izbrisana.
+  or: ili
+  password: Lozinka
+  password_confirmation: 'Potvrda lozinke'
+  people: Ljudi
+  people_following_user: "Ljudi koji prate %{user}"
+  pi_consent_desc_title: O osobnim podacima
+  pi_consent_desc_html: |
+    <p>
+    Pohranjujemo osobne podatke poput korisničkih imena i adresa e-pošte
+    kako bi upravljali računima na ovoj stranici i kako bi se pridržavali zakona o privatnosti,
+    potrebno je da označite ovaj okvir kako biste naznačili da pristajete na ovu upotrebu
+    osobnih podataka. Da biste saznali više o tome koje informacije mi
+    prikupljati i kako ga koristimo, pogledajte naše
+    <a href='%{privacy_url}' target='_blank'>Pravila o privatnosti</a>
+    i naše <a href='%{terms_url}' target='_blank'>Uvjete korištenja</a>.
+    </p>
+    <p>
+    Ne postoji način da imate iNaturalist račun bez pohranjivanja osobnih podataka, 
+    stoga jedino možete opozvati ovu suglasnost brisanjem vašeg
+    računa.
+    </p>
+  pi_consent_label: |
+    Svoju suglasnost dajem iNaturalistu da pohranjuje i obrađuje moje osobne podatke ograničene vrste kako bih upravljao/la svojim računom.
+  pi_consent_child_label: |
+    Svoju suglasnost dajem iNaturalistu da pohranjuje i obrađuje osobne podatke ograničene vrste mojeg djeteta kako bih upravljao/la njihovim računom.
+  data_transfer_consent_desc_title: O suglasnosti za prijenos osobnih podataka
+  data_transfer_consent_desc_html: |
+    <p>
+    Neki zakoni o privatnosti podataka, poput općih podataka Europske unije
+    Uredba o zaštiti (GDPR), zahtijevaju izričitu suglasnost za prijenos
+    osobnih podataka iz svojih jurisdikcija u druge jurisdikcije
+    pri čemu se ova zaštita informacija ne razmatra adekvatnom. Od
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020. godine</a>,
+    Europska unija više ne smatra Sjedinjene Države nadležnom za pružanje odgovarajuće pravne zaštite osobnih
+    podataka, posebno zbog mogućnosti zlouporabe nadzornih podataka koji ulaze u SAD od strane američke vlade. 
+    Moguće da i druge nadležnosti imaju isti pristup i mišljenje.
+    </p>
+    <p>
+    Korištenje iNaturalista zahtijeva pohranu osobnih podataka poput
+    adrese vaše e-pošte, i svi podaci iNaturalista pohranjuju se u Sjedinjenim Državama te
+    ne možemo biti sigurni u kojoj ste pravnoj nadležnosti kada koristite
+    iNaturalist. Kako biste bili u skladu sa zakonima o privatnosti kao što je GDPR, vi
+    morate potvrditi da razumijete i prihvaćate ovaj rizik i pristanak
+    za prijenos vaših osobnih podataka na iNaturalistove poslužitelje u SAD-u.
+    </p>
+    <p>
+    Da biste saznali više o tome koje informacije prikupljamo i kako ih koristimo,
+    pogledajte naša
+    <a href='%{privacy_url}' target='_blank'>Pravila o privatnosti</a>
+    i naše <a href='%{terms_url}' target='_blank'>Uvjete korištenja</a>.
+    </p>
+    <p>
+    Ne postoji način da imate iNaturalist račun bez pohranjivanja osobnih podataka, stoga je jedini način da opozovete ovu suglasnost brisanje vašeg
+    računa.
+    </p>
+  data_transfer_consent_label: |
+    Pristajem na prijenos svojih osobnih podataka u Sjedinjene Američke Države
+  data_transfer_consent_child_label: |
+    Pristajem na prijenos osobnih podataka mog djeteta u Sjedinjene Američke Države
+  places: Mjesta
+  privacy: Privatnost
+  profile: Profil
+  profile_picture: Profilna slika
+  profile_visibility_desc: |
+    U pokušaju da spriječimo neželjeni sadržaj na %{site_name}u, korisnički profili
+    javno su vidljivi tek nakon što korisnik pridonese nekoliko istraživački-ocijenjenih opažanja.
+  projects: Projekti
+  satellite: satelit
+  search: Pretraživanje
+  sign_out: Odjavi se
+  sign_up: Registriraj se
+  site_stats: Statistike iNaturalista
+  stop_following_user: "Prestani pratiti %{user}"
+  taxa_info: Informacije o taksonima
+  teachers_guide: Vodič za učitelje
+  terrain: teren
+  the_following_photos_have_been_tagged: "Ove fotografije su označene:"
+  tos_privacy_guidelines_label: |
+    Slažem se s <a href="/terms" target="_blank">Uvjetima korištenja</a> i
+    <a href="/privacy" target="_blank">Pravilima o privatnosti</a>. Pregledao sam
+    <a href="/pages/community+guidelines" target="_blank">Smjernice zajednice</a>.
+  total_observations: Ukupan broj opažanja
+  upload: Učitaj
+  username: Korisničko ime
+  users_favorites: "Favoriti korisnika %{user}"
+  users_profile: "Profil korisnika %{user}"
+  view_all: Pogledaj sve
+  view_all_fields: Pogledaj sva polja
+  view_all_flags: Pogledaj sve prijave
+  view_all_members: Vidi sve članove
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Pogledaj još %{count}"
+    few: "Pogledaj još %{count}"
+    other: "Pogledaj još %{count}"
+  view_all_observations: Pogledaj sva opažanja
+  view_all_photocount_photos: "Pogledaj preostali broj fotografija: %{photo_count}"
+  view_observations: Pogledaj opažanja
+  view_observations_by_everyone: Pogledaj opažanja sviju
+  view_observations_by_these_users: Pogledaj opažanja ovih korisnika
+  view_observations_of_this_taxon_by: 'Pogledaj opažanja ovog taksona koje je zabilježio:'
+  view_photos_ranges_observations_more: "Pogledaj fotografije, geografske raspone vrsta, opažanja na %{site_name}u i više! Prikupili smo informacije iz mnogo različitih izvora i kombinirali ih za brzi sažetak svake vrste na svakoj lokaciji."
+  view_user_observations: "Pogledaj opažanja korisnika %{user}"
+  view_your_observations: Pogledaj svoja opažanja
+  video_tutorials: Video uputstva
+  yes_license_my_childs_observations: Da, licenciraj fotografije, zvučne zapise i opažanja mojeg djeteta kako bi ih znanstvenici mogli koristiti (preporučeno).
+  yes_license_my_observations_so_scientists_can_use: Da, licenciraj moje fotografije, zvučne zapise i opažanja kako bi ih znanstvenici mogli koristiti (preporučeno).
+  you_are_now_following_x: "Sada pratiš %{friend_user}."
+  you_are_no_longer_following_x: "Više ne pratiš %{friend}."
+  you_arent_following_that_person: "Ne pratiš tu osobu."
+  your_favorites: Tvoji favoriti
+  your_home: Tvoja naslovnica
+  your_observations: Tvoja opažanja
+  your_profile_was_successfully_updated: Tvoj profil je uspješno ažuriran!
+  your_recent_projects: Tvoji nedavni projekti
+  views:
+    lifelists:
+      all_observations: Sva opažanja
+      total_observations: Ukupan broj opažanja
+      all_observations_in_this_taxon: Sva opažanja u ovom taksonu
+      observations_of_exactly_this_taxon: Opažanja točno ovog taksona
+    projects:
+      new:
+        project_summary_help: |
+          Napiši sažeto objašnjenje tvojeg projekta. Oko prvih 200 znakova bit će odmah vidljivo na početnom zaslonu projekta, pa kreni s najboljim stvarima!
+    stats:
+      year:
+        observations_per_year: Opažanja po godini
+    users:
+      show:
+        favorites_list_prompt_html: |
+          Želiš pokazati neke od svojih omiljenih taksona? %{link_start_tag}Napravi
+          popis%{link_end_tag} pod nazivom "Favoriti" i najnoviji dodaci
+          pojavit će se u ovom prostoru.
+    welcome:
+      index:
+        connect_with_nature: Poveži se s prirodom
+        explore_and_share: Istraži i podijeli svoja opažanja iz svijeta prirode.
+        observations_to_date: 'Opažanja do sad'
+        species_observed: 'Zabilježene vrste'
+        people_signed_up: 'registriranih korisnika'
+        how_it_works: Kako iNaturalist funkcionira
+        record_your_observations: Zabilježi svoja opažanja
+        share_with_fellow_naturalists: Podijeli s kolegama prirodoslovcima
+        discuss_your_findings: Diskutiraj o svojim nalazima
+        contribute_to_science: Doprinesi znanosti
+        science_desc_html: |
+          Svako opažanje može doprinijeti znanosti o našoj bioraznolikosti, od
+          od najrjeđeg leptira do najčešćeg dvorišnog korova. Dijelimo tvoja
+          otkrića sa skladištima znanstvenih podataka poput
+          <a href='http://gbif.org' target='_blank'>Globalnog informacijskog fonda za biološku raznolikost (GBIF)</a>
+          kako bi pomogli znanstvenicima pronaći i koristiti tvoja zapažanja. Sve što trebaš učiniti je
+          promatrati i podijeliti to s nama.
+        nature_at_your_fingertips: Priroda na dohvat ruke
+        keep_track: Vodi evidenciju
+        record_your_encounters: |
+          Bilježite svoje susrete s drugim organizmima i vodite popise života,
+          sve u spremamo u oblaku.
+        create_useful_data: Stvori korisne podatke
+        help_scientists: Pomozi znanstvenicima i upraviteljima resursa da razumiju kada i gdje se organizmi pojavljuju.
+        crowdsource_identifications: Identifikacije zajednice
+        connect_with_experts: Poveži se sa stručnjacima koji mogu identificirati organizme koje si zabilježio/la.
+        become_a_citizen_scientist: Postani znanstvenik-građanin
+        find_a_project: "Pronađi projekt sa zadatkom koji te zanima ili pokreni svoj vlastiti."
+        learn_about_nature: Nauči o prirodi
+        build_your_knowledge: Izgradi svoje znanje pomažući drugima i diskutiranjem s drugim prirodoslovcima.
+        run_a_bioblitz: Organiziraj Bioblitz
+        hold_an_event: Organiziraj događaj na kojem ljudi pokušavaju pronaći što više vrsta.
+        works_on_all_your_devices: Radi na svim tvojim uređajima
+        install_our_mobile_apps: |
+          Instaliraj našu mobilnu aplikaciju kako bi uvijek mogao promatrati i bilježiti, čak i bez mobilnih podataka ili Wi-Fija.
+        who_uses_site_name: "Tko koristi %{site_name}?"
+        what_are_you_waiting_for: Pa, što čekaš?
+        join_today: Pridruži se danas
   date:
     abbr_month_names:
       - 
@@ -33,3 +458,8 @@ hr:
       format:
         significant: true
         strip_insignificant_zeros: true
+  i18n:
+    inflections:
+      "@gender":
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
