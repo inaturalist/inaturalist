@@ -8815,6 +8815,13 @@ en:
               has_query_parameter: "cannot contain a query parameter."
               invalid_uri: "must be a valid URI."
               relative_uri: "must be an absolute URI."
+        comment:
+          attributes:
+            parent:
+              # Error message shown when a client tries to create a comment on a
+              # post that does not allow comments. Theoretically an end user
+              # should never see this, though an API client might.
+              prefers_no_comments: does not allow new comments
         flag:
           attributes:
             flag:
