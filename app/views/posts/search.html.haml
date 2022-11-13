@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = "#{t(:find_posts_for)} #{@parent.journal_display_name}"
+  = @title = t( :find_posts_for, vow_or_con: @parent.journal_display_name[0].downcase, journal_name: @parent.journal_display_name )
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   :css

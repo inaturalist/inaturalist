@@ -29,18 +29,23 @@
                   class: "default button"                                |
       = will_paginate @posts
     .col-md-4
-      - unless @drafts.blank?
-        .box
-          %h3= t(:drafts)
-          %ul
-            - for post in @drafts
-              %li
-                = link_to post.title, edit_post_path(post)
-                %div
-                  %span.text-muted= t(:created_on, gender: 'post')
-                  %span.date= l post.created_at, format: :long
-      - unless @archives.blank?
-        = render :partial => 'archives'
+      - unless @posts.empty?
+        .row
+          %h2.right
+            = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
+      .row
+        - unless @drafts.blank?
+          .box
+            %h3= t(:drafts)
+            %ul
+              - for post in @drafts
+                %li
+                  = link_to post.title, edit_post_path(post)
+                  %div
+                    %span.text-muted= t(:created_on, gender: 'post')
+                    %span.date= l post.created_at, format: :long
+        - unless @archives.blank?
+          = render :partial => 'archives'
   - unless @posts.empty? && @parent.is_a?(Project) && @parent.is_new_project?
     #footercol.row
       .feeds

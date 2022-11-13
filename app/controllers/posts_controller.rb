@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
-  before_action :doorkeeper_authorize!, :only => [ :for_project_user, :for_user ], :if => lambda { authenticate_with_oauth? }
-  before_action :authenticate_user!, :except => [:index, :show, :browse, :for_user, :archives ], :unless => lambda { authenticated_with_oauth? }
-  load_only = [ :show, :edit, :update, :destroy ]
-  before_action :load_post, :only => load_only
-  blocks_spam :only => load_only, :instance => :post
-  check_spam only: [:create, :update], instance: :post
-  before_action :load_parent, :except => [:browse, :for_project_user, :for_user]
-  before_action :load_new_post, :only => [:new, :create]
-  before_action :owner_required, :only => [:create, :edit, :update, :destroy]
+  before_action :doorkeeper_authorize!, only: %i[for_project_user for_user], if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!, except: %i[index show browse for_user archives search],
+                unless: -> { authenticated_with_oauth? }
+  load_only = %i[show edit update destroy]
+  before_action :load_post, only: load_only
+  blocks_spam only: load_only, instance: :post
+  check_spam only: %i[create update], instance: :post
+  before_action :load_parent, except: %i[browse for_project_user for_user]
+  before_action :load_new_post, only: %i[new create]
+  before_action :owner_required, only: %i[create edit update destroy]
 
   # Might want to try this if /journal becomes a problem.
   # caches_action :browse,

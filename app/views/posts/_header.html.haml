@@ -17,44 +17,32 @@
           - if @display_project.curated_by?(current_user)
             = link_to t(:new_post), new_project_journal_post_path(@parent.journal_slug), id: "newpostbutton",
                 class: "default button"
-        = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
 - elsif @parent.is_a?(Project)
   - tools = capture do
-    #post_header
-      %div
-        - if @display_project.curated_by?(current_user)
-          #tools.buttonrow
-            = link_to t(:new_post), new_project_journal_post_path(@parent.journal_slug), id: "newpostbutton",
-              class: "default button"
-      = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
+    - if @display_project.curated_by?(current_user)
+      #tools.buttonrow
+        = link_to t(:new_post), new_project_journal_post_path(@parent.journal_slug), id: "newpostbutton",
+          class: "default button"
   = render :partial => "shared/by_project_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal", :project => @parent }
 - elsif @parent.is_a?( Site )
-  .row
-    #pageheader.col-md-12
-      #post_header
-        %div
-          = breadcrumbs
-          - if @site.logo_blog?
-            = image_tag @site.logo_blog.url
-          - else
-            = link_to(image_tag(@site.logo_square.url(:thumb), :class => "parenticon"), @site)
-            %h2
-              = link_to @site.name, site_posts_path
-            %ul#subnav.clear
-              %li=t :official_blog
-          - if @site.editable_by?( current_user )
-            #tools.buttonrow
-              = link_to t(:new_post), new_site_post_path, id: "newpostbutton", :class => "default button"
-        = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
+  #pageheader.col-md-12
+    = breadcrumbs
+    - if @site.logo_blog?
+      = image_tag @site.logo_blog.url
+    - else
+      = link_to(image_tag(@site.logo_square.url(:thumb), :class => "parenticon"), @site)
+      %h2
+        = link_to @site.name, site_posts_path
+      %ul#subnav.clear
+        %li=t :official_blog
+    - if @site.editable_by?( current_user )
+      #tools.buttonrow
+        = link_to t(:new_post), new_site_post_path, id: "newpostbutton", :class => "default button"
 - else # parent is a user
-  .row
-    - tools = capture do
-      #post_header
-        %div
-          - if logged_in? && current_user.login == @parent.journal_display_name
-            #tools.btn-grp
-              = link_to t(:new_post), new_journal_post_path(@parent.journal_slug), id: "newpostbutton", class: "btn btn-primary"
-              = feature_test :trips do
-                = link_to t(:new_trip), new_trip_path, :id => "newtripbutton", :class => "btn btn-primary"
-        = render partial: 'search_form', locals: { parent_type: @parent.class.name, parent_id: @parent.id }
-    = render :partial => "shared/by_login_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal" }
+  - tools = capture do
+    - if logged_in? && current_user.login == @parent.journal_display_name
+      #tools.btn-grp
+        = link_to t(:new_post), new_journal_post_path(@parent.journal_slug), id: "newpostbutton", class: "btn btn-primary"
+        = feature_test :trips do
+          = link_to t(:new_trip), new_trip_path, :id => "newtripbutton", :class => "btn btn-primary"
+  = render :partial => "shared/by_login_header_bootstrap", :locals => { :before => breadcrumbs, :after => tools, :model_name => "Journal" }
