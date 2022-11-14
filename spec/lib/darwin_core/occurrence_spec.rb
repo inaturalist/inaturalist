@@ -83,6 +83,8 @@ describe DarwinCore::Occurrence do
     end
     describe "sex" do
       before(:all) do
+        # resetting annotation_controlled_attributes which contain cached data from other specs
+        DarwinCore::Occurrence.annotation_controlled_attributes = {}
         @controlled_attribute = ControlledTerm.make!(
           active: true,
           is_value: false

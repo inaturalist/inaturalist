@@ -75,6 +75,10 @@ module DarwinCore
       %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
     ].freeze
 
+    OTHER_CATALOGUE_NUMBERS_TERM = %w(
+      otherCatalogueNumbers http://rs.tdwg.org/dwc/terms/otherCatalogNumbers
+    )
+
     GBIF_LIFE_STAGES = %w(
       adult
       agamont
@@ -134,6 +138,12 @@ module DarwinCore
       zoea
       zygote
     ).freeze
+
+    ANNOTATION_CONTROLLED_TERM_MAPPING = {
+      sex: "Sex",
+      lifeStage: "Life Stage",
+      reproductiveCondition: "Plant Phenology"
+    }
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -443,24 +453,28 @@ module DarwinCore
       end
 
       def gbif_lifeStage
-        winning_value = winning_annotation_value_for_term( "lifeStage", inat_term: "Life Stage" )
+        winning_value = winning_annotation_value_for_term( "lifeStage" )
         return winning_value if GBIF_LIFE_STAGES.include?( winning_value )
 
         nil
       end
 
       def reproductiveCondition
-        v = winning_annotations_for_term( "reproductiveCondition", inat_term: "Plant Phenology" ).map do | a |
+        v = winning_annotations_for_term( "reproductiveCondition" ).map do | a |
           a.controlled_value.label.downcase
         end.join( "|" )
         v == "cannot be determined" ? nil : v
       end
       # rubocop:enable Naming/MethodName
 
+      def otherCatalogueNumbers
+        uuid
+      end
+
       def winning_annotations_for_term( term, options = {} )
         return [] if annotations.blank?
 
-        inat_term = options.delete( :inat_term ) || term
+        inat_term = ANNOTATION_CONTROLLED_TERM_MAPPING[term.to_sym] || term
         DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
           joins( :labels ).
           where( is_value: false, active: true ).

@@ -167,7 +167,8 @@ module DarwinCore
         formats: [:xml],
         core: @opts[:core],
         extensions: extensions,
-        ala: @opts[:ala]
+        ala: @opts[:ala],
+        include_uuid: @opts[:include_uuid]
       )
       tmp_path = File.join( @opts[:work_path], "meta.xml" )
       File.open( tmp_path , "w" ) do |f|
@@ -245,6 +246,23 @@ module DarwinCore
         params[:nelat] = @opts[:nelat]
         params[:nelng] = @opts[:nelng]
       end
+      if @opts[:with_annotations]
+        recognized_term_ids = DarwinCore::Occurrence::ANNOTATION_CONTROLLED_TERM_MAPPING.values.map do |l|
+          ControlledTerm.first_term_by_label( l )
+        end.compact.map( &:id )
+        params[:term_id] = recognized_term_ids.join( "," ) if recognized_term_ids.any?
+      elsif @opts[:with_controlled_terms]
+        term_ids = @opts[:with_controlled_terms].map do |term|
+          ControlledTerm.first_term_by_label( term.underscore.humanize )
+        end.compact.map( &:id )
+        params[:term_id] = term_ids.join( "," ) if term_ids.any?
+      end
+      if @opts[:with_controlled_values]
+        term_value_ids = @opts[:with_controlled_values].map do |term|
+          ControlledTerm.first_term_by_label( term.underscore.humanize )
+        end.compact.map( &:id )
+        params[:term_value_id] = term_value_ids.join( "," ) if term_value_ids.any?
+      end
       params
     end
 
@@ -261,9 +279,12 @@ module DarwinCore
     end
 
     def make_occurrence_file
-      @occurrence_terms = DarwinCore::Occurrence::TERMS
+      @occurrence_terms = DarwinCore::Occurrence::TERMS.dup
       if @opts[:ala]
         @occurrence_terms += DarwinCore::Occurrence::ALA_EXTRA_TERMS
+      end
+      if @opts[:include_uuid]
+        @occurrence_terms += [DarwinCore::Occurrence::OTHER_CATALOGUE_NUMBERS_TERM]
       end
       headers = DarwinCore::Occurrence.term_names( @occurrence_terms )
       fname = "observations.csv"
@@ -271,7 +292,7 @@ module DarwinCore
 
       preloads = [
         :taxon,
-        { user: [:stored_preferences, :provider_authorizations] }, 
+        { user: [:stored_preferences, :provider_authorizations] },
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },

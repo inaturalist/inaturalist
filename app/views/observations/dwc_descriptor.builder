@@ -5,9 +5,12 @@ if @core == "taxon"
 else
   core_row_type = "http://rs.tdwg.org/dwc/terms/Occurrence"
   core_file_location = "observations.csv"
-  core_terms = DarwinCore::Occurrence::TERMS
+  core_terms = DarwinCore::Occurrence::TERMS.dup
   if @ala
     core_terms += DarwinCore::Occurrence::ALA_EXTRA_TERMS
+  end
+  if @include_uuid
+    core_terms << DarwinCore::Occurrence::OTHER_CATALOGUE_NUMBERS_TERM
   end
 end
 xml.instruct!

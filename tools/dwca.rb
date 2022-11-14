@@ -87,6 +87,10 @@ opts = Optimist.options do
   opt :swlat, "Bounding box bottom latitude", type: :double
   opt :nelng, "Bounding box right longitude", type: :double
   opt :nelat, "Bounding box top latitude", type: :double
+  opt :include_uuid, "Add observation UUIDs as otherCatalogNumbers", type: :boolean, default: false
+  opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
+  opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
+  opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
 end
 
