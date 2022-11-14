@@ -201,12 +201,15 @@ hr:
   favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
   fill_out_your_profile: ispuni svoj profil
+  follow_receive_updates_about_new_observations: Prati (budi obaviješten o novim opažanjima)
   following: Pratiš
   following_x_people:
     one: 'Prati 1 osobu'
     few: 'Prati %{count} ljudi'
     other: 'Prati %{count} ljudi'
   forum: Forum
+  forum_categories:
+    news_and_updates: Vijesti
   grid: Mreža
   guides: Vodiči
   header_your_observations: Tvoja opažanja
@@ -241,6 +244,7 @@ hr:
   most_observations: Najviše opažanja
   nearby_observations_: Obližnja opažanja
   new_observations: Nova opažanja
+  new_updates_in_the_last_24_hours_from: "Novosti s %{site_name}a u zadnjih 24 sata"
   no_favorites_added:
     current_user: Nisi još dodao niti jedan favorit.
     user: "%{user} nije dodao favorite."
@@ -250,6 +254,14 @@ hr:
   observations_annotated_with_annotation: "Opažanja pribilježena sa %{annotation}"
   observations_by: Opažanja korisnika
   observations_deleted: Opažanja izbrisana.
+  onboarding:
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Tvoj sadržaj:</strong> Aktivnost na tvojim opažanjima kao što su komentari, identifikacije ili favoriti iz zajednice %{site_name}. Također ćeš primati ažuriranja kada netko doda tvoje opažanje u projekt ili ga označi dodatnim poljima.</li>
+      <li><strong>Ljudi:</strong> Nova opažanja ili objave u dnevniku od korisnika koje pratiš.</li>
+      <li><strong>Organizmi, projekti i mjesta:</strong> Nova opažanja određenih organizama ili mjesta na koja si pretplaćen/a. Također se možeš pridružiti novim projektima da dobiješ obavijest kada objave nešto novo u dnevniku projekta.</li>
+      <li><strong>Rasprave u kojima si sudjelovao/la:</strong> komentiranje ili dodavanje identifikacija tuđem sadržaju automatski te pretplaćuje na svaku novu aktivnost na tom sadržaju. Upotrijebi alat 'Upravljajte svojim pretplatama' kako bi prestao/la primati ažuriranja.</li>
+      </ul>
   or: ili
   password: Lozinka
   password_confirmation: 'Potvrda lozinke'
@@ -323,6 +335,10 @@ hr:
   sign_up: Registriraj se
   site_stats: Statistike iNaturalista
   stop_following_user: "Prestani pratiti %{user}"
+  subscribe_to_places_help: |
+    Pretplate kontroliraju o čemu te obavještavamo i što vidiš na nadzornoj ploči.
+    Na primjer, možeš se pretplatiti na takson da bi pratio nova opažanja tog taksona. 
+    Automatski si pretplaćen na opažanja koja komentiraš ili identificiraš.
   taxa_info: Informacije o taksonima
   teachers_guide: Vodič za učitelje
   terrain: teren
@@ -332,6 +348,7 @@ hr:
     <a href="/privacy" target="_blank">Pravilima o privatnosti</a>. Pregledao sam
     <a href="/pages/community+guidelines" target="_blank">Smjernice zajednice</a>.
   total_observations: Ukupan broj opažanja
+  updates_notification_email_subject: "%{prefix} Novosti %{date}"
   upload: Učitaj
   username: Korisničko ime
   users_favorites: "Favoriti korisnika %{user}"
@@ -375,6 +392,7 @@ hr:
       new:
         project_summary_help: |
           Napiši sažeto objašnjenje tvojeg projekta. Oko prvih 200 znakova bit će odmah vidljivo na početnom zaslonu projekta, pa kreni s najboljim stvarima!
+        users_can_follow_your_project: Drugi korisnici ti mogu zapratiti projekt za vijesti putem objava u dnevniku
     stats:
       year:
         observations_per_year: Opažanja po godini
