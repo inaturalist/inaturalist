@@ -478,6 +478,12 @@ hr:
         strip_insignificant_zeros: true
   i18n:
     inflections:
+      "@vow_or_con":
+        vow: vowel
+        con: consonant
       "@gender":
+        m: muški
+        f: žensko
+        "n": neuter
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
