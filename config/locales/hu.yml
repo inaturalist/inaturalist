@@ -955,6 +955,8 @@ hu:
   #Title of a page where people apply to become a curator
   curator_application_title: Kurátor alkalmazás
   curators: Gondnokok
+  #Label for a custom boundary for an observation search
+  custom_boundary: Tetszőleges határolókeret
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
   darr_apply_darr: "&darr; Alkalmaz &darr;"
@@ -2269,7 +2271,7 @@ hu:
     follow_panel_body: Ha meglátogatod ezeket a profilokat és a Követés gombra kattintasz, értesítéseket kapsz a felhasználó megfigyeléseiről
     following_panel_title: Kövess emebereket, taxonokat és helyeket
     following_panel_body: |
-      %{site_name}-on embereket követhetsz, hogy naprakész legyél a feltöltött észleléseikkel. Bizonyos fajok lapjára is feliratkozhatsz, hogy kövesd a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
+      %{site_name}-on követhetsz felhasználókat és értesítéseket kaphatsz a feltöltött megfigyeléseikről. Bizonyos fajok lapjára is feliratkozhatsz, így követni tudod a róluk készült megfigyeléseket, vagy ugyanezt teheted a helyekkel.
     comments_panel_title: Kíváncsi vagy, milyen beszélgetések folynak %{site_name}-on?
     comments_panel_body: "<p>Az %{site_name} abból áll, hogy megoszd és megbeszéld élőlények megfigyeléseit. Alább találod a most lefolyó beszélgetéseket. (Megjegyzés: Automatikusan fel vagy iratkozva minden beszélgetésre amelyhez hozzászólsz vagy amelyekhez azonosításokat adsz. Ezeket a frissítéseket a 'Feliratkozások' lap a jobb oldalán kezelheted.)</p>"
     updates_by_you_panel_title: Ez a fül egy gyors szűrő a tartalmaid újdonságaihoz
@@ -4639,7 +4641,7 @@ hu:
         published_at: Publikálva
       listed_taxon:
         occurrence_status_level: Előfordulás szintje
-        establishment_means: Letelepedési Forma
+        establishment_means: Letelepedési forma
       message:
         subject: Tárgy
       moderator_action:

@@ -1027,6 +1027,12 @@ ja:
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     iNaturalistのキュレーター管理者は、iNaturalistの分類を編集し、ユーザーのコンテンツを監視する能力を持つ、信頼されたボランティアです。キュレーター管理者はiNaturalistにとって不可欠な存在であり、分類を最新の状態に保ち、iNaturalistの議論を適切かつ丁寧なものにするために活躍しています。以下はキュレーター管理者であることの意味を説明したものです。もしあなたがキュレーター管理者になりたいのであれば、<a href="/pages/curator+guide" target="_blank">キュレーターガイド</a>をよく読んで、このページの申請書に記入してください。
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    もしiNaturalistの生物の分類を編集したい場合は、あなたが行いたい分類群編集の例をいくつか挙げ、その出典も明記してください。
+    可能であれば、出典には、<a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">iNaturalistが準拠している生物データベース一覧</a>に記載されているデータベースを使用してください。
+    分類群編集の例に信用のおける出典を明記しなかった場合、キュレーター申請は却下されます。
   #Header
   curator_application_what_curators_can_do: キュレーター管理者ができること
   #Header
@@ -2602,7 +2608,7 @@ ja:
       Nearby_Building: 近辺の建物
       nearby_building: 近辺の建物
       Nearby_Intersection: 近所の交差点
-      nearby_intersection: 近所の交差点
+      nearby_intersection: 近隣の交差点
       Open_Space: 空地
       open_space: 空地
       Parish: 教会区
@@ -3270,7 +3276,7 @@ ja:
   see_something_wrong_with_taxon: この分類群に間違いありますか？キュレーター管理者にお知らせください
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: 検索
-  seen_nearby: 近くで見られた
+  seen_nearby: 近隣で観察記録あり
   seen_one: 見かけませんでしたか？
   select: 選択
   select_all: すべて選択

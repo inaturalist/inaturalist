@@ -1434,6 +1434,8 @@ be:
   curators_can_remove_observations_from: Куратары могуць выдаляць назіранні з праекта, а іхнія вызначэнні паказваюцца побач з назіраннямі на старонках, спецыфічных для праекту. Куратары таксама могуць бачыць сапраўдныя каардынаты прыватных і прыхаваных назіранняў у гэтым праекце.
   curator_identification: Вызначэння куратара
   current_flags: Цяпераншія сцяжкі
+  #Label for a custom boundary for an observation search
+  custom_boundary: Адвольныя межы
   custom_project_fields: Карыстальніцкія палі праекту
   custom_project_was_successfully_created: Наладжванні праекту дадазены
   custom_project_was_successfully_updated: Наладжванні праекту адноўлены
@@ -1614,6 +1616,8 @@ be:
   disconnect: Ад'яднаць
   disconnect_caps: АД'ЯДНАЦЬ
   disconnect_provider: "Ад'яднаць %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Адхіліць
   display: Адлюстраванне
   display_link_to_checklist: Паказваць спасылку на спіс праектаў з старонкі праекта
   display_monthly_supporter_badge: Пакзаваць значок "Штомесяцовы спонсар" у маім профілі
@@ -2233,6 +2237,7 @@ be:
   italic_text: тэкст курсівам
   item_flagged_notice_html: |
     Гэта было пазначана як спам і больш не бачна. Вы можаце ўбачыць яго, таму што яго стварылі ці вы з'яўляецеся куратарам сайта. Калі вы лічыце, што гэта памылка, калі ласка, <a href="mailto:%{help_email}" class="contact">звяжыцеся з намі</a>. <a href="%{manage_flags_path}">Кіраванне сцяжкамі</a>
+  jobs: Праца
   join: Далучыцца
   join_and_add_an_observation_to_project_html: Далучыцца і дадаць назіранне да %{project}
   join_project: Далучыцца да гэтага праекта
@@ -2371,16 +2376,19 @@ be:
     ojibwe: Оджыбвэ
     palauan: Палауанская
     pangasinan: Пангасінан
+    persian: Персідская
     polish: Польская
     portuguese: Партугальская
     romanian: Румынская
     russian: Руская
     santali: Санталі
+    serbian: Сербская
     setswana: Сэтсвана
     sinhala: Сінгальская
     slovak: Славацкая
     slovenian: Славенская
     spanish: Іспанская
+    swahili: Суахілі
     swedish: Шведская
     tagalog: Тагальская
     tahitian: Таіцянская
@@ -2482,6 +2490,7 @@ be:
     lb: Люксембургская
     lt: Літоўская
     lv: Латвійская
+    mi: Маоры
     mk: Македонская
     mr: Маратхі
     nb: Нарвежскі Букмол
@@ -2495,6 +2504,7 @@ be:
     sk: Славацкая
     sl: Славенская
     sq: Албанская
+    sr: Сербская
     sv: Шведская
     th: Тайская
     tr: Турэцкая
@@ -2796,6 +2806,8 @@ be:
   new_check_list_for: "Стварыце новы кантрольны спіс для %{place} &raquo;"
   new_check_list_record: "Калі вы хочаце пазначыць гэты спіс як поўны, стварыце яго, дадайце таксоны, а затым папраўце яго, і вы зможаце пазначыць яго тут як поўны."
   new_comment_on_a_parent_by_user_link: Новы каментар да @vow_or_con{vow:an|a} %{parent} ад %{user_link}
+  new_conservation_status: Новы прыродаахоўны статус
+  new_flag_for: Новая пазнака для
   new_guide: Новы даведнік
   new_journal_post: Новае паведамленне ў дзённіку
   new_lexicon: Новая мова
@@ -2848,6 +2860,7 @@ be:
   no_curators_set: Куратараў няма
   no_curators_yet: Куратараў пакуль няма!
   no_description: Няма апісання
+  no_flags: Гэтым разам пазнак няма
   no_flickr_photos_tagged: Няма фатаграфій з Flickr, пазначаных тэгамі!
   no_identifications: Няма вызначэнняў
   no_identifications_added:

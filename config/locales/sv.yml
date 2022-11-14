@@ -564,6 +564,8 @@ sv:
   #Label for an option to show/include content by any user
   any_user: Alla
   anyone: Vem som helst
+  app_owner_application_explanation_required: |
+    Du måste ge en mer detaljerad förklaring av vad du vill bygga.
   app_owner_application_about_p1a_html: |
     iNaturalist-appar tillåter autentiserad användning av iNaturalist-API:et. Detta
     låter dig göra API-anrop som kan skapa observationer eller
@@ -1368,6 +1370,8 @@ sv:
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
   curator_identification: Förvaltarbestämning
   current_flags: Nuvarande flaggningar
+  #Label for a custom boundary for an observation search
+  custom_boundary: Anpassad gräns
   custom_project_fields: Anpassade projektfält
   custom_project_was_successfully_created: Projektanpassningar tillagda
   custom_project_was_successfully_updated: Projektanpassningar uppdaterade
@@ -1601,6 +1605,10 @@ sv:
   draft_saved: Utkast sparat!
   drafts: Utkast
   drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Rita cirkulär gräns
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Rita rektangulär gräns
   drawings: Skisser
   duplicate_verb: Duplicera
   duration_value: "Varaktigthet: %{duration} minuter"
@@ -2356,6 +2364,7 @@ sv:
     romanian: Rumänska
     russian: Ryska
     santali: santali
+    serbian: Serbiska
     setswana: Setswana
     sinhala: Singalesiska
     slovak: Slovakiska
@@ -2477,6 +2486,7 @@ sv:
     sk: Slovakiska
     sl: Slovenska
     sq: Albanska
+    sr: Serbiska
     sv: Svenska
     th: Thailändska
     tr: Turkiska
@@ -3787,6 +3797,8 @@ sv:
     hämtat det.
   places_warning_look_for_existing_html: |
     Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, samt två administrativa nivåer under land.
+  places_warning_please_keep_in_mind: |
+    Tänk på följande begränsningar:
   places_warning_projects_can_have_multiple_places: |
     Om du försöker göra en fyndplats för en projektgräns, kan projekt bestå av flera fyndplatser. Till exempel, om du vill göra ett projekt för Nya Zeeland och Australien, kan du helt enkelt lägga till krav för två fyndplatser istället för att göra en ny.
   places_warning_new_places_are_slow_html: |
@@ -4175,6 +4187,8 @@ sv:
   research_grade_tooltip_html: 'Fynd av forskningsklass har media, fyndplats, datum och en exakt bestämning som communityn är överens om (vanligtvis på artnivån). <a href="https://www.inaturalist.org/pages/help#quality">Lär dig mer om kvalitetsklasser</a>'
   research_grade_observations_have: 'Fynd av "Forskningsklass" har ett datum, bild, koordinater och en community-bestämning. Klicka för att se kvalitetsbedömning av data.'
   research_grade_qualification: Bedömningsgrund för forskningsklass
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Återställ
   reset_filters_short: Återställ
   reset_brightness: Återställ ljusstyrka
   reset_search_filters: Återställ sökfilter
