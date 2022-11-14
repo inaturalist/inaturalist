@@ -67,8 +67,9 @@
             %span.caret
             %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
           %ul.dropdown-menu
-            - I18n.t( "locales", locale: :en ).keys.each do |locale|
+            - locales_sorted_by_localized_name = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", locale: _1, default: t( "locales.#{_1}" ) ).downcase }
+            - locales_sorted_by_localized_name.each do |locale|
               %li
-                = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
+                = link_to I18n.t( "locales.#{locale}", locale: locale, default: t( "locales.#{locale}" ) ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
             %li.divider{ role: "separator" }
             %li= link_to I18n.t( "help_translate!" ), "/pages/translate"

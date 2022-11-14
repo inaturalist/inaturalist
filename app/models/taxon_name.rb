@@ -133,6 +133,7 @@ class TaxonName < ApplicationRecord
     "catalan" => "ca",
     "chinese_traditional" => "zh",
     "chinese_simplified" => "zh-CN",
+    "croatian" => "hr",
     "czech" => "cs",
     "danish" => "da",
     "dutch" => "nl",
