@@ -16,7 +16,7 @@ class DonateController < ApplicationController
 
   def monthly_supporters
     new_params = redirect_params
-    return redirect_to donate_url( new_params ) if new_params
+    return redirect_to monthly_supporters_url( new_params ) if new_params
   end
 
   private
