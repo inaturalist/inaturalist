@@ -489,10 +489,6 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image
-    # Disabling shareable image generation until we fix imagemagick issue:
-    # https://github.com/inaturalist/chef-repo-azure/issues/31
-    return
-
     if year >= 2020
       generate_shareable_image_no_obs
     else
