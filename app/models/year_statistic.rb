@@ -240,7 +240,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: "created_at",
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
@@ -954,7 +954,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: date_field,
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( params )
           },
@@ -1131,7 +1131,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: "created_at_details.date",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
