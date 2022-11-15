@@ -89,3 +89,9 @@ form.post_form .observationSelectorObservations {
 #pageheader img {
   max-height: 55px;
 }
+
+#post_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

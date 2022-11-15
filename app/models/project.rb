@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
 
   include ActsAsElasticModel
+  include HasJournal
 
   belongs_to :user
   belongs_to :place, inverse_of: :projects
@@ -17,7 +18,6 @@ class Project < ApplicationRecord
   has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
   has_many :observation_fields, through: :project_observation_fields
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand

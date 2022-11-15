@@ -49,13 +49,16 @@ class Post < ApplicationRecord
   validates_length_of :body, in: 1..1000000
   validates_presence_of :parent
   validate :user_must_be_on_site_long_enough
-  
+
   before_save :skip_update_for_draft
   after_save :update_user_counter_cache
   after_destroy :update_user_counter_cache
-  
+
   scope :published, -> { where("published_at IS NOT NULL") }
   scope :unpublished, -> { where("published_at IS NULL") }
+  scope :dbsearch, lambda {| parent:, q: |
+    where( parent: parent ).where( "posts.title ILIKE ? OR posts.body ILIKE ?", "%#{q}%", "%#{q}%" )
+  }
 
   FORMATTING_SIMPLE = "simple"
   FORMATTING_NONE = "none"
@@ -142,12 +145,12 @@ class Post < ApplicationRecord
       errors.add(:user, :must_be_on_site_long_enough)
     end
   end
-  
+
   def skip_update_for_draft
     @skip_update = true if draft?
     true
   end
-  
+
   def update_user_counter_cache
     if parent_type == "User" && (saved_change_to_published_at? || destroyed?)
       User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
@@ -158,7 +161,7 @@ class Post < ApplicationRecord
   def to_s
     "<Post #{self.id}: #{self.to_plain_s}>"
   end
-  
+
   def to_plain_s(options = {})
     s = self.title || ""
     s += ", by #{self.user.try(:login)}" unless options[:no_user]
@@ -168,7 +171,7 @@ class Post < ApplicationRecord
   def to_param
     "#{id}-#{title.parameterize}"
   end
-  
+
   def draft?
     published_at.blank?
   end
