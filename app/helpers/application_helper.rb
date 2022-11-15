@@ -307,6 +307,7 @@ module ApplicationHelper
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
+    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
@@ -319,7 +320,6 @@ module ApplicationHelper
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     unless options[:skip_simple_format]
@@ -1505,13 +1505,14 @@ module ApplicationHelper
     I18n.has_t?(*args)
   end
 
-  def hyperlink_mentions(text)
+  def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
     linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
+      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{login_text}", person_by_login_url(u.login))}")
     end
     linked_text
   end
