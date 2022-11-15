@@ -166,7 +166,7 @@ hu:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: A betelepedési formákról
+  about_establishment_means: A honosság státuszairól
   about_license_options: A licencelési lehetőségekről
   about_licenses: A licencekről
   #Header for a section describing taxon names
@@ -462,7 +462,7 @@ hu:
   apply_fields: Mezők alkalmazása
   apply_geoprivacy: Helyvédelem alkalmazása
   apply_darr: "Alkalmaz &darr;"
-  apply_establishment_means_to_descendant_places: "Alkalmazd a letelepedési formát a leszármazó helyekre"
+  apply_establishment_means_to_descendant_places: "A honosság státuszának alkalmazása a hely minden területi egységére"
   apply_these_settings_to_all: Ezen beállítások alkalmazása az összes alábbi megfigyelésre.
   appropriate?: Megfelelő?
   arachnids: pókszabásúak
@@ -1211,9 +1211,9 @@ hu:
     managed: Felügyelt
     native: Őshonos
     naturalised: Honosított
-  establishment_means: Letelepedési forma
+  establishment_means: Honosság státusza
   establishment_means_describes_how: |
-    A letelepedés forma azt írja le, hogyan telepedett le egy taxon egy területen. 
+    A honosság státusza azt írja le, hogyan telepedett le egy taxon egy területen. 
     Lásd a DarwinCore-t <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">a kifejezés bővebb leírásáért.</a>.
   establishment_means_descriptions:
     native: ezen a környéken fejlődött, vagy más úton, ember segítsége nélkül érkezett
@@ -1758,6 +1758,7 @@ hu:
     fr-CA: Francia (Kanada)
     gl: Galíciai
     he: Héber
+    hr: horvát
     hu: magyar
     id: Indonéz
     it: Olasz
@@ -2249,7 +2250,7 @@ hu:
     irregular: Az előfordulás nem előre látható, a csavargókat beleértve; gyakori lehet bizonyos években, hiányozhat másokban
     present: Előfordul a területen
     uncommon: Rendszeresen előfordul, de kis számban; szükséges az élőhely alapos átvizsgálása
-  occurrence_status_establishment_means: előfordulás, letelepedési státusz
+  occurrence_status_establishment_means: előfordulás, honosság státusza
   occurrence_status_levels:
     present: jelen van
     common: gyakori
@@ -4000,7 +4001,7 @@ hu:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Biztos vagy benne? Ez megváltoztatja a lista MINDEN taxon letelepedési formáját amelyek e helyen belül léteznek. Sok munka mehet kárba.
+          Biztos vagy benne? Ez megváltoztatja a lista MINDEN taxonjának honossági státuszát, amelyek e helyen belül léteznek. Sok munka mehet kárba.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Az életlisták nevén nem lehet módosítani
@@ -4272,7 +4273,7 @@ hu:
         about_conservation_status_desc: |
           A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
-          A "Letelepedési forma" azt írja le, hogy miként érkezett egy faj oda, ahol most él. Behurcolt azt jelenti, hogy emberi tevékenység által jött be, őshonos pedig azt, hogy ember segítsége nélkül érkezett. Helyi fajok csak egy bizonyos helyen léteznek és sehol máshol.
+          A "Honosság státusza" azt írja le, hogy miként érkezett egy faj oda, ahol most él. Behurcolt azt jelenti, hogy emberi tevékenység által jött be, őshonos pedig azt, hogy ember segítsége nélkül érkezett. Endemikus fajok csak egy bizonyos helyen léteznek és sehol máshol.
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
@@ -4641,7 +4642,7 @@ hu:
         published_at: Publikálva
       listed_taxon:
         occurrence_status_level: Előfordulás szintje
-        establishment_means: Letelepedési forma
+        establishment_means: Honosság státusza
       message:
         subject: Tárgy
       moderator_action:
