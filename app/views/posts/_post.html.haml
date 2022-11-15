@@ -14,6 +14,8 @@
     - text = formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
     - if hard_truncate_length
       = truncate_with_more text, length: hard_truncate_length, ellipsize: true
+      %p
+        = link_to t(:view_post), post_url, class: "readmore"
     - elsif truncate_length
       = truncate_with_more text, length: truncate_length
     - else
