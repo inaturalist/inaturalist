@@ -117,7 +117,7 @@
         <span class="comment_actions">
           <%-
             pieces = []
-            if is_me?(item.user) && edit_url
+            if is_me?(item.user) && edit_url && !parent_comments_disabled
               pieces << link_to(t(:edit), edit_url)
             end
             if item.is_a?( Identification ) && is_me?( item.user )
