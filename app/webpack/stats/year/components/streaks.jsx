@@ -39,10 +39,10 @@ const Streaks = ( {
     .domain( dates )
     .range( [0, 1.0] );
   let ticks = scale.ticks( timeMonth.every( 1 ) );
-  if ( ticks.length > 24 ) ticks = scale.ticks( timeYear.every( 1 ) );
-  let dateFormat = "MMM";
-  if ( multiYear ) {
-    dateFormat = ticks.length > 24 ? "YYYY" : "MMM 'YY";
+  let dateFormat = ticks.length > 12 ? "MMM 'YY" : "MMM";
+  if ( ticks.length > 24 ) {
+    ticks = scale.ticks( timeYear.every( 1 ) );
+    dateFormat = "YYYY";
   }
   const days = data.map( d => d.days );
   const dayScale = scaleLog( )
