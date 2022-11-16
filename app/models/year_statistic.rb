@@ -489,14 +489,16 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image
-    # Re-disabling this until we figure out https://github.com/inaturalist/chef-repo-azure/issues/31
-    return
-
-    if year >= 2020
-      generate_shareable_image_no_obs
-    else
-      generate_shareable_image_obs_grid
+    timeout = 10.seconds
+    Timeout.timeout timeout do
+      if year >= 2020
+        generate_shareable_image_no_obs
+      else
+        generate_shareable_image_obs_grid
+      end
     end
+  rescue Timeout::Error
+    Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
   end
 
   def generate_shareable_image_obs_grid
