@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import Donors from "./donors";
+import MonthlySupporters from "./monthly_supporters";
 
 const DonateContent = ( { year, data, isTouchDevice } ) => (
   <Grid fluid={isTouchDevice}>
@@ -39,6 +40,9 @@ const DonateContent = ( { year, data, isTouchDevice } ) => (
             </a>
           </div>
           { data.budget && data.budget.donors && <Donors year={year} data={data.budget.donors} /> }
+          { data.budget && data.budget.monthly_supporters && (
+            <MonthlySupporters year={year} data={data.budget.monthly_supporters} />
+          ) }
         </div>
       </Col>
     </Row>
@@ -138,7 +142,7 @@ const DonateContent2021 = ( { forDonor, isTouchDevice, year } ) => {
       </Grid>
     </div>
   );
-}
+};
 
 DonateContent2021.propTypes = {
   forDonor: PropTypes.bool,
@@ -183,7 +187,9 @@ const Donate = ( { forDonor, year, data } ) => {
   ) !== null;
   if ( year >= 2021 ) {
     storeContent = <StoreContent2021 isTouchDevice={isTouchDevice} />;
-    donateContent = <DonateContent2021 forDonor={forDonor} year={year} isTouchDevice={isTouchDevice} />;
+    donateContent = (
+      <DonateContent2021 forDonor={forDonor} year={year} isTouchDevice={isTouchDevice} />
+    );
   } else {
     storeContent = <StoreContent isTouchDevice={isTouchDevice} />;
     donateContent = <DonateContent year={year} data={data} isTouchDevice={isTouchDevice} />;
