@@ -77,6 +77,14 @@ class StatsController < ApplicationController
     else
       YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
     end
+
+    # Embargo current year's global and site YIRs until December 1, except for staff
+    if !@display_user &&
+        !current_user&.is_admin? &&
+        Date.today.year == @year &&
+        Date.today < Date.parse( "#{@year}-12-01" )
+      @year_statistic = nil
+    end
     @headless = @footless = true
     @shareable_image_url = if @year_statistic&.shareable_image?
       @year_statistic.shareable_image
