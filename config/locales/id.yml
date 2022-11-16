@@ -7372,6 +7372,13 @@ id:
               has_query_parameter: "tidak boleh mengandung parameter query/permintaan."
               invalid_uri: "harus berupa URI yang valid."
               relative_uri: "harus berupa URI yang absolut."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: telah menonaktifkan komentar
         flag:
           attributes:
             flag:
