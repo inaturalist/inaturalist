@@ -174,7 +174,11 @@ hr:
   added_to_favorites_html: |
     Dodano u <a href="%{url}">favorite</a>
   all_observations: Sva opažanja
+  all_taxa:
+    arachnids: Paučnjaci
   already_have_an_account_log_in_html: Već ste registrirani? <strong>Prijavite se.</strong>
+  analyze_ids: Analiziraj identifikacije
+  arachnids: paučnjaci
   back_to_possessive_user_profile: "Natrag na profil korisnika %{possuser}"
   back_to_your_observations: Natrag na tvoja opažanja
   back_to_your_profile: Natrag na profil
@@ -189,6 +193,34 @@ hr:
   community_guidelines: Smjernice zajednice
   create_an_account: Stvorite račun
   dashboard: Nadzorna ploča
+  date_format:
+    date_long:
+      january: '%{day}. siječnja %{year}.'
+      february: '%{day}. veljače %{year}.'
+      march: '%{day}. ožujka %{year}.'
+      april: '%{day}. travnja %{year}.'
+      may: '%{day}. svibnja %{year}.'
+      june: '%{day}. lipnja %{year}.'
+      july: '%{day}. srpnja %{year}.'
+      august: '%{day}. kolovoza %{year}.'
+      september: '%{day}. rujna %{year}.'
+      october: '%{day}. listopada %{year}.'
+      november: '%{day}. studenog %{year}.'
+      december: '%{day}. prosinca %{year}.'
+    month:
+      january: Siječanj
+      february: Veljača
+      march: Ožujak
+      april: Travanj
+      may: Svibanj
+      june: Lipanj
+      july: Srpanj
+      august: Kolovoz
+      september: Rujan
+      october: Listopad
+      november: Studeni
+      december: Prosinac
+  decrease_brightness: Smanji svjetlinu
   display_monthly_supporter_badge: Prikaži mjesečnu značku podrške na profilu
   display_name_description: Ovo je ime koje će biti prikazano na tvojem profilu, uključujući i za atribuciju autorskih prava
   edit_account_settings_and_profile: "Uredi postavke i profil"
@@ -201,6 +233,8 @@ hr:
   favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
   fill_out_your_profile: ispuni svoj profil
+  find_a_post: Pronađi objavu
+  find_posts_for: "Pronađi objave za dnevnik: %{journal_name}"
   follow_receive_updates_about_new_observations: Prati (budi obaviješten o novim opažanjima)
   following: Pratiš
   following_x_people:
@@ -220,16 +254,22 @@ hr:
   identify: Identificiraj
   identify_observations: "Identificiraj opažanja"
   identifications: Identifikacije
+  ids: "Identifikacije"
+  ids_made_for_others: Identificirao si za druge
   inat_user_profile: "%{site_name}: profil korisnika %{user}"
   inaturalist_is_a_joint_initiative: "%{site_name} je zajednička inicijativa Kalifornijske akademije znanosti i Društva National Geographic."
   join_the_largest_group_of_naturalists_in_the_world: Pridružite se najvećoj skupini prirodoslovaca na svijetu!
+  joined_with_date: "Datum registracije: %{date}"
   journal: Dnevnik
   journal_posts: Objave u dnevniku
   labels: Etikete
+  last_active_with_date: "Zadnji put aktivan: %{date}"
   learn: Saznaj
   learn_more: Saznaj više
   list: Popis
   lists: Popisi
+  locales:
+    hr: Hrvatski
   log_in: Prijavi se
   managing_projects: Upravljanje projektima
   map: Karta
@@ -245,6 +285,7 @@ hr:
   nearby_observations_: Obližnja opažanja
   new_observations: Nova opažanja
   new_updates_in_the_last_24_hours_from: "Novosti s %{site_name}a u zadnjih 24 sata"
+  no_ids: "Broj identifikacija"
   no_favorites_added:
     current_user: Nisi još dodao niti jedan favorit.
     user: "%{user} nije dodao favorite."
@@ -263,6 +304,9 @@ hr:
       <li><strong>Rasprave u kojima si sudjelovao/la:</strong> komentiranje ili dodavanje identifikacija tuđem sadržaju automatski te pretplaćuje na svaku novu aktivnost na tom sadržaju. Upotrijebi alat 'Upravljajte svojim pretplatama' kako bi prestao/la primati ažuriranja.</li>
       </ul>
   or: ili
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: ILI
   password: Lozinka
   password_confirmation: 'Potvrda lozinke'
   people: Ljudi
@@ -322,6 +366,8 @@ hr:
   data_transfer_consent_child_label: |
     Pristajem na prijenos osobnih podataka mog djeteta u Sjedinjene Američke Države
   places: Mjesta
+  places_name:
+    denmark: Danska
   privacy: Privatnost
   profile: Profil
   profile_picture: Profilna slika
@@ -329,16 +375,35 @@ hr:
     U pokušaju da spriječimo neželjeni sadržaj na %{site_name}u, korisnički profili
     javno su vidljivi tek nakon što korisnik pridonese nekoliko istraživački-ocijenjenih opažanja.
   projects: Projekti
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
+  ranks:
+    #Singular
+    species: Vrsta
+    x_species:
+      one: Vrsta
+      few: Vrste
+      other: Vrsta
+    #Singular
+    subspecies: Podvrsta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: vrsta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: podvrsta
   satellite: satelit
   search: Pretraživanje
   sign_out: Odjavi se
   sign_up: Registriraj se
   site_stats: Statistike iNaturalista
+  #Plural
+  species: Vrste
   stop_following_user: "Prestani pratiti %{user}"
   subscribe_to_places_help: |
     Pretplate kontroliraju o čemu te obavještavamo i što vidiš na nadzornoj ploči.
     Na primjer, možeš se pretplatiti na takson da bi pratio nova opažanja tog taksona. 
     Automatski si pretplaćen na opažanja koja komentiraš ili identificiraš.
+  summary: Sažetak
   taxa_info: Informacije o taksonima
   teachers_guide: Vodič za učitelje
   terrain: teren
@@ -388,6 +453,9 @@ hr:
       total_observations: Ukupan broj opažanja
       all_observations_in_this_taxon: Sva opažanja u ovom taksonu
       observations_of_exactly_this_taxon: Opažanja točno ovog taksona
+    observations:
+      import:
+        decimal_degrees_format: dd.dddd
     projects:
       new:
         project_summary_help: |
@@ -445,34 +513,55 @@ hr:
   date:
     abbr_month_names:
       - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
+      - sij.
+      - velj.
+      - ožu.
+      - trav.
+      - svi.
+      - lip.
+      - srp.
+      - kol.
+      - ruj.
+      - lis.
+      - stu.
+      - pro.
     month_names:
       - 
-      - January
-      - February
-      - March
-      - April
+      - Siječanj
+      - Veljača
+      - Ožujak
+      - Travanj
       - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+      - Lipanj
+      - Srpanj
+      - Kolovoz
+      - Rujan
+      - Listopad
+      - Studeni
+      - Prosinac
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
     human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Milijarda
+          million: Milijun
+          quadrillion: Kvadrilijun
+          thousand: Tisuću
+          trillion: Trilijun
       format:
         significant: true
         strip_insignificant_zeros: true
