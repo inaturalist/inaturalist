@@ -1791,8 +1791,10 @@ da:
   filters: Filtre
   find: Find
   find_a_guide: Find en guide
+  find_a_post: Find et indlæg
   find_a_place: Find et sted
   find_guides: Find guider
+  find_posts_for: "Find indlæg for: %{journal_name}"
   find_new_place_to_explore: Find et nyt sted at udforske!
   find_observations: Find observationer
   find_photos: Find fotos
@@ -2427,6 +2429,7 @@ da:
     de: Tysk
     el: Græsk
     en: Engelsk
+    en-GB: Engelsk (UK)
     eo: Esperanto
     es: Spansk
     es-AR: Spansk (Argentina)
@@ -2439,6 +2442,7 @@ da:
     fr-CA: Fransk (Canada)
     gl: Galicisk
     he: Hebraisk
+    hr: Kroatisk
     hu: Ungarsk
     id: Indonesisk
     it: Italiensk
@@ -8077,6 +8081,13 @@ da:
               has_query_parameter: "må ikke indeholde en forespørgselsparameter."
               invalid_uri: "skal være et gyldigt URI."
               relative_uri: "skal være et fuldstændigt URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: kommentarmulighed deaktiveret
         flag:
           attributes:
             flag:

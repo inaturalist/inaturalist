@@ -1745,8 +1745,10 @@ it:
   filters: Filtri
   find: Trova
   find_a_guide: Trovare una guida
+  find_a_post: Trova un post
   find_a_place: Trova un Luogo
   find_guides: Trova le Guide
+  find_posts_for: "Trova Post per: %{journal_name}"
   find_new_place_to_explore: Trova un nuovo luogo da esplorare!
   find_observations: Trova le osservazioni
   find_photos: Trova le Foto
@@ -2366,6 +2368,7 @@ it:
     de: Tedesco
     el: Greco
     en: Inglese
+    en-GB: Inglese (UK)
     eo: Esperanto
     es: Spagnolo
     es-AR: Spagnolo (Argentina)
@@ -2378,6 +2381,7 @@ it:
     fr-CA: Francese (Canada)
     gl: Galiziano
     he: Ebraico
+    hr: Croato
     hu: Ungherese
     id: Indonesiano
     it: Italiano
@@ -7496,6 +7500,13 @@ it:
               has_query_parameter: "non può contenere un parametro di ricerca."
               invalid_uri: "deve essere un URI valido."
               relative_uri: "deve essere un URI assoluto."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: ha disabilitato i commenti
         flag:
           attributes:
             flag:

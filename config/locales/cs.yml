@@ -1892,8 +1892,10 @@ cs:
   filters: Filtry
   find: Najít
   find_a_guide: Najít průvodce
+  find_a_post: Najít příspěvek
   find_a_place: Najít místo
   find_guides: Najít průvodce
+  find_posts_for: "Najít příspěvky pro: %{journal_name}"
   find_new_place_to_explore: Najít nové místo k objevování!
   find_observations: Najít pozorování
   find_photos: Najít fotky
@@ -2518,6 +2520,7 @@ cs:
     de: německy
     el: řecky
     en: anglicky
+    en-GB: anglicky (Spojené království)
     eo: esperanto
     es: španělsky
     es-AR: španělsky (Argentina)
@@ -5389,6 +5392,12 @@ cs:
   view_all_fields: Zobrazit všechna pole
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Zobrazit (všechen) %{count}"
+    few: "Zobrazit všechny %{count}"
+    many: "Zobrazit všech %{count}"
+    other: "Zobrazit všech %{count}"
   view_all_observations: Zobrazit všechna pozorování
   view_all_photocount_photos: "Zobrazit všech %{photo_count} fotek"
   view_assessment: Zobrazit hodnocení
