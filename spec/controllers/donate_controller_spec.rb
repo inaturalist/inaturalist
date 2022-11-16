@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe DonateController do
@@ -8,7 +10,7 @@ describe DonateController do
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/donate"
       expect( redirect_params["utm_source"].first ).to eq Site.default.domain
       expect( redirect_params["utm_medium"].first ).to eq "web"
@@ -20,7 +22,7 @@ describe DonateController do
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/donate"
       expect( redirect_params["utm_source"].first ).to eq non_default_site.domain
       expect( redirect_params["utm_medium"] ).to be_empty
@@ -28,14 +30,23 @@ describe DonateController do
     end
 
     it "maintains utm_medium param on domain redirect" do
-      utm_medium = "custom"
-      get :index, params: { inat_site_id: non_default_site.id, utm_medium: utm_medium }
+      utm_campaign = Faker::Lorem.word
+      utm_medium = Faker::Lorem.word
+      utm_term = Faker::Lorem.word
+      get :index, params: {
+        inat_site_id: non_default_site.id,
+        utm_campaign: utm_campaign,
+        utm_medium: utm_medium,
+        utm_term: utm_term
+      }
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/donate"
+      expect( redirect_params["utm_campaign"].first ).to eq utm_campaign
       expect( redirect_params["utm_medium"].first ).to eq utm_medium
+      expect( redirect_params["utm_term"].first ).to eq utm_term
     end
 
     it "does not redirect if there is a utm_source param" do
@@ -58,7 +69,7 @@ describe DonateController do
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/monthly-supporters"
       expect( redirect_params["utm_source"].first ).to eq Site.default.domain
       expect( redirect_params["utm_medium"].first ).to eq "web"
@@ -70,7 +81,7 @@ describe DonateController do
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/monthly-supporters"
       expect( redirect_params["utm_source"].first ).to eq non_default_site.domain
       expect( redirect_params["utm_medium"] ).to be_empty
@@ -83,7 +94,7 @@ describe DonateController do
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect
       redirect_uri = URI.parse( response.location )
-      redirect_params = CGI::parse( redirect_uri.query )
+      redirect_params = CGI.parse( redirect_uri.query )
       expect( redirect_uri.path ).to eq "/monthly-supporters"
       expect( redirect_params["utm_medium"].first ).to eq utm_medium
     end
@@ -100,5 +111,4 @@ describe DonateController do
       expect( response ).to_not be_redirect
     end
   end
-
 end
