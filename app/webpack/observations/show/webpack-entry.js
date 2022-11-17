@@ -115,6 +115,12 @@ if (
   }
 }
 
+if ( window.location.search.match( /test=vision/ ) ) {
+  store.dispatch( setConfig( {
+    testingVision: true
+  } ) );
+}
+
 store.dispatch( fetchAnnotationsPanelPreferences( ) );
 
 store.dispatch( fetchObservation( obsId, {
