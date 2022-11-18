@@ -7742,6 +7742,13 @@ sv:
               has_query_parameter: "kan inte innehålla en frågeparameter."
               invalid_uri: "måste vara en giltig URI."
               relative_uri: "måste vara en absolut URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: har stängt av kommentarer
         flag:
           attributes:
             flag:
