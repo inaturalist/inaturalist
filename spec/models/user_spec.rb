@@ -124,7 +124,7 @@ describe User do
 
     it "should set the URI" do
       u = User.make!
-      expect(u.uri).to eq(FakeView.user_url(u))
+      expect(u.uri).to eq(UrlHelper.user_url(u))
     end
 
     it "should set a default locale" do
