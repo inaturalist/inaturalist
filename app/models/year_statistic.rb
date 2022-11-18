@@ -639,6 +639,15 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
+  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
+  def clean_svg_for_imagemagick( svg_path )
+    tmp_path = "#{svg_path}.tmp"
+    run_cmd <<~BASH
+      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
+    BASH
+    run_cmd "mv #{tmp_path} #{svg_path}"
+  end
+
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
@@ -657,6 +666,7 @@ class YearStatistic < ApplicationRecord
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
     run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
+    clean_svg_for_imagemagick( icon_path ) if icon_ext.downcase == "svg"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
@@ -724,6 +734,7 @@ class YearStatistic < ApplicationRecord
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
     run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
+    clean_svg_for_imagemagick( wordmark_path ) if wordmark_ext.downcase == "svg"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
