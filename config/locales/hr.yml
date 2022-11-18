@@ -669,7 +669,7 @@ hr:
     cebuano: Cebuanski
     chinese_simplified: Kineski (pojednostavljeni)
     chinese_traditional: Kineski (tradicionalni)
-    croatian: hrvatski
+    croatian: Hrvatski
     czech: Češki
     danish: Danski
     dutch: Nizozemski
@@ -704,7 +704,7 @@ hr:
     romanian: Rumunjski
     russian: Ruski
     santali: Santali
-    serbian: srpski
+    serbian: Srpski
     slovak: Slovački
     slovenian: Slovenski
     spanish: Španjolski
@@ -765,6 +765,12 @@ hr:
   messages: Poruke
   momentjs:
     shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1s"
+      #Short text representing 1 hour in the past
+      h: "1h"
+      #Short text representing 1 day in the past
+      d: "1d"
       #Short text representing 1 month in the past
       M: "mjesec dana"
       #Short text representing %d months in the past
@@ -1551,9 +1557,9 @@ hr:
   user_added_an_identification_html: "%{user} je dodao identifikaciju"
   user_added_x_observations_html: "%{user} je dodao %{x} opažanja"
   user_autocomplete_placeholder: marinolinic, sebcato, itd.
-  user_commented: "%{user} je komentirao"
+  user_commented: "%{user} komentira"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
-  user_suggested_an_id: "%{user} je predložio identifikaciju"
+  user_suggested_an_id: "%{user} predlaže identifikaciju"
   username: Korisničko ime
   users: Korisnici
   users_favorites: "Favoriti korisnika %{user}"
