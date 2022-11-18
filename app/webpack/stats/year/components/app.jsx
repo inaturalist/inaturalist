@@ -129,6 +129,12 @@ const App = ( {
                   } ) }
                 </p>
               ) }
+              { !user && (
+                <p className="update-schedule text-center text-muted">
+                  { I18n.t( "views.stats.year.stats_generation_schedule" ) }
+                </p>
+              ) }
+
               { user && currentUser && user.id === currentUser.id ? (
                 <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
               ) : null }
