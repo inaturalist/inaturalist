@@ -8006,6 +8006,13 @@ cs:
               has_query_parameter: "nemůže obsahovat parametr dotazu."
               invalid_uri: "musí být platný identifikátor URI."
               relative_uri: "musí být absolutní URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: má zakázané komentáře
         flag:
           attributes:
             flag:
