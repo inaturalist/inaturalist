@@ -85,7 +85,11 @@ class YearStatistic < ApplicationRecord
     # fail, they don't take down everything else. They're also pretty boring
     # as of 2021 since it's basically just a lot of people on year+ long
     # streaks. Yet another thing I never should have built...
-    if year <= 2021 || !options[:site].blank?
+
+    # 2022 update: we decided to just not do streaks on global or site YIR
+    # anymore b/c it's too much of a support headache and encourages
+    # competetive behavior
+    if year <= 2021
       json[:observations][:streaks] = streaks( year, options )
       year_statistic.update( data: json )
     end
