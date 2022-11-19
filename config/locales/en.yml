@@ -1734,6 +1734,7 @@ en:
   # add the file as, for example, a new photo in the Uploader
   drop_it: Drop it
   download: Download
+  download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Download template</a> for use in the
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
@@ -2887,10 +2888,13 @@ en:
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Month
+  # title for section describing people who donate to iNat every month
+  monthly_supporters: Monthly Supporters
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
   more: More
+  more_caps: MORE
   more_about_sharing: More About Sharing
   more_fields: More Fields
   more_filters: More Filters
@@ -4580,6 +4584,7 @@ en:
   set_license: Set license
   settings: Settings
   share: Share
+  share_caps: SHARE
   share_colon: "Share:"
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -4878,7 +4883,8 @@ en:
   stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
   # As in a place to purchase things. We use it as a link to a place where you
   # can buy merchandise. Please try to keep translations as short as possible
-  store: STORE
+  store: Store
+  store_caps: STORE
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
@@ -5652,6 +5658,7 @@ en:
   verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View All
+  view_all_caps: VIEW ALL
   view_all_fields: View All Fields
   view_all_flags: View All Flags
   view_all_members: View All Members
@@ -5676,9 +5683,11 @@ en:
   view_full_observation: View Full Observation
   view_full_size_photo: View full-size photo
   view_inaturalist_global_year_in_review: View iNaturalist's Global %{year} Year in Review
+  view_inaturalist_global_year_in_review_caps: VIEW INATURALIST'S GLOBAL %{year} YEAR IN REVIEW
   # Text in link to view Year in Review for a specific site. %{site} should
   # support @vow_or_con
   view_site_year_in_review: View %{site} %{year} Year in Review
+  view_site_year_in_review_caps: VIEW %{SITE} %{year} YEAR IN REVIEW
   view_journal: View Journal
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
@@ -5724,6 +5733,7 @@ en:
   view_your_inbox: View your inbox
   view_your_observations: View your observations
   view_your_personal_year_in_review: "View your Personal %{year} Year in Review"
+  view_your_personal_year_in_review_caps: "VIEW YOUR PERSONAL %{year} YEAR IN REVIEW"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   video_tutorials: Video Tutorials
@@ -6118,6 +6128,7 @@ en:
       post_donate_social_media_text: I support iNaturalist because...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: BECOME A MONTHLY SUPPORTER OF INATURALIST
         desc_html: |
           <p class="lead">
             <strong>iNaturalist is one of the world's largest communities dedicated to
@@ -6143,6 +6154,8 @@ en:
             the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
             organization based in the United States of America.
           </p>
+        thank_you_for_being_a_monthly_supporter: Thank you for being a Monthly Supporter!
+        thank_you_for_being_a_monthly_supporter_caps: THANK YOU FOR BEING A MONTHLY SUPPORTER!
     flags:
       show:
         flaggable_content_desc: |

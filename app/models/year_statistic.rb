@@ -1075,6 +1075,7 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.publications( year, _options )
+    # TODO: replace this with https://www.gbif.org/developer/literature
     gbif_endpont = "https://www.gbif.org/api/resource/search"
     gbif_params = {
       contentType: "literature",
@@ -1085,9 +1086,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
     new_results = []
-    data["results"].each do | result |
+    response["results"].each do | result |
       if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
@@ -1099,7 +1100,7 @@ class YearStatistic < ApplicationRecord
         sleep( 1 )
       end
       result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
-      new_results << result.slice(
+      new_result = result.slice(
         "title",
         "authors",
         "year",
@@ -1111,10 +1112,16 @@ class YearStatistic < ApplicationRecord
         "_gbifDOIs",
         "altmetric_score"
       )
+      if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
+        new_result["authors"] = []
+      end
+      new_results << new_result
     end
-    data["results"] = new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5]
-    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
-    data
+    {
+      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
+      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      count: response["count"]
+    }
   end
 
   def self.observations_histogram_by_created_month( options = {} )

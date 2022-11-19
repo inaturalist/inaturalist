@@ -177,7 +177,8 @@
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
           sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
-          donor: <%= !!current_user.donorbox_donor_id %>
+          donor: <%= current_user.donor? %>,
+          monthlyDonor: <%= current_user.monthly_donor? %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

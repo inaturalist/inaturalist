@@ -23,47 +23,48 @@ const BulletGraph = ( {
   const ticks = scale.ticks( );
   return (
     <div className={`BulletGraph ${vertical ? "vertical" : ""}`}>
-      <div className="high" style={{ [valueDimension]: "100%" }} title={high}>
+      <div className="high" style={{ [valueDimension]: "100%" }} title={high.toString( )}>
         <div className="qual-label">{ highLabel }</div>
         <div className="qual-label-extra">{ highLabelExtra }</div>
-        <div className="medium" style={{ [valueDimension]: `${scale( medium )}%` }} title={medium}>
+        <div className="medium" style={{ [valueDimension]: `${scale( medium )}%` }} title={medium.toString( )}>
           <div className="qual-label">{ mediumLabel }</div>
           <div className="qual-label-extra">{ mediumLabelExtra }</div>
         </div>
-        { scale( low ) < 5
-          ? (
-            <div className="low-too-small">
-              <OverlayTrigger
-                placement="top"
-                trigger="click"
-                rootClose
-                container={$( "#wrapper.bootstrap" ).get( 0 )}
-                overlay={(
-                  <Tooltip id={`bullet-low-too-small-${low}-${medium}-${high}`}>
-                    { I18n.t( "views.stats.year.low_too_small", { low_value: low, low_desc: lowLabelExtra } ) }
-                  </Tooltip>
-                )}
-              >
-                <i className="fa fa-info-circle" />
-              </OverlayTrigger>
-            </div>
-          )
-          : (
-            <div className="low" style={{ [valueDimension]: `${scale( low )}%` }} title={low}>
-              <div className="qual-label">{ lowLabel }</div>
-              <div className="qual-label-extra">{ lowLabelExtra }</div>
-            </div>
-          )
+        {
+          scale( low ) < 5
+            ? (
+              <div className="low-too-small">
+                <OverlayTrigger
+                  placement="top"
+                  trigger="click"
+                  rootClose
+                  container={$( "#wrapper.bootstrap" ).get( 0 )}
+                  overlay={(
+                    <Tooltip id={`bullet-low-too-small-${low}-${medium}-${high}`}>
+                      { I18n.t( "views.stats.year.low_too_small", { low_value: low, low_desc: lowLabelExtra } ) }
+                    </Tooltip>
+                  )}
+                >
+                  <i className="fa fa-info-circle" />
+                </OverlayTrigger>
+              </div>
+            )
+            : (
+              <div className="low" style={{ [valueDimension]: `${scale( low )}%` }} title={low.toString( )}>
+                <div className="qual-label">{ lowLabel }</div>
+                <div className="qual-label-extra">{ lowLabelExtra }</div>
+              </div>
+            )
         }
         <div
           className="comparison"
           style={{ [valueDimension]: `${scale( comparison )}%` }}
-          title={comparison}
+          title={comparison.toString( )}
         />
         <div
           className="performance"
           style={{ [valueDimension]: `${scale( performance )}%` }}
-          title={performance}
+          title={performance.toString( )}
         />
       </div>
       <div className="ticks">
@@ -94,6 +95,14 @@ BulletGraph.propTypes = {
   highLabel: PropTypes.string,
   highLabelExtra: PropTypes.string,
   vertical: PropTypes.bool
+};
+
+BulletGraph.defaultProps = {
+  comparison: 0,
+  high: 0,
+  low: 0,
+  medium: 0,
+  performance: 0
 };
 
 export default BulletGraph;

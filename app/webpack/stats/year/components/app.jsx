@@ -66,7 +66,7 @@ const App = ( {
             <Col xs={12}>
               <center>
                 <a href="#sharing" className="btn btn-default btn-share btn-bordered">
-                  { I18n.t( "share" ) }
+                  { I18n.t( "share_caps", { defaultValue: I18n.t( "share" ) } ) }
                   { " " }
                   <i className="fa fa-share-square-o" />
                 </a>
@@ -114,13 +114,24 @@ const App = ( {
               }
               {
                 !user
+                // In 2022 we started putting the Network section in between
+                // parts of the donate section for reasons I cannot fathom
+                && year < 2022
                 && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} />
               }
             </Col>
           </Row>
         </Grid>
         { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
-          <Donate year={year} data={data} forDonor={currentUser && currentUser.donor} />
+          <Donate
+            year={year}
+            data={data}
+            forDonor={currentUser && currentUser.donor}
+            forMonthlyDonor={currentUser?.monthlyDonor}
+            site={site}
+            sites={sites}
+            defaultSiteId={DEFAULT_SITE_ID}
+          />
         ) }
         <Grid fluid={isTouchDevice}>
           <Row>
@@ -179,7 +190,7 @@ const App = ( {
                       rel="noopener noreferrer"
                     >
                       <i className="fa fa-download" />
-                      { I18n.t( "download" ) }
+                      { I18n.t( "download_caps", { defaultValue: I18n.t( "download" ) } ) }
                     </a>
                   ) }
                 </center>
@@ -206,16 +217,6 @@ const App = ( {
       montageObservations = montageObservations.concat( montageObservations );
     }
   }
-
-  // I don't know why defaultValue isn't doing the trick here but it's not
-  let visibleTitle = I18n.t( "year_in_review2", { year } );
-  if (
-    I18n.locale.toString( ).indexOf( "en" ) > 0
-    && visibleTitle === I18n.t( "year_in_review2", { year, locale: "en" } )
-  ) {
-    visibleTitle = I18n.t( "year_in_review", { year } );
-  }
-
 
   let topYIRLink = (
     <a href={`/stats/${year}/you`} className="btn btn-link btn-link-underline btn-lg">
@@ -305,7 +306,12 @@ const App = ( {
               <center><Donor year={year} user={user} /></center>
             ) }
             <h1>
-              <p>{ visibleTitle }</p>
+              <p>
+                { I18n.t( "year_in_review2", {
+                  year,
+                  defaultValue: I18n.t( "year_in_review", { year } )
+                } ) }
+              </p>
             </h1>
             <p className="text-center">
               { topYIRLink }
@@ -323,7 +329,10 @@ const App = ( {
                   <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
-                    { I18n.t( "view_your_personal_year_in_review", { year } ) }
+                    { I18n.t( "view_your_personal_year_in_review_caps", {
+                      year,
+                      defaultValue: I18n.t( "view_your_personal_year_in_review", { year } )
+                    } ) }
                   </a>
                   { site && defaultSite && site.id !== defaultSite.id && (
                     <div>
@@ -333,7 +342,7 @@ const App = ( {
                       >
                         <i className="fa fa-bar-chart-o" />
                         { " " }
-                        { I18n.t( "view_inaturalist_global_year_in_review", { year } ) }
+                        { I18n.t( "view_inaturalist_global_year_in_review_caps", { year } ) }
                       </a>
                     </div>
                   ) }
@@ -346,8 +355,8 @@ const App = ( {
                     { " " }
                     {
                       site.id === defaultSite.id
-                        ? I18n.t( "view_inaturalist_global_year_in_review", { year } )
-                        : I18n.t( "view_site_year_in_review", {
+                        ? I18n.t( "view_inaturalist_global_year_in_review_caps", { year } )
+                        : I18n.t( "view_site_year_in_review_caps", {
                           year,
                           site: site.name,
                           vow_or_con: site.name[0].toLowerCase( )

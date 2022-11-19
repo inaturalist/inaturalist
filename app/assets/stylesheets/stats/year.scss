@@ -222,7 +222,6 @@ $tip-opacity: 1;
       color: white;
       border: 2px solid darken( $inat-green, 10% );
       border-radius: 100px;
-      text-transform: uppercase;
       font-weight: 100;
       i {
         margin-right: 5px;
@@ -1125,7 +1124,7 @@ $tip-opacity: 1;
         color: $inat-green;
       }
     }
-    .btn {
+    .btn-donate {
       font-weight: bold !important;
     }
     .Donors .chart svg {
@@ -1165,7 +1164,7 @@ $tip-opacity: 1;
       margin-bottom: 20px;
     }
 
-    .DonateContent2021 {
+    .donate-content {
       .flex-row {
         align-items: center;
 
