@@ -13,11 +13,10 @@ const Publications = ( { data, year } ) => {
   const renderPublication = pub => {
     const baseKey = `publication-${pub.id}`;
     let authors = "";
-    if ( pub?.authors.length > 0 ) {
-      console.log( "pub.authors[0]: ", pub.authors[0] );
+    if ( pub && pub.authors && pub.authors.length > 0 ) {
       authors = authorName( pub.authors[0] );
     }
-    if ( pub?.authors.length > 1 ) {
+    if ( pub && pub.authors && pub.authors.length > 1 ) {
       authors += ", ";
       authors += commasAnd(
         pub.authors
