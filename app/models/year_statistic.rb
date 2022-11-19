@@ -776,21 +776,16 @@ class YearStatistic < ApplicationRecord
     else
       ""
     end
-    title = if user
+    locale = if user
       user_site = user.site || Site.default
-      locale = user.locale.presence || user_site.locale.presence || I18n.locale
-      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
-      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+      user.locale.presence || user_site.locale.presence || I18n.locale
     elsif site
-      locale = site.locale.presence || I18n.locale
-      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      site.locale.presence || I18n.locale
     else
       default_site = Site.default
-      locale = default_site.locale.presence || I18n.locale
-      site_name = default_site.site_name_short.presence || default_site.name
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      default_site.locale.presence || I18n.locale
     end
+    title = I18n.t( :year_in_review, year: year, locale: locale )
     title = title.mb_chars.upcase
     obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i

@@ -1541,4 +1541,10 @@ $tip-opacity: 1;
       }
     }
   }
+
+  .btn-link-underline {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: $inat-green;
+  }
 }

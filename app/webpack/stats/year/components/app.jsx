@@ -89,7 +89,7 @@ const App = ( {
               />
               { data && data.growth && (
                 <Growth
-                  data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
+                  data={{ ...data.growth, taxa: data.taxa.accumulation }}
                   year={year}
                   site={site && site.id !== DEFAULT_SITE_ID ? site : null}
                 />
@@ -112,7 +112,10 @@ const App = ( {
                   />
                 )
               }
-              { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+              {
+                !user
+                && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} />
+              }
             </Col>
           </Row>
         </Grid>
@@ -194,15 +197,46 @@ const App = ( {
     && data.observations.popular
     && data.observations.popular.length > 0
   ) {
-    montageObservations = _.filter(
-      data.observations.popular, o => (
-        o.photos
-        && o.photos.length > 0
-        && _.filter( o.photos, p => p.original_dimensions ).length > 0
-      )
-    );
+    montageObservations = _.filter( data.observations.popular, o => (
+      o.photos
+      && o.photos.length > 0
+      && _.filter( o.photos, p => p.original_dimensions ).length > 0
+    ) );
     while ( montageObservations.length < 150 ) {
       montageObservations = montageObservations.concat( montageObservations );
+    }
+  }
+
+  // I don't know why defaultValue isn't doing the trick here but it's not
+  let visibleTitle = I18n.t( "year_in_review2", { year } );
+  if (
+    I18n.locale.toString( ).indexOf( "en" ) > 0
+    && visibleTitle === I18n.t( "year_in_review2", { year, locale: "en" } )
+  ) {
+    visibleTitle = I18n.t( "year_in_review", { year } );
+  }
+
+
+  let topYIRLink = (
+    <a href={`/stats/${year}/you`} className="btn btn-link btn-link-underline btn-lg">
+      { I18n.t( "view_your_personal_year_in_review", { year } ) }
+    </a>
+  );
+  if ( currentUser ) {
+    if ( user && user.id === currentUser.id ) {
+      topYIRLink = (
+        <a href={`/stats/${year}`} className="btn btn-link btn-link-underline btn-lg">
+          {
+            ( user.site_id === defaultSite.id || !user.site_id )
+              ? I18n.t( "view_inaturalist_global_year_in_review", { year } )
+              : I18n.t( "view_site_year_in_review", {
+                year,
+                site: site.name,
+                vow_or_con: site.name[0].toLowerCase( )
+              } )
+          }
+        </a>
+      );
     }
   }
 
@@ -271,12 +305,11 @@ const App = ( {
               <center><Donor year={year} user={user} /></center>
             ) }
             <h1>
-              {
-                I18n.t( "year_in_review", {
-                  year
-                } )
-              }
+              <p>{ visibleTitle }</p>
             </h1>
+            <p className="text-center">
+              { topYIRLink }
+            </p>
           </Col>
         </Row>
       </Grid>
@@ -290,7 +323,7 @@ const App = ( {
                   <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-pie-chart" />
                     { " " }
-                    { I18n.t( "view_your_year_stats", { year } ) }
+                    { I18n.t( "view_your_personal_year_in_review", { year } ) }
                   </a>
                   { site && defaultSite && site.id !== defaultSite.id && (
                     <div>
@@ -300,11 +333,7 @@ const App = ( {
                       >
                         <i className="fa fa-bar-chart-o" />
                         { " " }
-                        { I18n.t( "view_year_stats_for_site", {
-                          year,
-                          site: defaultSite.name,
-                          vow_or_con: "i"
-                        } ) }
+                        { I18n.t( "view_inaturalist_global_year_in_review", { year } ) }
                       </a>
                     </div>
                   ) }
@@ -315,11 +344,15 @@ const App = ( {
                   <a href={`/stats/${year}`} className="btn btn-primary btn-bordered btn-lg">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
-                    { I18n.t( "view_year_stats_for_site", {
-                      year,
-                      site: site.name,
-                      vow_or_con: site.name[0].toLowerCase( )
-                    } ) }
+                    {
+                      site.id === defaultSite.id
+                        ? I18n.t( "view_inaturalist_global_year_in_review", { year } )
+                        : I18n.t( "view_site_year_in_review", {
+                          year,
+                          site: site.name,
+                          vow_or_con: site.name[0].toLowerCase( )
+                        } )
+                    }
                   </a>
                 </div>
               ) }

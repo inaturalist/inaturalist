@@ -2273,6 +2273,7 @@ en:
   # Notification when an identification has been withdrawn
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
+  inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -4623,6 +4624,8 @@ en:
   # Journal post formatting option
   simple: Simple
   single_observation: Single observation
+  # @vow_or_con should work with %{site}
+  site_year_in_review: "%{site}'s %{year} Year in Review"
   sizes: Sizes
   skip_to_next_page: "Skip to next page"
   small: small
@@ -5640,7 +5643,8 @@ en:
   users_lists: "%{user}'s Lists"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
-  users_year_on_site: "%{user}'s Year On %{site} %{year}"
+  # @vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}'s %{year} %{site} Year in Review"
   valid_options_are: Valid options are
   value: Value
   values: Values
@@ -5671,6 +5675,10 @@ en:
   view_flags_for_x_html: "View Flags for %{x}"
   view_full_observation: View Full Observation
   view_full_size_photo: View full-size photo
+  view_inaturalist_global_year_in_review: View iNaturalist's Global %{year} Year in Review
+  # Text in link to view Year in Review for a specific site. %{site} should
+  # support @vow_or_con
+  view_site_year_in_review: View %{site} %{year} Year in Review
   view_journal: View Journal
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
@@ -5711,12 +5719,11 @@ en:
   view_taxononomy_details_for_taxon: "View taxonomy details for %{taxon}"
   view_user_observations: "View %{user}'s observations"
   view_x: "View %{x}"
-  view_year_stats_for_site: "View %{year} Stats For %{site}"
   view_your_dashboard: View your dashboard
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>View your dashboard</a> for more updates"
   view_your_inbox: View your inbox
   view_your_observations: View your observations
-  view_your_year_stats: "View Your %{year} Stats"
+  view_your_personal_year_in_review: "View your Personal %{year} Year in Review"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   video_tutorials: Video Tutorials
@@ -5856,6 +5863,7 @@ en:
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
   year_in_review: "Year In Review %{year}"
+  year_in_review2: "Year in Review %{year}"
   year_month: year/month
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
