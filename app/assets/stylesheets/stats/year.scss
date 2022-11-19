@@ -359,8 +359,11 @@ $tip-opacity: 1;
       margin: 50px auto;
     }
 
-    .updated-at {
-      margin-top: 50px
+    .updated-at, .update-schedule {
+      margin-top: 50px;
+    }
+    .updated-at + .update-schedule {
+      margin-top: 0px;
     }
 
     #view-stats-buttons {
