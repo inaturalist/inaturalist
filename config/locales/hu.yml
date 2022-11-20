@@ -1148,6 +1148,10 @@ hu:
   draft_saved: Piszkozat elmentve!
   drafts: Piszkozatok
   drag_and_drop_some_photos_or_sounds: Húzz ide néhány fényképet vagy hangot
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Határolókör rajzolása
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Határolónégyszög rajzolása
   drawings: Rajzok
   duplicate_verb: Másolás
   duration_value: "Hossz: %{duration} perc"
@@ -1210,7 +1214,7 @@ hu:
   establishment:
     endemic: Endemikus
     establishment: Letelepedés
-    introduced: Behurcolt
+    introduced: Jövevény
     invasive: Inváziós
     managed: Felügyelt
     native: Őshonos
@@ -1548,7 +1552,7 @@ hu:
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Idézet beszúrása
   internal_taxon_rank: Belső taxonszint
-  introduced: Behurcolt
+  introduced: Jövevény
   introduced_in_place: "Behurcolva ide: %{place}"
   invitation: Meghívó
   invite: meghívás
@@ -1955,6 +1959,7 @@ hu:
   most_observations: Legtöbb megfigyelés
   most_species: Legtöbb faj
   most_observed_species: Legtöbbet megfigyelt fajok
+  most_observed_introduced_species: A leggyakrabban megfigyelt jövevény fajok
   most_observed_threatened_species: A leggyakrabban megfigyelt veszélyeztetett fajok
   multiple: többszörös
   #Project rule for an umbrella project. %{project} is the title of the project
@@ -3258,6 +3263,8 @@ hu:
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
     Néhány megfigyelésből hiányzik a média vagy az asonosítás
+  some_observations_are_missing_media_or_identifications_desc: |
+    A képek vagy hangok nélküli megfigyelések alapértelmezetten nem jelennek meg a keresésekben, azonosítások nélkül pedig az egyes taxonokra szakosodott felhasználók nem fogják megtalálni. Javasoljuk, hogy legalább tágabb taxonokat (például "növények") adj a megfigyeléseidhez.
   some_observations_failed_to_be_added: Pár megfigyelés nem lett hozzáadva a projektekhez
   some_other_reason: Egyéb ok, alább meghatározva.
   some_rights_reserved: néhány jog fenntartva
@@ -3779,6 +3786,7 @@ hu:
   view_all_of_your_observations_from_x: "Megfigyeléseid megtekintése innen: %{x}"
   video_tutorials: Videó bemutatók
   visually_similar: Kinézetre hasonló
+  vulnerable: Sebezhető
   w_photos_only: fotókkal
   w_sounds: hanggal
   #Species that are "wanted," e.g. we know they exist but haven't been observed
@@ -4277,7 +4285,7 @@ hu:
         about_conservation_status_desc: |
           A természetvédelmi helyzet összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
-          A "Honosság státusza" azt írja le, hogy miként érkezett egy faj oda, ahol most él. Behurcolt azt jelenti, hogy emberi tevékenység miatt került be egy adott területre, őshonos pedig azt, hogy emberi segítség nélkül érkezett. Endemikus fajok csak egy adott helyen fordulnak elő és sehol máshol.
+          A "Honosság státusza" azt írja le, hogy milyen módon jutott el egy adott faj oda, ahol jelenleg előfordul. Jövevény azt jelenti, hogy emberi tevékenység miatt került be egy adott területre, őshonos pedig azt, hogy emberi segítség nélkül érkezett.
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
