@@ -8,6 +8,7 @@
     var opts = params || {};
     if (
       opts.defaultValue
+      && I18n.locale.toString( ).indexOf( "en" ) !== 0
       && (
         originalImplementation( key, opts )
         // eslint-disable-next-line prefer-object-spread
