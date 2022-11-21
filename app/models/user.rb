@@ -1423,7 +1423,11 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since
