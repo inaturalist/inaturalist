@@ -1126,6 +1126,27 @@ export function subscribe( ) {
   };
 }
 
+export function togglePlayFirstSound( ) {
+  return ( ) => {
+    const player = $(".obs-media .sounds").find("audio:first")[0];
+    const is_active_element_audio = $(document.activeElement).is("audio");
+    if ( !player ) { 
+      return; 
+    }
+    // Use default processing if an audio element is already active.
+    if ( is_active_element_audio ) {
+      return;
+    }
+    player.focus();
+    if ( player.paused ) {
+      player.play( );
+    }
+    else {
+      player.pause( );
+    }
+  };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
