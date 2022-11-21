@@ -43,11 +43,13 @@ const DonateContent2022 = ( {
     <Grid fluid={isTouchDevice}>
       <Row>
         <Col xs={12}>
-          <h2>
-            <a name="monthly" href="#monthly">
-              <span>{I18n.t( "monthly_supporters" )}</span>
-            </a>
-          </h2>
+          {/*
+            <h2>
+              <a name="monthly" href="#monthly">
+                <span>{I18n.t( "monthly_supporters" )}</span>
+              </a>
+            </h2>
+          */}
           <div className="text-center">
             <a
               href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=monthly`}
