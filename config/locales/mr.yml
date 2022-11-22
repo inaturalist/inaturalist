@@ -501,6 +501,8 @@ mr:
       प्रामुख्याने अस्थींचे अवशेष, याव्यतिरिक्त जीवाच्या अखंड शरीरावरील हाडांचा काही भाग प्रदर्शित झाल्यास तो "जीव" म्हणून निर्देशित करावा
     molt: कात किंवा टाकून दिलेली त्वचा/बाह्यअस्थी
   create_an_account: खाते उघडा
+  #Label for a custom boundary for an observation search
+  custom_boundary: स्वनिर्मित सीमारेषा
   dashboard: मुख्यपटल
   date_obscured_notice: वैयक्तिक किंवा सजीवाच्या गोपनीयतेच्या संरक्षणासाठी तारीख अनिश्चित ठेवली आहे
   default_display_time_zone: सर्वसाधारण दृश्यमान वेळ क्षेत्र
@@ -514,6 +516,10 @@ mr:
         जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: वर्तुळाकार सीमारेषा रेखाटा
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: आयताकार सीमारेषा रेखाटा
   edit_conservation_status: संवर्धन स्थिती बदला
   edit_observations: निरीक्षणात बदल करा
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
@@ -521,6 +527,8 @@ mr:
   email: ई-मेल
   explore: सर्वेक्षण
   favorites: "आवडते"
+  find_a_post: पोस्ट शोधा
+  find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
   grid: ओळखलेली निरीक्षणे
   guides: मार्गदर्शक
@@ -547,12 +555,16 @@ mr:
   lexicons:
     marathi: मराठी
     persian: पर्शियन
+    serbian: सर्बियन
     swahili: स्वाहिली
   list: यादी
   lists: याद्या
   locales:
+    en-GB: इंग्रजी (युके)
+    hr: क्रोएशिअन
     mi: माओरी
     mr: मराठी
+    sr: सर्बियन
   log_in: लॉग इन करा
   #Status message shown while logging in
   logging_in: तुमचे खाते उघडत आहे
@@ -614,12 +626,16 @@ mr:
   data_transfer_consent_child_label: |
     माझ्या मुलाची वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
   places: ठिकाणे
+  places_warning_please_keep_in_mind: |
+    कृपया खालील निर्बंध लक्षात ठेवा:
   privacy: गोपनीयता
   profile: प्रोफाइल
   projects: प्रकल्प
   radius_km: त्रिज्या (किमी)
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: नोंद
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: पुन्हा पहिल्यासारखे करा
   result_window_too_large_error: |
     पृष्‍ठसंख्या आणि प्रति पृष्‍ठ परिणामांची संख्‍या यांचा गुणाकार १०, ००० पेक्षा जास्त असू शकत नाही. परिणामांची संख्या कमी करण्यासाठी चाळणीचा वापर करा.
   rules_types:
@@ -803,6 +819,7 @@ mr:
           रंग लॉगेरिथमिक स्केलवर (घातांक श्रेणी) दिवसांची संख्या दर्शवितो
         observation_streaks_desc2: |
           एखादी निरीक्षणाची मालिका म्हणजे कमीतकमी पाच दिवसांचा कालावधी जेव्हा एखादा निरीक्षक बाहेर पडला आणि त्याने दररोज नवीन, सत्यापित निरीक्षणे केली. आम्ही इथे या वर्षात सुरू झालेल्या किंवा जेव्हा ही आकडेवारी तयार केली गेली तेव्हा प्रगतीपथावर होत्या अशा प्रदीर्घ मालिका दर्शवित आहोत (वैयक्तिक वापरकर्त्यांसाठी, आम्ही या वर्षाअखेरीस समाप्त झालेल्या मालिकांचा देखील समावेश करीत आहोत).
+        stats_generation_schedule: डिसेंबरमध्ये दर रविवारी आणि १ जानेवारीला आकडेवारी तयार केली जाईल.
     taxa:
       show:
         frequency:
@@ -893,6 +910,13 @@ mr:
         position: स्थान
     errors:
       models:
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: टिप्पण्या अक्षम केल्या आहेत
         flag:
           attributes:
             flag:
