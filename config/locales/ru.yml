@@ -1642,6 +1642,7 @@ ru:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Отбросьте его
   download: Выгрузка
+  download_caps: СКАЧАТЬ
   download_bulk_import_template_html: |
     <a href="%{url}">Скачать шаблон</a> для использования в
     <a href="/observations/import#csv_import">групповой загрузке</a>
@@ -1859,8 +1860,10 @@ ru:
   filters: Фильтры
   find: Поиск
   find_a_guide: Найти руководство
+  find_a_post: Найти сообщение
   find_a_place: Найти место
   find_guides: Найти руководства
+  find_posts_for: "Найти сообщения в: %{journal_name}"
   find_new_place_to_explore: Найти новое место для исследования!
   find_observations: Найти наблюдения
   find_photos: Найти фото
@@ -2144,6 +2147,7 @@ ru:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
+  inaturalist_global_year_in_review: "Мировой обзор %{year} года iNaturalist"
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2488,6 +2492,7 @@ ru:
     de: Немецкий
     el: Греческий
     en: Английский
+    en-GB: Английский(Великобритания)
     eo: Эсперанто
     es: Испанский
     es-AR: Испанский (Аргентина)
@@ -2500,6 +2505,7 @@ ru:
     fr-CA: Французский (Канада)
     gl: Галисийский
     he: Иврит
+    hr: Хорватский
     hu: Венгерский
     id: индонезийский
     it: Итальянский
@@ -2723,10 +2729,13 @@ ru:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Месяц
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Ежемесячные спонсоры
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесячный спонсор</a> с %{date}
   months: Месяцы
   more: Ещё
+  more_caps: ЕЩЕ
   more_about_sharing: Подробнее о структуре
   more_fields: Больше полей
   more_filters: Больше фильтров
@@ -4341,6 +4350,7 @@ ru:
   set_license: Задать лицензию
   settings: Настройки
   share: Поделиться
+  share_caps: ПОДЕЛИТЬСЯ
   share_colon: "Поделиться:"
   short_code_for_this_place: Краткое обозначение этого места, например, US для Соединенных штатов
   short_or_abbreviated_title_for_display: Сокращенное название или аббревиатура для отображения в области с ограниченным пространством. Максимум 10 символов.
@@ -4385,6 +4395,8 @@ ru:
   #Journal post formatting option
   simple: Простой
   single_observation: Одиночное наблюдение
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Обзор %{year} года сайта %{site}"
   sizes: Размеры
   skip_to_next_page: "Перейти на следующую страницу"
   small: маленький
@@ -4566,6 +4578,7 @@ ru:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: Магазин
+  store_caps: МАГАЗИН
   studies_that_used_inaturalist_data_in_year: Исследования, в которых использовались данные iNaturalist в %{year}
   stuff_just_added: "Материал, который вы только что добавили ..."
   subject_resolved_noun_html: "%{subject} разрешил %{noun}"
@@ -5309,7 +5322,8 @@ ru:
   users_lists: "Списки %{user}"
   users_profile: "Профиль %{user}"
   users_projects: "Проекты %{user}"
-  users_year_on_site: "Год %{user}'s на %{site} %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Обзор года %{year} пользователя %{user}на сайте %{site}"
   valid_options_are: Допустимые параметры
   value: Значение
   values: Значения
@@ -5317,6 +5331,7 @@ ru:
   verifiable_observations_by_observation_date: Подтверждаемые наблюдения по дате наблюдения
   view: Просмотр
   view_all: Посмотреть все
+  view_all_caps: ПОСМОТРЕТЬ ВСЕ
   view_all_fields: Посмотреть все поля
   view_all_flags: Просмотр всех флагов
   view_all_members: Посмотреть всех участников
@@ -5339,6 +5354,12 @@ ru:
   view_flags_for_x_html: "Посмотреть флаги для %{x}"
   view_full_observation: Посмотреть наблюдение полностью
   view_full_size_photo: Просмотреть полноразмерное изображение
+  view_inaturalist_global_year_in_review: Посмотреть мировой обзор %{year} года iNaturalist
+  view_inaturalist_global_year_in_review_caps: ПОСМОТРЕТЬ МИРОВОЙ ОБЗОР %{year} ГОДА iNaturalist
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Посмотреть обзор сайта %{site} за %{year} год
+  view_site_year_in_review_caps: ПОСМОТРЕТЬ ОБЗОР САЙТА %{site} ЗА %{year} ГОД
   view_journal: Посмотреть журнал
   view_leaderboard_from_last_month: Посмотреть лидеров прошлого месяца
   view_leaderboard_from_last_year: Посмотреть лидеров прошлого года
@@ -5379,12 +5400,12 @@ ru:
   view_taxononomy_details_for_taxon: "Просмотр сведений о таксономии для %{taxon}"
   view_user_observations: "Посмотреть наблюдения %{user}"
   view_x: "Посмотреть %{x}"
-  view_year_stats_for_site: "Просмотр статистики %{year} для %{site}"
   view_your_dashboard: Посмотреть вашу панель мониторинга
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Посмотреть вашу панель мониторинга</a> на предмет обновлений"
   view_your_inbox: Просмотр входящих сообщений
   view_your_observations: Посмотреть ваши наблюдения
-  view_your_year_stats: "Просмотр вашей статистики %{year}"
+  view_your_personal_year_in_review: "Посмотреть ваш персональный обзор за %{year} год"
+  view_your_personal_year_in_review_caps: "ПОСМОТРЕТЬ ВАШ ПЕРСОНАЛЬНЫЙ ОБЗОР ЗА %{year} ГОД"
   view_yours: Посмотреть ваши
   view_all_of_your_observations_from_x: "Посмотреть все ваши наблюдения из %{x}"
   video_tutorials: Видеопособия
@@ -5521,6 +5542,7 @@ ru:
   x_wrote_y_new_posts_html: "%{x} написал %{y} новых сообщений"
   year: Год
   year_in_review: "Год обзора %{year}"
+  year_in_review2: "Обзор %{year} года"
   year_month: год/месяц
   year_on_site: "Год на %{site}%{year}"
   yellow: жёлтый
@@ -5730,6 +5752,7 @@ ru:
       post_donate_social_media_text: Я оказываю поддержку iNaturalist, потому что...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: СТАНЬТЕ ЕЖЕМЕСЯЧНЫМ СПОНСОРОМ INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
@@ -5743,6 +5766,8 @@ ru:
           <p class="text-muted">
           iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки.
           </p>
+        thank_you_for_being_a_monthly_supporter: Благодарим вас за ежемесячную поддержку!
+        thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВАС ЗА ЕЖЕМЕСЯЧНУЮ ПОДДЕРЖКУ!
     flags:
       show:
         flaggable_content_desc: |
@@ -6821,6 +6846,7 @@ ru:
         species_per_year_by_date_added: По дате добавления
         species_per_year_by_date_observed: По дате наблюдения
         stats_generated_datetime: Статистика сгенерирована на %{datetime}
+        stats_generation_schedule: Статистика будет сгенерирована каждое воскресенье декабря и 1 января
         store_prompt: |
           Хотите показать как вы гордитесь iNat везде, куда бы вы ни пошли? Посетите магазин iNat
           Store!
@@ -7794,6 +7820,13 @@ ru:
               has_query_parameter: "не может содержать параметр запроса."
               invalid_uri: "должен быть действительным URI"
               relative_uri: "должен быть абсолютным URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: отключил комментарии
         flag:
           attributes:
             flag:
