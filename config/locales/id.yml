@@ -1495,6 +1495,7 @@ id:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Jatuhkan
   download: Unduh
+  download_caps: UNDUH
   download_bulk_import_template_html: |
     <a href="%{url}">Unduh template</a> untuk digunakan di <a href="/observations/import?project_id=%{project_id}#csv_import">pengunggahan sekaligus</a>
   download_csv: Unduh CSV
@@ -1988,6 +1989,7 @@ id:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
+  inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2571,10 +2573,13 @@ id:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Bulan
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Pendukung Bulanan
   monthly_supporter_since_date_html: |
     <a href="%{url}">Pendukung Bulanan</a> sejak %{date}
   months: Bulan
   more: Lainnya
+  more_caps: LAINNYA
   more_about_sharing: Lebih Lanjut Perihal Pembagian
   more_fields: Bidang Lainnya
   more_filters: Saringan Lainnya
@@ -4176,6 +4181,7 @@ id:
   set_license: Atur lisensi
   settings: Pengaturan
   share: Bagikan
+  share_caps: BAGIKAN
   share_colon: "Bagikan:"
   short_code_for_this_place: Kode pendek untuk tempat ini, contohnya US untuk United States
   short_or_abbreviated_title_for_display: Judul pendek atau singkatan untuk ditampilkan di area yang memiliki ruang terbatas. Maks 10 karakter.
@@ -4220,6 +4226,8 @@ id:
   #Journal post formatting option
   simple: Sederhana
   single_observation: Pengamatan tunggal
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year}"
   sizes: Ukuran
   skip_to_next_page: "Lewati ke halaman selanjutnya"
   small: kecil
@@ -4395,7 +4403,8 @@ id:
   stop_trusting_this_person_with_your_private_coordinates: Berhenti memercayakan orang ini dengan koordinat tersembunyi milik Anda
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: TOKO
+  store: Toko
+  store_caps: TOKO
   studies_that_used_inaturalist_data_in_year: Penelitian Yang Menggunakan Data iNaturalist pada %{year}
   stuff_just_added: "Barang yang baru saja Anda tambahkan..."
   subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
@@ -5082,7 +5091,8 @@ id:
   users_lists: "Daftar %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Proyek %{user}"
-  users_year_on_site: "Tahun %{user} Di %{site} %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year} %{user}"
   valid_options_are: Opsi yang valid adalah
   value: Nilai
   values: Nilai
@@ -5090,6 +5100,7 @@ id:
   verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
   view: Lihat
   view_all: Lihat Semua
+  view_all_caps: LIHAT SEMUA
   view_all_fields: Lihat Semua Bidang
   view_all_flags: Lihat Semua Tanda
   view_all_members: Lihat Semua Anggota
@@ -5109,6 +5120,12 @@ id:
   view_flags_for_x_html: "Lihat Tanda untuk %{x}"
   view_full_observation: Lihat Pengamatan Sepenuhnya
   view_full_size_photo: Lihat foto berukuran penuh
+  view_inaturalist_global_year_in_review: Lihat Kilas Balik Satu Tahun %{year} iNaturalist Global
+  view_inaturalist_global_year_in_review_caps: LIHAT KILAS BALIK SATU TAHUN INATURALIST %{year} GLOBAL
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Lihat Kilas Balik Satu Tahun %{site} %{year}
+  view_site_year_in_review_caps: LIHAT KILAS BALIK SATU TAHUN %{SITE} %{year}
   view_journal: Lihat Jurnal
   view_leaderboard_from_last_month: Lihat papan peringkat dari bulan kemarin
   view_leaderboard_from_last_year: Lihat papan peringkat dari tahun lalu
@@ -5149,12 +5166,12 @@ id:
   view_taxononomy_details_for_taxon: "Lihat detail taksonomi untuk %{taxon}"
   view_user_observations: "Lihat pengamatan %{user}"
   view_x: "Lihat %{x}"
-  view_year_stats_for_site: "Lihat Statistik %{year} Untuk %{site}"
   view_your_dashboard: Lihat dasbor anda
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Lihat dasbor Anda</a> untuk kabar terbaru"
   view_your_inbox: Lihat kotak masuk Anda
   view_your_observations: Lihat pengamatan Anda
-  view_your_year_stats: "Lihat Statistik %{year} Anda"
+  view_your_personal_year_in_review: "Lihat Kilas Balik Satu Tahun %{year} iNaturalist Global Milik Anda"
+  view_your_personal_year_in_review_caps: "LIHAT KILAS BALIK SATU TAHUN %{year} MILIK ANDA"
   view_yours: Lihat Kepunyaanmu
   view_all_of_your_observations_from_x: "Lihat semua pengamatan Anda dari %{x}"
   video_tutorials: Video Tutorial
@@ -5278,6 +5295,7 @@ id:
   x_wrote_y_new_posts_html: "%{x} menulis kepada %{y} postingan baru"
   year: Tahun
   year_in_review: "Melihat Kembali Tahun %{year}"
+  year_in_review2: "Kilas Balik Satu Tahun %{year}"
   year_month: tahun/bulan
   year_on_site: "Tahun Di %{site} %{year}"
   yellow: kuning
@@ -5487,6 +5505,7 @@ id:
       post_donate_social_media_text: Saya mendukung iNaturalist karena...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
@@ -5500,6 +5519,8 @@ id:
           <p class="text-muted">
           iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society. Semua donasi akan diterima oleh California Academy of Sciences, sebuah organisasi 501(c)(3) nirlaba yang tidak dipajaki yang berbasis di Amerika Serikat.
           </p>
+        thank_you_for_being_a_monthly_supporter: Terima kasih sudah menjadi Pendukung Bulanan!
+        thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
     flags:
       show:
         flaggable_content_desc: |
