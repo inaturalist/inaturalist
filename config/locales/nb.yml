@@ -3788,7 +3788,8 @@ nb:
   stop_trusting_this_person_with_your_private_coordinates: Slutt å stol på denne personen med dine skjulte koordinater
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: BUTIKK
+  store: Butikk
+  store_caps: BUTIKK
   studies_that_used_inaturalist_data_in_year: Studier som har brukt data fra iNaturalist i %{year}
   stuff_just_added: "Ting som du nettopp har lagt til..."
   subject_resolved_noun_html: "%{subject} har løst %{noun}"
@@ -4291,7 +4292,6 @@ nb:
   users_latest_observations_on_site: "%{user}s siste observasjoner på %{site}"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s prosjekter"
-  users_year_on_site: "%{user}s år på %{site} %{year}"
   valid_options_are: Gyldige muligheter er
   value: Verdi
   values: Verdier
@@ -4352,12 +4352,10 @@ nb:
   view_taxononomy_details_for_taxon: "Vis taksonomiske detaljer for %{taxon}"
   view_user_observations: "Vis %{user} sine observasjoner"
   view_x: "Vis %{x}"
-  view_year_stats_for_site: "Vis %{year} statistikker for %{site}"
   view_your_dashboard: Vis din oversikt
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din oversikt</a> for flere oppdateringer"
   view_your_inbox: Vis din innboks
   view_your_observations: Vis dine observasjoner
-  view_your_year_stats: "Vis dine statistikker for %{year}"
   view_yours: Vis dine
   view_all_of_your_observations_from_x: "Vis alle dine observasjoner fra %{x}"
   video_tutorials: Videoveiledninger
