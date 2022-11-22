@@ -1776,8 +1776,10 @@ fr:
   filters: Filtres
   find: Trouver
   find_a_guide: Trouver un guide
+  find_a_post: Trouver une note
   find_a_place: Trouver un lieu
   find_guides: Trouver des guides
+  find_posts_for: "Trouver les notes pour : %{journal_name}"
   find_new_place_to_explore: Trouver un nouveau lieu à explorer!
   find_observations: Trouver des observations
   find_photos: Trouver des photos
@@ -2412,6 +2414,7 @@ fr:
     de: Allemand
     el: Grec
     en: anglais
+    en-GB: Anglais (Royaume-Uni)
     eo: Espéranto
     es: Espagnol
     es-AR: Espagnol (Argentine)
@@ -2424,6 +2427,7 @@ fr:
     fr-CA: Français (Canada)
     gl: Galicien
     he: Hébreu
+    hr: Croate
     hu: Hongrois
     id: Indonésien
     it: Italien
@@ -4487,7 +4491,8 @@ fr:
   stop_trusting_this_person_with_your_private_coordinates: Arrêtez de confier à cette personne vos coordonnées masquées
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: BOUTIQUE
+  store: Boutique
+  store_caps: BOUTIQUE
   studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de iNaturalist en %{year}
   stuff_just_added: "Trucs que vous venez d’ajouter…"
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
@@ -5208,7 +5213,6 @@ fr:
   users_lists: "Listes @vow_or_con{vow:d'|de }%{user}"
   users_profile: "Profil de %{user}"
   users_projects: "Projets de %{user}"
-  users_year_on_site: "Année de %{user} sur %{site} %{year}"
   valid_options_are: Les options valides sont
   value: Valeur
   values: Valeurs
@@ -5276,12 +5280,10 @@ fr:
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
-  view_year_stats_for_site: "Afficher les statistiques de %{year} pour %{site}"
   view_your_dashboard: Afficher votre tableau de bord
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Afficher votre tableau\nde bord</a> pour plus de notifications"
   view_your_inbox: Afficher votre boîte de réception
   view_your_observations: Afficher vos observations
-  view_your_year_stats: "Afficher vos statistiques de %{year}"
   view_yours: Afficher les vôtres
   view_all_of_your_observations_from_x: "Afficher toutes vos observations depuis %{x}"
   video_tutorials: Tutoriels vidéo
@@ -7001,6 +7003,7 @@ fr:
         species_per_year_by_date_added: Par date d'ajout
         species_per_year_by_date_observed: Par date d'observation
         stats_generated_datetime: Statistiques générées le %{datetime}
+        stats_generation_schedule: Les statistiques seront générées tous les dimanches de décembre et le 1er janvier
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
         sunburst_desc_html: |
@@ -8075,6 +8078,13 @@ fr:
               has_query_parameter: "ne peut contenir de paramètre de requête."
               invalid_uri: "doit être un URI valide."
               relative_uri: "doit être un URI absolu."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: a désactivé les commentaires
         flag:
           attributes:
             flag:
