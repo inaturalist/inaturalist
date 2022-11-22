@@ -51,30 +51,43 @@ const DonateContent2022 = ( {
             </h2>
           */}
           <div className="text-center">
-            <a
-              href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_medium=web&utm_content=button&utm_term=monthly`}
-              className="btn btn-lg btn-primary btn-bordered"
-            >
-              {
-                forMonthlyDonor
-                  ? I18n.t(
-                    "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter_caps",
+            {
+              forMonthlyDonor
+                ? (
+                  <a
+                    href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_content=button&utm_term=thank-you-for-being-a-monthly-supporter`}
+                    className="btn btn-lg btn-primary btn-bordered"
+                  >
                     {
-                      defaultValue: I18n.t(
-                        "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter"
+                      I18n.t(
+                        "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter_caps",
+                        {
+                          defaultValue: I18n.t(
+                            "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter"
+                          )
+                        }
                       )
                     }
-                  )
-                  : I18n.t(
-                    "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist_caps",
+                  </a>
+                )
+                : (
+                  <a
+                    href={`/monthly-supporters?utm_campaign=${year}-year-in-review&utm_content=button&utm_term=become-a-monthly-supporter`}
+                    className="btn btn-lg btn-primary btn-bordered"
+                  >
                     {
-                      defaultValue: I18n.t(
-                        "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
+                      I18n.t(
+                        "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist_caps",
+                        {
+                          defaultValue: I18n.t(
+                            "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
+                          )
+                        }
                       )
                     }
-                  )
-              }
-            </a>
+                  </a>
+                )
+            }
           </div>
         </Col>
       </Row>
