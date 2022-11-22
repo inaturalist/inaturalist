@@ -1453,6 +1453,7 @@ fi:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Pudota se
   download: Lataa
+  download_caps: LATAA
   download_bulk_import_template_html: |
     <a href="%{url}">Lataa tallennuspohja,</a> jonka avulla voit käyttää 
     <a href="/observations/import?project_id=%{project_id}#csv_import">massalatausta</a>
@@ -1904,6 +1905,7 @@ fi:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Tunnistus peruutettu.
   identifications: Tunnistukset
+  inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -2462,10 +2464,13 @@ fi:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
   month: Kuukausi
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Kuukausilahjoittajat
   monthly_supporter_since_date_html: |
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
   months: Kuukaudet
   more: Lisää
+  more_caps: LISÄÄ
   more_fields: Lisää kenttiä
   more_filters: Lisää suodattimia
   more_from_x: Lisää käyttäjältä %{x}
@@ -3914,6 +3919,7 @@ fi:
   set_license: Aseta lisenssi
   settings: Asetukset
   share: Jaa
+  share_caps: JAA
   share_colon: "Jaa:"
   short_code_for_this_place: Lyhyt koodi tälle paikalle, esim. US Yhdysvalloille
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
@@ -3954,6 +3960,8 @@ fi:
   #Journal post formatting option
   simple: Yksinkertainen
   single_observation: Yksittäinen havainto
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}n %{year} vuosikatsaus"
   sizes: Koot
   skip_to_next_page: "Siirry seuraavalle sivulle"
   small: pieni
@@ -4084,7 +4092,8 @@ fi:
   stop_trusting_this_person_with_your_private_coordinates: Älä enää jaa piilotettuja koordinaattejasi tälle henkilölle
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: KAUPPA
+  store: Kauppa
+  store_caps: KAUPPA
   studies_that_used_inaturalist_data_in_year: Tutkimukset jotka käyttivät iNaturalistin tietoja vuonna %{year}
   stuff_just_added: "Hetki sitten lisäämäsi jutut..."
   subject_resolved_noun_html: "%{subject} ratkaisi %{noun}:n"
@@ -4617,13 +4626,15 @@ fi:
   users_lists: "Käyttäjän %{user} luettelot"
   users_profile: "Käyttäjän %{user} profiili"
   users_projects: "Käyttäjän %{user} projektit"
-  users_year_on_site: "Käyttäjän %{user} vuosi %{year} %{site}issa"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}n %{year} %{site} vuosikatsaus"
   value: Arvo
   values: Arvot
   verbing_x_of_y: "%{verb} %{x}/%{y}..."
   verifiable_observations_by_observation_date: Varmennettavissa olevat havainnot havaintopäivän mukaan
   view: Näytä
   view_all: Näytä kaikki
+  view_all_caps: NÄYTÄ KAIKKI
   view_all_fields: Näytä kaikki kentät
   view_all_flags: Näytä kaikki liput
   view_all_members: Näytä kaikki jäsenet
@@ -4643,6 +4654,12 @@ fi:
   view_flags_for_x_html: "Näytä liput kohteelle %{x}"
   view_full_observation: Näytä koko havainto
   view_full_size_photo: Näytä täysikokoinen kuva
+  view_inaturalist_global_year_in_review: Näytä iNaturalistin %{year} vuosikatsaus
+  view_inaturalist_global_year_in_review_caps: NÄYTÄ INATURALISTIN %{year} VUOSIKATSAUS
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Näytä %{site} %{year} vuosikatsaus
+  view_site_year_in_review_caps: NÄYTÄ %{SITE} %{year} VUOSIKATSAUS
   view_journal: Näytä päiväkirja
   view_leaderboard_from_last_month: Näytä tulostaulukko viime kuulta
   view_leaderboard_from_last_year: Näytä tulostaulukko viime vuodelta
@@ -4680,12 +4697,12 @@ fi:
   view_taxon_page_for_this_x: "Näytä taksonisivu kohteessa %{x}"
   view_user_observations: "Näytä käyttäjän %{user} havainnot"
   view_x: "Näytä %{x}"
-  view_year_stats_for_site: "Näytä vuoden %{year} tilastot sivustolta %{site}"
   view_your_dashboard: Näytä kojelautasi
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Tarkastele kojelaudaltasi</a> lisää päivityksiä"
   view_your_inbox: Näytä saapuneet-kansiosi
   view_your_observations: Näytä omat havainnot
-  view_your_year_stats: "Näytä vuoden %{year} tilastosi"
+  view_your_personal_year_in_review: "Näytä henkilökohtainen %{year} vuosikatsaus"
+  view_your_personal_year_in_review_caps: "NÄYTÄ HENKILÖKOHTAINEN %{year} VUOSIKATSAUS"
   view_yours: Näytä sinun
   video_tutorials: Video-opastukset
   visually_similar: Samannäköinen
@@ -4796,6 +4813,7 @@ fi:
   x_wrote_y_new_posts_html: "%{x} kirjoitti %{y} uutta viestiä"
   year: Vuosi
   year_in_review: "Vuosikatsaus %{year}"
+  year_in_review2: "Vuosikatsaus %{year}"
   year_month: vuosi/kuukausi
   year_on_site: "Vuosi %{year} %{site}issa"
   yellow: keltainen
@@ -4953,6 +4971,7 @@ fi:
       post_donate_social_media_text: Tuen iNaturalistia koska...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Ryhdy iNaturalistin kuukausittaiseksi tukijaksi
+        become_a_monthly_supporter_of_inaturalist_caps: KUUKAUSILAHJOITTAJAKSI
         desc_html: |
           <p class="lead">
           <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
@@ -4966,6 +4985,8 @@ fi:
           <p class="text-muted">
           iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa.
           </p>
+        thank_you_for_being_a_monthly_supporter: Kiitos, että olet kuukausilahjoittaja!
+        thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
     flags:
       show:
         flaggable_content_desc: |
