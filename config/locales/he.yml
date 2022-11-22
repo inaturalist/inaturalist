@@ -4417,6 +4417,7 @@ he:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: לחנות
+  store_caps: לחנות
   studies_that_used_inaturalist_data_in_year: מחקרים שהשתמשו בנתוני iNaturalist בשנת %{year}
   stuff_just_added: "דברים שהוספת כרגע..."
   subject_resolved_noun_html: "%{subject} נפתר %{noun}"
@@ -5139,7 +5140,6 @@ he:
   users_lists: "הרשימות של %{user}"
   users_profile: "הפרופיל של %{user}"
   users_projects: "הפרוייקטים של %{user}"
-  users_year_on_site: "השנה של %{user} ב%{site} %{year}"
   valid_options_are: האופציות האפשריות הן
   value: ערך
   values: ערכים
@@ -5207,12 +5207,10 @@ he:
   view_taxononomy_details_for_taxon: "צפייה בפרטים הטקסונומיים עבור %{taxon}"
   view_user_observations: "הצגת התצפיות של %{user}"
   view_x: "הצגת %{x}"
-  view_year_stats_for_site: "צפייה בסטטיסטיקות %{site} לשנת %{year}"
   view_your_dashboard: צפייה בלוח המחוונים שלך
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>צפייה בלוח המחוונים שלך</a> לעדכונים נוספים"
   view_your_inbox: לתיבת הדואר הנכנס
   view_your_observations: הצגת התצפיות שלך
-  view_your_year_stats: "הצגת הסטטיסטיקות שלך לשנת %{year}"
   view_yours: צפייה בשלך
   view_all_of_your_observations_from_x: "הצגת כל התצפיות שלך מ%{x}"
   video_tutorials: מדריכי וידאו
@@ -6297,6 +6295,8 @@ he:
       edit:
         complete_desc_html: |
           טקסון "שלם" מכיל את <em>כל</em> הטקסונים הצאצאים המוכרים בדרגה מסוימת העונים על כללי אצירת הטקסונים של iNaturalist, בין אם הם נצפו ובין אם לא. רק לאדמיני.ות האתר יש הרשאה להכריז על טקסונים כשלמים כרגע.
+        complete_rank_desc_html: |
+          הדרגה שבה הטקסון נחשב שלם, למשל אם משפחה זו מכילה את כל הסוגים שלה אך לא מכילה את כל המינים שלה, הדרגה תוגדר כ"סוג". ברירת המחדל היא מין.
       show:
         about_names_desc: |
           <p>
