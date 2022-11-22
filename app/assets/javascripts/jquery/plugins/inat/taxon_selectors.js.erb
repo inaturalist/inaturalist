@@ -127,13 +127,16 @@
     var options = $.extend({}, options),
         input = $(wrapper).find('input[type=text]:first'),
         q = $(input).val();
-    var searchExternalLink = $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
-      'font-weight': 'bold'
-    }).click(function() {
-      $.fn.simpleTaxonSelector.lookup(
-        wrapper, $.extend(options, {includeExternal: true}));
-      return false;
-    })
+    var searchExternalLink = null;
+    if ( !( CONFIG && CONFIG.content_freeze_enabled ) ) {
+      var searchExternalLink = $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
+        'font-weight': 'bold'
+      }).click(function() {
+        $.fn.simpleTaxonSelector.lookup(
+          wrapper, $.extend(options, {includeExternal: true}));
+        return false;
+      })
+    }
     var searchEverywhereLink, searchEverywhereNotice
 
     var lastLookupOptions = $(wrapper).data('lastOptions') || {}
@@ -331,7 +334,7 @@
         chosenTaxonName = $.fn.simpleTaxonSelector.chosenTaxonNameFor(q, taxon)
 
     // Set the taxon_id
-    $(taxon_id).val(taxon.id);
+    $(taxon_id).val(taxon.id).trigger('change');
     if (typeof(options.selectedName) != 'undefined') {
       $(input).val(options.selectedName);
     } else if (typeof(chosenTaxonName) != 'undefined') {

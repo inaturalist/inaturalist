@@ -2,9 +2,9 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
+import UserText from "../../../shared/components/user_text";
 
 class FlashMessage extends React.Component {
-
   constructor( ) {
     super( );
     this.close = this.close.bind( this );
@@ -23,8 +23,14 @@ class FlashMessage extends React.Component {
   }
 
   render( ) {
+    const {
+      html,
+      message,
+      title,
+      type
+    } = this.props;
     let glyph = "fa-exclamation-triangle";
-    let alertClass = this.props.type || "warning";
+    let alertClass = type || "warning";
     if ( alertClass === "flag" ) {
       alertClass = "danger";
       glyph = "fa-flag";
@@ -34,22 +40,31 @@ class FlashMessage extends React.Component {
       alertClass = "danger";
       glyph = "fa-times-circle";
     }
-    const title = this.props.title ?
-      ( <span className="bold">{ this.props.title }.</span> ) : "";
+    const titleElt = title
+      ? (
+        <span className="bold">
+          { `${title}.` }
+        </span>
+      )
+      : "";
+    const messageElt = html
+      ? <UserText text={message} />
+      : <span dangerouslySetInnerHTML={{ __html: message }} />;
     return (
       <div className="FlashMessage container">
-        <div className={ `alert alert-${alertClass}` }>
+        <div className={`alert alert-${alertClass}`}>
           <div className="message">
-            <i className={ `fa ${glyph}` } />
-            { title }
-            { _.isString( this.props.message ) ?
-              ( <span dangerouslySetInnerHTML={ { __html: this.props.message } } /> ) :
-              this.props.message
-            }
+            <i className={`fa ${glyph}`} />
+            { titleElt }
+            { _.isString( message ) ? messageElt : message }
           </div>
-          <div className="action">
-            <i className="fa fa-times-circle-o" onClick={ this.close } />
-          </div>
+          <button
+            type="button"
+            className="btn btn-nostyle action"
+            onClick={this.close}
+          >
+            <i className="fa fa-times-circle-o" />
+          </button>
         </div>
       </div>
     );
@@ -59,7 +74,8 @@ class FlashMessage extends React.Component {
 FlashMessage.propTypes = {
   type: PropTypes.string,
   message: PropTypes.any,
-  title: PropTypes.string
+  title: PropTypes.string,
+  html: PropTypes.bool
 };
 
 export default FlashMessage;

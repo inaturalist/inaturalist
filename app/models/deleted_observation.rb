@@ -1,3 +1,3 @@
-class DeletedObservation < ActiveRecord::Base
+class DeletedObservation < ApplicationRecord
   belongs_to :user
 end

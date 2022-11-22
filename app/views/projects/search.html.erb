@@ -20,17 +20,7 @@
   </span>
 </div>
 
-<% if @q.blank? -%>
-<% else %>
-  <% if @site_place -%>
-    <% if @place -%>
-      <h3 class="inlineblock"><%=t :projects_from_place, :place => t(@place.name, :default => @place.name) %></h3>
-      (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
-    <% else %>
-      <h3 class="inlineblock"><%=t :projects_from_everywhere %></h3>
-      (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
-    <% end -%>
-  <% end -%>
+<% unless @q.blank? -%>
   <% if @projects.blank? -%>
     <div class="description noresults">
      <%=t :no_matching_projects %>

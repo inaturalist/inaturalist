@@ -1,4 +1,4 @@
-class UserParent < ActiveRecord::Base
+class UserParent < ApplicationRecord
   # This is the child
   belongs_to :user, inverse_of: :user_parent
 
@@ -39,7 +39,7 @@ class UserParent < ActiveRecord::Base
   end
 
   def deliver_confirmation_email_if_donor_verified
-    if donorbox_donor_id_changed? && donorbox_donor_id_was.blank? && donorbox_donor_id.to_i > 0
+    if saved_change_to_donorbox_donor_id? && previous_changes[:donorbox_donor_id][0].blank? && donorbox_donor_id.to_i > 0
       Emailer.user_parent_confirmation( self ).deliver_now
     end
     true

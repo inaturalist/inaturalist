@@ -1,21 +1,17 @@
-= form_for(application, :as => :oauth_application, :url => application.new_record? ? oauth_applications_path : oauth_application_path(application), :builder => DefaultFormBuilder, :html => { :multipart => true }) do |f|
+= form_for( application, as: :oauth_application, url: application.new_record? ? oauth_applications_path : oauth_application_path(application), builder: BootstrapFormBuilder, html: { multipart: true } ) do |f|
   .stacked
     = error_messages_for application
-    = f.file_field :image
-    = f.text_field :name
-    = f.text_field :redirect_uri
-    = f.check_box :confidential, :label_after => true, :description => "Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow"
-    = f.text_area :description
-    = f.text_field :url, :description => "URL for your app outside of iNaturalist"
+    = f.file_field :image, label: t( :image )
+    = f.text_field :name, label: t( :name ), required: true
+    = f.text_field :redirect_uri, required: true
+    = f.check_box :confidential, label_after: true, description: t( :make_your_app_confidential ), label: t( :confidential )
+    = f.text_area :description, label: t( :description )
+    = f.text_field :url, :description => t( :url_for_your_app_outside_of_inaturalist ), label: t( :url )
 
   - if is_admin?
     .admin.stacked
-      = f.check_box :trusted, :label_after => true
-      - if Doorkeeper.configuration.native_redirect_uri
-        .meta
-          Use
-          %strong= Doorkeeper.configuration.native_redirect_uri
-          for local tests
+      = f.check_box :official, label_after: true
+      = f.check_box :trusted, label_after: true
   .actions.inline.buttonrow
-    = f.submit "Save", :class => "default button"
-    = link_to "Cancel", oauth_applications_path, :class => "button"
+    = f.submit t( :save ), class: "default button"
+    = link_to t( :cancel ), oauth_applications_path, class: "button"

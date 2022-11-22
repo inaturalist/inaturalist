@@ -3,12 +3,17 @@
   if @place && @place.html.blank?
     @place.html = render(:partial => "places/autocomplete_item", :object => @place)
   end
+  if @not_in_place_record && @not_in_place_record.html.blank?
+    @not_in_place_record.html = render(:partial => "places/autocomplete_item", :object => @not_in_place_record)
+  end
+  show_all ||= false
   hide_buttons ||= false
-  show_user_field ||= false
-  show_project_field ||= !@projects.blank?
-  show_multiple_taxa_field ||= !@observations_taxon_ids.blank?
-  show_extra_date_fields ||= false
-  show_ident_user_field ||= !@ident_user.blank?
+  show_user_field ||= show_all
+  show_project_field ||= show_all || !@projects.blank?
+  show_multiple_taxa_field ||= show_all || !@observations_taxon_ids.blank?
+  show_extra_date_fields ||= show_all
+  show_ident_user_field ||= show_all || !@ident_user.blank?
+  show_without_taxon_field ||= show_all || !@without_observations_taxon.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -28,7 +33,7 @@
 </div>
 <div id="attribute_filters" class="clear row">
   <strong id="attributes_filters_label" class="label"><%=t :filter %></strong>
-  <fieldset class="nobr left">
+  <fieldset class="left">
     <nobr>
       <input type="checkbox" name="has[]" id="with_photos_checkbox" 
              value="photos" <% if @with_photos %>checked="checked"<% end %>/>
@@ -58,18 +63,6 @@
       <label for="unreviewed_checkbox"><%= t(:no) %></label>
     </nobr>
 
-    <% if is_me?(@selected_user) -%>
-      <nobr>
-        <strong><%=t :geoprivacy %></strong>
-        <%= select_tag :geoprivacy, options_for_select([
-          [t( :any_, default: "any" ), nil],
-          [t( Observation::OPEN, default: Observation::OPEN ), Observation::OPEN],
-          [t( Observation::OBSCURED, default: Observation::OBSCURED ), Observation::OBSCURED],
-          [t( Observation::PRIVATE, default: Observation::PRIVATE ), Observation::PRIVATE],
-          [t('obscured_or_private', :default => "obscured or private"), "obscured_private"]
-        ], @geoprivacy) %>
-      </nobr>
-    <% end -%>
     <br/>
 
     <nobr>
@@ -94,6 +87,30 @@
       <input type="radio" name="captive" value="false" id="wild_checkbox" <% if @captive == false %>checked="checked"<% end %>>
       <label for="wild_checkbox"><%= t( :no, default: "No" ) %></label>
     </nobr>
+
+    <div class="stacked upstacked">
+      <nobr>
+        <strong><%=t :geoprivacy %></strong>
+        <%= select_tag :geoprivacy, options_for_select([
+          [t( :any, default: "any" ), nil],
+          [t( :open, default: Observation::OPEN ), Observation::OPEN],
+          [t( :obscured_, default: Observation::OBSCURED ), Observation::OBSCURED],
+          [t( :private, default: Observation::PRIVATE ), Observation::PRIVATE],
+          [t( :obscured_or_private, default: "obscured or private" ), "obscured_private"]
+        ], @geoprivacy) %>
+      </nobr>
+
+      <nobr>
+        <strong><%=t :taxon_geoprivacy %></strong>
+        <%= select_tag :taxon_geoprivacy, options_for_select([
+          [t( :any, default: "any" ), nil],
+          [t( :open, default: Observation::OPEN ), Observation::OPEN],
+          [t( :obscured_, default: Observation::OBSCURED ), Observation::OBSCURED],
+          [t( :private, default: Observation::PRIVATE ), Observation::PRIVATE],
+          [t( :obscured_or_private, default: "obscured or private" ), "obscured_private"]
+        ], @taxon_geoprivacy) %>
+      </nobr>
+    </div>
   </fieldset>
 </div>
 <div id="iconic_taxon_filters" class="row">
@@ -189,6 +206,55 @@
   </div>
 </div>
 
+<% if @lat && @lng -%>
+<div class="stacked clear row">
+  <div id="lat_lng_filter" class="left">
+    <div id="latitude_label" class="label">
+      <strong><%=t :latitude %></strong>
+    </div>
+    <div class="left latlon">
+      <input type="text" class="text" name="lat" id="lat" value="<%= @lat %>"/>
+    </div>
+    <div class="left latlon">
+      <label><%= t :longitude %></label>
+      <input type="text" class="text" name="lng" id="lng" value="<%= @lng %>"/>
+    </div>
+    <div class="left latlon">
+      <label><%= t :radius_km %></label>
+      <input type="text" class="text" name="radius" id="radius" value="<%= @radius %>"/>
+    </div>
+  </div>
+</div>
+<% end -%>
+
+
+
+<div class="stacked clear row">
+  <div id="not_in_place_filter" class="left">
+    <div id="not_in_place_filter_label" class="label">
+      <strong><%=t :not_in_place %></strong>
+    </div>
+    <div class="left">
+      <div class="buttons">
+        <%-
+          opts = {:id => "obs_filter_not_in_place_name", :class => "text", :placeholder => t(:start_typing_place_name)}
+          opts["data-json"] = @not_in_place_record.to_json(:methods => [:html]) unless @not_in_place_record.blank?
+        -%>
+        <%= text_field_tag :not_in_place, @not_in_place_record.try(:id) || @not_in_place, opts %>
+      </div>
+    </div>
+  </div>
+  <% if @filters_open -%>
+    <script type="text/javascript" charset="utf-8">
+      $('#filters input[name=not_in_place]').chooser({
+        collectionUrl: '/places/autocomplete.json?with_geom=t',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: eval('(' + $('#filters input[name=not_in_place]').attr('data-json') + ')')
+      })
+    </script>
+  <% end -%>
+</div>
+
 <div class="clear row">
   <div id="taxon_filter"class="left">
     <div id="taxon_filter_label" class="label">
@@ -245,6 +311,44 @@
     </div>
   </div>
 </div>
+
+<% if show_without_taxon_field %>
+  <div class="clear row">
+    <div id="without_taxon_filter" class="left">
+      <div id="without_taxon_filter_label" class="label">
+        <strong><%=t :without_taxon %></strong>
+      </div>
+      <div class="left">
+        <div class="buttons">
+          <%= search_field_tag :without_taxon_name, @without_observations_taxon.try(:name), :id => "obs_filter_without_taxon_name", :class => "text",
+            :placeholder => t(:start_typing_taxon_name),
+            "data-iconic-taxon-id" => @without_observations_taxon ? @without_observations_taxon.iconic_taxon_id : nil,
+            "data-default-photo-url" => ( @without_observations_taxon && @without_observations_taxon.default_photo ) ?
+              @without_observations_taxon.default_photo.best_url(:square) : nil %>
+          <%-
+            alt_attr = if @without_observations_taxon
+              css_class =  [
+                  'taxon',
+                  'sciname',
+                  @without_observations_taxon.rank,
+                  Taxon::ICONIC_TAXA_BY_ID[@without_observations_taxon.iconic_taxon_id].try(:name)
+                ].compact.join(' ')
+              "<span class='#{css_class}'>#{@without_observations_taxon.name}</span>"
+            end
+          -%>
+          <%= hidden_field_tag :without_taxon_id, @without_observations_taxon.try(:id),
+            :alt => alt_attr,
+            :rel => (@without_observations_taxon ? taxon_image_url(@without_observations_taxon) : nil) %>
+        </div>
+      </div>
+    </div>
+    <% if @filters_open -%>
+      <script type="text/javascript" charset="utf-8">
+        $( "#filters input[name=without_taxon_name]" ).taxonAutocomplete( { idEl: $( "#without_taxon_id" ) } );
+      </script>
+    <% end -%>
+  </div>
+<% end %>
 
 <% unless @ofv_params.blank? -%>
   <div id="ofv_filters" class="clear row">
@@ -339,16 +443,19 @@
     </div>
   </div>
 <% end -%>
-<% if @verifiable -%>
+<% if show_all || @verifiable -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "verifiable", value: @verifiable }) %>
 <% end -%>
-<% if @threatened -%>
+<% if show_all || @threatened -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "threatened", value: @threatened }) %>
 <% end -%>
-<% if @introduced -%>
+<% if show_all || @introduced -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "introduced", value: @introduced }) %>
 <% end -%>
-<% if @popular -%>
+<% if show_all || @native -%>
+  <%= render(partial: "yes_no_any_field", locals: { field: "native", value: @native }) %>
+<% end -%>
+<% if show_all || @popular -%>
   <%= render(partial: "yes_no_any_field", locals: { field: "popular", value: @popular }) %>
 <% end -%>
 
@@ -433,11 +540,48 @@
   <input type="hidden" name="created_on" id="created_on" value="<%= @created_on %>"/>
 <% end %>
 
+<% if show_all %>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_above %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_above" id="acc_above_input" value="<%= @acc_above %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :minimum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below" id="acc_below_input" value="<%= @acc_below %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy %></div>
+    </div>
+  </div>
+  <div class="clear row upstacked">
+    <label for="acc_above_input" class="label"><strong><%=t :acc_below_or_unknown %></strong></label>
+    <div class="left">
+      <input type="number" min="0" name="acc_below_or_unknown" id="acc_below_or_unknown_input" value="<%= @acc_below_or_unknown %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :maximum_positional_accuracy_including_unknown %></div>
+    </div>
+  </div>
+<% end -%>
+
 <input type="hidden" name="site" value="<%= @site_uri %>">
 <input type="hidden" name="tdate" id="tdate"/>
 <input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
+
+<% if @spam -%>
+  <input type="hidden" name="spam" id="spam" value="<%= @spam %>" />
+<% end -%>
+
+<% @misc_hidden_parameters.each do |k| -%>
+  <% unless params[k].blank? -%>
+    <input type="hidden" name="<%= k %>" value="<%= params[k] %>">
+  <% end -%>
+<% end -%>
 
 <% unless hide_buttons -%>
   <div class="inline buttonrow upstacked">

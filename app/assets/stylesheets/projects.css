@@ -9,3 +9,31 @@
   border-bottom: 1px solid #eee;
   padding: 5px 0;
 }
+.project_panel {
+	padding: 10px;
+}
+.project_element {
+	margin-bottom: 5px;
+	margin-top: 5px;
+	padding: 10px 0px 10px 0px;
+}
+.project_box {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.project_invitations_button {
+	margin-bottom: 20px;
+	margin-top: 20px;	
+}
+.truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.truncate-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

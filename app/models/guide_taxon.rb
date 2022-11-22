@@ -1,5 +1,5 @@
 #encoding: utf-8
-class GuideTaxon < ActiveRecord::Base
+class GuideTaxon < ApplicationRecord
   attr_accessor :html
   belongs_to :guide, :inverse_of => :guide_taxa
   belongs_to :taxon, :inverse_of => :guide_taxa
@@ -135,8 +135,8 @@ class GuideTaxon < ActiveRecord::Base
   end
 
   def set_guide_taxon
-    self.guide.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Guide::set_taxon": guide_id }).set_taxon
+    Guide.delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "Guide::set_taxon": guide_id } ).set_taxon( guide_id )
     true
   end
 
@@ -196,10 +196,11 @@ class GuideTaxon < ActiveRecord::Base
     max_pos = guide_photos.calculate(:maximum, :position) || 0
     img_data_objects[0..5].each do |img_data_object|
       p = if (data_object_id = img_data_object.at('dataObjectVersionID').try(:content))
-        EolPhoto.find_by_native_photo_id(data_object_id)
+        LocalPhoto.where( subtype: "EolPhoto", native_photo_id: data_object_id ).first
       end
       p ||= EolPhoto.new_from_api_response(img_data_object)
       if !p.blank? && self.guide_photos.detect{|gp| gp.photo_id && gp.photo_id == p.id}.blank?
+        p = Photo.local_photo_from_remote_photo( p ) unless p.is_a?( LocalPhoto )
         self.guide_photos.build(:photo => p, :position => (max_pos += 1))
       end
     end
@@ -308,7 +309,7 @@ class GuideTaxon < ActiveRecord::Base
   def add_color_tags
     return unless taxon
     tags = tag_list + taxon.colors.map{|c| "color=#{c.value.downcase}"}
-    update_attributes(:tag_list => tags.uniq)
+    update(:tag_list => tags.uniq)
   end
 
   def add_rank_tag(rank, options = {})
@@ -324,7 +325,7 @@ class GuideTaxon < ActiveRecord::Base
     end
     return if name.blank?
     tags = tag_list + ["taxonomy:#{rank}=#{name}"]
-    update_attributes(:tag_list => tags.uniq)
+    update(:tag_list => tags.uniq)
   end
 
   def eol_page_id

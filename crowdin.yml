@@ -2,9 +2,3 @@ files:
   - source: /config/locales/en.yml
     translation: /config/locales/%two_letters_code%.yml
     update_option: update_as_unapproved
-  - source: /app/views/sites/network.html
-    translation: /%original_path%/%file_name%.%two_letters_code%.html
-    update_option: update_as_unapproved
-  - source: /app/views/sites/affiliation.html
-    translation: /%original_path%/%file_name%.%two_letters_code%.html
-    update_option: update_as_unapproved

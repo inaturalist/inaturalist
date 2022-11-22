@@ -1,23 +1,26 @@
-- for rule in @project.project_observation_rules
-  %li= rule.terms
+- for operator, rules in @project.project_observation_rules.group_by(&:operator)
+  - next if rules.blank?
+  - if rules.size > 1
+    %li
+      =t :one_of_the_following_must_be_true
+      %ul.unstacked
+        - for rule in rules
+          %li= rule.terms
+  - else
+    %li= rules.first.terms
 - unless @project.prefers_rule_quality_grade.blank?
-  %li= "must be quality grade #{@project.prefers_rule_quality_grade.split(",").join(", ")}"
+  %li=t :must_have_quality_grades, grades: @project.prefers_rule_quality_grade.split(",").map{|g| t( g, default: g )}.join(", ")
 - unless @project.prefers_rule_d1.blank?
-  %li= "must be observed after #{@project.prefers_rule_d1}"
+  %li=t :must_be_observed_after, operand: l( @project.prefers_rule_d1 =~ /\d{4}-\d{2}-\d{2}/ ? Date.parse( @project.prefers_rule_d1 ) : DateTime.parse( @project.prefers_rule_d1 ) )
 - unless @project.prefers_rule_d2.blank?
-  %li= "must be observed before #{@project.prefers_rule_d2}"
+  %li=t :must_be_observed_before, operand: l( @project.prefers_rule_d2 =~ /\d{4}-\d{2}-\d{2}/ ? Date.parse( @project.prefers_rule_d2 ) : DateTime.parse( @project.prefers_rule_d2 ) )
 - unless @project.prefers_rule_observed_on.blank?
-  %li= "must be observed on #{@project.prefers_rule_observed_on}"
+  %li=t :must_be_observed_on_date, date: l( Date.parse( @project.prefers_rule_observed_on ) )
 - unless @project.prefers_rule_month.blank?
   %li
     - months = @project.prefers_rule_month.split(",").map{ |i| I18n.t( "date_format.month.#{ Date::MONTHNAMES[i.to_i].downcase }" ) }
-    = "must be observed in #{ months.join(", ") }"
+    =t :must_be_observed_in_months, months: months.join( ", " )
 - unless @project.prefers_rule_photos.blank?
-  %li= "must have photos"
+  %li=t :must_have_photos
 - unless @project.prefers_rule_sounds.blank?
-  %li= "must have sounds"
-
-
-
-
-
+  %li=t :must_have_sounds

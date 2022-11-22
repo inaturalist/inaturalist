@@ -14,6 +14,7 @@ const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 const UPDATE_WITH_OBSERVATION = "observations-identify/suggestions/UPDATE_WITH_OBSERVATION";
 
 const TAXON_FIELDS = {
+  ancestor_ids: true,
   id: true,
   name: true,
   rank: true,
@@ -77,44 +78,59 @@ export default function reducer(
       }
       break;
     case UPDATE_WITH_OBSERVATION: {
+      const { observation } = action;
+      const isFeaturedObs = observation.uuid === state.query.featured_observation_uuid
+        || observation.id === state.query.featured_observation_id;
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
-      const { observation } = action;
-      if ( observation.taxon ) {
-        let indexOfTaxonInAncestors = observation.taxon.ancestor_ids
-          .indexOf( observation.taxon.id );
-        if ( indexOfTaxonInAncestors < 0 ) {
-          indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
-        }
-        if ( observation.taxon.rank_level === 10 ) {
-          newState.query.taxon_id = observation
-            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
-        } else if ( observation.taxon.rank_level < 10 ) {
-          newState.query.taxon_id = observation
-            .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
-        } else {
-          newState.query.taxon_id = observation.taxon.id;
-        }
-      }
-      let placeIDs;
-      if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
-        placeIDs = observation.private_place_ids;
+      // If observation currently in query (tab change in modal), preserve taxon and place filters
+      if ( observation && isFeaturedObs ) {
+        newState.query = Object.assign( newState.query, {
+          taxon: state.query.taxon,
+          taxon_id: state.query.taxon.id,
+          place: state.query.place,
+          place_id: state.query.place_id
+        } );
       } else {
-        placeIDs = observation.place_ids;
-      }
-      if ( observation.places ) {
-        const place = _
-          .sortBy( observation.places, p => p.bbox_area )
-          .find( p => p.admin_level !== null && p.admin_level < 3 );
-        if ( place ) {
-          newState.query.place_id = place.id;
-          newState.query.place = place;
-          newState.query.defaultPlace = place;
+        if ( observation.taxon ) {
+          let indexOfTaxonInAncestors = observation.taxon.ancestor_ids
+            .indexOf( observation.taxon.id );
+          if ( indexOfTaxonInAncestors < 0 ) {
+            indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
+          }
+          if ( observation.taxon.rank_level === 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
+          } else if ( observation.taxon.rank_level < 10 ) {
+            newState.query.taxon_id = observation
+              .taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
+          } else {
+            newState.query.taxon_id = observation.taxon.id;
+          }
+        } else {
+          newState.query.taxon_id = null;
+          newState.query.taxon = null;
         }
-      } else if ( placeIDs && placeIDs.length > 0 ) {
-        newState.query.place_id = placeIDs[placeIDs.length - 1];
+        let placeIDs;
+        if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
+          placeIDs = observation.private_place_ids;
+        } else {
+          placeIDs = observation.place_ids;
+        }
+        if ( observation.places ) {
+          const place = _
+            .sortBy( observation.places, p => p.bbox_area )
+            .find( p => p.admin_level !== null && p.admin_level < 30 );
+          if ( place ) {
+            newState.query.place_id = place.id;
+            newState.query.place = place;
+            newState.query.defaultPlace = place;
+          }
+        } else if ( placeIDs && placeIDs.length > 0 ) {
+          newState.query.place_id = placeIDs[placeIDs.length - 1];
+        }
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
@@ -129,10 +145,12 @@ export default function reducer(
       if ( action.updates.places ) {
         const place = _
           .sortBy( action.updates.places, p => p.bbox_area )
-          .find( p => p.admin_level !== null && p.admin_level < 3 );
-        newState.query.place_id = place.id;
-        newState.query.place = place;
-        newState.query.defaultPlace = place;
+          .find( p => p.admin_level !== null && p.admin_level < 30 );
+        if ( place ) {
+          newState.query.place_id = place.id;
+          newState.query.place = place;
+          newState.query.defaultPlace = place;
+        }
       }
       break;
     }
@@ -162,7 +180,7 @@ export function updateQuery( query ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const { testingApiV2 } = s.config;
-    const newQuery = Object.assign( { }, s.suggestions.query, query );
+    const newQuery = { ...s.suggestions.query, ...query };
     if ( query.place && !query.place_id ) {
       newQuery.place_id = query.place.id;
     }
@@ -181,7 +199,7 @@ export function updateQuery( query ) {
     if ( query.taxon_id && !query.taxon ) {
       const params = {};
       if ( testingApiV2 ) {
-        params.fields = Object.assign( {}, TAXON_FIELDS, { ancestors: TAXON_FIELDS } );
+        params.fields = { ...TAXON_FIELDS, ancestors: TAXON_FIELDS };
       }
       inatjs.taxa.fetch( query.taxon_id, params )
         .then( response => {
@@ -290,7 +308,7 @@ export function fetchSuggestions( query ) {
         payload.lng = s.suggestions.observation.geojson.coordinates[0];
       }
     }
-    return inatjs.taxa.suggest( payload ).then( suggestions => {
+    return inatjs.taxa.suggest( _.omitBy( payload, _.isNull ) ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );

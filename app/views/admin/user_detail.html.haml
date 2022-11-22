@@ -55,10 +55,38 @@
         - for user_attr in basic_attrs
           %tr
             %th= user_attr
-            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
+            %td{ style: "width: 100%" }
+              - if user_attr == "login"
+                = link_to_user @display_user do
+                  = @display_user.login
+              - elsif user_attr == "last_ip"
+                = @display_user.send(user_attr).to_s.html_safe
+                - if @geoip_location
+                  &nbsp;
+                  = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
+              - elsif user_attr == "email"
+                = @display_user.send( user_attr ).to_s.html_safe
+                - unless @email_suppressions.blank?
+                  .suppressions
+                    %h4 Sendgrid Suppressions
+                    %p Local records of Sendgrid suppression groups. These might explain why a user isn't receiving email (e.g. they requested we not send them a type of email via sendgrid)
+                    %table.table
+                      %thead
+                        %tr
+                          %th Address
+                          %th Type
+                          %th Updated at
+                      %tbody
+                        - for es in @email_suppressions
+                          %tr
+                            %td= es.email
+                            %td= es.suppression_type
+                            %td= es.updated_at
+              - else
+                = @display_user.send(user_attr).to_s.html_safe
       %h3 Other Attributes
       %table.table
-        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state) ).sort
+        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state reset_password_token) ).sort
           %tr
             %th= user_attr
             %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
@@ -136,51 +164,48 @@
         %tr
           %th User Privileges
           %td
-            - if @display_user.user_privileges.blank?
-              None yet
-            - else
-              %ul.plain
-                - UserPrivilege::PRIVILEGES.each do |privilege|
-                  %li.lined.clearfix
-                    %strong= privilege
-                    - if up = @display_user.user_privileges.where( privilege: privilege ).first
-                      %p.success
-                        Earned on
-                        = up.created_at.to_date
-                      - if up.revoked?
-                        .alert.alert-warning
-                          Revoked on
-                          = up.revoked_at
-                          by
-                          = link_to_user up.revoke_user
-                          %blockquote= up.revoke_reason
-                          = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do
-                            Restore
-                            %code= privilege
-                            privilege
-                          = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do
-                            Reset
-                            %code= privilege
-                            privilege
-                      - else
-                        = link_to_toggle_box "Revoke" do
-                          = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|
-                            = hidden_field_tag :user_id, @display_user.id
-                            = hidden_field_tag :privilege, privilege
-                            = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"
-                            = button_tag class: "btn btn-danger" do
-                              Revoke
-                              %code= privilege
-                              privilege
-                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do
+            %ul.plain
+              - UserPrivilege::PRIVILEGES.each do |privilege|
+                %li.lined.clearfix
+                  %strong= privilege
+                  - if up = @display_user.user_privileges.where( privilege: privilege ).first
+                    %p.success
+                      Earned on
+                      = up.created_at.to_date
+                    - if up.revoked?
+                      .alert.alert-warning
+                        Revoked on
+                        = up.revoked_at
+                        by
+                        = link_to_user up.revoke_user
+                        %blockquote= up.revoke_reason
+                        = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do
+                          Restore
+                          %code= privilege
+                          privilege
+                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do
                           Reset
                           %code= privilege
                           privilege
                     - else
-                      = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do
-                        Grant
+                      = link_to_toggle_box "Revoke" do
+                        = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|
+                          = hidden_field_tag :user_id, @display_user.id
+                          = hidden_field_tag :privilege, privilege
+                          = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"
+                          = button_tag class: "btn btn-danger" do
+                            Revoke
+                            %code= privilege
+                            privilege
+                      = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do
+                        Reset
                         %code= privilege
                         privilege
+                  - else
+                    = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do
+                      Grant
+                      %code= privilege
+                      privilege
         %tr
           %th Parent
           %td
@@ -236,7 +261,8 @@
               No children
     .col-xs-3
       %p
-        = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+        = link_to_user @display_user do
+          = user_image( @display_user, size: "large", class: "img-responsive center-block" )
       - if @display_user.is_curator?
         = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
       - else
@@ -252,6 +278,10 @@
           method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
           class: "btn btn-block btn-success"
       = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
+      - if @display_user.is_app_owner?
+        = link_to t(:remove_app_owner_status), remove_role_path(@display_user, :role => Role::APP_OWNER), :method => :delete, class: "btn btn-block btn-warning"
+      - else
+        = link_to t(:make_app_owner), add_role_path(@display_user, :role => Role::APP_OWNER), :method => :post, class: "btn btn-block btn-success"
       .dropdown.btn-block#site-admins
         .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
           = t :make_site_admin
@@ -270,8 +300,9 @@
                 = " [#{ s.short_url }]"
                 - if s.draft
                   = " (#{ I18n.t(:draft) })"
-      = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
+      = link_to "Log in as #{@display_user.login}", login_as_admin_path( @display_user.id ), class: "btn btn-block btn-info"
       = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
+      = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
       = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
         :data => {:confirm => t(:are_you_sure_no_undo)},
         class: "btn btn-block btn-danger"

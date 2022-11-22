@@ -1,12 +1,21 @@
 class AnnotationsController < ApplicationController
   before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: ->{ authenticated_with_oauth? }
-  before_filter :load_record, only: [:update, :destroy]
+  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :load_record, only: [:show, :update, :destroy]
+
+  def show
+    respond_to do | format |
+      format.html do
+        return render_404 unless @annotation
+
+        redirect_to @annotation.resource
+      end
+    end
+  end
 
   def create
     p = annotation_params(params[:annotation])
     @annotation = Annotation.new(p)
-    @annotation.wait_for_obs_index_refresh = true
     if !@annotation.save
       flash[:error] = @annotation.errors.full_messages.to_sentence
     end
@@ -26,7 +35,6 @@ class AnnotationsController < ApplicationController
   end
 
   def destroy
-    @annotation.wait_for_obs_index_refresh = true
     @annotation.destroy
     respond_to do |format|
       format.html do

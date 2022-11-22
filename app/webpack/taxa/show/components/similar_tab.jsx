@@ -18,10 +18,15 @@ const SimilarTab = ( {
       <div className="thumbnails">
         { results.map( result => {
           let tip = I18n.t( "x_misidentifications_of_this_species", { count: result.count } );
-          if ( taxon.rank_level > 10 ) {
+          if ( taxon.rank === "genus" ) {
+            tip = I18n.t( "x_misidentifications_of_species_in_this_genus", {
+              count: result.count
+            } );
+          } else if ( taxon.rank_level > 10 ) {
             tip = I18n.t( "x_misidentifications_of_species_in_this_rank", {
               count: result.count,
-              rank: I18n.t( `ranks.${result.taxon.rank}`, { defaultValue: result.taxon.rank } ).toLowerCase( )
+              gender: _.snakeCase( result.taxon.rank ),
+              rank: I18n.t( `ranks.${_.snakeCase( result.taxon.rank )}`, { defaultValue: result.taxon.rank } ).toLowerCase( )
             } );
           }
           return (
@@ -56,17 +61,19 @@ const SimilarTab = ( {
   }
   let title = I18n.t( "other_species_commonly_misidentified_as_this_species" );
   if ( taxon.rank_level > 10 ) {
+    const snakeCaseRank = _.snakeCase( taxon.rank );
     if ( place ) {
       const misidentifiedOpts = {
         place: place.display_name,
-        url: `/places/${place.id}`
+        url: `/places/${place.id}`,
+        gender: _.snakeCase( taxon.rank )
       };
       const misidentifiedHeader = I18n.t(
-        `other_taxa_commonly_misidentified_as_this_${_.snakeCase( taxon.rank )}_in_place_html`,
+        `other_taxa_commonly_misidentified_as_this_${snakeCaseRank}_in_place_html`,
         Object.assign( {}, misidentifiedOpts, {
           default: I18n.t(
             "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
-            Object.assign( {}, misidentifiedOpts, { gender: taxon.rank } )
+            Object.assign( {}, misidentifiedOpts, { gender: snakeCaseRank } )
           )
         } )
       );
@@ -76,10 +83,10 @@ const SimilarTab = ( {
         />
       );
     } else {
-      title = I18n.t( `other_taxa_commonly_misidentified_as_this_${taxon.rank}`, {
+      title = I18n.t( `other_taxa_commonly_misidentified_as_this_${snakeCaseRank}`, {
         default: I18n.t( "other_taxa_commonly_misidentified_as_this_rank", {
           rank,
-          gender: _.snakeCase( rank )
+          gender: snakeCaseRank
         } )
       } );
     }

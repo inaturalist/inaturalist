@@ -19,6 +19,8 @@ class OauthApplication < Doorkeeper::Application
     :message => "must be JPG, PNG, or GIF"
   validate :redirect_uri_has_no_params
 
+  WEB_APP_ID = 0
+
   def redirect_uri_has_no_params
     if redirect_uri.to_s.split( "?" ).size > 1
       errors.add( :redirect_uri, "cannot have a query string" )
@@ -31,6 +33,10 @@ class OauthApplication < Doorkeeper::Application
 
   def self.inaturalist_iphone_app
     @@inaturalist_iphone_app ||= OauthApplication.where(name: "iNaturalist iPhone App").first
+  end
+
+  def self.seek_app
+    @@seek_app ||= OauthApplication.where( name: "Seek" ).first
   end
 
   def set_scopes

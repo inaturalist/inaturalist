@@ -2,7 +2,7 @@ class AddResolvedAtAndFlaggableUserIdToFlags < ActiveRecord::Migration
   def up
     add_column :flags, :resolved_at, :datetime
     add_column :flags, :flaggable_user_id, :integer
-    FlagsController::FLAG_MODELS.each do |model_name|
+    Flag::TYPES.each do |model_name|
       if model_name == "User"
         say "Updating flags on User..."
         execute <<-SQL

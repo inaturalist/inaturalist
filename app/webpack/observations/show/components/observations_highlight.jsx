@@ -12,10 +12,13 @@ const ObservationsHighlight = ( {
   showNewObservation,
   config
 } ) => {
+  const { testingApiV2 } = config || {};
   const loadObservationCallback = ( e, observation ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( observation, { useInstance: true } );
+      showNewObservation( observation, {
+        useInstance: !testingApiV2
+      } );
     }
   };
   const empty = _.isEmpty( observations );

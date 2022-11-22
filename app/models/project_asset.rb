@@ -1,4 +1,4 @@
-class ProjectAsset < ActiveRecord::Base
+class ProjectAsset < ApplicationRecord
   belongs_to :project
   has_attached_file :asset,
     :path => ":rails_root/public/attachments/:class/:id-:filename",

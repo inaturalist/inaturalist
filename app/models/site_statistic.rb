@@ -1,4 +1,4 @@
-class SiteStatistic < ActiveRecord::Base
+class SiteStatistic < ApplicationRecord
 
   STAT_TYPES = [ :observations, :users, :projects,
     :taxa, :identifications, :identifier, :platforms, :platforms_cumulative ]
@@ -11,12 +11,12 @@ class SiteStatistic < ActiveRecord::Base
       return
     end
     sleep 1
-    SiteStatistic.create({
+    SiteStatistic.create!(
       data: Hash[
         STAT_TYPES.map{ |st| [ st, send("#{ st }_stats", at_time) ] }
-      ].to_json,
+      ],
       created_at: at_time.beginning_of_day
-    })
+    )
   end
 
   def self.generate_stats_for_date_range(start_time, end_time = Time.now, options = {})
@@ -248,7 +248,7 @@ class SiteStatistic < ActiveRecord::Base
         select("sites.name, count(distinct taxa.id) as count").
         of_rank_equiv_or_lower(10).
         group("sites.id").
-        order("count(distinct taxa.id) desc").
+        order( Arel.sql( "count(distinct taxa.id) desc" ) ).
         collect{ |a|
           [ a["name"], a["count"].to_i ]
         }
@@ -258,7 +258,7 @@ class SiteStatistic < ActiveRecord::Base
         where("taxa.rank_level > 0").
         select("taxa.rank_level, count(distinct observations.id) as count").
         group("taxa.rank_level").
-        order("count(distinct observations.id) desc").
+        order( Arel.sql( "count(distinct observations.id) desc" ) ).
         collect{ |a| [
           Taxon::RANK_LEVELS.select{ |k,v| v == a["rank_level"] }.first.try(:first) || "other",
           a["count"].to_i
@@ -317,7 +317,7 @@ class SiteStatistic < ActiveRecord::Base
       obs_id_stats.created_at BETWEEN '#{(at_time - 1.week).to_s(:db)}' AND '#{at_time.to_s(:db)}'
     SQL
     Site.connection.execute(sql)[0].inject({}) do |memo,pair|
-      memo[pair[0]] = pair[1].to_numeric
+      memo[pair[0]] = pair[1].to_s.to_numeric
       memo
     end
   end
@@ -339,7 +339,7 @@ class SiteStatistic < ActiveRecord::Base
       iphone: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { oauth_application_id: iphone_app_id } }
+          { term: { "oauth_application_id.keyword": iphone_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -347,7 +347,7 @@ class SiteStatistic < ActiveRecord::Base
       android: Observation.elastic_search(
         filters: [
           date_filter,
-          { term: { oauth_application_id: android_app_id } }
+          { term: { "oauth_application_id.keyword": android_app_id } }
         ],
         size: 0,
         track_total_hits: true
@@ -358,7 +358,7 @@ class SiteStatistic < ActiveRecord::Base
           {
             bool: {
               must: { exists: { field: "oauth_application_id" } },
-              must_not: { terms: { oauth_application_id: [
+              must_not: { terms: { "oauth_application_id.keyword": [
                 iphone_app_id,
                 android_app_id
               ] } }

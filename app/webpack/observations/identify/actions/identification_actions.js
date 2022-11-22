@@ -5,11 +5,12 @@ import {
   stopLoadingDiscussionItem,
   fetchCurrentObservation,
   fetchObservation,
-  addIdentification
+  addIdentification,
+  updateCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
-import { showAlert } from "./alert_actions";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 
 const POST_IDENTIFICATION = "post_identification";
 const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
@@ -17,7 +18,7 @@ const STOP_AGREEING_WITH_OBSERVATION = "stop_agreeing_with_observation";
 
 function postIdentification( params ) {
   return function ( dispatch ) {
-    const body = { identification: Object.assign( {}, params ) };
+    const body = { identification: { ...params } };
     if ( body.identification.observation ) {
       body.identification.observation_id = body.identification.observation_id
         || body.identification.observation.id;
@@ -37,12 +38,6 @@ function postIdentification( params ) {
   };
 }
 
-function deleteIdentification( ident ) {
-  return function ( ) {
-    return inatjs.identifications.delete( ident );
-  };
-}
-
 function updateIdentification( ident, updates ) {
   return function ( ) {
     return inatjs.identifications.update( ident, updates );
@@ -51,16 +46,19 @@ function updateIdentification( ident, updates ) {
 
 function agreeWithObservaiton( observation ) {
   return ( dispatch, getState ) => {
+    const s = getState( );
     dispatch( loadingDiscussionItem( ) );
     dispatch( updateObservationInCollection( observation, { agreeLoading: true } ) );
     return dispatch(
-      postIdentification( { observation_id: observation.id, taxon_id: observation.taxon.id } )
+      postIdentification( {
+        observation_id: s.config.testingApiV2 ? observation.uuid : observation.id,
+        taxon_id: observation.taxon.id
+      } )
     ).then( ( ) => {
-      const observations = getState( ).observations.results || [];
-      if ( _.find( observations, o => o.id === observation.id ) ) {
+      const observations = s.observations.results || [];
+      if ( _.find( observations, o => o.uuid === observation.uuid || o.id === observation.id ) ) {
         dispatch( updateObservationInCollection( observation, { agreeLoading: false } ) );
         dispatch( fetchObservation( observation ) );
-        dispatch( fetchObservationsStats( ) );
       }
     } );
   };
@@ -96,6 +94,7 @@ function agreeWithCurrentObservation( ) {
       !currentObservation
       || !currentObservation.id
       || !currentObservation.taxon
+      || !currentObservation.user
       || currentObservation.user.id === currentUser.id
       || ( currentObservation.taxon && !currentObservation.taxon.is_active )
       || existingIdent
@@ -123,7 +122,6 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
           dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
-          dispatch( fetchObservationsStats( ) );
         } );
     };
     if ( options.confirmationText ) {
@@ -141,6 +139,52 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
   };
 }
 
+const chooseSuggestedTaxon = ( taxon, options = { } ) => (
+  ( dispatch, getState ) => {
+    const s = getState( );
+    const ident = {
+      observation_id: s.config.testingApiV2 ? options.observation.uuid : options.observation.id,
+      taxon_id: taxon.id,
+      vision: options.vision
+    };
+    dispatch( updateCurrentObservation( { tab: "info" } ) );
+    dispatch( submitIdentificationWithConfirmation( ident, {
+      confirmationText: options.confirmationText
+    } ) );
+  }
+);
+
+const addID = ( taxon, observation, options = { } ) => (
+  ( dispatch, getState ) => {
+    const s = getState( );
+    if ( options.agreedWith ) {
+      const params = {
+        taxon_id: options.agreedWith.taxon.id,
+        observation_id: options.agreedWith.observation_id
+      };
+      dispatch( loadingDiscussionItem( options.agreedWith ) );
+      dispatch( postIdentification( params ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( options.agreedWith ) );
+        } )
+        .then( ( ) => {
+          dispatch( fetchCurrentObservation( ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
+          dispatch( fetchObservationsStats( ) );
+        } );
+    } else {
+      const ident = {
+        taxon_id: taxon.id,
+        observation_id: s.config.testingApiV2 ? observation.uuid : observation.id
+      };
+      dispatch( submitIdentificationWithConfirmation( ident, {
+        confirmationText: options.confirmationText
+      } ) );
+    }
+  }
+);
+
 export {
   POST_IDENTIFICATION,
   AGREEING_WITH_OBSERVATION,
@@ -148,9 +192,10 @@ export {
   postIdentification,
   agreeWithObservaiton,
   agreeWithCurrentObservation,
-  deleteIdentification,
   agreeingWithObservation,
   stopAgreeingWithObservation,
   updateIdentification,
-  submitIdentificationWithConfirmation
+  submitIdentificationWithConfirmation,
+  addID,
+  chooseSuggestedTaxon
 };

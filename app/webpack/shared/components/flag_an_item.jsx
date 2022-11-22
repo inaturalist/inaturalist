@@ -41,12 +41,13 @@ const FlagAnItem = ( {
 
   const addFlagLink = loggedIn
     ? (
-      <span
-        className="linky"
+      <button
+        type="button"
+        className="btn btn-nostyle linky"
         onClick={( ) => setFlaggingModalState( { item, show: true } )}
       >
         { I18n.t( "flag_as_inappropriate" ) }
-      </span>
+      </button>
     ) : (
       <a className="linky" href="/login">
         { I18n.t( "flag_as_inappropriate" ) }

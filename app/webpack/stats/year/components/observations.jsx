@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
 import ObservationsGrid from "./observations_grid";
@@ -17,9 +17,13 @@ const Observations = ( {
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
+    const monthHistogramThisYear = _.pickBy(
+      data.month_histogram,
+      ( value, date ) => date.indexOf( `${year}-` ) >= 0
+    );
     series.month = {
       title: I18n.t( "per_month" ),
-      data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( monthHistogramThisYear, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
       label: d => I18n.t( "bold_label_colon_value_html", {
@@ -54,15 +58,19 @@ const Observations = ( {
   }
   const comparisonSeries = {};
   if ( data.day_histogram && data.day_last_year_histogram ) {
+    // Since we're comparing two series, we need to remove the leap days so the
+    // days of the two years always line up
+    const dayHistogram = _.omit( data.day_histogram, `${year}-02-29` );
+    const dayLastYearHistogram = _.omit( data.day_last_year_histogram, `${year - 1}-02-29` );
     comparisonSeries.this_year = {
       title: I18n.t( "this_year" ),
-      data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( dayHistogram, ( value, date ) => ( { date, value } ) ),
       color: "#74ac00",
       label: dailyLabel
     };
     comparisonSeries.last_year = {
       title: I18n.t( "last_year" ),
-      data: _.map( data.day_last_year_histogram, ( value, date ) => {
+      data: _.map( dayLastYearHistogram, ( value, date ) => {
         const lastYear = parseInt( date.match( /\d{4}/ )[0], 0 );
         const newYear = lastYear + 1;
         const newDate = date.replace( lastYear, newYear );
@@ -171,16 +179,21 @@ const Observations = ( {
         /> )
         : ( <GlobalMap year={year} site={site} /> )
       }
-      <h3>
-        <a name="popular" href="#popular">
-          <span>{ I18n.t( "most_comments_and_faves" ) }</span>
-        </a>
-      </h3>
-      { popular }
+      { popular && (
+        <div>
+          <h3>
+            <a name="popular" href="#popular">
+              <span>{ I18n.t( "most_comments_and_faves" ) }</span>
+            </a>
+          </h3>
+          { popular }
+        </div>
+      ) }
       { data.streaks && data.streaks.length > 0 && (
         <Streaks
           year={year}
           data={data.streaks.slice( 0, 20 )}
+          hideUsers={!!user}
         />
       ) }
     </div>

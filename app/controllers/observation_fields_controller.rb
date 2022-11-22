@@ -1,24 +1,27 @@
 class ObservationFieldsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
-  before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
+  before_action :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
 
-  ORDER_BY_FIELDS = %w(name values_count users_count)
+  ORDER_BY_FIELDS = %w(created_at name values_count users_count)
   
   # GET /observation_fields
   # GET /observation_fields.xml
   def index
     @q = params[:q] || params[:term]
     scope = ObservationField.all
-    if order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first
-      order = ( %w(asc desc) & [params[:order]] ).first || "desc"
-      scope = scope.order( "#{order_by} #{order} NULLS LAST" )
+    @order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first || ORDER_BY_FIELDS.first
+    @order = ( %w(asc desc) & [params[:order]] ).first || "desc"
+    scope = if @order_by == "name"
+      scope.order( Arel.sql( "LOWER(name) #{@order} NULLS LAST" ) )
+    else
+      scope.order( "#{@order_by} #{@order} NULLS LAST" )
     end
     scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render layout: "bootstrap" }
       format.json  do
         extra = params[:extra].to_s.split(',')
         opts = if extra.include?('counts')
@@ -101,7 +104,7 @@ class ObservationFieldsController < ApplicationController
   # PUT /observation_fields/1.xml
   def update
     respond_to do |format|
-      if @observation_field.update_attributes(params[:observation_field])
+      if @observation_field.update(params[:observation_field])
         format.html { redirect_to(@observation_field, :notice => 'ObservationField was successfully updated.') }
         format.json  { render :json => @observation_field }
       else

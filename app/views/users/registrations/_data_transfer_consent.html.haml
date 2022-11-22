@@ -1,0 +1,17 @@
+#pi-consent.form-group.checkbox
+  %label
+    = f.check_box :data_transfer_consent, required: true
+    %span
+      - if child
+        =t :data_transfer_consent_child_label
+      - else
+        =t :data_transfer_consent_label
+      %button#data-transfer-consent-button.btn.btn-nostyle{ type: "button", data: { toggle: "modal", target: "#data-transfer-consent-modal" } }
+        =t :learn_more
+  #data-transfer-consent-modal.modal.fade{ tabindex: -1, aria: { labelledby: "data-transfer-consent-button" }}
+    .modal-dialog{role: "document"}
+      .modal-content
+        .modal-header
+          %button.close{:type => "button", "data-dismiss" => "modal"} &times;
+          =t :data_transfer_consent_desc_title
+        .modal-body=t :data_transfer_consent_desc_html, privacy_url: privacy_policy_url, terms_url: terms_of_service_url

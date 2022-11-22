@@ -1,7 +1,7 @@
 class ObservationFieldValuesController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_observation_field_value, :only => [:update, :destroy]
+  before_action :authenticate_user!, :except => [:index], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_observation_field_value, :only => [:update, :destroy]
 
   def index
     per_page = params[:per_page].to_i
@@ -78,7 +78,6 @@ class ObservationFieldValuesController < ApplicationController
         @observation_field_value.attributes = ofv_params
       end
     end
-    @observation_field_value.wait_for_obs_index_refresh = true
     respond_to do |format|
       if @observation_field_value.save
         format.json { render :json => @observation_field_value }
@@ -97,8 +96,7 @@ class ObservationFieldValuesController < ApplicationController
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end
-      @observation_field_value.wait_for_obs_index_refresh = true
-      if @observation_field_value.update_attributes(update_params)
+      if @observation_field_value.update(update_params)
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -109,25 +107,34 @@ class ObservationFieldValuesController < ApplicationController
   end
   
   def destroy
+    errors = []
     if @observation_field_value.blank?
       status = :gone
-      json = "Observation field value #{params[:id]} does not exist."
+      errors << "Observation field value #{params[:id]} does not exist."
     elsif @observation_field_value.observation.user_id != current_user.id &&
           @observation_field_value.user_id != current_user.id
       status = :forbidden
-      json = t(:you_dont_have_permission_to_do_that)
+      errors << t(:you_dont_have_permission_to_do_that)
     else
-      @observation_field_value.wait_for_obs_index_refresh = true
-      @observation_field_value.destroy
-      status = :ok
-      json = nil
+      proj_requiring_field = @observation_field_value.observation.projects.detect do |proj|
+        proj.project_observation_fields.detect do |pof|
+          pof.required? && pof.observation_field_id === @observation_field_value.observation_field_id
+        end
+      end
+      if proj_requiring_field
+        status = :unprocessable_entity
+        errors << t(:observation_belongs_to_project_requiring_field)
+      else
+        @observation_field_value.destroy
+        status = :ok
+      end
     end
     respond_to do |format|
       format.any do
-        render :status => :status, :text => json
+        render status: status, plain: errors ? errors.join( ", " ) : nil
       end
       format.json do 
-        render :status => status, :json => json
+        render status: status, json: errors ? { errors: errors } : nil
       end
     end
   end
@@ -144,13 +151,13 @@ class ObservationFieldValuesController < ApplicationController
     p = options.blank? ? params : options
     p = p[:observation_field_value] if p[:observation_field_value]
     p.delete(:id) if p[:id].to_i == 0
-    p[:updater_user_id] = current_user.id if logged_in?
+    p[:updater_id] = current_user.id if logged_in?
     p.permit(
       :id,
       :observation_id,
       :observation_field_id,
       :value,
-      :updater_user_id
+      :updater_id
     )
   end
 end

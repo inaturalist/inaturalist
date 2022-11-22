@@ -1,3 +1,7 @@
+# NOTE: pleary 2021-08-11: this script uses `taxon_ancestors` which I just removed. This is an
+# older script we don't use anymore, and if we want to use it again we'll have to update
+# some queries here.
+
 require "rubygems"
 require "optimist"
 
@@ -68,7 +72,7 @@ SQL
 
 tmpdir_path = Dir.mktmpdir
 log_path = File.join( tmpdir_path, "output.log" )
-LOG_F = open( log_path, "w" )
+LOG_F = File.open( log_path, "w" )
 
 def log( msg )
   out = "[#{(Time.now - START).round}s] #{msg}"
@@ -473,7 +477,7 @@ end
 
 log "Exporting README"
 readme_path = File.join( tmpdir_path, "readme.txt" )
-open( readme_path, "w" ) do |f|
+File.open( readme_path, "w" ) do |f|
   f << <<-EOT
 INATURALIST VISION TRAINING DATA
 

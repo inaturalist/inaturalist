@@ -30,7 +30,7 @@ const Project = class Project {
     this.createRulePreferenceAttributes( );
     this.search_params = {
       project_id: this.id,
-      ttl: 120,
+      ttl: 900,
       v: moment( this.updated_at ).format( "x" )
     };
     if ( this.is_traditional ) {
@@ -50,18 +50,16 @@ const Project = class Project {
       if ( util.isDate( start ) ) {
         this.started = this.startDate.isSame( now, "day" ) || this.startDate.isBefore( now, "day" );
         this.durationToEvent = moment.duration( this.startDate.diff( now ) );
+      } else if ( this.startDate.isBefore( now ) ) {
+        this.started = true;
       } else {
-        if ( this.startDate.isBefore( now ) ) {
-          this.started = true;
-        } else {
-          this.durationToEvent = moment.duration( this.startDate.diff( now ) );
-        }
+        this.durationToEvent = moment.duration( this.startDate.diff( now ) );
       }
     }
     if ( this.endDate ) {
-      this.ended = util.isDate( end ) ?
-        this.endDate.isBefore( now, "day" ) :
-        this.endDate.isBefore( now );
+      this.ended = util.isDate( end )
+        ? this.endDate.isBefore( now, "day" )
+        : this.endDate.isBefore( now );
     }
     this.undestroyedAdmins = _.filter( this.admins, a => !a._destroy );
     // TODO don't hardcode default color
@@ -77,16 +75,38 @@ const Project = class Project {
     if ( dateType === "exact" && !_.isEmpty( this.rule_observed_on ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( this.rule_d1 ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( this.rule_d2 ) ) { empty = false; }
-    if ( dateType === "months" && !_.isEmpty( this.rule_month ) ) { empty = false; }
+    // there are months, but not ALL months
+    if ( dateType === "months" && !_.isEmpty( this.rule_month )
+      && this.rule_month !== _.range( 1, 13 ).join( "," ) ) {
+      empty = false;
+    }
+
     if ( !_.isEmpty( this.project_observation_rules ) ) { empty = false; }
     if ( this.rule_members_only ) { empty = false; }
     return empty;
   }
 
+  requirementsChangedFrom( otherProject ) {
+    const trustChanged = this.prefers_user_trust !== otherProject.prefers_user_trust;
+    // Rules are weird and can have other stuff packed into them like taxon and
+    // place objects, so I'm using _.pick here to make sure we're only comparing
+    // properties that might actually change. Realistically, the only things
+    // that matter are length of the rules array (adding rules) and the value of
+    // the _destroy attribute (removing rules)
+    const changeableProperties = ["id", "operand_id", "operand_type", "operator", "_destroy"];
+    const rulesChanged = !_.isEqual(
+      _.map( this.project_observation_rules, rule => _.pick( rule, changeableProperties ) ),
+      _.map( otherProject.project_observation_rules, rule => _.pick( rule, changeableProperties ) )
+    );
+    const prefsChanged = !_.isEqual( this.rule_preferences, otherProject.rule_preferences );
+    return trustChanged || rulesChanged || prefsChanged;
+  }
+
   bannerURL( ) {
     if ( this.droppedBanner ) {
       return this.droppedBanner.preview;
-    } else if ( this.customBanner( ) ) {
+    }
+    if ( this.customBanner( ) ) {
       return this.header_image_url;
     }
     return null;
@@ -99,7 +119,8 @@ const Project = class Project {
   iconURL( ) {
     if ( this.droppedIcon ) {
       return this.droppedIcon.preview;
-    } else if ( this.customIcon( ) ) {
+    }
+    if ( this.customIcon( ) ) {
       return this.icon;
     }
     return null;
@@ -157,36 +178,50 @@ const Project = class Project {
     this.previewSearchParamsObject = { };
     if ( this.is_umbrella ) {
       if ( !_.isEmpty( this.projectRules ) ) {
-        this.previewSearchParamsObject.project_id =
-          _.map( this.projectRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.project_id = _.map(
+          this.projectRules,
+          r => r.operand_id
+        ).join( "," );
       }
     } else {
       this.previewSearchParamsObject = _.fromPairs(
         _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
       );
       if ( !_.isEmpty( this.notTaxonRules ) ) {
-        this.previewSearchParamsObject.without_taxon_id =
-          _.map( this.notTaxonRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.without_taxon_id = _.map(
+          this.notTaxonRules,
+          r => r.operand_id
+        ).join( "," );
       }
       if ( !_.isEmpty( this.taxonRules ) ) {
-        this.previewSearchParamsObject.taxon_ids =
-          _.map( this.taxonRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.taxon_ids = _.map(
+          this.taxonRules,
+          r => r.operand_id
+        ).join( "," );
       }
       if ( !_.isEmpty( this.notPlaceRules ) ) {
-        this.previewSearchParamsObject.not_in_place =
-          _.map( this.notPlaceRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.not_in_place = _.map(
+          this.notPlaceRules,
+          r => r.operand_id
+        ).join( "," );
       }
       if ( !_.isEmpty( this.placeRules ) ) {
-        this.previewSearchParamsObject.place_id =
-          _.map( this.placeRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.place_id = _.map(
+          this.placeRules,
+          r => r.operand_id
+        ).join( "," );
       }
       if ( !_.isEmpty( this.notUserRules ) ) {
-        this.previewSearchParamsObject.not_user_id =
-          _.map( this.notUserRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.not_user_id = _.map(
+          this.notUserRules,
+          r => r.operand_id
+        ).join( "," );
       }
       if ( !_.isEmpty( this.userRules ) ) {
-        this.previewSearchParamsObject.user_id =
-          _.map( this.userRules, r => r.operand_id ).join( "," );
+        this.previewSearchParamsObject.user_id = _.map(
+          this.userRules,
+          r => r.operand_id
+        ).join( "," );
       }
     }
     if ( !this.date_type ) {
@@ -229,6 +264,13 @@ const Project = class Project {
     // using naming consistent with the web obs search form
     this.previewSearchParamsObject.verifiable = "any";
     this.previewSearchParamsObject.place_id = this.previewSearchParamsObject.place_id || "any";
+    // Convert dates into iso8601 strings
+    _.each( ["d1", "d2"], dateAttr => {
+      if ( this.previewSearchParamsObject[dateAttr] ) {
+        const d = moment( this.previewSearchParamsObject[dateAttr] );
+        this.previewSearchParamsObject[dateAttr] = d.format( );
+      }
+    } );
     this.previewSearchParamsString = $.param( this.previewSearchParamsObject );
   }
 };

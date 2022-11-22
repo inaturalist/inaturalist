@@ -78,25 +78,19 @@
     <% end -%>
     
     <div class="description">
-      <% if primary_listed_taxon.last_observation %>
+      <% if list.is_a?( CheckList ) && primary_listed_taxon.last_observation %>
         <span class="observation">
          <%=t :last_seen %>
           <a href="<%= observation_url(primary_listed_taxon.last_observation) %>">
             <%= one_line_observation primary_listed_taxon.last_observation, :skip => %w(user taxon) %>
           </a>
-          <% if list.is_a?(CheckList) -%>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
-          <% elsif list.is_a?(ProjectList) %>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url( project_id: list.project_id, taxon_id: primary_listed_taxon.taxon_id ) %></span>
-          <% elsif list.user %>
-            <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_by_login_url(list.user.login, :taxon_id => primary_listed_taxon.taxon_id) %></span>
-          <% end -%>
+          <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
         </span>
         |
       <% end %>
 
       <nobr class="counts">
-        <%= link_to color_pluralize(listed_taxon.comments_count, t(:comment)), listed_taxon %>
+        <%= link_to t(:x_comments_html, count: listed_taxon.comments_count ), listed_taxon %>
       </nobr>
       
       <% if editable -%>

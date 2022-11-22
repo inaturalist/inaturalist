@@ -1,4 +1,4 @@
-class TaxonSchemeTaxon < ActiveRecord::Base
+class TaxonSchemeTaxon < ApplicationRecord
   belongs_to :taxon_scheme
   belongs_to :taxon
   belongs_to :taxon_name

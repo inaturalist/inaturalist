@@ -17,14 +17,18 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag "blueprint-inat" %>
     <%= stylesheet_link_tag "blueprint-bootstrap" %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <%= javascript_include_tag "jquery/jquery-1.9.1.min" %>
+    <%= javascript_include_tag "jquery/jquery-ui-1.9.1.min" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= render "shared/i18n" %>
     <script type="text/javascript">
-      I18n = { }
-      I18n.defaultLocale = "en"
-      I18n.locale = "<%= I18n.locale %>"
-      I18n.fallbacks = true
+      <% if @site %>
+        var SITE = {
+          name: "<%= @site.name %>",
+          short_name: "<%= @site.site_name_short %>",
+          logo_square: "<%= @site.logo_square.url %>"
+        };
+      <% end %>
       <% site_place = @site && @site.place
          user_place = current_user && current_user.place -%>
       <% if site_place -%>
@@ -45,6 +49,10 @@
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>"
         };
       <% end -%>
+      var CONTROLLER_ACTION = "<%= controller.class.to_s %>::<%= action_name %>";
+      var CONFIG = {
+        content_freeze_enabled: <%= !!CONFIG.content_freeze_enabled %>
+      };
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>

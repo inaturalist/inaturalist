@@ -5,7 +5,7 @@
   .row
     .col-md-6.col-md-offset-3.col-xs-12
       %h1=t :are_you_sure?
-      - if @observations_count > 0 || @identifications_count > 0 || @comments_count > 0
+      - if @observations_count > 0 || @identifications_count > 0 || @comments_count > 0 || @projects_count > 0
         %p=t "views.users.delete.by_deleting_your_account_you_will_remove"
         %ul
           - if @observations_count > 0
@@ -14,8 +14,11 @@
             %li=t "views.users.delete.x_identifications_html", count: number_with_delimiter( @identifications_count ), helpees_count: number_with_delimiter( @helpees_count )
           - if @comments_count > 0
             %li=t "views.users.delete.x_comments_html", count: number_with_delimiter( @comments_count )
+          - if @projects_count > 0
+            %li=t "views.users.delete.x_projects_html", count: number_with_delimiter( @projects_count )
         %p=t "views.users.delete.furthermore_cannot_undo_html"
       %p=t "views.users.delete.settings_and_mute_html"
+      %p=t "views.users.delete.caching"
       %p=t "views.users.delete.still_want_to_delete_html", confirmation_code: confirmation_code
       = form_for current_user, method: :delete do |f|
         .form-group

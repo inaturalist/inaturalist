@@ -1,7 +1,14 @@
 @import "../colors";
 .UserWithIcon {
+  display: flex;
+  align-items: center;
   .icon {
-    float: left;
+    align-self: flex-start;
+  }
+  .title-subtitle {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
   }
   .title {
     a {

@@ -28,7 +28,12 @@ class TaxaList extends React.Component {
     );
     const isLeaf = taxon && !lifelist.children[taxon.id];
     const nameClasses = ["name-label"];
-    if ( detailsTaxon && taxon && detailsTaxon.id === taxon.id ) {
+    // the details taxon, or its parent if its a subspecies, will be `featured`
+    if ( detailsTaxon && taxon && (
+      detailsTaxon.id === taxon.id || (
+        detailsTaxon.rank_level < 10 && detailsTaxon.parent_id === taxon.id
+      )
+    ) ) {
       nameClasses.push( "featured" );
     }
     if ( detailsTaxon && taxon
@@ -67,7 +72,7 @@ class TaxaList extends React.Component {
                 />
               ) : (
                 <div className="name-label featured-ancestor">
-                  Life
+                  { I18n.t( "all_taxa.life" ) }
                 </div>
               ) }
             </div>
@@ -75,7 +80,7 @@ class TaxaList extends React.Component {
               <span
                 className="descendants"
                 onClick={( ) => setDetailsTaxon( taxon )}
-                title="All observations in this taxon"
+                title={I18n.t( "views.lifelists.all_observations_in_this_taxon" )}
               >
                 { descendantObsCount }
               </span>
@@ -87,21 +92,11 @@ class TaxaList extends React.Component {
                   setDetailsTaxon( taxon, { without_descendants: true } );
                   setDetailsView( "observations" );
                 }}
-                title="Observations of exactly this taxon"
+                title={I18n.t( "views.lifelists.observations_of_exactly_this_taxon" )}
               >
                 { directObsCount }
               </Badge>
             ) : null }
-            <span
-              className={`${lifelist.detailsView === "observations" ? "icon icon-binoculars" : "fa fa-leaf"}`}
-              onClick={( ) => {
-                setDetailsTaxon( taxon );
-                if ( lifelist.detailsView !== "observations" ) {
-                  setDetailsView( "species" );
-                }
-              }}
-              title={`${lifelist.detailsView === "observations" ? "View observations" : "View speciews"}`}
-            />
           </div>
           { leaves }
         </li>
@@ -110,30 +105,48 @@ class TaxaList extends React.Component {
   }
 
   showTaxaList( taxon = null, nodeDisplayedCount = 0 ) {
-    const { lifelist, searchTaxon } = this.props;
+    const { config, lifelist, searchTaxon } = this.props;
     let taxaToList = [];
+    // if the search taxon is a subspecies, use its parent as the search taxon
+    // since subspecies aren't shown in the list view
+    let searchTaxonListLeaf = searchTaxon;
+    if ( searchTaxon && searchTaxon.rank_level < 10 ) {
+      searchTaxonListLeaf = lifelist.taxa[searchTaxon.parent_id];
+    }
     if ( taxon ) {
       const children = _.map( lifelist.milestoneChildren[taxon.id], id => lifelist.taxa[id] );
-      taxaToList = _.filter( children, t => t.right === t.left + 1 );
-      if ( searchTaxon ) {
+      // listing milestone leaf children of the taxon,
+      // or non-leaf species (sp with ssp) since ssp aren't shown in list view
+      taxaToList = _.filter( children, t => (
+        ( t.right === t.left + 1 && t.rank_level >= 10 )
+        || t.rank_level === 10 ) );
+      if ( searchTaxonListLeaf ) {
         taxaToList = _.filter( taxaToList,
-          t => t.left >= searchTaxon.left && t.right <= searchTaxon.right );
+          t => t.left >= searchTaxonListLeaf.left && t.right <= searchTaxonListLeaf.right );
       }
     } else {
       taxaToList = _.map( lifelist.simplifiedLeafParents, id => lifelist.taxa[id] );
-      if ( searchTaxon ) {
+      taxaToList = _.filter( taxaToList, t => t.rank_level > 10 );
+      if ( searchTaxonListLeaf ) {
         taxaToList = _.filter( taxaToList,
           t => (
-            ( t.left >= searchTaxon.left && t.right <= searchTaxon.right )
-            || ( t.id === searchTaxon.milestoneParentID && !lifelist.milestoneChildren[searchTaxon.id] )
+            ( t.left >= searchTaxonListLeaf.left && t.right <= searchTaxonListLeaf.right )
+            || ( t.id === searchTaxonListLeaf.milestoneParentID )
           ) );
       }
     }
     let sortMethod;
     if ( lifelist.treeSort === "name" ) {
-      sortMethod = t => t.preferred_common_name || t.name;
+      sortMethod = t => ( config.currentUser && config.currentUser.prefers_scientific_name_first
+        ? t.name
+        : t.preferred_common_name || t.name
+      );
     } else if ( lifelist.treeSort === "taxonomic" ) {
       sortMethod = taxon ? "left" : "right";
+    } else if ( lifelist.treeSort === "obsAsc" ) {
+      sortMethod = taxon
+        ? ( t => t.descendant_obs_count )
+        : ["rank_level", t => t.descendant_obs_count];
     } else {
       sortMethod = taxon
         ? ( t => -1 * t.descendant_obs_count )
@@ -183,7 +196,7 @@ class TaxaList extends React.Component {
             }}
           >
             <i className="fa fa-caret-down" />
-            Show More
+            { I18n.t( "show_more" ) }
           </button>
         </div>
       );

@@ -1,6 +1,13 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Post do
+  it { is_expected.to belong_to :parent }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to have_many(:comments).dependent :destroy }
+
+  it { is_expected.to validate_length_of(:title).is_at_least(1).is_at_most 2000 }
+  it { is_expected.to validate_presence_of :parent }
+
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
@@ -34,7 +41,7 @@ describe Post do
       expect( post ).not_to be_published
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
-      without_delay { post.update_attributes( body: "#{post.body} something else", published_at: Time.now ) }
+      without_delay { post.update( body: "#{post.body} something else", published_at: Time.now ) }
       expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq true
     end
     it "should not generate updates if body changed by published_at didn't" do
@@ -42,7 +49,7 @@ describe Post do
       post = without_delay { Post.make!( parent: f.friend, published_at: Time.now ) }
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
-      without_delay { post.update_attributes( body: "#{post.body} something else" ) }
+      without_delay { post.update( body: "#{post.body} something else" ) }
       expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
     end
   end
@@ -56,7 +63,7 @@ describe Post do
         pu = ProjectUser.make!(project: project)
         expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
         without_delay do
-          post.update_attributes(published_at: Time.now)
+          post.update(published_at: Time.now)
         end
         expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq true
       end
@@ -65,7 +72,7 @@ describe Post do
         pu = ProjectUser.make!(project: project, prefers_updates: false)
         expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
         without_delay do
-          post.update_attributes(published_at: Time.now)
+          post.update(published_at: Time.now)
         end
         expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
       end
@@ -74,7 +81,7 @@ describe Post do
         u = User.make!
         Subscription.make!( user: u, resource: project )
         without_delay do
-          post.update_attributes( published_at: Time.now )
+          post.update( published_at: Time.now )
         end
         expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: post ) ).to eq true
       end
@@ -88,7 +95,7 @@ describe Post do
         u.reload
         expect( p ).not_to be_published
         expect( u.journal_posts_count ).to eq 0
-        p.update_attributes( published_at: Time.now )
+        p.update( published_at: Time.now )
         expect( p ).to be_published
         u.reload
         expect( u.journal_posts_count ).to eq 1
@@ -104,7 +111,22 @@ describe Post do
         p = Post.make!( parent: u, user: u )
         u.reload
         expect( u.journal_posts_count ).to eq 1
-        p.update_attributes( published_at: nil )
+        p.update( published_at: nil )
+        u.reload
+        expect( u.journal_posts_count ).to eq 0
+      end
+    end
+  end
+  
+  describe "destroy" do
+    describe "for a user" do 
+      it "should decrement the user's counter cache" do
+        u = User.make!
+        expect( u.journal_posts_count ).to eq 0
+        p = Post.make!( parent: u, user: u )
+        u.reload
+        expect( u.journal_posts_count ).to eq 1
+        p.destroy
         u.reload
         expect( u.journal_posts_count ).to eq 0
       end
@@ -163,7 +185,7 @@ describe Post do
         p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
         expect( p ).not_to be_published
         expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: p) ).to eq false
-        p.update_attributes( published_at: Time.now )
+        p.update( published_at: Time.now )
         expect( p ).to be_published
         expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: p) ).to eq true
       end

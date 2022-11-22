@@ -1,91 +1,93 @@
 - content_for(:title) do
-  Taxonomic
-  = @taxon_change.class.name.split('Taxon')[1]
-  = "(#{@taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}"})"
+  :ruby
+    title = case @taxon_change.class.name
+    when "TaxonSwap" then t( :taxon_change_title_taxon_swap, id: @taxon_change.id )
+    when "TaxonSplit" then t( :taxon_change_title_taxon_split, id: @taxon_change.id )
+    when "TaxonMerge" then t( :taxon_change_title_taxon_merge, id: @taxon_change.id )
+    when "TaxonDrop" then t( :taxon_change_title_taxon_drop, id: @taxon_change.id )
+    when "TaxonStage" then t( :taxon_change_title_taxon_stage, id: @taxon_change.id )
+    end
+    if @taxon_change.is_a?( TaxonSwap )
+      @input_ancestry = @taxon_change.input_taxa[0].ancestry
+      @output_ancestry = @taxon_change.output_taxon.ancestry
+      @output_taxon_id = @taxon_change.output_taxon.id
+    end
+  = title
+  = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
 - content_for(:extracss) do
-  = stylesheet_link_tag 'taxon_changes'
-  :css
-    iframe { border: 0; }
+  = stylesheet_link_tag "taxon_changes"
 - content_for :extrajs do
-  :javascript
-    $( document ).ready( function( ) {
-      $( "#comment_body" ).textcompleteUsers( );
-    } );
+  = javascript_include_tag "taxon_changes/show"
 .container
   .row
     .col-xs-12
       - unless @existing.blank?
         .alert.alert-warning
-          %p.ui
-            %strong= "#{t(:heads_up)}:"
-            there
-            = @existing.size == 1 ? "is" : "are"
-            = @existing.size
-            other draft taxon
-            = "change#{@existing.size == 1 ? "" : "s"}"
-            with the same input taxa:
+          %p.ui=t :heads_up_there_are_other_draft_taxon_changes_html, count: @existing.size
           %ul
             - for tc in @existing
               %li
                 = "(#{tc.input_taxa.map{|it|  "#{it.name} #{it.id}" }.join(', ')})"
                 %strong=t "change_types.#{tc.verb_phrase}"
                 = "(#{tc.output_taxa.map{|it| "#{it.name} #{it.id}"}.join(', ')})"
-                = "(#{tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}"})"
+                = "(#{tc.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( tc.committed_on ) )})"
                 = link_to t(:view), tc, :class => "readmore"
-          %p.ui
-            You should probably delete this taxon change, or at least figure
-            out some kind of solution with the person / people who made the other
-            change(s).
+          %p.ui=t :you_should_delete_this_taxon_change
       - if @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         .alert.alert-warning
-          %strong= "#{t(:heads_up)}:"
           - if @taxon_change.automatable?
-            When you commit this change, identifications will be re-assigned to
-            the output taxa based on their atlases. If some or all of the
-            outputs lack atlases, or if atlases overlap for a given record,
-            identifications will be replaced with identifications of the nearest
-            common ancestor taxon,
-            - if @taxon_change.output_ancestor
-              = link_to_taxon @taxon_change.output_ancestor, sciname: true
-            - else
-              Life
+            =t :heads_up_automatable_draft_split_notice_html, taxon: @taxon_change.output_ancestor ? link_to_taxon( @taxon_change.output_ancestor, sciname: true ) : t( "all_taxa.life" )
           - else
-            This taxon split has output taxa that either do not have atlases or
-            don't share a common ancestor, so the records associated with its
-            input taxa cannot be automatically assigned to output taxa when this
-            split is committed and the community will have to add new IDs for
-            these records.
+            =t :heads_up_non_automatable_draft_split_notice_html
       - elsif @taxon_change.is_a?( TaxonSplit ) && @taxon_change.automatable?
         .alert.alert-warning
-          %strong= "#{t(:heads_up)}:"
-          Some or all of the identifications affected by this split may have been replaced with identifications of 
-          = succeed "." do
-            = link_to_taxon @taxon_change.output_ancestor, sciname: true
-          This happens when we can't automatically assign an identification to one of the output taxa.
-          = link_to "Review identifications of <span class='sciname'>#{@taxon_change.input_taxon.name}</span> #{@taxon_change.input_taxon.id}".html_safe, identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
+          =t :heads_up_automatable_split_notice_html, taxon: link_to_taxon( @taxon_change.output_ancestor, sciname: true )
+          = link_to t( :review_identifications_of_taxon_html, taxon: @taxon_change.input_taxon.name, taxon_id: @taxon_change.input_taxon.id, vow_or_con: @taxon_change.input_taxon.name.first.downcase ), identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
+      -if @observose_taxon
+        .alert.alert-warning=t :heads_up_observose_taxon_change_html, observose_taxon_threshold: @observose_taxon_threshold
       - if @curated_upstream_taxon_framework && !current_user.is_admin?
         .alert.alert-warning
-          %strong= "#{t(:heads_up)}:"
-          One or both of the input taxa involved in this change are within a
-          = link_to "taxon framework", taxonomy_details_for_taxon_path( @curated_upstream_taxon_framework.taxon )
-          Only site admins or curators of that taxon framework can commit changes affecting covered taxa.
-          Contact one of that taxon's curators to commit this change:
+          =t :heads_up_taxon_change_inputs_covered_by_framework_html, framework_url: taxonomy_details_for_taxon_path( @curated_upstream_taxon_framework.taxon )
           %ul
             - @curated_upstream_taxon_framework.taxon_curators.each do |tc|
               %li
                 = link_to user_image( tc.user ), person_path( tc.user.login )
                 = link_to_user( tc.user )
-
+      - if @taxon_change.committed_on.present? && @job.present?
+        .alert.alert-warning
+          =t :taxon_change_commit_may_still_be_processing 
       #pageheader
         .breadcrumbs
           %strong= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb'
   .row
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSwap )
+        .potential_clashes.alert.alert-warning
+          = t( :committing_this_swap_may_result )
+          = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
+            class: "potential_clashes_link btn btn-default", |
+            data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry, output_taxon_id: @output_taxon_id }, |
+            "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
+        #id_analysis
+        =link_to t( :analyze_ids ), "#", class: "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
+        - helptip_for "analyze" do
+          = t :estimate_which_input
+        = image_tag "spinner.gif", :class => "spinner"
+        .analysis
+          =t( :total_ids_on_input_taxon )
+          =link_to 0, "#", target: "_blank", class: "analysis_input"
+          %table.analysis
+            %tr.headers
+              %td= t(:no_ids)
+              %td= t(:destination)
+              %td= t(:atlas)
+          = link_to_function t( :reset ), "resetFunction()"
   .row
     .col-xs-12
       #mapwrapper.stacked
-        %iframe.stacked{:height => "600", :src => "#{taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id})}", :width => "100%"}
+        %iframe.stacked{:height => "600", :src => "#{taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id}, placement: "taxon-changes-show" )}", :width => "100%"}
   .row
     .col-xs-12
       #comments.column.span-18
@@ -93,3 +95,33 @@
         - if logged_in?
           .upstacked
             = render "subscriptions/subscription", resource: @taxon_change
+
+
+#clashes_modal.modal.modal-wide.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ "aria-label" => "Close", "data-dismiss" => "modal", type: "button" }
+          %span{ "aria-hidden" => "true" } ×
+        %h4#clashes_modal_label.modal-title= t( :analyze_clashes )
+      .modal-body
+        .unintended-disagreements-content
+          = image_tag "spinner.gif", :id => "spinner", :class => "center"
+        .row.about-unintended-disagreements
+          %hr
+          .col-xs-12
+            %h5=t :about_unintended_disagreements
+          .col-xs-2
+            %b=t( :taxon_swap ).capitalize
+            %embed{ src: image_path( "clashes-modal-fig-1-swaps.svg" ) }
+          .col-xs-3
+            = t( :clashes_occur_for_swaps_html )
+          .col-xs-2
+            %b=t( :identification_ )
+            %embed{ src: image_path("clashes-modal-fig-2.svg" ) }
+            =t( :id_two_of_taxon_swap_html )
+          .col-xs-3
+            = t( :if_narrowing_a_parent_for_swaps_html )
+          .col-xs-2
+            %b=t( :taxon_split ).capitalize
+            %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }

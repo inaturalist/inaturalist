@@ -1,7 +1,7 @@
 class SiteAdminsController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :admin_required
+  before_action :authenticate_user!
+  before_action :admin_required
 
   # POST /site_admins
   # POST /site_admins.json

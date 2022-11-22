@@ -52,96 +52,50 @@ module UsersHelper
       "%s is one of your contacts." % potential_friend.login
     end
   end
-  
-  def possessive(user, options = {})
-    capitalize_it = options.delete(:capitalize)
-    if logged_in? && current_user == user
-      if capitalize_it
-        t(:your_, :default => "your").capitalize
+
+  def possessive_noun( user, noun )
+    if is_me?( user )
+      default_second_person = t( :second_person_possessive_singular, noun: t( noun, default: noun ) )
+      case noun.underscore.downcase
+      when "identifications"
+        t( :header_your_identifications, default: default_second_person )
+      when "lists"
+        t( :header_your_lists, default: default_second_person )
+      when "journal"
+        t( :header_your_journal, default: default_second_person )
+      when "favorites"
+        t( :header_your_favorites, default: default_second_person )
+      when "projects"
+        t( :header_your_projects, default: default_second_person )
       else
-        t(:your_, :default => "your")
+        default_second_person
       end
     else
-      t :possessive_user, :user => user.login
+      default_third_person = t( :third_person_possessive_singular,
+        noun: t( noun, default: noun ), object_phrase: user.login )
+      case noun.underscore.downcase
+      when "identifications"
+        t( :users_identifications, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "lists"
+        t( :users_lists, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "journal"
+        t( :x_journal, user: user.login, vow_or_con: user.login[0].downcase, default: default_second_person )
+      when "favorites"
+        t( :users_favorites, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
+      when "projects"
+        t( :users_projects, user: user.login, vow_or_con: user.login[0].downcase, default: default_third_person )
+      else
+        default_third_person
+      end
     end
   end
 
-  def possessive_noun(user, noun, options = {})
-    if is_me?(user)
-      t(:second_person_possessive_singular, :noun => noun)
-    else
-      t(:third_person_possessive_singular, :noun => noun, :object_phrase => user.login)
-    end
-  end
-  
   def you_or_login(user, options = {})
     capitalize_it = options.delete(:capitalize)
     if respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user == user
       capitalize_it ? t(:you_) : t(:you)
     else
       user.login
-    end
-  end
-  
-  def activity_stream_tagline(update, options = {})
-    activity_object = options[:activity_object] || update.activity_object
-    html = link_to update.user.login, person_path(update.user)
-    html += " added "
-    if update.batch_ids.blank?
-      case update.activity_object_type 
-      when "Post" 
-        html += "a #{link_to "journal post", journal_post_path(update.user.login, activity_object)} "
-      when "Comment" 
-        html += "a #{link_to "comment", activity_object} "
-        html += "on #{activity_object.parent_type.match(/^[aeiou]/i) ? 'an' : 'a'} "
-        html += link_to(activity_object.parent_type.underscore.humanize.downcase, activity_object)
-        if activity_object.parent.user 
-          html += " by #{link_to activity_object.parent.user.login, activity_object.parent.user} "
-        end 
-      when "ListedTaxon" 
-         html += "a taxon to #{link_to activity_object.list.title, activity_object} "
-      when "List" 
-        html += "a new list called #{link_to activity_object.title, activity_object }"
-      else 
-        html += update.activity_object_type.match(/^[aeiou]/i) ? 'an ' : 'a '
-        html += link_to update.activity_object_type.underscore.humanize.downcase, activity_object
-      end 
-    else 
-      html += pluralize update.batch_ids.split(',').size, update.activity_object_type.underscore.humanize.downcase 
-    end 
-    html += " at #{update.updated_at.strftime("%I:%S %p").downcase.gsub(/^0/, '')}"
-    html
-  end
-  
-  def activity_stream_body(update, options = {})
-    activity_object = options[:activity_object] || update.activity_object
-    return nil unless activity_object
-    if update.batch_ids.blank?
-      case update.activity_object_type
-      when "Observation"
-        content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object), :class => "mini observations")
-      when "Identification" 
-        render :partial => "identifications/identification_with_observation", :object => activity_object 
-      when "ListedTaxon" 
-        content_tag(:div, render(:partial => "lists/listed_taxon", :object => activity_object), :class => "listed_taxa plain_view")
-      when "Post" 
-        render :partial => "posts/post", :object => activity_object, :locals => { :truncate_length => 200 } 
-      when "List" 
-      when "Comment"
-        if activity_object.parent.is_a?(Observation)
-          content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object.parent), :class => "mini observations") +
-          render(update.activity_object)
-        else
-          render(update.activity_object)
-        end
-      else 
-        render update.activity_object 
-      end 
-    elsif batch_partial = activity_object.class.activity_stream_options[:batch_partial] 
-      render :partial => batch_partial, :locals => { 
-        :update => update,
-        activity_object.class.to_s.underscore.pluralize.to_sym => @activity_objects_by_update_id[update.id]
-      }
     end
   end
 end

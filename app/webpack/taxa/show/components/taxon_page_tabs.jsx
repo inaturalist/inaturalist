@@ -8,6 +8,7 @@ import {
   Dropdown,
   MenuItem
 } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import _ from "lodash";
 import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
@@ -38,8 +39,12 @@ class TaxonPageTabs extends React.Component {
     // not visible
     if ( chosenTab === "map" && prevProps.chosenTab !== "map" ) {
       const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
-      google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
-      taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+      // If google wasn't initialized for some reason, doing any of this will
+      // crash, and we can't use an ErrorBoundary in a callback like this
+      if ( typeof ( google ) !== "undefined" ) {
+        google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+        taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+      }
     }
   }
 
@@ -63,13 +68,13 @@ class TaxonPageTabs extends React.Component {
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
-          <MenuItem eventKey="edit-atlas">
+          <MenuItem eventKey="edit-atlas" href={`/atlases/${taxon.atlas_id}`}>
             <i className="fa fa-globe" />
             { " " }
             { I18n.t( "edit_atlas" ) }
           </MenuItem>
         ) : (
-          <MenuItem eventKey="new-atlas">
+          <MenuItem eventKey="new-atlas" href={`/atlases/new?taxon_id=${taxon.id}`}>
             <i className="fa fa-globe" />
             { " " }
             { I18n.t( "create_an_atlas" ) }
@@ -101,6 +106,9 @@ class TaxonPageTabs extends React.Component {
                 case "new-atlas":
                   window.location = `/atlases/new?taxon_id=${taxon.id}`;
                   break;
+                case "history":
+                  window.location = `/taxa/${taxon.id}/history`;
+                  break;
                 default:
                   window.location = `/taxa/${taxon.id}/edit`;
               }
@@ -114,6 +122,7 @@ class TaxonPageTabs extends React.Component {
             <Dropdown.Menu>
               <MenuItem
                 eventKey="add-flag"
+                href={`/taxa/${taxon.id}/flags/new`}
               >
                 <i className="fa fa-flag" />
                 { " " }
@@ -122,6 +131,7 @@ class TaxonPageTabs extends React.Component {
               <MenuItem
                 className={flagsCount > 0 ? "" : "hidden"}
                 eventKey="view-flags"
+                href={`/taxa/${taxon.id}/flags`}
               >
                 <i className="fa fa-flag-checkered" />
                 { " " }
@@ -149,17 +159,25 @@ class TaxonPageTabs extends React.Component {
                     { " " }
                     { I18n.t( "edit_photos" ) }
                   </MenuItem>
-                )
-              }
+                ) }
+              { atlasItem }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"
+                href={`/taxa/${taxon.id}/edit`}
               >
                 <i className="fa fa-pencil" />
                 { " " }
                 { I18n.t( "edit_taxon" ) }
               </MenuItem>
-              { atlasItem }
+              <MenuItem
+                eventKey="history"
+                href={`/taxa/${taxon.id}/history`}
+              >
+                <i className="fa fa-history" />
+                { " " }
+                { I18n.t( "history" ) }
+              </MenuItem>
             </Dropdown.Menu>
           </Dropdown>
         </li>
@@ -231,8 +249,20 @@ class TaxonPageTabs extends React.Component {
             className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
             id="map-tab"
           >
-            <TaxonPageMapContainer />
-            <RecentObservationsContainer />
+            <LazyLoad
+              debounce={false}
+              height={630}
+              offset={100}
+            >
+              <TaxonPageMapContainer />
+            </LazyLoad>
+            <LazyLoad
+              debounce={false}
+              height={120}
+              offset={100}
+            >
+              <RecentObservationsContainer />
+            </LazyLoad>
           </div>
           <div
             role="tabpanel"
@@ -296,7 +326,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "map"
+  chosenTab: "articles"
 };
 
 export default TaxonPageTabs;

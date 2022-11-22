@@ -6,49 +6,50 @@ describe PlacesController do
     it "should make a place with no default type" do
       sign_in user
       expect {
-        post(:create, {
+        post(:create, params: {
           place: {
             name: "Pine Island Ridge Natural Area"
           },
-          geojson: test_place_geojson
+          file: test_place_kml
         })
       }.to change(Place, :count).by(1)
       expect( Place.last.place_type ).to be_blank
     end
 
-    it "creates places with geojson" do
+    it "creates places with kml" do
       sign_in user
-      post :create, place: {
-        name: "Test geojson",
+      post :create, params: { place: {
+        name: "Test kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml }
       p = Place.last
-      expect( p.name ).to eq "Test geojson"
+      expect( p.name ).to eq "Test kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
-    it "fails with invalid geojson" do
+    it "fails with invalid kml" do
       sign_in user
       expect {
-        post :create,
+        post :create, params: {
           place: {
-            name: "Test geojson",
+            name: "Test kml",
             latitude: 30,
             longitude: 30
           },
-          geojson: test_place_geojson(:invalid)
+          file: test_place_kml(:invalid)
+        }
       }.not_to change( Place, :count )
     end
 
     it "does not allow non admins to create huge places" do
       sign_in user
       place_count = Place.count
-      post :create, place: {
-        name: "Test non-admin geojson",
+      post :create, params: { place: {
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge) }
       expect( response ).not_to be_redirect
       expect( Place.count ).to eq place_count
     end
@@ -56,14 +57,34 @@ describe PlacesController do
     it "allows admins to create huge places" do
       user = make_admin
       sign_in user
-      post :create, place: {
-        name: "Test admin geojson",
+      post :create, params: { place: {
+        name: "Test admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge) }
       p = Place.last
-      expect( p.name ).to eq "Test admin geojson"
+      expect( p.name ).to eq "Test admin kml"
       expect( p.place_geometry ).to_not be_nil
+    end
+
+    it "limits place create to a daily quota" do
+      sign_in user
+      PlacesController::QUOTA.times do
+        expect {
+          post :create, params: { place: {
+            name: Faker::Name.name,
+            latitude: 0.5,
+            longitude: 0.5
+          }, file: test_place_kml }
+        }.to change( Place, :count ).by( 1 )
+      end
+      expect {
+        post :create, params: { place: {
+          name: Faker::Name.name,
+          latitude: 0.5,
+          longitude: 0.5
+        }, file: test_place_kml }
+      }.to change( Place, :count ).by( 0 )
     end
   end
 
@@ -71,52 +92,52 @@ describe PlacesController do
     render_views
     let(:place) { make_place_with_geom( user: user ) }
     it "renders a self-referential canonical tag" do
-      get :show, id: place.id
+      get :show, params: { id: place.id }
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{place_url( place, host: Site.default.url )}']" )
     end
 
     it "renders a canonical tag from other sites to default site" do
       different_site = Site.make!
-      get :show, id: place.id, inat_site_id: different_site.id
+      get :show, params: { id: place.id, inat_site_id: different_site.id }
       expect( response.body ).to have_tag(
         "link[rel=canonical][href='#{place_url( place, host: Site.default.url )}']" )
     end
   end
 
   describe "update" do
-    it "updates places with geojson" do
+    it "updates places with kml" do
       p = make_place_with_geom(user: user)
       sign_in user
-      put :update, id: p.id, place: {
-        name: "Test geojson",
+      put :update, params: { id: p.id, place: {
+        name: "Test kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml }
       p = Place.last
-      expect( p.name ).to eq "Test geojson"
+      expect( p.name ).to eq "Test kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
     it "does not allow non-admins to update places to make them huge" do
       p = make_place_with_geom(user: user)
       sign_in user
-      put :update, id: p.id, place: {
-        name: "Test non-admin geojson",
+      put :update, params: { id: p.id, place: {
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge) }
       expect( response ).not_to be_redirect
     end
 
     it "does not allow non-admins to update places that are already huge" do
       p = make_place_with_geom( user: user, wkt: "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))" )
       sign_in user
-      put :update, id: p.id, place: {
-        name: "Test non-admin geojson",
+      put :update, params: { id: p.id, place: {
+        name: "Test non-admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson
+      }, file: test_place_kml }
       expect( response ).not_to be_redirect
     end
 
@@ -124,13 +145,13 @@ describe PlacesController do
       user = make_admin
       p = make_place_with_geom(user: user)
       sign_in user
-      put :update, id: p.id, place: {
-        name: "Test admin geojson",
+      put :update, params: { id: p.id, place: {
+        name: "Test admin kml",
         latitude: 30,
         longitude: 30
-      }, geojson: test_place_geojson(:huge)
+      }, file: test_place_kml(:huge) }
       p = Place.last
-      expect( p.name ).to eq "Test admin geojson"
+      expect( p.name ).to eq "Test admin kml"
       expect( p.place_geometry ).to_not be_nil
     end
 
@@ -138,29 +159,18 @@ describe PlacesController do
       p = make_place_with_geom( user: user )
       user.user_privileges.destroy_all
       sign_in user
-      put :update, id: p.id, place: { name: "the new name" }
+      put :update, params: { id: p.id, place: { name: "the new name" } }
       p.reload
       expect( p.name ).to eq "the new name"
     end
-
-    it "does not allow removal of the geometry with blank geojson" do
-      p = make_place_with_geom( user: user )
-      put :update, id: p.id,
-        place: {
-          name: "something else"
-        },
-        geojson: ""
-      expect( response ).not_to be_success
-      p.reload
-      expect( p.place_geometry ).not_to be_blank
-    end
     it "does not allow removal of the geometry with old remove_geom" do
       p = make_place_with_geom( user: user )
-      put :update, id: p.id,
+      put :update, params: { id: p.id,
         place: {
           name: "something else"
         },
         remove_geom: true
+      }
       expect( response ).to be_redirect
       p.reload
       expect( p.place_geometry ).not_to be_blank
@@ -175,49 +185,45 @@ describe PlacesController do
     it "should delete the place" do
       expect(place).not_to be_blank
       expect {
-        delete :destroy, :id => place.id
+        delete :destroy, params: { id: place.id }
       }.to change(Place, :count).by(-1)
     end
     it "should fail if projects are using the place" do
       p = Project.make!(place: place)
-      delete :destroy, id: place.id
+      delete :destroy, params: { id: place.id }
       expect( Place.find_by_id(place.id) ).not_to be_blank
     end
     it "should fail if projects are using the place in rules" do
       p = Project.make!
       p.project_observation_rules.create(operand: place, operator: 'observed_in_place?')
-      delete :destroy, id: place.id
+      delete :destroy, params: { id: place.id }
       expect( Place.find_by_id(place.id) ).not_to be_blank
     end
   end
 
   describe "search" do
-    let(:place) { make_place_with_geom(:name => 'Panama') }
-    let(:another_place) { make_place_with_geom(:name => 'Norway') }
+    let(:place) { make_place_with_geom(name: 'Panama') }
+    let(:another_place) { make_place_with_geom(name: 'Norway') }
     it "should return results in HTML" do
-      expect(place).not_to be_blank
-      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
-      get :search, :q => place.name
-      expect(response.content_type).to eq"text/html"
-    end
-    it "should redirect with only one result in HTML" do
-      expect(Place).to receive(:elastic_paginate).and_return([ place ])
-      get :search, :q => place.name
-      expect(response).to be_redirect
-    end
-    it "should not redirect with only one result in JSON" do
-      expect(Place).to receive(:elastic_paginate).and_return([ place ])
-      get :search, :q => place.name, :format => :json
-      expect(response).not_to be_redirect
-    end
-    it "should return results in JSON, with html" do
-      place.html = 'the html'
-      expect(Place).to receive(:elastic_paginate).and_return([ place, another_place ])
-      get :search, :q => place.name, :format => :json
-      expect(response.content_type).to eq "application/json"
-      json = JSON.parse(response.body)
-      expect(json.count).to eq 2
-      json.first['html'] == place.html
+      expect( place ).not_to be_blank
+      response_json = <<-JSON
+        {
+          "results": [
+            {
+              "record": {
+                "id": #{place.id}
+              }
+            }
+          ]
+        }
+      JSON
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+        status: 200,
+        body: response_json,
+        headers: { "Content-Type" => "application/json" }
+      )
+      get :search, params: { q: place.name }
+      expect( response.content_type ).to include "text/html"
     end
   end
 
@@ -229,39 +235,39 @@ describe PlacesController do
     end
     it "should delete the reject" do
       reject_id = reject.id
-      post :merge, id: reject.slug, with: keeper.id
+      post :merge, params: { id: reject.slug, with: keeper.id }
       log_timer do
         expect(Place.find_by_id(reject_id)).to be_blank
       end
     end
     it "should allow you to keep the reject name" do
       reject_name = reject.name
-      post :merge, id: reject.slug, with: keeper.id, keep_name: 'left'
+      post :merge, params: { id: reject.slug, with: keeper.id, keep_name: 'left' }
       keeper.reload
       expect(keeper.name).to eq reject_name
     end
     it "should allow you to keep the reject place type" do
       reject_place_type = reject.place_type
-      post :merge, id: reject.slug, with: keeper.id, keep_place_type_name: 'left'
+      post :merge, params: { id: reject.slug, with: keeper.id, keep_place_type_name: 'left' }
       keeper.reload
       expect(keeper.place_type).to eq reject_place_type
     end
     it "should be impossible if the keeper is a standard place" do
-      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
-      post :merge, id: reject.slug, with: keeper.id
+      keeper.update( admin_level: Place::STATE_LEVEL )
+      post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).not_to be_blank
     end
     it "should be impossible if the reject is a standard place" do
-      reject.update_attributes( admin_level: Place::STATE_LEVEL )
-      post :merge, id: reject.slug, with: keeper.id
+      reject.update( admin_level: Place::STATE_LEVEL )
+      post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).not_to be_blank
     end
     it "should be possible if the keeper is a standard place and the user is on staff" do
       sign_in make_admin
-      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
-      post :merge, id: reject.slug, with: keeper.id
+      keeper.update( admin_level: Place::STATE_LEVEL )
+      post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).to be_blank
     end
@@ -270,41 +276,56 @@ end
 
 describe PlacesController, "geometry" do
   before do
-    @place = make_place_with_geom(:user => @user)
+    @place = make_place_with_geom(user: @user)
     @place_without_geom = make_place_with_geom
     @place_without_geom.place_geometry.destroy
   end
 
   it "should return geojson when places have a geometry" do
-    get :geometry, format: :geojson, id: @place.id
+    get :geometry, format: :geojson, params: { id: @place.id }
     expect( response.body ).to include "MultiPolygon"
   end
 
   it "should not fail when places have no geometry" do
     expect {
-      get :geometry, format: :geojson, id: @place_without_geom.id
+      get :geometry, format: :geojson, params: { id: @place_without_geom.id }
     }.to_not raise_error
     expect( response.body ).to eq("{}")
   end
 end
 
-def test_place_geojson(size = :default)
+def test_place_kml(size = :default)
   coords = if size == :default
-    [[ [0,0], [0,1], [1,1], [1,0], [0,0] ]]
+    [[0,0], [0,1], [1,1], [1,0], [0,0]]
   elsif size == :huge
-    [[ [0,0], [0,60], [60,60], [60,0], [0,0] ]]
+    [[0,0], [0,60], [60,60], [60,0], [0,0]]
   elsif size == :invalid
-    [[ [0,0], [0,1] ]]
+    [[0,0], [0,1]]
   end
-  {
-    type: "FeatureCollection",
-    features: [{
-      type: "Feature",
-      properties: { },
-      geometry: {
-        type: "Polygon",
-        coordinates: coords
-      }
-    }]
-  }.to_json
+  path = File.join(Dir::tmpdir, "test-place-kml-#{size}.kml")
+  if File.exists?( path )
+    Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )
+  end
+  kml = <<-XML
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.1">
+  <Document>
+    <Placemark>
+      <MultiGeometry>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <coordinates>#{coords.map{|c| c.join( "," )}.join( " " )}</coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Document>
+</kml>
+  XML
+  File.open( path, "w" ) do |f|
+    f << kml
+  end
+  Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )
 end

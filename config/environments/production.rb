@@ -1,4 +1,4 @@
-Inaturalist::Application.configure do
+Rails.application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -12,20 +12,23 @@ Inaturalist::Application.configure do
 
   config.eager_load = true
 
-  config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
-
   # If you have no front-end server that supports something like X-Sendfile,
   # just comment this out and Rails will serve the files
 
   config.log_level = :info
 
   # Use a different cache store in production
-  config.cache_store = :dalli_store, CONFIG.memcached,
+  config.cache_store = :mem_cache_store, CONFIG.memcached,
     { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_files = false
+  config.public_file_server.enabled = false
+
+  unless config.public_file_server.enabled
+    config.action_dispatch.x_sendfile_header = CONFIG.x_sendfile_header
+  end
 
   # Allow removal of expired assets:
   config.assets.handle_expiration = true
@@ -34,7 +37,7 @@ Inaturalist::Application.configure do
   # Compress JavaScripts and CSS
   # Choose the compressors to use (if any)
   config.assets.compress = true
-  config.assets.js_compressor = Uglifier.new(:mangle => false)
+  config.assets.js_compressor = Uglifier.new(mangle: false)
   config.assets.css_compressor = :yui
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
@@ -66,12 +69,6 @@ Inaturalist::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
-  config.middleware.use Rack::GoogleAnalytics,
-    anonymize_ip: true,
-    trackers: lambda { |env|
-      return env['inat_ga_trackers'] if env['inat_ga_trackers']
-    }
 
   config.log_formatter = CustomLogFormatter.new
 

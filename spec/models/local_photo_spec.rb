@@ -1,90 +1,65 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe LocalPhoto, "creation" do
   elastic_models( Observation )
   describe "creation" do
-    it "should set the native page url" do
+    it "should not set the native page url" do
       p = LocalPhoto.make!
-      expect(p.native_page_url).not_to be_blank
+      expect( p.native_page_url ).to be_blank
     end
 
-    it "should set the native_realname" do
-      u = User.make!(:name => "Hodor Hodor Hodor")
-      lp = LocalPhoto.make!(:user => u)
-      expect(lp.native_realname).to eq(u.name)
+    it "should not set the native_realname" do
+      u = User.make!( name: "Hodor Hodor Hodor" )
+      lp = LocalPhoto.make!( user: u )
+      expect( lp.native_realname ).to be_blank
     end
 
     it "should set absolute image urls" do
       lp = LocalPhoto.make!
-      expect(lp.small_url).to be =~ /http/
+      expect( lp.small_url ).to be =~ /http/
     end
 
     it "requires user unless it has a subtype" do
-      expect{ LocalPhoto.make!(user: nil) }.to raise_error( ActiveRecord::RecordInvalid )
-      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error
+      expect { LocalPhoto.make!( user: nil ) }.to raise_error( ActiveRecord::RecordInvalid )
+      expect { LocalPhoto.make!( user: nil, subtype: "FlickrPhoto" ) }.to_not raise_error
     end
 
-    it "uses id as native_photo id unless it has a subtype" do
+    it "sets native_photo id unless it has a subtype" do
       lp = LocalPhoto.make!
-      expect( lp.native_photo_id ).to eq lp.id.to_s
-      lp = LocalPhoto.make!(subtype: "FlickrPhoto", native_photo_id: "1234")
+      expect( lp.native_photo_id ).to be_blank
+      lp = LocalPhoto.make!( subtype: "FlickrPhoto", native_photo_id: "1234" )
       expect( lp.native_photo_id ).to eq "1234"
     end
 
     it "should not remove metadata" do
-      p = LocalPhoto.new(metadata: { test_attr: "test_val", dimensions: { } })
-      expect(p).to receive("file=").at_least(:once).and_return(nil)
+      p = LocalPhoto.new( )
+      pm = PhotoMetadata.new( photo: p, metadata: { test_attr: "test_val" } )
+      expect( p ).to receive( "file=" ).at_least( :once ).and_return( nil )
       p.file = { styles: { } }
       expect( p.metadata[:test_attr] ).to eq "test_val"
-      p.extract_metadata("some non-nil")
+      p.extract_metadata( "some non-nil" )
       expect( p.metadata[:test_attr] ).to eq "test_val"
     end
-
   end
 
   describe "dimensions" do
-    it "should extract dimension metadata" do
-      p = LocalPhoto.new(user: User.make!)
-      p.file.assign(File.new(File.join(Rails.root, "app/assets/images/404mole.png")))
-      expect( p.metadata ).to be nil
+    it "should extract dimension" do
+      p = LocalPhoto.new( user: User.make! )
+      p.file.assign( File.new( File.join( Rails.root, "app/assets/images/404mole.png" ) ) )
+      expect( p.width ).to be nil
+      expect( p.height ).to be nil
       p.extract_metadata
-      expect( p.metadata[:dimensions][:original] ).to eq({ width: 600, height: 493 })
-    end
-
-    it "should extrapolate_dimensions_from_original from landscape photos" do
-      p = LocalPhoto.new(user: User.make!)
-      expect(p).to receive(:original_url).at_least(:once).and_return(
-        File.join(Rails.root, "app/assets/images/404mole.png"))
-      expect(p.extrapolate_dimensions_from_original).to eq({
-        original: { width: 600, height: 493 },
-        large: { width: 600, height: 493 },
-        medium: { width: 500, height: 411 },
-        small: { width: 240, height: 197 },
-        thumb: { width: 100, height: 82 },
-        square: { width: 75, height: 75 }
-      })
-    end
-
-    it "should extrapolate_dimensions_from_original from small portrait photos" do
-      p = LocalPhoto.new(user: User.make!)
-      expect(p).to receive(:original_url).at_least(:once).and_return(
-        File.join(Rails.root, "public/mapMarkers/mm_20_unknown.png"))
-      expect(p.extrapolate_dimensions_from_original).to eq({
-        original: { width: 13, height: 21 },
-        large: { width: 13, height: 21 },
-        medium: { width: 13, height: 21 },
-        small: { width: 13, height: 21 },
-        thumb: { width: 13, height: 21 },
-        square: { width: 75, height: 75 }
-      })
+      expect( p.width ).to eq 600
+      expect( p.height ).to eq 493
     end
   end
 
   it "can generate attribution without a user" do
-    lp = LocalPhoto.make!(user: nil, subtype: "FlickrPhoto")
+    lp = LocalPhoto.make!( user: nil, subtype: "FlickrPhoto" )
     expect( lp.attribution ).to eq "(c) anonymous, all rights reserved"
   end
-
 end
 
 describe LocalPhoto, "to_observation" do
@@ -93,48 +68,48 @@ describe LocalPhoto, "to_observation" do
   context "JPEG" do
     it "should set a taxon from tags" do
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
-      t = Taxon.make!(:name => "Cuthona abronia")
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      t = Taxon.make!( name: "Cuthona abronia" )
       p.extract_metadata
       o = p.to_observation
-      expect(o.taxon).to eq(t)
+      expect( o.taxon ).to eq( t )
     end
-  
+
     it "should set a taxon from a file name" do
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia.jpg"))
-      t = Taxon.make!(:name => "Cuthona abronia")
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia.jpg" ) )
+      t = Taxon.make!( name: "Cuthona abronia" )
       o = p.to_observation
       expect( o.taxon ).to eq t
     end
-  
+
     it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
-      taxon_with_non_valid_name = Taxon.make!(rank: Taxon::SPECIES)
-      taxon_with_valid_name = Taxon.make!(name: "Cuthona abronia", rank: Taxon::SPECIES)
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+      taxon_with_non_valid_name = Taxon.make!( rank: Taxon::SPECIES )
+      taxon_with_valid_name = Taxon.make!( name: "Cuthona abronia", rank: Taxon::SPECIES )
       TaxonName.make!(
-        taxon: taxon_with_non_valid_name, 
-        name: taxon_with_valid_name.name, 
-        is_valid: false, 
+        taxon: taxon_with_non_valid_name,
+        name: taxon_with_valid_name.name,
+        is_valid: false,
         lexicon: TaxonName::SCIENTIFIC_NAMES
       )
       p.extract_metadata
       o = p.to_observation
       expect( o.taxon ).to eq taxon_with_valid_name
     end
-  
+
     it "should not set a taxon from a blank title" do
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg"))
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg" ) )
       p.extract_metadata
       tn = TaxonName.make!
-      tn.update_attribute(:name, "")
-      expect(tn.name).to eq("")
+      tn.update_attribute( :name, "" )
+      expect( tn.name ).to eq( "" )
       o = p.to_observation
-      expect(o.taxon).to be_blank
+      expect( o.taxon ).to be_blank
     end
-  
+
     it "should not choose an inactive taxon if a current synonym exists" do
       active = Taxon.make!( name: "Neocuthona abronia", rank: Taxon::SPECIES )
       inactive = Taxon.make!( name: "Cuthona abronia", rank: Taxon::SPECIES, is_active: false )
@@ -142,12 +117,12 @@ describe LocalPhoto, "to_observation" do
       expect( active ).to be_is_active
       expect( inactive ).not_to be_is_active
       p = LocalPhoto.make
-      p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
+      p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
       p.extract_metadata
       o = p.to_observation
       expect( o.taxon ).to eq active
     end
-  
+
     it "should set a taxon from a name in a language that matches the photo uploader's" do
       p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg" ) )
@@ -155,7 +130,7 @@ describe LocalPhoto, "to_observation" do
       o = p.to_observation
       expect( o.taxon ).to eq tn.taxon
     end
-  
+
     it "should not set a taxon from a name in a language other than the photo uploader's" do
       p = LocalPhoto.make( user: User.make!( locale: "es-MX" ) )
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "spider-blank_title.jpg" ) )
@@ -163,7 +138,7 @@ describe LocalPhoto, "to_observation" do
       o = p.to_observation
       expect( o.taxon ).not_to eq tn.taxon
     end
-    
+
     it "should set positional_accuracy from the GPSHPositioningError tag" do
       p = LocalPhoto.make
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "hyalophora-gps-h-pos.jpg" ) )
@@ -180,8 +155,43 @@ describe LocalPhoto, "to_observation" do
       expect( o.positional_accuracy ).not_to eq 0
       expect( o.positional_accuracy ).to be_nil
     end
+
+    describe "time zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should be set for a gecko in Malaysia" do
+        p = build :local_photo
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if observer time zone is Hawaii" do
+        p = build( :local_photo, user: create( :user, time_zone: "Hawaii" ) )
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.user.time_zone ).to eq "Hawaii"
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if operating time zone is PST" do
+        Time.use_zone( "America/Los_Angeles" ) do
+          p = build :local_photo
+          p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+          p.extract_metadata
+          o = p.to_observation
+          expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+          expect( o.time_observed_at_in_zone.hour ).to eq 22
+        end
+      end
+    end
   end
-  
+
   context "PNG" do
     it "should extract select PNG tEXt/zTXt metadata" do
       p = LocalPhoto.make
@@ -204,7 +214,7 @@ describe LocalPhoto, "to_observation" do
     it "should set a taxon from a file name" do
       p = LocalPhoto.make
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "polistes_dominula-png-metadata.png" ) )
-      t = Taxon.make!( :name => "Polistes dominula" )
+      t = Taxon.make!( name: "Polistes dominula" )
       o = p.to_observation
       expect( o.taxon ).to eq t
     end
@@ -212,51 +222,53 @@ describe LocalPhoto, "to_observation" do
 
   context "Dublin Core" do
     it "should set observation fields from machine tags" do
-      of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
+      of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
+        datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
-        :dc => {
-          :subject => ['sex=female']
+      pm = PhotoMetadata.new( photo: lp, metadata: {
+        dc: {
+          subject: ["sex=female"]
         }
-      }
+      })
       o = lp.to_observation
-      expect(o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}.value).to eq "female"
+      expect( o.observation_field_values.detect { |ofv| ofv.observation_field_id == of.id }.value ).to eq "female"
     end
-  
+
     it "should not set invalid observation fields from machine tags" do
-      of = ObservationField.make!(:name => "sex", :allowed_values => "unknown|male|female", :datatype => ObservationField::TEXT)
+      of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
+        datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
-        :dc => {
-          :subject => ['sex=whatevs']
+      pm = PhotoMetadata.new( photo: lp, metadata: {
+        dc: {
+          subject: ["sex=whatevs"]
         }
-      }
+      })
       o = lp.to_observation
       puts "o.errors: #{o.errors.full_messages.to_sentence}" unless o.valid?
-      expect(o).to be_valid
-      expect(o.observation_field_values.detect{|ofv| ofv.observation_field_id == of.id}).to be_blank
+      expect( o ).to be_valid
+      expect( o.observation_field_values.detect { |ofv| ofv.observation_field_id == of.id } ).to be_blank
     end
-  
+
     it "should add arbitrary tags from keywords" do
       lp = LocalPhoto.make!
-      lp.metadata = {
-        :dc => {
-          :subject => ['tag1', 'tag2']
+      pm = PhotoMetadata.new( photo: lp, metadata: {
+        dc: {
+          subject: ["tag1", "tag2"]
         }
-      }
+      })
       o = lp.to_observation
-      expect( o.tag_list ).to include 'tag1'
-      expect( o.tag_list ).to include 'tag2'
+      expect( o.tag_list ).to include "tag1"
+      expect( o.tag_list ).to include "tag2"
     end
-  
+
     it "should not import branded descriptions" do
-      LocalPhoto::BRANDED_DESCRIPTIONS.each do |branded_description|
+      LocalPhoto::BRANDED_DESCRIPTIONS.each do | branded_description |
         lp = LocalPhoto.make!
-        lp.metadata = {
+        pm = PhotoMetadata.new( photo: lp, metadata: {
           dc: {
             description: branded_description
           }
-        }
+        })
         o = lp.to_observation
         expect( o.description ).to be_blank
       end
@@ -266,22 +278,29 @@ end
 
 describe LocalPhoto, "flagging" do
   elastic_models( Observation )
-  let(:lp) { LocalPhoto.make! }
-  it "should change the URLs for copyright infringement" do
-    Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
+  let( :lp ) { LocalPhoto.make! }
+  it "should change the value returned by URL methods for copyright infringement" do
+    Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     lp.reload
-    %w(original large medium small thumb square).each do |size|
-      expect(lp.send("#{size}_url")).to be =~ /copyright/
+    %w(original large medium small thumb square).each do | size |
+      expect( lp.send( "#{size}_url" ) ).to be =~ /copyright/
     end
   end
-  it "should not change the URLs back unless the flag was for copyright" do
-    f1 = Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
-    f2 = Flag.make!(:flaggable => lp, :flag => Flag::SPAM)
+  it "should not change the actual photo URLs for copyright infringement" do
+    Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     lp.reload
-    f2.update_attributes(:resolved => true, :resolver => User.make!)
+    %w(original large medium small thumb square).each do | size |
+      expect( lp["#{size}_url"] ).not_to be =~ /copyright/
+    end
+  end
+  it "should not change URL method return values unless the flag was for copyright" do
+    Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
+    f2 = Flag.make!( flaggable: lp, flag: Flag::SPAM )
     lp.reload
-    %w(original large medium small thumb square).each do |size|
-      expect(lp.send("#{size}_url")).to be =~ /copyright/
+    f2.update( resolved: true, resolver: User.make! )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp.send( "#{size}_url" ) ).to be =~ /copyright/
     end
   end
   it "should change make associated observations casual grade when flagged" do
@@ -315,14 +334,14 @@ describe LocalPhoto, "flagging" do
   #   it "should change the URLs back when resolved" do
   #     photo = flag.flaggable
   #     expect( photo.original_url ).to be =~ /copyright/
-  #     flag.update_attributes( resolved: true, resolver: User.make! )
+  #     flag.update( resolved: true, resolver: User.make! )
   #     photo.reload
   #     %w(original large medium small thumb square).each do |size|
   #       expect( lp.send( "#{size}_url" ) ).not_to be =~ /copyright/
   #     end
   #   end
   #   it "should revert quality grade" do
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload
@@ -330,7 +349,7 @@ describe LocalPhoto, "flagging" do
   #   end
   #   it "should not revert quality grade if there's another unresolved copyright flag" do
   #     other_flag = Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload
@@ -350,7 +369,7 @@ describe LocalPhoto do
   it "uses subtype for source_title if available" do
     lp = LocalPhoto.new
     expect( lp.source_title ).to eq Site.default.name
-    lp = LocalPhoto.new(subtype: "FlickrPhoto")
+    lp = LocalPhoto.new( subtype: "FlickrPhoto" )
     expect( lp.source_title ).to eq "Flickr"
   end
 end

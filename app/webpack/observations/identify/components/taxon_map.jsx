@@ -37,6 +37,7 @@
     placeLayers: undefined
     showAccuracy: true
     showAllLayer: true
+    showLegend: false
     showRange: undefined,
     taxonLayers: [
       {
@@ -88,7 +89,9 @@ class TaxonMap extends React.Component {
       return;
     }
     this.setMapFromProps( );
-    google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
+    if ( typeof ( google ) !== "undefined" ) {
+      google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
+    }
   }
 
   setMapFromProps( ) {

@@ -100,6 +100,7 @@ CSV.open( @out_path, "wb" ) do |csv|
   scope.script_find_each( flush: true ) do |user|
     next if @emails_to_exclude.include?( user.email )
     next if user.prefers_no_email?
+    next if user.email_suppressed_in_group?( EmailSuppression::DONATION_EMAILS )
     user_count += 1
     user_filter = { term: { "user.id" => user.id } }
     num_identifications = Identification.elastic_search(

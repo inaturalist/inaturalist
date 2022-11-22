@@ -1,6 +1,6 @@
 #encoding: utf-8
-class Place < ActiveRecord::Base
-
+class Place < ApplicationRecord
+  acts_as_flaggable
   include ActsAsElasticModel
   # include ActsAsUUIDable
   before_validation :set_uuid
@@ -23,7 +23,7 @@ class Place < ActiveRecord::Base
   has_many :projects, :dependent => :nullify, :inverse_of => :place
   has_many :trips, :dependent => :nullify, :inverse_of => :place
   has_many :sites, :dependent => :nullify, :inverse_of => :place
-  has_many :extra_place_sites, dependent: :nullify, inverse_of: :extra_place, class_name: "Site", foreign_key: :extra_place_id
+  has_many :places_sites, dependent: :destroy
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
@@ -41,13 +41,15 @@ class Place < ActiveRecord::Base
 
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 90, 
-    :greater_than_or_equal_to => -90
+                            allow_blank: true,
+                            less_than_or_equal_to: 90,
+                            greater_than_or_equal_to: -90,
+                            unless: :updating_bbox
   validates_numericality_of :longitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 180, 
-    :greater_than_or_equal_to => -180
+                            allow_blank: true,
+                            less_than_or_equal_to: 180,
+                            greater_than_or_equal_to: -180,
+                            unless: :updating_bbox
   validates_length_of :name, :within => 2..500, 
     :message => "must be between 2 and 500 characters"
   validates_uniqueness_of :name, :scope => :ancestry, :unless => Proc.new {|p| p.ancestry.blank?}
@@ -85,16 +87,19 @@ class Place < ActiveRecord::Base
   def should_generate_new_friendly_id?
     name_changed?
   end
-  
-  # Place to put a GeoPlanet response to avoid re-querying
-  attr_accessor :geoplanet_response
+
   attr_accessor :html
+
+  attr_accessor :updating_bbox
 
   FLICKR_PLACE_TYPES = ActiveSupport::OrderedHash.new
   FLICKR_PLACE_TYPES[:country]   = 12
   FLICKR_PLACE_TYPES[:region]    = 8 # Flickr regions are equiv to GeoPlanet "states", at least in the US
   FLICKR_PLACE_TYPES[:county]    = 9
   FLICKR_PLACE_TYPES[:locality]  = 7 # Flickr localities => GeoPlanet towns
+  # GeoPlanet was a place API offered by Yahoo early in iNat's existence, but
+  # they removed it some time around 2016. We still have places with GeoPlanet
+  # place type codes, hence these constants
   REJECTED_GEO_PLANET_PLACE_TYPE_CODES = [
     1,    # Building
     3,    # Nearby Building
@@ -183,13 +188,14 @@ class Place < ActiveRecord::Base
     scope type.pluralize.underscore.to_sym, -> { where("place_type = ?", code) }
   end
 
-  CONTINENT_LEVEL = -1
+  CONTINENT_LEVEL = -10
+  REGION_LEVEL = -5
   COUNTRY_LEVEL = 0
-  STATE_LEVEL = 1
-  COUNTY_LEVEL = 2
-  TOWN_LEVEL = 3
-  PARK_LEVEL = 10
-  ADMIN_LEVELS = [CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
+  STATE_LEVEL = 10
+  COUNTY_LEVEL = 20
+  TOWN_LEVEL = 30
+  PARK_LEVEL = 100
+  ADMIN_LEVELS = [CONTINENT_LEVEL, REGION_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
   # 66 is roughly the size of Texas
   MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
@@ -197,7 +203,7 @@ class Place < ActiveRecord::Base
   MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
 
   MAX_PLACE_OBSERVATION_COUNT = 200000
-  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 50000
+  MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 10000
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -347,18 +353,25 @@ class Place < ActiveRecord::Base
       name
     end
   end
+
+  # Wrapper around a common translation that prevents a potentially serious
+  # side-effect of the name not converting to an underscored version properly.
+  # If that fails and we try to return I18n.t( "places_name." ), we'll actually
+  # return a rather large hash instead of a string
+  def translated_name( locale = I18n.locale, options = {} )
+    default = options.delete(:default) || name
+    name_key = name.parameterize.underscore
+    name_key = name.strip.gsub( /\s+/, "_" ) if name_key.blank?
+    t_name = I18n.t( "places_name.#{name_key}", locale: locale, default: nil )
+    return default if t_name.blank? || !t_name.is_a?( String )
+    t_name
+  end
   
   # Calculate and cache the bbox area for place area size queries
   def calculate_bbox_area
-    if self.swlat && self.swlng && self.nelat && self.nelng && 
-        (self.swlat_changed? || self.swlng_changed? || self.nelat_changed? || 
-          self.nelng_changed?)
-      height = self.nelat - self.swlat
-      width = if self.straddles_date_line?
-        (180 - self.swlng) + (180 - self.nelng*-1)
-      else
-        self.nelng - self.swlng
-      end
+    if swlat && swlng && nelat && nelng && (swlat_changed? || swlng_changed? || nelat_changed? || nelng_changed?)
+      height = nelat - swlat
+      width = straddles_date_line? ? (180 - swlng) + (180 - nelng*-1) : nelng - swlng
       self.bbox_area = width * height
     end
     true
@@ -376,87 +389,6 @@ class Place < ActiveRecord::Base
     return true if self.user_id == user.id
     return false if !admin_level.nil? && !user.is_admin?
     false
-  end
-  
-  # Import a place from Yahoo GeoPlanet using the WOEID (Where On Earth ID)
-  def self.import_by_woeid(woeid, options = {})
-    if existing = Place.find_by_woeid(woeid)
-      return existing
-    end
-    
-    begin
-      ydn_place = GeoPlanet::Place.new(woeid.to_i)
-    rescue GeoPlanet::NotFound => e
-      Rails.logger.error "[ERROR] #{e.class}: #{e.message}"
-      return nil
-    end
-    place = Place.new_from_geo_planet(ydn_place)
-    begin
-      unless place.save
-        Rails.logger.error "[ERROR #{Time.now}] place [#{place.name}], ancestry: #{place.ancestry}, errors: #{place.errors.full_messages.to_sentence}"
-        return
-      end
-    rescue PG::Error, ActiveRecord::RecordNotUnique => e
-      raise e unless e.message =~ /duplicate key/
-      return
-    end
-    place.parent = options[:parent] if options[:parent] && options[:parent].persisted?
-    
-    unless (options[:ignore_ancestors] || ydn_place.ancestors.blank?)
-      ancestors = []
-      (ydn_place.ancestors || []).reverse_each do |ydn_ancestor|
-        next if REJECTED_GEO_PLANET_PLACE_TYPE_CODES.include?(ydn_ancestor.placetype_code)
-        ancestor = Place.import_by_woeid(ydn_ancestor.woeid, :ignore_ancestors => true, :parent => ancestors.last)
-        ancestors << ancestor if ancestor
-        if place && place.persisted? && ancestor && ancestor.persisted?
-          place.parent = ancestor
-        end
-      end
-    end
-    
-    if options[:user].is_a?(User)
-      place.user_id = options[:user].id
-    end
-    place.save
-    place
-  end
-  
-  # Make a new Place from a GeoPlanet::Place
-  def self.new_from_geo_planet(ydn_place)
-    place = Place.new(
-      :woeid => ydn_place.woeid,
-      :latitude => ydn_place.latitude,
-      :longitude => ydn_place.longitude,
-      :place_type => ydn_place.placetype_code,
-      :name => ydn_place.name
-    )
-    place.geoplanet_response = ydn_place
-    if ydn_place.bounding_box
-      place.swlat = ydn_place.bounding_box[0][0]
-      place.swlng = ydn_place.bounding_box[0][1]
-      place.nelat = ydn_place.bounding_box[1][0]
-      place.nelng = ydn_place.bounding_box[1][1]
-    end
-    
-    case ydn_place.placetype
-    when 'State'
-      place.code = ydn_place.admin1_code
-    when 'Country'
-      place.code = ydn_place.country_code
-    end
-    place
-  end
-  
-  # Make a new Place from a flickraw place response
-  def self.new_from_flickraw(flickr_place)
-    Place.new(
-      :woeid => flickr_place.woeid,
-      :latitude => flickr_place.latitude,
-      :longitude => flickr_place.longitude,
-      :place_type => FLICKR_PLACE_TYPES[flickr_place.place_type.downcase.to_sym],
-      :name => flickr_place.name,
-      :parent => options[:parent]
-    )
   end
   
   # Create a CheckList associated with this place
@@ -506,7 +438,7 @@ class Place < ActiveRecord::Base
   def validate_with_geom( geom, other_attrs = {} )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
-      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
     if geom.blank?
       # This probably means GeoRuby parsed some polygons but RGeo didn't think
@@ -535,20 +467,20 @@ class Place < ActiveRecord::Base
   def save_geom( geom, other_attrs = {} )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
-      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb ) rescue nil
     end
     return unless validate_with_geom( geom, other_attrs )
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
     begin
       if place_geometry
-        self.place_geometry.update_attributes(other_attrs)
+        self.place_geometry.update(other_attrs)
       else
         pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
-      update_bbox_from_geom(geom) if self.place_geometry.valid?
-    rescue ActiveRecord::StatementInvalid => e
+      update(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
+    rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
         add_custom_error( :base, e.message[/TopologyException: (.+)/, 1] )
@@ -560,7 +492,9 @@ class Place < ActiveRecord::Base
   
   # Appends a geom instead of replacing it
   def append_geom(geom, other_attrs = {})
-    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+    if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+      geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) rescue nil
+    end
     new_geom = geom
     self.place_geometry.reload
     if place_geometry && !place_geometry.geom.nil?
@@ -574,24 +508,19 @@ class Place < ActiveRecord::Base
     end
     self.save_geom(new_geom, other_attrs)
   end
-  
-  # Update this place's bbox from a geometry.  Note this skips validations, 
-  # but explicitly recalculates the bbox area
-  def update_bbox_from_geom(geom)
-    self.longitude = geom.centroid.x
-    self.latitude = geom.centroid.y
-    self.swlat = geom.envelope.lower_corner.y
-    self.nelat = geom.envelope.upper_corner.y
-    if geom.spans_dateline?
-      self.longitude = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
-      self.swlng = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
-      self.nelng = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
-    else
-      self.swlng = geom.envelope.lower_corner.x
-      self.nelng = geom.envelope.upper_corner.x
+
+  def points_from_geom(geom)
+    { latitude: geom.centroid.y, swlat: geom.envelope.lower_corner.y, nelat: geom.envelope.upper_corner.y }.tap do |h|
+      if geom.spans_dateline?
+        h[:longitude] = geom.envelope.centroid.x + 180*(geom.envelope.centroid.x > 0 ? -1 : 1)
+        h[:swlng] = geom.points.map(&:x).select{|x| x > 0 || x < -180}.min
+        h[:nelng] = geom.points.map(&:x).select{|x| x < 0 || x > 180}.max
+      else
+        h[:longitude] = geom.centroid.x
+        h[:swlng] = geom.envelope.lower_corner.x
+        h[:nelng] = geom.envelope.upper_corner.x
+      end
     end
-    calculate_bbox_area
-    save(validate: false)
   end
   
   #
@@ -601,7 +530,6 @@ class Place < ActiveRecord::Base
   # lat/lon coordinates.
   # Options:
   #   <tt>source</tt>: specify a type of handler for certain shapefiles.  Current options are 'census', 'esriworld', and 'cpad'
-  #   <tt>skip_woeid</tt>: (boolean) Whether or not to require that the shape matches a unique WOEID.  This is based querying GeoPlanet for the name of the shape.
   #   <tt>test</tt>: (boolean) setting this to +true+ will do everything other than saving places and geometries.
   #   <tt>ancestor_place</tt>: (Place) scope searches for exissting records to descendents of this place. Matching will be based on name and place_type
   #   <tt>name_column</tt>: column in shapefile attributes that holds the name of the place
@@ -612,7 +540,7 @@ class Place < ActiveRecord::Base
   #     Place.import_from_shapefile('/Users/kueda/Desktop/tl_2008_06_county/tl_2008_06_county.shp', :place_type => 'county', :source => 'census')
   #
   #   California Protected Areas Database:
-  #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad', :skip_woeid => true)
+  #     Place.import_from_shapefile('/Users/kueda/Desktop/CPAD_March09/Units_Fee_09_longlat.shp', :source => 'cpad')
   #
   def self.import_from_shapefile(shapefile_path, options = {}, &block)
     start_time = Time.now
@@ -642,14 +570,9 @@ class Place < ActiveRecord::Base
         new_place.source ||= src if src.is_a?(Source)
           
         puts "[INFO] \t\tMade new place: #{new_place}"
-        unless new_place.woeid || options[:skip_woeid]
-          puts "[INFO] \t\tCouldn't find a unique woeid. Skipping..."
-          next
-        end
         
         # Try to find an existing place
         existing = nil
-        existing = Place.find_by_woeid(new_place.woeid) unless new_place.woeid.blank?
         if !new_place.source_filename.blank? && !new_place.source_identifier.blank?
           existing ||= Place.where(source_filename: new_place.source_filename,
             source_identifier: new_place.source_identifier).first
@@ -680,11 +603,7 @@ class Place < ActiveRecord::Base
           end
           num_updated += 1
         else
-          place = new_place.woeid ? Place.import_by_woeid(new_place.woeid) : new_place
-          [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
-              :source_identifier, :place_type].each do |attr_name|
-            place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
-          end
+          place = new_place
           num_created += 1
         end
 
@@ -709,6 +628,11 @@ class Place < ActiveRecord::Base
             puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
             next
           end
+        rescue ArgumentError => e
+          raise e unless e.message =~ /Cannot transliterate/
+          # Pretend it's actually UTF
+          place.name.force_encoding( "UTF-8" )
+          retry
         rescue => e
           puts "[ERROR] \tError: #{e}"
           next
@@ -742,9 +666,6 @@ class Place < ActiveRecord::Base
   def self.new_from_shape(shape, options = {})
     name_column = options[:name_column] || 'name'
     source_identifier_column = options[:source_identifier_column]
-    skip_woeid = options[:skip_woeid]
-    geoplanet_query = options[:geoplanet_query]
-    geoplanet_options = options[:geoplanet_options] || {}
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
     name = options[:name] ||
       data[name_column] ||
@@ -764,20 +685,6 @@ class Place < ActiveRecord::Base
       :nelng => shape.geometry.envelope.upper_corner.x
     ))
     place.build_place_geometry( geom: shape.geometry )
-    
-    unless skip_woeid
-      puts "[INFO] \t\tTrying to find a unique WOEID from '#{geoplanet_query || place.name}'..."
-      geoplanet_options[:count] = 2
-      ydn_places = GeoPlanet::Place.search(geoplanet_query || place.name, geoplanet_options)
-      if ydn_places && ydn_places.size == 1
-        puts "[INFO] \t\tFound unique GeoPlanet place: " + 
-          [ydn_places.first.name, ydn_places.first.woeid,
-           ydn_places.first.placetype, ydn_places.first.admin2,
-           ydn_places.first.admin1, ydn_places.first.country].join(', ')
-        place.woeid = ydn_places.first.woeid
-        place.geoplanet_response = ydn_places.first
-      end
-    end
     place
   end
   
@@ -803,13 +710,13 @@ class Place < ActiveRecord::Base
     
     # Move the mergee's listed_taxa to the target's default check list
     mergee.check_lists.each do |cl|
-      cl.update_attributes( place: self )
-      ListedTaxon.where( list_id: cl ).update_all( place_id: self )
+      cl.update( place: self )
+      ListedTaxon.where( list_id: cl.id ).update_all( place_id: id )
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
     elsif mergee.check_list && mergee.check_list.listed_taxa.count > 0
-      mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
+      mergee.check_list.update( place_id: id, title: "MERGED #{mergee.check_list.title}")
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end
     
@@ -823,7 +730,7 @@ class Place < ActiveRecord::Base
       unless child.save
         # If there's a problem saving the child, orphan it. Otherwise it will
         # get deleted when the parent is deleted
-        child.update_attributes(:parent => nil)
+        child.update(:parent => nil)
       end
     end
 
@@ -919,6 +826,7 @@ class Place < ActiveRecord::Base
 
   def bbox_contains_lat_lng_acc?(lat, lng, acc = nil)
     f = RGeo::Geographic.simple_mercator_factory
+    return false unless bounding_box
     bbox = f.polygon(
       f.linear_ring([
         f.point(swlng, swlat),
@@ -927,7 +835,7 @@ class Place < ActiveRecord::Base
         f.point(nelng, swlat),
         f.point(swlng, swlat)
       ])
-    )
+    ) rescue nil
     return false unless bbox
     pt = f.point(lng,lat)
 
@@ -988,6 +896,10 @@ class Place < ActiveRecord::Base
     [ancestors, self].flatten
   end
 
+  def descendant_conditions
+    Place.descendant_conditions( self )
+  end
+
   def self_and_descendant_conditions
     ["places.id = ? OR places.ancestry like ? OR places.ancestry = ?", id, "#{ancestry}/#{id}/%", "#{ancestry}/#{id}"] 
   end
@@ -1028,7 +940,7 @@ class Place < ActiveRecord::Base
 
   def localized_name
     if admin_level === COUNTRY_LEVEL
-      I18n.t( "places_name.#{name}", default: display_name )
+      translated_name
     else
       display_name
     end
@@ -1059,11 +971,11 @@ class Place < ActiveRecord::Base
     ids = Observation.joins(:observations_places).
       where("observations_places.place_id = ?", place_id).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
     # observations not touched above that are in this place
     ids = Observation.in_place(place_id).where("last_indexed_at < ?", start_time).pluck(:id)
     Observation.update_observations_places(ids: ids)
-    Observation.elastic_index!(ids: ids)
+    Observation.elastic_index!(ids: ids, wait_for_index_refresh: true)
   end
 
 end

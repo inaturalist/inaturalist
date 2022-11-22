@@ -1,6 +1,10 @@
 class TranslationsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required
+  before_action :authenticate_user!, except: [:index, :locales]
+  before_action :curator_required, except: [:index, :locales]
+
+  def index
+    redirect_to wiki_page_url( "translate" )
+  end
 
   # Not sure why but without this Rails thinks this action isn't here, even
   # though it's defined in the superclass
@@ -9,6 +13,10 @@ class TranslationsController < ApplicationController
     # strings and fallbacks won't work
     params[:key].delete_if{|k,v| v.blank?}
     super
+  end
+
+  def locales
+    render json: Hash[I18n.t(:locales).map{ |k,v| [k, I18n.t( "locales.#{k}", locale: k )] }]
   end
 
   private

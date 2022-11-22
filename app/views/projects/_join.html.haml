@@ -21,7 +21,7 @@
   .stacked.description
     = truncate_with_more formatted_user_text(@project.terms).gsub(/\<a /, '<a target="_blank" ').html_safe, :length => 500
 - unless @project.project_user_rules.blank?
-  %h3= t(:rules_for_becoming_memner)
+  %h3= t(:rules_for_becoming_a_member)
   %ul.stacked
     - for rule in @project.project_user_rules
       %li= rule.terms
@@ -29,8 +29,8 @@
   %h3= t(:rules_for_adding_observations)
   %ul.stacked
     = render partial: "rules_list"
-- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation || @project.is_new_project?)
-  %h3= t(:other, default: 'other').capitalize
+- if !params[:skip_form] && (@project.preferred_membership_model != Project::MEMBERSHIP_INVITE_ONLY || @project_user_invitation || ( @project.is_new_project? && @project.prefers_user_trust? ) )
+  %h3= t(:other)
   = form_for @project.project_users.build(project: @project, user: current_user),
       builder: DefaultFormBuilder,
       url: join_project_path(@project) do |f|
@@ -40,7 +40,24 @@
       label_after: true,
       label: t(:receive_updates_from_this_project),
       description: t('views.projects.updates_desc')
-    - unless @project.is_new_project?
+    - if @project.is_new_project?
+      - if @project.prefers_user_trust?
+        = f.form_field t(:trust_this_project_with_your_private_coordinates?), description: t(:about_trusting_projects_overview) do
+          = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE,
+            label_after: true,
+            label: t(:no)
+          = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY,
+            label_after: true,
+            label: t(:yes_for_any_of_my_observations),
+            description: t(:about_trusting_projects_options_any_desc)
+          = f.radio_button :prefers_curator_coordinate_access_for, ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+            label_after: true,
+            label: t(:yes_but_only_for_threatened),
+            description: t(:about_trusting_projects_options_taxon_desc)
+          .box.warning.ui
+            %strong=t :please_be_careful!
+            %p.unstacked=t :project_coordinate_access_warning
+    - else
       %label=t 'views.projects.curator_coordinate_access_label'
       - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|
         = f.radio_button :preferred_curator_coordinate_access, option,

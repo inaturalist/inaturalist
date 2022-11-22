@@ -96,13 +96,6 @@ describe TaxonSwap, "commit" do
     @swap.committer = @swap.user
   end
 
-  it "should duplicate conservation status" do
-    @input_taxon.update_attribute(:conservation_status, Taxon::IUCN_ENDANGERED)
-    expect(@output_taxon.conservation_status).to be_blank
-    @swap.commit
-    expect(@output_taxon.conservation_status).to eq(Taxon::IUCN_ENDANGERED)
-  end
-
   it "should duplicate conservation statuses" do
     cs = ConservationStatus.make!( taxon: @input_taxon )
     expect( @output_taxon.conservation_statuses ).to be_blank
@@ -145,7 +138,7 @@ describe TaxonSwap, "commit" do
     tr = TaxonRange.make!(:taxon => @input_taxon)
     @swap.commit
     @output_taxon.reload
-    expect(@output_taxon.taxon_ranges).not_to be_blank
+    expect(@output_taxon.taxon_range).not_to be_blank
   end
   
   it "should duplicate atlas if one isn't already set" do
@@ -161,7 +154,7 @@ describe TaxonSwap, "commit" do
     tr2 = TaxonRange.make!(:taxon => @output_taxon)
     @swap.commit
     @output_taxon.reload
-    expect(@output_taxon.taxon_ranges.count).to eq(1)
+    expect(@output_taxon.taxon_range).not_to be_blank
   end
 
   it "should not duplicate atlas if one is already set" do
@@ -206,7 +199,7 @@ describe TaxonSwap, "commit" do
 
     describe "with move_children" do
       before do
-        @swap.update_attributes( move_children: true )
+        @swap.update( move_children: true )
       end
       it "should move children from the input to the output taxon" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
@@ -230,8 +223,8 @@ describe TaxonSwap, "commit" do
 
       describe "should make swaps for all children when swapping a" do
         it "genus" do
-          @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
-          @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+          @input_taxon.update( rank: Taxon::GENUS, name: "Hyla" )
+          @output_taxon.update( rank: Taxon::GENUS, name: "Pseudacris" )
           child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
           [@input_taxon, @output_taxon, child].each(&:reload)
           without_delay { @swap.commit }
@@ -244,8 +237,8 @@ describe TaxonSwap, "commit" do
         end
         
         it "species" do
-          @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-          @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
+          @input_taxon.update( rank: Taxon::SPECIES, name: "Hyla regilla" )
+          @output_taxon.update( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
           child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo" )
           [@input_taxon, @output_taxon, child].each(&:reload)
           without_delay { @swap.commit }
@@ -259,8 +252,8 @@ describe TaxonSwap, "commit" do
       end
 
       it "should swap species in a genus even if there's a subgenus" do
-        @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
-        @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        @input_taxon.update( rank: Taxon::GENUS, name: "Hyla" )
+        @output_taxon.update( rank: Taxon::GENUS, name: "Pseudacris" )
         subgenus = Taxon.make!( rank: Taxon::SUBGENUS, name: "Why", parent: @input_taxon )
         child = Taxon.make!( parent: subgenus, rank: Taxon::SPECIES, name: "Hyla regilla" )
         [@swap, @input_taxon, @output_taxon, child, subgenus].each(&:reload)
@@ -276,7 +269,7 @@ describe TaxonSwap, "commit" do
 
       it "should move children despite a locked ancestor" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
-        @ancestor_taxon.update_attributes( locked: true )
+        @ancestor_taxon.update( locked: true )
         @swap.reload
         without_delay { @swap.commit }
         child.reload
@@ -284,10 +277,10 @@ describe TaxonSwap, "commit" do
       end
       
       it "should swap child species despite a locked ancestor" do
-        @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
-        @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        @input_taxon.update( rank: Taxon::GENUS, name: "Hyla" )
+        @output_taxon.update( rank: Taxon::GENUS, name: "Pseudacris" )
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @ancestor_taxon.update_attributes( locked: true )
+        @ancestor_taxon.update( locked: true )
         [@input_taxon, @output_taxon, child].each(&:reload)
         without_delay { @swap.commit }
         [@input_taxon, @output_taxon, child].each(&:reload)
@@ -312,8 +305,8 @@ describe TaxonSwap, "commit" do
       end
       
       it "should swap child species despite a taxon framework with taxon curators" do
-        @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
-        @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        @input_taxon.update( rank: Taxon::GENUS, name: "Hyla" )
+        @output_taxon.update( rank: Taxon::GENUS, name: "Pseudacris" )
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
         tf = TaxonFramework.make!(taxon: @ancestor_taxon, rank_level: 5)
         user = make_curator
@@ -364,11 +357,11 @@ describe TaxonSwap, "commit" do
   end
   
   it "should raise error if the output taxon is a descendant of the input taxon" do
-    @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
-    @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-    @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
+    @ancestor_taxon.update( rank: Taxon::GENUS )
+    @input_taxon.update( rank: Taxon::SPECIES, name: "Hyla regilla" )
+    @output_taxon.update( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
     child = @output_taxon
-    @swap.update_attributes(move_children: true)
+    @swap.update(move_children: true)
     [@input_taxon, @output_taxon, child].each(&:reload)
     expect {
       @swap.commit
@@ -379,7 +372,7 @@ describe TaxonSwap, "commit" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
-    @swap.input_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    @swap.input_taxon.update( parent: superfamily, current_user: tc.user )
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
@@ -389,7 +382,7 @@ describe TaxonSwap, "commit" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
-    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: false )
+    @swap.output_taxon.update( parent: superfamily, current_user: tc.user, is_active: false )
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
@@ -399,7 +392,7 @@ describe TaxonSwap, "commit" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
-    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: true )
+    @swap.output_taxon.update( parent: superfamily, current_user: tc.user, is_active: true )
     @output_taxon.reload
     expect {
       @swap.commit
@@ -415,7 +408,7 @@ describe TaxonSwap, "commit" do
   
   it "should not raise an error if input taxon has active children but move children is checked" do
     child = Taxon.make!( rank: Taxon::GENUS, parent: @swap.input_taxon )
-    @swap.update_attributes( move_children: true )
+    @swap.update( move_children: true )
     expect {
       @swap.commit
     }.not_to raise_error # TaxonChange::ActiveChildrenError
@@ -537,7 +530,6 @@ describe TaxonSwap, "commit_records" do
   end
 
   it "should log listed taxa if taxon changed" do
-    AncestryDenormalizer.denormalize
     @user = User.make!
     atlas_place = make_place_with_geom(admin_level: 0)
     atlas = Atlas.make!(user: @user, taxon: @input_taxon, is_active: false)
@@ -660,7 +652,7 @@ describe TaxonSwap, "commit_records" do
     s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
     o = Observation.make!( taxon: s )
     ident = Identification.make!( observation: o, taxon: @input_taxon )
-    ident.update_attributes(
+    ident.update(
       skip_set_previous_observation_taxon: true,
       previous_observation_taxon: other_swap.input_taxon
     )
@@ -709,10 +701,10 @@ describe TaxonSwap, "commit_records" do
 
   it "should be copacetic with content with a blank user" do
     l = CheckList.make!
-    l.update_attributes(:user => nil)
+    l.update(:user => nil)
     expect(l.user).to be_blank
     lt = ListedTaxon.make!(:taxon => @input_taxon, :list => l)
-    lt.update_attributes(:user => nil)
+    lt.update(:user => nil)
     expect(lt.user).to be_blank
     without_delay { @swap.commit_records }
     lt.reload
@@ -810,9 +802,9 @@ end
 describe "move_input_children_to_output" do
   it "should queue jobs to commit records for sub-swaps" do
     prepare_swap
-    @swap.update_attributes( move_children: true )
-    @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
-    @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
+    @swap.update( move_children: true )
+    @input_taxon.update( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+    @output_taxon.update( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
     [@input_taxon, @output_taxon, child, @swap].each(&:reload)
     @swap.committer = @swap.user
@@ -824,10 +816,10 @@ describe "move_input_children_to_output" do
 
   it "should preserve disagreements with the input taxon" do
     prepare_swap
-    @swap.update_attributes( move_children: true )
+    @swap.update( move_children: true )
     family = Taxon.make!( rank: Taxon::FAMILY, name: "Canidae" )
-    @input_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Canis" )
-    @output_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Dogis" )
+    @input_taxon.update( parent: family, rank: Taxon::GENUS, name: "Canis" )
+    @output_taxon.update( parent: family, rank: Taxon::GENUS, name: "Dogis" )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Canis lupus" )
     @swap.committer = @swap.user
     o = Observation.make!

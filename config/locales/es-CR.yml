@@ -1,0 +1,111 @@
+es-CR:
+  add_annotations_for_controlled_attribute:
+    evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
+  add_evidence_of_presence_organism_annotation: 'Añadir anotación "Evidencia de Presencia: organismo"'
+  add_evidence_of_presence_feather_annotation: 'Añadir anotación "Evidencia de Presencia: pluma"'
+  add_evidence_of_presence_scat_annotation: 'Añadir anotación "Evidencia de Presencia: heces"'
+  add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella"'
+  add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso"'
+  add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Se ocultó el comentario
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Se hizo visible el comentario
+  controlled_term_labels:
+    evidence_of_presence: Evidencia de Presencia
+    #As in the feather on a bird
+    feather: Pluma
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organismo
+    #Fecal matter, not regurgitated matter
+    scat: Heces
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: huella
+    #Endoskeletal remains, like a deer bone
+    bone: hueso
+    #Skin or exoskeleton shed by a reptile or arthropod, not a particular
+    #plumage in a bird or seasonal hair/fur in a mammal
+    molt: muda
+  controlled_term_definitions:
+    feather: Una o más plumas no unidas a un organismo
+    organism: Organismo total o parcial
+    scat: Materia fecal (no egagrópilas de búho u otra materia regurgitada)
+    track: Impresión en suelo o nieve hecha por el organismo
+    bone: |
+      Predominantemente restos endoesqueletales; la exposición parcial de huesos en un organismo casi intacto debería etiquetarse "organismo"
+    molt: Piel descartada o exoesqueleto
+  #The name of a computer file
+  filename: Nombre de archivo
+  flag_for_place_title_html: |
+    Marca para Lugar: %{title}
+  flag_this_place: Marcar este lugar
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Se hizo visible el texto de identificación
+  leaderboard_most:
+    species_in_month_year: La mayoría de las especies en %{month_year}
+    species_in_year: La mayoría de las especies en %{year}
+    observations_in_month_year: La mayoría de las observaciones en %{month_year}
+    observations_in_year: La mayoría de las observaciones en %{year}
+    identifications_in_month_year: La mayoría de identificaciones en %{month_year}
+    identifications_in_year: La mayoría de identificaciones en %{year}
+  #Status message shown while logging in
+  logging_in: Iniciando sesión ...
+  no_species_on_this_list_for_owner: |
+    Podés empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
+  suspend_user_html: Suspender a %{user}
+  suspend_user_reason_instructions_html: |
+    Explicá por qué suspendés esta cuenta y citá cualquier violación de las
+    Directrices de la comunidad (%{link_start_tag}Community Guidelines%{link_end_tag} ). Por favor abstenete de añadir opiniones personales.
+  unsuspend_user_html: Anular suspensión de %{user}
+  unsuspend_user_reason_instructions: |
+    Por favor, explicá por qué se anula la suspensión de este usuario.
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Razón
+    errors:
+      models:
+        moderator_action:
+          attributes:
+            action:
+              not_supported_for_this_kind_of_content: no se admite para este tipo de contenido
+            base:
+              only_staff_can_unhide: Sólo el personal puede hacer visible el contenido oculto
+              staff_cannot_be_suspended: No se puede suspender a miembros del personal

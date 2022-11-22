@@ -1,5 +1,9 @@
 class PhotoSweeper < ActionController::Caching::Sweeper
-  observe Photo
+  begin
+    observe Photo
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe Photo. Ignore if setting up for the first time"
+  end
   include Shared::SweepersModule
   
   def after_update(photo)

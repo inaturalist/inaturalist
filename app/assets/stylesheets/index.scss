@@ -1645,7 +1645,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .leftmenu .count.right {
   margin: 5px 10px 0 0;
 }
-.topmenu {float: right; list-style: none; padding:0; margin:0;}
+.topmenu {float: right; list-style: none; padding:0; margin:0;position: relative; z-index: 1;}
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
 .topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}
@@ -1979,6 +1979,7 @@ user-icon .icon-person:before {
       .ac-view {
         padding: 0 10px;
         background: none;
+        display: flex;
 
         &.view-observations {
           padding-right: 0;

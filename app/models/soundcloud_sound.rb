@@ -14,10 +14,7 @@ class SoundcloudSound < Sound
   def self.client_for_user(user)
     return nil unless user && user.soundcloud_identity && user.soundcloud_identity.token
     Soundcloud.new(:access_token => user.soundcloud_identity.token)
-  end
-
-  def self.non_user_client
-    Soundcloud.new(:client_id => CONFIG["soundcloud"]["client_id"])
+    nil
   end
 
   def self.new_from_api_response(response)
@@ -112,9 +109,10 @@ class SoundcloudSound < Sound
 
   def download
     unless @download_response
-      client = SoundcloudSound.client_for_user( user )
-      api_response = client.get( "/tracks/#{native_sound_id}" )
-      @download_response = client.get( api_response.download_url, allow_redirects: true )
+      if client = SoundcloudSound.client_for_user( user )
+        api_response = client.get( "/tracks/#{native_sound_id}" )
+        @download_response = client.get( api_response.download_url, allow_redirects: true )
+      end
     end
     @download_response
   end

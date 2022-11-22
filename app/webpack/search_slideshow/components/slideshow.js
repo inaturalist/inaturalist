@@ -18,7 +18,7 @@ class Slideshow extends Component {
           <div className="container-fluid">
             <div className="nav navbar-nav navbar-left">
               <a href="/">
-                <img src="/logo.plain.svg" />
+                <img src={SITE.logo} />
               </a>
             </div>
             <div className="nav navbar-nav navbar-title">

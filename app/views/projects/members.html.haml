@@ -1,162 +1,123 @@
 - content_for(:title) do
   = @title = t(:project_members, :project => h(truncate(@project.title, :length => 85)))
-- content_for(:extracss) do
-  :css
-    td .usericon{vertical-align:middle;}
-    td{vertical-align:middle;}
-    td .description{display:block;}
-    td.actions .smallbuttons:first-child {margin-bottom:5px;}
-    td.actions .button {width:100%;}
-    td.actions {padding-right:15px;}
-    th.asc a,
-    th.desc a { position: relative; padding-right: 15px; }
-    th.asc a:after,
-    th.desc a:after {
-      position: absolute;
-      right: 0px;
-      content: '\f0d7';
-      display: inline-block;
-      font: normal normal normal 18px/1 FontAwesome;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transform: translate(0, 0);
-    }
-    th.asc a:after { content: '\f0d8'; }
-    th.desc a:after { content: '\f0d7'; }
-#pageheader.clear
-  .breadcrumbs
-    %strong= link_to "&laquo; #{h @project.title}".html_safe, @project, :class => 'crumb'
-  %h2
-    - if @project.icon.file?
-      = image_tag @project.icon.url(:thumb), :style => "vertical-align: middle"
-    = @title.html_safe
-#members.column.span-24{:style => "margin-bottom: 10px"}
-  - if @project_users.blank?
-    .noresults
-      = t(:no_members_yet)
-  - else
-    .column.span-16
-      %table{:width => "100%"}
-        %thead
-          %tr
-            %th{ class: @order_by == "login" ? @order : nil, colspan: 2 }
-              - order = @order == "desc" ? "asc" : "desc" if @order_by == "login"
-              = link_to t(:user), url_for_params( order: order, order_by: "login" )
-            %th= t :role
-            - unless @project.is_new_project?
-              %th.nobr
-                \# #{t :obs}.
-            %th{ class: @order_by == "created_at" ? @order : nil }
-              - order = @order == "desc" ? "asc" : "desc" if @order_by == "created_at"
-              = link_to t(:date_joined), url_for_params( order: order, order_by: "created_at" )
-            %th
-            - if logged_in? && @project_user && @project_user.is_manager?
+- content_for :extrajs do
+  :javascript
+    $( function () {
+      $( '[data-toggle="tooltip"]' ).tooltip( )
+    } )
+.container-fluid
+  #pageheader.clear
+    .breadcrumbs
+      %strong= link_to "&laquo; #{h @project.title}".html_safe, @project, :class => 'crumb'
+    %h2
+      - if @project.icon.file?
+        = image_tag @project.icon.url(:thumb), :style => "vertical-align: middle"
+      = @title.html_safe
+  #members.row
+    - if @project_users.blank?
+      .col-xs-12.noresults
+        = t(:no_members_yet)
+    - else
+      .col-xs-8
+        %table.table
+          %thead
+            %tr
+              %th{ class: @order_by == "login" ? @order : nil, colspan: 2 }
+                - order = @order == "desc" ? "asc" : "desc" if @order_by == "login"
+                = link_to t(:user), url_for_params( order: order, order_by: "login" )
+              %th= t :role
+              - if @project.prefers_user_trust?
+                %th=t :hidden_coordinate_trust
+              - unless @project.is_new_project?
+                %th.nobr
+                  \# #{t :obs}.
+              %th{ class: @order_by == "created_at" ? @order : nil }
+                - order = @order == "desc" ? "asc" : "desc" if @order_by == "created_at"
+                = link_to t(:date_joined), url_for_params( order: order, order_by: "created_at" )
               %th
-              %th
-        - for project_user in @project_users
-          %tr
-            %td
-              = link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-                observations_path( user_id: project_user.user.login ),
-                :alt => h(project_user.user.login),
-                :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}"
-            %td{:width => "100%"}
-              = link_to h(project_user.user.login), observations_path( user_id: project_user.user.login )
-            %td
-              - if project_user.is_admin?
-                %span.description= t :admin
-              - elsif !project_user.role.blank?
-                %span.description= t(project_user.role).downcase
-            - unless @project.is_new_project?
-              %td.nobr.numeric
-                = link_to number_with_delimiter(project_user.observations_count),  |
-                  project_show_contributor_path(@project, project_user.user.login) |
-            %td.nobr
-              =l project_user.created_at.to_date, format: :long
-            %td.nobr
-              = link_to t(:view_stats),                                           |
-                project_show_contributor_path(@project, project_user.user.login), |
-                :class => "readmore"                                              |
-            - if logged_in? && @project_user && @project_user.is_manager?
-              %td.actions
-                - if !@project.is_new_project? && @project.user_id != project_user.user.id
-                  .buttonrow.smallbuttons.clear
+              - if logged_in? && @project_user && @project_user.is_manager?
+                %th
+                %th
+          - for project_user in @project_users
+            %tr
+              %td
+                = link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
+                  observations_path( user_id: project_user.user.login ),
+                  :alt => h(project_user.user.login),
+                  :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}"
+              %td{:width => "100%"}
+                = link_to h(project_user.user.login), observations_path( user_id: project_user.user.login )
+                %br
+                = link_to t(:view_stats), project_show_contributor_path( @project, project_user.user.login ), class: "readmore"
+              %td
+                - if project_user.is_admin?
+                  %span.description= t :admin
+                - elsif !project_user.role.blank?
+                  %span.description= translate_with_consistent_case project_user.role, case: "upper"
+              - if @project.prefers_user_trust?
+                %td.nobr
+                  = translate_with_consistent_case project_user.prefers_curator_coordinate_access_for, case: "upper"
+                  %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "top" }, title: t( "user_trusts_this_project_for_#{project_user.prefers_curator_coordinate_access_for}" ) }
+                    %i.fa.fa-info-circle
+              - unless @project.is_new_project?
+                %td.nobr.numeric
+                  = link_to number_with_delimiter(project_user.observations_count),  |
+                    project_show_contributor_path(@project, project_user.user.login) |
+              %td.nobr
+                =l project_user.created_at.to_date, format: :long
+              - if logged_in? && @project_user && @project_user.is_manager?
+                %td.actions
+                  - if !@project.is_new_project? && @project.user_id != project_user.user.id
                     - if project_user.role == ProjectUser::CURATOR
-                      = link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id),    |
-                        :method => :post,                                                                           |
-                        :class => "pale button nobr",                                                               |
-                        :data => {                                                                                  |
-                        :confirm => t(:are_you_sure_you_want_to_remove_curator, :user => project_user.user.login),  |
-                        :loading_click => true                                                                      |
-                        }                                                                                           |
+                      = link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id), method: :post, class: "btn btn-block btn-warning btn-xs", data: { confirm: t(:are_you_sure_you_want_to_remove_curator, user: project_user.user.login ), loading_click: true } 
                     - else
-                      = link_to t(:make_curator), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::CURATOR), |
-                        :method => :post,                                                                                                     |
-                        :class => "glaucous button nobr",                                                                                     |
-                        "data-loading-click" => true                                                                                          |
-                - if @project.user_id != project_user.user_id
-                  .smallbuttons.buttonrow
+                      = link_to t(:make_curator), change_project_user_role_path(@project.id, project_user.id, role: ProjectUser::CURATOR), method: :post, class: "btn btn-block btn-success btn-xs", "data-loading-click" => true
+                  - if @project.user_id != project_user.user_id
                     - if project_user.role == ProjectUser::MANAGER
-                      = link_to t(:remove_manager), change_project_user_role_path(@project.id, project_user.id),   |
-                        :method => :post,                                                                          |
-                        :class => "pale button nobr",                                                              |
-                        :data => {                                                                                 |
-                        :confirm => t(:are_you_sure_you_want_to_remove_manager, :user => project_user.user.login), |
-                        :loading_click => true                                                                     |
-                        }                                                                                          |
+                      = link_to t(:remove_manager), change_project_user_role_path( @project.id, project_user.id ), method: :post, class: "btn btn-block btn-warning btn-xs", data: { confirm: t( :are_you_sure_you_want_to_remove_manager, user: project_user.user.login ), loading_click: true }
                     - else
-                      = link_to t(:make_manager), change_project_user_role_path(@project.id, project_user.id, :role => ProjectUser::MANAGER), |
-                        :method => :post,                                                                                                     |
-                        :class => "glaucous button nobr",                                                                                     |
-                        "data-loading-click" => true                                                                                          |
-              %td.smallbuttons.buttonrow
-                - if @project.user_id != project_user.user_id
-                  = link_to t(:remove_from_project), remove_project_user_path(@project.id, project_user.id),        |
-                    :data => {                                                                                      |
-                    :confirm => t(:are_you_sure_you_want_to_remove_from_project, :user => project_user.user.login), |
-                    :loading_click => t(:removing)                                                                  |
-                    },                                                                                              |
-                    :class => "delete button nobr"                                                                  |
-      = will_paginate @project_users, :renderer => INatLinkRenderer
-    .last.column.span-8
-      - if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY
-        .box.notice
-          Your project only accepts invited people. You can
-          = link_to "invite new members here", invite_to_project_path(@project), :class => "readmore"
-      .quiet.box
-        - unless @project.is_new_project?
+                      = link_to t(:make_manager), change_project_user_role_path( @project.id, project_user.id, role: ProjectUser::MANAGER ), method: :post, class: "btn btn-block btn-success btn-xs", "data-loading-click" => true
+                  - if @project.user_id != project_user.user_id
+                    = link_to t(:remove_from_project), remove_project_user_path(@project.id, project_user.id), data: { confirm: t( :are_you_sure_you_want_to_remove_from_project, user: project_user.user.login ), loading_click: t(:removing) }, class: "btn btn-block btn-danger btn-xs"
+        = will_paginate @project_users, :renderer => INatLinkRenderer
+      .col-xs-4
+        - if @project.curated_by?(current_user) && @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY
+          .box.notice
+            Your project only accepts invited people. You can
+            = link_to "invite new members here", invite_to_project_path(@project), :class => "readmore"
+        .quiet.box
+          - unless @project.is_new_project?
+            .stacked
+              %h3= t :curators
+              %p.ui
+                = t :curators_can_remove_observations_from
+              - if !@curators.blank?
+                %ul.clear.plain
+                  - for user in @curators
+                    %li.stacked
+                      = link_to user_image(user, :size => "thumb"), person_path(user.login)
+                      = link_to_user user
+              - else
+                .nocontent= t :no_curators_set
           .stacked
-            %h3= t :curators
+            %h3= t :managers
             %p.ui
-              = t :curators_can_remove_observations_from
-            - if !@curators.blank?
+              = t :managers_can_do
+            - if !@managers.blank?
               %ul.clear.plain
-                - for user in @curators
+                - for user in @managers
                   %li.stacked
                     = link_to user_image(user, :size => "thumb"), person_path(user.login)
                     = link_to_user user
             - else
-              .nocontent= t :no_curators_set
-        .stacked
-          %h3= t :managers
-          %p.ui
-            = t :managers_can_do
-          - if !@managers.blank?
+              .nocontent= t :no_managers_set
+          .stacked
+            %h3= t :admin
+            %p.ui
+              = t :the_admin_is_the_person_who
             %ul.clear.plain
-              - for user in @managers
-                %li.stacked
-                  = link_to user_image(user, :size => "thumb"), person_path(user.login)
-                  = link_to_user user
-          - else
-            .nocontent= t :no_managers_set
-        .stacked
-          %h3= t :admin
-          %p.ui
-            = t :the_admin_is_the_person_who
-          %ul.clear.plain
-            %li.stacked
-              = link_to user_image(@admin, :size => "thumb"), person_path(@admin.login)
-              = link_to_user @admin
-.breadcrumbs
-  %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
+              %li.stacked
+                = link_to user_image(@admin, :size => "thumb"), person_path(@admin.login)
+                = link_to_user @admin
+  .breadcrumbs
+    %strong= link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'

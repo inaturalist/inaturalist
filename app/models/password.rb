@@ -1,6 +1,6 @@
 require 'digest/sha1'
 
-class Password < ActiveRecord::Base
+class Password < ApplicationRecord
   attr_accessor :email
   
   belongs_to :user

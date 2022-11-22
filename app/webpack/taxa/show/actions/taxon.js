@@ -10,12 +10,9 @@ import {
   fetchLinks,
   fetchInteractions,
   fetchTrending,
-  fetchWanted,
-  fetchRecent,
   fetchSimilar
 } from "../../shared/ducks/taxon";
 import {
-  fetchMonthFrequency,
   fetchMonthOfYearFrequency,
   resetObservationsState,
   fetchMonthOfYearFrequencyBackground,
@@ -43,8 +40,7 @@ export function fetchTaxonAssociates( t ) {
     dispatch( fetchNames( ) );
     dispatch( fetchLeaders( taxon ) )
       .then( ( ) => dispatch( fetchTerms( ) ) )
-      .then( ( ) => dispatch( fetchMonthOfYearFrequency( taxon ) ) )
-      .then( ( ) => dispatch( fetchMonthFrequency( taxon ) ) );
+      .then( ( ) => dispatch( fetchMonthOfYearFrequency( taxon ) ) );
     if ( taxon.complete_species_count ) {
       dispatch( fetchSpecies( ) );
     }
@@ -61,8 +57,6 @@ export function fetchTaxonAssociates( t ) {
         break;
       case "highlights":
         dispatch( fetchTrending( ) );
-        dispatch( fetchWanted( ) );
-        dispatch( fetchRecent( ) );
         break;
       case "similar":
         dispatch( fetchSimilar( ) );
@@ -86,6 +80,12 @@ export function showNewTaxon( taxon, options ) {
       document.title = s.title;
       dispatch( fetchTaxonAssociates( taxon ) );
     } );
+  };
+}
+
+export function setNoAnnotationHiddenPreference( pref ) {
+  return dispatch => {
+    dispatch( setConfig( { prefersNoAnnotationHidden: pref } ) );
   };
 }
 

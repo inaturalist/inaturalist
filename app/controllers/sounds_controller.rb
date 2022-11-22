@@ -1,6 +1,6 @@
 class SoundsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_record, only: [:show]
+  before_action :authenticate_user!
+  before_action :load_record, only: [:show]
 
   def show
     redirect_to @sound.observations.first

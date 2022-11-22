@@ -1,0 +1,97 @@
+@import "../colors";
+
+.ObservationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .ObservationsGridCell {
+    flex-grow: 1;
+    padding: 2px;
+    min-width: 260px;
+    margin: 0px auto;
+  }
+  .Observation {
+    position: relative;
+    .quality {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      &.research {
+        background: $inat-green;
+        color: white;
+      }
+      .full {
+        display: none;
+      }
+    }
+    .with-sounds {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+    }
+    .photo {
+      background: #ccc;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      i {
+        color: white;
+        font-size: 180px;
+      }
+    }
+    .caption {
+      background: #464646;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      position: relative;
+      padding-right: 86px;
+      white-space: nowrap;
+      .display-name {
+        font-size: 17px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .secondary-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .UserImage {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        border: 2px solid white;
+        height: 45px;
+        width: 45px;
+        i.icon-person {
+          font-size: 36px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .meta {
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+        color: white;
+        .count {
+          i {
+            margin-right: 1px;
+          }
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

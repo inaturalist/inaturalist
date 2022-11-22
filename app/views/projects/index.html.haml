@@ -65,11 +65,6 @@
                     - @joined.each do |project|
                       %li= link_to project.title, project
                     %li.divider{ role: "separator" }
-                  - unless @followed.blank?
-                    %li.dropdown-header=t :followed_projects
-                    - @followed.each do |project|
-                      %li= link_to project.title, project
-                    %li.divider{ role: "separator" }
                   %li= link_to t(:view_all), projects_by_login_path( current_user.login )
 
 #main-container.container-fluid

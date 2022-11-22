@@ -8,7 +8,9 @@ import StatsYearApp from "./components/app";
 /* global SITES */
 /* global YEAR_DATA */
 /* global ROOT_TAXON_ID */
+/* global YEAR_STATISTIC_UPDATED_AT */
 render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <StatsYearApp
     year={YEAR}
     user={DISPLAY_USER}

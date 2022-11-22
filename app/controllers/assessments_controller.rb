@@ -1,9 +1,9 @@
 class AssessmentsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show, :show_section]
-  before_filter :load_assessment, :only => [:edit, :update, :destroy, :show]
-  before_filter :load_project
-  before_filter :project_curator_required, :except => [:index, :show, :show_section]
-  before_filter :allow_external_iframes, only: [:show]
+  before_action :authenticate_user!, :except => [:index, :show, :show_section]
+  before_action :load_assessment, :only => [:edit, :update, :destroy, :show]
+  before_action :load_project
+  before_action :project_curator_required, :except => [:index, :show, :show_section]
+  before_action :allow_external_iframes, only: [:show]
 
   def new
     @assessment = Assessment.new
@@ -59,7 +59,7 @@ class AssessmentsController < ApplicationController
     end
 
     respond_to do |format|
-    if @assessment.update_attributes(params[:assessment])
+    if @assessment.update(params[:assessment])
         format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_updated)) }
       else
         format.html { render :action => "edit" }
@@ -143,7 +143,6 @@ class AssessmentsController < ApplicationController
     @project ||= Project.find_by_id(params[:assessment][:project_id]) unless params[:assessment].blank?
     @project ||= @assessment.project if @assessment
     render_404 unless @project
-    true
   end
   
   def project_curator_required
@@ -151,7 +150,6 @@ class AssessmentsController < ApplicationController
       flash[:error] = t(:you_dont_have_permission_to_edit_that_project)
       return redirect_to @project
     end
-    true
   end
 
   def load_assessment

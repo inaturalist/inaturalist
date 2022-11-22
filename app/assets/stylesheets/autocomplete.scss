@@ -1,5 +1,8 @@
+@import "./colors";
+
 $img-width: 40px;
 $img-margin: 3px;
+$label-start: 7px;
 .linky {
   color: #36C;
 }
@@ -15,7 +18,8 @@ $img-margin: 3px;
     width: 100%;
 
     .ac-label {
-      width: 100%;
+      // width: 100%;
+      flex: 2;
     }
   }
   &.projects {
@@ -31,10 +35,23 @@ $img-margin: 3px;
     background: white;
     cursor: default;
     list-style: none;
-    padding-left: 10px;
+    padding: 5px 10px;
     color: #666;
-    line-height: 32px;
     background: #eee;
+  }
+  .header-category:after {
+    content: ":"
+  }
+  .nearby-toggle {
+    list-style: none;
+    border-top: 1px solid $border-grey;
+    button {
+      padding: 5px 10px;
+      border: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+    }
   }
 }
 .ac-message[data-type='message'] {
@@ -45,7 +62,7 @@ $img-margin: 3px;
 }
 .ui-autocomplete .ac-thumb {
   width: $img-width + $img-margin * 2;
-  display: inline-block;
+  display: block;
   text-align: center;
   vertical-align: top;
 }
@@ -56,16 +73,14 @@ $img-margin: 3px;
 }
 
 .ui-autocomplete .ac-message .ac-thumb {
-  width: 49px;
-  padding-left: 5px;
+  width: $img-width + $img-margin * 2;
 }
 .ui-autocomplete .ac-view {
-  float: right;
   padding: 0 10px;
-  line-height: 46px;
-  text-align: right;
+  height: $img-width + $img-margin * 2;
   background: white;
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 .ui-autocomplete .ac-thumb img {
   width: $img-width;
@@ -114,7 +129,7 @@ $img-margin: 3px;
   background: #F2F2F2;
 }
 .ac-result .ac-label {
-  padding: 2px 0 0 7px;
+  padding: 2px 0 0 $label-start;
   line-height: 18px;
 }
 .ac-result.taxon .ac-label {
@@ -127,8 +142,8 @@ $img-margin: 3px;
   display: inline-block;
 }
 .ui-autocomplete .ac-message .ac-label {
-  padding: 0 0 0 12px;
-  line-height: 36px;
+  padding: 0 0 0 $label-start;
+  display: flex;
 }
 .ui-autocomplete .ac-message .ac-label .title {
   overflow: hidden;
@@ -161,7 +176,6 @@ $img-margin: 3px;
 }
 .ui-autocomplete .ac-result .ac a {
   padding: 0px;
-  display: inline;
 }
 .buttonrow .ac-chooser {
   display: inline-block;
@@ -189,7 +203,7 @@ $img-margin: 3px;
   vertical-align: middle;
 }
 .ac-result.place .ac-label {
-  max-width: 100%;
+  flex: 2;
 }
 .ac-result.place .title {
   float: left;

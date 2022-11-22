@@ -1,8 +1,9 @@
 //= require iso8601
 //= require i18n
-//= require i18n/translations
+//= require i18n/translations/en
 //= require i18n/pluralizations
 //= require i18n/inflections
+//= require i18n/default_value
 //= require jquery/plugins/jquery.qtip2.min
 //= require jquery/plugins/jquery.multiselect
 //= require jquery/plugins/jquery.ui.autocomplete.html.js

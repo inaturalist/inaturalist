@@ -13,3 +13,4 @@ class LogstasherCatchAllErrors
     end
   end
 end
+Rails.application.config.middleware.insert_before ActionDispatch::DebugExceptions, LogstasherCatchAllErrors

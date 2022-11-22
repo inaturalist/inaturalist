@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import { urlForTaxon, taxonLayerForTaxon } from "../../shared/util";
 
 const TaxonPageMap = ( {
@@ -35,22 +36,28 @@ const TaxonPageMap = ( {
       };
     }
     taxonMap = (
-      <TaxonMap
-        showAllLayer={false}
-        minZoom={2}
-        gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-        taxonLayers={[taxonLayerForTaxon( taxon, { currentUser: config.currentUser, updateCurrentUser } )]}
-        minX={bounds ? bounds.swlng : null}
-        minY={bounds ? bounds.swlat : null}
-        maxX={bounds ? bounds.nelng : null}
-        maxY={bounds ? bounds.nelat : null}
-        latitude={latitude}
-        longitude={longitude}
-        zoomLevel={zoomLevel}
-        gestureHandling="auto"
-        currentUser={config.currentUser}
-        updateCurrentUser={updateCurrentUser}
-      />
+      <ErrorBoundary key="taxa-show-map">
+        <TaxonMap
+          placement="taxa-show"
+          showAllLayer={false}
+          minZoom={2}
+          gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+          taxonLayers={[
+            taxonLayerForTaxon( taxon, { currentUser: config.currentUser, updateCurrentUser } )
+          ]}
+          minX={bounds ? bounds.swlng : null}
+          minY={bounds ? bounds.swlat : null}
+          maxX={bounds ? bounds.nelng : null}
+          maxY={bounds ? bounds.nelat : null}
+          latitude={latitude}
+          longitude={longitude}
+          zoomLevel={zoomLevel}
+          gestureHandling="auto"
+          currentUser={config.currentUser}
+          updateCurrentUser={updateCurrentUser}
+          showLegend
+        />
+      </ErrorBoundary>
     );
   } else {
     loading = <span className="loading status">{ I18n.t( "loading" ) }</span>;

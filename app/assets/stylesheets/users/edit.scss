@@ -1,0 +1,474 @@
+@import "colors";
+@import "../shared/loading_spinner";
+@import "./_user_image";
+@import "./toggle_switch";
+
+$user-image-size: 65px;
+
+.flex-no-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.save-button {
+  justify-content: flex-end;
+  .saved-time {
+    text-decoration: underline;
+    margin-right: 12px;
+  }
+  @media (max-width: 767.99px) {
+    flex-direction: row-reverse;
+    .saved-time {
+      text-decoration: underline;
+      margin-right: 0;
+      margin-left: 12px;
+    }
+  }
+}
+
+.vertical-align {
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.add-remove-user-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+}
+
+label.required {
+  color: #333;
+  &:after {
+    content: "*";
+    color: $alert-red;
+    margin-left: 5px;
+  }
+}
+
+.error-message {
+  color: $alert-red;
+  margin-bottom: 13px;
+}
+
+button.left-nav-item {
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+button.selected {
+  color: $inat-green;
+  font-weight: 600;
+  text-decoration: none;
+  outline:none;
+}
+
+.btn.mobile-menu {
+  color: white;
+  background: $inat-green;
+  min-width: 150px;
+  margin-top: 20px;
+  &:active,
+  &:focus,
+  &:hover {
+    color: white;
+  }
+  &[disabled] {
+    color: white;
+    background: #cccccc;
+    &:hover {
+      color: white;
+      background: #cccccc;
+    }
+  }
+}
+
+.btn-link.btn-tracking {
+  padding-left: 0px;
+}
+
+.btn-default.btn-remove-relationship {
+  margin-top: 5px;
+}
+
+#UserSettings {
+  .btn-primary.btn-inat {
+    background-color: #337ab7 !important;
+    color: white;
+    border-color: #2e6da4 !important;
+  }
+}
+
+.btn-save-text {
+  padding-top: 2px;
+  font-weight: 600;
+  letter-spacing: 1.1px;
+}
+
+.reciprocal-trust {
+  margin-top: 5px;
+}
+
+.vl {
+  border-left: 1px solid #eee;
+  height: 522px;
+}
+
+label.radio-button {
+  margin-left: 10px;
+  font-weight: bold !important;
+}
+
+#ApplicationsTable {
+  .table > thead > tr > th {
+    padding-left: 0px;
+  }
+  .table > tbody > tr > td {
+    padding-left: 0px;
+  }
+
+  .borderless {
+    border: none !important;
+  }
+}
+
+td.table-row {
+  vertical-align: middle !important;
+}
+
+select.dropdown {
+  max-width: none;
+}
+
+.checkbox-label {
+  margin-left: 9px;
+  display: inline !important;
+}
+
+.checkbox-description-margin {
+  margin-left: 20px;
+}
+
+.relationship-label {
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.remove-photo-margin {
+  margin-top: 5px !important;
+}
+
+.menu {
+  margin-top: 12px;
+}
+
+.profile-photo-margin {
+  margin-top: 20px;
+}
+
+.help-text {
+  margin-bottom: 13px;
+}
+
+.relationship-spacing {
+  margin-bottom: 16px;
+}
+
+.settings-item {
+  margin-bottom: 23px;
+}
+
+.about-licenses-row {
+  margin-bottom: 31px;
+}
+
+.divider {
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.hide-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+.user-description {
+  min-height: 300px;
+  resize: vertical;
+}
+
+.RevokeAccessModal.modal {
+  .modal-dialog {
+    .modal-header {
+      border-bottom: 0 none;
+    }
+    .modal-footer {
+      border-top: 0 none;
+    }
+  }
+}
+
+.ThirdPartyTrackingModal.modal {
+  .modal-dialog {
+    width: 90%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      overflow: hidden;
+    }
+    .modal-body {
+      overflow-x: auto;
+      max-height: none;
+    }
+  }
+}
+
+.CreativeCommonsLicensingModal.modal {
+  .modal-dialog {
+    width: 90%;
+    .modal-title {
+      line-height: 1;
+      padding: 0;
+    }
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      overflow: hidden;
+      min-width: 500px;
+    }
+    .modal-body {
+      overflow-x: auto;
+      max-height: none;
+      padding-left: 25px;
+    }
+  }
+}
+
+.Pagination {
+  margin-top: 22px;
+  margin-bottom: 53px;
+
+  .rc-pagination { padding: 0; }
+  .rc-pagination li,
+  .rc-pagination li a {
+    display: inline-block;
+  }
+  .rc-pagination li a {
+    border: 1px solid #aaa;
+    background-color: white;
+    padding: 3px 5px;
+    text-align: center;
+    min-width: 2em;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .rc-pagination-next a:before {
+    content: "\2192"
+  }
+  .rc-pagination-prev a:before {
+    content: "\2190"
+  }
+  .rc-pagination-disabled a,
+  .rc-pagination-disabled:hover a {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .rc-pagination-jump-prev a:after,
+  .rc-pagination-jump-next a:after {
+    content: "...";
+  }
+  li.rc-pagination-item-active a {
+    border-color: black;
+  }
+}
+
+.user-profile-preview {
+  margin-right: 25px;
+  width: $user-image-size * 2;
+  height: $user-image-size * 2;
+  border-radius: 50%;
+}
+
+.user-profile-image {
+  .UserImage {
+    margin-right: 25px;
+    width: $user-image-size * 2;
+    height: $user-image-size * 2;
+    pointer-events: none;
+  }
+
+  .icon-person {
+    font-size: $user-image-size * 2 - 20;
+    line-height: $user-image-size * 2 - 20;
+  }
+}
+
+.relationship-profile-image {
+  .UserImage {
+    margin-right: 12px;
+    width: $user-image-size;
+    height: $user-image-size;
+  }
+
+  .icon-person {
+    font-size: $user-image-size - 10;
+    line-height: $user-image-size - 10;
+  }
+}
+
+.blue-checkmark {
+  color: #2e78b8;
+  position: absolute;
+  right: 10px
+}
+
+#AffiliationList {
+  // current network only
+  button {
+    min-width: 275px;
+  }
+
+  .current-network {
+    display: flex;
+    align-items: center;
+  }
+
+  .current-network-name {
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // current network and dropdown logo
+  .network-logo {
+    max-height: 33px;
+    max-width: 135px;
+    margin-right: 12px;
+  }
+
+  // dropdown items
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
+  
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+  }
+}
+
+#LicenseDropdown {
+  // current license only
+  button.dropdown-toggle {
+    min-width: 275px;
+    min-height: 66px;
+    text-align: left;
+  }
+
+  .current-license {
+    display: flex;
+    align-items: center;
+  }
+
+  div.caret {
+    position: absolute;
+    right: 10px;
+  }
+
+  // dropdown items
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    &:last-child {
+      border: 0 transparent;
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    min-width: 275px;
+    min-height: 66px;
+  }
+}
+
+.license-row {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  min-height: 66px;
+}
+
+.license-image {
+  margin-right: 12px;
+}
+
+.no-license-description {
+  white-space: normal;
+  max-width: 233px;
+}
+
+.license-name {
+  width: 115px;
+  white-space: normal;
+  font-weight: bold;
+}
+
+.license-description {
+  margin-top: 9px;
+}
+
+.license-tag {
+  background-color: $inat-green;
+  color:white;
+  padding: 2px 4px !important;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.license-tag.wikimedia {
+  background-color: #2e78b8;
+}
+
+#relationships-filters {
+  display: flex;
+  flex-wrap: wrap;
+  .filter {
+    @extend .flex-no-wrap;
+    margin: 0 15px 10px 0;
+    &:last-child {
+      margin-right: 0px;
+    }
+    label {
+      margin-bottom: 0px;
+    }
+  }
+}
+
+.AlertModal.modal {
+  .modal-dialog {
+    width: 100%;
+    max-width: 60%;
+  }
+}

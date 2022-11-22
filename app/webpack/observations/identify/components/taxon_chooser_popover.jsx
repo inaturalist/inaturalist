@@ -33,12 +33,25 @@ class TaxonChooserPopover extends React.Component {
   }
 
   setTaxaFromProps( props ) {
-    const { taxon, defaultTaxon } = this.props;
+    const { taxon, defaultTaxon, config } = this.props;
     if ( props.taxon ) {
       if ( props.taxon.ancestors && props.taxon.ancestors.length > 0 ) {
         this.setState( { taxa: _.sortBy( props.taxon.ancestors, t => ( t.rank_level || 999 ) ) } );
       } else if ( props.taxon.ancestor_ids ) {
-        inatjs.taxa.fetch( props.taxon.ancestor_ids ).then( response => {
+        const params = { };
+        if ( config.testingApiV2 ) {
+          params.fields = {
+            ancestor_ids: true,
+            id: true,
+            name: true,
+            rank: true,
+            rank_level: true,
+            iconic_taxon_name: true,
+            is_active: true,
+            preferred_common_name: true
+          };
+        }
+        inatjs.taxa.fetch( props.taxon.ancestor_ids, params ).then( response => {
           let newTaxa = _.sortBy( response.results, t => ( t.rank_level || 999 ) );
           if (
             defaultTaxon
@@ -53,7 +66,6 @@ class TaxonChooserPopover extends React.Component {
       }
     }
   }
-
 
   chooseCurrent( ) {
     const { taxa, current } = this.state;

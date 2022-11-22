@@ -1,0 +1,12 @@
+.row
+  - identification ||= identification_with_observation || @identification
+  .mini.observations.observationcol.col-xs-6
+    = render :partial => "observations/cached_component", :locals => { :observation => identification.observation }
+
+  .identificationcol.last.col-xs-6
+    - extra = capture do
+      .small.description
+        = t :added_on_datetime, datetime: l( identification.created_at.to_date, format: :month_day_year )
+        .ident-category
+          = t identification.category, default: identification.category
+    = render :partial => "identifications/identification", :locals => { :identification => identification, :extra => extra }

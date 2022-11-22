@@ -64,7 +64,7 @@
     .col-md-6
       %dl.meta
         %dt=t :website
-        %dd=t "views.stats.index.website_desc_html", url: wiki_page_url( "network" )
+        %dd=t "views.stats.index.website_desc_html", url: site_url( "network" )
         %dt=t :iphone
         %dd=t "views.stats.index.iphone_desc_html", url: @site.iphone_app_url
     .col-md-6
@@ -95,7 +95,7 @@
         .loading.status=t :loading
     .col-md-6
       %dl.meta
-        %dt=t :active
+        %dt=t :active_users
         %dd=t "views.stats.index.active_desc"
   .row
     .col-md-12

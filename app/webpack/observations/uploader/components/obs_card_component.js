@@ -5,11 +5,11 @@ import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
 import Dropzone from "react-dropzone";
 import _ from "lodash";
-import moment from "moment-timezone";
+import moment from "moment";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import util, { ACCEPTED_FILE_TYPES } from "../models/util";
+import util, { ACCEPTED_FILE_TYPES, parsableDatetimeFormat } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -215,15 +215,7 @@ class ObsCardComponent extends Component {
       locationIcon = <i className="icon-icn-location-private" />;
     }
 
-    let inputFormat = "YYYY/MM/DD h:mm A z";
-    if ( obsCard.time_zone ) {
-      if (
-        parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 )
-        && parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 ) !== 0
-      ) {
-        inputFormat = "YYYY/MM/DD h:mm A ZZ";
-      }
-    }
+    const inputFormat = parsableDatetimeFormat( );
 
     return cardDropTarget( fileDropTarget( cardDragSource(
       <div
@@ -236,7 +228,19 @@ class ObsCardComponent extends Component {
           className={className}
           data-id={obsCard.id}
           disableClick
-          onDrop={f => onCardDrop( f, obsCard )}
+          onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+            // trying to protect against treating images dragged from the
+            // same page from being treated as new files. Images dragged from
+            // the same page will appear as multiple dataTransferItems, the
+            // first being a "string" kind and not a "file" kind
+            if ( dropEvent.nativeEvent.dataTransfer
+              && dropEvent.nativeEvent.dataTransfer.items
+              && dropEvent.nativeEvent.dataTransfer.items.length > 0
+              && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+              return;
+            }
+            onCardDrop( acceptedFiles, obsCard );
+          }}
           onDragEnter={this.onDragEnter}
           activeClassName="hover"
           accept={ACCEPTED_FILE_TYPES}
@@ -314,7 +318,6 @@ class ObsCardComponent extends Component {
                 ? moment( obsCard.selected_date, inputFormat ).format( "x" )
                 : undefined
               }
-              timeZone={obsCard.time_zone}
               onChange={dateString => updateObsCard( obsCard, { date: dateString } )}
               onSelection={
                 dateString => updateObsCard(

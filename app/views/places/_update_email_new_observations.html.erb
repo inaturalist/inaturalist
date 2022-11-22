@@ -13,7 +13,15 @@
         <td width="75" align="center" valign="top" style="<%= 'padding-right: 10px;' if i < columns-1 %> padding-bottom: 10px; max-width:75px;">
           <%= link_to observation_image(o, :style => "max-width: 75px; max-height: 75px;"), observation_url(o), :only_path => false %>
           <br/>
-          <%= link_to o.species_guess || t(:something), observation_url(o), :style => "font-size:smaller;" %>
+          <div style="font-size:smaller">
+            <% if o.taxon %>
+              <%= render "shared/taxon", taxon: o.taxon, link_url: observation_url( o ), one_name: true %>
+            <% elsif o.species_guess.blank? %>
+              <%= link_to t(:something), observation_url( o ) %>
+            <% else %>
+              <%= link_to o.species_guess, observation_url( o ) %>
+            <% end %>
+          </div>
         </td>
       <% end %>
     </tr>

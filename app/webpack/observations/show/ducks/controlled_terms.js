@@ -3,25 +3,47 @@ import _ from "lodash";
 
 const SET_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_CONTROLLED_TERMS";
 const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_TERMS";
+const RESET_CONTROLLED_TERMS = "obs-show/controlled_terms/RESET_CONTROLLED_TERMS";
+const SHOW_ANNOTATIONS_PANEL = "obs-show/controlled_terms/SHOW_ANNOTATIONS_PANEL";
 
 const API_V2_BASE_REQUEST_PARAMS = {
   fields: {
+    excepted_taxon_ids: true,
     label: true,
+    multivalued: true,
+    taxon_ids: true,
     values: {
+      blocking: true,
+      excepted_taxon_ids: true,
       label: true,
-      blocking: true
+      taxon_ids: true
     }
   }
 };
 
-export default function reducer( state = { terms: [], allTerms: [] }, action ) {
+export default function reducer( state = {
+  terms: [],
+  allTerms: [],
+  loaded: false,
+  open: false
+}, action ) {
   const newState = Object.assign( {}, state );
   switch ( action.type ) {
     case SET_CONTROLLED_TERMS:
       newState.terms = action.terms;
+      newState.loaded = true;
       break;
     case SET_ALL_CONTROLLED_TERMS:
       newState.allTerms = action.terms;
+      newState.loaded = true;
+      break;
+    case RESET_CONTROLLED_TERMS:
+      newState.terms = [];
+      newState.allTerms = [];
+      newState.loaded = false;
+      break;
+    case SHOW_ANNOTATIONS_PANEL:
+      newState.open = action.open;
       break;
     default:
       // nothing to see here
@@ -43,10 +65,25 @@ export function setAllControlledTerms( terms ) {
   };
 }
 
+export function resetControlledTerms( ) {
+  return {
+    type: RESET_CONTROLLED_TERMS
+  };
+}
+
+export function showAnnotationsPanel( open ) {
+  return {
+    type: SHOW_ANNOTATIONS_PANEL,
+    open
+  };
+}
 
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( state.controlledTerms && state.controlledTerms.loaded ) {
+      return null;
+    }
     const { testingApiV2 } = state.config;
     const observation = options.observation || state.observation;
     if ( !observation || !observation.taxon || !observation.taxon.ancestor_ids ) {
@@ -86,7 +123,7 @@ export function fetchAllControlledTerms( ) {
 // This is a utility that doesn't modify the state, but could be useful elsewhere
 export function termsForTaxon( terms, taxon = null ) {
   const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
-  return _.filter( terms, term => {
+  const filteredTerms = _.filter( terms, term => {
     // reject if it has values and those values and none are availalble
     if (
       term.values && term.values.length > 0
@@ -113,11 +150,23 @@ export function termsForTaxon( terms, taxon = null ) {
     }
     return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
   } );
+  return _.sortBy( filteredTerms, term => I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
+    defaultValue: term.label
+  } ) );
 }
 
 export function setControlledTermsForTaxon( taxon, terms = [] ) {
   return ( dispatch, getState ) => {
     const allTerms = terms && terms.length > 0 ? terms : getState( ).controlledTerms.allTerms;
     dispatch( setControlledTerms( termsForTaxon( allTerms, taxon ) ) );
+  };
+}
+
+export function fetchAnnotationsPanelPreferences( ) {
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const currentUser = config && config.currentUser;
+    const open = currentUser ? !currentUser.prefers_hide_obs_show_annotations : false;
+    dispatch( showAnnotationsPanel( open ) );
   };
 }

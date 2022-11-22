@@ -4,18 +4,12 @@
   = javascript_include_tag "users/registrations"
 - content_for( :content ) do
   .flexrow
-    - if @observations && @observations.size > 0
+    - if !@skip_external_connections && @observations && @observations.size > 0
       :ruby
         obs = @observations[rand(@observations.size)]
         photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
         place_guess = obs.public_places.select{|p| [Place::COUNTRY_LEVEL, Place::STATE_LEVEL].include?(p.admin_level)}.sort_by(&:admin_level).map{|p|
-          t(
-            p.name.parameterize.underscore,
-            default: t(
-              "places_name.#{p.name.parameterize.underscore}",
-              default: p.name
-            )
-          )
+          p.translated_name
         }.reverse.join( ", " )
         place_guess = obs.place_guess if place_guess.blank?
         taxon_name = if obs.taxon

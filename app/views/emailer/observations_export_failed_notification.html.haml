@@ -1,11 +1,11 @@
 = render "header"
 
-%p= t "views.emailer.observations_export_notification.your_observations_export_failed_html", url: @exports_url
+%p= t "views.emailer.observations_export_notification.your_observations_export_failed_html", url: export_observations_url
 %table{ cellpadding: 10 }
   %tr
     %th{ valign: "top", align: "left" }= t :query
     %td
-      = link_to URI.unescape(@flow_task.query), export_observations_url + "?#{@flow_task.query}"
+      = link_to CGI.unescape(@flow_task.query), export_observations_url + "?#{@flow_task.query}"
   %tr
     %th{ valign: "top", align: "left"}= t :columns
     %td

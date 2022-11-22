@@ -1,0 +1,21 @@
+:ruby
+  list ||= @list
+.col-md-6
+  %div{ :id => "list-#{list.id}", :class => "list clear" }
+    - cache List.icon_preview_cache_key( list ) do
+      = link_to list_path( list ), class: "float left #{ 'empty' if @iconic_taxa_for[list.id].blank? }" do
+        - if @iconic_taxa_for[list.id].blank?
+          =t( :no_taxa_listed )
+        - else
+          .grid
+            - for taxon in @iconic_taxa_for[list.id]
+              .cell.photo
+                = taxon_image( taxon, width: 32 )
+            - ( 0..( 8 - @iconic_taxa_for[list.id].count ) ).each do |cell|
+              .cell
+    %h3.title
+      = link_to truncate(list.title, length: 75), list_path(list)
+    = truncate( strip_tags(list.description), length: 75 )
+    = link_to "#{t( :view )} &raquo;".html_safe, list_path( list ), style: "white-space: nowrap"
+    .meta
+      = t( :x_taxa, count: list.listed_taxa.count )

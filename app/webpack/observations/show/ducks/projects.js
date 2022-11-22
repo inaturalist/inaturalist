@@ -1,6 +1,7 @@
 import inatjs from "inaturalistjs";
 import { callAPI, hasObsAndLoggedIn } from "./observation";
 
+// eslint-disable-next-line import/prefer-default-export
 export function joinProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );

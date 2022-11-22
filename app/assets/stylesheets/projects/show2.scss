@@ -7,6 +7,7 @@
 @import "../shared/flash_message";
 @import "../shared/modals";
 @import "../shared/flag_an_item";
+@import "./observations_grid";
 
 $background-color: #1A1A1A;
 
@@ -79,9 +80,8 @@ a.UserImage {
     margin-left: 10px;
     cursor: pointer;
   }
-  button {
+  button.btn-green {
     font-size: 14px;
-    float: right;
     line-height: 20px;
   }
 }
@@ -98,6 +98,10 @@ a.UserImage {
 
 button {
   outline: none;
+}
+
+button,
+a {
   &.btn-green {
     font-weight: 700;
     color: white;
@@ -248,9 +252,14 @@ button {
           background: rgba(255, 255, 255, 0.1);
           .action {
             display: inline-block;
-            padding: 2px 8px 2px 10px;
+            padding: 0px 8px 0px 10px;
             min-width: 72px;
             text-align: center;
+            &:hover,
+            &:active,
+            &:focus {
+              color: white;
+            }
           }
           .count {
             cursor: pointer;
@@ -269,7 +278,7 @@ button {
           position: absolute;
           top: 0;
           right: 0;
-          button {
+          > button {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.3);
             border-radius: 30px;
@@ -292,10 +301,17 @@ button {
             text-decoration: underline;
           }
         }
-        .header-about-read-more {
+        .header-link-btn {
           font-weight: 700;
           font-size: 15px;
           cursor: pointer;
+          &:hover,
+          &:active,
+          &:focus {
+            color: white;
+          }
+        }
+        .header-about-read-more {
           i {
             font-size: 9px;
             margin-left: 3px;
@@ -437,6 +453,7 @@ button {
 }
 
 .ObservationsList {
+  width: 100%;
   thead {
     tr {
       border-bottom: 2px solid #ddd;
@@ -496,13 +513,15 @@ button {
           display: block;
         }
       }
-      .icon, .sound-icon {
+      .icon,
+      .sound-icon {
         display: none;
         color: white;
         font-size: 50px;
         line-height: 70px;
       }
-      a.sound .sound-icon, a.iconic .icon {
+      a.sound .sound-icon,
+      a.iconic .icon {
         display: inline-block;
       }
     }
@@ -782,90 +801,6 @@ button {
   color: #858585;
 }
 
-.ObservationsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  .ObservationsGridCell {
-    flex-grow: 1;
-    padding: 2px;
-    min-width: 260px;
-    margin: 0px auto;
-  }
-  .Observation {
-    position: relative;
-    .quality {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px 10px;
-      font-size: 16px;
-      &.research {
-        background: $inat-green;
-        color: white;
-      }
-      .full {
-        display: none;
-      }
-    }
-    .photo {
-      background: #ccc;
-      text-align: center;
-      i {
-        color: white;
-        font-size: 180px;
-      }
-    }
-    .caption {
-      background: #464646;
-      color: white;
-      height: 60px;
-      padding: 10px;
-      position: relative;
-      padding-right: 86px;
-      white-space: nowrap;
-      .display-name {
-        font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .secondary-name {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .UserImage {
-        position: absolute;
-        right: 10px;
-        bottom: 40px;
-        border: 2px solid white;
-        height: 45px;
-        width: 45px;
-        i.icon-person {
-          font-size: 36px;
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .meta {
-        position: absolute;
-        bottom: 10px;
-        right: 8px;
-        color: white;
-        .count {
-          i {
-            margin-right: 1px;
-          }
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-}
-
 .UmbrellaOverviewTab {
   .UmbrellaLeaderboard {
     h2, .sort {
@@ -980,22 +915,18 @@ button {
       a {
         color: inherit;
       }
-      & > a:not(:last-of-type)::after,
-      & > .except > a:not(:last-of-type)::after,
-      & .SplitTaxon:not(:last-of-type)::after {
-       content: ", ";
-      }
-      .term-value {
-        .separator::before, .separator::after {
-          content: " ";
-        }
+      > a,
+      > .except > a,
+      > .SplitTaxon,
+      > .except > .SplitTaxon {
+        display: block;
+        margin-bottom: 10px;
       }
       .except {
         .bold {
           font-weight: 700;
-          &::before, &::after {
-            content: " "
-          }
+          margin-bottom: 10px;
+          margin-top: 20px;
         }
       }
     }
@@ -1099,7 +1030,8 @@ button {
     .type {
       margin-right: 5px;
     }
-    .project-admin {
+    .project-admin,
+    .owner {
       display: inline-block;
       .project-admin-span {
         white-space: nowrap;
@@ -1547,6 +1479,10 @@ $nav-btn-dim: 40px;
   margin-top: 10px;
 }
 
+.ViewMoreFooter {
+  margin-top: 15px;
+}
+
 .FlagAnItem {
   margin-top: 35px;
 }
@@ -1658,4 +1594,41 @@ $tip-opacity: 1;
   white-space: nowrap;
   max-height: 60px;
   box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
+}
+
+.collapsible-section {
+  i.fa {
+    margin-right: 5px;
+    color: $inat-green;
+  }
+  .collapsible-content {
+    overflow: hidden;
+  }
+  .collapsible-content.closed {
+    display: none;
+  }
+  .collapsible-content.open {
+    display: block;
+  }
+}
+
+.project-membership {
+  .admin-user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    .userimage {
+      width: 40px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+
+    .userlink {
+      text-overflow: ellipsis;
+      width: auto;
+      overflow: hidden;
+    }
+  }
 }

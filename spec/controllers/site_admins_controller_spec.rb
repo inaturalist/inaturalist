@@ -8,10 +8,10 @@ describe SiteAdminsController do
       user = make_admin
       sign_in user
       expect {
-        post :create, site_admin: {
+        post :create, params: { site_admin: {
           user_id: user.id,
           site_id: site.id
-        }
+        } }
       }.to change( SiteAdmin, :count ).by( 1 )
       p = SiteAdmin.last
       expect( p.user ).to eq user
@@ -21,10 +21,10 @@ describe SiteAdminsController do
     it "does not allow non-users to create" do
       user = User.make!
       expect {
-        post :create, site_admin: {
+        post :create, params: { site_admin: {
           user_id: user.id,
           site_id: site.id
-        }
+        } }
         expect( flash[:alert] ).to eq "You need to sign in or sign up before continuing."
       }.not_to change( SiteAdmin, :count )
     end
@@ -33,10 +33,12 @@ describe SiteAdminsController do
       user = User.make!
       sign_in user
       expect {
-        post :create, site_admin: {
-          user_id: user.id,
-          site_id: site.id
-        }
+        expect {
+          post :create, params: { site_admin: {
+            user_id: user.id,
+            site_id: site.id
+          } }
+        }.to throw_symbol( :abort )
         expect( flash[:error] ).to eq "Only administrators may access that page"
       }.not_to change( SiteAdmin, :count )
     end
@@ -45,10 +47,12 @@ describe SiteAdminsController do
       user = make_curator
       sign_in user
       expect {
-        post :create, site_admin: {
-          user_id: user.id,
-          site_id: site.id
-        }
+        expect {
+          post :create, params: { site_admin: {
+            user_id: user.id,
+            site_id: site.id
+          } }
+        }.to throw_symbol( :abort )
         expect( flash[:error] ).to eq "Only administrators may access that page"
      }.not_to change( SiteAdmin, :count )
     end
@@ -61,7 +65,7 @@ describe SiteAdminsController do
       user = make_admin
       sign_in user
       expect {
-        post :destroy, id: site_admin.id
+        post :destroy, params: { id: site_admin.id }
       }.to change( SiteAdmin, :count ).by( -1 )
     end
 
@@ -69,10 +73,10 @@ describe SiteAdminsController do
       user = make_admin
       sign_in user
       expect {
-        post :destroy, site_admin: {
+        post :destroy, params: { site_admin: {
           user_id: site_admin.user_id,
           site_id: site_admin.site_id
-        }
+        } }
       }.to change( SiteAdmin, :count ).by( -1 )
     end
 
@@ -80,22 +84,22 @@ describe SiteAdminsController do
       user = make_admin
       sign_in user
       expect {
-        post :destroy, site_admin: {
+        post :destroy, params: { site_admin: {
           user_id: site_admin.user_id
-        }
+        } }
         expect(response.response_code).to eq 404
       }.to_not change( SiteAdmin, :count )
       expect {
-        post :destroy, site_admin: {
+        post :destroy, params: { site_admin: {
           site_id: site_admin.site_id
-        }
+        } }
         expect(response.response_code).to eq 404
       }.to_not change( SiteAdmin, :count )
     end
 
     it "does not allow non-users to destroy" do
       expect {
-        post :destroy, id: site_admin.id
+        post :destroy, params: { id: site_admin.id }
         expect( flash[:alert] ).to eq "You need to sign in or sign up before continuing."
       }.to_not change( SiteAdmin, :count )
     end
@@ -104,7 +108,9 @@ describe SiteAdminsController do
       user = User.make!
       sign_in user
       expect {
-        post :destroy, id: site_admin.id
+        expect {
+          post :destroy, params: { id: site_admin.id }
+        }.to throw_symbol( :abort )
         expect( flash[:error] ).to eq "Only administrators may access that page"
       }.to_not change( SiteAdmin, :count )
     end
@@ -113,7 +119,9 @@ describe SiteAdminsController do
       user = make_curator
       sign_in user
       expect {
-        post :destroy, id: site_admin.id
+        expect {
+          post :destroy, params: { id: site_admin.id }
+        }.to throw_symbol( :abort )
         expect( flash[:error] ).to eq "Only administrators may access that page"
       }.to_not change( SiteAdmin, :count )
     end

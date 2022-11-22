@@ -1,4 +1,4 @@
-class ControlledTerm < ActiveRecord::Base
+class ControlledTerm < ApplicationRecord
 
   include ActsAsElasticModel
 
@@ -8,7 +8,9 @@ class ControlledTerm < ActiveRecord::Base
     mappings(dynamic: true) do
       indexes :blocking, type: "boolean"
       indexes :excepted_taxon_ids, type: "integer"
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :is_value, type: "boolean"
       indexes :labels do
         indexes :definition, type: "text", analyzer: "ascii_snowball_analyzer"
@@ -19,7 +21,7 @@ class ControlledTerm < ActiveRecord::Base
       end
       indexes :multivalues, type: "boolean"
       indexes :ontology_uri, type: "keyword", index: false
-      indexes :taxon_ids, type: "integer"
+      indexes :taxon_ids, type: "keyword"
       indexes :uri, type: "keyword", index: false
       indexes :uuid, type: "keyword"
       indexes :values do
@@ -34,7 +36,7 @@ class ControlledTerm < ActiveRecord::Base
           indexes :valid_within_clade, type: "integer"
         end
         indexes :ontology_uri, type: "keyword", index: false
-        indexes :taxon_ids, type: "integer"
+        indexes :taxon_ids, type: "keyword"
         indexes :uuid, type: "keyword"
         indexes :uri, type: "keyword", index: false
       end

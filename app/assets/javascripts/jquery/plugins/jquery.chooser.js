@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Roughly based on http://jqueryui.com/demos/autocomplete/#combobox
 (function( $ ) {
   $.widget( "ui.chooser", {
@@ -162,11 +163,21 @@
     
     recordsToItems: function(records) {
       var items = [], records = records || []
+      // If this looks like a node API response, use the results array
+      if ( records.results ) {
+        // If the results array looks like some kind of search respose, use the
+        // actual records nested in each search result
+        if ( records.results.length > 0 && records.results[0].record ) {
+          records = _.map( records.results, function( r ) { return r.record } );
+        } else {
+          records = records.results;
+        }
+      }
       for (var i=0; i < records.length; i++) {
         if (!records[i]) { continue }
         items.push(
           $.extend(records[i], {
-            label: records[i].label || records[i].html || records[i].title || records[i].name,
+            label: records[i].label || records[i].html || records[i].title || records[i].login || records[i].name,
             value: records[i].value || records[i].title || records[i].name || records[i].id,
             recordId: records[i].id
           })

@@ -35,7 +35,8 @@ module ApplicationHelper
     html
   end
   
-  def compact_date(date)
+  def compact_date( date, options = {} )
+    obscured = options[:obscured]
     return 'the past' if date.nil?
     if date.is_a?(Time)
       date = date.in_time_zone(current_user.time_zone) if current_user
@@ -47,7 +48,9 @@ module ApplicationHelper
     else
       Date.today
     end
-    if date == today
+    if obscured
+      I18n.l( date, format: :month_year )
+    elsif date == today
       time ? I18n.l( time, format: :compact ) : t(:today)
     elsif date.year == Date.today.year 
       I18n.l( date.to_date, format: :compact )
@@ -57,36 +60,66 @@ module ApplicationHelper
   end
   
   def friend_button(user, potential_friend, html_options = {})
-    url_options = {
-      :controller => 'users',
-      :action => 'update',
-      :id => current_user.id,
-      :format => "json"
-    }
-    
-    already_friends = user.friendships.where( friend_id: potential_friend.id ).exists?
-    
-    unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
-      url_options.merge(:remove_friend_id => potential_friend.id), 
-      html_options.merge(
-        :remote => true,
-        :datatype => "json",
-        :method => :put,
-        :id => dom_id(potential_friend, 'unfriend_link'),
-        :class => "btn btn-primary btn-xs unfriend_link",
-        :style => already_friends ? "" : "display:none"
+    existing_relat = user.friendships.where( friend_id: potential_friend.id ).first
+    if existing_relat && existing_relat.trust?
+      # friend button updates with following
+      friend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :follow_user, user: potential_friend.login )}".html_safe,
+        relationship_url( existing_relat, "relationship[following]" => true ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "friend_link" ),
+          class: "btn btn-primary btn-xs friend_link",
+          style: existing_relat.following? ? "display:none" : ""
+        )
       )
-    friend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:follow_user, :user=> potential_friend.login)}".html_safe, 
-      url_options.merge(:friend_id => potential_friend.id), 
-      html_options.merge(
-        :remote => true,
-        :method => :put,
-        :datatype => "json",
-        :id => dom_id(potential_friend, 'friend_link'),
-        :class => "btn btn-primary btn-xs friend_link",
-        :style => (!already_friends && user != potential_friend) ? "" : "display:none"
+      # unfriend button removes following
+      unfriend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :stop_following_user, user: potential_friend.login )}".html_safe,
+        relationship_url( existing_relat, "relationship[following]" => false ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "unfriend_link" ),
+          class: "btn btn-primary btn-xs unfriend_link",
+          style: existing_relat.following? ? "" : "display:none"
+        )
       )
-    
+    else
+      url_options = {
+        controller: "users",
+        action: "update",
+        id: current_user.id,
+        format: "json"
+      }
+      friend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :follow_user, user: potential_friend.login )}".html_safe,
+        url_options.merge( friend_id: potential_friend.id ),
+        html_options.merge(
+          remote: true,
+          method: :put,
+          datatype: "json",
+          id: dom_id( potential_friend, "friend_link" ),
+          class: "btn btn-primary btn-xs friend_link",
+          style: existing_relat && existing_relat.following? ? "display:none" : ""
+        )
+      )
+      unfriend_link = link_to(
+        "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t( :stop_following_user, user: potential_friend.login )}".html_safe,
+        url_options.merge( remove_friend_id: potential_friend.id ),
+        html_options.merge(
+          remote: true,
+          datatype: "json",
+          method: :put,
+          id: dom_id( potential_friend, "unfriend_link" ),
+          class: "btn btn-primary btn-xs unfriend_link",
+          style: existing_relat && existing_relat.following? ? "" : "display:none"
+        )
+      )
+    end
     content_tag :span, (friend_link + unfriend_link).html_safe
   end
   
@@ -208,14 +241,13 @@ module ApplicationHelper
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
   # Example: url_for_params(:taxon_id => 1, :without => :page)
-  def url_for_params(options = {})
-    new_params = params.clone
-    if without = options.delete(:without)
+  def url_for_params( options = {} )
+    new_params = request.POST.merge( request.GET ).merge( options )
+    if without = new_params.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
     end
-    new_params = new_params.merge( options ) unless options.empty?
     url_for( new_params )
   end
   
@@ -240,22 +272,6 @@ module ApplicationHelper
       end
     end
     html.html_safe
-  end
-  
-  # def link_to(*args)
-  #   if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
-  #       !(args[2] && args[2].is_a?(Hash) && args[2][:method])
-  #     return super(args.first, url_for_taxon(args[1]), *args[2..-1])
-  #   end
-  #   super
-  # end
-  
-  def url_for_taxon(taxon)
-    if taxon && taxon.unique_name?
-      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
-    else
-      url_for(taxon)
-    end
   end
   
   def modal_image(photo, options = {})
@@ -291,6 +307,7 @@ module ApplicationHelper
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
+    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
@@ -303,7 +320,6 @@ module ApplicationHelper
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     unless options[:skip_simple_format]
@@ -311,6 +327,8 @@ module ApplicationHelper
     end
     # Ensure all tags are closed
     text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    # Remove empty paragraphs
+    text = text.gsub( "<p></p>", "" )
     text.html_safe
   end
 
@@ -442,12 +460,6 @@ module ApplicationHelper
     block_given? ? concat(content.html_safe) : content.html_safe
   end
   
-  def color_pluralize(num, singular)
-    html = content_tag(:span, num, :class => "count")
-    html += num == 1 ? " #{singular}" : " #{singular.pluralize}"
-    html
-  end
-  
   def one_line_observation(o, options = {})
     skip = (options.delete(:skip) || []).map(&:to_sym)
     txt = ""
@@ -493,26 +505,42 @@ module ApplicationHelper
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
   end
-  
-  def image_url(source, options = {})
-    abs_path = asset_path(source).to_s
+
+  def image_url( source, options = {} )
+    # Here FakeView is necessary again for situations where this gets called
+    # outside of a context with the normal URL and asset helpers
+    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
+      the_root_url = begin
+        root_url
+      rescue StandardError => e
+        # If this method gets called outside of the context of a controller, url
+        # helpers like root_url may not be available, so we might need to fall
+        # back to FakeView. Note that rescuing ActionView::Template::Error
+        # doesn't seem to work here.
+        raise e unless e.message =~ /root_url/
+
+        FakeView.root_url
+      end
+      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end
     abs_path
-  rescue Exception => e
-    nil
   end
-  
+
   def truncate_with_more(text, options = {})
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
-    options[:omission] ||= ""
-    options[:separator] ||= " "
+    unless ellipsize = options.delete(:ellipsize)
+      options[:omission] ||= ""
+      options[:separator] ||= " "
+    end
     truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
+
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    return truncated.to_s.html_safe if ellipsize
+
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
@@ -701,7 +729,7 @@ module ApplicationHelper
       "taxon-range-layer-label" => I18n.t("maps.overlays.range"),
       "taxon-places-layer-label" => I18n.t("maps.overlays.checklist_places"),
       "taxon-places-layer-hover" => I18n.t("maps.overlays.checklist_places_description"),
-      "taxon-observations-layer-label" => I18n.t("maps.overlays.observations"),
+      "taxon-observations-layer-label" => options[:taxon_observations_layer_label].blank? ? I18n.t( "maps.overlays.observations" ) : options[:taxon_observations_layer_label],
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
@@ -713,7 +741,8 @@ module ApplicationHelper
       "map-style" => options[:map_style],
       "elastic_params" => options[:elastic_params] ?
         options[:elastic_params].map{ |k,v| "#{k}=#{v}" }.join("&") : nil,
-      "gesture-handling" => options[:gesture_handling]
+      "gesture-handling" => options[:gesture_handling],
+      "placement" => options[:placement]
     }
     append_taxon_layers(map_tag_attrs, options)
     append_place_layers(map_tag_attrs, options)
@@ -777,7 +806,7 @@ module ApplicationHelper
       # taxon ranges
       if options[:taxon_layers] && options[:show_range] && (!options[:focus] || options[:focus] == :range)
         options[:taxon_layers].each do |layer|
-          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_ranges_without_geom.first)
+          append_bounds_to_map_tag_attrs(map_tag_attrs, layer[:taxon].taxon_range_without_geom)
         end
       end
       # place geometries
@@ -979,7 +1008,7 @@ module ApplicationHelper
     when "User"
       image_tag(resource.icon.url(:thumb), options.merge(:alt => "#{resource.login} icon", :class => "usericon"))
     when "Observation"
-      observation_image(resource, options.merge(:size => "square"))
+      observation_image(resource, options.merge(:style => "square"))
     when "Project"
       image_tag(resource.icon.url(:thumb), options)
     when "ProjectUserInvitation"
@@ -998,15 +1027,15 @@ module ApplicationHelper
         image_tag(resource.parent.logo_square.url, options.merge(:class => "siteicon"))
       end
     when "Place"
-      image_tag(FakeView.image_url("icon-maps.png"), options)
+      image_tag( image_url( "icon-maps.png" ), options )
     when "Taxon"
-      taxon_image(resource, {:size => "square", :width => 48}.merge(options))
+      taxon_image(resource, {:style => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
+      image_tag( image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
-      image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
+      image_tag( image_url( "notebook-icon-color-155px-shadow.jpg" ), options )
     else
-      image_tag(FakeView.image_url("logo-cccccc-20px.png"), options)
+      image_tag( image_url( "logo-cccccc-20px.png" ), options )
     end
   end
   
@@ -1024,18 +1053,23 @@ module ApplicationHelper
     ]
     # Find the key that is lowercase in English, b/c we're maddeningly
     # inconsistent about this
-    lowercase_key = potential_keys.detect do |k|
+    lowercase_key = potential_keys.detect do | k |
       en_t = I18n.t( k, locale: "en", default: nil )
       en_t && en_t[0].downcase == en_t[0]
     end
     lowercase_model_name = if lowercase_key
+      # puts "using lowercase key: #{lowercase_key}"
       I18n.t( lowercase_key, default: nil )
     end
-    lowercase_model_name ||= potential_keys.map{|k| I18n.t( k, default: nil ) }.compact.first
+    lowercase_model_name ||= potential_keys.map do | k |
+      lmn = I18n.t( k, default: nil )
+      # puts "trying key #{k}: #{lmn}"
+      lmn
+    end.compact.first
     lowercase_model_name ||= class_name
     lowercase_model_name
   end
-    
+
   def update_tagline_for(update, options = {})
     resource = update.resource
     notifier = update.notifier
@@ -1103,10 +1137,8 @@ module ApplicationHelper
         end
       end
     when "Observation"
-      if notifier.is_a?(ProjectInvitation)
-        t(:user_invited_your_x_to_a_project_html, :user => notifier_user_link, :x => resource_link)
-      elsif notifier.is_a?(ObservationFieldValue)
-        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name), 
+      if notifier.is_a?(ObservationFieldValue)
+        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name),
           :owner => you_or_login(resource.user, :capitalize_it => false))
       else
         "unknown"
@@ -1202,7 +1234,6 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name_key = notifier.class.to_s.underscore
       notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
@@ -1240,8 +1271,7 @@ module ApplicationHelper
       end
     end
     key += '_html'
-
-    t(key, opts)
+    t(key, **opts)
   end
   
   def url_for_resource_with_host(resource)
@@ -1340,14 +1370,15 @@ module ApplicationHelper
   end
 
   def uri_join(*args)
-    URI.join(*args).to_s
+    URI.join(*args.compact).to_s
   rescue URI::InvalidURIError
     args.join('/').gsub(/\/+/, '/')
   end
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "v=3.35&key=#{CONFIG.google.browser_api_key}"
+    version = Rails.env.development? ? "weekly" : "3.48"
+    params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
@@ -1410,7 +1441,7 @@ module ApplicationHelper
   end
 
   def post_parent_path( parent, options = {} )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_path( options.merge( project_id: parent_slug ) )
@@ -1422,7 +1453,7 @@ module ApplicationHelper
   end
 
   def post_archives_by_month_path( parent, year, month )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_archives_by_month_path( parent_slug, year, month )
@@ -1474,13 +1505,14 @@ module ApplicationHelper
     I18n.has_t?(*args)
   end
 
-  def hyperlink_mentions(text)
+  def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
     linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
+      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{login_text}", person_by_login_url(u.login))}")
     end
     linked_text
   end
@@ -1555,6 +1587,53 @@ module ApplicationHelper
       end
       s.html_safe
     end
+  end
+
+  def sortable_table_header( header, options = {} )
+    label = options.delete(:label) || header
+    content = content_tag(:span) do
+      s = label
+      if @order_by == header
+        s += if @order == "desc"
+          " &darr;"
+        else
+          " &uarr;"
+        end
+      end
+      s.html_safe
+    end
+    link_to(
+      content,
+      url_for_params( {
+        order_by: header,
+        order: @order == "desc" ? "asc" : "desc"
+      }.merge( options[:url_options] || {} ) ),
+      options
+    )
+  end
+
+  # Workaround for our inconsistent i18n keys
+  def geoprivacy_with_consistent_case( geoprivacy )
+    if geoprivacy != "obscured"
+      t( "#{geoprivacy}_" )
+    else
+      t( :obscured )
+    end
+  end
+
+  # Another workaround for our inconsistent use of underscores in i18n keys
+  def translate_with_consistent_case( key, options = {} )
+    lower_requested = options.delete( :case ) != "upper"
+    translation = I18n.t( key, **options )
+    en = I18n.t( key, **options.merge( locale: "en" ) )
+    default_is_lower = en == en.downcase
+    lower_requested_and_default_is_lower = lower_requested && default_is_lower
+    upper_requested_and_default_is_upper = !lower_requested && !default_is_lower
+    if lower_requested_and_default_is_lower || upper_requested_and_default_is_upper
+      return translation
+    end
+
+    I18n.t( "#{key}_", **options )
   end
 
 end

@@ -1,9 +1,9 @@
-class Comment < ActiveRecord::Base
+class Comment < ApplicationRecord
 
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"
   acts_as_votable
-  has_moderator_actions
+  has_moderator_actions %w(hide unhide)
   SUBSCRIBABLE = false
 
   # Uncomment to require speech privilege to make comments on anything other
@@ -82,11 +82,12 @@ class Comment < ActiveRecord::Base
     true
   end
 
-  def deletable_by?(deleting_user)
+  def deletable_by?( deleting_user )
     return false if deleting_user.blank?
     return true if deleting_user.id == user_id
-    return true if deleting_user.id == parent.try_methods(:user_id)
-    return true if deleting_user.is_curator? || deleting_user.is_admin?
+    return true if deleting_user.id == parent.try_methods( :user_id )
+    return true if deleting_user.is_admin?
+
     false
   end
 

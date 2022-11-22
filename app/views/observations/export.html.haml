@@ -110,7 +110,7 @@
                   - for of in grp
                     %td
                       - if of
-                        = foc.check_box "field:#{of.normalized_name}", :label => "field:#{of.normalized_name}", :label_after => true, :wrapper => {"data-tip" => of.description, "data-tip-position-at" => "left bottom"}
+                        = foc.check_box "field:#{of.normalized_name( escape: true )}", :label => "field:#{of.normalized_name}", :label_after => true, :wrapper => {"data-tip" => of.description, "data-tip-position-at" => "left bottom"}
           - if @ident_user && !@identification_fields.blank?
             .column.span-24
               %h4
@@ -140,12 +140,7 @@
     = render "exports_table", flow_tasks: @recent_exports
 
 #filters
-  = render "filter_fields", 
-    hide_buttons: true, 
-    show_user_field: true, 
-    show_project_field: true, 
-    show_multiple_taxa_field: true, 
-    show_extra_date_fields: true
+  = render "filter_fields", hide_buttons: true, show_all: true
 #rundialog.dialog{:style => "display:none"}
   .clear.centered.inline.buttonrow
     .inter

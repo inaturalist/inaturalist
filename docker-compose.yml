@@ -1,0 +1,45 @@
+version: "2"
+services:
+  redis:
+    container_name: redis
+    image: redis:6.0.3
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+
+  es:
+    container_name: es
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
+    environment:
+      - discovery.type=single-node
+    ports:
+      - 9200:9200
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    command: >
+      /bin/sh -c "bin/elasticsearch-plugin list | grep -q analysis-kuromoji
+      || bin/elasticsearch-plugin install analysis-kuromoji;
+      /usr/local/bin/docker-entrypoint.sh"
+
+  memcached:
+    container_name: memcached
+    image: memcached:1.6.6
+    ports:
+      - 11211:11211
+
+  pg:
+    container_name: pg
+    image: postgis/postgis:12-3.0
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  redis_data:
+  es_data:
+  pg_data:

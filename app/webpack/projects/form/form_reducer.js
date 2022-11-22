@@ -30,7 +30,8 @@ export function removeProject( ) {
 export function setProject( p ) {
   p.initialSubprojectCount = _.isEmpty( p.project_observation_rules ) ? 0
     : _.filter( p.project_observation_rules, rule => rule.operand_type === "Project" ).length;
-  return setAttributes( { project: new Project( p ) } );
+  const project = new Project( p );
+  return setAttributes( { project, initialProject: _.cloneDeep( project ) } );
 }
 
 export function updateProject( attrs ) {
@@ -394,10 +395,11 @@ export function submitProject( ) {
         prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
           ? "" : project.rule_d2.trim( ),
         prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
-          ? "" : project.rule_month,
+          || project.rule_month === _.range( 1, 13 ).join( "," ) ? "" : project.rule_month,
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
         prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
-        prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only
+        prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only,
+        prefers_user_trust: project.prefers_user_trust === true
       }
     };
     if ( !payload.project.icon && project.iconDeleted ) {
@@ -408,8 +410,8 @@ export function submitProject( ) {
     }
 
     // add project_observation_rules
-    payload.project.project_observation_rules_attributes =
-      payload.project.project_observation_rules_attributes || [];
+    payload.project.project_observation_rules_attributes = payload.project
+      .project_observation_rules_attributes || [];
     _.each( project.project_observation_rules, rule => {
       if (
         ( project.project_type === "umbrella" && rule.operand_type === "Project" )
@@ -470,7 +472,23 @@ export function submitProject( ) {
 export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const { project } = state.form;
+    const { project, initialProject } = state.form;
+    if (
+      project.id
+      && project.prefers_user_trust
+      && project.requirementsChangedFrom( initialProject )
+    ) {
+      dispatch( setConfirmModalState( {
+        show: true,
+        message: I18n.t( "views.projects.new.trusting_members_will_be_notified" ),
+        confirmText: I18n.t( "ok" ),
+        cancelText: I18n.t( "cancel" ),
+        onConfirm: ( ) => {
+          dispatch( submitProject( ) );
+        }
+      } ) );
+      return;
+    }
     if ( !project.hasInsufficientRequirements( ) ) {
       dispatch( submitProject( ) );
       return;

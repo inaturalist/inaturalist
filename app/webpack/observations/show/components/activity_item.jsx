@@ -121,7 +121,6 @@ class ActivityItem extends React.Component {
       item,
       config,
       deleteComment,
-      deleteID,
       restoreID,
       setFlaggingModalState,
       currentUserID,
@@ -136,7 +135,8 @@ class ActivityItem extends React.Component {
       untrustUser,
       showHidden,
       hideContent,
-      unhideContent
+      unhideContent,
+      withdrawID
     } = this.props;
     const { editing } = this.state;
 
@@ -323,7 +323,10 @@ class ActivityItem extends React.Component {
     const headerItems = [];
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     if ( item.hidden ) {
-      const moderatorAction = _.sortBy( _.filter( item.moderator_actions, ma => ma.action === "hide" ), ma => ma.id * -1 )[0];
+      const moderatorAction = _.sortBy(
+        _.filter( item.moderator_actions, ma => ma.action === "hide" ),
+        ma => ma.id * -1
+      )[0];
       const maUserLink = (
         <a
           href={`/people/${moderatorAction.user.login}`}
@@ -563,6 +566,36 @@ class ActivityItem extends React.Component {
     }
     const elementID = this.isID ? `activity_identification_${item.uuid}` : `activity_comment_${item.uuid}`;
     const itemURL = this.isID ? `/identifications/${item.uuid}` : `/comments/${item.uuid}`;
+    let time = (
+      <time
+        className="time"
+        dateTime={item.created_at}
+        title={moment( item.created_at ).format( "LLL" )}
+      >
+        <a href={itemURL} target={linkTarget}>{relativeTime}</a>
+      </time>
+    );
+    if (
+      observation
+      && observation.obscured
+      && !observation.private_geojson
+    ) {
+      const coordinatesObscured = observation
+        && observation.obscured
+        && !observation.private_geojson;
+      const viewerCreatedItem = config
+        && config.currentUser
+        && item.user
+        && item.user.id === config.currentUser.id;
+      if ( coordinatesObscured && !viewerCreatedItem ) {
+        time = (
+          <time className="time">
+            <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} />
+            { moment( item.created_at ).format( I18n.t( "momentjs.month_year_short" ) ) }
+          </time>
+        );
+      }
+    }
     return (
       <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
         <div className="icon">
@@ -570,18 +603,12 @@ class ActivityItem extends React.Component {
             <UserImage user={item.user} linkTarget={linkTarget} />
           )}
         </div>
-        <Panel className={panelClass}>
+        <Panel className={`${panelClass} ${item.api_status ? "loading" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
               {headerItems}
-              <time
-                className="time"
-                dateTime={item.created_at}
-                title={moment( item.created_at ).format( "LLL" )}
-              >
-                <a href={itemURL} target={linkTarget}>{relativeTime}</a>
-              </time>
+              { time }
               <ActivityItemMenu
                 item={item}
                 observation={observation}
@@ -589,7 +616,7 @@ class ActivityItem extends React.Component {
                 editing={editing}
                 config={config}
                 deleteComment={deleteComment}
-                deleteID={deleteID}
+                withdrawID={withdrawID}
                 restoreID={restoreID}
                 setFlaggingModalState={setFlaggingModalState}
                 linkTarget={linkTarget}
@@ -622,8 +649,8 @@ ActivityItem.propTypes = {
   addID: PropTypes.func,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
-  deleteID: PropTypes.func,
   confirmDeleteID: PropTypes.func,
+  withdrawID: PropTypes.func,
   editID: PropTypes.func,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,

@@ -339,7 +339,7 @@ Stats.loadActiveUsers = function ( json ) {
       element_id: "active-users",
       chartType: "AnnotationChart",
       series: [
-        { label: I18n.t( "active" ) }
+        { label: I18n.t( "active_users" ) }
       ],
       data: _.map( json, function ( stat ) {
         return [

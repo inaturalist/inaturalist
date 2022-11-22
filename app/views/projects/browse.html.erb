@@ -18,11 +18,14 @@
     <%= link_to t(:back_to_projects), projects_path, :class => 'back crumb' %>
   </div><!-- /#breadcrumbs -->
   <% if @place -%>
-    <h2 class="inlineblock"><%=t :projects_from_place, :place => t(@place.name, :default => @place.name) %></h2>
-    (<%= link_to t(:view_projects_from_place, :place => t(:everywhere, :default => "everywhere")), url_for_params(:everywhere => true) %>)
+    <%- place_name = t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name ) -%>
+    <h2 class="inlineblock"><%= t :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase %></h2>
+    <%- localized_everywhere = t( :everywhere, default: "everywhere" ) -%>
+    (<%= link_to t(:view_projects_from_place, place: localized_everywhere, vow_or_con: localized_everywhere[0].downcase ), url_for_params( everywhere: true ) %>)
   <% elsif @site_place %>
+    <%- site_place_name = t( "places_name.#{@site_place.name.parameterize.underscore}", default: @site_place.name ) -%>
     <h2 class="inlineblock"><%=t :browse_projects %></h2>
-    (<%= link_to t(:view_projects_from_place, :place => t(@site_place.name, :default => @site_place.name)), url_for_params(:everywhere => false) %>)
+    (<%= link_to t( :view_projects_from_place, place: site_place_name, vow_or_con: site_place_name[0].downcase ), url_for_params( everywhere: false ) %>)
   <% else %>
     <h2><%= t(:browse_projects).titleize %></h2>
   <% end -%>

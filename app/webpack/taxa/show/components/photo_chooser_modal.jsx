@@ -9,12 +9,12 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import inatjs from "inaturalistjs";
+import { validate as uuidValidate } from "uuid";
 import { fetch } from "../../../shared/util";
 import { MAX_TAXON_PHOTOS } from "../../shared/util";
 import ExternalPhoto from "./external_photo";
 import ChosenPhoto from "./chosen_photo";
 import PhotoChooserDropArea from "./photo_chooser_drop_area";
-
 
 class PhotoChooserModal extends React.Component {
   static keyForPhoto( photo ) {
@@ -54,7 +54,7 @@ class PhotoChooserModal extends React.Component {
     if ( newProps.chosen ) {
       this.setState( {
         chosen: newProps.chosen.map(
-          p => Object.assign( {}, p, { chooserID: PhotoChooserModal.keyForPhoto( p ) } )
+          p => ( { ...p, chooserID: PhotoChooserModal.keyForPhoto( p ) } )
         )
       } );
     }
@@ -78,7 +78,7 @@ class PhotoChooserModal extends React.Component {
     this.setState( { page: options.page || 1, photos: [] } );
     switch ( chosenProvider ) {
       case "inat":
-        this.fetchObservationPhotos( { quality_grade: "any" }, options );
+        this.fetchObservationPhotos( { }, options );
         break;
       case "inat-rg": {
         this.fetchObservationPhotos( { quality_grade: "research" }, options );
@@ -90,29 +90,47 @@ class PhotoChooserModal extends React.Component {
   }
 
   fetchObservationPhotos( params, options ) {
+    const { config } = this.props;
     const { query, queryTaxon } = this.state;
-    const queryParams = Object.assign( {
+    const queryParams = {
       page: options.page || 1,
       per_page: 24,
       photos: true,
-      order_by: "votes"
-    }, params );
+      order_by: "votes",
+      ...params
+    };
     if ( queryTaxon ) {
       queryParams.taxon_id = queryTaxon.id;
-    } else if ( query
+    } else if (
+      query
       && Number( query ).toString( ) === query
-      && Number.isInteger( Number( query ) ) ) {
+      && Number.isInteger( Number( query ) )
+    ) {
       // query is an Integer, so assume its an observation ID
       queryParams.id = query;
+    } else if ( query && uuidValidate( query ) ) {
+      // query is a UUID, assume it specifies an observation
+      queryParams.uuid = query;
     } else {
       queryParams.q = query;
       queryParams.search_on = "taxon_page_obs_photos";
     }
+    if ( config.testingApiV2 ) {
+      queryParams.fields = {
+        photos: {
+          id: true,
+          url: true
+        }
+      };
+    }
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
-      const obsPhotos = _.filter( _.compact( _.flatten( _.map( response.results, "photos" ) ) ),
-        p => p.url );
-      const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
+      const obsPhotos = _.filter(
+        _.compact( _.flatten( _.map( response.results, "photos" ) ) ),
+        p => p.url
+      );
+      const photos = _.map( obsPhotos, p => ( {
+        ...p,
         small_url: p.url.replace( "square", "small" ),
         chooserID: PhotoChooserModal.keyForPhoto( p )
       } ) );
@@ -128,11 +146,12 @@ class PhotoChooserModal extends React.Component {
 
   fetchProviderPhotos( provider, options ) {
     const { query } = this.state;
-    const params = Object.assign( { }, options, {
+    const params = {
+      ...options,
       q: query,
       limit: 24,
       page: options.page || 1
-    } );
+    };
     const url = `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
     fetch( url, params )
       .then(
@@ -144,9 +163,7 @@ class PhotoChooserModal extends React.Component {
         }
       )
       .then( json => {
-        const photos = json.map( p => Object.assign( {}, p, {
-          chooserID: PhotoChooserModal.keyForPhoto( p )
-        } ) );
+        const photos = json.map( p => ( { ...p, chooserID: PhotoChooserModal.keyForPhoto( p ) } ) );
         this.setState( {
           loading: false,
           photos: _.uniqBy( photos, photo => photo.chooserID )
@@ -190,7 +207,7 @@ class PhotoChooserModal extends React.Component {
     const existingIndex = chosen.findIndex( p => p.chooserID === chooserID );
     if ( existingIndex >= 0 ) {
       this.setState( {
-        chosen: chosen.map( p => Object.assign( { }, p, { candidate: false } ) )
+        chosen: chosen.map( p => ( { ...p, candidate: false } ) )
       } );
       return;
     }
@@ -213,7 +230,7 @@ class PhotoChooserModal extends React.Component {
     if ( existing ) {
       return;
     }
-    const newPhoto = Object.assign( { }, hovering, { candidate: true } );
+    const newPhoto = { ...hovering, candidate: true };
     chosen.splice( index, 0, newPhoto );
     this.setState( { chosen } );
   }
@@ -255,23 +272,23 @@ class PhotoChooserModal extends React.Component {
     }
     const photosToDisplay = _.filter(
       photos,
-      p => p.small_url.match( /\.(jpe?g|gif|png)/i )
+      p => p.small_url && p.small_url.match( /\.(jpe?g|gif|png)/i )
     );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">
         <Button
           disabled={page === 1}
           onClick={( ) => this.fetchPrevPhotos( )}
-          title={I18n.t( "prev" )}
+          title={I18n.t( "previous_page" )}
         >
-          { I18n.t( "prev" ) }
+          { I18n.t( "previous_page_short" ) }
         </Button>
         <Button
           disabled={photos.length < 24 || isLastPage}
           onClick={( ) => this.fetchNextPhotos( )}
-          title={I18n.t( "next" )}
+          title={I18n.t( "next_page" )}
         >
-          { I18n.t( "next" ) }
+          { I18n.t( "next_page_short" ) }
         </Button>
       </ButtonGroup>
     );
@@ -356,6 +373,11 @@ class PhotoChooserModal extends React.Component {
                   { !loading && photos.length === 0 && page > 1 ? (
                     <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
                   ) : null }
+                  { !loading && provider.indexOf( "inat" ) >= 0 && (
+                    <div className="alert alert-info upstacked">
+                      { I18n.t( "taxa_show_obs_photo_search_tip" ) }
+                    </div>
+                  ) }
                 </div>
                 { photos.length > 0 && <form>{ prevNextButtons }</form> }
               </div>
@@ -420,7 +442,8 @@ PhotoChooserModal.propTypes = {
   chosen: PropTypes.array,
   visible: PropTypes.bool,
   onSubmit: PropTypes.func,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  config: PropTypes.object
 };
 
 PhotoChooserModal.defaultProps = {

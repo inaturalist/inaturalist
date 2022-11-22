@@ -1,10 +1,6 @@
 <% content_for(:title) do %>
   <%-
-    if @list.title =~ /Life List$/ && @list.id == @list.user.life_list_id
-      @title = t(:life_list, :user => @list.owner_name, :default => @list.title)
-    else
-      @title = @list.title
-    end
+    @title = @list.title
     unless @title.index(@list.owner_name)
       @title += ", #{link_to(@list.owner_name, @list.user ? lists_by_login_path(@list.user.login) : @list.owner)}"
     end
@@ -59,9 +55,9 @@
 
     <span class="breadcrumbs">
       <% if @list.user -%>
-        <%= link_to raw(is_me?(@list.user) ? t(:back_to_your_lists) : t(:back_to_lists, name: possessive(@list.user).downcase)),
-                    lists_by_login_path(:login => @list.user.login),
-                    :class => 'back crumb' %>
+        <%= link_to raw( is_me?( @list.user ) ? t(:back_to_your_lists) : t(:back_to_users_lists, user: @list.user.login, vow_or_con: @list.user.login[0].downcase) ),
+                    lists_by_login_path( login: @list.user.login ),
+                    class: "back crumb" %>
       <% else %>
         <%= link_to t(:back_to_x, :noun => @list.owner_name), @list.owner, :class => "back crumb" %>
       <% end -%>
@@ -76,28 +72,14 @@
 <div id="maincol" class="column span-17">
   <%= render :partial => 'tools' %>
 
-  <div id="description" class="readable description">
-    <%= formatted_user_text(@list.description =~ /^Every species seen by / ? @list.description.gsub('Every species seen by', t(:every_species_seen_by)) : @list.description) %>
-  </div>
-
-  <% if @list.is_a?(LifeList) -%>
-    <div id="life_list_taxon" class="life_list_taxon description">
-      <%= taxon_image(@taxon_rule.operand) if @taxon_rule %>
-      <% if @list.place && @taxon_rule -%>
-        <%=raw t :this_is_a_life_list_of_taxon_in_place,
-          :taxon => render('shared/taxon', :taxon => @taxon_rule.operand, :link_url => @taxon_rule.operand),
-          :place => link_to(@list.place.display_name, @list.place) %>
-      <% elsif @list.place %>
-        <%=t :this_is_a_life_list_from_place_html, place: link_to(@list.place.display_name, @list.place) %>
-      <% elsif @taxon_rule %>
-        <%=t :this_is_a_life_list_of %>
-        <%= render :partial => 'shared/taxon',
-                   :locals => { :taxon => @taxon_rule.operand, :link_url => url_for(@taxon_rule.operand) } %>
-      <% end -%>
+  <%- unless @list.description.blank? %>
+    <div id="description" class="readable description">
+      <%= formatted_user_text @list.description %>
     </div>
   <% end -%>
+
   <% if @list.rank_rule != "any" -%>
-    <div id="life_list_rank_rule" class="description">
+    <div id="list_rank_rule" class="description">
       <% if @list.rank_rule === List::RANK_RULE_SPECIES %>
         <%=t :this_list_only_accepts_taxa_that_are_species %>
       <% elsif @list.rank_rule === List::RANK_RULE_SPECIES_OR_LOWER %>
@@ -157,7 +139,7 @@
         </script>
       <% elsif logged_in? && current_user.id == @list.user_id %>
         <%=t :no_species_on_this_list %>
-        <%=t :no_species_on_this_list_for_owner_html, :url => new_observation_url %>
+        <%=t :no_species_on_this_list_for_owner %>
       <% elsif @q %>
         <%=t :no_results_matching %> "<%= @q %>"
       <% else %>
@@ -170,21 +152,22 @@
     <%= will_paginate @listed_taxa, :renderer => INatLinkRenderer %>
   </div>
 
-  <div class="clear meta feeds">
-    <%= separator %>
-  <strong><%=t :download %></strong>
-    <%= link_to t(:csv), list_path(@list, :format => 'csv'),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file),
-      :rel => "nofollow" %>
-
-    <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
-      :class => "delayedlink csvlink",
-      "data-delayed-link-msg" =>
-        t(:please_hold_on_while_the_file_is_generated),
-      :rel => "nofollow" %>
-  </div>
+  <% if logged_in? %>
+    <div class="clear meta feeds">
+      <%= separator %>
+      <strong><%=t :download %></strong>
+      <%= link_to t(:csv), list_path(@list, :format => 'csv'),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file),
+        :rel => "nofollow" %>
+      <%= link_to "#{t(:taxonomic)} CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" =>
+          t(:please_hold_on_while_the_file_is_generated),
+        :rel => "nofollow" %>
+    </div>
+  <% end %>
   <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 
@@ -269,35 +252,39 @@
                 <% if params[:iconic_taxon] %>
                   <%= hidden_field_tag :iconic_taxon, params[:iconic_taxon] %>
                 <% end %>
-                <label><%=t :observed %></label>
-                <br>
-                <%= label :observed, :t do %>
-                  <%= radio_button_tag :observed, :t, @observed == 't' %>
-                  <%= t(:yes).downcase %>
-                <% end -%>
-                <%= label :observed, :f do %>
-                  <%= radio_button_tag :observed, :f, @observed == 'f' %>
-                  <%= t(:no).downcase %>
-                <% end -%>
-                <%= label :observed, :any do %>
-                  <%= radio_button_tag :observed, :any, @observed.blank? %>
-                  <%= t(:any) %>
-                <% end -%>
               </div>
+              <% if @list.is_a?( CheckList ) %>
+                <div class="field">
+                  <label><%=t :observed %></label>
+                  <br>
+                  <%= label :observed, :t do %>
+                    <%= radio_button_tag :observed, :t, @observed == 't' %>
+                    <%= t(:yes) %>
+                  <% end -%>
+                  <%= label :observed, :f do %>
+                    <%= radio_button_tag :observed, :f, @observed == 'f' %>
+                    <%= t(:no) %>
+                  <% end -%>
+                  <%= label :observed, :any do %>
+                    <%= radio_button_tag :observed, :any, @observed.blank? %>
+                    <%= t(:any) %>
+                  <% end -%>
+                </div>
+              <% end -%>
               <div class="field">
                 <label><%=t :rank %></label>
                 <br>
                 <%= label :rank, :species do %>
                   <%= radio_button_tag :rank, :species, @rank == "species" %>
-                  <%= t( "ranks.species" ).downcase %>
+                  <%= t( "ranks.species" ) %>
                 <% end -%>
                 <%= label :rank, :leaves do %>
                   <%= radio_button_tag :rank, :leaves, @rank == "leaves" %>
-                  <%= t(:leaves).downcase %>
+                  <%= t(:leaves) %>
                 <% end -%>
                 <%= label :rank, :all do %>
                   <%= radio_button_tag :rank, :all, @rank=='all' %>
-                  <%= t(:any).downcase %>
+                  <%= t(:any) %>
                 <% end -%>
               </div>
               <div class="field">
@@ -305,15 +292,15 @@
                 <br>
                 <%= label :taxonomic_status, :active do %>
                   <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active' %>
-                  <%= t(:active).downcase %>
+                  <%= t(:active_taxon_status) %>
                 <% end -%>
                 <%= label :taxonomic_status, :inactive do %>
                   <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive' %>
-                  <%= t(:inactive).downcase %>
+                  <%= t(:inactive_taxon_status) %>
                 <% end -%>
                 <%= label :taxonomic_status, :all do %>
                   <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all' %>
-                  <%= t(:any).downcase %>
+                  <%= t(:any) %>
                 <% end -%>
               </div>
               <input type="submit" class="default button" value="<%=t :filter %>" />

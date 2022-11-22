@@ -131,7 +131,7 @@
                     %i.fa.fa-map-marker
               .media-body
                 %h4.media-heading
-                  = highlight link_to( t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record ), matched_terms || @q
+                  = highlight link_to( record.translated_name( I18n.locale, default: record.display_name ), record ), matched_terms || @q
                   %span.text-muted= "|"
                   = link_to t(:view_observations), observations_path( place_id: record.id ), class: "view-obs-link"
                 - if record.place_type_name.blank?
@@ -193,7 +193,7 @@
                 %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
                 %p= highlight strip_tags( record.try_methods( :body, :description ).to_s.truncate( 300 ) ), matched_terms || @q
         = will_paginate @results, renderer: INatLinkRenderer, skip_right: true
-  - if logged_in? && @sources.include?( "taxa" )
+  - if logged_in? && @sources.include?( "taxa" ) && !CONFIG.content_freeze_enabled
     .row
       .col-xs-12
         = separator
@@ -234,8 +234,5 @@
                 - if is_curator?
                   = link_to t(:create_new_taxon), new_taxon_path( name: @q ), class: "btn btn-default"
                 - else
-                  :ruby
-                    feedback_url = @site.discourse_url
-                    feedback_url = @site.feedback_url if feedback_url.blank?
-                    feedback_url = CONFIG.feedback_url if feedback_url.blank?
-                  =t "views.search.index.no_taxa_options_html", feedback_url: feedback_url, help_email: @site.email_help.blank? ? CONFIG.help_email : @site.email_help
+                  %strong=t "views.search.index.no_taxa_add_a_flag"
+                  %p=t "views.search.index.no_taxa_add_a_flag_desc"

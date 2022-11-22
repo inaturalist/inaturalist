@@ -8,6 +8,7 @@
 @import "../shared/user_with_icon";
 @import "../shared/taxonomic_branch";
 @import "../shared/full_screen_modal";
+@import "../shared/flash_message";
 
 #app {
   min-height: 600px;
@@ -307,7 +308,6 @@ $leaderItemImageDim: 56px;
   .item-label {
     color: #4a4a4a;
     font-size: 13px;
-    text-transform: uppercase;
     line-height: 1;
     margin-bottom: 10px;
   }
@@ -679,7 +679,7 @@ $nav-btn-dim: 40px;
 .nav-buttons .next-btn:before {
   content: '\276F';
 }
-.Carousel .viewall, {
+.Carousel .viewall {
   width: 100%;
   height: 262px;
   background-color: #333;
@@ -689,7 +689,6 @@ $nav-btn-dim: 40px;
   text-align: center;
   border-radius: 5px;
   font-size: 16px;
-  text-transform: uppercase;
 }
 .Carousel .viewall:hover,
 .Carousel .viewall:focus {
@@ -1076,6 +1075,31 @@ body > [role="dialog"] .PhotoChooserModal {
 }
 #place-chooser-container {
   margin-top: 20px;
+  .PlaceChooserPopoverTrigger {
+    &.chosen {
+      line-height: 20px;
+      padding: 5px 10px 3px;
+      background-color: $inat-green;
+      position: relative;
+      .pre-icon {
+        position: absolute;
+        left: -15px;
+        display: inline-block;
+        top: 8px;
+      }
+      i.fa-times {
+        color: white;
+      }
+      color: white;
+      border-radius: 20px;
+    }
+    .clear-button {
+      margin-left: 5px;
+      position: relative;
+      top: -1px;
+
+    }
+  }
 }
 .ObservationsGridItem {
   .photo {
@@ -1108,3 +1132,16 @@ body > [role="dialog"] .PhotoChooserModal {
   }
 }
 
+.computer-vision-status {
+  .label {
+    padding-top: 0.4em;
+    display: inline-block;
+    i {
+      position: relative;
+      top: -3px;
+    }
+  }
+  .label-success {
+    background-color: $inat-green;
+  }
+}

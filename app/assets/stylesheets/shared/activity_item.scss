@@ -2,6 +2,11 @@
 
 .ActivityItem,
 body > [role="dialog"] .ActivityItem {
+  .panel.loading {
+    .panel-title > span, .panel-title > .time, .panel-body {
+      opacity: 0.5;
+    }
+  }
   &.comment {
     overflow: inherit;
   }
@@ -73,6 +78,11 @@ body > [role="dialog"] .ActivityItem {
     color: #999999;
     a {
       color: #999999;
+    }
+    .geoprivacy-icon,
+    .icon-icn-location-obscured {
+      line-height: 1.3;
+      margin-right: 5px;
     }
   }
   .panel-title {
@@ -165,7 +175,6 @@ body > [role="dialog"] .ActivityItem {
           padding-top: 5px;
           width: 100%;
           button {
-            text-transform: capitalize;
             margin-right: 5px;
           }
           .btn-link {
@@ -284,6 +293,9 @@ body > [role="dialog"] .ActivityItem.withdrawn {
 .ActivityItemMenu,
 body > [role="dialog"] .ActivityItemMenu {
   border-left: 1px solid $border-grey;
+  .loading_spinner {
+    margin: 4px 0px 1px 12px;
+  }
   .search {
     line-height: 24px;
     white-space: nowrap;

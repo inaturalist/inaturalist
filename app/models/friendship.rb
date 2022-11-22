@@ -1,4 +1,4 @@
-class Friendship < ActiveRecord::Base
+class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: "User", foreign_key: "friend_id"
   
@@ -12,19 +12,20 @@ class Friendship < ActiveRecord::Base
   blockable_by lambda {|friendship| friendship.friend_id }
 
   after_update :remove_subscription_to_friend, if: Proc.new{|friendship|
-    friendship.following_changed? && !friendship.following?
+    friendship.saved_change_to_following? && !friendship.following?
   }
   after_update :create_subscription_after_update, if: Proc.new{|friendship|
-    friendship.following_changed? && friendship.following?
+    friendship.saved_change_to_following? && friendship.following?
   }
   after_destroy :remove_subscription_to_friend
   
   def no_self_love
-    errors[:base] << "Cannot be a friend of yourself. Hopefully you already are." unless friend_id != user_id
+    return if friend_id != user_id
+    errors.add( :base, "Cannot be a friend of yourself. Hopefully you already are." )
   end
 
   def remove_subscription_to_friend
-    Subscription.where( user_id: id, resource: friend ).destroy_all
+    Subscription.where( user_id: user.id, resource: friend ).destroy_all
     true
   end
 

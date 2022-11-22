@@ -35,11 +35,6 @@ class Trip < Post
     scope
   end
 
-  def editable_by?(u)
-    return false unless u
-    user_id == u.id
-  end
-
   def add_taxa_from_observations
     candidates = []
     observations.select("DISTINCT ON (observations.taxon_id) observations.*").
@@ -80,7 +75,7 @@ class Trip < Post
     return if potential_trips.empty?
     query = {
       filters: [
-        { term: { "taxon.ancestor_ids": taxon_id } },
+        { term: { "taxon.ancestor_ids.keyword": taxon_id } },
       ],
       size: 0,
       aggregate: {
@@ -93,7 +88,7 @@ class Trip < Post
         }
       }
     }
-    query[:filters] << { term: { place_ids: place_id } } unless place_id.blank?
+    query[:filters] << { term: { "place_ids.keyword": place_id } } unless place_id.blank?
     query[:filters] << { term: { "observed_on_details.year": year } } unless year.blank?
     query[:filters] << { term: { "observed_on_details.month": month } } unless month.blank?
 

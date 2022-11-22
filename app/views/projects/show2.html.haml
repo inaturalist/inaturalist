@@ -29,7 +29,9 @@
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
         preferred_observations_search_map_type: current_user.preferred_observations_search_map_type,
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
-        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
+        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) },
+        sites_admined: current_user.site_admins.pluck(:site_id),
+        testGroups: current_user.test_groups_array
       }
   :javascript
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json.html_safe : "{ }" };
@@ -37,10 +39,6 @@
     var CURRENT_TAB = "#{ @current_tab }";
     var CURRENT_SUBTAB = "#{ @current_subtab }";
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
-    var SITE = {
-      id: #{@site.id},
-      help_email: "#{@site.email_help}"
-    };
   = javascript_include_tag "projects-show-webpack"
 
 #app

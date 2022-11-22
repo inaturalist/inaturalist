@@ -45,7 +45,7 @@ class ResultsSpecies extends Component {
     if ( this.props.speciesStats.all ) {
       species = (
         <div>
-          <div className="heading">Most Observed Species</div>
+          <div className="heading">{ I18n.t( "most_observed_species" ) }</div>
           { _.map( this.props.speciesStats.all.results, r => {
             let style;
             let placeholder;
@@ -85,7 +85,7 @@ class ResultsSpecies extends Component {
     if ( this.props.speciesStats.introduced ) {
       introduced = (
         <div>
-          <div className="heading">Most Observed Introduced Species</div>
+          <div className="heading">{ I18n.t( "most_observed_introduced_species" ) }</div>
           { _.map( this.props.speciesStats.introduced.results, r => {
             let style;
             let placeholder;
@@ -123,7 +123,7 @@ class ResultsSpecies extends Component {
     if ( this.props.speciesStats.threatened ) {
       threatened = (
         <div>
-          <div className="heading">Most Observed Threatened Species</div>
+          <div className="heading">{ I18n.t( "most_observed_threatened_species" ) }</div>
           { _.map( this.props.speciesStats.threatened.results, r => {
             let style;
             let placeholder;

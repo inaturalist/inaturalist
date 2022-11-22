@@ -1033,3 +1033,114 @@ label {
   }
 }
 
+// duplicated from bootstrap-inat, which apparently has styles that interfere on
+// this page. ugh.
+.btn.btn-nostyle {
+  padding: 0;
+  background-color: transparent;
+  border: 0 transparent;
+  line-height: inherit;
+}
+
+.slider-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+// time-shifter slider CSS, modified from https://www.w3schools.com/howto/howto_js_rangeslider.asp
+.slidecontainer {
+  width: 100%; /* Width of the outside container */
+}
+
+$thumb: 20px;
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: $thumb * 2;
+  background: #fff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: $thumb;
+  height: $thumb;
+  border-radius: $thumb * 2;
+  background-color: $inat-green;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: $thumb;
+  height: $thumb;
+  border-radius: $thumb * 2;
+  background-color: $inat-green;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+// tickmark CSS adapted from https://codepen.io/sakamies/pen/KXQmXo
+$tickmark: 6px;
+
+.tickmarks {
+  display: flex;
+  justify-content: space-between;
+  padding: $tickmark 7px $tickmark 10px;
+  width: 99%;
+}
+
+.tick {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1px;
+  background: gray;
+  height: $tickmark;
+  line-height: $tickmark * 5;
+  margin-bottom: $tickmark * 2;
+}
+
+.current-hours {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.new-time {
+  padding-left: 5px;
+}
+
+.time-shifter-buttons {
+  margin-top: 15px;
+}
+
+.GooglePlacesSearchBox {
+  position: absolute;
+  top: 16px;
+  left: 181px;
+
+  input {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 14px;
+    line-height: 14px;
+    height: 26px;
+    outline: none;
+    padding: 0 12px;
+    text-overflow: ellipses;
+    width: 250px;
+  }
+}

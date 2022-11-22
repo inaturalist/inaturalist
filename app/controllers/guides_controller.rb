@@ -2,17 +2,17 @@
 class GuidesController < ApplicationController
   include GuidesHelper
   before_action :doorkeeper_authorize!, :only => [ :show, :user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, 
+  before_action :authenticate_user!, 
     :except => [:index, :show, :search], 
     :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy, :import_taxa,
     :reorder, :add_color_tags, :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv,
     :import_tags_from_csv_template ]
-  before_filter :load_record, :only => load_only
+  before_action :load_record, :only => load_only
   blocks_spam :only => load_only, :instance => :guide
   check_spam only: [:create, :update], instance: :guide
-  before_filter :require_owner, :only => [:destroy]
-  before_filter :require_guide_user, :only => [
+  before_action :require_owner, :only => [:destroy]
+  before_action :require_guide_user, :only => [
     :edit, :update, :import_taxa, :reorder, :add_color_tags,
     :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 
@@ -144,7 +144,7 @@ class GuidesController < ApplicationController
     unless @guide.published? || @guide.editable_by?(current_user)
       respond_to do |format|
         format.html { render_404 }
-        format.any(:xml, :ngz) { render :status => 404, :text => ""}
+        format.any(:xml, :ngz) { render :status => 404, :plain => ""}
         format.json { render :json => {:error => "Not found"}, :status => 404 }
       end
       return
@@ -169,7 +169,7 @@ class GuidesController < ApplicationController
         end
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         GuideTaxon.preload_associations(@guide_taxa, [
-          { guide_photos: [ :photo, {taggings: :tag} ] } ])
+          { guide_photos: [ { photo: [:flags, :file_prefix, :file_extension] }, { taggings: :tag } ] } ])
         @tag_counts = ActsAsTaggableOn::Tag.joins(:taggings).
           joins("JOIN guide_taxa gt ON gt.id = taggings.taggable_id").
           where("taggings.taggable_type = 'GuideTaxon' AND taggings.context = 'tags' AND gt.guide_id = ?", @guide).
@@ -248,7 +248,7 @@ class GuidesController < ApplicationController
         end
         prevent_caching
         # Would prefer to use accepted, but don't want to deliver an invlid zip file
-        render :status => :no_content, :layout => false, :text => ""
+        head :no_content
       end
     end
   end
@@ -306,7 +306,7 @@ class GuidesController < ApplicationController
     end
     create_default_guide_taxa
     respond_to do |format|
-      if @guide.update_attributes(guide_params)
+      if @guide.update(guide_params)
         format.html do
           notice = if params[:publish]
             t( :guide_was_successfully_published )
@@ -392,7 +392,9 @@ class GuidesController < ApplicationController
   end
 
   def user
-    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order("lower(title)")
+    @guides = current_user.editing_guides.page(params[:page]).per_page(500).order(
+      Arel.sql( "lower(title)" )
+    )
     pagination_headers_for(@observations)
     respond_to do |format|
       format.json { render :json => @guides }
@@ -458,11 +460,11 @@ class GuidesController < ApplicationController
       end
     end
     begin
-      CSV.foreach(open(params[:file]), headers: true, &row_handler)
+      CSV.foreach( File.open( params[:file] ), headers: true, &row_handler )
     rescue ArgumentError => e
       raise e unless e.message =~ /invalid byte sequence in UTF-8/
       # if there's an encoding issue we'll try to load the entire file and adjust the encoding
-      content = open(params[:file]).read
+      content = File.open( params[:file] ).read
       utf_content = if content.encoding.name == 'UTF-8'
         # if Ruby thinks it's UTF-8 but it obviously isn't, we'll assume it's LATIN1
         content.force_encoding('ISO-8859-1')
@@ -476,7 +478,7 @@ class GuidesController < ApplicationController
 
     @guide.guide_taxa.find_each do |gt|
       next unless tags[gt.name]
-      gt.update_attributes(tag_list: gt.tag_list + tags[gt.name])
+      gt.update(tag_list: gt.tag_list + tags[gt.name])
     end
     respond_to do |format|
       format.html { redirect_back_or_default(@guide) }
@@ -489,7 +491,7 @@ class GuidesController < ApplicationController
     @guide.guide_taxa.order(:position).includes(taggings: :tag).each_with_index do |gt,i|
       tags[gt.name] ||= {}
       gt.tags.each do |tag|
-        namespace, predicate, value = FakeView.machine_tag_pieces(tag.name)
+        namespace, predicate, value = helpers.machine_tag_pieces(tag.name)
         header = [namespace, predicate].compact.join(':')
         headers << header
         tags[gt.name][header] = [tags[gt.name][header].to_s.split('|'), value].flatten.join('|')

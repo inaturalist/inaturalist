@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PhotoPreviewContainer from "../containers/photo_preview_container";
@@ -14,9 +15,20 @@ import TaxonChangeAlertContainer from "../containers/taxon_change_alert_containe
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
+import FlashMessage from "../../../observations/show/components/flash_message";
+import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
+    { config && config.testingApiV2 && (
+      <FlashMessage
+        key="testing_apiv2"
+        title="Testing API V2"
+        message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/api-v2-feedback/21215"
+        type="warning"
+        html
+      />
+    ) }
     <Grid>
       <TaxonChangeAlertContainer />
       <Row className="preheader">
@@ -35,6 +47,7 @@ const App = ( { taxon, showNewTaxon, config } ) => (
               searchExternal={false}
               afterSelect={result => showNewTaxon( result.item )}
               position={{ my: "right top", at: "right bottom", collision: "none" }}
+              config={config}
             />
           </div>
         </Col>
@@ -68,7 +81,7 @@ const App = ( { taxon, showNewTaxon, config } ) => (
               }
             </h1>
             <div id="place-chooser-container">
-              <PlaceChooserContainer container={$( "#app" ).get( 0 )} />
+              <PlaceChooserContainer container={$( "#app" ).get( 0 )} clearButton />
             </div>
           </div>
         </Col>
@@ -93,7 +106,9 @@ const App = ( { taxon, showNewTaxon, config } ) => (
                 <Leaders taxon={taxon} />
                 <Row>
                   <Col xs={12}>
-                    <ChartsContainer />
+                    <ErrorBoundary>
+                      <ChartsContainer />
+                    </ErrorBoundary>
                   </Col>
                 </Row>
               </Col>
@@ -105,6 +120,30 @@ const App = ( { taxon, showNewTaxon, config } ) => (
     <TaxonPageTabsContainer />
     <PhotoModalContainer />
     <PhotoChooserModalContainer />
+    {
+      config
+      && config.currentUser
+      && config.currentUser.roles
+      && (
+        config.currentUser.roles.indexOf( "curator" ) >= 0
+        || config.currentUser.roles.indexOf( "admin" ) >= 0
+        || config.currentUser.sites_admined.length > 0
+      )
+      && (
+        <div className="container upstacked">
+          <div className="row">
+            <div className="cols-xs-12">
+              <TestGroupToggle
+                group="apiv2"
+                joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
+                joinedStatus="Joined API V2 test"
+                user={config.currentUser}
+              />
+            </div>
+          </div>
+        </div>
+      )
+    }
   </div>
 );
 

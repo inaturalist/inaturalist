@@ -1,3 +1,4 @@
+# https://developer.apple.com/documentation/xcode/supporting-associated-domains
 class AppleAppSiteAssociationController < ApplicationController
   def index
     unless @site && !@site.preferred_ios_app_webcredentials.blank?

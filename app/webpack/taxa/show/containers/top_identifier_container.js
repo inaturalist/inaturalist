@@ -1,13 +1,12 @@
 import { connect } from "react-redux";
-import LeaderItem from "../components/leader_item";
-import { urlForUser } from "../../shared/util";
 import { stringify } from "querystring";
-import { defaultObservationParams } from "../../shared/util";
+import LeaderItem from "../components/leader_item";
+import { defaultObservationParams, urlForUser } from "../../shared/util";
 
 function mapStateToProps( state ) {
   const leader = state.leaders.topIdentifier;
   const props = {
-    label: I18n.t( "top_identifier" ),
+    label: I18n.t( "top_identifier_caps" ),
     iconClassName: "icon-person",
     valueIconClassName: "icon-identification",
     linkText: I18n.t( "leaderboard" ),

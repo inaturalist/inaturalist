@@ -8,50 +8,75 @@ import TextEditor from "../../../shared/components/text_editor";
 // https://github.com/erikras/redux-form if this approach ends up getting
 // complicated.
 
-const CommentForm = ( {
-  observation, onSubmitComment, className, content, key
-} ) => (
-  <form
-    key={key}
-    className={`CommentForm ${className}`}
-    onSubmit={function ( e ) {
-      e.preventDefault();
-      onSubmitComment( {
-        parent_type: "Observation",
-        parent_id: observation.id,
-        body: content
-      } );
-      content = null;
-    }}
-  >
-    <h3>{ I18n.t( "add_a_comment" ) }</h3>
-    <div className="form-group">
-      <TextEditor
-        content={content}
-        key={`comment-editor-${observation.id}-${observation.comments.length}`}
-        maxLength={5000}
-        onBlur={e => { content = e.target.value; }}
-        placeholder={I18n.t( "leave_a_comment" )}
-        showCharsRemainingAt={4000}
-        textareaClassName="form-control"
-        mentions
-      />
-    </div>
-    <button
-      type="submit"
-      className="btn btn-primary"
-    >
-      { I18n.t( "save" ) }
-    </button>
-  </form>
-);
+class CommentForm extends React.Component {
+  shouldComponentUpdate( nextProps ) {
+    const {
+      observation, content, key, className
+    } = this.props;
+    if ( observation.id === nextProps.observation.id
+      && className === nextProps.className
+      && key === nextProps.key
+      && content === nextProps.content ) {
+      return false;
+    }
+    return true;
+  }
+
+  render( ) {
+    const {
+      config,
+      observation,
+      onSubmitComment,
+      className,
+      content,
+      key,
+      updateEditorContent
+    } = this.props;
+    return (
+      <form
+        key={key}
+        className={`CommentForm ${className}`}
+        onSubmit={function ( e ) {
+          e.preventDefault();
+          onSubmitComment( {
+            parent_type: "Observation",
+            parent_id: config.testingApiV2 ? observation.uuid : observation.id,
+            body: content
+          } );
+        }}
+      >
+        <h3>{ I18n.t( "add_a_comment" ) }</h3>
+        <div className="form-group">
+          <TextEditor
+            content={content}
+            key={`comment-editor-${observation.id}`}
+            maxLength={5000}
+            onBlur={e => { updateEditorContent( "obsIdentifyIdComment", e.target.value ); }}
+            placeholder={I18n.t( "leave_a_comment" )}
+            showCharsRemainingAt={4000}
+            textareaClassName="form-control"
+            mentions
+          />
+        </div>
+        <button
+          type="submit"
+          className="btn btn-primary"
+        >
+          { I18n.t( "save" ) }
+        </button>
+      </form>
+    );
+  }
+}
 
 CommentForm.propTypes = {
+  config: PropTypes.object,
   observation: PropTypes.object,
   onSubmitComment: PropTypes.func.isRequired,
   className: PropTypes.string,
   content: PropTypes.string,
-  key: PropTypes.string
+  key: PropTypes.string,
+  updateEditorContent: PropTypes.func
 };
 
 export default CommentForm;

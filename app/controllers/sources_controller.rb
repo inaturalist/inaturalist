@@ -1,7 +1,7 @@
 class SourcesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :load_source, :only => [:show, :edit, :update, :destroy]
-  before_filter :ensure_can_edit, :only => [:edit, :update, :destroy]
+  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :load_source, :only => [:show, :edit, :update, :destroy]
+  before_action :ensure_can_edit, :only => [:edit, :update, :destroy]
 
   layout "bootstrap"
   
@@ -36,7 +36,7 @@ class SourcesController < ApplicationController
   end
   
   def update
-    @source.update_attributes(params[:source])
+    @source.update(params[:source])
     respond_to do |format|
       format.html do
         if @source.valid?
@@ -58,6 +58,7 @@ class SourcesController < ApplicationController
 
   def create
     @source = Source.new(params[:source])
+    @source.user = current_user
     respond_to do |format|
       format.html do
         if @source.save

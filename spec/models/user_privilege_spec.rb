@@ -1,10 +1,16 @@
-# encoding: UTF-8
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
 
 describe UserPrivilege do
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to( :revoke_user ).class_name "User" }
+
+  it { is_expected.to validate_uniqueness_of( :user_id ).scoped_to :privilege }
+
   elastic_models( Observation )
 
-  let(:user) { User.make! }
+  let( :user ) { User.make! }
 
   describe "speech" do
     it "should be earned when a user has 3 verifiable observations" do
@@ -17,9 +23,7 @@ describe UserPrivilege do
     end
     it "should not be earned when a user has 2 verifiable observations and 1 unverifiable" do
       expect( UserPrivilege.earned_speech?( user ) ).to be false
-      1.times do
-        make_research_grade_candidate_observation( user: user )
-      end
+      make_research_grade_candidate_observation( user: user )
       Observation.make!( user: user )
       user.reload
       expect( UserPrivilege.earned_speech?( user ) ).to be false
@@ -53,7 +57,7 @@ describe UserPrivilege do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
-        Delayed::Job.find_each{|j| j.invoke_job}
+        Delayed::Job.find_each( &:invoke_job )
         user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
@@ -62,14 +66,27 @@ describe UserPrivilege do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
-        Delayed::Job.find_each{|j| j.invoke_job}
+        Delayed::Job.find_each( &:invoke_job )
         user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
         user.observations.last.destroy
         # This is lame but there are some jobs that will fail after the obs is deleted
-        Delayed::Job.find_each{|j| j.invoke_job rescue nil }
+        Delayed::Job.find_each do | j |
+          j.invoke_job
+        rescue StandardError
+          nil
+        end
         user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
+      end
+
+      it "should earn organizer" do
+        expect( user ).not_to be_privileged_with( UserPrivilege::ORGANIZER )
+        allow( UserPrivilege ).to receive( :earned_organizer? ) { true }
+        make_research_grade_candidate_observation( user: user )
+        Delayed::Job.find_each( &:invoke_job )
+        user.reload
+        expect( user ).to be_privileged_with( UserPrivilege::ORGANIZER )
       end
     end
     describe "for identification" do
@@ -78,7 +95,7 @@ describe UserPrivilege do
         3.times do
           Identification.make!( user: user )
         end
-        Delayed::Job.find_each{|j| j.invoke_job}
+        Delayed::Job.find_each( &:invoke_job )
         expect( user ).to be_privileged_with( :speech )
       end
     end

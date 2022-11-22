@@ -1,12 +1,13 @@
-require_relative "../models/delayed_job" if Rails.env.development?
 #
 # A collection of tools useful for administrators.
 #
 class AdminController < ApplicationController
 
-  before_filter :authenticate_user!
-  before_filter :admin_required
-  before_filter :return_here, only: [:stats, :index, :user_content, :user_detail]
+  before_action :authenticate_user!
+  before_action :admin_required
+  before_action :return_here, only: [:stats, :index, :user_content, :user_detail]
+
+  prepend_around_action :enable_replica, only: [:queries]
 
   layout "application"
 
@@ -29,8 +30,24 @@ class AdminController < ApplicationController
   def user_detail
     @display_user = User.find_by_id(params[:id].to_i)
     @display_user ||= User.find_by_login(params[:id])
-    @display_user ||= User.find_by_email(params[:id])
-    @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
+    @display_user ||= User.find_by_email(params[:id]) unless params[:id].blank?
+    if @display_user
+      @observations = Observation.page_of_results( user_id: @display_user.id )
+      geoip_response = INatAPIService.geoip_lookup( { ip: @display_user.last_ip } )
+      if geoip_response && geoip_response.results && geoip_response.results.country
+        @geoip_location = [
+          geoip_response.results.city,
+          geoip_response.results.region,
+          geoip_response.results.country
+        ].join( ", " )
+        if geoip_response.results.ll
+          @geoip_latitude, @geoip_longitude = geoip_response.results.ll
+        end
+      end
+      @email_suppressions = [
+        @display_user.email_suppressions.to_a, EmailSuppression.where( email: @display_user.email ).to_a
+      ].flatten.compact.uniq
+    end
 
     respond_to do |format|
       format.html do
@@ -55,7 +72,15 @@ class AdminController < ApplicationController
 
   def user_content
     return unless load_user_content_info
-    @records = @display_user.send(@reflection_name).page(params[:page]) rescue []
+    @page = params[:page]
+    @order = params[:order]
+    @order = "desc" unless %w(asc desc).include?( @order )
+    @order_by = params[:order_by]
+    @order_by = "created_at" unless %w(created_at updated_at).include?( @order_by )
+    @records = @display_user.send( @reflection_name ).
+      order( @order_by => @order ).page( params[:page] || 1 ).limit( 200 ) rescue []
+
+    render layout: "bootstrap"
   end
 
   def update_user
@@ -68,7 +93,7 @@ class AdminController < ApplicationController
       u.icon_url = nil
     end
     if params[:user]
-      u.update_attributes( params[:user] )
+      u.update( params[:user] )
     else
       u.save
     end
@@ -122,7 +147,7 @@ class AdminController < ApplicationController
   def destroy_user_content
     return unless load_user_content_info
     @records = @display_user.send(@reflection_name).
-      where("id IN (?)", params[:ids] || [])
+      where("#{@reflection.table_name}.id IN (?)", params[:ids] || [])
     @records.each(&:destroy)
     flash[:notice] = "Deleted #{@records.size} #{@type.humanize.downcase}"
     redirect_back_or_default(admin_user_content_path(@display_user.id, @type))
@@ -141,29 +166,33 @@ class AdminController < ApplicationController
   end
 
   def queries
-    @queries = ActiveRecord::Base.connection.active_queries
+    replica_pool = ActiveRecord::Base.connection.instance_variable_get( "@replica_pool" )
+    if replica_pool
+      # if configured to use replica DBs with Makara, fetch queries from all primaries and replicas
+      primary_pool = ActiveRecord::Base.connection.instance_variable_get( "@primary_pool" )
+      @queries = []
+      ( primary_pool.connections + replica_pool.connections ).flatten.each do |connection|
+        instance_queries = connection.active_queries.map do |q|
+          { db_host: connection.config[:host] }.merge( q )
+        end
+        @queries += instance_queries
+      end
+    else
+      @queries = ActiveRecord::Base.connection.active_queries.map do |q|
+        { db_host: ActiveRecord::Base.connection_db_config.host }.merge( q )
+      end
+    end
+    @queries.delete_if{ |q| q["query"] =~ /pg_stat_activity/ }
     render layout: "admin"
   end
 
-  def stop_query
-    if params[:pid] && params[:pid].match( /^\d+$/ )
-      kill_postgresql_pid( params[:pid].to_i )
-    end
-    redirect_to :queries_admin
-  end
-
   private
-
-  def kill_postgresql_pid( pid )
-    return unless pid && pid.is_a?( Integer )
-    ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
-  end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id(user_id)
     @display_user ||= User.find_by_login(user_id)
-    @display_user ||= User.find_by_email(user_id)
+    @display_user ||= User.find_by_email(user_id) unless user_id.blank?
     unless @display_user
       flash[:error] = "User #{user_id} doesn't exist"
       redirect_back_or_default(:action => "index")
@@ -173,7 +202,7 @@ class AdminController < ApplicationController
     @type = params[:type] || "observations"
     @reflection_name, @reflection = User.reflections.detect{|k,r| k.to_s == @type}
     @klass = Object.const_get(@reflection.class_name) rescue nil
-    @klass = nil unless @klass.try(:base_class).try(:superclass) == ActiveRecord::Base
+    @klass = nil unless @klass < ActiveRecord::Base
     unless @klass
       flash[:error] = "#{params[:type]} doesn't exist"
       redirect_back_or_default(:action => "index")

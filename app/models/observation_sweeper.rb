@@ -1,5 +1,9 @@
 class ObservationSweeper < ActionController::Caching::Sweeper
-  observe Observation
+  begin
+    observe Observation
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe Observation. Ignore if setting up for the first time"
+  end
   include Shared::SweepersModule
   
   def after_create(observation)

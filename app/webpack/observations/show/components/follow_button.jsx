@@ -55,7 +55,7 @@ const FollowButton = ( {
               return false;
             }}
           >
-            { observation.user.login }
+            { observation.user && observation.user.login }
             { followStatus( followingUser ) }
           </a>
         </li>

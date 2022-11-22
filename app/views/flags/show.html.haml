@@ -70,7 +70,7 @@
               - else
                 =t :not_resolved
             %td.nobr.form-inline
-              - if is_curator?
+              - if @flag.resolvable_by?( current_user )
                 - if @flag.resolved?
                   = form_for( @flag, action: "update", html: { class: "inlineblock" }, data: { confirm: t(:are_you_sure_unresolve_flag?) } ) do |f|
                     = text_field_tag :comment, @flag.comment, class: "form-control", disabled: true
@@ -88,7 +88,7 @@
                     = f.submit t(:resolve), class: "btn btn-success"
               - else
                 = formatted_user_text @flag.comment
-              - if is_admin?
+              - if @flag.deletable_by?( current_user )
                 = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
                   %i.fa.fa-trash
                   = t(:delete)

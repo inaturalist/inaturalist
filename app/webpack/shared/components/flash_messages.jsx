@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import MD5 from "md5.js";
+import md5 from "md5";
 import FlashMessage from "../../observations/show/components/flash_message";
 /* global RAILS_FLASH */
 /* global SITE */
@@ -59,7 +59,7 @@ class FlashMessages extends React.Component {
         config.currentUser &&
         _.find(
           config.currentUser.blockedByUserHashes, h =>
-            new MD5( ).update( item.user.id.toString( ) ).digest( "hex" ) === h
+            md5( item.user.id.toString( ) ) === h
         )
       ) {
         flashes.push( <FlashMessage
@@ -72,7 +72,7 @@ class FlashMessages extends React.Component {
         config.currentUser &&
         _.find(
           config.currentUser.blockedUserHashes, h =>
-            new MD5( ).update( item.user.id.toString( ) ).digest( "hex" ) === h
+            md5( item.user.id.toString( ) ) === h
         )
       ) {
         flashes.push( <FlashMessage

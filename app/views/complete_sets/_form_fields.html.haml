@@ -3,5 +3,5 @@
     = f.text_field :taxon_id
     = f.text_field :place_id
   .column.span-12
-    = f.radio_button :is_active, true, :label_after => true, :label => t(:active).titleize
-    = f.radio_button :is_active, false, :label_after => true, :label => t(:inactive).titleize
+    = f.radio_button :is_active, true, :label_after => true, :label => t(:active_complete_set_status)
+    = f.radio_button :is_active, false, :label_after => true, :label => t(:inactive_complete_set_status)

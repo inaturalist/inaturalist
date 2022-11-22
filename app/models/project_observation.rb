@@ -1,8 +1,8 @@
-class ProjectObservation < ActiveRecord::Base
+class ProjectObservation < ApplicationRecord
   blockable_by lambda {|po| po.observation.try(:user_id) }
 
   belongs_to :project
-  belongs_to :observation
+  belongs_to_with_uuid :observation
   belongs_to :curator_identification, :class_name => "Identification"
   belongs_to :user
   validates_presence_of :project, :observation
@@ -10,6 +10,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :project_allows_submitter?
   validate :observer_invited?
   validate :project_allows_observations?
+  validate :required_observation_fields_present?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -23,7 +24,7 @@ class ProjectObservation < ActiveRecord::Base
     :on_list?,
     :verifiable?,
     :wild?
-  ], :unless => "errors.any?"
+  ], unless: lambda {|po| po.errors.any? }
   validate :observed_in_bioblitz_time_range?
   validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
 
@@ -42,7 +43,7 @@ class ProjectObservation < ActiveRecord::Base
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
-        { term: { subscriber_ids: observation.user_id } }
+        { term: { "subscriber_ids.keyword": observation.user_id } }
       ],
       inverse_filters: [
         { term: { viewed_subscriber_ids: observation.user_id } }
@@ -86,9 +87,6 @@ class ProjectObservation < ActiveRecord::Base
     project.project_users.where(user_id: observation.user_id).first
   end
 
-  after_create  :refresh_project_list
-  after_destroy :refresh_project_list
-
   after_create  :update_observations_counter_cache_later
   after_destroy :update_observations_counter_cache_later
 
@@ -98,43 +96,14 @@ class ProjectObservation < ActiveRecord::Base
   after_create  :update_project_observed_taxa_counter_cache_later
   after_destroy :update_project_observed_taxa_counter_cache_later
 
-  after_create :destroy_project_invitations, :update_curator_identification, :expire_caches
+  after_create  :update_curator_identification, :expire_caches
   after_destroy :expire_caches
 
   after_create :revisit_curator_identifications_later
 
-  after_save :update_project_list_if_curator_ident_changed
-
   attr_accessor :skip_touch_observation
 
   include Shared::TouchesObservationModule
-
-  def update_project_list_if_curator_ident_changed
-    return true unless curator_identification_id_changed?
-    old_curator_identification_id = curator_identification_id_was
-    old_curator_identification = Identification.where(:id => old_curator_identification_id).first
-    taxon_id = curator_identification ? curator_identification.taxon_id : nil
-    if old_curator_identification 
-      taxon_id_was = old_curator_identification.taxon_id
-    else
-      taxon_id_was = nil
-    end
-    # Don't refresh if nothing changed
-    return true if taxon_id == taxon_id_was
-    #if nil set taxon_id_was to observation.taxon_id so listings with this taxon_id will get refreshed
-    taxon_id_was = Observation.find_by_id(observation_id).taxon_id if taxon_id_was.nil?
-    # Update the projectobservation's current curator_id taxon and/or a previous one that was
-    # just removed/changed
-    ProjectList.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "ProjectList::refresh_with_project_observation": id }).
-      refresh_with_project_observation(id,
-        :observation_id => observation_id,
-        :taxon_id => taxon_id,
-        :taxon_id_was => taxon_id_was,
-        :project_id => project_id
-     )
-    true
-  end
 
   def reindex_observation
     Observation.elastic_index!( ids: [observation_id] ) if observation
@@ -207,13 +176,21 @@ class ProjectObservation < ActiveRecord::Base
     end
   end
 
-  def refresh_project_list
-    return true if observation.blank? || observation.taxon_id.blank? ||
-      observation.bulk_import || observation.bulk_delete
-    Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
-      run_at: 1.hour.from_now, unique_hash: { "Project::refresh_project_list": project_id }).
-      refresh_project_list(project_id, :taxa => [observation.taxon_id])
-    true
+  # Required observation fields are validated as rules, but rules are valid if
+  # *any* of them pass, while required observation fields should *all* be
+  # present
+  def required_observation_fields_present?
+    return true if !project
+    required_pofs = project.project_observation_fields.select(&:required?)
+    return true if required_pofs.size < 2
+    missing = required_pofs.detect do |pof|
+      !observation.observation_field_values.detect do |ofv|
+        ofv.observation_field_id == pof.observation_field_id
+      end
+    end
+    return true unless missing
+    errors.add(:base, "Missing required observation field: #{missing.observation_field.name}" )
+    false
   end
   
   def update_observations_counter_cache_later
@@ -259,11 +236,6 @@ class ProjectObservation < ActiveRecord::Base
     rescue ActionController::RoutingError, ActionController::UrlGenerationError
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
     end
-    true
-  end
-
-  def destroy_project_invitations
-    observation.project_invitations.where(:project_id => project).each(&:destroy)
     true
   end
 
@@ -441,7 +413,7 @@ class ProjectObservation < ActiveRecord::Base
     project = options[:project] || project_observations.first.project
     columns = Observation::CSV_COLUMNS
     unless project.curated_by?(options[:user])
-      columns -= %w(private_latitude private_longitude private_positional_accuracy)
+      columns -= %w(private_latitude private_longitude private_place_guess)
     end
     headers = columns.map{|c| Observation.human_attribute_name(c)}
 

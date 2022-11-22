@@ -112,7 +112,6 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
   end
   
   describe "with project" do
-    elastic_models( Observation )
     before do
       @project_user = ProjectUser.make!
       @project = @project_user.project
@@ -130,8 +129,8 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
     it "should add project observation fields" do
       of1 = ObservationField.make!
       of2 = ObservationField.make!
-      @project.project_observation_fields.create(observation_field: of1)
-      @project.project_observation_fields.create(observation_field: of2)
+      @project.project_observation_fields.create!( observation_field: of1 )
+      @project.project_observation_fields.create!( observation_field: of2 )
       of1_value = "barf"
       of2_value = "12345"
       work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")

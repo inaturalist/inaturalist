@@ -8,7 +8,7 @@ import {
   createStore, compose, applyMiddleware, combineReducers
 } from "redux";
 import AppContainer from "./containers/app_container";
-import lifelistReducer, { fetchUser } from "./reducers/lifelist";
+import lifelistReducer, { fetchUser, updateWithHistoryState } from "./reducers/lifelist";
 import exportModalReducer from "./reducers/export_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import inatAPIReducer from "../../shared/ducks/inat_api_duck";
@@ -22,13 +22,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
@@ -61,3 +59,7 @@ store.dispatch( fetchUser( LIFELIST_USER, {
     );
   }
 } ) );
+
+window.onpopstate = e => {
+  store.dispatch( updateWithHistoryState( e.state ) );
+};

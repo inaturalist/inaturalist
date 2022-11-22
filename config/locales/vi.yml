@@ -1,4 +1,30 @@
 vi:
+  x_comments_html:
+    other: '<span class="count">%{count}</span> bình luận'
+  x_faves:
+    other: '%{count} yêu thích'
+  x_languages:
+    other: "%{count} ngôn ngữ"
+  about: Giới thiệu
+  about_charts: Giới thiệu về Biểu đồ
+  about_community_taxa: Giới thiệu về đơn vị phân loại cộng đồng
+  about_complete_taxa: Giới thiệu về phân loại hoàn chỉnh
+  about_conservation_status: Về tình trạng bảo tồn
+  account: Tài khoản
+  account_creation: Tạo tài khoản
+  account_settings: Cài đặt tài khoản
+  language_slash_locale: Ngôn ngữ/Địa phương
+  language_slash_locale_description: Điều này đặt tùy chọn định dạng ngôn ngữ và ngày của bạn trên iNaturalist dựa trên ngôn ngữ của bạn. Các thay đổi sẽ có hiệu lực sau khi trang được làm mới.
+  language_slash_type: Ngôn ngữ / Loại
+  these_are_items_people_on: |
+    Đây là những mục mà mọi người trên trang web đã gắn cờ để quản lý. Thư rác
+     nhận xét sẽ bị xóa và những người dùng thêm thư rác sẽ bị tạm ngừng (đi
+     vào trang hồ sơ của họ và nhấp vào 'Tạm ngưng người dùng' ở phía dưới bên phải để
+     ngăn họ đăng nhập). Các mục bị gắn cờ khác chỉ nên bị xóa
+     nếu chúng rõ ràng là gây thù hận, bất hợp pháp, v.v. Thô lỗ, ngôn từ xúc phạm,
+     vv, nên được xử lý bằng một nhận xét lịch sự. Người tái phạm phải được
+     đã báo cáo cho quản trị viên trang web hoặc %{email}
+  translated_languages: Ngôn ngữ đã dịch
   date:
     abbr_month_names:
       - 

@@ -85,7 +85,6 @@ eo:
   a_flag_for_x: "flago por %{x}"
   a_member_of_taxon_html: "ano de %{taxon}"
   about: Pri
-  about_blocking: Pri Blokado
   about_charts: Pri Diagramoj
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
@@ -96,32 +95,30 @@ eo:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Pri Rimedoj pri Establado
   about_licenses: Pri permesiloj
-  about_muting: Pri Mutacio
   #Header for a section describing taxon names
   about_names: Pri Nomoj
   about_places: Pri Lokoj
-  about_the_cc_licenses: Pri permesiloj de Krea Komunaĵo
-  about_these_licenses: Pri tiuj permesiloj
   about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
-  about_x: "Pri %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Prec (m)'
   account: Konto
   account_creation: Kreado de Konto
   account_settings: Agordoj de Konto
-  accept: akcepti
   accept_community_identifications: Akceptu komunumajn identigojn
   accuracy: Precizeco
   accuracy_meters: Precizeco (metroj)
   accuracy_of_the_coordinates: |
     Precizeco de la koordinatoj en metroj. Vi povas redakti ĉi tion alklakante la ligon "redakti" supre aŭ alklakante la mapan markilon kaj trenante la tenilojn. Provu fari la rondon sufiĉe granda, ke vi certas, ke vi estis ie en ĝi.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Ago
   actions: Agoj
   active: Aktiva
   active_users: Aktivaj Uzantoj
   activity: Aktiveco
-  activity_settings: Agordoj pri akiveco
   adapted_by_name_from_a_work_by_original: "Adaptite de %{name} el la verko de %{original}"
   add: Aldoni
   add_a_batch_of_observations: Aldonu aron da Observoj
@@ -137,14 +134,12 @@ eo:
   add_an_assessment: Aldoni Taksaron
   add_an_identification: Aldoni Identigon
   add_an_observation: Aldoni Observon
-  add_an_observation?: Ĉu aldoni Observon?
   add_an_observation_of: "Aldoni Observon de %{taxon}"
   add_another_flag: Aldoni Alian Flagon
   add_another_photo: Aldoni Alian Foton
   add_another_section: Aldoni Alian Paragrafon
   add_batch: Aldoni batch
   add_comment: Aldoni Komenton
-  add_countries: Aldoni landojn
   add_edit_flags: Aldoni/Redakti Flagojn
   add_editor: Aldoni Redaktoron
   add_link: Aldoni Ligilon
@@ -189,7 +184,6 @@ eo:
   add_to_favorites: Favori
   add_to_list: Aldoni al Listo
   add_to_project: Aldoni al Projekto
-  add_to_your_life_list: Aldoni al Via Vivolisto!
   add_to_your_list: Aldoni al Via Listo
   added: Aldonita
   added!: Aldonita!
@@ -308,7 +302,15 @@ eo:
   animals: Animaloj
   annotations: Komentarioj
   announcements: Anoncoj
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: ajna
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any_: Ajna
   apply_geoprivacy: Apliki geografian privatecon
   appropriate?: Ĉu taŭga?
@@ -340,13 +342,11 @@ eo:
   back_to_your_journal: Reen al via ĵurnalo
   back_to_your_observations: Reen al viaj observoj
   back_to_your_profile: Reen al via profilo
-  back_to_your_projects: Reen al viaj projektoj
   be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
   because_of: pro
   bioblitz: Biofulmado
   birds: birdoj
   black: nigra
-  block_user: Forbari Uzanton
   blue: blua
   blue_butterfly_etc: "blua, papilio, ktp."
   brown: bruna
@@ -359,6 +359,7 @@ eo:
   card: Karto
   categories: Kategorioj
   cc_0_name: Sen Aŭtorrajtoj (CC0)
+  #Button to change the cover (or banner) image for a project
   change_cover: Ŝanĝi kovrilon
   change_geoprivacy: 'Ŝanĝi geografian privatecon'
   change_group: Ŝanĝi grupon
@@ -395,15 +396,18 @@ eo:
   colors: Koloroj
   columns: Kolumnoj
   combine: Kunigi
+  #Noun, used to label a comment or a comment field in a form
   comment: komento
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komento
   comment_deleted: Koment forigita
   comments: Komentoj
   comments_by_me: Komentoj far mi
-  comments_on: Komentoj pri
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Enmeti
+  #Adjective describing a taxon change that has been committed
   committed: Enmetita
+  #Status message while a taxon change is being committed
   committing: Enmetante...
   community: Komunumo
   community_curated: Komunuma Komisiono
@@ -430,11 +434,10 @@ eo:
   confirm_new_password: Konfirmi Novan Pasvorton
   confirm_now: Konfirmi nun
   confirm_your_info: Konfirmi vian informon
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Konektitaj kontoj
   connecting_flickr: "Konektanta Flickr..."
   connecting_to_facebook: "Konektanta Facebook..."
-  conservation_status_descriptions:
-    geoprivacy: Implicita geografia privateco por observoj de tiu taksono
   continue: Daŭrigi
   continue_to_site: Daŭrigi al %{site_name}
   contributor_cannot_be_found: Kontribuinto ne troviĝas
@@ -479,7 +482,6 @@ eo:
   copyright_holder: Posedanto de la aŭtorrajtoj
   copyright_info: Aŭtorrajta Informo
   copyright_info_and_more: Informo pri Aŭtorrajtoj kaj Plu
-  countries: Landoj
   create: Krei
   create_a_guide: Krei Gvidilon
   create_a_new_field: Krei Novan Kampon
@@ -537,7 +539,9 @@ eo:
   date_picker:
     closeText: Fermi
     currentText: Hodiaŭ
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Antaŭen
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Sekven
   date_time: Dato/tempo
   day: Tago
@@ -547,6 +551,7 @@ eo:
   delete: Forigi
   delete_all: Forigi ĉiujn
   delete_conversation: Forigi konversacion
+  #Button to delete the cover (or banner) image for a project
   delete_cover?: forigi kovrilon?
   delete_icon?: Forigi ikonon?
   delete_photo: Forigi foton
@@ -582,7 +587,6 @@ eo:
   doh_something_went_wrong_error: "Domaĝe, io misfunkciis: %{error}"
   done: Farita
   dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
-  dont_send_me_email: "Ne sendu al mi ajnan retmesaĝon!"
   download: Elŝuti
   download_csv: Elŝuti kiel komo-apartigitaj valoroj
   download_csv_template: Elŝuti ŝablonon de Komo-Apartigitaj Valoroj
@@ -614,7 +618,6 @@ eo:
   editing: Redaktado
   editing_announcement: Redaktanta anoncon
   editing_project: Redaktante projekton %{project}
-  either: Aŭ
   email: Retpoŝta adreso
   end: Fino
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
@@ -629,14 +632,12 @@ eo:
   event_stats: Statistiko pri Evento
   event_url: Eventa Retadreso
   events_only: Nur eventoj
-  every_species_seen_by: Ĉiu specio vidata de
   everyone: ĉiu
   everyone_: Ĉiu
   everyone_journal_posts: Ĉies Ĵurnalaj Afiŝoj
   everywhere: ĉie
   exact: Ekzakta
   exact_date: Ekzakta Dato
-  exact_location: Ekzakta_loko
   exit_full_screen: "Malŝalti plenekranan reĝimon"
   explore: Esplori
   export: Elporti
@@ -687,7 +688,6 @@ eo:
   flickr_tags: Etikedoj ĉe Flickr
   follow: Aboni
   follow_user: "Aboni uzanton %{user}"
-  followed_projects: Abonataj Projektoj
   followers: Abonantoj
   following: Abonante
   following_x_people:
@@ -728,7 +728,6 @@ eo:
   help: Helpo
   help_support_inaturalist: "Helpi Subtenadon de iNaturalist"
   hex_color_eg: Deksesuma koloro, ekz. 65644F
-  hi: Saluton,
   hi_user: "Saluton %{user}"
   high: Alta
   history: Historio
@@ -744,10 +743,8 @@ eo:
   identification_saved: "Identigo konserviĝis!"
   identification_updated: Identigo aktualiĝis!
   identifications: Identigoj
-  identifications_by: "Identigoj far %{user}"
   ids: "Identigoj"
   ids_made_for_others: Identigoj por aliuloj
-  ignore: ignori
   ignore_and_continue: Ignori kaj daŭrigi
   import: Enporti
   import_photos: Enporti Fotojn
@@ -758,10 +755,7 @@ eo:
   internal_server_error: Interna Servila Eraro
   invitation: Invito
   invite: inviti
-  invite_more: Inviti plu
   invite_people: Inviti homojn
-  invite_your_friends: Inviti viajn amikojn
-  is_now: estas nun
   join: Aliĝi
   join_project: Aliĝi al ĉi tiu projekto
   join_this_project: Aliĝi al ĉi tiu projekto
@@ -788,6 +782,7 @@ eo:
   leave: Foriri
   leave_a_comment: Lasi komenton
   leave_this_project: Forlasi ĉi tiun projekton
+  #Terminal nodes in a taxonomic tree
   leaves: folioj
   lexicon: Terminaro
   lexicons:
@@ -904,6 +899,7 @@ eo:
   meet: Renkonti
   member_of_the_inaturalist_network_html: |
     Ano de la <a href="%{url}">Reto iNaturalist</a>
+  #As in members of a project
   members: Anoj
   merge: Kunigi
   merging: Kunigado
@@ -998,13 +994,9 @@ eo:
     irregular: neregula
     doubtful: duba
     absent: mankanta
-  of_species: specioj
-  of_observers: observantoj
-  of_identifiers: identigiloj
   of_places: lokoj
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
-  only_species: nur specio
   only_you: Nur vi
   open: malfermi
   open_: Malfermi
@@ -1358,7 +1350,6 @@ eo:
     zimbabwe: Zimbabvo
   plants: plantoj
   popular: Populara
-  possessive_user: "de %{user}"
   posts: Afiŝoj
   powered_by: Funkcias per
   powered_by_inaturalist_open_source_software_html: 'Funkciante per <a href="https://github.com/inaturalist/inaturalist" target="_new" >malfermitkoda programaro iNaturalist</a>'
@@ -1387,7 +1378,6 @@ eo:
   project_was_successfully_created: Sukcese kreis projekton.
   project_was_successfully_updated: Sukcese ĝisdatigis projekton.
   projects: Projektoj
-  projects_from_everywhere: Projektoj Ĉie Ajn
   projects_from_place: "Projektoj ĉe %{place}"
   projects_in_x: "Projektoj en %{x}"
   projects_you_admin: Projektoj Administrataj de Vi
@@ -1468,7 +1458,6 @@ eo:
   resolver_said_x_html: '<span class="meta">%{resolver} diris,</span> "%{x}"'
   restore: Restarigi
   restoring: Restariganta...
-  results: rezultoj
   reviewed: Reviziita
   role: Rolo
   row_singular_or_plural: Vico(j)
@@ -1503,9 +1492,7 @@ eo:
   search_this_taxon: serĉi tiun taksonon
   searching: "Serĉante..."
   seasonality: Sezoneco
-  second_person_possessive_plural: "Via %{noun}"
   second_person_possessive_singular: "Via %{noun}"
-  seen_it?: Ĉu vidis ĝin?
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
@@ -1517,8 +1504,6 @@ eo:
   selected_taxon: Elektita Taksono
   select_this_taxon: Elekti Tiun Taksonon
   send: sendi
-  send_invites_to: Sendi invitojn al
-  send_the_invites: Sendi la Invitojn
   sending: Sendante...
   #Label for messages you've sent
   sent: Sendita
@@ -1547,7 +1532,6 @@ eo:
   something_: io
   somewhere_on_earth: ie sur Tero
   somewhere: (Ie...)
-  sorry_you_cant_delete_your_own_life_list: "Domaĝe, vi ne povas forigi vian propran vivoliston."
   sort: Ordigi
   sort_by: Ordigi Laŭ
   sounds:
@@ -1613,7 +1597,6 @@ eo:
   subscriptions: Abonoj
   suggestions: Sugestoj
   summary: Resumo
-  support_inaturalist: Subteni iNaturalist
   sw_lat: Latitudo SU
   sw_lon: Longitudo SU
   sync: Ĉu sinkronigi?
@@ -1645,7 +1628,6 @@ eo:
   taxonomic_order: Taksonomia Ordo
   taxonomic_status: Taksonomia stato
   taxonomic_tags_for_flickr: Taksonomiaj Etikedoj por Flickr
-  terms_service: Kondiĉoj de Servado
   terrain: tereno
   text: Teksto
   thanks!: Dankon!
@@ -1654,8 +1636,6 @@ eo:
   then_keybord_sequence: sekve
   this: ĉi tiu
   this_bioblitz_beings_in: Ĉi tiu biofulmado komencas en
-  this_is_a_life_list_of: Jen la vivolisto de
-  this_is_a_life_list_of_taxon_in_place: "Jen vivolisto de %{taxon} en %{place}"
   this_list_is_empty!: Tiu listo estas malplena!
   this_observation: Tiu observo
   this_year: Nuna Jaro
@@ -1684,7 +1664,6 @@ eo:
   uploader:
     tooltips:
       remove_photo: Forigi foton
-  US_states: Usonaj Ŝtatoj
   user: Uzanto
   user_autocomplete_placeholder: kueda, simon123, ktp.
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
@@ -1718,7 +1697,6 @@ eo:
   weather: Vetero
   website: Retejo
   welcome: bonvenon
-  welcome_back: Rean Bonvenon
   welcome_back!: Rean Bonvenon!
   welcome_to_inat: "Bonvenon al %{site_name}!"
   welcome_to_x_project: "Bonvenon al %{project}"
@@ -1728,8 +1706,6 @@ eo:
   whats_this?: Kio estas ĉi tio?
   when: Kiam
   where: Kie
-  where_do_x_live: Kie vivas %{taxa}?
-  where_does_x_live: Kie vivas %{taxa}?
   where_were_they?: Kie ili estis?
   where_were_you?: Kie vi estis?
   white: blanka
@@ -1756,7 +1732,6 @@ eo:
   yesterday: Hieraŭ
   you: vi
   you_: Vi
-  you_are_now: Vi estas nun
   you_are_already_a_member_of_this_project: "Vi jam estas projektano de ĉi tiu projekto!"
   you_arent_a_member_of_that_project: Vi ne estas projektano de tiu projekto.
   you_cant_flag_that: Vi ne povas flagi ĝin
@@ -1789,7 +1764,6 @@ eo:
     messages:
       from: De
       to: Al
-      subject: Temo
       subject_body: Temo / Enhavo
     observations:
       community_id:
@@ -1849,15 +1823,6 @@ eo:
         obs_in_year: Observoj en %{year}
     taxa:
       show:
-        frequency:
-          "Plant Phenology=No Evidence of Flowering": Neniu evidenteco
-          "Life Stage=egg": Ovo
-          "Life Stage=larva": Larvo
-          "Life Stage=teneral": Tenera imagino
-          "Life Stage=subimago": Subimagino
-          "Life Stage=nymph": Nimfo
-          "Life Stage=pupa": Pupo
-          "Life Stage=adult": Adolto
         trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:
@@ -2043,21 +2008,6 @@ eo:
       submit: Konservi modelon %{model}
       update: Ĝisdatigi modelon %{model}
   number:
-    currency:
-      format:
-        #The delimiter separates parts of large integers, so if the number is
-        #"one million and two and a half dollars" this would be written as
-        #"$1,000,002.50" in English, and "," is the delimiter. This should not
-        #be the same as the separator.
-        delimiter: ' '
-        #The separator separates an integer from a decimal fraction, so if the
-        #number is "one million and two and a half dollars" this would be
-        #written as "$1,000,002.50" in English, and "." is the separator. This
-        #should not be the same as the delimiter.
-        separator: ','
-        significant: false
-        strip_insignificant_zeros: false
-        unit: '€'
     format:
       #The delimiter separates parts of large integers, so if the number is
       #"one million and two and a half" this would be written as
@@ -2164,15 +2114,15 @@ eo:
         url: Retadreso
         citation: Citaĵo
       taxon:
+        auto_description: Aŭtomata priskribo
+        auto_photos: Aŭtomataj fotoj
+        locked: Ŝlosita
         name: Nomo
         rank: Rango
-        locked: Ŝlosita
-        auto_photos: Aŭtomataj fotoj
-        auto_description: Aŭtomata priskribo
-        wikipedia_title: Vikipedia titolo
-        wikipedia_summary: Resumo ĉe Vikipedio
         source_identifier: Identigilo de fonto
         source_url: Fonta retadreso
+        wikipedia_summary: Resumo ĉe Vikipedio
+        wikipedia_title: Vikipedia titolo
       taxon_name:
         name_provider: Provizanto de nomo
         source_url: Fonta retadreso
@@ -2182,7 +2132,6 @@ eo:
         login: Uzantnomo
         name: Nomo
         locale: Lokaĵaro
-        time_zone: Horzono
         place_id: Loko
     errors:
       messages:

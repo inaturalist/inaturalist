@@ -77,7 +77,7 @@ class ResearchGradeProgress extends React.Component {
                     <i className="fa fa-leaf" />
                   </div>
                   <div className="reason_label">
-                    { I18n.t( "community_id_at_species_level_or_lower" ) }
+                    { I18n.t( "community_id_is_precise" ) }
                   </div>
                 </div>
                 <div className="or">
@@ -115,7 +115,7 @@ class ResearchGradeProgress extends React.Component {
               break;
             case "rank":
               icon = "fa-leaf";
-              label = I18n.t( "community_id_at_species_level_or_lower" );
+              label = I18n.t( "community_id_is_precise" );
               break;
             case "metric-date":
               icon = "fa-calendar-check-o";

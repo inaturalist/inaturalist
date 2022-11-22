@@ -1,6 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, Popover, OverlayTrigger } from "react-bootstrap";
+import ReactDOMServer from "react-dom/server";
+import {
+  Col,
+  Grid,
+  OverlayTrigger,
+  Popover,
+  Row
+} from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
@@ -127,13 +134,35 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                   <i className={`glyphicon glyphicon-flag ${flagClass}`} />
                   { " " }
                   { text }
-                  { status.description && status.description.length > 0 ? (
+                  { status.description && status.description.length > 0 && (
                     <UserText
                       truncate={550}
                       className="text-muted"
                       text={status.description}
                     />
-                  ) : null }
+                  ) }
+                  { status.user && status.created_at && (
+                    <div
+                      className="small text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "added_by_user_on_date_html", {
+                          user: ReactDOMServer.renderToString( <a href={`/people/${status.user.login}`}>{status.user.login}</a> ),
+                          date: I18n.localize( "date.formats.month_day_year", status.created_at )
+                        } )
+                      }}
+                    />
+                  ) }
+                  { status.updater && status.updated_at && (
+                    <div
+                      className="small text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "updated_by_user_on_date_html", {
+                          user: ReactDOMServer.renderToString( <a href={`/people/${status.updater.login}`}>{status.updater.login}</a> ),
+                          date: I18n.localize( "date.formats.month_day_year", status.updated_at )
+                        } )
+                      }}
+                    />
+                  ) }
                 </td>
                 <td>
                   <div className="media">

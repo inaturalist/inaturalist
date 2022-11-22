@@ -46,6 +46,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');
   options.placeLayerLabel = options.placeLayerLabel || $(elt).data('place-layer-label');
   options.placeLayerDescription = options.placeLayerDescription || $(elt).data('place-layer-description');
+  options.placement = options.placement || $(elt).data( "placement" );
   options.taxonRangeLayerLabel = options.taxonRangeLayerLabel || $(elt).data('taxon-range-layer-label') || I18n.t("maps.overlays.range");
   options.taxonRangeLayerDescription = options.taxonRangeLayerDescription || $(elt).data('taxon-range-layer-description');
   options.taxonPlacesLayerLabel = options.taxonPlacesLayerLabel || $(elt).data('taxon-places-layer-label') || I18n.t("maps.overlays.checklist_places");
@@ -91,17 +92,19 @@ inatTaxonMap.fit = function( elt ) {
 
 inatTaxonMap.setupGoogleMap = function( elt ) {
   var options = $(elt).data('taxonMapOptions');
+  if ( typeof ( google ) === "undefined" ) {
+    $( elt ).html( "<div class='alert alert-warning alert-inside text-center'>" + I18n.t( "google_maps_not_loaded_error" ) + "</div>" );
+    return;
+  }
   var map,
       mapOptions = $.extend( true, { }, {
+        backgroundColor: '#E3EAF6',
+        gestureHandling: options.gestureHandling,
         mapTypeControl: (options.mapTypeControl !== false),
         mapTypeControlOptions: options.mapTypeControlOptions,
         minZoom: options.minZoom,
-        backgroundColor: '#E3EAF6',
-        zoomControl: (options.zoomControl !== false),
-        zoomControlOptions: options.zoomControlOptions,
+        placement: options.placement,
         scrollwheel: (options.scrollwheel !== false),
-        gestureHandling: options.gestureHandling,
-        tilt: options.tilt,
         styles: [
           {
             stylers: [
@@ -109,7 +112,10 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
               {saturation: -50}
             ]
           }
-        ]
+        ],
+        tilt: options.tilt,
+        zoomControl: (options.zoomControl !== false),
+        zoomControlOptions: options.zoomControlOptions
       } );
   if ( $(elt).data('taxonMap') ) {
     map = $(elt).data('taxonMap');
@@ -291,7 +297,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.taxonRangeLayerLabel,
       description: options.taxonRangeLayerDescription,
       hover: options.taxonRangeLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "/taxa/" + layer.taxon.id + "/range.html"
     }));
   }
   if( layer.observations ) {
@@ -324,7 +331,8 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       title: options.gbifLayerLabel,
       description: options.gbifLayerDescription,
       hover: options.gbifLayerHover,
-      controlPosition: options.controlPosition
+      controlPosition: options.controlPosition,
+      link: "http://www.gbif.org/species/" + taxonData.gbif_id
     }));
   }
 };

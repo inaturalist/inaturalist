@@ -24,7 +24,7 @@
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         SHOW_PLACE_GEOMETRY = true,
-        WIKIPEDIA_DESCRIPTION_URL = #{url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe},
+        WIKIPEDIA_DESCRIPTION_URL = #{places_wikipedia_url( @place.wikipedia_name ).inspect.html_safe},
         FLICKR_API_KEY = #{CONFIG.flickr.key.inspect.html_safe},
         NEARBY_PLACES = #{json_escape @nearby_places.to_json.html_safe},
         INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe}
@@ -46,7 +46,7 @@
     %span.description &gt;
     - @place.ancestors.each do |ancestor|
       - link_txt = capture do
-        = t("places_name.#{ancestor.name.gsub(' ','_').downcase}", :default => ancestor.name)
+        = ancestor.translated_name
         %span.small.description
           (#{t("place_geo.geo_planet_place_types.#{ancestor.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if ancestor.place_type_name})
       = link_to link_txt, ancestor, :class => 'crumb'
@@ -54,7 +54,7 @@
   / /#breadcrumbs
   #map{:class => "#{'nochecklist' unless @place.check_list}"}
   %h2
-    = link_to t("places_name.#{@place.display_name.gsub(' ','_').downcase}", :default => @place.display_name), @place
+    = link_to @place.translated_name( I18n.locale, default: @place.display_name ), @place
     %span.small.description
       = t("place_geo.geo_planet_place_types.#{@place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if @place.place_type_name
   #placephotos
@@ -62,6 +62,7 @@
   #metalinks.meta.right
     :ruby
       pieces = []
+      pieces << link_to(t(:flag_this_place), new_place_flag_path(@place), :id => "flag_this", :rel => "nofollow")
       pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     = raw pieces.join(' | ')
@@ -71,18 +72,19 @@
         %span= t :species
     %li
       %a{:href => "#observationstab"}
-        %span= t(:observations).capitalize
+        %span= t(:observations)
     - unless @projects.blank?
       %li
         %a{:href => "#projectstab"}
-          %span= t(:projects).capitalize
+          %span= t(:projects)
     - if @show_leaderboard
       %li
         %a{:href => "#peopletab"}
-          %span= t(:people).capitalize
+          %span= t(:people)
     %li
       %a{:href => "#abouttab"}
-        %span= t :about_x, :x => t(@place.name, :default => @place.name)
+        - place_name = @place.translated_name
+        %span= t :about_place, place: place_name, vow_or_con: place_name[0]
   #guidetab.stacked
     - if @place.check_list
       - extra = capture do
@@ -108,9 +110,7 @@
               = f.hidden_field :resource_id
               = f.hidden_field :user_id
               - if @subscriptions.blank?
-                = t :subscribe_to_x_from_this_y_html,                                         |
-                  :x => commas_and(Place.notifying_associations.keys.map{|k| t(k).downcase}), |
-                  :y => t(:place).downcase                                                    |
+                = t( "subscribe_to_#{Place.notifying_associations.keys.join( "_" )}_from_this_place_html", default: t( :subscribe_to_x_from_this_y_html, x: commas_and( Place.notifying_associations.keys.map{|k| t(k).downcase}), y: t(:place).downcase ) ).sub( "<a>", "<a href=\"#\" onclick=\"$(this).parents('form:first').submit(); return false;\">" ).html_safe
               - else
                 = link_to t(:add_another_subscription), new_subscription_path(:type => "place", :resource_id => @place.id), :id => "new_place_subscription_link", :class => "readmore"
           - else
@@ -126,11 +126,12 @@
     .medium.observations.grid
       .nocontent
         = loading t(:loading), :class => "inline"
-    = link_to t(:view_more_observations_from) + ' ' + "#{@place.name}", observations_url(:place_id => @place.id), :class => "readmore"
+    = link_to t(:view_more_observations_from_this_place), observations_url(:place_id => @place.id), :class => "readmore"
   - unless @projects.blank?
     #projectstab
       .clear
-        %h3= t(:projects_in_x, :x => @place.name)
+        - place_name = @place.name.parameterize.blank? ? @place.name : t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
+        %h3= t( :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase )
         = render :partial => 'projects/project', :collection => @projects
       = link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore"
   - if @show_leaderboard

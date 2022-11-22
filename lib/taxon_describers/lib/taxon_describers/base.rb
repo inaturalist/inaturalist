@@ -2,6 +2,10 @@ module TaxonDescribers
   class Base
 
     class_attribute :describer
+
+    def initialize( options = {} )
+    end
+
     def describe(taxon)
       taxon.wikipedia_summary || "No description"
     end
@@ -27,7 +31,7 @@ module TaxonDescribers
     end
 
     def fake_view
-      FakeView.new(:view_paths => [File.expand_path("../../views/", __FILE__)])
+      @fake_view ||= FakeView.new( view_paths: [File.expand_path( "../../views/", __FILE__ )] )
     end
   end
 end

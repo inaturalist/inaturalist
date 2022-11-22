@@ -5,320 +5,320 @@
   img_url = if site_logo_email_banner =~ /http/
     site_logo_email_banner
   else
-    FakeView.uri_join(site_url, FakeView.image_url( site_logo_email_banner ) )
+    uri_join( site_url, FakeView.image_url( site_logo_email_banner ) )
   end
   site_name = site.name
 -%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
+  <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
-    	@font-face {
-    	  font-family: Whitney;
-    	  src: url('<%= asset_url "fonts/Whitney-Book-Pro.otf", host: Site.default.url %>') format("opentype");
-    	}
-    	@font-face {
-    	  font-family: Whitney;
-    	  font-weight: bold;
-    	  src: url('<%= asset_url "fonts/Whitney-Medium-Pro.otf", host: Site.default.url %>') format("opentype");
-    	}
-    	@font-face {
-    	  font-family: Whitney;
-    	  font-weight: 100;
-    	  src: url('<%= asset_url "fonts/Whitney-Light-Pro.otf", host: Site.default.url %>') format("opentype");
-    	}
-    	@font-face {
-    	  font-family: Whitney;
-    	  font-weight: 600;
-    	  src: url('<%= asset_url "fonts/Whitney-Semibold-Pro.otf", host: Site.default.url %>') format("opentype");
-    	}
-    	@font-face {
-    	  font-family: Whitney;
-    	  font-weight: 800;
-    	  src: url('<%= asset_url "fonts/Whitney-Bold-Pro.otf", host: Site.default.url %>') format("opentype");
-    	}
-			#outlook a{padding:0;}
-			.ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
-			.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
-			body, table, td, p, a, li, blockquote, div {
-				-webkit-text-size-adjust:100%;
-				-ms-text-size-adjust:100%;
-				font-family:Whitney, Helvetica;
-			}
-			table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
-			img{-ms-interpolation-mode:bicubic;}
-			body{margin:0; padding:0;}
-			img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
-			table{border-collapse:collapse !important;}
-			body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
-			#bodyCell{padding:20px;}
-			#templateContainer{width:600px;}
-			body, #bodyTable{
-				background-color:#DEE0E2;
-			}
-			#bodyCell{
-				border-top:4px solid #BBBBBB;
-			}
-			#templateContainer{
-				border:1px solid #BBBBBB;
-			}
-			h1{
-				color:#202020 !important;
-				display:block;
-				font-family:Whitney, Helvetica;
-				font-size:26px;
-				font-style:normal;
-				font-weight:bold;
-				line-height:100%;
-				letter-spacing:normal;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				text-align:left;
-			}
-			h2{
-				color:#404040 !important;
-				display:block;
-				font-family:Whitney, Helvetica;
-				 font-size:20px;
-				 font-style:normal;
-				 font-weight:bold;
-				 line-height:100%;
-				 letter-spacing:normal;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				 text-align:left;
-			}
-			h3{
-				color:#606060 !important;
-				display:block;
-				font-family:Whitney, Helvetica;
-				font-size:16px;
-				font-style:italic;
-				font-weight:normal;
-				line-height:100%;
-				letter-spacing:normal;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				text-align:left;
-			}
-			h4{
-				color:#808080 !important;
-				display:block;
-				font-family:Whitney, Helvetica;
-				font-size:14px;
-				font-style:italic;
-				font-weight:normal;
-				line-height:100%;
-				letter-spacing:normal;
-				margin-top:0;
-				margin-right:0;
-				margin-bottom:10px;
-				margin-left:0;
-				text-align:left;
-			}
-			#templatePreheader{
-				background-color:#F4F4F4;
-				border-bottom:1px solid #CCCCCC;
-			}
-			.preheaderContent{
-				color:#808080;
-				font-family:Whitney, Helvetica;
-				font-size:10px;
-				line-height:125%;
-				text-align:left;
-			}
-			.preheaderContent a:link, .preheaderContent a:visited, .preheaderContent a .yshortcuts {
-				color:#606060;
-				font-weight:normal;
-				text-decoration:underline;
-			}
-			#templateHeader{
-				background-color:#F4F4F4;
-				border-top:1px solid #FFFFFF;
-				border-bottom:1px solid #CCCCCC;
-			}
-			.headerContent{
-				color:#505050;
-				font-family:Whitney, Helvetica;
-				font-size:20px;
-				font-weight:bold;
-				line-height:100%;
-				padding-top:0;
-				padding-right:0;
-				padding-bottom:0;
-				padding-left:0;
-				text-align:left;
-				vertical-align:middle;
-			}
-			.headerContent a:link, .headerContent a:visited, .headerContent a .yshortcuts {
-				color:#36C;
-				font-weight:normal;
-				text-decoration:underline;
-			}
-			#headerImage{
-				height:auto;
-				max-width:600px;
-			}
-			#templateBody{
-				background-color:#F4F4F4;
-				border-top:1px solid #FFFFFF;
-				border-bottom:1px solid #CCCCCC;
-			}
-			.bodyContent{
-				color:#505050;
-				font-family:Whitney, Helvetica;
-				font-size:16px;
-				line-height:150%;
-				padding-top:20px;
-				padding-right:20px;
-				padding-bottom:20px;
-				padding-left:20px;
-				text-align:left;
-			}
-			.bodyContent a:link, .bodyContent a:visited, .bodyContent a .yshortcuts {
-				color:#36C;
-				font-weight:normal;
-				text-decoration:underline;
-			}
-			.bodyContent img{
-				display:inline;
-				height:auto;
-				max-width:560px;
-			}
-			.templateColumnContainer{display:inline; width:260px;}
-			#templateColumns{
-				background-color:#F4F4F4;
-				border-top:1px solid #FFFFFF;
-				border-bottom:1px solid #CCCCCC;
-			}
-			.leftColumnContent{
-				color:#505050;
-				font-family:Whitney, Helvetica;
-				font-size:14px;
-				line-height:150%;
-				padding-top:0;
-				padding-right:0;
-				padding-bottom:20px;
-				padding-left:0;
-				text-align:left;
-			}
-			.leftColumnContent a:link, .leftColumnContent a:visited, .leftColumnContent a .yshortcuts {
-				color:#36C;
-				font-weight:normal;
-				text-decoration:underline;
-			}
-			.rightColumnContent{
-				color:#505050;
-				font-family:Whitney, Helvetica;
-				font-size:14px;
-				line-height:150%;
-				padding-top:0;
-				padding-right:0;
-				padding-bottom:20px;
-				padding-left:0;
-				text-align:left;
-			}
-			.rightColumnContent a:link, .rightColumnContent a:visited, .rightColumnContent a .yshortcuts {
-				color:#36C;
-				font-weight:normal;
-				text-decoration:underline;
-			}
-			.leftColumnContent img, .rightColumnContent img{
-				display:inline;
-				height:auto;
-				max-width:260px;
-			}
-			#templateFooter{
-				background-color:#F4F4F4;
-				border-top:1px solid #FFFFFF;
-			}
-			.footerContent{
-				color:#808080;
-				font-family:Whitney, Helvetica;
-				font-size:10px;
-				line-height:150%;
-				padding-top:20px;
-				padding-right:20px;
-				padding-bottom:20px;
-				padding-left:20px;
-				text-align:left;
-			}
-			.footerContent a:link, .footerContent a:visited, .footerContent a .yshortcuts, .footerContent a span {
-				color:#606060;
-				font-weight:normal;
-				text-decoration:underline;
-			}
+      @font-face {
+        font-family: Whitney;
+        src: url('<%= asset_url "fonts/Whitney-Book-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
+      }
+      @font-face {
+        font-family: Whitney;
+        font-weight: bold;
+        src: url('<%= asset_url "fonts/Whitney-Medium-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
+      }
+      @font-face {
+        font-family: Whitney;
+        font-weight: 100;
+        src: url('<%= asset_url "fonts/Whitney-Light-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
+      }
+      @font-face {
+        font-family: Whitney;
+        font-weight: 600;
+        src: url('<%= asset_url "fonts/Whitney-Semibold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
+      }
+      @font-face {
+        font-family: Whitney;
+        font-weight: 800;
+        src: url('<%= asset_url "fonts/Whitney-Bold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
+      }
+      #outlook a{padding:0;}
+      .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+      .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+      body, table, td, p, a, li, blockquote, div {
+        -webkit-text-size-adjust:100%;
+        -ms-text-size-adjust:100%;
+        font-family:Whitney, Helvetica;
+      }
+      table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
+      img{-ms-interpolation-mode:bicubic;}
+      body{margin:0; padding:0;}
+      img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+      table{border-collapse:collapse !important;}
+      body, #bodyTable, #bodyCell{height:100% !important; margin:0; padding:0; width:100% !important;}
+      #bodyCell{padding:20px;}
+      #templateContainer{width:600px;}
+      body, #bodyTable{
+        background-color:#DEE0E2;
+      }
+      #bodyCell{
+        border-top:4px solid #BBBBBB;
+      }
+      #templateContainer{
+        border:1px solid #BBBBBB;
+      }
+      h1{
+        color:#202020 !important;
+        display:block;
+        font-family:Whitney, Helvetica;
+        font-size:26px;
+        font-style:normal;
+        font-weight:bold;
+        line-height:100%;
+        letter-spacing:normal;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+      h2{
+        color:#404040 !important;
+        display:block;
+        font-family:Whitney, Helvetica;
+         font-size:20px;
+         font-style:normal;
+         font-weight:bold;
+         line-height:100%;
+         letter-spacing:normal;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+         text-align:left;
+      }
+      h3{
+        color:#606060 !important;
+        display:block;
+        font-family:Whitney, Helvetica;
+        font-size:16px;
+        font-style:italic;
+        font-weight:normal;
+        line-height:100%;
+        letter-spacing:normal;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+      h4{
+        color:#808080 !important;
+        display:block;
+        font-family:Whitney, Helvetica;
+        font-size:14px;
+        font-style:italic;
+        font-weight:normal;
+        line-height:100%;
+        letter-spacing:normal;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        text-align:left;
+      }
+      #templatePreheader{
+        background-color:#F4F4F4;
+        border-bottom:1px solid #CCCCCC;
+      }
+      .preheaderContent{
+        color:#808080;
+        font-family:Whitney, Helvetica;
+        font-size:10px;
+        line-height:125%;
+        text-align:left;
+      }
+      .preheaderContent a:link, .preheaderContent a:visited, .preheaderContent a .yshortcuts {
+        color:#606060;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+      #templateHeader{
+        background-color:#F4F4F4;
+        border-top:1px solid #FFFFFF;
+        border-bottom:1px solid #CCCCCC;
+      }
+      .headerContent{
+        color:#505050;
+        font-family:Whitney, Helvetica;
+        font-size:20px;
+        font-weight:bold;
+        line-height:100%;
+        padding-top:0;
+        padding-right:0;
+        padding-bottom:0;
+        padding-left:0;
+        text-align:left;
+        vertical-align:middle;
+      }
+      .headerContent a:link, .headerContent a:visited, .headerContent a .yshortcuts {
+        color:#36C;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+      #headerImage{
+        height:auto;
+        max-width:600px;
+      }
+      #templateBody{
+        background-color:#F4F4F4;
+        border-top:1px solid #FFFFFF;
+        border-bottom:1px solid #CCCCCC;
+      }
+      .bodyContent{
+        color:#505050;
+        font-family:Whitney, Helvetica;
+        font-size:16px;
+        line-height:150%;
+        padding-top:20px;
+        padding-right:20px;
+        padding-bottom:20px;
+        padding-left:20px;
+        text-align:left;
+      }
+      .bodyContent a:link, .bodyContent a:visited, .bodyContent a .yshortcuts {
+        color:#36C;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+      .bodyContent img{
+        display:inline;
+        height:auto;
+        max-width:560px;
+      }
+      .templateColumnContainer{display:inline; width:260px;}
+      #templateColumns{
+        background-color:#F4F4F4;
+        border-top:1px solid #FFFFFF;
+        border-bottom:1px solid #CCCCCC;
+      }
+      .leftColumnContent{
+        color:#505050;
+        font-family:Whitney, Helvetica;
+        font-size:14px;
+        line-height:150%;
+        padding-top:0;
+        padding-right:0;
+        padding-bottom:20px;
+        padding-left:0;
+        text-align:left;
+      }
+      .leftColumnContent a:link, .leftColumnContent a:visited, .leftColumnContent a .yshortcuts {
+        color:#36C;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+      .rightColumnContent{
+        color:#505050;
+        font-family:Whitney, Helvetica;
+        font-size:14px;
+        line-height:150%;
+        padding-top:0;
+        padding-right:0;
+        padding-bottom:20px;
+        padding-left:0;
+        text-align:left;
+      }
+      .rightColumnContent a:link, .rightColumnContent a:visited, .rightColumnContent a .yshortcuts {
+        color:#36C;
+        font-weight:normal;
+        text-decoration:underline;
+      }
+      .leftColumnContent img, .rightColumnContent img{
+        display:inline;
+        height:auto;
+        max-width:260px;
+      }
+      #templateFooter{
+        background-color:#F4F4F4;
+        border-top:1px solid #FFFFFF;
+      }
+      .footerContent{
+        color:#808080;
+        font-family:Whitney, Helvetica;
+        font-size:10px;
+        line-height:150%;
+        padding-top:20px;
+        padding-right:20px;
+        padding-bottom:20px;
+        padding-left:20px;
+        text-align:left;
+      }
+      .footerContent a:link, .footerContent a:visited, .footerContent a .yshortcuts, .footerContent a span {
+        color:#606060;
+        font-weight:normal;
+        text-decoration:underline;
+      }
       @media only screen and (max-width: 480px){
-				body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;}
-				body{width:100% !important; min-width:100% !important;}
-				#bodyCell{padding:10px !important;}
-				#templateContainer{
-					max-width:600px !important;
-				  width:100% !important;
-				}
-				h1 {
-					font-size:24px !important;
-					line-height:100% !important;
-				}
-				h2 {
-					font-size:20px !important;
-					line-height:100% !important;
-				}
-				h3 {
-					font-size:18px !important;
-					line-height:100% !important;
-				}
-				h4 {
-					font-size:16px !important;
-					line-height:100% !important;
-				}
-				#templatePreheader{display:none !important;}
-				#headerImage{
-					height:auto !important;
-					max-width:600px !important;
-					width:100% !important;
-				}
-				.headerContent{
-					font-size:20px !important;
-					line-height:125% !important;
-				}
-				#bodyImage{
-					height:auto !important;
-					max-width:560px !important;
-					width:100% !important;
-				}
-				.bodyContent{
-					font-size:18px !important;
-					line-height:125% !important;
-				}
-				.templateColumnContainer{display:block !important; width:100% !important;}
-				.columnImage{
-					height:auto !important;
-					max-width:260px !important;
-					width:100% !important;
-				}
-				.leftColumnContent{
-					font-size:16px !important;
-					line-height:125% !important;
-				}
-				.rightColumnContent{
-					font-size:16px !important;
-					line-height:125% !important;
-				}
-				.footerContent{
-					font-size:14px !important;
-					line-height:115% !important;
-				}
-				.footerContent a{display:block !important;}
-			}
-		</style>
+        body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:none !important;}
+        body{width:100% !important; min-width:100% !important;}
+        #bodyCell{padding:10px !important;}
+        #templateContainer{
+          max-width:600px !important;
+          width:100% !important;
+        }
+        h1 {
+          font-size:24px !important;
+          line-height:100% !important;
+        }
+        h2 {
+          font-size:20px !important;
+          line-height:100% !important;
+        }
+        h3 {
+          font-size:18px !important;
+          line-height:100% !important;
+        }
+        h4 {
+          font-size:16px !important;
+          line-height:100% !important;
+        }
+        #templatePreheader{display:none !important;}
+        #headerImage{
+          height:auto !important;
+          max-width:600px !important;
+          width:100% !important;
+        }
+        .headerContent{
+          font-size:20px !important;
+          line-height:125% !important;
+        }
+        #bodyImage{
+          height:auto !important;
+          max-width:560px !important;
+          width:100% !important;
+        }
+        .bodyContent{
+          font-size:18px !important;
+          line-height:125% !important;
+        }
+        .templateColumnContainer{display:block !important; width:100% !important;}
+        .columnImage{
+          height:auto !important;
+          max-width:260px !important;
+          width:100% !important;
+        }
+        .leftColumnContent{
+          font-size:16px !important;
+          line-height:125% !important;
+        }
+        .rightColumnContent{
+          font-size:16px !important;
+          line-height:125% !important;
+        }
+        .footerContent{
+          font-size:14px !important;
+          line-height:115% !important;
+        }
+        .footerContent a{display:block !important;}
+      }
+    </style>
     </head>
     <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;margin: 0;padding: 0;background-color: #DEE0E2;height: 100% !important;width: 100% !important;">
       <center>

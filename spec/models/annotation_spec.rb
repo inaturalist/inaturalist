@@ -3,20 +3,24 @@ require "spec_helper.rb"
 describe Annotation do
   elastic_models( ControlledTerm )
 
-  it "validates presence of resource" do
-    expect{ Annotation.make!(resource: nil) }.to raise_error(
-      ActiveRecord::RecordInvalid, /Resource can't be blank/)
+  it { is_expected.to belong_to :resource }
+  it { is_expected.to belong_to(:controlled_attribute).class_name "ControlledTerm" }
+  it { is_expected.to belong_to(:controlled_value).class_name "ControlledTerm" }
+  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :observation_field_value }
+
+  it { is_expected.to validate_presence_of :resource }
+  it { is_expected.to validate_presence_of :controlled_attribute }
+
+  it do
+    is_expected.to validate_uniqueness_of(:controlled_value_id)
+                     .scoped_to :resource_type, :resource_id, :controlled_attribute_id
   end
 
   it "validates existence of resource" do
     expect{
       Annotation.make!(resource: nil, resource_type: "Observation", resource_id: 9999)
     }.to raise_error(ActiveRecord::RecordInvalid, /Resource can't be blank/)
-  end
-
-  it "validates presence of controlled_attribute_id" do
-    expect{ Annotation.make!(controlled_attribute: nil) }.to raise_error(
-      ActiveRecord::RecordInvalid, /Controlled attribute can't be blank/)
   end
 
   it "validates attribute is an attribute" do
@@ -43,7 +47,6 @@ describe Annotation do
   it "validates attribute belongs to taxon" do
     animalia = Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM)
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS)
-    AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTermTaxon.make!( taxon: mammalia ).controlled_term
     ctv = ControlledTermValue.make!(controlled_attribute: atr)
@@ -59,7 +62,6 @@ describe Annotation do
   it "validates value belongs to taxon" do
     animalia = Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM)
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS)
-    AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTerm.make!
     val = ControlledTerm.make!( is_value: true )
@@ -72,23 +74,6 @@ describe Annotation do
         controlled_value: val
       )
     }.to raise_error(ActiveRecord::RecordInvalid, /Controlled value must belong to taxon/)
-  end
-
-  it "validates uniqueness of controlled_value within resource and attribute" do
-    atr = ControlledTerm.make!
-    val = ControlledTerm.make!(is_value: true)
-    atr.controlled_term_values.create(controlled_value: val)
-    original = Annotation.make!(
-      controlled_attribute: atr,
-      controlled_value: val
-    )
-    expect{
-      Annotation.make!(
-        resource: original.resource,
-        controlled_attribute: atr,
-        controlled_value: val
-      )
-    }.to raise_error(ActiveRecord::RecordInvalid, /Controlled value has already been taken/)
   end
 
   it "validates against presence of another annotation of a blocking value" do
@@ -253,24 +238,24 @@ describe Annotation do
     end
     describe "changing the observation taxon" do
       it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
-        @observation.update_attributes( taxon: Taxon.make!, editing_user_id: @observation.user_id )
+        @observation.update( taxon: Taxon.make!, editing_user_id: @observation.user_id )
         expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
       end
       it "should not happen if the taxon is still a descendant of the controlled term taxon" do
-        @observation.update_attributes( taxon: @species )
+        @observation.update( taxon: @species )
         expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
       end
     end
     describe "moving the observation taxon" do
       it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
         other_family = Taxon.make!( rank: Taxon::FAMILY )
-        @observation.taxon.update_attributes( parent: other_family )
+        @observation.taxon.update( parent: other_family )
         Delayed::Worker.new.work_off
         expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
       end
       it "should not happen if the taxon is still a descendant of the controlled term taxon" do
         subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
-        @observation.taxon.update_attributes( parent: subfamily )
+        @observation.taxon.update( parent: subfamily )
         Delayed::Worker.new.work_off
         expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
       end

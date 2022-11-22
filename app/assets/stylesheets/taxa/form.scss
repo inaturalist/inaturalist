@@ -1,0 +1,71 @@
+.taxon_photo {width:205px; height: 260px; float:left; margin: 0 10px 10px 0; cursor:move; border: 1px solid #eee; padding:10px;}
+.taxon_photo img {max-width:100%;}
+.taxon_photo.sorttarget {width:203px; height:256px;border: 3px dashed #aaa;border-radius: 10px;}
+#parent_name {
+  margin-top: 0;
+  margin-left: 0;
+  width: 300px;
+}
+textarea {margin: 0;}
+fieldset.column {margin-bottom: 1em;}
+.taxon_name_fields {margin-bottom: 1em;border-bottom: 1px solid #ccc;}
+#summary_refresh_loading {display: inline;}
+.conservation_status input.text {width: 400px;}
+.conservation_status .description_field input.text,
+.conservation_status .url_field input.text {width: 800px;}
+.taxon_photo {position:relative;}
+#taxon_photos input.sortable-position {
+  position:absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 500px;
+  font-weight: bold;
+  line-height:0;
+  display:inline-block;
+  width:auto;
+  border: 0 transparent;
+  width:1.2em;
+  text-align:center;
+  background-color: white;
+  color: #333;
+  margin-bottom:0;
+  font-size: 90%;
+}
+#taxon_photos .position_field {margin: 0;}
+.audit_comment_field textarea {
+  width: 100%;
+  height: 3em;
+}
+
+.jqmWindow {
+  display: none;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-left: -350px;
+  width: 700px;
+  background-color: #EEE;
+  color: #333;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.jqmOverlay { background-color: #000; }
+
+.potential_clashes {
+  margin-bottom: 10px;
+  display:  none;
+}
+
+td.fig20 {
+  width: 20%
+}
+td.fig10 {
+  width: 10%
+}
+
+#conservation_statuses {
+  table {
+    width: 100%;
+  }
+}

@@ -1,8 +1,8 @@
-class ObservationFieldValue < ActiveRecord::Base
+class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   
-  belongs_to :observation, :inverse_of => :observation_field_values
+  belongs_to_with_uuid :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
   has_updater
@@ -41,8 +41,6 @@ class ObservationFieldValue < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|record, subscribable| 
     record.user_id != subscribable.user_id
   }
-
-  attr_accessor :updater_user_id
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -96,12 +94,11 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def set_user
-    if updater_user_id
-      self.user_id ||= updater_user_id
-      self.updater_id = updater_user_id
+    if updater
+      self.user ||= updater
     elsif observation
-      self.user_id ||= observation.user_id
-      self.updater_id ||= user_id
+      self.user ||= observation.user
+      self.updater ||= user
     end
     true
   end
@@ -152,9 +149,13 @@ class ObservationFieldValue < ActiveRecord::Base
   end
   
   def validate_observation_field_allowed_values
+    return true unless observation_field
+
     return true if observation_field.allowed_values.blank?
+
     return true unless observation_field.datatype === ObservationField::TEXT
-    values = observation_field.allowed_values.split('|').map(&:downcase)
+
+    values = observation_field.allowed_values.split( "|" ).map( &:downcase )
     unless values.include?(value.to_s.downcase)
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
@@ -198,12 +199,18 @@ class ObservationFieldValue < ActiveRecord::Base
   def create_annotation
     attr_val = annotation_attribute_and_value
     return if attr_val.blank?
-    Annotation.create!(observation_field_value: self,
+    a = Annotation.create(
+      observation_field_value: self,
       resource: observation,
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at) rescue nil
+      created_at: created_at
+    )
+    unless a.persisted?
+      Rails.logger.error "[ERROR] Failed to created annotation for #{self}: #{a.errors.full_messages.to_sentence}"
+    end
+    a
   end
 
   def annotation_attribute_and_value
@@ -244,6 +251,34 @@ class ObservationFieldValue < ActiveRecord::Base
     elsif observation_field.name.downcase == "roadkill" && value == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Alive or Dead" )
       controlled_value = ControlledTerm.first_term_by_label( "Dead" )
+    elsif observation_field.name =~ /animal sign/i
+      value_term_label = case value.downcase
+      when "tracks"
+        "track"
+      when "scat"
+        "scat"
+      when "bone", "bones"
+        "bone"
+      when "fur/feathers"
+        "feather"
+      when "shed skin"
+        "molt"
+      end
+      return unless value_term_label
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( value_term_label )
+    elsif observation_field.name.downcase === "scat/excreta" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "scat?" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "scat" )
+    elsif observation_field.name.downcase === "bone(s)" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "bone" )
+    elsif observation_field.name.downcase === "tracks" && value.downcase == "yes"
+      controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
+      controlled_value = ControlledTerm.first_term_by_label( "track" )
     end
     return unless controlled_attribute && controlled_value
     { controlled_attribute: controlled_attribute,
@@ -296,7 +331,7 @@ class ObservationFieldValue < ActiveRecord::Base
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
       next if !taxon_change.automatable_for_output?( output_taxon.id )
-      ofv.update_attributes( value: output_taxon.id )
+      ofv.update( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end
     Observation.elastic_index!( ids: obs_ids.to_a )

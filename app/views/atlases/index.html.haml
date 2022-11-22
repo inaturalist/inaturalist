@@ -1,9 +1,9 @@
 :ruby
   if @taxon
-    @taxon.html = render( partial: "taxa/chooser.html.erb", object: @taxon )
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon )
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon )
     taxon
   end
 - content_for :extrahead do
@@ -47,8 +47,8 @@
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon_including_descendants)
         = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
-        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :either ), selected: @is_active, label: t( :active )
-        = f.select :is_marked, [t( :true ), t( :false )], include_blank: t( :either ), selected: @is_marked, label: t( :marked )
+        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :any_ ), selected: @is_active, label: t( :active )
+        = f.select :is_marked, [t( :true ), t( :false )], include_blank: t( :any_ ), selected: @is_marked, label: t( :marked )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), atlases_url, class: "minor button"
     .col-xs-9

@@ -56,13 +56,14 @@ h1 {
   max-width: 100%;
 }
 
-#significant-dates {
+#user-subheader {
   i {
     color: #555;
     margin-right: 3px;
   }
-  .date {
+  > span {
     margin-right: 20px;
+    a { color: #333; }
   }
   .monthly-supporter,
   .monthly-supporter a {

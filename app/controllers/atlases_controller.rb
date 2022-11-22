@@ -1,9 +1,9 @@
 class AtlasesController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :curator_required, :only => [:new, :create, :edit, :update,
+  before_action :authenticate_user!
+  before_action :curator_required, :only => [:new, :create, :edit, :update,
     :destroy, :alter_atlas_presence, :destroy_all_alterations, :remove_atlas_alteration,
     :remove_listed_taxon_alteration, :refresh_atlas]
-  before_filter :find_atlas, except: [ :new, :create, :index ]
+  before_action :find_atlas, except: [ :new, :create, :index ]
   layout "bootstrap"
 
   def new
@@ -23,12 +23,10 @@ class AtlasesController < ApplicationController
     @exploded_places_json = @exploded_places.to_json
     
     #any obs outside of the atlas
-    @observations_not_in_atlas_places_params = { 
+    @observations_not_in_atlas_places_params = Atlas::NOT_IN_ATLAS_PARAMS.merge( { 
       taxon_id: @atlas.taxon_id, 
-      quality_grade: ["research","needs_id"].join( "," ),
-      geoprivacy: ["open,obscured"].join( "," ),
       not_in_place: @atlas_presence_places_with_establishment_means.map{|p| p[:id] }.join( "," )
-    }
+    } )
     @num_obs_not_in_atlas_places = INatAPIService.observations( @observations_not_in_atlas_places_params.merge( per_page: 0 ) ).total_results
     respond_to do |format|
       format.html do
@@ -81,7 +79,7 @@ class AtlasesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @atlas.update_attributes( params[:atlas] )
+      if @atlas.update( params[:atlas] )
         @atlas.taxon
         format.html { redirect_to( @atlas, notice: "Atlas was successfully updated." ) }
       else
@@ -107,14 +105,14 @@ class AtlasesController < ApplicationController
     taxon = Taxon.find( taxon_id )
     lts = taxon.atlas.get_atlas_presence_place_listed_taxa( place_id )
     error = nil
+    presence = "not allowed"
     if lts.count > 0
       lts.each do |lt|
         lt.updater = current_user
         lt.destroy
       end
       presence = false
-    else
-      list = place.check_list
+    elsif ( list = place.check_list )
 
       # If there are other potentially relevant comprehensive lists, those
       # need to be added to as well otherwise the validation for our new
@@ -144,6 +142,8 @@ class AtlasesController < ApplicationController
       else
         presence = true
       end
+    else
+      error = "#{place.display_name} has no check list"
     end
 
 

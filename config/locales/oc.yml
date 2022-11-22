@@ -57,22 +57,21 @@ oc:
   #Header for a section describing taxon names
   about_names: A prepaus dels noms
   about_places: A prepaus dels luòcs
-  about_the_cc_licenses: A prepaus de las licéncias Creative Commons
-  about_these_licenses: A prepaus d'aquestas licéncias
   about_this_map: A prepaus d'aquesta mapa
   about_this_project: A prepaus d'aqueste projècte
-  about_x: "A prepaus de %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Exactitud (mètres)'
   account: Compte
-  accept: acceptar
   accept_community_identifications: Acceptar las identificacions de la comunautat
   accuracy: Precision
   accuracy_meters: Precision (mètres)
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Accion
   actions: Accions
   active: actiu
   activity: Activitat
-  activity_settings: Paramètres d’activitat
   adapted_by_name_from_a_work_by_original: "Adaptat per %{name} d’aprèp un trabalh de %{original}"
   add: Apondre
   add_a_batch_of_observations: Apondre un lòt d’observacions
@@ -87,7 +86,6 @@ oc:
   add_an_assessment: Apondre una avaloracion
   add_an_identification: Apondre una identificacion
   add_an_observation: Apondre una observacion
-  add_an_observation?: Apondre una observacion ?
   add_an_observation_of: "Apondre una observacion sus %{taxon}"
   add_another_flag: Apondre una autra marca
   add_another_photo: Apondre una autra fòto
@@ -99,7 +97,6 @@ oc:
   add_comma_separated_tags: "Apondre de balisas separadas per de virgulas"
   add_comment: Apondre un comentari
   add_conservation_status: apondre l’estat de conservacion
-  add_countries: Apondre de païses
   add_custom_project_fields: Apondètz de camps de projècte personalizats
   add_edit_flags: Apondre / editar d'etiquetas
   add_description: "Apondre %{description_name}"
@@ -136,7 +133,6 @@ oc:
   add_to_favorites: Apondre als favorits
   add_to_list: Apondre a la lista
   add_to_project: Apondre al projècte
-  add_to_your_life_list: Apondre a vòstra lista viventa !
   add_to_your_list: Apondre a vòstra lista
   add_your_own_observations_at: "Apondètz vòstras pròprias observacions a %{site_name}"
   added: Apondut
@@ -216,8 +212,6 @@ oc:
   all_taxa_in_this_guide: Autres taxons dins aqueste guida
   all_taxonomic_groups: "&laquo; Totes los gropes taxonomics"
   all_updates: Totas las mesas a jorn
-  #Option to allow any taxa on a list
-  allow_any: Autorizar tot
   allowed_establish_means_values: Valors mejanas determinadas autorizadas
   allowed_html: HTML autorizat
   allowed_occurrence_status_values: Valors d’estat d’ocurréncia autorizadas
@@ -229,6 +223,10 @@ oc:
   and_other_taxa: "&amp; Autres taxons"
   annotations: Anotacions
   announcements: Anoncis
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
   any: totes
   apply_to_selected: Aplicar a la seleccion
   apply_captive_cultivated: "Aplicar captiu / cultivat"
@@ -261,8 +259,6 @@ oc:
   authorize_permissions_from_provider: "Autorizar los accèsses dempuèi %{provider}"
   back: Retorn
   back_to_all_species: Tornar a totas las espècias
-  back_to_browsing_people: Retorn a la navigacion entre las personas
-  back_to_calendar: "Retorn al calendièr de %{user}"
   back_to_editing_observation: Retorn a la modificacion d’observacion
   back_to_lists: "Retorn a las listas %{name}"
   back_to_observation: Retorn a l’observacion
@@ -282,9 +278,9 @@ oc:
   back_to_your_journal: Retorn a vòstre jornal
   back_to_your_observations: Retorn a vòstras observacions
   back_to_your_profile: Retorn a vòstre perfil
-  back_to_your_projects: Retorn a vòstres projèctes
   batch: Lòt
   batch_edit: Moditicacion del lòt
+  #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Lòt de modificacions de taxons per %{x}"
   batch_operations: Operacions per lòt
   before_importing_photos: abans d’importar de fòtos
@@ -295,7 +291,6 @@ oc:
   blue: blau
   blue_butterfly_etc: "blau, parpalhòl, etc."
   body: Còs
-  bounding_box: Bóstia englobanta
   breadcrumbs: Pista de navigacion
   brown: brun
   browse: Percórrer
@@ -321,6 +316,7 @@ oc:
   cc_by_nd_name: Atribucion Sens derivats
   cc_by_sa_name: Atribucion Partejada a l’identic
   cc_used_under_a: "Creative Commons, utilizat jos un"
+  #Button to change the cover (or banner) image for a project
   change_cover: Modificar la tampa
   change_descriptions:
     stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
@@ -368,13 +364,16 @@ oc:
   code: Còdi
   columns: Colomnas
   combine: Combinar
+  #Noun, used to label a comment or a comment field in a form
   comment: comentari
   comment_deleted: Comentari suprimit
   comments: Comentaris
   comments_by_me: Mos comentaris
-  comments_on: Comentaris sus
+  #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Validar
+  #Adjective describing a taxon change that has been committed
   committed: Validat
+  #Status message while a taxon change is being committed
   committing: Validacion en cors…
   compare_with: Comparar amb
   comparing: comparason
@@ -392,6 +391,7 @@ oc:
   confirm: Confirmar
   confirm_now: Confirmar ara
   connect_to_provider: "Se connectar a %{provider}"
+  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
   connected_accounts: Comptes connectats
   connecting_flickr: "Connexion a Flickr…"
   connecting_to_facebook: "Connexion a Facebook…"
@@ -406,7 +406,6 @@ oc:
     copyright: dreit d’autor
     attribution_license: Licéncia Atribucion
     gnu_free_documentation_license: Licéncia Documentacion liura GNU
-  countries: Païses
   create: Crear
   create_a_guide: Crear un guida
   create_a_new_field: Crear un camp novèl
@@ -462,7 +461,9 @@ oc:
   date_picker:
     closeText: Tampar
     currentText: Uèi
+    #Contextual help for a button navigating to the previous month in a date picker
     prevText: Precedent
+    #Contextual help for a button navigating to the next month in a date picker
     nextText: Seguent
   date_time: Data/Ora
   day: Jorn
@@ -513,7 +514,6 @@ oc:
   edit_taxon: Modificar lo taxon
   edited_by_name_html: "Modificat per %{name}"
   editing: Modificacion
-  either: Siá
   email: Corrièr electronic
   email_address_for_comments_and_other_feedback: Adreça electronica pels comentaris
   email_copyright: "Copyright &copy; %{x}, totes los dreits reservats"
@@ -536,11 +536,9 @@ oc:
   event_stats: Estatisticas de l'eveniment
   event_url: URL de l’activitat
   events_only: Eveniments unicament
-  every_species_seen_by: Cada espècia vista per
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
-  exact_location: Emplaçament exacte
   exact_rank: Reng exacte
   existing_flags: Bandièras existentas
   exit_full_screen: "Sortir del mòde ecran complet"
@@ -582,7 +580,6 @@ oc:
   flag_as_spammer: Marcar coma productor de spam
   flag_as_non_spammer: Marcar coma non productor de spam
   flag_it!: Lo marcar !
-  flagged: a senhalat
   flagger: Marcador
   flags: Bandièras
   flickr_identity: Identitat Flickr
@@ -626,7 +623,6 @@ oc:
   heads_up: Avertiment
   help: Ajuda
   hex_color_eg: Color en exadecimal, ex. 65644F
-  hi: Bonjorn,
   hi_user: "Bonjorn %{user}"
   high: naut
   history: Istoric
@@ -638,14 +634,14 @@ oc:
   identify_observations: "Identificar las observacions"
   identify_title: "Identificar"
   identification: identificacion
+  #Notification when an identification has been deleted
   identification_deleted: identificacion suprimida.
   identification_saved: "Identificacion enregistrada !"
   identifications: Identificacions
-  identifications_by: "Identificacions per %{user}"
   identifiers: Identificants
   identotron_for: Identotron per
   identotron_help: Ajuda de l’Identotron
-  ignore: ignorar
+  #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: En perilh
   import: Importar
   import_all_photos_as_observations: Importar totas las fòtos coma d'observacions
@@ -667,9 +663,7 @@ oc:
   introduced: introduït
   invitation: Convit
   invite: convidar
-  invite_more: Convidar mai
   invited_x: "%{x} convidat"
-  is_now: es ara
   join: Jonhètz-vos a
   join_project: Rejonhètz aquel projècte
   'joined!': Junt !
@@ -688,6 +682,7 @@ oc:
   leaderboard_for_x: "Classament per %{x}"
   leaderboards: Classaments
   learn_more: Ne saber mai
+  #Terminal nodes in a taxonomic tree
   leaves: fuèlhas
   lexicon: Lexic
   lexicons:
@@ -770,6 +765,7 @@ oc:
   mark_all_as_unreviewed: Marcar tot coma pas relegit
   media: Mèdia
   medium: mejan
+  #As in members of a project
   members: Membres
   mentioned_you_in_noun_html: "%{user} vos a mencionat dins %{noun}"
   mentioned_you_in_noun_by_html: "%{user} vos a mencionat dins %{noun} per %{by}"
@@ -802,10 +798,8 @@ oc:
   more_observations: Mai d’observacions
   more_photos: Mai de Fòtos
   most_observations: Mai d’observacions
-  must_be_observed_after: |
-    deu èsser observat aprèp %{operand}
-  must_be_observed_before: |
-    deu èsser observat abans %{operand}
+  must_be_observed_after: deu èsser observat aprèp %{operand}
+  must_be_observed_before: deu èsser observat abans %{operand}
   n_ago: "i a %{n}"
   name: Nom
   name_entered: Nom picat
@@ -826,7 +820,6 @@ oc:
   'no': 'Non'
   no_more_taxa_to_load: Mai de taxons de cargar !
   no_results_found: Cap de resultat pas trobat
-  no_species_observed: Cap d'espècias pas observadas.
   none: Pas cap
   not_completed: Incomplet
   not_evaluated: pas avalorat
@@ -870,7 +863,6 @@ oc:
   paste: Pegar
   people: Personas
   person: persona
-  personal_message: Messatge personal
   per_page: "Per pagina"
   photo: Fòto
   photo_deleted: Fòto suprimida
@@ -982,13 +974,11 @@ oc:
     west_africa: Africa occidentala
   plants: plantas
   position: Posicion
-  possessive_user: "de %{user}"
   posted_by: Publicat per
   posts: Nòtas
   powered_by: Optimizat per
   preview: Apercebut
   previewing: "Apercebut en cors…"
-  previous: Precedent
   prev: Prec
   previous_page: Pagina precedenta
   privacy: Politica de confidencialitat
@@ -1049,7 +1039,6 @@ oc:
   reptiles: reptils
   research: recercar
   research_grade: recercar un nivèl
-  results: resultats
   role: Ròtle
   rotate_left: Virar a esquèrra
   rotate_right: Virar a dreita
@@ -1114,6 +1103,7 @@ oc:
   tools: Aisinas
   total: total
   'true': 'Verai'
+  #As in a category, not as in a keyboard
   type: Tipe
   unreview_all: Marcar tot coma pas relegit
   updated_daily: Mes a jorn a cada jorn
@@ -1127,7 +1117,6 @@ oc:
   user_invited_you_to_join_this_project_on_date_html: "%{user} vos a convidat a vos jónher a aqueste projècte lo %{date}"
   username: Nom d'utilizaire
   users_id: "Identificant de %{user}"
-  view_all_n: "Afichar totes los %{n}"
   view_all_observations: Afichar totas las observacions
   view_more: Veire mai
   view_more_unreviewed: "Afichar mai de pas relegits"

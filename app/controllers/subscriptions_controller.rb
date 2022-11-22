@@ -1,9 +1,9 @@
 class SubscriptionsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
-  before_filter :load_resource, only: [:subscribe]
-  before_filter :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
-  before_filter :return_here, :only => [:index]
+  before_action :authenticate_user!
+  before_action :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
+  before_action :load_resource, only: [:subscribe]
+  before_action :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
+  before_action :return_here, :only => [:index]
   
   def index
     @type = params[:type]
@@ -75,7 +75,7 @@ class SubscriptionsController < ApplicationController
   
   def update
     respond_to do |format|
-      if @subscription.update_attributes(params[:subscription])
+      if @subscription.update(params[:subscription])
         format.html do
           flash[:notice] = "Subscription updated."
           return redirect_back_or_default(@subscription.resource)
@@ -128,9 +128,17 @@ class SubscriptionsController < ApplicationController
   end
 
   def load_resource
-    unless @resource = Object.const_get(params[:resource_type]).find_by_id(params[:resource_id]) rescue nil
-      render_404
+    subscribable_classes = Subscription.subscribable_classes
+    resource_type = if subscribable_classes.include?( params[:resource_type] )
+      params[:resource_type]
     end
+    return render_404 unless resource_type
+    klass = Object.const_get( resource_type )
+    if klass.column_names.include?( "uuid" )
+      @resource ||= klass.find_by_uuid( params[:resource_id] ) rescue nil
+    end
+    @resource ||= klass.find_by_id( params[:resource_id] ) rescue nil
+    render_404 unless @resource
   end
   
   def require_owner

@@ -1,5 +1,18 @@
-.edit_site {
+.edit_site,
+.new_site {
   img {
     max-width: 100%;
   }
+  .row {
+    margin-bottom: 20px;
+  }
+  textarea {
+    height: 300px;
+  }
+  legend {
+    padding-bottom: 10px;
+  }
+}
+.edit_site .form-inline .place_id_field {
+  margin-bottom: 0px;
 }

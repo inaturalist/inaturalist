@@ -1,3 +1,6 @@
+- content_for :extracss do
+  = stylesheet_link_tag "flags/new"
+
 #pageheader.column.span-24
   %span.breadcrumbs
     = link_to t(:back_to_x, noun: @object.try_methods( :to_plain_s, :to_s ) ), @object, class: "back crumb"
@@ -8,10 +11,14 @@
   %p= t :flag_description
 = form_for( [@object,  @flag], html: { class: "clear readable buttonrow" } ) do |f|
   = f.label :reason, raw( t(:flag_reason, :record => @model.name.downcase) ), class: "inter"
-  = f.text_field :flag, class: "inter text", maxlength: 255, style: "max-width: 300px;"
+  = f.text_field :flag, required: true, class: "inter text flag-reason-input", maxlength: 255
   %label &rdquo;
+  .description
+    %p{ class: "comment-description" }= t :flag_comment_description
+  = f.label t( :comment ), class: "inter"
+  = f.text_area :initial_comment_body, class: "pull-left initial-comment-body", maxlength: Comment::MAX_LENGTH
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :flaggable_id, value: @object.id
   = f.hidden_field :flaggable_type, value: @model.name
-  = f.submit t(:flag_it!), class: "default button"
+  = f.submit t( :flag_it! ), class: "default button submit-flag-button"
 = render "flag_list", flags: @flags

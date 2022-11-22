@@ -7,13 +7,14 @@ module TaxonDescribers
         xml, genus_name, species_name = data_for_name(names.pop)
       end
       return nil if xml.blank?
-      fake_view.render("amphibia_web", :doc => xml, :genus_name => genus_name, :species_name => species_name)
+      fake_view.render( partial: "/amphibia_web", locals: { doc: xml, genus_name: genus_name, species_name: species_name } )
     end
 
     def data_for_name(name)
       genus_name, species_name = name.split
       url = "https://amphibiaweb.org/cgi/amphib_ws?where-genus=#{genus_name}&where-species=#{species_name}&src=eol"
-      xml = Nokogiri::XML(open(url))
+      response = Net::HTTP.get_response( URI.parse( url ) )
+      xml = Nokogiri::XML( response.body )
       return nil if xml.blank? || xml.children.blank? || xml.at('error')
       [xml, genus_name, species_name]
     end

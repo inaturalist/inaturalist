@@ -1,10 +1,19 @@
 class ProjectObservationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, only: [:update, :destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_action :load_record, only: [:update, :destroy]
   
   def create
-    @project_observation = ProjectObservation.new( project_observation_params_for_create )
+    begin
+      @project_observation = ProjectObservation.new( project_observation_params_for_create )
+    rescue ActionController::ParameterMissing => e
+      respond_to do |format|
+        format.json do
+          render status: :unprocessable_entity, json: { errors: [e.message] }
+        end
+      end
+      return
+    end
     set_curator_coordinate_access
     existing = ProjectObservation.
       where(
@@ -36,10 +45,14 @@ class ProjectObservationsController < ApplicationController
   def update
     respond_to do |format|
       format.json do
-        @project_observation.assign_attributes( project_observation_params_for_update )
+        begin
+          @project_observation.assign_attributes( project_observation_params_for_update )
+        rescue ActionController::ParameterMissing => e
+          render status: :unprocessable_entity, json: { errors: [e.message] }
+          return
+        end
         set_curator_coordinate_access
         if @project_observation.save
-          @project_observation.observation.wait_for_index_refresh = true
           @project_observation.observation.elastic_index!
           render json: @project_observation
         else
@@ -89,9 +102,7 @@ class ProjectObservationsController < ApplicationController
   def project_observation_params_for_create
     params.require(:project_observation).permit(
       :observation_id,
-      :project_id,
-      :preferred_curator_coordinate_access,
-      :prefers_curator_coordinate_access
+      :project_id
     )
   end
 

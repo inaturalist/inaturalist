@@ -1,81 +1,85 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+require "spec_helper.rb"
 
-describe FlickrPhoto, "creation" do
-  
-  before(:each) do
-    setup_flickr_stuff
-  end
-  
-  it "should not save if there is no assoc'd iNat user and the pic isn't CC" do
-    pending_flickr_setup do
-      @non_cc_flickr_photo.user = nil
-      @non_cc_flickr_photo.valid?
-      expect(@non_cc_flickr_photo.errors[:license]).to be_blank
+describe FlickrPhoto do
+  it { is_expected.to validate_presence_of :native_photo_id }
+
+  describe FlickrPhoto, "creation" do
+
+    before(:each) do
+      setup_flickr_stuff
     end
-  end
-  
-  it "should make a valid FlickrPhoto from a flickraw response" do
-    expect(FlickrPhoto.new_from_flickraw( @cc_flickr_photo_response, user: @user ) ).to be_valid
-  end
-  
-  it "should not be valid if the associated user didn't take the photo" do
-    expect(FlickrPhoto.new_from_api_response( @cc_flickr_photo_response, user: User.make! ) ).not_to be_valid
-  end
-end
 
-describe FlickrPhoto, "updating" do
-  elastic_models( Observation )
-
-  before(:each) do
-    setup_flickr_stuff
-  end
-
-  it "should be valid if flickr identity blank but past observations exist" do
-    pending_flickr_setup do
-      o = Observation.make!(:user => @user)
-      o.photos << @cc_flickr_photo
-      @user.flickr_identity.destroy
-      @cc_flickr_photo.reload
-      expect(@cc_flickr_photo).to be_valid
+    it "should not save if there is no assoc'd iNat user and the pic isn't CC" do
+      pending_flickr_setup do
+        @non_cc_flickr_photo.user = nil
+        @non_cc_flickr_photo.valid?
+        expect(@non_cc_flickr_photo.errors[:license]).to be_blank
+      end
     end
-  end
-end
 
-describe FlickrPhoto, "to_observation" do
-  before(:all) do
-    load_test_taxa
-  end
-  
-  before(:each) do
-    setup_flickr_stuff
-  end
-  
-  it "should create a valid observation" do
-    pending_flickr_setup do
-      expect(@cc_flickr_photo.to_observation).to be_valid
+    it "should make a valid FlickrPhoto from a flickraw response" do
+      expect(FlickrPhoto.new_from_flickraw( @cc_flickr_photo_response, user: @user ) ).to be_valid
     end
-  end
-end
 
-describe FlickrPhoto, "to_taxon" do
-  before {setup_flickr_stuff}
-  it "should use the title" do
-    pending_flickr_setup do
-      t = Taxon.make!
-      @flickr_photo_hash["title"] = t.name
-      r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
-      fp = FlickrPhoto.new_from_api_response(r)
-      expect(fp.to_taxon).to eq t
+    it "should not be valid if the associated user didn't take the photo" do
+      expect(FlickrPhoto.new_from_api_response( @cc_flickr_photo_response, user: User.make! ) ).not_to be_valid
     end
   end
 
-  it "should parse a parenthesized taxon name out of the title" do
-    pending_flickr_setup do
-      tn = TaxonName.make!
-      @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
-      r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
-      fp = FlickrPhoto.new_from_api_response(r)
-      expect(fp.to_taxon).to eq tn.taxon
+  describe FlickrPhoto, "updating" do
+    elastic_models( Observation )
+
+    before(:each) do
+      setup_flickr_stuff
+    end
+
+    it "should be valid if flickr identity blank but past observations exist" do
+      pending_flickr_setup do
+        o = Observation.make!(:user => @user)
+        o.photos << @cc_flickr_photo
+        @user.flickr_identity.destroy
+        @cc_flickr_photo.reload
+        expect(@cc_flickr_photo).to be_valid
+      end
+    end
+  end
+
+  describe FlickrPhoto, "to_observation" do
+    before(:all) do
+      load_test_taxa
+    end
+
+    before(:each) do
+      setup_flickr_stuff
+    end
+
+    it "should create a valid observation" do
+      pending_flickr_setup do
+        expect(@cc_flickr_photo.to_observation).to be_valid
+      end
+    end
+  end
+
+  describe FlickrPhoto, "to_taxon" do
+    before {setup_flickr_stuff}
+    it "should use the title" do
+      pending_flickr_setup do
+        t = Taxon.make!
+        @flickr_photo_hash["title"] = t.name
+        r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+        fp = FlickrPhoto.new_from_api_response(r)
+        expect(fp.to_taxon).to eq t
+      end
+    end
+
+    it "should parse a parenthesized taxon name out of the title" do
+      pending_flickr_setup do
+        tn = TaxonName.make!
+        @flickr_photo_hash['title'] = "#{tn.name} (#{tn.taxon.name})"
+        r = FlickRaw::Response.build(@flickr_photo_hash, "photo")
+        fp = FlickrPhoto.new_from_api_response(r)
+        expect(fp.to_taxon).to eq tn.taxon
+      end
     end
   end
 end

@@ -1,5 +1,5 @@
 <%- place ||= autocomplete_item || @place -%>
-<%= t("places_name.#{place.display_name.gsub(' ','_').downcase}", :default => place.display_name) %>
+<%= place.translated_name( I18n.locale, default: place.display_name ) %>
 <% unless place.place_type_name.blank? -%>
   <span class="small meta"><%= t("place_geo.geo_planet_place_types." + place.place_type_name.gsub(' ','_'), :default => place.place_type_name) %></span>
 <% end -%>

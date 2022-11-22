@@ -1,10 +1,12 @@
 #encoding: utf-8
 class PhotosController < ApplicationController
-  before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
-  before_filter :require_owner, :only => [:update, :destroy, :rotate]
-  before_filter :authenticate_user!, :only =>
-    [:inviter, :update, :destroy, :repair, :rotate, :fix, :repair_all, :create]
-  before_filter :return_here, :only => [:show, :invite, :inviter, :fix]
+  before_action :doorkeeper_authorize!, only: [:update],
+    if: lambda { authenticate_with_oauth? }
+  before_action :load_record, :only => [:show, :update, :repair, :destroy, :rotate]
+  before_action :require_owner, :only => [:update, :destroy, :rotate]
+  before_action :authenticate_user!, except: [:show],
+    unless: lambda { authenticated_with_oauth? }
+  before_action :return_here, :only => [:show, :invite, :inviter, :fix]
 
   cache_sweeper :photo_sweeper, :only => [:update, :repair]
   
@@ -31,12 +33,28 @@ class PhotosController < ApplicationController
   end
   
   def update
-    if @photo.update_attributes(params[:photo])
-      flash[:notice] = t(:updated_photo)
+    if @photo.update( photo_params( params[:photo] ) )
+      respond_to do |format|
+        format.html do
+          flash[:notice] = t(:updated_photo)
+          redirect_to @photo.becomes(Photo)
+        end
+        format.json do
+          render json: @photo.as_json
+        end
+      end
     else
-      flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+      # flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+      respond_to do |format|
+        format.html do
+          flash[:error] = t(:error_updating_photo, :photo_errors => @photo.errors.full_messages.to_sentence)
+          redirect_to @photo.becomes(Photo)
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { errors: @photo.errors.as_json }
+        end
+      end
     end
-    redirect_to @photo.becomes(Photo)
   end
   
   def local_photo_fields
@@ -142,10 +160,10 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photo = LocalPhoto.new(file: params[:file],
-      user: current_user, mobile: is_mobile_app?)
+    @photo = LocalPhoto.new( file: params[:file],
+      user: current_user, mobile: is_mobile_app? )
     respond_to do |format|
-      if @photo.save
+      if !@photo.file.blank? && @photo.save
         @photo.reload
         format.html { redirect_to observations_path }
         format.json do
@@ -161,24 +179,35 @@ class PhotosController < ApplicationController
         end
       else
         format.html { redirect_to observations_path }
-        format.json { render json: @photo.errors, status: :unprocessable_entity }
+        format.json do
+          errors = @photo.file.blank? ? { errors: "No photo specified" } : @photo.errors
+          render json: errors, status: :unprocessable_entity
+        end
       end
     end
   end
 
   private
   
-  def load_photo
-    unless @photo = Photo.find_by_id(params[:id].to_i)
-      render_404
-    end
-  end
-  
   def require_owner
     unless logged_in? && @photo.editable_by?(current_user)
-      flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to @photo.becomes(Photo)
+      msg = t(:you_dont_have_permission_to_do_that)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          return redirect_to @photo.becomes( Photo )
+        end
+        format.json do
+          return render json: { error: msg }, status: :forbidden
+        end
+      end
     end
+  end
+
+  def photo_params( options = {} )
+    p = options.blank? ? params : options
+    allowed_fields = Photo::MASS_ASSIGNABLE_ATTRIBUTES + [:license, :license_code]
+    p.permit( allowed_fields )
   end
 
 end

@@ -1,6 +1,6 @@
 class FacebookController < ApplicationController
-  before_filter :return_here, :only => [:options]
-  before_filter :authenticate_user!, :except => [:index]
+  before_action :return_here, :only => [:options]
+  before_action :authenticate_user!, :except => [:index]
 
   def index
     response.headers.delete "X-Frame-Options"

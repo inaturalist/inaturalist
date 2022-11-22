@@ -12,12 +12,11 @@
       %span.location{ title: "{{ o.displayPlace() }}" }
         .hidden-lg {{ o.displayPlace() | characters:6:true }}
         .visible-lg-inline-block {{ o.displayPlace() | characters:18:true }}
-      %span.date{ title: "{{ shared.t( 'observed_on_datetime', { datetime: shared.l( 'datetime.formats.long', o.time_observed_at || o.observed_on ) } ) }}" }
-        %span.hidden-lg {{ (o.observed_on | amDateFormat : 'l') || shared.t('unknown') }}
-        %span.visible-lg-inline-block {{ (o.observed_on | amDateFormat : 'll') || shared.t('unknown') }}
+      %inat-calendar-date.hidden-lg{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", obscured: "o.obscured && !o.private_geojson", short: "true" }
+      %inat-calendar-date.visible-lg-inline-block{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", obscured: "o.obscured && !o.private_geojson" }
     .meta.ng-cloak
       %span{ :class => "quality_grade {{ o.quality_grade }}" }
-        {{ o.qualityGrade( ) | capitalize:'title' }}
+        {{ o.qualityGrade( ) }}
       %span.identifications{ "ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
         %i.icon-identification
         {{ o.identifications_count }}
@@ -27,4 +26,4 @@
       %span.favorites{ "ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}" }
         %i.fa.fa-star
         {{ o.faves_count }}
-      %span.created_at.pull-right{ "am-time-ago" => "o.created_at", title: "{{ shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )}) }}" }
+      %span.created_at.pull-right{ "am-time-ago" => "o.created_at", title: "{{ (!o.obscured || o.private_geojson ) && shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )}) }}" }

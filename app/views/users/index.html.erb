@@ -18,8 +18,6 @@
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
-        <%= link_to t(:invite_someone_to, :name => @site.preferred_site_name_short), emailer_invite_path, :class => "inter" %>
-        <span class="meta inter"><%= t :or %></span>
         <%= form_tag( search_path, method: :get, class: "last" ) do %>
           <%= hidden_field_tag "source[]", "users" %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
@@ -58,7 +56,7 @@
               <%- when 'Identification' %>
                 <%
                   if update.observation
-                    observation_link = link_to t(:observation).downcase, update.observation
+                    observation_link = link_to t(:observation), update.observation
                     user_link = link_to char_wrap(update.observation.user.login, 50), observations_path( user_id: update.observation.user.login )
                   end
                 -%>
@@ -71,7 +69,7 @@
               <%- when 'Post' %>
                 <%-
                   if update.parent_type == "User"
-                    post_link = link_to t(:journal_post).downcase, journal_post_path(update.user.login, update)
+                    post_link = link_to t(:journal_post), journal_post_path(update.user.login, update)
                   else
                     post_link = link_to t(:project_post), project_journal_post_path(update.parent, update)
                   end
@@ -90,7 +88,7 @@
                   end
 
                   class_name = update.parent.class.name.underscore.humanize.downcase
-                  comment_subject_link = link_to t(class_name, default: class_name).downcase, subject_path
+                  comment_subject_link = link_to t(class_name, default: class_name), subject_path
 
                   by_link = nil
                   if update.parent.is_a?(Post) && update.parent.parent.is_a?(Project)
@@ -132,7 +130,7 @@
           :time_unit => 'month', 
           :data => @most_identifications, 
           :last => true,
-          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
+          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
         <div class="column span-24">
           <div class='meta'><%=raw t :observations_observed_this_month %></div>
           <%- prev_date = Date.today - 1.month -%>
@@ -149,7 +147,7 @@
           :time_unit => 'year', 
           :data => @most_identifications_year, 
           :last => true,
-          :sub => Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? t(:identification).downcase : t(:identifications).downcase}".html_safe, observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
+          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), observations_path( user_id: user.login, on: Time.now.strftime( "%Y-%m" ) ) )} %>
         <div class="column span-24">
           <%- prev_date = Date.today - 1.year -%>
           <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>

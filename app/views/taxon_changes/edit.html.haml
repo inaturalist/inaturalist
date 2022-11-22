@@ -1,0 +1,13 @@
+- content_for( :title ) do
+  - @title = capture do
+    =t :editing
+    =t @taxon_change.class.name.underscore
+    = surround '(', ')' do
+      = @taxon_change.committed? ? t(:committed_on, date: l( @taxon_change.committed_on ) ) : t(:draft)
+  = strip_tags @title
+= render partial: "form_head"
+.last.column.span-24#pageheader
+  %span.breadcrumbs
+    = link_to t( :back ), taxon_change_path( @taxon_change ), class: "back crumb"
+  %h2= @title
+= render partial: "form"

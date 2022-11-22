@@ -92,13 +92,55 @@ var iNaturalist = window.iNaturalist = new function(){
   this.Licenses = <%= Hash[Shared::LicenseModule::LICENSE_INFO.map do |k,l|
     icon_name = "#{l[:code]}_small.png";
     large_icon_name = "#{l[:code]}.png";
+    assets = ( Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application) )
     [ l[:code].downcase, l.merge({
-      icon: Rails.application.assets.find_asset(icon_name) ?
+      icon: assets.find_asset(icon_name) ?
         asset_path( icon_name ) : nil,
-      icon_large: Rails.application.assets.find_asset(large_icon_name) ?
+      icon_large: assets.find_asset(large_icon_name) ?
         asset_path( large_icon_name ) : nil
     }) ]
   end].to_json %>;
+
+  this.log = function( params, options ) {
+    var options = options || {};
+    try {
+      // Restrict logging to the default site for now
+      if ( typeof( SITE ) !== "object" || SITE.name !== "iNaturalist" ) {
+        return;
+      }
+      var apiUrl = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+      if ( !apiUrl ) return;
+      var jwt = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+      var url = apiUrl + "/log";
+      if ( typeof( CONTROLLER_ACTION ) === "string" ) {
+        params.controller_action = CONTROLLER_ACTION;
+      }
+      if ( options.method === "POST" ) {
+        options.data = JSON.stringify( params );
+      } else {
+        url += "?" + $.param( params );
+      }
+      var ajaxOpts = Object.assign( options, { url: url } );
+      if ( jwt && jwt.length > 0 ) {
+        ajaxOpts.headers = { "Authorization": jwt };
+      }
+      $.ajax( ajaxOpts );
+    } catch ( e ) {
+      // Logging should never really throw an exception
+      console.log( "[DEBUG] Failed to log: ", e );
+    }
+  }
+
+  this.logError = function( error ) {
+    this.log( {
+      error_type: error.name,
+      error_message: error.message,
+      backtrace: error.stack
+    }, {
+      method: "POST",
+      dataType: "json"
+    } );
+  }
 
 }; // end of the iNaturalist singleton
 

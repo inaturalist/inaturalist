@@ -1,34 +1,33 @@
 class LifelistsController < ApplicationController
 
-  before_filter :load_user, only: [:by_login]
-  before_filter :admin_required
+  before_action :load_user, only: [:by_login]
 
   def by_login
-    respond_to do |format|
-      format.html do
-        render layout: "bootstrap"
-      end
-      format.csv do
-        tmp_path = DynamicLifelist.export( @user )
-        if tmp_path.blank?
-          render json: { error: t(:internal_server_error) }, status: 500
-          return
-        end
-        response.headers['Content-Disposition'] = "attachment; filename=\"#{File.basename(tmp_path)}\""
-        render file: tmp_path
-      end
+    if params[:place_id]
+      @place = Place.find_by_id(params[:place_id])
     end
+    @flash_js = true
+    render layout: "bootstrap"
   end
 
   def load_user
-    params[:id] ||= params[:login]
     begin
-      @user = User.find(params[:id])
+      @user = User.find(params[:login])
     rescue
-      @user = User.where("lower(login) = ?", params[:id].to_s.downcase).first
-      @user ||= User.where( uuid: params[:id] ).first
+      @user = User.where("lower(login) = ?", params[:login].to_s.downcase).first
+      @user ||= User.where( uuid: params[:login] ).first
       render_404 if @user.blank?
     end
   end
+
+
+  private
+
+  def admin_or_test_group_required
+    unless logged_in? && ( current_user.is_admin? || current_user.in_test_group?( "lifelists" ) )
+      only_admins_failure_state
+    end
+  end
+
 
 end

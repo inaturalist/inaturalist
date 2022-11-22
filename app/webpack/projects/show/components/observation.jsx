@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
@@ -8,7 +7,7 @@ import UserImage from "../../../shared/components/user_image";
 
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 if ( shortRelativeTime ) {
-  moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
+  moment.updateLocale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
 
 const Observation = ( {
@@ -18,11 +17,12 @@ const Observation = ( {
   className,
   size,
   backgroundSize,
-  config
+  config,
+  hideUserIcon
 } ) => {
   const observedDate = observation.time_observed_at || observation.observed_on;
   const caption = (
-    <div className="caption">
+    <div className={`caption ${hideUserIcon ? "no-icon" : ""}`}>
       <SplitTaxon
         taxon={observation.taxon}
         noParens
@@ -30,7 +30,7 @@ const Observation = ( {
         url={`/observations/${observation.id}`}
         noInactive
       />
-      <UserImage user={observation.user} />
+      { !hideUserIcon && ( <UserImage user={observation.user} /> ) }
       <div className="meta">
         { observation.non_owner_ids.length > 0 && (
           <span
@@ -72,6 +72,12 @@ const Observation = ( {
         backgroundSize={backgroundSize}
       />
     );
+  } else if ( observation.hasSounds( ) ) {
+    img = (
+      <div className="photo" style={{ height, lineHeight: `${height}px` }}>
+        <i className="sound-icon fa fa-volume-up" />
+      </div>
+    );
   } else {
     const iconicTaxonClass = observation.taxon && observation.taxon.iconic_taxon_name
       ? observation.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
@@ -90,7 +96,10 @@ const Observation = ( {
       <div
         className={`Observation ${className}`}
       >
-        <a href={`/observations/${observation.id}`}>
+        <a
+          href={`/observations/${observation.id}`}
+          className={`media ${observation.hasPhotos( ) ? "photo" : ""} ${observation.hasMedia( ) ? "" : "iconic"} ${observation.hasSounds( ) ? "sound" : ""}`}
+        >
           { img }
         </a>
         { observation.quality_grade === "research" && (
@@ -101,6 +110,11 @@ const Observation = ( {
               { __html: I18n.t( "research_grade_short_html" ) }
             }
           />
+        ) }
+        { observation.hasSounds( ) && observation.hasPhotos( ) && (
+          <span className="with-sounds">
+            <i className="sound-icon fa fa-volume-up" />
+          </span>
         ) }
         { caption }
       </div>
@@ -115,6 +129,7 @@ Observation.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
+  hideUserIcon: PropTypes.bool,
   config: PropTypes.object
 };
 

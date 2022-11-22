@@ -13,5 +13,11 @@ module ActsAsUUIDable
       true
     end
 
+    # If we seem to be assigning a UUID to the id column, ignore it
+    def id=(new_id)
+      return if new_id.to_s =~ BelongsToWithUuid::UUID_PATTERN
+      super( new_id )
+    end
+
   end
 end

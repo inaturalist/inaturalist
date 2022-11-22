@@ -1,7 +1,9 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -12,13 +14,14 @@ class User < ActiveRecord::Base
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
   
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
-         :encryptable, :encryptor => :restful_authentication_sha1
+         :encryptable, :lockable, :encryptor => :restful_authentication_sha1
   handle_asynchronously :send_devise_notification
   
   # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
@@ -32,6 +35,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -99,7 +103,13 @@ class User < ActiveRecord::Base
   preference :no_tracking, :boolean, default: false
   preference :identify_image_size, :string, default: nil
   preference :identify_side_bar, :boolean, default: false
-  
+  preference :lifelist_nav_view, :string
+  preference :lifelist_details_view, :string
+  preference :edit_observations_sort, :string, default: "desc"
+  preference :edit_observations_order, :string, default: "created_at"
+  preference :lifelist_tree_mode, :string
+  preference :taxon_photos_query, :string
+
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
     identification_email_notification 
@@ -113,7 +123,6 @@ class User < ActiveRecord::Base
     taxon_or_place_observation_email_notification
   )
   
-  belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
   has_one  :flickr_identity, :dependent => :delete
   # has_one  :picasa_identity, :dependent => :delete
@@ -122,6 +131,7 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :email_suppressions, dependent: :delete_all
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -144,7 +154,6 @@ class User < ActiveRecord::Base
   end
 
   has_many :lists, :dependent => :destroy
-  has_many :life_lists
   has_many :identifications, :dependent => :destroy
   has_many :identifications_for_others,
     -> { where("identifications.user_id != observations.user_id AND identifications.current = true").
@@ -152,7 +161,6 @@ class User < ActiveRecord::Base
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
@@ -161,7 +169,6 @@ class User < ActiveRecord::Base
   has_many :project_user_invitations, :dependent => :nullify
   has_many :project_user_invitations_received, :dependent => :delete_all, :class_name => "ProjectUserInvitation"
   has_many :listed_taxa, :dependent => :nullify
-  has_many :invites, :dependent => :nullify
   has_many :quality_metrics, :dependent => :destroy
   has_many :sources, :dependent => :nullify
   has_many :places, :dependent => :nullify
@@ -180,15 +187,21 @@ class User < ActiveRecord::Base
   has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxa, foreign_key: "creator_id", inverse_of: :creator
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :taxon_framework_relationships
+  has_many :taxon_names, foreign_key: "creator_id", inverse_of: :creator
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
   has_many :moderator_actions, inverse_of: :user
+  has_many :moderator_notes, inverse_of: :user
+  has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
+    foreign_key: "subject_user_id", inverse_of: :subject_user,
+    dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -223,7 +236,7 @@ class User < ActiveRecord::Base
   end
 
   # Roles
-  has_and_belongs_to_many :roles, -> { uniq }
+  has_and_belongs_to_many :roles, -> { distinct }
   belongs_to :curator_sponsor, class_name: "User"
   belongs_to :suspended_by_user, class_name: "User"
   
@@ -242,7 +255,9 @@ class User < ActiveRecord::Base
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
+  before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -252,14 +267,11 @@ class User < ActiveRecord::Base
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
-  after_update :update_life_list
-  after_create :create_default_life_list
   after_create :set_uri
-  after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -274,10 +286,6 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  email_name_regex  = '[\w\.%\+\-]+'.freeze
-  domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
-  domain_tld_regex  = '(?:[A-Z]+)'.freeze
-  email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
   
   validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
@@ -288,7 +296,8 @@ class User < ActiveRecord::Base
 
   validates_length_of       :name,      maximum: 100, allow_blank: true
 
-  validates_format_of       :email,     with: email_regex, message: :must_look_like_an_email_address, allow_blank: true
+  validates_format_of       :email,     with: Devise.email_regexp,
+    message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
   validate :validate_email_pattern, on: :create
@@ -381,18 +390,27 @@ class User < ActiveRecord::Base
     !suspended?
   end
 
+  def child_without_permission?
+    !birthday.blank? &&
+      birthday > 13.years.ago &&
+      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    true
   end
 
   def download_remote_icon
-    io = open(URI.parse(self.icon_url))
     Timeout::timeout(10) do
-      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.icon = URI( self.icon_url )
     end
     true
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
@@ -491,6 +509,10 @@ class User < ActiveRecord::Base
   def is_curator?
     has_role?(:curator)
   end
+
+  def is_app_owner?
+    has_role?( Role::APP_OWNER )
+  end
   
   def is_admin?
     has_role?(:admin)
@@ -498,6 +520,7 @@ class User < ActiveRecord::Base
   alias :admin? :is_admin?
 
   def is_site_admin_of?( site )
+    return true if is_admin?
     return false unless site && site.is_a?( Site )
     !!site_admins.detect{ |sa| sa.site_id == site.id }
   end
@@ -508,6 +531,14 @@ class User < ActiveRecord::Base
   
   def friends_with?(user)
     friends.exists?(user)
+  end
+
+  def trusts?( user )
+    return false if user.blank?
+    return false unless user.id
+    return true if user.id == id
+
+    friendships.where( friend_id: user, trust: true ).exists?
   end
   
   def picasa_client
@@ -552,7 +583,8 @@ class User < ActiveRecord::Base
 
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.where(user_id: id).update_all(license: preferred_observation_license)
+    Observation.where( user_id: id ).
+      update_all( license: preferred_observation_license, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -561,7 +593,8 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
-    Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
+      update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
@@ -570,58 +603,93 @@ class User < ActiveRecord::Base
     return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
-    Sound.where(user_id: id).update_all(license: number)
+    Sound.where( user_id: id ).update_all( license: number, updated_at: Time.now )
     index_observations_later
     true
   end
 
   def update_observation_sites_later
-    delay(priority: USER_INTEGRITY_PRIORITY).update_observation_sites if site_id_changed?
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_observation_sites": id },
+      queue: "throttled"
+    ).update_observation_sites if saved_change_to_site_id?
   end
 
   def update_observation_sites
-    observations.update_all(site_id: site_id)
-    index_observations
+    observations.update_all( site_id: site_id, updated_at: Time.now )
+    # update ES-indexed observations in place with update_by_query as the site_id
+    # will not affect any other attributes that necessitate a full reindex
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Observation.__elasticsearch__.client.update_by_query(
+        index: Observation.index_name,
+        refresh: Rails.env.test?,
+        body: {
+          query: {
+            term: {
+              "user.id": id
+            }
+          },
+          script: {
+            source: "
+              if ( ctx._source.site_id != params.site_id ) {
+                ctx._source.site_id = params.site_id;
+              } else { ctx.op = 'noop' }",
+            params: {
+              site_id: site_id
+            }
+          }
+        }
+      )
+    end
   end
 
   def index_observations_later
     delay(
       priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "User::index_observations_later": id }
+      unique_hash: { "User::index_observations_later": id },
+      queue: "throttled"
     ).index_observations
   end
 
   def index_observations
-    Observation.elastic_index!(scope: Observation.by(self))
+    Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
-    life_list_taxon_ids_to_move = reject.life_list.taxon_ids - life_list.taxon_ids
-    ListedTaxon.where(list_id: reject.life_list_id, taxon_id: life_list_taxon_ids_to_move).
-      update_all(list_id: life_list_id)
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
-    reject.destroy
+    reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
   end
 
   def self.merge_cleanup( user_id )
     return unless user = User.find_by_id( user_id )
     start = Time.now
-    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!(
+      scope: Observation.by( user_id ),
+      wait_for_index_refresh: true
+    )
     Observation.elastic_index!(
       scope: Observation.joins( :identifications ).
         where( "identifications.user_id = ?", user_id ).
-        where( "observations.last_indexed_at < ?", start )
+        where( "observations.last_indexed_at < ?", start ),
+      wait_for_index_refresh: true
     )
-    Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
+    Identification.elastic_index!(
+      scope: Identification.where( user_id: user_id ),
+      wait_for_index_refresh: true
+    )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
     User.update_species_counter_cache( user.id )
     user.reload
     user.elastic_index!
-    LifeList.reload_from_observations( user.life_list_id )
+    Project.elastic_index!(
+      ids: ProjectUser.where( user_id: user.id ).pluck(:project_id),
+      wait_for_index_refresh: true
+    )
   end
 
   def set_locale
@@ -646,7 +714,7 @@ class User < ActiveRecord::Base
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    geoip_response = INatAPIService.geoip_lookup( { ip: last_ip } )
     if geoip_response && geoip_response.results
       # don't set any location if the country is unknown
       if geoip_response.results.country
@@ -655,13 +723,13 @@ class User < ActiveRecord::Base
         longitude = ll[1]
         if geoip_response.results.city
           # also probably know the county
-          lat_lon_acc_admin_level = 2
+          lat_lon_acc_admin_level = Place::COUNTY_LEVEL
         elsif geoip_response.results.region
           # also probably know the state
-          lat_lon_acc_admin_level = 1
+          lat_lon_acc_admin_level = Place::STATE_LEVEL
         else
           # probably just know the country
-          lat_lon_acc_admin_level = 0
+          lat_lon_acc_admin_level = Place::COUNTRY_LEVEL
         end
       end
     end
@@ -669,7 +737,23 @@ class User < ActiveRecord::Base
     self.longitude = longitude
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
-  
+
+  def email_suppressed_in_group?( suppressed_groups )
+    unless suppressed_groups.is_a?( Array )
+      suppressed_groups = [suppressed_groups]
+    end
+    unsuppressed_groups = [
+      EmailSuppression::ACCOUNT_EMAILS,
+      EmailSuppression::DONATION_EMAILS,
+      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::TRANSACTIONAL_EMAILS
+    ].reject {| i | ( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
+      email, unsuppressed_groups ).first
+
+    false
+  end
+
   def get_lat_lon_from_ip_if_last_ip_changed
     return true if last_ip.nil?
     if last_ip_changed? || latitude.nil?
@@ -715,20 +799,21 @@ class User < ActiveRecord::Base
     email = auth_info["info"].try(:[], "email")
     email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    if email && u = User.find_by_email(email)
+    if !email.blank? && u = User.find_by_email(email)
       u.add_provider_auth(auth_info)
       return u
     end
     auth_info_name = auth_info["info"]["nickname"]
     auth_info_name = auth_info["info"]["first_name"] if auth_info_name.blank?
     auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
+    auth_info_name = User.remove_email_from_string( auth_info_name )
     autogen_login = User.suggest_login(auth_info_name)
-    autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login( DEFAULT_LOGIN ) if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
     icon_url = auth_info["info"]["image"]
     # Don't bother if the icon URL looks like the default Google user icon
     icon_url = nil if icon_url =~ /4252rscbv5M/
+    icon_url = nil if icon_url =~ /s96-c/
     u = User.new(
       :login => autogen_login,
       :email => email,
@@ -748,7 +833,7 @@ class User < ActiveRecord::Base
     unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update_attributes(:login => suggestion)
+      u.update(:login => suggestion)
     end
     u.add_provider_auth(auth_info)
     u
@@ -796,15 +881,17 @@ class User < ActiveRecord::Base
   # some associates
   def sane_destroy(options = {})
     start_log_timer "sane_destroy user #{id}"
-    taxon_ids = life_list.taxon_ids
+    taxon_ids = []
+    if response = INatAPIService.get("/observations/taxonomy", {user_id: id})
+      taxon_ids = response.results.map{|a| a["id"]}
+    end
     project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks
-    lists.where("type = 'List'").find_each do |l|
+    lists.where("type = 'List' OR type IS NULL").find_each do |l|
       l.listed_taxa.find_each do |lt|
         lt.skip_sync_with_parent = true
         lt.skip_update_cache_columns = true
-        lt.skip_update_user_life_list_taxa_count = true
         lt.destroy
       end
       l.destroy
@@ -826,7 +913,6 @@ class User < ActiveRecord::Base
         :flags
       ] },
       :project_observations,
-      :project_invitations,
       :quality_metrics,
       :observation_field_values,
       :observation_sounds,
@@ -837,7 +923,6 @@ class User < ActiveRecord::Base
       :quality_metrics,
       :sounds
     ]).find_each(batch_size: 100) do |o|
-      o.skip_refresh_lists = true
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.bulk_delete = true
@@ -880,7 +965,10 @@ class User < ActiveRecord::Base
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
-      Identification.elastic_index!(scope: Identification.where(observation_id: obs_ids))
+      Identification.elastic_index!(
+        scope: Identification.where(observation_id: obs_ids),
+        wait_for_index_refresh: true
+      )
     end
 
     comments.find_each(batch_size: 100) do |c|
@@ -895,23 +983,18 @@ class User < ActiveRecord::Base
     end
 
     # transition ownership of projects with observations, delete the rest
-    Project.where(:user_id => id).find_each do |p|
-      if p.observations.exists?
-        if manager = p.project_users.managers.where("user_id != ?", id).first
-          p.user = manager.user
-          manager.role_will_change!
-          manager.save
-        else
-          pu = ProjectUser.create(:user => User.admins.first, :project => p)
-          p.user = pu.user
-        end
+    Project.where( user_id: id ).find_each do | p |
+      if p.observations.exists? && ( manager = p.project_users.managers.where( "user_id != ?", id ).first )
+        p.user = manager.user
+        manager.role_will_change!
+        manager.save
         p.save
       else
         p.destroy
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids )
+    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
 
     # delete the user
     destroy
@@ -919,11 +1002,6 @@ class User < ActiveRecord::Base
     # refresh check lists with relevant taxa
     taxon_ids.in_groups_of(100) do |group|
       CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
-    end
-
-    # refresh project lists
-    project_ids.in_groups_of(100) do |group|
-      ProjectList.delay(:priority => INTEGRITY_PRIORITY).refresh(:taxa => group.compact)
     end
 
     end_log_timer
@@ -941,6 +1019,10 @@ class User < ActiveRecord::Base
     if user = User.find_by_id( user_id )
       puts "Destroying user (this could take a while)"
       user.sane_destroy
+    end
+
+    if ( deleted_user = DeletedUser.where( user_id: user_id ).first ) && !deleted_user.email.blank?
+      EmailSuppression.where( email: deleted_user.email ).delete_all
     end
 
     puts "Updating flags created by user..."
@@ -966,11 +1048,7 @@ class User < ActiveRecord::Base
       deleted_photos = DeletedPhoto.where( user_id: user_id )
       puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
       deleted_photos.find_each do |dp|
-        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-        if images.any?
-          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-        end
+        dp.remove_from_s3( s3_client: s3_client )
         dp.destroy
       end
 
@@ -1044,16 +1122,19 @@ class User < ActiveRecord::Base
     puts "Ensure all staging servers get synced"
     puts
   end
-  
-  def create_default_life_list
-    return true if life_list
-    new_life_list = if (existing = self.lists.joins(:rules).where("lists.type = 'LifeList' AND list_rules.id IS NULL").first)
-      self.life_list = existing
-    else
-      LifeList.create(:user => self)
+
+  def self.remove_icon_from_s3( user_id )
+    @s3_config ||= YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+    @s3_client ||= ::Aws::S3::Client.new(
+      access_key_id: @s3_config["access_key_id"],
+      secret_access_key: @s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+    user_images = @s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+    if user_images.any?
+      @s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
     end
-    User.where(id: id).update_all(life_list_id: new_life_list)
-    true
+    # Note that the images might remain in Cloudfront for 24 hours, but by the time this gets called they're probably already gone
   end
   
   def create_deleted_user
@@ -1102,7 +1183,7 @@ class User < ActiveRecord::Base
         }
       ).results.results
       break if obs.blank?
-      Observation.elastic_index!( ids: obs.map(&:id) )
+      Observation.elastic_index!( ids: obs.map(&:id), wait_for_index_refresh: true )
     end
   end
 
@@ -1140,7 +1221,7 @@ class User < ActiveRecord::Base
 
   def restore_access_tokens_by_suspended_user
     return true if suspended?
-    if suspended_at_changed?
+    if saved_change_to_suspended_at?
       # This is not an ideal solution because there are reasons to revoke a
       # token that are not related to suspension, like trying to deal with a
       # oauth app that's behaving badly for some reason, or a user's token is
@@ -1158,28 +1239,6 @@ class User < ActiveRecord::Base
     true
   end
 
-  def update_life_list
-    if login_changed? && life_list
-      life_list.update_attributes( title: life_list.title.gsub( /#{login_was}/, login ) )
-    end
-    true
-  end
-
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if login_changed?
-    changes[:native_realname] = name if name_changed?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
-    end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
-  end
-
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1190,18 +1249,12 @@ class User < ActiveRecord::Base
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
-    ops = {
-      filters: options[:filters],
-      inverse_filters: options[:inverse_filters],
-      per_page: options[:per_page],
-      sort: { id: :desc }
-    }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
-      sort: { id: :desc })
+      sort: { created_at: :desc })
   end
 
   def blocked_by?( user )
@@ -1251,7 +1304,7 @@ class User < ActiveRecord::Base
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1266,7 +1319,7 @@ class User < ActiveRecord::Base
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1323,24 +1376,58 @@ class User < ActiveRecord::Base
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
+  end
+
   def personal_lists
     lists.not_flagged_as_spam.
-      where("(type IN ('LifeList', 'List') OR type IS NULL)")
+      where("type = 'List' OR type IS NULL")
   end
 
   def privileged_with?( privilege )
     user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
   end
 
+  # Apparently some people, and maybe some third-party auth providers, sometimes
+  # stick the email in the name field... which is not ok
+  def remove_email_from_name
+    self.name = User.remove_email_from_string( self.name )
+    true
+  end
+
+  def self.remove_email_from_string( s )
+    return s if s.blank?
+    email_pattern = /#{Devise.email_regexp.to_s.gsub("\\A" , "").gsub( "\\z", "" )}/
+    s.gsub( email_pattern, "" )
+  end
+
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since
@@ -1359,8 +1446,8 @@ class User < ActiveRecord::Base
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {
@@ -1378,6 +1465,35 @@ class User < ActiveRecord::Base
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
   end
 
+  def header_projects
+    project_users.joins(:project).includes(:project).limit(7).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
+      map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  # this method will look at all this users photos and create separate delayed jobs
+  # for each photo that should be moved to the other bucket
+  def self.enqueue_photo_bucket_moving_jobs( user )
+    return unless LocalPhoto.odp_s3_bucket_enabled?
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    LocalPhoto.where( user_id: user.id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
+      includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
+      if photo.photo_bucket_should_be_changed?
+        LocalPhoto.delay(
+          queue: "photos",
+          unique_hash: { "LocalPhoto::change_photo_bucket_if_needed": photo.id }
+        ).change_photo_bucket_if_needed( photo.id )
+      end
+    end
+    # return nil so this isn't returning all results of the above query
+    nil
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers
@@ -1385,20 +1501,21 @@ class User < ActiveRecord::Base
     spammers = []
     num_checks = {}
     User.order( "id desc" ).limit( limit ).
-        where( "spammer is null " ).
-        where( "created_at < ? ", 12.hours.ago ). # half day grace period
-        where( "description is not null and description != '' and description ilike '%http%'" ).
-        where( "observations_count = 0 and identifications_count = 0" ).
-        pluck(:id).
-        in_groups_of( 10 ) do |ids|
+      where( "spammer is null " ).
+      where( "created_at < ? ", 12.hours.ago ). # half day grace period
+      where( "description is not null and description != '' and description ilike '%http%'" ).
+      where( "observations_count = 0 and identifications_count = 0" ).
+      pluck( :id ).
+      in_groups_of( 10 ) do | ids |
       puts
       puts "BATCH #{ids[0]}"
       puts
-      3.times do |i|
+      3.times do | i |
         batch = User.where( "id IN (?)", ids )
         puts "Try #{i}"
-        batch.each do |u|
+        batch.each do | u |
           next if spammers.include?( u.login )
+
           num_checks[u.login] ||= 0
           puts "#{u}, checked #{num_checks[u.login]} times already"
           num_checks[u.login] += 1
@@ -1419,11 +1536,12 @@ class User < ActiveRecord::Base
 
   def self.ip_address_is_often_suspended( ip )
     return false if ip.blank?
+
     count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
     count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
     total = count_suspended + count_active
     return false if total < 3
-    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
-  end
 
+    count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
 end

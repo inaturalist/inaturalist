@@ -8,12 +8,13 @@ import { updateSession } from "../../../shared/util";
 function mapStateToProps( state ) {
   return {
     place: state.config.chosenPlace,
-    defaultPlace: state.config.preferredPlace
+    defaultPlace: state.config.preferredPlace,
+    config: state.config
   };
 }
 
 function mapDispatchToProps( dispatch ) {
-  const setPlace = ( place ) => {
+  const setPlace = place => {
     dispatch( setConfig( { chosenPlace: place } ) );
     updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     dispatch( fetchTaxon( ) );

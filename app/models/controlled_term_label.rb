@@ -1,4 +1,4 @@
-class ControlledTermLabel < ActiveRecord::Base
+class ControlledTermLabel < ApplicationRecord
 
   belongs_to :controlled_term
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,

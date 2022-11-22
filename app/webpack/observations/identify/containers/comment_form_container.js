@@ -6,12 +6,15 @@ import {
   loadingDiscussionItem,
   stopLoadingDiscussionItem
 } from "../actions";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <CommentFormContainer observation={foo} />
 function mapStateToProps( state, ownProps ) {
   return {
-    observation: ownProps.observation
+    config: state.config,
+    observation: ownProps.observation,
+    content: state.textEditor.obsIdentifyIdComment
   };
 }
 
@@ -24,10 +27,14 @@ function mapDispatchToProps( dispatch, ownProps ) {
           dispatch( stopLoadingDiscussionItem( comment ) );
         } )
         .then( ( ) => {
+          dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
           dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
           } );
         } );
+    },
+    updateEditorContent: ( editor, content ) => {
+      dispatch( updateEditorContent( editor, content ) );
     }
   };
 }

@@ -33,10 +33,6 @@
         %tr
           %td
             = t(:n_ago, n: time_ago_in_words( query["state_change"] ))
-            %br
-            %span.kill<
-              = surround "(", ")" do
-                = link_to "kill", "#", data: { url: stop_query_admin_url( pid: query["pid"] ) }, onclick: "return false;"
           %td
             - query.each do |k,v|
               %strong= "#{ k }:"

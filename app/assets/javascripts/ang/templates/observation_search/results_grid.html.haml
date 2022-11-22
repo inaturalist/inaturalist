@@ -13,7 +13,7 @@
           %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}", user: "{{ currentUser }}"}
           .meta
             %span{:class => "quality_grade {{ o.quality_grade }}"}
-              {{ o.qualityGrade( ) | capitalize:'title' }}
+              {{ o.qualityGrade( ) }}
             %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}"}
               %i.icon-identification
               {{ o.identifications_count }}
@@ -23,7 +23,7 @@
             %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
               %i.fa.fa-star
               {{ o.faves_count }}
-            %span.pull-right{"am-time-ago" => "o.time_observed_at || o.observed_on", title: "{{ shared.t('observed_on') + ' ' + (o.time_observed_at || o.observed_on ) }}"}
+            %span.pull-right{"am-time-ago" => "o.time_observed_at || o.observed_on", title: "{{ (!o.obscured || o.private_geojson ) && shared.t('observed_on') + ' ' + (o.time_observed_at || o.observed_on ) }}"}
     .spinner.ng-cloak{ "ng-show": "pagination.searching" }
       %span.fa.fa-spin.fa-refresh
     .noresults.text-muted.ng-cloak{ "ng-show" => "noObservations( )" }

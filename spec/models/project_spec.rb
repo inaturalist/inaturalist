@@ -1,30 +1,65 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Project do
+  xit { is_expected.to belong_to :user }
+  xit { is_expected.to belong_to(:place).inverse_of :projects }
+  it { is_expected.to have_many(:project_users).dependent(:delete_all).inverse_of :project }
+  it { is_expected.to have_many(:project_observations).dependent :delete_all }
+  it { is_expected.to have_many(:project_user_invitations).dependent :delete_all }
+  it { is_expected.to have_many(:users).through :project_users }
+  it { is_expected.to have_many(:observations).through :project_observations }
+  it { is_expected.to have_one(:project_list).dependent :destroy }
+  it { is_expected.to have_many(:listed_taxa).through :project_list }
+  it { is_expected.to have_many(:taxa).through :listed_taxa }
+  it { is_expected.to have_many(:project_assets).dependent :delete_all }
+  it { is_expected.to have_one(:custom_project).dependent :delete }
+  it { is_expected.to have_many(:project_observation_fields).dependent(:destroy).inverse_of :project }
+  it { is_expected.to have_many(:observation_fields).through :project_observation_fields }
+  it { is_expected.to have_many(:posts).dependent :destroy }
+  it { is_expected.to have_many(:journal_posts).class_name "Post" }
+  it { is_expected.to have_many(:assessments).dependent :destroy }
+  it { is_expected.to have_many(:site_featured_projects).dependent :destroy }
+  it { is_expected.to have_many(:project_observation_rules_as_operand).class_name "ProjectObservationRule" }
+
+  context "validations" do
+    subject { Project.make! }
+    it { is_expected.to validate_presence_of :user }
+    it { is_expected.to validate_length_of(:title).is_at_least(1).is_at_most 100 }
+    it { is_expected.to validate_uniqueness_of :title }
+    it { is_expected.to validate_exclusion_of(:title).in_array Project::RESERVED_TITLES + %w(user) }
+    it { is_expected.to validate_inclusion_of(:map_type).in_array Project::MAP_TYPES }
+
+    context "when bioblitz" do
+      subject { Project.make project_type: Project::BIOBLITZ_TYPE }
+      it { is_expected.to validate_presence_of(:start_time).with_message "can't be blank for a bioblitz" }
+      it { is_expected.to validate_presence_of(:end_time).with_message "can't be blank for a bioblitz" }
+    end
+  end
+
 
   it "resets last_aggregated_at if start or end times changed" do
     p = Project.make!(prefers_aggregation: true, project_type: Project::BIOBLITZ_TYPE,
       place: make_place_with_geom, start_time: Time.now, end_time: Time.now)
-    p.update_attributes(last_aggregated_at: Time.now)
+    p.update(last_aggregated_at: Time.now)
     expect( p.last_aggregated_at ).to_not be_nil
     # change the start time
-    p.update_attributes(start_time: 1.hour.ago)
+    p.update(start_time: 1.hour.ago)
     expect( p.last_aggregated_at ).to be_nil
-    p.update_attributes(last_aggregated_at: Time.now)
+    p.update(last_aggregated_at: Time.now)
     expect( p.last_aggregated_at ).to_not be_nil
     # change the end time
-    p.update_attributes(end_time: 1.minute.ago)
+    p.update(end_time: 1.minute.ago)
     expect( p.last_aggregated_at ).to be_nil
   end
 
   it "removes start and end times from non-bioblitzes" do
     p = Project.make!(project_type: Project::BIOBLITZ_TYPE,
       start_time: Time.now, end_time: Time.now)
-    p.update_attributes(description: "something")
+    p.update(description: "something")
     p.reload
     expect( p.start_time ).to_not be_nil
     expect( p.end_time ).to_not be_nil
-    p.update_attributes(project_type: nil)
+    p.update(project_type: nil)
     p.reload
     expect( p.start_time ).to be_nil
     expect( p.end_time ).to be_nil
@@ -57,26 +92,21 @@ describe Project do
       expect(project.project_users).not_to be_empty
       expect(project.project_users.first.user_id).to eq project.user_id
     end
-  
-    it "should not allow ProjectsController action names as titles" do
-      project = Project.make!
-      expect(project).to be_valid
-      project.title = "new"
-      expect(project).not_to be_valid
-      project.title = "user"
-      expect(project).not_to be_valid
+
+    it "should automatically add the creator as a member for a traditional project with a rule" do
+      user = create :user
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::ORGANIZER )
+      project = build :project, user: user
+      expect( project.project_type ).to be_blank
+      project.project_observation_rules.build( operator: "georeferenced?" )
+      project.save!
+      expect( project.project_users ).not_to be_empty
+      expect( project.project_users.first.user_id ).to eq project.user_id
     end
   
     it "should stip titles" do
       project = Project.make!(:title => " zomg spaces ")
       expect(project.title).to eq 'zomg spaces'
-    end
-
-    it "should validate uniqueness of title" do
-      p1 = Project.make!
-      p2 = Project.make(:title => p1.title)
-      expect(p2).not_to be_valid
-      expect(p2.errors[:title]).not_to be_blank
     end
 
     it "should not notify the owner of their own new projects" do
@@ -100,6 +130,12 @@ describe Project do
       p = Project.make!( title: "föö" )
       p.save
       expect( p.slug ).to eq "foo"
+    end
+
+    it "should transliterate slugs when the title starts with a number" do
+      p = Project.make!( title: "1000 Föö" )
+      p.save
+      expect( p.slug ).to eq "1000-foo"
     end
 
     describe "for bioblitzes" do
@@ -134,6 +170,38 @@ describe Project do
       end
     end
 
+  end
+
+  describe "updating" do
+    describe "from traditional to collection" do
+      it "should set observation_requirements_updated_at to now if it was blank and there are trusting users" do
+        proj = create :project
+        expect( proj ).not_to be_is_new_project
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        proj.update_column( :observation_requirements_updated_at, nil )
+        proj.reload
+        expect( proj.observation_requirements_updated_at ).to be_blank
+        expect( proj ).to be_can_be_converted_to_collection_project
+        create :project_user,
+          project: proj,
+          prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+        proj.update( project_type: "collection" )
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        expect( proj.observation_requirements_updated_at ).to be >= 1.hour.ago
+      end
+      it "should set observation_requirements_updated_at to before the wait period if it was blank and there are no trusting users" do
+        proj = create :project
+        expect( proj ).not_to be_is_new_project
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        proj.update_column( :observation_requirements_updated_at, nil )
+        proj.reload
+        expect( proj.observation_requirements_updated_at ).to be_blank
+        expect( proj ).to be_can_be_converted_to_collection_project
+        proj.update( project_type: "collection" )
+        expect( proj.observation_requirements_updated_at ).not_to be_blank
+        expect( proj.observation_requirements_updated_at ).to be < ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+      end
+    end
   end
 
   describe "destruction" do
@@ -200,7 +268,7 @@ describe Project do
     end
   
     it "should remove curator_identification_id on existing project observations if no other curator idents" do
-      @project_user_curator.update_attributes(:role => nil)
+      @project_user_curator.update(:role => nil)
       Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
       @project_observation.reload
       expect(@project_observation.curator_identification_id).to be_blank
@@ -210,7 +278,7 @@ describe Project do
       pu = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
       ident = Identification.make!(:observation => @project_observation.observation, :user => pu.user)
     
-      @project_user_curator.update_attributes(:role => nil)
+      @project_user_curator.update(:role => nil)
       Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
     
       @project_observation.reload
@@ -363,7 +431,7 @@ describe Project do
     elastic_models( Observation, Place )
     let(:project) { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
     it "should add observations matching the project observation scope" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       project.aggregate_observations
       o.reload
@@ -371,14 +439,14 @@ describe Project do
     end
 
     it "should set last_aggregated_at" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       expect( project.last_aggregated_at ).to be_nil
       project.aggregate_observations
       expect( project.last_aggregated_at ).not_to be_nil
     end
 
     it "should not add observations not matching the project observation scope" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude*-1, longitude: project.place.longitude*-1)
       project.aggregate_observations
       o.reload
@@ -396,7 +464,7 @@ describe Project do
 
     it "should not add observation if observer has opted out" do
       u = User.make!(preferred_project_addition_by: User::PROJECT_ADDITION_BY_NONE)
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude, user: u)
       project.aggregate_observations
       o.reload
@@ -405,7 +473,7 @@ describe Project do
 
     it "should not add observation if observer has not joined and prefers not to allow addition for projects not joined" do
       u = User.make!(preferred_project_addition_by: User::PROJECT_ADDITION_BY_JOINED)
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude, user: u)
       project.aggregate_observations
       o.reload
@@ -413,7 +481,7 @@ describe Project do
     end
 
     it "should add observations created since last_aggregated_at" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       project.aggregate_observations
       expect( project.observations.count ).to eq 1
@@ -423,7 +491,7 @@ describe Project do
     end
 
     it "should not add duplicates" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       project.aggregate_observations
       project.aggregate_observations
@@ -433,12 +501,12 @@ describe Project do
     end
 
     it "adds observations whose users updated their project addition preference since last_aggregated_at" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       o2 = Observation.make!(latitude: 89, longitude: 89)
       project.aggregate_observations
       expect( project.observations.count ).to eq 1
-      o2.update_attributes(latitude: project.place.latitude, longitude: project.place.longitude)
+      o2.update(latitude: project.place.latitude, longitude: project.place.longitude)
       o2.update_columns(updated_at: 1.day.ago)
       o2.elastic_index!
       project.aggregate_observations
@@ -452,7 +520,7 @@ describe Project do
     end
 
     it "adds observations whose ProjectUsers were updated since last_aggregated_at" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       pu = ProjectUser.make!(project: project, user: o.user)
       project.aggregate_observations
@@ -470,7 +538,7 @@ describe Project do
     end
 
     it "updates project_users' observations and taxa counts" do
-      project.update_attributes(place: make_place_with_geom, trusted: true)
+      project.update(place: make_place_with_geom, trusted: true)
       pu = ProjectUser.make!(project: project)
       taxon = Taxon.make!(rank: "species")
       Observation.make!(latitude: project.place.latitude,
@@ -489,6 +557,7 @@ describe Project do
       expect( pu2.observations_count ).to eq 0
       expect( pu2.taxa_count ).to eq 0
       expect( project.observations.count ).to eq 0
+      project.reload
       project.aggregate_observations
       project.reload
       pu.reload
@@ -501,7 +570,7 @@ describe Project do
     end
 
     it "should create project observations that allow curator coordinate access if the observer has joined and opted in" do
-      project.update_attributes( place: make_place_with_geom, trusted: true )
+      project.update( place: make_place_with_geom, trusted: true )
       pu = ProjectUser.make!(
         project: project,
         preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
@@ -567,7 +636,7 @@ describe Project do
     it "should change when the title changes" do
       p = Project.make!(title: "The Title")
       expect( p.slug ).to eq 'the-title'
-      p.update_attributes(title: 'The BEST Title')
+      p.update(title: 'The BEST Title')
       p.reload
       expect( p.title ).to eq 'The BEST Title'
       expect( p.slug ).to eq 'the-best-title'
@@ -644,6 +713,7 @@ describe Project do
       taxon2 = Taxon.make!
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      p.reload
       expect( p.observations_url_params[:taxon_ids].sort ).to eq [taxon1.id, taxon2.id].sort
     end
 
@@ -653,6 +723,7 @@ describe Project do
       taxon2 = Taxon.make!
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
       ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      p.reload
       expect( p.observations_url_params(concat_ids: true)[:taxon_ids] ).to eq [taxon1.id, taxon2.id].sort.join(",")
     end
 
@@ -662,6 +733,7 @@ describe Project do
       place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      p.reload
       expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
     end
 
@@ -671,6 +743,7 @@ describe Project do
       place2 = make_place_with_geom
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
       ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      p.reload
       expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")
     end
 

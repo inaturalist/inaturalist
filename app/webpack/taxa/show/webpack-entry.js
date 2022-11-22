@@ -1,3 +1,4 @@
+import _ from "lodash";
 import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
@@ -6,7 +7,7 @@ import { Provider } from "react-redux";
 import {
   createStore, compose, applyMiddleware, combineReducers
 } from "redux";
-import { Taxon } from "inaturalistjs";
+import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTaxon, setDescription } from "../shared/ducks/taxon";
@@ -15,6 +16,8 @@ import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
+
+const { Taxon } = inatjs;
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -26,13 +29,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
@@ -48,6 +49,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
+if (
+  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ )
+) {
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
+}
+
 /* global SERVER_PAYLOAD */
 const serverPayload = SERVER_PAYLOAD;
 if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
@@ -55,11 +73,9 @@ if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
     chosenPlace: serverPayload.place
   } ) );
 }
-if ( serverPayload.chosenTab ) {
-  store.dispatch( setConfig( {
-    chosenTab: serverPayload.chosenTab
-  } ) );
-}
+store.dispatch( setConfig( {
+  chosenTab: serverPayload.chosenTab || "articles"
+} ) );
 if ( serverPayload.ancestorsShown ) {
   store.dispatch( setConfig( {
     ancestorsShown: serverPayload.ancestorsShown

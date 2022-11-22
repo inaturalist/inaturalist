@@ -30,18 +30,12 @@
           <%- if notifier.is_a?(Identification) %>
             <div style="margin-bottom:10px;">
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
-              <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
+              <span><%= t(:users_id, user: user.login) %>:</span>
               <%= render :partial => 'shared/taxon', 
                          :locals => { taxon: notifier.taxon,
                                       link_url: taxon_url(notifier.taxon),
                                       viewer: viewing_user } %>
             </div>
-          <% elsif notifier.is_a?(ProjectInvitation) %>
-            <p>
-              <%=t :please_add_this_to_x_html, :x => "<strong>#{notifier.project.title}</strong>".html_safe %>
-              <br/>
-              <%= link_to t(:view_invitation), observation_url(resource) %>
-            </p>
           <% elsif notifier.is_a? Flag %>
             <div class="stacked body">
               <%=t :flag_marked_as_resolved_html %>
@@ -101,5 +95,5 @@
       </tr>
     <% end %>
   </table>
-  <%= link_to "#{t(:view)} #{t(class_name.humanize.downcase, :default => class_name.humanize.downcase)}", url_for_resource_with_host(resource), :class => "readmore" %>
+  <%= link_to t( "view_#{class_name.parameterize.underscore}", default: t( :view ) ), url_for_resource_with_host(resource), :class => "readmore" %>
 </div>

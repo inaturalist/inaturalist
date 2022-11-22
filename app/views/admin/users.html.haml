@@ -51,6 +51,6 @@
                 %td= user.email
                 %td= user.created_at
                 %td= user.last_ip
-                %td= link_to user.observations_count, observations_by_login_path(user.login)
+                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
                 %td= link_to user.identifications_count, identifications_by_login_path(user.login)
                 %td= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login)

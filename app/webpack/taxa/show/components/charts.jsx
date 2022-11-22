@@ -7,6 +7,48 @@ import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
+import "@formatjs/intl-locale/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
+import "@formatjs/intl-numberformat/locale-data/en";
+import "@formatjs/intl-numberformat/locale-data/ar";
+import "@formatjs/intl-numberformat/locale-data/bg";
+import "@formatjs/intl-numberformat/locale-data/br";
+import "@formatjs/intl-numberformat/locale-data/ca";
+import "@formatjs/intl-numberformat/locale-data/cs";
+import "@formatjs/intl-numberformat/locale-data/da";
+import "@formatjs/intl-numberformat/locale-data/de";
+import "@formatjs/intl-numberformat/locale-data/el";
+import "@formatjs/intl-numberformat/locale-data/eo";
+import "@formatjs/intl-numberformat/locale-data/es";
+import "@formatjs/intl-numberformat/locale-data/es-AR";
+import "@formatjs/intl-numberformat/locale-data/es-MX";
+import "@formatjs/intl-numberformat/locale-data/et";
+import "@formatjs/intl-numberformat/locale-data/eu";
+import "@formatjs/intl-numberformat/locale-data/fi";
+import "@formatjs/intl-numberformat/locale-data/fr";
+import "@formatjs/intl-numberformat/locale-data/fr-CA";
+import "@formatjs/intl-numberformat/locale-data/gl";
+import "@formatjs/intl-numberformat/locale-data/he";
+import "@formatjs/intl-numberformat/locale-data/id";
+import "@formatjs/intl-numberformat/locale-data/it";
+import "@formatjs/intl-numberformat/locale-data/ja";
+import "@formatjs/intl-numberformat/locale-data/ko";
+import "@formatjs/intl-numberformat/locale-data/lb";
+import "@formatjs/intl-numberformat/locale-data/lt";
+import "@formatjs/intl-numberformat/locale-data/lv";
+import "@formatjs/intl-numberformat/locale-data/mk";
+import "@formatjs/intl-numberformat/locale-data/nb";
+import "@formatjs/intl-numberformat/locale-data/nl";
+import "@formatjs/intl-numberformat/locale-data/pl";
+import "@formatjs/intl-numberformat/locale-data/pt";
+import "@formatjs/intl-numberformat/locale-data/ru";
+import "@formatjs/intl-numberformat/locale-data/sk";
+import "@formatjs/intl-numberformat/locale-data/sq";
+import "@formatjs/intl-numberformat/locale-data/sv";
+import "@formatjs/intl-numberformat/locale-data/tr";
+import "@formatjs/intl-numberformat/locale-data/uk";
+import "@formatjs/intl-numberformat/locale-data/zh";
+import "@formatjs/intl-numberformat/locale-data/zh-Hant";
 
 class Charts extends React.Component {
   constructor( ) {
@@ -23,12 +65,14 @@ class Charts extends React.Component {
 
   shouldComponentUpdate( nextProps, nextState ) {
     const {
+      noAnnotationHidden,
       scaled,
       seasonalityColumns,
       historyColumns
     } = this.props;
     if (
       scaled === nextProps.scaled
+      && noAnnotationHidden === nextProps.noAnnotationHidden
       && _.isEqual(
         objectToComparable( seasonalityColumns ),
         objectToComparable( nextProps.seasonalityColumns )
@@ -69,8 +113,21 @@ class Charts extends React.Component {
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
-    if ( number > 9999 ) {
-      return number.toExponential( precision );
+    if ( number > 999 ) {
+      try {
+        // this falls back to English for Occitan on all browsers
+        // all other iNat locales appear to be supported
+        return new Intl.NumberFormat( I18n.locale, {
+          maximumSignificantDigits: 3,
+          notation: "compact"
+        } ).format( number );
+      } catch ( e ) {
+        if ( e.message.match( /Intl/ ) ) {
+          console.log( "This browser does not support modern number formatting. Please consider upgrading." );
+        } else {
+          throw e;
+        }
+      }
     }
     return I18n.toNumber( number, { precision } );
   }
@@ -85,6 +142,7 @@ class Charts extends React.Component {
           this.seasonalityChart.flush( );
         }
       } else if ( e.target.hash === "#charts-history" ) {
+        this.props.fetchMonthFrequency( );
         if ( this.historyChart ) {
           this.historyChart.flush( );
         }
@@ -238,13 +296,19 @@ class Charts extends React.Component {
 
   renderFieldValueCharts( ) {
     this.fieldValueCharts = this.fieldValueCharts || { };
-    const { chartedFieldValues, seasonalityColumns } = this.props;
+    const { chartedFieldValues, seasonalityColumns, noAnnotationHidden } = this.props;
     if ( !chartedFieldValues ) { return; }
     _.each( chartedFieldValues, ( values, attributeId ) => {
       let columns = _.filter(
         seasonalityColumns,
         column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
+      if ( noAnnotationHidden ) {
+        columns = _.filter(
+          columns,
+          column => !column[0].match( /No Annotation/ )
+        );
+      }
       columns = _.sortBy( columns, c => ( -1 * _.sum( c.slice( 1 ) ) ) );
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
         [
@@ -334,10 +398,14 @@ class Charts extends React.Component {
       chartedFieldValues,
       config,
       historyKeys,
+      noAnnotationHidden,
       scaled,
       seasonalityKeys,
+      setNoAnnotationHiddenPreference,
       setScaledPreference,
-      taxon
+      taxon,
+      historyLoading,
+      seasonalityLoading
     } = this.props;
     const { helpModalVisible } = this.state;
     const noHistoryData = _.isEmpty( historyKeys );
@@ -427,8 +495,12 @@ class Charts extends React.Component {
               <ul className="dropdown-menu dropdown-menu-right">
                 <li>
                   { scaled ? (
+                    // Note that Bootstrap expects this to be an anchor element,
+                    // and won't style the dropdown correctly if it's a button
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a
                       href="#"
+                      role="button"
                       onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( false );
@@ -438,8 +510,10 @@ class Charts extends React.Component {
                       { I18n.t( "show_total_counts" ) }
                     </a>
                   ) : (
+                    // eslint-disable-next-line jsx-a11y/anchor-is-valid
                     <a
                       href="#"
+                      role="button"
                       onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( true );
@@ -449,6 +523,23 @@ class Charts extends React.Component {
                       { I18n.t( "show_relative_proportions_of_all_observations" ) }
                     </a>
                   ) }
+                </li>
+                <li>
+                  { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */ }
+                  <a
+                    href="#"
+                    role="button"
+                    onClick={e => {
+                      e.preventDefault( );
+                      setNoAnnotationHiddenPreference( !noAnnotationHidden );
+                      return false;
+                    }}
+                  >
+                    { noAnnotationHidden
+                      ? I18n.t( "show_no_annotation" )
+                      : I18n.t( "hide_no_annotation" )
+                    }
+                  </a>
                 </li>
                 { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
                   _.map( chartedFieldValues, ( values, termID ) => (
@@ -489,7 +580,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { seasonalityLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart" />
           </div>
@@ -499,7 +590,7 @@ class Charts extends React.Component {
                 `no-content text-muted text-center ${noHistoryData ? "" : "hidden"}`
               }
             >
-              { I18n.t( "no_observations_yet" ) }
+              { historyLoading ? I18n.t( "loading" ) : I18n.t( "no_observations_yet" ) }
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart" />
           </div>
@@ -546,10 +637,15 @@ Charts.propTypes = {
   historyKeys: PropTypes.array,
   colors: PropTypes.object,
   scaled: PropTypes.bool,
+  noAnnotationHidden: PropTypes.bool,
+  setNoAnnotationHiddenPreference: PropTypes.func,
   setScaledPreference: PropTypes.func,
   taxon: PropTypes.object,
   config: PropTypes.object,
-  loadFieldValueChartData: PropTypes.func
+  loadFieldValueChartData: PropTypes.func,
+  fetchMonthFrequency: PropTypes.func,
+  historyLoading: PropTypes.bool,
+  seasonalityLoading: PropTypes.bool
 };
 
 Charts.defaultProps = {

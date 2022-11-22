@@ -10,7 +10,6 @@ import * as d3 from "d3";
 
 // Based on https://bl.ocks.org/maybelinot/5552606564ef37b5de7e47ed2b7dc099
 class TaxaSunburst extends React.Component {
-
   componentDidMount( ) {
     this.renderHistogram( );
   }
@@ -132,7 +131,8 @@ class TaxaSunburst extends React.Component {
         name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
         rank: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.rank : null,
         preferred_common_name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.preferred_common_name : null,
-        iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null
+        iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null,
+        count: taxaCounts[taxonID] ? taxaCounts[taxonID].count : 0
       };
       if ( children[taxonID] ) {
         thisData.children = _.map( children[taxonID], ( v, childID ) => (

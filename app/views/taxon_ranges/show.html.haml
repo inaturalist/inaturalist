@@ -1,0 +1,53 @@
+= content_for :extracss do
+  = stylesheet_link_tag "taxon_ranges/show"
+- content_for :title do
+  =t :taxon_range_for_taxon_html, taxon: @taxon_range.taxon.name
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        =t :taxon_range_for_taxon_html, taxon: render( "shared/taxon", taxon: @taxon_range.taxon, named_ancestor: true, link_url: @taxon_range.taxon )
+      - if current_user.is_curator?
+        .pull-right= link_to t( :edit ), edit_taxon_range_path( @taxon_range )
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            =t :about_taxon_ranges
+        .panel-body
+          %p
+            =t :about_taxon_ranges_desc
+            = link_to t( :learn_more), "/pages/taxon_ranges"
+          %img.media-object{ src: image_url( "about-taxon-ranges.png", host: @site.url ), class: "img-responsive" }
+    .col-sm-9.col-xs-12.pull-left#left
+      %table.table.table-bordered
+        %tr
+          %td.keys= t(:range)
+          - if @taxon_range.range.file?
+            %td= taxon_range_file_display_name( @taxon_range )
+          - else
+            %td= t(:no_attached_range)
+        %tr
+          %td.keys= t(:taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map)
+          %td= iucn_relationship_text( @taxon_range.iucn_relationship )
+        - if @taxon_range.source
+          %tr
+            %td.keys= t(:source)          
+            %td= link_to @taxon_range.source.title, @taxon_range.source.url
+        - if @taxon_range.url && @taxon_range.url != ""
+          %tr
+            %td.keys= t(:url)
+            %td= link_to @taxon_range.url, @taxon_range.url
+        - if @taxon_range.description && @taxon_range.description != ""
+          %tr
+            %td.keys= t(:description)
+            %td= formatted_user_text @taxon_range.description.html_safe, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+      - if @taxon_range.user_id
+        .row.meta
+          .col-md-12
+            =raw t( :created_by_user_on_date, user: taxon_range_creator( @taxon_range ), date: l( @taxon_range.created_at.to_date, format: :long ) )
+      - if @taxon_range.updater_id
+        .row.meta
+          .col-md-12
+            = t( :updated_by_user_on_date_html, user: taxon_range_updater( @taxon_range ), date: l( @taxon_range.updated_at.to_date, format: :long ) )

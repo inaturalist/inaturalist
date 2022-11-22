@@ -14,12 +14,18 @@ class TaxaTree extends React.Component {
   }
 
   sortMethod( ) {
-    const { lifelist } = this.props;
+    const { config, lifelist } = this.props;
     if ( lifelist.treeSort === "name" ) {
-      return t => t.preferred_common_name || t.name;
+      return t => ( config.currentUser && config.currentUser.prefers_scientific_name_first
+        ? t.name
+        : t.preferred_common_name || t.name
+      );
     }
     if ( lifelist.treeSort === "taxonomic" ) {
       return t => t.left;
+    }
+    if ( lifelist.treeSort === "obsAsc" ) {
+      return t => t.descendant_obs_count;
     }
     return t => -1 * t.descendant_obs_count;
   }
@@ -37,9 +43,11 @@ class TaxaTree extends React.Component {
       setDetailsView
     } = this.props;
     const simplified = lifelist.treeMode === "simplified";
-    const children = simplified ? lifelist.milestoneChildren : lifelist.children;
+    const children = ( simplified && !( taxon && taxon.rank_level <= 10 ) )
+      ? lifelist.milestoneChildren : lifelist.children;
     const taxonID = taxon ? taxon.id : 0;
     const isLeaf = !children[taxonID];
+    const showDirectCount = !taxon || taxon.rank_level > 10;
     const isRoot = !taxon;
     let isOpen = true;
     isOpen = taxon ? _.includes( lifelist.openTaxa, taxon.id ) : true;
@@ -73,52 +81,52 @@ class TaxaTree extends React.Component {
                 user={config.currentUser}
               />
             ) : (
-              <div className="name-label featured-ancestor">
-                Life
+              <div className="name-label featured-ancestor display-name">
+                { I18n.t( "all_taxa.life" ) }
               </div>
             ) }
           </div>
-          { ( isLeaf || isRoot || simplified ) ? null : (
+          { ( isLeaf || isRoot || simplified || !isOpen ) ? null : (
             <span
               className={`icon-collapse ${isOpen ? "" : "disabled"}`}
               onClick={( ) => toggleTaxon( taxon, { collapse: true } )}
-              title="Expand all nodes in this branch"
+              title={I18n.t( "views.lifelists.collapse_this_branch" )}
             />
           ) }
           { ( !isRoot && !isLeaf && !simplified && taxon.descendantCount <= 200 ) ? (
             <span
               className="icon-expand"
               onClick={( ) => toggleTaxon( taxon, { expand: true } )}
-              title="Collapse this branch"
+              title={I18n.t( "views.lifelists.expand_all_nodes_in_this_branch" )}
             />
           ) : null }
           { ( isRoot || simplified ) ? null : (
             <span
               className="icon-focus"
               onClick={( ) => toggleTaxon( taxon, { feature: true } )}
-              title="Focus tree on this taxon"
+              title={I18n.t( "views.lifelists.focus_tree_on_this_taxon" )}
             />
           ) }
-          { ( !isLeaf && descendantObsCount ) ? (
+          { descendantObsCount && !( showDirectCount && isLeaf ) ? (
             <span
               className="descendants"
               onClick={( ) => {
-                setDetailsTaxon( taxon );
+                setDetailsTaxon( taxon, { updateSearch: true } );
                 setDetailsView( "observations" );
               }}
-              title="All observations in this taxon"
+              title={I18n.t( "views.lifelists.all_observations_in_this_taxon" )}
             >
               { descendantObsCount }
             </span>
           ) : null }
-          { directObsCount ? (
+          { directObsCount && showDirectCount ? (
             <Badge
               className="green"
               onClick={( ) => {
-                setDetailsTaxon( taxon, { without_descendants: true } );
+                setDetailsTaxon( taxon, { without_descendants: true, updateSearch: true } );
                 setDetailsView( "observations" );
               }}
-              title="Observations of exactly this taxon"
+              title={I18n.t( "views.lifelists.observations_of_exactly_this_taxon" )}
             >
               { directObsCount }
             </Badge>
@@ -126,14 +134,14 @@ class TaxaTree extends React.Component {
           <span
             className={`${lifelist.detailsView === "observations" ? "icon icon-binoculars" : "fa fa-leaf"}`}
             onClick={( ) => {
-              setDetailsTaxon( taxon );
+              setDetailsTaxon( taxon, { updateSearch: true } );
               if ( lifelist.detailsView === "observations" ) {
                 setDetailsView( "observations" );
               } else {
                 setDetailsView( "species" );
               }
             }}
-            title={`${lifelist.detailsView === "observations" ? "View observations" : "View speciews"}`}
+            title={`${lifelist.detailsView === "observations" ? "View observations" : "View species"}`}
           />
         </div>
         { isOpen && !isLeaf ? (

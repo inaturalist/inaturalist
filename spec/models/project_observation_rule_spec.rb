@@ -30,6 +30,7 @@ describe ProjectObservationRule do
       p = Project.make!
       por1 = ProjectObservationRule.make!(:operator => "in_taxon?", :operand => Taxon.make!, :ruler => p)
       por2 = ProjectObservationRule.make!(:operator => "in_taxon?", :operand => Taxon.make!, :ruler => p)
+      p.reload
       pu = ProjectUser.make!(:project => p)
       o1 = Observation.make!(:user => pu.user, :taxon => por1.operand)
       o2 = Observation.make!(:user => pu.user, :taxon => por2.operand)
@@ -42,6 +43,7 @@ describe ProjectObservationRule do
       p = Project.make!
       por1 = ProjectObservationRule.make!(:operator => "in_taxon?", :operand => Taxon.make!, :ruler => p)
       por2 = ProjectObservationRule.make!(:operator => "georeferenced?", :ruler => p)
+      p.reload
       pu = ProjectUser.make!(:project => p)
       o1 = Observation.make!(:user => pu.user, :taxon => por1.operand)
       o2 = Observation.make!(:user => pu.user, :taxon => Taxon.make!)
@@ -60,7 +62,7 @@ describe ProjectObservationRule do
       p.project_observation_rules.create(operand: place, operator: "observed_in_place?")
       # invalid because obs is not in the place
       expect(ProjectObservation.make(project: p, observation: o)).not_to be_valid
-      o.update_attributes(latitude: place.latitude, longitude: place.longitude)
+      o.update(latitude: place.latitude, longitude: place.longitude)
       # valid when obs is in the place
       expect(ProjectObservation.make(project: p, observation: o)).to be_valid
       ProjectObservation.destroy_all
@@ -80,6 +82,33 @@ describe ProjectObservationRule do
     rule.destroy
     p.reload
     expect( p.last_aggregated_at ).to be_nil
+  end
+
+  describe "project observation_requirements_updated_at" do
+    it "should reset on creation" do
+      proj = Project.make!( project_type: "collection", prefers_user_trust: true )
+      expect( proj.observation_requirements_updated_at ).to be < proj.created_at
+      pu = ProjectUser.make!(
+        project: proj,
+        prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+      )
+      rule = proj.project_observation_rules.create( operator: "in_taxon?", operand: Taxon.make! )
+      proj.reload
+      expect( proj.observation_requirements_updated_at ).to be > proj.created_at
+    end
+
+    it "should reset on deletion" do
+      proj = Project.make!( project_type: "collection", prefers_user_trust: true )
+      rule = proj.project_observation_rules.create( operator: "in_taxon?", operand: Taxon.make! )
+      expect( proj.observation_requirements_updated_at ).to be < proj.created_at
+      pu = ProjectUser.make!(
+        project: proj,
+        prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+      )
+      rule.destroy
+      proj.reload
+      expect( proj.observation_requirements_updated_at ).to be > proj.created_at
+    end
   end
 
 end

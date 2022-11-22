@@ -62,9 +62,184 @@ describe DarwinCore::Occurrence do
       end
 
       it "should be the login of the person who added the first improving identification that matches the obs taxon if the name is blank" do
-        pa.user.update_attributes( name: nil )
+        pa.user.update( name: nil )
         expect( DarwinCore::Occurrence.adapt( o ).identifiedBy ).to eq improving_ident_species.user.login
       end
+    end
+  end
+
+  describe "annotation fields" do
+    def make_controlled_value_with_label( label )
+      ct = ControlledTerm.make!(
+        active: true,
+        is_value: true
+      )
+      ct.labels << ControlledTermLabel.make!( label: label, controlled_term: ct )
+      ControlledTermValue.make!(
+        controlled_attribute: @controlled_attribute,
+        controlled_value: ct
+      )
+      ct
+    end
+    describe "sex" do
+      before(:all) do
+        # resetting annotation_controlled_attributes which contain cached data from other specs
+        DarwinCore::Occurrence.annotation_controlled_attributes = {}
+        @controlled_attribute = ControlledTerm.make!(
+          active: true,
+          is_value: false
+        )
+        @controlled_attribute.labels << ControlledTermLabel.make!( label: "Sex", controlled_term: @controlled_attribute )
+        @controlled_attribute
+      end
+      it "should be lowercase even if the annotation value is capitalized" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Female" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_sex ).to eq "female"
+      end
+      it "should map Cannot Be Determined to undetermined" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Cannot Be Determined" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_sex ).to eq "undetermined"
+      end
+      it "should not include a value that was voted down" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Female" )
+        )
+        annotation.vote_by voter: User.make!, vote: "bad"
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_sex ).to be_blank
+      end
+    end
+    describe "lifeStage" do
+      before(:all) do
+        @controlled_attribute = ControlledTerm.make!(
+          active: true,
+          is_value: false
+        )
+        @controlled_attribute.labels << ControlledTermLabel.make!(
+          label: "Life Stage",
+          controlled_term: @controlled_attribute
+        )
+        @controlled_attribute
+      end
+      it "should leave nymph" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Nymph" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to eq "nymph"
+      end
+      it "should leave larva" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Larva" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to eq "larva"
+      end
+      it "ignores teneral" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Teneral" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to be_blank
+      end
+      it "ignores subimago" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Subimago" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_lifeStage ).to be_blank
+      end
+    end
+    describe "reproductiveCondition" do
+      before(:all) do
+        @controlled_attribute = ControlledTerm.make!(
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+        @controlled_attribute.labels << ControlledTermLabel.make!(
+          label: "Plant Phenology",
+          controlled_term: @controlled_attribute
+        )
+        @controlled_attribute
+      end
+      it "should add flowering for Plant Phenology=Flowering" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Flowering" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowering"
+      end
+      it "should be blank for Plant Phenology=Cannot Be Determined" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Cannot Be Determined" )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to be_blank
+      end
+      it "should concatenate multiple values with pipes" do
+        obs = Observation.make!
+        Annotation.make!(
+          resource: obs,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Flowering" )
+        )
+        Annotation.make!(
+          resource: obs,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Fruiting" )
+        )
+        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowering|fruiting"
+      end
+    end
+  end
+
+  describe "publishingCountry" do
+    it "should be blank if an observation has no site" do
+      o = create :observation
+      expect( o.site ).to be_blank
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site has no place" do
+      site = create :site
+      expect( site.place ).to be_blank
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site's place is not a country" do
+      place = create :place
+      expect( place.admin_level ).not_to eq Place::COUNTRY_LEVEL
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be blank if an observation's site's place's code is not two letters" do
+      place = create :place, admin_level: Place::COUNTRY_LEVEL, code: "ABCD"
+      expect( place.admin_level ).to eq Place::COUNTRY_LEVEL
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to be_blank
+    end
+    it "should be an observation's site's place's code" do
+      place = create :place, admin_level: Place::COUNTRY_LEVEL, code: "IN"
+      site = create :site, place: place
+      o = create :observation, site: site
+      expect( DarwinCore::Occurrence.adapt( o ).publishingCountry ).to eq place.code
     end
   end
 end

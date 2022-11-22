@@ -4,7 +4,7 @@ import moment from "moment";
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import ObservationsGrid from "./observations_grid";
-import DateHistogram from "./date_histogram";
+import DateHistogram from "../../../shared/components/date_histogram";
 
 class NewSpecies extends React.Component {
   constructor( props ) {
@@ -122,7 +122,7 @@ class NewSpecies extends React.Component {
       } ) ),
       style: "bar",
       label: d => `<strong>${
-        moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
+        moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) )
       }</strong>: ${I18n.t( "x_new_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
     };
     if ( showAccumulation ) {
@@ -135,7 +135,7 @@ class NewSpecies extends React.Component {
         style: "bar",
         color: "rgba( 40%, 40%, 40%, 0.5 )",
         label: d => `<strong>${
-          moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )
+          moment( d.date ).add( 2, "days" ).format( I18n.t( "momentjs.month_year" ) )
         }</strong>: ${I18n.t( "x_species", { count: I18n.toNumber( d.value, { precision: 0 } ) } )}`
       };
     }
@@ -198,13 +198,13 @@ class NewSpecies extends React.Component {
                 <a href={`/observations?${_.map( obsParams, ( v, k ) => `${k}=${v}` ).join( "&" )}`}>
                   { observations.length < totalSpeciesIDsForMonth ? (
                     I18n.t( "new_species_added_in_interval_x_of_y", {
-                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" ),
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( I18n.t( "momentjs.month_year" ) ),
                       x: observations.length,
                       y: totalSpeciesIDsForMonth
                     } )
                   ) : (
                     I18n.t( "new_species_added_in_interval", {
-                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" )
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( I18n.t( "momentjs.month_year" ) )
                     } )
                   ) }
                 </a>

@@ -47,6 +47,8 @@ fr-CA:
   x_misidentifications_of_this_species:
     one: "%{count} mauvaise identification de cette espèce"
     other: "%{count} mauvaises identifications de cette espèce"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} mauvaise identification d’espèce dans ce %{rank}"
     other: "%{count} mauvaises identifications d’espèces dans ce %{rank}"
@@ -102,28 +104,26 @@ fr-CA:
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon observé"
     other: "<span class='count'>%{count}</span> taxons observés"
+  _100_day_trends: Tendances de 100 jours
   a_community_for_naturalist: Une communauté pour naturalistes
   about: À propos
-  about_blocking: À propos du blocage
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
-  about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
   about_places: À propos des lieux
-  about_the_cc_licenses: À propos des licences Creative Commons
-  about_these_licenses: À propos de ces licences
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
   about_trips_html: |
     <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
-  about_x: "À propos de %{x}"
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
   acc: 'Préc. (m)'
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
-  accept: accepter
   accept_community_identifications: Accepter les identifications de la communauté
   accuracy: Précision
   accuracy_meters: Précision (mètres)
@@ -133,12 +133,12 @@ fr-CA:
     marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
     cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Actif
   active_users: Utilisateurs actifs
   activity: Activité
-  activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
@@ -151,6 +151,7 @@ fr-CA:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Ajouter un lien
   add_a_name: Ajouter un nom
+  add_a_note: Ajouter une note
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
   #Tool tip for a button that adds bold text to a text area
@@ -206,7 +207,6 @@ fr-CA:
   add_to_favorites: Ajouter aux favoris
   add_to_list: Ajouter à la liste
   add_to_project: Ajouter au projet
-  add_to_your_life_list: Ajouter à votre liste des êtres vivants!
   add_to_your_list: Ajouter à votre liste
   add_your_email_to_get: |
     Ajoutez votre adresse courriel pour obtenir des commentaires de la communauté sur votre observation .
@@ -261,7 +261,6 @@ fr-CA:
   blog_widget: Widget de blogue
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: texte en gras
-  check_out_our_blog: Visitez notre blogue
   check_this_box_if_html: |
     Cochez cette case si vous voulez appliquer une
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu téléversé. Ceci veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n'utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s'agit de la meilleure licence pour échanger avec les chercheurs.
@@ -286,7 +285,11 @@ fr-CA:
     Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué sur le lien ci-dessus pour en créer un nouveau.
-  dont_send_me_email: "Ne m’envoyez pas de courriel!"
+  devise_unlock_instructions_your_account_has_been_locked: |
+    Votre compte a été verrouillé en raison d'une quantité excessive de tentatives de connexion infructueuses.
+  devise_unlock_instructions_click_the_link: |
+    Cliquez sur le lien ci-dessous pour débloquer votre compte :
+  devise_unlock_instructions_unlock: Déverrouiller votre compte
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
@@ -294,16 +297,16 @@ fr-CA:
     <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
     <a href="/observations/import?project_id=%{project_id}#csv_import">téléverseur par lot</a>
   email: Courriel
-  email_addresses_description: Adresses courriel séparées par des virgules, limitées à 60 tous les 30 jours.
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
-  email_addresses_to_receive_invites: Adresses courriel pour recevoir les invitations
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
-  email_settings: Paramètres de courriel
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
   forum_desc: |
     Le forum est un endroit pour discuter de iNat lui-même, y compris pour l’aide et le soutien, les demandes de fonctionnalité, les rapports de bogues, les annonces, et autres.
+  #Option to hide data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  hide_no_annotation: Masquer « Pas d'annotation »
   #Tool tip for a button that inserts quoted text into a text area
   insert_a_quote: Insérer une citation
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et mise en vedette sur d’autres sites Web
@@ -321,39 +324,23 @@ fr-CA:
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: texte lié
   log_in_or_sign_up_to_add_comments_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des commentaires.
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des commentaires.
   log_in_or_sign_up_to_add_identifications_html: |
-    <a href="/log_in">Connectez-vous</a> ou <a href="/sign_up">inscrivez-vous</a> pour ajouter des identifications.
-  mail_disclaimer: "%{site_name} ne permettra pas à ses utilisateurs de vous envoyer des invitations supplémentaires au moyen de notre système d’invitation. Merci de signaler les abus d’invitation à %{site}."
+    <a href="/login">Connectez-vous</a> ou <a href="/signup">inscrivez-vous</a> pour ajouter des identifications.
   #Label shown when a date has not been entered
   missing_date: Date manquante
-  #Special version for network_affiliation_prompt_from_inat_html, which cannot
-  #be properly translated into Finnish with the %{place} variable. Please don't
-  #feel obligated to translate this into any language other than Finnish
-  network_affiliation_prompt_from_inat_to_inaturalist_suomi_html: |
-    <strong>iNaturalist Suomi</strong>, fait partie du réseau international iNaturalist, se concentre sur la biodiversité et les personnes en Finlande. Souhaitez-vous
-    changer l'affiliation de votre compte iNaturalist.org pour iNaturalist Suomi?
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   official_blog: Blogue officiel
-  or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
   our_blog: Notre blogue
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
-  personal_message_description: Personne n’aime recevoir des courriels d’une machine! Pourquoi ne pas laisser savoir à vos amis que vous les invitez?
-  pi_consent_desc_html: |
-    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-    comment nous les utilisons, veuillez voir notre
-    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
-    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
-  preview_personal_message: "J’aimerais que vous me rejoigniez sur %{site}, un site Web où vous pouvez enregistrer vos observations sur les plantes et les animaux, garder trace des espèces observées et en apprendre plus sur le monde de la nature!"
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
-  receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
+  #Option to show data series that show "No Annotation" data, i.e. records that
+  #have no annotation
+  show_no_annotation: Afficher « Pas d'annotation »
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur votre propre blogue ou site Web!
   some_observations_are_missing_media_or_identifications: |
     Certaines observations n'ont pas de photo/son ou d'identification
@@ -735,33 +722,6 @@ fr-CA:
           Assurez-vous d'avoir lu les différences dans notre <a href="%{url}" target="_blank">billet de blogue au sujet des Projets collection</a>.
       updates_desc: |
         Recevoir des notifications pour ce projet sur votre tableau de bord et dans le courriel quotidien
-    search:
-      index:
-        no_taxa_options_html: |
-          <p>Vous avez plusieurs options :</p>
-          <ul class="list-unstyled">
-          <li>
-          <strong>Ajouter un signalement à un taxon de plus haut niveau</strong>
-          <p>
-          Par ex. le genre qui contient une espèce. Ensuite, un responsable
-          de l'organisation bienveillant ajoutera le taxon s’il peut être ajouté.
-          </p>
-          </li>
-          <li>
-          <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
-          <p>
-          Beaucoup de responsables du site suivent les messages vers le forum.
-          </p>
-          </li>
-          <li>
-          <strong>
-          <a href="mailto:%{help_email}">Contacter l'équipe d'assistance</a>
-          </strong>
-          <p>
-          Soyez patient·e, notre équipe d'assistance est restreinte.
-          </p>
-          </li>
-          </ul>
     shared:
       spam:
         message_for_owner_and_curators_html: |
@@ -775,23 +735,6 @@ fr-CA:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites Web <a href="%{url}">Réseau iNaturalist</a>
       year:
-        donate_desc_html: |
-          Merci d'être généreux par votre temps, votre attention, votre expertise et vos
-          dons! iNaturalist est une initiative conjointe sans but lucratif de la
-          California Academy of Sciences et de la National Geographic Society.
-          Il est géré par une
-          <a href="%{team_url}">petite équipe</a> qui
-          fait toute l'ingénierie de conception et de logiciel
-          pour le web, les mobiles et
-          <a href="%{seek_url}">Seek by iNaturalist</a>, en plus de gérer
-          le soutien de la communauté, les collaborations et les intégrations qui maintiennent
-          les choses en marche (et qui se développent rapidement!). Le programme repose sur de nombreuses
-          subventions et dons, y compris des dons de bienfaisance provenant de moins de 0,2 %
-          contributeurs. Nous sommes particulièrement reconnaissants aux Soutiens mensuels
-          dont les cadeaux récurrents nous aident à planifier l'avenir. Vous pouvez faire un don en
-          plus de 30 devises pour soutenir les opérations principales d'iNaturalist.
-          Merci à tout le monde pour votre contribution à rendre l'année 2019 la plus grande
-          d'iNaturalist!
         new_species_desc_html: |
           Espèces ajoutées pour la première fois cette année.
           Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
@@ -846,22 +789,41 @@ fr-CA:
       edit:
         blocking_desc_html: |
           <p>
-          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
+          Bloquer quelqu'un l'empêche de vous envoyer des
+          messages, de commenter vos  observations, d'identifier vos observations
+          et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+          ses observations de vos  résultats de recherche et supprime vos observations
+          ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+          pour lui. Il peut toujours   trouver vos observations et regardez votre
+          profil, il ne peut tout simplement pas  interagir avec vous.
           </p>
           <p>
-          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous
+          entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+          pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+          pour se cacher de  personnes, pour empêcher les identifications de personnes
+          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+          de la communauté (il y en a un autre moyen de régler cela). Ainsi, le
+          blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+          avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+          vos  observations, vous vous empêchez également d'identifier ses  observations.
           </p>
           <p>
-          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que
+          c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+          de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+          bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
           </p>
           <p>
           Si quelqu'un vous harcèle ou vous traque sur %{site_name},
-          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
-          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
+          <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente
+          autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
         inaturalist_network_affiliation_desc_html: |
-          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p>
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
            Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
@@ -903,8 +865,8 @@ fr-CA:
           Nous utilisons des services tiers pour évaluer la stabilité de l'application et détecter des bogues. Ces programmes tiers incluent
         prefers_no_tracking_label_desc_info_we_share_ip_addresses_html: |
           Adresses IP (qui peuvent être utilisées pour déterminer votre ville et vous traquer sur différents sites Web et services; notez que vous avons activé
-           l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
-          <a href="<a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
+          l'<a href="https://support.google.com/analytics/answer/2763052">anonymisation IP</a> dans Google Analytics ; Firebase Crashlytics
+          <a href="https://firebase.google.com/support/privacy"> peut stocker les adresses IP</a> temporairement)
         this_only_applies_to_traditional_projects: |
           Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
           Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
@@ -962,6 +924,9 @@ fr-CA:
         strip_insignificant_zeros: true
   activerecord:
     attributes:
+      message:
+        subject: Objet
+        body: Corps du texte
       site:
         logo_email_banner: Bannière courriel
       user:

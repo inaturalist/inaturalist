@@ -68,7 +68,10 @@ class ProjectAutocomplete extends React.Component {
 
 ProjectAutocomplete.propTypes = {
   disabled: PropTypes.bool,
-  initialProjectID: PropTypes.number,
+  initialProjectID: PropTypes.oneOfType( [
+    PropTypes.number,
+    PropTypes.string
+  ] ),
   className: PropTypes.string
 };
 

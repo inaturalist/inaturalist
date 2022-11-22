@@ -123,7 +123,7 @@
         .filters-dates
           %label.radio
             %input{ type: 'radio', name: 'date-type', "ng-model" => "params.dateType" }
-              {{ shared.t('any_') }}
+              {{ shared.t('any_date') }}
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'exact', "ng-model" => "params.dateType"}
             %span.date-type.date-type-exact
@@ -150,16 +150,20 @@
           %input{ type: "hidden", name: "acc" }
           %input{ type: "hidden", name: "acc_above" }
           %input{ type: "hidden", name: "acc_below" }
+          %input{ type: "hidden", name: "acc_below_or_unknown" }
           %input{ type: "hidden", name: "apply_project_rules_for" }
           %input{ type: "hidden", name: "captive" }
           %input{ type: "hidden", name: "day" }
           %input{ type: "hidden", name: "geo" }
           %input{ type: "hidden", name: "geoprivacy" }
           %input{ type: "hidden", name: "has[]" }
+          %input{ type: "hidden", name: "id" }
           %input{ type: "hidden", name: "ident_taxon_id" }
           %input{ type: "hidden", name: "ident_taxon_id_exclusive" }
+          %input{ type: "hidden", name: "ident_user_id" }
           %input{ type: "hidden", name: "identified" }
           %input{ type: "hidden", name: "lat" }
+          %input{ type: "hidden", name: "license" }
           %input{ type: "hidden", name: "list_id" }
           %input{ type: "hidden", name: "lng" }
           %input{ type: "hidden", name: "members_of_project" }
@@ -170,11 +174,14 @@
           %input{ type: "hidden", name: "not_user_id" }
           %input{ type: "hidden", name: "oauth_application_id" }
           %input{ type: "hidden", name: "pcid" }
+          %input{ type: "hidden", name: "photo_license" }
+          %input{ type: "hidden", name: "photo_licensed" }
           %input{ type: "hidden", name: "projects[]" }
           %input{ type: "hidden", name: "radius" }
           %input{ type: "hidden", name: "rank" }
           %input{ type: "hidden", name: "search_on" }
           %input{ type: "hidden", name: "site_id" }
+          %input{ type: "hidden", name: "sound_license" }
           %input{ type: "hidden", name: "taxon_geoprivacy" }
           %input{ type: "hidden", name: "taxon_ids" }
           %input{ type: "hidden", name: "taxon_ids[]" }
@@ -184,7 +191,9 @@
           %input{ type: "hidden", name: "user_after" }
           %input{ type: "hidden", name: "user_before" }
           %input{ type: "hidden", name: "viewer_id" }
+          %input{ type: "hidden", name: "without_ident_user_id" }
           %input{ type: "hidden", name: "without_taxon_id" }
+          %input{ type: "hidden", name: "without_term_id" }
           %input{ type: "hidden", name: "year" }
     .row
       .col-xs-12
@@ -230,7 +239,7 @@
               .form-group{ "ng-class" => "{ 'filter-changed': params.reviewed }" }
                 %label.radio-inline
                   %input{ type: 'radio', name: 'reviewed-any', "ng-model" => "params.reviewed" }
-                    {{ shared.t('any_') }}
+                    {{ shared.t('any_reviewed') }}
                 %label.radio-inline
                   %input{ type: 'radio', name: 'reviewed-yes', value: 'true', "ng-model" => "params.reviewed" }
                     {{ shared.t('yes') }}
@@ -243,7 +252,7 @@
               .filters-dates
                 %label.radio
                   %input{type: 'radio', name: 'created-date-type', "ng-model" => "params.createdDateType"}
-                    {{ shared.t( "any_" ) }}
+                    {{ shared.t( "any_date" ) }}
                 %label.radio
                   %input{type: 'radio', name: 'created-date-type', value: 'exact', "ng-model" => "params.createdDateType"}
                   %span.date-type.date-type-exact

@@ -21,8 +21,22 @@
   posted_at ||= item.created_at
   posted_at = item.updated_at if item.is_a?(Flag)
   html_class = "#{item.class.name.humanize.underscore}_activity_item item clear stacked"
+  id_attr = if item.is_a? Comment
+    "activity_comment_#{item.uuid}"
+  elsif item.is_a? Identification
+    "activity_identification_#{item.uuid}"
+  else
+    dom_id( item, "activity" )
+  end
+  unless defined? parent_comments_disabled
+    parent_comments_disabled = if item.respond_to?( :parent )
+      item&.parent&.respond_to?(:prefers_no_comments?) && item&.parent.prefers_no_comments?
+    else
+      false
+    end
+  end
 -%>
-<div id="<%= dom_id(item, 'activity') %>" class="<%= html_class %>">
+<div id="<%= id_attr  %>" class="<%= html_class %>">
   <div class="item_user column">
     <% if user && !no_thumb -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
@@ -37,13 +51,6 @@
         :user => user,
         :hide_agree => hide_agree
       } %>
-    <% elsif item.is_a? ProjectInvitation %>
-      <p><%= t :please_add_this_observation_to %></p>
-      <%= render :partial => "project_invitations/project_invitation", 
-        :object => item,
-        :locals => { 
-          :observation => observation,
-          :truncation_length => 48 } %>
     <% elsif item.is_a? Flag %>
       <div class="stacked body">
         <div class="stacked">
@@ -117,7 +124,7 @@
         <span class="comment_actions">
           <%-
             pieces = []
-            if is_me?(item.user) && edit_url
+            if is_me?(item.user) && edit_url && !parent_comments_disabled
               pieces << link_to(t(:edit), edit_url)
             end
             if item.is_a?( Identification ) && is_me?( item.user )
@@ -132,7 +139,7 @@
                           :method => :delete,
                           :id => "delete_comment_#{item.id}_button")
             end
-            if !item.is_a?(Flag) && FlagsController::FLAG_MODELS.include?(item.class.name)
+            if !item.is_a?(Flag) && Flag::TYPES.include?(item.class.name)
               pieces << link_to(t(:flag), new_flag_path("#{item.class.name.underscore}_id" => item), :class => "flaglink")
             end
           -%>

@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
+import { updateSession } from "../../../shared/util";
 
 let searchInProgress;
 
@@ -24,23 +25,6 @@ const TAXON_FIELDS = {
 };
 
 class TaxonAutocomplete extends React.Component {
-  static returnVisionResults( response, callback ) {
-    const visionTaxa = _.map( response.results.slice( 0, 8 ), r => {
-      const taxon = new iNatModels.Taxon( r.taxon );
-      taxon.isVisionResult = true;
-      taxon.visionScore = r.vision_score;
-      taxon.frequencyScore = r.frequency_score;
-      return taxon;
-    } );
-    if ( response.common_ancestor ) {
-      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
-      taxon.isVisionResult = true;
-      taxon.isCommonAncestor = true;
-      visionTaxa.unshift( taxon );
-    }
-    callback( visionTaxa );
-  }
-
   static differentMatchedTerm( result, fieldValue ) {
     if ( !result.matched_term ) { return false; }
     if (
@@ -138,9 +122,11 @@ class TaxonAutocomplete extends React.Component {
           <span className="subtitle">{ r.subtitle }</span>
           { extraSubtitle }
         </div>
-        <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
-          <div className="ac-view">{ I18n.t( "view" ) }</div>
-        </a>
+        { r.type !== "message" && (
+          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
+            <div className="ac-view">{ I18n.t( "view" ) }</div>
+          </a>
+        ) }
       </div>
     );
   }
@@ -161,6 +147,13 @@ class TaxonAutocomplete extends React.Component {
     this.thumbnailElement = this.thumbnailElement.bind( this );
     this.autocomplete = this.autocomplete.bind( this );
     this.updateWithSelection = this.updateWithSelection.bind( this );
+    const { config } = props;
+    const { currentUser } = ( config || {} );
+    this.state = {
+      viewNotNearby: currentUser && currentUser.prefers_not_nearby_suggestions,
+      // eslint-disable-next-line react/no-unused-state
+      numNearby: 0
+    };
   }
 
   componentDidMount( ) {
@@ -168,31 +161,98 @@ class TaxonAutocomplete extends React.Component {
       afterUnselect,
       initialSelection
     } = this.props;
+    const that = this;
+    const getState = ( ) => that.state;
+    const setState = updates => that.setState( updates );
     const renderMenuWithCategories = function ( ul, items ) {
       ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
       ul.addClass( "ac-menu" );
       if ( items.length === 1 && items[0].label === "loadingSuggestions" ) {
-        ul.append( `<li class="category">${I18n.t( "loading_suggestions" )}</li>` );
+        ul.append( `<li class="category non-option">${I18n.t( "loading_suggestions" )}</li>` );
+        return;
+      }
+      if ( items.length === 1 && items[0].label === "noResults" ) {
+        ul.append(
+          $( "<li />" ).addClass( "category non-option" ).text(
+            I18n.t( "not_confident" )
+          )
+        );
         return;
       }
       const isVisionResults = items[0] && items[0].isVisionResult;
-      let speciesCategoryShown = false;
+      let commonAncestorCategoryShown = false;
+      let suggestionsCategoryShown = false;
+      let experimantalWarningShown = false;
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
+          if ( item.isExperimental && !experimantalWarningShown ) {
+            ul.append( `<li class='non-option warning'>Experimental: ${item.isExperimental}</li>` );
+            experimantalWarningShown = true;
+          }
           if ( item.isCommonAncestor ) {
-            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
-              rank: item.rank,
-              gender: item.rank
+            const snakeCaseRank = _.snakeCase( item.rank );
+            // Note: given the way we're doing fallbacks as of this writing on
+            // 2021-08-10, `defaultValue` only kicks in when the key doesn't
+            // exist in the current locale or any of the fallbacks... so if
+            // there's an English translation, that will be used instead of
+            // `defaultValue`. Here I'm achieving the desired behavior
+            // manually, but this is a problem with our fallback system, b/c
+            // this is *not* how defaultValue is supposed to work.
+            // I18n.t( "were_pretty_sure_this_is_in_the_genus" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_family" )
+            // I18n.t( "were_pretty_sure_this_is_in_the_order" )
+            const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
+            const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
+              rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
+              gender: snakeCaseRank
             } );
-            ul.append( `<li class='category'>${label}:</li>` );
-          } else if ( !speciesCategoryShown ) {
-            const label = I18n.t( "here_are_our_top_species_suggestions" );
-            ul.append( `<li class='category'>${label}:</li>` );
-            speciesCategoryShown = true;
+            const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
+              defaultValue: labelInLocaleFallback
+            } );
+            let label = labelInLocale;
+            if ( I18n.locale !== "en" && label === labelInEnglish ) {
+              label = labelInLocaleFallback;
+            }
+            ul.append( `<li class='category header-category non-option'>${label}</li>` );
+            commonAncestorCategoryShown = true;
+          } else if ( !suggestionsCategoryShown ) {
+            let label = I18n.t( "here_are_our_top_species_suggestions" );
+            label = commonAncestorCategoryShown
+              ? I18n.t( "here_are_our_top_suggestions" )
+              : I18n.t( "not_confident_top_suggestions" );
+            ul.append( `<li class='category header-category non-option'>${label}</li>` );
+            suggestionsCategoryShown = true;
           }
         }
         this._renderItemData( ul, item );
       } );
+      const query = that.inputElement( ).val( );
+      const manualQuery = query && query.length >= 0;
+      const { numNearby, numSuggested, viewNotNearby } = getState( );
+      if ( !manualQuery && numNearby > 0 && numNearby !== numSuggested ) {
+        const nearbyToggle = $( "<button />" ).attr( "type", "button" )
+          .append(
+            viewNotNearby
+              ? I18n.t( "only_view_nearby_suggestions" )
+              : I18n.t( "include_suggestions_not_seen_nearby" )
+          )
+          .click( e => {
+            e.preventDefault( );
+            const { viewNotNearby: innerViewNotNearby } = getState( );
+            $( e.target ).text(
+              innerViewNotNearby
+                ? I18n.t( "include_suggestions_not_seen_nearby" )
+                : I18n.t( "only_view_nearby_suggestions" )
+            );
+            setState( { viewNotNearby: !innerViewNotNearby } );
+            updateSession( { prefers_not_nearby_suggestions: !innerViewNotNearby } );
+            that.inputElement( ).autocomplete( "search" );
+            return false;
+          } );
+        ul.append(
+          $( "<li />" ).addClass( "non-option nearby-toggle" ).append( nearbyToggle )
+        );
+      }
     };
     const opts = Object.assign( { }, this.props, {
       extraClass: "taxon",
@@ -255,6 +315,44 @@ class TaxonAutocomplete extends React.Component {
     // https://facebook.github.io/react/blog/2015/12/16/ismounted-antipattern.html
     this._mounted = false;
     this.inputElement( ).autocomplete( "destroy" );
+  }
+
+  returnVisionResults( response, callback ) {
+    let { results } = response;
+    const { viewNotNearby } = this.state;
+    const nearbyResults = _.filter(
+      response.results,
+      r => r.frequency_score && r.frequency_score > 0
+    );
+    this.setState( {
+      // eslint-disable-next-line react/no-unused-state
+      numSuggested: response.results.length,
+      // eslint-disable-next-line react/no-unused-state
+      numNearby: nearbyResults.length
+    } );
+    if ( nearbyResults.length > 0 && !viewNotNearby ) {
+      results = nearbyResults;
+    }
+    const visionTaxa = _.map( results.slice( 0, 8 ), r => {
+      const taxon = new iNatModels.Taxon( r.taxon );
+      taxon.isVisionResult = true;
+      taxon.visionScore = r.vision_score;
+      taxon.frequencyScore = r.frequency_score;
+      taxon.isExperimental = response.experimental;
+      return taxon;
+    } );
+    if ( response.common_ancestor ) {
+      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
+      taxon.isVisionResult = true;
+      taxon.isCommonAncestor = true;
+      taxon.isExperimental = response.experimental;
+      visionTaxa.unshift( taxon );
+    }
+    if ( visionTaxa.length === 0 ) {
+      callback( ["noResults"] );
+    } else {
+      callback( visionTaxa );
+    }
   }
 
   inputElement( ) {
@@ -337,16 +435,28 @@ class TaxonAutocomplete extends React.Component {
   visionAutocompleteSource( callback ) {
     const { config, visionParams } = this.props;
     if ( this.cachedVisionResponse ) {
-      TaxonAutocomplete.returnVisionResults( this.cachedVisionResponse, callback );
+      this.returnVisionResults( this.cachedVisionResponse, callback );
     } else if ( visionParams ) {
-      const baseParams = config.testingApiV2 ? { fields: { taxon: TAXON_FIELDS } } : {};
+      const baseParams = config.testingApiV2
+        ? {
+          fields: {
+            frequency_score: true,
+            vision_score: true,
+            taxon: TAXON_FIELDS
+          }
+        }
+        : {};
+      if ( config.testingVision ) {
+        baseParams.geomodel = true;
+      }
       if ( visionParams.image ) {
-        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) ).then( r => {
-          this.cachedVisionResponse = r;
-          TaxonAutocomplete.returnVisionResults( r, callback );
-        } ).catch( e => {
-          console.log( ["Error fetching vision response for photo", e] );
-        } );
+        inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
+          .then( r => {
+            this.cachedVisionResponse = r;
+            this.returnVisionResults( r, callback );
+          } ).catch( e => {
+            console.log( ["Error fetching vision response for photo", e] );
+          } );
         callback( ["loadingSuggestions"] );
       } else if ( visionParams.observationID || visionParams.observationUUID ) {
         let { observationID, observationUUID } = visionParams;
@@ -354,11 +464,9 @@ class TaxonAutocomplete extends React.Component {
           observationID = observationUUID;
         }
         const params = Object.assign( baseParams, { id: observationID } );
-        this.fetchingVision = true;
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
-          this.fetchingVision = false;
-          TaxonAutocomplete.returnVisionResults( r, callback );
+          this.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for observation", e] );
         } );
@@ -371,6 +479,9 @@ class TaxonAutocomplete extends React.Component {
     const {
       perPage, searchExternal, showPlaceholder, notIDs, observedByUserID, config
     } = this.props;
+    const searchExternalEnabled = searchExternal
+      // eslint-disable-next-line no-undef
+      && ( typeof ( CONFIG ) === "undefined" || !CONFIG.content_freeze_enabled );
     const params = {
       q: request.term,
       per_page: perPage || 10,
@@ -389,7 +500,7 @@ class TaxonAutocomplete extends React.Component {
     inaturalistjs.taxa.autocomplete( params ).then( r => {
       const results = r.results || [];
       // show as the last item an option to search external name providers
-      if ( searchExternal !== false ) {
+      if ( searchExternalEnabled !== false ) {
         results.push( {
           type: "search_external",
           title: I18n.t( "search_external_name_providers" )

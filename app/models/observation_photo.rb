@@ -1,4 +1,4 @@
-class ObservationPhoto < ActiveRecord::Base
+class ObservationPhoto < ApplicationRecord
   belongs_to_with_uuid :observation, inverse_of: :observation_photos, counter_cache: false
   belongs_to :photo
 

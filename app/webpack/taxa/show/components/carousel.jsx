@@ -12,6 +12,7 @@ class Carousel extends React.Component {
       sliding: false
     };
   }
+
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     const that = this;
@@ -19,22 +20,27 @@ class Carousel extends React.Component {
       that.setState( { sliding: false } );
     } );
   }
+
   showNext( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "next" );
+    const { currentIndex } = this.state;
     this.setState( {
-      currentIndex: this.state.currentIndex + 1,
+      currentIndex: currentIndex + 1,
       sliding: true
     } );
   }
+
   showPrev( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "prev" );
+    const { currentIndex } = this.state;
     this.setState( {
-      currentIndex: this.state.currentIndex - 1,
+      currentIndex: currentIndex - 1,
       sliding: true
     } );
   }
+
   render( ) {
     let link;
     if ( this.props.url ) {
@@ -63,15 +69,15 @@ class Carousel extends React.Component {
         <div className="carousel-controls pull-right nav-buttons">
           <Button
             className="nav-btn prev-btn"
-            disabled={this.state.currentIndex === 0 || this.state.sliding }
-            onClick={ ( ) => this.showPrev( ) }
-            title={ I18n.t( "prev" ) }
+            disabled={this.state.currentIndex === 0 || this.state.sliding}
+            onClick={( ) => this.showPrev( )}
+            title={I18n.t( "previous_taxon_short" )}
           />
           <Button
             className="nav-btn next-btn"
-            disabled={this.state.currentIndex >= this.props.items.length - 1  || this.state.sliding}
-            onClick={ ( ) => this.showNext( ) }
-            title={ I18n.t( "next" ) }
+            disabled={this.state.currentIndex >= this.props.items.length - 1 || this.state.sliding}
+            onClick={( ) => this.showNext( )}
+            title={I18n.t( "next_taxon_short" )}
           />
         </div>
       );

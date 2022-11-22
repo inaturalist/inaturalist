@@ -1,4 +1,4 @@
-class Color < ActiveRecord::Base
+class Color < ApplicationRecord
   has_and_belongs_to_many :taxa
 
   BLACK   = Color.where(value: 'black').first_or_create

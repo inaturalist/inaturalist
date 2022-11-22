@@ -1,4 +1,4 @@
-class ApiEndpointCache < ActiveRecord::Base
+class ApiEndpointCache < ApplicationRecord
 
   belongs_to :api_endpoint
 

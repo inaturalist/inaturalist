@@ -25,21 +25,21 @@ class FlickrCache
       response = nil
       begin
         # mark the start time of the fetch
-        api_endpoint_cache.update_attributes(request_began_at: Time.now,
+        api_endpoint_cache.update(request_began_at: Time.now,
           request_completed_at: nil, success: nil, response: nil)
         # call the API via Flickraw
         Timeout::timeout(TIMEOUT) do
           response = request( flickraw, type, method, params )
         end
         # mark the end time and update the cache with the results
-        api_endpoint_cache.update_attributes(
+        api_endpoint_cache.update(
           request_completed_at: Time.now, success: true, response: response)
       rescue Timeout::Error
         raise Timeout::Error, "Flickr didn't respond within #{TIMEOUT} seconds."
       rescue FlickRaw::FailedResponse, EOFError, OpenSSL::SSL::SSLError => e
         Rails.logger.error "Failed Flickr API request: #{e}"
         Rails.logger.error e.backtrace.join("\n\t")
-        api_endpoint_cache.update_attributes(request_completed_at: Time.now, success: false)
+        api_endpoint_cache.update(request_completed_at: Time.now, success: false)
       end
       response ? json_to_flickraw( response ) : nil
     end

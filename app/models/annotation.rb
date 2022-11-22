@@ -1,5 +1,5 @@
 #encoding: utf-8
-class Annotation < ActiveRecord::Base
+class Annotation < ApplicationRecord
 
   acts_as_votable
   blockable_by lambda {|annotation| annotation.resource.try(:user_id) }
@@ -11,7 +11,7 @@ class Annotation < ActiveRecord::Base
 
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
-  belongs_to :resource, polymorphic: true
+  belongs_to_with_uuid :resource, polymorphic: true
   belongs_to :user
   belongs_to :observation_field_value
 
@@ -30,11 +30,14 @@ class Annotation < ActiveRecord::Base
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
-  after_create :touch_resource
-  after_save :index_observation
-  after_destroy :index_observation, :touch_resource
+  after_commit :index_observation, on: [:create, :update, :destroy]
+  after_commit :touch_resource, on: [:create, :destroy]
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
+
+  def to_s
+    "<Annotation #{id} user_id: #{user_id} resource_type: #{resource_type} resource_id: #{resource_id}>"
+  end
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -162,14 +165,10 @@ class Annotation < ActiveRecord::Base
     true
   end
 
-  def index_observation_later
-    if resource.is_a?(Observation) && !skip_indexing
-      Observation.elastic_index!(ids: [resource.id], delay: true)
-    end
-  end
-
   def touch_resource
-    resource.touch if resource && !(resource.bulk_delete || bulk_delete)
+    if resource && resource.respond_to?( :updated_at ) && !(resource.bulk_delete || bulk_delete)
+      resource.update_columns( updated_at: Time.now )
+    end
     true
   end
 
@@ -182,15 +181,20 @@ class Annotation < ActiveRecord::Base
   end
 
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
+    [taxon_ids].flatten.each do |taxon_id|
+      Annotation.reassess_annotations_for_taxon_id( taxon_id )
+    end
+  end
+
+  def self.reassess_annotations_for_taxon_id( taxon )
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     Annotation.
         joins(
           controlled_attribute: {
-            controlled_term_taxa: {
-              taxon: :taxon_ancestors
-            }
+            controlled_term_taxa: :taxon
           }
         ).
-        where( "taxon_ancestors.ancestor_taxon_id IN (?)", taxon_ids ).
+        where( taxon.subtree_conditions ).
         includes(
           { resource: :taxon },
           controlled_value: [

@@ -7,27 +7,30 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "../../../shared/components/user_image";
 import UserLink from "../../../shared/components/user_link";
 import FormattedDate from "../../shared/formatted_date";
+import ViewMoreFooter from "./view_more_footer";
 
 const ObservationsListView = ( {
-  config, observations, hasMore, loadMore, setObservationFilters
+  config, observations, hasMore, loadMore, setObservationFilters, showViewMoreLink, viewMoreUrl
 } ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
   const filters = config.observationFilters;
   const loader = ( <div key="observations-list-view-loading" className="loading_spinner huge" /> );
   const sortColumn = ( filters.order_by === "observed_on" ) ? "observed" : "created";
-  const observedCaretDirection =
-    ( sortColumn === "observed" && filters.order === "asc" ) ? "up" : "down";
-  const createdCaretDirection =
-    ( sortColumn === "created" && filters.order === "asc" ) ? "up" : "down";
+  const observedCaretDirection = ( sortColumn === "observed" && filters.order === "asc" )
+    ? "up"
+    : "down";
+  const createdCaretDirection = ( sortColumn === "created" && filters.order === "asc" )
+    ? "up"
+    : "down";
   return (
     <div className="ObservationsListView">
       <Grid>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <InfiniteScroll
-              loadMore={ loadMore }
-              hasMore={ hasMore }
-              loader={ loader }
+              loadMore={loadMore}
+              hasMore={hasMore}
+              loader={loader}
             >
               <table className="ObservationsList" key="observations-list-view-list">
                 <thead>
@@ -36,34 +39,37 @@ const ObservationsListView = ( {
                     <th>{ I18n.t( "name" ) }</th>
                     <th>{ I18n.t( "user" ) }</th>
                     <th
-                      className={ `clicky ${sortColumn === "observed" && "sorting"}` }
-                      onClick={ ( ) => setObservationFilters( {
+                      className={`clicky ${sortColumn === "observed" && "sorting"}`}
+                      onClick={( ) => setObservationFilters( {
                         order_by: "observed_on",
-                        order: ( sortColumn === "observed" && filters.order === "desc" ) ?
-                          "asc" : "desc"
-                      } ) }
+                        order: ( sortColumn === "observed" && filters.order === "desc" )
+                          ? "asc"
+                          : "desc"
+                      } )}
                     >
                       { I18n.t( "observed" ) }
-                      <i className={ `fa fa-caret-${observedCaretDirection}`} />
+                      <i className={`fa fa-caret-${observedCaretDirection}`} />
                     </th>
                     <th>{ I18n.t( "place" ) }</th>
                     <th
-                      className={ `clicky ${sortColumn === "created" && "sorting"}` }
-                      onClick={ ( ) => setObservationFilters( {
+                      className={`clicky ${sortColumn === "created" && "sorting"}`}
+                      onClick={( ) => setObservationFilters( {
                         order_by: "created_at",
-                        order: ( sortColumn === "created" && filters.order === "desc" ) ?
-                          "asc" : "desc"
-                      } ) }
+                        order: ( sortColumn === "created" && filters.order === "desc" )
+                          ? "asc"
+                          : "desc"
+                      } )}
                     >
                       { I18n.t( "added" ) }
-                      <i className={ `fa fa-caret-${createdCaretDirection}`} />
+                      <i className={`fa fa-caret-${createdCaretDirection}`} />
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   { _.map( observations.slice( 0, scrollIndex ), ( o, index ) => {
-                    const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?
-                      o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+                    const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name
+                      ? o.taxon.iconic_taxon_name.toLowerCase( )
+                      : "unknown";
                     let displayPlace;
                     if ( o.place_guess ) {
                       displayPlace = o.place_guess;
@@ -73,19 +79,20 @@ const ObservationsListView = ( {
                       displayPlace = I18n.t( "unknown" );
                     }
                     return (
-                      <tr className={ index % 2 === 0 ? "even" : "" } key={ `obs_list_row_${o.id}` }>
+                      <tr className={index % 2 === 0 ? "even" : ""} key={`obs_list_row_${o.id}`}>
                         <td className="photo">
                           <a
                             href={`/observations/${o.id}`}
-                            style={ o.photo( ) ? {
+                            style={o.photo( ) ? {
                               backgroundImage: `url( '${o.photo( "square" )}' )`
-                            } : null }
+                            } : null}
                             target="_self"
                             className={
                               `${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`
                             }
                           >
-                            <i className={ `taxon-image icon icon-iconic-${iconicTaxonName}`} />
+                            { o.hasSounds( ) && <i className="sound-icon fa fa-volume-up" /> }
+                            <i className={`taxon-image icon icon-iconic-${iconicTaxonName}`} />
                             { ( o.photos.length > 1 ) && (
                               <span className="photo-count">
                                 { o.photos.length }
@@ -96,9 +103,9 @@ const ObservationsListView = ( {
                         <td className="taxon">
                           <div className="contents">
                             <SplitTaxon
-                              taxon={ o.taxon }
-                              url={ `/observations/${o.id}` }
-                              user={ config.currentUser }
+                              taxon={o.taxon}
+                              url={`/observations/${o.id}`}
+                              user={config.currentUser}
                             />
                             <div className="meta">
                               { o.quality_grade === "research" && (
@@ -120,7 +127,7 @@ const ObservationsListView = ( {
                               { o.comments.length > 0 && (
                                 <span
                                   className="count comments"
-                                  title={ I18n.t( "x_comments", { count: o.comments.length } ) }
+                                  title={I18n.t( "x_comments", { count: o.comments.length } )}
                                 >
                                   <i className="icon-chatbubble" />
                                   { o.comments.length }
@@ -129,7 +136,7 @@ const ObservationsListView = ( {
                               { o.faves.length > 0 && (
                                 <span
                                   className="count favorites"
-                                  title={ I18n.t( "x_faves", { count: o.faves.length } ) }
+                                  title={I18n.t( "x_faves", { count: o.faves.length } )}
                                 >
                                   <i className="fa fa-star" />
                                   { o.faves.length }
@@ -139,25 +146,25 @@ const ObservationsListView = ( {
                           </div>
                         </td>
                         <td className="user">
-                          <UserImage user={ o.user } />
-                          <UserLink user={ o.user } />
+                          <UserImage user={o.user} />
+                          <UserLink user={o.user} />
                         </td>
-                        <td className={ `date ${sortColumn === "observed" && "sorting"}` }>
+                        <td className={`date ${sortColumn === "observed" && "sorting"}`}>
                           <FormattedDate
-                            date={ o.observed_on_details && o.observed_on_details.date }
-                            time={ o.time_observed_at }
-                            timezone={ o.observed_time_zone }
+                            date={o.observed_on_details && o.observed_on_details.date}
+                            time={o.time_observed_at}
+                            timezone={o.observed_time_zone}
                           />
                         </td>
                         <td className="place">
                           <i className="fa fa-map-marker" />
                           { displayPlace }
                         </td>
-                        <td className={ `date ${sortColumn === "created" && "sorting"}` }>
+                        <td className={`date ${sortColumn === "created" && "sorting"}`}>
                           <FormattedDate
-                            date={ o.created_at_details.date }
-                            time={ o.created_at }
-                            timezone={ o.created_time_zone }
+                            date={o.created_at_details.date}
+                            time={o.created_at}
+                            timezone={o.created_time_zone}
                           />
                         </td>
                       </tr>
@@ -170,6 +177,10 @@ const ObservationsListView = ( {
           </Col>
         </Row>
       </Grid>
+      <ViewMoreFooter
+          showViewMoreLink={showViewMoreLink}
+          viewMoreUrl={viewMoreUrl}
+      />
     </div>
   );
 };
@@ -177,11 +188,11 @@ const ObservationsListView = ( {
 ObservationsListView.propTypes = {
   config: PropTypes.object,
   setObservationFilters: PropTypes.func,
-  setConfig: PropTypes.func,
   hasMore: PropTypes.bool,
-  infiniteScrollObservations: PropTypes.func,
   loadMore: PropTypes.func,
-  observations: PropTypes.array
+  observations: PropTypes.array,
+  showViewMoreLink: PropTypes.bool,
+  viewMoreUrl: PropTypes.string
 };
 
 export default ObservationsListView;

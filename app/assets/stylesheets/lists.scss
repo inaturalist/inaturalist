@@ -277,7 +277,81 @@ a.stat.total .remainder .label {
   color: #888;
 }
 
-.life_list_taxon img {
+.check_list_taxon img {
   vertical-align: middle;
   height: 20px;
+}
+
+#no_lists_message {
+  font-size: 150%;
+  margin: 2em;
+  text-align: center;
+}
+
+.by-login {
+  .header {
+    margin-bottom: 1em;
+  }
+
+  .grid {
+    width: 110px;
+    display: flex;                       
+    flex-wrap: wrap;                     
+    justify-content: space-around;
+    margin: 0.5em;
+  }
+  
+  .cell {
+    flex: 0 0 32%;
+    height: 32px;
+    margin-bottom: 3.19px;
+  }
+  
+  .photo img {
+    width: 32px;
+  }
+
+  .dynamic_life_list {
+    background-color: #D6E6B4;
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .list {
+    padding: 0.5em;
+    margin-bottom: 1em;
+  }
+     
+  .list .empty {
+    display: block;
+    background-color: #eee;
+    color: #aaa;
+    text-align: center;
+    padding: 42.782px 15px;
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-right: 18px;
+  }
+  
+  .list-icon {
+   position: relative;
+   left: -38px;
+   top: 33px;
+  }
+
+  .life-list-user-icon {
+   border-radius: 50%;
+   margin: 15px 0px 15px 15px;
+   width: 103.57px;
+   vertical-align: middle;
+  }
+
+  .btn-inat,
+  .btn-success:active,
+  .btn-success:visited {
+    font-size: 14pt !important;
+    letter-spacing: 0.6pt !important;
+    font-weight: bold;
+  }
 }

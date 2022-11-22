@@ -1,0 +1,114 @@
+name: inaturalist CI
+
+on:
+  push:
+    branches-ignore:
+      - l10n_main
+  pull_request:
+
+jobs:
+  pre_build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: fkirc/skip-duplicate-actions@master
+        with:
+          github_token: ${{ github.token }}
+          cancel_others: true
+
+  build:
+    needs: pre_build
+    runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgis/postgis:12-2.5
+        env:
+          POSTGRES_USER: inaturalist
+          POSTGRES_PASSWORD: inaturalist
+          POSTGRES_DB: inaturalist_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # Note that these letter prefix patterns must match existing files or
+        # Github will error out of the build
+        spec_pattern:
+          - spec/models/{a,b,c,d,e,f,g,i,l}*_spec.rb
+          - spec/models/{m,o}*_spec.rb
+          - spec/models/{p,q,s}*_spec.rb
+          - spec/models/{t,u,w}*_spec.rb
+          - spec/controllers/{a,c,e,f,g,i,l,m,o}*_spec.rb
+          - spec/controllers/{p,q,r,s,t,u,v,w}*_spec.rb
+          - spec/helpers spec/initializers spec/lib spec/views spec/features
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.0'
+        bundler-cache: false
+
+    - name: Configure sysctl limits
+      run: |
+        sudo swapoff -a
+        sudo sysctl -w vm.swappiness=1
+        sudo sysctl -w fs.file-max=262144
+        sudo sysctl -w vm.max_map_count=262144
+
+    - name: Runs Elasticsearch
+      uses: miyataka/elastic-github-actions/elasticsearch@feature/plugin_support
+      with:
+        stack-version: 7.17.1
+        plugins: analysis-kuromoji
+
+    - name: Ensure elasticsearch is reachable
+      run: |
+        curl --verbose --show-error http://localhost:9200
+
+    - run: npm install
+    - run: npm run webpack
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get -qq update
+        sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+        echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
+
+    - name: Before script
+      run: ci/scripts/before_script.sh
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+        TRAVIS: true
+        CI: true
+
+    - name: Run specs
+      run: bundle exec rspec ${{ matrix.spec_pattern }}
+      env:
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
+        RAILS_ENV: test
+        TRAVIS: true
+        TRAVIS_CI: true
+        CI: true
+
+  notify:
+    name: Notify Slack
+    needs: build
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: iRoachie/slack-github-actions@v2.0.1
+        if: env.SLACK_WEBHOOK_URL != null
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

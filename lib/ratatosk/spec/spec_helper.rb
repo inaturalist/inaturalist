@@ -22,7 +22,7 @@ class CatalogueOfLife
     fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/catalogue_of_life/#{fname}.xml")
     # puts "[DEBUG] fixture_path: #{fixture_path}"
     if File.exists?(fixture_path)
-      Nokogiri::XML(open(fixture_path))
+      Nokogiri::XML( File.open( fixture_path ) )
     else
       puts "[DEBUG] Couldn't find CoL response fixture, you should probably do this:\n wget -O #{fixture_path} \"#{CatalogueOfLife.url_for_request('search', options)}\""
       super(options)

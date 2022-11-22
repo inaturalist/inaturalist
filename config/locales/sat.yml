@@ -1,0 +1,211 @@
+sat:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} ᱵᱚᱫᱚᱞ"
+    other: "%{count} ᱵᱚᱫᱚᱞ ᱠᱚ"
+  x_comments:
+    one: '%{count} ᱴᱤᱯᱬᱤ'
+    other: '%{count} ᱴᱤᱯᱬᱤ ᱠᱚ'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> ᱴᱤᱯᱚᱬᱤ'
+    other: '<span class="count">%{count}</span> ᱴᱤᱯᱚᱬᱤ ᱠᱚ'
+  x_faves:
+    one: '%{count} ᱠᱩᱥᱤ'
+    other: '%{count} ᱠᱩᱥᱤ ᱠᱚ'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> ᱵᱟᱹᱰ ᱴᱷᱤᱠ ᱮᱱᱟ"
+    other: "<span class='count'>%{count}</span> ᱵᱟᱹᱰ ᱠᱚ ᱴᱷᱤᱠ ᱮᱱᱟ"
+  x_identifications:
+    one: '%{count} ᱪᱤᱱᱦᱟᱹᱯ'
+    other: '%{count} ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯ'
+    other: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
+  x_identifications_:
+    one: '%{count} ᱪᱤᱱᱦᱟᱹᱯ'
+    other: '%{count} ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ ᱠᱚ'
+  x_languages:
+    one: "%{count} ᱯᱟᱹᱨᱥᱤ"
+    other: "%{count} ᱯᱟᱹᱨᱥᱤ ᱠᱚ"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} ᱯᱩᱭᱞᱩ ᱨᱮ ᱡᱤᱣᱚᱱ ᱨᱮᱭᱟᱜ ᱞᱤᱥᱴᱭ"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} ᱯᱩᱭᱞᱩ ᱨᱮ ᱡᱤᱣᱚᱱ ᱨᱮᱭᱟᱜ ᱞᱤᱥᱴᱭ"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> ᱡᱚᱨᱱᱟᱞ ᱯᱚᱥᱴ'
+    other: '<span class="count">%{count}</span> ᱡᱚᱨᱱᱟᱞ ᱯᱚᱥᱴ ᱠᱚ'
+  x_matching_taxa:
+    one: '%{count} ᱢᱮᱲᱟᱣᱜ ᱠᱟᱱ ᱴᱮᱠᱥᱚᱱ'
+    other: '%{count} ᱢᱮᱲᱟᱣᱜ ᱠᱟᱱ ᱴᱮᱠᱥᱟ'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> ᱢᱮᱲᱟᱣᱜ ᱠᱟᱱ ᱴᱮᱠᱥᱚᱱ'
+    other: '<span class="count">%{count}</span> ᱢᱮᱲᱟᱣᱜ ᱠᱟᱱ ᱴᱮᱠᱥᱟ'
+  x_misidentifications_of_this_species:
+    one: "%{count} ᱱᱚᱶᱟ ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱵᱷᱩᱞ ᱪᱤᱱᱦᱟᱹᱯ"
+    other: "%{count} ᱱᱚᱶᱟ ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱵᱷᱩᱞ ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ"
+    other: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ ᱠᱚ"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ'
+    other: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ ᱠᱚ'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ"
+    other: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ ᱠᱚ"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A ᱠᱷᱚᱱ Z"
+  about: ᱵᱟᱵᱚᱛ
+  about_charts: ᱪᱟᱴ ᱠᱚ ᱵᱟᱵᱚᱛ
+  about_licenses: ᱞᱟᱭᱥᱮᱱᱥ ᱠᱚ ᱵᱟᱵᱚᱛ
+  #Header for a section describing taxon names
+  about_names: ᱧᱩᱛᱩᱢ ᱠᱚ ᱵᱟᱵᱚᱛ
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} ᱵᱟᱵᱚᱛ"
+  about_places: ᱡᱟᱭᱜᱟ ᱠᱚ ᱵᱟᱵᱚᱛ
+  account_settings: ᱠᱷᱟᱛᱟ ᱥᱟᱡᱟᱣ ᱠᱚ
+  add_observations: ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱥᱮᱞᱮᱫ
+  #Noun, title of a popup alerting you to something
+  alert: ᱠᱷᱚᱵᱚᱨ
+  already_have_an_account_log_in_html: ᱢᱟᱲᱟᱝ ᱠᱷᱚᱱ ᱜᱮ ᱠᱷᱟᱛᱟ ᱢᱮᱱᱟᱜᱼᱟ ᱥᱮ? <strong>ᱵᱚᱞᱚᱱ ᱟᱢ ᱥᱮ? ᱾</strong>
+  birthday: ᱡᱟᱱᱟᱢ ᱢᱟᱦᱟᱸ
+  calendar: ᱠᱮᱞᱮᱱᱰᱚᱨ
+  check_this_box_if_html: |
+    ᱞᱟᱫᱮ ᱠᱟᱱ ᱡᱤᱱᱤᱥ ᱨᱮ ᱢᱤᱫᱴᱟᱹᱝ <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial license</a> ᱮᱢ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱱᱚᱶᱟ ᱵᱟᱠᱚᱥ ᱨᱮ ᱪᱤᱱᱦᱟᱹ ᱟᱜ ᱢᱮ ᱾ ᱱᱚᱶᱟ ᱨᱮᱭᱟᱜ ᱢᱮᱱᱮᱛ ᱫᱚ ᱡᱟᱦᱟᱸᱭ ᱜᱮ ᱟᱢᱟᱜ ᱪᱤᱛᱟᱹᱨ ᱟᱨ ᱵᱟᱝ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱟᱢ ᱵᱤᱱᱟᱹ ᱠᱩᱠᱞᱤ ᱛᱮ ᱱᱚᱠᱚᱞ ᱵᱟᱝᱠᱷᱟᱱ ᱫᱩᱦᱲᱟᱹ ᱵᱮᱵᱷᱟᱨ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱭ ᱡᱟᱦᱟᱹ ᱫᱷᱟᱹᱵᱤᱡ ᱩᱱᱤ ᱦᱚᱲ ᱫᱚ ᱟᱢ ᱫᱟᱹᱣ ᱮᱢᱟᱢᱟᱭ ᱟᱨ ᱵᱮᱯᱟᱨ ᱞᱟᱹᱜᱤᱫ ᱟᱞᱚ ᱵᱮᱵᱷᱟᱨ ᱢᱟᱭ ᱾ ᱟᱢ ᱫᱚ ᱱᱚᱶᱟ ᱞᱟᱭᱥᱮᱱᱥ ᱛᱟᱭᱚᱢ ᱛᱮ ᱚᱪᱚᱜᱽ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ ᱟᱨ ᱵᱟᱝ ᱮᱴᱟᱜ ᱞᱟᱭᱥᱮᱱᱥ ᱵᱟᱪᱷᱟᱣ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ, ᱢᱮᱱᱠᱷᱟᱱ ᱱᱚᱶᱟ ᱞᱟᱭᱥᱮᱱᱥ ᱫᱚ ᱨᱤᱥᱚᱨᱪᱚᱨ ᱞᱟᱹᱜᱤᱫ ᱟᱹᱰᱤᱜᱮ ᱵᱮᱥ ᱟ ᱾
+  community: ᱥᱚᱢᱩᱫᱟᱹᱭ
+  create_an_account: ᱢᱤᱫᱴᱟᱹᱝ ᱠᱷᱟᱛᱟ ᱛᱮᱭᱟᱨ ᱢᱮ
+  dashboard: ᱰᱮᱥᱵᱚᱰ
+  edit_observations: ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱥᱟᱯᱲᱟᱣ ᱢᱮ
+  email: ᱮᱢᱮᱞ
+  explore: ᱥᱮᱸᱫᱽᱨᱟ
+  favorites: "ᱠᱩᱥᱤ ᱠᱚ"
+  forum: ᱯᱷᱚᱨᱟᱹᱢ
+  grid: ᱡᱟᱹᱞᱤ
+  guides: ᱜᱚᱲᱚ ᱠᱚ
+  help: ᱜᱚᱲᱚ
+  identify: ᱪᱤᱱᱦᱟᱹᱯ
+  identifications: ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ
+  inaturalist_is_a_joint_initiative: "%{site_name} ᱫᱚ California Academy of Sciences ᱟᱨ National Geographic Society ᱨᱮᱭᱟᱜ ᱡᱩᱢᱤᱫ ᱠᱟᱹᱢᱤ ᱠᱟᱱᱟ ᱾"
+  join_the_largest_group_of_naturalists_in_the_world: ᱡᱮᱜᱮᱛ ᱨᱮᱭᱟᱜ ᱡᱷᱚᱛᱚ ᱠᱷᱚᱱ ᱟᱹᱨᱛᱤᱭᱟᱹ ᱠᱚᱣᱟᱜ ᱢᱟᱨᱟᱝ ᱫᱳᱞ ᱨᱮ ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ!
+  journal: ᱯᱟᱛᱷᱟᱢ ᱠᱟᱜᱚᱡᱽ
+  journal_posts: ᱯᱟᱛᱷᱟᱢ ᱠᱟᱜᱚᱡᱽ ᱯᱚᱥᱴ ᱠᱚ
+  labels: ᱞᱮᱵᱮᱞ ᱠᱚ
+  learn: ᱪᱮᱫᱚᱜ
+  learn_more: ᱰᱷᱮᱨ ᱪᱮᱫᱚᱜ
+  list: ᱞᱤᱥᱴ
+  lists: ᱞᱤᱥᱴ ᱠᱚ
+  log_in: ᱵᱚᱞᱚ ᱠᱚ
+  managing_projects: ᱯᱟᱱᱛᱷᱟ ᱠᱚ ᱨᱮᱭᱟᱜ ᱢᱮᱱᱮᱡᱽ
+  map: ᱱᱚᱠᱥᱟ
+  meet: ᱧᱟᱯᱟᱢ
+  more: ᱰᱷᱮᱨ
+  or: ᱵᱟᱝᱠᱷᱟᱱ
+  password: ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ
+  password_confirmation: 'ᱫᱟᱱᱟᱝ ᱥᱟᱵᱟᱫ ᱴᱷᱟᱹᱣᱠᱟᱹ'
+  people: ᱦᱚᱲ
+  pi_consent_desc_title: ᱱᱤᱡᱚᱨᱟᱜ ᱵᱤᱵᱨᱚᱬ ᱵᱟᱵᱚᱛ
+  pi_consent_label: |
+    ᱤᱧ ᱫᱚ iNaturalist ᱤᱧᱟᱜ ᱠᱷᱟᱛᱟ ᱢᱮᱱᱮᱡᱽ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱨ ᱤᱧ ᱵᱟᱵᱚᱛ ᱵᱤᱵᱨᱚᱬ ᱠᱚ ᱥᱤᱢᱤᱛ ᱦᱤᱥᱟᱹᱵ ᱛᱮ ᱠᱟᱹᱢᱤ ᱪᱷᱚ ᱟᱨ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱦᱮᱸᱥᱮᱨᱤᱭᱟᱹ ᱮᱫ ᱟᱹᱧ
+  pi_consent_child_label: |
+    ᱤᱧ ᱫᱚ iNaturalist ᱤᱧ ᱜᱤᱫᱽᱨᱟᱹᱟᱜ ᱠᱷᱟᱛᱟ ᱢᱮᱱᱮᱡᱽ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱨ ᱤᱧᱤᱡ ᱜᱤᱫᱽᱨᱟᱹ ᱵᱟᱵᱚᱛ ᱵᱤᱵᱨᱚᱬ ᱠᱚ ᱥᱤᱢᱤᱛ ᱦᱤᱥᱟᱹᱵ ᱛᱮ ᱠᱟᱹᱢᱤ ᱪᱷᱚ ᱟᱨ ᱫᱚᱦᱚ ᱞᱟᱹᱜᱤᱫ ᱦᱮᱸᱥᱮᱨᱤᱭᱟᱹ ᱮᱫ ᱟᱹᱧ
+  places: ᱡᱟᱭᱜᱟ ᱠᱚ
+  profile: ᱢᱚᱦᱚᱨ
+  projects: ᱯᱟᱱᱛᱷᱟ ᱠᱚ
+  satellite: ᱥᱟᱴᱮᱞᱟᱭᱤᱴ
+  search: ᱥᱮᱸᱫᱽᱨᱟ
+  sign_out: ᱵᱟᱦᱨᱮ ᱛᱮ ᱚᱰᱚᱠ
+  sign_up: ᱥᱩᱦᱤ ᱮᱢ
+  site_stats: ᱥᱟᱭᱤᱴ ᱵᱤᱵᱨᱚᱬ ᱠᱚ
+  taxa_info: ᱴᱮᱠᱥᱟ ᱵᱤᱵᱨᱚᱬ
+  teachers_guide: ᱢᱟᱪᱮᱛ ᱠᱚᱣᱟᱜ ᱜᱚᱲᱚ
+  terrain: ᱚᱛ
+  tos_privacy_guidelines_label: |
+    ᱤᱧ ᱫᱚ <a href="/terms" target="_blank"> ᱠᱟᱹᱢᱤ ᱨᱮᱭᱟᱜ ᱥᱚᱨᱛᱚ</a> ᱟᱨ
+    <a href="/privacy" target="_blank">ᱱᱤᱥᱚᱱ ᱱᱤᱛᱤ</a> ᱨᱮ ᱦᱮᱸᱥᱮᱨᱤᱭᱟᱹ ᱮᱫᱟᱹᱧ, ᱟᱨ ᱤᱧ ᱫᱚ <a href="/pages/community+guidelines" target="_blank">ᱥᱚᱢᱩᱫᱟᱹᱭ ᱫᱤᱥᱟᱹ ᱱᱤᱨᱫᱮᱥ</a> ᱤᱧ ᱫᱩᱦᱲᱟᱹ ᱧᱮᱞ ᱠᱮᱜᱟᱹᱧ ᱾
+  upload: ᱞᱟᱫᱮ
+  username: ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ ᱧᱩᱛᱩᱢ
+  video_tutorials: ᱣᱤᱰᱤᱭᱚ ᱜᱚᱲᱚ ᱠᱚ
+  yes_license_my_childs_observations: ᱦᱚᱭ, ᱤᱧ ᱜᱤᱫᱽᱨᱟᱹ ᱠᱚ ᱤᱫᱤ ᱠᱟᱫ ᱪᱤᱛᱟᱹᱨ, ᱥᱟᱰᱮ, ᱟᱨ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱨᱮᱭᱟᱜ ᱞᱟᱭᱥᱮᱱᱥ ᱦᱩᱭᱩᱜ ᱢᱟᱸ ᱡᱮᱞᱠᱟ ᱛᱮ ᱥᱟᱭᱤᱱᱴᱤᱥᱴ ᱠᱚ ᱰᱟᱴᱟ ᱵᱮᱵᱷᱟᱨ ᱫᱟᱲᱮᱭᱟᱜ ᱢᱟᱸ ᱠᱚ (ᱵᱟᱛᱟᱣᱟᱜ) ᱾
+  yes_license_my_observations_so_scientists_can_use: ᱦᱚᱭ, ᱤᱧᱟᱜ ᱤᱫᱤ ᱠᱟᱫ ᱪᱤᱛᱟᱹᱨ, ᱥᱟᱰᱮ, ᱟᱨ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱨᱮᱭᱟᱜ ᱞᱟᱭᱥᱮᱱᱥ ᱦᱩᱭᱩᱜ ᱢᱟᱸ ᱡᱮᱞᱠᱟ ᱛᱮ ᱥᱟᱭᱤᱱᱴᱤᱥᱴ ᱠᱚ ᱰᱟᱴᱟ ᱵᱮᱵᱷᱟᱨ ᱫᱟᱲᱮᱭᱟᱜ ᱢᱟᱸ ᱠᱚ (ᱵᱟᱛᱟᱣᱟᱜ) ᱾
+  your_observations: ᱟᱢᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ
+  your_recent_projects: ᱟᱢᱟᱜ ᱱᱮᱱᱮ ᱯᱟᱱᱛᱷᱟ ᱠᱚ
+  views:
+    welcome:
+      index:
+        connect_with_nature: ᱯᱨᱚᱠᱨᱩᱛ ᱥᱟᱞᱟᱜ ᱡᱩᱲᱟᱹᱣᱜ ᱢᱮ
+        explore_and_share: ᱡᱮᱜᱮᱛ ᱯᱨᱚᱠᱨᱩᱛ ᱠᱷᱚᱱ ᱟᱢᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱟᱨ ᱧᱮᱯᱚᱨᱚᱠᱷ ᱠᱚ ᱦᱟᱹᱴᱤᱧ ᱢᱮ ᱾
+        observations_to_date: 'ᱢᱟᱦᱟᱸ ᱫᱷᱟᱹᱵᱤᱡ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ'
+        species_observed: 'ᱧᱮᱞᱯᱚᱨᱚᱠ ᱡᱟᱹᱛ ᱠᱚ'
+        people_signed_up: 'ᱥᱩᱦᱤ ᱮᱢ ᱠᱟᱫ ᱦᱚᱲ'
+        how_it_works: ᱱᱚᱶᱟ ᱪᱮᱞᱠᱟ ᱠᱟᱹᱢᱤᱟᱭ
+        record_your_observations: ᱟᱢᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱨᱮᱠᱚᱰ ᱢᱮ
+        share_with_fellow_naturalists: ᱜᱟᱛᱮ ᱯᱨᱚᱠᱨᱩᱛᱤᱭᱟᱹ ᱠᱚ ᱥᱟᱶ ᱦᱟᱹᱴᱤᱧ ᱢᱮ
+        discuss_your_findings: ᱟᱢᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱠᱚ ᱵᱟᱵᱚᱛ ᱜᱟᱯᱟᱞᱢᱟᱨᱟᱣᱜ ᱢᱮ
+        contribute_to_science: ᱥᱟᱮᱬᱥ ᱨᱮ ᱮᱱᱮᱢ ᱢᱮ
+        science_desc_html: |
+          ᱠᱚᱢ ᱧᱮᱞᱚᱜ ᱯᱨᱚᱡᱟᱯᱚᱛᱤ ᱠᱷᱚᱱ ᱥᱟᱫᱷᱟᱨᱚᱬ ᱵᱟᱜᱟᱱ ᱨᱮᱭᱟᱜ ᱜᱟᱥ ᱫᱷᱟᱹᱵᱤᱡ, ᱡᱷᱚᱛᱚ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱵᱟᱭᱚᱰᱟᱭᱵᱷᱚᱨᱥᱤᱴᱭ ᱥᱟᱮᱬᱥ ᱨᱮ ᱮᱱᱮᱢ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ ᱠᱚ ᱾ ᱥᱟᱭᱤᱱᱴᱤᱥᱴᱥ ᱠᱚ ᱯᱟᱱᱛᱮ ᱟᱨ ᱰᱟᱴᱟ ᱵᱮᱵᱷᱟᱨ ᱨᱮ ᱜᱚᱲᱚ ᱮᱢ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱢᱟᱜ ᱰᱟᱴᱟ ᱫᱚ ᱥᱟᱭᱤᱱᱴᱤᱯᱷᱤᱠ ᱰᱟᱴᱟ ᱜᱚᱫᱟᱢ ᱡᱮᱞᱠᱟ <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> ᱥᱟᱞᱟᱜ ᱞᱮ ᱦᱟᱹᱴᱤᱧᱼᱟ ᱾ ᱟᱢ ᱫᱚ ᱠᱷᱟᱹᱞᱤ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱛᱮ ᱦᱩᱭ ᱟᱢᱟ ᱾
+        nature_at_your_fingertips: ᱯᱨᱚᱠᱨᱩᱛ ᱟᱢᱟᱜ ᱛᱤ ᱠᱟᱹᱴᱤᱵ ᱨᱮ
+        keep_track: ᱯᱟᱧᱡᱟ ᱠᱟᱜ ᱢᱮ
+        record_your_encounters: |
+          ᱮᱴᱟᱜ ᱡᱤᱣ ᱡᱚᱱᱛᱩ ᱠᱚ ᱨᱮᱭᱟᱜ ᱫᱮᱠᱷᱟ ᱠᱚ ᱨᱮᱠᱚᱰ ᱢᱮ ᱟᱨ ᱡᱤᱣᱚᱱ ᱞᱤᱥᱴᱭ ᱠᱚ ᱡᱚᱛᱚᱱ ᱢᱮ, ᱡᱷᱚᱛᱚ ᱠᱞᱟᱣᱰ ᱨᱮ ᱫᱚᱦᱚᱜᱼᱟ ᱾
+        create_useful_data: ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱰᱟᱴᱟ ᱛᱮᱭᱟᱨ ᱢᱮ
+        help_scientists: ᱥᱟᱮᱱᱴᱤᱥᱴ ᱟᱨ ᱨᱤᱥᱚᱨᱥ ᱢᱮᱱᱮᱡᱚᱨ ᱠᱚ ᱡᱤᱣ ᱨᱮᱭᱟᱜ ᱛᱟᱦᱮᱸᱼᱵᱟᱥᱟ ᱨᱮᱭᱟᱜ ᱚᱠᱛᱚ ᱟᱨ ᱡᱟᱭᱜᱟ ᱵᱩᱡᱷᱟᱹᱣ ᱨᱮ ᱜᱚᱲᱚ ᱮᱢᱟ ᱠᱚᱢ ᱾
+        crowdsource_identifications: ᱵᱷᱤᱰᱚᱜᱚᱲᱚ ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ
+        connect_with_experts: ᱟᱢ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱨᱮᱭᱟᱜ ᱪᱤᱱᱦᱟᱹᱯ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱢᱟᱹᱪᱮᱛᱤᱭᱟᱹ ᱥᱟᱶ ᱡᱩᱲᱟᱹᱣᱜ ᱢᱮ ᱾
+        become_a_citizen_scientist: ᱡᱚᱱᱛᱟ ᱥᱟᱮᱱᱴᱤᱥᱴ ᱛᱮᱭᱟᱨᱚᱜ ᱢᱮ
+        find_a_project: "ᱟᱢᱟᱜ ᱠᱩᱥᱤᱭᱟᱜ ᱯᱟᱱᱛᱷᱟ ᱢᱤᱫ ᱢᱤᱥᱚᱱ ᱥᱟᱞᱟᱜ ᱯᱟᱱᱛᱮ ᱢᱮ, ᱵᱟᱝᱠᱷᱟᱱ ᱟᱢᱟᱜ ᱛᱮ ᱜᱮ ᱮᱛᱦᱚᱵ ᱢᱮ ᱾"
+        learn_about_nature: ᱯᱨᱚᱠᱨᱩᱛ ᱵᱟᱵᱚᱛ ᱰᱷᱮᱨ ᱵᱟᱲᱟᱭ ᱢᱮ
+        build_your_knowledge: ᱮᱴᱟᱜ ᱯᱨᱚᱠᱨᱩᱛᱤᱭᱟᱹ ᱦᱚᱲ ᱠᱚ ᱥᱟᱞᱟᱜ ᱟᱨ ᱦᱚᱲ ᱠᱚ ᱜᱚᱲᱚ ᱟᱛᱮᱫ ᱟᱢᱟᱜ ᱜᱭᱟᱱ ᱞᱟᱥᱮᱨ ᱛᱟᱢ ᱾
+        run_a_bioblitz: ᱢᱤᱫ Bioblitz ᱫᱟᱹᱲ ᱪᱷᱚᱭ ᱢᱮ
+        hold_an_event: ᱢᱤᱫᱴᱟᱹᱝ ᱯᱨᱚᱜᱽᱨᱟᱢ ᱫᱚᱦᱚᱭ ᱢᱮ ᱡᱟᱦᱟᱸ ᱨᱮ ᱦᱚᱲ ᱡᱟᱦᱟᱸ ᱛᱤᱱᱟᱹᱝ ᱜᱮ ᱡᱟᱹᱛ ᱯᱟᱱᱛᱮ ᱧᱟᱢ ᱫᱟᱲᱮ ᱠᱚᱣᱟ ᱠᱚ ᱾
+        works_on_all_your_devices: ᱟᱢᱟᱜ ᱡᱷᱚᱛᱚ ᱥᱟᱫᱷᱚᱱ ᱨᱮ ᱠᱟᱹᱢᱤᱟᱭ
+        install_our_mobile_apps: |
+          ᱵᱤᱱᱟᱹ ᱥᱮᱞ ᱨᱤᱥᱮᱯᱥᱚᱱ ᱟᱨᱵᱟᱝ ᱣᱟᱭᱯᱷᱟᱭ ᱛᱮ ᱟᱢ ᱡᱟᱹᱣᱜᱮ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱫᱟᱲᱮᱭᱟᱜᱼᱟᱢ, ᱟᱞᱮᱭᱟᱜ ᱢᱚᱵᱟᱭᱤᱞ ᱮᱯ ᱵᱚᱦᱟᱞ ᱛᱟᱞᱮ ᱢᱮ ᱾
+        who_uses_site_name: "%{site_name} ᱚᱠᱚᱭ ᱵᱮᱵᱷᱟᱨᱮᱫᱟᱭ ?"
+        what_are_you_waiting_for: ᱟᱢ ᱚᱠᱚᱭ ᱛᱟᱹᱝᱜᱤ ᱠᱟᱹᱫᱮᱭᱟᱢ ?
+        join_today: ᱛᱮᱦᱮᱸᱧ ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

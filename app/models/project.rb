@@ -1,12 +1,12 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
 
   include ActsAsElasticModel
+  include HasJournal
 
   belongs_to :user
   belongs_to :place, inverse_of: :projects
   has_many :project_users, dependent: :delete_all, inverse_of: :project
   has_many :project_observations, dependent: :delete_all
-  has_many :project_invitations, dependent: :destroy
   has_many :project_user_invitations, dependent: :delete_all
   has_many :users, through: :project_users
   has_many :observations, through: :project_observations
@@ -18,7 +18,6 @@ class Project < ActiveRecord::Base
   has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
   has_many :observation_fields, through: :project_observation_fields
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
@@ -26,8 +25,10 @@ class Project < ActiveRecord::Base
   before_save :strip_title
   before_save :reset_last_aggregated_at
   before_save :remove_times_from_non_bioblitzes
+  before_save :set_observation_requirements_updated_at
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
+  after_save :notify_trusting_members_about_changes_if_rules_changed
   before_update :set_updated_at_if_preferences_changed
   around_save :add_admins
 
@@ -71,11 +72,12 @@ class Project < ActiveRecord::Base
     super_candidate = super( string )
     candidate = title.parameterize
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
-    if candidate.to_i > 0
-      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
-    end
     if candidate =~ /^\d+$/
-      candidate = ["project", id, candidate].compact.join( "-" )
+      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    
+      if candidate =~ /^\d+$/
+        candidate = ["project", id, candidate].compact.join( "-" )
+      end
     end
     candidate
   end
@@ -97,8 +99,8 @@ class Project < ActiveRecord::Base
   preference :rule_d1, :string
   preference :rule_d2, :string
   preference :rule_month, :string
-  preference :rule_term_id, :integer
-  preference :rule_term_value_id, :integer
+  preference :rule_term_id, :integer # annotation term
+  preference :rule_term_value_id, :integer # annotation term / value
   preference :rule_native, :boolean
   preference :rule_introduced, :boolean
   preference :rule_members_only, :boolean
@@ -119,6 +121,8 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
   preference :membership_model, :string, default: MEMBERSHIP_OPEN
 
+  preference :user_trust, :boolean, default: false
+
   NPS_BIOBLITZ_PROJECT_NAME = "2016 National Parks Bioblitz - NPS Servicewide"
   NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
 
@@ -133,7 +137,7 @@ class Project < ActiveRecord::Base
   validates_presence_of :start_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
   validates_presence_of :end_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
   validate :place_with_boundary, if: lambda {|p| p.bioblitz? }
-  validate :one_year_time_span, if: lambda {|p| p.bioblitz? }, unless: "errors.any?"
+  validate :one_year_time_span, if: lambda {|p| p.bioblitz? }, unless: lambda {|p| p.errors.any? }
   validate :aggregation_preference_allowed?
 
   scope :in_group, lambda {|name| where(group: name) }
@@ -141,7 +145,7 @@ class Project < ActiveRecord::Base
     latitude = latitude.to_f
     longitude = longitude.to_f
     where("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
-    order("ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))")
+    order( Arel.sql( "ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude}))" ) )
   }
   scope :from_source_url, lambda {|url| where(source_url: url) }
   scope :in_place, lambda{|place|
@@ -164,6 +168,7 @@ class Project < ActiveRecord::Base
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
+      processors: [:deanimator],
       path: "projects/:id-icon-:style.:extension",
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
@@ -197,7 +202,7 @@ class Project < ActiveRecord::Base
       url: "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
       default_url: ""
   end
-  validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
+  validates_attachment_content_type :cover, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
   validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
@@ -277,11 +282,16 @@ class Project < ActiveRecord::Base
   end
   
   def add_owner_as_project_user(options = {})
-    return true unless user_id_changed? || options[:force]
-    if pu = project_users.where(user_id: user_id).first
-      pu.update_attributes(role: ProjectUser::MANAGER)
+    return true unless saved_change_to_user_id? || options[:force]
+    existing_project_user = project_users.where(user_id: user_id).first
+    if existing_project_user
+      existing_project_user.update( role: ProjectUser::MANAGER )
     else
-      self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
+      self.project_users.create!(
+        user: user,
+        role: ProjectUser::MANAGER,
+        skip_updates: true
+      )
     end
     true
   end
@@ -348,7 +358,7 @@ class Project < ActiveRecord::Base
   end
   
   def reset_last_aggregated_at
-    if start_time_changed? || end_time_changed?
+    if will_save_change_to_start_time? || will_save_change_to_end_time?
       self.last_aggregated_at = nil
     end
   end
@@ -357,6 +367,44 @@ class Project < ActiveRecord::Base
     return if bioblitz? || is_new_project?
     self.start_time = nil
     self.end_time = nil
+  end
+
+  def set_observation_requirements_updated_at( options = {} )
+    # If this is a new record, we want to enable coordinate access immediately
+    # if trust was enabled, so we backdate
+    # observation_requirements_updated_at
+    if new_record?
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+      return true
+    end
+    old_params = Project.find(id).collection_search_parameters
+    new_params = collection_search_parameters
+    trusting_project_users = project_users.joins(:stored_preferences).where(
+      "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
+      [
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+        ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+      ]
+    )
+    changed_from_trad_to_collection = project_type_changed? &&
+      changes[:project_type].first.blank? &&
+      %w(collection umbrella).include?( changes[:project_type].last )
+    if (
+      old_params == new_params &&
+      !prefers_user_trust_changed? &&
+      !options[:force] &&
+      !changed_from_trad_to_collection
+    )
+      Rails.logger.debug "set_observation_requirements_updated_at: no change"
+    elsif trusting_project_users.exists?
+      Rails.logger.debug "set_observation_requirements_updated_at: trusting users exist, setting observation_requirements_updated_at to now"
+      self.observation_requirements_updated_at = Time.now
+    elsif changed_from_trad_to_collection
+      Rails.logger.debug "set_observation_requirements_updated_at: trad proj changing to a new-style project and there are no trusting users, backdating observation_requirements_updated_at"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
+    else
+      Rails.logger.debug "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
+    end
   end
 
   def tracking_code_allowed?(code)
@@ -496,12 +544,12 @@ class Project < ActiveRecord::Base
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
           if rule_value.strip.match( / / )
-            rule_value = Time.parse( rule_value )
+            rule_value = Time.parse( rule_value ) rescue nil
           else
-            rule_value = Date.parse( rule_value )
+            rule_value = Date.parse( rule_value ) rescue nil
             if rule == "rule_d2"
               # when d2 is a date w/o a time, we want to capture that in its own field
-              params[ "d2_date" ] = rule_value
+              params[ "d2_date" ] = rule_value unless rule_value.nil?
             end
           end
         elsif rule_value.is_a?( String )
@@ -509,7 +557,7 @@ class Project < ActiveRecord::Base
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value unless rule_value.nil?
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq
@@ -582,7 +630,7 @@ class Project < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    title_changed?
+    will_save_change_to_title?
   end
 
   def slug_candidates
@@ -632,24 +680,31 @@ class Project < ActiveRecord::Base
     end
     CSV.open(path, 'w') do |csv|
       csv << columns
-      self.project_observations.find_in_batches do |batch|
-        ProjectObservation.preload_associations(batch, [
+      Observation.search_in_batches( projects: id ) do |batch|
+        Observation.preload_associations( batch, [:project_observations] )
+        project_observations = batch.map {|o| o.project_observations.select{|po|
+          po.project_id == id
+        }}.flatten.uniq.compact
+        ProjectObservation.preload_associations( project_observations, [
           :stored_preferences,
           curator_identification: [:taxon, :user],
-          observation: [{
-            identifications: :taxon,
-            observation_photos: :photo,
-            sounds: {},
-            taxon: {taxon_names: :place_taxon_names},
-            observation_field_values: :observation_field,
-            project_observations: :stored_preferences,
-            user: {project_users: :stored_preferences},
-          }, :quality_metrics ]
+          observation: [
+            {
+              identifications: :taxon,
+              observation_photos: :photo,
+              sounds: {},
+              taxon: { taxon_names: :place_taxon_names },
+              observation_field_values: :observation_field,
+              project_observations: :stored_preferences,
+              user: { project_users: :stored_preferences },
+            },
+            :quality_metrics
+          ]
         ])
-        batch.each do |project_observation|
-          csv << columns.map {|column|
-            project_observation.to_csv_column(column, project: self, viewer: options[:viewer])
-          }
+        project_observations.each do |po|
+          csv << columns.map do |column|
+            po.to_csv_column( column, project: self, viewer: options[:viewer] )
+          end
         end
       end
     end
@@ -692,7 +747,13 @@ class Project < ActiveRecord::Base
   
   def self.default_json_options
     {
-      methods: [:icon_url, :project_observation_rule_terms, :rule_place, :cached_slug, :slug],
+      methods: [
+        :cached_slug,
+        :icon_url,
+        :project_observation_rule_terms,
+        :rule_place,
+        :slug
+      ],
       except: [:tracking_codes]
     }
   end
@@ -708,7 +769,7 @@ class Project < ActiveRecord::Base
       where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
       project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
-      po.update_attributes(curator_identification: curator_ident)
+      po.update(curator_identification: curator_ident)
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
           [ project_id, po.observation.user_id ] }
@@ -746,7 +807,7 @@ class Project < ActiveRecord::Base
       Observation.prepare_batch_for_index( batch.map( &:observation ) )
       batch.each do |po|
         curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-        po.update_attributes(curator_identification: curator_ident)
+        po.update(curator_identification: curator_ident)
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ project_id, po.observation.user_id ] }
@@ -759,20 +820,6 @@ class Project < ActiveRecord::Base
     end
   end
   
-  def self.refresh_project_list(project, options = {})
-    unless project.is_a?(Project)
-      project = Project.where(id: project).includes(:project_list).first
-    end
-    
-    if project.blank?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to refresh list for " + 
-        "project #{project} because it doesn't exist."
-      return
-    end
-    
-    project.project_list.refresh(options)
-  end
-  
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
     observed_taxa_count = if project.is_new_project?
@@ -780,16 +827,18 @@ class Project < ActiveRecord::Base
       return unless response
       response.total_results
     else
-      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+      response = INatAPIService.observations_species_counts( project_id: project.id, per_page: 0 )
+      return unless response
+      response.total_results
     end
-    project.update_attributes(observed_taxa_count: observed_taxa_count)
+    project.update(observed_taxa_count: observed_taxa_count)
   end
   
   def self.revoke_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)
     proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
-      po.update_attributes(prefers_curator_coordinate_access: false)
+      po.update(prefers_curator_coordinate_access: false)
     end
   end
 
@@ -910,8 +959,8 @@ class Project < ActiveRecord::Base
         # matching the node.js iNaturalistAPI filters/aggregations for obs counts
         result = Observation.elastic_search(
           filters: [
-            { term: { project_ids: self.id } },
-            { terms: { "user.id": uids } }
+            { term: { "project_ids.keyword": self.id } },
+            { terms: { "user.id.keyword": uids } }
           ],
           size: 0,
           aggregate: {
@@ -936,10 +985,10 @@ class Project < ActiveRecord::Base
       user_ids.in_groups_of(500, false) do |uids|
         # matching the node.js iNaturalistAPI filters/aggregations for species counts
         filters = [
-          { term: { project_ids: self.id } },
+          { term: { "project_ids.keyword": self.id } },
           { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
           { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
-          { terms: { "user.id": uids } }
+          { terms: { "user.id.keyword": uids } }
         ]
         result = Observation.elastic_search(
           filters: filters,
@@ -1002,7 +1051,7 @@ class Project < ActiveRecord::Base
       Observation.elastic_index!(ids: batch_metadata[:obs_ids_added])
     end
     update_counts
-    update_attributes(last_aggregated_at: Time.now)
+    update(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
 
@@ -1037,20 +1086,19 @@ class Project < ActiveRecord::Base
   end
 
   def add_admins
-    new = new_record?
+    is_new = new_record?
     yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
       new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
-      if new
-        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update_attributes( role: new_role )
+      if is_new
+        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
-        project_users.find_by( user_id: admin_attr["user_id"] )&.update_attributes( role: new_role )     
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )
       end
     end
     project_users.reload
-    elastic_index!
   end
 
   def destroy_project_rules
@@ -1070,6 +1118,52 @@ class Project < ActiveRecord::Base
 
   def within_umbrella_ids
     return project_observation_rules_as_operand.map( &:ruler_id )
+  end
+
+  def notify_trusting_members_about_changes_unique_hash
+    { "Project::notify_trusting_members_about_changes": id }
+  end
+
+  def notify_trusting_members_about_changes_later
+    unique_hash = notify_trusting_members_about_changes_unique_hash
+    job = Delayed::Job.where( unique_hash: unique_hash.to_s ).first
+    job ||= Project.delay(
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: unique_hash
+    ).notify_trusting_members_about_changes( id )
+    job.update( run_at: 1.hour.from_now )
+  end
+
+  def notify_trusting_members_about_changes_if_rules_changed
+    return true unless prefers_user_trust?
+    if prefers_user_trust_changed?
+      notify_trusting_members_about_changes_later
+      return true
+    end
+    RULE_PREFERENCES.each do |pref|
+      if preference_changes[pref]
+        notify_trusting_members_about_changes_later
+        break
+      end
+    end
+  end
+
+  def self.notify_trusting_members_about_changes( project )
+    project = Project.find_by_id( project ) unless project.is_a?( Project )
+    return unless project
+    return true unless project.prefers_user_trust?
+    trusting_prefs = [
+      ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
+      ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
+    ]
+    pu_scope = project.project_users.joins(:stored_preferences).where(
+      "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
+      trusting_prefs
+    )
+    pu_scope.find_each do |project_user|
+      next unless trusting_prefs.include?( project_user.prefers_curator_coordinate_access_for )
+      Emailer.collection_project_changed_for_trusting_member( project_user ).deliver_now
+    end
   end
 
   private

@@ -1,0 +1,73 @@
+fa:
+  x_comments_html:
+    one: '<span class="count">%{count}</span> نظر'
+    other: '<span class="count">%{count}</span> نظرات'
+  x_languages:
+    one: "%{count} زبان"
+    other: "%{count} زبان‌ها"
+  x_misidentifications_of_this_species:
+    one: "%{count} شناسایی نادرست این گونه"
+    other: "%{count} شناسایی نادرست این گونه ها"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> مشاهده بازبینی شده"
+    other: "<span class='count'>%{count}</span> مشاهدات بازبینی شده"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} نفر</strong> به %{user} با <strong>%{y} </strong> شناساگر کمک کرده اند"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} فیلتر پیشنهاد با:"
+    other: "%{count} فیلتر پیشنهادات با:"
+  x_taxa:
+    one: "%{count} رده بندی شده"
+    other: "%{count} رده بندی شده"
+  _100_day_trends: ۱۰۰ ترند روز
+  _percent_ID_d: "% شناسنامه"
+  a_community_for_naturalist: انجمنی برای طبیعت گرایان
+  a_default_taxon_name_will_automatically_created: |
+    یک نام برای رده‌بندی از مشخصه‌های نام علمی این رده به صورت خودکار ایجاد می گردد. زمانی که شما یک رده‌بندی را ذخیره می کنید، شما می توانید نام های دیگری را اینجا اضافه نمایید. (نام مرسوم، نام های منسوخ شده و ...)
+  a_flag_for_x: "یک نماد برای %{x}"
+  a_member_of_taxon_html: "یک عضو از %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "از A تا Z"
+  about: درباره
+  about_charts: درباره چارت ها
+  about_community_taxa: درباره انجمن رده‌بندی
+  about_complete_taxa: درباره رده‌بندی کامل
+  about_conservation_status: درباره وضعیت پایندگی
+  about_editing_observation_fields: درباره ویرایش فیلدهای مشاهده
+  add: افزودن
+  app_owner_application_explanation_required: |
+    شما باید توضیح دقیق تری از آنچه می خواهید بسازید ارائه دهید.
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

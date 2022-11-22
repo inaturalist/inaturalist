@@ -1,15 +1,23 @@
 #encoding: utf-8
-class Photo < ActiveRecord::Base
+class Photo < ApplicationRecord
   acts_as_flaggable
+  has_one :photo_metadata, autosave: true, dependent: :destroy
   belongs_to :user
+  belongs_to :file_extension
+  belongs_to :file_prefix
   has_many :observation_photos, :dependent => :destroy
   has_many :taxon_photos, :dependent => :destroy
   has_many :guide_photos, :dependent => :destroy, :inverse_of => :photo
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
   
-  attr_accessor :api_response, :orphan
-  serialize :metadata
+  attr_accessor :api_response, :orphan,
+    :remote_original_url,
+    :remote_large_url,
+    :remote_medium_url,
+    :remote_small_url,
+    :remote_square_url,
+    :remote_thumb_url
 
   include Shared::LicenseModule
   # include ActsAsUUIDable
@@ -19,12 +27,11 @@ class Photo < ActiveRecord::Base
     self.uuid = uuid.downcase
     true
   end
-  
+
   before_save :set_license, :trim_fields
   after_save :update_default_license,
-             :update_all_licenses,
-             :index_observations,
-             :index_taxa
+             :update_all_licenses
+  after_commit :index_observations, :index_taxa, on: [:create, :update]
   after_destroy :create_deleted_photo
 
   SQUARE = 75
@@ -35,28 +42,66 @@ class Photo < ActiveRecord::Base
 
   MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
 
+  class MissingPhotoError < StandardError; end
+
+  def parse_extension
+    return unless file.url( :original )
+
+    ext = File.extname( URI.parse( file.url( :original ) ).path ).sub( ".", "" )
+    ext.blank? ? nil : ext
+  end
+
+  def parse_url_prefix
+    original =  file.url( :original )
+    return unless original
+    if original !~ /http/
+      original = FakeView.uri_join( FakeView.root_url, original ).to_s
+    end
+    if matches = original.match( /^(.*)\/#{id}\/original/ )
+      return matches[1]
+    end
+    nil
+  end
+
   def original_url
-    self["original_url"] && self["original_url"].with_fixed_https
+    sized_url( :original )
   end
 
   def large_url
-    self["large_url"] && self["large_url"].with_fixed_https
+    sized_url( :large )
   end
 
   def medium_url
-    self["medium_url"] && self["medium_url"].with_fixed_https
+    sized_url( :medium )
   end
 
   def small_url
-    self["small_url"] && self["small_url"].with_fixed_https
+    sized_url( :small )
   end
 
   def square_url
-    self["square_url"] && self["square_url"].with_fixed_https
+    sized_url( :square )
   end
 
   def thumb_url
-    self["thumb_url"] && self["thumb_url"].with_fixed_https
+    sized_url( :thumb )
+  end
+
+  def processing?
+    file_prefix.nil?
+  end
+
+  def sized_url( size = "original" )
+    if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
+      return FakeView.image_url( "copyright-infringement-#{size}.png" )
+    end
+    if self.instance_variable_get("@remote_#{size}_url")
+      return self.instance_variable_get("@remote_#{size}_url")
+    end
+    if processing?
+      return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
+    end
+    "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
 
   def to_s
@@ -76,9 +121,11 @@ class Photo < ActiveRecord::Base
   end
 
   def set_license
-    return true unless license.blank?
+    return true unless license.nil?
     return true unless user
-    self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    if license.nil?
+      self.license = Shared::LicenseModule.license_number_for_code(user.preferred_photo_license)
+    end
     true
   end
 
@@ -105,6 +152,24 @@ class Photo < ActiveRecord::Base
       end
     end
     return if photo_taxa.blank?
+    # If there are synonyms on the same branch, only keep the coarsest one
+    # (e.g. if a genus and subgenus have the same name, throw out the
+    # subgenus)
+    photo_taxa = photo_taxa.group_by(&:name).map do | name, name_taxa |
+      if name_taxa.size > 1
+        sorted_taxa = name_taxa.sort_by{|t| t.rank_level.to_i }
+        keepers = []
+        while sorted_taxa.size > 0
+          t = sorted_taxa.shift
+          unless sorted_taxa.detect {| st | t.ancestor_ids.include?( st.id ) }
+            keepers << t
+          end
+        end
+        keepers
+      else
+        name_taxa
+      end
+    end.flatten
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
     # if there are synonyms, don't decide
@@ -130,7 +195,7 @@ class Photo < ActiveRecord::Base
     nil
   end
   
-  def update_attributes(attributes)
+  def update(attributes)
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
       self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
       self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
@@ -146,7 +211,12 @@ class Photo < ActiveRecord::Base
   
   def update_all_licenses
     return true unless [true, "1", "true"].include?(@make_licenses_same)
-    Photo.where(user_id: user_id).update_all(license: license)
+    Photo.where( user_id: user_id ).update_all( license: license )
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": user_id }
+    ).enqueue_photo_bucket_moving_jobs( user_id )
+    user.index_observations_later
     true
   end
 
@@ -155,6 +225,7 @@ class Photo < ActiveRecord::Base
   end
 
   def index_taxa
+    return if taxon_ids.empty?
     Taxon.delay( unique_hash: { "Photo::index_taxa" => id } ).elastic_index!( ids: taxon_ids )
   end
 
@@ -206,42 +277,55 @@ class Photo < ActiveRecord::Base
       :file_file_size, :file_processing, :file_updated_at, :mobile,
       :original_url]
     options[:methods] ||= []
-    options[:methods] += [:license_name, :license_url, :attribution, :type]
+    options[:methods] += [
+      :license_code,
+      :license_name,
+      :license_url,
+      :attribution,
+      :type,
+      :square_url,
+      :thumb_url,
+      :small_url,
+      :medium_url,
+      :large_url
+    ]
     super(options)
   end
 
   def flagged_with(flag, options = {})
     flag_is_copyright = flag.flag == Flag::COPYRIGHT_INFRINGEMENT
+    flags.reload
     other_unresolved_copyright_flags_exist = flags.detect do |f|
       f.id != flag.id && f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?
     end
-    # For copyright flags, we need to change the photo URLs when flagged, and
-    # reset them when there are no more copyright flags
+    # flagged photos should move to the public bucket, so make sure they end up in the right place
+    if self.is_a?( LocalPhoto ) && self["original_url"] !~ /copyright/
+      change_photo_bucket_if_needed
+    end
     if flag_is_copyright && !other_unresolved_copyright_flags_exist
-      if options[:action] == "created"
-        styles = %w(original large medium small thumb square)
-        updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-        updates += styles.map do |s|
-          FakeView.image_url("copyright-infringement-#{s}.png").to_s
-        end
-        Photo.where(id: id).update_all(updates)
-      elsif %w(resolved destroyed).include?(options[:action])
+      # For copyright flags reset the URLs if they still point to a copyright placeholder
+      if %w(resolved destroyed).include?(options[:action]) && self["original_url"] =~ /copyright/
         Photo.repair_single_photo(self)
       end
       observations.each(&:update_stats)
     end
     observations.each do |o|
       o.update_mappable
+      Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
+    taxa.each( &:elastic_index! )
   end
 
   def original_dimensions
-    return unless metadata && metadata[:dimensions] && metadata[:dimensions][:original]
     {
-      height: metadata[:dimensions][:original][:height],
-      width: metadata[:dimensions][:original][:width]
+      height: height,
+      width: width
     }
+  end
+
+  def metadata
+    photo_metadata&.metadata
   end
 
   def self.repair_photos_for_user(user, type)
@@ -295,11 +379,15 @@ class Photo < ActiveRecord::Base
   # necessary attributes
   def self.local_photo_from_remote_photo(remote_photo)
     # inherit native_* and other attributes from remote photos
+    return unless remote_photo && remote_photo.is_a?( Photo ) && remote_photo.type != "LocalPhoto"
     remote_photo_attrs = remote_photo.attributes.select do |k,v|
       k =~ /^native/ ||
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
-    photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
+    photo_url = [ :original, :large, :medium, :small ].map do |s|
+      remote_photo.instance_variable_get( "@remote_#{ s }_url" )
+    end.compact.first
+    return unless photo_url
     if photo_url.size <= 512
       remote_photo_attrs["native_original_image_url"] = photo_url
     end
@@ -326,7 +414,7 @@ class Photo < ActiveRecord::Base
   # to be used primarly for turn_remote_photo_into_local_photo
   def best_available_url
     [ :original, :large, :medium, :small ].each do |s|
-      url = self.send("#{ s }_url")
+      url = self.instance_variable_get("@remote_#{s}_url")
       if url && Photo.valid_remote_photo_url?(url)
         return url
       end
@@ -393,9 +481,10 @@ class Photo < ActiveRecord::Base
   
   def self.default_json_options
     {
-      :methods => [:license_code, :attribution],
-      :except => [:original_url, :file_processing, :file_file_size, 
-        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+      :methods => [:license_code, :attribution, :square_url,
+        :thumb_url, :small_url, :medium_url, :large_url],
+      :except => [:file_processing, :file_file_size,
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id,
         :native_realname, :native_photo_id]
     }
   end
@@ -417,6 +506,34 @@ class Photo < ActiveRecord::Base
       json["#{ size }_url"] = best_url(size)
     end
     json
+  end
+
+  def self.update_photo_native_columns_and_copy_metadata( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.type == "LocalPhoto" && photo.subtype.blank? &&
+            ( !photo.native_photo_id.nil? || !photo.native_page_url.nil? ||
+              !photo.native_username.nil? || !photo.native_realname.nil? )
+            photo.update_columns(
+              native_photo_id: nil,
+              native_page_url: nil,
+              native_username: nil,
+              native_realname: nil
+            )
+          end
+          next if photo.metadata.blank?
+          PhotoMetadata.where( photo_id: photo.id ).first_or_create
+          PhotoMetadata.where( photo_id: photo.id ).update_all( metadata: photo.metadata )
+        end
+      end
+    end
   end
 
   private

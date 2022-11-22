@@ -43,9 +43,11 @@ const ObservationsTab = ( {
         setObservationFilters={setObservationFilters}
         observations={loading ? null : project.filtered_observations.results}
         loadMore={( ) => {
-          infiniteScrollObservations( scrollIndex + 30 );
+          infiniteScrollObservations( scrollIndex, scrollIndex + 30 );
         }}
         hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
+        showViewMoreLink={observations && observations.length >= scrollIndex && scrollIndex >= 200}
+        viewMoreUrl={`/observations?project_id=${project.slug}&verifiable=any&place_id=any&subview=table`}
       />
     );
   } else {
@@ -55,9 +57,11 @@ const ObservationsTab = ( {
         observations={observations}
         scrollIndex={config.observationsScrollIndex}
         loadMore={( ) => {
-          infiniteScrollObservations( scrollIndex + 30 );
+          infiniteScrollObservations( scrollIndex, scrollIndex + 30 );
         }}
         hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
+        showViewMoreLink={observations && observations.length >= scrollIndex && scrollIndex >= 200}
+        viewMoreUrl={`/observations?project_id=${project.slug}&verifiable=any&place_id=any&subview=grid`}
       />
     );
   }

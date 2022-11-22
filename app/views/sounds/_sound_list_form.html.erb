@@ -20,7 +20,6 @@
     <%=t 'sounds.soundcloud_replied_with_an_error' %>
   </p>
 <% else %>
-  <h4><%= t :'sounds.select_one_or_more_sounds' %></h4>
   <%= hidden_field_tag :editing_sounds, true %>
   <% sounds.each do |sound| %>
     <% if sound.is_a?( SoundcloudSound ) %>

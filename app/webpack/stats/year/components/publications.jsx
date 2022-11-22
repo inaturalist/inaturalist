@@ -4,13 +4,25 @@ import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import { commasAnd } from "../../../taxa/shared/util";
 
+function authorName( author ) {
+  if ( !author.firstName ) return author.lastName;
+  return `${author.lastName}, ${author.firstName[0]}.`;
+}
+
 const Publications = ( { data, year } ) => {
   const renderPublication = pub => {
     const baseKey = `publication-${pub.id}`;
-    let authors = `${pub.authors[0].lastName}, ${pub.authors[0].firstName[0]}.`;
-    if ( pub.authors.length > 1 ) {
+    let authors = "";
+    if ( pub && pub.authors && pub.authors.length > 0 ) {
+      authors = authorName( pub.authors[0] );
+    }
+    if ( pub && pub.authors && pub.authors.length > 1 ) {
       authors += ", ";
-      authors += commasAnd( pub.authors.slice( 1, pub.authors.lengt ).map( a => `${a.lastName}, ${a.firstName[0]}.` ) );
+      authors += commasAnd(
+        pub.authors
+          .slice( 1, pub.authors.length )
+          .map( authorName )
+      );
     }
     return (
       <Row key={baseKey}>
@@ -24,15 +36,14 @@ const Publications = ( { data, year } ) => {
           />
         </Col>
         <Col xs={9}>
-          <p>
-            { authors }
-            { pub.year }
-            { ". " }
-            <a href={pub.websites[0]}>{ `"${pub.title}." ` }</a>
-            <i>{ pub.source }</i>
-            { ". " }
+          <div className="publication stacked">
+            <div className="authors">
+              { authors }
+            </div>
+            <a className="title" href={pub.websites[0]}>{ pub.title }</a>
+            <i className="source">{ pub.source }</i>
             { pub._gbifDOIs && (
-              <span className="data-dois">
+              <div className="data-dois">
                 { I18n.t( "data_used" )}
                 { " " }
                 { pub._gbifDOIs.map( doi => (
@@ -43,9 +54,9 @@ const Publications = ( { data, year } ) => {
                     { doi }
                   </a>
                 ) ) }
-              </span>
+              </div>
             ) }
-          </p>
+          </div>
         </Col>
       </Row>
     );
@@ -80,7 +91,7 @@ const Publications = ( { data, year } ) => {
         <div className="xs-col-12">
           <center>
             <a href={data.url} className="btn btn-default btn-bordered inlineblock">
-              { I18n.t( "view_all" ) }
+              { I18n.t( "view_all_caps", { defaultValue: I18n.t( "view_all" ) } ) }
             </a>
           </center>
         </div>

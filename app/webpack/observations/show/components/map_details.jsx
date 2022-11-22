@@ -21,7 +21,9 @@ class MapDetails extends React.Component {
       return (
         <span className="place" key={`place-${p.id}`}>
           <a href={`/observations?place_id=${p.id}`}>
-            { p.display_name || p.name }
+            { I18n.t( `places_name.${_.snakeCase( p.name )}`, {
+              defaultValue: p.display_name || p.name
+            } ) }
           </a>
           { label }
         </span>
@@ -60,21 +62,40 @@ class MapDetails extends React.Component {
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
     }
-    let currentUserHasProjectCuratorCoordinateAccess;
-    if ( currentUser && currentUser.id ) {
-      currentUserHasProjectCuratorCoordinateAccess = _.find(
-        observation.project_observations,
-        po => (
-          po.preferences
-          && po.preferences.allows_curator_coordinate_access
-          && po.project.admins.map( a => a.user_id ).indexOf( currentUser.id ) >= 0
-        )
-      );
-    }
     const projectObservationsWithCoordinateAccess = _.filter(
       observation.project_observations,
       po => po.preferences && po.preferences.allows_curator_coordinate_access
     );
+    const projectsWithCoordinateAccess = _.map(
+      projectObservationsWithCoordinateAccess, po => po.project
+    );
+    _.forEach( observation.non_traditional_projects, ntp => {
+      if ( ntp.project_user ) {
+        const observerTrustsProjectWithAnyObservation = ntp.project_user
+          .prefers_curator_coordinate_access_for === "any";
+        const observerTrustsProjectWithThreatenedTaxa = ntp.project_user
+          .prefers_curator_coordinate_access_for === "taxon";
+        const obscuredByObserver = ["obscured", "private"].includes( observation.geoprivacy );
+        const obscuredByTaxon = ["obscured", "private"].includes( observation.taxon_geoprivacy );
+        if (
+          observerTrustsProjectWithAnyObservation
+          || (
+            observerTrustsProjectWithThreatenedTaxa
+            && !obscuredByObserver
+            && obscuredByTaxon
+          )
+        ) {
+          projectsWithCoordinateAccess.push( ntp.project );
+        }
+      }
+    } );
+    let currentUserHasProjectCuratorCoordinateAccess;
+    if ( currentUser && currentUser.id ) {
+      currentUserHasProjectCuratorCoordinateAccess = _.find(
+        projectsWithCoordinateAccess,
+        project => project.admins.map( a => a.user_id ).includes( currentUser.id )
+      );
+    }
     const adminPlaces = observationPlaces.filter( op => ( op.admin_level !== null ) );
     const communityPlaces = observationPlaces.filter( op => ( op.admin_level === null ) );
     const defaultNumberOfCommunityPlaces = 10;
@@ -194,16 +215,16 @@ class MapDetails extends React.Component {
                 <i className="icon-people" />
                 { I18n.t( "who_can_see_the_coordinates_trusted" ) }
               </li>
-              { projectObservationsWithCoordinateAccess
-                && projectObservationsWithCoordinateAccess.length > 0 && (
+              { projectsWithCoordinateAccess
+                && projectsWithCoordinateAccess.length > 0 && (
                 <li>
                   <i className="fa fa-briefcase" />
                   { I18n.t( "label_colon", { label: I18n.t( "who_can_see_the_coordinates_projects" ) } ) }
                   <ul>
-                    { projectObservationsWithCoordinateAccess.map( po => (
-                      <li key={`map-details-projects-${po.id}`}>
-                        <a href={`/projects/${po.project.slug}`}>
-                          { po.project.title }
+                    { projectsWithCoordinateAccess.map( project => (
+                      <li key={`map-details-projects-${project.id}`}>
+                        <a href={`/projects/${project.slug}`}>
+                          { project.title }
                         </a>
                       </li>
                     ) ) }
@@ -215,7 +236,7 @@ class MapDetails extends React.Component {
               <div>
                 <h4>{ I18n.t( "why_you_can_see_the_coordinates" ) }</h4>
                 <ul className="plain">
-                  { currentUser && currentUser.id === observation.user.id && (
+                  { currentUser && observation.user && currentUser.id === observation.user.id && (
                     <li>
                       <strong>
                         <i className="icon-person" />
@@ -243,6 +264,7 @@ class MapDetails extends React.Component {
                           label: I18n.t( "user_trusts_you_with_their_private_coordinates", { user: observation.user.login } )
                         } ) }
                       </strong>
+                      { " " }
                       { I18n.t( "user_trusts_you_with_their_private_coordinates_desc" ) }
                     </li>
                   ) }
@@ -271,8 +293,8 @@ class MapDetails extends React.Component {
               </a>
             </span>
             {/*
-              Nice to have, but sort of useless unless macrostrat implements the abililty to link to the infowindow
-              and not just the coords
+              Nice to have, but sort of useless unless macrostrat implements the
+              abililty to link to the infowindow and not just the coords
               <span className="info">
                 <a className="value" href={ `https://macrostrat.org/map/#5/${observation.latitude}/${observation.longitude}` }>
                   { I18n.t( "macrostrat" ) }

@@ -1,0 +1,65 @@
+= content_for(:extracss) do
+  :css
+    #network-affiliation .img-thumbnail { width: 100%; }
+    #network-orgs img { max-width: 200px; }
+    #network-orgs td { vertical-align: middle; }
+    #network-orgs ul { padding-left: 1em; }
+
+#network-affiliation.row
+  .col-xs-10.col-xs-offset-1
+    %h2=t :sites_affiliation_title
+    %img.img-thumbnail.stacked{ src: "https://static.inaturalist.org/wiki_page_attachments/3152-original.png", style: "width:100%" }
+    %ul
+      %li
+        %a{ href: "#Overview" }=t :overview
+      %li
+        %a{ href: "#More" }=t :more_about_sharing
+      %li
+        %a{ href: "#Examples" }=t :examples_of_data_use_by_network_members
+      %li
+        %a{ href: "#About" }=t :about_the_network
+    %h3
+      %a{href: "#Overview", name: "Overview" }=t :overview
+    %p
+      =t :sites_affiliation_overview_the_inaturalist_network_is_a_collection_html,
+        start_tag_network: '<a href="/sites/network">'.html_safe,
+        end_tag_network: "</a>".html_safe,
+        start_tag_global: '<a href="https://www.inaturalist.org">'.html_safe,
+        end_tag_global: "</a>".html_safe
+    %p=t :sites_affiliation_overview_when_you_affiliate
+    %p=t :sites_affiliation_overview_you_can_continue_html,
+      start_tag_settings: "<a href=\"#{generic_edit_user_path}\">".html_safe,
+      end_tag_settings: "</a>".html_safe
+    %p=t :sites_affiliation_overview_in_order_to_advance
+    %p=t :sites_affiliation_overview_current_member_list_html,
+      start_tag_network: '<a href="/sites/network">'.html_safe,
+      end_tag_network: "</a>".html_safe
+    %h3
+      %a{ href: "#More", name: "More" }=t :more_about_sharing
+    %p=t :sites_affiliation_more_twice_per_year
+    %h4=t :sites_affiliation_more_automatically_hidden_coordinates
+    %p=t :sites_affiliation_more_automatically_hidden_coordinates_desc
+    %h4=t :sites_affiliation_more_user_hidden_coordinates
+    %p=t :sites_affiliation_more_user_hidden_coordinates_desc
+    %p=t :sites_affiliation_more_email_addresses
+    %h3
+      %a{ href: "#Examples", name: "Examples" }=t :examples_of_data_use_by_network_members
+    %p=t :sites_affiliation_examples_canada_cdc_html,
+      start_tag_inat_canada: '<a href="https://inaturalist.ca">'.html_safe,
+      end_tag_inat_canada: "</a>".html_safe
+    %p=t :sites_affiliation_examples_portugal_atlas_html,
+      start_tag_portugal: '<a href="https://www.biodiversity4all.org">'.html_safe,
+      end_tag_portugal: "</a>".html_safe
+    %p=t :sites_affiliation_examples_mexico_nbis_html,
+      start_tag_naturalista: '<a href="https://www.naturalista.mx">'.html_safe,
+      end_tag_naturalista: "</a>".html_safe,
+      start_tag_enciclovida: '<a href="https://www.enciclovida.mx">'.html_safe,
+      end_tag_enciclovida: "</a>".html_safe
+    %p=t :sites_affiliation_examples_ecuardor_bndb_html,
+      start_tag_ecuador: '<a href="https://ecuador.inaturalist.org">'.html_safe,
+      end_tag_ecuador: "</a>".html_safe
+    %h3
+      %a{ href: "#About", name: "About" }=t :about_the_network
+    %p=t :sites_affiliation_about_desc_html,
+      start_tag_join: '<a href="/pages/network-join">'.html_safe,
+      end_tag_join: "</a>".html_safe

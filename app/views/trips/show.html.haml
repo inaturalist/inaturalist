@@ -15,6 +15,11 @@
   %meta{:property => "og:description", :content => html_attributize(@shareable_description)}
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
+  %link{ rel: "schema.DC", href: "http://purl.org/dc/elements/1.1/" }
+  %link{ rel: "schema.DCTERMS", href: "http://purl.org/dc/terms/" }
+  %meta{ name: "DC.creator", content: @trip.user.published_name }
+  %meta{ name: "DC.publisher", content: @site.name }
+  %meta{ name: "DCTERMS.issued", content: @trip.published_at }
 .container
   - if @trip.published_at.nil?
     .alert.alert-warning.upstacked= t(:preview)
@@ -30,7 +35,8 @@
       - elsif @trip.is_a?(Trip)
         = link_to t(:trips), trips_path
       - else
-        = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
+        - link_txt = is_me? ? t(:header_your_journal) : t(:users_journal, user: @trip.user.login, vow_or_con: @trip.user.login[0].downcase )
+        = link_to link_txt, journal_by_login_path( @trip.user.login )
     %li.active
       = link_to @trip.title, @trip
       - if @trip.is_a?(Trip)

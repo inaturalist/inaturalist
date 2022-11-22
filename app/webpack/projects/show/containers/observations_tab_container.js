@@ -18,10 +18,12 @@ function mapDispatchToProps( dispatch ) {
   return {
     setObservationFilters: params => dispatch( setObservationFilters( params ) ),
     setSelectedTab: ( tab, options ) => dispatch( setSelectedTab( tab, options ) ),
-    setObservationsSearchSubview: subview =>
-      dispatch( setConfig( { observationsSearchSubview: subview } ) ),
-    infiniteScrollObservations: nextScrollIndex =>
-      dispatch( infiniteScrollObservations( nextScrollIndex ) ),
+    setObservationsSearchSubview: subview => dispatch(
+      setConfig( { observationsSearchSubview: subview } )
+    ),
+    infiniteScrollObservations: ( previousScrollIndex, nextScrollIndex ) => dispatch(
+      infiniteScrollObservations( previousScrollIndex, nextScrollIndex )
+    ),
     updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
   };
 }

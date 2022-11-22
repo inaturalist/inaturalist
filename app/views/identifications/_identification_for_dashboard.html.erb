@@ -27,7 +27,7 @@
             identification.user_id != current_user.id && 
             (viewers_identification.blank? || viewers_identification.taxon_id != identification.taxon_id) %>
           <span class="btn btn-sm btn-default btn_agree">
-            <%= link_to t(:agree?), {
+            <%= link_to t(:agree_), {
                  controller: "identifications",
                  action: "agree",
                  observation_id: identification.observation_id,
@@ -37,14 +37,14 @@
           </span>
         <% end %>
         <% if logged_in? && identification.user_id == current_user.id && identification.current? %>
-          <span class="btn btn-sm btn-default btn_agree"><%= link_to t(:remove), identification_path(identification),
+          <span class="btn btn-sm btn-default btn_agree"><%= link_to t(:withdraw), identification_path(identification),
               :method => :delete,
-              "data-loading-click" => t(:removing),
+              "data-loading-click" => t(:withdrawing),
               :class => "removelink" -%></span>
         <% end %>
       <% end -%>
       <% unless identification.current? -%>
-        <span class="label label-default label_refined">Refined</span>
+        <span class="label label-default label_refined"><%= t(:id_withdrawn) %></span>
       <% end -%>
       <h3 class="dashboard_id">
         <%= render :partial => 'shared/taxon', 

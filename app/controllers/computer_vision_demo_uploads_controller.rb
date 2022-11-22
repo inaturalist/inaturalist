@@ -1,7 +1,7 @@
 class ComputerVisionDemoUploadsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
 
-  before_filter :lookup_upload, only: [ :score ]
+  before_action :lookup_upload, only: [ :score ]
 
   def create
     @upload = ComputerVisionDemoUpload.new(photo: params[:file],
@@ -18,7 +18,7 @@ class ComputerVisionDemoUploadsController < ApplicationController
   def score
     begin
       response = RestClient.post( CONFIG.node_api_url + "/computervision/score_image",
-        params.merge( image: File.new( @upload.photo.path( :thumbnail ) ) ),
+        params.to_hash.merge( image: File.new( @upload.photo.path( :thumbnail ) ) ),
         authorization: JsonWebToken.applicationToken)
     rescue
     end

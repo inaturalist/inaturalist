@@ -1,0 +1,12 @@
+- if !posts.blank?
+  - posts.each do |post|
+    .media
+      - if post.parent_type == "Project"
+        = link_to(image_tag(post.parent.icon.url(:thumb), class: "usericon media-object img-rounded"), project_journal_path(post.parent), class: "pull-left")
+      - else
+        = link_to(image_tag(post.user.icon.url(:thumb), class: "usericon media-object"), journal_by_login_path(post.user.login), class: "pull-left")
+      .media-body
+        = render "posts/post", post: post, hard_truncate_length: 500
+- else
+  #noposts.description= t(:no_one_posted_anything_yet)
+

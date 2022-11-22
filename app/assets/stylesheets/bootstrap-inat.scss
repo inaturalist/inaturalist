@@ -1,0 +1,403 @@
+@import "colors";
+
+@media (min-width: 768px) {
+  .container {
+    width: auto;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1A1A1A;
+}
+
+$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
+
+.readable,
+p { 
+  font-size: 100%;
+  font-family: $font-stack;
+}
+
+a:hover { text-decoration: none; opacity: 0.8;}
+a:hover img { opacity: 1;}
+
+.btn,
+.form-control,
+.ac-select-thumb img {border-radius: 2px;}
+.btn-group-vertical > .btn:first-child:not(:last-child) {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+.btn-group-vertical > .btn:last-child:not(:first-child) {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.readable, p {line-height: 1.6em;}
+.ui-chooser input.ui-chooser-input {padding:4px 6px 3px; margin-bottom: 0; border-bottom-right-radius: 0; border-top-right-radius: 0;}
+input.chooser {width: auto;}
+.thumbnail.borderless { padding: 0; overflow:hidden;}
+.overlaycontrol ul { list-style: none; margin: 0 0 5px 0; text-align: left; padding: 0;}
+.overlaycontrol li { line-height: 1; }
+.gmapv3control ul.inat-overlay li { padding-top: 5px; }
+.gmapv3control ul.inat-overlay li.for_taxon {
+  padding: 2px 0;
+}
+.overlaycontrol label { display: inline-block; }
+.overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
+.gmapv3control label {margin-bottom: 0;}
+#map img, .latLonSelectorMap img, .taxonmap img {max-width: none;}
+.box {border-radius: 6px; padding: 20px; }
+.clear { display: inline-block; }   
+.clear:after, .container:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+* html .clear { height: 1%; }
+.clear { display: block; }
+input[type="text"].latLonSelectorInput,
+input[type="text"].hasDatepicker {margin-bottom:0;}
+
+.btn.disabled.loadingclick, .btn.loadingclick[disabled] {
+  background-image: image-url('spinner-small.gif');
+  background-position: 5px 50%;
+  background-repeat: no-repeat;
+  color: #999;
+  text-shadow:none;
+  font-style: italic;
+  background-color:white;
+}
+.photoSelector {padding: 0; border: 0 transparent;margin:0;}
+.photoSelector .view_photo {text-align: left;}
+.photoSelectorPhotos .photo img {width:100%;}
+.photoSelectorPhotos .photo label {margin-bottom: 0;}
+.photoSelectorSelected {
+  background-color: #eee; 
+  padding:10px; 
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  margin-bottom:10px;
+}
+.photoSelectorSelected .photo:nth-child(5n+5) {clear:left; margin-left:0;}
+.photoSelector .btn-group {margin-left: 10px;}
+.inlabel label {display:inline-block;}
+
+.observations h4{display:none;margin:0;}
+.observations .label {
+  background-color:transparent;
+  padding:0;
+  text-shadow:none;
+  font-weight: normal;
+  text-align: left;
+}
+.observations.mini .user,
+.observations.mini .observed_on,
+.observations.mini .created_at,
+.observations.mini .tags,
+.observations.mini .place {
+  padding-left: 95px;
+}
+.observations.mini .icon{top:3px;}
+.observationcontrols label {display:inline-block;}
+.item_user {float: left;margin-right: 10px;}
+.item_content {float: left; }
+.comment_activity_item { margin-bottom: 20px; }
+#pageheader h2 {margin: 0;}
+blockquote { font-size: 14px; }
+blockquote p {margin-bottom: inherit;}
+input.sortable-position { 
+  border-radius: 500px;
+  color:white;
+  font-weight: bold;
+  padding:5px;
+  line-height:0;
+  display:inline-block;
+  border: 0 transparent;
+  width:2em;
+  height:2em;
+  text-align:center;
+  background-color: #ccc;
+  margin-bottom:0;
+}
+ul.plain,
+ol.plain {
+  list-style:none;
+}
+.sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
+.stacked, 
+.nav.nav-tabs,
+.nav.nav-pills {margin-bottom: 10px;}
+.unstacked {margin-bottom: 0px;}
+.overlaycontrol .ui-icon-layers {height: 22px; }
+
+// http://stackoverflow.com/questions/18329010/what-happened-to-nav-header-class
+.nav > li.nav-header {
+    cursor: default;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #999;
+}
+img.borderless, .thumbnail.borderless { border: 0; }
+
+.modal-body {max-height: 400px; overflow-x: hidden; overflow-y: auto; }
+.modal .container-fluid {padding-left: 0; padding-right: 0;}
+.breadcrumb {margin-bottom: 0;}
+.title-controls {margin-top: 20px;}
+
+.ui-front {z-index: 1051;}
+.accordion .panel-heading { padding: 0; }
+.accordion .panel-heading a { display: block; padding: 10px 15px; }
+.errorExplanation {margin-top: 20px; }
+// http://stackoverflow.com/questions/18730116/twitter-bootstrap-3-0-how-do-i-badge-badge-important-now
+.label-as-badge {
+  border-radius: 1em;
+  font-size: 100%;
+  padding: 3px 8px;
+  display: inline-block;
+}
+.form-control.hasDatepicker,
+.form-control.latLonSelectorInput {display:inline-block;}
+.breadcrumb > li.prevnext:before { display: none; }
+.leaderboard-container thead .sorting_desc,
+.leaderboard-container thead .sorting_asc {padding-right: 20px; }
+
+mark { padding: 0; }
+
+.carousel-control .fa-chevron-left,
+.carousel-control .fa-chevron-right {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: inline-block;
+  margin-top: -10px;
+}
+.carousel-control .fa-chevron-left {
+  left: 50%;
+  margin-left: -10px;
+}
+.carousel-control .fa-chevron-right {
+  right: 50%;
+  margin-right: -10px;
+}
+
+.ac-select-thumb { float: none; display: inline-block; }
+/*.ac-select-thumb img { width: 33px; height: 33px; }*/
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus,
+.btn:focus,
+.btn:active {
+  box-shadow: none;
+  outline: auto;
+}
+
+.btn-group.btn-group-stateless .btn:focus,
+.btn-group.btn-group-stateless .btn:active,
+.btn-stateless.btn:focus,
+.btn-stateless.btn:active {
+  background-color: white;
+}
+
+.fa-spin { transform: none; }
+
+.form-inline button,
+.form-inline .form-group {
+  margin-left: 5px;
+}
+.form-inline button:first-child,
+.form-inline .form-group:first-child {
+  margin-left: 0;
+}
+.form-group input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.nav-tabs.user-subnav .glyphicon,
+.nav-tabs.user-subnav .fa,
+.nav-tabs.user-subnav .icon {
+  margin-right: 0.3em;
+}
+
+.ac-chooser {
+  display: flex;
+  position: relative;
+  align-items: stretch;
+}
+.ac-select-thumb {
+  line-height: 33px;
+}
+.ui-autocomplete-input {
+  flex: 2;
+  min-width: 100px; // apparently required for IE
+}
+.taxon_change {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.taxon_change ul.change_taxon {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.taxon-change-table td {
+  vertical-align: top;
+}
+.taxon-change-table td:first-child,
+.taxon-change-table td:last-child {
+  width: 45%;
+}
+.taxon-change-table td.mergetype {
+  width: 10%;
+}
+.btn.btn-success {
+  background-color: $inat-green;
+  border-color: $inat-green;
+}
+.btn.btn-inat {
+  border-radius: 100px;
+  background-color: #999;
+  border-color: #999;
+  color: white;
+}
+.btn.btn-inat:hover,
+.btn.btn-inat:focus {
+  background-color: lighten(#999, 1%);
+  border-color: lighten(#999, 1%);
+  color: white;
+}
+.btn-primary.btn-inat {
+  background-color: $inat-green;
+  color: white;
+  border-color: $inat-green;
+}
+.btn-primary.btn-inat:hover,
+.btn-primary.btn-inat:focus {
+  background-color: lighten($inat-green, 1%);
+  border-color: lighten($inat-green, 1%);
+}
+.btn.btn-outline {
+  background-color: transparent;
+  color: black;
+  border-color: #999;
+}
+.btn.btn-outline:hover,
+.btn.btn-outline:focus {
+  background-color: transparent;
+  border-color: #999;
+  color: lighten(#000, 1%);
+  border-color: lighten(#999, 1%);
+}
+
+/* Cribbed from Bootstrap 4 */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.btn-inter,
+.btn-inter:hover,
+.btn-inter:focus,
+.btn-inter:active {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: default;
+  opacity: 1;
+  color: inherit;
+}
+
+.btn.btn-nostyle {
+  padding: 0;
+  background-color: transparent;
+  border: 0 transparent;
+  line-height: inherit;
+  font-size: inherit;
+}
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}
+
+.linky { color: #337ab7; }
+
+.field .field_with_errors textarea.form-control,
+.field .field_with_errors input.form-control {
+  border: 1px solid DeepPink;
+}
+
+.gmapv3legend .label {
+  font-size: inherit;
+  color: black;
+  white-space: normal;
+  text-align: left;
+}
+
+.needs_id_notice {
+  background-color: $needs-id-yellow;
+  color: $needs-id-yellow-light;
+}
+.research_grade_notice {
+  background-color: $inat-green;
+  color: white;
+}
+
+.alert-inside {
+  margin: 20px;
+}
+
+.TaxonMap {
+  overflow: hidden;
+}

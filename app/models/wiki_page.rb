@@ -1,4 +1,4 @@
-class WikiPage < ActiveRecord::Base
+class WikiPage < ApplicationRecord
   acts_as_wiki_page
   ALLOWED_TAGS = %w(
     a abbr acronym b blockquote br cite code div dl dt em embed h1 h2 h3 h4 h5 h6 hr i

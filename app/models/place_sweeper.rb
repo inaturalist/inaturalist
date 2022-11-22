@@ -1,5 +1,9 @@
 class PlaceSweeper < ActionController::Caching::Sweeper
-  observe Place
+  begin
+    observe Place
+  rescue ActiveRecord::NoDatabaseError
+    puts "Database not connected, failed to observe Place. Ignore if setting up for the first time"
+  end
   
   def after_update(place)
     remove_geometry_page_cache(place)

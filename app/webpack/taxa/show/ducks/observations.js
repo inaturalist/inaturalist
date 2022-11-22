@@ -116,6 +116,10 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
+      return;
+    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )
@@ -196,31 +200,45 @@ export function setObservationsCount( count ) {
 }
 
 export function fetchRecentObservations( ) {
-  return ( dispatch, getState ) => inatjs.observations.search(
-    Object.assign( { return_bounds: true }, defaultObservationParams( getState( ) ) )
-  ).then( response => {
-    dispatch( setRecentObservations( response.results ) );
-    dispatch( setObservationsCount( response.total_results ) );
-    dispatch( setConfig( { mapBounds: response.total_bounds } ) );
-  } );
-}
-
-export function setFirstObservation( observation ) {
-  return {
-    type: SET_FIRST_OBSERVATION,
-    observation
-  };
-}
-
-export function fetchFirstObservation( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      order: "asc",
-      per_page: 1
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( getState( ) ),
+      return_bounds: true
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        id: true,
+        observed_on: true,
+        photos: {
+          id: true,
+          uuid: true,
+          url: true,
+          license_code: true
+        },
+        taxon: {
+          id: true,
+          uuid: true,
+          name: true,
+          iconic_taxon_name: true,
+          is_active: true,
+          preferred_common_name: true,
+          rank: true,
+          rank_level: true
+        },
+        user: {
+          id: true,
+          login: true,
+          name: true
+        }
+      };
+    }
+    return inatjs.observations.search( params ).then( response => {
+      dispatch( setRecentObservations( response.results ) );
+      dispatch( setObservationsCount( response.total_results ) );
+      dispatch( setConfig( { mapBounds: response.total_bounds } ) );
     } );
-    return ( inatjs.observations.search( params ).then( response => {
-      dispatch( setFirstObservation( response.results[0] ) );
-    } ) );
   };
 }
 
@@ -233,11 +251,27 @@ export function setLastObservation( observation ) {
 
 export function fetchLastObservation( ) {
   return ( dispatch, getState ) => {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( getState( ) ),
       order_by: "observed_on",
       order: "desc",
-      per_page: 1
-    } );
+      per_page: 1,
+      skip_total_hits: true
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        id: true,
+        observed_on: true,
+        photos: {
+          id: true,
+          uuid: true,
+          url: true,
+          license_code: true
+        }
+      };
+    }
     return ( inatjs.observations.search( params ).then( response => {
       dispatch( setLastObservation( response.results[0] ) );
     } ) );

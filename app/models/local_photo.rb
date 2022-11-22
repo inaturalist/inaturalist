@@ -1,8 +1,8 @@
 #encoding: utf-8
 class LocalPhoto < Photo
   include LogsDestruction
-  before_create :set_defaults
-  after_create :set_native_photo_id, :set_urls
+  after_create :set_urls
+  after_update :change_photo_bucket_if_needed
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
@@ -31,13 +31,34 @@ class LocalPhoto < Photo
   }
 
   if CONFIG.usingS3
+
+    # the s3 config is dynamic, based on the photo. We now recognizing
+    # two buckets - our main S3 bucket which remains public, as well
+    # as a second bucket for openly-licensed photos. The contents of both
+    # are public, but we may refer to the second bucket either as the public
+    # bucket, since it contains openly-licensed photos, or the ODP
+    # (AWS Open Dataset Program) bucket.
+
+    # All the S3 config parameters are as follows:
+    #   s3_bucket: the unique name of the S3 bucket at AWS
+    #   s3_host (optional): the full hostname for the bucket, e.g. s3_bucket.s3.amazonaws.com
+    #   s3_protocol: should always be `https` unless you absolutely need to use http for some reason
+    #   s3_region: S3 region that bucket lives in
+    # and these which do the same as above, but for a secondary bucket for openly-licensed photos
+    #   s3_public_bucket
+    #   s3_public_host (optional)
+    #   s3_public_region: For now we assume the region is the same, and that is recommended practice
+    #   s3_public_acl: You can set this to `bucket-owner-full-control` to transfer ownership
+    #     when moving photos to this bucket
+
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
-      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
-      s3_region: CONFIG.s3_region,
-      bucket: CONFIG.s3_bucket,
+      s3_host_alias: Proc.new{ |a| a.instance.s3_host_alias },
+      s3_region: Proc.new{ |a| a.instance.s3_region },
+      s3_permissions: Proc.new{ |a| a.instance.s3_permissions },
+      bucket: Proc.new{ |a| a.instance.s3_bucket },
       #
       #  NOTE: the path used to be "photos/:id/:style.:extension" as of
       #  2016-07-15, but that wasn't setting the extension based on the detected
@@ -52,8 +73,8 @@ class LocalPhoto < Photo
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )
   end
 
@@ -65,6 +86,8 @@ class LocalPhoto < Photo
   # ...but part of the metadata is the size of the thumbnails
   # so grab metadata twice (extract_metadata is purely additive)
   after_post_process :extract_metadata
+
+  after_initialize :set_license
 
   # LocalPhotos with subtypes are former remote photos, and subtype
   # is the former subclass. Those subclasses don't validate :user
@@ -84,19 +107,97 @@ class LocalPhoto < Photo
     "SAMSUNG CAMERA PICTURES",
     "MINOLTA DIGITAL CAMERA"
   ]
-  
+
+  def self.odp_s3_bucket_enabled?
+    !!( CONFIG.s3_public_host || CONFIG.s3_public_bucket )
+  end
+
+  def self.s3_host_alias( public = false )
+    unless LocalPhoto.odp_s3_bucket_enabled?
+      return ( CONFIG.s3_host || CONFIG.s3_bucket )
+    end
+    public ?
+      ( CONFIG.s3_public_host || CONFIG.s3_public_bucket ) :
+      ( CONFIG.s3_host || CONFIG.s3_bucket )
+  end
+
+  def self.s3_region( public = false )
+    return CONFIG.s3_region unless CONFIG.s3_public_region
+    public ? CONFIG.s3_public_region : CONFIG.s3_region
+  end
+
+  def self.s3_bucket( public = false )
+    return CONFIG.s3_bucket unless CONFIG.s3_public_bucket
+    public ? CONFIG.s3_public_bucket : CONFIG.s3_bucket
+  end
+
+  def self.s3_permissions( public = false )
+    return "public-read" unless CONFIG.s3_public_bucket && CONFIG.s3_public_acl
+    public ? CONFIG.s3_public_acl : "public-read"
+  end
+
+  def s3_host_alias
+    LocalPhoto.s3_host_alias( self.s3_account )
+  end
+
+  def s3_region
+    LocalPhoto.s3_region( self.s3_account )
+  end
+
+  def s3_bucket
+    LocalPhoto.s3_bucket( self.s3_account )
+  end
+
+  def s3_permissions
+    LocalPhoto.s3_permissions( self.s3_account )
+  end
+
+  def in_public_s3_bucket?
+    file_prefix ? !! file_prefix.prefix.match( LocalPhoto.s3_bucket( true ) ) :
+      could_be_public
+  end
+
+  def s3_account
+    return @s3_account if instance_variable_defined?( :@s3_account )
+    @s3_account = self.in_public_s3_bucket? ? "public" : nil
+  end
+
+  def s3_account=( account )
+    @s3_account = account
+  end
+
+  def could_be_public
+    return false unless Shared::LicenseModule::ODP_LICENSES.include?( self.license )
+    return false if flags.any?{ |f| !f.resolved? }
+    true
+  end
+
+  def self.change_photo_bucket_if_needed( p )
+    return unless p = LocalPhoto.find_by_id( p ) unless p.is_a?( LocalPhoto )
+    p.change_photo_bucket_if_needed
+  end
+
+  def photo_bucket_should_be_changed?
+    # must have a URL
+    return false unless file_prefix
+    return false unless CONFIG.usingS3
+    # the code must be configured to use a public bucket
+    return false unless LocalPhoto.odp_s3_bucket_enabled?
+    # the LocalPhoto must be in a bucket other than what its license dictates
+    return false unless ( could_be_public && !in_public_s3_bucket? ) ||
+      (!could_be_public && in_public_s3_bucket? )
+    true
+  end
+
+  def change_photo_bucket_if_needed
+    return unless photo_bucket_should_be_changed?
+    LocalPhoto.move_to_appropriate_bucket( self )
+  end
+
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
   
-  def set_defaults
-    if user
-      self.native_username ||= user.login
-      self.native_realname ||= user.name
-    end
-    true
-  end
-
   def file=(data)
     self.file.assign(data)
     # uploaded photos need metadata immediately in order to
@@ -108,15 +209,11 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata = self.metadata.to_h.clone || {}
-    metadata[:dimensions] ||= { }
+    extracted_metadata = metadata.to_h.clone || {}
     begin
-      file.styles.keys.each do |style|
-        metadata[:dimensions][style] = extract_dimensions(style)
-      end
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
-        metadata.merge!( exif_data )
+        extracted_metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -129,25 +226,21 @@ class LocalPhoto < Photo
     rescue ExifMetadata::ExtractionError => e
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
-    metadata = metadata.force_utf8
-    self.metadata = metadata
+    extracted_metadata = extracted_metadata.force_utf8
+    if dimensions = extract_dimensions( :original )
+      self.width = dimensions[:width]
+      self.height = dimensions[:height]
+    end
+    self.photo_metadata ||= PhotoMetadata.new( photo: self )
+    self.photo_metadata.metadata = extracted_metadata
   end
 
   def set_urls
-    styles = %w(original large medium small thumb square)
-    updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
-    # the original_url will be blank when initially saving any file
-    # by URL (cached remote photos). We want them to have placeholder
-    # photos, so use a dummy LocalPhoto for initial photo URLs
-    blank_file = LocalPhoto.new.file
-    updates += styles.map do |s|
-      url = file.queued_for_write[s].blank? ? file.url(s) : blank_file.url(s)
-      url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
-    end
-    unless new_record?
-      updates[0] += ", native_page_url = '#{FakeView.photo_url(self)}'" if native_page_url.blank?
-    end
-    Photo.where(id: id).update_all(updates)
+    return if new_record?
+    updates = { }
+    updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
+    updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
+    Photo.where( id: id ).update_all( updates )
     true
   end
 
@@ -184,19 +277,17 @@ class LocalPhoto < Photo
 
     # If this is a copyright violation AND we don't have access to an original file, we're screwed.
     else
-      raise "We no longer have access to the original file."
+      raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
-    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
-      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.file = URI( url )
     end
   end
 
   def repair(options = {})
     reset_file_from_original
     self.file.reprocess!
-    set_urls
     [self, {}]
   end
 
@@ -205,12 +296,6 @@ class LocalPhoto < Photo
       super
     else
       "#{super}, uploaded by #{user.try_methods(:name, :login)}"
-    end
-  end
-  
-  def set_native_photo_id
-    if subtype.blank?
-      update_attribute(:native_photo_id, id)
     end
   end
 
@@ -259,6 +344,10 @@ class LocalPhoto < Photo
       if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
+        # Force the time to be in the time zone, b/c the value from EXIFR will
+        # be in the system time zone, regardless of what time zone info might
+        # be in the photo metadata. See
+        # https://github.com/MikeKovarik/exifr/issues/84#issuecomment-1004691190
         o.set_time_in_time_zone
         if o.time_observed_at
           o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
@@ -343,10 +432,6 @@ class LocalPhoto < Photo
     self.save
   end
 
-  def processing?
-    square_url.blank? || square_url.include?(LocalPhoto.new.file(:square))
-  end
-
   def extract_dimensions(style)
     if file? && tempfile = file.queued_for_write[style]
       if sizes = FastImage.size(tempfile)
@@ -356,42 +441,154 @@ class LocalPhoto < Photo
     end
   end
 
-  # this method was created for generating dimensions for
-  # all existing images in S3 in mass. It was designed for
-  # performance and not accuracy. It extrapolates the sizes of
-  # all the styles from the original to save on HTTP requests.
-  # Photo.extract_dimensions is the more exact method
-  def extrapolate_dimensions_from_original
-    return unless original_url
-    if original_dimensions = FastImage.size(original_url)
-      sizes = {
-        original: {
-          width: original_dimensions[0],
-          height: original_dimensions[1]
-        }
-      }
-      max_d = original_dimensions.max
-      # extrapolate the scaled dimensions of the other sizes
-      file.styles.each do |key, s|
-        next if key.to_sym == :original
-        if match = s.geometry.match(/([0-9]+)x([0-9]+)([^0-9])?/)
-          style_sizes = {
-            width: match[1].to_i,
-            height: match[2].to_i
-          }
-          modifier = match[3]
-          # the '#' modifier means the resulting image is exactly that size
-          unless modifier == "#"
-            ratio = (max_d < style_sizes[:width]) ?
-              1 : (style_sizes[:width] / max_d.to_f)
-            style_sizes[:width] = (sizes[:original][:width] * ratio).round
-            style_sizes[:height] = (sizes[:original][:height] * ratio).round
-          end
-          sizes[key] = style_sizes
-        end
-      end
-      sizes
+  def s3_client
+    return unless CONFIG.usingS3
+    s3_credentials = LocalPhoto.new.file.s3_credentials
+    ::Aws::S3::Client.new(
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: LocalPhoto.s3_region
+    )
+  end
+
+  def mark_observations_as_updated
+    observations.each do |o|
+      o.mark_as_updated
     end
+  end
+
+  def prune_odp_duplicates( options = { } )
+    return unless in_public_s3_bucket?
+    client = options[:s3_client] || LocalPhoto.new.s3_client
+    static_bucket = LocalPhoto.s3_bucket
+    # check the static bucket for files for this photo
+    s3_objects = client.list_objects( bucket: static_bucket, prefix: "photos/#{ id }/" )
+    images = s3_objects.contents
+    return unless images.any?
+    puts "deleting photo #{id} [#{images.size} files] from S3"
+    # delete the duplicates in the static bucket
+    client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+  end
+
+  def self.prune_odp_duplicates_batch( min_id, max_id )
+    s3_client = LocalPhoto.new.s3_client
+    LocalPhoto.
+      where( "id >= ?", min_id ).
+      where( "id < ?", max_id ).
+      find_each( batch_size: 100 ) do |lp|
+      lp.prune_odp_duplicates( s3_client: s3_client )
+    end
+  end
+
+  private
+
+  def self.move_to_appropriate_bucket( p )
+    return unless LocalPhoto.odp_s3_bucket_enabled?
+    return unless photo = LocalPhoto.find_by_id( p )
+    return unless photo.is_a?( LocalPhoto )
+    return unless photo.photo_bucket_should_be_changed?
+
+    photo_started_in_public_s3_bucket = photo.in_public_s3_bucket?
+    s3_client = photo.s3_client
+    source_domain = LocalPhoto.s3_host_alias( photo_started_in_public_s3_bucket )
+    target_domain = LocalPhoto.s3_host_alias( !photo_started_in_public_s3_bucket )
+    source_bucket = LocalPhoto.s3_bucket( photo_started_in_public_s3_bucket )
+    target_bucket = LocalPhoto.s3_bucket( !photo_started_in_public_s3_bucket )
+    target_acl = LocalPhoto.s3_permissions( !photo_started_in_public_s3_bucket )
+
+    # an additional check to make sure the photo URLs contain the expected domain.
+    # Later there will be a string substitution replacing the source domain with
+    # the target domain
+    return unless photo.file_prefix && photo.file_prefix.prefix.include?( source_domain )
+
+    # fetch list of files at the source
+    images = LocalPhoto.aws_images_from_bucket( s3_client, source_bucket, photo )
+    return if images.blank?
+
+    # copy them over to the new target and confirm they arrived at the target
+    moved_successfully = LocalPhoto.move_images_between_buckets(
+      s3_client, photo, images, source_bucket, target_bucket, target_acl )
+
+    if moved_successfully
+      # Update the photo URLs in the DB. Do this before deleting the originals
+      # in case there's some failure and we're not left with photo URLs pointing
+      # to files that were deleted
+
+      # override the photo s3_account so its URLs will point to the new bucket
+      photo.s3_account = photo_started_in_public_s3_bucket ? nil : "public"
+      photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
+      photo.reload
+
+      # if the photo is being removed as a result of a flag being applied,
+      # then remove it from the source bucket
+      if photo.flags.detect{ |f| !f.resolved? }
+        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      end
+      # mark the observation as being updated, re-index only the updated_at column
+      photo.mark_observations_as_updated
+    else
+      # move failed, so remove any files that did get copied to the target before the failure
+      LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
+    end
+  end
+
+  def self.aws_images_from_bucket( client, bucket, photo )
+    begin
+      s3_objects = client.list_objects( bucket: bucket, prefix: "photos/#{ photo.id }/" )
+      images = s3_objects.contents
+      if !( s3_objects && s3_objects.data &&
+        s3_objects.data.is_a?( Aws::S3::Types::ListObjectsOutput ) && images.any? )
+        return []
+      end
+    rescue
+      # failed to fetch list of photo files, so just return
+      return false
+    end
+    images
+  end
+
+  def self.move_images_between_buckets( s3_client, photo, source_images, source_bucket, target_bucket, target_acl )
+    begin
+      source_images.each do |image|
+        puts "Copying #{ image.key }..."
+        key = image.key
+        s3_client.copy_object(
+          bucket: target_bucket,
+          copy_source: "#{ source_bucket }/#{ key }",
+          key: image.key,
+          acl: target_acl
+        )
+      end
+    rescue
+      # failed to copy all photo files to the new bucket
+      return false
+    end
+
+    # verify all source images made it to the target, and they they are seemingly identical
+    target_images = LocalPhoto.aws_images_from_bucket( s3_client, target_bucket, photo )
+    return false if target_images.blank?
+    source_images.each do |source_image|
+      target_image = target_images.find{ |target| target.key == source_image.key }
+      return false unless target_image
+      return false unless target_image.etag == source_image.etag
+      return false unless target_image.size == source_image.size
+    end
+    true
+  end
+
+  def self.delete_images_from_bucket( s3_client, delete_from_bucket, images )
+    begin
+      s3_client.delete_objects(
+        bucket: delete_from_bucket,
+        delete: {
+          objects: images.map{ |image| { key: image.key } }
+        }
+      )
+    rescue
+      # failed to delete photos
+      return false
+    end
+    true
   end
 
 end

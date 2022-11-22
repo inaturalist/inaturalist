@@ -3,6 +3,11 @@
 .container
   .row
     .col-xs-12
+      .alert.alert-warning
+        %p
+          This tool will be removed on
+          = succeed "." do
+            =l @removal_date, format: :long
       %h1 Mushroom Observer Import
       %p
         This tool will import your observations from Mushroom Observer to iNat. You'll need to get a Mushroom Observer API key from
@@ -55,34 +60,54 @@
               %th Latitude
               %th Longitude
               %th Accuracy
+              %th Geoprivacy
               %th Place desc
               %th Description &amp; MO URL
           %tbody
             - @results.each do |result, observation|
+              - mo_url = @mo_import_task.mo_url_from_result( result )
               %tr
                 %td
                   - if ( images = @mo_import_task.images_from_result( result ) ) && images.size > 0
                     - images.each do |img|
                       %img{ src: "http://images.mushroomobserver.org/thumb/#{img[:id]}.jpg" }
-                  - else
+                  - elsif observation
                     = iconic_taxon_image( observation.taxon )
-                %td
-                  - if observation.taxon 
-                    = render "shared/taxon", taxon: observation.taxon, link_url: observation.taxon
-                  - else
-                    Placeholder:
-                    = observation.species_guess
-                %td.nobr
-                  = observation.munge_observed_on_with_chronic; observation.observed_on
-                %td= observation.latitude
-                %td= observation.longitude
-                %td= "#{observation.positional_accuracy} m"
-                %td= observation.place_guess
-                %td
-                  = formatted_user_text observation.description
-                  %p
-                    MO URL: 
-                    = link_to result[:url], result[:url]
+                - if observation
+                  %td
+                    - if observation.taxon
+                      = render "shared/taxon", taxon: observation.taxon, link_url: observation.taxon
+                    - else
+                      Placeholder:
+                      = observation.species_guess
+                  %td.nobr
+                    = observation.munge_observed_on_with_chronic; observation.observed_on
+                  %td= observation.latitude
+                  %td= observation.longitude
+                  %td
+                    - unless observation.positional_accuracy.blank?
+                      = "#{observation.positional_accuracy} m"
+                  %td= observation.geoprivacy
+                  %td= observation.place_guess
+                  %td
+                    = formatted_user_text observation.description
+                    %p
+                      MO URL:
+                      = link_to mo_url, mo_url
+                - else
+                  %td{ colspan: 8 }
+                    .alert.alert-danger
+                      - if @mo_import_task.warnings && !@mo_import_task.warnings[mo_url].blank?
+                        %p Problems:
+                        %ul
+                          - @mo_import_task.warnings[mo_url].each do |w|
+                            %li= w
+                      - else
+                        %p Failed to parse data from Mushroom Observer:
+                        %pre= result.to_xml
+                      %p
+                        MO URL:
+                        = link_to mo_url, mo_url
   .row
     .col-xs-12
       %h2 How This Works
@@ -113,3 +138,17 @@
           iNat does not support uploading photos by other people. It will
           assume and state publicly that you are the copyright holder for all
           images.
+        %li
+          %strong Geoprivacy is either open or private:
+          MO allows you to "Hide exact coordinates" which will hide the exact
+          coordinates if you entered them, but will still show the general
+          locality you entered. Since that general locality might be larger than
+          an iNat obscuration cell, setting geoprivacy to "obscured" might end
+          up revealing a more specific location than you were expecting on MO,
+          so we're being conservative and setting the geoprivacy to "private" in
+          these cases.
+          - if @mo_url_field
+            If you want to review these records after import,
+            = succeed "." do
+              = link_to observations_by_login_url( current_user.login, "field:#{@mo_url_field.name}" => "", geoprivacy: Observation::PRIVATE ) do
+                use this search

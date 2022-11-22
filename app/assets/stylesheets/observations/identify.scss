@@ -10,6 +10,7 @@
 @import "../shared/taxon_photo";
 @import "../shared/loading_spinner";
 @import "../shared/disagreement_alert";
+@import "../shared/flash_message";
 @import "../users/user_popover";
 @import "identify/blind";
 @import "identify/suggestions";
@@ -179,10 +180,6 @@ li.rc-pagination-item-active a {
 .bootstrap .FiltersButton .dropdown-menu {
   left: -400px;
 }
-.bootstrap .FiltersButton .checkbox {
-  display: block;
-}
-
 
 .quality_grade {
   display: inline-block;
@@ -271,13 +268,6 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
 }
 
-.SearchBar {
-  .PlaceAutocomplete {
-    position: relative;
-    top: 0.5px;
-  }
-}
-
 .image-size-large {
   .ObservationsGridItem,
   .ObservationsGridItem .media {
@@ -292,5 +282,14 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   i {
     position: relative;
     top: 2px;
+  }
+}
+
+.FilterCheckbox.checkbox {
+  display: flex;
+  justify-content: space-between;
+  margin: 7px 0;
+  i.fa {
+    margin-left: 5px;
   }
 }

@@ -24,7 +24,7 @@ const Requirements = ( {
   project, setSelectedTab, includeArrowLink, config
 } ) => {
   const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" )
-    : _.map( project.taxonRules, r => (
+    : _.map( _.sortBy( project.taxonRules, r => r.taxon.name ), r => (
       <SplitTaxon
         key={`project-taxon-rules-${r.id}`}
         user={config.currentUser}
@@ -34,7 +34,7 @@ const Requirements = ( {
       />
     ) );
   const exceptTaxonRules = !_.isEmpty( project.notTaxonRules )
-    && _.map( project.notTaxonRules, r => (
+    && _.map( _.sortBy( project.notTaxonRules, r => r.taxon.name ), r => (
       <SplitTaxon
         key={`project-taxon-rules-${r.id}`}
         user={config.currentUser}
@@ -44,48 +44,48 @@ const Requirements = ( {
       />
     ) );
   const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" )
-    : _.map( project.placeRules, r => (
+    : _.map( _.sortBy( project.placeRules, r => r.place.display_name ), r => (
       <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
     ) );
   const exceptLocationRules = !_.isEmpty( project.notPlaceRules )
-    && _.map( project.notPlaceRules, r => (
+    && _.map( _.sortBy( project.notPlaceRules, r => r.place.display_name ), r => (
       <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
     ) );
   let userRules;
-  if ( project.rule_members_only ) {
-    userRules = I18n.t( "project_members_only" );
-  } else if ( _.isEmpty( project.userRules ) ) {
-    userRules = I18n.t( "any" );
+  const projectUserRules = _.filter( project.userRules, "user" );
+  if ( _.isEmpty( projectUserRules ) ) {
+    userRules = project.rule_members_only ? I18n.t( "project_members_only" ) : I18n.t( "any_user" );
   } else {
-    userRules = _.map( project.userRules, r => (
+    userRules = _.map( _.sortBy( projectUserRules, r => r.user.login ), r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
   }
-  const exceptUserRules = !_.isEmpty( project.notUserRules )
-    && _.map( project.notUserRules, r => (
+  const projectNotUserRules = _.filter( project.notUserRules, "user" );
+  const exceptUserRules = !_.isEmpty( projectNotUserRules )
+    && _.map( _.sortBy( projectNotUserRules, r => r.user.login ), r => (
       <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" )
-    : _.map( project.projectRules, r => (
+  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any_project" )
+    : _.map( _.sortBy( project.projectRules, r => r.project.title ), r => (
       <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
         { r.project.title }
       </a>
     ) );
   const exceptProjectRules = !_.isEmpty( project.notProjectRules )
-    && _.map( project.notProjectRules, r => (
+    && _.map( _.sortBy( project.notProjectRules, r => r.project.title ), r => (
       <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
         { r.project.title }
       </a>
     ) );
-  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" )
+  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
     : _.map( _.keys( project.rule_quality_grade ),
       q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
   const media = [];
@@ -95,9 +95,9 @@ const Requirements = ( {
   if ( project.rule_sounds ) {
     media.push( I18n.t( "sounds.sounds" ) );
   }
-  const mediaRules = _.isEmpty( media ) ? I18n.t( "any" )
+  const mediaRules = _.isEmpty( media ) ? I18n.t( "any_media" )
     : media.join( ` ${I18n.t( "and" )} ` );
-  let dateRules = I18n.t( "any" );
+  let dateRules = I18n.t( "any_date" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = true;
     dateRules = I18n.t( "date_to_date", {
@@ -112,7 +112,7 @@ const Requirements = ( {
     const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 0 ) );
     dateRules = monthIndices.map( m => I18n.t( "date.month_names" )[m] ).join( ", " );
   }
-  let establishmentRules = I18n.t( "any" );
+  let establishmentRules = I18n.t( "any_establishment" );
   if ( project.rule_native || project.rule_introduced ) {
     establishmentRules = _.compact( [
       project.rule_native && I18n.t( "establishment.native" ),
@@ -160,12 +160,12 @@ const Requirements = ( {
         <td className="value">
           { projectRules }
           { exceptProjectRules && (
-            <span className="except">
-              <span className="bold">
+            <div className="except">
+              <div className="bold">
                 { I18n.t( "except" ) }
-              </span>
+              </div>
               { exceptProjectRules }
-            </span>
+            </div>
           ) }
         </td>
       </tr>
@@ -188,12 +188,12 @@ const Requirements = ( {
               <td className="value">
                 { taxonRules }
                 { exceptTaxonRules && (
-                  <span className="except">
-                    <span className="bold">
+                  <div className="except">
+                    <div className="bold">
                       { I18n.t( "except" ) }
-                    </span>
+                    </div>
                     { exceptTaxonRules }
-                  </span>
+                  </div>
                 ) }
               </td>
             </tr>
@@ -202,15 +202,15 @@ const Requirements = ( {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location" ) }
               </td>
-              <td className="value">
+              <td className="value location-rules">
                 { locationRules }
                 { exceptLocationRules && (
-                  <span className="except">
-                    <span className="bold">
+                  <div className="except">
+                    <div className="bold">
                       { I18n.t( "except" ) }
-                    </span>
+                    </div>
                     { exceptLocationRules }
-                  </span>
+                  </div>
                 ) }
               </td>
             </tr>
@@ -222,12 +222,12 @@ const Requirements = ( {
               <td className="value">
                 { userRules }
                 { exceptUserRules && (
-                  <span className="except">
-                    <span className="bold">
+                  <div className="except">
+                    <div className="bold">
                       { I18n.t( "except" ) }
-                    </span>
+                    </div>
                     { exceptUserRules }
-                  </span>
+                  </div>
                 ) }
               </td>
             </tr>

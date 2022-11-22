@@ -97,8 +97,17 @@ ExplodedAtlasPlace.blueprint do
   place { make_place_with_geom }
 end
 
+FileExtension.blueprint do
+  extension { "jpg" }
+end
+
+FilePrefix.blueprint do
+  prefix { "http://staticdev.inaturalist.org/photos/" }
+end
+
 Flag.blueprint do
   user { User.make! }
+  flaggable_user { User.make! }
   flaggable { Taxon.make! }
   flag { Faker::Name.name }
   resolved { false }
@@ -171,26 +180,21 @@ List.blueprint do
   title { Faker::Lorem.sentence }
 end
 
-LifeList.blueprint do
-  user { User.make! }
-end
-
 ListRule.blueprint do
   list { List.make! }
 end
 
 LocalPhoto.blueprint do
   user { User.make }
-  square_url        { 'http://staticdev.inaturalist.org/photos/1234/square.jpg' }
-  thumb_url         { 'http://staticdev.inaturalist.org/photos/1234/thumb.jpg' }
-  small_url         { 'http://staticdev.inaturalist.org/photos/1234/small.jpg' }
-  medium_url        { 'http://staticdev.inaturalist.org/photos/1234/medium.jpg' }
-  large_url         { 'http://staticdev.inaturalist.org/photos/1234/large.jpg' }
-  original_url      { 'http://staticdev.inaturalist.org/photos/1234/original.jpg' }
-  native_page_url   { "http://localhost:3000/photos/1234" }
   file_content_type { "image/jpeg" }
   file_file_name    { "foo.jpg" }
   file_updated_at   { Time.now }
+  file_extension {
+    FileExtension.find_by_extension( "jpg" ) || FileExtension.make!
+  }
+  file_prefix {
+    FilePrefix.find_by_prefix( "http://staticdev.inaturalist.org/photos/" ) || FilePrefix.make!
+  }
 end
 
 Message.blueprint do
@@ -205,6 +209,12 @@ ModeratorAction.blueprint do
   resource { Comment.make! }
   action { ModeratorAction::HIDE }
   reason { Faker::Lorem.sentence }
+end
+
+ModeratorNote.blueprint do
+  user { make_curator }
+  body { Faker::Lorem.paragraph }
+  subject_user { User.make! }
 end
 
 MushroomObserverImportFlowTask.blueprint do
@@ -257,7 +267,6 @@ end
 
 Photo.blueprint do
   user { User.make }
-  native_photo_id { rand(1000) }
 end
 
 FlickrPhoto.blueprint do
@@ -273,6 +282,10 @@ end
 PicasaPhoto.blueprint do
   user { User.make! }
   native_photo_id { rand(1000) }
+end
+
+PhotoMetadata.blueprint do
+  photo { Photo.make! }
 end
 
 Place.blueprint do
@@ -306,12 +319,6 @@ end
 
 Project.blueprint(:collection) do
   project_type { "collection" }
-end
-
-ProjectInvitation.blueprint do
-  user { User.make! }
-  project { Project.make! }
-  observation { Observation.make! }
 end
 
 ProjectList.blueprint do
@@ -373,8 +380,10 @@ SavedLocation.blueprint do
 end
 
 Site.blueprint do
+  domain = Faker::Internet.domain_name
   name { Faker::Name.name }
-  url { "http://#{Faker::Internet.domain_name}" }
+  domain { domain }
+  url { "http://#{domain}" }
 end
 
 SiteAdmin.blueprint do
@@ -466,6 +475,7 @@ end
 TaxonName.blueprint do
   name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   taxon { Taxon.make! }
+  lexicon { TaxonName::ENGLISH }
 end
 
 TaxonRange.blueprint do

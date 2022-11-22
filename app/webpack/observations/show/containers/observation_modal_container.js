@@ -6,6 +6,11 @@ import {
   hideCurrentObservation,
   updateCurrentObservation
 } from "../../identify/actions/current_observation_actions";
+import {
+  increaseBrightness,
+  decreaseBrightness,
+  resetBrightness
+} from "../../identify/ducks/brightnesses";
 
 function mapStateToProps( state ) {
   let images;
@@ -22,8 +27,17 @@ function mapStateToProps( state ) {
       originalDimensions: photo.original_dimensions
     } ) );
   }
+  const currentObsBrightnessKeys = {};
+  const brightnessKeys = Object.keys( state.brightnesses );
+  const id = observation && observation.id;
+  brightnessKeys.forEach( key => {
+    if ( key.includes( id ) ) {
+      currentObsBrightnessKeys[key] = state.brightnesses[key];
+    }
+  } );
   return Object.assign( {}, {
     images,
+    brightnesses: currentObsBrightnessKeys,
     currentUser: state.config.currentUser,
     tab: "suggestions",
     tabs: ["suggestions"],
@@ -45,7 +59,10 @@ function mapDispatchToProps( dispatch ) {
       dispatch( addID( Object.assign( {}, taxon, { isVisionResult: options.vision } ) ) );
       dispatch( hideCurrentObservation( ) );
     },
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
+    decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
+    resetBrightness: ( ) => dispatch( resetBrightness( ) )
   };
 }
 

@@ -13,19 +13,19 @@
             %i.icon-locate{"ng-hide": "findingUserLocation"}
             %i.fa.fa-refresh.fa-spin{"ng-show": "findingUserLocation", "ng-class": "{ 'fa-spin': findingUserLocation }"}
         #user-location-full-screen.btn-group.btn-group-stateless.clearfix
-          %button.btn.btn-default.btn-icon-stupidity{ "ng-click": "togglFullscreen( )", title: "{{ shared.t('full_screen') }}" }
+          %button.btn.btn-default.btn-icon-stupidity{ "ng-click": "toggleFullscreen( )", title: "{{ shared.t('full_screen') }}" }
             %i{ :class => "icon icon-arrows-{{ fullscreen ? 'in' : 'out' }}" }
       #map-legend-control
         .btn-group.btn-group-stateless.dropup
           %button.btn.btn-default.dropdown-toggle{data: {toggle: 'dropdown'}}
-            {{ shared.t('map_legend') | capitalize:'title' }}
+            {{ shared.t('map_legend') }}
             %span.caret
           .dropdown-menu
             #map-legend-container
       .col-xs-4.col-xs-offset-8
         #obs
           .div{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'map') || pagination.searching || pagination.stopped", "infinite-scroll-parent": "true" }
-            %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "showInfowindow( o )", "ng-mouseleave": "hideInfowindow( )" }
+            %observation-snippet{ "ng-repeat": "o in observations", o: "o", "ng-mouseover": "o.mappable ? showInfowindow( o ) : undefined", "ng-mouseleave": "hideInfowindow( )" }
           .spinner.ng-cloak{ "ng-show": "pagination.searching" }
             %span.fa.fa-spin.fa-refresh
           .noresults.text-muted.ng-cloak{ "ng-show": "noObservations( )" }

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import safeHtml from "safe-html";
 import htmlTruncate from "html-truncate";
 import linkifyHtml from "linkifyjs/html";
 import sanitizeHtml from "sanitize-html";
@@ -44,36 +43,25 @@ const ALLOWED_TAGS = ( `
   tbody
   td
   t
+  th
   thead
   tr
   tt
   ul
-` ).split( /\s+/m );
+` ).split( /\s+/m ).filter( e => e !== "" );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
   "href src width height alt cite title class name abbr value align target rel"
   // + "xml:lang style controls preload"
 ).split( " " );
 
-const ALLOWED_ATTRIBUTES = {
-  href: {
-    allowedTags: ["a"],
-    filter: value => {
-      // Only let through http urls
-      if ( /^https?:/i.exec( value ) ) {
-        return value;
-      }
-      return false;
-    }
-  }
-};
-for ( let i = 0; i < ALLOWED_ATTRIBUTES_NAMES.length; i += 1 ) {
-  ALLOWED_ATTRIBUTES[ALLOWED_ATTRIBUTES_NAMES[i]] = { allTags: true };
-}
+const ALLOWED_ATTRIBUTES = { a: ["href"] };
+ALLOWED_TAGS.filter( tag => tag !== "a" ).forEach( tag => { ALLOWED_ATTRIBUTES[tag] = ALLOWED_ATTRIBUTES_NAMES; } );
 
 const CONFIG = {
   allowedTags: ALLOWED_TAGS,
-  allowedAttributes: ALLOWED_ATTRIBUTES
+  allowedAttributes: ALLOWED_ATTRIBUTES,
+  allowedSchemes: ["http", "https"]
 };
 
 class UserText extends React.Component {
@@ -100,6 +88,7 @@ class UserText extends React.Component {
       truncate,
       config,
       moreToggle,
+      stripTags,
       stripWhitespace,
       className,
       markdown
@@ -113,39 +102,52 @@ class UserText extends React.Component {
     // interpretted by safeHtml
     html = html.replace( /&(\w+=)/g, "&amp;$1" );
     if ( markdown ) {
-      const md = new MarkdownIt( { html: true, paragraph: false } );
+      const md = new MarkdownIt( {
+        html: true,
+        breaks: true
+      } );
       md.renderer.rules.table_open = ( ) => "<table class=\"table\">\n";
-      // If we're truncating, don't use the default paragraph insertion
-      // markdown-it will apply and instead replace newlines with br tags
       if ( truncate && !more ) {
-        html = text.trim( ).replace( /\n/gm, "<br />" );
         html = md.renderInline( html );
       } else {
-        const lines = html.split( "\n" );
-        let newHtml = "";
-        for ( let i = 0; i < lines.length; i += 1 ) {
-          newHtml += lines[i];
-          if (
-            // This line is part of a table
-            lines[i].match( /^\s*\|/ )
-            // This is a blank line
-            || lines[i].match( /^\s*$/ )
-          ) {
-            newHtml += "\n";
-          } else {
-            newHtml += "<br />\n";
-          }
-        }
-        html = md.render( newHtml );
+        html = md.render( html );
       }
     } else {
       // use BRs for newlines
       html = text.trim( ).replace( /\n/gm, "<br />" );
     }
-    html = safeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    html = sanitizeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    // Note: markdown-it has a linkifier option too, but it does not allow you
+    // to specify attributes like nofollow, so we're using linkifyjs, but we
+    // are ignoring URLs in the existing tags that might have them like <a> and
+    // <code>
+
+    // Note: we're linkify way up here before stripping tags or truncating
+    // because truncation without tag stripping will truncate in the middle of
+    // a URL. If we do that and *then* linkify urls, we end up with a bad link.
+    // This way we might waste some time stripping off tags we just added, but
+    // we ensure that if we're stripping tags nothing gets re-linkified, and if
+    // we're not URLs don't get truncated in the middle.
+    html = linkifyHtml( html, {
+      className: null,
+      attributes: { rel: "nofollow" },
+      ignoreTags: ["a", "code", "pre"]
+    } );
+    if ( stripTags ) {
+      html = sanitizeHtml( html, { allowedTags: [], allowedAttributes: {} } );
+    }
     let truncatedHtml;
     if ( truncate && truncate > 0 && !more ) {
       truncatedHtml = htmlTruncate( html, truncate );
+      // html-truncate has a bug
+      // (https://github.com/huang47/nodejs-html-truncate/issues/23) where it
+      // will fail to truncate if the truncation point is in the middle of a
+      // URL, so sometimes truncatedHtml won't be fully truncated. If we're
+      // also stripping tags, we can assume they've already been stripped out
+      // and it's safe to just chop the string at the truncation point
+      if ( truncatedHtml.length > truncate && stripTags ) {
+        truncatedHtml = html.slice( 0, truncate );
+      }
     }
     let moreLink;
     if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {
@@ -162,23 +164,17 @@ class UserText extends React.Component {
         </button>
       );
     }
-    const sanitizedHtml = sanitizeHtml(
-      truncatedHtml || html,
-      {
-        allowedTags: ALLOWED_TAGS,
-        allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
-        exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
-      }
-    );
-    // Note: markdown-it has a linkifier option too, but it does not allow you
-    // to specify attributes link nofollow, so we're using linkifyjs, but we are
-    // ignoring URLs in the existing tags that might have them like a and code
-    const linkifiedHtml = linkifyHtml( sanitizedHtml, {
-      className: null,
-      attributes: { rel: "nofollow" },
-      ignoreTags: ["a", "code", "pre"]
-    } );
-    let htmlToDisplay = linkifiedHtml;
+    let htmlToDisplay = truncatedHtml || html;
+    if ( !stripTags ) {
+      htmlToDisplay = sanitizeHtml(
+        truncatedHtml || html,
+        {
+          allowedTags: ALLOWED_TAGS,
+          allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
+          exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+        }
+      );
+    }
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
     }
@@ -201,6 +197,7 @@ UserText.propTypes = {
   config: PropTypes.object,
   className: PropTypes.string,
   moreToggle: PropTypes.bool,
+  stripTags: PropTypes.bool,
   stripWhitespace: PropTypes.bool,
   markdown: PropTypes.bool
 };

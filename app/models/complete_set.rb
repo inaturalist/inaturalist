@@ -1,4 +1,4 @@
-class CompleteSet < ActiveRecord::Base
+class CompleteSet < ApplicationRecord
   has_subscribers
   belongs_to :taxon
   belongs_to :user
@@ -13,10 +13,11 @@ class CompleteSet < ActiveRecord::Base
     place_descendant_ids = place.descendants.
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
     place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
-    taxon_descendant_ids = taxon.taxon_ancestors_as_ancestor.joins( :taxon ).
+    taxon_descendant_ids = taxon.subtree.
       where( "taxa.is_active = true AND taxa.rank != 'hybrid' AND taxa.rank_level <= ?", Taxon::RANK_LEVELS["species"] ).
-      where( "taxa.conservation_status IS NULL OR taxa.conservation_status < ?", Taxon::IUCN_EXTINCT_IN_THE_WILD).
-      pluck( :taxon_id )
+      joins( "LEFT OUTER JOIN conservation_statuses ON conservation_statuses.taxon_id = taxa.id" ).
+      where( "conservation_statuses.id IS NULL OR conservation_statuses.iucn < ?", Taxon::IUCN_EXTINCT_IN_THE_WILD).
+      pluck( :id )
     #these are all listed sp+spp in places/desc places
     taxon_ids = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon_descendant_ids ).
@@ -32,9 +33,9 @@ class CompleteSet < ActiveRecord::Base
     place_descendant_ids = place.descendants.
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
     place_with_descendant_ids = [place.id, place_descendant_ids].compact.flatten
-    taxon_descendant_ids = taxon.taxon_ancestors_as_ancestor.joins( :taxon ).
+    taxon_descendant_ids = taxon.subtree.
       where( "taxa.is_active = true AND taxa.rank_level <= ?", Taxon::RANK_LEVELS["species"] ).
-      pluck( :taxon_id )
+      pluck( :id )
     scope = ListedTaxonAlteration.joins( :place ).where( "place_id IN ( ? )", place_with_descendant_ids ).
       where( "taxon_id IN ( ? )", taxon_descendant_ids )
     scope

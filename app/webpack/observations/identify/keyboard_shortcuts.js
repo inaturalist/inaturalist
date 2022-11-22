@@ -17,6 +17,7 @@ import {
   showNextTab,
   toggleKeyboardShortcuts
 } from "./actions";
+import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
@@ -126,6 +127,43 @@ const annotationShortcuts = [
     shortcut: "a c",
     term: "Alive or Dead",
     value: "Cannot Be Determined"
+  },
+
+  // Evidence of Presence
+  {
+    shortcut: "e o",
+    term: "Evidence of Presence",
+    value: "Organism"
+  },
+  {
+    shortcut: "e f",
+    term: "Evidence of Presence",
+    value: "Feather"
+  },
+  {
+    shortcut: "e s",
+    term: "Evidence of Presence",
+    value: "Scat"
+  },
+  {
+    shortcut: "e t",
+    term: "Evidence of Presence",
+    value: "Track"
+  },
+  {
+    shortcut: "e b",
+    term: "Evidence of Presence",
+    value: "Bone"
+  },
+  {
+    shortcut: "e m",
+    term: "Evidence of Presence",
+    value: "Molt"
+  },
+  {
+    shortcut: "e g",
+    term: "Evidence of Presence",
+    value: "Gall"
   }
 ];
 
@@ -151,6 +189,8 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );
   bindShortcut( "shift+right", showNextTab, dispatch );
+  bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
+  bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );

@@ -18,11 +18,15 @@
     - for ol in @observation_links
       %link{ rel: ol.rel, href: ol.href }
   %link{ rel: "canonical", href: observation_url( @observation, host: Site.default.url ) }
+  %link{ rel: "schema.DC", href: "http://purl.org/dc/elements/1.1/" }
+  %link{ rel: "schema.DCTERMS", href: "http://purl.org/dc/terms/" }
+  %meta{ name: "DC.creator", content: @observation.user.published_name }
+  %meta{ name: "DC.publisher", content: @site.name }
+  %meta{ name: "DCTERMS.issued", content: @observation.coordinates_viewable_by?( current_user ) ? @observation.created_at.to_date : @observation.created_at.strftime( "%Y-%m" ) }
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
 - content_for :extracss do
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   = stylesheet_link_tag "observations/show"
 - content_for :extrajs do
   - if logged_in?
@@ -32,6 +36,7 @@
         curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
         icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
         roles: current_user.roles.map(&:name),
+        sites_admined: current_user.site_admins.pluck(:site_id),
         prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
         prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
         prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
@@ -46,6 +51,7 @@
         preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
         preferred_observations_search_map_type: current_user.preferred_observations_search_map_type,
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
+        prefers_not_nearby_suggestions: !!session[:prefers_not_nearby_suggestions],
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
         blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) },
         trusted_user_ids: current_user.friendships.where( "trust" ).pluck(:friend_id),

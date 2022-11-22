@@ -1,4 +1,4 @@
-class ControlledTermTaxon < ActiveRecord::Base
+class ControlledTermTaxon < ApplicationRecord
   belongs_to :controlled_term, inverse_of: :controlled_term_taxa
   belongs_to :taxon, inverse_of: :controlled_term_taxa
 

@@ -1,28 +1,33 @@
 :ruby
   @no_footer_gap = true
   @title = if @display_user
-    t( :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year )
+    t( :users_site_year_in_review, user: @display_user.login, site: @site.name, vow_or_con: @site.name[0].downcase, year: @year )
   else
-    t( :year_on_site, site: @site.name, year: @year )
+    if @site.id == Site.default.id
+      t( :inaturalist_global_year_in_review, year: @year )
+    else
+      t( :site_year_in_review, year: @year, site: @site.name, vow_or_con: @site.name[0].downcase )
+    end
   end
 - content_for :title do
   = @title.html_safe
 - content_for :extrajs do
   :javascript
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
-    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
     var YEAR = #{ @year };
+    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
     var DISPLAY_USER = #{ @display_user ? 
       @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url, display_donor_since: @display_user.display_donor_since ).to_json.html_safe
       :
       "null"
     };
-    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
-    var SITES = #{ Site.where( "NOT draft" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( s.logo_square.url ), logo_url: FakeView.asset_url( s.logo.url ) ) }.to_json.html_safe };
+    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id], methods: [:locale] ).merge( icon_url: asset_url( @site.logo_square.url ), logo_url: asset_url( @site.logo.url ) ).to_json.html_safe };
+    var SITES = #{ Site.where( "NOT draft AND created_at <= '#{@year}-12-31'" ).to_a.map{|s| s.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: asset_url( s.logo_square.url ), logo_url: asset_url( s.logo.url ) ) }.to_json.html_safe };
     var DEFAULT_SITE_ID = #{ Site.default.id };
     var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
     var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";
     var YEAR_STATISTIC_UPDATED_AT = #{@year_statistic ? "new Date( '#{@year_statistic.updated_at.iso8601.html_safe}' )".html_safe : "null"};
+    var FB_LOGO_URL = #{image_url( "facebook-f-logo-white.svg" ).inspect.html_safe};
   :javascript
     $( document ).ready( function() {
       if ( typeof( Object.assign ) !== 'function' ) {
@@ -43,9 +48,16 @@
     %meta{ name: "og:image", property: "og:image:width", content: "1044" }
     %meta{ name: "og:image", property: "og:image:height", content: "548" }
     %meta{ name: "twitter:image", property: "twitter:image", content: "https://static.inaturalist.org/misc/yir2019-shareable-v3.png" }
+    :javascript
+      var SHAREABLE_IMAGE_URL = "https://static.inaturalist.org/misc/yir2019-shareable-v3.png";
   - elsif @shareable_image_url
     %meta{ name: "og:image", property: "og:image", content: image_url( @shareable_image_url ) }
     %meta{ name: "twitter:image", property: "twitter:image", content: image_url( @shareable_image_url ) }
+    :javascript
+      var SHAREABLE_IMAGE_URL = "#{image_url( @shareable_image_url )}";
+  - else
+    :javascript
+      var SHAREABLE_IMAGE_URL = null;
   - if @year_statistic && @year_statistic.shareable_image?
     %meta{ name: "twitter:card", property: "twitter:card", content: "summary_large_image" }
     %meta{ property: "og:image:width", content: "1000" }

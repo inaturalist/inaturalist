@@ -1,4 +1,4 @@
-class ObservationsPlace < ActiveRecord::Base
+class ObservationsPlace < ApplicationRecord
 
   belongs_to :observation
   belongs_to :place

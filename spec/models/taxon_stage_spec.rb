@@ -7,10 +7,10 @@ describe TaxonStage, "commit" do
   end
 
   it "should mark output taxon as active" do
-    @output_taxon.should_not be_is_active
+    expect( @output_taxon ).not_to be_is_active
     @stage.commit
     @output_taxon.reload
-    @output_taxon.should be_is_active
+    expect( @output_taxon ).to be_is_active
   end
 end
 

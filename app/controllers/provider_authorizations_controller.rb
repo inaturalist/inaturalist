@@ -1,6 +1,11 @@
 class ProviderAuthorizationsController < ApplicationController
-  before_filter :authenticate_user!, :only => [:destroy]
-  protect_from_forgery :except => :create
+  before_action :doorkeeper_authorize!,
+    only: [ :destroy ],
+    if: lambda { authenticate_with_oauth? }
+  before_action :authenticate_user!, only: [ :destroy ],
+    unless: lambda { authenticated_with_oauth? }
+  protect_from_forgery prepend: true, except: :create, with: :exception,
+    if: -> { request.headers["Authorization"].blank? }
 
   # change the /auth/:provider/callback route to point to this if you want to examine the rack data returned by omniauth
   def auth_callback_test
@@ -13,15 +18,31 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def destroy
-    if request.delete?
-      provider_authorization = current_user.has_provider_auth(params[:provider])
-      provider_authorization.destroy if provider_authorization
-      flash[:notice] = t(:you_unlinked_your_provider_account, provider: provider_authorization.provider.to_s.capitalize)
-    else
-      flash[:notice] = "Failed to unlinked your #{params[:provider]} account"
-      t(:failed_to_unlink_your_provider_account, provider: params[:provider])
+    return render_404 unless request.delete?
+    provider_authorization = current_user.has_provider_auth(params[:provider]) unless params[:provider].blank?
+    provider_authorization ||= current_user.provider_authorizations.find_by_id( params[:id] )
+    provider_authorization.destroy if provider_authorization
+    respond_to do |format|
+      format.html do
+        flash[:notice] = if provider_authorization
+          t(:you_unlinked_your_provider_account,
+            provider: ProviderAuthorization::PROVIDER_NAMES[provider_authorization.provider_name]
+          )
+        else
+          t(:failed_to_unlink_your_account)
+        end
+        redirect_to edit_person_url( current_user )
+      end
+      format.json do
+        if provider_authorization
+          head :no_content
+        else
+          render status: :unprocessable_entity, json: {
+            error: t(:failed_to_unlink_account),
+          }
+        end
+      end
     end
-    redirect_to edit_person_url(current_user)
   end
 
   def create
@@ -65,14 +86,8 @@ class ProviderAuthorizationsController < ApplicationController
     end
     
     if @provider_authorization && @provider_authorization.valid? && (scope = get_session_omniauth_scope)
-      @provider_authorization.update_attributes(:scope => scope.to_s)
+      @provider_authorization.update(:scope => scope.to_s)
       session["omniauth_#{request.env['omniauth.strategy'].name}_scope"] = nil
-    end
-
-    # if this is a direct oauth bounce sign in, go directly to bounce_back
-    if !session[:oauth_bounce].blank?
-      redirect_to oauth_bounce_back_url
-      return
     end
     
     if !session[:return_to].blank? && session[:return_to] != login_url
@@ -131,7 +146,7 @@ class ProviderAuthorizationsController < ApplicationController
       sign_in(User.create_from_omniauth(auth_info))
       @provider_authorization = current_user.provider_authorizations.last
       current_user.remember_me!
-      current_user.update_attributes(:site => @site) if @site
+      current_user.update(:site => @site) if @site
       flash[:notice] = "Welcome!"
       if session[:invite_params].nil?
         flash[:allow_edit_after_auth] = true

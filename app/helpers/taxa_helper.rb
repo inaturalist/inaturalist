@@ -56,7 +56,7 @@ module TaxaHelper
       return iconic_taxon_image(taxon, params)
     end
     params[:size] ||= "square"
-    image_params = params.merge(:alt => default_taxon_name(taxon))
+    image_params = params.except(:size).merge(:alt => default_taxon_name(taxon))
     unless taxon.default_photo.blank?
       image_params[:alt] += " - Photo #{taxon.default_photo.attribution}"
     end
@@ -150,8 +150,6 @@ module TaxaHelper
     return nil if taxon.blank?
     user = if options[:user]
       options[:user]
-    elsif defined? current_user
-      current_user
     else
       @user
     end
@@ -318,4 +316,5 @@ module TaxaHelper
       "#{taxon_range.kml_url}?#{taxon_range.updated_at.to_i}".html_safe
     end
   end
+
 end

@@ -1,6 +1,8 @@
 require "spec_helper"
 
 describe ApiEndpointCache do
+  it { is_expected.to belong_to :api_endpoint }
+
   describe "in_progress?" do
     it "is true if it is in progress" do
       cache = ApiEndpointCache.make!(request_began_at: Time.now,

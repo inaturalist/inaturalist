@@ -2,8 +2,9 @@ ul.change_taxon {
   list-style: none;
   margin: 0;
 }
-.active {color: #6E8B21;}
-.inactive {color: #777;}
+.active_count {color: #6E8B21;}
+.active_taxon_status {color: #6E8B21;}
+.inactive_taxon_status {color: #777;}
 
 .change_taxon .taxon {
   font-size: 140%;
@@ -15,3 +16,29 @@ ul.change_taxon {
 .taxon_change table {width: 100%;}
 .taxon_change .image_and_content .image {text-align:center;}
 .taxon_change .image_and_content .image img {max-width: 75px;}
+.analysis {
+	display: none;
+	padding: 5px;
+}
+.analysis td { padding-right: 10px; }
+.analysis tr.headers { font-weight: bold; }
+.analysis_id_warning { background-color: #ffebe9; }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+iframe { border: 0; }
+.potential_clashes_link { margin-left: 20px; }
+.modal.modal-wide .modal-dialog {
+  width: 80%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
+.modal-content {
+  padding-left:  20px;
+  padding-right:  20px;
+}

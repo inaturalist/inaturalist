@@ -5,7 +5,7 @@
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   z-index: 0;
   top: 16px;
-  left: 425px;
+  left: 440px;
   width: 270px;
 
   .accessory {
@@ -75,14 +75,18 @@
         &.current {
           background-color: #FAFAFA;
         }
-        a {
+        .choose-button {
+          text-align: left;
           text-decoration: none;
+          line-height: 1.3;
+          white-space: inherit;
           .small {
             margin: 0;
             dt {
               display: inline-block;
               opacity: 0.8;
               margin-right: 3px;
+              font-weight: 600;
               &:after {
                 content: ":";
               }
@@ -93,7 +97,7 @@
             }
           }
         }
-        button {
+        .remove-button {
           padding: 0;
           border: 0 transparent;
           color: $text-grey;

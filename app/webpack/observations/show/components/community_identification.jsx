@@ -29,13 +29,16 @@ class CommunityIdentification extends React.Component {
   setInstanceVars( ) {
     const { observation, config } = this.props;
     this.loggedIn = config && config.currentUser;
-    this.observerOptedOut = ( observation.user.preferences
-      && observation.user.preferences.prefers_community_taxa === false );
+    this.observerOptedOut = observation.user
+      && observation.user.preferences
+      && observation.user.preferences.prefers_community_taxa === false;
     this.observationOptedIn = ( observation.preferences
       && observation.preferences.prefers_community_taxon === true );
     this.observationOptedOut = ( observation.preferences
       && observation.preferences.prefers_community_taxon === false );
-    this.userIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
+    this.userIsObserver = config.currentUser
+      && observation.user
+      && config.currentUser.id === observation.user.id;
     this.communityIDIsRejected = ( this.observationOptedOut
       || ( this.observerOptedOut && !this.observationOptedIn ) );
   }
@@ -234,7 +237,10 @@ class CommunityIdentification extends React.Component {
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
     this.ownerID = _.findLast( observation.identifications, i => (
-      i.current && i.user && i.user.id === observation.user.id
+      i.current
+      && i.user
+      && observation.user
+      && i.user.id === observation.user.id
     ) );
     if ( currentUserID ) {
       canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );

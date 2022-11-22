@@ -1,8 +1,8 @@
 class ObservationSoundsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:destroy]
-  before_filter :require_owner, :only => [:destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_action :load_record, :only => [:destroy]
+  before_action :require_owner, :only => [:destroy]
   
   def show
     @observation_sound = ObservationSound.find_by_id(params[:id])
@@ -54,7 +54,6 @@ class ObservationSoundsController < ApplicationController
     
     respond_to do |format|
       format.json do
-        Observation.refresh_es_index
         if @observation_sound.valid?
           render :json => @observation_sound.to_json(:include => [:sound])
         else
@@ -76,9 +75,8 @@ class ObservationSoundsController < ApplicationController
 
     @observation_sound.sound.file = params[:file] if params[:file]
     respond_to do |format|
-      if @observation_sound.update_attributes(params[:observation_sound])
+      if @observation_sound.update(params[:observation_sound])
           @observation_sound.observation.elastic_index!
-          Observation.refresh_es_index
         format.json { render :json => @observation_sound.to_json(:include => [:sound]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation sound: #{@observation_sound.errors.full_messages.to_sentence}"

@@ -1,8 +1,8 @@
 class ObservationPhotosController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:destroy]
-  before_filter :require_owner, :only => [:destroy]
+  before_action :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
+  before_action :load_record, :only => [:destroy]
+  before_action :require_owner, :only => [:destroy]
   
   def show
     @observation_photo = ObservationPhoto.find_by_id(params[:id])
@@ -16,7 +16,7 @@ class ObservationPhotosController < ApplicationController
   end
   
   def create
-    unless params[:observation_photo].is_a?( Hash )
+    unless params[:observation_photo].is_a?( ActionController::Parameters )
       respond_to do |format|
         format.json do
           render json: { errors: "No observation_photo specified" }, status: :unprocessable_entity
@@ -30,7 +30,9 @@ class ObservationPhotosController < ApplicationController
         first
     end
     @observation_photo ||= ObservationPhoto.new
-    @observation_photo.assign_attributes(params[:observation_photo] || {})
+    observation_photo_params = allowed_params.to_h.symbolize_keys
+    photo_params = observation_photo_params.delete(:photo) || {}
+    @observation_photo.assign_attributes( observation_photo_params )
     unless @observation_photo.observation
       respond_to do |format|
         format.json do
@@ -47,7 +49,11 @@ class ObservationPhotosController < ApplicationController
       return
     end
     if params[:file]
-      @photo = LocalPhoto.new(:file => params[:file], :user => current_user, :mobile => is_mobile_app?)
+      @photo = LocalPhoto.new( photo_params.merge(
+        file: params[:file],
+        user: current_user,
+        mobile: is_mobile_app?
+      ) )
       @photo.save
       @observation_photo.photo = @photo
     end
@@ -61,7 +67,6 @@ class ObservationPhotosController < ApplicationController
     end
     
     begin
-      @observation_photo.observation.wait_for_index_refresh = true if params[:refresh_index]
       @observation_photo.save
     rescue PG::UniqueViolation => e
       raise e unless e.message =~ /index_observation_photos_on_uuid/
@@ -100,8 +105,7 @@ class ObservationPhotosController < ApplicationController
       @observation_photo.photo = @photo
     end
     respond_to do |format|
-      if @observation_photo.update_attributes(params[:observation_photo])
-        @observation_photo.observation.wait_for_index_refresh = true
+      if @observation_photo.update( allowed_params )
         @observation_photo.observation.elastic_index!
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
@@ -148,5 +152,14 @@ class ObservationPhotosController < ApplicationController
     end
     true
   end
-  true
+
+  def allowed_params
+    params.require(:observation_photo).permit(
+      :observation_id,
+      :photo_id,
+      { photo: [:license_code] },
+      :position,
+      :uuid
+    )
+  end
 end

@@ -119,12 +119,12 @@ class PicasaPhoto < Photo
   def self.new_from_api_response(api_response, options = {})
     options = options.dup
     options[:native_photo_id] = api_response["id"]
-    options[:square_url] = "#{api_response["baseUrl"]}=w75-h75-c"
-    options[:thumb_url] = "#{api_response["baseUrl"]}=w100-h100"
-    options[:small_url] = "#{api_response["baseUrl"]}=w240-h240"
-    options[:medium_url] = "#{api_response["baseUrl"]}=w500-h500"
-    options[:large_url] = "#{api_response["baseUrl"]}=w1024-h1024"
-    options[:original_url] = "#{api_response["baseUrl"]}=d"
+    options[:remote_square_url] = "#{api_response["baseUrl"]}=w75-h75-c"
+    options[:remote_thumb_url] = "#{api_response["baseUrl"]}=w100-h100"
+    options[:remote_small_url] = "#{api_response["baseUrl"]}=w240-h240"
+    options[:remote_medium_url] = "#{api_response["baseUrl"]}=w500-h500"
+    options[:remote_large_url] = "#{api_response["baseUrl"]}=w1024-h1024"
+    options[:remote_original_url] = "#{api_response["baseUrl"]}=d"
     options[:native_page_url] = api_response["productUrl"]
     picasa_photo = PicasaPhoto.new( options )
     picasa_photo.api_response = api_response

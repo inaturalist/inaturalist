@@ -1,3 +1,4 @@
+
 import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
@@ -70,6 +71,19 @@ const SuggestionRow = ( {
       }
     ];
   }
+  const obsForMap = _.pick( observation, [
+    "geoprivacy",
+    "id",
+    "latitude",
+    "longitude",
+    "map_scale",
+    "positional_accuracy",
+    "public_positional_accuracy",
+    "species_guess",
+    "taxon",
+    "user"
+  ] );
+  obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
   return (
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
       <h3 className="clearfix">
@@ -130,6 +144,7 @@ const SuggestionRow = ( {
             ) ) }
           </div>
           <TaxonMap
+            placement="suggestion-row"
             showAllLayer={false}
             minZoom={2}
             zoomLevel={6}
@@ -137,7 +152,7 @@ const SuggestionRow = ( {
             latitude={observation.latitude}
             longitude={observation.longitude}
             gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-            observations={[observation]}
+            observations={[obsForMap]}
             gestureHandling="auto"
             reloadKey={`map-for-${observation.id}-${taxon.id}`}
             taxonLayers={[taxonLayer]}
@@ -146,6 +161,7 @@ const SuggestionRow = ( {
             disableFullscreen
             currentUser={config.currentUser}
             updateCurrentUser={updateCurrentUser}
+            showAccuracy
           />
         </div>
       </LazyLoad>

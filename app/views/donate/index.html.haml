@@ -1,7 +1,3 @@
-:ruby
-  donorbox_params = params.slice( :utm_source, :utm_campaign, :utm_content, :utm_medium )
-  donorbox_params[:utm_source] = @site.name if donorbox_params[:utm_source].blank?
-  donorbox_params[:utm_medium] = "web" if donorbox_params[:utm_medium].blank?
 - content_for :title do
   =t :help_support_inaturalist
 - content_for :extrajs do
@@ -24,7 +20,8 @@
       %h1=t :help_support_inaturalist
   .row
     .col-md-5.col-md-offset-1.col-xs-12
-      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?#{donorbox_params.to_query}", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+      - # Note: the donorbox iframe does *not* support utm params as of 2020-12-17. It retrieves those from the URL of the parent window. ~~~kueda 20201217
+      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist?amount=100", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
     .col-md-5.col-xs-12
       =t "views.donate.donate_desc_html"
       .sharing

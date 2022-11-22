@@ -1,13 +1,11 @@
 - u = resource || current_user
 - content_for(:extrajs) do
   %script{ src: "https://www.google.com/recaptcha/api.js?hl=#{I18n.locale}" }
-  = javascript_include_tag "moment/min/moment-with-locales.min"
-  = javascript_include_tag "moment-timezone/builds/moment-timezone-with-data-2010-2020.min"
+  = javascript_include_tag "moment_bundle"
 = form_for resource, url: users_path, html: { class: "sign-up" } do |f|
   %h1=t :join_the_largest_group_of_naturalists_in_the_world
   = render "users/registrations/form", builder: f, user: u
   .form-group.centered
-    = f.submit t(:create_an_account), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?
+    = f.submit t(:create_an_account), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?, data: { loading_click: true }
   .form-group.centered
     = link_to t(:already_have_an_account_log_in_html), login_path, class: "btn btn-link"
-  = render "users/provider_authorizations"

@@ -10,11 +10,11 @@ shared_examples_for "a ProjectsController" do
       let!(:featured) { SiteFeaturedProject.make!.project }
       let!(:not_featured) { Project.make! }
       it "should include featured projects" do
-        get :index, format: :json, featured: true
+        get :index, format: :json, params: { featured: true }
         expect( JSON.parse( response.body ).detect{|p| p["id"] == featured.id } ).not_to be_blank
       end
       it "should not include non-featured projects" do
-        get :index, format: :json, featured: true
+        get :index, format: :json, params: { featured: true }
         expect( JSON.parse( response.body ).detect{|p| p["id"] == not_featured.id } ).to be_blank
       end
       describe "with coordinates" do
@@ -32,17 +32,19 @@ shared_examples_for "a ProjectsController" do
           expect( featured.latitude ).to be_blank
         end
         it "should include featured projects without coordinates" do
-          get :index, format: :json, featured: true,
+          get :index, format: :json, params: { featured: true,
             latitude: featured_with_coordinates.latitude,
             longitude: featured_with_coordinates.longitude
+          }
           project_ids = JSON.parse( response.body ).map{|p| p["id"]}
           expect( project_ids ).to include featured.id
           expect( project_ids ).to include featured_with_coordinates.id
         end
         it "should sort projects without coordinates last" do
-          get :index, format: :json, featured: true,
+          get :index, format: :json, params: { featured: true,
             latitude: featured_with_coordinates.latitude,
             longitude: featured_with_coordinates.longitude
+          }
           project_ids = JSON.parse( response.body ).map{|p| p["id"]}
           expect( project_ids.first ).to eq featured_with_coordinates.id
           expect( project_ids.last ).to eq featured.id
@@ -54,13 +56,13 @@ shared_examples_for "a ProjectsController" do
   describe "join" do
     let(:unjoined_project) { Project.make! }
     it "should add a project user" do
-      post :join, format: :json, id: unjoined_project.id
+      post :join, format: :json, params: { id: unjoined_project.id }
       expect(unjoined_project.users).to include(user)
     end
 
     it "should set preferred_curator_coordinate_access to observer" do
       p2 = Project.make!
-      post :join, format: :json, id: unjoined_project.id
+      post :join, format: :json, params: { id: unjoined_project.id }
       pu = user.project_users.where(project_id: unjoined_project).first
       expect( pu.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
     end
@@ -69,7 +71,7 @@ shared_examples_for "a ProjectsController" do
   describe "leave" do
     elastic_models( Observation )
     it "works" do
-      delete :leave, :format => :json, :id => project.id
+      delete :leave, format: :json, params: { id: project.id }
       project.reload
       expect(project.users).not_to include(user)
     end
@@ -77,7 +79,7 @@ shared_examples_for "a ProjectsController" do
     it "should delete project observations by default" do
       without_delay do
         po = make_project_observation(user: user)
-        delete :leave, format: :json, id: po.project_id
+        delete :leave, format: :json, params: { id: po.project_id }
         expect( ProjectObservation.find_by_id(po.id) ).to be_blank
       end
     end
@@ -85,7 +87,7 @@ shared_examples_for "a ProjectsController" do
     it "should allow leaving without deleting project observations" do
       without_delay do
         po = make_project_observation(user: user)
-        delete :leave, format: :json, id: po.project_id, keep: "true"
+        delete :leave, format: :json, params: { id: po.project_id, keep: "true" }
         expect( ProjectObservation.find_by_id(po.id) ).not_to be_blank
       end
     end
@@ -94,7 +96,7 @@ shared_examples_for "a ProjectsController" do
       without_delay do
         po = make_project_observation(user: user, prefers_curator_coordinate_access: true)
         expect( po ).to be_prefers_curator_coordinate_access
-        delete :leave, format: :json, id: po.project_id, keep: "revoke"
+        delete :leave, format: :json, params: { id: po.project_id, keep: "revoke" }
         po.reload
         expect( po ).not_to be_prefers_curator_coordinate_access
       end
@@ -108,13 +110,13 @@ shared_examples_for "a ProjectsController" do
     end
     it "should include project members" do
       pu = ProjectUser.make!( user: new_user, project: project )
-      get :members, format: :json, id: project.id
+      get :members, format: :json, params: { id: project.id }
       json = JSON.parse(response.body)
       user_ids = json.map{|pu| pu['user']['id']}
       expect( user_ids ).to include pu.user_id
     end
     it "should include role" do
-      get :members, format: :json, id: project.id
+      get :members, format: :json, params: { id: project.id }
       json = JSON.parse(response.body)
       admin = json.detect{|pu| pu['user_id'] == project.user_id}
       expect( admin['role'] ).to eq ProjectUser::MANAGER
@@ -129,17 +131,17 @@ shared_examples_for "a ProjectsController" do
     it "should list joined projects" do
       pu = ProjectUser.make!( user: user, project: project )
       expect(project.users).to include(user)
-      get :by_login, :format => :json, :login => user.login
-      expect(response).to be_success
+      get :by_login, format: :json, params: { login: user.login }
+      expect(response).to be_successful
       expect(response.body).to be =~ /#{project.title}/
     end
     it "should change when a user joins a project" do
       expect( user.project_users.to_a ).to be_blank
-      get :by_login, format: :json, login: user.login, id: project.id
+      get :by_login, format: :json, params: { login: user.login, id: project.id }
       json = JSON.parse(response.body)
       expect( json ).to be_blank
       pu = ProjectUser.make!( user: user, project: project )
-      get :by_login, format: :json, login: user.login, id: project.id
+      get :by_login, format: :json, params: { login: user.login, id: project.id }
       json = JSON.parse(response.body)
       expect( json.detect{|pu| pu['project_id'].to_i == project.id } ).not_to be_blank
     end
@@ -149,7 +151,7 @@ shared_examples_for "a ProjectsController" do
     it "should include posts_count" do
       p = Project.make!
       post = Post.make!( parent: p )
-      get :show, format: :json, id: p.slug
+      get :show, format: :json, params: { id: p.slug }
       json = JSON.parse( response.body )
       expect( json["posts_count"] ).to eq 1
     end
@@ -164,9 +166,9 @@ shared_examples_for "ProjectsController from node API" do
       expect( project ).to be_valid
       other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
       ProjectUser.make!( project: project, user: other_user, role: ProjectUser::MANAGER )
-      put :update, format: :json, id: project.id, project: {
+      put :update, format: :json, params: { id: project.id, project: {
         user_id: other_user.id
-      }
+      } }
       expect( response.status ).to eq 200
       project.reload
       expect( project.user ).to eq other_user
@@ -176,9 +178,9 @@ shared_examples_for "ProjectsController from node API" do
       project = manager.project
       original_owner = project.user
       other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
-      put :update, format: :json, id: project.id, project: {
+      put :update, format: :json, params: { id: project.id, project: {
         user_id: other_user.id
-      }
+      } }
       project.reload
       expect( project.user ).to eq original_owner
     end
@@ -187,9 +189,9 @@ shared_examples_for "ProjectsController from node API" do
       project = Project.make!( user: user )
       expect( project ).to be_valid
       other_user = ProjectUser.make!( project: project, role: ProjectUser::MANAGER ).user
-      put :update, format: :json, id: project.id, project: {
+      put :update, format: :json, params: { id: project.id, project: {
         user_id: other_user.id
-      }
+      } }
       project.reload
       expect( project.user ).to eq other_user
     end
@@ -198,9 +200,9 @@ shared_examples_for "ProjectsController from node API" do
       project = Project.make!( user: user )
       expect( project ).to be_valid
       other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
-      put :update, format: :json, id: project.id, project: {
+      put :update, format: :json, params: { id: project.id, project: {
         user_id: other_user.id
-      }
+      } }
       project.reload
       expect( project.user ).to eq user
     end
@@ -210,9 +212,9 @@ shared_examples_for "ProjectsController from node API" do
       expect( project ).to be_valid
       other_user = make_user_with_privilege( UserPrivilege::ORGANIZER )
       ProjectUser.make!( user: other_user, project: project )
-      put :update, format: :json, id: project.id, project: {
+      put :update, format: :json, params: { id: project.id, project: {
         user_id: other_user.id
-      }
+      } }
       project.reload
       expect( project.user ).to eq user
     end
@@ -220,11 +222,13 @@ shared_examples_for "ProjectsController from node API" do
 end
 
 describe ProjectsController, "oauth authentication" do
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
+  let(:token) { double acceptable?: true, accessible?: true, resource_owner_id: user.id }
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "a ProjectsController"
 end
 
@@ -234,5 +238,7 @@ describe ProjectsController, "jwt authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
   end
+  before { ActionController::Base.allow_forgery_protection = true }
+  after { ActionController::Base.allow_forgery_protection = false }
   it_behaves_like "ProjectsController from node API"
 end

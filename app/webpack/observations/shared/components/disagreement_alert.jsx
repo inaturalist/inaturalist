@@ -21,24 +21,25 @@ class DisagreementAlert extends React.Component {
       backdrop,
       config
     } = this.props;
+    const coarseButton = React.createRef( );
     const newTaxonHTML = ReactDOMServer.renderToString(
-      <SplitTaxon taxon={newTaxon} config={ config } />
+      <SplitTaxon taxon={newTaxon} user={config.currentUser} />
     );
     const oldTaxonHTML = ReactDOMServer.renderToString(
-      <SplitTaxon taxon={oldTaxon} config={ config } />
+      <SplitTaxon taxon={oldTaxon} user={config.currentUser} />
     );
     return (
       <Modal
         show={visible}
         className="DisagreementAlert"
         backdrop={backdrop}
-        onHide={ ( ) => {
+        onHide={( ) => {
           onCancel( );
           onClose( );
-        } }
-        onEntered={ ( ) => {
-          $( ReactDOM.findDOMNode( this.refs.cancel ) ).focus();
-        } }
+        }}
+        onEntered={( ) => {
+          $( ReactDOM.findDOMNode( coarseButton.current ) ).focus();
+        }}
       >
         <Modal.Header closeButton>
           <Modal.Title>
@@ -47,25 +48,26 @@ class DisagreementAlert extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <p
-            dangerouslySetInnerHTML={ { __html: I18n.t( "is_the_evidence_provided_enough_to_confirm_this_is_taxon", { taxon: oldTaxonHTML } ) } }
+            dangerouslySetInnerHTML={{ __html: I18n.t( "is_the_evidence_provided_enough_to_confirm_this_is_taxon", { taxon: oldTaxonHTML } ) }}
           />
           <Button
             bsStyle="success"
             className="btn-block stacked"
-            onClick={ ( ) => {
+            onClick={( ) => {
               onBestGuess( );
               onClose( );
-            } }
-            dangerouslySetInnerHTML={ { __html: I18n.t( "i_dont_know_but_i_am_sure_this_is_taxon", { taxon: newTaxonHTML } ) } }
+            }}
+            ref={coarseButton}
+            dangerouslySetInnerHTML={{ __html: I18n.t( "i_dont_know_but_i_am_sure_this_is_taxon", { taxon: newTaxonHTML } ) }}
           />
           <Button
             bsStyle="warning"
             className="btn-block"
-            onClick={ ( ) => {
+            onClick={( ) => {
               onDisagree( );
               onClose( );
-            } }
-            dangerouslySetInnerHTML={ { __html: I18n.t( "no_but_it_is_a_member_of_taxon", { taxon: newTaxonHTML } ) } }
+            }}
+            dangerouslySetInnerHTML={{ __html: I18n.t( "no_but_it_is_a_member_of_taxon", { taxon: newTaxonHTML } ) }}
           />
         </Modal.Body>
       </Modal>

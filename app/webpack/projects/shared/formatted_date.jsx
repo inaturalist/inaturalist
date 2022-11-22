@@ -19,7 +19,7 @@ const FormattedDate = ( { date, time, timezone } ) => {
       dateString = dateObject.format( "ll" );
     }
     if ( !_.isEmpty( time ) ) {
-      timeString = moment( time ).tz( timezone || "UTC" ).format( "LT z" );
+      timeString = moment.tz( time, timezone || "UTC" ).format( "LT z" );
     }
   }
   return (

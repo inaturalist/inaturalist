@@ -1,0 +1,33 @@
+%table.table
+  %thead
+    %tr
+      %th=t :flagger
+      %th=t :content_author
+      %th=t :content_type
+      %th=t :content
+      %th.reason=t :reason
+      %th=t :comments
+      %th=t :actions
+      %th.resolution=t :flag_resolution
+  %tbody
+    - flags.each do |flag|
+      - if flag.is_a? Flag
+        %tr
+          %td= flag_flagger(flag, site)
+          %td= flag_content_author(flag)
+          %td=t flag.flaggable_type.underscore, default: flag.flaggable_type.humanize
+          %td= flag_content(flag)
+          %td.reason= formatted_user_text flag.flag
+          %td= link_to flag.comments.count, flag, class: "badge" if flag.comments.count > 0
+          %td.actions.nobr= flag_actions(flag)
+          %td.resolution= flag_resolution(flag, site)
+      - elsif flag.action == ModeratorAction::HIDE
+        %tr
+          %td.centered{colspan: 8}
+            %time.datetime{ datetime: flag.created_at.iso8601, title: l( flag.created_at, format: :long ) }=l flag.created_at, format: :long
+            =t :user_hid_this_item_because_reason_html, user: link_to_user( flag.user ), item: t( @model.name.underscore ), reason: formatted_user_text( flag.reason, skip_simple_format: true )
+      - elsif flag.action == ModeratorAction::UNHIDE
+        %tr
+          %td.centered{colspan: 8}
+            %time.datetime{ datetime: flag.created_at.iso8601, title: l( flag.created_at, format: :long ) }=l flag.created_at, format: :long
+            =t :user_unhid_this_item_because_reason_html, user: link_to_user( flag.user ), item: t( @model.name.underscore ), reason: formatted_user_text( flag.reason, skip_simple_format: true )

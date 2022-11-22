@@ -1,5 +1,5 @@
 #encoding: utf-8
-class ControlledTerm < ActiveRecord::Base
+class ControlledTerm < ApplicationRecord
 
   include ActsAsElasticModel
   # include ActsAsUUIDable
@@ -32,16 +32,14 @@ class ControlledTerm < ActiveRecord::Base
   after_commit :index_attributes
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
-  scope :values, -> { where(is_value: true) }
   scope :unassigned_values, -> {
-    values.
+    where(is_value: true).
     joins("LEFT JOIN controlled_term_values ctv ON (controlled_terms.id = ctv.controlled_value_id)").
     where("ctv.id IS NULL")
   }
   scope :for_taxon, -> (taxon) {
     joins( "LEFT OUTER JOIN controlled_term_taxa ctt ON ctt.controlled_term_id = controlled_terms.id" ).
-    joins( "LEFT OUTER JOIN taxon_ancestors ta ON ctt.taxon_id = ta.ancestor_taxon_id" ).
-    where( "ctt.taxon_id IS NULL OR ta.taxon_id = ?", taxon ).distinct
+    where( "ctt.id IS NULL OR ctt.taxon_id IN (?)", taxon.path_ids ).distinct
   }
 
   accepts_nested_attributes_for :controlled_term_taxa, allow_destroy: true
@@ -58,10 +56,19 @@ class ControlledTerm < ActiveRecord::Base
     caterpillar: :life_stage,
     teneral: :life_stage,
     egg: :life_stage,
-    nymph: :life_stage
+    nymph: :life_stage,
+    track: :evidence_of_presence,
+    scat: :evidence_of_presence,
+    bone: :evidence_of_presence,
+    feather: :evidence_of_presence,
+    molt: :evidence_of_presence
   }
 
   attr_accessor :prepared_values
+
+  def to_s
+    "<ControlledTerm #{id}: #{labels.first.try(:name)}>"
+  end
 
   def self.first_term_by_label(label)
     return unless label
@@ -77,7 +84,7 @@ class ControlledTerm < ActiveRecord::Base
 
   def term_label(options = { })
     options[:locale] = options[:locale].to_s || "en"
-    all_labels = labels.order(:id)
+    all_labels = labels.sort_by(&:id)
     if options[:taxon] && options[:taxon].is_a?(Taxon)
       if match = all_labels.detect{ |l| l.locale == options[:locale] &&
           l.valid_within_taxon && options[:taxon].has_ancestor_taxon_id(l.valid_within_taxon.id) }

@@ -16,7 +16,7 @@ TaxonRange.find_each do |tr|
   
   begin
     system cmd
-    open(tmp_path) do |f|
+    File.open( tmp_path ) do |f|
       if geojsongeom = Geometry.from_geojson(f.read)
         tr.geom = geojsongeom.features.first.geometry
         if !tr.geom.is_a?(MultiPolygon)

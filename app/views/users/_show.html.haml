@@ -1,4 +1,5 @@
-= render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
+.row
+  = render :partial => "shared/by_login_header_bootstrap", :locals => { :model_name => "Profile" }
 .row
   .col-sm-4
     - if @selected_user.icon.file?
@@ -7,7 +8,8 @@
       %p
         = link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified"
     = render :partial => 'glance'
-    - if logged_in? && (current_user.is_admin? || current_user.is_curator?)
+    - is_curator_or_site_admin = logged_in? && ( current_user.is_curator? || current_user.is_site_admin_of?( @user.site ) )
+    - if logged_in? && ( current_user.is_admin? || is_curator_or_site_admin )
       .row
         .col-md-12
           .dropdown
@@ -16,14 +18,14 @@
               = t :admin_tools, default: 'Admin Tools'
               %span.caret
             %ul.dropdown-menu{:style => "width:100%"}
-              - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
+              - if is_curator_or_site_admin && !is_me?(@user) && !@user.is_admin? && !@user.is_curator?
                 - if @user.active?
                   %li
                     = link_to t(:suspend_user), suspend_user_path(@user)
                 - else
                   %li
                     = link_to t(:unsuspend_user), unsuspend_user_path(@user)
-              - if current_user.is_curator? && !@user.is_admin?
+              - if current_user.is_site_admin_of?( @user.site ) && !@user.is_admin?
                 - if @user.is_curator?
                   %li
                     = link_to t(:remove_curator_status), remove_role_path(@user, :role => "curator"), :method => :delete
@@ -33,17 +35,19 @@
               - if is_admin?
                 %li
                   = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
-              - if current_user.is_curator?
+              - if is_curator_or_site_admin
                 %li.divider{:role => "separator"}
-                - unless is_me?(@user) || @user.is_admin?
+                - unless is_me?(@user) || @user.is_admin? || current_user.is_site_admin_of?( @user.site )
                   - unless @user.spammer?
                     %li
                       = link_to t(:flag_as_spammer), set_spammer_path(@user, spammer: true), method: :post
                   - unless @user.known_non_spammer?
                     %li
                       = link_to t(:flag_as_non_spammer), set_spammer_path(@user, spammer: false), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }
-                %li
-                  = link_to t(:flags_on_users_content, user: @user.login), flags_path( flagger_type: "any", resolved: "any", flags: ["spam", "copyright infringement", "inappropriate", "other"], user_id: @user.login )
+                - if is_admin? || !is_me?( @user )
+                  %li
+                    = link_to t(:moderation_history), moderation_person_path( @user )
+                %li= link_to t(:comments), comments_by_login_path( @user.login )
   .col-sm-8{:style => "background-color:white"}
     %h1
       = @user.name.blank? ? @user.login : @user.name
@@ -57,13 +61,13 @@
             - site_link = link_to( admin_site.name, admin_site.url, class: "site")
             = raw t(:site_site_admin, site_name: site_link)
             - if admin_site.place
-              = " (#{t("places_name.#{admin_site.place.name.parameterize.underscore}")})"
-            - info_link = wiki_page_url( "network" )
+              = " (#{admin_site.place.translated_name})"
+            - info_link = network_sites_url
           - else
             = t(:curator)
           = link_to info_link do
             %span.glyphicon.glyphicon.glyphicon-question-sign
-    %p#significant-dates
+    %p#user-subheader
       %span.date
         %i.fa.fa-calendar-plus-o
         =t :joined_with_date, date: l( @user.created_at.to_date, format: :short_with_year )
@@ -74,6 +78,11 @@
           =t :last_active_with_date, date: l( last_active_date, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
+      - if @user.site
+        %span.site-affiliation
+          = link_to network_sites_path do
+            %i.fa.fa-globe
+            = @user.site.name
       - if @donor_since
         - monthly_supporters_url_for_page = monthly_supporters_url( utm_campaign: "monthly-supporter-profile", utm_medium: "web", utm_source: @site.domain, utm_content: "inline-link", utm_term: @user.login )
         %span.monthly-supporter

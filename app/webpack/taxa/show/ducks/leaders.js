@@ -8,7 +8,7 @@ import { defaultObservationParams } from "../../shared/util";
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
 const RESET_STATE = "taxa-show/leaders/RESET_STATE";
 
-const INITIAL_STATE = { topObserver: {}, topIdentifier: {}, firstObserver: {}, topSpecies: {} };
+const INITIAL_STATE = { topObserver: {}, topIdentifier: {}, topSpecies: {} };
 
 export default function reducer(
   state = INITIAL_STATE,
@@ -42,39 +42,45 @@ export function setLeader( key, leader ) {
 
 export function fetchTopObserver( ) {
   return function ( dispatch, getState ) {
-    return inatjs.observations.observers( defaultObservationParams( getState( ) ) )
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = { ...defaultObservationParams( state ), per_page: 1 };
+    if ( testingApiV2 ) {
+      params.fields = {
+        observation_count: true,
+        user: {
+          id: true,
+          login: true,
+          icon_url: true
+        }
+      };
+    }
+    return inatjs.observations.observers( params )
       .then( response => dispatch( setLeader( "topObserver", response.results[0] ) ) );
   };
 }
 
 export function fetchTopIdentifier( ) {
   return function ( dispatch, getState ) {
-    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
-      own_observation: false
-    } );
+    const state = getState( );
+    const { testingApiV2 } = state.config;
+    const params = {
+      ...defaultObservationParams( getState( ) ),
+      own_observation: false,
+      per_page: 1
+    };
+    if ( testingApiV2 ) {
+      params.fields = {
+        observation_count: true,
+        user: {
+          id: true,
+          login: true,
+          icon_url: true
+        }
+      };
+    }
     return inatjs.identifications.identifiers( params )
       .then( response => dispatch( setLeader( "topIdentifier", response.results[0] ) ) );
-  };
-}
-
-export function fetchFirstObserver( ) {
-  return function ( dispatch, getState ) {
-    return inatjs.observations.search( defaultObservationParams( getState( ) ) ).then( response => {
-      if ( !response.results[0] ) {
-        return;
-      }
-      dispatch( setLeader( "firstObserver", {
-        user: response.results[0].user,
-        observeration: response.results[0]
-      } ) );
-    } );
-  };
-}
-
-export function fetchTopSpecies( ) {
-  return function ( dispatch, getState ) {
-    return inatjs.observations.speciesCounts( defaultObservationParams( getState( ) ) )
-      .then( response => dispatch( setLeader( "topSpecies", response.results[0] ) ) );
   };
 }
 
@@ -87,11 +93,6 @@ export function fetchLeaders( selectedTaxon ) {
       dispatch( fetchRecentObservations( taxon ) ),
       dispatch( fetchLastObservation( taxon ) )
     ];
-    if ( taxon.rank_level <= 10 ) {
-      promises.push( dispatch( fetchFirstObserver( taxon ) ) );
-    } else {
-      promises.push( dispatch( fetchTopSpecies( taxon ) ) );
-    }
     return Promise.all( promises );
   };
 }

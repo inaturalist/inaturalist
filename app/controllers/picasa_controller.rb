@@ -1,5 +1,5 @@
 class PicasaController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   
   # Configure Picasa linkage
   def options

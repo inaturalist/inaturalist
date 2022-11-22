@@ -2,6 +2,8 @@
 @import "./shared/split_taxon";
 @import "./users/user_image";
 @import "./shared/taxon_autocomplete";
+@import "./projects/observations_grid";
+@import "./shared/flash_message";
 
 #bodywrapper {
   // background: #ddd;
@@ -86,6 +88,12 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   outline: none;
 }
 
+.bootstrap button {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
 .bootstrap .more button.btn {
   border-radius: 20px;
   padding: 5px 15px;
@@ -162,6 +170,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   h3 {
     text-align: center;
     margin-top: 5px;
+    button.nostyle {
+      outline: none;
+    }
     .fa {
       font-size: 13px;
       font-weight: 100;
@@ -214,6 +225,16 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     font-size: 12px;
     line-height: 12px;
     vertical-align: text-top;
+    color: #ccc;
+    &:hover {
+      color: inherit;
+    }
+  }
+  .icon-collapse + .icon-expand {
+    margin-left: 2px;
+  }
+  .icon-focus {
+    font-size: 10px;
   }
   & > .fa-chevron-down {
     margin-left: 2px;
@@ -224,14 +245,15 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 .name-label {
   display: inline-block;
-  &.featured {
+  &.featured .display-name {
     font-weight: 600;
     color: $inat-green;
   }
-  &.featured-ancestor {
+  &.featured-ancestor .display-name {
     font-weight: 600;
   }
 }
+
 .bootstrap .badge.green {
   padding: 3px 7px 1px 7px;
   vertical-align: inherit;
@@ -262,6 +284,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   .stat {
     padding: 0 15px;
     display: block;
+    outline: none;
+    margin: 0px auto;
     &.clicky{
       cursor: pointer;
     }
@@ -271,6 +295,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     .attr {
       font-weight: 700;
       margin-right: 4px;
+      &:after {
+        content: ":"
+      }
     }
     &.selected .attr {
       font-weight: 800;
@@ -296,7 +323,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       margin-top: 20px;
     }
   }
-  .SpeciesGrid.unobserved .empty, .ObservationsGrid .empty {
+  .SpeciesGrid.unobserved .empty {
     margin-top: 74px;
   }
 }
@@ -318,92 +345,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
   height: 25px;
   margin: 1px;
 }
-
-.ObservationsGrid {
-  display: flex;
-  flex-wrap: wrap;
-  .ObservationsGridCell {
-    flex-grow: 1;
-    padding-right: 5px;
-    padding-bottom: 5px;
-    min-width: 100px;
-    margin-right: auto;
-  }
-  .Observation {
-    position: relative;
-    .quality {
-      position: absolute;
-      top: 0;
-      left: 0;
-      padding: 5px 10px;
-      font-size: 16px;
-      &.research {
-        background: $inat-green;
-        color: white;
-      }
-      .full {
-        display: none;
-      }
-    }
-    .photo {
-      background: #ccc;
-      text-align: center;
-      i {
-        color: white;
-        font-size: 180px;
-      }
-    }
-    .caption {
-      background: #464646;
-      color: white;
-      height: 60px;
-      padding: 10px;
-      position: relative;
-      padding-right: 86px;
-      white-space: nowrap;
-      .display-name {
-        font-size: 17px;
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .secondary-name {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: inherit;
-      }
-      .UserImage {
-        position: absolute;
-        right: 10px;
-        bottom: 40px;
-        border: 2px solid white;
-        height: 45px;
-        width: 45px;
-        i.icon-person {
-          font-size: 36px;
-        }
-        &:hover {
-          opacity: 1;
-        }
-      }
-      .meta {
-        position: absolute;
-        bottom: 10px;
-        right: 8px;
-        color: white;
-        .count {
-          i {
-            margin-right: 1px;
-          }
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-}
-
 
 .tree {
   padding: 0;
@@ -466,7 +407,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList .tree > li > .name-row {
   font-size: 18px;
-  padding: 2px 0px 2px 0px;
+  padding: 3px 0px 4px 0px;
   font-weight: 300;
 }
 
@@ -476,7 +417,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 #TaxaList ul.nested {
   font-size: 15px;
-  font-weight: 700;
 }
 
 #TaxaList .ancestry {
@@ -549,6 +489,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         font-size: 20px;
         float: right;
         cursor: pointer;
+        outline: none;
       }
     }
     .PlaceAutocomplete .form-group {
@@ -567,6 +508,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       border: none;
       font-weight: 700;
       padding: 5px 12px;
+      font-size: 12px;
+      margin-top: 5px;
       .caret {
         margin-left: 5px;
       }
@@ -579,6 +522,11 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       li {
         padding: 3px 20px;
         cursor: pointer;
+        a {
+          padding: 0;
+          line-height: inherit;
+          outline: none;
+        }
         &:not(:first-child) {
           margin-top: 2px;
         }
@@ -600,8 +548,14 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 .ExportModal {
+  .modal-header {
+    font-size: 24px;
+  }
   .modal-body {
     font-size: 16px;
+    .export-filters .intro:after {
+      content: ":"
+    }
     ul {
       list-style: none;
       padding-left: 10px;
@@ -614,7 +568,6 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
           font-weight: normal;
           .filter-label {
             font-weight: 700;
-            margin-left: 4px;
           }
         }
       }
@@ -701,6 +654,10 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       }
     }
   }
+}
+
+.FlashMessage .alert {
+  margin: 10px 0px 0px;
 }
 
 @media (min-width: 1345px) {

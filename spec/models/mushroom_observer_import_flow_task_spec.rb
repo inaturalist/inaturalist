@@ -24,7 +24,7 @@ describe MushroomObserverImportFlowTask do
     expect{ original.save! }.to_not raise_error
     expect{ make_task( api_key: "thekey" ).save! }.to raise_error(
       ActiveRecord::RecordInvalid, /queued for import/ )
-    original.update_attributes( finished_at: Time.now )
+    original.update( finished_at: Time.now )
     expect{ make_task( api_key: "thekey" ).save! }.to_not raise_error
   end
 

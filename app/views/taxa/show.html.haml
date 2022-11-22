@@ -1,6 +1,6 @@
 - @no_footer_gap = true
 - content_for :title do
-  = render "taxa/taxon.txt.erb", taxon: @taxon
+  =raw strip_tags( @shareable_title ||= render( partial: "taxa/taxon", handlers: [:erb], formats: [:txt], locals: { taxon: @taxon } ) )
 - content_for :extrajs do
   :javascript
     var SERVER_PAYLOAD = {
@@ -17,7 +17,7 @@
 - content_for :extrahead do
   - if CONFIG.facebook && !CONFIG.facebook.namespace.blank?
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}
-  %meta{ property: "og:title", content: @taxon.to_plain_s( verb: true, no_time: true ) }
+  %meta{ property: "og:title", content: @shareable_title }
   - if @taxon.photos.blank?
     %meta{ property: "og:image", content: ( @shareable_image_url = iconic_taxon_image_url( @taxon ) ) }
     %meta{ property: "twitter:image", content: @shareable_image_url }

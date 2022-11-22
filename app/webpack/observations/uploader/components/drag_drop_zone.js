@@ -260,7 +260,6 @@ class DragDropZone extends Component {
       _.map( selectedObsCards, c => c.nonUploadedFiles().length )
     );
     const countPending = _.sum( _.map( obsCards, c => c.nonUploadedFiles().length ) );
-    /* global SITE */
     return (
       <div onClick={DragDropZone.closeAutocompletes}>
         <Dropzone
@@ -275,6 +274,16 @@ class DragDropZone extends Component {
             // element that was the target of the drop event matches selectors
             // for components we know will handle file drops themselves, just
             // ignore this event
+            // Also trying to protect against treating images dragged from the
+            // same page from being treated as new files. Images dragged from
+            // the same page will appear as multiple dataTransferItems, the
+            // first being a "string" kind and not a "file" kind
+            if ( dropEvent.nativeEvent.dataTransfer
+              && dropEvent.nativeEvent.dataTransfer.items
+              && dropEvent.nativeEvent.dataTransfer.items.length > 0
+              && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+              return;
+            }
             if ( $( ".ObsCardComponent, .InsertionDropTarget" ).has( dropEvent.nativeEvent.target ).length === 0 ) {
               onDrop( acceptedFiles, rejectedFiles );
             }

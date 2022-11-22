@@ -7,7 +7,7 @@ def system_call(cmd)
 end
 
 # CONFIGURE
-url = "http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/50m/cultural/ne_50m_admin_0_countries.zip"
+url = "https://naciscdn.org/naturalearth/50m/cultural/ne_50m_admin_0_countries.zip"
 shapefile_name = "ne_50m_admin_0_countries.shp"
 test = false
 name_column = 'NAME'
@@ -16,7 +16,7 @@ source = Source.find_by_title("Natural Earth Admin 0 - Countries") || Source.cre
   :title => "Natural Earth Admin 0 - Countries",
   :in_text => "Natural Earth #{Date.today.year}",
   :citation => "Natural Earth Admin 0 - Countries. Natural Earth.",
-  :url => "http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/"
+  :url => "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/"
 )
 #/ CONFIGURE
 

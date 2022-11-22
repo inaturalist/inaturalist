@@ -8,14 +8,15 @@
     = f.password_field :password, class: "text form-control", required: true, placeholder: t(:password)
     - unless resource.errors[:password].blank?
       .error= formatted_error_sentence_for( resource, :password )
-  .form-group.checkbox
+  .form-group.checkbox.remember-forgot
     - if devise_mapping.rememberable?
       %label
         = f.check_box :remember_me
         = t(:remember_me)
     = link_to t(:forgot_your_password), new_password_path( resource_name )
   .form-group.centered
-    = f.submit t(:log_in), class: "btn btn-inat btn-primary btn-lg"
+    = f.submit t(:log_in), class: "btn btn-inat btn-primary btn-lg", data: { loading_click: t( :logging_in ) }
   .form-group.centered
     = link_to t(:dont_have_an_account_sign_up_html), signup_path, class: "btn btn-link"
+.formcol-content
   = render "users/provider_authorizations", extra: true

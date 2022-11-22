@@ -66,10 +66,12 @@ class ZoomableImageGallery extends ImageGallery {
   }
 
   slideToSlideIndex( ) {
-    if (
-      _.isInteger( this.props.slideIndex )
-    ) {
+    if ( _.isInteger( this.props.slideIndex ) ) {
       this.slideToIndex( this.props.slideIndex );
+      // This forces the thumbnails container to translate to keep prev/next
+      // thumbnails in view. Shouldn't be necessary but for some reason it
+      // is.
+      this._handleResize( );
     }
   }
 }

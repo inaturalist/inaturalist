@@ -18,6 +18,11 @@
   z-index: 1 !important;
 }
 
+.leaflet-safari .leaflet-tile-container {
+  width: auto !important;
+  height: auto !important;
+}
+
 .TorqueMap {
   position: relative;
   .map {

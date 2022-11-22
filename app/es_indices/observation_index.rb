@@ -1,8 +1,9 @@
-class Observation < ActiveRecord::Base
+class Observation < ApplicationRecord
 
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 50
+  DEFAULT_ES_BATCH_SIZE = 100
+  DEFAULT_ES_BATCH_SLEEP = 2
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -11,18 +12,22 @@ class Observation < ActiveRecord::Base
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
-    :photos,
+    { photos: :flags },
     { sounds: :user },
     { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
     { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
-  settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
+  settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :annotations, type: :nested do
         indexes :concatenated_attr_val, type: "keyword"
-        indexes :controlled_attribute_id, type: "short"
-        indexes :controlled_value_id, type: "short"
+        indexes :controlled_attribute_id, type: "short" do
+          indexes :keyword, type: "keyword"
+        end
+        indexes :controlled_value_id, type: "short" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :resource_type, type: "keyword"
         indexes :uuid, type: "keyword"
         indexes :user_id, type: "keyword"
@@ -87,11 +92,14 @@ class Observation < ActiveRecord::Base
           indexes :login, type: "keyword"
           indexes :spam, type: "boolean"
           indexes :suspended, type: "boolean"
+          indexes :uuid, type: "keyword"
         end
         indexes :uuid, type: "keyword"
       end
       indexes :comments_count, type: "short"
-      indexes :community_taxon_id, type: "integer"
+      indexes :community_taxon_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :context_geoprivacy, type: "keyword"
       indexes :context_taxon_geoprivacy, type: "keyword"
       indexes :context_user_geoprivacy, type: "keyword"
@@ -119,25 +127,35 @@ class Observation < ActiveRecord::Base
       end
       indexes :geojson, type: "geo_shape"
       indexes :geoprivacy, type: "keyword"
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :id_please, type: "boolean"
-      indexes :ident_taxon_ids, type: "integer"
+      indexes :ident_taxon_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :identification_categories, type: "keyword"
       indexes :identifications_count, type: "short"
       indexes :identifications_most_agree, type: "boolean"
       indexes :identifications_most_disagree, type: "boolean"
       indexes :identifications_some_agree, type: "boolean"
-      indexes :identifier_user_ids, type: "integer"
+      indexes :identifier_user_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :license_code, type: "keyword"
       indexes :location, type: "geo_point"
       indexes :map_scale, type: "byte"
       indexes :mappable, type: "boolean"
-      indexes :non_owner_identifier_user_ids, type: "integer"
+      indexes :non_owner_identifier_user_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :num_identification_agreements, type: "short"
       indexes :num_identification_disagreements, type: "short"
-      indexes :oauth_application_id, type: "short"
+      indexes :oauth_application_id, type: "short" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :obscured, type: "boolean"
-      indexes :observed_on, type: "date", format: "dateOptionalTime"
+      indexes :observed_on, type: "date", format: "date_optional_time"
       indexes :observed_on_details do
         indexes :date, type: "date"
         indexes :day, type: "byte"
@@ -170,7 +188,9 @@ class Observation < ActiveRecord::Base
       indexes :photo_licenses, type: "keyword"
       indexes :photos_count, type: "short"
       indexes :place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :place_ids, type: "integer"
+      indexes :place_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :positional_accuracy, type: "integer"
       indexes :preferences do
         indexes :name, type: "keyword", index: false
@@ -179,10 +199,14 @@ class Observation < ActiveRecord::Base
       indexes :private_geojson, type: "geo_shape"
       indexes :private_location, type: "geo_point"
       indexes :private_place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :private_place_ids, type: "integer"
-      indexes :project_ids, type: "integer"
-      indexes :project_ids_with_curator_id, type: "integer"
-      indexes :project_ids_without_curator_id, type: "integer"
+      indexes :private_place_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :project_ids, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :project_ids_with_curator_id, type: "keyword"
+      indexes :project_ids_without_curator_id, type: "keyword"
       indexes :public_positional_accuracy, type: "integer"
       indexes :quality_grade, type: "keyword"
       indexes :quality_metrics do
@@ -191,8 +215,10 @@ class Observation < ActiveRecord::Base
         indexes :metric, type: "keyword", index: false
         indexes :user_id, type: "integer"
       end
-      indexes :reviewed_by, type: "integer"
-      indexes :site_id, type: "integer"
+      indexes :reviewed_by, type: "keyword"
+      indexes :site_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :sound_licenses, type: "keyword"
       indexes :sounds do
         indexes :attribution, type: "keyword", index: false
@@ -220,31 +246,41 @@ class Observation < ActiveRecord::Base
       indexes :species_guess, type: "keyword"
       indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :taxon do
-        indexes :ancestor_ids, type: "integer"
+        indexes :ancestor_ids, type: "integer" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :ancestry, type: "keyword"
         indexes :endemic, type: "boolean"
         indexes :extinct, type: "boolean"
-        indexes :iconic_taxon_id, type: "integer"
-        indexes :id, type: "integer"
+        indexes :iconic_taxon_id, type: "integer" do
+          indexes :keyword, type: "keyword"
+        end
+        indexes :id, type: "integer" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :introduced, type: "boolean"
         indexes :is_active, type: "boolean"
         indexes :min_species_ancestry, type: "keyword"
         indexes :min_species_taxon_id, type: "integer"
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :native, type: "boolean"
-        indexes :parent_id, type: "integer"
+        indexes :parent_id, type: "integer" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :rank, type: "keyword"
         indexes :rank_level, type: "scaled_float", scaling_factor: 100
         indexes :statuses, type: :nested do
           indexes :authority, type: "keyword"
           indexes :geoprivacy, type: "keyword"
           indexes :iucn, type: "byte"
-          indexes :place_id, type: "integer"
+          indexes :place_id, type: "keyword"
           indexes :source_id, type: "short"
           indexes :status, type: "keyword"
           indexes :status_name, type: "keyword"
+          indexes :user_id, type: "integer"
         end
         indexes :threatened, type: "boolean"
+        indexes :uuid, type: "keyword"
       end
       indexes :taxon_geoprivacy, type: "keyword"
       indexes :time_observed_at, type: "date"
@@ -253,10 +289,14 @@ class Observation < ActiveRecord::Base
       indexes :uri, type: "keyword", index: false
       indexes :user do
         indexes :created_at, type: "date"
-        indexes :id, type: "integer"
+        indexes :id, type: "integer" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :login, type: "keyword"
+        indexes :site_id, type: "integer"
         indexes :spam, type: "boolean"
         indexes :suspended, type: "boolean"
+        indexes :uuid, type: "keyword"
       end
       indexes :uuid, type: "keyword"
       indexes :votes, type: :nested do
@@ -294,7 +334,6 @@ class Observation < ActiveRecord::Base
         for_identification: options[:for_identification]) : nil
     }
 
-
     current_ids = identifications.select(&:current?)
     if options[:no_details]
       json.merge!({
@@ -323,7 +362,12 @@ class Observation < ActiveRecord::Base
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
         faves_count: faves_count,
-        cached_votes_total: cached_votes_total,
+        # cached_votes_total is a count of *all* votes on the obs, which
+        # includes things voting whether the obs still needs an ID, so using
+        # that actually throws off the sorting when what we really want to do is
+        # sort by faves. We're not losing anything performance-wise by loading
+        # the votes since we're doing that in the `votes` attribute anyway
+        cached_votes_total: votes_for.select{|v| v.vote_scope.blank?}.size,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
         identifications_most_agree:
@@ -351,7 +395,7 @@ class Observation < ActiveRecord::Base
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
-        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids rescue []}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
@@ -394,17 +438,21 @@ class Observation < ActiveRecord::Base
       o.taxon_native ||= false
       o.taxon_endemic ||= false
     }
-    observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
-    batch_ids_string = observations_by_id.keys.join(",")
+    batch_ids_string = observations.map(&:id).join(",")
     return if batch_ids_string.blank?
     # fetch all place_ids store them in `indexed_place_ids`
     if options.blank? || options[:places]
+      observation_private_place_ids = { }
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_private_place_ids << r["place_id"].to_i
+        observation_private_place_ids[r["observation_id"]] ||= []
+        observation_private_place_ids[r["observation_id"]] << r["place_id"]
+      end
+      observations.each do |o|
+        if observation_private_place_ids[o.id]
+          o.indexed_private_place_ids = observation_private_place_ids[o.id]
         end
       end
       private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
@@ -422,7 +470,7 @@ class Observation < ActiveRecord::Base
             p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
-          unless o.geoprivacy == Observation::PRIVATE
+          unless o.latitude.blank? || o.geoprivacy == Observation::PRIVATE || o.taxon_geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
               always_indexed_place_levels.include?( p.admin_level ) ||
               Observation.places_without_obscuration_protection.include?( p.id ) ||
@@ -439,14 +487,14 @@ class Observation < ActiveRecord::Base
       uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
       return if uniq_obs_place_ids.empty? || taxon_ids.empty?
       Observation.connection.execute("
-        SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
+        SELECT taxon_id, establishment_means, place_id
         FROM listed_taxa
         WHERE taxon_id IN (#{ taxon_ids.join(',') })
         AND place_id IN (#{ uniq_obs_place_ids })
-        AND establishment_means IS NOT NULL
-        GROUP BY taxon_id, establishment_means").to_a.each do |r|
+        AND establishment_means IS NOT NULL").to_a.each do |r|
         taxon_establishment_places[r["taxon_id"]] ||= {}
-        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
+        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] ||= []
+        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] << r["place_id"]
       end
       place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
       return if place_ids.empty?
@@ -455,7 +503,7 @@ class Observation < ActiveRecord::Base
         SELECT id, bbox_area
         FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
         places[r["id"]] = {
-          id: r["id"].to_i,
+          id: r["id"],
           bbox_area: r["bbox_area"].to_f
         }
       end
@@ -469,6 +517,7 @@ class Observation < ActiveRecord::Base
           # keep a hash of all places for each taxon
           place_ids.each do |place_id|
             taxon_places[taxon_id][place_id] ||= places[place_id].dup
+            taxon_places[taxon_id][place_id] ||= { }
             taxon_places[taxon_id][place_id][means] = true
           end
           if means == "endemic"
@@ -477,15 +526,15 @@ class Observation < ActiveRecord::Base
         end
       end
       observations.each do |o|
-        if o.taxon && taxon_places[o.taxon.id.to_s]
-          closest = taxon_places[o.taxon.id.to_s].
-            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq.map(&:to_s)).
+        if o.taxon && taxon_places[o.taxon.id]
+          closest = taxon_places[o.taxon.id].
+            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq).
             values.sort_by{ |p| p[:bbox_area] || 0 }.first
           o.taxon_introduced = !!(closest &&
             closest.values_at(*ListedTaxon::INTRODUCED_EQUIVALENTS).compact.any?)
           o.taxon_native = !!(closest &&
             closest.values_at(*ListedTaxon::NATIVE_EQUIVALENTS).compact.any?)
-          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id.to_s]).any?
+          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id]).any?
         end
       end
     end
@@ -561,10 +610,10 @@ class Observation < ActiveRecord::Base
     end
     if p[:user]
       search_filters << { term: {
-        "user.id" => ElasticModel.id_or_object(p[:user]) } }
+        "user.id.keyword" => ElasticModel.id_or_object(p[:user]) } }
     elsif p[:user_id]
       search_filters << { terms: {
-        "user.id" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
+        "user.id.keyword" => [ p[:user_id] ].flatten.map{ |u| ElasticModel.id_or_object(u) } } }
     end
 
     # params to search based on value
@@ -576,7 +625,7 @@ class Observation < ActiveRecord::Base
       { http_param: :month, es_field: "observed_on_details.month" },
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
-      { http_param: :site_id, es_field: "site_id" },
+      { http_param: :site_id, es_field: "site_id.keyword" },
       { http_param: :id, es_field: "id" }
     ].each do |filter|
       unless p[ filter[:http_param] ].blank? || p[ filter[:http_param] ] == "any"
@@ -588,15 +637,25 @@ class Observation < ActiveRecord::Base
 
     # Place searches require special handling if the user is asking for their
     # own observations
+    params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
-      if p[:viewer] && p[:user_id] && p[:viewer].id == p[:user_id].to_i
-        search_filters << { terms: { "private_place_ids" => [ p[:place_id] ].flatten.map{ |v|
+      if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
+        search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       else
-        search_filters << { terms: { "place_ids" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
+      end
+    end
+
+    unless p[:not_in_place].blank?
+      place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
+      inverse_filters << if ( params_user_ids.size == 1 && p[:viewer]&.id == params_user_ids[0] )
+        { terms: { "private_place_ids.keyword" => place_ids } }
+      else
+        { terms: { "place_ids.keyword" => place_ids } }
       end
     end
 
@@ -610,7 +669,8 @@ class Observation < ActiveRecord::Base
       # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
-      { http_param: :captive, es_field: "captive" }
+      { http_param: :captive, es_field: "captive" },
+      { http_param: :spam, es_field: "spam" }
     ].each do |filter|
       if p[ filter[:http_param] ].yesish?
         search_filters << { term: { filter[:es_field] => true } }
@@ -643,10 +703,17 @@ class Observation < ActiveRecord::Base
     # Every taxon has its own ID in ancestor_ids
     if p[:observations_taxon]
       search_filters << { term: {
-        "taxon.ancestor_ids" => ElasticModel.id_or_object(p[:observations_taxon]) } }
+        "taxon.ancestor_ids.keyword" => ElasticModel.id_or_object(p[:observations_taxon]) } }
     elsif p[:observations_taxon_ids]
       search_filters << { terms: {
-        "taxon.ancestor_ids" => p[:observations_taxon_ids] } }
+        "taxon.ancestor_ids.keyword" => p[:observations_taxon_ids] } }
+    end
+    if p[:without_observations_taxon]
+      inverse_filters << {
+        term: {
+          "taxon.ancestor_ids.keyword" => ElasticModel.id_or_object( p[:without_observations_taxon] )
+        }
+      }
     end
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
@@ -713,7 +780,7 @@ class Observation < ActiveRecord::Base
       end
     end
     if p[:not_in_project]
-      inverse_filters << { term: { project_ids:
+      inverse_filters << { term: { "project_ids.keyword":
         ElasticModel.id_or_object(p[:not_in_project]) } }
     end
 
@@ -866,7 +933,7 @@ class Observation < ActiveRecord::Base
       else
         search_filters << { bool: { should: [
           { range: { updated_at: { gte: timestamp } } },
-          { terms: { "user.id" => p[:aggregation_user_ids] } }
+          { terms: { "user.id.keyword" => p[:aggregation_user_ids] } }
         ] } }
       end
     end
@@ -876,7 +943,7 @@ class Observation < ActiveRecord::Base
         nested: {
           path: "annotations",
           query: { bool: { must: [
-            { term: { "annotations.controlled_attribute_id": p[:term_id] } },
+            { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
             { range: { "annotations.vote_score": { gte: 0 } } }
           ] }
           }
@@ -884,7 +951,7 @@ class Observation < ActiveRecord::Base
       }
       if p[:term_value_id]
         nested_query[:nested][:query][:bool][:must] <<
-          { term: { "annotations.controlled_value_id": p[:term_value_id] } }
+          { terms: { "annotations.controlled_value_id.keyword": p[:term_value_id].to_s.split( "," ) } }
       end
       search_filters << nested_query
     end
@@ -931,12 +998,12 @@ class Observation < ActiveRecord::Base
 
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
-      search_filters << { terms: { identifier_user_ids: vals } }
+      search_filters << { terms: { "identifier_user_ids.keyword": vals } }
     end
 
     if p[:ident_taxon_id]
       vals = p[:ident_taxon_id].to_s.split( "," )
-      search_filters << { terms: { ident_taxon_ids: vals } }
+      search_filters << { terms: { "ident_taxon_ids.keyword": vals } }
     end
 
     # conservation status
@@ -956,6 +1023,38 @@ class Observation < ActiveRecord::Base
     unless p[:csa].blank?
       values = [ p[:csa] ].flatten.map(&:downcase)
       search_filters << conservation_condition(:authority, values, p)
+    end
+    if p[:acc_above].to_i > 0
+      search_filters << { range: { positional_accuracy: { gt: p[:acc_above].to_i } } }
+    end
+    if p[:acc_below].to_i > 0
+      search_filters << { range: { positional_accuracy: { lt: p[:acc_below].to_i } } }
+    end
+    if p[:acc_below_or_unknown].to_i > 0
+      search_filters << {
+        bool: {
+          should: [
+            {
+              range: {
+                positional_accuracy: {
+                  lt: p[:acc_below_or_unknown].to_i
+                }
+              }
+            },
+            {
+              bool: {
+                must_not: [
+                  {
+                    exists: {
+                      field: "positional_accuracy"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
     end
     # sort defaults to created at descending
     sort_order = (p[:order] || "desc").downcase.to_sym

@@ -1,4 +1,4 @@
-class GuideSection < ActiveRecord::Base
+class GuideSection < ApplicationRecord
   acts_as_spammable :fields => [ :title, :description ],
     checks_spam_unless: :is_imported
   attr_accessor :modified_on_create

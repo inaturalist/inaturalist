@@ -446,11 +446,13 @@ $(document).ready(function() {
       $( "#headersearch" ).addClass( "open" );
       $( "#header" ).addClass( "search-open" );
       $( "#headersearch input" ).focus( );
+      $( "#headersearch input" ).attr( "tabindex", null );
       updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
       $( "#header" ).removeClass( "search-open" );
+      $( "#headersearch input" ).attr( "tabindex", -1 );
       updateSession( { header_search_open: false } );
     }
     $( "#header .show-btn" ).click( showHeaderSearch );
@@ -471,6 +473,11 @@ $(document).ready(function() {
       showHeaderSearch( );
     } );
   }
+
+  // Set this attribute on buttons that require JS to operate normally. You will
+  // also need to disable them in the HTML so they are unclickable before this
+  // JS runs
+  $( "button[data-enable-with-js]" ).attr( "disabled", false );
 } );
 
 
@@ -1242,6 +1249,9 @@ function preciseRound( num, decimals ) {
 }
 
 function updateSession(params) {
+  var params = params || {};
+  var csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
+  params[csrfParam] = $('meta[name="csrf-token"]').attr('content');
   $.ajax({
     url: '/users/update_session',
     data: params,
@@ -1449,10 +1459,17 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
+      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
-          callback( $.map( data, function( user ) {
-            return user.html;
+          callback( $.map( data.results, function( user ) {
+            var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";
+            icon = icon.replace( "/thumb.", "/mini." );
+            var label = user.login;
+            if ( user.name ) {
+              label = user.name + " (" + label + ")";
+            }
+            return '<div class="chooseritem"><img alt="' + user.login + '" title="' + user.login
+              + '" class="user_image  usericon" src="' + icon + '" />' + label + '</div>';
           }));
         }
       );
@@ -1468,7 +1485,7 @@ $.fn.textcompleteUsers = function( ) {
       // setTimeout(function(){ field.data("highlighter").highlight() }, 10);
       return "@" + login + " ";
     }
-  }]);
+  }], { debounce: 500 });
 }
 
 $.fn.boldId = function() {

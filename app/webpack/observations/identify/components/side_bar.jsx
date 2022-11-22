@@ -11,7 +11,7 @@ const SideBar = ( { blind, hidden, setSideBarHidden } ) => (
     >
       <i className={`fa fa-angle-double-${hidden ? "left" : "right"}`} />
     </button>
-    <ProgressChartContainer />
+    { hidden ? null : <ProgressChartContainer /> }
     { blind ? (
       <div className="alert alert-warning">
         <p>

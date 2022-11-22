@@ -8,7 +8,12 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 class ObservationFieldValue extends React.Component {
   render( ) {
     const { ofv, config, observation } = this.props;
-    if ( !observation || !ofv || !ofv.observation_field ) { return ( <div /> ); }
+    if (
+      !observation
+      || !ofv
+      || !ofv.observation_field
+      || !observation.user
+    ) { return ( <div /> ); }
     const currentUser = config && config.currentUser;
     const pref = observation.user.preferences.prefers_observation_fields_by;
     const viewerIsCurator = currentUser && currentUser.roles && (
@@ -19,6 +24,7 @@ class ObservationFieldValue extends React.Component {
     // allows fields from anyone
     const editAllowed = (
       currentUser
+      && observation.user
       && (
         currentUser.id === observation.user.id
         || ( pref === "curators" && viewerIsCurator )
@@ -30,6 +36,8 @@ class ObservationFieldValue extends React.Component {
     // observer
     const deleteAllowed = (
       currentUser
+      && observation.user
+      && ofv.user
       && (
         currentUser.id === observation.user.id
         || ( ofv && currentUser.id === ofv.user.id )
@@ -40,7 +48,7 @@ class ObservationFieldValue extends React.Component {
     if ( ofv.api_status ) {
       loading = ( <div className="loading_spinner" /> );
     }
-    if ( ofv.datatype === "dna" ) {
+    if ( ofv.observation_field.datatype === "dna" ) {
       value = (
         <div className="dna">
           { ofv.value }
@@ -48,7 +56,7 @@ class ObservationFieldValue extends React.Component {
           { loading }
         </div>
       );
-    } else if ( ofv.datatype === "text" ) {
+    } else if ( ofv.observation_field.datatype === "text" ) {
       value = (
         <div className="value">
           <UserText text={value} />
@@ -57,7 +65,7 @@ class ObservationFieldValue extends React.Component {
         </div>
       );
     } else {
-      if ( ofv.datatype === "taxon" && ofv.taxon ) {
+      if ( ofv.observation_field.datatype === "taxon" && ofv.taxon ) {
         value = (
           <SplitTaxon
             taxon={ofv.taxon}
@@ -75,7 +83,7 @@ class ObservationFieldValue extends React.Component {
       );
     }
     let info;
-    if ( ofv.observation_field && ofv.observation_field.description ) {
+    if ( ofv.observation_field.description ) {
       info = (
         <div className="info">
           <div className="header">{ `${I18n.t( "info" )}:` }</div>
@@ -121,7 +129,7 @@ class ObservationFieldValue extends React.Component {
       );
     }
     let addedBy;
-    if ( ofv.user && ofv.user.id !== observation.user.id ) {
+    if ( ofv.user ) {
       addedBy = (
         <div className="added-by">
           <div className="view">
@@ -146,13 +154,13 @@ class ObservationFieldValue extends React.Component {
             { I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }
           </div>
           <div className="search">
-            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.name}=${ofv.value}`}>
+            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.observation_field.name}=${ofv.value}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observations_with_this_field_and_value" ) }</span>
             </a>
           </div>
           <div className="search">
-            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.name}`}>
+            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.observation_field.name}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observations_with_this_field" ) }</span>
             </a>
@@ -176,7 +184,7 @@ class ObservationFieldValue extends React.Component {
           overlay={popover}
         >
           <div className="field">
-            { I18n.t( "label_colon", { label: ofv.name } ) }
+            { I18n.t( "label_colon", { label: ofv.observation_field.name } ) }
           </div>
         </OverlayTrigger>
         <div className="value">{ value }</div>

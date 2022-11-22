@@ -1,10 +1,30 @@
 var inaturalist = inaturalist || { };
 // sort iconic taxa so all apps use the same order and have identical assets
 inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.sort.map{ |t|
-  [ t.id, { name: t.name, icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png"), id: t.id } ]
-}].to_json %>;
+  [ t.id, {
+    name: t.name,
+    label: Taxon::ICONIC_TAXON_NAMES[t.name].to_s.parameterize.underscore,
+    icon: asset_path("assets/iconic_taxa/#{ t.name.downcase }-75px.png"),
+    id: t.id
+  } ]
+}].to_json.html_safe %>;
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
 inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
+
+var TAXON_AUTOCOMPLETE_FIELDS = {
+  ancestor_ids: true,
+  default_photo: {
+    square_url: true
+  },
+  iconic_taxon_id: true,
+  iconic_taxon_name: true,
+  is_active: true,
+  matched_term: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
 
 var autocompleter = { };
 
@@ -106,7 +126,9 @@ autocompleter.taxonTemplate = function( result, fieldValue, options ) {
     labelDiv.append( $( "<a/>" ).attr( "href", "#" ) );
   }
   if( result.id ) {
-    var rightElement = $( "<a/>" ).attr( "target", "_blank" ).
+    var rightElement = $( "<a/>" ).
+      attr( "target", "_blank" ).
+      attr( "rel", "noopener noreferrer" ).
       attr( "href", "/taxa/" + result.id );
     $( "<div/>" ).addClass( "ac-view" ).append( I18n.t("view") ).appendTo( rightElement );
     wrapperDiv.append( rightElement );
@@ -166,15 +188,22 @@ $.fn.taxonAutocomplete = function( options ) {
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
+    var apiBaseURL = "<%= CONFIG.node_api_url %>";
+    if ( options.useAPIv2 ) {
+      apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
+      headers["X-HTTP-Method-Override"] = "GET";
+      params.fields = TAXON_AUTOCOMPLETE_FIELDS;
+    }
     $.ajax({
-      url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
+      url: apiBaseURL + "/taxa/autocomplete",
       cache: true,
       headers: headers,
-      data: params,
+      data: options.useAPIv2 ? JSON.stringify( params ) : params,
+      method: options.useAPIv2 ? "POST" : "GET",
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers
-        if( options.searchExternal !== false ) {
+        if( options.searchExternal !== false && !( CONFIG && CONFIG.content_freeze_enabled ) ) {
           results.push({
             type: "search_external",
             title: I18n.t("search_external_name_providers")

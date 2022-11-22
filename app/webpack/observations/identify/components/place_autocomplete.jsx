@@ -6,10 +6,11 @@ import inaturalistjs from "inaturalistjs";
 class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, this.props, {
+    const opts = {
+      ...this.props,
       idEl: $( "input[name='place_id']", domNode ),
       react: true
-    } );
+    };
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
     this.fetchPlace( );
   }
@@ -22,9 +23,16 @@ class PlaceAutocomplete extends React.Component {
   }
 
   fetchPlace( ) {
-    const { initialPlaceID } = this.props;
+    const { initialPlaceID, config } = this.props;
     if ( initialPlaceID ) {
-      inaturalistjs.places.fetch( initialPlaceID ).then( r => {
+      const params = { };
+      if ( config && config.testingApiV2 ) {
+        params.fields = {
+          id: true,
+          display_name: true
+        };
+      }
+      inaturalistjs.places.fetch( initialPlaceID, params ).then( r => {
         if ( r.results.length > 0 ) {
           this.updatePlace( { place: r.results[0] } );
         }
@@ -38,11 +46,10 @@ class PlaceAutocomplete extends React.Component {
     const domNode = ReactDOM.findDOMNode( this );
     if ( options.place ) {
       $( "input[name='place_name']", domNode )
-        .trigger( "assignSelection", Object.assign(
-          {},
-          options.place,
-          { title: options.place.display_name }
-        ) );
+        .trigger( "assignSelection", {
+          ...options.place,
+          title: options.place.display_name
+        } );
     } else {
       $( "input[name='place_name']", domNode )
         .trigger( "resetAll" );
@@ -72,17 +79,23 @@ class PlaceAutocomplete extends React.Component {
   }
 }
 
-
 PlaceAutocomplete.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   bootstrapClear: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterSelect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterUnselect: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   afterClear: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
   initialSelection: PropTypes.object,
-  initialPlaceID: PropTypes.number,
+  initialPlaceID: PropTypes.any,
   className: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  config: PropTypes.object
 };
 
 export default PlaceAutocomplete;

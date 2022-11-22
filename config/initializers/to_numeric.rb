@@ -19,3 +19,6 @@ end
 class NilClass
   include ToNumeric
 end
+class Float
+  include ToNumeric
+end

@@ -1,4 +1,4 @@
-class GoalRule < ActiveRecord::Base
+class GoalRule < ApplicationRecord
   belongs_to :goal
   
   validates_presence_of :operator_class, :operator, :goal_id

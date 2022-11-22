@@ -17,7 +17,7 @@ import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import confirmModalReducer from "./ducks/confirm_modal";
-import controlledTermsReducer from "./ducks/controlled_terms";
+import controlledTermsReducer, { fetchAnnotationsPanelPreferences } from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import identificationsReducer from "./ducks/identifications";
 import licensingModalReducer from "./ducks/licensing_modal";
@@ -33,16 +33,17 @@ import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import currentObservationReducer from "../identify/reducers/current_observation_reducer";
 import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
+import textEditorReducer from "../shared/ducks/text_editors";
+import brightnessesReducer from "../identify/ducks/brightnesses";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
-const relativeTime = Object.assign(
-  {},
-  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
-  shortRelativeTime
-);
+const relativeTime = {
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  ...shortRelativeTime
+};
 moment.locale( I18n.locale );
-moment.updateLocale( moment.locale(), { relativeTime } );
+moment.updateLocale( moment.locale( ), { relativeTime } );
 
 const rootReducer = combineReducers( {
   commentIDPanel: commentIDPanelReducer,
@@ -59,24 +60,24 @@ const rootReducer = combineReducers( {
   otherObservations: otherObservationsReducer,
   projectFieldsModal: projectFieldsModalReducer,
   qualityMetrics: qualityMetricsReducer,
+  textEditor: textEditorReducer,
   subscriptions: subscriptionsReducer,
   disagreementAlert: disagreementAlertReducer,
   moderatorActions: moderatorActionsReducer,
 
   // stuff from identify, where the "current observation" is the obs in a modal
   currentObservation: currentObservationReducer,
-  suggestions: suggestionsReducer
+  suggestions: suggestionsReducer,
+  brightnesses: brightnessesReducer
 } );
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
@@ -98,7 +99,7 @@ if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ )
 ) {
-  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
   if ( defaultApiUrl ) {
     /* global INITIAL_OBSERVATION_UUID */
@@ -113,6 +114,14 @@ if (
     } );
   }
 }
+
+if ( window.location.search.match( /test=vision/ ) ) {
+  store.dispatch( setConfig( {
+    testingVision: true
+  } ) );
+}
+
+store.dispatch( fetchAnnotationsPanelPreferences( ) );
 
 store.dispatch( fetchObservation( obsId, {
   fetchAll: true,

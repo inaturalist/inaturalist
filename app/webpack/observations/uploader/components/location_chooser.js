@@ -12,6 +12,7 @@ import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
 import SavedLocationChooser from "./saved_location_chooser";
 import util from "../models/util";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 
 class LocationChooser extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -107,19 +108,32 @@ class LocationChooser extends SelectionBasedComponent {
   }
 
   render() {
+    const {
+      geoprivacy,
+      lat,
+      lng,
+      notes,
+      radius,
+      removeSavedLocation,
+      savedLocations,
+      saveLocation,
+      show,
+      submitText,
+      updateState
+    } = this.props;
     let canSave = false;
-    const latNum = Number( this.props.lat );
-    const lngNum = Number( this.props.lng );
+    const latNum = Number( lat );
+    const lngNum = Number( lng );
     if (
-      this.props.lat
-      && this.props.lng
+      lat
+      && lng
       && !_.isNaN( latNum )
       && !_.isNaN( lngNum )
       && _.inRange( latNum, -89.999, 90 )
       && _.inRange( lngNum, -179.999, 180 )
     ) {
       canSave = true;
-    } else if ( !this.props.lat && !this.props.lng ) {
+    } else if ( !lat && !lng ) {
       canSave = true;
     }
     const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
@@ -127,7 +141,7 @@ class LocationChooser extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option> );
     return (
       <Modal
-        show={this.props.show}
+        show={show}
         className="location"
         onHide={this.close}
         backdrop="static"
@@ -139,11 +153,13 @@ class LocationChooser extends SelectionBasedComponent {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <LocationChooserMap
-            {...this.props}
-            containerElement={<div className="map" />}
-            mapElement={<div className="map-inner" />}
-          />
+          <ErrorBoundary key="uploader-location-chooser-map">
+            <LocationChooserMap
+              {...this.props}
+              containerElement={<div className="map" />}
+              mapElement={<div className="map-inner" />}
+            />
+          </ErrorBoundary>
           <div className="form">
             <div className="form-group">
               <label className="control-label">
@@ -152,7 +168,7 @@ class LocationChooser extends SelectionBasedComponent {
                   className="form-control"
                   key="lat"
                   type="text"
-                  value={this.props.lat || ""}
+                  value={lat || ""}
                   placeholder={this.placeholder( "latitude" )}
                   onChange={e => this.update( "lat", e )}
                 />
@@ -165,34 +181,34 @@ class LocationChooser extends SelectionBasedComponent {
                   className="form-control"
                   key="lng"
                   type="text"
-                  value={this.props.lng || ""}
+                  value={lng || ""}
                   placeholder={this.placeholder( "longitude" )}
                   onChange={e => this.update( "lng", e )}
                 />
               </label>
             </div>
             <div className="form-group">
-              <label className="control-label" title={ I18n.t( "accuracy_meters" ) }>
+              <label className="control-label" title={I18n.t( "accuracy_meters" )}>
                 <span className="label-text">{ I18n.t( "acc" ) }</span>
                 <input
                   className="form-control"
                   key="radius"
                   type="text"
-                  value={this.props.radius || ""}
+                  value={radius || ""}
                   placeholder={this.placeholder( "accuracy" )}
                   onChange={e => this.update( "radius", e )}
                 />
               </label>
             </div>
             <div className="form-group">
-              <label className="control-label" title={ I18n.t( "geoprivacy" ) }>
+              <label className="control-label" title={I18n.t( "geoprivacy" )}>
                 <span className="label-text">{ I18n.t( "geoprivacy" ) }</span>
                 <select
                   key="location-chooser-geoprivacy"
                   type="select"
                   className="form-control"
                   onChange={e => this.update( "geoprivacy", e )}
-                  value={this.props.geoprivacy}
+                  value={geoprivacy}
                 >
                   { multipleGeoprivacy }
                   <option value="open">{ I18n.t( "open_" ) }</option>
@@ -208,13 +224,13 @@ class LocationChooser extends SelectionBasedComponent {
                   className="notes form-control"
                   key="notes"
                   type="text"
-                  value={this.props.notes || ""}
+                  value={notes || ""}
                   placeholder={this.placeholder( "locality_notes" )}
                   onChange={e => this.update( "notes", e )}
                 />
               </label>
             </div>
-            { this.props.saveLocation && latNum && lngNum && this.props.notes ? (
+            { saveLocation && latNum && lngNum && notes ? (
               <div className="form-group save-form-group">
                 <label className="control-label">
                   <span className="label-text">&nbsp;</span>
@@ -233,12 +249,12 @@ class LocationChooser extends SelectionBasedComponent {
                       type="button"
                       className="btn btn-default"
                       onClick={() => {
-                        this.props.saveLocation( {
+                        saveLocation( {
                           latitude: latNum,
                           longitude: lngNum,
-                          positional_accuracy: this.props.radius,
-                          geoprivacy: this.props.geoprivacy,
-                          title: this.props.notes
+                          positional_accuracy: radius,
+                          geoprivacy,
+                          title: notes
                         } );
                       }}
                     >
@@ -250,13 +266,13 @@ class LocationChooser extends SelectionBasedComponent {
                 </label>
               </div>
             ) : null }
-            { this.props.savedLocations.savedLocations ? (
+            { savedLocations.savedLocations ? (
               <SavedLocationChooser
-                className={this.props.savedLocations.savedLocations.length === 0 ? "hidden" : ""}
-                locationsTotal={this.props.savedLocations.total}
-                defaultLocations={this.props.savedLocations.savedLocations}
+                className={savedLocations.savedLocations.length === 0 ? "hidden" : ""}
+                locationsTotal={savedLocations.total}
+                defaultLocations={savedLocations.savedLocations}
                 onChoose={sl => {
-                  this.props.updateState( {
+                  updateState( {
                     locationChooser: {
                       lat: sl.latitude,
                       lng: sl.longitude,
@@ -273,7 +289,7 @@ class LocationChooser extends SelectionBasedComponent {
                     }
                   } );
                 }}
-                removeLocation={sl => this.props.removeSavedLocation( sl )}
+                removeLocation={sl => removeSavedLocation( sl )}
               />
             ) : null }
           </div>
@@ -285,7 +301,7 @@ class LocationChooser extends SelectionBasedComponent {
             bsStyle="primary"
             disabled={!canSave}
           >
-            { this.props.submitText || I18n.t( "update_observations" ) }
+            { submitText || I18n.t( "update_observations" ) }
           </Button>
         </Modal.Footer>
       </Modal>

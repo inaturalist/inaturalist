@@ -5,6 +5,7 @@ import querystring from "querystring";
 import _ from "lodash";
 import { defaultObservationParams, urlForPlace } from "../../shared/util";
 import { showNewTaxon } from "../actions/taxon";
+import { fetchRecent, fetchWanted } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {
@@ -22,7 +23,7 @@ function mapStateToProps( state ) {
     wantedShown: state.taxon.taxon.complete_species_count > 0,
     discoveriesShown: state.taxon.taxon.complete_species_count > 0,
     trendingTaxa: state.taxon.trending ? state.taxon.trending.slice( 0, 20 ) : null,
-    wantedTaxa: state.taxon.wanted ? state.taxon.wanted.slice( 0, 20 ) : null,
+    wantedTaxa: state.taxon.wanted,
     discoveries,
     trendingUrl: `/observations?${querystring.stringify( trendingParams )}`,
     placeName: state.config.chosenPlace ? state.config.chosenPlace.display_name : null,
@@ -33,7 +34,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) ),
+    fetchRecent: ( ) => dispatch( fetchRecent( ) ),
+    fetchWanted: ( ) => dispatch( fetchWanted( ) )
   };
 }
 

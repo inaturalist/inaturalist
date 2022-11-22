@@ -1,11 +1,11 @@
 <%-
 @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-  taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+  taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon )
   taxon
 end
 -%>
 <%- content_for(:title) do -%>
-  <%= @title = "#{t(:widget_for)} #{t('places_name.'+@place.display_name.gsub(' ','_').downcase, :default => @place.display_name)}" %>
+  <%= @title = "#{t(:widget_for)} #{@place.translated_name( I18n.locale, default: @place.display_name )}" %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">
@@ -39,7 +39,7 @@ end
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
-    <strong><%= link_to "&laquo #{t('places_name.'+@place.display_name.gsub(' ','_').downcase, :default => @place.display_name)}".html_safe, @place, :class => 'crumb' %></strong>
+    <strong><%= link_to "&laquo #{@place.translated_name( I18n.locale, default: @place.display_name )}".html_safe, @place, :class => 'crumb' %></strong>
   </div><!-- /#breadcrumbs -->
   
   <h2><%= @title %></h2>

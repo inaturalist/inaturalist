@@ -9,7 +9,7 @@
   <div class="column span-24">
     <div class="tools buttons">
       <%= f.submit t(:save), :class => 'default button', "data-loading-click" => t(:saving) %>
-      <% if @list.persisted? && !@list.is_a?(ProjectList) && !(@list.is_a?(LifeList) && @list.id == @list.user.life_list_id) -%>
+      <% if @list.persisted? && !@list.is_a?(ProjectList) -%>
         <%= link_to t(:delete), @list, :method => :delete, :data => {:confirm => t(:you_sure_delete_list)}, 
           :class => "minor delete button",
           "data-loading-click" => t(:deleting) %>

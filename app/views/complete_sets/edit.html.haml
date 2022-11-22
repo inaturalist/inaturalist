@@ -2,7 +2,7 @@
   .row
     .col-xs-12
       %h2.pull-left
-        =t :edit_complete_set_for_taxon_in_place_html, taxon: render( "shared/taxon" taxon: @complete_set.taxon, named_ancestor: true ) , place: t( "places_name.#{@complete_set.place.name.parameterize.underscore}", default: h( @complete_set.place.name ) )
+        =t :edit_complete_set_for_taxon_in_place_html, taxon: render( "shared/taxon" taxon: @complete_set.taxon, named_ancestor: true ) , place: @complete_set.place.translated_name )
   .row
     .col-xs-12
     = form_for(@complete_set, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|

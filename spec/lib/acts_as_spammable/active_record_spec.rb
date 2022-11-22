@@ -48,7 +48,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     expect(o.flagged_as_spam?).to be false
     f = Flag.make!(flaggable: o, flag: Flag::SPAM)
     expect(o.flagged_as_spam?).to be true
-    Flag.last.update_attributes(resolved: true, resolver: @user)
+    Flag.last.update(resolved: true, resolver: @user)
     o.flags.reload
     expect(o.flagged_as_spam?).to be false
   end
@@ -171,24 +171,12 @@ describe "ActsAsSpammable", "ActiveRecord" do
       User.make!(description: "anything")
     end
 
-    it "does not check user life lists that have default values" do
-      u = User.make!
-      expect(Rakismet).to_not receive(:akismet_call)
-      LifeList.make!(user: u, title: nil, description: nil)
-    end
-
     it "does not users with no description" do
       u = User.make!
       expect(Rakismet).to_not receive(:akismet_call)
       User.make!(description: nil)
     end
 
-    it "knows when LifeLists have default values" do
-      expect(LifeList.make!(title: nil, description: nil).
-        default_life_list?).to be true
-      expect( LifeList.make!(title: "Anything", description: nil).
-        default_life_list?).to be false
-    end
   end
 
   describe "not_flagged_as_spam" do
@@ -269,7 +257,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
       expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
       expect(Rakismet).to receive(:akismet_call).with("submit-ham", anything).and_return("true")
       c = Comment.make!
-      c.flags.last.update_attributes(resolved: true)
+      c.flags.last.update(resolved: true)
     end
 
     it "tells akismet about ham on destroyed akismet flags" do
@@ -295,7 +283,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
       expect(Rakismet).to_not receive(:akismet_call).with("submit-ham", anything)
       c = Comment.make!
       f = Flag.make!(flaggable: c, flag: Flag::SPAM)
-      f.update_attributes(resolved: true)
+      f.update(resolved: true)
       f = Flag.make!(flaggable: c, flag: Flag::SPAM)
       f.destroy
     end

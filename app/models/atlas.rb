@@ -1,4 +1,4 @@
-class Atlas < ActiveRecord::Base
+class Atlas < ApplicationRecord
   has_subscribers
   belongs_to :taxon
   belongs_to :user
@@ -10,6 +10,8 @@ class Atlas < ActiveRecord::Base
   after_save :index_taxon
   after_destroy :index_taxon
   
+  NOT_IN_ATLAS_PARAMS = { verifiable: true, geoprivacy: ["open","obscured"].join(",")}
+
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxa t ON t.id = atlases.taxon_id"
   ]
@@ -54,10 +56,14 @@ class Atlas < ActiveRecord::Base
   # All of the atlas places where there is a ListedTaxon demonstrating presence
   def presence_places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
-    descendant_listed_taxa = ListedTaxon.joins( list: :check_list_place ).
-      where( "lists.type = 'CheckList'" ).
-      where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
-    descendant_place_ids = descendant_listed_taxa.select( "listed_taxa.place_id" ).distinct.pluck( :place_id )
+    scope = ListedTaxon.joins( list: :check_list_place ).
+      where( "lists.type = 'CheckList'" )
+    if taxon.rank_level <= 10
+      listed_taxa = scope.where( "listed_taxa.taxon_id IN ( ? )", taxon.subtree_ids )
+    else
+      listed_taxa = scope.where( "listed_taxa.taxon_id = ?", taxon_id )
+    end
+    descendant_place_ids = listed_taxa.select( "listed_taxa.place_id" ).distinct.pluck( :place_id )
     descendants_places = Place.where( id: descendant_place_ids ).
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
     place_ancestor_ids = descendants_places.map{ |p| p.ancestor_place_ids || p.id }.
@@ -96,16 +102,25 @@ class Atlas < ActiveRecord::Base
     place_descendants = [place, Place.find(place_id).descendants.
       where('admin_level IN (?)',[Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck(:id ) ].
       compact.flatten
-    ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
-      where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) ).
+
+    scope = ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.place_id IN (?)", place_descendants )
+    if taxon.rank_level <= 10
+      scope = scope.where( "listed_taxa.taxon_id IN (?)", taxon.subtree_ids )
+    else
+      scope = scope.where( "listed_taxa.taxon_id = ?", taxon_id )
+    end
   end
 
   def relevant_listed_taxon_alterations
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     scope = ListedTaxonAlteration.joins( :place ).
-      where( "taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) ).
       where( "places.admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
+    if taxon.rank_level <= 10
+      scope = scope.where( "taxon_id IN (?)", taxon.subtree_ids )
+    else
+      scope = scope.where( "taxon_id = ?", taxon_id )
+    end
     unless exploded_place_ids_to_exclude.blank?
       scope = scope.where( "places.id NOT IN (?)", exploded_place_ids_to_exclude )
     end
@@ -116,8 +131,13 @@ class Atlas < ActiveRecord::Base
   # est. means data
   def presence_places_with_establishment_means
     scope = ListedTaxon.joins( { list: :check_list_place } ).
-      where( "lists.type = 'CheckList'" ).
-      where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
+      where( "lists.type = 'CheckList'" )
+
+    if taxon.rank_level <= 10
+      scope = scope.where( "listed_taxa.taxon_id IN ( ? )", taxon.subtree_ids )
+    else
+      scope = scope.where( "listed_taxa.taxon_id = ?", taxon_id )
+    end
 
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     native_place_ids = scope.select( "listed_taxa.place_id" ).
@@ -168,9 +188,10 @@ class Atlas < ActiveRecord::Base
   
   def self.still_is_marked( atlas )
     return false if atlas.is_marked = false
-    observation_search_url_params = { 
-      verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas.presence_places.pluck(:id).join( "," ), geoprivacy: ["open","obscured"].join(",")
-    }
+    observation_search_url_params = NOT_IN_ATLAS_PARAMS.merge( {
+      taxon_id: atlas.taxon_id,
+      not_in_place: atlas.presence_places.pluck(:id).join( "," )
+    } )
     total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
     if total_res > 0
       return true
@@ -195,9 +216,9 @@ class Atlas < ActiveRecord::Base
       checked_count += 1
       change = false
       atlas_presence_places = atlas.presence_places
-      observation_search_url_params = { 
-        verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," ), geoprivacy: ["open","obscured"].join(",")
-      }
+      observation_search_url_params = NOT_IN_ATLAS_PARAMS.merge( {
+        taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," )
+      } )
       total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
       if total_res == 0
         change = true if atlas.is_marked == true

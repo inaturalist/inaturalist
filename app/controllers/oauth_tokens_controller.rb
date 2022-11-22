@@ -1,7 +1,12 @@
 class OauthTokensController < Doorkeeper::TokensController
+  include Shared::FiltersModule
+  prepend_before_action :set_request_locale, :set_site
+
   def create
     super
-    if ( user = resource_owner_from_credentials ) && user.suspended?
+    resource_owner_id = authorize_response.try(:token).try(:resource_owner_id)
+    user = User.find_by_id( resource_owner_id ) unless resource_owner_id.blank?
+    if user && user.suspended?
       headers.delete 'WWW-Authenticate'
       self.response_body = {
         error: "suspended",

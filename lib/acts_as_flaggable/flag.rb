@@ -14,6 +14,8 @@ class Flag < ActiveRecord::Base
     INAPPROPRIATE,
     COPYRIGHT_INFRINGEMENT
   ]
+  TYPES = %w[CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
+             Taxon User]
   belongs_to :flaggable, polymorphic: true
   belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id", inverse_of: :flags_as_flaggable_user
 
@@ -23,19 +25,21 @@ class Flag < ActiveRecord::Base
   notifies_subscribers_of :self, :notification => "activity", :include_owner => true,
     :on => :update,
     :queue_if => Proc.new {|flag|
-      !flag.new_record? && flag.comment_changed?
+      # existing flag whose comment has been changed
+      !flag.saved_change_to_id && flag.saved_change_to_comment
     }
   auto_subscribes :resolver, :on => :update, :if => Proc.new {|record, resource|
-    record.resolved_changed? && !record.resolver.blank? && 
+    record.saved_change_to_resolved? && !record.resolver.blank? &&
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
 
   blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
-  
+
   # NOTE: Flags belong to a user
   belongs_to :user, inverse_of: :flags
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
-  has_many :comments, :as => :parent, :dependent => :destroy
+  has_many :comments, :as => :parent, :dependent => :destroy, :validate => false
+  attr_accessor :initial_comment_body
 
   before_save :check_resolved
   before_create :set_flaggable_user_id
@@ -44,7 +48,7 @@ class Flag < ActiveRecord::Base
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
   after_destroy :notify_flaggable_on_destroy
-  
+
   # A user can flag a specific flaggable with a specific flag once
   validates_length_of :flag, :in => 3..256, :allow_blank => false
   validates_length_of :comment, :maximum => 256, :allow_blank => true
@@ -57,36 +61,49 @@ class Flag < ActiveRecord::Base
     :resolved_at
   ], message: :already_flagged, on: :create
   validate :flaggable_type_valid
+  validate :flag_not_about_duplicate, on: :create
 
   def to_s
     "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
   end
-  
+
   def flaggable_type_valid
-    if FlagsController::FLAG_MODELS.include?(flaggable_type)
+    if Flag::TYPES.include?(flaggable_type)
       true
     else
       errors.add(:flaggable_type, "can't be flagged")
     end
   end
 
+  def flag_not_about_duplicate
+    return true unless %w(Observation Photo).include?( flaggable_type )
+
+    return true unless flag.to_s.downcase.include? ( "duplicate" )
+
+    errors.add( :flag, :not_about_duplicate )
+  end
+
   def notify_flaggable_on_create
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "created")
+      flaggable.flagged_with(self, action: "created")
     end
     true
   end
 
   def notify_flaggable_on_update
-    if flaggable && flaggable.respond_to?(:flagged_with) && resolved_changed? && resolved?
-      flaggable.flagged_with(self, :action => "resolved")
+    if flaggable && flaggable.respond_to?(:flagged_with) && saved_change_to_resolved?
+      if resolved?
+        flaggable.flagged_with(self, action: "resolved")
+      else
+        flaggable.flagged_with(self, action: "unresolved")
+      end
     end
     true
   end
 
   def notify_flaggable_on_destroy
     if flaggable && flaggable.respond_to?(:flagged_with)
-      flaggable.flagged_with(self, :action => "destroyed")
+      flaggable.flagged_with(self, action: "destroyed")
     end
     true
   end
@@ -116,8 +133,8 @@ class Flag < ActiveRecord::Base
       :order => "created_at DESC"
     )
   end
-  
-  # Helper class method to look up all flags for 
+
+  # Helper class method to look up all flags for
   # flaggable class name and flaggable id.
   def self.find_flags_for_flaggable(flaggable_str, flaggable_id)
     find(:all,
@@ -127,11 +144,11 @@ class Flag < ActiveRecord::Base
   end
 
   # Helper class method to look up a flaggable object
-  # given the flaggable class name and id 
+  # given the flaggable class name and id
   def self.find_flaggable(flaggable_str, flaggable_id)
     flaggable_str.constantize.find(flaggable_id)
   end
-  
+
   def flagged_object
     if klass = Object.const_get( flaggable_type )
       klass.find_by_id( flaggable_id )
@@ -139,9 +156,9 @@ class Flag < ActiveRecord::Base
   end
 
   def check_resolved
-    if resolved_changed? && resolved
+    if will_save_change_to_resolved? && resolved
       self.resolved_at = Time.now
-    elsif resolved_changed?
+    elsif will_save_change_to_resolved?
       self.resolved_at = nil
       self.resolver = nil
       self.comment = nil
@@ -182,5 +199,19 @@ class Flag < ActiveRecord::Base
       return false unless user && user.is_admin?
     end
     !flaggable_content.blank? && user && user.is_curator?
+  end
+
+  def deletable_by?( user )
+    return false if new_record? || user.blank?
+    return true if user.is_admin?
+    return true if user.id === self.user_id && !resolved? && !comments.any?
+    false
+  end
+
+  def resolvable_by?( user )
+    return false unless user
+    return true if user.is_curator? && ( user.id != flaggable_user_id || flaggable_type == "Taxon" )
+
+    false
   end
 end

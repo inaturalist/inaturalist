@@ -13,16 +13,21 @@
       end
     %ul
       %li
-        - if is_me?(user)
-          =t :you_are_now
+        - if is_me?( user )
+          - if project_user.user_id == project_user.project.user_id
+            =t :you_are_now_the_admin_for_project_html, project: project.title
+          - elsif project_user.role == ProjectUser::CURATOR
+            =t :you_are_now_a_curator_for_project_html, project: project.title
+          - elsif project_user.role == ProjectUser::MANAGER
+            =t :you_are_now_a_manager_for_project_html, project: project.title
         - else
-          = link_to_user user
-          =t :is_now
-        = role
+          - if project_user.user_id == project_user.project.user_id
+            =t :user_is_now_the_admin_for_project_html, user: link_to_user( user ), project: project.title
+          - elsif project_user.role == ProjectUser::CURATOR
+            =t :user_is_now_a_curator_for_project_html, user: link_to_user( user ), project: project.title
+          - elsif project_user.role == ProjectUser::MANAGER
+            =t :user_is_now_a_manager_for_project_html, user: link_to_user( user ), project: project.title
         - unless user.description.blank? || is_me?(user)
-          =t :heres_a_little_about
-          = surround '', ': ' do
-            = user.login
           %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
         - if user.id == current_user.id && project.user_id == current_user.id
           .notice.status.box

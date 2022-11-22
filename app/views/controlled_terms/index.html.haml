@@ -1,12 +1,12 @@
 - content_for :extrahead do
   = stylesheet_link_tag "font-awesome"
-  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "bootstrap"
   = stylesheet_link_tag "controlled_terms/form"
   = javascript_include_tag "controlled_terms/form"
 
 - content_for :delayed_js do
-  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
-  = javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+  = javascript_include_tag "jquery/jquery-1.11.3.min.js"
+  = javascript_include_tag "bootstrap.min"
 
 %h2 Controlled Terms
 

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
 import {
   hideCurrentObservation,
   addIdentification,
@@ -12,8 +13,13 @@ import {
   showPrevObservation,
   updateCurrentObservation,
   fetchDataForTab,
-  submitIdentificationWithConfirmation
+  chooseSuggestedTaxon
 } from "../actions";
+import {
+  increaseBrightness,
+  decreaseBrightness,
+  resetBrightness
+} from "../ducks/brightnesses";
 
 function mapStateToProps( state ) {
   let images;
@@ -30,22 +36,37 @@ function mapStateToProps( state ) {
       originalDimensions: photo.original_dimensions
     } ) );
   }
-  return Object.assign( {}, {
+  const currentObsBrightnessKeys = {};
+  const brightnessKeys = Object.keys( state.brightnesses );
+  const id = observation && observation.id;
+  brightnessKeys.forEach( key => {
+    if ( key.includes( id ) ) {
+      currentObsBrightnessKeys[key] = state.brightnesses[key];
+    }
+  } );
+
+  return {
     images,
     blind: state.config.blind,
+    brightnesses: currentObsBrightnessKeys,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
     mapZoomLevel: state.config.mapZoomLevel,
     mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
       ? false
-      : state.config.mapZoomLevelLocked
-  }, state.currentObservation );
+      : state.config.mapZoomLevelLocked,
+    officialAppIds: state.config.officialAppIds === undefined
+      ? []
+      : state.config.officialAppIds,
+    ...state.currentObservation
+  };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
+      dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
     },
     toggleCaptive: ( ) => {
       dispatch( toggleCaptive( ) );
@@ -80,20 +101,16 @@ function mapDispatchToProps( dispatch ) {
     toggleKeyboardShortcuts: keyboardShortcutsShown => {
       dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
     },
-    chooseSuggestedTaxon: ( taxon, options = {} ) => {
-      const ident = {
-        observation_id: options.observation.id,
-        taxon_id: taxon.id,
-        vision: options.vision
-      };
-      dispatch( updateCurrentObservation( { tab: "info" } ) );
-      dispatch( submitIdentificationWithConfirmation( ident, {
-        confirmationText: options.confirmationText
-      } ) );
-    },
+    chooseSuggestedTaxon: ( taxon, options = {} ) => dispatch(
+      chooseSuggestedTaxon( taxon, options )
+    ),
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
-    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) )
+    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) ),
+    increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
+    decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
+    resetBrightness: ( ) => dispatch( resetBrightness( ) )
   };
 }
 

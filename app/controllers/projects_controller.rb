@@ -1,36 +1,42 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
-  protect_from_forgery unless: -> { request.format.widget? }
-  before_filter :allow_external_iframes, only: [ :show ]
+  before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
     expires_in: WIDGET_CACHE_EXPIRATION,
     cache_path: Proc.new {|c| c.params},
     if: Proc.new {|c| c.request.format == :widget}
 
-  before_action :doorkeeper_authorize!, 
-    only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
-    if: lambda { authenticate_with_oauth? }
-  before_filter :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
-  
-  before_filter :return_here,
+  ## AUTHENTICATION
+  before_action :doorkeeper_authorize!,
+    only: [:by_login, :join, :leave, :members, :feature, :unfeature],
+    if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!,
+    unless: -> { authenticated_with_oauth? },
+    except: [:index, :show, :search, :map, :contributors, :observed_taxa_count,
+      :browse, :calendar, :stats_slideshow]
+  protect_from_forgery with: :exception, if: lambda {
+    !request.format.widget? && request.headers["Authorization"].blank?
+  }
+  ## /AUTHENTICATION
+
+  before_action :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
+  before_action :return_here,
     only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
-  before_filter :authenticate_user!, 
-    unless: lambda { authenticated_with_oauth? },
-    except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
-      :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
-  before_filter :load_project, except: load_except
+  before_action :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
   check_spam only: [:create, :update], instance: :project
-  before_filter :ensure_current_project_url, only: :show
-  before_filter :load_project_user,
+  before_action :ensure_current_project_url, only: :show
+  before_action :load_project_user,
     except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
-  before_filter :load_user_by_login, only: [ :by_login ]
-  before_filter :ensure_can_edit, only: [ :edit, :update ]
-  before_filter :filter_params, only: [ :update, :create ]
-  before_filter :site_required, only: [ :feature, :unfeature ]
+  before_action :load_user_by_login, only: [ :by_login ]
+  before_action :ensure_can_edit, only: [ :edit, :update ]
+  before_action :filter_params, only: [ :update, :create ]
+  before_action :site_required, only: [ :feature, :unfeature ]
+
+  prepend_around_action :enable_replica, only: [:show]
 
   requires_privilege :organizer, only: [:new_traditional]
   
@@ -105,12 +111,6 @@ class ProjectsController < ApplicationController
             merge(Project.not_flagged_as_spam).includes( project: :stored_preferences ).
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
-          @followed = Project.
-            includes(:stored_preferences).
-            joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
-            where( "subscriptions.user_id = ?", current_user ).
-            where( "projects.user_id != ?", current_user ).
-            order( "subscriptions.id DESC" ).limit( 15 ).select{ |p| !@joined.include?( p ) }
         end
         render layout: "bootstrap"
       end
@@ -128,7 +128,9 @@ class ProjectsController < ApplicationController
           scope = scope.
             where(["projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(?, ?)) < 5",
               params[:latitude], params[:longitude]]).
-            order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END")
+            order( Arel.sql(
+              "CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END"
+            ) )
         else
           if params[:featured]
             scope = scope.joins(:site_featured_projects)
@@ -236,8 +238,8 @@ class ProjectsController < ApplicationController
         # properties that new-style projects would have, and sync the ES index
         if preview
           @project.convert_properties_for_collection_project
+          @project.wait_for_index_refresh = true
           @project.elastic_index!
-          Project.refresh_es_index
         end
         # if previewing, or the project is a new-style, fetch the API
         # response and render the React projects show page
@@ -342,7 +344,11 @@ class ProjectsController < ApplicationController
 
   def edit
     if @project.is_new_project?
-      projects_response = INatAPIService.project( @project.id, { rule_details: true, ttl: -1 } )
+      projects_response = INatAPIService.project( @project.id, {
+        rule_details: true,
+        ttl: -1,
+        authenticate: current_user
+      } )
       if projects_response.blank?
         flash[:error] = I18n.t( :doh_something_went_wrong )
         return redirect_to projects_path
@@ -367,10 +373,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project].merge(:user_id => current_user.id))
-
+    @project.wait_for_index_refresh = true
     respond_to do |format|
       if @project.save
-        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_created)) }
         format.json {
           render :json => @project.to_json
@@ -414,8 +419,14 @@ class ProjectsController < ApplicationController
       end
     end
     respond_to do |format|
-      if @project.update_attributes(params[:project])
-        Project.refresh_es_index
+      # Project uses accepts_nested_attributes which saves associates after the main record,
+      # potentially trigging a lot of indexing for things like ProjectUsers. So skip indexing the
+      # project until the entire save/update process is done
+      @project.skip_indexing = true
+      saved_successfully = @project.update(params[:project])
+      @project.wait_for_index_refresh = true
+      @project.elastic_index!
+      if saved_successfully
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
@@ -456,7 +467,6 @@ class ProjectsController < ApplicationController
         redirect_to(projects_url)
       end
       format.json do
-        Project.refresh_es_index
         head :ok
       end
     end
@@ -473,15 +483,23 @@ class ProjectsController < ApplicationController
   def by_login
     respond_to do |format|
       format.html do
-        @started = @selected_user.projects.order("id desc").limit(100)
-        @project_users = @selected_user.project_users.joins(:project, :user).
-          paginate(:page => params[:page]).order("lower(projects.title)")
-        @projects = @project_users.map{|pu| pu.project}
+        @started = @selected_user.projects.
+          paginate( page: params[:started_page], per_page: 7 ).order( Arel.sql( "lower( projects.title )" ) )
+        @project_users = @selected_user.project_users.joins( :project, :user ).
+          paginate( page: params[:main_page], per_page: 20 ).order( Arel.sql( "lower( projects.title )" ) )
+        @projects = @project_users.map{ |pu| pu.project }
+        render layout: "bootstrap"
       end
       format.json do
         @project_users = @selected_user.project_users.joins(:project).
-          includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
-          order("lower(projects.title)").
+          includes({
+            project: [
+              :project_list,
+              { project_observation_rules: :operand },
+              { project_observation_fields: :observation_field }
+            ]
+          }, :user).
+          order( Arel.sql( "lower(projects.title)" ) ).
           limit(1000)
         project_options = Project.default_json_options.update(
           :include => [
@@ -515,6 +533,7 @@ class ProjectsController < ApplicationController
         @admin = @project.user
         @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
         @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
+        render layout: "bootstrap"
       end
       format.json { render json: @project_users.as_json(:include => {user: User.default_json_options}) }
     end
@@ -683,7 +702,8 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    
+
+    @project.wait_for_index_refresh = true
     @project_user = @project.project_users.create((params[:project_user] || {}).merge(user: current_user))
     unless @observation
       if @project_user.valid?
@@ -707,11 +727,7 @@ class ProjectsController < ApplicationController
       return
     end
     
-    if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: @observation.id).first
-      @project_invitation.destroy
-    end
-    
-    respond_to_join(:dest => @observation, :notice => t(:youve_joined_the_x_project, :project_invitation => @project_invitation.project.title))
+    respond_to_join(:dest => @observation, :notice => t(:youve_joined_the_x_project, :project_invitation => @project.title))
   end
 
   def confirm_leave
@@ -760,6 +776,7 @@ class ProjectsController < ApplicationController
     elsif !params[:keep].yesish?
       Project.delay(:priority => USER_INTEGRITY_PRIORITY).delete_project_observations_on_leave_project(@project.id, @project_user.user.id)
     end
+    @project_user.project.wait_for_index_refresh = true
     @project_user.destroy
     
     respond_to do |format|
@@ -888,7 +905,7 @@ class ProjectsController < ApplicationController
           csv << @headers
           @data.each {|row| csv << row}
         end
-        render :text => csv_text
+        render :plain => csv_text
       end
     end
   end
@@ -907,8 +924,7 @@ class ProjectsController < ApplicationController
     @project_observation = ProjectObservation.create(
       project: @project,
       observation: @observation,
-      user: current_user,
-      wait_for_obs_index_refresh: true
+      user: current_user
     )
     
     unless @project_observation.valid?
@@ -975,7 +991,6 @@ class ProjectsController < ApplicationController
       end
       return
     end
-    @project_observation.wait_for_obs_index_refresh = true
     @project_observation.destroy
     respond_to do |format|
       format.html do
@@ -1002,10 +1017,6 @@ class ProjectsController < ApplicationController
         @project_observations << project_observation
       else
         @errors[observation.id] = project_observation.errors.full_messages
-      end
-      
-      if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
-        @project_invitation.destroy
       end
     end
     Observation.elastic_index!( ids: @observations.map( &:id ) )
@@ -1046,16 +1057,12 @@ class ProjectsController < ApplicationController
   end
 
   def search
-    if @site && (@site_place = @site.place)
-      @place = @site_place unless params[:everywhere].yesish?
-    end
     if @q = params[:q]
       response = INatAPIService.get(
         "/search",
         q: @q,
         page: params[:page],
         sources: "projects",
-        place_id: @place.try(:id),
         ttl: logged_in? ? "-1" : nil
       )
       projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
@@ -1121,20 +1128,19 @@ class ProjectsController < ApplicationController
       redirect_to @project
       return
     end
-    @project.update_attributes( user: new_admin )
+    @project.update( user: new_admin )
     redirect_back_or_default @project
   end
 
   def feature
     feature = SiteFeaturedProject.where(site: @site, project: @project).
       first_or_create(user: @current_user)
-    feature.update_attributes( user: @current_user )
+    feature.update( user: @current_user )
     if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
-      feature.update_attributes( noteworthy: false )
+      feature.update( noteworthy: false )
     elsif !feature.noteworthy && params[:noteworthy].yesish?
-      feature.update_attributes( noteworthy: true )
+      feature.update( noteworthy: true )
     end
-    Project.refresh_es_index
     render status: :ok, json: { }
   end
 
@@ -1142,7 +1148,6 @@ class ProjectsController < ApplicationController
     SiteFeaturedProject.where(
       site: @site, project: @project
     ).destroy_all
-    Project.refresh_es_index
     render status: :ok, json: { }
   end
 
@@ -1199,7 +1204,6 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        Project.refresh_es_index
         format.html do
           flash[:notice] = notice
           redirect_to dest

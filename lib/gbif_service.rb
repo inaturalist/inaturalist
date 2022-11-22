@@ -35,8 +35,8 @@ class GbifService
   end
 
   def self.url_for_request(method, params = {})
-    url = ENDPOINT + method + "?" + params.map{ |k,v| "#{ k }=#{ v }" }.join("&")
-    URI.parse(URI.encode(url))
+    url = ENDPOINT + method + "?" + URI.encode_www_form( params )
+    URI.parse(url)
   end
 
 end

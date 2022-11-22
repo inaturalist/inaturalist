@@ -1,8 +1,7 @@
 <% if @list.is_default? && @list.title.include?('Check List') %>
-    <% @list_title=truncate(t(:check_list_place, :place => t("places_name.#{@list.title.chomp(' Check List').gsub(' ','_').downcase}",
-                                                             :default => @list.title.split(' Check List').first)), :length => 85) %>
+    <% @list_title = display_list_title( @list ) %>
 <% else %>
-    <% @list_title=truncate(@list.title, :length => 85) %>
+    <% @list_title = truncate( @list.title, length: 85 ) %>
 <% end %>
 
 <%- content_for(:title) do -%>
@@ -20,7 +19,7 @@
   -%>
   <% if @representative_photo -%>
     <%-
-      og_description += " &mdash; Photo: #{@representative_photo.attribution}"
+      og_description += " - Photo: #{@representative_photo.attribution}"
       @shareable_image_url = @representative_photo.medium_url
     -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 
@@ -63,9 +62,7 @@
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to t( :back_to_x, noun: t( "places_name.#{@list.place.name.gsub(' ','_').downcase}", default: @list.place.name ) ),
-        place_path(@list.place),
-        class: "back crumb" %>
+      <%= link_to t( :back_to_x, noun: @list.place.translated_name ), place_path(@list.place), class: "back crumb" %>
     </span>
   </div>
     
@@ -89,7 +86,7 @@
     </div>
 
     <% if !@list.rules.empty? && (taxon = @list.rules.first.operand) && taxon.is_a?(Taxon) -%>
-      <div id="life_list_taxon" class="life_list_taxon description">
+      <div id="check_list_taxon" class="check_list_taxon description">
         <%= taxon_image(@list.rules.first.operand) %>
         <% if @list.comprehensive? -%>
           <%= t(:comprehensive_check_list_for_taxon_html,
@@ -184,19 +181,19 @@
     </div>
   <% end -%>
   
-  <div class="clear meta feeds">
-    <strong><%= t :download %></strong>
-    <%= link_to "CSV", list_path(@list, :format => 'csv'), 
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
-      :rel => "nofollow" %>
-      
-    <%= link_to t(:taxonomic) + " CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
-      :class => "delayedlink csvlink", 
-      "data-delayed-link-msg" => 
-        t(:wait_file_generation),
-      :rel => "nofollow" %>
-  </div>
+  <% if logged_in? %>
+    <div class="clear meta feeds">
+      <strong><%= t :download %></strong>
+      <%= link_to "CSV", list_path(@list, :format => 'csv'),
+        :class => "delayedlink csvlink",
+        "data-delayed-link-msg" => "Please hold on while the file is generated.  It can take a couple minutes for large lists.",
+        :rel => "nofollow" %>
+      <%= link_to t(:taxonomic) + " CSV", list_show_formatted_view_path(@list, :view_type => "taxonomic", :format => "csv"),
+        :class => "delayedlink csvlink", 
+        "data-delayed-link-msg" => t(:wait_file_generation),
+        :rel => "nofollow" %>
+    </div>
+  <% end %>
   <%= render :partial => "shared/flagging", :locals => { :instance => @list } %>
 </div>
 
@@ -275,11 +272,11 @@
               <br>
               <%= label :observed, :t do %>
                 <%= radio_button_tag :observed, :t, @observed == 't' %>
-                <%= t(:yes).downcase %>
+                <%= t(:yes) %>
               <% end -%>
               <%= label :observed, :f do %>
                 <%= radio_button_tag :observed, :f, @observed == 'f' %>
-                <%= t(:no).downcase %>
+                <%= t(:no) %>
               <% end -%>
               <%= label :observed, :any do %>
                 <%= radio_button_tag :observed, :any, @observed.blank? %>
@@ -291,7 +288,7 @@
               <br>
               <%= label :threatened, :t do %>
                 <%= radio_button_tag :threatened, :t, @threatened == 't' %>
-                <%= t(:yes).downcase %>
+                <%= t(:yes) %>
               <% end -%>
               <%= label :threatened, :any do %>
                 <%= radio_button_tag :threatened, :any, @threatened.blank? %>
@@ -303,15 +300,15 @@
               <br>
               <%= label :establishment_means, :endemic do %>
                 <%= radio_button_tag :establishment_means, :endemic, @establishment_means == 'endemic' %>
-                <%= t('establishment.endemic').downcase %>
+                <%= t('establishment.endemic') %>
               <% end -%>
               <%= label :establishment_means, :native do %>
                 <%= radio_button_tag :establishment_means, :native, @establishment_means == 'native' %>
-                <%= t('establishment.native').downcase %>
+                <%= t('establishment.native') %>
               <% end -%>
               <%= label :establishment_means, :introduced do %>
                 <%= radio_button_tag :establishment_means, :introduced, @establishment_means == 'introduced' %>
-                <%= t('establishment.introduced').downcase %>
+                <%= t('establishment.introduced') %>
               <% end -%>
               <%= label :establishment_means, :any do %>
                 <%= radio_button_tag :establishment_means, :any, @establishment_means.blank?%>
@@ -323,16 +320,16 @@
               <br>
               <%= label :occurrence_status, :not_absent do %>
                 <%= radio_button_tag :occurrence_status, :not_absent, @occurrence_status == 'not_absent' %>
-                <%= t(:present).downcase %>
+                <%= t(:present) %>
               <% end -%>
               <%= label :occurrence_status, :absent do %>
                 <%= radio_button_tag :occurrence_status, :absent, @occurrence_status == 'absent'%>
-                <%= t("occurrence_status_levels.absent").downcase %>
+                <%= t("occurrence_status_levels.absent") %>
               <% end -%>
               <%= label :occurrence_status, :any do %>
                 <%= radio_button_tag :occurrence_status, :any,
                       !@occurrence_status || @occurrence_status == 'any' %>
-                <%= t(:any).downcase %>
+                <%= t(:any) %>
               <% end -%>
             </div>
             <div class="field">
@@ -340,15 +337,15 @@
               <br>
               <%= label :rank, :species do %>
                 <%= radio_button_tag :rank, :species, @rank == "species"%>
-                <%= t( "ranks.species" ).downcase %>
+                <%= t( "ranks.species" ) %>
               <% end -%>
               <%= label :rank, :leaves do %>
                 <%= radio_button_tag :rank, :leaves, @rank == "leaves"%>
-                <%= t(:leaves).downcase %>
+                <%= t(:leaves) %>
               <% end -%>
               <%= label :rank, :all do %>
                 <%= radio_button_tag :rank, :all, @rank == 'all'%>
-                <%= t(:any).downcase %>
+                <%= t(:any) %>
               <% end -%>
             </div>
             <div class="field">
@@ -356,15 +353,15 @@
               <br>
               <%= label :taxonomic_status, :active do %>
                 <%= radio_button_tag :taxonomic_status, :active, @taxonomic_status == 'active'%>
-                <%= t(:active).downcase %>
+                <%= t(:active_taxon_status) %>
               <% end -%>
               <%= label :taxonomic_status, :inactive do %>
                 <%= radio_button_tag :taxonomic_status, :inactive, @taxonomic_status == 'inactive' %>
-                <%= t(:inactive).downcase %>
+                <%= t(:inactive_taxon_status) %>
               <% end -%>
               <%= label :taxonomic_status, :all do %>
                 <%= radio_button_tag :taxonomic_status, :all, @taxonomic_status == 'all'%>
-                <%= t(:any).downcase %>
+                <%= t(:any) %>
               <% end -%>
             </div>
             <%= submit_tag t(:filter), :class => 'default button', :data => {:disable_with => t(:processing3p)} %>
@@ -375,7 +372,7 @@
     
     <div id="other_check_lists_wrapper">
       <h3>
-        <%= link_to_toggle t(:check_lists_for, :place=>t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)), '#other_check_lists',
+        <%= link_to_toggle t(:check_lists_for, place: @place.translated_name ), '#other_check_lists',
           :id => 'otherlistslink', :class => 'closed' %>
       </h3>
       <div id="other_check_lists" style="display:none">
@@ -388,7 +385,7 @@
           <% end %>
         </ul>
 
-        <%= link_to t(:new_check_list_for, :place => t("places_name.#{@place.name.gsub(' ','_').downcase}", :default => @place.name)).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
+        <%= link_to t(:new_check_list_for, place: @place.translated_name ).html_safe, new_check_list_path(:place_id => @place), :style => 'font-weight: bold' %>
       </div>
     </div>
   </div><!-- /sidebar -->

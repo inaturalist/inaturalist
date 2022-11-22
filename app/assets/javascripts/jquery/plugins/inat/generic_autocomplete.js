@@ -8,7 +8,7 @@ var genericAutocomplete = { };
 $.widget( "ui.autocomplete", $.ui.autocomplete, {
   _create: function ( ) {
     this._super( );
-    this.widget( ).menu( "option", "items", "> :not(.category)" );
+    this.widget( ).menu( "option", "items", "> :not(.non-option)" );
   }
 } );
 
@@ -115,6 +115,9 @@ $.fn.genericAutocomplete = function ( acOptions ) {
     if ( options.extraClass ) {
       li.addClass( options.extraClass );
     }
+    li.find( "a[rel*='noopener']" ).click( function ( e ) {
+      e.stopPropagation( );
+    } );
     return li;
   };
 
@@ -194,9 +197,13 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   // unecessary resetSelection events, which end up firing afterUnselect even
   // when nothing has been unselected.
   field.keydown( function ( e ) {
-    if ( field.searchClear ) {
+    if ( field.searchClear && !options.resetOnChange === false ) {
       setTimeout( function ( ) {
-        field.val( ) ? $( field.searchClear ).show( ) : $( field.searchClear ).hide( );
+        if ( field.val( ) ) {
+          $( field.searchClear ).show( );
+        } else {
+          $( field.searchClear ).hide( );
+        }
       }, 1 );
     }
     if ( !options.react ) {
@@ -216,7 +223,7 @@ $.fn.genericAutocomplete = function ( acOptions ) {
         }
         return false;
       }
-      if ( field.val( ) && options.resetOnChange === false ) { return; }
+      if ( options.resetOnChange === false ) { return; }
       // keys like arrows, tab, shift, caps-lock, etc. won't change
       // the value of the field so we don't need to reset the selection
       var nonCharacters = [9, 16, 17, 18, 19, 20, 27, 33,
@@ -227,8 +234,10 @@ $.fn.genericAutocomplete = function ( acOptions ) {
   } );
   field.keyup( function ( e ) {
     if ( !field.val( ) ) {
-      field.trigger( "resetSelection" );
       ac._close( );
+      if ( options.resetOnChange !== false ) {
+        field.trigger( "resetSelection" );
+      }
     }
   } );
   // show the results anytime the text field gains focus

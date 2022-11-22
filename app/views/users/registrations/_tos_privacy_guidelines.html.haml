@@ -3,4 +3,6 @@
     -# TOS, Privacy, and Guideline review exists outside of builder as this information is not being audited
     = check_box_tag :tos_privacy_guidelines, 1, false, required: true
     %span
-      = raw t :tos_privacy_guidelines_label
+      - default_guidelines_url = "/pages/community+guidelines"
+      - guidelines_url = ( @site && @site.community_guidelines_url ) || default_guidelines_url
+      =raw t( :tos_privacy_guidelines_label ).sub( default_guidelines_url, guidelines_url )

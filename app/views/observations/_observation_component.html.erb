@@ -44,6 +44,7 @@ Some notes:
   elsif observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   end
+  coordinates_viewable ||= observation.coordinates_viewable_by?( current_user )
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>
@@ -107,11 +108,10 @@ Some notes:
   <div class="readable species_guess attribute">
     <h4 class="label"><%=t :what %></h4>
     <% if observation.taxon %>
-      <%= render :partial => 'shared/taxon', 
-                 :locals => {
-                    :taxon => observation.taxon,
-                    :link_url => obs_url,
-                    :include_parens => false} %>
+      <%= render "shared/taxon",
+        taxon: observation.taxon,
+        link_url: obs_url,
+        include_parens: true %>
     <% elsif !observation.species_guess.blank? %>
       <span class="taxon">
         <%= link_to observation.species_guess, obs_url %>
@@ -129,20 +129,21 @@ Some notes:
   </div>
   <div class="observed_on attribute">
     <h4 class="label"><%=t :observation_date %></h4>
-    <span class="date" title="<%= observation.observed_on ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
-      <%#= observation.observed_on ? observation.observed_on.strftime("%b. %e, %Y") : 'the past' %>
+    <span class="date" title="<%= observation.observed_on && coordinates_viewable ? observation.observed_on.strftime("%Y-%m-%d") : '' %>">
       <% if observation.observed_on -%>
         <%= link_to t("date_format.month.#{observation.observed_on.strftime('%B').downcase}").titleize,
           observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}") %>
-        <%= link_to observation.observed_on.day, 
-          observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
-        <%= link_to observation.observed_on.year, 
+        <% if coordinates_viewable %>
+          <%= link_to observation.observed_on.day,
+            observations_path( user_id: observation.user.login, on: "#{observation.observed_on.year}-#{observation.observed_on.month}-#{observation.observed_on.day}") %>,
+        <% end %>
+        <%= link_to observation.observed_on.year,
           observations_path( user_id: observation.user.login, on: observation.observed_on.year) %>
       <% else %>
         <%=t :missing_date %>
       <% end -%>
     </span>
-    <% if observation.time_observed_at %>
+    <% if observation.time_observed_at && coordinates_viewable %>
     <span class="time">
       <%= observation.time_observed_at.in_time_zone(observation.time_zone).strftime("%I:%M %p %Z")  %>
     </span>

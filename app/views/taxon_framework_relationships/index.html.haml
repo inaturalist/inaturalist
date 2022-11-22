@@ -1,9 +1,9 @@
 :ruby
   if @taxon
-    @taxon.html = render( partial: "taxa/chooser.html.erb", object: @taxon )
+    @taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: @taxon )
   end
   @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
-    taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
+    taxon.html = render( partial: "taxa/chooser", handlers: [:erb], formats: [:html], object: taxon )
     taxon
   end
   if @user
@@ -38,7 +38,7 @@
     $( document ).ready( function() {      
       $( "#filters_user_id" ).chooser( {
         queryParam: "q",
-        collectionUrl: "/people/search.json",
+        collectionUrl: $( "meta[name='config:inaturalist_api_url']" ).attr( "content" ) + "/search?sources=users",
         resourceUrl: "/people/{{id}}.json",
         chosen: user,
         defaultSources: defaultUsers
@@ -87,7 +87,7 @@
         = f.select :internal_rank, Taxon::RANKS, include_blank: t( :any ), selected: @internal_rank, label: t( :internal_taxon_rank )
         = f.select :external_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, include_blank: t( :any ), selected: @external_rank, label: t( :external_taxon_rank )
         = f.text_field :user_id, value: @user ? @user.id : nil, placeholder: t( :start_typing_someones_name ), label: t( :added_by )
-        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :either ), selected: @is_active, label: t( :active )
+        = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :any_ ), selected: @is_active, label: t( :active )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), taxon_framework_relationships_url, class: "minor button"
     .col-xs-9

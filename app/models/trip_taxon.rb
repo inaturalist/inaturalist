@@ -1,4 +1,4 @@
-class TripTaxon < ActiveRecord::Base
+class TripTaxon < ApplicationRecord
   belongs_to :trip, :inverse_of => :trip_taxa
   belongs_to :taxon
   validates_uniqueness_of :taxon_id, :scope => :trip_id

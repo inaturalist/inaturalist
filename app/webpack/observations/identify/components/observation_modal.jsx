@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
-import DiscussionListContainer from "../containers/discussion_list_container";
+import DiscussionList from "./discussion_list";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SuggestionsContainer from "../containers/suggestions_container";
@@ -21,6 +21,7 @@ import ObservationFieldsContainer from "../containers/observation_fields_contain
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
@@ -28,14 +29,24 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 import { annotationShortcuts } from "../keyboard_shortcuts";
 
-class ObservationModal extends React.Component {
-  constructor( props, context ) {
-    super( props, context );
-    this.state = {
-      brightnesses: {}
-    };
+const scrollSidebarToForm = dialog => {
+  const sidebar = $( dialog ).find( ".ObservationModal:first" ).find( ".sidebar" );
+  const form = $( dialog )
+    .find( ".IdentificationForm, .CommentForm" ).not( ".collapse" )[0];
+  if ( form ) {
+    if ( $( form ).hasClass( "IdentificationForm" ) ) {
+      $( ":input:visible:first", form ).focus( );
+    } else {
+      $( "textarea:visible:first", form ).focus( );
+    }
+    // Note that you need to scroll the element that can actually scroll.
+    // There are a lot of nested divs here, so make sure you're scrolling the
+    // right one
+    $( ".info-tab-content", sidebar ).scrollTo( form );
   }
+};
 
+class ObservationModal extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".IdentificationForm textarea,.CommentForm textarea", domNode ).textcompleteUsers( );
@@ -49,6 +60,7 @@ class ObservationModal extends React.Component {
       const that = this;
       setTimeout( ( ) => {
         const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
+        if ( typeof ( google ) === "undefined" ) { return; }
         google.maps.event.trigger( map, "resize" );
         if ( observation && observation.latitude ) {
           map.setCenter( new google.maps.LatLng(
@@ -58,6 +70,37 @@ class ObservationModal extends React.Component {
         }
       }, 500 );
     }
+    // This method fires *a lot* so we need to be very specific about when we
+    // want to focus on the pane to support keyboard scrolling
+    const updateShouldMakeDetailPaneScrollable = this.props.observation && (
+      // This covers first load
+      !prevProps.observation
+      // When moving between observations
+      || prevProps.observation.id !== this.props.observation.id
+      // When moving between tabs
+      || prevProps.tab !== this.props.tab
+    );
+    if ( ( this.props.identificationFormVisible
+        && prevProps.identificationFormVisible !== this.props.identificationFormVisible
+    ) || ( this.props.commentFormVisible
+        && prevProps.commentFormVisible !== this.props.commentFormVisible
+    ) ) {
+      // focus on the ID or Comment form first fields if either just became visible
+      scrollSidebarToForm( ReactDOM.findDOMNode( this ) );
+    } else if ( updateShouldMakeDetailPaneScrollable ) {
+      // Try to focus on a scrollable element to support vertical keyboard
+      // scrolling
+      const sidebar = $( ".ObservationModal:first" ).find( ".sidebar" );
+      const activeTab = $( ".inat-tab.active", sidebar );
+      // Sometimes the tab itself is not scrollable but a child of that tab is,
+      // which we indicate with tabindex="-1"
+      const scrollableTabChild = $( "[tabindex=-1]:first", activeTab );
+      if ( scrollableTabChild.length > 0 ) {
+        scrollableTabChild.focus( );
+      } else {
+        activeTab.focus( );
+      }
+    }
   }
 
   render( ) {
@@ -65,23 +108,32 @@ class ObservationModal extends React.Component {
       addComment,
       addIdentification,
       blind,
+      brightnesses,
       captiveByCurrentUser,
       chooseSuggestedTaxon,
       chooseTab,
       commentFormVisible,
       controlledTerms,
       currentUser,
+      decreaseBrightness,
       hidePrevNext,
       hideTools,
       identificationFormVisible,
       images,
       imagesCurrentIndex,
+      increaseBrightness,
       keyboardShortcutsShown,
       loadingDiscussionItem,
+      mapZoomLevel,
+      mapZoomLevelLocked,
       observation,
+      officialAppIds,
       onClose,
+      onMapZoomChanged,
+      resetBrightness,
       reviewedByCurrentUser,
       setImagesCurrentIndex,
+      setMapZoomLevelLocked,
       showNextObservation,
       showPrevObservation,
       tab,
@@ -90,12 +142,8 @@ class ObservationModal extends React.Component {
       toggleCaptive,
       toggleKeyboardShortcuts,
       toggleReviewed,
-      visible,
       updateCurrentUser,
-      mapZoomLevel,
-      onMapZoomChanged,
-      mapZoomLevelLocked,
-      setMapZoomLevelLocked
+      visible
     } = this.props;
     if ( !observation ) {
       return <div />;
@@ -118,6 +166,10 @@ class ObservationModal extends React.Component {
         "map_scale"
       ] );
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
+      if ( observation.private_geojson ) {
+        obsForMap.private_latitude = observation.private_geojson.coordinates[1];
+        obsForMap.private_longitude = observation.private_geojson.coordinates[0];
+      }
       const taxonLayer = {
         observationLayers: [
           {
@@ -143,30 +195,35 @@ class ObservationModal extends React.Component {
         taxonLayer.gbif = { disabled: true };
       }
       taxonMap = (
-        <TaxonMap
-          key={`map-for-${obsForMap.id}`}
-          reloadKey={`map-for-${obsForMap.id}`}
-          taxonLayers={[taxonLayer]}
-          observations={[obsForMap]}
-          clickable={!blind}
-          latitude={obsForMap.latitude}
-          longitude={obsForMap.longitude}
-          zoomLevel={
-            mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
-          }
-          onZoomChanged={onMapZoomChanged}
-          mapTypeControl
-          mapTypeControlOptions={{
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-            position: google.maps.ControlPosition.TOP_RIGHT
-          }}
-          showAccuracy
-          showAllLayer={false}
-          overlayMenu={false}
-          zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
-          currentUser={currentUser}
-          updateCurrentUser={updateCurrentUser}
-        />
+        <ErrorBoundary key="observation-modal-map">
+          <TaxonMap
+            key={`map-for-${obsForMap.id}`}
+            placement="obs-modal"
+            reloadKey={`map-for-${obsForMap.id}-${obsForMap.private_latitude ? "full" : ""}`}
+            taxonLayers={[taxonLayer]}
+            observations={[obsForMap]}
+            clickable={!blind}
+            latitude={obsForMap.latitude}
+            longitude={obsForMap.longitude}
+            zoomLevel={
+              mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
+            }
+            onZoomChanged={onMapZoomChanged}
+            mapTypeControl
+            mapTypeControlOptions={{
+              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_RIGHT
+            }}
+            showAccuracy
+            showAllLayer={false}
+            overlayMenu={false}
+            zoomControlOptions={{
+              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
+            }}
+            currentUser={currentUser}
+            updateCurrentUser={updateCurrentUser}
+          />
+        </ErrorBoundary>
       );
     } else if ( observation.obscured ) {
       taxonMap = (
@@ -185,13 +242,12 @@ class ObservationModal extends React.Component {
         </div>
       );
     }
-
     let photos = null;
     if ( images && images.length > 0 ) {
       const brightnessKey = `${observation.id}-${imagesCurrentIndex}`;
-      const { brightnesses } = this.state;
       const brightness = brightnesses[brightnessKey] || 1;
       const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
+      const currentImage = images[imagesCurrentIndex] || images[0];
       photos = (
         <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
@@ -211,7 +267,7 @@ class ObservationModal extends React.Component {
           <div className="photo-controls" role="toolbar">
             <div className="btn-group-vertical btn-group-xs" role="group">
               <a
-                href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+                href={currentImage.zoom || currentImage.original}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-default"
@@ -224,10 +280,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-adjust-brightness"
-                onClick={( ) => {
-                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={resetBrightness}
                 title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
               >
                 <i className="icon-adjust" />
@@ -235,17 +288,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-increase-brightness"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing + 0.2, 2 );
-                  if ( newBrightness > 3 ) {
-                    newBrightness = 3;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={increaseBrightness}
                 title={I18n.t( "increase_brightness" )}
               >
                 +
@@ -253,17 +296,7 @@ class ObservationModal extends React.Component {
               <button
                 type="button"
                 className="btn btn-default btn-decrease-brightness"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing - 0.2, 2 );
-                  if ( newBrightness < 0.2 ) {
-                    newBrightness = 0.2;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
+                onClick={decreaseBrightness}
                 title={I18n.t( "decrease_brightness" )}
               >
                 -
@@ -312,9 +345,11 @@ class ObservationModal extends React.Component {
         }
         if ( flagNotice ) {
           if (
-            currentUser.id === observation.user.id
-            || currentUser.roles.indexOf( "curator" ) >= 0
-            || currentUser.roles.indexOf( "admin" ) >= 0
+            observation.user && (
+              currentUser.id === observation.user.id
+              || currentUser.roles.indexOf( "curator" ) >= 0
+              || currentUser.roles.indexOf( "admin" ) >= 0
+            )
           ) {
             return (
               <div key={soundKey}>
@@ -337,19 +372,6 @@ class ObservationModal extends React.Component {
         </div>
       );
     }
-
-    const scrollSidebarToForm = form => {
-      const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      if ( $( form ).hasClass( "IdentificationForm" ) ) {
-        $( ":input:visible:first", form ).focus( );
-      } else {
-        $( "textarea:visible:first", form ).focus( );
-      }
-      // Note that you need to scroll the element that can actually scroll.
-      // There are a lot of nested divs here, so make sure you're scrolling the
-      // right one
-      $( ".info-tab-content", sidebar ).scrollTo( form );
-    };
 
     const qualityGrade = ( ) => {
       if ( observation.quality_grade === "research" ) {
@@ -375,7 +397,9 @@ class ObservationModal extends React.Component {
       { keys: ["SHIFT", "&rarr;"], label: I18n.t( "next_tab" ) },
       { keys: ["ALT/CMD", "&larr;"], label: I18n.t( "previous_photo" ) },
       { keys: ["ALT/CMD", "&rarr;"], label: I18n.t( "next_photo" ) },
-      { keys: ["?"], label: I18n.t( "show_keyboard_shortcuts" ) }
+      { keys: ["?"], label: I18n.t( "show_keyboard_shortcuts" ) },
+      { keys: ["ALT/CMD", "&uarr;"], label: I18n.t( "increase_brightness" ) },
+      { keys: ["ALT/CMD", "&darr;"], label: I18n.t( "decrease_brightness" ) }
     ];
 
     const defaultShortcutsBody = (
@@ -436,7 +460,9 @@ class ObservationModal extends React.Component {
     const country = _.find( observation.places || [], p => p.admin_level === 0 );
     let dateTimeObserved = I18n.t( "unknown" );
     if ( observation.observed_on ) {
-      if ( observation.time_observed_at ) {
+      if ( observation.obscured && !observation.private_geojson ) {
+        dateTimeObserved = moment( observation.observed_on ).format( I18n.t( "momentjs.month_year" ) );
+      } else if ( observation.time_observed_at ) {
         dateTimeObserved = formattedDateTimeInTimeZone(
           observation.time_observed_at, observation.observed_time_zone
         );
@@ -454,12 +480,12 @@ class ObservationModal extends React.Component {
       >
         <div className="nav-buttons">
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "previous" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
+            <Button alt={I18n.t( "previous_observation" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
               &lsaquo;
             </Button>
           ) }
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "next" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
+            <Button alt={I18n.t( "next_observation" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
               &rsaquo;
             </Button>
           ) }
@@ -562,7 +588,7 @@ class ObservationModal extends React.Component {
                   </Overlay>
                 </div>
                 <div className="action-tools">
-                  { blind ? null : <div className="btn"><FavesContainer /></div> }
+                  { blind ? null : <div className="btn btn-checkbox"><FavesContainer /></div> }
                   <OverlayTrigger
                     placement="top"
                     trigger={["hover", "focus"]}
@@ -645,13 +671,13 @@ class ObservationModal extends React.Component {
             <div className="sidebar">
               { activeTabs.indexOf( "info" ) < 0 ? null : (
                 <div className={`inat-tab info-tab ${activeTab === "info" ? "active" : ""}`}>
-                  <div className="info-tab-content">
+                  <div className="info-tab-content" tabIndex="-1">
                     <div className="info-tab-inner">
                       <div className="map-and-details">
                         { taxonMap }
                         <div className="details">
                           <ul>
-                            { blind ? null : (
+                            { !blind && observation && observation.user && (
                               <li className="user-obs-count">
                                 <a
                                   href={`/people/${observation.user.login}`}
@@ -663,27 +689,35 @@ class ObservationModal extends React.Component {
                                   { " " }
                                   <span className="login">{ observation.user.login }</span>
                                 </a>
-                                <span className="separator">&bull;</span>
-                                <a
-                                  href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <i className="fa fa-binoculars" />
-                                  { " " }
-                                  {
-                                    I18n.toNumber(
-                                      observation.user.observations_count,
-                                      { precision: 0 }
-                                    )
-                                  }
-                                </a>
+                                { !( observation.obscured && !observation.private_geojson ) && (
+                                  <span>
+                                    <span className="separator">&bull;</span>
+                                    <a
+                                      href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      <i className="fa fa-binoculars" />
+                                      { " " }
+                                      {
+                                        I18n.toNumber(
+                                          observation.user.observations_count,
+                                          { precision: 0 }
+                                        )
+                                      }
+                                    </a>
+                                  </span>
+                                ) }
                               </li>
                             ) }
                             <li>
                               <i className="fa fa-calendar bullet-icon" />
                               { " " }
                               { dateTimeObserved }
+                              { observation.observed_on
+                                && observation.obscured
+                                && !observation.private_geojson
+                                && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
                             </li>
                             <li>
                               <i className="fa fa-map-marker bullet-icon" />
@@ -705,6 +739,24 @@ class ObservationModal extends React.Component {
                                 I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
                               ) : I18n.t( "somewhere_on_earth" ) }
                             </li>
+                            { observation.application && observation.application.name && (
+                              <li>
+                                <a href={observation.application.url}>
+                                  { officialAppIds.includes( observation.application.id ) ? (
+                                    <img
+                                      className="app-thumbnail"
+                                      src={observation.application.icon}
+                                      alt={observation.application.name}
+                                    />
+                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
+                                  }
+                                  <span className="name">
+                                    { observation.application.name }
+                                  </span>
+                                </a>
+                              </li>
+                            )
+                            }
                             { blind ? null : (
                               <li className="view-follow">
                                 <a
@@ -716,7 +768,7 @@ class ObservationModal extends React.Component {
                                   <i className="icon-link-external bullet-icon" />
                                   { I18n.t( "view" ) }
                                 </a>
-                                { observation.user.id === currentUser.id ? null : (
+                                { observation.user && observation.user.id === currentUser.id ? null : (
                                   <div style={{ display: "inline-block" }}>
                                     <span className="separator">&bull;</span>
                                     <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
@@ -746,7 +798,7 @@ class ObservationModal extends React.Component {
                           className="observation-description"
                         />
                       ) }
-                      <DiscussionListContainer observation={observation} />
+                      <DiscussionList observation={observation} currentUserID={currentUser.id} />
                       <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                         <div className="big loading_spinner" />
                       </center>
@@ -754,35 +806,11 @@ class ObservationModal extends React.Component {
                         key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && commentFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".IdentificationForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                       <IdentificationFormContainer
                         key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={elt => {
-                          const domNode = ReactDOM.findDOMNode( elt );
-                          if ( domNode && identificationFormVisible ) {
-                            scrollSidebarToForm( domNode );
-                            if (
-                              $( "textarea", domNode ).val() === ""
-                              && $( ".CommentForm textarea" ).val() !== ""
-                            ) {
-                              $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                            }
-                          }
-                        }}
                       />
                     </div>
                   </div>
@@ -810,7 +838,7 @@ class ObservationModal extends React.Component {
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
-                <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`}>
+                <div className={`inat-tab annotations-tab ${activeTab === "annotations" ? "active" : ""}`} tabIndex="-1">
                   <div className="column-header">{ I18n.t( "annotations" ) }</div>
                   <AnnotationsContainer />
                   <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
@@ -818,7 +846,7 @@ class ObservationModal extends React.Component {
                 </div>
               ) }
               { activeTabs.indexOf( "data-quality" ) < 0 ? null : (
-                <div className={`inat-tab data-quality-tab ${activeTab === "data-quality" ? "active" : ""}`}>
+                <div className={`inat-tab data-quality-tab ${activeTab === "data-quality" ? "active" : ""}`} tabIndex="-1">
                   <QualityMetricsContainer />
                 </div>
               ) }
@@ -834,21 +862,25 @@ ObservationModal.propTypes = {
   addComment: PropTypes.func,
   addIdentification: PropTypes.func,
   blind: PropTypes.bool,
+  brightnesses: PropTypes.object,
   captiveByCurrentUser: PropTypes.bool,
   chooseSuggestedTaxon: PropTypes.func,
   chooseTab: PropTypes.func,
   commentFormVisible: PropTypes.bool,
   controlledTerms: PropTypes.array,
   currentUser: PropTypes.object,
+  decreaseBrightness: PropTypes.func,
   hidePrevNext: PropTypes.bool,
   hideTools: PropTypes.bool,
   identificationFormVisible: PropTypes.bool,
   images: PropTypes.array,
   imagesCurrentIndex: PropTypes.number,
+  increaseBrightness: PropTypes.func,
   keyboardShortcutsShown: PropTypes.bool,
   loadingDiscussionItem: PropTypes.bool,
   observation: PropTypes.object,
   onClose: PropTypes.func.isRequired,
+  resetBrightness: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
   setImagesCurrentIndex: PropTypes.func,
   showNextObservation: PropTypes.func,
@@ -868,6 +900,7 @@ ObservationModal.propTypes = {
 };
 
 ObservationModal.defaultProps = {
+  brightnesses: {},
   controlledTerms: [],
   imagesCurrentIndex: 0,
   tabs: TABS,

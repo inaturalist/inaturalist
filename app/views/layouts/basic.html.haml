@@ -9,14 +9,12 @@
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
     - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
+    = render "shared/i18n"
+    = javascript_include_tag "i18n_bundle"
     = yield :extrahead
   %body
     = content_for?(:content) ? yield(:content) : yield
     %script{ type: "text/javascript" }
-      if( I18n === undefined ) { var I18n = { }; }
-      I18n.defaultLocale = "en";
-      I18n.locale = "#{ I18n.locale }";
-      I18n.fallbacks = true;
       - site_place = @site && @site.place
       - user_place = current_user && current_user.place
       var PREFERRED_PLACE;
@@ -31,6 +29,8 @@
           login: "#{ current_user.login }",             |
           prefers_scientific_name_first: #{ current_user.prefers_scientific_name_first }, |
           preferred_observations_search_map_type: "#{ current_user.preferred_observations_search_map_type }", |
+          prefers_not_nearby_suggestions: #{!!session[:prefers_not_nearby_suggestions]}, |
+          roles: #{current_user.roles.map(&:name).to_json.html_safe}, |
           icon: "#{ current_user.icon.url(:thumb) }" }; |
       var TIMEZONE = "#{ Time.zone.tzinfo.name }";
       var SITE = #{ @site.to_json(                      |
@@ -38,5 +38,9 @@
         methods: [ :logo ],                             |
         include: { place: { only: [ :id, :name ] } }    |
       ).html_safe };                                    |
+      var CONTROLLER_ACTION = "#{controller.class.to_s}::#{action_name}";
+      var CONFIG = { |
+        content_freeze_enabled: #{ !!CONFIG.content_freeze_enabled } |
+      }; |
     - if content_for?(:delayed_js)
       = yield(:delayed_js)

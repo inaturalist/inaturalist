@@ -187,17 +187,33 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
-    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 0 ) >= 0 );
+    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 10 ) >= 0 );
     let title = I18n.t( "no_suggestions_available" );
     if ( loading ) {
       title = I18n.t( "suggestions" );
     } else if ( response.results.length > 0 ) {
       title = I18n.t( "x_suggestions_filtered_by_colon", { count: response.results.length } );
     }
+    const sources = [
+      "observations",
+      "rg_observations",
+      "captive_observations",
+      "checklist"
+    ];
+    if ( query && query.taxon && query.taxon.rank_level <= 20 ) {
+      sources.push( "misidentifications" );
+    }
+    if (
+      observation
+      && observation.observation_photos
+      && observation.observation_photos.length > 0
+    ) {
+      sources.push( "visual" );
+    }
     return (
       <div className="Suggestions">
-        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
-          <div className="suggestions-list">
+        <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : ""}`}>
+          <div className="suggestions-list" tabIndex="-1">
             <div className="suggestions-inner">
               <ChooserPopover
                 id="suggestions-sort-chooser"
@@ -205,17 +221,17 @@ class Suggestions extends React.Component {
                 className="pull-right"
                 container={$( ".ObservationModal" ).get( 0 )}
                 chosen={query.order_by}
-                choices={["default", "taxonomy"]}
-                choiceLabels={{ default: "default_" }}
+                choices={["default", "taxonomy", "sciname"]}
+                choiceLabels={{ default: "default_", sciname: "scientific_name" }}
                 defaultChoice="default"
                 preIconClass={false}
                 postIconClass="fa fa-angle-down"
                 hideClear
                 setChoice={orderBy => {
-                  setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
+                  setQuery( { ...query, order_by: orderBy } );
                 }}
                 clearChoice={( ) => {
-                  setQuery( Object.assign( { }, query, { order_by: null } ) );
+                  setQuery( { ...query, order_by: null } );
                 }}
               />
               <div className="column-header">
@@ -227,14 +243,7 @@ class Suggestions extends React.Component {
                   label={I18n.t( "source" )}
                   container={$( ".ObservationModal" ).get( 0 )}
                   chosen={query.source}
-                  choices={[
-                    "observations",
-                    "rg_observations",
-                    "captive_observations",
-                    "checklist",
-                    "misidentifications",
-                    "visual"
-                  ]}
+                  choices={sources}
                   choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
                   preIconClass={false}
@@ -266,6 +275,7 @@ class Suggestions extends React.Component {
                 { query.source === "visual" ? null : (
                   <PlaceChooserPopover
                     container={$( ".ObservationModal" ).get( 0 )}
+                    config={config}
                     label={I18n.t( "place" )}
                     place={query.place}
                     withBoundaries
@@ -299,7 +309,7 @@ class Suggestions extends React.Component {
                   >
                     { comprehensiveList.title }
                     { " " }
-                    { comprehensiveList.source && (
+                    { comprehensiveList.source && comprehensiveList.source.in_text && (
                       <span
                         dangerouslySetInnerHTML={{
                           __html: `(${
@@ -319,7 +329,7 @@ class Suggestions extends React.Component {
                   key={`suggestion-row-${r.taxon.id}`}
                   taxon={r.taxon}
                   observation={observation}
-                  details={r.sourceDetails}
+                  details={r.source_details}
                   chooseTaxon={chooseTaxon}
                   source={query.source}
                   config={config}
@@ -357,14 +367,14 @@ class Suggestions extends React.Component {
                   >
                     <i className="fa fa-chevron-circle-left" />
                     { " " }
-                    { I18n.t( "prev" ) }
+                    { I18n.t( "previous_taxon_short" ) }
                   </Button>
                   <Button
                     disabled={nextTaxon === null}
                     onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) }
+                    { I18n.t( "next_taxon_short" ) }
                     { " " }
                     <i className="fa fa-chevron-circle-right" />
                   </Button>
@@ -392,6 +402,7 @@ class Suggestions extends React.Component {
                   }
                   <h4>{ I18n.t( "observations_map" ) }</h4>
                   <TaxonMap
+                    placement="suggestion-detail"
                     showAllLayer={false}
                     minZoom={2}
                     gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}

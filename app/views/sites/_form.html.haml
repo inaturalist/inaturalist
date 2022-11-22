@@ -1,12 +1,12 @@
 - content_for :extracss do
-  :css
-    .edit_site textarea {height: 300px;}
-    .edit_site legend {padding-bottom: 10px;}
-    .edit_site .row {margin-bottom: 20px;}
+  = stylesheet_link_tag :sites
 :ruby
   pref_descriptions = {
+    google_analytics_tracker_id: "Google Analytics tracker ID if you want to track use of your site with your own Google Analytics account. This must just be the ID, e.g. G-12A3BC45DE, not a block of HTML.",
     google_webmaster_dns_verification: "Enter this value as a TXT record in your DNS settings (see <a href='https://support.google.com/a/topic/1409901'>Google's instructions</a>) and then contact iNaturalist staff when you have done so to enable Google sign in and related Google integrations on your site. If you do not have a custom domain (e.g. if your URL looks like <code>*.inaturalist.org</code>) then you don't have to worry about this.".html_safe,
-    google_webmaster_dns_verified: "Whether or not this site's domain has been verified as an iNaturalist domain by Google. Staff: check this after the partner's DNS records have been updated but before re-submitting our OAuth consent screen to Google so Google reviewers will be able to see the sign in button on the partner site.".html_safe
+    google_webmaster_dns_verified: "Whether or not this site's domain has been verified as an iNaturalist domain by Google. Staff: check this after the partner's DNS records have been updated but before re-submitting our OAuth consent screen to Google so Google reviewers will be able to see the sign in button on the partner site.".html_safe,
+    twitter_sign_in: "This will show Twitter as a log in option. Twitter supports log in for 10 URLs per client, and we've used them all. To see which URLs we're using, check out iNat's Twitter developer settings.".html_safe,
+    affiliated_organizations: "Brief listing of organizations supporting this iNaturalist Network partner in HTML"
   }
 = form_for @record, :builder => BootstrapFormBuilder do |f|
   - if @record.errors.any?
@@ -59,6 +59,37 @@
     .row
       .col-md-12
         = f.text_area :homepage_data
+        = link_to_toggle_box "About homepage data" do
+          %p
+            JSON to populate the observation carousel and testimonials on the home
+            page. Should look something like this (note that arrays can have
+            multiple items even though this example only has one item per array):
+          %pre
+            :plain
+              {
+                "observations": [
+                  {
+                    "id": 1234,
+                    "image_url": "https://url.of/some-image.jpg",
+                    "place_guess": "Place where observation was made",
+                    "user": {
+                      "login": "observers-username",
+                      "name": "Observer's Full Name",
+                      "user_icon_url": "https://url.of/some-image.jpg"
+                    }
+                  }
+                ],
+                "testimonials": [
+                  {
+                    "body": "What the person had to say about iNat",
+                    "name": "Name of the person who provided the testimonial",
+                    "role": "Title or position of the person",
+                    "location": "Place the person is from",
+                    "image_url": "https://url.of/some-image-showing-what-the-person-looks-like.jpg",
+                    "url": "https://www.inaturalist.org/people/persons-username"
+                  }
+                ]
+              }
     .row
       .col-md-12
         = f.text_area :coordinate_systems_json
@@ -72,18 +103,24 @@
             .col-md-4
               - if pref.name == "site_observations_filter"
                 = f.select "preferred_#{pref.name}", Site::OBSERVATIONS_FILTERS, label: pref.name.humanize, class: "col-md-4", disabled: disabled, description: pref_descriptions[pref.name.to_sym]
-              - elsif pref.type == :boolean
+              - elsif pref.type.is_a?( ActiveRecord::Type::Boolean )
                 = f.check_box "preferred_#{pref.name}", label_after: true, label: pref.name.humanize, disabled: disabled, description: pref_descriptions[pref.name.to_sym]
-              - elsif pref.type == :text
+              - elsif pref.type.is_a?( ActiveRecord::Type::Text )
                 = f.text_area "preferred_#{pref.name}", label: pref.name.humanize, class: "col-md-4", disabled: disabled, description: pref_descriptions[pref.name.to_sym]
               - else
                 = f.text_field "preferred_#{pref.name}", label: pref.name.humanize, class: "col-md-4", disabled: disabled, description: pref_descriptions[pref.name.to_sym]
       - if grp == 'geo'
         .row
-          .col-md-6
+          .col-md-12
             = f.text_field :place_id, description: "Primary place the site is associated with, generally the place used for default searches etc."
-          .col-md-6
-            = f.text_field :extra_place_id, description: "An additional place used for data export"
+          .col-md-12
+            .inlabel
+              %label Extra Places for Exports
+          = f.fields_for :export_places_sites do |eps|
+            = render "export_places_site_fields", f: eps
+          .col-md-12
+            = link_to_add_association "Add an extra place", f, :export_places_sites, class: "btn btn-success btn-sm"
+
   .row
     .col-md-12
       = f.submit t(:save), :class => 'btn btn-primary'

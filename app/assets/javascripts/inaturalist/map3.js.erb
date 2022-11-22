@@ -10,7 +10,10 @@
  */
 
 // requires GoogleMap classes
-if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') throw "The Google Maps libraries must be loaded to use the iNaturalist Map extensions.";
+if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
+  console.log( "The Google Maps libraries must be loaded to use the iNaturalist Map extensions." );
+  return;
+}
 
 var deselectText = function() {
   if (window.getSelection) {
@@ -127,6 +130,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
     };
     if( observation.coordinates_obscured ) {
       shape = markerObscuredRectangle( marker, shapeOptions );
+      this.observationRectangles[observation.id] = shape;
     } else {
       var accuracy = parseInt( observation.positional_accuracy ) || 0;
       if( accuracy == 0 ) return
@@ -134,7 +138,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
         center: marker.getPosition( ),
         radius: accuracy
       }));
-      observation._circle = shape;
+      this.observationCircles[observation.id] = shape;
     }
     var listener = function() {
       var mapBounds = this.getBounds(),
@@ -157,6 +161,16 @@ google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
   if (this.observations[observation.id]) {
     this.observations[observation.id].setMap(null)
+  }
+  if ( this.observationCircles[observation.id] ) {
+    this.observationCircles[observation.id].unbindAll( );
+    this.observationCircles[observation.id].setMap( null );
+    delete this.observationCircles[observation.id];
+  }
+  if ( this.observationRectangles[observation.id] ) {
+    this.observationRectangles[observation.id].unbindAll( );
+    this.observationRectangles[observation.id].setMap( null );
+    delete this.observationRectangles[observation.id];
   }
   delete this.observations[observation.id];
 };
@@ -399,25 +413,35 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
+  zoom: 1,
+  mapTypeId: google.maps.MapTypeId.TERRAIN,
+  streetViewControl: false,
+  rotateControl: false,
+  backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
+  clickableIcons: false,
+  gestureHandling: "greedy",
+  controlSize: 26,
+  scaleControl: true,
+  tilt: 0
+};
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
-  options = $.extend({}, {
-    div: 'map',
-    center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
-    zoom: 1,
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
-    streetViewControl: false,
-    rotateControl: false,
-    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
-    clickableIcons: false,
-    gestureHandling: "greedy",
-    controlSize: 26,
-    tilt: 0
-  }, options);
+  var placement = options.placement;
+  delete options.placement;
+  options = $.extend(
+    {
+      div: "map",
+      center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
+    },
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
+    options
+  );
   
   var map;
-  
+  iNaturalist.log( { "map-placement": placement || "unknown" } );
   if (typeof options.div == 'string') {
     map = new google.maps.Map(document.getElementById(options.div), options);
   }
@@ -435,6 +459,8 @@ iNaturalist.Map.createMap = function(options) {
   // storage for marker objects indexed by their corresponding
   // observation_id's
   map.observations = {};
+  map.observationCircles = {};
+  map.observationRectangles = {};
   map.places = {};
       
   // used when creating observations from the map
@@ -646,12 +672,12 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>",
               "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
-    label: [ I18n.t( "needs_id" ), I18n.t( "casual" ) ].join( ", " ),
+    label: [ I18n.t( "needs_id_" ), I18n.t( "casual_" ) ].join( ", " ),
     classes: "last" }));
   ul1.append( $( "<li class='header'>" + I18n.t( "geoprivacy" ) +"</li>") );
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm.png') %>" ],
-    label: I18n.t( "open" ) }));
+    label: I18n.t( "open_" ) }));
   ul1.append( iNaturalist.legendItem({
     images: [ "<%= asset_path('map_legend/legend_lg_mm_circle.png') %>" ],
     label: I18n.t( "obscured" ),
@@ -737,8 +763,14 @@ iNaturalist.OverlayControl = function(map, options) {
   return this;
 }
 
+iNaturalist.OverlayControl.safeTitle = function( title ) {
+  if ( !title ) return title;
+  return title.replace( /\'/, "&#39;" ).replace( /\"/, "&quot;" );
+}
+
 iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
-  $("li[data-title='"+title+"']", this.div).remove()
+  var selector = "li[data-title='" + iNaturalist.OverlayControl.safeTitle( title ) + "']";
+  $( selector, this.div ).remove()
 }
 
 iNaturalist.OverlayControl.prototype.removeAll = function( ) {
@@ -755,7 +787,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
-      title = options.title || "Layer",
+      title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
       id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),
@@ -790,10 +822,10 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     );
   }
   li.append( legendLeft, legendRight );
-  if( options.endpoint === "gbif" && options.gbif_id ) {
-     label.append(
-       " <a href='http://www.gbif.org/species/" + options.gbif_id + "' target='_blank'><i class='icon-link' /></a>"
-     );
+  if ( options.link ) {
+    label.append(
+      " <a href='" + options.link + "' target='_blank'><i class='icon-link' /></a>"
+    );
   }
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
@@ -1140,6 +1172,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "acc",
     "acc_above",
     "acc_below",
+    "acc_below_or_unknown",
     "apply_project_rules_for",
     "border_opacity",
     "cache",
@@ -1159,6 +1192,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "has",
     "has",
     "hrank",
+    "id",
     "id_above",
     "iconic_taxa",
     "iconic_taxa",
@@ -1360,20 +1394,31 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
         if (o.e.type == 'click') {
           // if a native infoWindow was just opened, don't let another one open
           if( infoWindowOpenTime && new Date( ) - infoWindowOpenTime < 500 ) {
+            // console.log( "[DEBUG] skipping duplicate infowindow" );
             return false;
           }
           // this is ugly but works, until Google maps changes and breaks it.
-          // The main map div contains a div with z-index:0 that sets the cursor.
-          // The third element in that div (with z-index: 3) is the lowest level
-          // element that will capture any mouse events from the user.
-          // The main goal here is to only respond to clicks on the map and only
-          // on the map, and nothing that might be shown over the map, like
-          // another infowindow or other Google Maps, or custom map, UI.
-          // needs to be asynchronous so the selector resolves
+          // The main map div contains a div with z-index:0 that sets the
+          // cursor. A child of that div (generally with z-index: 3) is the
+          // lowest level element that will capture any mouse events from the
+          // user. The main goal here is to only respond to clicks on the map
+          // and only on the map, and nothing that might be shown over the
+          // map, like another infowindow or other Google Maps, or custom
+          // map, UI. needs to be asynchronous so the selector resolves. This
+          // will almost certainly break when Google changes things
+          // (symptom will be map markers that don't respond to clicks). When
+          // that happens, find the element that was clicked and look at its
+          // parents until you find a div that contains the map markers but
+          // not things like infowindows
           var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
-          var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
-          if( !$.contains( googleMapInteractionsDiv, o.e.target ) &&
-            !$( googleMapInteractionsDiv ).is( o.e.target ) ) { return false; }
+          var googleMapInteractionsDiv = $(googleMainMapDiv).find( "div[style*='z-index: 3']");
+          if(
+            !$.contains( googleMapInteractionsDiv, o.e.target ) &&
+            !$( googleMapInteractionsDiv ).is( o.e.target )
+          ) {
+            // console.log( "[DEBUG] googleMapInteractionsDiv does not contain click target: ", o.e.target );
+            return false;
+          }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room

@@ -14,8 +14,8 @@
       iNaturalist Taxonomy
     </title>
 
-    <%= render "observations/gbif_eml_agent.eml.erb", tag: "creator", data: @creator %>
-    <%= render "observations/gbif_eml_agent.eml.erb", tag: "metadataProvider", data: @metadata_provider %>
+    <%= render "observations/gbif_eml_agent", handlers: [:erb], formats: [:eml], tag: "creator", data: @creator %>
+    <%= render "observations/gbif_eml_agent", handlers: [:erb], formats: [:eml], tag: "metadataProvider", data: @metadata_provider %>
 
     <pubDate><%= Date.today.to_s %></pubDate>
 
@@ -30,8 +30,8 @@
       <para>
         <% if @license %>
         This archive is licensed under a
-        <ulink url=<%=raw FakeView.url_for_license( @license ).encode( xml: :attr ) %>>
-          <citetitle><%= FakeView.license_name( @license ) %></citetitle>
+        <ulink url=<%=raw url_for_license( @license ).encode( xml: :attr ) %>>
+          <citetitle><%= license_name( @license ) %></citetitle>
         </ulink>.
         <% end %>
         Taxonomic information should not represent creative work and thus may not be subject to intellectual property restrictions in many jurisdictions.
@@ -91,7 +91,7 @@
       </maintenance>
     <% end %>
 
-    <%= render "observations/gbif_eml_agent.eml.erb", tag: "contact", data: @contact %>
+    <%= render "observations/gbif_eml_agent", handlers: [:erb], formats: [:eml], tag: "contact", data: @contact %>
 
     <methods>
       <qualityControl>
@@ -114,7 +114,7 @@
         <!-- level to which the metadata document applies; default for GBIF is "dataset";  "series" is the other common level -->
         <hierarchyLevel> dataset </hierarchyLevel>
         <!-- URL of the logo associated with a resource -->
-        <resourceLogoUrl><%= FakeView.asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
+        <resourceLogoUrl><%= asset_url( Site.default.logo.url, host: Site.default.url ) %></resourceLogoUrl>
       </gbif>
     </metadata>
   </additionalMetadata>

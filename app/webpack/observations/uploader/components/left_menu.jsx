@@ -1,5 +1,5 @@
 import _ from "lodash";
-import moment from "moment-timezone";
+import moment from "moment";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -14,7 +14,8 @@ import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
-import util from "../models/util";
+import util, { parsableDatetimeFormat } from "../models/util";
+import TimeShifter from "./time_shifter";
 
 class LeftMenu extends SelectionBasedComponent {
   static formPanel( key, title, glyph, contents, contentCount ) {
@@ -58,6 +59,7 @@ class LeftMenu extends SelectionBasedComponent {
     this.details = this.details.bind( this );
     // this.formPanel = this.formPanel.bind( this );
     this.openLocationChooser = this.openLocationChooser.bind( this );
+    this.timeShifter = this.timeShifter.bind( this );
   }
 
   shouldComponentUpdate( nextProps ) {
@@ -102,7 +104,7 @@ class LeftMenu extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option>
     );
     const invalidDate = util.dateInvalid( commonDate );
-    const inputFormat = "YYYY/MM/DD h:mm A z";
+    const inputFormat = parsableDatetimeFormat( );
     return (
       <div>
         <TaxonAutocomplete
@@ -143,7 +145,6 @@ class LeftMenu extends SelectionBasedComponent {
           inputFormat={inputFormat}
           key={`multidate${commonDate}`}
           reactKey={`multidate${commonDate}`}
-          timeZone={config.currentUser.time_zone || moment.tz.guess()}
           dateTime={commonDate
             ? moment( commonDate, inputFormat ).format( "x" )
             : undefined
@@ -242,6 +243,25 @@ class LeftMenu extends SelectionBasedComponent {
     );
   }
 
+  timeShifter( ) {
+    const { commonDate, inputFormat, updateSelectedObsCards } = this.props;
+    return (
+      <TimeShifter
+        dateTime={commonDate
+          ? moment( commonDate, inputFormat ).format( "x" )
+          : undefined
+        }
+        inputFormat={inputFormat}
+        onChange={dateString => updateSelectedObsCards( {
+          date: dateString,
+          selected_date: dateString
+        } )}
+        selectedObsCards={this.props.selectedObsCards}
+        updateObsCard={this.props.updateObsCard}
+      />
+    );
+  }
+
   render( ) {
     const count = _.keys( this.props.selectedObsCards ).length;
     let menu;
@@ -279,6 +299,7 @@ class LeftMenu extends SelectionBasedComponent {
               <ProjectsChooser {...this.props} /> ), projectsContent ) }
             { LeftMenu.formPanel( "4", I18n.t( "fields_" ), "th-list", (
               <ObservationFieldsChooser {...this.props} /> ), fieldsContent ) }
+            { LeftMenu.formPanel( "5", I18n.t( "offset_time" ), "time", this.timeShifter( ) )}
           </PanelGroup>
         </div>
       );
@@ -299,7 +320,8 @@ LeftMenu.propTypes = {
   removeFromSelectedObsCards: PropTypes.func,
   setState: PropTypes.func,
   reactKey: PropTypes.string,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateObsCard: PropTypes.func
 };
 
 export default LeftMenu;

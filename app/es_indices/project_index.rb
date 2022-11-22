@@ -1,4 +1,4 @@
-class Project < ActiveRecord::Base
+class Project < ApplicationRecord
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 500
@@ -23,8 +23,8 @@ class Project < ActiveRecord::Base
         indexes :role, type: "keyword", index: false
         indexes :user_id, type: "integer", index: false
       end
-      indexes :ancestor_place_ids, type: "integer"
-      indexes :associated_place_ids, type: "integer"
+      indexes :ancestor_place_ids, type: "keyword"
+      indexes :associated_place_ids, type: "keyword"
       indexes :banner_color, type: "keyword", index: false
       indexes :created_at, type: "date"
       indexes :description, analyzer: "ascii_snowball_analyzer"
@@ -45,12 +45,14 @@ class Project < ActiveRecord::Base
       indexes :hide_title, type: "boolean", index: false
       indexes :icon, type: "keyword", index: false
       indexes :icon_file_name, type: "keyword", index: false
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :last_post_at, type: "date"
       indexes :location, type: "geo_point"
       indexes :observations_count, type: "integer"
-      indexes :place_id, type: "integer"
-      indexes :place_ids, type: "integer"
+      indexes :place_id, type: "keyword"
+      indexes :place_ids, type: "keyword"
       indexes :project_observation_fields do
         indexes :id, type: "integer"
         indexes :observation_field do
@@ -71,6 +73,7 @@ class Project < ActiveRecord::Base
         indexes :position, type: "short"
         indexes :required, type: "boolean"
       end
+      indexes :prefers_user_trust, type: "boolean"
       indexes :project_observation_rules, type: :nested do
         indexes :id, type: "integer"
         indexes :operand_id, type: "integer"
@@ -83,39 +86,42 @@ class Project < ActiveRecord::Base
         indexes :field, type: "keyword"
         indexes :value, type: "text"
       end
+      indexes :observation_requirements_updated_at, type: "date", index: false
       indexes :search_parameter_fields do
-        indexes :d1, type: "date", format: "dateOptionalTime"
-        indexes :d2, type: "date", format: "dateOptionalTime"
+        indexes :d1, type: "date", format: "date_optional_time"
+        indexes :d2, type: "date", format: "date_optional_time"
         indexes :d2_date, type: "date", format: "yyyy-MM-dd"
         indexes :introduced, type: "boolean"
         indexes :month, type: "byte"
         indexes :native, type: "boolean"
-        indexes :not_in_place, type: "integer"
-        indexes :not_user_id, type: "integer"
-        indexes :observed_on, type: "date", format: "dateOptionalTime"
+        indexes :not_in_place, type: "keyword"
+        indexes :not_user_id, type: "keyword"
+        indexes :observed_on, type: "date", format: "date_optional_time"
         indexes :photos, type: "boolean"
-        indexes :place_id, type: "integer"
-        indexes :project_id, type: "integer"
+        indexes :place_id, type: "keyword"
+        indexes :project_id, type: "keyword"
         indexes :quality_grade, type: "keyword"
         indexes :sounds, type: "boolean"
-        indexes :taxon_id, type: "integer"
-        indexes :term_id, type: "integer"
-        indexes :term_value_id, type: "integer"
-        indexes :user_id, type: "integer"
-        indexes :without_taxon_id, type: "integer"
+        indexes :taxon_id, type: "keyword"
+        indexes :term_id, type: "keyword"
+        indexes :term_value_id, type: "keyword"
+        indexes :user_id, type: "keyword"
+        indexes :without_taxon_id, type: "keyword"
       end
       indexes :search_parameters, type: :nested do
         indexes :field, type: "keyword"
         indexes :value, type: "text"
         indexes :value_bool, type: "boolean"
-        indexes :value_date, type: "date", format: "dateOptionalTime"
+        indexes :value_date, type: "date", format: "date_optional_time"
         indexes :value_keyword, type: "keyword"
         indexes :value_number, type: "long"
       end
       indexes :site_features, type: :nested do
         indexes :featured_at, type: "date"
         indexes :noteworthy, type: "boolean"
-        indexes :site_id, type: "short"
+        indexes :site_id, type: "short" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :updated_at, type: "date"
       end
       indexes :slug, analyzer: "keyword_analyzer"
@@ -127,10 +133,10 @@ class Project < ActiveRecord::Base
         search_analyzer: "standard_analyzer"
       indexes :title_exact, type: "keyword"
       indexes :universal_search_rank, type: "integer"
-      indexes :umbrella_project_ids, type: "integer"
+      indexes :umbrella_project_ids, type: "keyword"
       indexes :updated_at, type: "date"
-      indexes :user_id, type: "integer"
-      indexes :user_ids, type: "integer"
+      indexes :user_id, type: "keyword"
+      indexes :user_ids, type: "keyword"
     end
   end
 
@@ -146,12 +152,32 @@ class Project < ActiveRecord::Base
       project_observation_rules.select { |r| r.operand_type == "Project" }.map( &:operand ),
       [{ project_observation_rules: :operand }, :place]
     )
-    total_obs_by_members = Observation.elastic_search(
-      filters: [
-        { term: { project_ids: id } },
-        { terms: { "user.id": project_user_ids } }
-      ]
-    ).total_entries rescue 0
+    # This will effect search rankings, so first we try to get a count of obs by
+    # people who have joined the project. Otherwise you could get a high-ranking
+    # project just by using an expansive set of obs requirements.
+    obs_count = begin
+      r = INatAPIService.observations(
+        project_id: id,
+        user_id: project_user_ids.join( "," ),
+        only_id: true,
+        per_page: 0
+      )
+      # However, querying a lot of user_ids might fail or timeout, so we fall
+      # back to just the count of obs, no user filter
+      unless r
+        r = INatAPIService.observations(
+          project_id: id,
+          only_id: true,
+          per_page: 0
+        )
+      end
+      # If for some reason that failed, set it to zero
+      r ? r.total_results.to_i : 0
+    rescue
+      # And if we get an exception for any reason, don't break indexing, just
+      # set the count to zero
+      0
+    end
     json = {
       id: id,
       title: title,
@@ -214,12 +240,18 @@ class Project < ActiveRecord::Base
       created_at: created_at,
       updated_at: updated_at,
       last_post_at: posts.published.last.try(:published_at),
-      observations_count: total_obs_by_members,
-      universal_search_rank: total_obs_by_members + ( site_featured_projects.size > 0 ? 1000 : 0 ),
+      observations_count: obs_count,
+      # Giving a search boost to featured projects, ensuring the value is larger than ES integer
+      universal_search_rank: [
+        ( obs_count + project_user_ids.size ) * ( site_featured_projects.size > 0 ? 10000 : 1 ),
+        ( 2 ** 31 ) - 1
+      ].min,
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json),
-      umbrella_project_ids: within_umbrella_ids
+      umbrella_project_ids: within_umbrella_ids,
+      prefers_user_trust: prefers_user_trust,
+      observation_requirements_updated_at: observation_requirements_updated_at
     }
     if project_type == "umbrella"
       json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags

@@ -1,12 +1,12 @@
 class IdentificationsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_user_by_login, :only => [:by_login]
+  before_action :authenticate_user!, :except => [:by_login], :unless => lambda { authenticated_with_oauth? }
+  before_action :load_user_by_login, :only => [:by_login]
   load_only = [ :show, :edit, :update, :destroy ]
-  before_filter :load_record, only: load_only
+  before_action :load_record, only: load_only
   blocks_spam :only => load_only, :instance => :identification
   check_spam only: [:create, :update], instance: :identification
-  before_filter :require_owner, :only => [:edit, :update, :destroy]
+  before_action :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
@@ -45,7 +45,15 @@ class IdentificationsController < ApplicationController
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)
     ids = Identification.where(id: api_response.results.map{ |r| r["id"] }).
-      includes(:observation, :user, { taxon: [ { taxon_names: :place_taxon_names }, :photos ] }).order(id: :desc)
+      includes(
+        :observation,
+        :stored_preferences,
+        :user,
+        { taxon: [
+          { taxon_names: :place_taxon_names },
+          { photos: [:flags, :file_prefix,] }
+        ] }
+      ).order(id: :desc)
     Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
     @identifications = WillPaginate::Collection.create(params[:page] || 1, per_page,
       api_response.total_results) do |pager|
@@ -59,7 +67,7 @@ class IdentificationsController < ApplicationController
   end
     
   def show
-    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.id}")
+    redirect_to observation_url(@identification.observation, :anchor => "identification-#{@identification.uuid}")
   end
   
   def by_login
@@ -108,6 +116,7 @@ class IdentificationsController < ApplicationController
       format.html do
         @identifications_by_obs_id = @identifications.index_by(&:observation_id)
         @observations = @identifications.collect(&:observation)
+        render layout: "bootstrap"
       end
       format.json do
         pagination_headers_for( @identifications )
@@ -132,8 +141,9 @@ class IdentificationsController < ApplicationController
               include: {
                 taxon: taxon_options,
                 photos: {
-                  only: [:id, :square_url, :thumb_url, :small_url, :medium_url, :large_url],
-                  methods: [:license_code, :attribution]
+                  only: [:id],
+                  methods: [:license_code, :attribution, :square_url,
+                    :thumb_url, :small_url, :medium_url, :large_url]
                 }
               }
             }
@@ -157,7 +167,6 @@ class IdentificationsController < ApplicationController
     respond_to do |format|
       duplicate_key_violation = false
       begin
-        @identification.wait_for_obs_index_refresh = true
         @identification.save
       rescue PG::Error, ActiveRecord::RecordNotUnique => e
         raise e unless e =~ /index_identifications_on_current/
@@ -204,7 +213,7 @@ class IdentificationsController < ApplicationController
   
   def update
     @identification.assign_attributes( params[:identification] )
-    if @identification.body_changed? && @identification.hidden?
+    if @identification.will_save_change_to_body? && @identification.hidden?
       respond_to do |format|
         msg = t(:cant_edit_or_delete_hidden_content)
         format.html do
@@ -217,7 +226,6 @@ class IdentificationsController < ApplicationController
       end
       return
     end
-    @identification.wait_for_obs_index_refresh = true
     if @identification.save
       msg = t(:identification_updated)
       respond_to do |format|
@@ -247,7 +255,6 @@ class IdentificationsController < ApplicationController
   # DELETE identification_url
   def destroy
     observation = @identification.observation
-    @identification.wait_for_obs_index_refresh = true
     if params[:delete]
       if @identification.hidden?
         respond_to do |format|
@@ -264,7 +271,7 @@ class IdentificationsController < ApplicationController
       end
       @identification.destroy
     else
-      @identification.update_attributes( current: false )
+      @identification.update( current: false )
     end
     respond_to do |format|
       format.html do
@@ -329,7 +336,7 @@ class IdentificationsController < ApplicationController
   def bold
     url = "http://boldsystems.org/index.php/Ids_xml?db=#{params[:db]}&sequence=#{params[:sequence]}"
     xml = begin
-      Nokogiri::XML(open(url))
+      Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
     rescue URI::InvalidURIError => e
       "<error>#{e.message}</error>"
     end

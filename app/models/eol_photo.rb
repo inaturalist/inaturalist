@@ -94,12 +94,12 @@ class EolPhoto < Photo
     end
     
     new( options.merge(
-      medium_url: medium_url,
-      small_url: small_url,
-      thumb_url: thumb_url,
+      remote_medium_url: medium_url,
+      remote_small_url: small_url,
+      remote_thumb_url: thumb_url,
+      remote_square_url: thumb_url,
+      remote_original_url: image_url,
       native_photo_id: native_photo_id,
-      square_url: thumb_url,
-      original_url: image_url,
       native_page_url: native_page_url,
       native_username: native_username,
       native_realname: native_username,

@@ -62,7 +62,7 @@
   <% end %>
 
   <nobr class="counts">
-    <%= link_to color_pluralize(listed_taxon.comments_count, "comment"), listed_taxon %>
+    <%= link_to t(:x_comments_html, count: listed_taxon.comments_count ), listed_taxon %>
   </nobr>
 
   <% if editable -%>

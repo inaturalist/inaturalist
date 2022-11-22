@@ -50,15 +50,17 @@
 
 <div id="pageheader" class="clear">
   <%= render :partial => 'shared/prevnext', :locals => {
-    :prev_item => @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
-    :prev_url => @previous ? calendar_date_path(@login, @previous.observed_on.year, @previous.observed_on.month, @previous.observed_on.day) : nil,
-    :next_item => @next ? @next.observed_on.strftime('%Y-%m-%d') : nil,
-    :next_url => @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
+    prev_item: @previous ? @previous.observed_on : nil,
+    prev_title: @previous ? @previous.observed_on.strftime('%Y-%m-%d') : nil,
+    prev_url: @previous ? calendar_date_path(@login, @previous.observed_on.year, @previous.observed_on.month, @previous.observed_on.day) : nil,
+    next_item: @next ? @next.observed_on : nil,
+    next_title: @next ? @next.observed_on.strftime('%Y-%m-%d') : nil,
+    next_url: @next ? calendar_date_path(@login, @next.observed_on.year, @next.observed_on.month, @next.observed_on.day) : nil
   } %>
   <div class="breadcrumbs">
     <strong>
-      <%= link_to "&laquo #{t :back_to_x, :noun => possessive_noun(@selected_user, t(:calendar)).downcase}".html_safe, 
-        calendar_path(@login), :class => 'crumb' %>
+      <%- link_txt = is_me? ? t(:back_to_your_calendar) : t(:back_to_users_calendar, user: @selected_user.login, vow_or_con: @selected_user.login[0].downcase ) -%>
+      <%= link_to "&laquo #{link_txt}".html_safe, calendar_path( @login ), class: "crumb" %>
     </strong>
   </div><!-- /#breadcrumbs -->
   
@@ -156,7 +158,7 @@
             </div>
             <% if @life_list_firsts.size > 5 -%>
               <div class="buttonrow smallbuttons">
-                <%= link_to_function t(:view_all_n, :n => @life_list_firsts.size), 
+                <%= link_to_function t(:view_all_number, count: @life_list_firsts.size),
                   "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
                   :class => "small inline glaucous button" %>
               </div>

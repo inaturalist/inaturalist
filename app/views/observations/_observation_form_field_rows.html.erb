@@ -49,7 +49,12 @@
         </div>
         <div class="column span-7">
           <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
-          <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+          <%=t "time_zone_#{observation.zic_time_zone.to_s.parameterize.underscore}", default: observation.timezone_object %>
+          <% if observation.new_record? %>
+            <% helptip_for "time_zone" do %>
+              <%=t :default_time_zone_desc %>
+            <% end -%>
+          <% end %>
         </div>
         <div class="column span-7">
           <%= o.text_field(:place_guess, :class => 'text place_guess') %>

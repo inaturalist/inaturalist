@@ -17,12 +17,7 @@ module Logstasher
   def self.logger
     return if Rails.env.test?
     return @logger if @logger
-    @logger = Logger.new("log/#{ Rails.env }.logstash.log")
-    @logger.formatter = proc do |severity, datetime, progname, msg|
-      # strings get written to the log file verbatim
-      "#{ msg }\n"
-    end
-    @logger
+    @logger = ActiveSupport::Logger.new("log/#{ Rails.env }.logstash.log")
   end
 
   def self.ip_from_request_env(request_env)
@@ -68,7 +63,7 @@ module Logstasher
   end
 
   def self.payload_from_user(user)
-    return { } unless user.is_a?(User)
+    return { } unless user&.class.name == "User"
     { user_id: user.id,
       user_name: user.login,
       logged_in: true }
@@ -174,7 +169,7 @@ module Logstasher
   def self.write_action_controller_log(args)
     return if Rails.env.test?
     begin
-      payload = args[4].deep_dup
+      payload = args[4].except(:headers, :response).deep_dup
       format = payload[:format] || "all"
       format = "all" if format == "*/*"
       saved_params = Hash[
@@ -216,7 +211,7 @@ module Logstasher
   end
 
   def self.is_user_agent_a_bot?(user_agent)
-    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler)" ].
+    !![ "(bot|spider|pinger)\/", "(yahoo|ruby|newrelicpinger|python|lynx|crawler|facebookexternalhit)" ].
       detect { |bot| user_agent =~ /#{ bot }/i }
   end
 

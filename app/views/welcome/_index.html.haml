@@ -1,7 +1,7 @@
 - content_for :extracss do
   = stylesheet_link_tag "welcome"
 - content_for :extrajs do
-  - if @site && !@site.homepage_data.blank?
+  - if !@site&.homepage_data.blank?
     :javascript
       var HOMEPAGE_DATA = #{@site.homepage_data.html_safe};
   - else
@@ -16,10 +16,10 @@
       .carousel-inner{role: "listbox"}
       %a.left.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "prev"}}
         %span.fa.fa-chevron-left{"aria-hidden" => "true"}
-        %span.sr-only=t :previous
+        %span.sr-only=t :previous_page_short
       %a.right.carousel-control{href: "#hero-carousel", role: "button", data: {slide: "next"}}
         %span.fa.fa-chevron-right{"aria-hidden" => "true"}
-        %span.sr-only=t :next
+        %span.sr-only=t :next_page_short
     #connect-container.herobox-container
       .container.container-fixed
         .row
@@ -103,13 +103,14 @@
                   = t(:meet)
                   %i.icon-arrow-right
   #info.homesection
-    .row
-      #ji_left.col-xs-6
-        .pull-right
-          %embed{ src: image_path( "nat-geo-cas-logos-white.svg" ), width: 307 }
-      #ji_right.col-xs-6
-        .pull-left
-          %p= t( :inaturalist_is_a_joint_initiative, site_name: @site.name )
+    - if @site && @site == Site.default
+      .row
+        #ji_left.col-xs-6
+          .pull-right
+            %embed{ src: image_path( "nat-geo-cas-logos-white.svg" ), width: 307 }
+        #ji_right.col-xs-6
+          .pull-left
+            %p= t( :inaturalist_is_a_joint_initiative, site_name: @site.name )
   #how.homesection
     .row
       .col-xs-12
@@ -211,7 +212,7 @@
   #who.homesection
     .row
       .col-xs-12
-        %h1=t 'views.welcome.index.who_uses_site_name', site_name: @site.name
+        %h1=t 'views.welcome.index.who_uses_site_name', site_name: @site&.name
         .container.container-fixed
           .row
             .col-xs-12

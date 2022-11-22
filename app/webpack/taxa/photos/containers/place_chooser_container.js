@@ -7,16 +7,17 @@ import { fetchTerms } from "../../shared/ducks/taxon";
 function mapStateToProps( state ) {
   return {
     place: state.config.chosenPlace,
-    defaultPlace: state.config.preferredPlace
+    defaultPlace: state.config.preferredPlace,
+    config: state.config
   };
 }
 
 function mapDispatchToProps( dispatch ) {
-  const setPlace = ( place ) => {
+  const setPlace = place => {
     dispatch( setConfigAndUrl( { chosenPlace: place } ) );
+    updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     // reload terms to filter by chosen place
     dispatch( fetchTerms( ) );
-    updateSession( { preferred_taxon_page_place_id: place ? place.id : null } );
     dispatch( reloadPhotos( ) );
   };
   return {

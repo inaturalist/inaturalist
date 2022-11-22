@@ -1,5 +1,5 @@
 %ul.nav.nav-tabs.user-subnav
-  - if is_me?( current_user )
+  - if is_me?( user )
     %li{:class => ( "active" if controller.controller_name=="users" && controller.action_name=="dashboard" )}
       = link_to home_path do
         %span.glyphicon.glyphicon-home
@@ -8,12 +8,12 @@
     = link_to person_by_login_path(:login => user.login) do
       %span.glyphicon.glyphicon-user
       =t :profile
-  %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
-    = link_to observations_path( user_id: user.login ) do
+  %li
+    = link_to observations_path( user_id: user.login, verifiable: "any", place_id: "any" ) do
       %i.fa.fa-binoculars
       =t :observations
-  - if is_me?( current_user )
-    %li{:class => ( "active" if current_page?( controller: :observations, action: :by_login ) )}
+  - if is_me?( user )
+    %li{:class => ( "active" if current_page?( observations_by_login_path( login: user.login ) ) )}
       = link_to observations_by_login_path(user.login) do
         %i.fa.fa-pencil
         =t :edit_observations
@@ -21,11 +21,11 @@
     = link_to calendar_path(user.login) do
       %span.glyphicon.glyphicon-calendar
       =t :calendar
-  %li{:class => ( "active" if current_page?( controller: :identifications, action: :by_login ) )}
+  %li{:class => ( "active" if current_page?( identifications_by_login_path( login: user.login ) ) )}
     = link_to identifications_by_login_path(:login => user.login) do
       %i.glyphicon.icon.icon-identification
       =t :ids
-  %li{:class => ( "active" if current_page?( controller: :lists, action: :by_login ) )}
+  %li{:class => ( "active" if current_page?( lists_by_login_path( login: user.login ) ) )}
     = link_to lists_by_login_path(user.login) do
       %span.glyphicon.glyphicon-list
       =t :lists
@@ -33,11 +33,11 @@
     = link_to journal_by_login_path(:login => user.login) do
       %span.glyphicon.glyphicon-book
       =t :journal
-  %li{:class => ( "active" if current_page?( controller: :votes, action: :by_login ) )}
+  %li{:class => ( "active" if current_page?( faves_by_login_path( login: user.login ) ) )}
     = link_to faves_by_login_path(user.login) do
       %span.glyphicon.glyphicon-star
       =t :favorites
-  %li{:class => ( "active" if current_page?( controller: :projects, action: :by_login ) )}
+  %li{:class => ( "active" if current_page?( projects_by_login_path( login: user.login ) ) )}
     = link_to projects_by_login_path(:login => user.login) do
       %span.glyphicon.glyphicon-briefcase
       =t :projects

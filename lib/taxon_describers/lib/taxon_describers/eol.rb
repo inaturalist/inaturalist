@@ -1,5 +1,10 @@
 module TaxonDescribers
   class Eol < Base
+    def initialize( options = {} )
+      super( options )
+      @page_urls = {}
+    end
+
     def describe(taxon)
       pages = eol_service.search(taxon.name, :exact => true)
       return if pages.blank?
@@ -7,17 +12,18 @@ module TaxonDescribers
       return unless id
       page = eol_service.page( id, texts_per_page: 50, subjects: "all", details: true )
       return unless page
+      @page_urls[taxon.id] = "https://eol.org/pages/#{id}"
       page.remove_namespaces!
       data_objects = data_objects_from_page(page).to_a.uniq do |data_object|
         data_object.at('subject').content
       end
-      fake_view.render("eol", :data_objects => data_objects)
+      fake_view.render( partial: "/eol", locals: { data_objects: data_objects } )
     rescue Timeout::Error => e
       nil
     end
 
-    def page_url(taxon)
-      "http://eol.org/#{taxon.name}"
+    def page_url( taxon )
+      @page_urls[taxon.id] || "https://eol.org/search?q=#{taxon.name}"
     end
 
     def self.describer_name

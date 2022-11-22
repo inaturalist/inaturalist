@@ -2,10 +2,10 @@ class MessagesController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :index, :create, :show, :destroy, :count ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, unless: lambda { authenticated_with_oauth? }
-  before_filter :load_message, :only => [:show, :destroy]
-  before_filter :require_owner, :only => [:show, :destroy]
-  before_filter :load_box, :only => [:show, :new, :index]
+  before_action :authenticate_user!, unless: lambda { authenticated_with_oauth? }
+  before_action :load_message, :only => [:show, :destroy]
+  before_action :require_owner, :only => [:show, :destroy]
+  before_action :load_box, :only => [:show, :new, :index]
   check_spam only: [:create, :update], instance: :message
 
   requires_privilege :speech, only: [:new]
@@ -107,6 +107,9 @@ class MessagesController < ApplicationController
     if @flaggable_message && @flaggable_message.flagged?
       @flag = @flaggable_message.flags.detect{|f| f.user_id == current_user.id }
     end
+    @new_correspondent = !Message.
+      where( from_user_id: current_user, to_user_id: @reply_to ).
+      exists?
     respond_to do |format|
       format.html
       format.json do

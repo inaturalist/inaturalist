@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe PostsController, "spam" do
   let(:spammer_content) {
     p = Post.make!(parent: User.make!)
-    p.user.update_attributes(spammer: true)
+    p.user.update(spammer: true)
     p
   }
   let(:flagged_content) {
@@ -14,12 +14,12 @@ describe PostsController, "spam" do
 
   describe "show" do
     it "should render 403 when the owner is a spammer" do
-      get :show, id: spammer_content.id
+      get :show, params: { id: spammer_content.id }
       expect( response.response_code ).to eq 403
     end
 
     it "should render 403 when content is flagged as spam" do
-      get :show, id: spammer_content.id
+      get :show, params: { id: spammer_content.id }
       expect( response.response_code ).to eq 403
     end
   end
@@ -27,37 +27,37 @@ describe PostsController, "spam" do
   describe "index" do
     it "should render atom" do
       expect {
-        get :index, login: spammer_content.user.login, format: :atom
+        get :index, format: :atom, params: { login: spammer_content.user.login }
       }.not_to raise_error
     end
 
     it "returns posts new_than other posts" do
       p1 = Post.make!(parent: Site.default)
       p2 = Post.make!(parent: Site.default)
-      p1.update_attributes(published_at: Time.now)
-      p2.update_attributes(published_at: 1.minute.ago)
+      p1.update(published_at: Time.now)
+      p2.update(published_at: 1.minute.ago)
       get :index, format: :json
       expect( JSON.parse(response.body).length ).to eq( 2 )
-      get :index, format: :json, newer_than: p2.id
+      get :index, format: :json, params: { newer_than: p2.id }
       body = JSON.parse(response.body)
       expect( JSON.parse(response.body).length ).to eq( 1 )
       expect( body[0]["id"] ).to eq( p1.id )
-      get :index, format: :json, newer_than: p1.id
+      get :index, format: :json, params: { newer_than: p1.id }
       expect( JSON.parse(response.body).length ).to eq( 0 )
     end
 
     it "returns posts older_than other posts" do
       p1 = Post.make!(parent: Site.default)
       p2 = Post.make!(parent: Site.default)
-      p1.update_attributes(published_at: Time.now)
-      p2.update_attributes(published_at: 1.minute.ago)
+      p1.update(published_at: Time.now)
+      p2.update(published_at: 1.minute.ago)
       get :index, format: :json
       expect( JSON.parse(response.body).length ).to eq( 2 )
-      get :index, format: :json, older_than: p1.id
+      get :index, format: :json, params: { older_than: p1.id }
       body = JSON.parse(response.body)
       expect( JSON.parse(response.body).length ).to eq( 1 )
       expect( body[0]["id"] ).to eq( p2.id )
-      get :index, format: :json, older_than: p2.id
+      get :index, format: :json, params: { older_than: p2.id }
       expect( JSON.parse(response.body).length ).to eq( 0 )
     end
   end
@@ -71,12 +71,12 @@ describe PostsController, "creation" do
     end
     it "should work for user" do
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: user.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: user.id } }
       }.to change( Post, :count ).by( 1 )
     end
     it "should not allow a user to post to another user's journal" do
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: User.make!.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "User", parent_id: User.make!.id } }
       }.not_to change( Post, :count )
     end
   end
@@ -89,14 +89,14 @@ describe PostsController, "creation" do
       project = Project.make!( user: user )
       expect( project ).to be_curated_by user
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id } }
       }.to change( Post, :count ).by( 1 )
     end
     it "should not work for a non-curator" do
       project = Project.make!
       expect( project ).not_to be_curated_by user
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Project", parent_id: project.id } }
       }.not_to change( Post, :count )
     end
   end
@@ -106,14 +106,14 @@ describe PostsController, "creation" do
       user = SiteAdmin.make!( site: site ).user
       sign_in user
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id } }
       }.to change( Post, :count ).by( 1 )
     end
     it "should not work for a normal user" do
       user = User.make!
       sign_in user
       expect {
-        post :create, post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id }
+        post :create, params: { post: { title: "Foo", body: "Bar", parent_type: "Site", parent_id: site.id } }
       }.not_to change( Post, :count )
     end
   end
@@ -126,7 +126,7 @@ describe PostsController, "update" do
     it "should work for owner" do
       p = Post.make!( user: user, parent: user )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).to eq new_body
     end
@@ -134,7 +134,7 @@ describe PostsController, "update" do
       other_user = User.make!
       p = Post.make!( parent: other_user, user: other_user )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
     end
@@ -146,7 +146,7 @@ describe PostsController, "update" do
       project = Project.make!( user: user )
       p = Post.make!( user: user, parent: project )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).to eq new_body
     end
@@ -154,7 +154,7 @@ describe PostsController, "update" do
       project = Project.make!
       p = Post.make!( user: project.user, parent: project )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
     end
@@ -166,7 +166,7 @@ describe PostsController, "update" do
       sign_in user
       p = Post.make!( parent: site )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).to eq new_body
     end
@@ -176,7 +176,7 @@ describe PostsController, "update" do
       sign_in user
       p = Post.make!( parent: site )
       new_body = "This is a new body"
-      put :update, id: p.id, post: { body: new_body }
+      put :update, params: { id: p.id, post: { body: new_body } }
       p.reload
       expect( p.body ).not_to eq new_body
     end
@@ -189,7 +189,7 @@ describe PostsController, "for projects" do
     let(:post) { Post.make!(parent: project, user: project.user) }
     def expect_post_to_be_editable_by(user)
       sign_in user
-      get :edit, id: post.id
+      get :edit, params: { id: post.id }
       expect( response.response_code ).to eq 200
     end
     it "should work for post author" do
@@ -217,7 +217,7 @@ describe PostsController, "show" do
       <img src="#{double_quote_url}" />
     HTML
     post = Post.make!( parent: user, body: body )
-    get :show, id: post.id
+    get :show, params: { id: post.id }
     expect( assigns(:shareable_image_url) ).to eq single_quote_url
 
   end
@@ -228,7 +228,7 @@ describe PostsController, "show" do
       post = Post.make!( parent: user )
       c = Comment.make!( parent: post )
       Flag.make!( flaggable: c, flag: Flag::SPAM )
-      get :show, id: post.id
+      get :show, params: { id: post.id }
       expect( response.body ).not_to include c.body
     end
   end

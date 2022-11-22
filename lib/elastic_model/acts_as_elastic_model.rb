@@ -7,6 +7,7 @@ module ActsAsElasticModel
     include Elasticsearch::Model
 
     attr_accessor :skip_indexing
+    attr_accessor :wait_for_index_refresh
     attr_accessor :es_source
 
     # load the index definition, if it exists
@@ -30,7 +31,9 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+        try_and_try_again( [
+          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.search(ElasticModel.search_hash(options))
           rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
@@ -51,6 +54,14 @@ module ActsAsElasticModel
         result_to_will_paginate_collection(result, options)
       end
 
+      def elastic_get( id, options = { } )
+        begin
+          __elasticsearch__.client.get( index: index_name, id: id )
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => a
+          nil
+        end
+      end
+
       # standard way to bulk index instances. Called without options it will
       # page through all instances 1000 at a time (default for find_in_batches)
       # You can also send options, including scope:
@@ -59,6 +70,8 @@ module ActsAsElasticModel
       def elastic_index!(options = { })
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
+        options[:sleep] ||=
+          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
         # this method will accept an existing scope
@@ -66,11 +79,18 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
-          filter_ids.compact!
+          filter_ids = filter_ids.compact.uniq
+          batch_sleep = options.delete(:sleep)
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice))
+              if batch_sleep && !options[:delay]
+                # sleep after index an ID batch, since during indexing
+                # we only sleep when indexing multiple batches, and here
+                # we explicitly requested a single batch to be indexed
+                sleep batch_sleep.to_i
+              end
             end
             return
           end
@@ -87,16 +107,19 @@ module ActsAsElasticModel
           # the resulting IDs instead of scopes for DelayedJobs.
           # For example, delayed calls this like are very efficient:
           #   Observation.elastic_index!(scope: User.find(1).observations, delay: true)
-          result_ids = scope.select(:id).order(:id).map(&:id)
+          result_ids = scope.order(:id).pluck(:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
-          queue = result_ids.size > 100 ? "slow" : nil
+          queue = if result_ids.size > 50
+            "throttled"
+          end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
             queue: queue
           ).elastic_index!( options.merge(
             ids: result_ids,
-            indexed_before: 5.minutes.from_now.strftime("%FT%T")
+            indexed_before: 5.minutes.from_now.strftime("%FT%T"),
+            wait_for_index_refresh: true
           ) )
         end
         # now we can preload all associations needed for efficient indexing
@@ -104,27 +127,20 @@ module ActsAsElasticModel
           scope = scope.load_for_index
         end
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
-        scope.find_in_batches(options) do |batch|
+        batch_sleep = options.delete(:sleep)
+        batches_indexed = 0
+        scope.find_in_batches(**options) do |batch|
+          if batch_sleep && batches_indexed > 0
+            # sleep only if more than one batch is being indexed
+            sleep batch_sleep.to_i
+          end
           if debug && batch && batch.length > 0
             Rails.logger.info "[INFO #{Time.now}] Starting to index #{self.name} :: #{batch[0].id}"
           end
           bulk_index(batch, wait_for_index_refresh: wait_for_index_refresh)
+          batches_indexed += 1
         end
         __elasticsearch__.refresh_index! if Rails.env.test?
-      end
-
-      def elastic_delete!(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-          begin
-            __elasticsearch__.client.delete_by_query(index: index_name,
-              body: ElasticModel.search_hash(options))
-            __elasticsearch__.refresh_index! if Rails.env.test?
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-            Logstasher.write_exception(e)
-            Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-          end
-        end
       end
 
       def elastic_sync(start_id, end_id, options)
@@ -157,7 +173,7 @@ module ActsAsElasticModel
           ids_only_in_es = results.keys - batch.map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end
@@ -192,7 +208,7 @@ module ActsAsElasticModel
           ).map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-            elastic_delete!(where: { id: ids_only_in_es } )
+            elastic_delete_by_ids!( [ids_only_in_es] )
           end
           batch_start_id = batch_end_id
         end
@@ -208,9 +224,7 @@ module ActsAsElasticModel
               end : result.records.to_a
             elastic_ids = result.results.results.map{ |r| r.id.to_i }
             elastic_ids_to_delete = elastic_ids - records.map(&:id)
-            unless elastic_ids_to_delete.blank?
-              elastic_delete!(where: { id: elastic_ids_to_delete })
-            end
+            elastic_delete_by_ids!( elastic_ids_to_delete )
             WillPaginate::Collection.create(result.current_page, result.per_page,
               result.total_entries - elastic_ids_to_delete.count) do |pager|
               pager.replace(records)
@@ -228,14 +242,20 @@ module ActsAsElasticModel
         __elasticsearch__.refresh_index! unless Rails.env.test?
       end
 
-    def preload_for_elastic_index( instances )
-      return if instances.blank?
-      klass = instances.first.class
-      if klass.respond_to?(:load_for_index)
-        klass.preload_associations( instances,
-          klass.load_for_index.values[:includes] )
+      def preload_for_elastic_index( instances )
+        return if instances.blank?
+        klass = instances.first.class
+        if klass.respond_to?(:load_for_index)
+          klass.preload_associations( instances,
+            klass.load_for_index.values[:includes] )
+        end
       end
-    end
+
+      def elastic_delete_by_ids!( ids, options = { } )
+        return if ids.blank?
+        bulk_delete( ids, options )
+        __elasticsearch__.refresh_index! if Rails.env.test?
+      end
 
       private
 
@@ -249,7 +269,9 @@ module ActsAsElasticModel
             refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
-            where(id: batch).update_all(last_indexed_at: Time.now)
+            ActiveRecord::Base.connection.without_sticking do
+              where(id: batch).update_all(last_indexed_at: Time.now)
+            end
           end
           GC.start
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
@@ -271,10 +293,27 @@ module ActsAsElasticModel
           { index: { _id: obj.id, data: obj.as_indexed_json } }
         end
       end
+
+      def bulk_delete( ids, options = { } )
+        begin
+          __elasticsearch__.client.bulk({
+            index: __elasticsearch__.index_name,
+            type: __elasticsearch__.document_type,
+            body:  ids.map do |id|
+              { delete: { _id: id } }
+            end,
+            refresh: options[:wait_for_index_refresh] ? "wait_for" : false
+          })
+        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
+      end
+
     end
 
     def elastic_index!
-      original_associations_loaded = self.association_cache.keys
       begin
         index_options = { }
         if respond_to?(:wait_for_index_refresh) && wait_for_index_refresh
@@ -286,15 +325,7 @@ module ActsAsElasticModel
         if respond_to?(:last_indexed_at) && !destroyed?
           update_column(:last_indexed_at, Time.now)
         end
-        # indexing can preload a lot of associations which can hang around and cause
-        # memory usage to spike. To avoid that, reset (i.e. unload the association)
-        # any associations that were loaded purely for indexing
-        associations_added_for_indexing = self.association_cache.keys - original_associations_loaded
-        associations_added_for_indexing.each do |k|
-          if self.send( k ).is_a?( ActiveRecord::Associations::CollectionProxy )
-            self.send( k ).reset
-          end
-        end
+
         @@inserts += 1
         # garbage collect after a small batch of individual instance indexing
         # don't do this for every elastic_index! as GC is somewhat expensive

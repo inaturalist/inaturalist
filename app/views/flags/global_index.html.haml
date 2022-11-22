@@ -10,6 +10,14 @@
       } );
       $( "form #resolver_name" ).userAutocomplete( { idEl: $( "#resolver_user_id" ) } );
       $( "form #taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_id" ) } );
+      $( "form select[name='flaggable_type']" ).change( function( ) {
+        if ( $( this ).val( ) === "all" ) {
+          $( "form .content-deleted" ).hide( );
+        } else {
+          $( "form .content-deleted" ).show( ).removeClass( "hidden" );
+        }
+        $( "form select[name='deleted']" ).val( "any" );
+      } );
     });
 - content_for :extracss do
   :css
@@ -22,6 +30,7 @@
     .reason, .resolution { max-width: 300px; overflow: hidden; }
     .table img { max-width: 100%; }
     .table blockquote { font-size: 14px; }
+    .fa-pencil { margin-left: 3px; }
 .container
   .row
     .col-xs-12
@@ -56,7 +65,7 @@
               .form-group
                 %label=t :content_type
                 :ruby
-                  flaggable_type_options = options_for_select( ( ["all"] + FlagsController::FLAG_MODELS.sort ).map {|t|
+                  flaggable_type_options = options_for_select( ( ["all"] + Flag::TYPES.sort ).map {|t|
                     [I18n.t( t, default: t ), t]
                   }, @flaggable_type )
                 = select_tag :flaggable_type, flaggable_type_options, class: "select form-control"
@@ -65,6 +74,13 @@
                   =t :taxon
                   %input{ type: "text", name: "taxon_name", id: "taxon_name", placeholder: t(:start_typing_taxon_name, default: "" ), class: "form-control" }
                   %input{ type: "hidden", name: "taxon_id", id: "taxon_id", value: @taxon.try(:id) }
+              %div{ class: "content-deleted form-group #{%w(yes no).include?( @deleted ) ? "" : "hidden"}"}
+                %label=t :content_deleted
+                :ruby
+                  deleted_options = options_for_select( %w(any yes no).map {|t|
+                    [I18n.t( t, default: t ), t]
+                  }, @deleted )
+                = select_tag :deleted, deleted_options, class: "select form-control"
             .col-xs-3
               %label=t :reason
               .form-group
@@ -90,73 +106,10 @@
             .col-xs-12
               = submit_tag t(:filter), class: "btn btn-primary"
               = link_to t(:reset_filters_short), url_for, class: "btn btn-link"
-              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page] )
+              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page, :deleted] )
   .row
     .col-xs-12
-      %table.table
-        %thead
-          %tr
-            %th=t :flagger
-            %th=t :content_author
-            %th=t :content_type
-            %th=t :content
-            %th.reason=t :reason
-            %th=t :comments
-            %th=t :actions
-            %th.resolution=t :flag_resolution
-        %tbody
-          - for flag in @flags
-            - flaggable = flag.flaggable
-            - flaggable_class = flaggable.class
-            - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
-            %tr
-              %td
-                - if flag.user
-                  = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
-                  .small.text-muted
-                    = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id, :user_id] )
-                - elsif flag.user_id == 0
-                  = @site.site_name_short
-                - else
-                  =t :deleted_user
-              %td
-                - if flag.flaggable_user
-                  = link_to_user( flag.flaggable_user ) {|| char_wrap( flag.flaggable_user.login, 20 )}
-                  .small.text-muted
-                    = link_to t(:view_all), url_for_params( user_id: flag.flaggable_user.login, without: [:user_id] )
-              %td= flag.flaggable_type.humanize
-              %td
-                - if flaggable
-                  = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
-                  - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
-                    %blockquote= truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
-                  - if flaggable.respond_to?(:user) && flaggable.user
-                    .small
-                      = link_to_user flaggable.user, class: "text-muted" do
-                        = t(:added_by_user_on_date_html, user: flaggable.user.login, date: l( flaggable.created_at) )
-                - else
-                  =t "deleted_#{flag.flaggable_type}"
-                  - if flag.flaggable_content_viewable_by?( current_user )
-                    %blockquote= formatted_user_text( flag.flaggable_content )
-              %td.reason=formatted_user_text flag.flag
-              %td
-                - if flag.comments.count > 0
-                  = link_to flag.comments.count, flag, class: "badge"
-              %td.actions.nobr
-                = link_to flag, class: "btn btn-info btn-sm" do
-                  %i.fa.fa-info
-                  = t(:details)
-              %td.resolution
-                - if flag.resolved?
-                  = formatted_user_text flag.comment
-                  - resolved_at = flag.resolved_at || flag.updated_at
-                  .text-muted
-                    - if flag.resolver
-                      =t :resolved_by_user_on_date_html, user: link_to_user( flag.resolver ), date: resolved_at ? l( resolved_at ) : t(:unknown)
-                    - elsif flag.resolver_id
-                      =t :resolved_by_user_on_date_html, user: t(:deleted_user), date: resolved_at ? l( resolved_at ) : t(:unknown)
-                    - else
-                      =t :resolved_by_user_on_date_html, user: @site.name, date: resolved_at ? l( resolved_at ) : t(:unknown)
+      = render partial: 'flag_table', locals: { flags: @flags, site: @site }
   .row
     .col-xs-12
       - if @flags.respond_to?(:total_pages)

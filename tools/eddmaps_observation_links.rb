@@ -30,7 +30,7 @@ while true do
   puts
   puts url
   puts
-  data = JSON.parse(open(url).read)
+  data = JSON.parse( Net::HTTP.get( URI( url ) ) )
   records = data['data']
   break if records.size == 0
   observation_ids = []
@@ -57,7 +57,7 @@ while true do
   end
   if observation_ids.size > 0
     puts "Re-indexing #{observation_ids.size} observations..."
-    Observation.elastic_index!( ids: observation_ids ) unless opts[:debug]
+    Observation.elastic_index!( ids: observation_ids, wait_for_index_refresh: true ) unless opts[:debug]
   end
   start += limit
 end
@@ -69,7 +69,7 @@ if !opts[:debug] && delete_count > 0
   observation_ids = delete_scope.pluck(:observation_id)
   delete_scope.delete_all
   puts "Re-indexing observations with deleted ObservationLinks"
-  Observation.elastic_index!( ids: observation_ids )
+  Observation.elastic_index!( ids: observation_ids, wait_for_index_refresh: true )
 end
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"

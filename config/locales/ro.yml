@@ -1,4 +1,8 @@
 ro:
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> taxon observat"
+    few: "<span class='count'>%{count}</span>taxoni observați"
+    other: "<span class='count'>%{count}</span> taxon observat"
   date:
     abbr_month_names:
       - 

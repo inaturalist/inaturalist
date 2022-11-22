@@ -34,7 +34,7 @@ module I18n
           return entry[default_gettext_key] if entry.has_key?(default_gettext_key)
 
           # If nothing is found throw the classic exception
-          raise InvalidPluralizationData.new(entry, count)
+          raise InvalidPluralizationData.new(entry, count, plural_key)
         else
           super
         end

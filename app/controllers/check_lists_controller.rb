@@ -1,12 +1,15 @@
 class CheckListsController < ApplicationController
   include Shared::ListsModule
   
-  before_filter :authenticate_user!, :except => [:index, :show, :taxa]
-  before_filter :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
-  before_filter :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
-  before_filter :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
-  before_filter :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
-  before_filter :set_iconic_taxa, :only => [:show]
+  before_action :authenticate_user!, :except => [:index, :show, :taxa]
+  before_action :authenticate_user, only: [:show], if: Proc.new {|c| [:csv, :json].include?( c.request.format )}
+  before_action :load_list, :only => [:show, :edit, :update, :destroy, :compare, :remove_taxon, :add_taxon_batch, :taxa, :batch_edit]
+  before_action :require_editor, :only => [:edit, :update, :destroy, :remove_taxon]
+  before_action :require_listed_taxa_editor, :only => [:batch_edit, :add_taxon_batch]
+  before_action :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
+  before_action :set_iconic_taxa, :only => [:show]
+
+  prepend_around_action :enable_replica, only: [:show]
 
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
@@ -93,7 +96,7 @@ class CheckListsController < ApplicationController
   def update
     @check_list = @list
     update_list_rules
-    if @list.update_attributes(params[:check_list])
+    if @list.update(params[:check_list])
       flash[:notice] = t(:check_list_updated)
       return redirect_to @list
     else
@@ -101,7 +104,7 @@ class CheckListsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   private
 
   def apply_missing_listings_scopes(listed_taxa_on_this_list, listed_taxa_on_other_lists, missing_filter_taxon, hide_ancestors, hide_descendants, missing_listings_list)
@@ -174,10 +177,9 @@ class CheckListsController < ApplicationController
   end
   
   def lock_down_default_check_lists
-    return true unless @list.is_default?
+    return true unless @list.is_default? && @list.place.prefers_check_lists?
     if logged_in? && current_user.is_admin?
       flash[:notice] = t(:you_can_edit_this_default_check_list_because)
-      return true
     else
       flash[:error] = t(:you_cant_do_that_for_the_default_check_list_place)
       redirect_to @list

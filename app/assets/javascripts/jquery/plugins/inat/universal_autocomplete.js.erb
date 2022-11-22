@@ -2,8 +2,9 @@ $.fn.universalAutocomplete = function( options ) {
   options = options || { };
   options.appendTo = options.appendTo || "#inat-universal-autocomplete"
   var field = this;
+  var PLACE_TYPES = <%= Place::PLACE_TYPES.to_json.html_safe %>;
 
-  $( field ).on( "keyup", function( e ) {
+  $( field ).on( "keydown", function( e ) {
     // Don't bother if this wasn't the ENTER key
     if ( e.which !== 13 ) {
       return;
@@ -87,22 +88,20 @@ $.fn.universalAutocomplete = function( options ) {
         }
         break;
       case "Place":
-        itemUrl = "/places/" + item.record.slug;
+        itemUrl = "/places/" + ( item.record.slug || item.record.id );
         obsUrl = "/observations?place_id=" + item.record.id;
         acThumb = $( "<i></i>" ).addClass( "fa fa-map-marker" );
         itemText = item.record.display_name || item.record.name;
-        switch ( item.record.place_type ) {
-          <%- Place::PLACE_TYPES.each do |type, name| -%>
-          case <%= type %>:
-            itemText += " <span class='secondary-name'>" + I18n.t( '<%= name.parameterize.underscore %>', { defaultValue: '<%= name %>' } ) + "</span>";
-            break;
-          <% end %>
-          default:
-            I18n.t( "place" );
+        itemText = I18n.t( "places_name."+_.snakeCase( itemText ) , { defaultValue: itemText } );
+        var matchingPlaceType = PLACE_TYPES[item.record.place_type];
+        if ( matchingPlaceType ) {
+          itemText += " <span class='secondary-name'>"
+            + I18n.t( "place_geo.geo_planet_place_types." + matchingPlaceType.toString( ).replace( " ", "_" ), { defaultValue: I18n.t( "place" ) } )
+            + "</span>";
         }
         break;
       case "Project":
-        itemUrl = "/projects/" + item.record.slug;
+        itemUrl = "/projects/" + ( item.record.slug || item.record.id );
         obsUrl = "/observations?project_id=" + item.record.id;
         if ( item.record.icon && !item.record.icon.match( /attachment_defaults/ ) ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon );
@@ -117,7 +116,7 @@ $.fn.universalAutocomplete = function( options ) {
         break;
       case "User":
         itemUrl = "/people/" + item.record.login;
-        obsUrl = "/observations?user_id=" + item.record.login;
+        obsUrl = "/observations?place_id=any&user_id=" + item.record.login + "&verifiable=any";
         if ( item.record.icon_url ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon_url.replace( /medium\./, "thumb." ) ).addClass( "usericon" );
         } else {

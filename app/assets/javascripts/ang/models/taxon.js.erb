@@ -202,6 +202,9 @@ iNatModels.Taxon.titleCaseName = function( name ) {
       return piece.toLowerCase( );
     }
     if ( i === commonNamePieces.length - 1 ) {
+      if ( piece[0] === "-" ) {
+        return piece.toLowerCase( );
+      }
       return piece.split( "-" ).map( function( s ) {
         if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
           return s.toLowerCase( );

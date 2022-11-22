@@ -1,14 +1,15 @@
 # Stores the geometries of places.  We COULD have had a geometry column in the
 # places table, but geometries can get rather large, and loading them into
 # memory every time you want to work with a place is expensive.
-class PlaceGeometry < ActiveRecord::Base
+class PlaceGeometry < ApplicationRecord
   belongs_to :place, inverse_of: :place_geometry
   belongs_to :source
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
 
   after_save :refresh_place_check_list,
              :process_geometry_if_changed,
-             :update_observations_places_later
+             :update_observations_places_later,
+             :notify_trusting_project_members
 
   after_destroy :update_observations_places_later
 
@@ -24,15 +25,32 @@ class PlaceGeometry < ActiveRecord::Base
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
-      errors.add(:geom, "cannot be blank")
+      errors.add(:geom, :cannot_be_blank)
       return
     end
     if geom.num_points < 4
-      errors.add(:geom, " must have more than 3 points")
+      errors.add(:geom, :must_have_more_than_three_points)
     end
-
     if geom.detect{|g| g.num_points < 4}
-      errors.add(:geom, " has a sub geometry with less than 4 points!")
+      errors.add(:geom, :polygon_with_less_than_four_points)
+    end
+    if geom.detect{|g| g.points.detect{|pt| pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90}}
+      errors.add(:geom, :invalid_point)
+    end
+  end
+
+  # During the Rails 5 upgrade, invalid WKT assigned to geom raised this error
+  # when the geometry tried to be read. This seems like a problem with RGeo
+  # that hasn't been fixed yet, so this is a rough kluge. Alternatively, we
+  # could raise something more specific and catch it elsewhere. This might fail
+  # a bit silently. ~~kueda 20210702
+  def geom
+    begin
+      super
+    rescue NoMethodError => e
+      raise e unless e.message =~ /undefined method.*factory/
+      errors.add(:geom, "could not be parsed")
+      nil
     end
   end
 
@@ -52,7 +70,7 @@ class PlaceGeometry < ActiveRecord::Base
   end
 
   def process_geometry_if_changed
-    process_geometry if geom_changed?
+    process_geometry if saved_change_to_geom?
     true
   end
 
@@ -60,7 +78,7 @@ class PlaceGeometry < ActiveRecord::Base
     PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
         SELECT
-          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(ST_MakeValid(geom)))) AS new_geom
         FROM (
           SELECT (ST_Dump(geom)).geom
           FROM place_geometries
@@ -109,17 +127,37 @@ class PlaceGeometry < ActiveRecord::Base
     Place.delay(
       unique_hash: { "Place::update_observations_places": place_id },
       run_at: 5.minutes.from_now,
-      queue: "slow" ).update_observations_places( place_id )
+      queue: "throttled"
+    ).update_observations_places( place_id )
+  end
+
+  def notify_trusting_project_members
+    return true unless saved_change_to_geom?
+    Project.
+        joins(:project_observation_rules).
+        where( "rules.operator = 'observed_in_place?'" ).
+        where( "rules.operand_type = 'Place'" ).
+        where( "rules.operand_id = ?", place_id ).
+        where( project_type: %w(collection umbrella) ).
+        find_each do |proj|
+      proj.notify_trusting_members_about_changes_later
+    end
+    true
   end
 
   def simplified_geom
-    return if !geom
+    # if the geom does not exist, or RGeo thinks the geometry is invalid, return nil
+    begin
+      return if !geom
+    rescue RGeo::Error::InvalidGeometry => e
+      return
+    end
     if !place.bbox_area || place.bbox_area < 0.1
       # this method is currently only used for indexing places in Elasticsearch.
       # Running the cleangeometry method here helps fix geom validation errors
       # which psql is comfortable with but might cause ES to throw errors
       return PlaceGeometry.where(id: id).
-        select("id, cleangeometry(geom) as simpl").first.try(:simpl)
+        select("id, cleangeometry(geom) as simpl").first.try(:simpl) rescue nil
     end
     tolerance =
       if place.bbox_area < 1
@@ -134,11 +172,11 @@ class PlaceGeometry < ActiveRecord::Base
         0.075
       end
     if s = PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl rescue nil
       return s
     end
     PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
+      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl rescue nil
   end
 
   def self.update_observations_places(place_geometry_id)
