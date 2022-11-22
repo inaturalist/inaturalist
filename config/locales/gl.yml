@@ -218,6 +218,8 @@ gl:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Podes escoller compartir coordenadas ocultas para
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Acerca de Desacordos Involuntarios
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -332,6 +334,7 @@ gl:
   add_life_stage_egg_annotation: 'Engadir anotación "Estadio de Vida: Ovo"'
   add_evidence_of_presence_organism_annotation: 'Engadir anotación "Proba de Presenza: organismo"'
   add_evidence_of_presence_feather_annotation: 'Engadir anotación "Proba de Presenza: pluma"'
+  add_evidence_of_presence_gall_annotation: 'Engadir anotación "Proba de Presenza: bile"'
   add_evidence_of_presence_scat_annotation: 'Engadir anotación "Proba de Presenza: feces"'
   add_evidence_of_presence_track_annotation: 'Engadir anotación "Proba de Presenza: pegadas"'
   add_evidence_of_presence_bone_annotation: 'Engadir anotación "Proba de Presenza: óso"'
@@ -391,6 +394,8 @@ gl:
   agree_with_current_taxon: Dacordo có taxon actual
   agreeing: En proceso...
   aka: Coñecido como
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
   all: Todos
   all_comments: Todos os comentarios
   all_flags_must_be_resolved: Tódalas marcas deben ser resoltas
@@ -504,6 +509,10 @@ gl:
   alphabetical_order: Orde alfabética
   already_have_an_account_log_in_html: '¿Xa tes unha conta? <strong>Inicia sesión.</strong>'
   amphibians: Anfibios
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analizar Desacordos Involuntarios
   analyze_ids: Analizar IDs
   ancestor_taxon: Taxon Ancestral
   and: E
@@ -547,15 +556,21 @@ gl:
   #Label for an option to show/include content by any user
   any_user: Calquera
   anyone: Calquera
+  app_owner_application_explanation_required: |
+    Debes proporcionar unha explicación máis detallada do que queres construír.
+  app_owner_application_fields_explanation_html: Describe a funcionalidade que terá a túa app e como pensas usala.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicación
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplicacións
+  apply_app_owner: Solicitar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Solicitar
+  apply_to_be_an_app_owner: Solicita ser un Dono de App
+  apply_to_create_applications_title: Solicita Crear Aplicacións
   apply_to_selected: Aplicar ás seleccionadas
   apply_captive_cultivated: "En catividade/ cultivada"
   apply_fields: Aplicar campos
@@ -569,6 +584,8 @@ gl:
   are_you_really_sure_want_delete_this_user: Estás totalmente seguro de que desexas eliminar este usuario e todo o seu contido?
   are_you_sure?: Estás seguro?
   are_you_sure_no_undo: '¿Seguro? Isto non se pode desfacer.'
+  are_you_sure_delete_conservation_status: |
+    ¿Seguro que queres borrar este estado de conservación? Isto pode mudar o escurecemento das observacións deste taxon e os taxons incluídos nel.
   are_you_sure_delete_post: Estás seguro de que desexas eliminar este ingreso?
   are_you_sure_delete_taxon_move_associates: "Estás seguro de que desexas eliminar %{taxonname} (%{taxonid}) e trasladar todos os seus asociados?"
   are_you_sure_delete_this_place: Estás seguro de que desexas eliminar este lugar?
@@ -711,6 +728,12 @@ gl:
   batch_edit_taxa_for_x_html: "Edición de datos por lote para %{x}"
   batch_operations: Operacións de grupos
   be_the_first_to_fave_this_observation: '¡Sé o primeiro en engadir esta observación a favoritos!'
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Porque cremos que este cambio vai dar en máis de 10 desacordos involuntarios, <strong>recomendámoste que tamén realices un cambio de taxon incluíndo a %{old_parent}, como dividir %{new_parent} de %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Porque cremos que esta mudanza vai dar en menos de 10 desacordos involuntarios, <strong>probablemente non sexa preciso realizar un cambio de taxon que inclúa a %{old_parent}</strong>.
   become_a_donor_caps: FAITE DOANTE
   become_a_donor_today_caps: FAITE DOANTE HOXE
   before_importing_photos: Antes de importar fotos.
@@ -829,6 +852,8 @@ gl:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} foron incorporados en %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} incorporaranse en %{output_taxon}"
   change_your_password: Cambiar o teu contrasinal
+  #Plural noun, as in changes to a taxon record over time
+  changes: Cambios
   changing_the_geoprivacy: 'Cambiar a xeoprivacidade modifica a maneira en que outras persoas ven a localización da túa observación.'
   check_above_for_errors: Comprobar se hai erros enriba
   check_back_soon: Volve axiña!
@@ -888,6 +913,8 @@ gl:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Comentar
   comment_deleted: O comentario borrouse
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Comentario ocultado
   comments: Comentarios
   comments_by_me: Os meus comentarios
   comments_have_been_disabled: Inhabilitáronse os comentarios
@@ -4091,7 +4118,8 @@ gl:
   stop_trusting_this_person_with_your_private_coordinates: Deixar de confiar nesta persoa cás túas coordenadas ocultas
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: TENDA
+  store: Tenda
+  store_caps: TENDA
   studies_that_used_inaturalist_data_in_year: Estudos Que Usaron Dados De iNaturalist en%{year}
   stuff_just_added: "O que ti acabas de engadir ..."
   subject_resolved_noun_html: "%{subject} resolve %{noun}"
@@ -4615,7 +4643,6 @@ gl:
   users_latest_observations_on_site: "Últimas observacións de %{user} en %{site}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proxectos de %{user}"
-  users_year_on_site: "O Ano %{year} de %{user} en %{site}"
   valid_options_are: As opcións válidas son
   value: Valor
   values: Valores
@@ -4677,12 +4704,10 @@ gl:
   view_taxononomy_details_for_taxon: "Ver detalles taxonómicos para %{taxon}"
   view_user_observations: "Ver observacións de %{user}"
   view_x: "Ver %{x}"
-  view_year_stats_for_site: "Ver Estatísticas de %{year} para %{site}"
   view_your_dashboard: Ver o teu taboleiro
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver o teu taboleiro</a> para máis actualizacións"
   view_your_inbox: Ver a túa caixa de correo
   view_your_observations: Ver as túas observacións
-  view_your_year_stats: "Ver As Estatísticas Do Teu %{year}"
   view_yours: Ver As Túas
   view_all_of_your_observations_from_x: "Ver tódalas túas observacións de %{x}"
   video_tutorials: Titoriais en Vídeo

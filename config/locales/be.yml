@@ -322,6 +322,8 @@ be:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Вы можаце выбраць, з падзяліцца схаванымі каардынатамі
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Пра непрадбачанныя рознагалоссі
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -645,6 +647,10 @@ be:
   alphabetical_order: Па алфавіце
   already_have_an_account_log_in_html: Ужо ёсць уліковы запіс? <strong>Увайсці.</strong>
   amphibians: земнаводныя
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Аналізваць непрадбачанныя рознагалоссі
   analyze_ids: Аналіз вызначэнняў
   ancestor_taxon: Бацькоўскі таксон
   and: і
@@ -1662,6 +1668,10 @@ be:
   draft_saved: Чарнавiк захаваны!
   drafts: Чарнавікі
   drag_and_drop_some_photos_or_sounds: Перацягніце сюды якія-небудзь фота ці гукі
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Намаляваць межы ў выглядзе круга
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Намаляваць межы ў выглядзе простакутніка
   drawings: Малюнкі
   duplicate_verb: Дубляваць
   duration_value: "Працягласць: %{duration} хвілін"
@@ -2890,6 +2900,7 @@ be:
   no_more_taxa_to_load: Больш няма таксонаў для загрузкі!
   no_more_results_found: Больш нічога не знойдзена
   no_new_messages: Няма новых паведамленьняў
+  no_new_parent_specified: Новы продак не заданы
   no_observations: Няма назіранняў
   no_observations_from_this_place_yet: Назіранняў з гэтага месца пакуль няма.
   no_observations_matching_those_ids: Няма назіранняў, адпаведных гэтым вызначэнням.
@@ -4090,7 +4101,8 @@ be:
   stats: Статыстыка
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: КРАМА
+  store: Крама
+  store_caps: КРАМА
   suggest_an_identification: Прапанаваць вызначэнне
   suggestions: Прапановы
   supporting: Падтрымка

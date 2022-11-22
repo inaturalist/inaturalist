@@ -1008,6 +1008,8 @@ th:
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
+  #Prompt to donate money once
+  give_now_caps: บริจาคเลย
   globally: ทั่วโลก
   go: ค้นหา
   go_back: ย้อนกลับ
@@ -1368,7 +1370,7 @@ th:
   most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
   most_observations: ผู้ที่มีการสังเกตสูงสุด
-  most_species: ผู้ที่พบจำนวนชนิดมากสุด
+  most_species: ผู้ที่พบจำนวนชนิดสูงสุด
   most_observed_species: ชนิดที่พบมากสุด
   most_observed_introduced_species: ชนิดพันธุ์ต่างถิ่นที่พบมากสุด
   most_observed_threatened_species: ชนิดที่ถูกคุกคามที่พบมากสุด
@@ -2015,6 +2017,7 @@ th:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: ร้านค้า
+  store_caps: ร้านค้า
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
@@ -2383,6 +2386,7 @@ th:
   verifiable_observations: การสังเกตที่ตรวจสอบได้
   views:
     donate:
+      donate_short_desc: "บริจาคเพื่อสนับสนุนเลย!"
       post_donate_social_media_text: ฉันสนับสนุน iNaturalist เพราะว่า...
     guides:
       index:

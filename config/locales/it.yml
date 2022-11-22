@@ -4424,7 +4424,8 @@ it:
   stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa persona le tue coordinate nascoste
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: NEGOZIO
+  store: Negozio
+  store_caps: NEGOZIO
   studies_that_used_inaturalist_data_in_year: Studi che hanno utilizzato i dati di iNaturalist nel %{year}
   stuff_just_added: "Le cose che hai appena aggiunto..."
   subject_resolved_noun_html: "%{subject} ha risolto %{noun}"
@@ -5130,7 +5131,6 @@ it:
   users_lists: "Elenchi di %{user}"
   users_profile: "Il profilo di %{user}"
   users_projects: "I progetti di %{user}"
-  users_year_on_site: "Anno di %{user} su %{site} %{year}"
   valid_options_are: Le opzioni valide sono
   value: Valore
   values: Valori
@@ -5198,12 +5198,10 @@ it:
   view_taxononomy_details_for_taxon: "Visualizza i dettagli tassonomici per %{taxon}"
   view_user_observations: "Visualizza le osservazioni di %{user}"
   view_x: "Visualizza %{x}"
-  view_year_stats_for_site: "Visualizza statistica %{year} per %{site}"
   view_your_dashboard: Visualizza la tua bacheca
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Visualizza la tua bacheca</a> per altri aggiornamenti"
   view_your_inbox: Visualizza la tua posta in arrivo
   view_your_observations: Visualizza le tue osservazioni
-  view_your_year_stats: "Visualizza le tue statistiche %{year}"
   view_yours: Visualizza le tue
   view_all_of_your_observations_from_x: "Visualizza tutte le tue osservazioni da %{x}"
   video_tutorials: Tutorial video
@@ -6620,6 +6618,7 @@ it:
         species_per_year_by_date_added: Per data di inserimento
         species_per_year_by_date_observed: Per data di osservazione
         stats_generated_datetime: Statistiche generate il %{datetime}
+        stats_generation_schedule: Le statistiche saranno generate ogni domenica di dicembre ed il 1 gennaio
         store_prompt: |
           Vuoi dimostrare il tuo orgoglio iNat ovunque tu vada? Dai un'occhiata al Negozio iNat!
         sunburst_desc_html: |
