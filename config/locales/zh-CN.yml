@@ -181,6 +181,8 @@ zh-CN:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以因以下原因选择共享隐藏坐标
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: 关于非预期分歧
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -461,6 +463,10 @@ zh-CN:
   alphabetical_order: 按字母顺序
   already_have_an_account_log_in_html: 已有账户? <strong>请登录。</strong>
   amphibians: 两栖动物
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: 分析非预期分歧
   analyze_ids: 过往记录分析
   ancestor_taxon: 祖先分类
   and: 和
@@ -504,6 +510,8 @@ zh-CN:
   #Label for an option to show/include content by any user
   any_user: 任意
   anyone: 任何人
+  app_owner_application_explanation_required: |
+    您必须更详细地解释您想要构建什么。
   app_owner_application_about_p1a_html: |
     iNaturalist应用软件允许经过授权的API使用。这允许您通过调用API来完成物种观察或者物种识认记录的创建。通常情况下，用户可以在移动端或者电脑端的应用创建iNaturalist观察记录。记录中的内容必须在真人的参与或者监管下生成。更多细节请阅读我们的<a href="/pages/community+guidelines"
     target="_blank">社区指导手册</a>禁止机器生成的物种观察记录、物种识认记录和评论。
@@ -3979,6 +3987,7 @@ zh-CN:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 商店
+  store_caps: 商店
   studies_that_used_inaturalist_data_in_year: 在%{year} 用到过iNaturalist数据的研究
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
@@ -4448,7 +4457,6 @@ zh-CN:
   users_latest_observations_on_site: "%{user}在%{site}上的最近观察"
   users_profile: "%{user}的详细信息"
   users_projects: "%{user}的项目"
-  users_year_on_site: "%{site}在%{year}年中，%{user}的复核"
   valid_options_are: 有效选项是
   value: 值
   values: 值
@@ -4510,12 +4518,10 @@ zh-CN:
   view_taxononomy_details_for_taxon: "查看 %{taxon} 的分类详情"
   view_user_observations: "查看 %{user} 的观察"
   view_x: "查看%{x}"
-  view_year_stats_for_site: "查看用于%{site}的%{year}统计"
   view_your_dashboard: 查看您的仪表板
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>查看您的仪表板</a> 获取更多更新"
   view_your_inbox: 查看您的收件箱
   view_your_observations: 查看您的观察
-  view_your_year_stats: "查看您的%{year}统计"
   view_yours: 查看您的
   view_all_of_your_observations_from_x: "从 %{x} 查看您所有的观察"
   video_tutorials: 视频教程

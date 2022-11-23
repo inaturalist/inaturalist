@@ -1494,6 +1494,7 @@ de:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Ablegen
   download: Herunterladen
+  download_caps: HERUNTERLADEN
   download_bulk_import_template_html: |
     <a href="%{url}">Vorlage herunterladen</a> für die Verwendung im
     <a href="/observations/import?project_id=%{project_id}#csv_import">"Bulk-Uploader"</a>
@@ -1963,6 +1964,7 @@ de:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
+  inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -2546,10 +2548,13 @@ de:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Monat
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Monatliche Unterstützer
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
   months: Monate
   more: Mehr
+  more_caps: MEHR
   more_about_sharing: Mehr Informationen über Datenaustausch
   more_fields: Mehr Felder
   more_filters: Mehr Filter
@@ -4162,6 +4167,7 @@ de:
   set_license: Lizenz festlegen
   settings: Einstellungen
   share: Teilen
+  share_caps: TEILEN
   share_colon: "Teilen:"
   short_code_for_this_place: Kürzel für diesen Ort, z.B. US für Vereinigte Staaten
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
@@ -4205,6 +4211,8 @@ de:
   #Journal post formatting option
   simple: Einfach
   single_observation: Einzelne Beobachtung
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{year} Jahresrückblick von %{site}"
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
   small: klein
@@ -4403,7 +4411,8 @@ de:
   stop_trusting_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: Store
+  store: Shop
+  store_caps: STORE
   studies_that_used_inaturalist_data_in_year: Publikationen, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
@@ -5102,7 +5111,8 @@ de:
   users_lists: "Listen von %{user}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
-  users_year_on_site: "Das Jahr %{year} von %{user} auf %{site}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{year} %{site} Jahresrückblick von %{user}"
   valid_options_are: Gültige Optionen sind
   value: Wert
   values: Werte
@@ -5110,6 +5120,7 @@ de:
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
   view: Ansehen
   view_all: Alle ansehen
+  view_all_caps: ALLE ANZEIGEN
   view_all_fields: Alle Felder anzeigen
   view_all_flags: Alle Meldungen anzeigen
   view_all_members: Alle Mitglieder ansehen
@@ -5130,6 +5141,12 @@ de:
   view_flags_for_x_html: "Meldungen für %{x} anzeigen"
   view_full_observation: Komplette Beobachtung anzeigen
   view_full_size_photo: Vollbildansicht zeigen
+  view_inaturalist_global_year_in_review: Das globale iNaturalist-Jahr %{year} im Rückblick
+  view_inaturalist_global_year_in_review_caps: DAS GLOBALE INATURALIST-JAHR %{year} IM RÜCKBLICK
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} %{year} Jahresrückblick ansehen'
+  view_site_year_in_review_caps: '%{site} %{year} JAHRESRÜCKBLICK ANSEHEN'
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_leaderboard_from_last_year: Bestenliste vom letzten Jahr anzeigen
@@ -5170,12 +5187,12 @@ de:
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
-  view_year_stats_for_site: "Statistiken von %{year} für %{site} anzeigen"
   view_your_dashboard: Dein Dashboard anzeigen
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Dein Dashboard anzeigen</a> für weitere Aktualisierungen"
   view_your_inbox: Inbox anzeigen
   view_your_observations: Deine Beobachtungen ansehen
-  view_your_year_stats: "Deine Statistik für %{year} anzeigen"
+  view_your_personal_year_in_review: "Sieh dir deinen persönlichen Jahresrückblick %{year} an"
+  view_your_personal_year_in_review_caps: "SIEH DIR DEINEN PERSÖNLICHEN JAHRESRÜCKBLICK %{year} AN"
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: "Zeige alle deine Beobachtungen aus %{x}"
   video_tutorials: Videoanleitungen
@@ -5302,6 +5319,7 @@ de:
   x_wrote_y_new_posts_html: "%{x} hat %{y} neue Beiträge geschrieben"
   year: Jahr
   year_in_review: "Jahresrückblick von %{year}"
+  year_in_review2: "Jahresrückblick %{year}"
   year_month: Jahr/Monat
   year_on_site: "Das Jahr %{year} auf %{site} "
   yellow: gelb
@@ -5525,6 +5543,7 @@ de:
       post_donate_social_media_text: Ich unterstütze iNaturalist weil...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: WERDE EIN MONATLICHER UNTERSTÜTZER VON INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>
@@ -5541,6 +5560,8 @@ de:
           the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
           organization based in the United States of America.
           </p>
+        thank_you_for_being_a_monthly_supporter: Vielen Dank, dass du ein monatlicher Unterstützer bist!
+        thank_you_for_being_a_monthly_supporter_caps: DANKE DAFÜR, DASS DU EIN MONATLICHER UNTERSTÜTZER BIST!
     flags:
       show:
         flaggable_content_desc: |
@@ -6631,6 +6652,7 @@ de:
         species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
         species_per_year_by_date_observed: Nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
+        stats_generation_schedule: Statistiken werden jeden Sonntag im Dezember und am 1. Januar erstellt
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
         sunburst_desc_html: |

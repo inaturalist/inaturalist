@@ -1573,6 +1573,7 @@ da:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Drop det
   download: Download
+  download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Download skabelon</a> til brug i
     <a href="/observations/import?project_id=%{project_id}#csv_import">multiuploader</a>
@@ -2085,6 +2086,7 @@ da:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikation trukket tilbage
   identifications: Identifikationer
+  inaturalist_global_year_in_review: "iNaturalists globale %{year} år i gennemgang"
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -2675,10 +2677,13 @@ da:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Måned
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Månedlige Supportere
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
   months: Måneder
   more: Mere
+  more_caps: MERE
   more_about_sharing: Mere om Deling
   more_fields: Flere felter
   more_filters: Flere filtre
@@ -4304,6 +4309,7 @@ da:
   set_license: Indstil licens
   settings: Indstillinger
   share: Del
+  share_caps: DEL
   share_colon: "Del:"
   short_code_for_this_place: Forkortelse for dette sted, f.eks. US for United States
   short_or_abbreviated_title_for_display: Kort eller forkortet titel til visning i pladsbegrænsede områder. Maks. 10 tegn.
@@ -4348,6 +4354,8 @@ da:
   #Journal post formatting option
   simple: Enkel
   single_observation: Enkelt observation
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}s %{year} år i gennemgang"
   sizes: Størrelser
   skip_to_next_page: "Spring til næste side"
   small: lille
@@ -4569,7 +4577,8 @@ da:
   stop_trusting_this_person_with_your_private_coordinates: Stol ikke længere på denne person angående dine skjulte koordinater
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: BUTIK
+  store: Butik
+  store_caps: BUTIK
   studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data i %{year}
   stuff_just_added: "Ting du lige har tilføjet ..."
   subject_resolved_noun_html: "%{subject} løst %{noun}"
@@ -5309,7 +5318,8 @@ da:
   users_lists: "%{user}s lister"
   users_profile: "%{user}'s profil"
   users_projects: "%{user}'s projekter"
-  users_year_on_site: "%{user}'s år på %{site} %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}s %{year} %{site}-år i gennemgang"
   valid_options_are: Gyldige muligheder er
   value: Værdi
   values: Værdier
@@ -5317,6 +5327,7 @@ da:
   verifiable_observations_by_observation_date: Verificerbare observationer efter observations dato
   view: Vis
   view_all: Vis alle
+  view_all_caps: VIS ALLE
   view_all_fields: Vis alle felter
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
@@ -5337,6 +5348,12 @@ da:
   view_flags_for_x_html: "Vis markeringer for %{x}"
   view_full_observation: Vis fuld observation
   view_full_size_photo: Se foto i fuld størrelse
+  view_inaturalist_global_year_in_review: Vis iNaturalists globale %{year} år i gennemgang
+  view_inaturalist_global_year_in_review_caps: VIS INATURALISTs GLOBALE %{year} ÅR I GENNEMGANG
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Vis %{site} %{year} år i gennemgang
+  view_site_year_in_review_caps: VIS %{site} %{year} ÅR I GENNEMGANG
   view_journal: Vis journal
   view_leaderboard_from_last_month: Vis topliste fra sidste måned
   view_leaderboard_from_last_year: Vis topliste fra sidste år
@@ -5377,12 +5394,12 @@ da:
   view_taxononomy_details_for_taxon: "Vis taksonomi detaljer for %{taxon}"
   view_user_observations: "Vis %{user}'s observationer"
   view_x: "Vis %{x}"
-  view_year_stats_for_site: "Vis %{year} statistik for %{site}"
   view_your_dashboard: Vis betjeningspanelet
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Vis betjeningspanelet</a> for flere underretninger"
   view_your_inbox: Vis indbakke
   view_your_observations: Vis dine observationer
-  view_your_year_stats: "Vis dine %{year} statistikker"
+  view_your_personal_year_in_review: "Vis dit personlige %{year} år i gennemgang"
+  view_your_personal_year_in_review_caps: "VIS DIT PERSONLIGE %{year} ÅR I GENNEMGANG"
   view_yours: Vis dine
   view_all_of_your_observations_from_x: "Vis alle dine observationer fra %{x}"
   video_tutorials: Video selvstudier
@@ -5512,6 +5529,7 @@ da:
   x_wrote_y_new_posts_html: "%{x} skrev %{y} nye indlæg"
   year: År
   year_in_review: "År i tilbageblik %{year}"
+  year_in_review2: "År i gennemgang %{year}"
   year_month: år/måned
   year_on_site: "Året på %{site} %{year}"
   yellow: gul
@@ -5740,6 +5758,7 @@ da:
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: BLIV EN INATURALIST MÅNEDLIG SUPPORTER
         desc_html: |
           <p class="lead">
           <strong>iNaturalist er et af verdens største fællesskaber dedikeret til udforskning af biodiversitet. Tak fordi du er en del af det!</strong>
@@ -5754,6 +5773,8 @@ da:
           iNaturalist er et fælles initiativ fra California Academy of Sciences
           og National Geographic Society. Alle donationer vil blive modtaget af California Academy of Sciences, en 501(c)(3) skattefritaget, nonprofit-orgqnisation med base i USA.
           </p>
+        thank_you_for_being_a_monthly_supporter: Tak for at være en Månedlig Supporter!
+        thank_you_for_being_a_monthly_supporter_caps: TAK FOR AT VÆRE EN MÅNEDLIG SUPPORTER
     flags:
       show:
         flaggable_content_desc: |
@@ -7067,6 +7088,7 @@ da:
         species_per_year_by_date_added: Efter tilføjelsesdato
         species_per_year_by_date_observed: Efter observationsdato
         stats_generated_datetime: Statistikker genereret %{datetime}
+        stats_generation_schedule: Statistik genereres hver søndag i december samt 1. januar.
         store_prompt: |
           Vil gerne bryste dig af dit iNat-medlemskab? Så tjek iNat-butikken!
         sunburst_desc_html: |

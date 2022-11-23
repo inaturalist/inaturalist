@@ -1676,6 +1676,7 @@ cs:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Pusťte zde
   download: Stáhnout
+  download_caps: STÁHNOUT
   download_bulk_import_template_html: |
     <a href="%{url}">Stáhnout šablonu</a> pro použití při <a href="/observations/import?project_id=%{project_id}#csv_import">hromadném nahrávání</a>
   download_csv: Stáhnout CSV
@@ -2766,10 +2767,13 @@ cs:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Měsíc
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Měsíční podporovatelé
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
   months: Měsíce
   more: Další
+  more_caps: VÍCE
   more_about_sharing: Další informace o sdílení
   more_fields: Další pole
   more_filters: Další filtry
@@ -4404,6 +4408,7 @@ cs:
   set_license: Nastavit licenci
   settings: Nastavení
   share: Sdílet
+  share_caps: SDÍLET
   share_colon: "Sdílet:"
   short_code_for_this_place: Zkratka pro toto místo, např. USA pro Spojené státy
   short_or_abbreviated_title_for_display: Krátký nebo zkrácený název pro zobrazení v omezených sekcích. Max. 10 znaků.
@@ -4630,6 +4635,7 @@ cs:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: OBCHOD
+  store_caps: OBCHOD
   studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
@@ -5362,6 +5368,11 @@ cs:
     %{user} pozoroval %{date} v %{place}
   user_suggested_an_id: "Uživatel %{user} navrhl ID"
   user_trusts_this_project_for_none: Uživatel nevěří tomuto projektu se skrytými souřadnicemi.
+  user_trusts_this_project_for_any: |
+    Uživatel důvěřuje tomuto projektu se skrytými souřadnicemi, které byly skryté z jakéhokoliv důvodu.
+  user_trusts_this_project_for_taxon: |
+    Uživatel důvěřuje pouze tomu projektu se skrytými souřadnicemi, které byly skryty
+    kvůli ohroženým taxonům.
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
@@ -5381,7 +5392,6 @@ cs:
   users_lists: "Seznamy uživatele %{user}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
-  users_year_on_site: "Rok uživatele %{user} na %{site} %{year}"
   valid_options_are: Platné možnosti jsou
   value: Hodnota
   values: Hodnoty
@@ -5389,6 +5399,7 @@ cs:
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
   view: Zobrazit
   view_all: Zobrazit vše
+  view_all_caps: ZOBRAZIT VŠE
   view_all_fields: Zobrazit všechna pole
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
@@ -5451,12 +5462,10 @@ cs:
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
-  view_year_stats_for_site: "Zobrazit statistiku za rok %{year} pro %{site}"
   view_your_dashboard: Zobrazit vaši nástěnku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobrazit váš přehled nejlepších</a> a aktualizace"
   view_your_inbox: Zobrazit vaši příchozí poštu
   view_your_observations: Zobrazit vaše pozorování
-  view_your_year_stats: "Zobrazit vaši statistiku za rok %{year}"
   view_yours: Zobrazit váš
   view_all_of_your_observations_from_x: "Zobrazit všechna vaše pozorování z %{x}"
   video_tutorials: Video návody
@@ -5833,6 +5842,7 @@ cs:
           Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
           se sídlem ve Spojených státech amerických.
           </p>
+        thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
     flags:
       show:
         flaggable_content_desc: |
@@ -6246,6 +6256,9 @@ cs:
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
         user_id: Jedinečný identifikátor pro pozorovatele
         user_login: Uživatelské jméno pozorovatele
+        user_name: |
+          Jméno pozorovatele, obvykle používané pro přiřazení na místě.
+          Toto je nepovinné pole a může být vyplněno pseudonymem.
         created_at: Datum a čas, kdy bylo pozorování vytvořeno
         updated_at: Datum a čas, kdy bylo pozorování naposledy aktualizováno
         quality_grade: Stupeň kvality tohoto pozorování. Podívejte se do sekce Nápověda, kde najdete podrobnosti o tom, co to znamená
@@ -6990,6 +7003,7 @@ cs:
         species_per_year_by_date_added: Dle data přidání
         species_per_year_by_date_observed: Dle data pozorování
         stats_generated_datetime: Statistiky generované na %{datetime}
+        stats_generation_schedule: Statistiky budou generovány každou neděli v prosinci a 1. ledna
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
           Obchod!
@@ -8006,6 +8020,13 @@ cs:
               has_query_parameter: "nemůže obsahovat parametr dotazu."
               invalid_uri: "musí být platný identifikátor URI."
               relative_uri: "musí být absolutní URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: má zakázané komentáře
         flag:
           attributes:
             flag:

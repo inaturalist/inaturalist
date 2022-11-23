@@ -4567,7 +4567,8 @@ sv:
   stop_trusting_this_person_with_your_private_coordinates: Sluta lita på den här personen med dina dolda koordinater
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: BUTIK
+  store: Butik
+  store_caps: BUTIK
   studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalist-data under %{year}
   stuff_just_added: "Saker du just lagt till..."
   subject_resolved_noun_html: "%{subject} löst %{noun}"
@@ -5286,7 +5287,6 @@ sv:
   users_lists: "%{user}s listor"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
-  users_year_on_site: "%{user}s år på %{site} %{year}"
   valid_options_are: Giltiga alternativ är
   value: Värde
   values: Värden
@@ -5354,12 +5354,10 @@ sv:
   view_taxononomy_details_for_taxon: "Visa taxonomidetaljer för %{taxon}"
   view_user_observations: "Visa %{user}s fynd"
   view_x: "Visa %{x}"
-  view_year_stats_for_site: "Visa statistik för %{site} under %{year}"
   view_your_dashboard: Visa din anslagstavla
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din anslagstavla</a> för fler uppdateringar"
   view_your_inbox: Visa din inkorg
   view_your_observations: Visa dina fynd
-  view_your_year_stats: "Visa din statistik för %{year}"
   view_yours: Visa dina
   view_all_of_your_observations_from_x: "Visa alla dina fynd från %{x}"
   video_tutorials: Videohandledning
@@ -7742,6 +7740,13 @@ sv:
               has_query_parameter: "kan inte innehålla en frågeparameter."
               invalid_uri: "måste vara en giltig URI."
               relative_uri: "måste vara en absolut URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: har stängt av kommentarer
         flag:
           attributes:
             flag:
