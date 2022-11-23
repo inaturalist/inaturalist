@@ -1357,6 +1357,8 @@ pt-BR:
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
   curator_identification: Identificação do Administrador
   current_flags: Sinalizações Atuais
+  #Label for a custom boundary for an observation search
+  custom_boundary: Limite Personalizado
   custom_project_fields: Personalize os campos de projeto
   custom_project_was_successfully_created: O Projeto Personalizado foi criado com sucesso.
   custom_project_was_successfully_updated: Projeto Personalizado foi atualizado com sucesso.
@@ -1563,6 +1565,7 @@ pt-BR:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Solte
   download: Baixar
+  download_caps: BAIXAR
   download_bulk_import_template_html: |
     <a href="%{url}">Baixar template</a> para uso no <a href="/observations/import#csv_import">carregador múltiplo</a>
   download_csv: Baixar CSV
@@ -1580,6 +1583,10 @@ pt-BR:
   draft_saved: Rascunho salvo!
   drafts: Rascunhos
   drag_and_drop_some_photos_or_sounds: Arrastar e largar algumas fotografias ou sons
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Desenhar limite circular
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Desenhar limite retangular
   drawings: Desenhos
   duplicate_verb: Duplicar
   duration_value: "Duração: %{duration} minutos"
@@ -1774,8 +1781,10 @@ pt-BR:
   filters: Filtros
   find: Procurar
   find_a_guide: Encontre uma guia
+  find_a_post: Encontrar uma publicação
   find_a_place: Procurar um Lugar
   find_guides: Encontre Guias
+  find_posts_for: "Encontrar publicações para: %{journal_name}"
   find_new_place_to_explore: Procure um novo lugar para explorar!
   find_observations: Encontre observações
   find_photos: Encontre Fotos
@@ -2325,6 +2334,7 @@ pt-BR:
     romanian: Romano
     russian: Russo
     santali: Santali
+    serbian: Sérvio
     setswana: Setswana
     sinhala: Cingalês
     slovak: Eslovaco
@@ -2411,6 +2421,7 @@ pt-BR:
     de: Alemão
     el: Grego
     en: Inglês
+    en-GB: Inglês (Reino Unido)
     eo: Esperanto
     es: Espanhol
     es-AR: Espanhol (Argentina)
@@ -2423,6 +2434,7 @@ pt-BR:
     fr-CA: Francês (Canadá)
     gl: Galego
     he: Hebraico
+    hr: Croata
     hu: Húngaro
     id: Indonesio
     it: Italiano
@@ -2446,6 +2458,7 @@ pt-BR:
     sk: Eslovaco
     sl: Esloveno
     sq: Albanês
+    sr: Sérvio
     sv: Sueco
     th: Tailandês
     tr: Turco
@@ -2651,10 +2664,13 @@ pt-BR:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Mês
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Apoiadores Mensais
   monthly_supporter_since_date_html: |
     <a href="%{url}">Apoiador Mensal</a> desde %{date}
   months: Meses
   more: Mais
+  more_caps: MAIS
   more_about_sharing: Mais sobre compartilhamento
   more_fields: Mais campos
   more_filters: Mais filtros
@@ -3730,6 +3746,8 @@ pt-BR:
     que você não está criando uma duplicata. Já temos lugares para todos os
     continentes e países, bem como dois níveis administrativos abaixo de
     país.
+  places_warning_please_keep_in_mind: |
+    Tenha em mente as seguintes restrições:
   places_warning_projects_can_have_multiple_places: |
     Se você está tentando criar um lugar para a área de um projeto, projetos podem ser compostos de vários lugares. Por exemplo, se você quer fazer um projeto para a Nova Zelândia e a Austrália, você pode apenas adicionar requisitos para os dois lugares em vez de criar um novo.
   places_warning_new_places_are_slow_html: |
@@ -4126,6 +4144,8 @@ pt-BR:
   research_grade_tooltip_html: 'Observações "Nível de Pesquisa" possuem mídia, localização, uma data e consenso da comunidade sobre uma identificação precisa (geralmente ao nível de espécie). <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
   research_grade_observations_have: '"Categoria Pesquisa" observação devem incluir data, foto, coordenadas, e uma ID aprovada pela comunidade. Clique para visualizar a avaliação da qualidade dos dados.'
   research_grade_qualification: Qualificação à Nível de Pesquisa
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Reset
   reset_filters_short: Resetar
   reset_brightness: Repor brilho
   reset_search_filters: Restabelecer filtros de pesquisa
@@ -4262,6 +4282,7 @@ pt-BR:
   set_license: Definir licença
   settings: Configurações
   share: Compartilhar
+  share_caps: COMPARTILHAR
   share_colon: "Compartilhar:"
   short_code_for_this_place: Abreviação para este local, exemplo EUA para Estados Unidos
   short_or_abbreviated_title_for_display: Texto abreviado para exibir como título em áreas com espaço limitado. Máximo 10 caracteres.
@@ -4530,7 +4551,8 @@ pt-BR:
   stop_trusting_this_person_with_your_private_coordinates: Parar de confiar suas coordenadas ocultadas a esta pessoa
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: LOJA
+  store: Loja
+  store_caps: LOJA
   studies_that_used_inaturalist_data_in_year: Estudos que usaram dados do iNaturalist em %{year}
   stuff_just_added: "Oque você acabou de adicionar..."
   subject_resolved_noun_html: "%{subject} solucionado %{noun}"
@@ -5208,7 +5230,6 @@ pt-BR:
   users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projetos de %{user}"
-  users_year_on_site: "O ano %{year} de %{user} em %{site}"
   valid_options_are: Opções válidas são
   value: Valor
   values: Valores
@@ -5216,6 +5237,7 @@ pt-BR:
   verifiable_observations_by_observation_date: Observações verificáveis por data de observação
   view: Exibir
   view_all: Ver todas
+  view_all_caps: VER TUDO
   view_all_fields: Ver todos os campos
   view_all_flags: Ver Todas as Sinalizações
   view_all_members: Ver todos os membros
@@ -5236,6 +5258,11 @@ pt-BR:
   view_flags_for_x_html: "Ver Sinalizações para %{x}"
   view_full_observation: Ver observação completa
   view_full_size_photo: Ver foto em tamanho real
+  view_inaturalist_global_year_in_review: Visualizar o ano de %{year} do iNaturalist global em revisão
+  view_inaturalist_global_year_in_review_caps: VER O ANO GLOBAL DE %{year} DO INATURALISTA EM REVISÃO
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Veja o ano de %{year} do %{site} em revisão
   view_journal: Ver Boletim Informativo
   view_leaderboard_from_last_month: Ver ranking do último mês
   view_leaderboard_from_last_year: Ver ranking para o último ano
@@ -5276,12 +5303,12 @@ pt-BR:
   view_taxononomy_details_for_taxon: "Visualizar detalhes da taxonomia para %{taxon}"
   view_user_observations: "Exibir as observações de %{user}"
   view_x: "Ver %{x}"
-  view_year_stats_for_site: "Veja as estatísticas para %{year} de %{site}"
   view_your_dashboard: Exibir painel de controle
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Exibir painel de controle</a> para mais atualizações"
   view_your_inbox: Ver sua caixa de entrada
   view_your_observations: Ver suas observações
-  view_your_year_stats: "Veja suas estatísticas de %{year}"
+  view_your_personal_year_in_review: "Veja seu Ano de %{year} Pessoal em Revisão"
+  view_your_personal_year_in_review_caps: "VEJA SEU ANO DE %{year} PESSOAL EM REVISÃO"
   view_yours: Veja os Seus
   view_all_of_your_observations_from_x: "Ver todas as suas observações de %{x}"
   video_tutorials: Tutoriais em vídeo
@@ -5412,6 +5439,7 @@ pt-BR:
   x_wrote_y_new_posts_html: "%{x} escreveu %{y} novas publicações"
   year: Ano
   year_in_review: "Resumo do ano %{year}"
+  year_in_review2: "Ano em Revisão %{year}"
   year_month: ano/mês
   year_on_site: "O %{year} em %{site}"
   yellow: amarelo
@@ -5638,6 +5666,7 @@ pt-BR:
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Torne-se um apoiador mensal do iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: TORNE-SE UM CONTRIBUINTE MENSAL DE INATURALISTA
         desc_html: |
           <p class="lead">
           <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
@@ -5651,6 +5680,8 @@ pt-BR:
           <p class="text-muted">
           O iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society. Todas as doações serão recebidas pela Academia de Ciências da Califórnia, uma organização 501(c)(3) isenta de impostos e sem fins lucrativos baseada nos Estados Unidos da América.
           </p>
+        thank_you_for_being_a_monthly_supporter: Obrigado por ser um Apoiador Mensal!
+        thank_you_for_being_a_monthly_supporter_caps: OBRIGADO POR SER UM APOIADOR MENSAL
     flags:
       show:
         flaggable_content_desc: |
@@ -6728,6 +6759,7 @@ pt-BR:
         species_per_year_by_date_added: Por data de adição
         species_per_year_by_date_observed: Por data de observação
         stats_generated_datetime: Estatísticas geradas em %{datetime}
+        stats_generation_schedule: Estatísticas serão geradas todo domingo em dezembro e no dia 1 de Janeiro
         store_prompt: |
           Quer mostrar seu orgulho iNat em todos os lugares em que for? Confira a loja iNat!
         sunburst_desc_html: |

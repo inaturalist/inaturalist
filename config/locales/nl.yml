@@ -1774,8 +1774,10 @@ nl:
   filters: Filters
   find: Zoeken
   find_a_guide: Vind een gids
+  find_a_post: Zoek een bericht
   find_a_place: Zoek een plaats
   find_guides: Vind gidsen
+  find_posts_for: "Vind berichten voor: %{journal_name}"
   find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken!
   find_observations: Vind waarnemingen
   find_photos: Foto's zoeken
@@ -2397,6 +2399,7 @@ nl:
     de: Duits
     el: Grieks
     en: Engels
+    en-GB: Engels (VK)
     eo: Esperanto
     es: Spaans
     es-AR: Spaans (Argentinië)
@@ -4529,7 +4532,8 @@ nl:
   stop_trusting_this_person_with_your_private_coordinates: Vertrouw deze persoon je verborgen coördinaten niet meer toe
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: WINKEL
+  store: Winkel
+  store_caps: WINKEL
   studies_that_used_inaturalist_data_in_year: Studies die iNaturalist-gegevens in %{year} hebben gebruikt
   stuff_just_added: "Stuff die je zojuist hebt toegevoegd ..."
   subject_resolved_noun_html: "%{subject} lost %{noun} op"
@@ -5254,7 +5258,6 @@ nl:
   users_lists: "Lijsten van %{user}"
   users_profile: "Profiel van %{user}"
   users_projects: "Projecten van %{user}"
-  users_year_on_site: "%{user}'s jaar op %{site} %{year}"
   valid_options_are: Geldige opties zijn
   value: Waarde
   values: Waarden
@@ -5322,12 +5325,10 @@ nl:
   view_taxononomy_details_for_taxon: "Bekijk taxonomiedetails voor %{taxon}"
   view_user_observations: "Waarnemingen van %{user} weergeven"
   view_x: "%{x} weergeven"
-  view_year_stats_for_site: "Statistieken van %{year} voor %{site} weergeven"
   view_your_dashboard: Bekijk je dashboard
   view_your_dashboard_for_more_updates_html: "\n<a href='%{url}'>Bekijk je dashboard</a> voor meer nieuws"
   view_your_inbox: Bekijk je inbox
   view_your_observations: Bekijk je waarnemingen
-  view_your_year_stats: "Toon je statistieken van %{year}"
   view_yours: Bekijk die van jou
   view_all_of_your_observations_from_x: "Bekijk al je waarnemingen van %{x}"
   video_tutorials: Videohandleidingen
@@ -6804,6 +6805,7 @@ nl:
         species_per_year_by_date_added: Op datum toegevoegd
         species_per_year_by_date_observed: Op waarnemingsdatum
         stats_generated_datetime: Statistieken gegenereerd op %{datetime}
+        stats_generation_schedule: Statistieken worden elke zondag in december en op 1 januari gegenereerd
         store_prompt: |
           Wil je je iNat trots overal laten zien? Check de iNat winkel!
         sunburst_desc_html: |
@@ -7757,6 +7759,13 @@ nl:
               has_query_parameter: "kan geen queryparameter bevatten."
               invalid_uri: "moet een geldige URI zijn."
               relative_uri: "moet een absolute URI zijn."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: heeft reacties uitgeschakeld
         flag:
           attributes:
             flag:

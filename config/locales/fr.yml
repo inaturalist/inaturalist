@@ -1556,6 +1556,7 @@ fr:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
   download: Télécharger
+  download_caps: TÉLÉCHARGER
   download_bulk_import_template_html: |
     <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
     <a href="/observations/import?project_id=%{project_id}#csv_import">chargeur par lot</a>
@@ -1776,8 +1777,10 @@ fr:
   filters: Filtres
   find: Trouver
   find_a_guide: Trouver un guide
+  find_a_post: Trouver une note
   find_a_place: Trouver un lieu
   find_guides: Trouver des guides
+  find_posts_for: "Trouver les notes pour : %{journal_name}"
   find_new_place_to_explore: Trouver un nouveau lieu à explorer!
   find_observations: Trouver des observations
   find_photos: Trouver des photos
@@ -2063,6 +2066,7 @@ fr:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identification retirée.
   identifications: Identifications
+  inaturalist_global_year_in_review: "Rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist"
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -2412,6 +2416,7 @@ fr:
     de: Allemand
     el: Grec
     en: anglais
+    en-GB: Anglais (Royaume-Uni)
     eo: Espéranto
     es: Espagnol
     es-AR: Espagnol (Argentine)
@@ -2424,6 +2429,7 @@ fr:
     fr-CA: Français (Canada)
     gl: Galicien
     he: Hébreu
+    hr: Croate
     hu: Hongrois
     id: Indonésien
     it: Italien
@@ -2654,10 +2660,13 @@ fr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM YY"
   month: Mois
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Donateurs qui font un don mensuel
   monthly_supporter_since_date_html: |
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
   months: Mois
   more: Plus
+  more_caps: PLUS
   more_about_sharing: En savoir plus sur le partage des données
   more_fields: Plus de champs
   more_filters: Plus de filtres
@@ -4268,6 +4277,7 @@ fr:
   set_license: Établir la licence
   settings: Paramètres
   share: Partager
+  share_caps: PARTAGER
   share_colon: "Partager:"
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
   short_or_abbreviated_title_for_display: Titre court ou abrégé pour l’affichage dans des champs à espace réduit. 10 caractères maximum.
@@ -4312,6 +4322,8 @@ fr:
   #Journal post formatting option
   simple: Simple
   single_observation: Observation unique
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Rétrospective de l'année %{year} sur %{site}"
   sizes: Tailles
   skip_to_next_page: "Passer à la page suivante"
   small: petit
@@ -4487,7 +4499,8 @@ fr:
   stop_trusting_this_person_with_your_private_coordinates: Arrêtez de confier à cette personne vos coordonnées masquées
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: BOUTIQUE
+  store: Boutique
+  store_caps: BOUTIQUE
   studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de iNaturalist en %{year}
   stuff_just_added: "Trucs que vous venez d’ajouter…"
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
@@ -5208,7 +5221,8 @@ fr:
   users_lists: "Listes @vow_or_con{vow:d'|de }%{user}"
   users_profile: "Profil de %{user}"
   users_projects: "Projets de %{user}"
-  users_year_on_site: "Année de %{user} sur %{site} %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Rétrospective de l'année %{year} @vow_or_con{vow:d'|con:de }%{user} sur %{site}"
   valid_options_are: Les options valides sont
   value: Valeur
   values: Valeurs
@@ -5216,6 +5230,7 @@ fr:
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
+  view_all_caps: TOUT AFFICHER
   view_all_fields: Afficher tous les champs
   view_all_flags: Voir tout les signalements
   view_all_members: Afficher tous les membres
@@ -5236,6 +5251,12 @@ fr:
   view_flags_for_x_html: "Afficher les signalements pour %{x}"
   view_full_observation: Afficher l’observation complète
   view_full_size_photo: Afficher la photo en pleine taille
+  view_inaturalist_global_year_in_review: Voir la rétrospective de l'année %{year} de la communauté mondiale d'iNaturalist
+  view_inaturalist_global_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} DE LA COMMUNAUTÉ MONDIALE D'INATURALIST
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Voir la rétrospective de l'année %{year} sur %{site}
+  view_site_year_in_review_caps: VOIR LA RÉTROSPECTIVE DE L'ANNÉE %{year} SUR %{site}
   view_journal: Afficher le journal
   view_leaderboard_from_last_month: Afficher le classement du mois dernier
   view_leaderboard_from_last_year: Afficher le classement de l'année dernière
@@ -5276,12 +5297,12 @@ fr:
   view_taxononomy_details_for_taxon: "Afficher les détails de la taxonomie pour %{taxon}"
   view_user_observations: "Afficher les observations de %{user}"
   view_x: "Afficher %{x}"
-  view_year_stats_for_site: "Afficher les statistiques de %{year} pour %{site}"
   view_your_dashboard: Afficher votre tableau de bord
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Afficher votre tableau\nde bord</a> pour plus de notifications"
   view_your_inbox: Afficher votre boîte de réception
   view_your_observations: Afficher vos observations
-  view_your_year_stats: "Afficher vos statistiques de %{year}"
+  view_your_personal_year_in_review: "Voir votre rétrospective personnelle de l'année %{year}"
+  view_your_personal_year_in_review_caps: "VOIR VOTRE RÉTROSPECTIVE PERSONNELLE DE L'ANNÉE %{year}"
   view_yours: Afficher les vôtres
   view_all_of_your_observations_from_x: "Afficher toutes vos observations depuis %{x}"
   video_tutorials: Tutoriels vidéo
@@ -5415,6 +5436,7 @@ fr:
   x_wrote_y_new_posts_html: "%{x} a écrit %{y} nouveaux messages"
   year: Année
   year_in_review: "Revue de l'année %{year}"
+  year_in_review2: "Rétrospective de l'année %{year}"
   year_month: année/mois
   year_on_site: "Année %{year} sur %{site}"
   yellow: jaune
@@ -5650,6 +5672,7 @@ fr:
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: FAITES UN DON CHAQUE MOIS À INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist est une des plus grandes communautés du monde dédiées
@@ -5672,6 +5695,8 @@ fr:
           <p class="text-muted">
           iNaturalist est une initiative conjointe de la California Academy of Sciences et de la National Geographic Society'. Tous les dons seront reçus par la California Academy of Sciences, une organisation sans but lucratif exemptée de taxes aux États-Unis d’Amérique selon le code fiscal américain 501(c)(3).
           </p>
+        thank_you_for_being_a_monthly_supporter: Merci de faire un don chaque mois !
+        thank_you_for_being_a_monthly_supporter_caps: MERCI DE FAIRE UN DON CHAQUE MOIS !
     flags:
       show:
         flaggable_content_desc: |
@@ -7001,6 +7026,7 @@ fr:
         species_per_year_by_date_added: Par date d'ajout
         species_per_year_by_date_observed: Par date d'observation
         stats_generated_datetime: Statistiques générées le %{datetime}
+        stats_generation_schedule: Les statistiques seront générées tous les dimanches de décembre et le 1er janvier
         store_prompt: |
           Vous voulez fièrement afficher iNat partout où vous allez ? Visitez la boutique iNat !
         sunburst_desc_html: |
@@ -8075,6 +8101,13 @@ fr:
               has_query_parameter: "ne peut contenir de paramètre de requête."
               invalid_uri: "doit être un URI valide."
               relative_uri: "doit être un URI absolu."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: a désactivé les commentaires
         flag:
           attributes:
             flag:

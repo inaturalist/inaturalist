@@ -182,8 +182,13 @@ class TaxonAutocomplete extends React.Component {
       const isVisionResults = items[0] && items[0].isVisionResult;
       let commonAncestorCategoryShown = false;
       let suggestionsCategoryShown = false;
+      let experimantalWarningShown = false;
       $.each( items, ( index, item ) => {
         if ( isVisionResults ) {
+          if ( item.isExperimental && !experimantalWarningShown ) {
+            ul.append( `<li class='non-option warning'>Experimental: ${item.isExperimental}</li>` );
+            experimantalWarningShown = true;
+          }
           if ( item.isCommonAncestor ) {
             const snakeCaseRank = _.snakeCase( item.rank );
             // Note: given the way we're doing fallbacks as of this writing on
@@ -315,8 +320,10 @@ class TaxonAutocomplete extends React.Component {
   returnVisionResults( response, callback ) {
     let { results } = response;
     const { viewNotNearby } = this.state;
-    const nearbyResults = _.filter( response.results,
-      r => r.frequency_score && r.frequency_score > 0 );
+    const nearbyResults = _.filter(
+      response.results,
+      r => r.frequency_score && r.frequency_score > 0
+    );
     this.setState( {
       // eslint-disable-next-line react/no-unused-state
       numSuggested: response.results.length,
@@ -331,12 +338,14 @@ class TaxonAutocomplete extends React.Component {
       taxon.isVisionResult = true;
       taxon.visionScore = r.vision_score;
       taxon.frequencyScore = r.frequency_score;
+      taxon.isExperimental = response.experimental;
       return taxon;
     } );
     if ( response.common_ancestor ) {
       const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
       taxon.isVisionResult = true;
       taxon.isCommonAncestor = true;
+      taxon.isExperimental = response.experimental;
       visionTaxa.unshift( taxon );
     }
     if ( visionTaxa.length === 0 ) {
@@ -437,6 +446,9 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
+      if ( config.testingVision ) {
+        baseParams.geomodel = true;
+      }
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
           .then( r => {
@@ -452,10 +464,8 @@ class TaxonAutocomplete extends React.Component {
           observationID = observationUUID;
         }
         const params = Object.assign( baseParams, { id: observationID } );
-        this.fetchingVision = true;
         inaturalistjs.computervision.score_observation( params ).then( r => {
           this.cachedVisionResponse = r;
-          this.fetchingVision = false;
           this.returnVisionResults( r, callback );
         } ).catch( e => {
           console.log( ["Error fetching vision response for observation", e] );

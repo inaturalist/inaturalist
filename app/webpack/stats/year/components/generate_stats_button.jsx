@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button } from "react-bootstrap";
 import { fetch } from "../../../shared/util";
 
 class GenerateStatsButton extends React.Component {
@@ -43,15 +42,15 @@ class GenerateStatsButton extends React.Component {
         onClick={( ) => this.generateStats( )}
         disabled={this.state.loading}
       >
-        <i className={`fa fa-refresh ${this.state.loading ? "fa-spin" : ""}`}>
-        </i> { this.state.loading ? I18n.t( "loading" ) : this.props.text }
+        <i className={`fa fa-refresh ${this.state.loading ? "fa-spin" : ""}`} />
+        { " " }
+        { this.state.loading ? I18n.t( "loading" ) : this.props.text }
       </button>
     );
   }
 }
 
 GenerateStatsButton.propTypes = {
-  user: PropTypes.object,
   text: PropTypes.string,
   year: PropTypes.number.isRequired
 };
