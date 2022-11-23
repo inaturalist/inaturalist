@@ -1524,6 +1524,7 @@ tr:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Bırak
   download: İndir
+  download_caps: İNDİR
   download_bulk_import_template_html: |
     <a href="/observations/import?project_id=%{project_id}#csv_import">Toplu yükleyicide</a> kullanmak için <a href="%{url}">şablonu indir</a>.
   download_csv: CSV'yi İndir
@@ -1738,8 +1739,10 @@ tr:
   filters: Filtreler
   find: Bul
   find_a_guide: Bir rehber bul
+  find_a_post: Bir gönderi bul
   find_a_place: Bir Konum Bul
   find_guides: Rehberleri Bul
+  find_posts_for: "%{journal_name} için gönderileri bul"
   find_new_place_to_explore: Yeni bir yer keşfet!
   find_observations: Gözlemleri bul
   find_photos: Fotoğrafları bul
@@ -2015,6 +2018,7 @@ tr:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
+  inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -2356,6 +2360,7 @@ tr:
     de: Almanca
     el: Yunanca
     en: İngilizce
+    en-GB: İngilizce (BK)
     eo: Esperanto
     es: İspanyolca
     es-AR: İspanyolca (Arjantin)
@@ -2368,6 +2373,7 @@ tr:
     fr-CA: Fransızca (Kanada)
     gl: Galiççe
     he: İbranice
+    hr: Hırvatça
     hu: Macarca
     id: Endonezce
     it: İtalyanca
@@ -2592,10 +2598,13 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Ay
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Aylık Destekçiler
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
   months: Aylar
   more: Daha Fazla
+  more_caps: DAHA ÇOK
   more_about_sharing: Paylaşım Hakkında Fazla Bilgi
   more_fields: Daha Çok Alan
   more_filters: Daha Fazla Filtre
@@ -4180,6 +4189,7 @@ tr:
   set_license: Lisans ayarla
   settings: Ayarlar
   share: Paylaş
+  share_caps: PAYLAŞ
   share_colon: "Paylaş:"
   short_code_for_this_place: Bu konum için kısa kod, ör. Birleşik Devletler için ABD
   short_or_abbreviated_title_for_display: Sınırlı alanlarda görüntülenmek üzere kısa ya da kısaltılmış başlık. En çok 10 karakter.
@@ -4224,6 +4234,8 @@ tr:
   #Journal post formatting option
   simple: Basit
   single_observation: Tek gözlem
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}'in %{year} Yılı Değerlendirmesi"
   sizes: Boyutlar
   skip_to_next_page: "Sonraki sayfaya atla"
   small: küçük
@@ -5097,6 +5109,8 @@ tr:
   users_lists: "%{user} Kullanıcısının Listeleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user} kullanıcısının %{year} %{site} Değerlendirmesi"
   valid_options_are: Geçerli seçenekler şunlar
   value: Değer
   values: Değerler
@@ -5104,6 +5118,7 @@ tr:
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
   view: Görüntüle
   view_all: Tümünü Görüntüle
+  view_all_caps: HEPSİNİ GÖSTER
   view_all_fields: Tüm Alanları Göster
   view_all_flags: Tüm İşaretleri Görüntüle
   view_all_members: Tüm Üyeleri Görüntüle
@@ -5124,6 +5139,12 @@ tr:
   view_flags_for_x_html: "%{x} için İşaretleri Görüntüle"
   view_full_observation: Tam Gözlemi Görüntüle
   view_full_size_photo: Tam Boyutlu Fotoğrafları Görüntüle
+  view_inaturalist_global_year_in_review: iNaturalist'in Küresel %{year} Yılı Değerlendirmesini Görüntüle
+  view_inaturalist_global_year_in_review_caps: INATURALIST'İN KÜRESEL %{year} YILI DEĞERLENDİRMESİNİ GÖRÜNTÜLE
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} %{year} Yılı Değerlendirmesini Görüntüle'
+  view_site_year_in_review_caps: '%{site} %{year} YILI DEĞERLENDİRMESİNİ GÖRÜNTÜLE'
   view_journal: Yayını Görüntüle
   view_leaderboard_from_last_month: Geçen ayın lider tablosunu görüntüle
   view_leaderboard_from_last_year: Geçen yılın lider tablosunu görüntüle
@@ -5168,6 +5189,8 @@ tr:
   view_your_dashboard_for_more_updates_html: "Daha çok güncelleme için <a href='%{url}'>kontrol panelini görüntüle</a>"
   view_your_inbox: Gelen kutunuzu görüntüleyin
   view_your_observations: Gözlemlerini görüntüle
+  view_your_personal_year_in_review: "Kişisel %{year} Yılı Değerlendirmeni Görüntüle"
+  view_your_personal_year_in_review_caps: "KİŞİSEL %{year} YILI DEĞERLENDİRMENİ GÖRÜNTÜLE"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
   video_tutorials: Öğretici Videolar
@@ -5296,6 +5319,7 @@ tr:
   x_wrote_y_new_posts_html: "%{x}, %{y} tane yeni gönderi yazdı"
   year: Yıl
   year_in_review: "%{year} Yılı Değerlendirmesi"
+  year_in_review2: "%{year} Yılı Değerlendirmesi"
   year_month: yıl/ay
   year_on_site: "%{site}'te %{year} Yıl"
   yellow: sarı
@@ -5515,6 +5539,7 @@ tr:
       post_donate_social_media_text: iNaturalist'i destekliyorum çünkü...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Olun
+        become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
         desc_html: |
           <p class="lead">
           <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
@@ -5528,6 +5553,8 @@ tr:
           <p class="text-muted">
           iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır.
           </p>
+        thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
+        thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
     flags:
       show:
         flaggable_content_desc: |
@@ -6751,6 +6778,7 @@ tr:
         species_per_year_by_date_added: Ekleme tarihine göre
         species_per_year_by_date_observed: Gözlem tarihine göre
         stats_generated_datetime: İstatistikler %{datetime} tarihinde oluşturuldu
+        stats_generation_schedule: İstatistikler, aralık ayında her pazar ve 1 Ocak'ta oluşturulacaktır
         store_prompt: |
           iNat'ten duyduğun gururu gittiğin her yerde göstermek ister misin? iNat Mağazası'na göz at!
         sunburst_desc_html: |
@@ -7733,6 +7761,13 @@ tr:
               has_query_parameter: "bir sorgu parametresi içeremez."
               invalid_uri: "geçerli bir URI olmalı."
               relative_uri: "eksiksiz bir URI olmalıdır."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: yorumları devre dışı bıraktı
         flag:
           attributes:
             flag:
