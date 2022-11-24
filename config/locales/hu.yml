@@ -472,8 +472,8 @@ hu:
   are_you_sure?: Biztos vagy benne?
   are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
   are_you_sure_delete_post: Biztos, hogy ki akarod törölni ezt a cikket?
-  are_you_sure_delete_this_place: Biztos hogy ki akarod törölni ezt helyet?
-  are_you_sure_leave_this_project: Biztos hogy kilépsz ebből a projektből?
+  are_you_sure_delete_this_place: Biztos, hogy ki akarod törölni ezt helyet?
+  are_you_sure_leave_this_project: Biztos, hogy kilépsz ebből a projektből?
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
@@ -2201,6 +2201,7 @@ hu:
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
   observations_by_app: Megfigyelések applikáció szerint
   observations_by_rank: Megfigyelések besorolás szerint
+  observations_by_user_on_date: "%{user} megfigyelései %{date} napon"
   observations_by_you: "Megfigyeléseid"
   #The limit is currently 20
   observations_can_only_have_n_photos: A megfégyelések csak %{limit} fotót tartalmazhatnak
