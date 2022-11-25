@@ -1138,6 +1138,7 @@ bg:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Пусни го тук
   download: Изтегли
+  download_caps: ИЗТЕГЛЯНЕ
   download_bulk_import_template_html: |
     <a href="%{url}">Изтегли шаблон</a> за употреба при
     <a href="/observations/import?project_id=%{project_id}#csv_import">качването на CSV</a>
@@ -1477,6 +1478,7 @@ bg:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Разпознаването е оттеглено.
   identifications: Разпознавания
+  inaturalist_global_year_in_review: "Глобален обзор на %{year} година в iNaturalist"
   computer_vision_suggestion_desc: |
     Компютърното зрение е метод за обучаване на компютрите да разпознават обекти в изображенията. Предоставяме инструменти – използващи компютърно зрение обучено чрез снимките направени от общността – които могат да дадат предположения за разпознаване на организмите. Този етикет показва, че потребителят добавил разпознаването е използвал един от тези инструменти.
   identifiers: Разпознавачи
@@ -1937,10 +1939,13 @@ bg:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Месец
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Ежемесечни поддръжници
   monthly_supporter_since_date_html: |
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
   months: Месеци
   more: Още
+  more_caps: ОЩЕ
   more_fields: Още полета
   more_filters: Още филтри
   more_from_x: Още от %{x}
@@ -3232,6 +3237,7 @@ bg:
   set_license: Задаване на лиценз
   settings: Настройки
   share: Споделяне
+  share_caps: СПОДЕЛИ
   share_colon: "Споделяне:"
   show: Показване
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
@@ -3261,6 +3267,8 @@ bg:
   #Journal post formatting option
   simple: Просто
   single_observation: Единично наблюдение
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Обзор на %{year} година в %{site}"
   sizes: Размери
   skip_to_next_page: "Направо към следващата страница"
   small: малък
@@ -3843,11 +3851,14 @@ bg:
   users_contributions_to_project_html: Приноси на <a href="%{url}">%{login}</a> към %{project_title}
   users_id: "ID на %{user}"
   users_profile: "Профила на %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Обзор на %{year} година в %{site} на %{user}"
   value: Стойност
   values: Стойности
   verifiable_observations_by_observation_date: Потвърдими наблюдения по дата на наблюдаване
   view: Виж
   view_all: Виж всички
+  view_all_caps: ВИЖ ВСИЧКИ
   view_all_fields: Виж всички полета
   view_all_flags: Виж всички маркери
   view_all_members: Виж всичките членове
@@ -3866,6 +3877,12 @@ bg:
   view_flags_for_x_html: "Виж маркерите за %{x}"
   view_full_observation: Виж цялото наблюдение
   view_full_size_photo: Виж снимката в пълен размер
+  view_inaturalist_global_year_in_review: Вижте глобалния обзор на %{year} година в iNaturalist
+  view_inaturalist_global_year_in_review_caps: ВИЖТЕ ГЛОБАЛНИЯ ОБЗОР НА %{year} ГОДИНА В INATURALIST
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Вижте обзора на %{year} година в %{site}
+  view_site_year_in_review_caps: ВИЖТЕ ОБЗОРА НА %{year} ГОДИНА В %{site}
   view_journal: Виж дневника
   view_leaderboard_from_last_month: Виж водачеството от миналия месец
   view_leaderboard_from_last_year: Виж водачеството от миналата година
@@ -3903,6 +3920,8 @@ bg:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Вижте Вашето информационното табло</a> за повече новости"
   view_your_inbox: Виж входящата поща
   view_your_observations: Виж своите наблюдения
+  view_your_personal_year_in_review: "Вижте личния си обзор на %{year} година"
+  view_your_personal_year_in_review_caps: "ВИЖТЕ ЛИЧНИЯ СИ ОБЗОР НА %{year} ГОДИНА"
   view_yours: Виж своите
   view_all_of_your_observations_from_x: "Виж всичките си наблюдения от %{x}"
   video_tutorials: Видеоуроци
@@ -3990,6 +4009,7 @@ bg:
   x_wrote_y_new_posts_html: "%{x} написа %{y} нови публикации"
   year: Година
   year_in_review: "Годишен обзор, %{year}"
+  year_in_review2: "Годишен обзор, %{year}"
   year_month: година/месец
   yellow: жълто
   'yes': "Да"
@@ -4128,6 +4148,7 @@ bg:
       post_donate_social_media_text: Подкрепям iNaturalist, защото...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станете Ежемесечен поддръжник на iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: СТАНЕТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК НА INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist е една от най-големите общности в света посветени на изследването на биоразнообразието. Благодарим Ви, че сте част от нея!</strong>
@@ -4140,6 +4161,8 @@ bg:
           <p class="text-muted">
           iNaturalist e съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Всички дарения ще бъдат получени от Калифорнийската академия на науките - базирана в САЩ, некомерсиална и освободена от данъци организация според секция 501(c)(3) от Кодекса на САЩ.
           </p>
+        thank_you_for_being_a_monthly_supporter: Благодарим Ви, че сте ежемесечен поддръжник!
+        thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВИ, ЧЕ СТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК!
     guides:
       index:
         funding_html: |
@@ -4582,6 +4605,7 @@ bg:
         species_per_year_by_date_added: По дата на добавяне
         species_per_year_by_date_observed: По дата на наблюдаване
         stats_generated_datetime: Статистиката е генерирана на %{datetime}
+        stats_generation_schedule: Статистиката ще бъде генериране всяка неделя на декември, както и на първи януари
         sunburst_desc_html: |
           Наблюдавани таксони, подредени в йерархична радиална диаграма. В центъра е основата на йерархията (Живот), която се разклонява към периферията до по-нисши таксони. Размерът на арките е пропорционален на броя наблюдения на съответния таксон. Цветовете приблизително отговарят на обичайните ни цветни кодове за различните таксони (зелено за растения, оранжево за насекоми, синьо за повечето останали животни и т.н.), така че ако виждате много зелено, значи сте наблюдавали много растения. <strong>Щракнете върху арка, за да поставите таксона ѝ в центъра</strong>, заобиколен от подтаксоните му или <strong>щракнете в центъра, за да се върнете едно ниво нагоре в йерархията</strong>.
         translators_title: Преводачи
@@ -5153,6 +5177,13 @@ bg:
             redirect_uri:
               invalid_uri: "трябва да е валиден URI."
               relative_uri: "трябва да е абсолютен URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: е изключил коментарите
         flag:
           attributes:
             flag:
