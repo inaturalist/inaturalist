@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="<%= I18n.locale %>"
     lang="<%= I18n.locale %>"
+    <% if @rtl %>
+     dir = "rtl"
+    <% end %>
     xmlns:fb="http://www.facebook.com/2008/fbml"
     xmlns:og="http://ogp.me/ns#">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <% if CONFIG.facebook && CONFIG.facebook.namespace %><%= CONFIG.facebook.namespace %>: http://ogp.me/ns/fb/<%= CONFIG.facebook.namespace %>#<% end %>">
