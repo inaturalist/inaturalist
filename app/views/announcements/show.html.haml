@@ -1,15 +1,13 @@
 - content_for(:title) do
-  = @announcement.id
+  =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
 .container
   .row
     .col-xs-12
-      %h2
-        Announcement
-        = @announcement.id
+      %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
       %table.table.table-bordered
         - %w(created_at updated_at placement start end site_ids locales).each do |a|
           %tr
-            %th=t "#{a}_", default: t( a )
+            %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
             %td= @announcement.send( a )
         %tr
           %th=t :body

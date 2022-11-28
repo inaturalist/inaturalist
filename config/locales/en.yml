@@ -8650,6 +8650,9 @@ en:
       <<: *errors
   activerecord:
     models:
+      # Information authored by site admins shown to users at various places
+      # on the web site, mostly on the dashboard
+      Announcement: Announcement
       AssessmentSection: Assessment Section
       Atlas: Atlas
       BlockedUser: Blocked User
@@ -8669,6 +8672,11 @@ en:
       OauthApplication: Application
       TaxonLink: Taxon Link
     attributes:
+      announcement:
+        created_at: Created at
+        updated_at: Updated at
+        # Numerical IDs of the sites the announcement should be shown on
+        site_ids: Site IDs
       assessment:
         description: Description
       assessment_section:
