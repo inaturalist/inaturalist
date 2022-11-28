@@ -1530,6 +1530,7 @@ it:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Trascina qua
   download: Scarica
+  download_caps: SCARICA
   download_bulk_import_template_html: |
     <a href="%{url}">Scarica il modello</a> da usare nell'<a href="/observations/import?project_id=%{project_id}#csv_import">importazione in blocco</a>
   download_csv: Scarica in formato CSV
@@ -2025,6 +2026,7 @@ it:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificazione ritirata.
   identifications: Identificazioni
+  inaturalist_global_year_in_review: "Rassegna dell'Anno %{year} Globale di iNaturalist"
   computer_vision_suggestion: Suggerimento della visione artificiale
   computer_vision_suggestion_desc: |
     La visione artificiale è il processo di addestramento dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti che usano i modelli di visione artificiale allenati sulle foto della comunità per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti. Questa etichetta indica quando una persona ha aggiunto una identificazione per mezzo di uno di questi strumenti.
@@ -2611,10 +2613,13 @@ it:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Mese
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Sostenitori Mensili
   monthly_supporter_since_date_html: |
     <a href="%{url}">Sostenitore mensile</a> dal %{date}
   months: Mesi
   more: Di più
+  more_caps: DI PIÙ
   more_about_sharing: Di Più Sulla Condivisione
   more_fields: Più campi
   more_filters: Più filtri
@@ -4205,6 +4210,7 @@ it:
   set_license: Imposta la licenza
   settings: Impostazioni
   share: Condividi
+  share_caps: CONDIVIDI
   share_colon: "Condividi:"
   short_code_for_this_place: Codice breve per questo luogo, ad esempio, US per gli Stati Uniti
   short_or_abbreviated_title_for_display: Titolo corto o abbreviato per la visualizzazione in aree a spazio limitato. Max 10 caratteri.
@@ -4249,6 +4255,8 @@ it:
   #Journal post formatting option
   simple: Semplice
   single_observation: Osservazione singola
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Rassegna dell'Anno %{year} %{site}"
   sizes: Dimensioni
   skip_to_next_page: "Passa alla pagina successiva"
   small: piccola
@@ -4410,7 +4418,7 @@ it:
   start_typing_taxon_name: Inizia a digitare il nome del taxon...
   start_typing_someones_name: "Inizia a digitare il nome di qualcuno..."
   stats: Statistiche
-  stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono state generate.
+  stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono ancora state generate.
   status: Stato
   status_globally: '"%{status}" a livello Globale'
   status_in_place: '"%{status}" in %{place}'
@@ -5131,6 +5139,8 @@ it:
   users_lists: "Elenchi di %{user}"
   users_profile: "Il profilo di %{user}"
   users_projects: "I progetti di %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Rassegna dell'Anno %{year} %{site} di %{user}"
   valid_options_are: Le opzioni valide sono
   value: Valore
   values: Valori
@@ -5138,6 +5148,7 @@ it:
   verifiable_observations_by_observation_date: Osservazioni verificabili per data di osservazione
   view: Visualizza
   view_all: Mostra tutto
+  view_all_caps: VISUALIZZA TUTTO
   view_all_fields: Visualizza Tutti I Campi
   view_all_flags: Mostra tutti i contrassegni
   view_all_members: Visualizza tutti i membri
@@ -5158,6 +5169,12 @@ it:
   view_flags_for_x_html: "Visualizza le etichette per %{x}"
   view_full_observation: Visualizza l'osservazione completa
   view_full_size_photo: Visualizza immagine a dimensione piena
+  view_inaturalist_global_year_in_review: Visualizza la Rassegna dell'Anno %{year} Globale di iNaturalist
+  view_inaturalist_global_year_in_review_caps: VISUALIZZA LA RASSEGNA DELL'ANNO %{year} GLOBALE DI INATURALIST
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Visualizza la Rassegna dell'Anno %{year} %{site}
+  view_site_year_in_review_caps: VISUALIZZA LA RASSEGNA DELL'ANNO %{year} %{site}
   view_journal: Visualizza il diario
   view_leaderboard_from_last_month: Visualizza la classifica dell'ultimo mese
   view_leaderboard_from_last_year: Visualizza la classifica dell'ultimo anno
@@ -5202,6 +5219,8 @@ it:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Visualizza la tua bacheca</a> per altri aggiornamenti"
   view_your_inbox: Visualizza la tua posta in arrivo
   view_your_observations: Visualizza le tue osservazioni
+  view_your_personal_year_in_review: "Visualizza la tua Personale Rassegna dell'Anno %{year}"
+  view_your_personal_year_in_review_caps: "VISUALIZZA LA TUA PERSONALE RASSEGNA DELL'ANNO %{year}"
   view_yours: Visualizza le tue
   view_all_of_your_observations_from_x: "Visualizza tutte le tue osservazioni da %{x}"
   video_tutorials: Tutorial video
@@ -5331,7 +5350,8 @@ it:
   x_wrote_a_new_post_html: "%{x} ha scritto un nuovo post"
   x_wrote_y_new_posts_html: "%{x} ha scritto %{y} nuovi post"
   year: Anno
-  year_in_review: "Anno in Sintesi %{year}"
+  year_in_review: "Rassegna Anno %{year}"
+  year_in_review2: "Rassegna dell'Anno %{year}"
   year_month: anno/mese
   year_on_site: "Anno su %{site} %{year}"
   yellow: giallo
@@ -5351,7 +5371,7 @@ it:
   yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
-  yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
+  yir_donate_banner_inaturalist_in_year: "INATURALIST NEL %{year}:"
   yir_donate_banner_reaching_millions: Raggiungere milioni. Illuminare la biodiversità. Collaborazione globale.
   #"You" is singular
   yir_donate_banner_all_thanks: Grazie a tutte le persone come te!
@@ -5541,6 +5561,7 @@ it:
       post_donate_social_media_text: Io sostengo iNaturalist perché...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Diventa un sostenitore mensile di iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: DIVENTA UN SOSTENITORE MENSILE DI INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist è una delle più grandi comunità al mondo dedicate all'esplorazione della biodiversità. Grazie di farne parte!</strong>
@@ -5554,6 +5575,8 @@ it:
           <p class="text-muted">
           iNaturalist è un'iniziatica congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no profit esente da tasse 501(c)(3) con base negli Stati Uniti d'America.
           </p>
+        thank_you_for_being_a_monthly_supporter: Grazie per essere un Sostenitore Mensile!
+        thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
     flags:
       show:
         flaggable_content_desc: |

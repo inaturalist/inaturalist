@@ -132,7 +132,7 @@ hu:
   _100_day_trends: Száznapos trend
   _percent_ID_d: "% meghatározott"
   a_community_for_naturalist: Természetbarátok közössége
-  a_flag_for_x: "%{x} megjelölés"
+  a_flag_for_x: "%{x} bejelentés"
   a_member_of_taxon_html: "%{taxon} taxon tagja"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -161,7 +161,7 @@ hu:
   about_charts: A grafikonokról
   about_community_taxa: A közösségi taxonokról
   about_complete_taxa: A teljes taxonokról
-  about_conservation_status: A természetvédelmi helyzetről
+  about_conservation_status: A természetvédelmi státuszról
   about_editing_observation_fields: A megfigyelések adatmezőiről
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
@@ -185,7 +185,7 @@ hu:
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
-  acc: 'Pontosság (méter):'
+  acc: 'Pontosság (méter)'
   account: Fiók
   account_creation: Fiók létrehozás
   account_settings: Fiók beállításai
@@ -239,7 +239,7 @@ hu:
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Félkövér szöveg hozzáadása
   add_comment: Megjegyzés hozzáadása
-  add_conservation_status: Természetvédelmi helyzet hozzáadása
+  add_conservation_status: Természetvédelmi státusz hozzáadása
   add_editor: Szerkesztő hozzáadása
   add_description: "%{description_name} hozzáadása"
   add_from_your_observations: Hozzáadás a megfigyeléseidből
@@ -303,7 +303,7 @@ hu:
   add_to_favorites: Hozzáadás a kedvencekhez
   add_to_list: Hozzáadás listához
   add_to_project: Hozzáadás a projekthez
-  add_to_your_list: Adja hozzá a listáihoz
+  add_to_your_list: Hozzáadás a listádhoz
   add_your_own_observations_at: "Megfigyelés hozzáadása itt: %{site_name}"
   added: Hozzáadva
   added!: Hozzáadva!
@@ -472,8 +472,8 @@ hu:
   are_you_sure?: Biztos vagy benne?
   are_you_sure_no_undo: Biztos vagy benne? Ezt nem lehet visszavonni.
   are_you_sure_delete_post: Biztos, hogy ki akarod törölni ezt a cikket?
-  are_you_sure_delete_this_place: Biztos hogy ki akarod törölni ezt helyet?
-  are_you_sure_leave_this_project: Biztos hogy kilépsz ebből a projektből?
+  are_you_sure_delete_this_place: Biztos, hogy ki akarod törölni ezt helyet?
+  are_you_sure_leave_this_project: Biztos, hogy kilépsz ebből a projektből?
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
@@ -550,7 +550,7 @@ hu:
   back_to_all_species: 'Vissza ide: Minden faj'
   back_to_editing_observation: Vissza a megfigyelés szerkesztéséhez
   back_to_friends: Vissza a barátokhoz
-  back_to_flags_html: "&laquo; Vissza a megjelölésekhez"
+  back_to_flags_html: "&laquo; Vissza a bejelentésekhez"
   back_to_lists: "Vissza %{name} listáihoz"
   back_to_observation: Vissza a megfigyeléshez
   back_to_observation_fields: Vissza az adatmezőkhöz
@@ -781,9 +781,9 @@ hu:
   connecting_to_facebook: "Kapcsolódás a Facebookra…"
   cannot_be_changed_during_a_content_freeze: Nem változtatható meg ameddig a tartalom be van fagyasztva
   conservation_status: Természetvédelmi helyzet
-  conservation_status_created: Természetvédelmi helyzet létrehozva
-  conservation_status_deleted: Természetvédelmi helyzet törölve
-  conservation_status_updated: Természetvédelmi helyzet frissítve
+  conservation_status_created: Természetvédelmi státusz létrehozva
+  conservation_status_deleted: Természetvédelmi státusz törölve
+  conservation_status_updated: Természetvédelmi státusz frissítve
   conservation_status_geoprivacy_desc: |
     Az alapértelmezett helyvédelmet alkalmazták e taxon minden megfigyelésére ezen a helyen
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -957,7 +957,7 @@ hu:
   curator_application_what_curators_cannot_do_read_messages_html: |
     Más emberek saját üzeneteinek az olvasása.
   #Title of a page where people apply to become a curator
-  curator_application_title: Kurátor alkalmazás
+  curator_application_title: Kurátori jelentkezés
   curators: Gondnokok
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -1166,7 +1166,7 @@ hu:
   edit_atlas_for_taxon_html: '%{taxon} térképének szerkesztése'
   edit_body: Törzs szerkesztése
   edit_comment: A megjegyzésed szerkesztése
-  edit_conservation_status: Természetvédelmi helyzet szerkesztése
+  edit_conservation_status: Természetvédelmi státusz szerkesztése
   edit_field: Mező szerkesztése
   edit_license: Licenc módosítása
   edit_notes: Jegyzet szerkesztése
@@ -1312,18 +1312,18 @@ hu:
   first_observer: Első megfigyelő
   #Verb form, as in "Flag this item"
   flag: Bejelentés
-  flag_as_inappropriate: Megjelölés kifogásolhatóként
-  flag_an_item: Megjelölés kifogásolhatóként
+  flag_as_inappropriate: Bejelentés kifogásolhatóként
+  flag_an_item: Bejelentés
   #Label for the date/time when a flag was created
   flag_created: Bejelentés létrehozva
-  flag_deleted: Megjelölés törölve
+  flag_deleted: Bejelentés törölve
   flag_description: A tartalom bejelentésével értesíted a gondozókat a problémáról.
   flag_comment_description: Megjegyzés hozzáadása az okokról és a bizonyítékról (opcionális).
   flag_for_check_list_title_html: |
     Lista bejelentése: %{title}
   flag_for_comment_id_html: <a href="%{url}">%{id} hozzászólás</a> bejelentése
   flag_for_comment_id_deleted: '%{id} hozzászólás bejelentése (törölve)'
-  flag_for_curation: Megjelölés gondozásra
+  flag_for_curation: Bejelentés gondozásra
   flag_for_guide_title_html: |
     Útmutató bejelentése: %{title}
   flag_for_identification_id_html: <a href="%{url}">%{id} meghatározás</a> bejelentése
@@ -1345,7 +1345,7 @@ hu:
     Taxon bejelentése: %{title}
   flag_for_user_title_html: |
     Felhasználó bejelentése: %{title}
-  flag_it!: Bejelentés!
+  flag_it!: Bejelentés
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objektum
   flag_reason: "&ldquo;Bejelentem ezt a %{record}t, mert"
@@ -1359,13 +1359,13 @@ hu:
   flagged_: Bejelentett
   flagged_for_curation: Gondozásra megjelölve
   flagged_taxon: Bejelentett taxon
-  flagged_thing_explanation: "%{thing} bejelentve, mert"
+  flagged_thing_explanation: "%{thing} eddigi bejelentései:"
   flagging_desc: |
-    A megjelöléssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
+    A bejelentéssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
-  flags: Megjelölések
-  flags_with_count: Megjelölések (%{count})
-  flags_explanation: "%{site_name} felhasználói bejelenthetnek olyan dolgokat, melyek a honlap gondozóinak vagy az adminok figyelmét igénylik."
+  flags: Bejelentések
+  flags_with_count: Bejelentések (%{count})
+  flags_explanation: "Az %{site_name} felhasználói bejelenthetik a gondozók vagy az adminok figyelmét igénylő hibákat."
   flags_for_x_html: '%{x} bejelentések'
   flickr_account_information: Flickr fiókod adatai
   flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
@@ -1569,7 +1569,7 @@ hu:
   iphone: iPhone
   is_not_following_anyone: nem követ senkit.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Elégséges bizonyíték ez arra, hogy megerősítsd, hogy ez egy %{taxon}?
-  is_this_offensive_html: 'Ez <a href="/help#inappropriate">helytelen</a>, kéretlen, szemét vagy sértő?'
+  is_this_offensive_html: 'Ez <a href="/help#inappropriate">kifogásolható</a>, kéretlen, szemét vagy sértő?'
   is_this_place_a_duplicate: Ez a hely már létezik?
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -2030,7 +2030,7 @@ hu:
   new_check_list: Új lista
   new_check_list_for: "%{place}: új lista létrehozása &raquo;"
   new_comment_on_a_parent_by_user_link: 'Új hozzászólás: %{user_link} %{parent}'
-  new_conservation_status: Új természetvédelmi helyzet
+  new_conservation_status: Új természetvédelmi státusz
   new_flag_for: 'Új bejelentés ehhez:'
   new_journal_post: Új hírmondó-bejegyzés
   new_lexicon: Új szókészlet
@@ -2136,6 +2136,7 @@ hu:
   not_finding_place_you_want?: Nem találod a keresett helyet?
   not_found: Nincs találat
   not_recorded: Nincs feljegyezve
+  not_resolved: Nincs megoldva
   note: Megjegyzés
   notes: Megjegyzések
   notifications: Értesítések
@@ -2201,6 +2202,7 @@ hu:
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
   observations_by_app: Megfigyelések applikáció szerint
   observations_by_rank: Megfigyelések besorolás szerint
+  observations_by_user_on_date: "%{user} megfigyelései %{date} napon"
   observations_by_you: "Megfigyeléseid"
   #The limit is currently 20
   observations_can_only_have_n_photos: A megfégyelések csak %{limit} fotót tartalmazhatnak
@@ -2282,7 +2284,7 @@ hu:
     absent: hiányzó
   of_places: helyek
   of_this_taxon: Ebből a taxonból
-  offensive_inappropriate: Erőszakos / Felháborodástkeltő
+  offensive_inappropriate: Erőszakos / kifogásolható
   off_caps: "KI"
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "Idő igazítása"
@@ -3107,7 +3109,7 @@ hu:
   remember_me: Emlékezz rám
   remove: Eltávolítás
   remove_all_tags: Minden címke eltávolítása
-  remove_conservation_status: a természetvédelmi helyzet eltávolítása
+  remove_conservation_status: a természetvédelmi státusz eltávolítása
   remove_from: Eltávolítás innen
   remove_curator: Gondozó eltávolítása
   remove_curator_status: Gondozói státusz eltávolítása
@@ -3829,7 +3831,7 @@ hu:
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
-  we_have_no_conservation_status_for_this_taxon: Ez a taxon nem rendlkezik természetvédelmi helyzettel
+  we_have_no_conservation_status_for_this_taxon: Ez a taxon nem rendlkezik természetvédelmi státusszal
   we_have_no_establishment_data_for_this_taxon: "Nincs letelepedési adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
@@ -4122,7 +4124,7 @@ hu:
         data_quality_assessment_desc_html: |
           Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
         flagged_photos_desc_html: |
-          Pár fotó be volt jelentve helytelen tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
+          Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
     observation_fields:
@@ -4323,7 +4325,7 @@ hu:
           Ezeket a problémákat mi azzal próbáljuk kiküszöbölni, hogy mind a népies, mind pedig a tudományos nevet megjelenítjük, a felhasználó nyelvi és földrajzi beállításai alapján.
           </p>
         about_conservation_status_desc: |
-          A természetvédelmi helyzet összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
+          A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
           A "Honosság státusza" azt írja le, hogy milyen módon jutott el egy adott faj oda, ahol jelenleg előfordul. Jövevény azt jelenti, hogy emberi tevékenység miatt került be egy adott területre, őshonos pedig azt, hogy emberi segítség nélkül érkezett.
         frequency:
@@ -4664,7 +4666,7 @@ hu:
       BlockedUser: Letiltott felhasználó
       CompleteSet: Teljes sorozat
       #Noun
-      Flag: Megjelölés
+      Flag: Bejelentés
       #Text note left by a moderator about another user recording a response to
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
@@ -4688,7 +4690,7 @@ hu:
         geoprivacy: Pozíció láthatósága
       flag:
         reason: Ok
-        flag: Megjelölés
+        flag: Bejelentés
       guide:
         source_url: Forrás URL
         published_at: Publikálva
@@ -4766,7 +4768,7 @@ hu:
         #sapiens
         complete_rank: Teljes rendszertani kategória
         #The most conservative, global, IUCN Red List status for this taxon
-        conservation_status: Természetvédelmi helyzet
+        conservation_status: Természetvédelmi státusz
         #Datetime this taxon was featured for display on /taxa
         featured_at: 'Kiemelt itt:'
         #ID of the iconic taxon this taxon belongs to
@@ -4934,7 +4936,7 @@ hu:
         taxon_name:
           attributes:
             name:
-              already_exists: már létezik ennek a taxonnak ebben a szókészletben
+              already_exists: már létezik ehhez a taxonhoz ebben a szókészletben
         taxon_photo:
           attributes:
             taxon:

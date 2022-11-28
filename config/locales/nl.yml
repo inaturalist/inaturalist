@@ -1559,6 +1559,7 @@ nl:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Laat los
   download: Downloaden
+  download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Sjabloon downloaden</a> om in de 
     <a href="/observations/import#csv_import">bulk-uploader</a> te gebruiken
@@ -2644,10 +2645,13 @@ nl:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Maand
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Maandelijkse supporters
   monthly_supporter_since_date_html: |
     <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
   months: Maanden
   more: Meer
+  more_caps: MEER
   more_about_sharing: Meer over delen
   more_fields: Meer velden
   more_filters: Meer filters
@@ -4283,6 +4287,7 @@ nl:
   set_license: Licentie bepalen
   settings: Instellingen
   share: Deel
+  share_caps: DEEL
   share_colon: "Delen:"
   short_code_for_this_place: Korte code voor deze plaats, bijvoorbeeld VS voor de Verenigde Staten
   short_or_abbreviated_title_for_display: Korte of afgekorte titel voor weergave in beperkte ruimte. Maximaal 10 tekens.
@@ -4327,6 +4332,8 @@ nl:
   #Journal post formatting option
   simple: Eenvoudig
   single_observation: Enkele waarneming
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}'s %{year} Jaaroverzicht"
   sizes: Afmetingen
   skip_to_next_page: "Ga verder naar volgende pagina"
   small: klein
@@ -5258,6 +5265,8 @@ nl:
   users_lists: "Lijsten van %{user}"
   users_profile: "Profiel van %{user}"
   users_projects: "Projecten van %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}'s %{year} %{site} Jaaroverzicht"
   valid_options_are: Geldige opties zijn
   value: Waarde
   values: Waarden
@@ -5265,6 +5274,7 @@ nl:
   verifiable_observations_by_observation_date: Verifieerbare waarnemingen op datum van waarneming
   view: Bekijken
   view_all: Alles weergeven
+  view_all_caps: ALLES TONEN
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
   view_all_members: Alle leden weergeven
@@ -5285,6 +5295,12 @@ nl:
   view_flags_for_x_html: "Meldingen bekijken voor %{x}"
   view_full_observation: Volledige waarneming weergeven
   view_full_size_photo: Toonfull-size foto
+  view_inaturalist_global_year_in_review: Bekijk iNaturalist's Wereld %{year} Jaaroverzicht
+  view_inaturalist_global_year_in_review_caps: BEKIJK INATURALIST's WERELD %{year} JAAROVERZICHT
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Bekijk %{site}'s %{year} Jaaroverzicht
+  view_site_year_in_review_caps: BEKIJK %{site} %{year} JAAROVERZICHT
   view_journal: Dagboek bekijken
   view_leaderboard_from_last_month: Toplijst van vorige maand weergeven
   view_leaderboard_from_last_year: Bekijk Toplijst van vorig jaar
@@ -5329,6 +5345,7 @@ nl:
   view_your_dashboard_for_more_updates_html: "\n<a href='%{url}'>Bekijk je dashboard</a> voor meer nieuws"
   view_your_inbox: Bekijk je inbox
   view_your_observations: Bekijk je waarnemingen
+  view_your_personal_year_in_review: "Bekijk jouw persoonlijke %{year} jaaroverzicht"
   view_yours: Bekijk die van jou
   view_all_of_your_observations_from_x: "Bekijk al je waarnemingen van %{x}"
   video_tutorials: Videohandleidingen
@@ -5457,6 +5474,7 @@ nl:
   x_wrote_y_new_posts_html: "%{x} plaatste %{y} nieuwe berichten"
   year: Jaar
   year_in_review: "Jaaroverzicht %{year}"
+  year_in_review2: "Jaaroverzicht %{year}"
   year_month: jaar/maand
   year_on_site: "Jaar op %{site} %{year}"
   yellow: geel
@@ -5678,6 +5696,7 @@ nl:
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
@@ -5688,6 +5707,8 @@ nl:
           </p>
           <p class="text-muted">
           iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
+        thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
+        thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
     flags:
       show:
         flaggable_content_desc: |

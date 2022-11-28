@@ -1,6 +1,9 @@
 th:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    other: "เปลี่ยนแปลง %{count} รายการ"
   x_comments:
-    other: 'มี %{count} ความคิดเห็น'
+    other: '%{count} ความคิดเห็น'
   x_comments_html:
     other: '<span class="count">%{count}</span> คอมเมนต์'
   x_faves:
@@ -647,7 +650,12 @@ th:
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
   computer_vision_model: โมเดลคอมพิวเตอร์วิทัศน์
+  confirm: ยืนยัน
+  confirm_membership: ยืนยันการเป็นสมาชิก
+  confirm_new_password: ยืนยันรหัสผ่านใหม่
   confirm_now: ยืนยันเลย
+  confirm_your_info: ยืนยันข้อมูลของคุณ
+  confirming_ids: การจำแนกที่ยืนยัน
   connecting_to_facebook: "กำลังเชื่อมต่อ Facebook..."
   conservation_status: สถานะการอนุรักษ์
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1335,6 +1343,8 @@ th:
       m: "1 นาที"
       #Short text representing %d minutes in the past
       mm: "%d นาที"
+      #Short text representing 1 hour in the past
+      h: "1 ชม."
       #Short text representing %d hours in the past
       hh: "%d ชม."
       #Short text representing %d days in the past
@@ -1356,6 +1366,8 @@ th:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
   month: เดือน
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: ผู้สนับสนุนรายเดือน
   months: เดือน
   more: เพิ่มเติม
   more_about_sharing: ข้อมูลเพิ่มเติมในการแชร์
@@ -1551,6 +1563,7 @@ th:
   our_blog: บล็อกของเรา
   overview: ภาพรวม
   owner: เจ้าของ
+  password_confirmation: 'ยืนยันรหัสผ่าน'
   people: ผู้คน
   people_following_user: "ผู้คนที่ติดตาม %{user}"
   people_user_follows: "ผู้คนที่ %{user} ติดตาม"
@@ -1663,6 +1676,7 @@ th:
   places_merged_successfully: รวมสถานที่สำเร็จแล้ว!
   #Title to a section warning a user to exercise caution
   please_be_careful!: โปรดระวัง!
+  please_confirm_your_inat_username: "โปรดยืนยันชื่อผู้ใช้ %{site_name} ของคุณ"
   popular: ยอดนิยม
   #Post is a noun
   post_from_journal_by_parent_html: โพสต์จาก<a href="%{url}">วารสารของ %{parent}</a>
@@ -2598,21 +2612,31 @@ th:
       - ธันวาคม
   datetime:
     distance_in_words:
+      about_x_hours:
+        other: ประมาณ %{count} ชั่วโมง
       about_x_months:
         other: ประมาณ %{count} เดือน
       less_than_x_minutes:
         other: น้อยกว่า %{count} นาที
       x_days:
         other: '%{count} วัน'
+      x_minutes:
+        other: '%{count} นาที'
       x_months:
         other: '%{count} เดือน'
     countdown_x_days:
       other: วัน
     countdown_x_hours:
       other: ชั่วโมง
+    countdown_x_minutes:
+      other: นาที
+    countdown_x_seconds:
+      other: วินาที
     prompts:
       day: วัน
+      hour: ชั่วโมง
       minute: นาที
+      second: วินาที
   errors:
     messages:
       new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
@@ -2633,6 +2657,10 @@ th:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%l:%M %p"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
     errors:
@@ -2717,7 +2745,113 @@ th:
         f: เพศเมีย
         "n": เพศ
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         variety: "@n"
+  #Title of a section warning the user about something
+  warning_title: คำเตือน
   wikimedia: วิกิมีเดีย
   wild: พบตามธรรมชาติ
   #Descending alphabetical sort option. Could be alternatively be translated as

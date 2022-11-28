@@ -1518,6 +1518,7 @@ ca:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Desar-la
   download: 'Descarrega:'
+  download_caps: DESCARREGAR
   download_bulk_import_template_html: |
     <a href="%{url}">Descarregueu la plantilla</a> per utilitzar-la al <a href="/observations/import?project_id=%{project_id}#csv_import">programa de càrrega massiva</a>
   download_csv: Descarrega CSV
@@ -2012,6 +2013,7 @@ ca:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
+  inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -2596,10 +2598,13 @@ ca:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Mes
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Patrocinador mensual
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
   months: Mesos
   more: Més
+  more_caps: MÉS
   more_about_sharing: Més Sobre Compartir
   more_fields: Més camps
   more_filters: Més filtres
@@ -4189,6 +4194,7 @@ ca:
   set_license: Estableix llicència
   settings: Configuració
   share: Compartiu
+  share_caps: COMPARTEIX
   share_colon: "Compartiu:"
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
   short_or_abbreviated_title_for_display: Normalment és una abreviatura del títol quan l'espai és molt limitat (màxim 10 caràcters).
@@ -4233,6 +4239,8 @@ ca:
   #Journal post formatting option
   simple: Senzill
   single_observation: Observació simple
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Resum de l'any %{year} a %{site}"
   sizes: Mida
   skip_to_next_page: "Aneu a la pàgina següent"
   small: petit
@@ -5115,6 +5123,8 @@ ca:
   users_lists: "Llistes de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projectes de %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Resum de l'any %{year} a %{site} de %{user}"
   valid_options_are: Les opcions vàlides són
   value: Valor
   values: Valors
@@ -5122,6 +5132,7 @@ ca:
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
   view: Mostra
   view_all: Mostra-ho tot
+  view_all_caps: VEURE-HO TOT
   view_all_fields: Veure tots els Camps
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
@@ -5142,6 +5153,12 @@ ca:
   view_flags_for_x_html: "Veure les etiquetes per %{x}"
   view_full_observation: Veure l’observació completa
   view_full_size_photo: Veure la foto a mida completa
+  view_inaturalist_global_year_in_review: Veure el Resum Global d'iNaturalist de l'any %{year}
+  view_inaturalist_global_year_in_review_caps: VEURE LA RESUM GLOBAL D'INATURALIST DE L'ANY %{year}
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Veure el resum global a %{site} de l'any %{year}
+  view_site_year_in_review_caps: VEURE EL RESUM GLOBAL A %{site} DE L'ANY %{year}
   view_journal: Veure el diari
   view_leaderboard_from_last_month: Mostra els més actius del mes passat
   view_leaderboard_from_last_year: Mostra els més actius de l'any passat
@@ -5186,6 +5203,8 @@ ca:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'> Mostra el vostre tauler</a> per a més actualitzacions"
   view_your_inbox: Mostra la vostra bústia
   view_your_observations: Mostra les vostres observacions
+  view_your_personal_year_in_review: "Veure el teu resum personal de l'any %{year}"
+  view_your_personal_year_in_review_caps: "VEURE EL TEU RESUM PERSONAL DE L'ANY %{year}"
   view_yours: Veure el vostre
   view_all_of_your_observations_from_x: "Veure totes les vostres observacions des de %{x}"
   video_tutorials: Vídeo-tutorial
@@ -5314,6 +5333,7 @@ ca:
   x_wrote_y_new_posts_html: "%{x} ha afegit %{y} noves entrades"
   year: Any
   year_in_review: "Revisió de l'any %{year}"
+  year_in_review2: "Resum de l'any %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
   yellow: groc
@@ -5522,6 +5542,7 @@ ca:
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
@@ -5536,6 +5557,8 @@ ca:
           <p class="text-muted">
           iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
           </p>
+        thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
+        thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     flags:
       show:
         flaggable_content_desc: |
