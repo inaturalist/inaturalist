@@ -1587,6 +1587,7 @@ sv:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Släpp den
   download: Ladda ned
+  download_caps: LADDA NER
   download_bulk_import_template_html: |
     <a href="%{url}">Ladda ner mall</a> för användning i
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulkuppladdaren</a>
@@ -2105,6 +2106,7 @@ sv:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
+  inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2699,10 +2701,13 @@ sv:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Månad
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Månatliga givare
   monthly_supporter_since_date_html: |
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
   months: Månader
   more: Mer
+  more_caps: MER
   more_about_sharing: Mer om delning
   more_fields: Fler fält
   more_filters: Fler filter
@@ -4329,6 +4334,7 @@ sv:
   set_license: Ange licens
   settings: Inställningar
   share: Dela
+  share_caps: DELA
   share_colon: "Dela:"
   short_code_for_this_place: Ange en fyndplats om denna länk endast gäller för taxa från en viss fyndplats. Lämna det tomt om den gäller taxa i hela världen.
   short_or_abbreviated_title_for_display: Kort eller förkortad rubrik för visning i små utrymmen. Max 10 tecken.
@@ -4373,6 +4379,8 @@ sv:
   #Journal post formatting option
   simple: Enkel
   single_observation: Ett fynd
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Summering av %{year} för %{site}"
   sizes: Storlekar
   skip_to_next_page: "Hoppa till nästa sida"
   small: liten
@@ -5287,6 +5295,8 @@ sv:
   users_lists: "%{user}s listor"
   users_profile: "%{user}s profil"
   users_projects: "%{user}s projekt"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Summering av %{user}s %{year} på %{site}"
   valid_options_are: Giltiga alternativ är
   value: Värde
   values: Värden
@@ -5294,6 +5304,7 @@ sv:
   verifiable_observations_by_observation_date: Verifierbara fynd efter observationsdatum
   view: Visa
   view_all: Visa alla
+  view_all_caps: VISA ALLA
   view_all_fields: Visa alla fält
   view_all_flags: Visa alla flaggor
   view_all_members: Visa alla medlemmar
@@ -5314,6 +5325,12 @@ sv:
   view_flags_for_x_html: "Visa flaggor för %{x}"
   view_full_observation: Visa fullständigt fynd
   view_full_size_photo: Visa bild i full storlek
+  view_inaturalist_global_year_in_review: Summering av %{year} för iNaturalist globalt
+  view_inaturalist_global_year_in_review_caps: VISA SUMMERING AV %{year} FÖR INATURALIST GLOBALT
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Visa summering av %{year} för %{site}
+  view_site_year_in_review_caps: VISA SUMMERING AV %{year} FÖR %{site}
   view_journal: Visa dagbok
   view_leaderboard_from_last_month: Visa topplista från förra månaden
   view_leaderboard_from_last_year: Visa topplista från förra året
@@ -5358,6 +5375,8 @@ sv:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Se din anslagstavla</a> för fler uppdateringar"
   view_your_inbox: Visa din inkorg
   view_your_observations: Visa dina fynd
+  view_your_personal_year_in_review: "Visa din personliga summering av %{year}"
+  view_your_personal_year_in_review_caps: "VISA DIN PERSONLIGA SUMMERING AV %{year}"
   view_yours: Visa dina
   view_all_of_your_observations_from_x: "Visa alla dina fynd från %{x}"
   video_tutorials: Videohandledning
@@ -5491,6 +5510,7 @@ sv:
   x_wrote_y_new_posts_html: "%{x} skrev %{y} nya inlägg"
   year: År
   year_in_review: "Året som gått %{year}"
+  year_in_review2: "Summering av %{year}"
   year_month: år/månad
   year_on_site: "År %{year} på %{site}"
   yellow: gul
@@ -5707,6 +5727,7 @@ sv:
       post_donate_social_media_text: Jag stöder iNaturalist eftersom...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
@@ -5721,6 +5742,8 @@ sv:
           iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
           California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater.
           </p>
+        thank_you_for_being_a_monthly_supporter: Tack för att du är en Månatlig givare!
+        thank_you_for_being_a_monthly_supporter_caps: TACK FÖR ATT DU ÄR EN MÅNATLIG GIVARE!
     flags:
       show:
         flaggable_content_desc: |
@@ -6837,6 +6860,7 @@ sv:
         species_per_year_by_date_added: Efter datum tillagda
         species_per_year_by_date_observed: Efter fynddatum
         stats_generated_datetime: Statistik skapad den %{datetime}
+        stats_generation_schedule: Statistik kommer att genereras varje söndag i december och den 1 januari
         store_prompt: |
           Vill du visa din stolthet över iNat vart du än är? Kolla in iNat-butiken!
         sunburst_desc_html: |
