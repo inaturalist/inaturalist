@@ -692,6 +692,7 @@ hu:
     target='_blank'>Creative Commons Nevezd meg! - Ne add el! 4.0 Nemzetközi</a> licencet szeretnéd alkalmazni a feltöltött tartalmakra. Ez azt jelenti, hogy bárki lemásolhatja, és felhasználhatja fotóidat és/vagy megfigyeléseidet anélkül, hogy erre engedélyt kérne, azzal a feltétellel, hogy megnevez téged, mint a tartalom szerzőjét és nem használja kereskedelmi célra. Később módosíthatod vagy visszavonhatod a licencet, de ez a legalkalmasabb licenc kutatókkal való megosztáshoz.
   checklist: Lista
   choose_a_field: Adatmező kiválasztása
+  choose_a_list_above: Válassz egyet a fentről.
   choose_a_place: Válassz helyet
   choose_a_taxon: Válassz taxont (opcionális)
   choose_file: Fájl kiválasztása
@@ -2127,7 +2128,7 @@ hu:
   no_subject_parens: "(Nincs tárgy)"
   no_taxa: Nincs taxon
   noble_curators: "%{site} tiszteletbeli kurátorai"
-  none: Egyik sem
+  none: Nincs
   none_found: Nincs találat
   normal: normál
   not_atlased: Nem térképezett
@@ -2876,6 +2877,7 @@ hu:
   post_from_journal_by_parent_html: <a href="%{url}">%{parent} hírmondó</a> bejegyzései
   #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Hírmondód</a> bejegyzései
+  post_published: Bejegyzés közzétéve
   posted_by: Írta
   posted_on: 'Közzétéve:'
   posts: Bejegyzések
@@ -2924,6 +2926,7 @@ hu:
   projects_from_place: "Projektek innen: %{place}"
   projects_you_admin: Kezelt projektjeid
   protozoans: állati egysejtűek
+  publish: Közzététel
   purple: lila
   quality_grade: Minőségi szint
   quality_grade_: Minőségi szint
@@ -3224,7 +3227,9 @@ hu:
   seen_nearby: A közelben látták
   select: Kiválasztás
   select_all: Összes kijelölése
+  select_at_least_one: Legalább egyet válassz
   select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
+  select_none: Kijelölés visszavonása
   select_observations_to_edit: Válassz ki megfigyelést a szerkesztéshez
   select_one_of_friends_albums: Válassz egyet %{friend} albumai közül
   select_options: válassz
@@ -3268,6 +3273,7 @@ hu:
   similar_taxa: Hasonló taxonok
   #Journal post formatting option
   simple: Egyszerű
+  single_observation: Egyéni megfigyelés
   #@vow_or_con should work with %{site}
   site_year_in_review: "%{site} %{year}. évi visszatekintője"
   sizes: Méretek
@@ -3660,6 +3666,7 @@ hu:
   unmute: Némítás feloldása
   updates_notification_email_subject: "%{prefix} Új hírek %{date}"
   updates_suspension_email_subject: "%{prefix} Feliratkozásaid várakoznak"
+  unpublish: Közzététel visszavonása
   unreview_all: Összes áttekintés visszavonása
   unsubscribe: Leiratkozás
   unsubscribe_from_emails_like_this: Leiratkozás az ehhez hasonló emailekről
@@ -3874,6 +3881,7 @@ hu:
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
   why_the_coordinates_are_obscured: Miért rejtettek a koordináták
   with_annotation: Megjelölés
+  without_annotation: Megjelölés nélkül
   widget: Modul
   widget_code: Modul kódrészlet
   widget_for: 'Modul:'
@@ -4154,6 +4162,9 @@ hu:
         check_list_note: "Megjegyzés: nagyon nagy helyeknél a listák automatikusan le lesznek tiltva."
         coordinates_desc: Meg kell adnod a koordinátákat, ha nem rajzolsz körvonalat vagy nem töltesz fel KML-t.
         map_instruction: A hely határainak megadásához használd a sokszög eszközt.
+    posts:
+      formatting_none_help: "Nem add hozzá automatikusan HTML-címkéket, csak az általad megadottakat."
+      formatting_simple_help: "URL-ek automatikus linkké alakítása és sortörések beillesztése."
     projects:
       project_type: Projekttípus
       collection: Gyűjtő
