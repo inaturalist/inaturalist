@@ -811,7 +811,7 @@ sr:
   default_: Podrazumevano
   default_display_time_zone: Podrazumevana vremenska zona
   default_photo_license: Podrazumevana licenca za fotografije
-  default_search_place: Podrazumevano mesto potrage
+  default_search_place: Podrazumevano mesto pretrage
   default_search_place_description: |
     Ovo će biti tvoje podrazumevano mesto za pretragu u okviru odeljaka "Istraži" i "Identifikuj".
   default_sound_license: Podrazumevana licenca za zvukove
@@ -1029,8 +1029,8 @@ sr:
   following: Pratiš
   following_x_people:
     one: 'Prati 1 osobu'
-    few: 'Prati %{count} ljudi'
-    other: 'Prati %{count} osobe'
+    few: 'Prati %{count} osobe'
+    other: 'Prati %{count} ljudi'
   formatting: Formatiranje
   forgot_your_password: Zaboravili ste vašu lozinku?
   forum: Forum
@@ -2610,6 +2610,9 @@ sr:
   remove_photo: Ukloni fotografiju
   remove_place: Ukloni mesto
   remove_range: Ukloni opseg
+  remove_relationship: Ukloni odnos
+  remove_relationship_caps: UKLONI ODNOS?
+  remove_relationship_question: Ukloni odnos?
   remove_section: Ukloni odeljak
   remove_selected: Ukloni označeno
   remove_tags: Ukloni oznake
@@ -2986,7 +2989,7 @@ sr:
   taxonomic_status: taksonomski status
   taxonomy_details: Detalji taksona
   taxonomy_details_for: Detalji taksona za
-  taxonomy_settings: taksonomska podešavanja
+  taxonomy_settings: Taksonomska podešavanja
   teachers_guide: Vodič za nastavnike
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
   tell_us_why: Reci nam zašto...
@@ -3365,6 +3368,7 @@ sr:
   where: Gde
   where_were_they?: Gde je bilo?
   where_were_you?: Gde je to bilo?
+  which_projects_can_add_your_observations?: Koji tradicionalni projekti mogu dodati tvoju opservaciju?
   white: bela
   who_can_add_observations_to_this_project?: Ko može dodati opservacije u ovaj projekat?
   who_can_see_the_coordinates: Ko može videti koordinate
@@ -3957,7 +3961,7 @@ sr:
           none: "Nijedan, samo ti možeš dodati svoju opservaciju u projekte"
         prefers_coordinate_interpolation_protection_desc: |
           Kada podesiš geoprivatnost opservacije na "prikriveno" ili "privatno", to će biti primenjeno na sve druge opservacije koje su zabeležene istog dana kako bi drugima bilo teže da na osnovu drugih opservacija koje su zabeležene otprilike u to vreme pretpostave prave koordinate.
-        prefers_no_tracking_label: Ne sakupljaj podatke o stabilnosti i upotrebi koristeći servise trećih strana
+        prefers_no_tracking_label: Ne sakupljaj podatke o stabilnosti i upotrebi sajta pomoću servisa trećih strana
         prefers_no_tracking_label_desc_we_use_google_html: Google (<a href="https://analytics.google.com">Google Analytics</a>, <a href="https://firebase.google.com/products/crashlytics/">Firebase Crashlytics</a>)
         prefers_no_tracking_label_desc_info_we_share: |
           Informacije koje možemo deliti sa ovim trećim stranama obuhvataju
