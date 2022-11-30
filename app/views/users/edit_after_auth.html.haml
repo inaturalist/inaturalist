@@ -19,6 +19,7 @@
       .error= formatted_error_sentence_for( resource, :login )
   = render "users/registrations/licensing", f: f, child: false
   = render "users/registrations/pi_consent", f: f, child: false
+  = render "users/registrations/data_transfer_consent", f: f, child: false
   = render "users/registrations/tos_privacy_guidelines", f: f
   .form-group.hidden
     = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }

@@ -180,6 +180,7 @@ class Observation < ApplicationRecord
     "positioning_device",
     "user_id", 
     "user_login",
+    "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
@@ -200,6 +201,7 @@ class Observation < ApplicationRecord
     "time_zone",
     "user_id", 
     "user_login",
+    "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
@@ -392,8 +394,8 @@ class Observation < ApplicationRecord
     end
   end
   
-  before_validation :munge_observed_on_with_chronic,
-                    :set_time_zone,
+  before_validation :set_time_zone,
+                    :munge_observed_on_with_chronic,
                     :set_time_in_time_zone,
                     :set_coordinates,
                     :nilify_positional_accuracy_if_zero
@@ -705,8 +707,8 @@ class Observation < ApplicationRecord
   }
 
   scope :between_dates, lambda{|d1, d2|
-    t1 = (Time.parse(URI.unescape(d1.to_s)) rescue Time.now)
-    t2 = (Time.parse(URI.unescape(d2.to_s)) rescue Time.now)
+    t1 = (Time.parse(CGI.unescape(d1.to_s)) rescue Time.now)
+    t2 = (Time.parse(CGI.unescape(d2.to_s)) rescue Time.now)
     if d1.to_s.index(':')
       where("time_observed_at BETWEEN ? AND ? OR (time_observed_at IS NULL AND observed_on BETWEEN ? AND ?)", t1, t2, t1.to_date, t2.to_date)
     else
@@ -848,7 +850,7 @@ class Observation < ApplicationRecord
     if key != "something"
       key = "observation_brief_#{key}"
     end
-    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
+    I18n.t( key, **i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
@@ -1019,7 +1021,7 @@ class Observation < ApplicationRecord
       puts "matched tz_colon_offset_pattern (Adelaide): #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     end
     
-    if parsed_time_zone && observed_on_string_changed?
+    if parsed_time_zone && observed_on_string_changed? && !georeferenced?
       self.time_zone = parsed_time_zone.name
       begin
         if (
@@ -1055,6 +1057,14 @@ class Observation < ApplicationRecord
       date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
       date_string.gsub!( / 12:/, " 00:" )
     end
+
+    # Translate am/pm into English for parsing. This is a pretty conservative
+    # solution to a complicated problem. Assumes AM/PM is at the end of the
+    # string and preceeded by a space, or in the middle but followed by a space
+    date_string.sub!( /\s#{I18n.t( "time.am" )}$/i, " AM" )
+    date_string.sub!( /\s#{I18n.t( "time.am" )}\s/i, " AM " )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}$/i, " PM" )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}\s/i, " PM " )
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -1269,9 +1279,25 @@ class Observation < ApplicationRecord
   end
   
   #
-  # Set the time_zone of this observation if not already set
+  # Set the time_zone of this observation if coordinates changes or zone not already set
   #
   def set_time_zone
+    # Make sure blank is always nil
+    self.time_zone = nil if time_zone.blank?
+    # If there are coordinates, use them to set the time zone, and reject
+    # changes to the time zone if the coordinates have not changed
+    if georeferenced?
+      if coordinates_changed?
+        lat = ( latitude_changed? || private_latitude.blank? ) ? latitude : private_latitude
+        lng = ( longitude_changed? || private_longitude.blank? ) ? longitude : private_longitude
+        self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
+        self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+      elsif time_zone_changed?
+        self.time_zone = time_zone_was
+        self.zic_time_zone = zic_time_zone_was
+      end
+    end
+    # Try to assign a reasonable default time zone
     if time_zone.blank?
       self.time_zone = nil
       self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -1279,16 +1305,23 @@ class Observation < ApplicationRecord
       self.time_zone ||= 'UTC'
     end
     if !time_zone.blank? && !ActiveSupport::TimeZone::MAPPING[time_zone] && ActiveSupport::TimeZone[time_zone]
-      # self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
       # We've got a zic time zone
-      # ztz = ActiveSupport::TimeZone[time_zone]
+      self.zic_time_zone = time_zone
       self.time_zone = if rails_tz = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
         rails_tz
-      else
-        # Now we're in trouble, b/c the client specified a valid IANA time zone
-        # that TZInfo knows about, but it's one the Rails chooses to ignore and
-        # doesn't provide any mapping for so... we have to map it
+      elsif ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+        # Now we're in trouble, b/c the client specified a valid IANA time
+        # zone that TZInfo knows about, but it's one Rails chooses to ignore
+        # and doesn't provide any mapping for so... we have to map it
         ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+      elsif time_zone =~ /^Etc\//
+        # If we don't have custom mapping and there's no fancy Rails wrapper
+        # and it's one of these weird oceanic Etc zones, use that as the
+        # time_zone. Rails can use that to cast times into other zones, even
+        # if it doesn't recognize it as its own zone
+        time_zone
+      else
+        ActiveSupport::TimeZone[time_zone].name
       end
     end
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -2184,7 +2217,7 @@ class Observation < ApplicationRecord
   
   def update_default_license
     return true unless make_license_default.yesish?
-    user.update_attribute(:preferred_observation_license, license)
+    user.update_attribute( :preferred_observation_license, license )
     true
   end
   
@@ -2354,6 +2387,10 @@ class Observation < ApplicationRecord
   
   def user_login
     user.login
+  end
+
+  def user_name
+    user.name
   end
   
   def update_stats(options = {})
@@ -3050,7 +3087,7 @@ class Observation < ApplicationRecord
       scope = scope.where(id: filter_ids)
     end
     options[:batch_size] = 100
-    scope.select(:id).find_in_batches(options) do |batch|
+    scope.select(:id).find_in_batches(**options) do |batch|
       ids = batch.map(&:id)
       Observation.transaction do
         connection.execute("DELETE FROM observations_places

@@ -46,10 +46,8 @@ class MetaService
     params      = args.merge({@method_param => method})
     params      = params.merge(@default_params)
     endpoint    = api_endpoint ? api_endpoint.base_url : @endpoint
-    url         = endpoint + params.reject{ |k,v| k == :force_update }.
-                    map {|k,v| "#{k}=#{v}"}.join('&')
-    uri         = URI.encode(url)
-    request_uri = URI.parse(uri)
+    url         = endpoint + URI.encode_www_form( params.reject{ |k,v| k == :force_update } )
+    request_uri = URI.parse(url)
     response = nil
     begin
       MetaService.fetch_request_uri(args.merge(request_uri: request_uri, timeout: @timeout,

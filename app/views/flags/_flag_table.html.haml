@@ -15,7 +15,7 @@
         %tr
           %td= flag_flagger(flag, site)
           %td= flag_content_author(flag)
-          %td= flag.flaggable_type.humanize
+          %td=t flag.flaggable_type.underscore, default: flag.flaggable_type.humanize
           %td= flag_content(flag)
           %td.reason= formatted_user_text flag.flag
           %td= link_to flag.comments.count, flag, class: "badge" if flag.comments.count > 0

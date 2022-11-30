@@ -5,12 +5,19 @@ en-GB:
   _100_day_trends: 100 Day Trends
   about: About
   add_to_favorites: Add to Favourites
+  added_to_favorites_html: |
+    Added to <a href="%{url}">favourites</a>
   authorize: Authorise
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Authorise with PKCE
+  favorite_taxa: Favourite Taxa
   favorites: "Favourites"
   header_your_favorites: Your Favourites
+  no_favorites_added:
+    current_user: You haven't added favourites yet.
+    user: "%{user} hasn't added favourites."
+  users_favorites: "%{user}'s Favourites"
   your_favorites: Your Favourites
   views:
     projects:
@@ -31,6 +38,12 @@ en-GB:
           year, the white vertical bar shows last year, and the grey background
           areas show the lowest and highest years, as well as the average for
           all years.
+    users:
+      show:
+        favorites_list_prompt_html: |
+          Want to show off some of your favourite taxa? %{link_start_tag}Create a
+          list%{link_end_tag} titled "Favourites" and the most recent additions
+          will appear in this space.
   date:
     abbr_month_names:
       - 

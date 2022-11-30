@@ -3,6 +3,19 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe TaxaController do
+  describe "new" do
+    render_views
+    it "should work for a curator" do
+      sign_in create( :user, :as_curator )
+      get :new
+      expect( response ).to be_successful
+    end
+    it "should not work for a non-curator" do
+      sign_in create( :user )
+      get :new
+      expect( response ).to be_redirect
+    end
+  end
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
@@ -225,107 +238,6 @@ describe TaxaController do
         put :update, params: { id: t.id, taxon: { photos_locked: true } }
         t.reload
         expect( t ).to be_photos_locked
-      end
-    end
-
-    describe "conservation statuses" do
-      let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
-      let( :user ) { make_curator }
-      before do
-        sign_in user
-      end
-      it "should allow addition" do
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            Time.now.to_i.to_s => {
-              status: "EN"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 1
-      end
-      it "should allow deletion" do
-        cs = ConservationStatus.make!( taxon: taxon )
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            cs.id => {
-              id: cs.id,
-              _destroy: 1
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 0
-      end
-      it "should assign the current user ID as the user_id for new statuses" do
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            Time.now.to_i.to_s => {
-              status: "EN"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.first.user_id ).to eq user.id
-      end
-      it "should not assign the current user ID as the user_id for existing statuses" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => cs.authority
-            },
-            Time.now.to_i.to_s => {
-              "status" => "EN",
-              "authority" => "bar"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 2
-        cs.reload
-        expect( cs.user_id ).to be_blank
-      end
-      it "should assign the current user ID as the updater_id for existing statuses" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => "new authority"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        cs.reload
-        expect( cs.updater ).to eq user
-      end
-      it "should not assign the current user ID as the updater_id for existing statuses if nothing changed" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => cs.authority,
-              "geoprivacy" => cs.geoprivacy
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        cs.reload
-        expect( cs.updater ).not_to eq user
       end
     end
 

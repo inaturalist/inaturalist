@@ -1,5 +1,4 @@
-- content_for :title do
-  = t(:account_settings)
+- content_for(:title) { t(:edit_your_account_and_profile_html) }
 - content_for :extrajs do
   :javascript
     var TIMEZONES = #{ ActiveSupport::TimeZone.all.map{|tz| { zic: tz.tzinfo.name, label: tz.to_s, value: tz.name } }.to_json.html_safe };

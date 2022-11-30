@@ -2,9 +2,9 @@
 
 source "https://rubygems.org"
 
-ruby "~> 2.6.0"
+ruby "~> 3.0.4"
 
-gem "rails", "6.1.4.7"
+gem "rails", "6.1.6.1"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -18,7 +18,6 @@ gem "audited"
 gem "aws-sdk-cloudfront"
 gem "aws-sdk-s3"
 gem "aws-sdk-waf"
-gem "biodiversity"
 gem "capistrano"
 gem "capistrano-passenger"
 gem "capistrano-rails"
@@ -27,6 +26,7 @@ gem "chroma"
 gem "chronic"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
 gem "coffee-rails"
+gem "daemons"
 gem "dalli"
 gem "dbf" # Needed for georuby shapefile support
 gem "delayed_job"
@@ -38,7 +38,7 @@ gem "devise_suspendable"
 gem "diffy"
 gem "dm_preferences", git: "https://github.com/nickcoyne/preferences.git"
 gem "doorkeeper"
-gem "dynamic_form"
+gem "dynamic_form", git: "https://github.com/GoodMeasuresLLC/dynamic_form.git"
 gem "elasticsearch"
 gem "elasticsearch-api"
 gem "elasticsearch-model"
@@ -52,21 +52,23 @@ gem "gdata", git: "https://github.com/pleary/gdata.git"
 gem "georuby"
 gem "haml"
 gem "htmlentities"
-gem "i18n-inflector-rails"
-gem "i18n-js", git: "https://github.com/fnando/i18n-js.git"
+gem "i18n-inflector-rails", git: "https://github.com/siefca/i18n-inflector-rails.git",
+ref: "99726dc44e166f6fb794caec9d3244795e7ee79b"
+gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", tag: "v3.7.0"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
-gem "irwi", git: "https://github.com/Programatica/irwi.git"
+gem "irwi", git: "https://github.com/inaturalist/irwi.git", ref: "ruby3"
 gem "json"
 gem "koala"
 gem "makara", git: "https://github.com/instacart/makara.git", tag: "v0.6.0.pre"
+gem "multi_json", "~> 1.15.0"
 gem "nokogiri"
 gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth"
 gem "omniauth-apple"
 gem "omniauth-facebook"
-gem "omniauth-flickr", git: "https://github.com/IDolgirev/omniauth-flickr.git",
-ref: "bcd202b0825659cbd984e611f6151f67c4aae591"
+gem "omniauth-flickr", git: "https://github.com/pleary/omniauth-flickr.git",
+ref: "fdfd81f47c33a21953ad97e0b5e2749b89989ef0"
 gem "omniauth-google-oauth2"
 gem "omniauth-oauth2"
 gem "omniauth-openid", git: "https://github.com/inaturalist/omniauth-openid"
@@ -75,7 +77,7 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem "omniauth-twitter"
 gem "optimist"
-gem "paperclip"
+gem "kt-paperclip"
 gem "parallel"
 gem "patron"
 gem "pg"
@@ -130,7 +132,12 @@ group :test, :development, :prod_dev do
   gem "puma"
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "thin"
+end
+
+group :development do
+  # The following are required for ed25519 ssh keys
+  gem "ed25519"
+  gem "bcrypt_pbkdf"
 end
 
 group :test do

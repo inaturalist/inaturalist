@@ -12,12 +12,14 @@ class TaxonAutocomplete extends React.Component {
   componentDidMount( ) {
     const { config } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, this.props, {
+    const opts = {
+      ...this.props,
       idEl: $( "input[name='taxon_id']", domNode ),
       preventEnterSubmit: true,
       react: true,
-      user: config && config.user
-    } );
+      user: config && config.user,
+      useAPIv2: config && config.testingApiV2
+    };
     $( "input[name='taxon_name']", domNode ).taxonAutocomplete( opts );
     this.fetchTaxon( );
   }
@@ -30,9 +32,26 @@ class TaxonAutocomplete extends React.Component {
   }
 
   fetchTaxon( ) {
-    const { initialTaxonID, initialSelection } = this.props;
+    const { initialTaxonID, initialSelection, config } = this.props;
     if ( initialTaxonID && !initialSelection ) {
-      inaturalistjs.taxa.fetch( initialTaxonID ).then( r => {
+      const params = { };
+      if ( config && config.testingApiV2 ) {
+        params.fields = {
+          id: true,
+          name: true,
+          rank: true,
+          rank_level: true,
+          iconic_taxon_name: true,
+          preferred_common_name: true,
+          is_active: true,
+          extinct: true,
+          ancestor_ids: true,
+          default_photo: {
+            square_url: true
+          }
+        };
+      }
+      inaturalistjs.taxa.fetch( initialTaxonID, params ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateTaxon( { taxon: r.results[0] } );
         }

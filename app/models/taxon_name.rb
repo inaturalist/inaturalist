@@ -89,16 +89,19 @@ class TaxonName < ApplicationRecord
     NORWEGIAN: "Norwegian",
     OCCITAN: "Occitan",
     PANGASINAN: "Pangasinan",
+    PERSIAN: "Persian",
     POLISH: "Polish",
     PORTUGUESE: "Portuguese",
     ROMANIAN: "Romanian",
     RUSSIAN: "Russian",
     SANTALI: "Santali",
+    SERBIAN: "Serbian",
     SETSWANA: "Setswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
     SPANISH: "Spanish",
+    SWAHILI: "Swahili",
     SWEDISH: "Swedish",
     TAGALOG: "Tagalog",
     TAHITIAN: "Tahitian",
@@ -130,6 +133,7 @@ class TaxonName < ApplicationRecord
     "catalan" => "ca",
     "chinese_traditional" => "zh",
     "chinese_simplified" => "zh-CN",
+    "croatian" => "hr",
     "czech" => "cs",
     "danish" => "da",
     "dutch" => "nl",
@@ -162,16 +166,19 @@ class TaxonName < ApplicationRecord
     "norwegian_bokmal" => "nb",
     "ojibwe" => "oj",
     "occitan" => "oc",
+    "persian" => "fa",
     "polish" => "pl",
     "portuguese" => "pt",
     "romanian" => "ro",
     "russian" => "ru",
     "santali" => "sat",
     "scientific_names" => "sci",
+    "serbian" => "sr",
     "sinhala" => "si",
     "slovak" => "sk",
     "slovenian" => "sl",
     "spanish" => "es",
+    "swahili" => "sw",
     "swedish" => "sv",
     "thai" => "th",
     "turkish" => "tr",
@@ -221,7 +228,10 @@ class TaxonName < ApplicationRecord
   def self.normalize_lexicon( lexicon )
     return nil if lexicon.blank?
     return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    return TaxonName::PERSIAN if lexicon.to_s.downcase.strip == "farsi"
     return TaxonName::ROMANIAN if lexicon.to_s.downcase.strip == "rumanian"
+    return TaxonName::SWAHILI if lexicon.to_s.downcase.strip == "kiswahili"
+    return TaxonName::SWAHILI if lexicon.to_s =~ /^swahili/
     # Correct a common misspelling
     return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
 
@@ -495,10 +505,10 @@ class TaxonName < ApplicationRecord
     match = TaxonName.find_lexicons_by_translation( lexicon )
     return unless non_en_lexicons.include?( lexicon.downcase.strip )
 
-    errors.add( :lexicon, :should_match_english_translation, {
+    errors.add( :lexicon, :should_match_english_translation,
       suggested: I18n.with_locale( :en ) { I18n.t( "lexicons.#{match[:lexicons].key( lexicon.downcase.strip )}" ) },
       suggested_locale: I18n.t( "locales.#{match[:locale]}" )
-    } )
+    )
   end
 
   def parameterize_lexicon

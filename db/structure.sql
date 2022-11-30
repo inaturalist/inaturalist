@@ -10,6 +10,48 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: tiger; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger;
+
+
+--
+-- Name: tiger_data; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA tiger_data;
+
+
+--
+-- Name: topology; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA topology;
+
+
+--
+-- Name: SCHEMA topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON SCHEMA topology IS 'PostGIS Topology schema';
+
+
+--
+-- Name: fuzzystrmatch; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION fuzzystrmatch; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION fuzzystrmatch IS 'determine similarities and distance between strings';
+
+
+--
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -21,6 +63,34 @@ CREATE EXTENSION IF NOT EXISTS postgis WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION postgis IS 'PostGIS geometry, geography, and raster spatial types and functions';
+
+
+--
+-- Name: postgis_tiger_geocoder; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_tiger_geocoder WITH SCHEMA tiger;
+
+
+--
+-- Name: EXTENSION postgis_tiger_geocoder; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_tiger_geocoder IS 'PostGIS tiger geocoder and reverse geocoder';
+
+
+--
+-- Name: postgis_topology; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS postgis_topology WITH SCHEMA topology;
+
+
+--
+-- Name: EXTENSION postgis_topology; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION postgis_topology IS 'PostGIS topology spatial types and functions';
 
 
 --
@@ -4784,6 +4854,37 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 
 
 --
+-- Name: time_zone_geometries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.time_zone_geometries (
+    ogc_fid integer NOT NULL,
+    tzid character varying(80),
+    geom public.geometry(MultiPolygon)
+);
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.time_zone_geometries_ogc_fid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.time_zone_geometries_ogc_fid_seq OWNED BY public.time_zone_geometries.ogc_fid;
+
+
+--
 -- Name: trip_purposes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6095,6 +6196,13 @@ ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: time_zone_geometries ogc_fid; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries ALTER COLUMN ogc_fid SET DEFAULT nextval('public.time_zone_geometries_ogc_fid_seq'::regclass);
+
+
+--
 -- Name: trip_purposes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7103,6 +7211,14 @@ ALTER TABLE ONLY public.taxon_scheme_taxa
 
 ALTER TABLE ONLY public.taxon_schemes
     ADD CONSTRAINT taxon_schemes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: time_zone_geometries time_zone_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries
+    ADD CONSTRAINT time_zone_geometries_pkey PRIMARY KEY (ogc_fid);
 
 
 --
@@ -9709,6 +9825,13 @@ CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (low
 
 
 --
+-- Name: time_zone_geometries_geom_geom_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX time_zone_geometries_geom_geom_idx ON public.time_zone_geometries USING gist (geom);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10120,6 +10243,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190702063435'),
 ('20190820224224'),
 ('20190918161513'),
+('20191101004413'),
 ('20191104233418'),
 ('20191115201008'),
 ('20191203201511'),

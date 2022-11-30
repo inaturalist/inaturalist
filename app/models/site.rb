@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Site < ApplicationRecord
+  include HasJournal
+
   has_many :observations, inverse_of: :site
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_and_belongs_to_many :announcements
 
@@ -267,6 +268,7 @@ class Site < ApplicationRecord
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
+  preference :jobs_url, :string, default: "/pages/jobs"
   preference :twitter_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string
@@ -358,8 +360,9 @@ class Site < ApplicationRecord
       return cached
     end
 
-    site = Site.includes( :stored_preferences ).first
-    return unless site
+    unless site = Site.includes( :stored_preferences ).first
+      site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
+    end
 
     Rails.cache.fetch( "sites_default" ) do
       site

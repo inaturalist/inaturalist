@@ -1,0 +1,34 @@
+- content_for :title do
+  = @title = t( :edit_conservation_status )
+
+- content_for :extracss do
+  = stylesheet_link_tag :taxa, media: "all", cache: true
+
+.container
+  .row
+    .col-cs-12
+      %ul.breadcrumb.unstacked
+        %li= link_to t( :back_to_x, noun: @taxon.name ), :back, class: "back crumb"
+      %h1=t @title
+      = form_for @conservation_status, builder: BootstrapFormBuilder do | f |
+        = render "form", f: f
+        = f.text_area :audit_comment, placeholder: t(:why_are_you_making_this_change_optional), label: t(:note)
+        :ruby
+          submit_options = {
+            class: "btn btn-success",
+            data: {
+              loading_click: t( :saving )
+            }
+          }
+          if @taxon.observose_warning_branch?
+            submit_options[:data][:confirm] = t( :this_taxon_has_more_than_1000_alt ).gsub( /\s+/m, " " )
+          end
+          delete_confirmation = if @taxon.observose_warning_branch?
+            t( :this_taxon_has_more_than_1000_alt )
+          else
+            t(:are_you_sure_delete_conservation_status)
+          end
+          delete_confirmation.gsub!( /\s+/m, " " )
+        = f.submit t(:update), submit_options
+        = link_to t( :cancel ), :back, class: "btn btn-default"
+        = link_to t(:delete), @conservation_status, method: :delete, data: { loading_click: t( :deleting ), confirm: delete_confirmation }, class: "btn btn-default text-danger pull-right"

@@ -280,9 +280,8 @@ class LocalPhoto < Photo
       raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
-    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
-      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.file = URI( url )
     end
   end
 
@@ -345,6 +344,10 @@ class LocalPhoto < Photo
       if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
+        # Force the time to be in the time zone, b/c the value from EXIFR will
+        # be in the system time zone, regardless of what time zone info might
+        # be in the photo metadata. See
+        # https://github.com/MikeKovarik/exifr/issues/84#issuecomment-1004691190
         o.set_time_in_time_zone
         if o.time_observed_at
           o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")

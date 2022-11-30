@@ -54,6 +54,14 @@ module ActsAsElasticModel
         result_to_will_paginate_collection(result, options)
       end
 
+      def elastic_get( id, options = { } )
+        begin
+          __elasticsearch__.client.get( index: index_name, id: id )
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => a
+          nil
+        end
+      end
+
       # standard way to bulk index instances. Called without options it will
       # page through all instances 1000 at a time (default for find_in_batches)
       # You can also send options, including scope:
@@ -121,7 +129,7 @@ module ActsAsElasticModel
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
         batch_sleep = options.delete(:sleep)
         batches_indexed = 0
-        scope.find_in_batches(options) do |batch|
+        scope.find_in_batches(**options) do |batch|
           if batch_sleep && batches_indexed > 0
             # sleep only if more than one batch is being indexed
             sleep batch_sleep.to_i

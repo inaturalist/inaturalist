@@ -307,6 +307,7 @@ module ApplicationHelper
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
+    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
@@ -319,14 +320,18 @@ module ApplicationHelper
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
-    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
+    text = text.scrub
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
     # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
+    # Ensure all links have nofollow
+    parsed_text.css( "a" ).each do | node |
+      node[:rel] = "#{node[:rel]} nofollow".strip
+    end
+    text = parsed_text.to_s
     # Remove empty paragraphs
     text = text.gsub( "<p></p>", "" )
     text.html_safe
@@ -1271,7 +1276,7 @@ module ApplicationHelper
       end
     end
     key += '_html'
-    t(key, opts)
+    t(key, **opts)
   end
   
   def url_for_resource_with_host(resource)
@@ -1377,7 +1382,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.46"
+    version = Rails.env.development? ? "weekly" : "3.48"
     params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
@@ -1441,7 +1446,7 @@ module ApplicationHelper
   end
 
   def post_parent_path( parent, options = {} )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_path( options.merge( project_id: parent_slug ) )
@@ -1453,7 +1458,7 @@ module ApplicationHelper
   end
 
   def post_archives_by_month_path( parent, year, month )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_archives_by_month_path( parent_slug, year, month )
@@ -1505,13 +1510,25 @@ module ApplicationHelper
     I18n.has_t?(*args)
   end
 
-  def hyperlink_mentions(text)
+  def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
+    before_mention_pattern = [
+      # Either it's at the start of the line, or...
+      "^|",
+      # It's not preceded by the end of a start tag (e.g. a link)
+      '(?<!">)',
+      # And it's not preceded by slash (e.g. a part of a URL)
+      "(?<!/)"
+    ].join
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
-    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+    linked_text.mentioned_users.sort_by {| u | u.login.length }.reverse.each do | u |
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
+      linked_text.gsub!(
+        /(#{before_mention_pattern})@#{u.login}/,
+        "\\1#{link_to( "@#{login_text}", person_by_login_url( u.login ) )}"
+      )
     end
     linked_text
   end
@@ -1606,9 +1623,33 @@ module ApplicationHelper
       url_for_params( {
         order_by: header,
         order: @order == "desc" ? "asc" : "desc"
-      }.merge( options[:url_options] ) ),
+      }.merge( options[:url_options] || {} ) ),
       options
     )
+  end
+
+  # Workaround for our inconsistent i18n keys
+  def geoprivacy_with_consistent_case( geoprivacy )
+    if geoprivacy != "obscured"
+      t( "#{geoprivacy}_" )
+    else
+      t( :obscured )
+    end
+  end
+
+  # Another workaround for our inconsistent use of underscores in i18n keys
+  def translate_with_consistent_case( key, options = {} )
+    lower_requested = options.delete( :case ) != "upper"
+    translation = I18n.t( key, **options )
+    en = I18n.t( key, **options.merge( locale: "en" ) )
+    default_is_lower = en == en.downcase
+    lower_requested_and_default_is_lower = lower_requested && default_is_lower
+    upper_requested_and_default_is_upper = !lower_requested && !default_is_lower
+    if lower_requested_and_default_is_lower || upper_requested_and_default_is_upper
+      return translation
+    end
+
+    I18n.t( "#{key}_", **options )
   end
 
 end

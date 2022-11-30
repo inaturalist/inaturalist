@@ -15,7 +15,7 @@ const RejectedFilesError = ( { rejectedFiles } ) => {
       );
       showResizeTip = file.type && file.type.match( /image/ );
     }
-    if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr/i ) ) {
+    if ( !file.type || !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr/i ) ) {
       errors[file.name].push(
         I18n.t( "uploader.errors.unsupported_file_type" )
       );

@@ -38,13 +38,12 @@ import brightnessesReducer from "../identify/ducks/brightnesses";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
-const relativeTime = Object.assign(
-  {},
-  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
-  shortRelativeTime
-);
+const relativeTime = {
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  ...shortRelativeTime
+};
 moment.locale( I18n.locale );
-moment.updateLocale( moment.locale(), { relativeTime } );
+moment.updateLocale( moment.locale( ), { relativeTime } );
 
 const rootReducer = combineReducers( {
   commentIDPanel: commentIDPanelReducer,
@@ -74,13 +73,11 @@ const rootReducer = combineReducers( {
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
@@ -102,7 +99,7 @@ if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ )
 ) {
-  const element = document.querySelector( 'meta[name="config:inaturalist_api_url"]' );
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
   if ( defaultApiUrl ) {
     /* global INITIAL_OBSERVATION_UUID */
@@ -116,6 +113,12 @@ if (
       writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
     } );
   }
+}
+
+if ( window.location.search.match( /test=vision/ ) ) {
+  store.dispatch( setConfig( {
+    testingVision: true
+  } ) );
 }
 
 store.dispatch( fetchAnnotationsPanelPreferences( ) );

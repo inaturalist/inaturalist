@@ -30,7 +30,14 @@ class Assessment extends React.Component {
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const { open } = this.state;
-    const InnerWrapper = innerWrapper || <div />;
+    const InnerWrapper = innerWrapper || ( props => (
+      <div>
+        {
+          // eslint-disable-next-line react/prop-types
+          props.children
+        }
+      </div>
+    ) );
     return (
       <Grid>
         <div className="QualityMetrics collapsible-section">
@@ -102,7 +109,7 @@ class Assessment extends React.Component {
 
 Assessment.propTypes = {
   config: PropTypes.object,
-  innerWrapper: PropTypes.element,
+  innerWrapper: PropTypes.func,
   observation: PropTypes.object,
   updateSession: PropTypes.func
 };

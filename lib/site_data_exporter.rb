@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteDataExporter
   OBS_COLUMNS = %w(
     id
@@ -47,7 +49,7 @@ class SiteDataExporter
     common_name
     iconic_taxon_name
     taxon_id
-  )
+  ).freeze
 
   ASSOC_COLUMNS = {
     annotations: %w(
@@ -108,16 +110,24 @@ class SiteDataExporter
       updater_id
       uuid
     )
-  }
+  }.freeze
 
   def initialize( site, options = {} )
+    @options = options
     @site = site
     @site_name = @site.name
-    @dbname = ActiveRecord::Base.configurations[Rails.env]["database"]
-    @dbhost = ActiveRecord::Base.configurations[Rails.env]["host"]
-    @max_obs_id = options[:max_obs_id] || Observation.calculate(:maximum, :id)
-    @num_processes = options[:num_processes].to_i > 0 ? options[:num_processes].to_i : 3
-    @options = options
+    dbconfig = ActiveRecord::Base.configurations.configs_for( env_name: Rails.env ).first.configuration_hash
+    @dbname = dbconfig[:database]
+    @dbhost = dbconfig[:host]
+    @psql_cmd = "psql #{@dbname} -h #{@dbhost}"
+    if dbconfig[:username]
+      @psql_cmd += " -U #{dbconfig[:username]}"
+    end
+    if dbconfig[:password]
+      @psql_cmd = "PGPASSWORD=#{dbconfig[:password]} #{@psql_cmd}"
+    end
+    @max_obs_id = options[:max_obs_id] || Observation.calculate( :maximum, :id ) || 0
+    @num_processes = options[:num_processes].to_i.positive? ? options[:num_processes].to_i : 3
   end
 
   def self.basename_for_site( site )
@@ -129,7 +139,7 @@ class SiteDataExporter
     @work_dir = Dir.mktmpdir
     @basename = SiteDataExporter.basename_for_site( @site )
     @work_path = File.join( @work_dir, @basename )
-    FileUtils.mkdir_p @work_path, :mode => 0755
+    FileUtils.mkdir_p @work_path, mode: 0o755
 
     # Export users table
     path = File.join( @work_path, "#{@basename}-users.csv" )
@@ -156,7 +166,7 @@ class SiteDataExporter
         site_id = #{@site.id}
         AND (spammer = 'f' OR spammer IS NULL)
     SQL
-    cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+    cmd = "#{@psql_cmd} -c \"COPY (#{sql.gsub( /\s+/m, ' ' )}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
 
     # Export taxa table
@@ -174,20 +184,17 @@ class SiteDataExporter
         updater_id,
         observations_count,
         rank_level,
-        unique_name,
         wikipedia_title,
         featured_at,
         ancestry,
         locked,
         is_active,
-        complete_rank,
-        complete,
         taxon_framework_relationship_id,
         uuid
       FROM
         taxa
     SQL
-    cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+    cmd = "#{@psql_cmd} -c \"COPY (#{sql.gsub( /\s+/m, ' ' )}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
 
     # Export conservation_statuses table
@@ -213,7 +220,7 @@ class SiteDataExporter
         conservation_statuses cs
           LEFT JOIN places ON places.id = cs.place_id
     SQL
-    cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+    cmd = "#{@psql_cmd} -c \"COPY (#{sql.gsub( /\s+/m, ' ' )}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
 
     # Export observation_fields table
@@ -234,7 +241,7 @@ class SiteDataExporter
       FROM
         observation_fields
     SQL
-    cmd = "psql #{@dbname} -h #{@dbhost} -c \"COPY (#{sql.gsub( /\s+/m, " ")}) TO STDOUT WITH CSV HEADER\" > #{path}"
+    cmd = "#{@psql_cmd} -c \"COPY (#{sql.gsub( /\s+/m, ' ' )}) TO STDOUT WITH CSV HEADER\" > #{path}"
     system_call cmd
 
     # Export observations by site users with private coordinates
@@ -269,15 +276,16 @@ class SiteDataExporter
 
     # Make the archive
     fname = "#{@basename}.zip"
-    archive_path = File.join(@work_dir, fname)
-    system_call "cd #{@work_dir} && zip -D #{archive_path} #{@basename}/*"  
+    archive_path = File.join( @work_dir, fname )
+    system_call "cd #{@work_dir} && zip -#{!@options[:verbose] && 'q'}D #{archive_path} #{@basename}/*"
     archive_path
   end
 
   private
-  def system_call(cmd)
+
+  def system_call( cmd )
     puts "Running #{cmd}" if @options[:debug]
-    system cmd
+    system cmd, exception: true
   end
 
   def export_observations( options = {} )
@@ -289,7 +297,7 @@ class SiteDataExporter
       filters << {
         bool: {
           should: [
-            { term: { site_id: options[:site_id]} },
+            { term: { site_id: options[:site_id] } },
             { term: { "user.site_id" => options[:site_id] } }
           ]
         }
@@ -299,40 +307,40 @@ class SiteDataExporter
       inverse_filters << {
         bool: {
           should: [
-            { term: { site_id: options[:not_site_id]} },
+            { term: { site_id: options[:not_site_id] } },
             { term: { "user.site_id" => options[:not_site_id] } }
           ]
         }
       }
     end
     if options[:place_id]
-      filters << { terms: { "private_place_ids" => [ options[:place_id] ].flatten.map{ |v|
-        ElasticModel.id_or_object(v)
-      } } }
+      filters << { terms: { "private_place_ids" => [options[:place_id]].flatten.map do | v |
+        ElasticModel.id_or_object( v )
+      end } }
     end
     if options[:geoprivacy]
       if options[:geoprivacy].include?( "open" )
         inverse_filters << { exists: { field: "geoprivacy" } }
       else
-        filters << { terms: { "geoprivacy" => [ options[:geoprivacy] ].flatten.map{ |v|
-          ElasticModel.id_or_object(v)
-        } } }
+        filters << { terms: { "geoprivacy" => [options[:geoprivacy]].flatten.map do | v |
+          ElasticModel.id_or_object( v )
+        end } }
       end
     end
     if options[:not_geoprivacy]
-      inverse_filters << { terms: { "geoprivacy" => [ options[:not_geoprivacy] ].flatten.map{ |v|
-        ElasticModel.id_or_object(v)
-      } } }
+      inverse_filters << { terms: { "geoprivacy" => [options[:not_geoprivacy]].flatten.map do | v |
+        ElasticModel.id_or_object( v )
+      end } }
     end
     if options[:taxon_geoprivacy]
-      filters << { terms: { "taxon_geoprivacy" => [ options[:taxon_geoprivacy] ].flatten.map{ |v|
-        ElasticModel.id_or_object(v)
-      } } }
+      filters << { terms: { "taxon_geoprivacy" => [options[:taxon_geoprivacy]].flatten.map do | v |
+        ElasticModel.id_or_object( v )
+      end } }
     end
     if options[:not_taxon_geoprivacy]
-      inverse_filters << { terms: { "taxon_geoprivacy" => [ options[:not_taxon_geoprivacy] ].flatten.map{ |v|
-        ElasticModel.id_or_object(v)
-      } } }
+      inverse_filters << { terms: { "taxon_geoprivacy" => [options[:not_taxon_geoprivacy]].flatten.map do | v |
+        ElasticModel.id_or_object( v )
+      end } }
     end
     if @options[:taxon_id]
       filters << {
@@ -349,17 +357,19 @@ class SiteDataExporter
     }
     base_results = Observation.elastic_search( base_es_params.merge( per_page: 0 ) )
     total_entries = base_results.total_entries
-    num_partitions = total_entries < 10000 ? 1 : @num_processes
+    num_partitions = total_entries < 10_000 ? 1 : @num_processes
     partition_offset = @max_obs_id / num_partitions
-    partitions = num_partitions.times.map do |i|
-      (i*partition_offset..(i+1)*partition_offset)
+    partitions = num_partitions.times.map do | i |
+      ( i * partition_offset..( i + 1 ) * partition_offset )
     end
 
-    puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}" if @options[:verbose]
+    if @options[:verbose]
+      puts "[#{Time.now}] Exporting observations in #{num_partitions} partitions, options: #{options}"
+    end
 
     csv_path = File.join( @work_path, "#{@basename}-observations.csv" )
-    unless File.exists?( csv_path )
-      CSV.open( csv_path, "w" ) do |csv|
+    unless File.exist?( csv_path )
+      CSV.open( csv_path, "w" ) do | csv |
         csv << OBS_COLUMNS
       end
     end
@@ -367,24 +377,37 @@ class SiteDataExporter
 
     # Set up CSV files for associate models
     assoc_csv_paths = {}
-    ASSOC_COLUMNS.each do |k, columns|
+    ASSOC_COLUMNS.each do | k, columns |
       path = File.join( @work_path, "#{@basename}-#{k}.csv" )
-      unless File.exists?( path )
-        CSV.open( path, "w" ) do |csv|
+      unless File.exist?( path )
+        CSV.open( path, "w" ) do | csv |
           csv << columns
         end
       end
       assoc_csv_paths[k] = path
     end
 
-    Parallel.each_with_index( partitions, in_processes: partitions.size ) do |partition, parition_i|
+    Parallel.each_with_index( partitions, in_processes: partitions.size ) do | partition, parition_i |
+      ActiveRecord::Base.connection.enable_replica
+      # Make sure Makara releases context and performs subsequent queries
+      # against the replica. It may be stuck on the primary due to previews
+      # requests to the primary. Not entirely sure if the context gets
+      # preserved when Parallel forks a subprocess
+      Makara::Context.release_all
       partition_filters = filters.dup
       partition_filters << {
         range: { id: { gte: partition.min, lte: partition.max } }
       }
+      partition_total_entries = Observation.elastic_search(
+        base_es_params.merge( filters: partition_filters, per_page: 0 )
+      ).total_entries
+      if partition_total_entries <= 0
+        puts "[#{Time.now}] Partition #{partition.min}-#{partition.max} is empty" if @options[:verbose]
+        next
+      end
       min_id = 0
       obs_i = 0
-      while true do
+      loop do
         batch_filters = partition_filters.dup
         batch_filters << { range: { id: { gte: min_id } } }
         if @options[:debug]
@@ -394,48 +417,43 @@ class SiteDataExporter
           puts msg
         end
         observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
-          Observation.elastic_paginate(
-            track_total_hits: true,
-            filters: batch_filters,
-            inverse_filters: inverse_filters,
-            sort: { id: "asc" },
-            per_page: 1000
-          )
+          Observation.elastic_paginate( base_es_params.merge( filters: batch_filters ) )
         end
-        if observations.size == 0
-          puts if @options[:verbose]
+        if observations.size.zero?
+          puts "Observation batch #{partition.min}-#{partition.max} empty, moving on..." if @options[:verbose]
           break
-        end
-        if obs_i == 0
-          partition_total_entries = observations.total_entries
         end
         if @options[:verbose]
           msg = "[#{Time.now}] "
           msg += "[#{options[:debug_label]}] " if options[:debug_label]
-          msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, #{( obs_i.to_f  / partition_total_entries * 100 ).round( 2 )}%)"
+          msg += "Obs partition #{parition_i} (#{partition}) from #{min_id} (#{obs_i} / #{partition_total_entries}, "
+          msg += "#{( obs_i.to_f / partition_total_entries * 100 ).round( 2 )}%)"
           print msg
           print "\r"
           $stdout.flush
         end
-        Observation.preload_associations( observations, [
-          :user,
-          { taxon: :taxon_names },
-          { identifications: [:stored_preferences] },
-          { photos: [:flags, :file_prefix, :file_extension, :user] },
-          :sounds,
-          :quality_metrics,
-          { observations_places: :place },
-          {
-            annotations: [:votes_for, {
-              controlled_attribute: [:labels],
-              controlled_value: [:labels]
-            }],
-          },
-          :observation_field_values,
-          :comments
-        ] )
-        CSV.open( csv_path, "a" ) do |csv|
-          observations.each do |o|
+        Observation.preload_associations(
+          observations,
+          [
+            :user,
+            { taxon: :taxon_names },
+            { identifications: [:stored_preferences] },
+            { photos: [:flags, :file_prefix, :file_extension, :user] },
+            :sounds,
+            :quality_metrics,
+            { observations_places: :place },
+            {
+              annotations: [:votes_for, {
+                controlled_attribute: [:labels],
+                controlled_value: [:labels]
+              }]
+            },
+            :observation_field_values,
+            :comments
+          ]
+        )
+        CSV.open( csv_path, "a" ) do | csv |
+          observations.each do | o |
             if @options[:debug]
               msg = "Obs #{obs_i} (#{o.id})"
               msg += " [#{options[:debug_label]}]" if options[:debug_label]
@@ -443,29 +461,34 @@ class SiteDataExporter
             end
             o.localize_locale = @site.locale
             o.localize_place = @site.place
-            csv << OBS_COLUMNS.map do |c|
+            csv << OBS_COLUMNS.map do | c |
               c = "cached_tag_list" if c == "tag_list"
               if c =~ /^private_/ && !options[:force_coordinate_visibility]
                 nil
               else
-                o.send(c) rescue nil
+                begin
+                  o.send( c )
+                rescue StandardError
+                  nil
+                end
               end
             end
             obs_i += 1
             min_id = o.id + 1
           end
         end
-        ASSOC_COLUMNS.each do |association, cols|
+        ASSOC_COLUMNS.each do | association, cols |
           association = association.to_sym
-          CSV.open( assoc_csv_paths[association], "a" ) do |csv|
-            observations.each do |o|
-              o.send( association ).each do |associate|
-                csv << cols.map {|col| associate.send( col )}
+          CSV.open( assoc_csv_paths[association], "a" ) do | csv |
+            observations.each do | o |
+              o.send( association ).each do | associate |
+                csv << cols.map {| col | associate.send( col ) }
               end
             end
           end
         end
       end
+      ActiveRecord::Base.connection.disable_replica
     end
     csv_path
   end

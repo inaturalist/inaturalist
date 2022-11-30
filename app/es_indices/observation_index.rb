@@ -395,7 +395,7 @@ class Observation < ApplicationRecord
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
-        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids rescue []}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
@@ -470,7 +470,7 @@ class Observation < ApplicationRecord
             p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
-          unless o.geoprivacy == Observation::PRIVATE
+          unless o.latitude.blank? || o.geoprivacy == Observation::PRIVATE || o.taxon_geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
               always_indexed_place_levels.include?( p.admin_level ) ||
               Observation.places_without_obscuration_protection.include?( p.id ) ||
@@ -517,6 +517,7 @@ class Observation < ApplicationRecord
           # keep a hash of all places for each taxon
           place_ids.each do |place_id|
             taxon_places[taxon_id][place_id] ||= places[place_id].dup
+            taxon_places[taxon_id][place_id] ||= { }
             taxon_places[taxon_id][place_id][means] = true
           end
           if means == "endemic"
@@ -636,8 +637,9 @@ class Observation < ApplicationRecord
 
     # Place searches require special handling if the user is asking for their
     # own observations
+    params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
-      if p[:viewer] && p[:user_id] && p[:viewer].id == p[:user_id].to_i
+      if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
         search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
@@ -650,7 +652,7 @@ class Observation < ApplicationRecord
 
     unless p[:not_in_place].blank?
       place_ids = [p[:not_in_place]].flatten.map {| v | ElasticModel.id_or_object( v ) }
-      inverse_filters << if p[:viewer]&.id == p[:user_id].to_i
+      inverse_filters << if ( params_user_ids.size == 1 && p[:viewer]&.id == params_user_ids[0] )
         { terms: { "private_place_ids.keyword" => place_ids } }
       else
         { terms: { "place_ids.keyword" => place_ids } }
@@ -667,7 +669,8 @@ class Observation < ApplicationRecord
       # TODO remove out_of_range when we remove it from the ES index
       { http_param: :out_of_range, es_field: "out_of_range" },
       { http_param: :mappable, es_field: "mappable" },
-      { http_param: :captive, es_field: "captive" }
+      { http_param: :captive, es_field: "captive" },
+      { http_param: :spam, es_field: "spam" }
     ].each do |filter|
       if p[ filter[:http_param] ].yesish?
         search_filters << { term: { filter[:es_field] => true } }
@@ -940,7 +943,7 @@ class Observation < ApplicationRecord
         nested: {
           path: "annotations",
           query: { bool: { must: [
-            { term: { "annotations.controlled_attribute_id.keyword": p[:term_id] } },
+            { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
             { range: { "annotations.vote_score": { gte: 0 } } }
           ] }
           }
@@ -948,7 +951,7 @@ class Observation < ApplicationRecord
       }
       if p[:term_value_id]
         nested_query[:nested][:query][:bool][:must] <<
-          { term: { "annotations.controlled_value_id.keyword": p[:term_value_id] } }
+          { terms: { "annotations.controlled_value_id.keyword": p[:term_value_id].to_s.split( "," ) } }
       end
       search_filters << nested_query
     end

@@ -284,6 +284,10 @@ input[type="color"]:focus,
 .taxon-change-table td.mergetype {
   width: 10%;
 }
+.btn.btn-success {
+  background-color: $inat-green;
+  border-color: $inat-green;
+}
 .btn.btn-inat {
   border-radius: 100px;
   background-color: #999;

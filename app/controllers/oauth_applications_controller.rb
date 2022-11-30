@@ -63,7 +63,7 @@ class OauthApplicationsController < ApplicationController
       @app_owner_application = params[:application] || {}
       render :app_owner_application
     elsif !@eligible
-      flash[:error] = t( :app_owner_application_inelligible_error )
+      flash[:error] = t( :app_owner_application_inelligible )
       @app_owner_application = params[:application] || {}
       render :app_owner_application
     elsif current_user.is_app_owner?

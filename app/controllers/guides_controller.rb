@@ -460,11 +460,11 @@ class GuidesController < ApplicationController
       end
     end
     begin
-      CSV.foreach(open(params[:file]), headers: true, &row_handler)
+      CSV.foreach( File.open( params[:file] ), headers: true, &row_handler )
     rescue ArgumentError => e
       raise e unless e.message =~ /invalid byte sequence in UTF-8/
       # if there's an encoding issue we'll try to load the entire file and adjust the encoding
-      content = open(params[:file]).read
+      content = File.open( params[:file] ).read
       utf_content = if content.encoding.name == 'UTF-8'
         # if Ruby thinks it's UTF-8 but it obviously isn't, we'll assume it's LATIN1
         content.force_encoding('ISO-8859-1')

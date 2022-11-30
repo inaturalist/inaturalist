@@ -134,7 +134,6 @@ pt:
   #"Alphabetical (ascending)"
   a_to_z: "A – Z"
   about: Acerca de
-  about_blocking: Sobre Bloquear
   about_charts: Acerca dos gráficos
   about_community_taxa: Sobre os táxons da comunidade
   about_complete_taxa: Sobre os táxones completos
@@ -146,15 +145,12 @@ pt:
   about_establishment_means: Sobre os meios de estabelecimento
   about_license_options: Sobre as opções de licença
   about_licenses: Acerca das licenças
-  about_muting: Sobre Silenciar
   #Header for a section describing taxon names
   about_names: Sobre nomes
   #Title for a section providing a text description of a place, @vow_or_con
   #should work here
   about_place: "Sobre %{place}"
   about_places: Sobre os Lugares
-  about_the_cc_licenses: Acerca das licenças Creative Commons
-  about_these_licenses: Sobre estas licenças
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
   about_this_project: Sobre este Projeto
@@ -210,7 +206,6 @@ pt:
   active_taxon_status: Ativo
   active_users: Utilizadores ativos
   activity: Atividade
-  activity_settings: Definições da atividade
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} de uma obra de %{original}"
   add: Adicionar
   add_a_batch_of_observations: Adicionar um Conjunto de Observações
@@ -462,8 +457,6 @@ pt:
   all_taxa_in_this_guide: Todos os táxons neste guia
   all_taxonomic_groups: "&laquo; Todos os Grupos Taxonómicos"
   all_updates: Todas as atualizações
-  all_your_observations_will_default_this_time_zone: Todas as suas observações serão registadas neste fuso horário a não ser que especifiques de maneira diferente.
-  all_your_observations_will_default_to_this_time_zone: Todas as suas observações serão registadas neste fuso horário a não ser que especifiques de maneira diferente.
   allow_curator_access: Permitir acesso ao curador
   allow_project_curators_to_view_your_private_coordinates: Permitir aos Curadores do projeto visualizar as suas coordenadas privadas
   allowed_establish_means_values: Valores permitidos para a forma de estabelecimento
@@ -673,7 +666,6 @@ pt:
   batch_edit_taxa_for_x_html: "Editar táxons em conjunto para %{x}"
   batch_operations: Operações em conjunto
   be_the_first_to_fave_this_observation: Seja o primeiro a adicionar esta observação aos favoritos!
-  because_of: devido a
   before_importing_photos: antes de importar fotografias
   bg_color: Cor do Fundo do Ecrã
   bio: Biografia
@@ -682,7 +674,6 @@ pt:
   birds: aves
   birthday: Aniversário
   black: preto
-  block_user: Bloquear utilizador(a)
   block_removed: Bloqueio removido
   blocked_users: Utilizadores Bloqueados
   blog_widget: Blog Widget
@@ -691,7 +682,6 @@ pt:
   body: Corpo
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: texto em negrito
-  bounding_box: Retângulo Envolvente
   breadcrumbs: Rastos de navegação
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -1283,7 +1273,6 @@ pt:
   doh_something_went_wrong_error: "Ocorreu algo de errado: %{error}"
   done: Concluído
   dont_have_an_account_sign_up_html: Ainda não tem conta? <strong>Registe-se.</strong>
-  dont_send_me_email: "Não me envie qualquer email!"
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -1360,7 +1349,6 @@ pt:
   email_address_for_comments_and_other_feedback: Correio eletrónico para comentários e outras opiniões
   email_copyright: "Direitos de autor &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
-  email_settings: Definições do email
   embed: 'Incorporar'
   embed_place_widget: Incorporar um componente de localização
   embed_this_assessment: Incorporar esta avaliação
@@ -1488,7 +1476,6 @@ pt:
   flag_saved: Sinalizador guardado.
   flag_this_observation: Sinalizar esta observação
   flag_this_photo: Marcar esta fotografia
-  flagged: sinalizado(a)
   flagged_: Sinalizado
   flagged_for_curation: Sinalizado(a) para supervisão pelo curador
   flagged_thing_explanation: "Os utilizadores sinalizaram este %{thing} porque"
@@ -1621,10 +1608,13 @@ pt:
   identify_title: "Identificar"
   identification: Identificação
   identification_by_user: Identificação por %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificação apagada.
   identification_saved: "Identificação guardada!"
+  #Notification when an identification has been updated
   identification_updated: Identificação atualizada!
   identification_user_short: Utilizador ident.
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
   identifiers: Identificadores
@@ -1752,7 +1742,6 @@ pt:
   leading: Principal
   learn: Aprender
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
-  learn_about_third_party_tracking: Saiba mais sobre o rastreamento de terceiros
   learn_more: Saiba mais
   learn_more_raquo: "Saiba mais &raquo;"
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
@@ -1817,9 +1806,6 @@ pt:
   life: Vida
   life_list: "Lista de vida de %{user}"
   link: Ligação
-  link_or_unlink_your_facebook_account: Conectar ou desconectar a sua conta do Facebook
-  link_or_unlink_your_flickr_account: Conectar ou desconectar a sua conta do Flickr
-  link_or_unlink_your_google_account: Conectar ou desconectar a sua conta do Google
   link_your_facebook_account: Conecte a sua conta do Facebook
   link_your_flickr_account: Conecte a sua conta do Flickr
   link_your_google_account: Conecte a sua conta do Google
@@ -1862,7 +1848,6 @@ pt:
   loading_tags: "A carregar etiquetas..."
   loading_taxa_from_your: "A carregar táxones das suas observações..."
   loading_wikipedia_description: "A carregar descrição da Wikipédia..."
-  locale_description: Locale permite configurar as suas preferências de língua e formatação de data.
   locales_: Locais
   locales:
     ar: Árabe
@@ -2067,7 +2052,6 @@ pt:
   must_have_quality_grades: "deve ter níveis de qualidade: %{grades}"
   must_have_sounds: deve ter sons
   must_have_x: "deve ter %{x}"
-  mute_user: Silenciar o utilizador
   mute_removed: Silenciador removido
   muted_users: Utilizadores Silenciados
   n_ago: "%{n} antes"
@@ -2235,9 +2219,6 @@ pt:
   notifications: Notificações
   notify_me_of_mentions: Notifique-me quando for mencionado (e.g. @username)
   notify_me_of_mentions_description: "Se desativar isso, não receberá nenhuma notificação quando alguém o(a) mencionar no %{site_name}."
-  notify_me_about_redundant_identifications: Notifique-me sobre confirmações de identificação
-  notify_me_about_redundant_identifications_desc: |
-    Receber notificações sobre identificações que correspondem às minhas. Se você desactivar esta opção, apenas receberá notificações sobre identificações de taxons que não correspondam à sua própria identificação.
   number_of_observations: Número de observações
   number_selected: "# selecionado"
   obs: Obs.
@@ -2362,7 +2343,7 @@ pt:
     observe_panel_title: Vamos começar adicionando algumas observações
     observe_panel_body_p1_local: Precisa de inspiração? Eis alguns organismos a serem observados nas proximidades...
     observe_panel_body_p1_global: Precisa de inspiração? Tem aqui alguns organismos que estão a ser observados...
-    observe_panel_body_p2: Vá lá fora e observe um organismo. Escolha algo selvagem e tire uma foto nítida e sem cortes. Caso já tenha uma foto, <a href="%{new_observation_path}" pode adiciona-la agora</a>. Pode também utilizar a aplicação %{site_name} para registar as suas observações.
+    observe_panel_body_p2: Vá lá fora e observe um organismo. Escolha algo selvagem e tire uma foto nítida e sem cortes. Caso já tenha uma foto, <a href="%{new_observation_path}">pode adiciona-la agora</a>. Pode também utilizar a aplicação %{site_name} para registar as suas observações.
     observe_panel_body_p3: Assim que partilhar as suas observações, esta página irá mostrar as atualizações da comunidade na forma de comentários e identificações. Quem sabe o que irá descobrir!
     follow_panel_title_local: Siga Alguns Naturalistas que estão nas Proximidades
     follow_panel_title_global: Siga Alguns dos Naturalistas mais Ativos
@@ -2390,7 +2371,6 @@ pt:
   only_an_admin_can_remove_project_users: Só um administrador pode eliminar utilizadores do projeto
   only_curators_can_add_edit_scientific_names: Só os curadores podem acrescentar/editar os nomes científicos.
   only_curators_can_access_that_page: Só os curadores podem aceder a esta página.
-  only_letters_numbers: "Só letras e algarismos, sem espaços, e tem de começar por uma letra"
   only_one_coordinate_system_per_file: |
     Só se pode utilizar um sistema de coordenadas por ficheiro, caso contrário a conversão ou apresentação serão incorretas.
   only_project_curators_can_do_that: Só os curadores do projeto podem fazer isso.
@@ -2410,7 +2390,6 @@ pt:
   optional: opcional
   or: ou
   or_choose_high_level_taxa: "... ou escolha a partir de um taxa de nível superior"
-  or_if_you_dont_want_email: "Ou se simplesmente não quer nenhum email..."
   orange: laranja
   order: Ordem
   order_by: Ordenar por
@@ -2463,7 +2442,6 @@ pt:
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_deleted: Foto eliminada
   photo_destroyed_because_it_was_deleted_from: "A foto foi excluída porque foi eliminada do site de origem ou %{site_name} deixou de ter permissão para a ver"
-  photo_hosting_accounts: Contas de alojamento de fotos
   photo_licensing: Licença da fotografia
   photo_type: Tipo de fotografia
   photo_urls_repaired: Os URL das fotos foram reparados
@@ -2774,8 +2752,8 @@ pt:
   projects: Projetos
   projects_description: |
     Os projetos permitem agrupar as suas observações com as de outras pessoas em %{site_name}. Quer pretende iniciar um projeto de ciência cidadã, ou manter um registo das aves que existem no seu bairro. Os projetos são o caminho certo.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projetos de %{place}"
-  projects_in_x: "Projetos em %{x}"
   projects_you_admin: Projetos que administra
   proposed_taxa_that_contradict_the_community_id: Taxa proposto que contradiz a identificação feita pela comunidade
   proposed_taxa_that_support_the_community_id: Taxa proposto que suporta a identificação feita pela comunidade
@@ -2834,7 +2812,6 @@ pt:
   recaptcha_verification_failed: Verificação reCaptcha falhou
   receive_email_notifications: Receber notificações de email
   receive_email_notifications_description: "Se desativar esta opção, não receberá mais e-mails de %{site_name} sobre as notificações. Você receberá notificações de tudo marcado abaixo:"
-  receive_email_notifications_when_people_leave_you: Receba notificações por email sobre
   receive_project_journal_notifications?: Receber notificações do boletim informativo do projeto?
   receive_updates_from_this_project: Receber atualizações deste projeto
   recent: Recente(s)
@@ -2934,7 +2911,7 @@ pt:
     must_be_georeferenced: têm de estar georreferenciadas
     must_be_identified: devem estar identificadas
     must_be_on_list: tem de estar na lista
-    must_be_observed_in_place: tem de ser observado no Local
+    must_be_observed_in_place: tem de ser observado no local
     must_be_in: tem de estar no táxon
     must_be_coordinates_shareable_by_project_curators: o observador deve permitir que os curadores do projeto visualizem as coordenadas.
   said: disse
@@ -2982,6 +2959,11 @@ pt:
   search_your_photos: Procurar as suas fotos
   searching: "A procurar..."
   seasonality: Sazonalidade
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Seu(s) %{noun}"
   see_something_wrong_with_taxon: Descobriu algo errado com este táxon? Informe os curadores.
   seen_nearby: Visto nas Proximidades
@@ -3015,7 +2997,6 @@ pt:
   short_or_abbreviated_title_for_display: Título curto ou abreviado para mostrar em áreas de espaço limitado. Máximo de 10 caracteres.
   show: Mostrar
   show_active_and_inactive_taxa: Mostrar táxons ativos e inativos
-  show_common_names: Mostrar os nomes comuns
   show_keyboard_shortcuts: Mostrar as Teclas de Atalho do Teclado
   show_less: Mostrar menos
   show_more: Mostrar mais
@@ -3025,7 +3006,6 @@ pt:
   show_off_your_recent_observations: Exponha as suas observações recentes no seu próprio blog ou website!
   show_only: Mostrar apenas
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
-  show_scientific_name_first: Mostrar os nomes científicos primeiro
   show_taxa_from_both: (mostrar taxa de ambas as listas)
   show_taxa_from_everywhere: "Mostrar taxa de toda a parte"
   show_taxa_from_place: "Mostrar taxa de %{place}"
@@ -3210,7 +3190,7 @@ pt:
   there_were_some_problems_with_fields: "Ocorreram problemas com os seguintes campos:"
   there_were_some_problems_with_these_files: "Ocorreram problemas com os seguintes ficheiros:"
   theres_something_wrong_with_taxon_framework_relationship: Passa-se algo de errado - não conseguimos determinar a relação entre quaisquer táxon internos e externos
-  these_are_items_people_on: |2
+  these_are_items_people_on: |
     Estes são itens que as pessoas no site sinalizaram para curadoria. Comentários com spam
      devem ser excluídos e os utilizadores que adicionarem spam devem ser suspensos (vá
     à sua página de perfil e clique em 'Suspender usuário', no canto inferior direito, para
@@ -3321,7 +3301,6 @@ pt:
   user_is_a_naturalist: "%{user} é um naturalista!"
   user_muted: Utilizador silenciado
   user_suggested_an_id: "%{user} sugeriu uma identificação"
-  user_thinks_yours_is: "%{user} %{noun} que a sua observação %{observation} é"
   username: Nome de Utilizador
   username_or_email: Nome de utilizador ou email
   username_or_user_id: Nome de utilizador ou identificação do utilizador
@@ -3466,7 +3445,7 @@ pt:
           O seu acesso a coordenadas ocultas será revogado durante uma semana após
           alterar os requisitos de observação, para que os membros tenham tempo para fazer isso
       invite:
-        description_html: |2
+        description_html: |
           <h3>Sobre convites</h3>
           <p class="ui">
             Convidar pessoas para o seu projeto é um pouco diferente de convidar observações individuais. Ao convidar pessoas
@@ -3557,7 +3536,7 @@ pt:
           ocultas da visão pública, a fim de proteger as espécies ameaçadas.
           </p>
           <p>
-          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte 
+          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte
           da rede iNaturalist. Se você optar por se afiliar a uma rede
           local, as instituições locais que operam cada site terão também
           acesso ao seu endereço de e-mail (apenas para comunicar consigo sobre
@@ -3572,8 +3551,6 @@ pt:
           any: Qualquer
           joined: Projetos a que aderiu
           none: "Nenhum(a), as suas observações só podem ser adicionadas por si aos projetos"
-        scientific_name_first_desc: |
-          Mostrar os nomes científicos antes dos nomes comuns.
     welcome:
       index:
         connect_with_nature: Ligue-se à Natureza

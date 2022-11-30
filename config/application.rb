@@ -75,24 +75,27 @@ module Inaturalist
 
     config.exceptions_app = routes
 
+    config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
-      # Rails 5 is more strict about what classes are allowed to be subclasses.
-      # If a subclass constant gets reloaded but the parent doesn't, the
-      # subclass is no longer considered a subclass of the parent and you end
-      # up with ActiveRecord::SubclassNotFound errors, which is probably going
-      # to happen a lot in a development and maybe a test environment.
-      # According to https://github.com/rails/rails/issues/29542, this is
-      # expected behavior and the way to deal with it is to preload all these
-      # classes.
+      # Rails 5 is more strict about what classes are allowed to be
+      # subclasses. If a subclass constant gets reloaded but the parent
+      # doesn't, the subclass is no longer considered a subclass of the
+      # parent and you end up with ActiveRecord::SubclassNotFound errors,
+      # which is probably going to happen a lot in a development and maybe a
+      # test environment. According to
+      # https://github.com/rails/rails/issues/29542, this is expected
+      # behavior and the way to deal with it is to preload all these classes.
+      # For other fun class reloading issues, see
+      # https://stackoverflow.com/questions/29636334/a-copy-of-xxx-has-been-removed-from-the-module-tree-but-is-still-active
       begin
-        require_dependency "denormalizer"
         require_dependency "check_list"
+        require_dependency "denormalizer"
         require_dependency "eol_photo"
         require_dependency "facebook_photo"
         require_dependency "flickr_photo"
         require_dependency "google_street_view_photo"
-        require_dependency "has_subscribers"
         require_dependency "list"
         require_dependency "local_photo"
         require_dependency "photo"

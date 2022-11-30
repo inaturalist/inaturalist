@@ -85,7 +85,11 @@ class YearStatistic < ApplicationRecord
     # fail, they don't take down everything else. They're also pretty boring
     # as of 2021 since it's basically just a lot of people on year+ long
     # streaks. Yet another thing I never should have built...
-    if year <= 2021 || !options[:site].blank?
+
+    # 2022 update: we decided to just not do streaks on global or site YIR
+    # anymore b/c it's too much of a support headache and encourages
+    # competetive behavior
+    if year <= 2021
       json[:observations][:streaks] = streaks( year, options )
       year_statistic.update( data: json )
     end
@@ -240,7 +244,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: "created_at",
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
@@ -489,11 +493,16 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image
-    if year >= 2020
-      generate_shareable_image_no_obs
-    else
-      generate_shareable_image_obs_grid
+    timeout = 10.seconds
+    Timeout.timeout timeout do
+      if year >= 2020
+        generate_shareable_image_no_obs
+      else
+        generate_shareable_image_obs_grid
+      end
     end
+  rescue Timeout::Error
+    Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
   end
 
   def generate_shareable_image_obs_grid
@@ -634,6 +643,15 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
+  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
+  def clean_svg_for_imagemagick( svg_path )
+    tmp_path = "#{svg_path}.tmp"
+    run_cmd <<~BASH
+      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
+    BASH
+    run_cmd "mv #{tmp_path} #{svg_path}"
+  end
+
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
@@ -652,6 +670,7 @@ class YearStatistic < ApplicationRecord
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
     run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
+    clean_svg_for_imagemagick( icon_path ) if icon_ext.downcase == "svg"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
@@ -719,13 +738,14 @@ class YearStatistic < ApplicationRecord
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
     run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
+    clean_svg_for_imagemagick( wordmark_path ) if wordmark_ext.downcase == "svg"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
     density = 1024
     begin
       run_cmd <<~BASH
-        convert -resize x65 -background none +antialias -density #{density} \
+        convert -resize 384x65 -background none +antialias -density #{density} \
           #{wordmark_path} #{wordmark_resized_path}
       BASH
     rescue RuntimeError => e
@@ -760,21 +780,16 @@ class YearStatistic < ApplicationRecord
     else
       ""
     end
-    title = if user
+    locale = if user
       user_site = user.site || Site.default
-      locale = user.locale.presence || user_site.locale.presence || I18n.locale
-      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
-      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+      user.locale.presence || user_site.locale.presence || I18n.locale
     elsif site
-      locale = site.locale.presence || I18n.locale
-      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      site.locale.presence || I18n.locale
     else
       default_site = Site.default
-      locale = default_site.locale.presence || I18n.locale
-      site_name = default_site.site_name_short.presence || default_site.name
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      default_site.locale.presence || I18n.locale
     end
+    title = I18n.t( :year_in_review, year: year, locale: locale )
     title = title.mb_chars.upcase
     obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
@@ -950,7 +965,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: date_field,
-            interval: interval,
+            calendar_interval: interval,
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( params )
           },
@@ -1064,6 +1079,7 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.publications( year, _options )
+    # TODO: replace this with https://www.gbif.org/developer/literature
     gbif_endpont = "https://www.gbif.org/api/resource/search"
     gbif_params = {
       contentType: "literature",
@@ -1074,9 +1090,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
     new_results = []
-    data["results"].each do | result |
+    response["results"].each do | result |
       if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
@@ -1088,7 +1104,7 @@ class YearStatistic < ApplicationRecord
         sleep( 1 )
       end
       result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
-      new_results << result.slice(
+      new_result = result.slice(
         "title",
         "authors",
         "year",
@@ -1100,10 +1116,16 @@ class YearStatistic < ApplicationRecord
         "_gbifDOIs",
         "altmetric_score"
       )
+      if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
+        new_result["authors"] = []
+      end
+      new_results << new_result
     end
-    data["results"] = new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5]
-    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
-    data
+    {
+      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
+      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      count: response["count"]
+    }
   end
 
   def self.observations_histogram_by_created_month( options = {} )
@@ -1127,7 +1149,7 @@ class YearStatistic < ApplicationRecord
         histogram: {
           date_histogram: {
             field: "created_at_details.date",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM-dd",
             time_zone: time_zone_for_options( options )
           }
@@ -1726,8 +1748,10 @@ class YearStatistic < ApplicationRecord
     tz.tzinfo.name
   end
 
-  def self.run_cmd( cmd, options = {} )
-    system cmd, options.merge( exception: true )
+  def self.run_cmd( cmd, options = { timeout: 60 } )
+    Timeout.timeout( options.delete( :timeout ) ) do
+      system cmd, options.merge( exception: true )
+    end
   end
 
   def run_cmd( cmd, options = {} )

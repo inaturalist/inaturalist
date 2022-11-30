@@ -48,7 +48,7 @@ import ObservationModalContainer from "../containers/observation_modal_container
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import FlashMessage from "./flash_message";
 
-moment.locale( "en", {
+moment.updateLocale( "en", {
   relativeTime: {
     future: "in %s",
     past: "%s",
@@ -170,7 +170,7 @@ const App = ( {
         <FlashMessage
           key="testing_apiv2"
           title="Testing API V2"
-          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/obs-detail-on-api-v2-feedback/21215"
+          message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/v2-feedback/21215"
           type="warning"
           html
         />
@@ -213,41 +213,51 @@ const App = ( {
                 </OverlayTrigger>
               </div>
             </Col>
-            { viewerIsObserver ? (
-              <Col xs={2} className="edit-button">
-                <SplitButton
-                  bsStyle="primary"
-                  className="edit"
-                  href={`/observations/${observation.id}/edit`}
-                  title={I18n.t( "edit" )}
-                  id="edit-dropdown"
-                  pullRight
-                  onSelect={key => {
-                    if ( key === "delete" ) {
-                      deleteObservation( );
-                    } else if ( key === "license" ) {
-                      setLicensingModalState( { show: true } );
-                    }
-                  }}
-                >
-                  <MenuItem eventKey="delete">
-                    <i className="fa fa-trash" />
-                    { I18n.t( "delete" ) }
-                  </MenuItem>
-                  <MenuItem
-                    eventKey="duplicate"
-                    href={`/observations/new?copy=${observation.id}`}
+            { viewerIsObserver
+              ? (
+                <Col xs={2} className="edit-button">
+                  <SplitButton
+                    bsStyle="primary"
+                    className="edit"
+                    href={`/observations/${observation.id}/edit`}
+                    title={I18n.t( "edit" )}
+                    id="edit-dropdown"
+                    pullRight
+                    onSelect={key => {
+                      if ( key === "delete" ) {
+                        deleteObservation( );
+                      } else if ( key === "license" ) {
+                        setLicensingModalState( { show: true } );
+                      }
+                    }}
                   >
-                    <i className="fa fa-files-o" />
-                    { I18n.t( "duplicate_verb" ) }
-                  </MenuItem>
-                  <MenuItem eventKey="license">
-                    <i className="fa fa-copyright" />
-                    { I18n.t( "edit_license" ) }
-                  </MenuItem>
-                </SplitButton>
-              </Col> ) : ( <FollowButtonContainer /> )
-            }
+                    <MenuItem
+                      eventKey="edit"
+                      href={`/observations/${observation.id}/edit`}
+                    >
+                      <i className="fa fa-pencil" />
+                      { I18n.t( "edit" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey="duplicate"
+                      href={`/observations/new?copy=${observation.id}`}
+                    >
+                      <i className="fa fa-files-o" />
+                      { I18n.t( "duplicate_verb" ) }
+                    </MenuItem>
+                    <MenuItem eventKey="license">
+                      <i className="fa fa-copyright" />
+                      { I18n.t( "edit_license" ) }
+                    </MenuItem>
+                    <li role="separator" className="divider" />
+                    <MenuItem eventKey="delete">
+                      <i className="fa fa-trash" />
+                      { I18n.t( "delete" ) }
+                    </MenuItem>
+                  </SplitButton>
+                </Col>
+              )
+              : ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>

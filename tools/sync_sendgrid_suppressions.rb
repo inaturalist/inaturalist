@@ -28,22 +28,20 @@ def get_records( url_base )
   records = []
   success = true
   i = 0
+  errors = [Timeout::Error, RestClient::ServiceUnavailable]
   while json.count.positive? && success == true
     @logger.info "\t...reading page #{i}"
     offset = 500 * i
     url = "#{url_base}?limit=500&offset=#{offset}"
     begin
-      response = get_response( url )
-    rescue Timeout::Error
-      response = get_response( url )
-      begin
-        response = get_response( url )
-      rescue Timeout::Error
-        success = false
+      response = try_and_try_again( errors ) do
+        get_response( url )
       end
+      json = JSON.parse( response )
+      records << json
+    rescue *errors
+      success = false
     end
-    json = JSON.parse( response )
-    records << json
     i += 1
   end
   { records: records.flatten, success: success }

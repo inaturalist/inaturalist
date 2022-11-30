@@ -5,15 +5,20 @@ module DarwinCore
       @core = options[:core] || DarwinCore::Cores::OCCURRENCE
       @extensions = options[:extensions] || []
       @ala = options[:ala]
-      @template = options[:template] || File.join( "observations", "dwc.descriptor.builder" )
+      @include_uuid = options[:include_uuid]
+      @template = options[:template] || File.join( "observations", "dwc_descriptor" )
     end
 
     def render
       super(
         template: @template,
+        handlers: [:builder],
+        formats: [:xml],
         assigns: {
           core: @core,
-          extensions: @extensions
+          extensions: @extensions,
+          ala: @ala,
+          include_uuid: @include_uuid
         }
       )
     end

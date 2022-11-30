@@ -7,7 +7,8 @@ import { fetchTerms } from "../../shared/ducks/taxon";
 function mapStateToProps( state ) {
   return {
     place: state.config.chosenPlace,
-    defaultPlace: state.config.preferredPlace
+    defaultPlace: state.config.preferredPlace,
+    config: state.config
   };
 }
 

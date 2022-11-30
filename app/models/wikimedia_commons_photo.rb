@@ -67,7 +67,7 @@ class WikimediaCommonsPhoto < Photo
         next if file_name.blank?
         width = ii['width'].to_i
         next if width == 0
-        md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name)) 
+        md5_hash = Digest::MD5.hexdigest(CGI.unescape(file_name))
         WikimediaCommonsPhoto.new(
           native_photo_id: file_name,
           remote_original_url: "http://upload.wikimedia.org/wikipedia/commons/#{md5_hash[0]}/#{md5_hash[0..1]}/#{file_name}",
@@ -104,7 +104,7 @@ class WikimediaCommonsPhoto < Photo
   def self.get_api_response(file_name)
     url = "https://commons.wikimedia.org/w/index.php?title=File:#{file_name}"
     opts = {'User-Agent' => "iNaturalist"}
-    Nokogiri::HTML(open(url, opts))
+    Nokogiri::HTML(URI.open(url, **opts))
   rescue OpenURI::HTTPError => e
     Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve #{url}: #{e}"
     nil
@@ -159,7 +159,7 @@ class WikimediaCommonsPhoto < Photo
     photo.native_realname = author
 
     width = api_response.at('.fileInfo').inner_html.split("(")[1].split(" ")[0].gsub(",","").to_i
-    md5_hash = Digest::MD5.hexdigest(URI.unescape(file_name))
+    md5_hash = Digest::MD5.hexdigest(CGI.unescape(file_name))
     url_base = "http://upload.wikimedia.org/wikipedia/commons"
     url_identifier = "#{md5_hash[0..0]}/#{md5_hash[0..1]}/#{file_name}"
     photo.remote_original_url = "#{url_base}/#{url_identifier}"

@@ -4,7 +4,7 @@ shared_examples_for "an ObservationPhotosController" do
   elastic_models( Observation )
 
   describe "create" do
-    let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
+    let(:file) { fixture_file_upload('cuthona_abronia-tagged.jpg', 'image/jpeg') }
     it "should work" do
       expect {
         post :create, format: :json, params: {
@@ -98,7 +98,7 @@ shared_examples_for "an ObservationPhotosController" do
       expect(op.position).to eq(1)
     end
     describe "when the observation photo does not exist" do
-      let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
+      let(:file) { fixture_file_upload('cuthona_abronia-tagged.jpg', 'image/jpeg') }
       it "should create an observation photo" do
         o = Observation.make!( user: user )
         expect( o.observation_photos.size ).to eq 0

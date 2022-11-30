@@ -160,6 +160,6 @@ class SitesController < ApplicationController
   def export_path_for_site( site )
     Dir.glob(
       File.join( File.dirname( site.export_path ), "*-#{site.id}.zip" )
-    ).first
+    ).sort_by { | path | File.mtime( path ) }.last
   end
 end

@@ -1,8 +1,8 @@
 <div class="breadcrumbs">
   <% if @parent.is_a?(Project) %>
-    <%= link_to t(:back_to_x_journal, :user => @parent.title),
-                project_journal_path(@parent_slug),
-                :class => 'back crumb' %>
+    <%= link_to t(:back_to_x_journal, user: @parent.title),
+                project_journal_path(@parent.journal_slug),
+                class: 'back crumb' %>
   <% elsif @parent.is_a?(Site) %>
     <%= link_to t(:back_to_x_blog, x: @parent.name), site_posts_path, :class => 'back crumb' %>
   <% else %>

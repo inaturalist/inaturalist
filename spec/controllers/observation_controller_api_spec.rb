@@ -1013,6 +1013,21 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
+
+    describe "time_zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should not change the time zone if the coordinates don't change" do
+        o.update( latitude: 20, longitude: 20 )
+        expect( o ).to be_georeferenced
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+        original_time_zone = expect( o.time_zone )
+        put :update, params: { id: o.id, format: :json, observation: { time_zone: "America/Los_Angeles" } }
+        o.reload
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+      end
+    end
   end
 
   describe "by_login" do
@@ -1167,6 +1182,26 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse( response.body )
       expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
       expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
+    end
+
+    it "should filter by single login in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: o1.user.login }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).to be_blank
+    end
+
+    it "should filter by multiple logins in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o3 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: "#{o1.user.login},#{o2.user.login}" }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o3.id } ).to be_blank
     end
 
     it "should filter by week of the year" do
@@ -1921,7 +1956,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_has_subscribers
-      after_delayed_job_finishes do
+      after_delayed_job_finishes( ignore_run_at: true ) do
         @o = Observation.make!( user: user )
         @c = Comment.make!( parent: @o )
         @i = Identification.make!( observation: @o )

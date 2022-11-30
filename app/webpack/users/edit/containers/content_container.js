@@ -11,6 +11,7 @@ import { showModal } from "../ducks/cc_licensing_modal";
 
 function mapStateToProps( state ) {
   return {
+    config: state.config,
     profile: state.profile
   };
 }

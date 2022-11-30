@@ -1,6 +1,6 @@
 module HasSubscribers
   def self.included(base)
-    base.extend ClassMethods
+    base.extend ::HasSubscribers::ClassMethods
   end
   
   module ClassMethods
@@ -10,7 +10,7 @@ module HasSubscribers
     #   will happen automatically from notifies_subscribers_of in most cases, 
     #   but NOT for polymorphic associations
     def has_subscribers(options = {})
-      return if self.included_modules.include?(HasSubscribers::InstanceMethods)
+      return if self.included_modules.include?( ::HasSubscribers::InstanceMethods )
       include HasSubscribers::InstanceMethods
       
       has_many :update_subscriptions, class_name: "Subscription", as: :resource, inverse_of: :resource
@@ -23,7 +23,7 @@ module HasSubscribers
       cattr_accessor :notifying_associations
       self.notifying_associations = options[:to].is_a?(Hash) ? options[:to] : {}
 
-      Subscription.subscribable_classes << to_s
+      ::Subscription.subscribable_classes << to_s
       
       if options[:destroy_callback] == :commit
         after_commit :delete_update_actions, on: :destroy
@@ -289,7 +289,7 @@ module HasSubscribers
             if options[:delay] == false
               record.send(callback_method, subscribable_association)
             else
-              record.delay(priority: options[:priority]).
+              record.delay(priority: options[:priority], run_at: 5.seconds.from_now).
                 send(callback_method, subscribable_association)
             end
           end

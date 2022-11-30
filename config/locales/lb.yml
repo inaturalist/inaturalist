@@ -113,13 +113,11 @@ lb:
   #"Alphabetical (ascending)"
   a_to_z: "A bis Z"
   about: Iwwer
-  about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
   about_conservation_status: Iwert den Erhalungszoustand
   about_editing_observation_fields: Iwwer d'Editéiere vun den Observatiounsfelder
   about_license_options: Iwwert Lizenz-Optiounen
   about_licenses: Iwwer Lizenzen
-  about_muting: Iwwer stomm schalten
   #Header for a section describing taxon names
   about_names: Iwwer Nimm
   #Title for a section providing a text description of a place, @vow_or_con
@@ -127,9 +125,7 @@ lb:
   about_place: "Iwwer %{place}"
   about_places: Iwwer Plazen
   about_taxon_ranges: Iwwer Taxon-Verbreedungsgebiett
-  about_the_cc_licenses: Iwwer Creative Commons Lizenzen
   about_the_network: Iwwert d'Netzwierk
-  about_these_licenses: Iwwer dës Lizenzen
   about_this_bioblitz: Iwwer dëse Bioblitz
   about_this_map: Iwwer dës Kaart
   about_this_project: Iwwer dëse Projet
@@ -151,7 +147,6 @@ lb:
   active_taxon_status: Aktiv
   active_users: Aktiv Benotzer
   activity: Aktivitéit
-  activity_settings: Astellunge vun der Aktivitéit
   adapted_by_name_from_a_work_by_original: "Ugepasst vun %{name} aus enger Aarbecht vun %{original}"
   add: Derbäisetzen
   add_a_batch_of_observations: E Saz vun Observatiounen derbäisetzen
@@ -468,7 +463,6 @@ lb:
   back_to_your_profile: Zréck op Äre Profil
   badges: Badgen
   batch: Batch
-  because_of: well
   become_a_donor_caps: GITT EEN DONATEUR
   become_a_donor_today_caps: GITT HAUT EEN DONATEUR
   before_importing_photos: virum Import vu Fotoen
@@ -477,7 +471,6 @@ lb:
   birds: Vigel
   birthday: Gebuertsdag
   black: schwaarz
-  block_user: Benotzer spären
   block_removed: Spär ewechgeholl
   blocked_users: Gespaart Benotzer
   blog_widget: Blog Widget
@@ -775,7 +768,6 @@ lb:
   donate_again_caps: NACH EEMOL SPENDEN
   donate_again_today_caps: HAUT NACH EEMOL SPENDEN
   done: Fäerdeg
-  dont_send_me_email: "Schéckt mir keng E-Mailen!"
   download: Eroflueden
   download_csv: CSV eroflueden
   download_csv_template: CSV-Schabloun eroflueden
@@ -814,7 +806,6 @@ lb:
   editing_taxon_range_for_taxon_html: Verbreedungsgebiett fir %{taxon} beaarbechten
   editors: Auteuren
   email: E-Mail
-  email_settings: E-Mail-Astellungen
   embed: 'Abannen'
   end: Schluss
   endangered: Bedréit
@@ -888,7 +879,6 @@ lb:
   flag_saved: Markéierung gespäichert
   flag_this_photo: Dës Foto markéieren
   flag_this_place: Des Plaz melden
-  flagged: markéiert
   flagged_: Markéiert
   flagger: Gemellt
   flags: Markéierungen
@@ -967,8 +957,10 @@ lb:
   identify_title: "Bestëmmen"
   identification: Identifikatioun
   identification_by_user: Idendifikatioun duerch de(n) %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikatioun geläscht.
   identification_saved: "Identifikatioun gespäichert!"
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikatioun zréckgezunn.
   identifications: Bestemmungen
   identifiers: Bestëmmer
@@ -1318,7 +1310,6 @@ lb:
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "muss Qualiteitsgrad: %{grades} hunn"
   must_have_sounds: muss ee Sound hunn
-  mute_user: Benotzer stomm schalten
   mute_removed: Stomm schalten ewechgeholl
   n_ago: "viru(n) %{n}"
   name: Numm
@@ -1526,7 +1517,6 @@ lb:
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "ee vun de folgende muss richteg sinn:"
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit kommen
-  only_letters_numbers: "Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat engem Buschtaf ufänken"
   only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet kann dëse Projet läschen.
   only_view_nearby_suggestions: Nëmme Suggestiounen aus der Géigend kucken
   only_you: Nëmmen Dir
@@ -1785,6 +1775,7 @@ lb:
   project_settings: Astellunge vum Projet
   project_was_successfully_updated: De Projet gouf aktualiséiert.
   projects: Projeten
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projete vu(n) %{place}"
   projects_you_admin: Projeten déi Dir administréiert
   publish: Verëffentlechen
@@ -1984,7 +1975,6 @@ lb:
   settings: Astellungen
   share: Deelen
   show: Weisen
-  show_common_names: Populär Nimm weisen
   show_keyboard_shortcuts: Tastatur-Shortcuts weisen
   show_less: Manner weisen
   show_more: Méi weisen
@@ -2205,10 +2195,8 @@ lb:
   view_sample: Beispill weisen
   view_stats: Statistike weisen
   view_x: "%{x} weisen"
-  view_year_stats_for_site: "Weis %{year} Statistike fir %{site}"
   view_your_dashboard: Ären Dashboard kucken
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Kuckt Ären Dashboard</a> fir mei Updates"
-  view_your_year_stats: "Weist Är %{year} Statistiken"
   view_yours: Är weisen
   video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
@@ -2494,9 +2482,6 @@ lb:
           any: All
           joined: Projeten deenen Dir bäigetruede sidd
           none: "Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen"
-        scientific_name_first_desc: |
-          Déi wëssentlech Nimm virun de populären Nimm weisen.
-        thanks_for_supporting_us!: Merci datt Dir eis ënnerstëtzt!
       recent:
         about_recent_users: Iwwer
       show:

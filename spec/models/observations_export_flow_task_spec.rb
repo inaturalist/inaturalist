@@ -135,7 +135,7 @@ describe ObservationsExportFlowTask do
       expect(output).not_to be_blank
       expect(output.file.path).to be =~ /json.zip$/
       expect {
-        JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
+        JSON.parse( File.open( File.join( ft.work_path, "#{ft.basename}.json" ) ).read )
       }.not_to raise_error
     end
 
@@ -462,14 +462,28 @@ describe ObservationsExportFlowTask do
   end
 
   describe "columns" do
-    it "should be configurable" do
-      o = Observation.make!(:taxon => Taxon.make!)
-      ft = ObservationsExportFlowTask.make(:options => {:columns => Observation::CSV_COLUMNS[0..0]})
-      ft.inputs.build(:extra => {:query => "taxon_id=#{o.taxon_id}"})
+    it "should be configurable such that just the first column is included" do
+      o = Observation.make!( taxon: Taxon.make! )
+      ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS[0..0] } )
+      ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
       ft.save!
       ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv[0].size).to eq 1
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv[0].size ).to eq 1
+    end
+
+    it "should be configurable such that all columns are included" do
+      o = Observation.make!( taxon: Taxon.make! )
+      ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS } )
+      ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv[0].size ).to eq Observation::CSV_COLUMNS.size
+      expect( csv[1].size ).to eq Observation::CSV_COLUMNS.size
+      Observation::CSV_COLUMNS.each do | column |
+        expect( csv[0] ).to include column
+      end
     end
 
     it "should never include anything but allowed columns" do
@@ -509,6 +523,20 @@ describe ObservationsExportFlowTask do
       expect( csv[0][1] ).to eq ident_column
       expect( csv[1][0].to_i ).to eq i.observation_id
       expect( csv[1][1] ).to eq i.taxon.name
+    end
+  end
+
+  describe "user_name column" do
+    it "should have a value if the observer set a name" do
+      o = create :observation, user: create( :user, name: "Balthazar" )
+      ft = ObservationsExportFlowTask.make( options: { columns: %w(user_name) } )
+      ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      user_name_index = csv[0].index( "user_name" )
+      expect( csv[1][user_name_index] ).not_to be_blank
+      expect( csv[1][user_name_index] ).to eq o.user.name
     end
   end
 end

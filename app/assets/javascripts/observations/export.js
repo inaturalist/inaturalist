@@ -43,6 +43,13 @@ function cleanQuery(q) {
         return
       }
     }
+    // the `spam` parameter can be present, but the only acceptable value is "false"
+    if ( k == "spam" ) {
+      if ( v === "false" ) {
+        newParams[k] = v;
+      }
+      return;
+    }
     if (v.length !== 0 && v.length != 0 && REJECT_PARAMS.indexOf(k) < 0) {
       newParams[k] = v
     }
@@ -74,7 +81,9 @@ function filtersToQuery() {
   $('#query').val(cleanQuery(query))
 }
 $(document).ready(function() {
-  showFilters()
+  // exports have a custom implementation of taxonAutocomplete, so disable
+  // the basic autocomplete initialization that showFilters() will perform
+  showFilters( undefined, { skipTaxonAutocomplete: true } );
   $('#query').change(queryChanged)
   $('#filters :input').change(function() {
     filtersToQuery()

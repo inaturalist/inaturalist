@@ -11,7 +11,7 @@ class Annotation < ApplicationRecord
 
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
-  belongs_to :resource, polymorphic: true
+  belongs_to_with_uuid :resource, polymorphic: true
   belongs_to :user
   belongs_to :observation_field_value
 

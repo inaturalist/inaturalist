@@ -178,9 +178,6 @@ class MetaService
       fname = uri.to_s.parameterize
       fixture_path = File.expand_path( File.dirname( __FILE__ ) + "/fixtures/#{name.underscore}/#{fname}" )
       if File.exist?( fixture_path )
-        # puts "[DEBUG] Loading cached API response for #{uri}: #{fixture_path}"
-        # Nokogiri::XML(open(fixture_path))
-        # OpenStruct.new(body: open(fixture_path).read )
         File.open( fixture_path ) do | f |
           return OpenStruct.new( body: f.read )
         end
@@ -303,4 +300,27 @@ end
 
 def disable_user_email_domain_exists_validation
   CONFIG.user_email_domain_exists_validation = :disabled
+end
+
+def load_time_zone_geometries
+  puts "load_time_zone_geometries"
+  fixtures_path = File.join( Rails.root, "spec", "fixtures" )
+  # Fetch data from this URL. It's not great to have this external dependency,
+  # but the alternative is having a rather large fixture checked in
+  url = "https://github.com/evansiroky/timezone-boundary-builder/releases/download/2020d/timezones-with-oceans.shapefile.zip"
+  zip_fname = File.basename( url )
+  shp_fname = "combined-shapefile-with-oceans.shp"
+  puts "checking if #{File.join( fixtures_path, shp_fname )} exists"
+  if File.exists?( File.join( fixtures_path, shp_fname ) )
+    puts "#{shp_fname} exists, skipping download"
+  else
+    puts "Downloading #{url}"
+    system "cd #{fixtures_path} && curl -L -s -o #{zip_fname} #{url}", exception: true
+    system "cd #{fixtures_path} && unzip -o #{zip_fname}", exception: true
+  end
+  TimeZoneGeometry.load_shapefile( File.join( fixtures_path, shp_fname ), logger: Logger.new( $stdout ) )
+end
+
+def unload_time_zone_geometries
+  TimeZoneGeometry.delete_all
 end

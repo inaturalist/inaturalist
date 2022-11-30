@@ -2,6 +2,16 @@ import inatjs from "inaturalistjs";
 
 const SET_OBSERVATION_PLACES = "obs-show/observation_places/SET_OBSERVATION_PLACES";
 
+const FIELDS = {
+  admin_level: true,
+  bbox_area: true,
+  display_name: true,
+  id: true,
+  name: true,
+  place_type: true,
+  uuid: true
+};
+
 export default function reducer( state = [], action ) {
   switch ( action.type ) {
     case SET_OBSERVATION_PLACES:
@@ -33,15 +43,7 @@ export function fetchObservationPlaces( ) {
       order_by: "admin_and_distance"
     };
     if ( testingApiV2 ) {
-      params.fields = {
-        admin_level: true,
-        bbox_area: true,
-        display_name: true,
-        id: true,
-        name: true,
-        place_type: true,
-        uuid: true
-      };
+      params.fields = FIELDS;
     }
     let placeIDs;
     if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {

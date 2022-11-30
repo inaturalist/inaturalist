@@ -149,7 +149,7 @@ Rails.application.routes.draw do
     get "users/new", to: redirect( "signup" ), as: "new_user"
     # This *should* be a redirect, but that is messing with the way we're doing
     # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
-    get "/forgot_password", to: "devise/passwords#new", as: "forgot_password"
+    get "/forgot_password", to: "users/passwords#new", as: "forgot_password"
     put "users/update_session", to: "users#update_session"
   end
 
@@ -432,6 +432,7 @@ Rails.application.routes.draw do
     resources :flags
     resources :taxon_names, controller: :taxon_names, shallow: true
     resources :taxon_scheme_taxa, controller: :taxon_scheme_taxa, shallow: true
+    resources :conservation_statuses, controller: :conservation_statuses, shallow: true
     get "description" => "taxa#describe", on: :member, as: :describe
     member do
       post "update_photos", as: "update_photos_for"
@@ -464,6 +465,7 @@ Rails.application.routes.draw do
   get "taxa/:id/children.:format" => "taxa#children", :as => :formatted_taxon_children
   get "taxa/:id/photos" => "taxa#photos", as: :photos_of_taxon
   put "taxa/:id/update_colors" => "taxa#update_colors", :as => :update_taxon_colors
+  get "taxa/:id/clashes" => "taxa#clashes", :as => :taxa_clashes
   get "taxa/flickr_tagger" => "taxa#flickr_tagger", :as => :flickr_tagger
   get "taxa/flickr_tagger.:format" => "taxa#flickr_tagger", :as => :formatted_flickr_tagger
   post "taxa/tag_flickr_photos"
@@ -498,6 +500,7 @@ Rails.application.routes.draw do
       get :for_user
     end
   end
+  get "/posts/search", to: "posts#search"
   resources :posts,
     as: "journal_posts",
     path: "/journal/:login",
@@ -676,7 +679,8 @@ Rails.application.routes.draw do
   resources :taxon_swaps, controller: :taxon_changes
   resources :taxon_drops, controller: :taxon_changes
   resources :taxon_stages, controller: :taxon_changes
-  resources :conservation_statuses, only: [:autocomplete]
+
+  resources :conservation_statuses, only: [:create, :destroy]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
     collection do
@@ -713,6 +717,13 @@ Rails.application.routes.draw do
   get "translate" => "translations#index", :as => :translate_list
   post "translate/translate" => "translations#translate", :as => :translate
   get "translate/reload" => "translations#reload", :as => :translate_reload
+
+  resource :translations do
+    collection do
+      get :index
+      get :locales
+    end
+  end
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 

@@ -147,7 +147,7 @@ class AdminController < ApplicationController
   def destroy_user_content
     return unless load_user_content_info
     @records = @display_user.send(@reflection_name).
-      where("id IN (?)", params[:ids] || [])
+      where("#{@reflection.table_name}.id IN (?)", params[:ids] || [])
     @records.each(&:destroy)
     flash[:notice] = "Deleted #{@records.size} #{@type.humanize.downcase}"
     redirect_back_or_default(admin_user_content_path(@display_user.id, @type))

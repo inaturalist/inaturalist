@@ -3,12 +3,10 @@ import { setConfig } from "../../../shared/ducks/config";
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 import ActivityItem from "../../show/components/activity_item";
 import {
-  postIdentification,
+  addID,
   fetchCurrentObservation,
   loadingDiscussionItem,
-  fetchObservationsStats,
   stopLoadingDiscussionItem,
-  submitIdentificationWithConfirmation,
   deleteComment,
   updateIdentification
 } from "../actions";
@@ -30,33 +28,7 @@ function mapStateToProps( state, ownProps ) {
 
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
-    addID: ( taxon, options ) => {
-      if ( options.agreedWith ) {
-        const params = {
-          taxon_id: options.agreedWith.taxon.id,
-          observation_id: options.agreedWith.observation_id
-        };
-        dispatch( loadingDiscussionItem( options.agreedWith ) );
-        dispatch( postIdentification( params ) )
-          .catch( ( ) => {
-            dispatch( stopLoadingDiscussionItem( options.agreedWith ) );
-          } )
-          .then( ( ) => {
-            dispatch( fetchCurrentObservation( ) ).then( ( ) => {
-              $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
-            } );
-            dispatch( fetchObservationsStats( ) );
-          } );
-      } else {
-        const ident = {
-          taxon_id: taxon.id,
-          observation_id: ownProps.observation.id
-        };
-        dispatch( submitIdentificationWithConfirmation( ident, {
-          confirmationText: options.confirmationText
-        } ) );
-      }
-    },
+    addID: ( taxon, options ) => dispatch( addID( taxon, ownProps.observation, options ) ),
     deleteComment: id => {
       const comment = { id, className: "Comment" };
       dispatch( loadingDiscussionItem( comment ) );
@@ -70,7 +42,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
     },
     withdrawID: id => {
       const ident = { id, className: "Identification" };
-      const updateIdent = { id, current: false };
+      const updateIdent = { id, identification: { current: false } };
       if ( id.toString( ).match( /A-z/ ) ) {
         ident.uuid = id;
         delete ident.id;
@@ -88,7 +60,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
     },
     restoreID: id => {
       const ident = { id, className: "Identification" };
-      const updateIdent = { id, current: true };
+      const updateIdent = { id, identification: { current: true } };
       if ( id.toString( ).match( /A-z/ ) ) {
         ident.uuid = id;
         delete ident.id;

@@ -12,6 +12,7 @@ import { updateEditorContent } from "../../shared/ducks/text_editors";
 // <CommentFormContainer observation={foo} />
 function mapStateToProps( state, ownProps ) {
   return {
+    config: state.config,
     observation: ownProps.observation,
     content: state.textEditor.obsIdentifyIdComment
   };

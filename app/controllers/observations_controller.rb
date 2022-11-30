@@ -59,7 +59,7 @@ class ObservationsController < ApplicationController
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
   before_action :load_observation, :only => load_only
-  blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
+  blocks_spam :only => load_only - [ :taxon_summary, :observation_links, :review ],
     :instance => :observation
   check_spam only: [:create, :update], instance: :observation
   before_action :require_owner, :only => [:edit, :edit_photos,
@@ -74,7 +74,7 @@ class ObservationsController < ApplicationController
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
 
-  prepend_around_action :enable_replica, only: [:taxon_summary]
+  prepend_around_action :enable_replica, only: [:by_login, :show, :taxon_summary]
 
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
@@ -182,13 +182,26 @@ class ObservationsController < ApplicationController
       
       format.widget do
         if params[:markup_only] == 'true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => true, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: true,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence: params[:silence]
+            }
+          )
         else
-          render :js => render_to_string(:partial => "widget.js.erb", :locals => {
-            :show_user => true
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js],
+            locals: {
+              show_user: true
+            }
+          )
         end
       end
     end
@@ -289,7 +302,12 @@ class ObservationsController < ApplicationController
         end
         @shareable_title = if @observation.taxon
           Taxon.preload_associations( @observation.taxon, { taxon_names: :place_taxon_names } )
-          render_to_string( partial: "taxa/taxon.txt", locals: { taxon: @observation.taxon } )
+          render_to_string(
+            partial: "taxa/taxon",
+            handlers: [:erb],
+            formats: [:txt],
+            locals: { taxon: @observation.taxon }
+          )
         else
           I18n.t( "something" )
         end
@@ -378,10 +396,9 @@ class ObservationsController < ApplicationController
   # An attempt at creating a simple new page for batch add
   def new
     @observation = Observation.new(:user => current_user)
-    @observation.time_zone = current_user.time_zone
 
     if params[:copy] && (copy_obs = Observation.find_by_id(params[:copy])) && copy_obs.user_id == current_user.id
-      %w(observed_on_string time_zone place_guess geoprivacy map_scale positional_accuracy).each do |a|
+      %w(observed_on_string time_zone zic_time_zone place_guess geoprivacy map_scale positional_accuracy).each do |a|
         @observation.send("#{a}=", copy_obs.send(a))
       end
       @observation.latitude = copy_obs.private_latitude || copy_obs.latitude
@@ -463,6 +480,7 @@ class ObservationsController < ApplicationController
     end
     
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
+    @observation.set_time_zone if @observation.time_zone.blank?
     respond_to do |format|
       format.html do
         @observations = [@observation]
@@ -757,8 +775,10 @@ class ObservationsController < ApplicationController
       return
     end
 
-    @observations = Observation.where(id: params[:observations].to_h.map{ |k,v| k },
-      user_id: observation_user)
+    @observations = params[:observations].to_h.map do |id, obs|
+      Observation.where( uuid: id, user_id: observation_user ).first ||
+        Observation.where( id: id, user_id: observation_user ).first
+    end.compact
     
     # Make sure there's no evil going on
     unique_user_ids = @observations.map(&:user_id).uniq
@@ -779,7 +799,10 @@ class ObservationsController < ApplicationController
     end
     
     # Convert the params to a hash keyed by ID.  Yes, it's weird
-    hashed_params = Hash[*params[:observations].to_h.to_a.flatten]
+    hashed_params = Hash[params[:observations].to_h.map do |id, obs|
+      instance = @observations.detect{ |o| o.uuid == id || o.id.to_s == id }
+      instance ? [instance.id.to_s, obs] : nil
+    end.compact]
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
@@ -1189,6 +1212,7 @@ class ObservationsController < ApplicationController
     @identification_fields = if @ident_user
       %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}
     end
+    @hide_spam = true
     respond_to do |format|
       format.html
     end
@@ -1301,11 +1325,23 @@ class ObservationsController < ApplicationController
       end
       format.widget do
         if params[:markup_only]=='true'
-          render :js => render_to_string(:partial => "widget.html.erb", :locals => {
-            :show_user => false, :target => params[:target], :default_image => params[:default_image], :silence => params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: false,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence:  params[:silence]
+            }
+          )
         else
-          render :js => render_to_string(:partial => "widget.js.erb")
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js]
+          )
         end
       end
       
@@ -1414,16 +1450,26 @@ class ObservationsController < ApplicationController
       end
       format.widget do
         if params[:markup_only] == "true"
-          render js: render_to_string( partial: "widget.html.erb", locals: {
-            show_user: true,
-            target: params[:target],
-            default_image: params[:default_image],
-            silence: params[:silence]
-          })
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:html],
+            locals: {
+              show_user: true,
+              target: params[:target],
+              default_image: params[:default_image],
+              silence: params[:silence]
+            }
+          )
         else
-          render js: render_to_string( partial: "widget.js.erb", locals: {
-            show_user: true
-          } )
+          render js: render_to_string(
+            partial: "widget",
+            handlers: [:erb],
+            formats: [:js],
+            locals: {
+              show_user: true
+            }
+          )
         end
       end
     end
@@ -2191,6 +2237,9 @@ class ObservationsController < ApplicationController
     unless search_params[:not_in_place_record].blank? || search_params[:not_in_place_record].is_a?(Array)
       @not_in_place_record = search_params[:not_in_place_record]
     end
+    @lat = search_params[:lat]
+    @lng = search_params[:lng]
+    @radius = search_params[:radius]
     @q = search_params[:q] unless search_params[:q].blank?
     @search_on = search_params[:search_on]
     @iconic_taxa = search_params[:iconic_taxa_instances]
@@ -2237,6 +2286,7 @@ class ObservationsController < ApplicationController
     @introduced = search_params[:introduced]
     @native = search_params[:native]
     @popular = search_params[:popular]
+    @spam = search_params[:spam]
     if stats_adequately_scoped?(search_params)
       @d1 = search_params[:d1].blank? ? nil : search_params[:d1]
       @d2 = search_params[:d2].blank? ? nil : search_params[:d2]
@@ -2248,6 +2298,15 @@ class ObservationsController < ApplicationController
       @ident_user = User.find_by_id( search_params[:ident_user_id] )
       @ident_user ||= User.find_by_login( search_params[:ident_user_id] )
     end
+    @misc_hidden_parameters = %w(
+      day
+      id
+      ident_taxon_id
+      identified
+      term_id
+      term_value_id
+      year
+    )
     
     @filters_open = 
       !@q.nil? ||
@@ -2614,7 +2673,7 @@ class ObservationsController < ApplicationController
         key += "_by_user"
         i18n_vars[:user] = search_user.try_methods(:name, :login)
       end
-      I18n.t( key, i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
+      I18n.t( key, **i18n_vars.merge( default: I18n.t( :observations_of_taxon, taxon_name: i18n_vars[:taxon] ) ) )
     elsif search_user
       if search_date
         I18n.t( :observations_by_user_on_date, user: search_user.try_methods(:name, :login), date: I18n.l( search_date, format: :long ) )

@@ -748,7 +748,9 @@ class ListedTaxon < ApplicationRecord
     if !place_id.blank? && manually_added && list.is_a?( CheckList )
       I18N_SUPPORTED_LOCALES.each do |locale|
         ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
-        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
+        if place && !place.slug.blank?
+          ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) )
+        end
       end
     end
     if list

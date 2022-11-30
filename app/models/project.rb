@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
 
   include ActsAsElasticModel
+  include HasJournal
 
   belongs_to :user
   belongs_to :place, inverse_of: :projects
@@ -17,7 +18,6 @@ class Project < ApplicationRecord
   has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
   has_many :observation_fields, through: :project_observation_fields
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
@@ -370,13 +370,16 @@ class Project < ApplicationRecord
   end
 
   def set_observation_requirements_updated_at( options = {} )
+    # If this is a new record, we want to enable coordinate access immediately
+    # if trust was enabled, so we backdate
+    # observation_requirements_updated_at
     if new_record?
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
-    pu_scope = project_users.joins(:stored_preferences).where(
+    trusting_project_users = project_users.joins(:stored_preferences).where(
       "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
       [
         ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
@@ -386,9 +389,14 @@ class Project < ApplicationRecord
     changed_from_trad_to_collection = project_type_changed? &&
       changes[:project_type].first.blank? &&
       %w(collection umbrella).include?( changes[:project_type].last )
-    if old_params == new_params && !prefers_user_trust_changed? && !options[:force] && !changed_from_trad_to_collection
+    if (
+      old_params == new_params &&
+      !prefers_user_trust_changed? &&
+      !options[:force] &&
+      !changed_from_trad_to_collection
+    )
       Rails.logger.debug "set_observation_requirements_updated_at: no change"
-    elsif pu_scope.exists?
+    elsif trusting_project_users.exists?
       Rails.logger.debug "set_observation_requirements_updated_at: trusting users exist, setting observation_requirements_updated_at to now"
       self.observation_requirements_updated_at = Time.now
     elsif changed_from_trad_to_collection
@@ -536,12 +544,12 @@ class Project < ApplicationRecord
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
           if rule_value.strip.match( / / )
-            rule_value = Time.parse( rule_value )
+            rule_value = Time.parse( rule_value ) rescue nil
           else
-            rule_value = Date.parse( rule_value )
+            rule_value = Date.parse( rule_value ) rescue nil
             if rule == "rule_d2"
               # when d2 is a date w/o a time, we want to capture that in its own field
-              params[ "d2_date" ] = rule_value
+              params[ "d2_date" ] = rule_value unless rule_value.nil?
             end
           end
         elsif rule_value.is_a?( String )
@@ -549,7 +557,7 @@ class Project < ApplicationRecord
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value unless rule_value.nil?
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq

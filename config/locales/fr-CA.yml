@@ -107,15 +107,11 @@ fr-CA:
   _100_day_trends: Tendances de 100 jours
   a_community_for_naturalist: Une communauté pour naturalistes
   about: À propos
-  about_blocking: À propos du blocage
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
-  about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
   about_places: À propos des lieux
-  about_the_cc_licenses: À propos des licences Creative Commons
-  about_these_licenses: À propos de ces licences
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
@@ -143,7 +139,6 @@ fr-CA:
   active: Actif
   active_users: Utilisateurs actifs
   activity: Activité
-  activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
@@ -295,7 +290,6 @@ fr-CA:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
-  dont_send_me_email: "Ne m’envoyez pas de courriel!"
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
@@ -305,7 +299,6 @@ fr-CA:
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
-  email_settings: Paramètres de courriel
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
@@ -339,13 +332,11 @@ fr-CA:
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   official_blog: Blogue officiel
-  or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
   our_blog: Notre blogue
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
-  receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
@@ -831,8 +822,8 @@ fr-CA:
           autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
-        inaturalist_network_affiliation_desc_html: |2
-          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
+        inaturalist_network_affiliation_desc_html: |
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p>
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
            Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.

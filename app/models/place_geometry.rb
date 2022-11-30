@@ -146,13 +146,18 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def simplified_geom
-    return if !geom
+    # if the geom does not exist, or RGeo thinks the geometry is invalid, return nil
+    begin
+      return if !geom
+    rescue RGeo::Error::InvalidGeometry => e
+      return
+    end
     if !place.bbox_area || place.bbox_area < 0.1
       # this method is currently only used for indexing places in Elasticsearch.
       # Running the cleangeometry method here helps fix geom validation errors
       # which psql is comfortable with but might cause ES to throw errors
       return PlaceGeometry.where(id: id).
-        select("id, cleangeometry(geom) as simpl").first.try(:simpl)
+        select("id, cleangeometry(geom) as simpl").first.try(:simpl) rescue nil
     end
     tolerance =
       if place.bbox_area < 1
@@ -171,7 +176,7 @@ class PlaceGeometry < ApplicationRecord
       return s
     end
     PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
+      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl rescue nil
   end
 
   def self.update_observations_places(place_geometry_id)

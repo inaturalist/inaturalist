@@ -22,7 +22,6 @@
         </div>
         <div class="column span-7">
           <%= o.text_field(:observed_on_string, :class => 'text observed_on_string') %>
-          <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
         </div>
         <div class="last column span-7">
           <%= o.text_field(:place_guess, :class => 'text place_guess') %>

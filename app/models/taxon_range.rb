@@ -101,7 +101,7 @@ class TaxonRange < ApplicationRecord
     tmp_path = File.join(Dir::tmpdir, "#{self.id}_#{Time::now.seconds_since_midnight.round}.geojson")
     cmd = "ogr2ogr -f GeoJSON #{tmp_path} #{self.range.path}"
     system cmd
-    open(tmp_path) do |f|
+    File.open( tmp_path ) do |f|
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
         self.geom = geojsongeom.features.first.geometry.as_wkt
         if geom && geom.geometry_type == RGeo::Feature::Polygon

@@ -142,7 +142,7 @@ describe UserBlock do
       after { disable_has_subscribers }
       it "when the blocked user mentions the user" do
         o = Observation.make!( user: blocked_user, description: "hey @#{user.login}" )
-        Delayed::Worker.new.work_off
+        Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
         update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
         expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
@@ -154,14 +154,14 @@ describe UserBlock do
         end
         it "a comment" do
           c = Comment.make!( user: blocked_user, parent: o )
-          Delayed::Worker.new.work_off
+          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: c ).first
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
         end
         it "an identification" do
           i = Identification.make!( user: blocked_user, observation: o )
-          Delayed::Worker.new.work_off
+          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: i ).first
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
@@ -173,7 +173,7 @@ describe UserBlock do
       after { disable_has_subscribers }
       it "when the user mentions the blocked user" do
         o = Observation.make!( user: user, description: "hey @#{blocked_user.login}" )
-        Delayed::Worker.new.work_off
+        Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
         update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
         expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false
@@ -185,14 +185,14 @@ describe UserBlock do
         end
         it "a comment" do
           c = Comment.make!( user: user, parent: o )
-          Delayed::Worker.new.work_off
+          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: c ).first
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false
         end
         it "an identification" do
           i = Identification.make!( user: user, observation: o )
-          Delayed::Worker.new.work_off
+          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: i ).first
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false

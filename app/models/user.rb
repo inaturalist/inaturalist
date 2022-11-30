@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -155,7 +157,6 @@ class User < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
@@ -403,9 +404,8 @@ class User < ApplicationRecord
   end
 
   def download_remote_icon
-    io = open(URI.parse(self.icon_url))
     Timeout::timeout(10) do
-      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.icon = URI( self.icon_url )
     end
     true
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
@@ -1268,17 +1268,11 @@ class User < ApplicationRecord
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
     options[:filters] << { term: { "subscriber_ids.keyword": id } }
-    ops = {
-      filters: options[:filters],
-      inverse_filters: options[:inverse_filters],
-      per_page: options[:per_page],
-      sort: { id: :desc }
-    }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
-      sort: { id: :desc })
+      sort: { created_at: :desc })
   end
 
   def blocked_by?( user )
@@ -1447,7 +1441,11 @@ class User < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since

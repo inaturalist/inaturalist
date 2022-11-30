@@ -131,7 +131,9 @@ describe Guide do
       Delayed::Job.delete_all
       g.update :zoom_level => 5
       Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 0
-      expect(Delayed::Job.count).to eq 0
+      expect(
+        Delayed::Job.where( "handler NOT LIKE '%invalidate_cloudfront_cache_for%'").count
+      ).to eq 0
     end
 
     it "should be removed when downloadable changed to false" do
@@ -150,8 +152,9 @@ describe Guide do
       g.update(:downloadable => true)
       g.update(:downloadable => false)
       g.update(:downloadable => true)
-      Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
-      expect(Delayed::Job.count).to eq 1
+      expect(
+        Delayed::Job.where( "handler NOT LIKE '%invalidate_cloudfront_cache_for%'").count
+      ).to eq 1
     end
   end
 

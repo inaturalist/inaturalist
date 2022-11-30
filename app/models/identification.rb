@@ -605,7 +605,7 @@ class Identification < ApplicationRecord
     ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
-      next if !taxon_change.automatable_for_output?( output_taxon.id )
+      next unless taxon_change.automatable_for_output?( output_taxon.id )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
         taxon: output_taxon, 
@@ -626,7 +626,7 @@ class Identification < ApplicationRecord
       ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
-    Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+    Identification.current.where( "disagreement AND previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
         ident.update(
@@ -666,9 +666,10 @@ class Identification < ApplicationRecord
     # a previous attempt hit an error and stopped before indexing some records
     observation_ids += Identification.connection.execute(
       "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
-    ).select {|r| r["observation_id"].to_i }
+    ).map {|r| r["observation_id"].to_i }
     observation_ids.uniq!
     ident_ids.uniq!
+    
     Identification.elastic_index!( ids: ident_ids )
     Observation.elastic_index!( ids: observation_ids )
   end

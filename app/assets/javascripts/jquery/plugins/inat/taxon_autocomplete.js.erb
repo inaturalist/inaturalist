@@ -11,6 +11,21 @@ inaturalist.ICONIC_TAXA = <%= Hash[Taxon::ICONIC_TAXA.sort.map{ |t|
 inaturalist.UNKNOWN_TAXON_ICON = "<%= asset_path('assets/iconic_taxa/unknown-75px.png') %>";
 inaturalist.EXTERNAL_SEARCH_ICON = "<%= asset_path('external_search.png') %>";
 
+var TAXON_AUTOCOMPLETE_FIELDS = {
+  ancestor_ids: true,
+  default_photo: {
+    square_url: true
+  },
+  iconic_taxon_id: true,
+  iconic_taxon_name: true,
+  is_active: true,
+  matched_term: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
+
 var autocompleter = { };
 
 autocompleter.capitalize = function( s ) {
@@ -173,11 +188,18 @@ $.fn.taxonAutocomplete = function( options ) {
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
+    var apiBaseURL = "<%= CONFIG.node_api_url %>";
+    if ( options.useAPIv2 ) {
+      apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
+      headers["X-HTTP-Method-Override"] = "GET";
+      params.fields = TAXON_AUTOCOMPLETE_FIELDS;
+    }
     $.ajax({
-      url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
+      url: apiBaseURL + "/taxa/autocomplete",
       cache: true,
       headers: headers,
-      data: params,
+      data: options.useAPIv2 ? JSON.stringify( params ) : params,
+      method: options.useAPIv2 ? "POST" : "GET",
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers

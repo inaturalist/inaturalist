@@ -36,6 +36,8 @@ class ProjectsController < ApplicationController
   before_action :filter_params, only: [ :update, :create ]
   before_action :site_required, only: [ :feature, :unfeature ]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   requires_privilege :organizer, only: [:new_traditional]
   
   ORDERS = %w(title created)
@@ -531,6 +533,7 @@ class ProjectsController < ApplicationController
         @admin = @project.user
         @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
         @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
+        render layout: "bootstrap"
       end
       format.json { render json: @project_users.as_json(:include => {user: User.default_json_options}) }
     end

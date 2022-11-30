@@ -69,6 +69,14 @@ const PLACE_TYPES = {
   1020: "Delegation"
 };
 
+const PLACE_SEARCH_FIELDS = {
+  id: true,
+  uuid: true,
+  name: true,
+  display_name: true,
+  place_type: true
+};
+
 class PlaceChooserPopover extends React.Component {
   constructor( props ) {
     super( props );
@@ -87,8 +95,21 @@ class PlaceChooserPopover extends React.Component {
     this.setPlacesFromProps( newProps );
   }
 
+  handlePlacesResponse( response ) {
+    let newPlaces = response.results;
+    if (
+      this.props.defaultPlace
+      && this.props.place
+      && this.props.place.id !== this.props.defaultPlace.id
+    ) {
+      newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
+      newPlaces.splice( 0, 0, this.props.defaultPlace );
+    }
+    this.setState( { places: newPlaces } );
+  }
+
   setPlacesFromProps( props ) {
-    const usableProps = Object.assign( { }, props, this.props );
+    const usableProps = { ...props, ...this.props };
     const { places } = this.state;
     if ( usableProps.defaultPlace ) {
       let newPlaces = places;
@@ -112,28 +133,28 @@ class PlaceChooserPopover extends React.Component {
     }
   }
 
-  handlePlacesResponse( response ) {
-    let newPlaces = response.results;
-    if (
-      this.props.defaultPlace
-      && this.props.place
-      && this.props.place.id !== this.props.defaultPlace.id
-    ) {
-      newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
-      newPlaces.splice( 0, 0, this.props.defaultPlace );
-    }
-    this.setState( { places: newPlaces } );
-  }
-
   searchPlaces( text ) {
-    const that = this;
-    inatjs.places.autocomplete( { q: text, geo: this.props.withBoundaries } )
-      .then( response => that.handlePlacesResponse( response ) );
+    const { config } = this.props;
+    const { testingApiV2 } = config;
+    const searchEndpoint = testingApiV2 ? inatjs.places.search : inatjs.places.autocomplete;
+    const params = { q: text };
+    if ( this.props.withBoundaries ) {
+      params.geo = true;
+    }
+    if ( testingApiV2 ) {
+      params.fields = PLACE_SEARCH_FIELDS;
+    }
+    searchEndpoint( params )
+      .then( response => this.handlePlacesResponse( response ) );
   }
 
   fetchPlaces( ids ) {
-    const that = this;
-    inatjs.places.fetch( ids ).then( response => that.handlePlacesResponse( response ) );
+    const { config } = this.props;
+    const params = { };
+    if ( config.testingApiV2 ) {
+      params.fields = PLACE_SEARCH_FIELDS;
+    }
+    inatjs.places.fetch( ids, params ).then( response => this.handlePlacesResponse( response ) );
   }
 
   highlightNext( ) {
@@ -313,7 +334,8 @@ PlaceChooserPopover.propTypes = {
   preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
   postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
   label: PropTypes.string,
-  withBoundaries: PropTypes.bool
+  withBoundaries: PropTypes.bool,
+  config: PropTypes.object
 };
 
 PlaceChooserPopover.defaultProps = {

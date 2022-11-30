@@ -384,7 +384,6 @@ export function updateUnobservedSpeciesSearch( reload = false ) {
         taxon_id: lifelist.detailsTaxon ? lifelist.detailsTaxon.id : null,
         place_id: lifelist.speciesPlaceFilter ? lifelist.speciesPlaceFilter.id : null,
         quality_grade: "research",
-        lrank: "species",
         locale: I18n.locale
       }
     } ) );

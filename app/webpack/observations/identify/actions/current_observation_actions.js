@@ -37,6 +37,231 @@ const STOP_LOADING_DISCUSSION_ITEM = "stop_loading_discussion_item";
 // order matters...
 const TABS = ["info", "suggestions", "annotations", "data-quality"];
 
+const USER_FIELDS = {
+  id: true,
+  login: true,
+  icon_url: true
+};
+const MODERATOR_ACTION_FIELDS = {
+  action: true,
+  id: true,
+  created_at: true,
+  reason: true,
+  user: USER_FIELDS
+};
+const TAXON_FIELDS = {
+  ancestry: true,
+  ancestor_ids: true,
+  ancestors: {
+    id: true,
+    uuid: true,
+    name: true,
+    iconic_taxon_name: true,
+    is_active: true,
+    preferred_common_name: true,
+    rank: true,
+    rank_level: true
+  },
+  default_photo: {
+    attribution: true,
+    license_code: true,
+    url: true,
+    square_url: true
+  },
+  iconic_taxon_name: true,
+  id: true,
+  is_active: true,
+  name: true,
+  preferred_common_name: true,
+  rank: true,
+  rank_level: true
+};
+const CONTROLLED_TERM_FIELDS = {
+  id: true,
+  label: true,
+  multivalued: true
+};
+const PROJECT_FIELDS = {
+  admins: {
+    user_id: true
+  },
+  icon: true,
+  project_observation_fields: {
+    id: true,
+    observation_field: {
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      id: true,
+      name: true
+    }
+  },
+  slug: true,
+  title: true
+};
+const OBSERVATION_FIELDS = {
+  annotations: {
+    controlled_attribute: CONTROLLED_TERM_FIELDS,
+    controlled_value: CONTROLLED_TERM_FIELDS,
+    user: USER_FIELDS,
+    vote_score: true,
+    votes: {
+      vote_flag: true,
+      user: USER_FIELDS
+    }
+  },
+  application: {
+    id: true,
+    icon: true,
+    name: true,
+    url: true
+  },
+  comments: {
+    body: true,
+    created_at: true,
+    flags: { id: true },
+    hidden: true,
+    id: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    spam: true,
+    user: USER_FIELDS
+  },
+  community_taxon: TAXON_FIELDS,
+  created_at: true,
+  description: true,
+  faves: {
+    user: USER_FIELDS
+  },
+  flags: {
+    id: true,
+    flag: true,
+    resolved: true
+  },
+  geojson: true,
+  geoprivacy: true,
+  id: true,
+  identifications: {
+    body: true,
+    category: true,
+    created_at: true,
+    current: true,
+    disagreement: true,
+    flags: { id: true },
+    hidden: true,
+    moderator_actions: MODERATOR_ACTION_FIELDS,
+    previous_observation_taxon: TAXON_FIELDS,
+    spam: true,
+    taxon: TAXON_FIELDS,
+    taxon_change: { id: true, type: true },
+    updated_at: true,
+    user: USER_FIELDS,
+    uuid: true,
+    vision: true
+  },
+  identifications_most_agree: true,
+  // TODO refactor to rely on geojson instead of lat and lon
+  latitude: true,
+  license_code: true,
+  location: true,
+  longitude: true,
+  map_scale: true,
+  non_traditional_projects: {
+    current_user_is_member: true,
+    project_user: {
+      user: USER_FIELDS
+    },
+    project: PROJECT_FIELDS
+  },
+  obscured: true,
+  observed_on: true,
+  observed_time_zone: true,
+  ofvs: {
+    observation_field: {
+      allowed_values: true,
+      datatype: true,
+      description: true,
+      name: true,
+      taxon: {
+        name: true
+      },
+      uuid: true
+    },
+    user: USER_FIELDS,
+    uuid: true,
+    value: true,
+    taxon: TAXON_FIELDS
+  },
+  outlinks: {
+    source: true,
+    url: true
+  },
+  observation_photos: {
+    id: true
+  },
+  photos: {
+    id: true,
+    uuid: true,
+    url: true,
+    license_code: true
+  },
+  place_guess: true,
+  place_ids: true,
+  positional_accuracy: true,
+  preferences: {
+    prefers_community_taxon: true
+  },
+  private_geojson: true,
+  private_place_guess: true,
+  private_place_ids: true,
+  project_observations: {
+    current_user_is_member: true,
+    preferences: {
+      allows_curator_coordinate_access: true
+    },
+    project: PROJECT_FIELDS,
+    uuid: true
+  },
+  public_positional_accuracy: true,
+  quality_grade: true,
+  quality_metrics: {
+    id: true,
+    metric: true,
+    agree: true,
+    user: USER_FIELDS
+  },
+  reviewed_by: true,
+  sounds: {
+    file_url: true,
+    file_content_type: true,
+    id: true,
+    license_code: true,
+    play_local: true,
+    url: true,
+    uuid: true
+  },
+  tags: true,
+  taxon: TAXON_FIELDS,
+  taxon_geoprivacy: true,
+  time_observed_at: true,
+  time_zone: true,
+  user: {
+    ...USER_FIELDS,
+    name: true,
+    observations_count: true,
+    preferences: {
+      prefers_community_taxa: true,
+      prefers_observation_fields_by: true
+    }
+  },
+  viewer_trusted_by_observer: true,
+  votes: {
+    id: true,
+    user: USER_FIELDS,
+    vote_flag: true,
+    vote_scope: true
+  }
+};
+
 function showCurrentObservation( observation ) {
   return {
     type: SHOW_CURRENT_OBSERVATION,
@@ -91,7 +316,12 @@ function fetchObservation( observation ) {
       // coordinates
       include_new_projects: true
     };
-    return iNaturalistJS.observations.fetch( [obs.id], params )
+    let fetchIDs = [obs.id];
+    if ( s.config.testingApiV2 ) {
+      params.fields = OBSERVATION_FIELDS;
+      fetchIDs = [obs.uuid];
+    }
+    return iNaturalistJS.observations.fetch( fetchIDs, params )
       .then( response => {
         const newObs = response.results[0];
         let captiveByCurrentUser = false;
@@ -164,15 +394,25 @@ function fetchObservation( observation ) {
           if ( placeIDs.length === 0 ) {
             return o;
           }
-          return iNaturalistJS.places.fetch(
-            placeIDs, { per_page: 100, no_geom: true }
-          ).then( response => {
-            if ( getState( ).currentObservation.observation.id === o.id ) {
-              dispatch( updateCurrentObservation( { places: response.results } ) );
-              return Object.assign( o, { places: response.results } );
-            }
-            return o;
-          } ).catch( ( ) => o );
+          const placeParams = { per_page: 100, no_geom: true };
+          if ( s.config.testingApiV2 ) {
+            placeParams.fields = {
+              id: true,
+              name: true,
+              display_name: true,
+              admin_level: true,
+              bbox_area: true
+            };
+          }
+          return iNaturalistJS.places.fetch( placeIDs, placeParams )
+            .then( response => {
+              if ( getState( ).currentObservation.observation.id === o.id ) {
+                dispatch( updateCurrentObservation( { places: response.results } ) );
+                return Object.assign( o, { places: response.results } );
+              }
+              return o;
+            } )
+            .catch( ( ) => o );
         }
         return o;
       } )
@@ -271,9 +511,10 @@ function addComment( ) {
 }
 
 function toggleQualityMetric( observation, metric, agree ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const s = getState( );
     const params = {
-      id: observation.id,
+      id: s.config.testingApiV2 ? observation.uuid : observation.id,
       metric
     };
     if ( agree ) {
@@ -303,7 +544,10 @@ function toggleCaptive( ) {
       reviewedByCurrentUser: true
     } ) );
     if ( !observation.reviewedByCurrentUser ) {
-      iNaturalistJS.observations.review( { id: observation.id } );
+      const reviewParams = {
+        id: s.config.testingApiV2 ? observation.uuid : observation.id
+      };
+      iNaturalistJS.observations.review( reviewParams );
     }
     dispatch( toggleQualityMetric( observation, "wild", agree ) );
   };
@@ -326,6 +570,9 @@ function toggleReviewed( optionalObs = null ) {
     dispatch( updateObservationInCollection( observation, {
       reviewedByCurrentUser: !reviewed
     } ) );
+    if ( s.config.testingApiV2 ) {
+      params.id = observation.uuid;
+    }
     if ( reviewed ) {
       dispatch( setConfig( { allReviewed: false } ) );
       iNaturalistJS.observations.unreview( params ).then( ( ) => {
@@ -334,9 +581,10 @@ function toggleReviewed( optionalObs = null ) {
     } else {
       iNaturalistJS.observations.review( params ).then( ( ) => {
         dispatch( incrementReviewed( ) );
-        if ( _.isEmpty( _.filter( getState( ).observations.results,
-          o => !o.reviewedByCurrentUser ) )
-        ) {
+        if ( _.isEmpty( _.filter(
+          getState( ).observations.results,
+          o => !o.reviewedByCurrentUser
+        ) ) ) {
           dispatch( setConfig( { allReviewed: true } ) );
         }
       } );
@@ -365,7 +613,9 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
 
     const payload = {
       resource_type: "Observation",
-      resource_id: state.currentObservation.observation.id,
+      resource_id: state.config.testingApiV2
+        ? state.currentObservation.observation.uuid
+        : state.currentObservation.observation.id,
       controlled_attribute_id: controlledAttribute.id,
       controlled_value_id: controlledValue.id
     };
@@ -443,16 +693,15 @@ export function unvoteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
-      ( a.uuid === id )
-        ? Object.assign( { }, a, {
-          api_status: "voting",
-          votes: _.map( a.votes, v => (
-            v.user.id === state.config.currentUser.id
-              ? Object.assign( { }, v, { api_status: "deleting" } )
-              : v
-          ) )
-        } )
-        : a
+      ( a.uuid === id ) ? {
+        ...a,
+        api_status: "voting",
+        votes: _.map( a.votes, v => (
+          v.user.id === state.config.currentUser.id
+            ? { ...v, api_status: "deleting" }
+            : v
+        ) )
+      } : a
     ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
     iNaturalistJS.annotations.unvote( { id } )
@@ -466,11 +715,17 @@ export function unvoteAnnotation( id ) {
 export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const payload = Object.assign( { }, { id: state.currentObservation.observation.id }, params );
+    const payload = {
+      id: state.config.testingApiV2
+        ? state.currentObservation.observation.uuid
+        : state.currentObservation.observation.id,
+      ...params
+    };
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.filter(
-        state.currentObservation.observation.votes, v => (
+        state.currentObservation.observation.votes,
+        v => (
           !( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
         )
       ).concat( [{
@@ -494,12 +749,16 @@ export function vote( scope, params = { } ) {
 export function unvote( scope ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const payload = { id: state.currentObservation.observation.id };
+    const payload = {
+      id: state.config.testingApiV2
+        ? state.currentObservation.observation.uuid
+        : state.currentObservation.observation.id
+    };
     if ( scope ) {
       payload.scope = scope;
       const newVotes = _.map( state.currentObservation.observation.votes, v => (
         ( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
-          ? Object.assign( { }, v, { api_status: "deleting" } )
+          ? { ...v, api_status: "deleting" }
           : v
       ) );
       dispatch( updateCurrentObservation( { votes: newVotes } ) );
@@ -570,8 +829,13 @@ export function voteMetric( metric, params = { } ) {
       api_status: "saving"
     }] );
     dispatch( setQualityMetrics( newMetrics ) );
-    const payload = Object.assign( { },
-      { id: state.currentObservation.observation.id, metric }, params );
+    const payload = {
+      id: state.config.testingApiV2
+        ? state.currentObservation.observation.uuid
+        : state.currentObservation.observation.id,
+      metric,
+      ...params
+    };
     iNaturalistJS.observations.setQualityMetric( payload, { fetchQualityMetrics: true } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -585,11 +849,16 @@ export function unvoteMetric( metric ) {
     const state = getState( );
     const newMetrics = _.map( state.qualityMetrics, qm => (
       ( qm.user.id === state.config.currentUser.id && qm.metric === metric )
-        ? Object.assign( { }, qm, { api_status: "deleting" } )
+        ? { ...qm, api_status: "deleting" }
         : qm
     ) );
     dispatch( setQualityMetrics( newMetrics ) );
-    const payload = { id: state.currentObservation.observation.id, metric };
+    const payload = {
+      id: state.config.testingApiV2
+        ? state.currentObservation.observation.uuid
+        : state.currentObservation.observation.id,
+      metric
+    };
     iNaturalistJS.observations.deleteQualityMetric( payload, { fetchQualityMetrics: true } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -602,9 +871,11 @@ export function createFlag( className, id, flag, body ) {
         flaggable_type: className,
         flaggable_id: id,
         flag
-      },
-      flag_explanation: body
+      }
     };
+    if ( body ) {
+      params.flag.flag_explanation = body;
+    }
     iNaturalistJS.flags.create( params )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -711,9 +982,13 @@ export function addObservationFieldValue( options ) {
     } );
     dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
     const payload = {
-      observation_field_id: options.observationField.id,
-      observation_id: state.currentObservation.observation.id,
-      value: options.value
+      observation_field_value: {
+        observation_field_id: options.observationField.id,
+        observation_id: state.config.testingApiV2
+          ? state.currentObservation.observation.uuid
+          : state.currentObservation.observation.id,
+        value: options.value
+      }
     };
     iNaturalistJS.observation_field_values.create( payload )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
@@ -735,16 +1010,19 @@ export function updateObservationFieldValue( id, options ) {
       } : ofv ) );
     dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
     const payload = {
-      id,
-      observation_field_id: options.observationField.id,
-      observation_id: state.currentObservation.observation.id,
-      value: options.value
+      uuid: id,
+      observation_field_value: {
+        observation_field_id: options.observationField.id,
+        observation_id: state.config.testingApiV2
+          ? state.currentObservation.observation.uuid
+          : state.currentObservation.observation.id,
+        value: options.value
+      }
     };
     iNaturalistJS.observation_field_values.update( payload )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
 }
-
 
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {

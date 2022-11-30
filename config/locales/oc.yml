@@ -57,8 +57,6 @@ oc:
   #Header for a section describing taxon names
   about_names: A prepaus dels noms
   about_places: A prepaus dels luòcs
-  about_the_cc_licenses: A prepaus de las licéncias Creative Commons
-  about_these_licenses: A prepaus d'aquestas licéncias
   about_this_map: A prepaus d'aquesta mapa
   about_this_project: A prepaus d'aqueste projècte
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -74,7 +72,6 @@ oc:
   actions: Accions
   active: actiu
   activity: Activitat
-  activity_settings: Paramètres d’activitat
   adapted_by_name_from_a_work_by_original: "Adaptat per %{name} d’aprèp un trabalh de %{original}"
   add: Apondre
   add_a_batch_of_observations: Apondre un lòt d’observacions
@@ -294,7 +291,6 @@ oc:
   blue: blau
   blue_butterfly_etc: "blau, parpalhòl, etc."
   body: Còs
-  bounding_box: Bóstia englobanta
   breadcrumbs: Pista de navigacion
   brown: brun
   browse: Percórrer
@@ -584,7 +580,6 @@ oc:
   flag_as_spammer: Marcar coma productor de spam
   flag_as_non_spammer: Marcar coma non productor de spam
   flag_it!: Lo marcar !
-  flagged: a senhalat
   flagger: Marcador
   flags: Bandièras
   flickr_identity: Identitat Flickr
@@ -639,6 +634,7 @@ oc:
   identify_observations: "Identificar las observacions"
   identify_title: "Identificar"
   identification: identificacion
+  #Notification when an identification has been deleted
   identification_deleted: identificacion suprimida.
   identification_saved: "Identificacion enregistrada !"
   identifications: Identificacions
@@ -1121,7 +1117,6 @@ oc:
   user_invited_you_to_join_this_project_on_date_html: "%{user} vos a convidat a vos jónher a aqueste projècte lo %{date}"
   username: Nom d'utilizaire
   users_id: "Identificant de %{user}"
-  view_all_n: "Afichar totes los %{n}"
   view_all_observations: Afichar totas las observacions
   view_more: Veire mai
   view_more_unreviewed: "Afichar mai de pas relegits"

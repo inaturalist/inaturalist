@@ -1,5 +1,5 @@
 import _ from "lodash";
-import moment from "moment-timezone";
+import moment from "moment";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -14,7 +14,7 @@ import SelectionBasedComponent from "./selection_based_component";
 import ObservationFieldsChooser from "./observation_fields_chooser";
 import ProjectsChooser from "./projects_chooser";
 import TagsChooser from "./tags_chooser";
-import util, { DATETIME_WITH_TIMEZONE } from "../models/util";
+import util, { parsableDatetimeFormat } from "../models/util";
 import TimeShifter from "./time_shifter";
 
 class LeftMenu extends SelectionBasedComponent {
@@ -104,7 +104,7 @@ class LeftMenu extends SelectionBasedComponent {
       <option>{ I18n.t( "multiple_select_option" ) }</option>
     );
     const invalidDate = util.dateInvalid( commonDate );
-    const inputFormat = DATETIME_WITH_TIMEZONE;
+    const inputFormat = parsableDatetimeFormat( );
     return (
       <div>
         <TaxonAutocomplete
@@ -145,7 +145,6 @@ class LeftMenu extends SelectionBasedComponent {
           inputFormat={inputFormat}
           key={`multidate${commonDate}`}
           reactKey={`multidate${commonDate}`}
-          timeZone={config.currentUser.time_zone || moment.tz.guess()}
           dateTime={commonDate
             ? moment( commonDate, inputFormat ).format( "x" )
             : undefined

@@ -11,7 +11,7 @@ describe TaxonRange, "create_kml_attachment" do
   it "should create an kml attachment from geometry" do
     tr = without_delay { make_taxon_range_with_geom }
     expect( tr.range ).not_to be_blank
-    kml = open( tr.range.path ).read
+    kml = File.open( tr.range.path ).read
     expect( kml ).to be =~ /<kml /
   end
 end

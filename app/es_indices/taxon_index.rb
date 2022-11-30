@@ -8,7 +8,7 @@ class Taxon < ApplicationRecord
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_framework,
+    :taxon_framework, :flags,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
@@ -201,7 +201,7 @@ class Taxon < ApplicationRecord
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
-      flag_counts = flags.group( :resolved ).count
+      flag_counts = Hash[flags.group_by{ |t| t.resolved }.map{ |k,v| [k, v.length] }]
       json.merge!({
         created_at: created_at,
         default_photo: default_photo ?

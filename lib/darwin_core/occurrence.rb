@@ -75,6 +75,10 @@ module DarwinCore
       %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
     ].freeze
 
+    OTHER_CATALOGUE_NUMBERS_TERM = %w(
+      otherCatalogueNumbers http://rs.tdwg.org/dwc/terms/otherCatalogNumbers
+    )
+
     GBIF_LIFE_STAGES = %w(
       adult
       agamont
@@ -134,6 +138,12 @@ module DarwinCore
       zoea
       zygote
     ).freeze
+
+    ANNOTATION_CONTROLLED_TERM_MAPPING = {
+      sex: "Sex",
+      lifeStage: "Life Stage",
+      reproductiveCondition: "Plant Phenology"
+    }
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -278,7 +288,7 @@ module DarwinCore
       end
 
       def eventTime
-        time_observed_at ? time_observed_at.iso8601.sub( /^.*T/, "" ) : nil
+        time_observed_at ? datetime.iso8601.sub( /^.*T/, "" ) : nil
       end
 
       def verbatimEventDate
@@ -367,32 +377,32 @@ module DarwinCore
 
       def kingdom
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :kingdom, :name ) : dwc_taxon.try( :kingdom_name )
+          @ranked_ancestors.dig( :kingdom_name ) : dwc_taxon.try( :kingdom_name )
       end
 
       def phylum
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :phylum, :name ) : dwc_taxon.try( :phylum_name )
+          @ranked_ancestors.dig( :phylum_name ) : dwc_taxon.try( :phylum_name )
       end
 
       def taxon_class
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :class, :name ) : dwc_taxon.try( :taxonomic_class_name )
+          @ranked_ancestors.dig( :class_name ) : dwc_taxon.try( :taxonomic_class_name )
       end
 
       def order
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :order, :name ) : dwc_taxon.try( :taxonomic_order_name )
+          @ranked_ancestors.dig( :order_name ) : dwc_taxon.try( :taxonomic_order_name )
       end
 
       def family
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :family, :name ) : dwc_taxon.try( :family_name )
+          @ranked_ancestors.dig( :family_name ) : dwc_taxon.try( :family_name )
       end
 
       def genus
         @ranked_ancestors ?
-          @ranked_ancestors.dig( :genus, :name ) : dwc_taxon.try( :genus_name )
+          @ranked_ancestors.dig( :genus_name ) : dwc_taxon.try( :genus_name )
       end
 
       def dwc_license
@@ -443,24 +453,28 @@ module DarwinCore
       end
 
       def gbif_lifeStage
-        winning_value = winning_annotation_value_for_term( "lifeStage", inat_term: "Life Stage" )
+        winning_value = winning_annotation_value_for_term( "lifeStage" )
         return winning_value if GBIF_LIFE_STAGES.include?( winning_value )
 
         nil
       end
 
       def reproductiveCondition
-        v = winning_annotations_for_term( "reproductiveCondition", inat_term: "Plant Phenology" ).map do | a |
+        v = winning_annotations_for_term( "reproductiveCondition" ).map do | a |
           a.controlled_value.label.downcase
         end.join( "|" )
         v == "cannot be determined" ? nil : v
       end
       # rubocop:enable Naming/MethodName
 
+      def otherCatalogueNumbers
+        uuid
+      end
+
       def winning_annotations_for_term( term, options = {} )
         return [] if annotations.blank?
 
-        inat_term = options.delete( :inat_term ) || term
+        inat_term = ANNOTATION_CONTROLLED_TERM_MAPPING[term.to_sym] || term
         DarwinCore::Occurrence.annotation_controlled_attributes[term] ||= ControlledTerm.
           joins( :labels ).
           where( is_value: false, active: true ).

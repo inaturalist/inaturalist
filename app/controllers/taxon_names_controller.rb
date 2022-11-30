@@ -96,7 +96,7 @@ class TaxonNamesController < ApplicationController
     @synonyms = TaxonName.
       joins( "LEFT OUTER JOIN taxa ON taxa.id = taxon_names.taxon_id" ).
       where( "taxa.id IS NOT NULL" ).
-      where( name: @taxon_name.name ).
+      where( "lower(taxon_names.name) = ? ", @taxon_name.name.downcase ).
       where( "taxon_names.id != ?", @taxon_name.id ).
       page( 1 )
   end
@@ -104,6 +104,22 @@ class TaxonNamesController < ApplicationController
   def update
     # Set the last editor
     params[:taxon_name][:updater_id] = current_user.id
+
+    if (
+      !current_user.is_curator? &&
+      params.dig( :taxon_name, :lexicon ) == TaxonName::SCIENTIFIC_NAMES &&
+      @taxon_name.lexicon != TaxonName::SCIENTIFIC_NAMES
+    )
+      msg = t( :you_dont_have_permission_to_do_that )
+      respond_to do | format |
+        format.html do
+          flash.now[:error] = msg
+          render action: "edit"
+        end
+        format.json { render json: { updater_id: msg }, status: :unprocessable_entity }
+      end
+      return
+    end
 
     respond_to do | format |
       if @taxon_name.update( params[:taxon_name] )
@@ -181,10 +197,12 @@ class TaxonNamesController < ApplicationController
     return true if current_user.is_curator?
 
     if @taxon_name && ( @taxon_name.creator_id == current_user.id )
+      Rails.logger.debug "[DEBUG] current_user is name creator"
       return true
     end
 
     flash[:error] = t( :you_dont_have_permission_to_do_that )
+    Rails.logger.debug "[DEBUG] permission DENIED"
     redirect_back_or_default( @taxon )
     false
   end

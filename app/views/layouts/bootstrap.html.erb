@@ -21,10 +21,10 @@
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
-    <% if !@site.twitter_username.blank? -%>
+    <% if !@site&.twitter_username.blank? -%>
       <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
     <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
       <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
@@ -77,13 +77,17 @@
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
-                <%= t(
+                <%=raw t(
                   "network_affiliation_prompt_from_inat_to_#{session[:potential_site][:name].parameterize.underscore}_html",
                   inat_site_name: Site.default.name,
+                  # For some reason network_affiliation_prompt_from_inat_html
+                  # is no longer treated as html safe as of August 2022, so
+                  # we have to use raw above and strip_tags below to make
+                  # sure nothing bad is sneaking in via the place name
                   default: t( :network_affiliation_prompt_from_inat_html,
                     site_name: session[:potential_site][:name],
                     inat_site_name: Site.default.name,
-                    place: session[:potential_site][:place_name],
+                    place: strip_tags( session[:potential_site][:place_name] ),
                     vow_or_con: session[:potential_site][:place_name].first.downcase
                   )
                 ) %>
@@ -160,12 +164,12 @@
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
       PREFERRED_PLACE = <%= json_escape place.
-        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+        to_json(only: [:id, :uuid, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var PREFERRED_SEARCH_PLACE;
       <% if search_place = user_search_place || site_place -%>
       PREFERRED_SEARCH_PLACE = <%= json_escape search_place.
-        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+        to_json(only: [:id, :uuid, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
       <% if logged_in? -%>
@@ -179,8 +183,10 @@
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
+          sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
-          donor: <%= !!current_user.donorbox_donor_id %>
+          donor: <%= current_user.donor? %>,
+          monthlyDonor: <%= current_user.monthly_donor? %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

@@ -38,7 +38,7 @@ module ObservationSearch
       search_params = Observation.get_search_params(raw_params, options)
       search_params.merge!(
         min_id: raw_params[:min_id] || 1,
-        per_page: SEARCH_IN_BATCHES_BATCH_SIZE,
+        per_page: raw_params[:per_page] || SEARCH_IN_BATCHES_BATCH_SIZE,
         preload: [ ],
         order_by: "id",
         order: "asc"
@@ -375,6 +375,15 @@ module ObservationSearch
       end
 
       p[:user_id] = p[:user_id] || p[:user]
+
+      # Handle multiple users in user_id
+      users = [p[:user_id].to_s.split( "," )].flatten.map do | user_id |
+        candidate = user_id.to_s.strip
+        User.find_by_id( candidate ) || User.find_by_login( candidate )
+      end.compact
+      p[:user_id] = users.blank? ? nil : users.map(&:id)
+      p[:user_id] = p[:user_id].first if p[:user_id].is_a?( Array ) && p[:user_id].size == 1
+
       unless p[:user_id].blank? || p[:user_id].is_a?(Array)
         p[:user] = User.find_by_id(p[:user_id])
         p[:user] ||= User.find_by_login(p[:user_id])
@@ -387,9 +396,10 @@ module ObservationSearch
         ident_users = p[:ident_user_id].is_a?( Array ) ?
           p[:ident_user_id] : [p[:ident_user_id].to_s.split( "," )].flatten
         ident_user_ids = []
-        ident_users.each do |id_or_login|
-          ident_user = User.find_by_id(p[:ident_user_id])
-          ident_user ||= User.find_by_login(p[:ident_user_id])
+        ident_users.each do | id_or_login |
+          id_or_login = id_or_login.strip
+          ident_user = User.find_by_id( id_or_login )
+          ident_user ||= User.find_by_login( id_or_login )
           ident_user_ids << ident_user.id if ident_user
         end
         p[:ident_user_id] = ident_user_ids.join( "," )

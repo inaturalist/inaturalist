@@ -157,7 +157,6 @@ es-CO:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "@gender{m:un|f:una|n:un} %{resource}"
   about: Acerca de
-  about_blocking: Acerca de los bloqueos
   about_charts: Acerca de los gráficos
   about_community_taxa: Acerca de los taxones comunitarios
   about_complete_taxa: Acerca de los taxones completos
@@ -169,7 +168,6 @@ es-CO:
   about_establishment_means: Acerca de los medios de establecimiento
   about_license_options: Acerca de las opciones de licencia
   about_licenses: Acerca de las licencias
-  about_muting: Acerca de silenciar
   #Header for a section describing taxon names
   about_names: Acerca de los nombres
   #Title for a section providing a text description of a place, @vow_or_con
@@ -179,13 +177,11 @@ es-CO:
   about_taxon_ranges: Acerca del rango del taxón
   about_taxon_ranges_desc: |
     Los rangos de taxón muestran la distribución global de un taxón. Los rangos de taxón usualmente son obtenidos de la Lista Roja de la UICN
-  about_the_cc_licenses: Sobre las licencias de Creative Commons
   about_the_network: Sobre la red
-  about_these_licenses: Sobre estas licencias
   about_this_bioblitz: Acerca de este maratón naturalista
   about_this_map: Sobre este mapa
   about_this_project: Acerca del proyecto
-  about_trips_html: |2
+  about_trips_html: |
     <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones
     </h4>
     <p>
@@ -245,7 +241,6 @@ es-CO:
   active_taxon_status: Activo
   active_users: Usuarios Activos
   activity: Actividad
-  activity_settings: Configuración de la actividad
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} de un trabajo de %{original}"
   add: Agregar
   add_a_batch_of_observations: Agregar un grupo de observaciones
@@ -499,8 +494,6 @@ es-CO:
   all_taxa_in_this_guide: Todos los taxones en esta guía
   all_taxonomic_groups: "&laquo; Todos los grupos taxonómicos"
   all_updates: Todas las actualizaciones
-  all_your_observations_will_default_this_time_zone: Todas tus observaciones tendrán esta zona horaria a menos que especifiques lo contrario.
-  all_your_observations_will_default_to_this_time_zone: Todas tus observaciones tendrán esta zona horaria a menos que especifiques lo contrario.
   allow_curator_access: Permite acceso al curador
   allow_project_curators_to_view_your_private_coordinates: Permite a los curadores del proyecto ver tus coordenadas privadas
   allowed_establish_means_values: Valores promedio establecidos
@@ -716,7 +709,6 @@ es-CO:
   batch_edit_taxa_for_x_html: "Editar en grupo los taxones para %{x}"
   batch_operations: Operaciones por grupo
   be_the_first_to_fave_this_observation: '¡Se el primero en agregar esta observación a favoritos!'
-  because_of: debido a
   before_importing_photos: antes de importar fotos
   bg_color: Color de fondo
   bio: Biografía
@@ -725,7 +717,6 @@ es-CO:
   birds: aves
   birthday: Cumpleaños
   black: negro
-  block_user: Bloquear usuario
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -1446,7 +1437,6 @@ es-CO:
   donate: DONAR
   done: Hecho
   dont_have_an_account_sign_up_html: '¿No tienes una cuenta? <strong>Regístrate.</strong>'
-  dont_send_me_email: "¡No me envíes ningún email!"
   dont_use_double_quotes: No utilices comillas en ningún otro lugar
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -1538,7 +1528,6 @@ es-CO:
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
-  email_settings: Configuración de correo electrónico
   embed: 'Insertar'
   embed_this_assessment: Insertar esta evaluación
   embed_widget_project: Insertar un widget para este proyecto en su página web
@@ -1716,7 +1705,6 @@ es-CO:
   flag_this_photo: Marcar Esta Foto
   flag_this_place: Marcar Este Lugar
   flag_this_sound: Marcar Este Sonido
-  flagged: marcado
   flagged_: Marcado
   flagged_for_curation: Marcado para Curación
   flagged_taxon: Taxón marcado
@@ -1920,9 +1908,12 @@ es-CO:
   identify_title: "Identificar"
   identification: identificación
   identification_by_user: Identificación por %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identificación eliminada.
   identification_saved: "¡Identificación guardada!"
+  #Notification when an identification has been updated
   identification_updated: '¡Identificación actualizada!'
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   computer_vision_suggestion: Sugerencia de la visión por computadora
@@ -2049,7 +2040,6 @@ es-CO:
   leading: Principal
   learn: Aprende
   learn_about_the_species_live_in: Aprende sobre las especies que viven en
-  learn_about_third_party_tracking: Más información sobre el seguimiento de terceros
   learn_more: Aprende más
   learn_more_raquo: "Aprender más &raquo;"
   learn_what_these_licenses_mean: Aprende lo que significan estas licencias
@@ -2147,9 +2137,6 @@ es-CO:
   life_list: "Lista de vida de %{user}"
   linear_scale_label: Lineal
   link: Vínculo
-  link_or_unlink_your_facebook_account: Vincular o desvincular tu cuenta de Facebook
-  link_or_unlink_your_flickr_account: Vincular o desvincular tu cuenta de Flickr
-  link_or_unlink_your_google_account: Vincular o desvincular tu cuenta de Google
   link_your_facebook_account: Vincula tu cuenta de Facebook
   link_your_flickr_account: Vincula tu cuenta de Flickr
   link_your_google_account: Vincula tu cuenta de Google
@@ -2185,7 +2172,6 @@ es-CO:
   loading_tags: "Cargando etiquetas..."
   loading_taxa_from_your: "Cargando taxones de sus observaciones..."
   loading_wikipedia_description: "Cargando la descripción de Wikipedia..."
-  locale_description: Locale establece sus preferencias de idioma y formato de fecha.
   locales_: Locales
   locales:
     ar: Árabe
@@ -2391,7 +2377,6 @@ es-CO:
   must_have_quality_grades: "debe tener el nivel de calidad: %{grades}"
   must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
-  mute_user: Silenciar usuario
   muted_users: Usuarios silenciados
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas están de acuerdo"
@@ -2582,9 +2567,6 @@ es-CO:
   notifications: Notificaciones
   notify_me_of_mentions: Notifícame sobre las menciones (p. ej. @username)
   notify_me_of_mentions_description: "Si lo desactivas, no recibirás notificaciones cuando alguien te mencione en %{site_name}."
-  notify_me_about_redundant_identifications: Notifícame sobre la confirmación de identificaciones
-  notify_me_about_redundant_identifications_desc: |
-    Recibe notificaciones sobre identificaciones que coincidan con la tuya. Si lo desactivas únicamente recibirás notificaciones sobre aquellas identificaciones de taxones que no coinciden exactamente con el taxón de tu identificación.
   number_of_observations: Número de observaciones
   number_of_observers_value: "Número de observadores: %{number}"
   number_of_observers: "Número de observadores"
@@ -2742,7 +2724,6 @@ es-CO:
     youve_got_updates_panel_title: '¡Tienes actualizaciones!'
     youve_got_updates_panel_body_p1: Mantente actualizado con las siguientes actualizaciones...
   or_choose_high_level_taxa: "... o elija entre algunos de los taxones de nivel superior"
-  or_if_you_dont_want_email: "O si no quieres ningún correo electrónico..."
   orange: naranja
   order: Odernar
   order_by: Ordenar por

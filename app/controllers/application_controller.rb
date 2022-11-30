@@ -387,12 +387,15 @@ class ApplicationController < ActionController::Base
       class_name = class_name.to_s.underscore.camelcase
       klass = Object.const_get(class_name)
     end
+    record_id = params[options[:param]] || params[:id] || params["#{class_name}_id"]
     if klass.respond_to?(:find_by_uuid)
-      record = klass.find_by_uuid(params[:id] || params["#{class_name}_id"])
+      record = klass.find_by_uuid( record_id )
     end
-    record ||= klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
+    record ||= klass.find( record_id ) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
-    render_404 unless record
+    return render_404 unless record
+
+    record
   end
 
   def require_owner(options = {})

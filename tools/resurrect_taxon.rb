@@ -29,7 +29,7 @@ has_many_reflections.each do |k, reflection|
     associate_ids = taxon.send("#{k.to_s.singularize}_ids").join(',')
     unless associate_ids.blank?
       fname = "resurrect_#{taxon_id}-#{reflection.table_name}.sql"
-      open(fname, 'w') do |f|
+      File.open( fname, "w" ) do |f|
         f << "UPDATE #{reflection.table_name} SET #{reflection.foreign_key} = #{taxon_id} WHERE id IN (#{associate_ids})"
       end
       resurrection_cmds << "psql #{dbname} < #{fname}"

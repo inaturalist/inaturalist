@@ -628,6 +628,11 @@ class Place < ApplicationRecord
             puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
             next
           end
+        rescue ArgumentError => e
+          raise e unless e.message =~ /Cannot transliterate/
+          # Pretend it's actually UTF
+          place.name.force_encoding( "UTF-8" )
+          retry
         rescue => e
           puts "[ERROR] \tError: #{e}"
           next

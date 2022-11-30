@@ -264,6 +264,7 @@ class MapDetails extends React.Component {
                           label: I18n.t( "user_trusts_you_with_their_private_coordinates", { user: observation.user.login } )
                         } ) }
                       </strong>
+                      { " " }
                       { I18n.t( "user_trusts_you_with_their_private_coordinates_desc" ) }
                     </li>
                   ) }
@@ -292,8 +293,8 @@ class MapDetails extends React.Component {
               </a>
             </span>
             {/*
-              Nice to have, but sort of useless unless macrostrat implements the abililty to link to the infowindow
-              and not just the coords
+              Nice to have, but sort of useless unless macrostrat implements the
+              abililty to link to the infowindow and not just the coords
               <span className="info">
                 <a className="value" href={ `https://macrostrat.org/map/#5/${observation.latitude}/${observation.longitude}` }>
                   { I18n.t( "macrostrat" ) }

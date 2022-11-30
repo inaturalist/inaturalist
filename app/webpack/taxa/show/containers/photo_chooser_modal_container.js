@@ -14,14 +14,16 @@ function mapStateToProps( state ) {
   const { taxon } = state.taxon;
   const chosen = state.taxon.taxonPhotos
     .filter( tp => tp.taxon.id === taxon.id )
-    .map( tp => Object.assign( { }, tp.photo, {
+    .map( tp => ( {
+      ...tp.photo,
       thumb_url: tp.photo.photoUrl( "thumb" )
     } ) );
   return {
     chosen,
     initialQuery: state.taxon.taxon.name,
     initialTaxon: taxon,
-    visible: state.taxon.photoChooserVisible
+    visible: state.taxon.photoChooserVisible,
+    config: state.config
   };
 }
 

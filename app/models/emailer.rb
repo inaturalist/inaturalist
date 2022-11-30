@@ -20,13 +20,11 @@ class Emailer < ActionMailer::Base
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
     @user = user
-    set_locale
     @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: user.email,
-      subject: t( :updates_notification_email_subject, prefix: subject_prefix, date: Date.today )
-    ) )
-    reset_locale
+      subject: [:updates_notification_email_subject, { prefix: subject_prefix, date: Date.today }]
+    )
   end
 
   def new_message( message )
@@ -35,7 +33,6 @@ class Emailer < ActionMailer::Base
     return unless @message
 
     @user = @message.to_user
-    set_locale
     return if @user.email.blank?
     return unless @user.prefers_message_email_notification
     return if @user.prefers_no_email
@@ -43,42 +40,39 @@ class Emailer < ActionMailer::Base
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
 
-    mail( set_site_specific_opts.merge( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" ) )
-    reset_locale
+    mail_with_defaults( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" )
   end
 
   def observations_export_notification( flow_task )
     @flow_task = flow_task
     @user = @flow_task.user
-    set_locale
     return if @user.email.blank?
     return unless ( fto = @flow_task.outputs.first )
     return unless fto.file?
 
     @file_url = fto.file.url
     attachments[fto.file_file_name] = File.read( fto.file.path )
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: @user.email,
-      subject: t( :site_observations_export_from_date,
-        site_name: @site.name,
-        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
-    ) )
-    reset_locale
+      subject: [:site_observations_export_from_date, {
+        site_name: site_name,
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long )
+      }]
+    )
   end
 
   def observations_export_failed_notification( flow_task )
     @flow_task = flow_task
     @user = @flow_task.user
-    set_locale
     return if @user.email.blank?
 
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: @user.email,
-      subject: t( :site_observations_export_from_date,
-        site_name: @site.name,
-        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long ) )
-    ) )
-    reset_locale
+      subject: [:site_observations_export_from_date, {
+        site_name: site_name,
+        date: l( @flow_task.created_at.in_time_zone( @user.time_zone ), format: :long )
+      }]
+    )
   end
 
   def project_user_invitation( pui )
@@ -87,99 +81,87 @@ class Emailer < ActionMailer::Base
     @user = pui.invited_user
     @sender = pui.user
     @project = pui.project
-    set_locale
     return if @user.email.blank?
     return unless @user.prefers_project_invitation_email_notification?
     return if @user.prefers_no_email?
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @project.user.suspended?
 
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: @user.email,
-      subject: t( :user_invited_you_to_join_project, user: @sender.try( :login ), project: @project.title )
-    ) )
-    reset_locale
+      subject: [
+        :user_invited_you_to_join_project,
+        { user: @sender.try( :login ), project: @project.title }
+      ]
+    )
   end
 
   def user_updates_suspended( user )
     return if user.blank?
 
     @user = user
-    set_locale
     return if @user.email.blank?
     return if @user.prefers_no_email?
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @user.suspended?
 
     @site_name = site_name
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: @user.email,
-      subject: t( :updates_suspension_email_subject, prefix: subject_prefix )
-    ) )
-    reset_locale
+      subject: [:updates_suspension_email_subject, { prefix: subject_prefix }]
+    )
   end
 
   # Send the user an email saying the bulk observation import encountered
   # an error.
   def bulk_observation_error( user, filename, error_details )
     @user = user
-    set_locale
-    @subject = "#{subject_prefix} #{t :were_sorry_but_your_bulk_import_of_filename_has_failed, filename: filename}"
     @message       = error_details[:reason]
     @errors        = error_details[:errors]
     @field_options = error_details[:field_options]
-    mail( set_site_specific_opts.merge(
-      to: "#{user.name} <#{user.email}>", subject: @subject
-    ) )
-    reset_locale
+    mail_with_defaults(
+      to: "#{user.name} <#{user.email}>",
+      subject: [
+        :were_sorry_but_your_bulk_import_of_filename_has_failed,
+        { filename: filename }
+      ]
+    )
   end
 
   # Send the user an email saying the bulk observation import was successful.
   def bulk_observation_success( user, filename )
     @user = user
-    set_locale
-    @subject = "#{subject_prefix} #{t( :bulk_import_of_filename_is_complete, filename: filename )}"
     @filename = filename
-    mail( set_site_specific_opts.merge(
-      to: "#{user.name} <#{user.email}>", subject: @subject
-    ) )
-    reset_locale
+    mail_with_defaults(
+      to: "#{user.name} <#{user.email}>",
+      subject: [
+        :bulk_import_of_filename_is_complete,
+        { filename: filename }
+      ]
+    )
   end
 
   def moimport_finished( mot, errors = {}, warnings = {} )
     @user = mot.user
-    set_locale
     @subject = "#{subject_prefix} Mushroom Observer Import Finished"
     @errors = errors
     @warnings = warnings
     @exception = mot.exception
-    mail( set_site_specific_opts.merge(
-      to: "#{@user.name} <#{@user.email}>", subject: @subject
-    ) )
-    reset_locale
+    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
   end
 
   def custom_email( user, subject, body )
     @user = user
-    set_locale
     @subject = subject
     @body = body
-    mail( set_site_specific_opts.merge(
-      to: "#{@user.name} <#{@user.email}>", subject: @subject
-    ) )
-    reset_locale
+    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
   end
 
   def photos_missing( user, grouped_photos )
     @user = user
-    @site = user.site || Site.default
     @grouped_photos = grouped_photos
-    set_locale
     @subject = I18n.t( "views.emailer.photos_missing.subject" )
-    mail( set_site_specific_opts.merge(
-      to: "#{@user.name} <#{@user.email}>", subject: @subject
-    ) )
-    reset_locale
+    mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
   end
 
   def notify_staff_about_blocked_user( user )
@@ -194,21 +176,20 @@ class Emailer < ActionMailer::Base
 
   def parental_consent( email )
     @site = Site.default
-    set_site
-    mail( set_site_specific_opts.merge(
+    mail_with_defaults(
       to: email,
-      subject: t( "views.emailer.parental_consent.subject" )
-    ) )
+      subject: ["views.emailer.parental_consent.subject"]
+    )
   end
 
   def user_parent_confirmation( user_parent )
+    @site = Site.default
     @user_parent = user_parent
-    set_site
-    mail( set_site_specific_opts.merge(
+    @user = @user_parent.parent_user
+    mail_with_defaults(
       to: user_parent.email,
-      subject: t( "views.emailer.user_parent_confirmation.subject" )
-    ) )
-    reset_locale
+      subject: ["views.emailer.user_parent_confirmation.subject"]
+    )
   end
 
   def collection_project_changed_for_trusting_member( project_user )
@@ -217,10 +198,10 @@ class Emailer < ActionMailer::Base
 
     @user = project_user.user
     mail_with_defaults(
-      subject: t(
+      subject: [
         "views.emailer.collection_project_changed_for_trusting_member.subject",
-        project: @project.title
-      )
+        { project: @project.title }
+      ]
     )
   end
 
@@ -267,6 +248,15 @@ class Emailer < ActionMailer::Base
     opts = set_site_specific_opts.merge( defaults )
     opts[:to] ||= @user.name.blank? ? @user.email : "#{@user.name} <#{@user.email}>"
     set_locale
+    # You can specify the subject as an array so it can be translated in the
+    # correct locale
+    if opts[:subject].is_a?( Array )
+      opts[:subject] = if opts[:subject].length == 1
+        t( opts[:subject][0] )
+      else
+        t( opts[:subject][0], **opts[:subject][1] )
+      end
+    end
     mail( opts )
     reset_locale
   end
@@ -277,19 +267,16 @@ class Emailer < ActionMailer::Base
   end
 
   def site_name
-    if ( site = @user.site )
-      site.name
-    else
-      @site.name
-    end
+    set_site
+    @site.name
   end
 
   def set_locale
     @locale_was = I18n.locale
-    I18n.locale = if !@user.locale.blank?
-      @user.locale
-    elsif @user.site && !@user.site.preferred_locale.blank?
-      @user.site.preferred_locale
+    I18n.locale = if !@user&.locale&.blank?
+      @user&.locale
+    elsif @user&.site && !@user&.site&.preferred_locale&.blank?
+      @user&.site&.preferred_locale
     else
       I18n.default_locale
     end
@@ -300,16 +287,17 @@ class Emailer < ActionMailer::Base
     I18n.locale = @locale_was || I18n.default_locale
   end
 
+  # rubocop:disable Naming/MemoizedInstanceVariableName
   def set_site
-    @site = @user ? @user.site : nil
+    @site ||= @user ? @user.site : nil
     @site ||= Site.default
   end
+  # rubocop:enable Naming/MemoizedInstanceVariableName
 
   def set_site_specific_opts
     @site_name = @site.name
-    # Can't have unicode chars in email headers
     {
-      from: "#{@site.name.mb_chars.unicode_normalize.gsub( /[^\x00-\x7F]/n, '' )} <#{@site.email_noreply}>",
+      from: "#{@site.name} <#{@site.email_noreply}>",
       reply_to: @site.email_noreply
     }
   end

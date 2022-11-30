@@ -1,6 +1,6 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
-import { updateBlockedAndMutedUsers } from "./relationships";
+import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
 import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
 import { fetchNetworkSites } from "./network_sites";
 
@@ -26,7 +26,13 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
 
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return ( dispatch, getState ) => {
-    inatjs.users.me( { useAuth: true } ).then( ( { results } ) => {
+    const { profile, config } = getState( );
+    const params = { useAuth: true };
+    if ( config.testingApiV2 ) {
+      params.fields = "all";
+    }
+    const initialLoad = _.isEmpty( profile );
+    inatjs.users.me( params ).then( ( { results } ) => {
       // this is kind of unnecessary, but removing these since they're read-only keys
       // and don't need to be included in UI or users.update
       const keysToIgnore = [
@@ -44,6 +50,9 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
 
       dispatch( setUserData( userSettings, savedStatus ) );
 
+      if ( initialLoad ) {
+        dispatch( fetchRelationships( true ) );
+      }
       if ( relationshipsPage ) {
         dispatch( updateBlockedAndMutedUsers( ) );
       }
@@ -100,6 +109,15 @@ export function saveUserSettings( ) {
     delete params.user.updated_at;
     delete params.user.saved_status;
     delete params.user.errors;
+    delete params.user.site;
+    delete params.user.id;
+    delete params.user.roles;
+    delete params.user.monthly_supporter;
+    delete params.user.blocked_user_ids;
+    delete params.user.muted_user_ids;
+    delete params.user.privileges;
+    delete params.user.icon_url;
+    delete params.user.orcid;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth

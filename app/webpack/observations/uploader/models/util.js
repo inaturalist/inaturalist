@@ -1,9 +1,11 @@
 import _ from "lodash";
 import fetch from "cross-fetch";
-import moment from "moment-timezone";
+import moment from "moment";
 
 export const ACCEPTED_FILE_TYPES = [
-  "image/*",
+  "image/jpeg",
+  "image/png",
+  "image/gif",
   "audio/x-wav",
   "audio/wav",
   "audio/wave",
@@ -19,6 +21,16 @@ export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes
 
 export const DATETIME_WITH_TIMEZONE = "YYYY/MM/DD h:mm A z";
 export const DATETIME_WITH_TIMEZONE_OFFSET = "YYYY/MM/DD h:mm A ZZ";
+export const DATETIME_12_HOUR = "YYYY/MM/DD h:mm A";
+export const DATETIME_24_HOUR = "YYYY/MM/DD HH:mm";
+
+// Datetime format without a time zone that is both ok to parse and ok to
+// display. Intentionally not internationalized b/c translators shouldn't be
+// able to make a date format that we can't parse.
+export function parsableDatetimeFormat( ) {
+  const time = moment( ).format( I18n.t( "momentjs.time_hours" ) );
+  return time.match( /[AP]M/i ) ? DATETIME_12_HOUR : DATETIME_24_HOUR;
+}
 
 const util = class util {
   static isOnline( callback ) {

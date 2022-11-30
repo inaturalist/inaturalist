@@ -2,6 +2,10 @@
   "name": "inaturalist",
   "version": "2.0.0",
   "description": "iNaturalist npm package for managing node dependencies.",
+  "scripts": {
+    "webpack": "webpack --config config/webpack.config.js",
+    "webpack-watch": "webpack watch --config config/webpack.config.js"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@formatjs/intl-locale": "^2.4.19",
@@ -9,7 +13,6 @@
     "@types/googlemaps": "^3.30.16",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.4.18",
-    "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "acorn": ">=6.4.1",
     "acorn-to-esprima": "^2.0.8",
     "c3": "^0.4.23",
@@ -19,8 +22,8 @@
     "d3-svg-legend": "^2.25.6",
     "d3-tip": "^0.7.1",
     "debug": "^2.6.9",
+    "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "es6-promise-pool": "^2.5.0",
-    "gulp": "^4.0.2",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
     "inaturalistjs": "github:inaturalist/inaturalistjs#email-confirmation",
@@ -36,10 +39,10 @@
     "lodash.mergewith": "^4.6.2",
     "lodash.pick": "^3.1.0",
     "markdown-it": "^12.3.2",
-    "minimist": ">=1.2.6",
     "md5": "^2.3.0",
-    "moment": "^2.22.2",
-    "moment-timezone": "^0.5.23",
+    "minimist": ">=1.2.6",
+    "moment": "^2.29.2",
+    "moment-timezone": "^0.5.35",
     "mousetrap": "^1.6.2",
     "onscreen": "^1.2.0",
     "piexifjs": "^1.0.4",
@@ -56,7 +59,6 @@
     "react-dnd-touch-backend": "^0.4.0",
     "react-dom": "^16.6.0",
     "react-dropzone": "4.2.13",
-    "react-google-maps": "^9.4.5",
     "react-image-gallery": "^0.8.18",
     "react-images": "0.5.19",
     "react-infinite-scroller": "^1.2.2",
@@ -70,7 +72,7 @@
     "topojson-client": "^3.0.0",
     "underscore": "^1.12.1",
     "utf8": "^3.0.0",
-    "uuid": "^3.3.2"
+    "uuid": "^8.3"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -87,7 +89,7 @@
     "punycode": "^2.1.1",
     "querystring-es3": "^0.2.1",
     "webpack": "^5.66.0",
-    "webpack-stream": "^7.0.0"
+    "webpack-cli": "^4.10.0"
   },
   "repository": {
     "type": "git",

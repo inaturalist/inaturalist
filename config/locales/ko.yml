@@ -75,7 +75,6 @@ ko:
   a_flag_for_x: "%{x}을 위한 플래그"
   a_member_of_taxon_html: "%{taxon}에 속함"
   about: 소개
-  about_blocking: 차단에 대하여
   about_charts: 차트에 대하여
   about_community_taxa: 공동체 분류군에 대하여
   about_complete_taxa: 완전한 분류군에 대하여
@@ -89,8 +88,6 @@ ko:
   #Header for a section describing taxon names
   about_names: 이름에 대하여
   about_places: 장소에 대하여
-  about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대하여
-  about_these_licenses: 이 라이선스들에 대하여
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
@@ -110,7 +107,6 @@ ko:
   active: 활성
   active_users: 활동적인 사용자
   activity: 활동
-  activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: "%{original}의 연구를 바탕으로 %{name}님이 적용함"
   add: 추가
   add_a_batch_of_observations: 관찰을 여러 개 추가하기
@@ -283,8 +279,6 @@ ko:
   all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
   all_taxonomic_groups: "&laquo; 모든 분류학적 그룹"
   all_updates: 모든 업데이트
-  all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
-  all_your_observations_will_default_to_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   allow_curator_access: 큐레이터 엑세스 허용
   allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
@@ -422,14 +416,12 @@ ko:
   birds: 조류
   birthday: 생일
   black: 검정
-  block_user: 사용자 차단
   block_removed: 차단 제거됨
   blocked_users: 차단된 사용자
   blog_widget: 블로그 위젯
   blue: 파랑
   blue_butterfly_etc: "파랑, 나비 등."
   body: 본문
-  bounding_box: 경계 상자
   breadcrumbs: 빵 부스러기
   brief_caption: 간결한 캡션
   brown: 갈색
@@ -793,7 +785,6 @@ ko:
   donate: 기부하기
   done: 완료
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
-  dont_send_me_email: "메일 수신 거부"
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -855,7 +846,6 @@ ko:
   email: 이메일
   email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
   email_copyright: "저작권 &copy; %{x}, 모든 권리 보유"
-  email_settings: 이메일 설정
   embed: '내장'
   embed_place_widget: 장소 위젯 내장
   embed_this_assessment: 이 평가 내장
@@ -971,7 +961,6 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flag_this_sound: 이 소리 플래그
-  flagged: 플래그함
   flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: "사용자들이 이 %{thing}을(를) 플래그한 이유는"
   flagger: 플래그한 사용자
@@ -1078,8 +1067,10 @@ ko:
   identify: 동정하기
   identify_title: "동정하기"
   identification: 동정
+  #Notification when an identification has been deleted
   identification_deleted: 동정 삭제됨
   identification_saved: "동정 저장됨"
+  #Notification when an identification has been updated
   identification_updated: 동정 업데이트됨
   identifications: 동정
   identifiers: 동정한 사용자들
@@ -1214,9 +1205,6 @@ ko:
   life: 생명
   life_list: "%{user}의 생물 목록"
   link: 링크
-  link_or_unlink_your_facebook_account: 페이스북 계정과 링크하거나 링크 취소하기
-  link_or_unlink_your_flickr_account: Flickr 계정과 링크하거나 링크 취소하기
-  link_or_unlink_your_google_account: 구글 계정과 링크하거나 링크 취소하기
   link_your_facebook_account: 페이스북 계정 연결하기
   link_your_flickr_account: Flickr 계정과 링크하기
   link_your_google_account: 구글 계정과 링크하기
@@ -1247,7 +1235,6 @@ ko:
   loading_tags: "태그를 불러오는 중..."
   loading_taxa_from_your: "당신의 관찰에서 분류군 불러오는 중..."
   loading_wikipedia_description: "위키백과 설정 불러오는 중..."
-  locale_description: 사용할 언어를 선택하세요
   locales:
     ar: 아랍어
     bg: 불가리아어
@@ -1381,7 +1368,6 @@ ko:
   most_observed_introduced_species: 가장 많이 관찰된 도입종
   most_observed_threatened_species: 가장 많이 관찰된 위기종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
-  mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
   muted_users: 알림에서 제외된 사용자
   n_ago: "%{n}전"
@@ -1523,9 +1509,6 @@ ko:
   note: 메모
   notes: 참고
   notify_me_of_mentions: '내 아이디 언급 시 알림 (예: @아이디)'
-  notify_me_about_redundant_identifications: 동정 확인에 대해 알림
-  notify_me_about_redundant_identifications_desc: |
-    나의 동정과 일치하는 동정에 대해서 알림 수신하기. 이 설정을 제외하면 당신의 동정과 일치하지 않는 동정에 대해서만 알림을 밭게 됩니다.
   number_of_observations: 관찰 수
   number_selected: "# 선택됨"
   obs: 관찰
@@ -1581,7 +1564,6 @@ ko:
       <li><strong>분류군, 프로젝트, 장소:</strong> 팔로우한 분류군, 장소에 대한 새로운 관찰이 표시됩니다. 프로젝트에 가입할 경우 프로젝트 일지에 대한 알림도 표시됩니다. </li>
       <li><strong>관여한 토론:</strong> 다른 사람의 관찰에 댓글 및 동정을 추가하면 자동적으로 그 관찰에 팔로우됩니다. '알림 관리' 항목을 통해 알림 수신 여부를 수정할 수 있습니다.</li>
       </ul>
-  only_letters_numbers: "문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다"
   only_show_active_taxa: 활성 분류군만 보기
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
   only_show_for_species_subspecies_varieties_etc: 종, 아종, 변종 만 보기
@@ -2126,7 +2108,6 @@ ko:
   show_more: 더 보기
   show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
   show_relative_proportions_of_all_observations: 모든 관찰의 상대적인 비율 보기
-  show_scientific_name_first: 학명을 우선 표시
   show_total_counts: 월별 관찰 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
   showing_x_of_y_listings: "%{y}개 목록 중 %{x}개 표시"
@@ -2181,6 +2162,7 @@ ko:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 스토어
+  store_caps: 스토어
   submitted: 업로드 날짜
   subscribe_to_a_taxon: 분류군 알림 받기
   subscribe_to_a_place: 장소 알림 받기
@@ -2289,7 +2271,6 @@ ko:
   value: 값
   view_all: 모두 보기
   view_all_members: 모든 회원 보기
-  view_all_n: "모든 %{n}개 보기"
   view_all_observations: 모든 관찰 보기
   view_check_list_page: 체크리스트 문서 보기
   view_contributions: 기여 보기
@@ -2534,9 +2515,6 @@ ko:
         project_addition_preferences:
           joined: 내가 가입한 프로젝트
           none: "없음, 프로젝트에 관찰만 추가할 수 있습니다"
-        scientific_name_first_desc: |
-          일반명 앞에 학명을 표시합니다.
-        thanks_for_supporting_us!: 지원해 주셔서 감사합니다!
       recent:
         about_recent_users: 정보
     user_parents:

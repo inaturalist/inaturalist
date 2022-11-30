@@ -1,9 +1,13 @@
 :ruby
   @no_footer_gap = true
   @title = if @display_user
-    t( :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year )
+    t( :users_site_year_in_review, user: @display_user.login, site: @site.name, vow_or_con: @site.name[0].downcase, year: @year )
   else
-    t( :year_on_site, site: @site.name, year: @year )
+    if @site.id == Site.default.id
+      t( :inaturalist_global_year_in_review, year: @year )
+    else
+      t( :site_year_in_review, year: @year, site: @site.name, vow_or_con: @site.name[0].downcase )
+    end
   end
 - content_for :title do
   = @title.html_safe

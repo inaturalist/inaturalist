@@ -44,7 +44,12 @@
         <%= o.text_field(:observed_on_string, 
                          :class => 'observed_on_string text') %>
         <%= o.error_message_on(:observed_on) %>
-        <%= o.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {:class => 'time_zone'} %>
+        <%=t "time_zone_#{observation.zic_time_zone.to_s.parameterize.underscore}", default: observation.timezone_object %>
+        <% if observation.new_record? %>
+          <% helptip_for "time_zone" do %>
+            <%=t :default_time_zone_desc %>
+          <% end -%>
+        <% end -%>
         <div class="small description">
           <%=t :observation_observed_on_examples %>
         </div>
@@ -61,7 +66,7 @@
           <%=t :comma_separated_please %>
         </span>
         <% helptip_for "tags" do %>
-            <%= t :tags_are_a_way %>
+          <%= t :tags_are_a_way %>
         <% end -%>
         <%= o.text_field :tag_list, :value => observation.tag_list.to_s, :class => "text" %>
       </div>
@@ -168,9 +173,23 @@
               :local_photos => @photo_identities.blank? || observation.photos.first && observation.photos.first.is_a?(LocalPhoto)
             } %>
           </div>
+
+          <div>
+            <% unless observation.photos.empty? || observation.new_record? -%>
+              <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
+            <% end -%>
+            <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
+              <br/>
+              <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
+                "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
+                  "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
+                ").join('&');" +
+                "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
+                  "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
+            <% end -%>
+          </div>
           
           <% if @photo_identities.blank? %>
-          
             <div class="column-separator"><img src="<%= image_path('logo-eee-15px.png') %>"></div>
             
             <p class="ui description">
@@ -184,24 +203,7 @@
                 {:controller => 'picasa', :action => 'options'}, :class => "button" %>
               <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
             </div>
-
           <% end %>
-          
-          <div>
-            <% if @photo_identities && @photo_identities.map(&:class).include?(FlickrIdentity) -%>
-              <%= link_to_function t(:add_taxonomic_tags_to).html_safe,
-                "var flickrPhotoParams = $.map($('#photos_#{i} input[type=checkbox]:checked'), " +
-                  "function(inp) {return 'flickr_photos[]='+$(inp).val()}" +
-                ").join('&');" +
-                "window.open('#{url_for(:controller => 'taxa', :action => 'flickr_tagger')}?" + 
-                  "taxon_id='+$('#observations_#{i}_taxon_id').val()+'&'+flickrPhotoParams)" %>
-            <% end -%>
-
-            <% unless observation.photos.empty? || observation.new_record? -%>
-              <br/>
-              <%= link_to t(:re_order_photos).html_safe, edit_observation_photos_path(observation) %>
-            <% end -%>
-          </div>
         </div>
 
         <div id="add_sounds_<%= i %>">

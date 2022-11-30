@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  prepend_around_action :enable_replica, only: [:dashboard_updates]
+  prepend_around_action :enable_replica, only: [:dashboard_updates, :show]
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
@@ -432,7 +432,7 @@ class UsersController < ApplicationController
   def dashboard_updates
     filters = [ ]
     if params[:from]
-      filters << { range: { id: { lt: params[:from] } } }
+      filters << { range: { created_at: { lt: Time.at( params[:from].to_i ) } } }
     end
     unless params[:notifier_type].blank?
       filters << { term: { notifier_type: params[:notifier_type] } }
@@ -489,7 +489,13 @@ class UsersController < ApplicationController
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
           )["category_list"]["categories"].index_by{|c| c["id"]}
-          forum_feedback_category = @discourse_data[:categories].values.detect{|c| c["name"] == "Forum Feedback"}
+          discourse_ignored_category_names = [
+            "Forum Feedback",
+            "Nature Talk"
+          ]
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+            discourse_ignored_category_names.include?( c["name"] )
+          end.map{ |c| c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
@@ -504,8 +510,7 @@ class UsersController < ApplicationController
             # Remove posts in the Forum Feedback category
             (
               !t["category_id"] ||
-              !forum_feedback_category ||
-              t["category_id"] != forum_feedback_category["id"]
+              !discourse_ignored_category_ids.include?( t["category_id"] )
             )
           }[0..5]
           Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
@@ -581,13 +586,8 @@ class UsersController < ApplicationController
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" &&
-          @user.donorbox_plan_type == "monthly"
-        if true || params[:test] == "profile"
-          render :edit2, layout: "bootstrap"
-        else
-          render :edit
-        end
+        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+        render :edit2, layout: "bootstrap"
       end
       format.json do
         render :json => @user.to_json(

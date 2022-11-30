@@ -130,7 +130,8 @@
   - unless @projects.blank?
     #projectstab
       .clear
-        %h3= t(:projects_in_x, :x => @place.name)
+        - place_name = @place.name.parameterize.blank? ? @place.name : t( "places_name.#{@place.name.parameterize.underscore}", default: @place.name )
+        %h3= t( :projects_from_place, place: place_name, vow_or_con: place_name[0].downcase )
         = render :partial => 'projects/project', :collection => @projects
       = link_to t(:view_all), browse_projects_url(:place_id => @place.slug), :class => "readmore"
   - if @show_leaderboard

@@ -1,4 +1,10 @@
 uk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} зміна"
+    few: "%{count} зміни"
+    many: "%{count} змін"
+    other: "%{count} зміни"
   x_comments:
     one: '%{count} коментар'
     few: '%{count} коментарі'
@@ -239,7 +245,6 @@ uk:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Докладно
-  about_blocking: Про блокування
   about_charts: Про діаграми
   about_community_taxa: Про таксони спільноти
   about_complete_taxa: Про повні таксони
@@ -251,7 +256,6 @@ uk:
   about_establishment_means: Про шляхи виникнення
   about_license_options: Про варіанти ліцензування
   about_licenses: Про ліцензії
-  about_muting: Про вимкнення
   #Header for a section describing taxon names
   about_names: Про назви
   #Title for a section providing a text description of a place, @vow_or_con
@@ -259,8 +263,9 @@ uk:
   about_place: "Про %{place}"
   about_places: Про місця
   about_taxon_ranges: Докладніше про область поширення таксону
-  about_the_cc_licenses: Про ліцензії Creative Commons
-  about_these_licenses: Про ці ліцензії
+  about_taxon_ranges_desc: |
+    Ареал таксону відображає глобальне поширення таксону. Ареали таксонів зазвичай беруться з Червоного Списку МСОП.
+  about_the_network: Про мережу
   about_this_bioblitz: Про цей біобліц
   about_this_map: Про цю карту
   about_this_project: Про цей проект
@@ -301,6 +306,8 @@ uk:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Ви маєте змогу обрати, якими з прихованих координат ділитися:
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Про непередбачувані розбіжності
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -324,7 +331,6 @@ uk:
   active_taxon_status: Активний
   active_users: Активні користувачі
   activity: Активність
-  activity_settings: Налаштування активності
   adapted_by_name_from_a_work_by_original: "Адаптовано %{name} на підставі праці %{original}"
   add: Додати
   add_a_batch_of_observations: Додати декілька спостережень
@@ -417,6 +423,7 @@ uk:
   add_life_stage_egg_annotation: 'Додати примітку "Стадія життєвого циклу: яйце"'
   add_evidence_of_presence_organism_annotation: 'Додати анотацію "Доказ присутності: організм"'
   add_evidence_of_presence_feather_annotation: 'Додати анотацію "Доказ присутності: перо"'
+  add_evidence_of_presence_gall_annotation: 'Додати анотацію "Доказ присутності: галл"'
   add_evidence_of_presence_scat_annotation: 'Додати анотацію "Доказ присутності: послід"'
   add_evidence_of_presence_track_annotation: 'Додати анотацію "Доказ присутності: сліди"'
   add_evidence_of_presence_bone_annotation: 'Додати анотацію "Доказ присутності: кістка"'
@@ -474,11 +481,15 @@ uk:
   admin_s: Адмін(и)
   admin_only: Тільки для адміністраторів
   admin_tools: Засоби адміністрування
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Афілійовані організації
   agree_: Погоджуюсь
   agree?: Погоджуєтесь?
   agree_with_current_taxon: Погодитись з поточним таксоном
   agreeing: Погодження
   aka: також відомий як
+  #Noun, title of a popup alerting you to something
+  alert: Попередження
   all: Всі
   all_comments: Всі коментарі
   all_flags_must_be_resolved: Всі позначки мають бути розв'язані
@@ -609,8 +620,6 @@ uk:
   all_taxa_in_this_guide: Усі таксони у цьому посібнику
   all_taxonomic_groups: "&laquo; Усі таксономічні групи"
   all_updates: Усі оновлення
-  all_your_observations_will_default_this_time_zone: Усі ваші спостереження за промовчанням належатимуть до цього часового поясу, якщо ви не вкажете інакше.
-  all_your_observations_will_default_to_this_time_zone: Усі ваші спостереження за промовчанням належатимуть до цього часового поясу, якщо ви не вкажете інакше.
   allow_curator_access: Дозволити доступ куратора
   allow_project_curators_to_view_your_private_coordinates: Дозволити кураторам проєкту переглядати ваші приховані координати
   allowed_establish_means_values: Дозволені значення шляхів виникнення
@@ -622,6 +631,11 @@ uk:
   alphabetical_order: За алфавітом
   already_have_an_account_log_in_html: Вже маєте обліковий запис? <strong>Увійдіть.</strong>
   amphibians: земноводні
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Аналіз непередбачуваних розбіжностей
+  analyze_ids: Аналізувати ID
   ancestor_taxon: Материнський таксон
   and: та
   and_other_taxa: "&amp; Інші таксони"
@@ -811,6 +825,7 @@ uk:
   back_to_x_history: "Назад до історії: %{x}"
   back_to_x_journal: "Назад до журналу користувача %{user}"
   back_to_x_blog: "Назад до блогу %{x}"
+  back_to_your_calendar: Назад до вашого календаря
   back_to_your_dashboard: Назад до вашої панелі інструментів
   back_to_your_lists: Назад до ваших списків
   back_to_your_journal: Назад до вашого журналу
@@ -825,7 +840,6 @@ uk:
   batch_edit_taxa_for_x_html: "Пакетне редагування таксонів: %{x}"
   batch_operations: Пакетні операції
   be_the_first_to_fave_this_observation: Стань першим, хто уподобає це спостереження!
-  because_of: причина
   before_importing_photos: перед імпортом фото
   bg_color: Колір тла
   bio: Біографія
@@ -834,7 +848,6 @@ uk:
   birds: птахи
   birthday: День народження
   black: чорний
-  block_user: Заблокувати користувача
   block_removed: Блокування знято
   blocked_users: Заблоковані користувачі
   blog_widget: Віджет у блозі
@@ -845,7 +858,6 @@ uk:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: жирний шрифт
-  bounding_box: Обмежувальна рамка
   breadcrumbs: Навігаційний ланцюжок
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -866,7 +878,7 @@ uk:
   by: '&nbsp;'
   by_everyone: Будь-ким
   by_user: "користувачем %{user}"
-  by_you: вами
+  by_you: від вас
   calendar: Календар
   calendars_only_show_x_observations_at_time: Календарі одночасно показують тільки %{x} спостережень
   cancel: Скасувати
@@ -1550,7 +1562,6 @@ uk:
   donate: ВНЕСОК
   done: Надіслати
   dont_have_an_account_sign_up_html: Не маєте облікового запису? <strong>Зареєструйтесь.</strong>
-  dont_send_me_email: "Не надсилайте мені жодних листів!"
   dont_use_double_quotes: Не використовуйте подвійні лапки
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -1644,7 +1655,6 @@ uk:
   email_address_for_comments_and_other_feedback: Адреси ел. пошти для коментарів та інших відгуків
   email_copyright: "Авторські права &copy;%{x}, усі права захищені"
   email_notifications: Сповіщення ел. поштою
-  email_settings: Налаштування ел. пошти
   embed: 'Вставити'
   embed_place_widget: Вставити віджет місця
   embed_this_assessment: Вставити цю оцінку
@@ -1679,7 +1689,7 @@ uk:
   event_stats: Статистика події
   event_url: URL події
   events_only: Лише події
-  everyone: Усi
+  everyone: Будь-кого
   everyone_: Усі
   everyone_journal_posts: Дописи в усіх журналах
   everywhere: всюди
@@ -1822,7 +1832,6 @@ uk:
   flag_this_observation: Позначити це спостереження прапорцем
   flag_this_photo: Позначити це фото прапорцем
   flag_this_sound: Позначити цей звукозапис прапорцем
-  flagged: з прапорцем
   flagged_: З прапорцем
   flagged_for_curation: Позначено для курації
   flagged_taxon: Таксон з прапорцем
@@ -2013,10 +2022,13 @@ uk:
   identify_title: "Визначити"
   identification: Визначення
   identification_by_user: 'Визначили: %{user}'
+  #Notification when an identification has been deleted
   identification_deleted: Визначення видалено.
   identification_saved: "Визначення збережено!"
+  #Notification when an identification has been updated
   identification_updated: Визначення оновлено!
   identification_user_short: Визн. спостерігач
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Визначення відкликано.
   identifications: Визначення
   computer_vision_suggestion: Пропозиція від системи комп'ютерного бачення
@@ -2193,7 +2205,6 @@ uk:
   leading: Провідна
   learn: Ознайомитися
   learn_about_the_species_live_in: Дізнайтеся, які види живуть у
-  learn_about_third_party_tracking: Дізнатися більше про відстеження сторонніми особами
   learn_more: Дізнатися більше
   learn_more_raquo: "Дізнатися більше &raquo;"
   learn_what_these_licenses_mean: Дізнайтеся, що означають ці ліцензії
@@ -2268,9 +2279,6 @@ uk:
   life_list: "Список живого %{user}"
   linear_scale_label: Лінійна
   link: Посилання
-  link_or_unlink_your_facebook_account: Пов'язати або відв'язти свій обліковий запис Facebook
-  link_or_unlink_your_flickr_account: Пов'язати або відв'язти свій обліковий запис Flickr
-  link_or_unlink_your_google_account: Пов'язати або відв'язти свій обліковий запис Google
   link_your_facebook_account: Приєднайте свій обліковий запис Facebook
   link_your_flickr_account: Прив'язати обліковий запис Flickr
   link_your_google_account: Прив'язати обліковий запис Google
@@ -2317,7 +2325,6 @@ uk:
   loading_tags: "Завантаження тегів..."
   loading_taxa_from_your: "Завантаження таксонів з ваших спостережень..."
   loading_wikipedia_description: "Завантаження опису з Вікіпедії..."
-  locale_description: Налаштування локалізації визначають параметри мови й відображення дати.
   locales_: Локалізації
   locales:
     ar: Арабська
@@ -2599,7 +2606,6 @@ uk:
   must_have_quality_grades: "повинні мати рівень якості: %{grades}"
   must_have_sounds: повинні мати звукозаписи
   must_have_x: "мусить мати %{x}"
-  mute_user: Ігноровані користувачі
   mute_removed: Ігнорування скасоване
   muted_users: Ігноровані користувачі
   n_ago: "%{n} тому"
@@ -2802,10 +2808,6 @@ uk:
   notifications: Сповіщення
   notify_me_of_mentions: Повідомляти мене про згадування (напр. @username)
   notify_me_of_mentions_description: "Якщо вимкнути це, ви не отримуватимете жодних сповіщень, коли хтось згадуватиме вас на %{site_name}."
-  notify_me_about_redundant_identifications: Повідомляти мені про визначення на підтвердження
-  notify_me_about_redundant_identifications_desc: |
-    Отримувати сповіщення про визначення, які співпадають з вашими власними. Якщо ви
-    не оберете цей пункт ви отримуватимете сповіщення лише про визначення, які відрізняються від ваших власних.
   number_of_observations: Кількість спостережень
   number_of_observers_value: "Кількість спостерігачів: %{number}"
   number_of_observers: "Кількість спостерігачів"
@@ -3011,7 +3013,6 @@ uk:
   only_curators_can_add_edit_scientific_names: Тільки куратори можуть додавати/редагувати наукові назви.
   only_curators_can_access_that_page: Доступ до цієї сторінки мають лише адміністратори
   only_files_with_10000_rows_at_a_time: Будь-ласка, лише файли не більш ніж з 10 000 рядків
-  only_letters_numbers: "Тільки літери та цифри, без пробілів, має починатися з літери"
   only_one_coordinate_system_per_file: |
     У одному файлі можна використовувати лише одну систему координат. В іншому випадку перетворення або відображення будуть некоректними.
   only_project_curators_can_do_that: Це зробити можуть лише куратори проєкту.
@@ -3037,7 +3038,6 @@ uk:
   #sign in fields OR sign in with Facebook
   or_all_caps: АБО
   or_choose_high_level_taxa: "... або оберіть з таксонів вищого рангу"
-  or_if_you_dont_want_email: "Або, якщо ви не бажаєте нічого отримувати на електронну пошту..."
   orange: помаранчевий
   order: Сортувати
   order_by: Сортувати за
@@ -3124,7 +3124,6 @@ uk:
   photo_credits: Авторство фото
   photo_deleted: Фото видалено
   photo_destroyed_because_it_was_deleted_from: "Фото пошкоджене, оскільки воно було видалене з зовнішнього сайту або %{site_name} більше не має дозволу на його перегляд"
-  photo_hosting_accounts: Облікові записи фотохостингів
   photo_licensing: Ліцензія фото
   photo_type: Тип фото
   photo_urls_repaired: Посилання на фото відновлено
@@ -3208,8 +3207,8 @@ uk:
       continent: континент
       Country: Країна
       country: країна
-      County: Графство
-      county: графство
+      County: Район
+      county: район
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
       Delegation: Округ
       #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
@@ -3616,6 +3615,7 @@ uk:
   plants: рослини
   please_add_a_citation_for_this_change: Будь ласка, додайте цитату до цієї зміни.
   please_allow_a_few_weeks_for_external_sites: Будь ласка, почекайте кілька тижнів, аби зовнішні сайти синхронізували зміни, зроблені для цього спостереження #Request that a known child ask their parents for permission to use this service
+  please_ask_your_parents_for_permission: Будь ласка, отримайте дозвіл від батьків
   #Title to a section warning a user to exercise caution
   please_be_careful!: Будь ласка, будьте уважні!
   please_complete_the_following_to_add_project: |
@@ -3725,8 +3725,8 @@ uk:
   projects: Проєкти
   projects_description: |
     Проекти дозволяють об'єднати ваші спостереження зі спостереженнями інших користувачів %{site_name}. Чи то нова ініціатива з громадської науки, чи просто обліки птахів на вашому подвір'ї, проєкти - те, що вам потрібно.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проєкти з місця: %{place}"
-  projects_in_x: "Проєкти у %{x}"
   #"admins" is equivalent to "administrates"
   projects_user_admins: Проєкти, що адмініструє %{user}
   projects_you_admin: Проєкти, що адмініструєте ви
@@ -3910,7 +3910,6 @@ uk:
   recaptcha_verification_failed: помилка перевірки reCAPTCHA
   receive_email_notifications: Отримувати сповіщення на ел. пошту
   receive_email_notifications_description: "Якщо Ви оберете вимкнути, більше не будете отримувати жодних листів від %{site_name} щодо сповіщень."
-  receive_email_notifications_when_people_leave_you: Отримувати на ел. пошту сповіщення про
   receive_project_journal_notifications?: Отримувати сповіщення від журналу проєкту?
   receive_updates_from_this_project: Отримувати оновлення від цього проєкту
   recent: Нещодавні
@@ -4101,6 +4100,11 @@ uk:
   search_your_photos: Шукати ваші фото
   searching: "Пошук.."
   seasonality: Фенологія
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Ваш %{noun}"
   see_something_wrong_with_taxon: Щось не так із цим таксоном? Повідомте кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
@@ -4137,7 +4141,6 @@ uk:
   short_or_abbreviated_title_for_display: Короткий заголовок або абревіатура для показу в областях, де бракує місця. Щонайбільше 10 символів.
   show: Показати
   show_active_and_inactive_taxa: Показувати активні та неактивні таксони
-  show_common_names: Показувати загальні назви
   show_hidden_content: Показувати прихований вміст
   show_keyboard_shortcuts: Показати сполучення клавіш
   show_less: Показати менше
@@ -4150,7 +4153,6 @@ uk:
   show_relative_proportions_of_all_observations: Показати відносні частки всіх спостережень
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Показати поточний доробок
-  show_scientific_name_first: Показувати наукові назви першими
   show_taxa_from_both: (показувати таксони з обох списків)
   show_taxa_from_everywhere: "Показувати таксони звідусіль"
   show_taxa_from_place: "Показувати таксони з %{place}"
@@ -4308,7 +4310,8 @@ uk:
   stop_trusting_this_person_with_your_private_coordinates: Припинити довіряти цій людині свої приховані розташування
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: КРАМНИЦЯ
+  store: Крамниця
+  store_caps: КРАМНИЦЯ
   studies_that_used_inaturalist_data_in_year: Дослідження, що використовували дані з iNaturalist у %{year}
   stuff_just_added: "Те, що ви щойно додали..."
   subject_resolved_noun_html: "%{subject} розв'язав %{noun}"
@@ -4523,7 +4526,6 @@ uk:
   taxonomy_details_info: 'Сторінка "Подробиці таксономії" створена, аби пояснити, що саме ми розуміємо під таксоном на основі Системи поглядів на таксономію. <a href="/pages/taxon_frameworks">Докладніше</a>.'
   taxonomy_settings: Налаштування таксономії
   teachers_guide: Посібник вчителя
-  tell_everyone_a_little_about_you: Розкажіть нам трохи про себе
   tell_the_world_a_little_about_yourself: Розкажіть нам про себе
   tell_us_why: Розкажіть нам, чому...
   terms: Умови
@@ -4607,6 +4609,11 @@ uk:
   these_observations_have_not_been_uploaded_yet: |
     Ці спостереження ще не завантажені.
   third_party_tracking: Відстеження сторонніми сервісами
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
   third_person_possessive_singular: "%{noun} %{object_phrase}"
   this: це
   this_bioblitz_beings_in: Цей біобліц розпочинається за
@@ -4863,7 +4870,6 @@ uk:
   user_observed_on_on_date_in_place: |
     Користувач %{user} спостерігав це %{date} у такому місці: %{place}
   user_suggested_an_id: "%{user} запропонував/ла визначення"
-  user_thinks_yours_is: "%{user} %{noun} ваше спостереження %{observation} є"
   user_trusts_you_with_their_private_coordinates: "%{user} довіряє вам приховані координати"
   user_trusts_you_with_their_private_coordinates_desc: |
     Спостерігач вирішив довірити вам приховані координати всіх своїх спостережень.
@@ -4880,7 +4886,6 @@ uk:
   users_latest_observations_on_site: "найновіші спостереження користувача %{user} на %{site}"
   users_profile: "Профіль користувача %{user}"
   users_projects: "Проєкти користувача %{user}"
-  users_year_on_site: "%{year} Рік користувача %{user} на %{site}"
   valid_options_are: Доступні опції
   value: Значення
   values: Значення
@@ -4890,7 +4895,6 @@ uk:
   view_all: Переглянути всі
   view_all_flags: Переглянути всі прапорці
   view_all_members: Переглянути всіх учасників
-  view_all_n: "Переглянути всі %{n}"
   view_all_observations: Переглянути всі спостереження
   view_all_photocount_photos: "Переглянути всі %{photo_count} фото"
   view_assessment: Переглянути оцінку
@@ -4921,7 +4925,7 @@ uk:
   view_observation: Переглянути спостереження
   view_observations: Переглянути спостереження
   view_observation_flags: Переглянути прапорці спостереження
-  view_observations_by_everyone: Перегляд спостережень усіх
+  view_observations_by_everyone: Перегляд спостережень від усіх
   view_observations_by_these_users: Переглянути спостереження цих користувачів
   view_observations_of_this_taxon_by: Переглянути спостереження цього таксону від
   view_on: Переглянути на
@@ -4941,15 +4945,12 @@ uk:
   view_taxon_page: Переглянути сторінку таксону
   view_taxon_page_for_this_x: "Переглянути сторінку таксону для цього %{x}"
   view_taxononomy_details_for_taxon: "Переглянути подробиці таксономії для %{taxon}"
-  view_the_observation: Переглянути спостереження
   view_user_observations: "Переглянути спостереження користувача %{user}"
   view_x: "Переглянути %{x}"
-  view_year_stats_for_site: "Переглянути статистику за %{year} рік для %{site}"
   view_your_dashboard: Переглянути панель керування
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Переглянути панель керування</a> для отримання додаткових оновлень"
   view_your_inbox: Усі повідомлення
   view_your_observations: Переглянути ваші спостереження
-  view_your_year_stats: "Переглянути вашу статистику за %{year}"
   view_yours: Переглянути ваші
   view_all_of_your_observations_from_x: "Переглянути всі ваші спостереження з %{x}"
   video_tutorials: Відеоінструкції
@@ -5091,8 +5092,8 @@ uk:
   yes_reject_it: Так, відхилити це
   yes_show_this_in_the_box: Так, показувати це у великому прямокутнику згори /таксону
   yesterday: Вчора
-  you: ви
-  you_: Ви
+  you: від вас
+  you_: Вac
   you_appear_offline_try_again: |
     Здається, ви не в мережі. Спробуйте ще раз, коли ви підключені до Інтернету.
   youre_a_site_curator_which_means: |
@@ -5186,7 +5187,6 @@ uk:
   your_content: Ваші дані
   your_contributions_to_project: "Ваш внесок до %{project_title}"
   your_default: ваші промовчання
-  your_default_time_zone: Ваш часовий пояс за промовчанням
   your_email_address: Ваша електронна адреса
   your_favorites: Ваші уподобані
   your_flickr_account: ваш обліковий запис Flickr
@@ -6638,11 +6638,6 @@ uk:
           Щоб видалити свій обліковий запис, введіть "%{confirmation_code}" у форму
       edit:
         about_third_party_tracking: Про відстеження іншими сторонами
-        common_names_desc: |
-          Показувати народні назви. Вимкніть, якщо ви хочете бачити тільки наукові назви.
-          Зверніть увагу, що ви можете налаштувати, які народні назви ви хочете бачити, змінивши мовні та географічні налаштування.
-        display_monthly_supporter_status_on_my_profile: |
-          Відображати статус "Щомісячний спонсор" в моєму профілі
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Якщо ви передумаєте, ви завжди можете
           <a href='/users/edit'>змінити ваші налаштування</a>.
@@ -6660,12 +6655,6 @@ uk:
           Ліцензування вашого доробку дає усім законне право використовувати його без запиту вашого дозволу, за умови, що вони дотримуються умов ліцензії. Крім того, %{site_name} долучає ваш доробок, ліцензований Creative Commons,
           до регулярно оновлюваних архівів, які створюються для деяких партнерських організацій, які цікавляться нашими даними. Наприклад, ми включаємо записи, ліцензовані No Copyright (CC0), Attribution (CC BY) та Attribution-NonCommercial
           (CC BY-NC) в архів, який ми створюємо для <a href="http://www.gbif.org/"> Глобальної інформаційної системи з біорізноманіття</a> (GBIF) - міжнародної міжурядової організації, яка збирає та розповсюджує інформацію про біорізноманіття з усього світу.
-        license_description_attribution_html: |
-          Описи та зображення ліцензії &copy; %{year} Creative Commons, що використовується під <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution</a> (тобто, мета-ліцензія!)
-        #Header for the section of the profile settings where you can choose to
-        #show a badge on your profile to indicate that you make a regular,
-        #monthly donation to iNat
-        monthly_supporter: Щомісячний донор
         monthly_supporter_desc_html: |
           Щомісячні донори iNaturalist роблять автоматичні щомісячні внески які отримує Каліфорнійська академія наук (Сполучені Штати IRS EIN 94-1156258) на підтримку некомерційної діяльності веб-сайтів iNaturalist та iNaturalist Network.
           <a href="%{url}"> Натисніть тут, щоб стати Щомісячним донором</a>.
@@ -6738,19 +6727,13 @@ uk:
         project_settings_desc: |
           Пам'ятайте, це не дає проектам дозволу на доступ до ваших прихованих координат або на надсилання вам оновлень. Щоб надати ці дозволи загалом чи вибірково, ви маєте долучитися до цих проєктів.
         same_day_geoprivacy_protection: Конфіденційність геоданих одного дня
-        search_place_help_html: |
-          Місце за промовчання для пошуку спостережень.
-        scientific_name_first_desc: |
-          Показувати наукові назви перед народними.
         taxon_change_desc: |
           Коли таксони на %{site_name} зливаються або перейменовуються, ваші спостереження, таксони у списках, визначення та ін. будуть автоматично оновлені відповідно до нової таксономії, якщо ця зміна однозначна. Якщо ви відмовляєтеся від цього або зміна неоднозначна (напр., розділення), ви отримаєте оновлення про зміну з посиланням на інструмент, яким можна оновити свій доробок вручну, за вашим бажанням.
-        thanks_for_supporting_us!: Дякуємо за підтримку!
         this_only_applies_to_traditional_projects: |
           Це відноситься тільки до традиційних проєктів. Ви не можете виключити спостереження
           зі збірних або парасолькових проєктів, які по суті зберігаються результати пошукових запитів.
           Ви можете прочитати більше
           <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тут</a>.
-        youve_used_all_of_your_blocks: Ви використали всі свої блокування. Розблокуйте когось, щоб додати інший.
       recent:
         about_recent_users: Детальніше
         definitions_html: <dl> <dt>Ймовірно, спамер</dt> <dd> Користувач, який ймовірно є спамером. Це значить, що він не має спостережень чи визначень, але вони мають опис профілю. </dd> <dt>Автоматично спамер</dt> <dd> Спамер, якого автоматично було позначено як спамера системою. </dd> <dt>Спамер, позначений вручну</dt> <dd> Спамер, якого вручну було позначено як спамера куратором сайту. </dd> <dt>Помилково позначені</dt> <dd> Користувачі, яких було позначено як спамерів, але прапорці були зняті кураторами сайту, оскільки вони не були спамерами. </dd> </dl>
@@ -6879,7 +6862,7 @@ uk:
       4: ср
       5: чт
       6: пт
-      7: нд
+      7: сб
     formats:
       #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
       default: '%Y-%m-%d'

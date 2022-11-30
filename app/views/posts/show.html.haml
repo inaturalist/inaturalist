@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = t(:x_journal_middot, :user => @parent_display_name).html_safe
+  = t(:x_journal_middot, user: @parent.journal_display_name).html_safe
   = @title = @post.title
 - content_for(:extracss) do
   = stylesheet_link_tag "lists", "posts/show"
@@ -32,9 +32,9 @@
       - if @parent.is_a?(Project)
         = render :partial => 'shared/prevnext', :locals => {                                  |
             :prev_item => @previous,                                                          |
-            :prev_url => @previous ? project_journal_post_path(@parent_slug, @previous) : '', |
+            :prev_url => @previous ? project_journal_post_path(@parent.journal_slug, @previous) : '', |
             :next_item => @next,                                                              |
-            :next_url => @next ? project_journal_post_path(@parent_slug, @next) : ''          |
+            :next_url => @next ? project_journal_post_path(@parent.journal_slug, @next) : ''          |
           }
       - elsif @parent.is_a?( Site )
         = render partial: 'shared/prevnext', locals: {
@@ -56,7 +56,7 @@
         = @post.title
       - if (@parent.is_a?(Project) && logged_in? && @display_project.editable_by?(current_user))
         #tools.buttonrow
-          = link_to t(:edit), edit_project_journal_post_path(:project_id => @parent_slug, :id => @post.id), |
+          = link_to t(:edit), edit_project_journal_post_path(project_id: @parent.journal_slug, id: @post.id), |
             :id => "edit_post_button", :class => "button"                                                   |
           -#
           = link_to t(:delete), delete_project_journal_post_path(@parent, @post), |
@@ -66,8 +66,8 @@
             :class => "minor delete button"                                       |
       - elsif logged_in? && current_user.id == @post.user_id
         #tools.buttonrow
-          = link_to t(:edit), edit_journal_post_path(:login => @parent_slug, :id => @post.id), |
-            :id => "edit_post_button", :class => "button"                                      |
+          = link_to t(:edit), edit_journal_post_path(login: @parent.journal_slug, id: @post.id), |
+            id: "edit_post_button", class: "button"                                      |
           -#
           = link_to t(:delete), post_path(@post),                      |
             :data => {:confirm => t(:are_you_sure_you_want_to_delete_this_post)}, |

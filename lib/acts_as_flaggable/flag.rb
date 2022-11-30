@@ -61,6 +61,7 @@ class Flag < ActiveRecord::Base
     :resolved_at
   ], message: :already_flagged, on: :create
   validate :flaggable_type_valid
+  validate :flag_not_about_duplicate, on: :create
 
   def to_s
     "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
@@ -72,6 +73,14 @@ class Flag < ActiveRecord::Base
     else
       errors.add(:flaggable_type, "can't be flagged")
     end
+  end
+
+  def flag_not_about_duplicate
+    return true unless %w(Observation Photo).include?( flaggable_type )
+
+    return true unless flag.to_s.downcase.include? ( "duplicate" )
+
+    errors.add( :flag, :not_about_duplicate )
   end
 
   def notify_flaggable_on_create

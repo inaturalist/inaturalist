@@ -245,7 +245,6 @@ pl:
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Informacje
-  about_blocking: O blokowaniu
   about_charts: O wykresach
   about_community_taxa: O taksonach społeczności
   about_complete_taxa: O kompletnych taksonach
@@ -253,7 +252,6 @@ pl:
   about_editing_observation_fields: O edytowaniu pól obserwacji
   about_license_options: O opcjach licencji
   about_licenses: O licencjach
-  about_muting: O wyciszaniu
   #Header for a section describing taxon names
   about_names: O nazwach
   #Title for a section providing a text description of a place, @vow_or_con
@@ -261,9 +259,10 @@ pl:
   about_place: "O %{place}"
   about_places: O lokalizacjach
   about_taxon_ranges: O zasięgach taksonów
-  about_the_cc_licenses: O licencjach Creative Commons
+  about_taxon_ranges_desc: |
+    Zasięgi taksonów wyrażają globalne rozmieszczenie taksonu. Zasięgi taksonów
+    zazwyczaj pochodzą z Czerwonej Listy IUCN.
   about_the_network: O sieci
-  about_these_licenses: O tych licencjach
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
@@ -311,7 +310,6 @@ pl:
   active_taxon_status: Aktywny
   active_users: Aktywni użytkownicy
   activity: Aktywność
-  activity_settings: Ustawienia aktywności
   adapted_by_name_from_a_work_by_original: "Zaadaptowany przez %{name} na podstawie pracy autorstwa %{original}"
   add: Dodaj
   add_a_batch_of_observations: Dodaj serię obserwacji
@@ -367,7 +365,7 @@ pl:
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Dodaj tekst pochyły
   add_muted_users: Dodaj wyciszonego użytkownika
-  add_new_lexicon: Dodaj nowy język
+  add_new_lexicon: Dodaj nowy leksykon
   add_new_photos_by_their_ids: Dodaj nowe zdjęcia używając ich Flickr ID (zdjęcia muszą być objęte licencją Creative Commons!)
   add_new_place: Dodaj nową lokalizację
   add_new_rule: Dodaj nową regułę
@@ -597,8 +595,6 @@ pl:
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: "&laquo; Wszystkie grupy taksonomiczne"
   all_updates: Wszystkie aktualizacje
-  all_your_observations_will_default_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
-  all_your_observations_will_default_to_this_time_zone: Wszystkie twoje obserwacje będą przypisane do tej strefy czasowej, chyba że wskażesz inaczej.
   allow_curator_access: Zezwalaj na dostęp kuratorom
   allow_project_curators_to_view_your_private_coordinates: Zezwalaj opiekunom projektu na dostęp do ukrytych współrzędnych
   allowed_html: Dozwolony HTML
@@ -609,6 +605,7 @@ pl:
   alphabetical_order: Kolejność alfabetyczna
   already_have_an_account_log_in_html: Masz już konto? <strong>Zaloguj się.</strong>
   amphibians: płazy
+  analyze_ids: Analizuj oznaczenia
   ancestor_taxon: Takson przodek
   and: i
   and_other_taxa: "&amp; Inne taksony"
@@ -653,6 +650,7 @@ pl:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplikacje
+  apply_app_owner: Aplikuj
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Aplikuj
@@ -782,12 +780,15 @@ pl:
   back_to_suggestions: Wróć do sugestii
   back_to_taxon: "Wróć do %{defaulttaxon}"
   back_to_taxon_changes: "Wróć do zmian w taksonie"
+  back_to_users_calendar: "Wróć do kalendarza użytkownika %{user}"
+  back_to_users_lists: "Wróć do list użytkownika %{user}"
   back_to_viewing: "Wróć do przeglądania <i>%{taxon}</i>"
   back_to_x: "Wróć do %{noun}"
   back_to_x_assessment: "Wróć do ocen projektu %{project}"
   back_to_x_history: "Wróć do historii %{x}"
   back_to_x_journal: "Wróć do dziennika %{user}"
   back_to_x_blog: "Wróć do bloga %{x}"
+  back_to_your_calendar: Wróć do swojego kalendarza
   back_to_your_dashboard: Wróć do swojej strony głównej
   back_to_your_lists: Wróć do swoich list
   back_to_your_journal: Wróć do swojego dziennika
@@ -802,7 +803,6 @@ pl:
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
-  because_of: z powodu
   before_importing_photos: przed zaimportowaniem zdjęć
   bg_color: Kolor tła
   bio: O mnie
@@ -811,7 +811,6 @@ pl:
   birds: ptaki
   birthday: Urodziny
   black: czarny
-  block_user: Zablokuj użytkownika
   block_removed: Blokada została zdjęta
   blocked_users: Zablokowani użytkownicy
   blog_widget: Widżet bloga
@@ -822,7 +821,6 @@ pl:
   bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: Pogrubiony tekst
-  bounding_box: Prostokąt ograniczający
   breadcrumbs: Okruszki chleba
   brief_caption: Krótki podpis
   brown: brązowy
@@ -840,12 +838,14 @@ pl:
   by_you: Przez Ciebie
   calendar: Kalendarz
   calendars_only_show_x_observations_at_time: Kalendarze pokazują tylko %{x} obserwacji na raz
+  callback_url: Adres URL wywołania zwrotnego
   cancel: Anuluj
   cant_edit_or_delete_hidden_content: Nie możesz edytować ani usuwać treści ukrytych przez kuratorów strony
   cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Żyjące w niewoli
   captive_cultivated: Żyje w niewoli / Jest hodowany
+  captive_observations: Obserwacje organizmów w niewoli
   card: Karta
   casual: nieformalny
   casual_: Nieformalny
@@ -966,6 +966,10 @@ pl:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Skomentuj
   comment_deleted: Komentarz usunięty
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentarz ukryty
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentarz odkryty
   comments: Komentarze
   comments_by_me: Moje komentarze
   comments_have_been_disabled: Komentarze zostały wyłączone
@@ -1371,7 +1375,6 @@ pl:
   donate: WSPOMÓŻ
   done: Gotowe
   dont_have_an_account_sign_up_html: Nie masz konta? <strong>Zarejestruj się.</strong>
-  dont_send_me_email: "Nie wysyłaj mi żadnych e-maili!"
   dont_use_double_quotes: Nie używaj znaku cudzysłowu nigdzie indziej
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -1452,7 +1455,6 @@ pl:
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
-  email_settings: Ustawienia powiadomień e-mail
   embed: 'Osadź'
   embed_place_widget: Osadź widget miejsca
   embed_this_assessment: Osadź tę ocenę
@@ -1472,10 +1474,8 @@ pl:
     endemic: Endemiczny
     introduced: Introdukowany
     invasive: Inwazyjny
-    managed: Zarządzane
     native: Rodzimy
-    naturalised: Introdukowany
-  establishment_means: Sposoby ustanowienia
+    naturalised: Naturalizowany
   event_in_progress: Wydarzenie w toku
   event_stats: Statystyki wydarzenia
   event_url: URL wydarzenia
@@ -1618,7 +1618,6 @@ pl:
   flag_this_observation: Zgłoś obserwację
   flag_this_photo: Zgłoś zdjęcie
   flag_this_sound: Zgłoś nagranie
-  flagged: zgłosił
   flagged_: Zgłoszono
   flagged_for_curation: Zgłoszone do naprawy
   flagged_taxon: Zgłoszony takson
@@ -1764,9 +1763,12 @@ pl:
   identify_title: "Oznaczaj"
   identification: oznaczenie
   identification_by_user: Oznaczenie użytkownika %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Oznaczenie usunięte.
   identification_saved: "Oznaczenie zapisane!"
+  #Notification when an identification has been updated
   identification_updated: Oznaczenie zaktualizowane!
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Oznaczenie wycofane.
   identifications: Oznaczenia
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
@@ -1800,6 +1802,7 @@ pl:
   improving: Ulepszony
   in_n: "w %{n}"
   in_place_x: w miejscu %{place}
+  inaturalist_network: Sieć iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
   increase_brightness: Zwiększ jasność
@@ -1891,6 +1894,7 @@ pl:
   last_active_with_date: "Ostatnia aktywność: %{date}"
   last_confirmed_observation: Ostatnia potwierdzona obserwacja
   last_observation: Ostatnia obserwacja
+  last_observation_caps: OSTATNIA OBSERWACJA
   last_seen: Ostatnio widziany
   last_year: Poprzedni rok
   lat: Szer.
@@ -1928,25 +1932,32 @@ pl:
     Pamiętaj żeby <a href="%{url}">zmienić hasło</a> dla nowej wersji.
   let_us_walk_you_through: Poprowadzimy Cię przez główne funkcje strony.
   lexicon: Leksykon
+  lexicon_cannot_contain_words: "nie można zawierać następujących słów: %{words}"
   lexicons:
     scientific_names: Nazwy naukowe
     afrikaans: Afrikaans
     albanian: Albański
+    arabic: arabski
+    armenian: ormiański
     bengali: Bengalski
+    bulgarian: bułgarski
     catalan: Kataloński
     cebuano: Cebuano
     chinese_simplified: Chiński (uproszczony)
     chinese_traditional: Chiński (tradycyjny)
     creole_french: Kreolski (francuski)
     creole_portuguese: Kreolski (portugalski)
+    croatian: chorwacki
     czech: Czeski
     danish: Duński
     davawenyo: Davawenyo
     dutch: Holenderski
     english: Angielski
     estonian: Estoński
+    faroese: farerski
     finnish: Fiński
     french: Francuski
+    galician: galicyjski
     gela: Gela
     german: Niemiecki
     greek: Grecki
@@ -1956,21 +1967,33 @@ pl:
     hungarian: Węgierski
     icelandic: Islandzki
     ilokano: Iloko
+    indonesian: indonezyjski
     italian: Włoski
     japanese: Japoński
     korean: Koreański
     latvian: Łotewski
     lithuanian: Litewski
     luxembourgish: Luksemburski
+    malay: malajski
+    malayalam: malajalam
     maltese: Maltański
     maori: Maoryjski
+    maya: maya
     misima_paneati: Misima-Paneati
+    mongolian: mongolski
+    nahuatl: nahuatl
     norwegian: Norweski
     occitan: Oksytański
+    ojibwe: odżibwe
+    palauan: palau
     pangasinan: Pangasinan
+    polish: polski
     portuguese: Portugalski
     romanian: Rumuński
     russian: Rosyjski
+    setswana: setswana
+    sinhala: syngaleski
+    slovak: słowacki
     spanish: Hiszpański
     swedish: Szwedzki
     tagalog: Tagalski
@@ -1978,16 +2001,19 @@ pl:
     thai: Tajski
     tokelauan: Tokelau
     turkish: Turecki
+    ukrainian: ukraiński
     waray_waray: Warajski
+    visayan: bisajski
   less: Mniej
   license: Licencja
   life: Życie
   life_list: "Lista życiowa użytkownika %{user}"
   linear_scale_label: Liniowo
   link: Łącze
-  link_or_unlink_your_facebook_account: Połącz lub usuń swoje konto Facebook
-  link_or_unlink_your_flickr_account: Połącz lub usuń swoje konto Flickr
-  link_or_unlink_your_google_account: Połącz lub usuń swoje konto Google
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: Link do kodu autoryzacyjnego
   link_your_facebook_account: Połącz swoje konto Facebook
   link_your_flickr_account: Połącz swoje konto Flickr
   link_your_google_account: Połącz swoje konto Google
@@ -1996,6 +2022,8 @@ pl:
   linked_facebook_password: "Nigdy nie będziemy cię prosić o twoje hasło do Facebooka (ale Facebook może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Facebook.com). Nie będziemy też zmieniać twoich danych na Facebooku, chyba że będziesz tego chcieć."
   linked_flickr: "Twoje konto na %{site_name} jest obecnie połączone z twoim kontem na Flickrze."
   linked_flickr_password_html: "<strong>Nigdy nie będziemy cię prosić o twoje hasło do Flickra</strong> (ale Flickr może; upewnij się jednak, czy guzik, który chcesz nacisnąć, łączy cię z Flickr.com)."
+  #Text inserted into a textarea when the link button is clicked but no text was selected
+  linked_text: linkowany tekst
   linkedin: LikedIn
   list: Lista
   list_deleted: Lista usunięta.
@@ -2025,7 +2053,6 @@ pl:
   loading_tags: "Wczytywanie tagów..."
   loading_taxa_from_your: "Wczytywanie taksonów z twoich obserwacji..."
   loading_wikipedia_description: "Wczytywanie opisu z Wikipedii..."
-  locale_description: Ustawienia regionalne dostosowują język i format daty.
   locales_: Preferencje językowe
   locales:
     ar: Arabski
@@ -2255,7 +2282,6 @@ pl:
   must_be_observed_before: musi być zaobserwowany przed %{operand}
   must_be_less_than_x_MB: "Musi mieć mniej niż %{x} MB"
   must_have_x: "musi mieć %{x}"
-  mute_user: Wycisz Użytkownika
   mute_removed: Wyciszenie usunięte
   muted_users: Wyciszeni Użytkownicy
   n_ago: "%{n} temu"
@@ -2280,9 +2306,12 @@ pl:
   needs_id: potrzebuje oznaczenia
   needs_id_: Potrzebuje oznaczenia
   needs_id_expandable_html: "<span class='full'>Potrzebuje </span>oznaczenia"
+  #Column header in a table listing iNaturalist Network members
+  network_member: Członek sieci
   new: Nowi
   new_and_noteworthy: Nowe i godne uwagi
   new_announcement: Nowe ogłoszenie
+  new_application: Nowa aplikacja
   new_assessment: Nowa ocena
   new_check_list: Nowa checklista
   new_check_list_for: "Stwórz nową checklistę dla %{place} &raquo;"
@@ -2343,6 +2372,7 @@ pl:
   no_identifications_added:
     current_user: Nie dodałeś żadnych oznaczeń do obserwacji innych użytkowników.
     user: "%{user} nie dodał żadnych oznaczeń do obserwacji innych użytkowników."
+  no_ids: "Liczba oznaczeń"
   no_ids_have_been_suggested_yet: Nie zaproponowano jeszcze oznaczenia
   no_its_as_good_as_it_can_be: Nie, jest tak dobrze jak może być
   no_favorites_added:
@@ -2394,6 +2424,8 @@ pl:
   no_species_on_this_list_for_owner: |
     Możesz zacząć dodawać gatunki do tej listy używając narzędzia "Dodaj do swojej listy" po prawej stronie.
   no_subject_parens: "(Brak tematu)"
+  no_such_wiki_page: Nie ma takiej strony.
+  no_such_wiki_page_html: Nie ma takiej strony. Czy chcesz <a href="%{new_url}">ją utworzyć</a>?
   no_suggestions_available: Sugestie nie są dostępne
   no_summary_from_wikipedia: Brak podsumowania z Wikipedii
   no_summary_has_been_set: Nie ustawiono podsumowania.
@@ -2419,9 +2451,6 @@ pl:
   notifications: Powiadomienia
   notify_me_of_mentions: Powiadamiaj mnie o wzmiankach (np. @użytkownik)
   notify_me_of_mentions_description: "Jeśli wyłączysz tę opcję, nie będziesz otrzymywać żadnych powiadomień, gdy ktoś wspomni o Tobie na %{site_name}."
-  notify_me_about_redundant_identifications: Powiadamiaj mnie o potwierdzeniu oznaczeń
-  notify_me_about_redundant_identifications_desc: |
-    Otrzymuj powiadomienia o oznaczeniach, które pasują do Twoich własnych oznaczeń. Jeżeli z tego zrezygnujesz, będziesz otrzymywać tylko powiadomienia o oznaczeniach taksonów, które nie pasują do taksonu w Twoim własnym oznaczeniu.
   number_of_observations: Ilość obserwacji
   number_of_observers_value: "Liczba obserwatorów: %{number}"
   number_of_observers: "Liczba obserwatorów"
@@ -2567,7 +2596,6 @@ pl:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
   or_all_caps: LUB
-  or_if_you_dont_want_email: "Lub gdy nie chcesz otrzymywać żadnych e-maili..."
   orange: pomarańczowy
   order: Kolejność
   order_by: Sortuj według
@@ -2651,6 +2679,12 @@ pl:
     large: duży
     original: oryginalny
   photos_updated: Zdjęcia zaktualizowane.
+  data_transfer_consent_desc_title: O zgodzie na przekazanie danych osobowych
+  data_transfer_consent_label: |
+    Wyrażam zgodę na przekazanie moich danych osobowych do Stanów Zjednoczonych Ameryki
+  data_transfer_consent_child_label: |
+    Wyrażam zgodę na przekazanie danych osobowych mojego dziecka do
+    Stanów Zjednoczonych Ameryki
   pin_verb: Przypnij
   pink: różowy
   place: Lokalizacja
@@ -3062,8 +3096,8 @@ pl:
   project_was_successfully_created: Projekt został pomyślnie utworzony.
   project_was_successfully_updated: Profil został pomyślnie zaktualizowany.
   projects: Projekty
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z miejsca %{place}"
-  projects_in_x: "Projekty w %{x}"
   projects_you_admin: Projekty, którymi administrujesz
   protozoans: pierwotniaki
   public_domain: Domena publiczna
@@ -3220,7 +3254,6 @@ pl:
   reason: Powód
   recaptcha_verification_failed: Weryfikacja reCAPTCHA nie powiodła się
   receive_email_notifications: Otrzymuj powiadomienia e-mail
-  receive_email_notifications_when_people_leave_you: Otrzymuj powiadomienia e-mail o
   recent: Najnowsze
   recent_observations_: Najnowsze obserwacje
   recent_observations_by: "Ostatnie obserwacje wg %{login}"
@@ -3273,6 +3306,8 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Resetuj
   reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
@@ -3280,8 +3315,12 @@ pl:
   resolved_by_user_on_date_html: Rozstrzygnięte przez %{user} dnia %{date}
   restore: Przywróć
   restoring: Przywracanie...
+  result_window_too_large_error: |
+    Liczba stron razy liczba wyników na stronie nie może przekroczyć 10000. Spróbuj
+    zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
   reviewed: Przejrzane
+  revoke_privacy_consent_warning: "Jedynym sposobem na cofnięcie tej zgody jest usunięcie konta i wszystkich powiązanych danych."
   rg_observations: Obserwacje SB
   role: Rola
   rotate_left: Obrót w lewo
@@ -3304,6 +3343,7 @@ pl:
   save_observation: Zapisz obserwację
   save_photos: Zapisz zdjęcia
   saved: Zapisano
+  saved_at_time: Zapisano o %{time}
   saving: "Zapisywanie..."
   saving_num_of_count_observations:
     one: Zapisywanie obserwacji...
@@ -3354,7 +3394,6 @@ pl:
   show_less: Pokaż mniej
   show_more: Pokaż więcej
   show_off_your_recent_observations: Pokaż swoje ostatnie obserwacje na swoim blogu lub stronie internetowej!
-  show_scientific_name_first: Pokazuj najpierw nazwy naukowe
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
   sign_in_with_google: Zaloguj się z Google
@@ -3443,7 +3482,8 @@ pl:
   stop_testing: Przestań testować
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: SKLEP
+  store: Sklep
+  store_caps: SKLEP
   studies_that_used_inaturalist_data_in_year: Prace, które wykorzystywały dane z iNaturalist w roku %{year}
   stuff_just_added: "Rzeczy, które właśnie dodałeś..."
   subject_resolved_noun_html: "%{subject} rozstrzygnął %{noun}"
@@ -3471,6 +3511,66 @@ pl:
   taxon: Takson
   taxon_autocomplete_placeholder: Ptaki, monarcha, itp.
   taxon_geoprivacy: Geoprywatność taksonu
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} to %{rank} płazów z 1 obserwacją"
+    few: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} płazów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} płazów z %{count} obserwacji"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} to %{rank} ptaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ptaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ptaków z %{count} obserwacji"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} to %{rank} ssaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} ssaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} ssaków z %{count} obserwacji"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} to %{rank} gadów z 1 obserwacją"
+    few: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} gadów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} gadów z %{count} obserwacji"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} to %{rank} roślin z 1 obserwacją"
+    few: "%{taxon} to %{rank} roślin z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} roślin z %{count} obserwacji"
+    other: "%{taxon} to %{rank} roślin z %{count} obserwacji"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} to %{rank} promieniopłetwych z 1 obserwacją"
+    few: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} promieniopłetwych z %{count} obserwacji"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} to %{rank} zwierząt z 1 obserwacją"
+    few: "%{taxon} to %{rank} zwierząt z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} zwierząt z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} zwierząt z %{count} obserwacji"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} to %{rank} owadów z 1 obserwacją"
+    few: "%{taxon} to %{rank} owadów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} owadów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} owadów z %{count} obserwacji"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} to %{rank} pajęczaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} pajęczaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} pajęczaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} pajęczaków z %{count} obserwacji"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} to %{rank} grzybów z 1 obserwacją"
+    few: "%{taxon} to %{rank} grzybów z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} grzybów z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} grzybów z %{count} obserwacji"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} to %{rank} pierwotniaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} pierwotniaków z %{count} obserwacji"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} to %{rank} mięczaków z 1 obserwacją"
+    few: "%{taxon} to %{rank} mięczaków z %{count} obserwacjami"
+    many: "%{taxon} to %{rank} mięczaków z %{count} obserwacjami"
+    other: "%{taxon} to %{rank} mięczaków z %{count} obserwacji"
   taxon_is_threatened_coordinates_hidden: Takson jest zagrożony, współrzędne są domyślnie ukryte
   taxon_is_threatened_coordinates_hidden_desc: |
     Jeden z taksonów zasugerowanych w oznaczeniach lub jeden z taksonów zawierających którykolwiek z tych taksonów jest znany jako rzadki i/lub zagrożony, dlatego miejsce tej obserwacji zostało ukryte.
@@ -3485,6 +3585,7 @@ pl:
   taxon_colors: Kolory taksonu
   taxon_curators: Kuratorzy taksonu
   taxon_framework_deviations_with_count_html: "Odchylenia: %{count}"
+  taxon_history_notice: Historia została wprowadzona w lutym 2022 r., więc żadna historia nie jest dostępna przed tą datą.
   taxon_merge: scalenie taksonów
   taxon_name: Nazwa taksonu
   taxon_name_must_match_an_existing_taxon_in_our_database: Nazwa taksonu musi pasować do istniejącego taksonu w naszej bazie danych
@@ -3512,7 +3613,6 @@ pl:
   taxonomy_details_for: Szczegóły taksonomii dla
   taxonomy_settings: Ustawienia taksonomii
   teachers_guide: Przewodnik nauczyciela
-  tell_everyone_a_little_about_you: Opowiedz wszystkim trochę o sobie
   tell_the_world_a_little_about_yourself: Powiedz nam coś o sobie
   tell_us_why: Powiedz nam dlaczego...
   terrain: teren
@@ -3533,6 +3633,8 @@ pl:
   the_community_id_requires_at_least_two_identifications: Oznaczenie społeczności wymaga co najmniej dwóch oznaczeń.
   the_following_observations_could: "Następujące obserwacje nie mogły zostać dodane do %{link}"
   the_following_photos_have_been_tagged: "Następujące zdjęcia zostały otagowane:"
+  the_name_of_the_taxon_dashes: Nazwa taksonu, spacje zastąpione myślnikami.
+  the_name_of_the_taxon_underscores: Nazwa taksonu, spacje zastąpione podkreśleniami.
   the_observation_was_already_added_to_that_project: Obserwacja została już dodana do tego projektu.
   the_people_of_inat: "Ludzie z %{site_name}"
   the_species_listed_below_were_not_found_in_the_site_database: |
@@ -3573,6 +3675,64 @@ pl:
   threatened: Gatunki zagrożone
   time_: czas
   time_ago: "%{time} temu"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_argentina_buenos_aires: Czas w Argentynie
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: Czas w Kolumbii
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Czas w Gwatemali
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: Czas w Boliwii
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: Czas w Peru
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: Czas w Adelaide
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_brisbane: Czas w Brisbane
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_melbourne: Czas w Melbourne
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_perth: Czas w Perth
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_sydney: Czas w Sydney
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Czas zachodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Czas zachodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Czas wschodnioeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Czas środkowoeuropejski
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Czas środkowoeuropejski
   #As in the title of a book or a blog post
   title: tytuł
   title_and_description: "Tytuł i opis"
@@ -3583,8 +3743,10 @@ pl:
   today: Dzisiaj
   too_many_results: Zbyt wiele wyników
   tools: Narzędzia
+  top_identifier_caps: NAJCZĘŚCIEJ OZNACZAJĄCY
   top_identifiers: Najczęściej oznaczający
   top_identifiers_of_taxon: Najczęściej oznaczający %{taxon}
+  top_observer_caps: NAJCZĘŚCIEJ OBSERWUJĄCY
   top_observers: Najczęściej obserwujący
   total: Razem
   total_members: Członków łącznie
@@ -3601,6 +3763,9 @@ pl:
   type_taxon_name: "Wpisz nazwę taksonu"
   unique_identifier_of_this_taxon: Unikatowy identyfikator tego taksonu w źródłowej bazie danych.
   unique_observers: unikalnych obserwatorów
+  unknown: Nieznany
+  unknown_error: Nieznany błąd
+  unknown_rank: '(Nieznana ranga)'
   unfollow: Przestań obserwować
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
@@ -3700,6 +3865,9 @@ pl:
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
   users_favorites: "Ulubione użytkownika %{user}"
+  users_identifications: "Oznaczenia użytkownika %{user}"
+  users_journal: "Dziennik użytkownika %{user}"
+  users_lists: "Listy użytkownika %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Projekty użytkownika %{user}"
   value: Wartość
@@ -3709,12 +3877,12 @@ pl:
   view_all: Zobacz wszystkie
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
-  view_all_n: "Zobacz wszystkie %{n}"
   view_all_observations: Zobacz wszystkie obserwacje
   view_all_photocount_photos: "Zobacz wszystkie %{photo_count} zdjęcia"
   view_assessment: Zobacz ocenę
   view_check_list_page: Zobacz stronę checklisty
   view_details: Zobacz szczegóły
+  view_dynamic_lifelist_: ZOBACZ DYNAMICZNĄ LISTĘ ŻYCIA
   view_flag: Zobacz zgłoszenie
   view_flags: Zobacz zgłoszenia
   view_flags_for_x_html: "Zobacz zgłoszenie dla %{x}"
@@ -3746,10 +3914,8 @@ pl:
   view_taxon_page: Zobacz stronę taksonu
   view_taxon_page_for_this_x: "Zobacz stronę taksonu dla tego %{x}"
   view_taxononomy_details_for_taxon: "Zobacz szczegóły taksonomii dla %{taxon}"
-  view_the_observation: Zobacz obserwację
   view_user_observations: "Zobacz obserwacje %{user}"
   view_x: "Zobacz %{x}"
-  view_year_stats_for_site: "Zobacz statystyki dla %{site} z %{year}"
   view_your_inbox: Zobacz skrzynkę odbiorczą
   view_your_observations: Zobacz swoje obserwacje
   view_yours: Zobacz swoje
@@ -3829,6 +3995,9 @@ pl:
   yes_find_them!: "Tak, znajdź je!"
   yes_i_want_to_join: Tak, chcę dołączyć
   yesterday: Wczoraj
+  yir_donate_banner_inaturalist_in_year: "INATURALIST W %{year}:"
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist potrzebuje Twojego wsparcia
   you: ty
   you_: Ty
   you_appear_offline_try_again: |
@@ -3885,7 +4054,6 @@ pl:
   your_comment_was_saved: Twoja zawartość została zapisana
   your_content: Twoja zawartość
   your_contributions_to_project: "Twój wkład w %{project_title}"
-  your_default_time_zone: Twoja domyślna strefa czasowa
   your_email_address: Twój adres email
   your_favorites: Twoje ulubione
   your_flickr_account: Twoje konto Flickr
@@ -4115,6 +4283,17 @@ pl:
           "Alive or Dead=Dead": Martwy
           "Plant Phenology=Flowering": Kwitnie
           "Plant Phenology=Fruiting": Owocuje
+          "Life Stage=Adult": Osobnik dorosły
+          "Life Stage=Egg": Jajo
+          "Life Stage=Larva": Larwa
+          "Life Stage=Juvenile": Osobnik młodociany
+          "Life Stage=Nymph": Nimfa
+          "Life Stage=Pupa": Poczwarka
+          "Life Stage=Subimago": Subimago
+          "Life Stage=Teneral": Osobnik teneralny
+          "Sex=Cannot Be Determined": Nie można określić
+          "Sex=Female": Samica
+          "Sex=Male": Samiec
           unannotated: Brak adnotacji
         max_photos_desc: |
           Takson może mieć maksymalnie %{max} zdjęć. Musisz usunąć
@@ -4188,14 +4367,8 @@ pl:
           Szczegóły urządzenia, takie jak marka i model telefonu komórkowego
         project_settings_desc: |
           Pamiętaj, że nie daje to projektom uprawnień do dostępu do twoich ukrytych współrzędnych lub wysyłania aktualizacji. Musisz dołączyć do projektów, aby przyznać te uprawnienia, lub przyznać je indywidualnie dla każdego przypadku.
-        search_place_help_html: |
-          Domyślna lokalizacja dla wyszukiwania obserwacji.
-        scientific_name_first_desc: |
-          Pokazuj nazwy naukowe przez nazwami zwyczajowymi.
         taxon_change_desc: |
           Gdy taksony na %{site_name} są scalane lub zmieniane są ich nazwy, Twoje obserwacje, taksony znajdujące się na listach, oznaczenia itp. zostaną automatycznie zaktualizowane do nowych taksonów, jeśli zmiana ta jest jednoznaczna. Jeśli zrezygnujesz z otrzymywania powiadomień o zmianach w taksonie lub zmiana jest niejednoznaczna (np. podział), otrzymasz aktualizację dotyczącą zmiany razem z linkiem do narzędzia, którego możesz użyć do ręcznej aktualizacji swojej zawartości.
-        thanks_for_supporting_us!: Dziękujemy za wsparcie!
-        youve_used_all_of_your_blocks: Wykorzystałeś wszystkie swoje blokady. Usuń blokadę, aby dodać inną.
       recent:
         about_recent_users: O
         definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
@@ -4536,14 +4709,23 @@ pl:
         published_at: Publikacja
       listed_taxon:
         occurrence_status_level: Stopień statusu występowania
-        establishment_means: Sposoby ustanowienia
       message:
         subject: Temat
         body: Treść
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Powód
       observation:
         observed_on: data obserwacji
       observation_field_value:
         value: 'wartość'
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: Adres URL wywołania zwrotnego
+        #Unique identifier for an application
+        uid: ID
       place_taxon_name:
         position: Pozycja
       post:
@@ -4581,6 +4763,8 @@ pl:
       taxon:
         auto_description: Automatyczny opis
         auto_photos: Automatyczne zdjęcia
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Status ochronny
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktywny?
         locked: Zablokowany

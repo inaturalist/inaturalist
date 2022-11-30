@@ -40,7 +40,7 @@ function showFilters(link, options) {
     $(link).addClass('open')
   }
   $('#filters input[name=filters_open]').val(true)
-  if ($('#filters .simpleTaxonSelector').length == 0) {
+  if ( $('#filters .simpleTaxonSelector').length == 0 && !options.skipTaxonAutocomplete ) {
     $('#filters input[name=taxon_name]').taxonAutocomplete()
   }
   if ( $( "#place_filter .ui-widget" ).length === 0 ) {

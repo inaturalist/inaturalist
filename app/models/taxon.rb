@@ -106,7 +106,6 @@ class Taxon < ApplicationRecord
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
 
   accepts_nested_attributes_for :source
-  accepts_nested_attributes_for :conservation_statuses, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
@@ -421,6 +420,7 @@ class Taxon < ApplicationRecord
     "larva",
     "lichen",
     "lizard",
+    "orange",
     "pinecone",
     "pupa",
     "pupae",
@@ -1649,7 +1649,7 @@ class Taxon < ApplicationRecord
   end
 
   def global_conservation_status
-    conservation_statuses.select { | cs | cs.place_id.blank? }.sort_by { | cs | cs.iucn.to_i }.last
+    conservation_statuses.select {| cs | cs.place_id.blank? }.sort_by {| cs | cs.iucn.to_i }.last
   end
 
   # TODO: make this work for different conservation status sources
@@ -2127,7 +2127,10 @@ class Taxon < ApplicationRecord
     last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
     return [] if last_committed_split.blank?
 
-    last_committed_split.output_taxa.map do | t |
+    last_committed_split.output_taxa.reject do |t|
+      # skip inactive output taxa when same as the source taxon to prevent an infinite loop
+      t.id == id && !t.is_active?
+    end.map do | t |
       t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     end.flatten.uniq
   end
@@ -2156,6 +2159,92 @@ class Taxon < ApplicationRecord
 
   def flagged_with( _flag, _options = {} )
     elastic_index!
+  end
+
+  def clash_analysis( new_parent_id )
+    if INatAPIService.get( "/identifications", { current: true, exact_taxon_id: id, per_page: 0 } ).total_results.zero?
+      return []
+    end
+
+    new_parent = Taxon.where( id: new_parent_id ).first
+    child_ids = [id]
+    old_parent_ancestor_ids = parent.self_and_ancestor_ids
+    new_parent_ancestor_ids = new_parent.self_and_ancestor_ids
+    narrowed_parents = old_parent_ancestor_ids.reject {| tid | new_parent_ancestor_ids.include? tid }
+    detect_clashes( narrowed_parents, child_ids )
+  end
+
+  def detect_clashes( narrowed_parents, child_ids )
+    results = []
+    narrowed_parents.each do | parent_id |
+      result = {
+        parent_id: parent_id,
+        id_count: 0,
+        percent: 100,
+        num_clashes: 0,
+        sample: nil
+      }
+      params = { current: true, exact_taxon_id: parent_id }
+      params[:per_page] = 0
+      id_count = INatAPIService.get( "/identifications", params ).total_results
+      if id_count.positive?
+        if id_count > 200
+          params[:per_page] = 200
+          id_obs = []
+          ceil = [( id_count / 200 ), 5].min
+          ( 1..ceil ).each do | p |
+            params[:page] = p
+            id_obs << INatAPIService.get( "/identifications", params ).results.map {| r | r["observation"]["id"] }.uniq
+          end
+          id_obs = id_obs.flatten.uniq
+        else
+          params[:per_page] = id_count
+          id_obs = INatAPIService.get( "/identifications", params ).results.map {| r | r["observation"]["id"] }.uniq
+        end
+        params = { id: id_obs[0..499] }
+        obs = INatAPIService.get( "/observations", params ).results
+        id_taxa = []
+        obs.each do | o |
+          id_taxa << o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
+        end
+        id_taxa = id_taxa.flatten
+        id_taxon_array = []
+        obs.each do | o |
+          id_taxon_array << o["identifications"].select {| a | a["current"] == true }.
+            map {| i | { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } }
+        end
+        id_taxon_array = id_taxon_array.flatten.uniq
+        id_taxon_hash = id_taxon_array.map {| a | [a[:id], a[:ancestor_ids]] }.to_h
+        child_desc_ids = id_taxon_hash.
+          select {| taxon, ancestors | ( child_ids.include? taxon ) || ( child_ids & ancestors ).count.positive? }.keys
+        if child_desc_ids.count.positive?
+          freq = id_taxa.group_by( &:itself ).transform_values!( &:size ).sort_by {| _k, v | v }.reverse.to_h
+          sampled_ids = freq[parent_id]
+          clash_frac = child_desc_ids.map {| a | ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
+          sample = []
+          obs.each do | o |
+            next unless o["identifications"].
+              select {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any?
+
+            sample << o
+          end
+          sample = sample.map {| r | r["id"] }
+          result[:num_clashes] = ( id_count * clash_frac ).round
+          result[:sample] = sample
+        else
+          sampled_ids = []
+          obs.each do | o |
+            sampled_ids << o["identifications"].select {| a | a["current"] == true && a["taxon_id"] == parent_id }.count
+          end
+          sampled_ids = sampled_ids.sum
+        end
+        result[:id_count] = id_count
+        percent = id_count > sampled_ids && id_count > 200 ? ( sampled_ids / id_count.to_f * 100 ).round : 100
+        result[:percent] = percent
+      end
+      results << result
+    end
+    results
   end
 
   # Static ##################################################################

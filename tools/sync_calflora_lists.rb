@@ -54,8 +54,8 @@ def work_on_place(place)
   # puts "Created list of #{taxon.name} for #{place.display_name} #{check_list}"
 
   place_name = place.name.gsub(/\s*county\s+/i, '').titleize
-  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text"
-  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{URI.encode(place_name)}&format=text&where-native=f"
+  url = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{CGI.escape(place_name)}&format=text"
+  url_introduced = "http://www.calflora.org/cgi-bin/specieslist.cgi?where-prettyreglist=#{CGI.escape(place_name)}&format=text&where-native=f"
   puts "Requesting #{url}" if OPTS.debug
   page = RestClient.get(url)
   names = begin 

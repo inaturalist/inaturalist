@@ -4,7 +4,7 @@ import { setConfig, updateCurrentUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   return {
-    blind: state.config.blind,
+    config: state.config,
     sideBarHidden: state.config.sideBarHidden
   };
 }
