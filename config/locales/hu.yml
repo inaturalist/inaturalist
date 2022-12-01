@@ -1307,6 +1307,7 @@ hu:
   find_suitable_observations: Megfelelő megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   finished: Elkészült
+  finished_with_page: Az oldal végéhez értél
   first_confirmed_inat_observation: "Első igazolt %{site_name} megfigyelés"
   first_connect_your_provider_account_to_your_site: "Először csatlakoztasd %{provider} fiókodat ide: %{site_name}"
   first_inat_observation: "Első %{site_name} megfigyelés"
@@ -3804,6 +3805,7 @@ hu:
   view_more_observations_from_this_place: Több megfigyelés meógjelenítése innen
   view_more_observations_near_x_place: "Nézz meg több megfigyelést %{place} közelében <nobr>%{site_name} &raquo;</nobr> oldalon"
   view_more_observations_of_x_project: "Tekints meg több <nobr>%{site_name}</nobr> megfigyelést a %{project} projektből."
+  view_more_unreviewed: "További átnézetlenek megtekintése"
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
   view_observations_of_this_taxon_by: 'E taxon megfigyeléseinek megtekintése tőle:'
@@ -4124,6 +4126,7 @@ hu:
         place_admin1_name: A közigazgatási hely neve az országénál egy szinttel lentebb
         place_admin2_name: A közigazgatási hely neve az országénál két szinttel lentebb
       identify:
+        you_reviewed_message: "%{reviewed} megfigyelést néztél át ezen az oldalon (%{pageTotal} közül). Összesen %{total} megfigyelés felel meg a keresési feltételeknek."
         unreview_all_tooltip: "Átnézett státusz visszavonása minden megfigyeléstől az oldalon"
       import:
         date_column_format: YYYY-MM-DD HH:MM
@@ -4672,6 +4675,9 @@ hu:
           other: '%{count} hiba miatt %{model} nem menthető el'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Közlemény
       AssessmentSection: Értékelés szakasz
       Atlas: Térkép
       BlockedUser: Letiltott felhasználó
@@ -4687,6 +4693,11 @@ hu:
       OauthApplication: Alkalmazás
       TaxonLink: Taxonhivatkozás
     attributes:
+      announcement:
+        created_at: 'Létrehozva:'
+        updated_at: 'Frissítve:'
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: Webhely-azonosító
       assessment:
         description: Leírás
       assessment_section:
