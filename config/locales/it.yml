@@ -7297,6 +7297,9 @@ it:
           other: '%{count} errori impediscono a questo %{model} di essere salvato'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Avviso
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
       BlockedUser: Utente Bloccato
@@ -7316,6 +7319,11 @@ it:
       OauthApplication: Applicazione
       TaxonLink: Link del Taxon
     attributes:
+      announcement:
+        created_at: Creato il
+        updated_at: Aggiornato al
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: ID Sito
       assessment:
         description: Descrizione
       assessment_section:
