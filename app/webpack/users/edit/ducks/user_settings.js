@@ -254,11 +254,11 @@ export function resendConfirmation( ) {
 }
 
 export function confirmResendConfirmation( ) {
-  return ( dispatch, getState ) => {
+  return dispatch => {
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_resend_confirmation_prompt" ),
-      confirmText: I18n.t( "yes" ),
+      message: I18n.t( "users_edit_resend_confirmation_prompt_html" ),
+      confirmText: I18n.t( "resend_and_sign_out" ),
       onConfirm: ( ) => {
         dispatch( resendConfirmation( ) );
       }

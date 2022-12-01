@@ -87,9 +87,7 @@ class ConfirmModal extends Component {
         onHide={this.close}
       >
         <Modal.Body>
-          <div className="text">
-            { messageElt || message }
-          </div>
+          <div className="text" dangerouslySetInnerHTML={{ __html: messageElt || message }} />
         </Modal.Body>
         { !hideFooter && (
           <Modal.Footer>

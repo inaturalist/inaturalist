@@ -1867,7 +1867,7 @@ en:
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
-    All users must confirm their email address by August 9, 2022. After that
+    All users must confirm their email address by February 1, 2023. After that
     date anyone who has not confirmed their email address will be unable to
     sign in unless they reset their password. To confirm your email address,
     go to your %{link_start_tag}account settings%{link_end_tag}.
@@ -4504,6 +4504,9 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
+  resend_and_sign_out: Re-send and Sign Out
   resend_confirmation_email: Re-send confirmation email
   # Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
@@ -5703,11 +5706,11 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
-  users_edit_resend_confirmation_prompt: |
+  users_edit_resend_confirmation_prompt_html: |
     After you resend the confirmation email, you will be signed out and you
     will not be able to sign in to your account until you click the link in
-    the email, so make absolutely sure you have entered your email address
-    correctly.
+    the email, so <strong>make absolutely sure you have entered your email address
+    correctly.</strong>
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
