@@ -2210,7 +2210,7 @@ class Observation < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      Observation.where( id: id ).update_all uri: UrlHelper.observation_url( id )
+      Observation.where( id: id ).update_all( uri: UrlHelper.observation_url( id ) )
     end
     true
   end

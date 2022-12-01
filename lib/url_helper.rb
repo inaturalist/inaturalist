@@ -10,7 +10,7 @@ class UrlHelper
     end
 
     def respond_to_missing?( method, include_private = false )
-      UrlHelper.instance.respond_to? method, include_private
+      UrlHelper.instance.respond_to?( method, include_private )
     end
   end
 

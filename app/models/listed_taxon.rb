@@ -756,11 +756,11 @@ class ListedTaxon < ApplicationRecord
       end
     end
     if list
-      ctrl.expire_page UrlHelper.list_path list_id, format: "csv"
-      ctrl.expire_page UrlHelper.list_show_formatted_view_path list_id, format: "csv", view_type: "taxonomic"
-      ctrl.expire_page UrlHelper.list_path list, format: "csv"
-      ctrl.expire_page UrlHelper.list_show_formatted_view_path list, format: "csv", view_type: "taxonomic"
-      ctrl.expire_fragment List.icon_preview_cache_key( list_id )
+      ctrl.expire_page( UrlHelper.list_path( list_id, format: "csv" ) )
+      ctrl.expire_page( UrlHelper.list_show_formatted_view_path( list_id, format: "csv", view_type: "taxonomic" ) )
+      ctrl.expire_page( UrlHelper.list_path( list, format: "csv" ) )
+      ctrl.expire_page( UrlHelper.list_show_formatted_view_path( list, format: "csv", view_type: "taxonomic" ) )
+      ctrl.expire_fragment( List.icon_preview_cache_key( list_id ) )
       ListedTaxon::ORDERS.each do |order|
         ctrl.expire_fragment( UrlHelper.url_for( controller: "observations", action: "add_from_list", id: list_id,
           order: order ) )

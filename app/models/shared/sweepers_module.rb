@@ -17,7 +17,7 @@ module Shared::SweepersModule
     return unless taxon
     expire_listed_taxa(taxon)
     ctrl = ActionController::Base.new
-    ctrl.expire_fragment UrlHelper.url_for( controller: "taxa", action: "photos", id: taxon.id, partial: "photo" )
+    ctrl.expire_fragment( UrlHelper.url_for( controller: "taxa", action: "photos", id: taxon.id, partial: "photo" ) )
     I18N_SUPPORTED_LOCALES.each do | locale |
       [true, false].each do | ssl |
         ctrl.send( :expire_action, UrlHelper.url_for( controller: "taxa", action: "show", id: taxon.id, locale: locale,

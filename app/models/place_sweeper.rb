@@ -23,9 +23,9 @@ class PlaceSweeper < ActionController::Caching::Sweeper
 
   def remove_geometry_page_cache( place )
     ctrl = ActionController::Base.new
-    ctrl.send :expire_page, UrlHelper.place_geometry_path( place, format: "kml" )
-    ctrl.send :expire_page, UrlHelper.place_geometry_path( place.id, format: "kml" )
-    ctrl.send :expire_page, UrlHelper.place_geometry_path( place, format: "geojson" )
-    ctrl.send :expire_page, UrlHelper.place_geometry_path( place.id, format: "geojson" )
+    ctrl.send( :expire_page, UrlHelper.place_geometry_path( place, format: "kml" ) )
+    ctrl.send( :expire_page, UrlHelper.place_geometry_path( place.id, format: "kml" ) )
+    ctrl.send( :expire_page, UrlHelper.place_geometry_path( place, format: "geojson" ) )
+    ctrl.send( :expire_page, UrlHelper.place_geometry_path( place.id, format: "geojson" ) )
   end
 end

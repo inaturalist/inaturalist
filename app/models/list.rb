@@ -183,6 +183,6 @@ class List < ApplicationRecord
 
   def self.icon_preview_cache_key( list )
     list_id = list.is_a?( List ) ? list.id : list
-    UrlHelper.icon_preview_list_url list_id, locale: I18n.locale
+    UrlHelper.icon_preview_list_url( list_id, locale: I18n.locale )
   end
 end
