@@ -5070,11 +5070,19 @@ bg:
         body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Известие
       Atlas: Атлас
       BlockedUser: Блокиран потребител
       #Noun
       Flag: Маркер
     attributes:
+      announcement:
+        created_at: Създадено на
+        updated_at: Обновено на
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: ID на сайтове
       assessment:
         description: Описание
       assessment_section:
