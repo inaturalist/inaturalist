@@ -7555,6 +7555,9 @@ nl:
           other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Bekendmaking
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
       BlockedUser: Geblokkeerde gebruiker
@@ -7574,6 +7577,9 @@ nl:
       OauthApplication: Toepassing
       TaxonLink: Taxonlink
     attributes:
+      announcement:
+        created_at: Aangemaakt op
+        updated_at: Bijgewerkt op
       assessment:
         description: Beschrijving
       assessment_section:
