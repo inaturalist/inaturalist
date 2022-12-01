@@ -125,7 +125,7 @@ class SiteDataExporter
     end
     # If this is a development env, really make sure the password gets passed
     # in. In production this should work without a password
-    if dbconfig[:password] && Rails.env.development?
+    if dbconfig[:password] && !Rails.env.production?
       @psql_cmd = "PGPASSWORD=#{dbconfig[:password]} #{@psql_cmd}"
     end
     @max_obs_id = options[:max_obs_id] || Observation.calculate( :maximum, :id ) || 0
