@@ -2,9 +2,6 @@ fi:
   x_comments:
     one: '1 kommentti'
     other: '%{count} kommenttia'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> kommentti'
-    other: '<span class="count">%{count}</span> kommenttia'
   x_faves:
     one: '1 suositus'
     other: '%{count} suositusta'
@@ -14,27 +11,6 @@ fi:
   x_identifications:
     one: '1 tunnistus'
     other: '%{count} tunnistusta'
-  x_identifications_html:
-    one: '<span class="count">1</span> tunnistus'
-    other: '<span class="count">%{count}</span> tunnistusta'
-  x_identifications_:
-    one: '1 tunnistus'
-    other: '%{count} tunnistusta'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> tunnistaja'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> tunnistajaa'
-  x_languages:
-    one: "%{count} kieli"
-    other: "%{count} kielet"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} uusi taksoni sinulle"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} uutta taksonia sinulle"
   x_journal_posts_html:
     one: '<span class="count">1</span> päiväkirjamerkintä'
     other: '<span class="count">%{count}</span> päiväkirjamerkintää'
@@ -52,30 +28,15 @@ fi:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} virheellinen tunnistus lajista tasolla %{rank}"
     other: "%{count} virheellistä tunnistusta lajista tasolla %{rank}"
-  x_observations:
-    one: "1 havainto"
-    other: "%{count} havaintoa"
-  x_observations_:
-    one: "1 havainto"
-    other: "%{count} havaintoa"
-  x_observations_html:
-    one: "<span class='count'>1</span> havainto"
-    other: "<span class='count'>%{count}</span> havaintoa"
   x_observations_link_html:
     one: "<a href='%{url}'>1 havainto</a>"
     other: "<a href='%{url}'>%{count} havaintoa</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> havainto tarkistettu"
     other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> havainnoija'
-    other: '<span class="count">%{count}</span> havainnoijaa'
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
-  x_people:
-    one: "%{count} henkilö"
-    other: "%{count} henkilöt"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi tunnistuksessa käyttäjää %{user} <strong>%{y}</strong>"
   x_photos:
     one: "1 kuva"
@@ -83,24 +44,12 @@ fi:
   x_new_species:
     one: "1 uusi laji"
     other: "%{count} uutta lajia"
-  x_new_users:
-    one: '%{count} uusi käyttäjä'
-    other: '%{count} uutta käyttäjää'
-  x_species:
-    one: '1 laji'
-    other: '%{count} lajia'
-  x_species_html:
-    one: "<span class='count'>1</span> laji"
-    other: "<span class='count'>%{count}</span> lajia"
   x_species_link_html:
     one: "<a href='%{url}'>1 laji</a>"
     other: "<a href='%{url}'>%{count} lajia</a>"
   x_suggestions_filtered_by_colon:
     one: "1 ehdotus, perustuen suodattimiin:"
     other: "%{count} ehdotusta, perustuen suodattimiin:"
-  x_taxa:
-    one: "%{count} taksoni"
-    other: "%{count} taksonia"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taksoni havaittu"
     other: "<span class='count'>%{count}</span> taksonia havaittu"
@@ -110,9 +59,6 @@ fi:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> tutkimustason havainto tunnistettu lajin tasolle tai sitä tarkemmin"
     other: "<span class='count'>%{count}</span> tutkimustason havaintoa tunnistettu lajilleen tai sitä tarkemmin"
-  x_sounds:
-    one: "%{count} äänite"
-    other: "%{count} äänitettä"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taksoni kuratoitu"
     other: "<span class='count'>%{count}</span> taksonia kuratoitu"
@@ -176,24 +122,6 @@ fi:
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
-  about_trips_html: |
-    <h4>
-    Tallennettaessa tietoja Retkenä, voi "laji havaittu" -tiedon lisäksi tallentaa myös "lajia ei havaittu" -tietoja (nollahavainto) lisäämällä sisältöä havaitoihisin.
-    </h4>
-    <p>
-    <strong>Why</strong> Havaittu-ei havaittu tiedonkeruu viestii aineiston käyttäjälle havaintotiedon kattavasta keräystavasta ja lisää tiedon käytettävyyttä etenkin tieteellisissä analyyseissä kuten eliölajien levinneisyyden mallinuksessa. (tavallisesti iNaturalist- havainnot sisältävät vain havaittu-tietoa).
-    </p>
-    <p>
-    <strong>How</strong> Retken avulla voi lisätä sisältöä havaintoosi tallennetamalla:
-    </p>
-    <ul>
-    <li><strong>Mitä</strong> olit etsimässä (lista kohdelajeista)</li>
-    <li><strong>Missä</strong> olit havainnoimassa (havaintoalue)</li>
-    <li><strong>Milloin</strong> olit havainnoimassa (havaintoaikaväli)</li>
-    </ul>
-    <p>
-    Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
-    </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
@@ -1186,7 +1114,7 @@ fi:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Muokata iNaturalistin taksonomiaa kuraattorioppaan <a href="/pages/curator+guide#policies" target="_blank">Politiikat -osiossa</a>esitettyjen käytäntöjen mukaisesti. Tämä tarkoittaa, että he voivat lisätä, jakaa, vaihtaa, yhdistää, deaktivoida ja poistaa taksoneja iNaturalistissa. He voivat myös muokata suojelustatuksia ja taksonin geoprivacy, sekä muokata ja hallita kenen tahansa käyttäjän lisäämiä kansankielisiä nimiä.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Muokata iNaturalistin taksonomiaa kuraattorioppaan <a href="/pages/curator+guide#policies" target="_blank">Politiikat -osiossa</a>esitettyjen käytäntöjen mukaisesti. Tämä tarkoittaa, että he voivat lisätä, jakaa, vaihtaa, yhdistää, deaktivoida ja poistaa taksoneja iNaturalistissa. He voivat myös muokata suojelustatuksia ja taksonin geoprivacy, sekä muokata ja hallita kenen tahansa käyttäjän lisäämiä kansankielisiä nimiä.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Piilottaa kommentteja ja jäädyttää käyttäjätilin <a
     href="/pages/community+guidelines" target="_blank">yhteisön
@@ -1387,7 +1315,6 @@ fi:
     failure:
       already_authenticated: 'Olet jo kirjautunut sisään.'
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
-      invalid: 'Väärä sähköposti tai salasana.'
       invalid_token: 'Todennuskoodi ei kelpaa.'
       user:
         suspended: Käyttäjätunnuksesi on suljettu
@@ -1401,19 +1328,17 @@ fi:
       send_paranoid_instructions: "Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen."
       no_token: "Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä."
     registrations:
+      destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
       signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
       updated: 'Päivitit tilisi onnistuneesti.'
-      destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
     mailer:
-      confirmation_instructions:
-        subject: 'Vahvistusohjeet'
       reset_password_instructions:
         subject: 'Ohjeet salasanan nollaukseen'
   devise_reset_password_instructions_hello_email: Hei %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Salasanasi ei muutu, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2229,6 +2154,7 @@ fi:
     de: saksa
     el: kreikka
     en: englanti
+    en-GB: Englanti (UK)
     eo: esperanto
     es: espanja
     es-AR: espanja (Argentiina)
@@ -2449,8 +2375,6 @@ fi:
       yy: "%dv"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D.MM HH.mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2873,13 +2797,6 @@ fi:
     updates_by_you_panel_body: Muista, 'Kaikki päivitykset' välilehdellä saat päivityksiä et vain omasta sisällöstäsi mutta myös seuraamiesi henkilöiden sisällöstä ja taksoneista tai paikoista, joita tilaat käyttämällä Tilaustyökalua oikealla.
     youve_got_updates_panel_title: Sinulla on päivityksiä!
     youve_got_updates_panel_body_p1: Pysy ajan tasalla...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Sisältösi:</strong> Toiminta havainnoissasi kuten kommentit, tunnistukset ja suositukset %{site_name} yhteisöltä. Saat myös päivityksiä, kun joku lisää havaintosi projektiin, tai merkitsee sen lisäkentillä</li>
-      <li><strong>Ihmiset:</strong> Uudet havainnot tai päiväkirjamerkinnät seuraamiltasi ihmisiltä.</li>
-      <li><strong>Eliöt, projektit & paikat:</strong> Uudet havainnot tietyistä eliöistä tai paikoista, joita olet tilannut. Voit myös liittyä projekteihin, joten sinua päivitetään, kun he julkaisevat projektin päiväkirjamerkintöjä.</li>
-      <li><strong>Keskustelut, joihin olet osallistunut:</strong> Kommentoimalla tai lisäämällä tunnistuksia jonkun muun sisältöön automaattisesti tilaa sinut tähän sisältöön. Käytä 'Hallitse tilauksiasi' työkalua pysäyttääksesi päivitysten vastaanottamisen.</li>
-      </ul>
   one_by_one: "Yksi kerrallaan"
   one_of_your_lists: "yksi listoistasi..."
   one_or_more_input_taxa_have_more_than_1000_alt: |
@@ -3012,41 +2929,11 @@ fi:
     original: alkuperäinen
   photos_updated: Kuvat päivitetty.
   pi_consent_desc_title: Henkilötiedoista
-  pi_consent_desc_html: |
-    <p>Tallennamme henkilötietoa, kuten käyttäjänimiä ja sähköpostiosoitteita, hallitaksemme käyttäjätilejä tällä sivustolla. Ole hyvä ja anna suostumuksesi käyttää antamiasi henkilötietoja näihin tarkoituksiin rastittamalla ruutu. Voit lukea lisää mitä tietoja keräämme ja kuinka käytämme niitä
-    <a href='%{privacy_url}' target='_blank'>tietosuojaselosteesta</a>
-    ja <a href='%{terms_url}' target='_blank'>käyttöehdoista</a>.
-    </p>
-    <p>
-    iNaturalist-tiliä ei voi olla ilman henkilökohtaisten tietojen tallentamista, joten ainoa tapa peruuttaa tämä suostumus on poistaa
-    tilisi.
-    </p>
   pi_consent_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä henkilötietojani käyttäjätilini hallintaan
   pi_consent_child_label: |
     Kyllä, suostun siihen, että iNaturalist tallentaa ja käyttää tiettyjä lapseni henkilötietoja lapseni käyttäjätilin hallintaan
   data_transfer_consent_desc_title: Tietoja suostumuksesta henkilötietojen siirtoon
-  data_transfer_consent_desc_html: |
-    <p>
-    Jotkin tietosuojalait, kuten Euroopan unionin yleinen tietosuoja-asetus (GDPR), vaativat nimenomaista suostumusta
-    henkilötietojen siirtämiseen lainkäyttöalueeltaan muille lainkäyttöalueille, joilla näiden tietojen oikeudellista suojaa ei pidetä
-    riittävänä. Alkaen
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    Euroopan unioni ei enää pidä Yhdysvaltoja lainkäyttöalueena, joka tarjoaa riittävän oikeudellisen suojan henkilökohtaisille tiedoille,
-    erityisesti koska Yhdysvaltain hallitus voi seurata Yhdysvaltoihin siirrettyjä tietoja.
-    </p>
-    <p>
-    iNaturalistin käyttö edellyttää henkilökohtaisten tietojesi, kuten sähköpostiosoitteen, tallentamista ja kaikki iNaturalistin tiedot on tallennettu Yhdysvalloihin. Emme voi olla varmoja siitä, millä lainkäyttöalueella olet, kun käytät iNaturalistia, joten, jotta noudatettaisiin yksityisyyden suojaa koskevia lakeja, kuten GDPR, sinun on vahvistettava, että ymmärrät ja hyväksyt tämän riskin ja suostut henkilökohtaisten tietojesi siirtoon iNaturalistin palvelimille Yhdysvalloissa.
-    </p>
-    <p>
-    Jos haluat lisätietoja siitä, mitä tietoja keräämme ja miten käytämme niitä, katso meidän
-    <a href='%{privacy_url}' target='_blank'>Tietosuojaseloste</a>
-    ja <a href='%{terms_url}' target='_blank'>Käyttöehdot</a>.
-    </p>
-    <p>
-    iNaturalist-tiliä ei voi olla ilman henkilökohtaisten tietojen tallentamista, joten ainoa tapa peruuttaa tämä suostumus on poistaa
-    tilisi.
-    </p>
   data_transfer_consent_label: |
     Hyväksyn henkilötietojeni siirtämisen Amerikan yhdysvaltoihin
   data_transfer_consent_child_label: |
@@ -4133,10 +4020,6 @@ fi:
   supporting: Tukee määritystä
   suspend_user: Hyllytä käyttäjä
   suspend_user_html: Hyllytä %{user}
-  suspend_user_reason_instructions_html: |
-    Selitä, miksi hyllytät tämän käyttäjätilin ja mainitse rikkomukset
-    %{link_start_tag}yhteisön ohjeissa%{link_end_tag}. Pidättäydy
-    lisäämästä henkilökohtaisia mielipiteitä.
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
   sync: Synkronoi?
@@ -4315,9 +4198,6 @@ fi:
   this_is_your_observation: Tämä on havaintosi
   this_list_is_empty!: Tämä luettelo on tyhjä!
   this_observation: Tämä havainto
-  this_observation_is_featured_on_x_sites:
-    one: Tämä havainto on esillä %{count} sivustolla
-    other: Tämä havainto on esillä %{count} sivustolla
   this_observation_is_research_grade: Tämä havainto on tutkimustasoa!
   this_observation_was_created_using: "Tämä havainto luotiin käyttämällä:"
   this_place_has_no_check_list: "Tällä paikalla ei ole tarkistuslistaa."
@@ -4638,10 +4518,6 @@ fi:
   view_all_fields: Näytä kaikki kentät
   view_all_flags: Näytä kaikki liput
   view_all_members: Näytä kaikki jäsenet
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Näytä kaikki %{count}"
-    other: "Näytä kaikki %{count}"
   view_all_observations: Näytä kaikki havainnot
   view_all_photocount_photos: "Näytä kaikki %{photo_count} kuvaa"
   view_assessment: Näytä arviointi
@@ -4797,12 +4673,6 @@ fi:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x}/%{count} vahvistettu"
-    other: "%{x}/%{count} vahvistettua"
-  x_of_count_observed:
-    one: "%{x}/%{count} havaittu"
-    other: "%{x}/%{count} havaittu"
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} tunnistajasta %{x} (eli yli 2/3) on samaa mieltä että se on"
   x_project_journal: "Projektin %{project} %{name}"
   x_project_stats: "Projektin %{project} tilastot"
@@ -4954,37 +4824,10 @@ fi:
             Jos niin, lue <a href="%{url}">Opettajan oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden kanssa.
     donate:
       donate_short_desc: "Lahjoita nyt näyttääksesi tukesi!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
-        </p>
-        <p class="lead">
-        Jos uskot tämän maailmanlaajuisen luonnonystävien yhteisön voimaan jakaa tietoa ja tuottaa korvaamatonta dataa monimuotoisuudesta, harkitse kertaluonteista tai toistuvaa lahjoitusta verkossa, tai katso<a
-        href="https://www.inaturalist.org/pages/giving"> muista lahjoitustavoista</a>.
-        </p>
-        <p class="lead">
-        Lahjoituksesi auttaaa tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen.
-        </p>
-        <p class="text-muted">
-        iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Tuen iNaturalistia koska...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Ryhdy iNaturalistin kuukausittaiseksi tukijaksi
         become_a_monthly_supporter_of_inaturalist_caps: KUUKAUSILAHJOITTAJAKSI
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist on yksi maailman suurimmista luonnon monimuotoisuuden tutkimiselle omistautuneista yhteisöistä. Kiitos kun olet osa sitä!</strong>
-          </p>
-          <p class="lead">
-          Haluamme säilyttää iNaturalistin käytön maksuttomana, mutta sen ylläpito ei ole ilmaista. Jos pidät iNaturalistista, harkitse kuukausilahjoittajaksi ryhtymistä. Toistuvat lahjoitukset tarjoavat ennustettavan tulon ja auttavat takaamaan, että iNaturalist voi jatkaa infrastruktuurinsa ja henkilökunnan määrän kasvattamista. Voit myös valita, että kuukausilahjoittajan statuksesi näytetään käyttäjäprofiilissasi.
-          </p>
-          <p class="lead">
-          Vapaaehtoiset lahjoituksesi auttavat tukemaan iNaturalistia yhteisön kasvaessa aina konenäön kehittämisestä ja uusien ominaisuuksien toteuttamisesta palvelinten ja henkilökunnan tukemiseen. Jos haluat mieluummin antaa kertaluonteisen lahjoituksen, ole hyvä ja<a href="%{donate_url}">klikkaa tästä</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist on California Academy of Scienses:n ja National Geographic Society:n yhteinen hanke. Kaikki lahjoitukset vastaanottaa California Academy of Sciences, joka on verovapaa, tuottoa tavoittelematon järjestö ("501(c)(3)") Yhdysvalloissa.
-          </p>
         thank_you_for_being_a_monthly_supporter: Kiitos, että olet kuukausilahjoittaja!
         thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
     flags:
@@ -5012,41 +4855,8 @@ fi:
           <code>heimo=Laridae</code>
           tai
           <code>heimo=Lokit</code>
-        import_tags_from_csv_help_html: |
-          <p>
-          Lataa CSV-tiedosto, jossa on tageja tämän oppaan lajeille. CSV-tiedoston rakenteen pitää olla seuraava:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nimi</th>
-          <th>väri</th>
-          <th>Käsien määrä</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>kaksijalkainen</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>punainen|musta</td>
-          <td>0</td>
-          <td>nelijalkainen</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Ensimmäinen rivi alkaa merkinnällä "Nimi", jonka jälkeen tulevat tagit/kategoriat. Seuraavat rivit alkavat taksonin nimellä, joiden jälkeen tulevat tagit. Tässä esimerkissä <i>Homo sapiens</i> saa tagit <code>kaksijalkainen</code> ja koodin <code>Käsien määrä=2</code> ja <i>Vulpes vulpes</i> saa tagin <code>nelijalkainen</code> ja koodit <code>väri=punainen</code>, <code>väri=musta</code> ja <code>käsien määrä=0</code>. Välilöntejä ei huomioida ja voit lisätä monta riviä jokaista taksonia kohden. Voit myös lisätä useita arvoja jokaiseen soluun erottelemalla ne pystyviivalla |.</p>
       mobile_downloads_tip_html: |
         Tämä opas voidaan ladata mobiilisovellukseen offline-käyttöön.
-      mobile_downloads_help_html: |
-        <p>Tämä luo ladattavan arkistoriedoston kaikesta tähän oppaaseen liittyvästä datasta ja medioista, jotta mobiilisovelluksen käyttäjät voivat tarkastella kaikkea oppaan sisältöä ilman internet-yhteyttä. Arkistotiedoston luominen vie muutaman minuutin, mutta kun tämä on aktivoitu, arkisto päivittyy aina kun tätä opasta muutetaan.</p>
-        <p class="alert status">
-        <strong>Ethän aktivoi mobiililatausta offline-tilassa, jos et todella aio käyttää tietoja.</strong> Lataus kuormittaa järjestelmäämme huomattavasti.
-        </p>
       pdf_layouts:
         grid: ruudukko
         book: kirja
@@ -5143,13 +4953,6 @@ fi:
         disagreement_count: Erimielisyyksien määrä
         identification_count: Tunnistuksien määrä
         score: Pisteet
-        explanation: |
-          <p>
-          Jos havainnoija ei jostain syystä ole samaa mieltä yhteisön taksonin kanssa, hän voi hylätä sen. Tämä tarkoittaa että vain hänen omaa tunnistustaan käytetään havainnon linkittämiseen esim. pinnalistoihin. Tämä tarkoittaa myös että havainnosta voi tulla tutkimustasoa ainoastaan jos yhteisö on samaa mieltä tunnistuksesta hänen kanssaan. (Muuten havainto pysyy epämuodollisena.)
-          </p>
-          <p>
-          Yhteisön taksoni näytetään kuitenkin aina, joten kaikki voivat nähdä kaikki havainnolle ehdotetut tunnistukset.
-          </p>
       captive_help_html: |
         Oliko eliö <strong>vangittu</strong> tai <strong>viljelty</strong>? Oliko se esimerkiksi <strong>puutarhassa, eläintarhassa, akvaatiossa</strong> tai jotenkin muuten paikalla <strong>vain koska ihmiset halusivat sen sinne</strong>? Kaikki havainnot elävistä asioista ovat tervetulleita, mutta me haluamme tietää milloin eliö ei ole villi tai luonnonvarainen.
       compare:
@@ -5165,18 +4968,6 @@ fi:
         total_taxa: Yhteensä taksoneja
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Pystysuuntainen
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "yhteensä %{count}"
-          #Count of how many taxa are present in an observation search
-          other: "yhteensä %{count}"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} yksilöllinen"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} yksilöllistä"
       export:
         choose_columns_desc: Valitse sarakkeet, jotka haluat viedä
         create_a_query_desc_html: |
@@ -5198,24 +4989,6 @@ fi:
         taking_a_while: "Tässä kestää hetki. Kokeile jotain alla olevista vaihtoehdoista."
         date_range_help: "Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim. 17-01-2015"
         created_on_help: "Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015, 01-2015, 2015"
-        other_options_html: |
-          <h3>Muita vaihtoehtoja</h3>
-          <p>
-          Suuret tiedostolataukset hidastavat järjestelmiämme, joten harkitse saisitko tiedot muuta kautta helpommin. Tässä on muita vaihtoehtoja: 
-          </p><ul><li><p><a
-          rel="nofollow noreferrer noopener"
-          href="https://laji.fi/observation/list?collectionId=HR.3211">Laji.fi:</a> Suomen Lajitietokeskuksen portaalista voi hakea Suomessa tehdyt iNaturalistin havainnot eri muodoissa.
-          </p></li>
-          <li><p><a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a> GBIF saa kaikki tutkimustason havainnot. Heidän työkalunsa havaintojen lataamiseen ovat erinomaisia. GBIF myös tekee tiedostolatauksille <a href="https://www.doi.org/">DOI</a>-tunnisteen, jota voit käyttää havaintoihin viittaamiseen, jos julkaiset niihin perustuvaa tutkimusta. Nämä sitaatit auttavat meitä seuraamaan, miten iNaturalistin havaintoja käytetään.</p></li>
-          <li><p><a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Darwin Core Archive (DwC-A) GBIF:lle:</a> tämä on <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">Darwin Core-muotoinen arkistotiedosto</a>, jonka tuotamme GBIF:ia varten, joten siinä ei pitäisi olla mitään mitä ei saisi GBIF:sta. Jos haluat koko arkiston, voit ladata tämän tiedoston, mutta se on hyvin suurikokoinen. Tiedosto sisältää havainnot CSV-muodossa, ja se päivitetään viikoittain.</p></li>
-          <li><p><a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge at FGVC 2017:</a> Linkit 675 000 lisensoituun valokuvaan 5089 lajista konenäkösovelluksen kouluttamiseen käytettäväksi. Luotu kesäkuussa 2017, ei päivitetä enää.</p></li></ul>
       field_descriptions:
         id: "Havainnon yksilöllinen tunniste"
         common_name: "Havaitun taksonin yleis- tai kansankielinen nimi tämän sivuston mukaan"
@@ -5250,25 +5023,6 @@ fi:
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
-        community_taxon_desc_html: |
-          <p class="ui">
-          Yhteisötunnistettu taksoni on %{site_name} yhteisön mielipide siitä, mikä taksoni havainnossa on kuvattu. 
-          Yhteisötunnistetun taksonin määrittävän päättelykaavan yksityiskohdate on kuvattu alla, mutta perusajatuksena on, että valitsemme taksonin, josta <strong>vähintään 2/3 tunnistajista on samaa mieltä</strong>.
-          Jokus tämä voi olla lajia ylemmältä taksonomiselta tasolta, josta tunnistajat ovat yhtämielisiä. Esimerkiksi, jos sinä luulet, että on kyseessä on kyykäärme ja minä luulen, että kyseessä on rantakäärme, palvelu päättelee, että taksoni on todennäköisesti vähintään alalahkolta Serpentes, joka kattaa kaikki käärmeet.
-          Päättelykaava suosii toisinaan eriäviä mielipiteitä, koska olemme havainneet, että eriävät mielipiteet päätyvät usein yhteisötunnistetuiksi.
-          </p>
-          <p class="ui">
-          Tutkimustasoiseksi luokiteltulla havainnolla pitää olla (muun muassa) yhteisötunnistettu taksoni.
-          Jos havainnolla on vain yksi tunnistus, sillä ei voi olla yhteisötunnistettua taksonia. Kaikilla havainnoilla, joilla on vähintään yksi tunnistus, on havaintotaksoni. Havaintotaksoni on taksoni, jota käytämme jakaessamme havainnon eteenpäin yhteistyökumppaneille, kun liitämme havaintoja muihin havaintoihin samasta taksonista ja jota käytämme muodostaessamme pinnalistaasi, jne. Useimmiten havaintotaksoni ja yhteisötunnistettu taksoni ovat lopulta samat, mutta joskus ne poikkeavat, etenkin kun yhteisö ei vielä ole päätynyt yksimielisyyteen tunnistuksesta. Esimerkiksi, jos sinä luulet, että kyseessä on käärme (alalahko Serpentes) ja minä havaitsija luulen, että kyseessä on rantakäärme, havaintotaksoni on rantakäärme, mutta yhteisötunnistettu taksoni on Serpentes (olettaen, että sitä on ehdotettu vähintään kahdessa tunnistuksessa ja muut eivät ole ehdottaneet rantakäärmettä). Jos et ole samaa mieltä yhteisötunnistetun taksonin kanssa, voit olla käyttämättä tunnistusta omissa havaintotiedoissasi, jolloin havaintotaksoni ei ikinä tule päivittymään yhteisötunnistetuksi taksoniksi, vaan säilyy omalla tunnistuksellasi. Jos teet näin, havaintosi ei voi ikinä saavuttaa tutkimustasoa - ellei yhteisö myöhemmin ole samaa mieltä <em>sinun</em> kanssasi. Jos et pidä yhteisötaksonikäsitteestä lainkaan, voit <a href="/users/edit" target="_blank">muuttaa asetuksiasi</a> ja kytkeä ne kokonaan pois päältä.
-          </p>
-          <p class="ui">
-          <strong>Päättelykaava</strong>(englanniksi): For all identified taxa and the taxa that contain them (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between
-          the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative
-          IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa
-          that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of
-          more conservative IDs that disagree with the finer taxon. For the identified taxa that
-          have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
-          </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
         data_quality_assessment_desc_html: |
@@ -5280,16 +5034,6 @@ fi:
         observer_does_not_allow_observation_fields: Havainnoija ei salli uusien havaintokenttien lisäämistä
         observer_only_allows_curators_to_add_fields: Havainnoija sallii ainoastaan sivuston vastuuhenkilöiden (kuraattorien) lisäävän uusia havaintokenttiä
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Voit muokata tätä havaintokenttää koska loit sen tai koska ole kuraattori. Jos olet kuraattori, ole hyvä ja noudata näitä pelisääntöjä:
-        </p>
-        <ol>
-        <li>Älä tee mielivaltaisia muutoksia nimiin (esim. muuta "ruokailua" "hedelmänsyömiseksi")</li>
-        <li>Muista että havaintokenttiä voidaan käyttää mille tahansa taksonille, joten älä käytä taksoniriippuvaisia termejä mikäli mahdollista.</li>
-        <li>Älä poista kenttiä, joita ihmiset käyttävät</li>
-        <li>Älä käännä olemassa olevia kenttiä eri kielille. Englanti on tämän sivuston vakiintunut yleiskieli. Jos välttämättä tarvitset kentän joka tarkoittaa samaa asiaa mutta eri kielellä, ole hyvä ja tee uusi havaintokenttä.</li>
-        </ol>
       merge:
         warning_html: |
           Ole hyvä ja kunnioita toisten käyttäjien itselleen tallentamia tietoja ja <strong>ota yhteyttä kentän alkuperäiseen luojaan ennen kenttien yhdistämistä</strong>. Tämä työkalu tuhoaa kentän, jota ollaan liittämässä ja siirtää tiedot toiseen kenttään. <strong>Toimintoa ei voi perua</strong>, joten ole tarkkaavainen.
@@ -5303,106 +5047,11 @@ fi:
           <a href="%{url}">Lue lisää ohjeista</a>.
       parental_consent:
         subject: Lapsesi haluaa käyttää iNaturalistia
-        content_html: |
-          <p>
-          Lapsesi käyttää <strong>Seek by iNaturalist</strong> oppimissovellusta ja haluaisi jakaa tietonsa iNaturalist kansalaistiedepalveluun. iNaturalist tarvitsee alle 13-vuotiaan lapsen vanhemman tai huoltajan hyväksynnän käyttääkseen lapsen henkilötietoja.
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> sovellusta voi käyttää luomatta käyttäjätiliä,
-          jolloin mitään henkilötietoa ei jaeta, mutta tällöin lapsesi luontohavainnot eivät
-          edistäisi iNaturalistin kansalaistiedehankkeita. iNaturalist on sosiaalinen verkosto,
-          jossa osallistujat jakavat luontohavaintojaan ja tunnistavat toistensa havaintoja oppiakseen 
-          tuntemaan lajeja sekä tuottaakseen tietoa luonnon monimuotoisuudesta tieteen käyttöön.
-          </p>
-          <p>
-          Antaaksesi suostumuksesi sille, että lapsesi käyttää iNaturalist -palvelua, toimi seuraavasti:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Luo iNaturalist-käyttäjätili lapsellesi osoitteessa:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Luotuasi lapsesi käyttäjätilin, varmenna aikuisuutesi käyttämällä luottokorttiasi tekemällä pieni 1 USD lahjoitus iNaturalistille. Kun teet lahjoituksen, ole tarkkana, että käytät samaa sähköpostiosoitetta kuin tiliä luodessasi.
-          </p>
-          </li>
-          <li>
-          <p>
-          Kun olemme vastaanottaneet lahjoituksesi, lähetämme sinulle uuden sähköpostin, jossa kerromme, että lapsesi tili on aktivoitu, ja että voitte käyttää valitsemaasi iNaturalist-käyttäjätunnusta ja salasanaa kirjautumiseen lapsesi Seek-sovelluksessa.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist kerää seuraavia henkilötietoja:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>Sähköpostiosoite (yksityinen):</strong> jokainen iNaturalist
-          käyttäjätili liitetään sähköpostosoitteeseen, jota ei näytetä julkisesti.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Käyttäjätunnus (julkinen, pakollinen):</strong> jokaisella iNaturalist
-          käyttäjätilillä on julkinen käyttäjätunnus ja tekninen tunnistenumero.
-          Käyttäjätunnuksen ei tarvitse muistuttaa henkilön oikeaa nimeä. Sitä voidaan käyttää ottamaan
-          yhteyttä käyttäjään julkisissa kommenteissa tai yksityisviestillä.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-osoite (yksityinen, pakollinen):</strong> iNaturalist
-          tallentaa mutta ei julkaise käyttäjän IP-osoitteen, jonka avulla
-          on mahdollista selvittää henkilötietoja, kuten käyttöpaikan.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Profiilikuva (julkinen, vapaavalintainen):</strong> iNaturalist-tiliin voi halutessaan liittää profiilikuvan, joka on yleensä kuva käyttäjästä.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Havainnon sijainti (julkinen tai yksityinen, pakollinen):</strong> 
-          iNaturalist tallentaa tietoa luontohavaintojen paikoista. Paikan voi halutessaan salata,
-          mutta oletuksena se on julkista.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist sallii käyttäjien jakavan julkisia kuvia, kommentteja, ja yksityisviestejä, jotka liitetään käyttäjän tiliin. 
-          Nämä tiedot saattavat pitää sisällään käyttäjien itsensä luomaa henkilötietoa.
-          </p>
-          <p>
-          Lue lisää <a href="%{privacy_policy_url}">tietosuojaselosteesta</a>.
-          </p>
       photos_missing:
         please_address: |
           Ole hyvä ja korjaa nämä ongelmat <b>seuraavien 30 päivän aikana</b>. 30 päivän jälkeen ryhdymme poistamaan rikkinäisiä valokuvia iNaturalistista. Kaikki havaintosi säilyvät tallessa. Ne uudelleenarvioidaan kun valokuvat on poistettu. Tällöin on mahdollista että jotkin tutkimustason havainnot muuttuvat epämuodollisiksi, jos niissä ei ole enää valokuvia.
       user_parent_confirmation:
         subject: Lapsesi iNaturalist-käyttäjätili on aktivoitu
-        content_html: |
-          <p>
-          Kiitos iNaturalist-tilin luomisesta lapsellesi. Tili on aktivoitu. Tässä on syöttämäsi tiedot, jotka meillä on tallennettuna:
-          </p>
-          <ul>
-          <li><strong>Vanhemman tai huoltajan nimi:</strong>%{parent_name}</li>
-          <li><strong>Vanhemman tai huoltajan sähköpostiosoite:</strong>%{parent_email}</li>
-          <li><strong>Lapsen nimi:</strong>%{child_name}</li>
-          <li><strong>Lapsen syntymäaika:</strong>%{child_birthday}</li>
-          <li><strong>Lapsen käyttäjätilin sähköpostiosoite:</strong>%{child_email}</li>
-          <li><strong>Lapsen käyttäjänimi:</strong>%{child_username}</li>
-          </ul>
-          <p>
-          Ole hyvä ja kirjaudu käyttäjätilille lapsesi Seek-sovelluksesta painamalla valikon iNaturalist-nappia ja valitsemalla "Kirjaudu sisään iNaturalistilla" ruudun alareunassa.
-          </p>
-          <p>
-          Tämän jälkeen lapsesi voi ilmoittaa havaintoja iNaturalist-tililleen Seek-sovelluksen kautta ja havainnot näkyvät iNaturalis.org:ssa.
-          </p>
       users_updates_suspended:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
@@ -5448,10 +5097,6 @@ fi:
           <a href="%{places_url}" target="_blank">nykyisistä paikoistamme</a> ja varmista, että paikan nimi on oikein. Jos et 
           todellakaan löydä haluamaasi paikkaa, harkitse <a href="%{new_place_url}" target="_blank">uuden paikan luomista</a>,
           mutta varmista, että et vain kopioi olemassa olevaa paikkaa.
-        bioblitz_desc_html: |
-          <p>
-          Bioblitz on tapahtuma, jossa osallistujat yrittävät havaita mahdollismman monta lajia tietyn ajan sisällä. Tämä on hauska tapa saada ihmisiä kiinnostumaan luonnosta ja samalla kerätä havaintotietoa.
-          </p>
         change_admin_desc: Valitse yksi projektin kuraattoreista uudeksi ylläpitäjäksi.
         change_owner_alert: |
           Tämän jälkeen et voi enää poistaa projektia tai siirtää sen omistajuutta uudelleen. Haluatko jatkaa?
@@ -5463,31 +5108,6 @@ fi:
         make_owner: Tee käyttäjästä omistaja
         no_curators: |
           Projektilla ei ole kuraattoreita. Jos haluat nimittää uuden henkilön ylläpitäjäksi, henkilön pitää ensin liittyä tähän projektiin ja sinun tulee nimittää hänet kuraattoriksi.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Havaintojen automaattinen kooonti lisää sopivat havainnot projektiisi siinä määriteltyjen sääntöjen mukaisesti. Koska usean havainnon poistaminen projektista kerralla ei ole mahdollista, varmista, että olet valinnut haluamasi paikkaa ja taksonia koskevat säännöt oikein. Muuten projektiisi voi päätyä paljon siihen sopimattomia havaintoja, jotka joudut poistemaan yksitellen manuaalisesti.
-          </p>
-          <p class="description">
-          Koonti toimii vain, jos seuraavat ehdot täyttyvät:
-          </p>
-          <ol>
-          <li class="readable description">
-          Projektillasi on vähintään yksi 'tulee olla havaittu paikassa' -sääntö pienelle tai keskisuurelle paikalle (Texasin tai Ukrainan kokoluokkaa)
-          </li>
-          <li class="readable description">
-          TAI projektillasi on vähintään yksi 'tulee olla taksonissa' -sääntö
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Projektitiedostot ovat vain projektiisi liittyviä tiedostoja. Näillä on joitakin erityissääntöjä:</p>
-          <ol class="description">
-          <li>Tidostoja joiden nimi loppuu .logo.jpg, logo.png, jne. käytetään projektin logona projektisivulla, projektin kuvakkeen sijasta.</li>
-          <li>KML- ja KMZ-tiedostot lisätään projektisivun kartalle.</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Voit luoda kustomoidun taksoniluettelon ja liittää sen projektiisi. Tämä voi olla hyödyllistä projektiin liitettävien havaintojen rajaamiseksi listan taksoneihin, 'taksonin tulee olla projektin listalla' -säännön avulla.
-          </p>
         rules:
           captive: olla vangittu/viljelty
           georeferenced: sisältää koordinaatit
@@ -5518,24 +5138,6 @@ fi:
         you_can_preview: |
           Voit esikatsella miltä projektisi näyttäisi koontiprojektina
           <a href="%{url}">klikkaamalla tästä</a>.
-      invite:
-        description_html: |
-          <h3>Tietoja kutsuista</h3>
-          <p class="ui">
-            Ihmisten kutsuminen projektiisi on hieman eri kuin kutsuminen
-            yksittäisiin havaintoihin. Ihmisten kutsuminen
-          </p>
-          <ol>
-            <li>Lähettää heille sähköpostia, jossa heidät kutsutaan liittymään projektiisi</li>
-            <li>Näyttää kutsun heidän kojelaudallaan</li>
-            <li>Antaa heidän liittyä projektiisi jos se on asetettu vain kutsuille</li>
-          </ol>
-          <p class="ui">
-            Vain projektin kuraattorit voivat kutsua ihmisiä liittymään projektiin. Sinun
-            pitäisi pystyä hakemaan ihmisiä heidän iNat-käyttäjänimen tai
-            heidän <em>kokonaisen</em> sähköpostiosoitteen perusteella, olettaen että meillä on se 
-            tiedostossa.
-          </p>
       join:
         invite_only_description: |
           Tähän projektiin voi liittyä vain kutsusta. Jos haluaisit liittyä, ole hyvä ja ota yhteyttä johonkin alla näkyvistä kuraattoreista ja pyydä kutsua.
@@ -5621,13 +5223,6 @@ fi:
           name_already_taken: Projektin nimi on jo varattu
           cannot_have_more_than_x_project_rules: Ei voi olla enempää kuin %{x} projektisääntöä
           summary_is_required: Projektin yhteenvetoteksti on pakollinen.
-      project_location_privacy_notice_html: |
-        <p>
-        Projektin kuraattorit voivat nähdä kaikki projektiin liittämiesi havaintojen salatut tai karkeistetut paikat, ellet poista heiltä tätä oikeutta ja he voivat liittää minkä tahansa havaintosi projektiin, ellet <a href="/users/edit">muokkaa asetuksiasi</a>. Voit myös sallia tai poistaa havainnon näkymisen projektissa havaintokohtaisesti.
-        </p>
-        <p>
-        Jos olet huolissasi havaintopaikkojesi yksityisyydestä, älä liity projekteihin, ellet luota projektin kuraattoreihin.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Kyllä, mutta vain jos itse lisään havainnon projektiin.
         any: Kyllä, ei väliä kuka lisää havainnon projektiin.
@@ -5637,21 +5232,8 @@ fi:
       show:
         are_you_sure_you_want_to_convert: |
           Haluatko varmasti muuntaa tämän projektin koontiprojektiksi?
-        bioblitz_results_desc_html: |
-          <p>
-          Toisin kuin tavalliset projektit, bioblitzit näyttävät tilastoja <em>kaikista</em> tietyn paikan ja ajanjakson havainnoista , eivätkä ainoastaan niistä havainnoista, jotka käyttäjät ovat lisänneet projektiin. Tämän ansiosta havaintoja ei tarvitse lisätä projektiin vain tilastojen päivittymistä varten. Huomaa että havaintoja ei voi ladata tai näyttää projektinäkymissä elleivät projektiryhmä ja osallistujat aktiivisesti lisää niitä projektiin, kuten tavanomaisessa projektissa.
-          </p><p>
-          Huomaa että vaikka tällainen projekti näyttää tilastoja havainnoista, joita ei ole tarkoituksellisesti lisätty projektiin, se ei salli kuraattorien nähdä yksityisiä tai karkeistettuja koordinaatteja, eikä oleta että havainnoijat olisivat hyväksyneet projektin ehdot. Jos olet projektin kuraattori ja tarvitse pääsyn yksityisiin koordinaatteihin, tai jos haluat että havainnot lasketaan mukaan projektin kuratoituun pinnalistaan, varmista että osallistujat liittyvät projektiin ja lisäävät havaintonsa siihen kuten tavalliseen projektiin.
-          </p>
         click_here_to_convert_this_project: |
           Klikkaa tästä muuntaaksesi tämän projektin koontiprojektiksi.
-        no_journal_blurb_html: |
-          <p>
-          Projektin päiväkirja on työkalu kommunikointiin projektin jäsenten kanssa. Voit käyttää sitä tiedottamiseen, prioriteettien asettamiseen tai projektin tuloksista keskustelemiseen.
-          </p>
-          <p>
-          Päästäksesi alkuun, <a href="%{url}" class="readmore">luo postaus</a>
-          </p>
         make_sure_you_have_read_about_the_differences: |
           Varmista että olet lukenut <a href="%{url}" target="_blank">koontiprojektin eroista blogikirjoituksestamme (englanniksi)</a>.
         this_is_a_preview: |
@@ -5781,16 +5363,6 @@ fi:
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          Useimmilla eliöryhmillä on "yleiskielisiä" (eli kansankielisiä) nimiä eri kielillä. Nämä nimet ovat yleensä selkeitä ja vakiintuneita. Monista eliöistä kuitenkin käytetään monia erilaisia nimiä eri paikoissa ja jopa samalla kielellä. Tämä tekee keskustelusta hankalaa. Tutkijat ovar ratkaiseet tämän ongelman käyttämällä yhtä "tieteellistä nimeä" jokaisesta eliöryhmästä. Tieteellisten nimien käyttöä määrittelevät <a href="https://fi.wikipedia.org/wiki/Binominen_nimist%C3%B6">biologisten nimistöjen säännöt</a>. Tieteelliset nimet perustuvat yleensä latinaan, joten niiden muistaminen on usein vaikeaa. Tieteelliset nimet sisältävät myös tietoa eliön luokittelusta (taksonomiasta), joten ne muuttuvat kun tutkijat selvittävät eliöiden evolutiivisia sukulaisuussuhteita. Tämä taas tekee niiden käytöstä hankalampaa, myös niitä tuntevien ihmisten välillä.
-          </p>
-          <p>
-          Vanha sanonta kuvaa tätä hyvin: "Yleiskieliset nimet vaihtelevat paikasta paikkaan, ja tieteelliset nimet vaihtelevat ajassa."
-          </p>
-          <p>
-          Yritämme ratkaista näitä puutteita näyttämällä sekä yleiskieliset että tieteelliset nimet aina kun mahdollista, ja valitsemalla näytettävät yleiskieliset nimet perustuen käyttäjän valitsemaan kieleen ja maantieteelliseen paikkaan.
-          </p>
         about_conservation_status_desc: |
           Uhanalaisuusluokitus tiivistää eliöryhmän sukupuuttoriskin.
         about_establishment_desc: |
@@ -5826,26 +5398,6 @@ fi:
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
     taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Yritä lisätä nimiä, joita on käytetty muualla. Ole hyvä äläkä keksi uusia nimiä.</p></li>
-          <li><p>Älä lisää duplikaattinimiä, esim. älä nimeä useita haukkoja nimellä "haukka"</p></li>
-          <li><p>Korkeammille taksoneille käytä nimiä, jotka sopivat kaikille alataksoneille, esim. haikaralinnut</p></li>
-          <li>
-          <p>
-          Älä lisää nimiin muuta tietoa, esim. suluissa miten nimeä pitäisi käyttää
-          </p>
-          </li>
-          <li>
-          <p>
-          Uudet nimistöt pitäisi tehdä englanniksi, Ole hyvä äläkä lisää käännettyjä nimiä, kuten "Ranska, Français", koska silloin nimien näyttäminen olisi vaikeaa tai mahdotonta erikielisille käyttäjille.
-          </p>
-          </li>
-          <li>
-          <p>
-          Yleiskieliset nimet, jotka liittyvät käännettyihin kieliin näytetään oletuksena tälle kielelle (jättäen huomiotta paikan ja nimien järjestyksen asetuksen jne.). <a class="readmore" href="/pages/translate">Lue lisää käännöksistä</a>
-          </p></li></ul>
       taxon:
         about_html: |
           Taksonilla voi olla useita yleiskielisiä nimiä. Tuemme yhtä, globaalisti ensisijaista nimeä, joka voidaan vaihtaa täällä vetämällä nimi luettelon ylimmäiseksi. Voit myös määritellä ensisijaisen nimen eri paikoille muokkaamalla nimeä ja lisäämällä sille paikan, mutta tee tämä vain, jos eri paikoilla on ristiriitaisia nimiä.
@@ -5870,17 +5422,6 @@ fi:
         about_third_party_tracking: Tietoja kolmannen osapuolen tekemästä seurannasta
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jos muutat mielesi, voit aina <a href='/users/edit'>muokata asetuksiasi</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p><a href="%{url}" target="_blank">iNaturalist-verkosto</a> on
-          joukko eri alueille mukautettuja (lokalisoituja) verkkosivustoja, jotka on kytketty yhteen maailmanlaajuiseen iNaturalist
-          -yhteisöön. Verkoston sivustoja ylläpidetään yhteistyössä paikallisten instituutioiden kanssa, Suomessa yhdessä Suomen Lajitietokeskuksen kanssa.
-          </p><p>
-          Nämä instituutiot ovat allekirjoittaneet sopimuksen iNaturalistin kanssa ja edistävät sen paikallista käyttöä luonnon monimuotoisuuden hyväksi. Paikalliset instituutiot pääsevät käsiksi havaintojen tarkkoihin koordinaatteihin oman valtionsa alueelta, vaikka koordinaatit muuten olisivat karkeistettuja uhattujen eliölajien suojelemiseksi.
-          </p><p>
-          Käyttäjätunnuksesi ja salasanasi toimivat kaikilla sivustoilla, jotka ovat mukana iNaturalist-verkostossa. Jos liität tunnuksesi paikalliseen verkostoon, paikallinen instituutio pääsee käsiksi sähköpostiosoitteeseesi (viestiäkseen sinulle sivustoon liittyvistä asioista) ja karkeistettujen ja yksitysten havaintojesi tarkkoihin koodinaatteihin.
-          </p><0>
-          Huom: Ole hyvä äläkä vaihda verkostoa vain kokeillaksesi vaihtamista, jos sinulla on yli 1000 havaintoa (koska vaihtaminen on hidasta).
-          </0>
         licensing_desc_html: |
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
@@ -5890,13 +5431,6 @@ fi:
           States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
           <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
           Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
-        muting_desc_html: |
-          <p>
-          Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
-          </p>
-          <p>
-          Voit mykistää niin monta henkilöä kuin haluat, mutta pidä mielessä, että voit jäädä paitsi mahdollisesti tärkeistä ilmoituksista, kuten tunnistuksista, jotka muuttavat havaintosi yhteisötunnistusta.
-          </p>
         name_place_help_html: |
           Aseta etusijalle tässä paikassa käytetyt yleiskieliset nimet.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5946,27 +5480,10 @@ fi:
       recent:
         about_recent_users: Tietoja
         definitions_html: <dl> <dt>Todennäköinen spammaaja</dt> <dd> Käyttäjä, joka on todennäköisesti spammeri, eli käyttäjällä ei ole havaintoja tai määrityksiä, mutta on profiilikuvaus. </dd> <dt>Auto Spam -merkintä</dt> <dd> Spaammaaja, jonka järjestelmä on automaattisesti merkinnyt spammeriksi. </dd> <dt>Manuaalinen Spam -merkintä</dt> <dd> Sivuston kuraattorin spammaajaksi merkitsemä käyttäjä. </dd> <dt>Väärä postiviinen</dt> <dd> Käyttäjä, joka on merkitty spammaajaksi, mutta sivuston kuraattorit ovat todenneet, ettei käyttäjä ole todellisuudessa spammaaja. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Haluamme toivottaa uudet käyttäjät tarvetulleiksi, mutta haluamme myös estää roskaviestejen (spammin) kertymistä sivustolle. 
-          Toivottavasti tämä työkalu hyödyntää meitä kaikkia. Merkitsemme automaattisesti käyttäjiä spaamaajiksi <a
-          href="https://akismet.com/">Akismet</a>, työkalun avulla. Mutta Akismet ei ole täydellinen, joten jos haluat auttaa meitä tutkimalla, ovatko uudet tilit oikeita käyttäjiä vai spammereita, arvostamme aikaasi!
-          </p>
       show:
         this_user_was_banned: Tämä käyttäjä hyllytettiin
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Kiitos, että olet lahjoittanut iNaturalistille! Lahjoituksen avulla olemme pystyneet vahvistamaan henkilöllisyytesi ja asia ei vaadi sinulta lisätoimia. <strong>Lapsesi tili on nyt avattu.</strong>
-          </p>
-          <p>
-          Ole hyvä, ja kirjaudu tililläsi lapsesi Seek sovellukseen painamalla ""iNaturalist" nappia valikosta ja sitten "Kirjaudu sisään iNatrualist tilillä" näkymän alalaidasta.
-          </p>
-          <p>
-          Tämän tehtyäsi, lapsesi voi lähettää havaintoja iNaturalist tililleen Seek sovellusken avulla, ja ne näkyvät osoitteessa
-          iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: KIITOS ETTÄ LOIT ALAIKÄISEN TILIN!
         we_will_send_you_an_email: |
           Lähetämme sinulle sähköpostiviestin kun lapsesi tili on aktivoitu.
@@ -6304,6 +5821,9 @@ fi:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ilmoitus
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       BlockedUser: Estetty Käyttäjä
@@ -6320,6 +5840,11 @@ fi:
       ModeratorNote: Valvojien muistiinpanot
       TaxonLink: Taksonilinkki
     attributes:
+      announcement:
+        created_at: Luotu
+        updated_at: Päivitetty
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: Sivuston tunniste
       assessment:
         description: Kuvaus
       assessment_section:
@@ -6465,6 +5990,13 @@ fi:
             redirect_uri:
               invalid_uri: "pitää olla kelvollinen URL"
               relative_uri: "oltava absoluuttinen URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: on poistettuja kommentteja
         flag:
           attributes:
             user_id:
