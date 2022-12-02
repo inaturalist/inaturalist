@@ -1,17 +1,8 @@
 lv:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    zero: "%{count} izmaiņas"
-    one: "%{count} izmaiņa"
-    other: "%{count} izmaiņas"
   x_comments:
     zero: '%{count} komentāri'
     one: '%{count} komentārs'
     other: '%{count} komentāri'
-  x_comments_html:
-    zero: '<span class="count">%{count}</span> komentāri'
-    one: '<span class="count">%{count}</span> komentārs'
-    other: '<span class="count">%{count}</span> komentāri'
   x_faves:
     zero: '%{count} reizes pievienots izlasei'
     one: '%{count} reizi pievienots izlasei'
@@ -24,34 +15,6 @@ lv:
     zero: '%{count} identifikācijas'
     one: '%{count} identifikāciju'
     other: '%{count} identifikācijas'
-  x_identifications_html:
-    zero: '<span class="count">%{count}</span> identifikācijas'
-    one: '<span class="count">%{count}</span> identifikācija'
-    other: '<span class="count">%{count}</span> identifikācijas'
-  x_identifications_:
-    zero: '%{count} identifikācijas'
-    one: '%{count} identifikāciju'
-    other: '%{count} identifikācijas'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    zero: '<span class="count">%{count}</span> identificētāji'
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificētājs'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificētāji'
-  x_languages:
-    zero: "%{count} valodas"
-    one: "%{count} valoda"
-    other: "%{count} valodas"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    zero: "%{count} pirmie sugas novērojumi sarakstā"
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} pirmais sugas novērojums sarakstā"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} pirmie sugas novērojumi sarakstā"
   x_journal_posts_html:
     zero: '<span class="count">%{count}</span> ieraksti žurnālā'
     one: '<span class="count">%{count}</span> ieraksts žurnālā'
@@ -78,18 +41,6 @@ lv:
     zero: "%{count} nepareizas sugas identifikācijas šajā %{rank}"
     one: "%{count} nepareiza sugas identifikācija šajā %{rank}"
     other: "%{count} nepareizas sugas identifikācijas šajā %{rank}"
-  x_observations:
-    zero: "%{count} novērojumi"
-    one: "%{count} novērojums"
-    other: "%{count} novērojumi"
-  x_observations_:
-    zero: "%{count} novērojumi"
-    one: "%{count} novērojums"
-    other: "%{count} novērojumi"
-  x_observations_html:
-    zero: "<span class='count'>%{count}</span> novērojumi"
-    one: "<span class='count'>%{count}</span> novērojums"
-    other: "<span class='count'>%{count}</span> novērojumi"
   x_observations_link_html:
     zero: "<a href='%{url}'>%{count} novērojumi</a>"
     one: "<a href='%{url}'>%{count} novērojums</a>"
@@ -98,18 +49,10 @@ lv:
     zero: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
     one: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
     other: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
-  x_observers_html:
-    zero: '<span class="count">%{count}</span> novērotāji'
-    one: '<span class="count">%{count}</span> novērotājs'
-    other: '<span class="count">%{count}</span> novērotāji'
   x_others:
     zero: "%{count} citi"
     one: "%{count} cits"
     other: "%{count} citi"
-  x_people:
-    zero: "%{count} cilvēki"
-    one: "%{count} persona"
-    other: "%{count} cilvēki"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} cilvēki</strong> palīdzēja %{user} ar <strong>%{y} identifikācijām</strong>"
   x_photos:
     zero: "%{count} fotogrāfijas"
@@ -119,18 +62,6 @@ lv:
     zero: "%{count} jaunas sugas"
     one: "%{count} jauna suga"
     other: "%{count} jaunas sugas"
-  x_new_users:
-    zero: '%{count} jauni lietotāji'
-    one: '%{count} jauns lietotājs'
-    other: '%{count} jauni lietotāji'
-  x_species:
-    zero: '%{count} sugas'
-    one: '%{count} suga'
-    other: '%{count} sugas'
-  x_species_html:
-    zero: "<span class='count'>%{count}</span> sugas"
-    one: "<span class='count'>%{count}</span> suga"
-    other: "<span class='count'>%{count}</span> sugas"
   x_species_link_html:
     zero: "<a href='%{url}'>%{count} sugas</a>"
     one: "<a href='%{url}'>%{count} suga</a>"
@@ -139,10 +70,6 @@ lv:
     zero: "%{count} ieteikumi filtrēti pēc šādiem kritērijiem:"
     one: "%{count} ieteikums filtrēts pēc šādiem kritērijiem:"
     other: "%{count} ieteikumi filtrēti pēc šādiem kritērijiem:"
-  x_taxa:
-    zero: "%{count} taksoni"
-    one: "%{count} taksons"
-    other: "%{count} taksoni"
   x_taxa_observed_html:
     zero: "<span class='count'>%{count}</span> novēroti taksoni"
     one: "<span class='count'>%{count}</span> novērots taksons"
@@ -155,10 +82,6 @@ lv:
     zero: "<span class='count'>%{count}</span> pētniecības līmeņa novērojumi ar identificētu sugu vai plašākas nozīmes kategoriju"
     one: "<span class='count'>%{count}</span> pētniecības līmeņa novērojums ar identificētu sugu vai plašākas nozīmes kategoriju"
     other: "<span class='count'>%{count}</span> pētniecības līmeņa novērojumi ar identificētu sugu vai plašākas nozīmes kategoriju"
-  x_sounds:
-    zero: "%{count} skaņas"
-    one: "%{count} skaņa"
-    other: "%{count} skaņas"
   x_taxa_curated_html:
     zero: "<span class='count'>%{count}</span> iekļauti taksoni"
     one: "<span class='count'>%{count}</span> iekļauts taksons"
@@ -227,24 +150,6 @@ lv:
   about_this_bioblitz: Vairāk par "Bioblitz"
   about_this_map: Vairāk par šo karti
   about_this_project: Vairāk par šo projektu
-  about_trips_html: |
-    <h4>
-    Ceļojumi sniedz iespēju apkopot datus par organismu klātbūtni vai prombūtni, tādējādi pievienojot papildu informāciju novērojumiem
-    </h4>
-    <p>
-    <strong>Kādēļ</strong> Datus par organismu klātbūtni vai prombūtni iekļauj informāciju par paraugiem, kas noder zinātnieku veiktajai analīzei, piemēram, izplatības modelēšanai (nemodificēti iNaturalsit novērējumi ir dati, kas iekļauj tikai organismu klātbūtni).
-    </p>
-    <p>
-    <strong>Kā</strong> Ceļojumi sniedz papildu informāciju par novērojumiem, saglabājot datus par to:
-    </p>
-    <ul>
-    <li><strong>Ko</strong> meklēji (target list)</li>
-    <li><strong>Kur</strong> meklēji (search area)</li>
-    <li><strong>Kad</strong> meklēji (search interval)</li>
-    </ul>
-    <p>
-    Tavā sarakstā iekļautās sugas, ko izdodas novērot paredzētajā meklēšanas apgabālā un laika posmā tiek pievienotas pie organismiem klātbūtnē, bet nenovērotās pie organismiem prombūtnē. Nospied uz "sakārtot tabulā klātbūtnes un prombūtnes datus no ceļojumiem", lai ģenerētu tabulu ar klātbūtnes un prombūtnes datiem par ceļojumos sastaptajām sugām. <a href='%{url}'>Vairāk informācijas</a>
-    </p>
   about_trusting_projects: Vairāk par projektiem ar atklātām koordinātām
   about_trusting_projects_options_any: Visi tavi novērojumi šajā projektā
   about_trusting_projects_options_any_desc: |-
@@ -802,14 +707,6 @@ lv:
   back_to_your_observations: Atpakaļ uz taviem novērojumiem
   back_to_your_profile: Atpakaļ uz tavu profilu
   badges: Nozīmītes
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    zero: |
-      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} netīšu ID nesaderības gadījumu</strong> ar %{child} ID.
-    one: |
-      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} netīšs ID nesaderības gadījums</strong> ar %{child} ID.
-    other: |
-      Balstoties uz šo identifikāciju %{percent}% piemēru, esam aprēķinājuši, ka var rasties <strong>%{count} neparedzētas domstarpības</strong> ar %{child} ID.
   based_on_the_evidence_can_id_be_improved: |
     Vai, balstoties uz sniegtajiem pierādījumiem, kopienas piedāvāto taksonu var vēl uzlabot?
   batch: Vairākus reizē
@@ -1315,7 +1212,7 @@ lv:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Rediģēt iNaturalist taksonomiju saskaņā ar <a href="/pages/curator+guide#policies" target="_blank">pārziņa rokasgrāmatā norādītajām pamatnostādnēm</a>. Pārziņi drīkst pievienot, sadalīt, samainīt, apvienot, dezaktivizēt un dzēst iNaturalist taksonus. Pārziņi var mainīt aizsardzības statusus un taksonu ģeoprivātumu, kā arī rediģēt lietotāju pievienotos tautā pieņemtos sugu nosaukumus.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Rediģēt iNaturalist taksonomiju saskaņā ar <a href="/pages/curator+guide#policies" target="_blank">pārziņa rokasgrāmatā norādītajām pamatnostādnēm</a>. Pārziņi drīkst pievienot, sadalīt, samainīt, apvienot, dezaktivizēt un dzēst iNaturalist taksonus. Pārziņi var mainīt aizsardzības statusus un taksonu ģeoprivātumu, kā arī rediģēt lietotāju pievienotos tautā pieņemtos sugu nosaukumus.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Slēpt komentārus un uz laiku bloķēt lietotājus, kas pārkāpj<a
     href="/pages/community+guidelines" target="_blank">kopienas vadlīnijas</a>.
@@ -1511,7 +1408,6 @@ lv:
     failure:
       already_authenticated: 'Jau esi pierakstījies.'
       unauthenticated: 'Lai turpinātu, jāpierakstās vai jāreģistrējas.'
-      invalid: 'Nepareizs e-pasts vai parole.'
       invalid_token: 'Nederīgs autentifikācijas marķieris'
       user:
         suspended: Tavs konts ir uz laiku bloķēts
@@ -1525,19 +1421,17 @@ lv:
       send_paranoid_instructions: "Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai."
       no_token: "Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs."
     registrations:
+      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
       signed_up: 'Laipni lūdzam! Esi veiksmīgi reģistrējies.'
       updated: 'Konts ir veiksmīgi atjaunots.'
-      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
     mailer:
-      confirmation_instructions:
-        subject: 'Apstiprināšanas norādījumi'
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tava parole netiks nomainīta kamēr nebūsi uzspiedis uz saites un izveidojis jaunu.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2637,8 +2531,6 @@ lv:
       yy: "%d g."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3117,10 +3009,6 @@ lv:
     updates_by_you_panel_body: '"Visas aktualitātes" cilnē saņemsi paziņojumus ne tikai par savu saturu, bet arī par lietotājiem, taksoniem un vietām, kam tu seko, izmantojot labajā pusē atrodamo "Abonementi" rīku.'
     youve_got_updates_panel_title: Saņemti jauni paziņojumi.
     youve_got_updates_panel_body_p1: 'Uzzini par jaunākajiem notikumiem no paziņojumiem:'
-    youve_got_updates_panel_body_p2: |
-      <ul><li><strong>Tavs saturs:</strong> Aktivitāte pie taviem novērojumiem, piemēram, komentāri, identifikācijas un izlase no %{site_name} kopienas. Paziņojumi tiek saņemti arī tad, kad kāds pievieno tavu novērojumu kādam projektam vai pievieno tam papildu laukus.</li><li><strong>Lietotāji:</strong> Jauni novērojumi vai žurnāla ieraksti no lietotājiem, kam tu seko.</li>
-      <li><strong>Organismi, projekti un vietas:</strong> Jauni novērojumi ar konkrētiem organismiem vai vietām, kam tu seko. Vēl ir iespējams pievienoties projektiem, lai saņemtu paziņojumus, kad tiek publicēti jauni žurnāla ieraksti.</li>
-      <li><strong>Tavas diskusijas:</strong> Ja pievienosi komentārus vai novērojumus citu lietotāju saturam, automātiski saņemsi paziņojumus par jauniem notikumiem ar minēto saturu. Lai pārstātu saņemt paziņojumus, pielāgo iestatījumus "Pielāgot abonementus" sadaļā. </li></ul>
   one_by_one: "Vienu reizē"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "vienam jābūt patiesam:"
@@ -4762,10 +4650,6 @@ lv:
   this_list_only_accepts_taxa_that_are_species: Sarakstā iekļaujami tikai taksoni, kas ir sugas
   this_list_only_accepts_taxa_that_are_species_or_lower: Sarakstā iekļaujami sugas vai zemākas pakāpes taksoni
   this_observation: Novērojums
-  this_observation_is_featured_on_x_sites:
-    zero: Novērojams apskatāms %{count} vietnēs
-    one: Novērojams apskatāms %{count} vietnē
-    other: Novērojams apskatāms %{count} vietnēs
   this_observation_is_research_grade: Novērojums ir pētniecības līmenī.
   this_observation_was_created_using: "Novērojums izveidots, izmantojot:"
   this_photo_is_already_associated: Fotogrāfija jau pievienota kādam no taviem novērojumiem.
@@ -5150,11 +5034,6 @@ lv:
   view_all_fields: Skatīt visus laukus
   view_all_flags: Skatīt visus karodziņus
   view_all_members: Skatīt visus dalībniekus
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    zero: "Skatīt visus %{count}"
-    one: "Skatīt visus %{count}"
-    other: "Skatīt visus %{count}"
   view_all_observations: Skatīt visus novērojumus
   view_all_photocount_photos: "Skatīt visas %{photo_count} fotogrāfijas"
   view_assessment: Skatīt novērtējumu
@@ -5327,14 +5206,6 @@ lv:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    zero: "%{x} no %{count} apstiprināti"
-    one: "%{x} no %{count} apstiprināti"
-    other: "%{x} no %{count} apstiprināti"
-  x_of_count_observed:
-    zero: "%{x} no %{count} novēroti"
-    one: "%{x} no %{count} novērots"
-    other: "%{x} no %{count} novēroti"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} no %{y} cilvēkiem (vairāk par 2/3) piekrīt"
   x_is_the_root_of_the_tree: "%{rank} %{name} ir koka sakne"
   x_project_journal: "%{project} projekta %{name}"
@@ -5538,38 +5409,9 @@ lv:
             Ja plāno darbu klasē, lūdzu, izlasi <a href="%{url}">padomus skolotājiem</a>, lai uzzinātu dažādus ieteikumus %{site_name} vietnes izmantošanai darbā ar studentiem un skolniekiem.
     donate:
       donate_short_desc: "Noziedo jau tagad, lai izrādītu savu atbalstu."
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
-        </p>
-        <p class="lead">
-        Mūsu globālajā dabas mīlētāju kopienā dalāmies ar zināšanām un ģenerējam datus par bioloģisko daudzveidību. Ja tevi uzrunā mūsu padarītais, lūdzu, apsver iespēju noziedot vienreiz vai atkārtoti. Vēl vari apskatīt<a
-        href="https://www.inaturalist.org/pages/giving">citus veidus, kā mums palīdzēt.</a>
-        </p>
-        <p class="lead">
-        iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu.
-        </p>
-        <p class="text-muted">
-        iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
-        California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs nodokļu maksātāja Nr. (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist ir viena no pasaulē lielākajām bioloģiskās daudzveidības pētniecības kopienām. Paldies tev par līdzdalību! </strong>
-          </p>
-          <p class="lead">
-          Vēlamies, lai iNaturalist lietošana vienmēr būtu bez maksas. Diemžēl sistēmu uzturēšana gan nav bez maksas. Ja tev patīk iNaturalist, lūdzu, apsver iespēju kļūt par ikmēneša iNaturalist atbalstītāju. Regulāri ziedojumi nodrošina stabilus ienākumus, kas palīdz turpināt attīstīt iNaturalist infrastruktūru un atbalstīt mūsu darbiniekus. Piedāvājam iespēju savam profilam pievienot ikmēneša atbalstītāja piespraudīti.
-          </p>
-          <p class="lead">
-          iNaturalist kopiena aug un ziedojumi mums palīdz uzturēt, piemēram, serverus, darbiniekus, datorredzes izstrādi un jaunu funkciju ieviešanu. Ja labāk vēlies noziedot vienreiz, lūdzu, <a href="%{donate_url}">nospied šeit</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist ir California Academy of Sciences un National Geographic Society kopdarbs. Visus ziedojumus saņems
-          California Academy of Sciences, 501(c)(3) no nodokļiem atbrīvota bezpeļņas organizācija Amerikas Savienotajās Valstīs.
-          </p>
     flags:
       show:
         flaggable_content_desc: |
@@ -5602,38 +5444,6 @@ lv:
           <a href="http://eol.org/" target="_blank">Dzīvības enciklopēdija (EOL)</a> ir dzīvās dabas informācijas glabātuve. Tā sniedz iespēju izveidot sugu <a href="http://eol.org/info/252" target="_blank">kolekcijas</a>. Ja vēlies importēt sugas no kādas EOL kolekcijas, ielīmē šeit kolekcijas URL.
         guide_place_desc: |
           Pievieno savus padomus kādai atrašanās vietai, lai lietotāji to varētu atrast. Atliekot vietas robežas, tās rādās %{site_name} kartēs (piemēram, kartes skatījumā, taksonu lapās utt.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Augšupielādē CSV failu ar padomā atrodamo taksonu tagiem. CSV failam jāizskatās šādi:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nosaukums</th>
-          <th>krāsa</th>
-          <th>Roku skaits</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>divkājains</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>sarkans|melns</td>
-          <td>0</td>
-          <td>četrkājains</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Pirmā rinda sākas ar "Nosaukumu". Nākamās ir tagu kategorijas un predikāti. Tad katra nākamā rinda sākas ar taksona nosaukumu. Slejas augšpusē ir predikātu tagi. Šajā piemērā, <i>Homo sapiens</i> taksonam ir tagi <code>divkājains</code> un <code>Roku skaits=2</code>,
-          and <i>Vulpes vulpes</i> taksonam ir <code>četrkājains</code>,
-          <code>krāsa=sarkana</code>, <code>krāsa=melna</code> un
-          <code>Roku skaits=0</code>. Tukšās vietas netiek ņemtas vērā. Katram taksonam iespējams pievienot vairākas rindas. Vēl iespējams pievienot vairākas vērtības katrā šūnā, atdalot tās ar rakstzīmi "|".
-          </p>
         licensing_explanation: |
           Piešķirot savam saturam licenci, sniegsi cilvēkiem iespēju kopēt un pārveidot tavu saturu bez tavas atļaujas lūgšanas. Izmantojot šo metodi, citiem ir daudz vieglāk dalīties ar tavu saturu. Turklāt, ja izmanto trešo pušu saturu no citiem avotiem, kas izmanto Creative Commons ShareAlike licences, piemēram, Wikipedia, tad tev ir tiesisks pienākums izmantot līdzīgu licenci. Šeit iespējams uzzināt vairāk par Creative Commons licencēm:
         paste_note_html: |
@@ -5652,11 +5462,6 @@ lv:
         Var paiet kāds brīdis, mēģini pārlādēt lapu pēc pāris minūtēm.
       mobile_downloads_tip_html: |
         Padomu iespējams lejupielādēt mobilajā lietotnē, lai vēlāk to varētu lietot arī bezsaistē.
-      mobile_downloads_help_html: |
-        <p>Izveidosies lejupielādējams arhīvs ar visiem datiem un medijiem, kas saistīti ar padomu. Tas paredzēts, lai padoms būtu pieejams mobilās lietotnes lietotājiem arī bezsaistē. Arhīva ģenerēšana var aizņemt kādu brīdi. Ja izmainīsi kaut ko padomā, arhīvs atjaunosies automātiski.</p>
-        <p class="alert status">
-        Lūdzu, <strong>neiespējo bezsaistes mobilās lietotnes lejupielādes, ja neplāno tās izmantot.</strong> Tās mūsu sistēmā patērē daudz resursu.
-        </p>
       pdf_layouts:
         grid: režģis
         book: grāmatas
@@ -5789,12 +5594,6 @@ lv:
         disagreement_count: Domstarpību skaits
         identification_count: Identifikāciju skaits
         score: Rezultāts
-        explanation: |
-          <p>Ja kāda iemesla dēļ lietotājs izvēlas nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā lietotāja ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka lietotāja novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena tam piekrīt.
-          </p>
-          <p>
-          Kopienas ID arī tiks uzrādīts, lai visi varētu redzēt to, ka ir ieteiktas atšķirīgas ID.
-          </p>
         you_have_opted_out: Esi izstājies no kopienas identifikācijas
         opt_in_for_this_observation: Iesaistīties novērojumā
         your_id_does_not_match: |
@@ -5829,38 +5628,6 @@ lv:
           Šis ir kopējais "lapu" taksonu skaits, kas attēlots vaicājumā. Dažreiz būs vairāk rindu ar pilnām vērtībām nekā tagad, jo citos vaicājumos var būt pievienoti augstākas pakāpes taksoni. Piemēram, ja vienā vaicājumā ir novērojums ar Homo sapiens, bet otrā vaicājumā ir novērojums ar Homo ģinti, tad abi taksoni tiks attēloti tabulā. Šādā gadījumā pirmajā vaicājumā tiktu attēlota viena papildu rinda ar Homo ģinti, kas netika iekļauta kopējā skaita aprēķinā, jo Homo Sapiens suga ir daļa no tās pašas ģints, kas ir attēlota kā "lapa" šajā taksonomiskajā kokā.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikāli
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          zero: "%{count} sakrīt"
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} sakrīt"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} sakrīt"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          zero: "%{count} nesakrīt"
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} nesakrīt"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} nesakrīt"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          zero: "%{count} kopā"
-          #Count of how many taxa are present in an observation search
-          one: "%{count} kopā"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} kopā"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          zero: "%{count} unikāli"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} unikāls"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} unikāli"
       export:
         choose_columns_desc: Atlasi eksportējamās slejas
         create_a_query_desc_html: |
@@ -5884,39 +5651,6 @@ lv:
         taking_a_while: "Nu jau ir pagājis kāds brīdis... Lūdzu, pamēģini kādu no šīm iespējām:"
         date_range_help: "Sākuma un beigu datums DD-MM-YYYY formātā, piemēram, 17.01.2015."
         created_on_help: "Novērojumu radīšanas, nevis novērošanas datums, piemēram, 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Alternatīvas</h3>
-          <p>
-          Apjomīgi eksporta procesi palēlina mūsu sistēmas darbību un apgrūtina jaunu izmaiņu ieviešanu. Dažas alternatīvas:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF uzkrāj lielāko daļu mūsu licencēto pētniecības līmeņa novērojumu. Viņu eksporta rīki funkcionē lieliski. GBIF eksportētajos datos ir iekļauts digitālo objektu identifikators <a href="https://www.doi.org/">DOI</a>, ko iespējams citēt pētījumos, kas ir ļoti noderīgi arī mums, jo tad varam redzēt, kā iNat dati tiek izmantoti.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
-          Archive (DwC-A) priekš GBIF</a>: šis ir <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
-          fails, ko ģenerējam priekš GBIF. Fails nedrīkst saturēt neko citu, kas nav GBIF. Ja vēlies iegūt visu arhīvu, to iespējams lejupielādēt. Tas ir ļoti liels zip. arhīvs ar CSV ierakstiem, kas tiek atjaunots katru nedēļu.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">FGVC 2017 iNaturalist
-          Challenge</a>: saites uz 675 000 licencētu iNaturalist fotogrāfiju, kas tiek izmantotas datorredzes trenēšanā. Izveidots 2017. gada jūnijā, nav atjaunots.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Vienīgais novērojuma identificētājs"
         species_guess: "Norādi taksona novērotāja vārdu"
@@ -5982,14 +5716,6 @@ lv:
         allow_curator_coordinate_access_desc_html: |
           Sniegt projekta pārziņiem piekļuvi pie novērojuma noslēptajām koordinātām.
         ancestor_disagreements_desc: "Starp taksona priekštečiem identificēto taksonu skaits, kas nesakrīt ar taksonu, piemēram, uzskatu, ka taksons ir noteiktā ģintī, bet nepiekrītu tam, ka tā ir noteikta suga."
-        community_taxon_desc_html: |
-          <p class="ui">
-          Kopienas taksons jeb kopienas identifikācija attēlo to, kas pēc %{site_name} kopienas domām redzams novērojumā. Ja vēlies uzzināt vairāk par to, kā izvēlamies kopienas taksonu, apskati zemāk atrodamo algoritma aprakstu. <strong>Cenšamies izvēlēties taksonus, kam piekrīt vismaz 2/3 identificētāju.</strong> Reizēm tas var nozīmēt to, ka nākas izvēlēties augstākas pakāpes taksonu ar vairākiem pretrunīgiem taksoniem, piemēram, pēc tavām domām tā ir karaļčūska, bet pēc manām klaburčūska. Šādā gadījumā iNat norādītu apakškārtu Serpentes, kurā iekļautas visas čūskas. Algoritms dod priekšroku identifikācijām, kas nesakrīt ar pārējām, jo bieži vien pierādas, ka tās ir pareizas.
-          </p>
-          <p class="ui">
-          Lai novērojumam piešķirtu pētniecības līmeni, kopienai tas ir jāidentificē (tas ir tikai viens no kritērijiem). Ja novērojumam ir tikai viena identifikācija, tam nav kopienas taksona. Visiem novērojumiem ar vismaz vienu identifikāciju, ir arī novērojuma taksons. Novērojuma taksonus izmantojam, lai dalītos ar novērojumiem ar mūsu datu partneriem, lai savienotu tā paša taksona novērojumus, kā arī, lai atjaunotu tavu taksonu sarakstu. Vairumā gadījumu novērojumu taksoni agrāk vai vēlāk kļūst par kopienas taksoniem, bet dažreiz tie var būt atšķirīgi, it sevišķi, tad, ja kopiena vēl nav vienojusies par identifikāciju. Piemēram, ja pēc tavām domām tā ir čuska (apakškārta Serpentes), bet pēc manām domām tā ir karaļčūska (<i>Lampropeltis</i> ģints), novērojuma taksons būtu "karaļčūska" (vadoties tikai pēc manas ID), bet kopienas taksons būtu Serpentes (vadoties pēc vismaz divām identifikācijām). Ja kāda iemesla dēļ nepiekrīti kopienas taksonam, savos novērojumos to ir iespējams noraidīt, kas nozīmē to, ka novērojuma taksons nekad nekļūs par kopienas taksonu (tā vietā par pamatu tiks ņemta tava ID). Tas nozīmē arī to, ka novērojums varēs piešķirt pētniecības līmeni tikai tad, ja kopiena piekritīs <em>tavam viedoklim</em>. Ja tev nepatīk ideja par kopienas taksonu, tad no tās iespējams atteikties <a href="/users/edit" target="_blank">pielāgojot iestatījumus</a>.
-          </p><p class="ui"><strong>Algoritms</strong> visiem identificētajiem taksoniem un taksoniem, kas tos satur (piemēram, ģintī <i>Homo</i> ir <i>Homo sapiens</i>): katru vērtē kā attiecību starp "piekrišanu" skaitu – pavisam atšķirīgo ID skaits (piemēram, taksonu ID, kas nesatur vērtējamo taksonu), kā arī domstarpības par taksonu priekštečiem – piesardzīgāku ID skaits, kas nesakrīt ar smalkākās pakāpes taksonu. Identificētajiem taksoniem, kas novērtēti vismaz ar 2/3 un satur vismaz 2 ID, izvēlies zemākās pakāpes taksonu.
-          </p>
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
@@ -6012,16 +5738,6 @@ lv:
         user_stats_desc: |
           Lietotāju statistikā uzrāda ne vairāk par 500 pirmajiem novērojumiem vai sugām. Kopējais skaits parasti nedaudz pārsniedz 500, jo abi saraksti, visticamāk, nav tiem pašiem lietotājiem. Vienības, kas atzīmētas ar "*", neiekļuva 500 pirmo novērojumu vai sugu sarakstā.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Tu vari rediģēt novērojuma lauku, jo esi tā autors vai vietnes pārzinis. Ja esi pārzinis, lūdzu, ņem vērā vadlīnijas:
-        </p>
-        <ol>
-        <li>Neveic patvaļīgas izmaiņas nosaukumos (piemēram, nomainīt "ēšanu" pret "nektāra ievākšanu")</li>
-        <li>Jāņem vērā, ka novērojuma laukus var izmantot jebkuram taksonam, tāpēc nelieto tikai tam konkrētajam taksonam raksturīgu terminoloģiju!</li>
-        <li>Nedzēs laukus, ko izmanto citi lietotāji</li>
-        <li>Netulko pieejamos lauku nosaukumus citās valodās. Angļu valoda ir mūsu vietnes lingua franca. Ja vēlies izveidot lauku, kas iekļauj to pašu jēdzienu, bet citā valodā, lūdzu, izveido jaunu novērojuma lauku.</li>
-        </ol>
       dna_help: |
         Lai iespējotu BOLD DNA svītru koda meklēšanas funkciju, pārliecinies, lai laukuma nosaukumā būtu vārdi "COI", "COX1", "ITS", vai "matK," kas attiecas uz gēnu, kam paredzēts šis lauks.
       merge:
@@ -6055,69 +5771,6 @@ lv:
           Tavu novērojumu eksporta process neizdevās. Apskati visus savus eksportētos novērojumus <a href="%{url}">novērojumu eksporta lapā</a>.
       parental_consent:
         subject: Tavs bērns vēlas izmantot iNaturalist
-        content_html: |
-          <p>
-          Tavs bērns izmanto <strong>iNaturalist Seek</strong> izglītojošo lietotni un vēlas dalīties ar saviem datiem iNaturalist amatierzinātnes platformā. Ierakstu publicēšana iNaturalist atklāj informāciju, kas var palīdzēt identificēt lietotājus, tāpēc personām, kas jaunākas par 13 gadiem, iNaturalist atļauts lietot tikai ar vecāku piekrišanu.
-          </p>
-          <p>
-          <strong>iNaturalist Seek</strong> iespējams izmantot, neizveidojot kontu, tādējādi personīgā informācija netiks nekur publicēta, bet tādā gadījumā tavs bēnrs nevarēs dot ieguldījumu iNaturalist plaformā ar saviem novērojumiem. iNaturalist ir amatierzinātnieku sociālais tīkls, kur iespējams pievienot organismu novērojumus un identifikācijas, lai viens otram iemācītu vairāk par dabu un radītu zinātnei paredzētus bioloģiskās daudzveidības datus.
-          </p>
-          <p>
-          Ja vēlies sniegt savu piekrišanu, lai tavs bērns varētu lietot iNaturalist, būs jāveic šīs darbības:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Izveido savam bērnam iNaturalist kontu, nospiežot uz šīs saites:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Kad būsi izveidojis bērna kontu, lūdzu, noziedo iNaturalist labā nelielu summu 1 dolāra apmērā ar savu kredītkarti, lai pierādītu, ka esi pieaugušais. Veicot ziedojumu, lūdzu, izmanto to pašu e-pasta adresi, ko ievadīji reģistrēšanās sadaļas lauciņā "Vecāku e-pasts".
-          </p>
-          </li>
-          <li>
-          <p>
-          Kad būsim saņēmuši ziedojumu, nosūtīsim tev e-pasta ziņu ar apstiprinājumu par to, ka tava bērna konts ir aktivizēts. Tad varēsi izmantot iepriekš izveidoto lietotājvārdu un paroli, lai pierakstītos sava bērna Seek lietotnes kontā.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist ievāc šādus personu datus, kas var tikt izmantoti, lai identificētu lietotājus:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-pasta adrese (privāta):</strong> katram iNaturalist kontam ir e-pasta adrese, kas piesaistīta kontam, bet nav publiski pieejama.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>lietotājvārds (jārāda publiski):</strong> katram iNaturalist kontam ir publisks lietotājvārds un lietotāja identifikācijas numurs. Lietotājvārdam nav jābūt līdzīgam personas patiesajam vārdam. Lietotājvārds tiek izmantots, lai sazinātos ar lietotāju, atstājot publiskus komentārus vai privātas ziņas.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP adrese (privāta, nepieciešama):</strong> iNaturalist saglabā, bet publiski neatklāj lietotāja IP adresi, kas var tikt izmantota, lai iegūtu informāciju, kas var palīdzēt identificēt personu, piemēram, atrašanās vietu (ar pilsētas līmeņa precizitāti).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>profila attēls (publisks, pēc izvēles):</strong> iNaturalist kontiem iespējams pievienot profila attēlus, kuros bieži vien attēlots pats lietotājs.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>novērojumu atrašanās vieta (publiska vai privāta, nepieciešama):</strong> iNaturalist novērojumos iekļauta informācija par novērojuma atrašanās vietu. Iespējams izvēlēties, vai to padarīt publiski apskatāmu vai privātu. Noklusējuma režīmā novērojumu atrašanās vietas ir publiski apskatāmas.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist sniedz iespēju savā kontā dalīties arī ar publiski apskatāmiem attēliem, komentāriem un privātām ziņām.
-          Iespējams, ka lietotāji paši savā saturā var iekļaut informāciju, kas var palīdzēt viņus identificēt.
-          </p><p> Uzzināt vairāk par iNaturalist privātuma politiku <a href="%{privacy_policy_url}">šeit</a>.
-          </p>
       photos_missing:
         subject: Dažas fotogrāfijas jālabo
         we_have_been_housekeeping: |
@@ -6132,24 +5785,6 @@ lv:
           Zemāk pieejamas ietekmēto fotogrāfiju saites.
       user_parent_confirmation:
         subject: Tava bērna iNaturalist konts ir aktivizēts
-        content_html: |
-          <p>
-          Paldies, ka izveidoji savam bērnam iNaturalist kontu. Konts ir aktivizēts. Šeit vari apskatīt saglabātos datus:
-          </p>
-          <ul>
-          <li><strong>Vecāku vai aizbildņa vārds:</strong>%{parent_name}</li>
-          <li><strong>Vecāku vai aizbildņa e-pasta adrese:</strong> %{parent_email}</li>
-          <li><strong>Bērna vārds:</strong> %{child_name}</li>
-          <li><strong>Bērna dzimšanas dienas datums:</strong> %{child_birthday}</li>
-          <li><strong>Bērna konta e-pasta adrese</strong> %{child_email}</li>
-          <li><strong>Bērna konta lietotājvārds:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Lai pieslēgtos kontam no bērna Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
-          </p>
-          <p>
-          Bērns varēs pievienot savam iNaturalist kontam novērojumus, izmantojot Seek lietotni, kas būs apskatāmi arī iNaturalist.org vietnē.
-          </p>
       users_updates_suspended:
         message: |
           Apturējām jaunumu saņemšanu, jo kādu laiku %{site_name} vietnē esi bijis neaktīvs. Lai atkal saņemtu jaunumus par notikumiem, lūdzu, no jauna <a href="%{login_url}">pieslēdzies savam kontam</a>.
@@ -6211,9 +5846,6 @@ lv:
           un pārliecinies, vai esi pareizi ievadījis vietas nosaukumu. Ja nevari to atrast, apsver iespēju
           <a href="%{new_place_url}" target="_blank">izveidot jaunu vietu</a>,
           bet, lūdzu, neveido vietu dublikātus.
-        bioblitz_desc_html: |
-          <p> Bioblitz ir pasākums, kurā dalībnieki noteiktā laika posmā mēģina novērot pēc iespējas vairāk sugu. Jautrs veids, kā iepazīstināt cilvēkus ar bioloģisko daudzveidību un ievākt vērtīgus datus.
-          </p>
         change_admin_desc: Izvēlies projekta pārzini, kuram piešķirt administratora statusu.
         change_owner_alert: |
           Šī darbība atņems tev tiesības dzēst un nodot projektu citiem. Vai vēlies turpināt?
@@ -6231,31 +5863,6 @@ lv:
         make_owner: Piešķirt īpašnieka statusu
         no_curators: |
           Nav neviena projekta pārziņa. Ja vēlies piešķirt kādam administratora statusu, lietotājam vispirms jāpievienojas projektam un tev jāpiešķir šim lietotājam pārziņa statuss.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Novērojumu apkopošanas funkcija automātiski pievieno projektiem novērojumus, kas atbilst projekta noteikumiem. No projekta nav iespējams izņemt vairākus novērojumus reizē, jo tas var būt bīstami. Pārliecinies, vai tiešām esi norādījis vēlamo vietu un taksonu noteikumus, jo citādi var izrādīties, ka nāksies manuāli dzēst daudzus nepiemērotus novērojumus.
-          </p>
-          <p class="description">
-          Funkcija strādās tikai tad, ja būs izpildīti šādi nosacījumi:
-          </p>
-          <ol>
-          <li class="readable description">
-          Projektam jābūt vismaz vienam "jābūt novērotam kādā vietā" noteikumam, kas attiecas uz maza līdz vidēja izmēra vietu (apmēram Teksasas vai Ukrainas izmērā)
-          </li>
-          <li class="readable description">
-          VAI projektam jābūt vismaz vienam "jābūt taksonā" noteikumam
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Projekta pielikumi ir tavam projektam pievienotie faili, ievērojot šādus noteikumus:</p>
-          <ol class="description">
-          <li>Projekta ikonu iespējams samainīt pret projekta logo. Logo failu nosaukuma beigās jābūt .logo.jpg vai .logo.png</li>
-          <li>Projekta lapā KML un KMZ faili tiek pievienoti kartei.</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Projektam iespējams pievienot pielāgojamu projekta taksonu sarakstu. Izmantojot "taksonam jābūt iekļautam" noteikumu, iespējams parocīgi atlasīt projektam pievienotos novērojumus, kas sakrīt ar sarakstā norādītajiem taksoniem.
-          </p>
         rules:
           captive: jābūt nebrīvē vai kultivētam
           coordinates_shareable_by_project_curators: koordinātām jābūt pieejamām projekta pārziņiem
@@ -6283,20 +5890,6 @@ lv:
           Uzticot citiem savu projektu, sniegsi iespēju projekta menedžeriem pievienot pielikumus un rediģēt tādu informāciju kā projekta plakāta HTML un CSS. Piekļuve pie pielāgojamās projekta informācijas var sniegt menedžeriem iespēju pievienot kaitīgu Javascript kodu, tāpēc uztici projektus tikai atbildīgiem un tehniski kompetentiem menedžeriem.
         you_can_preview: |
           <a href="%{url}">Šeit</a> iespējams iepriekš aplūkot, kā projekts izskatītos, izvēloties kolekciju projekta veidu.
-      invite:
-        description_html: |
-          <h3>Ielūgumi</h3>
-          <p class="ui">
-          Lietotāju uzaicināšana projektā nedaudz atšķiras no atsevišķu novērojumu uzaicināšanas. Uzaicinot lietotājus, tiek veiktas šādas darbības:
-          </p>
-          <ol>
-          <li>Tiek nosūtīta e-pasta ziņa ar uzaicinājumu</li>
-          <li> Uzaicinājums tiek rādīts arī informācijas panelī</li>
-          <li>Lietotāji iegūst pieeju projektam, ja projekta iestatījumos aktivizēti tikai uzaicinājumi</li>
-          </ol>
-          <p class="ui">
-          Tikai projekta pārziņi var uzaicināt lietotājus. Iesakām meklēt cilvēkus pēc iNat lietotājvārdiem vai viņu <em>pilnas</em> e-pasta adreses, pieņemot, ka tā ir mūsu sistēmā.
-          </p>
       join:
         invite_only_description: |
           Kļūt par projekta dalībnieku var tikai ar uzaicinājumu. Ja vēlies pievienoties projektam, sazinies ar kādu projekta pārzini, lai lūgtu uzaicinājumu.
@@ -6388,11 +5981,6 @@ lv:
           name_already_taken: Izvēlētais projekta nosaukums ir aizņemts
           cannot_have_more_than_x_project_rules: Projektam nevar būt vairāk par %{x} noteikumiem
           summary_is_required: Nepieciešams projekta kopsavilkuma teksts
-      project_location_privacy_notice_html: |
-        <p> Jāņem vērā, ka projekta pārziņi var redzēt privātas un noslēptas novērojumu atrašanās vietas kamēr tu viņiem neliedz piekļuvi. Viņi var arī pievienot projektam tavus novērojumus, ja <a href="/users/edit">neesi izmainījis iestatījumus</a>. Vēl iespējams sniegt vai liegt piekļuves katram gadījumam atsevišķi.
-        </p>
-        <p>
-        Ja uztraucies par atrašanās vietu privātumu, nepievienojies projektiem, kuru pārziņiem neuzticies.</p>
       project_user_curator_coordinate_access_labels:
         observer: Jā, bet tikai tad, kad es pats projektam pievienoju novērojumus.
         any: Jā, jebkurš projektam var pievienot novērojumus.
@@ -6406,20 +5994,8 @@ lv:
       show:
         are_you_sure_you_want_to_convert: |
           Vai tiešām vēlies pārveidot projektu par kolekciju projektu?
-        bioblitz_results_desc_html: |
-          <p>
-          Atšķirībā no standarta projektiem, Bioblitz projektos tiek attēlota statistika no <em>visiem</em> novērojumiem kādā vietā un laika posmā, nevis tikai no novērojumiem, kas pievienoti projektam ar nodomu. Tas ir tā izstrādāts, lai projektam nebūtu jāpievieno novērojumi tikai tāpēc, lai iegūtu statistiku reālajā laikā. Jāņem vērā, ka novērojumi nebūs eksportējami vai attēlojami vairākos projekta skatā, piemēram, dalībnieku snieguma skatā un mobilās lietotnes projekta novērojumu meklētājā. Tas būs izdarāms tikai tad, ja dalībnieki pievienos novērojumus, kā standarta projektā.
-          </p>
-          <p>
-          Lai gan šāda veida projektā tiek rādīta statistika novērojumiem, kas nav manuāli pievienoti projektam, pārziņiem nav pieejas novērojumu privātajām vai noslēptajām koordinātām. Pārziņi nevar arī nezinot pieņemt to, ka novērotāji piekrīt projekta noteikumiem. Ja esi pārzinis un tev vajadzīga privātu koordinātu pieeja, jāpanāk, lai dalībnieki piekristu projekta noteikumiem. Ja vēlies pievienot novērojumus pārbaudītajai projekta kontrollapai, pārliecinies, lai dalībnieki pievienotos projektam un saglabātu novērojumus, kā standarta projektā.
-          </p>
         click_here_to_convert_this_project: |
           Nospied šeit, lai pārveidotu projektu par kolekciju projektu.
-        no_journal_blurb_html: |
-          <p>Projekta žurnāls paredzēts saziņai ar projekta dalībniekiem. Izmanto žurnālu, lai publicētu paziņojumus vai apspriestu mērķus un projektā notiekošo.
-          </p>
-          <p>
-          Pirmais solis ir <a href="%{url}" class="readmore">ieraksta publicēšana</a></p>
         curated_checklist_desc: |
           Šis ir pārbaudīts projektam pievienoto novērojumu taksonu saraksts un taksonu uzskaites lapa, nevis visi reģistrētie novērojumi šajā pasākumā un vietā.
         make_sure_you_have_read_about_the_differences: |
@@ -6584,16 +6160,6 @@ lv:
           Īss taksona apraksts, atsaucoties uz <a target="_blank"
           href="%{url}">Vikipēdijas lapu</a>. Glabājam to kešatmiņā līdz tas tiek manuāli pārlādēts. Pārlādējot aprakstu, tiek atjaunota arī Vikipēdijas satura kešatmiņa, kas tiek pārlādēta automātiski reizi nedēļā.
       show:
-        about_names_desc: |
-          <p>
-          Lielākajai daļai sugu dažādās valodās ir "tautā pieņemtie nosaukumi". Šie nosaukumi lielākoties ir atpazīstami, viegli izrunājami un nemainīgi, bet daudzām sugām atkarībā no reģiona pat vienā un tajā pašā valodā var būt dažādi nosaukumi. Tas var apgrūtināt diskusijas par sugām. Tādēļ zinātnieki izmanto vienotus zinātniskos nosaukumus katrai organismu kategorijai, kas atbilst <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">binārās nomenklatūras</a> noteikumiem. Šie nosaukumi ir latīņu valodā, kurā vairs neviens nerunā, tāpēc salīdzinājumā ar tautā pieņemtajiem nosaukumiem daudziem cilvēkiem tos ir grūtāk atcerēties. Zinātniskie nosaukumi mēdz ietvert organismu taksonomisko novietojumu, tāpēc tie var mainīties, kad zinātnieki nāk klajā ar precīzākām teorijām par organismu evolucionārajām attiecībām. Šis iemesls apgrūtina organismu apspriešanu pat cilvēkiem, kas pazīst zinātniskos nosaukumus.
-          </p>
-          <p>
-          Vecais labais teiciens labi paskaidro šo situāciju – "Tautā pieņemtie nosaukumi mainās atkarībā no vietas, bet zinātniskie laika gaitā."
-          </p>
-          <p>
-          Mēs risinām šo problēmu, iespēju robežās atainojot gan tautā pieņemtos, gan zinātniskos nosaukumus, kā arī izvēloties tautā pieņemtos nosaukumus atkarībā no lietotāja valodas un atrašanās vietas.
-          </p>
         about_conservation_status_desc: |
           Aizsardzības statusa kopsavilkumā redzams organismu grupu izmiršanas risks.
         about_establishment_desc: |
@@ -6660,26 +6226,6 @@ lv:
           Taksona nosaukums ar klasifikāciju. Infraspecifiskās klasifikācijas dati jāievada pēc binominālā nosaukuma.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul><li><p>Centies pievienot nosaukumus, kas jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
-          <li><p>Nepievieno nosaukumu dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
-          <li><p>Pievienojot augstākas pakāpes taksonu nosaukumus, centies iekļaut visus zemāko pakāpju taksonus, piemēram, "Gārņu dzimta" vai "Ēriku dzimta"</p></li>
-          <li>
-          <p>
-          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, nav jāraksta savas domas par to, kā nosaukums būtu jāizmanto.
-          </p>
-          </li>
-          <li>
-          <p>
-          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus nosaukumus citās valodās, piemēram, "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
-          </p>
-          </li>
-          <li>
-          <p>
-          Noklusējuma režīmā tiek attēloti citās valodās pārtulkotie tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pievieno vietai nosaukumu, lai lietotājiem un vietnēm tie būtu redzami sākumā. Ja vienai vietai pievienoti vairāki nosaukumi, tos iespējams sakārtot <a href="%{url}">šeit</a>. Lūdzu, <strong>nepievieno</strong> nosaukumus katrai vietai, kur noteiktais nosaukums tiek izmantots, bet gan tikai tām vietām, kas ir pretrunā ar citām vietām.
       taxon:
@@ -6743,32 +6289,8 @@ lv:
           Lai izdzēstu savu kontu, veidlapā jāievada "%{confirmation_code}"
       edit:
         about_third_party_tracking: Par trešo pušu izsekošanu
-        blocking_desc_html: |
-          <p>
-          Ja kāds tiek nobloķēts, šim lietotājam vairs nav iespējas nosūtīt tev ziņas, komentēt un identificēt tavus novērojumus vai kādā citā veidā sazināties ar tevi %{site_name} vietnē. Turklāt lietotāja novērojumi nebūs redzami tavos meklēšanas rezultātos un tavi novērojumi nebūs redzami lietotāja meklēšanas rezultātos. Tomēr tas nepadara tevi lietotājam neredzamu. Tavi novērojumi un profils tāpat būs atrodams, bet lietotājs nevarēs sazināties ar tevi.
-          </p>
-          <p>
-          Bloķēšana lietojama situācijās, kad nevari ar kādu satikt un par spīti taviem centieniem atrisināt nesaskaņas civilizētā ceļā lietotājs tevi tāpat neliek mierā. Bloķēšana nav paredzēta tam, lai slēptos no citiem, izvairītos no cilvēkiem, kuru novērojumiem neuzticies vai, lai atteiktos no kopienas ID (tam parezēta cita funkcija). Bloķēšana funkcionē abējādi – ja kādu nobloķēsi, lietotājs nevarēs ar tevi sazināties, bet arī tu nevarēsi sazināties ar viņu. Ja šo funkciju lietosi nepareizi, piemēram, lai izvairītos no kāda lietotāja identifikācijām, tad liegsi arī sev iespēju identificēt šī lietotāja novērojumus.
-          </p>
-          <p>
-          Nobloķēt iespējams tikai trīs lietotājus. Uzskatām, ka tas ir pamatots daudzums, kas sniedz iespēju nobloķēt traucējošus lietotājus un tai pašā laikā liedz kādam izmantot šo funkciju maldinošā veidā. Ja tev rodas nepieciešamība nobloķēt vairāk lietotāju, lūdzu, sazinies ar mums.
-          </p>
-          <p>
-          Ja kāds tevi neliek mierā vai izseko %{site_name} vietnē, lūdzu,
-          <a href="mailto:%{help_email}">sazinies ar mums</a>. Ja lietotāja darbības pārkāpj lietošanas noteikumus vai uzskatām, ka lietotāja izturēšanās ir nepiemērota mūsu vietnei, veiksim izmeklēšanu. <a href="mailto:%{help_email}">
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Ja pārdomāsi, iestatījumus vienmēr iespējams mainīt <a href='/users/edit'>šeit</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p><a href="%{url}" target="_blank">iNaturalist tīkls</a> ir lokalizētu tīmekļa vietņu apkopojums, kas savienots ar globālo iNaturalist kopienu. Vietējās organizācijas, kas parakstījušas vienošanos ar iNaturalist, atbalsta mūsu tīmekļa vietnes, lai veicinātu iNaturalist lietošanu noteiktā valstī, kas nāk par labu vietējai bioloģiskai daudzveidībai. Organizācijām ir pieeja pie savās valstīs reģistrētām koordinātām, kas tiek automātiski noslēptas no publikas, lai aizsargātu apdraudētas sugas.
-          </p>
-          <p>
-          Tavs lietotājvārds un parole funkcionē visās tīmekļa vietnēs, kas ir daļa no iNaturalist tīkla. Ja izvēlies saistīt savu kontu ar kādu no iNaturalist tīkla partneriem, tava e-pasta adrese (tikai, lai sazinātos ar tevi par vietnes aktivitātēm) un noslēpto un privāto novērojumu faktiskās koordinātas būs pieejamas šīm organizācijām, kas uztur attiecīgās tīmekļa vietnes.
-
-          </p>
-          <p>
-          Lūdzu, nepievieno savu kontu citam iNaturalist partnerim, ja esi veicis vairāk nekā 1000 novērojumu.
-          </p>
         licensing_desc_html: |
           Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
@@ -6777,13 +6299,6 @@ lv:
           Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
           <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
           Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
-        muting_desc_html: |
-          <p>
-          Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.
-          </p>
-          <p>
-          Iespējams apklusināt, cik vien daudz lietotājus vēlies, bet ņem vērā to, ka palaidīsi garām potenciāli svarīgus paziņojumus, piemēram, identifikācijas, kas izmaina tavu novērojumu kopienas ID.
-          </p>
         name_place_help_html: |
           Izvēlēties tautā pieņemtos nosaukumus no šīs vietas.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6846,11 +6361,6 @@ lv:
       recent:
         about_recent_users: Apraksts
         definitions_html: <dl> <dt>Potenciāls mēstuļotājs</dt> <dd> Lietotājs, visticamāk, ir mēstuļotājs bez novērojumiem vai identifikācijām, bet ar profila aprakstu.</dd> <dt>Automātiskā mēstuļotāju noteikšana</dt> <dd> Sistēma automātiski atpazina mēstuļotāju. </dd> <dt>Manuālā mēstuļotāju noteikšana</dt> <dd> Mēstuļotāju atpazinis vietnes pārzinis. </dd> <dt>Kļūdaina atbilsme</dt> <dd> Pārziņu pārbaudīti lietotāji, kuriem pievienots mēstuļotāja karodziņš, kas patiesībā nav mēstuļotāji.</dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Cerams, ka šis rīks palīdzēs gan laipni sagaidīt jaunus lietotājus, gan cīņā ar mēstuļotājiem. Izmantojot <a
-          href="https://akismet.com/">Akismet</a>, daudziem lietotājiem tiek automātiski pievienots mēstuļotāju karodziņš. Diemžēl Akismet nav perfekts rīks. Ja vēlies palīdzēt, vari veltīt pāris minūtes, lai pārbaudītu jaunos kontus un pievienotu mēstuļotāju karodziņus lietotājiem, par kuriem ir aizdomas.
-          </p>
       show:
         take_a_moment_to_review_html: 'Velti brīdi sava laika, lai apskatītu mūsu <a href="%{link}">vadlīnijas</a>.'
         this_user_was_banned: Lietotājs tika uz laiku bloķēts
@@ -6858,16 +6368,6 @@ lv:
           Vēlies parādīt citiem savus mīļākos taksonus? %{link_start_tag}Izveido sarakstu%{link_end_tag} ar nosaukumu "Izlase", lai šajā sadaļā parādītu savu nesen pievienoto saturu.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Paldies par taviem ziedojumiem iNaturalist tīklam. Jau izmantojām tavu ziedojumu, lai pārbaudītu tavu identitāti, tāpēc tev vairs nav jāveic nekādas papildu darbības. <strong>Tava bērna konts ir aktivizēts.</strong>
-          </p>
-          <p>
-          Lai pieslēgtos kontam no Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
-          </p>
-          <p>
-          Izmantojot Seek lietotni, bērns varēs pievienot savam iNaturalist kontam novērojumus, kas būs apskatāmi arī iNaturalist.org vietnē.
-          </p>
         thanks_for_creating_a_minor_account: PALDIES PAR BĒRNU KONTA IZVEIDOŠANU!
         we_will_send_you_an_email: |
           Nosūtīsim ziņu uz tavu e-pastu, kad tava bērna konts būs aktivizēts.
