@@ -2,9 +2,6 @@ mr:
   x_comments:
     one: '%{count} टिप्पणी'
     other: '%{count} टिप्पण्या'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> टिपण्णी'
-    other: '<span class="count">%{count}</span> टिप्पण्या'
   x_faves:
     one: '%{count} आवडते'
     other: '%{count} आवडती'
@@ -14,27 +11,6 @@ mr:
   x_identifications:
     one: '%{count} ओळख'
     other: '%{count} ओळखी'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> ओळख'
-    other: '<span class="count">%{count}</span> ओळखी'
-  x_identifications_:
-    one: '%{count} ओळख'
-    other: '%{count} ओळखी'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ओळखकर्ता'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ओळखकर्ता'
-  x_languages:
-    one: "%{count} भाषा"
-    other: "%{count} भाषा"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} जीवन यादी प्रथम"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} जीवन यादी प्रथम"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> नोंदवही नोंद'
     other: '<span class="count">%{count}</span> नोंदवही नोंदी'
@@ -55,30 +31,15 @@ mr:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} } ह्या जातीची इथे चुकीची ओळख%{rank}"
     other: "%{count} } ह्या जातीच्या इथे चुकीच्या ओळखी %{rank}"
-  x_observations:
-    one: "%{count} निरीक्षण"
-    other: "%{count} निरीक्षणे"
-  x_observations_:
-    one: "%{count} निरीक्षण"
-    other: "%{count} निरीक्षणे"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> निरीक्षण"
-    other: "<span class='count'>%{count}</span> निरीक्षणे"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} निरीक्षण</a>"
     other: "<a href='%{url}'>%{count} निरीक्षणे</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> निरीक्षण समीक्षा"
     other: "<span class='count'>%{count}</span> निरीक्षणे समीक्षा"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> निरीक्षक'
-    other: '<span class="count">%{count}</span> निरीक्षक'
   x_others:
     one: "%{count} इतर"
     other: "%{count} इतर अनेक"
-  x_people:
-    one: "%{count} व्यक्ती"
-    other: "%{count} अनेक व्यक्ती"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}व्यक्ती </strong> मदत%{user} करणाऱ्या <strong>%{y} ओळखण्यासाठी</strong>"
   x_photos:
     one: "%{count} फोटो"
@@ -86,24 +47,12 @@ mr:
   x_new_species:
     one: "%{count} नवीन प्रजाती"
     other: "%{count} नवीन प्रजाती"
-  x_new_users:
-    one: '%{count} नवीन वापरकर्ता'
-    other: '%{count} नवीन वापरकर्ते'
-  x_species:
-    one: '%{count} प्रजाती'
-    other: '%{count} प्रजाती'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> जाती"
-    other: "<span class='count'>%{count}</span> प्रजाती"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} प्रजाती</a>"
     other: "<a href='%{url}'>%{count} प्रजाती</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} चाळणी केलेले निरीक्षण"
     other: "%{count} चाळणी केलेली निरीक्षणे"
-  x_taxa:
-    one: "%{count} वर्ग"
-    other: "%{count} वर्ग"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> पाहिलेला वर्ग"
     other: "<span class='count'>%{count}</span> पाहिलेले वर्ग"
@@ -113,9 +62,6 @@ mr:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षण प्रजाती किंवा त्यापेक्षा खालच्या पातळीपर्यंत ओळख"
     other: "<span class='count'>%{count}</span> संशोधन दर्जाप्राप्त निरीक्षणे प्रजाती किंवा त्यापेक्षा खालच्या पातळीपर्यंत ओळख"
-  x_sounds:
-    one: "%{count} ध्वनी"
-    other: "%{count} ध्वनी"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> छाननी केलेला वर्ग"
     other: "<span class='count'>%{count}</span> छाननी केलेले वर्ग"
@@ -584,43 +530,11 @@ mr:
   password_confirmation: 'पासवर्ड पुष्टी'
   people: लोक
   pi_consent_desc_title: व्यक्तिगत माहितीच्या संदर्भात
-  pi_consent_desc_html: |
-    <p>
-    ह्या साईटवर आम्ही आपल्या खात्याच्या व्यवस्थापनासाठी आपले युजरनेम आणि ईमेल आयडी यांसारखी वैयक्तिक माहिती साठवतो, आणि गोपनीयता कायद्यांचे पालन करण्यासाठी, आपण आम्हांला या वापरासाठी सहमती देत असल्याचे दर्शविण्यासाठी आपल्याला हा बॉक्समध्ये खूण करणे आवश्यक आहे. आम्ही कोणती माहिती गोळा करतो आणि ती कशी वापरतो, हे जाणून घेण्यासाठी कृपया पुढील पानांना भेट द्या, आमचे 
-    <a href='%{privacy_url}' target='_blank'>गोपनीयता धोरण</a>
-    आणि आमच्या <a href='%{terms_url}' target='_blank'>सेवा अटी</a>.
-    </p>
-    <p>
-    वैयक्तिक माहिती संग्रहित केल्याशिवाय iNaturalist खाते ठेवण्याचा कोणताही मार्ग नाही, त्यामुळे ही संमती रद्द करण्याचा एकमेव मार्ग म्हणजे तुमचे अकाउंट डिलीट करणे. 
-    </p>
   pi_consent_label: |
     मी iNaturalist ला माझ्या खाते व्यवस्थापनासाठी लागणाऱ्या, मर्यादित स्वरूपात वैयक्तिक माहितीच्या साठवण आणि वापरासाठी सहमती देतो.
   pi_consent_child_label: |
     मी iNaturalist ला माझ्या पाल्याच्या खाते व्यवस्थापनासाठी लागणाऱ्या, मर्यादित स्वरूपात वैयक्तिक माहितीच्या साठवण आणि वापरासाठी सहमती देतो.
   data_transfer_consent_desc_title: वैयक्तिक माहिती हस्तांतरण संमतीबद्दल
-  data_transfer_consent_desc_html: |
-    <p>
-    काही माहिती गोपनीयता कायद्यांनुसार, जसे की युरोपियन युनियनचा सामान्य डेटा
-    संरक्षण नियमन (GDPR), वैयक्तिक माहिती त्यांच्या अधिकारक्षेत्रातून इतर अधिकारक्षेत्रांपर्यंत हस्तांतरित करण्यासाठी स्पष्ट संमती आवश्यक आहे जेथे या माहितीचे कायदेशीर संरक्षण पुरेसे मानले जात नाही.
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    च्या नुसार युरोपियन युनियन यापुढे युनायटेड स्टेट्सला वैयक्तिक माहितीच्या कायदेशीर संरक्षणासाठी समाधानकारक अधिकारक्षेत्र मानत नाही, 
-    विशेषतः यूएस सरकारकडून यूएसमध्ये प्रवेश करणाऱ्या डेटाच्या सर्वेक्षणाच्या शक्यतेमुळे. इतर अधिकारक्षेत्रातही याच्याशी समान धारणा असणे शक्य आहे.
-    </p>
-    <p>
-    iNaturalist वापरण्यासाठी तुमच्या सारखी वैयक्तिक माहिती साठवणे आवश्यक आहे
-    तुमचा ईमेल पत्ता, सर्व iNaturalist डेटा युनायटेड स्टेट्स मध्ये संग्रहित आहे, आणि
-    तुम्ही iNaturalist वापरत असताना तुम्ही कोणत्या कायदेशीर अधिकारक्षेत्रात आहात याची आम्हाला खात्री असू शकत नाही, त्यामुळे GDPR सारख्या गोपनीयता कायद्यांचे पालन करण्यासाठी, तुम्ही तुमची वैयक्तिक माहिती iNaturalist च्या यूएस सर्व्हरवर हस्तांतरित करण्यात असणारी जोखीम आणि संमती जाणता आणि स्वीकारता हे मान्य केले पाहिजे.
-    </p>
-    <p>
-    आम्ही कोणती माहिती गोळा करतो आणि ती कशी वापरतो याबद्दल अधिक जाणून घेण्यासाठी,
-    कृपया आमचे पहा
-    <a href='%{privacy_url}' target='_blank'>गोपनीयता धोरण</a>
-    आणि आमच्या <a href='%{terms_url}' target='_blank'>वापराच्या अटी</a>.
-    </p>
-    <p>
-    वैयक्तिक संग्रहित केल्याशिवाय iNaturalist खाते ठेवण्याचा कोणताही मार्ग नाही
-    माहिती, त्यामुळे ही संमती रद्द करण्याचा एकमेव मार्ग म्हणजे तुमचे खाते डिलीट करणे
-    </p>
   data_transfer_consent_label: |
     मी माझी वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
   data_transfer_consent_child_label: |
