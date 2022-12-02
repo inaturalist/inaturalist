@@ -1,20 +1,9 @@
 sl:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} sprememba"
-    two: "%{count} spremembi"
-    few: "%{count} spremembe"
-    other: "%{count} spremembe"
   x_comments:
     one: '%{count} komentar'
     two: '%{count} komentarja'
     few: '%{count} komentarjev'
     other: '%{count} komentarjev'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> komentar'
-    two: '<span class="count">%{count}</span> komentarja'
-    few: '<span class="count">%{count}</span> komentarji'
-    other: '<span class="count">%{count}</span> komentarji'
   x_faves:
     one: '%{count} priljubljen'
     two: '%{count} priljubljena'
@@ -30,41 +19,6 @@ sl:
     two: '%{count} določitvi'
     few: '%{count} določitev'
     other: '%{count} določitev'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> določitev'
-    two: '<span class="count">%{count}</span> določitvi'
-    few: '<span class="count">%{count}</span> določitev'
-    other: '<span class="count">%{count}</span> določitev'
-  x_identifications_:
-    one: '%{count} določitev'
-    two: '%{count} določitvi'
-    few: '%{count} določitev'
-    other: '%{count} določitev'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Določevalec/ka'
-    #Number of people who have added identifications
-    two: '<span class="count">%{count}</span> Določevalca/ki'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Določevalci/ke'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Določevalci/ke'
-  x_languages:
-    one: "%{count} jezik"
-    two: "%{count} jezika"
-    few: "%{count} jeziki"
-    other: "%{count} jeziki"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} na seznamu življenja"
-    #Count of number of taxa that represent the first addition to a life list
-    two: "%{count} na seznamu življenja"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} na seznamu življenja"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} na seznamu življenja"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> vnos v dnevnik'
     two: '<span class="count">%{count}</span> vnosa v dnevnik'
@@ -97,16 +51,6 @@ sl:
     two: "%{count} napačni določitvi te vrste v tem %{rank}"
     few: "%{count} napačne določitve te vrste v tem %{rank}"
     other: "%{count} napačnih določitev te vrste v tem %{rank}"
-  x_observations:
-    one: "%{count} opažanje"
-    two: "%{count} opažanji"
-    few: "%{count} opažanja"
-    other: "%{count} opažan"
-  x_observations_:
-    one: "%{count} Opažanje"
-    two: "%{count} Opažanji"
-    few: "%{count} Opažanja"
-    other: "%{count} Opažanj"
   date:
     abbr_month_names:
       - 
