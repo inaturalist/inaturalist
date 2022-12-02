@@ -1,14 +1,7 @@
 ca:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} canvi"
-    other: "%{count} canvis"
   x_comments:
     one: '1 comentari'
     other: '%{count} comentaris'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> comentari'
-    other: '<span class="count">%{count}</span> comentaris'
   x_faves:
     one: '1 favorit'
     other: '%{count} favorits'
@@ -18,27 +11,6 @@ ca:
   x_identifications:
     one: '1 identificació'
     other: '%{count} identificacions'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificació'
-    other: '<span class="count">%{count}</span> identificacions'
-  x_identifications_:
-    one: '1 identificació'
-    other: '%{count} identificacions'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificadors'
-  x_languages:
-    one: "%{count} idioma"
-    other: "%{count} idiomes"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} novetat a la llista de vida"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} novetats a la llista de vida"
   x_journal_posts_html:
     one: '<span class="count">1</span> article'
     other: '<span class="count">%{count}</span> articles'
@@ -59,30 +31,15 @@ ca:
   x_misidentifications_of_species_in_this_rank:
     one: "1 espècie mal identificació en aquest %{rank}"
     other: "%{count} espècies mal identificades en aquest %{rank}"
-  x_observations:
-    one: "1 observació"
-    other: "%{count} observacions"
-  x_observations_:
-    one: "1 observació"
-    other: "%{count} observacions"
-  x_observations_html:
-    one: "<span class='count'>1</span> observació"
-    other: "<span class='count'>%{count}</span> observacions"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observació</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observació revisada"
     other: "<span class='count'>%{count}</span> observacions revisades"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadors'
   x_others:
     one: "1 altre"
     other: "%{count} més"
-  x_people:
-    one: "%{count} persona"
-    other: "%{count} persones"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -90,24 +47,12 @@ ca:
   x_new_species:
     one: "1 Espècie Nova"
     other: "%{count} Espècies Noves"
-  x_new_users:
-    one: '%{count} Nou Usuari'
-    other: '%{count} Nous Usuaris'
-  x_species:
-    one: '1 espècie'
-    other: '%{count} espècies'
-  x_species_html:
-    one: "<span class='count'>1</span> espècie"
-    other: "<span class='count'>%{count}</span> espècies"
   x_species_link_html:
     one: "<a href=\"%{url}\">1 espècie</a>"
     other: "<a href=\"%{url}\">%{count} espècies</a>"
   x_suggestions_filtered_by_colon:
     one: "1 Suggeriment filtrat per:"
     other: "%{count} Suggeriments Filtrats per:"
-  x_taxa:
-    one: "%{count} tàxon"
-    other: "%{count} tàxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> tàxon observat</span>"
     other: "<span class='count'>%{count}</span> tàxons observats</span>"
@@ -117,9 +62,6 @@ ca:
   x_research_grade_observations_to_species_html:
     one: "<span class=count>1</span> observació amb grau de recerca ha IDentificat les espècies, subespècies o varietats</span>"
     other: "<span class=count>%{count}</span> observacions amb grau de recerca van IDentificar les espècies, subespècies o varietats</span>"
-  x_sounds:
-    one: "%{count} so"
-    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> tàxon supervisat"
     other: "<span class='count'>%{count}</span> tàxons supervisats"
@@ -185,8 +127,6 @@ ca:
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
   about_this_project: Sobre aquest projecte
-  about_trips_html: |
-    <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
   about_trusting_projects: Sobre la Confiança en Projectes
   about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
   about_trusting_projects_options_any_desc: |-
@@ -729,14 +669,6 @@ ca:
   back_to_your_observations: Torneu a les vostres observacions
   back_to_your_profile: Torneu al vostre perfil
   badges: Insígnies
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Basant-nos en una mostra del %{percent}% percent d'aquests ID, calculem que això farà
-      resultat en <strong>%{count} desacord no intencionat</strong> amb la ID de %{child}.
-    other: |
-      Basant-nos en una mostra del %{percent}% percent d'aquests ID, calculem que això farà
-      resultat en <strong>%{count} desacords no intencionats</strong> amb la ID de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Basat en l'evidència, pot confirmar o millorar el Tàxon de la Comunitat?
   batch: Grup
@@ -1247,7 +1179,7 @@ ca:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editeu la taxonomia d''iNaturalist seguint les polítiques establertes a la <a href="/pages/curator+guide#policies" target="_blank"> Secció de polítiques de la Guia del Supervisor</a>. Això és que poden afegir, dividir, intercanviar, combinar, desactivar i suprimir tàxons a iNaturalist. També podeu editar els estats de conservació i geoprivacitat dels tàxons, així com editar i gestionar noms comuns afegits per qualsevol usuari.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editeu la taxonomia d''iNaturalist seguint les polítiques establertes a la <a href="/pages/curator+guide#policies" target="_blank"> Secció de polítiques de la Guia del Supervisor</a>. Això és que poden afegir, dividir, intercanviar, combinar, desactivar i suprimir tàxons a iNaturalist. També podeu editar els estats de conservació i geoprivacitat dels tàxons, així com editar i gestionar noms comuns afegits per qualsevol usuari.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Amagar comentaris i suspendre usuaris per violar la <a
     href="/pages/community+guidelines" target="_blank">Guia de la Comunitat</a>.
@@ -1444,7 +1376,6 @@ ca:
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
-      invalid: 'Correu electrònic o contrasenya incorrectes'
       invalid_token: 'Autenticació no vàlida'
       user:
         suspended: El vostre compte s'ha suspès
@@ -1458,19 +1389,17 @@ ca:
       send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
       no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
     registrations:
+      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
       updated: 'Heu actualitzat el vostre compte amb èxit.'
-      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruccions de confirmació'
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La vostra contrasenya no canviarà fins que accediu a l'enllaç de dalt i en creeu una de nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2581,8 +2510,6 @@ ca:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "LT, D MMM YYYY z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3067,13 +2994,6 @@ ca:
     updates_by_you_panel_body: Recordeu que a la pestanya "Totes les actualitzacions" rebreu actualitzacions, no només del vostre contingut, sinó també del de les persones que seguiu i els tàxons o llocs als que us heu subscrit utilitzant l'eina de Subscripcions de la dreta.
     youve_got_updates_panel_title: Teniu actualitzacions!
     youve_got_updates_panel_body_p1: Mantingueu-vos al dia sobre les actualitzacions a la següent...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>El vostre Contingut:</strong> Activitat sobre les vostres observacions, com ara comentaris, identificacions, o favorits de la comunitat de %{site_name}. També rebreu actualitzacions quan algú aporti les seves observacions a un projecte o l'anoti amb camps addicionals.</li>
-      <li><strong>Persones:</strong> Noves observacions o publicacions a revistes de les persones que seguiu.</li>
-      <li><strong>Organismes, Projectes i Llocs:</strong> Noves observacions dels organisme o dels llocs als que us heu subscrit. També us podeu unir a projectes per rebre una actualit.</li>
-      <li><strong>Les discussions que us interessen:</strong> Si comenteu o afegiu identificacions a algun contingut, automàticament estareu subscrits a qualsevol nova activitat sobre aquests continguts. Podeu utilitzar l'eina de 'Gestió de les vostres subscripcions' per deixar de rebre les actualitzacions.</li>
-      </ul>
   one_by_one: "Un a un"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "una de les següents ha de ser certa:"
@@ -3217,31 +3137,11 @@ ca:
     original: original
   photos_updated: Fotos actualitzades.
   pi_consent_desc_title: Quant a la informació personal
-  pi_consent_desc_html: |
-    <p>
-    Emmagatzem informació personal com ara el nom d'usuari i l'adreça de correu electrònic per gestionar els comptes d'aquest lloc i, per complir amb la legislació sobre privacitat, necessitem que confirmeu el vostre consentiment per utilitzar aquesta informació personal. Per conèixer més sobre la informació que guardem i com la usem, si us plau, llegiu la nostra
-    <a href='%{privacy_url}' target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions d'Ús</a>.
-    </p>
-    <p>
-    No hi ha forma de tenir un compte a iNaturalist sense arxivar aquesta informació personal, per això l'única forma de revocar el vostre consentiment és esborrant el vostre compte.</p>
   pi_consent_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre mi per gestionar el meu compte
   pi_consent_child_label: |
     Autoritzo a iNaturalist a guardar i processar determinades informacions de caràcter personal sobre el meu/va fill/a per gestionar el meu compte infantil
   data_transfer_consent_desc_title: Sobre el Consentiment de Transferència d'Informació Personal
-  data_transfer_consent_desc_html: |
-    <p>
-    Algunes lleis de privadesa de dades, com el Reglament General de Protecció de Dades (RGPD) de la Unió Europea, requereixen el vostre consentiment explícit per transferir informació personal de les seves jurisdiccions a altres jurisdiccions on la protecció legal d'aquesta informació no es considera adequada. A partir del <a href="https://www.aepd.es/es/derechos-y-deberes/cumple-tus-deberes/medidas-de-cumplimiento/transferencias-internacionales">2020</a>, la Unió Europea ja no considera que els Estats Units siguin una jurisdicció que ofereixi una protecció legal adequada a la informació de les persones, concretament a causa de la possibilitat que el govern dels EUA vigili les dades que entren als EUA. És possible que altres jurisdiccions tinguin la mateixa opinió.
-    </p>
-    <p>
-    L'ús d'iNaturalist requereix l'emmagatzematge d'informació personal, com ara la vostra adreça de correu electrònic, totes les dades d'iNaturalist s'emmagatzemen als Estats Units i no podem estar segurs de a quina jurisdicció legal us trobeu quan feu servir iNaturalist, de manera que, per complir amb les lleis de privadesa com el RGPD, heu de reconèixer que enteneu i accepteu aquest risc i consentiu la transferència de la vostra informació personal als servidors d'iNaturalist als EUA.
-    </p>
-    <p>
-    Per obtenir més informació sobre quina informació recollim i com la fem servir, consulteu la nostra <a href='%{privacy_url}' target='_blank'>Política de privadesa</a> i les nostres <a href='%{terms_url}' target='_blank'>Condicions d'ús</a> .
-    </p>
-    <p>
-    No hi ha manera de tenir un compte d'iNaturalist sense emmagatzemar informació personal, de forma que l'única manera de revocar aquest consentiment és suprimir el vostre compte.
-    </p>
   data_transfer_consent_label: |
     Dono el meu consentiment per a transmetre la meva informació personal als Estats Units d'Amèrica.
   data_transfer_consent_child_label: |
@@ -4461,8 +4361,6 @@ ca:
   supporting: Recolzar
   suspend_user: Suspèn usuari
   suspend_user_html: Suspendre a %{user}
-  suspend_user_reason_instructions_html: |
-    Expliqueu perquè esteu suspenent aquest compte i citeu qualsevol violació de les %{link_start_tag}Normes de la Comunitat%{link_end_tag}. Si us plau, absteniu-vos de donar opinions personals.
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: Sincronitza?
@@ -4742,9 +4640,6 @@ ca:
   this_list_only_accepts_taxa_that_are_species: Aquesta llista només accepta tàxons que són espècies
   this_list_only_accepts_taxa_that_are_species_or_lower: Aquesta llista només accepta tàxons que són espècies o inferiors
   this_observation: Aquesta observació
-  this_observation_is_featured_on_x_sites:
-    one: Aquesta observació és presentada a %{count} lloc
-    other: Aquesta observació és presentada a %{count} llocs
   this_observation_is_research_grade: Aquesta observació és de Grau de Recerca!
   this_observation_was_created_using: "Aquesta observació va ser creada utilitzant:"
   this_photo_is_already_associated: Aquesta foto ja està associada amb una de les vostres observacions.
@@ -5136,10 +5031,6 @@ ca:
   view_all_fields: Veure tots els Camps
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Veure tot %{count}"
-    other: "Veure tots %{count}"
   view_all_observations: Veure totes les observacions
   view_all_photocount_photos: "Veure les %{photo_count} fotos"
   view_assessment: Veure valoració
@@ -5316,12 +5207,6 @@ ca:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} de %{count} confirmat"
-    other: "%{x} de %{count} confirmats"
-  x_of_count_observed:
-    one: "%{x} de %{count} observat"
-    other: "%{x} de %{count} observats"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} de %{y} persones (per sobre de 2/3) estan d'acord amb això"
   x_is_the_root_of_the_tree: "%{rank}%{name} és l'arrel de l'arbre"
   x_project_journal: "%{name} del projecte %{project}"
@@ -5525,38 +5410,10 @@ ca:
             Si és així, si us plau llegiu la nostra <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar %{site_name} amb els alumnes.
     donate:
       donate_short_desc: "Doneu ara per mostrar el vostre suport!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-        </p>
-        <p class="lead">
-        Si creus en el poder d'aquesta comunitat global d'amants de la natura per compartir el coneixement i generar dades irreemplaçables de biodiversitat, si us plau considera fer una donació puntual o periòdica en línia, o coneix <a
-        href="https://www.inaturalist.org/pages/giving">altres formes de donar</a>.
-        </p>
-        <p class="lead">
-        Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-          </p>
-          <p class="lead">
-          Volem mantenir l'ús gratuït d'iNaturalist, però la seva operació no és gratis.
-          Si us agrada iNaturalist, si us plau considereu convertir-vos en un patrocinador mensual. Les donacions recurrents ens ajuden a assegurar que iNaturalist pot continuar augmentant la seva infraestructura i personal proporcionant ingressos previsibles. També podeu mostrar el vostre estat de patrocinador mensual en el vostre perfil d'usuari.
-          </p>
-          <p class="lead">
-          Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal. Si preferiu fer una donació única, si us plau <a href="%{donate_url}">premeu aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-          </p>
         thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
         thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     flags:
@@ -5589,48 +5446,6 @@ ca:
           L'<a href="http://eol.org/" target="_blank">Enciclopèdia de la Vida (EOL)</a> és un repositori d'informació sobre la vida a la Terra. A EOL pots crear <a href="http://eol.org/info/252" target="_blank">col·leccions</a> d'espècies. Si voleu importar les espècies d'una col·lecció EOL enganxeu aquí l'URL de la col·lecció.
         guide_place_desc: |
           Associant la guia a un lloc permeteu a les persones trobar-la quan cerquen llocs, i mostra els límits del lloc al mapa de %{site_name} que els tenen si s'ha establert (per exemple a la vista "targeta", les pàgines del tàxon, etc.)
-        import_tags_from_csv_help_html: |
-          <p>
-            Pugeu un fitxer CSV que contingui les etiquetes per als tàxons
-            d'aquesta guia. L'arxiu CSV ha de tenir un aspecte semblant a
-            aquest:
-          </p>
-          <table class="taula">
-            <tbody>
-           \   <tr>
-                <th>Nom</th>
-                <th>color</th>
-                <th>Nombre de mans</th>
-                <th></th>
-              </tr>
-              <tr>
-                <td>Homo sapiens</td>
-           \     <td></td>
-                <td>2</td>
-                <td>bípeda</td>
-              </tr>
-              <tr>
-           \     <td>Vulpes vulpes</td>
-                <td>vermell | negre</td>
-                <td>0</td>
-           \     <td>quadrúpeda</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            La primera fila comença amb "Nom", seguit de les etiquetes de 
-            propietats/categories. A continuació, cada una de les següents 
-            files s'inicia amb el nom de tàxon, seguida per les etiquetes 
-            corresponents a la propietat de la part superior de la columna. 
-            En aquest exemple, <i>Homo sapiens</i> té les etiquetes
-            <code>bípeda</code> i <code>Nombre de mans=2</code> i
-            <i>Vulpes vulpes</i> és <code>quadrúpeda</code>,
-            <code>color=rojo</code>, <code>color=negre</code> i
-            <code>Nombre de mans=0</code>. Els espais en blanc s'ignoren, i
-            pot afegir diverses línies per cada tàxon. També podeu afegir
-            diversos valors per cel·la, separats pel caràcter de barra
-           \ vertical (|).
-          </p>
         licensing_explanation: |
           Llicenciar el vostre contingut permet que altres persones tinguin dret a copiar-ho i modificar-ho sense demanar permís. Això fa que sigui molt més fàcil compartir el vostre treball, i si incorporeu continguts de terceres fonts que usen Llicències Comparteix-Igual de Creative Commons (com la viquipèdia), esteu obligat legalment a utilitzar una llicència similar. Aquí teniu una visió general de totes les llicències de Creative Commons i el què signifiquen:
         paste_note_html: |
@@ -5650,10 +5465,6 @@ ca:
         Això pot trigar una estona, així que proveu d'actualitzar aquesta pàgina més tard.
       mobile_downloads_tip_html: |
         Aquesta guia es pot descarregar a l'app d'iPhone pel seu ús fora de línia.
-      mobile_downloads_help_html: |
-        <p>Això crearà un arxiu descarregable de totes les dades i mitjans associats amb aquesta guia, de forma que els usuaris de l'aplicació mòbil poguin veure tot el contingut de la guia sense connexió a Internet. Necessitarà uns minuts per a generar l'arxiu, però quan aquesta opció està habilitada, l'arxiu s'actualitzarà cada vegada que canvieu aquesta guia.</p>
-        <p class="alert status">Si us plau, <strong>no habiliteu les descàrregues des del mòbil a menys que  en realitat, tingueu la intenció d'utilitzar-les. </strong> Representen una càrrega considerable pel nostre sistema.
-        </p>
       pdf_layouts:
         grid: Quadrícula
         book: llibre
@@ -5785,13 +5596,6 @@ ca:
         disagreement_count: Recompte de desacords
         identification_count: Recompte d'identificacions
         score: Puntuació
-        explanation: |
-          <p>
-          Si per algun motiu un usuari no està d'acord amb el tàxon de la comunitat, el poden refusar, el que significa que la seva identificació és la utilitzada per enllaçar amb altres observacions, actualitzant llistes de vida, etc. També significa que l'observació únicament pot ser de recerca si la comunitat està d'acord amb ella.
-          </p>
-          <p>
-          Tanmateix, la Identificació de la comunitat encara es mostrarà, de forma que tots poden veure les diferents identificacions que han estat suggerides.
-          </p>
         you_have_opted_out: Heu optat per acceptar les Identificacions de la Comunitat
         opt_in_for_this_observation: Escollir aquesta observació
         your_id_does_not_match: |
@@ -5832,30 +5636,6 @@ ca:
           De vegades veureu més files amb recomptes diferents a zero perquè hi ha tàxons de nivell superior afegits des d'altres consultes. P. ex. si la Consulta 1 té una observació d'Homo sapiens i la Consulta 2 té una observació de Gènere Homo, ambdós tàxons seran presents en la taula, però el que representa una fila  addicional per al Gènere Homo de la Consulta 1, a la qual no es va incloure en el seu recompte total perquè només compta l'espècie Homo sapiens dins d'aquell gènere, perquè que era el "fill" d'aquella part del seu arbre.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} en comú"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} en comú"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} no en comú"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} no en comú"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} total"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} total"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} únic"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} únics"
       export:
         choose_columns_desc: Escolliu les columnes que voleu exportar
         create_a_query_desc_html: |
@@ -5880,34 +5660,6 @@ ca:
         taking_a_while: "Això està requerint una mica de temps. Si us plau, prova una de les opcions de sota."
         date_range_help: "Dates d'observació màxima i mínima en format AAA-MM-DD, p.e. 2015-01-17"
         created_on_help: "Data a la que es va crear l'observació, no d'observació, p.e. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Altres opcions</h3>
-          <p>
-          Les exportacions grans alenteixen la nostra infraestructura i ens fan més difícil llançar nous canvis. Aquestes són algunes de les opcions que podeu contemplar:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a rel="nofollow noreferrer noopener" href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF incorpora la majoria de les observacions amb llicència de Grau de Recerca, i les seves eines d'exportació són excel·lents. GBIF exporta també el <a href="https://www.doi.org/">DOI</a>, per la qual cosa podeu citar-ho si publiqueu recerques basades en les dades que heu exportat. Aquestes citacions són molt útils per a nosaltres perquè ens permet conèixer com s'usen les dades de iNat.
-
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener" href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Arxiu DarwinCore (DwC-A) per a GBIF</a>: aquest és l'arxiu <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-Al </a> que generem per a la seva incorporació a GBIF, per la qual cosa podria no contenir tot allò que està en GBIF, però si desitgeu l'arxiu sencer, el podeu descarregar. Es tracta d'un arxiu gran en ZIP que conté els registres en CSV. S'actualitza setmanalment.
-
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener" href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge en FGVC 2017</a>: enllaços a 675.000 fotografies amb llicència d'iNaturalist de 5.089 espècies, usades per a l'entrenament del sistema de reconeixement d'imatges. Creat en 2017 i no actualitzat.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Identificador únic de l'observació"
         species_guess: "Nom que va introduir l'observador pel tàxon observat"
@@ -5976,14 +5728,6 @@ ca:
         allow_curator_coordinate_access_desc_html: |
           Permet als supervisors del projecte veure les coordenades ocultes d'aquesta observació.
         ancestor_disagreements_desc: "# dels tàxons identificats es troben entre els avantpassats d'un tàxon, però en desacord amb el tàxon (p.e. creieu que són d'aquest però esteu en desacord amb aquesta espècie)"
-        community_taxon_desc_html: |
-          <p class="ui">
-          El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
-          </p>
-          <p class="ui">El tàxon comunitari és el que fem servir per compartir observacions amb altres socis, enllaçant observacions del mateix tàxon en el lloc, actualitzant la teva llista de vida, etc. Si per alguna raó no esteu d'acord amb el tàxon comunitari, podeu rebutjar-lo, el que significa que la vostra ID serà la que s'utilitzarà per enllaçar amb altres observacions, actualitzar llistes de vida, etc. També implica que la vostra observació només es podrà convertir en grau de recerca quan la comunitat estigui d'acord amb <em>vosaltres</em>. Si no us agrada la idea d'emprar tàxons comunitaris, podeu optar per no utilitzar-la en absolut <a href="/users/edit" target="_blank">editant la vostra configuració</a>.
-          </p>
-          <p class="ui">
-          <strong>L'algoritme:</strong> per a tots els tàxons identificats i els tàxons que els contenen (per exemple, el gènere <i>Homo</i> conté <i>Homo sapiens</i>), es puntua cadascun com la ràtio entre el nombre d'IDs acumulades pel tàxon i la suma de les IDs acumulades, el número d'IDs més conservadores afegides després de la primera ID d'aquest tàxon, i el nombre d'IDs que són completament diferents (és a dir, IDs de tàxons que no contenen el tàxon que s'està marcant). Pels tàxons identificats que tenen una puntuació superior a 2/3 i un mínim de 2 IDs, tria el tàxon amb menor rang de puntuació.</p>
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
@@ -5996,51 +5740,6 @@ ca:
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help2_html: |
-          <p>
-          L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan
-          </p>
-
-          <ul>
-          <li>l'observació <strong>té una data</​1></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
-          <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un humà</strong></li>
-          </ul>
-          <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
-          <ul>
-          <li>
-          la comunitat de %{site_name} <strong>està d'acord amb la ID donada a escala específica o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acord amb el tàxon (si la comunitat ha indicat que el Tàxon de la Comunitat no pot ser millorat més, es reverteix al nivell d'ID de subfamília o inferior)
-          </li>
-          </ul>
-          <p>
-          Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord a dir que:
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents)
-          </li>
-          <li>
-          l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, etc. que no mostren cap organisme
-          </li>
-          <li>
-          l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organisme</strong> (p.ex. fòssils, però sí que s'accepten rastres, excrements i fulles mortes)
-          </li>
-          <li>
-          l'observació no necessita una ID <em>i</em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família
-          </li>
-          </ul>
-          <p>
-          I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
-          </p>
-          <ul>
-          <li>
-          El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitud (municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a no salvatge/naturalitzat.
-          </li>
-          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 
@@ -6055,14 +5754,6 @@ ca:
           Les estadístiques d'usuari estan limitades als primers 500 tant pel nombre d'observacions com d'espècies, per tant el total que apareix és normalment lleugerament superior a 500, donat que les dues llistes probablement no contenen els mateixos usuaris.
           Un valor marcat amb "*" vol dir que no està en el top 500 per aquesta estadística.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class="ui">Podeu editar aquest camp d'observació perquè sou el seu creador o un gestor del lloc. Si sou un gestor del lloc, si us plau, seguiu aquestes directrius</p>
-        <ol>
-        <li>No fer canvis arbitraris de noms (per exemple, canviar "menjant" per "alimentant-se")</li>
-        <li>Tingueu en compte que els camps d'observació poden ser utilitzats per a les observacions de qualsevol espècie, per tant tracteu de no utilitzar terminologia específica d'una espècie concreta</li>
-        <li>No esborreu els camps que la gent està utilitzant</li>
-        <li>No traduïu els noms existents de camps a diferents llengües. L'anglès és la lingua franca d'aquest lloc. Si realment voleu un camp que englobi el mateix concepte però en un altre idioma, si us plau, creeu un nou camp d'observació.</li>
-        </ol>
       dna_help: |
         Per activar la funcionalitat de codi de barres d'ADN BOLD, assegureu-vos que el nom inclou les paraules "COI", "COX1", "ITS" o "matK", corresponents als gens que marquen aquests camps.
       merge:
@@ -6098,69 +5789,6 @@ ca:
           <a href="%{url}">pàgina d'exportació d'observacions</a> per a obtenir un llistat de les exportacions.
       parental_consent:
         subject: Als vostres fills els podria agradar utilitzar iNaturalis
-        content_html: |
-          <p>
-          El vostre fill està utilitzant <strong>Seek per iNaturalist</strong> una aplicació educativa i l'agradaria compartir les dades amb la plataforma de ciència ciutadana iNaturalist. Com la publicació a iNaturalist pot desvetllar informació d'identificació personal, iNaturalist no pot ser utilitzat per persones menors de 13 sense el consentiment d'una persona adulta responsable.
-          </p>
-          <p>
-          <strong>Seek per iNaturalist</strong> pot ser utilitzat sense crear cap vinculació, i en aquest cas no es comparteix cap informació personal identificable, però l'infant no podrà contribuir a les observacions d'iNaturalist. iNaturalist és una xarxa social de ciència ciutadana on els participants comparteixen observacions i identificacions d'éssers vius per aprendre entre tots i generar dades de biodiversitat útils per a la ciència.
-          </p>
-          <p>
-          Si voleu donar el consentiment perquè al vostre infant utilitzi iNaturalist, necessitarà fer el següent:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Creeu un compte a iNaturalist perquè sigui usat pel vostre infant seguint aquest enllaç:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Després de crear el compte pel vostre infant, us demanarem que feu una petita donació d'1$ US amb una targeta de crèdit a iNaturalist per verificar que sou un adult. Si us plau, assegureu-vos d'utilitzar la mateixa adreça d'e-mail que vau va entrar en el "camp d'e-mail" del Pare durant el registre quan feu la vostra donació.
-          </p>
-          </li>
-          <li>
-          <p>
-          Un cop processem la donació, us enviarem un altre e-mail per notificar-vos que el compte del vostre infant ha estat activat i podreu utilitzar el nom d'usuari i la contrasenya que vau emprar al crear el compte de l'infant per entrar a l'aplicació Seek d'iNaturalist.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist recull la següent Informació d'Identificació Personal:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>adreça d'e-mail (privat):</strong> cada compte d'iNaturalist té una adreça d'e-mail associada amb ella la qual no és feta pública.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Nom d'Usuari(públic, requerit):</strong> cada compte d'iNaturalist té un nom d'usuari i número d'identificació d'usuari. El nom d'usuari no te perquè ser semblant al nom real de la persona, però pot ser emprat per contactar amb la persona a través de comentaris públics o missatges directes privats.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>adreça d'IP (privat, requerida):</strong> iNaturalist emmagatzema però no fa pública l'adreça IP de l'usuari adreça, la qual permet obtenir Informació d'Identificació Personal com la ubicació (amb precisió a nivell de ciutat).
-          </p>
-          </li>
-          <li>
-          <p><strong>Quadre de perfil (públic, opcional):</strong> iNaturalist pot mostrar opcionalment perfils de fotografies, les quals són, sovint, fotografies de l'usuari.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>ubicació d'observació (pública o privada, requerida):</strong> les observacions d'iNaturalist contenen informació de la ubicació aproximada on es va fer l'observació. Es pot fer públic o mantenir-se en privat, però és pública per defecte.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist també permet als usuaris compartir imatges públiques, comentaris públics, i missatges directes privats associats amb el seu compte. És possible que els usuaris puguin incloure Informacions d'Identificació Personals en aquest contingut generat per l'usuari.
-          </p>
-          <p>
-          Coneix més sobre la Política de Privacitat d'iNaturalist <a href="%{privacy_policy_url}">aquí</a>.
-          </p>
       photos_missing:
         subject: Algunes fotos s'han de reparar
         we_have_been_housekeeping: |
@@ -6175,22 +5803,6 @@ ca:
           Hem inclòs enllaços que afecten les fotos següents.
       user_parent_confirmation:
         subject: El compte del vostre infant a iNaturalist s'ha activat
-        content_html: |
-          <p>
-          Gràcies per crear un compte a iNaturalist pel vostre infant! S'ha activat el compte. Aquests són els detalls que heu introduït que tenim en el nostre registre:
-          </p>
-          <ul>
-          <li><strong>Nom del Progenitor/a o Tutor/a Legal:</strong> %{parent_name}</li>
-          <li><strong>Correu electrònic del Progenitor/a o Tutor/a Legal:</strong> %{parent_email}</li>
-          <li><strong>Nom de l'infant:</strong> %{child_name}</li>
-          <li><strong>Dia de naixement de l'infant:</strong> %{child_birthday}</li>
-          <li><strong>Correu electrònic de l'infant:</strong> %{child_email}</li>
-          <li><strong>Nom d'usuari de l'infant:</strong> %{child_username}</li>
-          </ul>
-          <p>Si us plau accediu al compte del vostre infant, cerqueu l'App prement el botó d'iNaturalist en el menú i llavors "Entreu a iNaturalist" amb el botó a la pantalla.
-          </p>
-          <p>El vostre infant podrà incorporar observacions al seu compte d'iNaturalist utilitzant l'app de Cerca amb el que les podrà veure a iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
@@ -6248,10 +5860,6 @@ ca:
         aggregation_pending: Agregació pendent
         new_place_desc_html: |
           Intenteu trobar-lo <a href="%{places_url}" target="_blank">als nostres llocs existents</a> i comproveu que heu posat correctament el nom del lloc. Si no podeu trobar el nom de lloc que busqueu, proveu <a href="%{new_place_url}" target="_blank">crear-lo</a> però assegureu-vos que no esteu duplicant un nom de lloc ja existent.
-        bioblitz_desc_html: |
-          <p>
-          Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils.
-          </p>
         change_admin_desc: Escolliu un dels supervisors del projecte per ser el nou administrador
         change_owner_alert: |
           Això eliminarà la vostra capacitat per esborrar aquest projecte o transferir la seva propietat de nou. Voleu continuar?
@@ -6270,37 +5878,6 @@ ca:
         make_owner: Fer Propietari
         no_curators: |
           No hi ha cap supervisor del projecte. Si voleu assignar un nou administrador, primer ha d'unir-se a aquest projecte i després el podreu fer supervisor.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          L'agregació d'observacions afegeix automàticament observacions adequades als vostres projectes que compleixin les seves condicions. Donat que no és possible eliminar moltes observacions d'un projecte al moment, això pot ser potencialment perillós, per tant assegura't que has escollit les regles del lloc i tàxons correctament, o podríeu acabar amb un munt de dades inútils que haureu d'esborrar manualmente.
-          </p>
-          <p class="description">
-          L'agregador només funcionarà si es compleixen els següents requisits:
-          </p>
-          <ol>
-          <li class="readable description">
-          El projecte ha de tenir, almenys, una regla que limiti les observacions a un territori relativament petit o mitjà (de la mida de Texas o Ucraïna)
-          </li>
-          <li class="readable description">
-          O limitar les observacions, almenys, a algun tàxon.
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Els arxius del projecte són arxius associats al projecte, segons certes regles especials: </p>
-          <ol class="description">
-          <li>
-          Els arxius que acaben en <code>.logo.jpg</code>, <code>.logo.png</code> etc. s’utilitzaran com a logotip del projecte a la pàgina del projecte en lloc de la icona de projecte
-          </li>
-          <li>Els arxius KML i KMZ s'afegiran al mapa a la pàgina del projecte</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Podeu crear una llista personalitzada de tàxons per aquest projecte i
-          enllaçar-la. Això pot ser útil per restringir les observacions que
-          s'afegeixen al vostre projecte a aquelles en que hi coincideix el
-          tàxon amb la llista a través de la regla "ha de ser una espècie de la
-          llista del projecte".
-          </p>
         rules:
           captive: captiva/conreada
           coordinates_shareable_by_project_curators: Coordenades compartides pels supervisors del projecte
@@ -6329,20 +5906,6 @@ ca:
           Quan un projecte està verificat, els administradors i gestors del projecte poden crear, actualitzar i esborrar atributs del projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte significa que els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos, per tant confieu únicament en projectes que tenen gestors responsables i tècnicament competents
         you_can_preview: |
           Podeu previsualitzar com es veuria el vostre projecte com a Projecte de Col·lecció <a href="%{url}">prement aquí</a>.
-      invite:
-        description_html: |
-          <h3>Sobre les invitacions</h3>
-          <p class="ui">
-          Convidar persones al vostre projecte és una mica diferent que compartir observacions individuals. Convidant a la gent:
-          </p>
-          <ol>
-          <li>Els envieu un correu electrònic convidant-los a unir-se al vostre projecte</li>
-          <li>Mostreu una invitació al seu tauler</li>
-          <li>Permeteu que s'uneixin al projecte si aquest s'ha establert com únicament per invitació</li>
-          </ol>
-          <p class="ui">
-          Només els supervisors del projecte poden convidar persones a unir-se a un projecte. Heu de ser capaços de trobar a les persones a través del seu nom d'usuari a iNat o la seva adreça de correu electrònica <em>completa</em>, suposant que sigui la que està en els nostres arxius.
-          </p>
       join:
         invite_only_description: |
           La pertinença a aquest projecte és únicament per invitació. Si voleu unir-vos-hi, contacteu amb un dels administradors de sota i sol·liciteu-li una invitació.
@@ -6438,13 +6001,6 @@ ca:
           name_already_taken: Nom del Projecte ja existent
           cannot_have_more_than_x_project_rules: El projecte no pot tenir més de %{x} regles
           summary_is_required: Cal un text de resum del Projecte
-      project_location_privacy_notice_html: |
-        <p>
-        Si us plau, tingueu en comte que els supervisors del projecte poden veure les ubicacions privades o enfosquides de les vostres observacions a aquest projecte llevat que hagueu revocat aquesta autorització, i afegir les vostres observacions a aquest projecte, llevat que <a href="/users/edit">ho canvieu a la vostra configuració</a>. També es pot concedir o revocar l'accés a les observacions del projecte cas per cas.
-        </p>
-        <p>
-        Si esteu preocupat sobre la privacitat de les ubicacions, no hauríeu d'unir-vos a projectes amb supervisors en els que no confieu.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Sí, però només si soc jo qui afegeix l'observació al projecte.
         any: Sí, no importa qui afegeixi l'observació al projecte.
@@ -6458,23 +6014,8 @@ ca:
       show:
         are_you_sure_you_want_to_convert: |
           Esteu segur que voleu convertir aquest projecte en un Projecte de Col·lecció?
-        bioblitz_results_desc_html: |
-          <p>
-          A diferència dels projectes regulars, els bioblitzes mostren estadístiques de <em>totes</em> les observacions d'un lloc i període de temps, i no només observacions que les persones han afegit intencionadament al projecte. Això permet evitar la dificultat d'afegir observacions a un projecte únicament per obtenir les estadístiques en temps real. Recordeu que les observacions no estaran disponibles per a l'exportació o la visualització en algunes vistes de projecte com contribucions dels membres en el lloc web o en cerques d'observacions del projecte a les aplicacions mòbils a menys que l'equip del projecte i els participants incorporin activament les observacions pertinents com ho farien en un projecte normal.
-          </p>
-          <p>Recordeu que, si bé aquest tipus de projecte mostra les
-          estadístiques per a les observacions que no s'han afegit
-          deliberadament al projecte, no permet que els supervisors puguin veure les coordenades privades o ocultes d'aquestes o assumir que els observadors estan d'acord amb les condicions del projecte. Si sou supervisor del projecte i necessiteu accés a les coordenades privades, cal que els participants estiguin d'acord amb les normes del projecte o, si vols que els recomptes de les observacions s'incorporin a la llista de comprovació del projecte supervisat, asegureu-vos que els seus participants s'uneixen al projecte i afegeixen les seves observacions com ho farien en un projecte normal.
-          </p>
         click_here_to_convert_this_project: |
           Prem aquí per convertir aquest projecte en un Projecte de Col·lecció.
-        no_journal_blurb_html: |
-          <p>
-          El vostre diari del projecte és una eina per comunicar-vos amb els seus membres. Podeu utilitzar-lo per fer anuncis, per establir les prioritats, o xerrar sobre els resultats del projecte.
-          </p>
-          <p>
-          Per començar, <a href="%{url}" class="readmore">podeu crear una annotació</a>
-          </p>
         curated_checklist_desc: |
           Aquesta és la llista de comprovació gestionada i el compte de tàxons a partir de les observacions explícitament afegides a aquest projecte, no conté totes les observacions registrades en el lloc i al llarg de tot el temps que ha durat l'esdeveniment.
         make_sure_you_have_read_about_the_differences: |
@@ -6637,18 +6178,6 @@ ca:
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
-        about_names_desc: |
-          <p>
-          La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
-          Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-          però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
-          </p>
-          <p>
-          El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
-          </p>
-          <p>
-          Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
-          </p>
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
         about_establishment_desc: |
@@ -6716,24 +6245,6 @@ ca:
           El nom del tàxon està en el rang.Per a rangs infraespecífics, el rang s'insereix desprès del binomial.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Intenteu afegir noms que efectivament estiguin en ús. Si us plau, no inventeu nous noms.</p></li>
-          <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
-          <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
-          <li>
-          <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
-          </li>
-          <li>
-          <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
-          </li>
-          <li>
-          <p>
-          Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
-          <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Afegir un nom a un lloc per donar-li prioritat per aquest lloc i els seus usuaris. Si hi ha diversos noms pel mateix lloc pot prioritzar-los <a href="%{url}">aquí</a>. Si us plau, <strong>no</strong> afegiu noms per TOTS els
           llocs on el nom és utilitzat, només per a llocs que presentin conflictes amb altres llocs.
@@ -6790,30 +6301,13 @@ ca:
           Escrigueu "%{confirmation_code}" en el formulari per eliminar el vostre compte
       edit:
         about_third_party_tracking: Sobre el seguiment per part de tercers
-        blocking_desc_html: |
-          <p>
-          Bloquejar algú impedeix que us enviï missatges i comenti les vostres observacions, identificar-les, i interaccionar amb tu a %{site_name}. També elimina les observacions dels vostres resultats de cerca i les vostres observacions de les seves cerques. Tanmateix, això no us fa invisible a ell. Encara podrà trobar les vostres observacions i veure el vostre perfil, només que no podrà interaccionar.
-          </p>
-          <p>
-          El bloqueig és per a situacions en què no pots suportar algú i aquest no et deixa de molestar, malgrat els teus millors esforços per resoldre les disputes d'una forma civilitzada. No és una manera d'amagar-se de la gent, d'evitar identificacions de persones en les opinions de les quals no confieu, ni de desactivar l'identificador de la comunitat (hi ha altres configuracions per fer-ho). Per tant, el bloqueig funciona de les dues maneres: si bloqueges algú, ell no pot interactuar amb tu, però tampoc podràs interactuar amb ell. Si en feu un mal ús per evitar que algú identifiqui les vostres observacions, també us impediu identificar les seves observacions.
-          </p>
-          <p>
-          Només podeu bloquejar un màxim de tres persones. Pensem que és un número raonable adequat per aquells que necessiten bloquejar algú evitant l'abús del bloqueig. Si creieu que necessiteu bloquejar més persones, si us plau <a href="mailto:%{help_email}">contacteu amb nosaltres</a>.
-          </p>
-          <p>Si algú us està assetjant a %{site_name}, <a href="mailto:%{help_email}">digueu-nos-ho</a>. Si suposa una violació de les Condicions d'Ús o representa un comportament que pugui ser inapropiat al nostre lloc, ho investigarem.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar les vostres preferències</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p> La <a href="%{url}" target="_blank"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
         monthly_supporter_desc_html: |
           Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i la Xarxa d'iNaturalist.
           <a href="%{url}"> Faci clic aquí per a convertir-se en un Patrocinador Mensual</a>. Quan confirmem el seu suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: necessitarà indicar exactament la mateixa adreça de correu electrònic a Donorbox i a iNaturalist perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual.
-        muting_desc_html: |
-          <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
-          <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
         name_place_help_html: |
           Prioritza els noms comuns emprats a aquest lloc.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6882,10 +6376,6 @@ ca:
       recent:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui un spammer, el que significa que no té cap observació o identificació però sí que té una descripció al perfil. </dd> <dt>Spam Automàtic</dt> <dd> Spammer que ha estat identificats pel sistema com Spammer, de forma automàtica. </dd> <dt>Spam Manual</dt> <dd> Spammer que ha estat considerat així per un supervisor del lloc. </dd> <dt>Falsos Positius</dt> <dd> Usuaris que van ser marcats com spammers però resolts pels supervisors del lloc perquè no eren realment spammers. </dd> </dl>
-        recent_users_desc_html: |
-          <p>Donem la benvinguda als nous usuaris, però també volem combatre els spammers. Tenim d'esperança que aquesta eina ens ajudarà a les dues coses. Marquem automàticament mols usuaris utilitzant <a
-          href="https://akismet.com/">Akismet</a>, però Akismet no és perfecta, per això si voleu dedicar uns minuts a identificar quins nous usuaris són spammers i quins no, ens ajudareu.
-          </p>
       show:
         take_a_moment_to_review_html: 'Preneu-vos un moment per revisar <a href="%{link}">les nostres directrius</a>.'
         this_user_was_banned: Aquest usuari ha estat suspès
@@ -6893,16 +6383,6 @@ ca:
           Voleu mostrar alguns dels vostres tàxons preferits?%{link_start_tag}Creeu una llista%{link_end_tag} titulada "Favorits" i es mostraran en aquest espai les vostres addicions més recents.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Gràcies per ser un donant d'iNaturalist! Serem capaços d'utilitzar la vostra donació per confirmar la vostra identitat, i no necessiten cap altra acció per part seva. <strong>El compte del vostre infant s'ha activat.</strong>
-          </p>
-          <p>
-          Si us plau ingreseu amb el compte del vostre infant a l'app de Seek prement el botó "iNaturalist" del menú i llavors "Entreu amb iNaturalist" a la part inferior de la pantalla.
-          </p>
-          <p>
-          El vostre infant podrà publicar observacions al seu compte d'iNaturalist utilitzant l'App Seek de forma que es podran veure a iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: GRÀCIES PER CREAR UN COMPTE INFANTIL!
         we_will_send_you_an_email: |
           Us enviarem un e-mail en quant s'activi el compte del vostre infant.
