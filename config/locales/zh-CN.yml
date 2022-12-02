@@ -1,31 +1,12 @@
 zh-CN:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "%{count} 更改"
   x_comments:
     other: '%{count} 条评论'
-  x_comments_html:
-    other: '<span class="count">%{count}</span> 评论'
   x_faves:
     other: '%{count} 次喜爱'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span>个标记已解决"
   x_identifications:
     other: '%{count} 次鉴定'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> 个标识'
-  x_identifications_:
-    other: '%{count} 次鉴定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>个鉴定者'
-  x_languages:
-    other: "%{count} 种语言"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} 个物种为首次观察到"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>个日记帖子'
   x_matching_taxa:
@@ -40,47 +21,27 @@ zh-CN:
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "在%{rank}中有%{count}个错误鉴定"
-  x_observations:
-    other: "%{count} 次观察"
-  x_observations_:
-    other: "%{count} 次观察"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> 次观察"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> 观察者'
   x_others:
     other: "%{count}个其他的"
-  x_people:
-    other: "%{count} 人"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 人</strong> 用 <strong>%{y} 个鉴定</strong>帮助了 %{user}"
   x_photos:
     other: "%{count} 张照片"
   x_new_species:
     other: "%{count} 个新物种"
-  x_new_users:
-    other: '%{count} 个新用户'
-  x_species:
-    other: '%{count} 种物种'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> 种物种"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} 种物种</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count}个建议过滤者："
-  x_taxa:
-    other: "%{count} 个分类单元"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> 个分类群已观察"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> 个研究级观察</span>"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>"
-  x_sounds:
-    other: "%{count} 条音频"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span>个分类单元已有馆长"
   x_taxa_matching_current_filters:
@@ -143,24 +104,6 @@ zh-CN:
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
-  about_trips_html: |
-    <h4>
-    探索功能使你能够通过添加观察场景的描述，收集未出现或出现情况下的数据。
-    </h4>
-    <p>
-    <strong>为什么</strong>有些未出现或者出现情况下的数据包含了可以帮助物种采样的信息。这些信息对于像物种分布模型等科学家们日后的分析有着极大的帮助。（未经处理的iNaturalist观察记录均为“出现的”数据。）
-    </p>
-    <p>
-    <strong>怎么做</strong>你可以在探索过程中记录以下信息：
-    </p>
-    <ul>
-    <li><strong>有什么</strong>你在寻找（目标物种列表）</li>
-    <li><strong>在哪里</strong>你在（探索地点）寻找</li>
-    <li><strong>时间</strong>你寻找了（多长时间）</li>
-    </ul>
-    <p>
-    那些你能够在搜寻地点范围内找到的目标物种将被视为出现。与之相反，在你的目标物种列表上但并未被观察到的物种会被视为未出现。点击“显示过往探索中的物种踪迹”以查看从探索和有关观察中获得的物种出现记录表单。<a href='%{url}'>了解更多</a>
-    </p>
   about_trusting_projects: 关于信任的项目
   about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
@@ -1284,7 +1227,6 @@ zh-CN:
     failure:
       already_authenticated: '您已经登录'
       unauthenticated: '您需要登录或注册才能继续。'
-      invalid: '电子邮箱或密码无效。'
       invalid_token: '无效的认证安全码'
       user:
         suspended: 您的账户已被停用
@@ -1298,19 +1240,17 @@ zh-CN:
       send_paranoid_instructions: "如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。"
       no_token: "您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。"
     registrations:
+      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
-      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
     mailer:
-      confirmation_instructions:
-        subject: '确认说明'
       reset_password_instructions:
         subject: '重设密码的说明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您没有提出这个请求，请忽略这个电子邮件。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2318,8 +2258,6 @@ zh-CN:
       yy: "%d 年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2752,13 +2690,6 @@ zh-CN:
     updates_by_you_panel_body: 请记住，在“全部更新”标签中，您不仅会收到有关您自己内容的更新，还会收到您关注的人的内容，以及通过右侧订阅工具订阅过的那些类别和地点。
     youve_got_updates_panel_title: 您获得了更新！
     youve_got_updates_panel_body_p1: 随时关注以下更新...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-         <li> <strong>您的内容：</strong>您的观察活动，例如来自%{site_name}社区的评论、标识或faves。当有人将您的观察结果添加到项目中，或使用其它字段对其进行注释时，您也会收到更新。</li>
-         <li> <strong>用户：</strong>您关注的人的新观察记录或日记帖子。</li>
-         <li> <strong>生物、项目和地点：</strong>来自您订阅的特定生物或地点的新观察结果。 您还可以加入项目，以便在发布项目日记帐帖子时进行更新。</li>
-         <li> <strong>您参与的讨论：</strong>在其他人的内容中评论或添加标识会自动为您订阅此内容的任何新活动。使用“管理您的订阅”工具来停止接收更新。</li>
-      </ul>
   one_by_one: "一个接一个"
   one_of_your_lists: "您的列表中的一个..."
   only_a_project_manager_can_add: 只有项目经理可以添加项目馆长状态
@@ -4224,8 +4155,6 @@ zh-CN:
   this_list_only_accepts_taxa_that_are_species: 此列表只接受属于物种的分类单元
   this_list_only_accepts_taxa_that_are_species_or_lower: 此列表只接受物种或更低的分类
   this_observation: 此观察
-  this_observation_is_featured_on_x_sites:
-    other: 此观察已被显示在%{count}个网站上
   this_observation_is_research_grade: 此观察达到了研究级！
   this_observation_was_created_using: "此观察的创建使用了："
   this_photo_is_already_associated: 此照片已与您的某个观察相关联。
@@ -4618,10 +4547,6 @@ zh-CN:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x}/%{y}"
-  x_of_count_confirmed:
-    other: "%{count} 中的 %{x} 已被确认"
-  x_of_count_observed:
-    other: "%{count} 中的 %{x} 已被确认"
   x_of_y_people_over_two_thirds_agree_it_is: "在%{y}人中，有%{x}人（超过2/3）同意这个"
   x_is_the_root_of_the_tree: "%{rank} %{name} 是树状图的根目录"
   x_project_journal: "%{project}的%{name}"
@@ -4811,35 +4736,6 @@ zh-CN:
           <a href="http://eol.org/" target="_blank">网络生命大百科（EOL）</a>是一个有关地球上生命的信息存储库。在EOL您可以创建物种<a href="http://eol.org/info/252" target="_blank">收藏</a>。如果您希望从EOL收藏导入物种，请在此粘贴那个收藏的URL。
         guide_place_desc: |
           当搜索地点时，将您的指南与地点相关联会让人们找到它，并且如果设置了边界（例如“卡片”查看、分类单元页面等）的话，将在 %{site_name} 上的地图中适当位置显示地点边界
-        import_tags_from_csv_help_html: |
-          <p>
-          上传包含用于此指南的分类群标签的CSV文件。您的CSV文件看起来应该像这样：
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>名字</th>
-          <th>颜色</th>
-          <th>手臂数量</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>智人</td>
-          <td></td>
-          <td>2</td>
-          <td>两足动物</td>
-          </tr>
-          <tr>
-          <td>火狐</td>
-          <td>红|黑</td>
-          <td>0</td>
-          <td>四肢动物</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          第一行以“名字”开头，后跟标签谓词/类别。然后每个后续行以分类单元的名称开头，后跟相应谓词的标签在列的顶部。在此示例中，<i>智人</i>获取标签<code>两足动物</code>和<code>手臂数量=2</code>，<i>火狐</i>获取<code>四肢动物</code>，<code>颜色=红</code>，<code>颜色=黑</code>，<code>手臂数量=0</code>。空白将被忽略，您可以为每个分类添加多行。您还可以为每个单元格添加由管道字符分隔的多个值。
-          </p>
         licensing_explanation: |
           许可您的内容授予其他人复制和修改内容的权利，而无需征得您的许可。它使分享您的工作变得更加容易，如果您使用来自使用Creative Commons ShareAlike许可证（如维基百科）的其他来源的第三方内容，您在法律上有义务使用类似的许可。以下是所有知识共享许可及其含义的概述：
         paste_note_html: |
@@ -4858,11 +4754,6 @@ zh-CN:
         这可能需要一段时间，因此请在几分钟后尝试刷新此页面。
       mobile_downloads_tip_html: |
         此指南可以被下载到移动应用供离线使用。
-      mobile_downloads_help_html: |
-        <p>这将创建一个可供下载的，与此指南有关的所有数据和媒体存档，这样移动应用程序用户可以查看所有指南中的内容，而不需要网络连接。生成存档需要几分钟时间，但一旦启用此存档，只要您更改本指南，存档就会更新。</p>
-        <p class="alert status">
-        请<strong>不要启用离线移动下载，除非您确实打算使用它们。</strong>它们会对我们的系统造成相当大的负担。
-        </p>
       pdf_layouts:
         grid: 网格
         book: 图书
@@ -4979,13 +4870,6 @@ zh-CN:
         disagreement_count: 分歧统计
         identification_count: 识别计数
         score: 分数
-        explanation: |
-          <p>
-          如果由于某种原因用户不同意社区分类，他们可以拒绝它，这意味着他们的ID只能用于链接到其他观察，更新生物清单等。这也意味着他们的观察只能在当社区同意的时候才可以达到研究级别。
-          </p>
-          <p>
-          但是，社区ID仍会被显示，因此所有人都可以看到已建议的不同ID。
-          </p>
         you_have_opted_out: 您已选择退出社区标识
         opt_in_for_this_observation: 选择加入此观察
         your_id_does_not_match: |
@@ -5013,18 +4897,6 @@ zh-CN:
         total_taxa: 全部分类群
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} 相似"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} 不相似"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          other: "总计 %{count}"
       export:
         choose_columns_desc: 选择您想要导出的列
         ident_by_user_desc_html: |
@@ -5098,16 +4970,6 @@ zh-CN:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
         ancestor_disagreements_desc: "在分类单元的祖先中确定的分类群的编号，它在使用该分类单元进行第一次识别后创建的"
-        community_taxon_desc_html: |
-          <p class="ui">
-          社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
-          </p>
-          <p class="ui">
-          社区分类单元是我们在与数据合作伙伴共享观察时使用的分类单元，将相同分类单元的观察链接在网站上，更新您的生活列表等。如果由于某种原因您不同意社区分类单元，您可以拒绝它，这意味着您的ID只能用于链接到其他观察，更新生物清单等。这也意味着只有当社区同意<em>您</em>时，您的观察才能被评为研究级别。如果您不喜欢社区分类群的整体想法，可以通过<a href="/users/edit" target="_blank">修改设置</a>来完全退出。
-          </p>
-          <p class="ui">
-          <strong>算法：</strong>对于所有已识别的分类群和包含它们的分类群（例如，属<i>Homo</i>包含<i>Homo sapiens</i>），将每个分类作为该分类单元的累计ID数量超过累积ID的总和，在该分类单元的第一个ID之后添加的更保守的ID数量，以及完全不同的ID数量（即，不包含分类单元的分类单元的ID得分）。对于分数超过2/3且至少有2个标识的已识别分类群，请选择排名最低的分类单元。
-          </p>
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
@@ -5126,14 +4988,6 @@ zh-CN:
         user_stats_desc: |
           用户统计已限于根据观察计数或物种计数最多500条，因此总共列出的人时常略多于500个，这是因为两个列表可能不包含相同用户。标记“*”的值意味着它未出现在那个统计数据的前500名。
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>您可以编辑此观察字段，因为您创建了它，或者您是网站馆长。如果您是网站馆长，请遵守以下规则</p>
-        <ol>
-        <li>不要任意做出名称更改（例如把“吃”改成“油桃”）</li>
-        <li>请记住，观察字段可被用于任何分类单元的观察，因此请尝试不要使用特定用于分类学的术语</li>
-        <li>不要删除人们正在使用的字段</li>
-        <li>不要翻译现有字段名称至不同语言。英语是此网站的通用语。如果您真希望添加一个描述相同概念，但语言不同的字段，请新建一个观察字段。</li>
-        </ol>
       dna_help: |
         要启用BOLD DNA条形码匹配功能，请确保您的字段名称包括文字“COI”、“COX1”、“ITS”或“matK,”对应这一字段目标的基因。
     emailer:
@@ -5169,24 +5023,6 @@ zh-CN:
           我们已经包括了以下受影响照片的链接。
       user_parent_confirmation:
         subject: 您的孩子的 iNaturalist 帐户已被激活
-        content_html: |
-          <p>
-          感谢您为您的孩子建立 iNaturalist 账号！该账号现已启用，以下是我们记录的您输入的详细信息：
-          </p>
-          <ul>
-          <li><strong>父母或法定监护人名称：</strong> %{parent_name}</li>
-          <li><strong>父母或法定监护人电子邮箱：</strong> %{parent_email}</li>
-          <li><strong>孩子的名称：</strong> %{child_name}</li>
-          <li><strong>孩子的生日：</strong> %{child_birthday}</li>
-          <li><strong>孩子账号的电子邮箱：</strong> %{child_email}</li>
-          <li><strong>孩子账号名称：</strong> %{child_username}</li>
-          </ul>
-          <p>
-          请在您孩子的Seek app上点击菜单中的“INaturalist”选项，再点击菜单底部的"Log in with iNaturalist" 选项来登录您孩子的账号。
-          </p>
-          <p>
-          您的孩子将通过Seek app 上传他们的观察记录，并可以在iNaturalist.org 上看到它们。
-          </p>
       users_updates_suspended:
         message: |
           您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
@@ -5239,10 +5075,6 @@ zh-CN:
         aggregation_pending: 聚合待定
         new_place_desc_html: |
           尝试浏览<a href="%{places_url}" target="_blank">我们现有的地点</a>，并确保您获得正确的地点名称。如果您找不到所需的地点，请考虑<a href="%{new_place_url}" target="_blank">创建新地点</a>，但请确保您不仅仅是复制了现有的地点。
-        bioblitz_desc_html: |
-          <p>
-          bioblitz是一个活动，参与者试图在一段时间内观察尽可能多的物种。这是一种向人们介绍生物多样性同时收集有价值数据的有趣方式。
-          </p>
         change_admin_desc: 选择一位项目馆长作为新管理员。
         cover_desc: "可选的横幅图片，将显示在项目页面的顶部。宽度必须是950px，高度必须低于400px。"
         custom_project_fields_means: "自定义项目标志，添加一些内容，及编辑CSS。"
@@ -5258,34 +5090,6 @@ zh-CN:
         make_owner: 设为所有者
         no_curators: |
           这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
-        observation_aggregation_desc_html: |
-          <p class="description">
-          观察聚合将根据项目规则自动为项目添加合适的观察。由于一次无法从项目中删除许多观察，这可能存在危险，因此请确保您已选择了所需的地点和分类规则，否则最终您可能不得不手动删除大量不合适的观察。
-          </p>
-          <p class="description">
-          聚合器仅在满足以下条件时才有效：
-          </p>
-          <ol>
-          <li class="readable description">
-          您的项目与中小型地方（接近德克萨斯州或乌克兰的大小）相关联
-          </li>
-          <li class="readable description">
-          或者您的项目仅接受某些分类单元的观察
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">项目资产只是一些与项目关联的文件，具有一些特殊规则：
-          </p>
-          <ol class="description">
-          <li>以.logo.jpg，.logo.png等结尾的文件将用作项目页面上的项目徽标，而不是项目图标</li>
-          <li>KML和KMZ文件将添加到项目页面上的地图中</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          您可以创建定制分类项目列表，并链接至您的项目。This can be useful to restrict observations added to your
-          project to those matching taxa on your list via the "must be taxon
-          on the project list" rule.
-          </p>
         rules:
           captive: 被驯服/培养
           georeferenced: 有坐标
@@ -5306,20 +5110,6 @@ zh-CN:
           信任项目意味着项目管理者可以添加项目资产和自定义项目属性（例如标题HTML，CSS）。访问自定义项目属性意味着项目管理者有可能会添加恶意Javascript，因此请只信任具有负责任和技术能力的管理者的项目。
         you_can_preview: |
           您可以通过<a href="%{url}">点击此处</a>来预览项目的收藏项目。
-      invite:
-        description_html: |
-          <h3>关于邀请函</h3>
-          <p class="ui">
-          邀请人们加入您的项目与邀请个人观察有点不同。邀请人们将会
-          </p>
-          <ol>
-          <li>向他们发送一封电子邮件以邀请他们加入您的项目</li>
-          <li>在他们的控制面板上显示邀请</li>
-          <li>使他们能够加入您的项目，如果您的项目被设定为仅限邀请的话</li>
-          </ol>
-          <p class="ui">
-          只有项目馆长才能邀请人们加入项目。您应该能够通过他们的iNat用户名或他们的<em>完整的</em>电子邮件地址搜索人员，假设我们已将其存档。
-          </p>
       join:
         invite_only_description: |
           该项目的成员资格仅限受邀者。如果您想加入，请联系以下其中一位馆长并请求邀请。
@@ -5406,13 +5196,6 @@ zh-CN:
           name_already_taken: 项目名称已被使用
           cannot_have_more_than_x_project_rules: 不能超过 %{x} 个项目规则
           summary_is_required: 项目摘要文本是必需的
-      project_location_privacy_notice_html: |
-        <p>
-        请注意项目馆长将能够在此项目中查看您观察的任何私人或模糊位置，除非您撤销该权限，并且除非您<a href="/users/edit">更改您的设置</a>，他们还可以将您的任何观察加入此项目。您还可以根据具体情况授予或撤销对项目观察的访问权限。
-        </p>
-        <p>
-        如果您担心位置隐私，除非您信任项目馆长，否则不要加入项目。
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: 是的，但只在我自行添加观察至项目时。
         any: 是的，无论是谁将观察添加到项目中都无所谓。
@@ -5426,22 +5209,8 @@ zh-CN:
       show:
         are_you_sure_you_want_to_convert: |
           您确定要转换词项目至一个收藏项目么？
-        bioblitz_results_desc_html: |
-          <p>
-          与常规项目不同，bioblitzes显示来自某个地点和时间段内<em>所有</em>观察的事件统计数据，而不仅仅是人们有意添加到项目中的观察。这是为了消除向项目添加观察的障碍，只是为了实时驱动统计数据。请注意，观察将不可用于导出或显示在各种项目视图上，例如网站上的成员贡献或移动应用程序中的项目观察搜索，除非项目团队和参与者积极地添加与正常项目中相关的观察。
-          </p>
-          <p>
-          请注意，虽然此类项目显示未有意添加到项目中的观测统计数据，但它不允许馆长查看这些观测的私人或模糊坐标，或假设观察者已同意项目术语。如果您是项目馆长并且需要访问私人坐标，则需要您的参与者同意项目条款，或者您希望将观察计入策划项目清单，确保您的参与者加入项目并添加他们的观察至一个正常的项目中。
-          </p>
         click_here_to_convert_this_project: |
           单击此处将此项目转换为收藏项目。
-        no_journal_blurb_html: |
-          <p>
-          您的项目日记是与其他项目成员交流的工具。您可以使用它发布公告，设置优先级，或讨论有关您项目中找到的东西。
-          </p>
-          <p>
-          要开始入门，请<a href="%{url}" class="readmore">创建一个帖子</a>
-          </p>
         curated_checklist_desc: |
           这是策划的清单及添加到该项目中的来自观察的分类群计数，而不是在此事件的地点和时间记录的所有观察。
         make_sure_you_have_read_about_the_differences: |
@@ -5548,16 +5317,6 @@ zh-CN:
         complete_rank_desc_html: |
           该分类单元完成的等级，例如，如果这个家族包含其所有属，但不包括其所有物种，那么这将被设定为“属”。物种是默认的。
       show:
-        about_names_desc: |
-          <p>
-          大多数类型的生物在口语中都有“常见名称”。这些名字通常是可识别的，容易发音，并且随着时间的推移而变得稳定，但即使是在同一个语言中，许多生物在不同的地方会有几个不同名字，这给讨论这些生物体而不混淆带来了困难。对于符合<a href="https://zh.wikipedia.org/wiki/二名法">生物命名规则</a>的每一类生物 ，科学家通过使用单一的“科学名称”处理这个问题，但这些名字往往是以拉丁语（一种没人说的语言）为基础的，所以他们不像许多人用的常见名字那么好记。科学名称同时也会反映生物的分类，所以当科学家研究出不同的生物体之间更准确的进化理论的时候，这些名字会改变，并降低了名字在交流中的可用性，甚至在那些科学名称的人之间也是如此。
-          </p>
-          <p>
-          一句老格言总结：“常见名字随地方改变而改变，科学名称随时间改变而改变。”
-          </p>
-          <p>
-          我们试图通过在任何地方通过同时展示常见名字和科学名字来解决这些缺点，并基于观众的语言和地理偏好来选择性展示常见名称。
-          </p>
         about_conservation_status_desc: |
           保护状况总结了一组生物灭绝的风险。
         about_establishment_desc: |
@@ -5604,27 +5363,6 @@ zh-CN:
           分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>尝试添加已在其他地方使用过的名称。请不要发明新名字。</p></li>
-          <li><p>不要添加重复的名称，例如，不要为很多种类的鹰命名为“鹰”</p></li>
-          <li><p>对于更高级别的分类群，尝试使用包含所有后代的名称，如“苍鹭和同类”或“荒地家族”</p></li>
-          <li>
-          <p>
-          不要添加不是名称的信息，例如，有关您如何使用该名称的括号信息
-          </p>
-          </li>
-          <li>
-          <p>
-          新词典应该是英文的。请不要添加“French，Français”之类的翻译语言名称，因为这样我们很难或不可能为使用不同语言的网站的用户显示本地化名称。
-          </p>
-          </li>
-          <li>
-          <p>
-          与翻译语言相关的常用名称将显示为该语言的默认通用名称（除非受到地点首选项、名称排序等的影响）。<a class="readmore" href="/pages/translate">了解有关翻译的详情</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           为地点添加名称，以便为该地点的站点和用户提供优先级。如果每个地点有多个名称，您可以优先考虑<a href="%{url}">此处</a>。请<strong>不要</strong>为每个使用该名称的地点添加名称，仅适用于与其他地点发生冲突的地点。
       taxon:
@@ -5663,13 +5401,6 @@ zh-CN:
           如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
-        muting_desc_html: |
-          <p>
-          禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
-          </p>
-          <p>
-          您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
-          </p>
         name_place_help_html: |
           排序用于这一地区常用名的优先级。
         #Checkbox label for user preference about what to receive in the daily email update
