@@ -1,20 +1,9 @@
 ru:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} изменение"
-    few: "%{count} изменения"
-    many: "%{count} изменений"
-    other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
     other: '%{count} комментариев'
-  x_comments_html:
-    one: '<span class="count">%{count}</span>комментарий'
-    few: '<span class="count">%{count}</span>комментария'
-    many: '<span class="count">%{count}</span>комментариев'
-    other: '<span class="count">%{count}</span>комментариев'
   x_faves:
     one: '%{count} фаворит'
     few: '%{count} фаворита'
@@ -30,41 +19,6 @@ ru:
     few: '%{count} идентификации'
     many: '%{count} идентификаций'
     other: '%{count} идентификаций'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> идентификация'
-    few: '<span class="count">%{count}</span> идентификации'
-    many: '<span class="count">%{count}</span> идентификаций'
-    other: '<span class="count">%{count}</span> идентификаций'
-  x_identifications_:
-    one: '%{count} идентификация'
-    few: '%{count} идентификации'
-    many: '%{count} идентификаций'
-    other: '%{count} идентификаций'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span>эксперт'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> эксперта'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> экспертов'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> экспертов'
-  x_languages:
-    one: "%{count} язык"
-    few: "%{count} языка"
-    many: "%{count} языков"
-    other: "%{count} языков"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "Впервые %{count} в списке Жизни"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "Впервые %{count} в списке Жизни"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "Впервые %{count} в списке Жизни"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "Впервые %{count} в списке Жизни"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> сообщение в журнале'
     few: '<span class="count">%{count}</span> сообщения в журнале'
@@ -97,21 +51,6 @@ ru:
     few: "%{count} ошибочные идентификации видов в этом %{rank}"
     many: "%{count} ошибочных идентификаций вида в этом %{rank}"
     other: "%{count} ошибочных идентификаций видов в этом %{rank}"
-  x_observations:
-    one: "%{count} наблюдение"
-    few: "%{count} наблюдения"
-    many: "%{count} наблюдений"
-    other: "%{count} наблюдений"
-  x_observations_:
-    one: "%{count} наблюдение"
-    few: "%{count} наблюдения"
-    many: "%{count} наблюдений"
-    other: "%{count} наблюдений"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> наблюдение"
-    few: "<span class='count'>%{count}</span> наблюдения"
-    many: "<span class='count'>%{count}</span> наблюдений"
-    other: "<span class='count'>%{count}</span> наблюдений"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
@@ -122,21 +61,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения просмотрено"
     many: "<span class='count'>%{count}</span> наблюдений просмотрено"
     other: "<span class='count'>%{count}</span> наблюдений просмотрено"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> наблюдатель'
-    few: '<span class="count">%{count}</span> наблюдателя'
-    many: '<span class="count">%{count}</span> наблюдателей'
-    other: '<span class="count">%{count}</span> наблюдателей'
   x_others:
     one: "%{count} другой"
     few: "%{count} других"
     many: "%{count} других"
     other: "%{count} других"
-  x_people:
-    one: "%{count} человек"
-    few: "%{count} человека"
-    many: "%{count} человек"
-    other: "%{count} человек"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong>, оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   x_photos:
     one: "%{count} фото"
@@ -148,21 +77,6 @@ ru:
     few: "%{count} новых вида"
     many: "%{count} новых видов"
     other: "%{count} новых видов"
-  x_new_users:
-    one: '%{count} новый пользователь'
-    few: '%{count} новых пользователя'
-    many: '%{count} новых пользователей'
-    other: '%{count} новых пользователей'
-  x_species:
-    one: '%{count} вид'
-    few: '%{count} вида'
-    many: '%{count} видов'
-    other: '%{count} видов'
-  x_species_html:
-    one: "<span class='count'>%{count}</span>вид"
-    few: "<span class='count'>%{count}</span> вида"
-    many: "<span class='count'>%{count}</span> видов"
-    other: "<span class='count'>%{count}</span> видов"
   x_species_link_html:
     one: "<a href='%{url}'>1 вид</a>"
     few: "<a href='%{url}'>%{count} вида</a>"
@@ -173,11 +87,6 @@ ru:
     few: "%{count} предложения, отфильтрованных по:"
     many: "%{count} предложений, отфильтрованных по:"
     other: "%{count} предложений, отфильтрованных по:"
-  x_taxa:
-    one: "%{count} таксон"
-    few: "%{count} таксона"
-    many: "%{count} таксонов"
-    other: "%{count} таксонов"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> наблюдаемый таксон"
     few: "<span class='count'>%{count}</span> наблюдаемых таксона"
@@ -193,11 +102,6 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня, идентифицированных до вида или ниже"
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
-  x_sounds:
-    one: "%{count} звук"
-    few: "%{count} звука"
-    many: "%{count} звуков"
-    other: "%{count} звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -268,8 +172,6 @@ ru:
   about_this_bioblitz: Об этом биоблице
   about_this_map: Об этой Карте
   about_this_project: Об этом Проекте
-  about_trips_html: |
-    <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Где</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Свести в таблицу данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии видов из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
   about_trusting_projects: О доверительных проектах
   about_trusting_projects_options_any: Все ваши наблюдения в этом проекте
   about_trusting_projects_options_any_desc: |-
@@ -845,20 +747,6 @@ ru:
   back_to_your_observations: Вернуться к вашим наблюдениям
   back_to_your_profile: Вернуться к вашему профилю
   badges: Значки
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Основываясь на примере %{percent}% этих идентификаторов, мы полагаем, что это
-      приведет к <strong>%{count} непредусмотренному разногласию</strong> с идентификаторами %{child}.
-    few: |
-      Основываясь на примере %{percent}% этих идентификаторов, мы полагаем, что это
-      приведет к <strong>%{count} непредусмотренным разногласиям</strong> с идентификаторами %{child}.
-    many: |
-      Основываясь на примере %{percent}% этих идентификаторов, мы полагаем, что это
-      приведет к <strong>%{count} непредусмотренным разногласиям</strong> с идентификаторами %{child}.
-    other: |
-      Основываясь на примере %{percent}% от этих идентификаторов, мы полагаем, что это
-      приведет к <strong>%{count} непредусмотренным разногласиям</strong> с идентификаторами %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Основываясь на свидетельствах, можно ли подтвердить или улучшить таксон сообщества?
   batch: Пакетная загрузка
@@ -1371,7 +1259,7 @@ ru:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Редактировать таксономию iNaturalist''s, следуя политике, изложенной в <a href="/pages/curator+guide#policies" target="_blank">разделе политики Руководства куратора</a>. Это означает, что они могут добавлять, разделять, менять местами, объединять, деактивировать и удалять таксоны на iNaturalist. Они также могут редактировать природоохранные статусы и геоприватность таксонов, а также редактировать общие имена, добавляемые любым пользователем и управлять ими.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Редактировать таксономию iNaturalist''s, следуя политике, изложенной в <a href="/pages/curator+guide#policies" target="_blank">разделе политики Руководства куратора</a>. Это означает, что они могут добавлять, разделять, менять местами, объединять, деактивировать и удалять таксоны на iNaturalist. Они также могут редактировать природоохранные статусы и геоприватность таксонов, а также редактировать общие имена, добавляемые любым пользователем и управлять ими.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Скрыть комментарии и приостановить аккаунт пользователя за нарушение <a
     href="/pages/community+guidelines" target="_blank">Правил сообщества</a>.
@@ -1568,7 +1456,6 @@ ru:
     failure:
       already_authenticated: 'Вы уже вошли в систему.'
       unauthenticated: 'Прежде чем продолжать, вам нужно войти в систему или зарегистрироваться'
-      invalid: 'Неверный email или пароль'
       invalid_token: 'Неверный маркер аутентификации.'
       user:
         suspended: Ваш аккаунт был приостановлен
@@ -1582,19 +1469,17 @@ ru:
       send_paranoid_instructions: "Если ваш адрес email есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
       no_token: "Эта страница доступна только при переходе с адреса электронной почты для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что Вы используете полную URL-ссылку."
     registrations:
+      destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
       signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
       updated: 'Вы успешно обновили свою учётную запись.'
-      destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
     mailer:
-      confirmation_instructions:
-        subject: 'Инструкции по подтверждению'
       reset_password_instructions:
         subject: 'Инструкции по восстановлению пароля'
   devise_reset_password_instructions_hello_email: Здравствуйте, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Если вы не посылали этот запрос, проигнорируйте это письмо.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будет изменён, пока Вы не перейдете по указанной ссылке и не укажете новый пароль.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2712,8 +2597,6 @@ ru:
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3194,13 +3077,6 @@ ru:
     updates_by_you_panel_body: Помните, что на закладке 'Все обновления' вы будете видеть не только обновления вашего контента, но и контента людей, на которых вы подписаны, а также таксонов и мест, на которые вы подписаны, используя инструмент подписки, который находится справа.
     youve_got_updates_panel_title: У вас есть обновления!
     youve_got_updates_panel_body_p1: Будьте в курсе обновлений, отслеживая...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Ваш Контент:</strong> Активные действия с вашими наблюдениями, такие как комментарии, идентификации или фавориты от членов сообщества %{site_name}. Вы также получите обновление, когда кто-либо добавит ваше наблюдение в проект или проставит значения в его дополнительные поля.</li>
-      <li><strong>Люди:</strong> Новые наблюдения или сообщения в журнале от людей, на которых вы подписаны.</li>
-      <li><strong>Организмы, Проекты & Места:</strong> Новые наблюдения конкретных организмов или мест, на которые вы подписаны. Вы можете также присоединиться к проектам, таким образом вы будете получать обновления при публикации сообщений в журнале проекта.</li>
-      <li><strong>Обсуждения, в которых вы участвуете:</strong> подписывает вас на любую новую активность этого контента. Добавление комментариев или идентификаций к чужому контенту автоматически подписывает вас на любую новую активность этого контента. Используйте средство управления подписками, чтобы перестать получать обновления.</li>
-      </ul>
   one_by_one: "По одному"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "одно из следующих условий должно быть выполнено:"
@@ -3344,38 +3220,11 @@ ru:
     original: исходный размер
   photos_updated: Фото обновлены.
   pi_consent_desc_title: О личной информации
-  pi_consent_desc_html: |
-    <p>
-    Мы храним личную информацию, такую как имена пользователей и адреса электронной почты, для управления учетными записями на этом сайте, а также для соблюдения законов о конфиденциальности нам нужно, чтобы вы установили этот флажок, чтобы указать, что вы согласны на такое использование личной информации. Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, ознакомьтесь с нашей
-    <a href='%{privacy_url}' target='_blank'>Политикой конфиденциальности</a>
-    и нашими <a href='%{terms_url}' target='_blank'>Условиями использования</a>.
-    </p>
-    <p>
-    Невозможно создать учетную запись iNaturalist без хранения личной информации, поэтому единственный способ отозвать это согласие - удалить свою учетную запись.
-    </p>
   pi_consent_label: |
     Я разрешаю iNaturalist хранить и обрабатывать ограниченные виды личной информации обо мне для управления моей учетной записью
   pi_consent_child_label: |
     Я разрешаю iNaturalist хранить и обрабатывать ограниченные виды личной информации о моем ребенке для управления учётной записью моего ребенка
   data_transfer_consent_desc_title: О согласии на передачу личной информации
-  data_transfer_consent_desc_html: |
-    <p>
-    Некоторые законы о конфиденциальности данных, такие как Общий регламент ЕС по защите данных (GDPR), требуют явного согласия на передачу личной информации из их юрисдикций в другие юрисдикции, где правовая защита этой информации считается недостаточной. По данным
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    Европейский союз больше не считает Соединенные Штаты юрисдикцией, которая обеспечивает надлежащую правовую защиту личной информации, в частности, из-за возможности попадания данных государственного наблюдения США в США. Вполне возможно, что и в других юрисдикциях может быть такое же мнение.
-    </p>
-    <p>
-    Использование iNaturalist требует хранения личной информации, такой как ваш адрес электронной почты, все данные iNaturalist хранятся в Соединенных Штатах, и мы не можем быть уверены, в какой правовой юрисдикции вы находитесь, когда используете iNaturalist, поэтому для соблюдения законов о конфиденциальности, таких как GDPR, вы должны подтвердить, что понимаете и принимаете этот риск и даёте согласие на передачу вашей личной информации на серверы iNaturalist в США.
-    </p>
-    <p>
-    Чтобы узнать больше о том, какую информацию мы собираем и как мы ее используем, пожалуйста, ознакомьтесь с нашей
-    <a href='%{privacy_url}' target='_blank'>Политикой конфиденциальности</a>
-    и нашими <a href='%{terms_url}' target='_blank'>Условиями использования</a>.
-    </p>
-    <p>
-    Невозможно создать учетную запись iNaturalist без хранения личной
-    информации, поэтому единственный способ отозвать это согласие - удалить свою учетную запись.
-    </p>
   data_transfer_consent_label: |
     Я даю согласие на передачу моей личной информации в Соединенные Штаты Америки
   data_transfer_consent_child_label: |
@@ -4621,8 +4470,6 @@ ru:
   supporting: Поддерживающее мнение
   suspend_user: Заблокировать пользователя
   suspend_user_html: Приостановить работу %{user}
-  suspend_user_reason_instructions_html: |
-    Объясните, почему вы приостанавливаете работу этого аккаунта и процитируйте нарушения Руководящих принципов сообщества%{link_start_tag}%{link_end_tag}. Пожалуйста, воздержитесь от добавления личных мнений.
   sw_lat: ЮЗ шир.
   sw_lon: ЮЗ долг.
   sync: Синхронизировать?
@@ -4931,11 +4778,6 @@ ru:
   this_list_only_accepts_taxa_that_are_species: В этом списке допустимы только таксоны-виды
   this_list_only_accepts_taxa_that_are_species_or_lower: В этом списке допустимы только таксоны-виды или ниже
   this_observation: Данное наблюдение
-  this_observation_is_featured_on_x_sites:
-    one: Это наблюдение размещено на %{count} сайте
-    few: Это наблюдение размещено на %{count} сайтах
-    many: Это наблюдение размещено на %{count} сайтах
-    other: Это наблюдение размещено на %{count} сайтах
   this_observation_is_research_grade: Это наблюдение достигло исследовательского уровня!
   this_observation_was_created_using: "Это наблюдение было создано с использованием:"
   this_photo_is_already_associated: Это фото уже связано с одним из ваших наблюдений.
@@ -5335,12 +5177,6 @@ ru:
   view_all_fields: Посмотреть все поля
   view_all_flags: Просмотр всех флагов
   view_all_members: Посмотреть всех участников
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Видеть все %{count}"
-    few: "Видеть все %{count}"
-    many: "Видеть все %{count}"
-    other: "Видеть все %{count}"
   view_all_observations: Посмотреть все наблюдения
   view_all_photocount_photos: "Посмотреть все %{photo_count} фото"
   view_assessment: Просмотр оценки
@@ -5521,16 +5357,6 @@ ru:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} из %{count} подтвержден"
-    few: "%{x} из %{count} подтверждено"
-    many: "%{x} из %{count} подтверждено"
-    other: "%{x} из %{count} подтверждено"
-  x_of_count_observed:
-    one: "%{x} из %{count} подтвержден"
-    few: "%{x} из %{count} подтверждено"
-    many: "%{x} из %{count} подтверждено"
-    other: "%{x} из %{count} подтверждено"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} из %{y} человек (более 2/3) согласны с этим"
   x_is_the_root_of_the_tree: "%{rank}%{name} - это корень дерева"
   x_project_journal: "%{project}%{name}"
@@ -5736,36 +5562,10 @@ ru:
             Если так, ознакомьтесь с нашим <a href="%{url}">Руководством для преподавателя</a>, чтобы получить советы по использованию %{site_name} студентами.
     donate:
       donate_short_desc: "Пожертвуйте сейчас, чтобы показать свою поддержку!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
-        </p>
-        <p class="lead">
-        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о одноразовом или повторяющемся взносе онлайн, или воспользуйтесь <a href="https://www.inaturalist.org/pages/giving">другими способами дарения</a>.
-        </p>
-        <p class="lead">
-        Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования системы компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала.
-        </p>
-        <p class="text-muted">
-        iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Я оказываю поддержку iNaturalist, потому что...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЬТЕ ЕЖЕМЕСЯЧНЫМ СПОНСОРОМ INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
-          </p>
-          <p class="lead">
-          Мы хотим сохранить бесплатное использование iNaturalist, но для продолжения работоспособности оно не может быть бесплатным. Если вы любите iNaturalist, рассмотрите возможность стать ежемесячным спонсором. Повторяющиеся дотации помогают iNaturalist продолжать масштабировать свою инфраструктуру и персонал, обеспечивая предсказуемый доход. Вы также можете выбрать отображение вашего ежемесячного статуса спонсора в вашем профиле пользователя.
-          </p>
-          <p class="lead">
-          Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования системы компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала. Если вы предпочитаете сделать одноразовое пожертвование, пожалуйста, <a href="%{donate_url}">нажмите здесь</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки.
-          </p>
         thank_you_for_being_a_monthly_supporter: Благодарим вас за ежемесячную поддержку!
         thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВАС ЗА ЕЖЕМЕСЯЧНУЮ ПОДДЕРЖКУ!
     flags:
@@ -5803,39 +5603,6 @@ ru:
           вставьте здесь URL этой коллекции.
         guide_place_desc: |
           Привязка вашего руководства к месту позволит людям найти его при поиске мест и покажет границу места на картах %{site_name}, где места отображаются, если граница была задана (например, отображение в виде "карточки", страницы таксона и т. д.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Выгрузите CSV-файл, содержащий теги для таксонов этого руководства. Ваш CSV-файл должен выглядеть так:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Name</th>
-          <th>color</th>
-          <th>Number of hands</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bipedal</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>red|black</td>
-          <td>0</td>
-          <td>quadripedal</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Первая строка начинается с "Name", за которым следует тег
-          предикаты / категории. Каждая следующая строка начинается с имени таксона, за которым следуют теги, соответствующие предикату в верхней части столбца. В указанном примере <i>Homo sapiens</i> даёт теги <code>bipedal</code> and <code>Number of hands=2</code>,
-          а <i>Vulpes vulpes</i> даёт <code>quadripedal</code>,
-          <code>color=red</code>, <code>color=black</code>, и
-          <code>Number of hands=0</code>. Пробелы будут проигнорированы, и вы можете добавить несколько строк для каждого таксона. Вы также можете добавить несколько значений на ячейку, разделяя их символом вертикальная черта, '|' .
-          </p>
         licensing_explanation: |
           Лицензирование вашего контента даёт другим людям право копировать и изменять его без вашего разрешения. Это значительно облегчает распространение ваших наработок, и если вы включаете сторонний контент из других источников, которые используют лицензии Creative Commons ShareAlike (например, Wikipedia), вы юридически обязаны использовать аналогичную лицензию. Вот обзор всех лицензий Creative Commons и объяснение, что они означают:
         paste_note_html: |
@@ -5854,13 +5621,6 @@ ru:
         Это может занять некоторое время, поэтому попробуйте обновить эту страницу через несколько минут.
       mobile_downloads_tip_html: |
         Это руководство можно загрузить в мобильное приложение для использования офлайн.
-      mobile_downloads_help_html: |
-        <p>Это приведет к созданию загружаемого архива всех данных и медиафайлов, связанных с этим руководством, чтобы пользователи мобильных приложений могли просматривать содержимое руководства без подключения к Интернету. Для создания архива потребуется несколько минут, но, как только он будет создан, архив будет обновляться при каждом изменении этого руководства.</p>
-        <p class="alert status">
-          Пожалуйста, <strong> не включайте офлайновые мобильные загрузки, если вы на 
-          самом деле не собираетесь их использовать.</strong> Они представляют собой  
-          значительную нагрузку на нашу систему.
-        </p>
       pdf_layouts:
         grid: плитка
         book: книга
@@ -5994,13 +5754,6 @@ ru:
         disagreement_count: Число несогласий
         identification_count: Число идентификаций
         score: Оценка
-        explanation: |
-          <p>
-          Если по какой-то причине пользователь не согласен с таксоном сообщества, он может отклонить его, что означает, что их идентификация используется для связи с другими наблюдениями, обновления списков жизни и т.д. Это также означает, что их наблюдение может стать исследовательским только если сообщество соглашается с ними.
-          </p>
-          <p>
-          Однако идентификация сообщества по-прежнему отображается, поэтому все могут видеть различные идентификации, которые были предложены.
-          </p>
         you_have_opted_out: Вы отказались от идентификаций сообщества
         opt_in_for_this_observation: Выбрать принятие помощи для идентификации этого наблюдения
         your_id_does_not_match: |
@@ -6035,46 +5788,6 @@ ru:
           Это общее количество "листовых" таксонов, представленных в запросе. Иногда вы увидите больше строк, чем "листовых" таксонов, при ненулевом количестве, потому что присутствуют таксоны более высокого уровня, добавленные из других запросов. Например, если Запрос 1 содержит наблюдение Homo sapiens, а Запрос 2 содержит наблюдение рода Homo, оба таксона будут присутствовать в таблице, и будет присутствовать одна дополнительная строка для рода Homo из Запроса 1, которая не включается в общее количество, поскольку учитывается только  вид Homo sapiens из этого рода, потому что это "лист" этой части его дерева.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Вертикально
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "совпадает %{count}"
-          #Count of how many taxa several observation searches have in common
-          few: "совпадают %{count}"
-          #Count of how many taxa several observation searches have in common
-          many: "совпадают %{count}"
-          #Count of how many taxa several observation searches have in common
-          other: "совпадают %{count}"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "не совпадает %{count}"
-          #Count of how many taxa are not present in *all* of several observation searches
-          few: "не совпадают %{count}"
-          #Count of how many taxa are not present in *all* of several observation searches
-          many: "не совпадают %{count}"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "не совпадают %{count}"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "всего %{count}"
-          #Count of how many taxa are present in an observation search
-          few: "всего %{count}"
-          #Count of how many taxa are present in an observation search
-          many: "всего %{count}"
-          #Count of how many taxa are present in an observation search
-          other: "всего %{count}"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "уникальный %{count}"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          few: "уникальных %{count}"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          many: "уникальных %{count}"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "уникальных %{count}"
       export:
         choose_columns_desc: Выберите столбцы, которые требуется экспортировать
         create_a_query_desc_html: |
@@ -6098,43 +5811,6 @@ ru:
         taking_a_while: "Это займет некоторое время. Пожалуйста, попробуйте один из вариантов, указанных ниже."
         date_range_help: "Максимальные и минимальные даты наблюдений в формате ГГГГ-ММ-ДД, например, 2015-01-17"
         created_on_help: "Даты наблюдения - это даты, когда наблюдения были созданы, а не наблюдались, например 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Другие источники</h3>
-          <p>
-          Большие объёмы экспорта тормозят нашу инфраструктуру и усложняют для нас введение новых изменений. Следует рассмотреть следующие другие источники:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF принимает большинство наших лицензированных наблюдений исследовательского уровня, и их инструменты экспорта превосходны. Экспорт GBIF также идет с <a href="https://www.doi.org/"> DOI </a>, который вы можете указать, если публикуете исследования на основе данных, которые вы экспортируете, и эти
-          ссылки чрезвычайно полезны для нас, поскольку они позволяют нам видеть,
-          как используются данные iNat.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
-          архив (DwC-A) для GBIF</a>: это <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
-          файл, который мы генерируем для GBIF, поэтому он не должен содержать
-          все, что не содержится в GBIF, но если вы хотите получить весь архив, вы можете скачать его. Это очень большой почтовый файл, содержащий записи в CSV. Обновляется еженедельно.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
-          соревнование на FGVC 2017</a>: ссылки на 675 000 лицензированных фото 
-          iNaturalist 5 089 видов для использования в системе компьютерного распознавания. Создано в июне 2017, не обновляется.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Уникальный идентификатор наблюдения"
         species_guess: "Имя, которое наблюдатель ввёл для наблюдаемого таксона"
@@ -6203,17 +5879,6 @@ ru:
         allow_curator_coordinate_access_desc_html: |
           Позволить кураторам проекта видеть скрытые координаты этого наблюдения
         ancestor_disagreements_desc: "# идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (т.е. \"я думаю, что этот род, но не согласен, что этот вид\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Таксон сообщества (или идентификация сообществом) представляет собой тот таксон, который, по мнению сообщества %{site_name}, изображен в наблюдении. Если вам интересно, как выбирается таксон сообщества, посмотрите указанные ниже примечания к алгоритму, однако в общем случае мы стараемся <strong>выбрать таксон, с которым согласны более чем 2/3 идентифицирующих</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд несогласующихся таксонов (например, вы думаете, что это kingsnake, а я думаю, что это rattlesnake, в таком случае iNat выбирает подотряд Serpentes (Змеи), который содержит всех змей). Алгоритм также немного поддерживает инакомыслие, потому что мы обнаружили, что инакомыслящие часто правы.
-          </p>
-          <p class="ui">
-          Наблюдение исследовательского уровня должно иметь (наряду с прочими критериями) таксон сообщества. Если наблюдение имеет только одну идентификацию, оно не получит таксон сообщества. Все наблюдения хотя бы с одной идентификацией также будут иметь таксон наблюдения. Таксон наблюдения - это таксон, который мы используем, когда делимся наблюдением с партнёрами по данным, связываем наблюдения одного и того же таксона на сайте, обновляем ваш список Жизни и т.д. В большинстве случаев таксон наблюдения в конечном итоге будет установлен равным таксону сообщества, но иногда они будут отличаться, особенно если сообщество остановилось в процессе идентификации. Например, если вы считаете, что это Змея (подотряд Serpentes), а я думаю, что это kingsnake (род <i>Lampropeltis</i>), таксон наблюдения установится на уровне kingsnake (поддержанный только моей идентификацией), а таксон сообщества будет равен serpentes (поддерживаемый минимум двумя идентификациями). Если по какой-либо причине вы не согласны с таксоном сообщества, вы можете отказаться от него в своих наблюдениях, что означает, что таксон наблюдения никогда не будет равен таксону сообщества (скорее, это будет ваша собственная идентификация).
-          Это также означает, что ваше наблюдение может получить исследовательский уровень только в том случае, когда сообщество согласится с <em>вами/em>. Если вам в принципе не нравится идея таксона сообщества, вы можете полностью от него отказаться, <a href="/users/edit" target="_blank">редактируя ваши настройки</a>.
-          </p>
-          <p class="ui">
-          <strong>Алгоритм:</strong> для всех идентифицируемых таксонов и таксонов, которые их содержат (например, род <i>Homo</i> содержит <i>Homo sapiens</i>), оценка каждого равна отношению числа «согласий» - совокупных идентификаций этого таксона к сумме совокупных идентификаций, "несогласий" - числу полностью отличающихся идентификаций (например, идентификаций таксона, который не содержат оцениваемый таксон), и «число несогласий с таксонами-предками» - число более консервативных идентификаций, которые не согласуются с более детальным таксоном. Для идентифицируемых таксонов, которые имеют оценку более 2/3 и не менее 2 идентификаций, выбирается таксон с самым низким рангом. 
-          </p>
         cumulative_count_desc: '# идентификаций отдельного таксона и всех его потомков'
         curator_coordinate_access_disabled_desc_html: |
           Этот проект не допускает наблюдений с координатами, которые кураторы проекта не могут видеть. Если вы не хотите делиться координатами этого наблюдения с кураторами этого проекта, вы должны удалить наблюдение из проекта.
@@ -6226,57 +5891,6 @@ ru:
           нарушающие авторское право. Подробнее см. в разделе %{links}
         join_project_desc_html: |
           Присоединяясь к проекту, вы даёте кураторам проекта возможность видеть скрытые координаты того или иного наблюдения в проекте, это означает, что вы согласны с условиями проекта <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Оценка качества данных это совокупность точности даных наблюдения. Все наблюдения изначально имеют <strong>"обыкновенный"</strong> уровень, а затем получают уровень
-          <strong>"требуется идентификация"</strong> когда
-          </p>
-
-          <ul>
-          <li>наблюдение <strong>содержит дату</strong></li>
-          <li>наблюдение <strong>содержит местоположение</strong> (т.е. координаты шир./дол.)</li>
-          <li>наблюдение <strong>содержит фото или звуки</strong></li>
-          <li>наблюдение <strong>не является наблюдением человека</strong></li>
-          </ul>
-          <p>
-          Наблюдения получают <strong>"исследовательский уровень"</strong> когда
-          </p>
-          <ul>
-          <li>
-          Сообщество %{site_name} <strong> согласно с определением на уровне вида или ниже</strong>, т.е. когда более чем 2/3 экспертов соглашаются с таксоном (если сообщество проголосовало, что таксон сообщества не может быть улучшен, это применимо к определению на уровне подсемейства или ниже)
-          </li>
-          </ul>
-          <p>
-          Наблюдения вернутся к уровню <strong>"обыкновенный"</strong>, если вышеперечисленные условия не выполнены или если сообщество не пришло к согласию
-          </p>
-          <ul>
-          <li>
-           <strong>местоположение не кажется точным</strong> (например, обезьяны находятся посередине океана, бегемоты в офисных зданиях и т.д.)
-          </li>
-          <li>
-          <strong>организм не является диким/натурализованным</strong> (т.е. находящимся в неволе или культивируемом людьми или разумной инопланетной расой)
-          </li>
-          <li>
-          наблюдение <strong>не содержит доказательства существования организма</strong>, например, наблюдения водных каскадов, камней, ландшафтов без видимых организмов и т.д.
-          </li>
-          <li>
-          наблюдение <strong>не представляет собой недавнее (~100 лет) доказательство существования организма</strong> (например, ископаемые останки, но следы, помёт и опавшие листья подходят)
-          </li>
-          <li>
-          наблюдение более не требует определения <em>и</em> определение сообщества ваше уровня семейства
-          </li>
-          <li>
-          наблюдатель отказался от таксона сообщества, и таксон сообщества не является предком или потомком таксона в идентификации наблюдателя
-          </li>
-          </ul>
-          <p>
-          И если это было недостаточно сложно, то бывают также ситуации, когда право голоса получает система:
-          </p>
-          <ul>
-          <li>
-          Система проголосует за то, что организм не является диким/натурализованным, если существует не менее 10 других наблюдений рода или ниже в самом небольшом месте, эквивалентном району, региону или стране, которое содержит данное наблюдение и 80% или более этих наблюдений были помечены как не дикие/ненатурализованные. 
-          </li>
-          </ul>
         score_desc: "оценка = общее число / (общее число + число несогласий + число несогласий с таксонами-предками)"
         observation_flagged_notice_html: |
           Это наблюдение было помечено как спам и больше не является общедоступным. Вы можете видеть его, потому что вы его создали, или же вы куратор сайта. Если вы думаете, что это ошибка, пожалуйста, a href="mailto:%{help_email}" class="contact">свяжитесь с нами</a>. <a href="/observations/%{observation_id}/flags">Управление флагами</a>
@@ -6286,14 +5900,6 @@ ru:
         user_stats_desc: |
           Статистика пользователя ограничена максимальным числом 500 по количеству наблюдений или количеству видов, поэтому общее количество, как правило, немного больше 500, так как два списка, вероятно, не содержат одних и тех же пользователей. Значение, обозначенное «*», означает, что оно не было в топ-500 для этой статистики.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>Вы можете редактировать это поле наблюдения, потому что вы создали его или потому, что вы куратор сайта. Если вы куратор сайта, пожалуйста, следуйте этим рекомендациям</p>
-        <ol>
-        <li>Не осуществляйте произвольных изменений имени (например, меняя «питание» на «поедание нектара»)</li>
-        <li>Имейте в виду, что поля наблюдений могут использоваться для наблюдений любого таксона, поэтому старайтесь не использовать терминологию, специфичную для таксона</li>
-        <li>Не удалять поля, которые люди используют</li>
-        <li>Не переводите существующие имена полей на другие языки. Английский язык - это лингва-франка этого сайта. Если вы действительно хотите иметь поле, которое отражает ту же концепцию, но на другом языке, пожалуйста, создайте новое поле наблюдения.</li>
-        </ol>
       dna_help: |
         Чтобы включить функцию сопоставления штрихкода BOLD DNA, убедитесь, что имя вашего поля включает в себя слова «COI», «COX1», «ITS» или «matK», соответствующие гену, для которых это поле предназначено.
       merge:
@@ -6327,73 +5933,6 @@ ru:
           Экспорт вашего наблюдения завершился неудачно. Посетите <a href="%{url}">страницу экспортированных наблюдений</a> для просмотра списка ваших экспортов.
       parental_consent:
         subject: Вашему ребёнку понравится iNaturalist
-        content_html: |
-          <p>
-          Ваш ребенок использует образовательное приложение <strong>Seek by iNaturalist</strong>, и он хотел бы поделиться данными с платформой iNaturalist, которая является проектом для исследователей-любителей. Поскольку публикация в iNaturalist раскрывает личную информацию, iNaturalist не может использоваться лицами младше 13 лет без согласия родителей.
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> может использоваться без создания учетной записи, и личная информация не будет передана, но ваш ребенок не сможет отправлять наблюдения в iNaturalist. iNaturalist - это социальная сеть исследователей-любителей, в которой участники делятся наблюдениями и определениями живых существ, чтобы рассказать друг другу о природе и генерировать данные о биоразнообразии для науки.
-          </p>
-          <p>
-          Если вы хотите дать вашему ребенку разрешение на использование iNaturalist, нам потребуется следующее:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Создайте учетную запись iNaturalist, которую будет использовать ваш ребенок, перейдя по этой ссылке:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          После того, как вы создадите учетную запись вашего ребенка, мы попросим вас сделать небольшое пожертвование для iNaturalist в размере 1 доллара США с помощью кредитной карты, чтобы убедиться, что вы взрослый. Обязательно используйте тот же адрес электронной почты, который вы указали в поле «Родительский адрес электронной почты» во время регистрации при внесении пожертвования.
-          </p>
-          </li>
-          <li>
-          <p>
-          Как только мы обработаем пожертвование, мы отправим вам еще одно электронное письмо с уведомлением о том, что учетная запись вашего ребенка активирована, и вы можете использовать имя пользователя и пароль iNaturalist, которые вы создали, чтобы войти в приложение Seek вашего ребенка.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist собирает следующую персональную информацию:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>email address (private):</strong> every iNaturalist account has an email address associated with it which is not
-          made public.
-          <strong>адрес электронной почты (конфиденциальный):</strong> с каждой учётной записью iNaturalist связан адрес электронной почты, который не является публичным.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>имя пользователя (общедоступное, обязательное): </strong> каждая учетная запись iNaturalist имеет общедоступное имя пользователя и идентификационный номер пользователя. Имя пользователя не обязательно должно совпадать с реальным именем человека, но его можно использовать для связи с ним посредством публичных комментариев и личных прямых сообщений.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-адрес (конфиденциальный, обязательное поле):</strong> iNaturalist хранит, но не публикует IP-адрес пользователя, который может быть использован для получения личной идентифицирующей информации, такой как местоположение (с точностью до уровня города).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>изображение профиля (общедоступное, необязательное):</strong> аккаунты iNaturalist могут дополнительно иметь изображения профиля, которые часто являются фотографиями пользователя.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>местоположение наблюдения (публичное или конфиденциальное, обязательное поле):</strong>наблюдения iNaturalist содержат информацию о местоположении, где было сделано наблюдение. Оно может быть общедоступным или храниться в тайне, но по умолчанию оно общедоступно.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist также позволяет пользователям обмениваться публичными изображениями, публичными комментариями и частными прямыми сообщениями, связанными с их учётной записью. Пользователи могут включать личную идентификационную информацию в этот пользовательский контент.
-          </p>
-          <p>
-          Подробнее о политике конфиденциальности iNaturalist
-          <a href="%{privacy_policy_url}">читайте здесь</a>.
-          </p>
       photos_missing:
         subject: Некоторые фото требуют восстановления
         we_have_been_housekeeping: |
@@ -6408,25 +5947,6 @@ ru:
           Мы включили ссылки на повреждённые фото ниже.
       user_parent_confirmation:
         subject: iNaturalist аккаунт вашего ребёнка был активирован
-        content_html: |
-          <p>
-          Спасибо вам за то, что вы создали учётную запись iNaturalist для вашего ребёнка! Учётная запись была активирована. Вот детали вашей записи:
-          </p>
-          <ul>
-          <li><strong>Имя родителя или законного опекуна:</strong> %{parent_name}</li>
-          <li><strong>Адрес электронной почты родителя или законного опекуна :</strong> %{parent_email}</li>
-          <li><strong>Имя ребёнка:</strong> %{child_name}</li>
-          <li><strong>Дата рождения ребёнка:</strong> %{child_birthday}</li>
-          <li><strong>Адрес электронной почты в учётной записи ребёнка:</strong> %{child_email}</li>
-          <li><strong>Имя пользователя в учётной записи ребёнка:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Пожалуйста, войдите в учетную запись из приложения Seek вашего ребенка,  нажав кнопку "iNaturalist" в меню, а затем "Log in with
-          iNaturalist" в нижней части экрана.
-          </p>
-          <p>
-          После этого ваш ребенок сможет размещать наблюдения под своей учётной записью в iNaturalist, используя приложение Seek так, что они будут видны в iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Какое-то время вы были неактивны на %{site_name}, поэтому мы приостановили ваши подписки. Для возобновления получения обновлений с сайта войдите пожалуйста <a href="%{login_url}">в свою учётную запись</a> ещё раз.
@@ -6486,10 +6006,6 @@ ru:
         aggregation_pending: Ожидание агрегации
         new_place_desc_html: |
           Попробуйте просмотреть <a href="%{places_url}" target="_blank">наши имеющиеся места</a> и убедитесь, что вы правильно указали название места. Если вы действительно не можете найти нужное место, рассмотрите <a href="%{new_place_url}" target="_blank">создание нового места</a>, но, пожалуйста, убедитесь, что вы не дублируете существующее место.
-        bioblitz_desc_html: |
-          <p>
-          Биоблиц - это мероприятие, в котором участники пытаются наблюдать как можно больше видов в течение заданного периода времени. Это интересный способ познакомить людей с биоразнообразием при одновременном сборе ценных данных.
-          </p>
         change_admin_desc: Назначьте одного из кураторов проекта новым администратором.
         change_owner_alert: |
           Это лишит вас возможности удалять этот проект или же передавать право собственности на него. Вы хотите продолжить?
@@ -6507,31 +6023,6 @@ ru:
         make_owner: Сделать владельцем
         no_curators: |
           Кураторов проекта нет. Если вы хотите назначить нового человека администратором, он должен сначала присоединиться к этому проекту, а вы должны назначить его куратором.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Агрегация наблюдений автоматически добавит к вашему проекту соответствующие наблюдения, как указано в ваших правилах проекта. Поскольку нет возможности удалить много наблюдений из проекта за один раз, это потенциально опасно, поэтому, пожалуйста, убедитесь, что вы выбрали нужные место и правила для таксона, иначе вы можете получить множество неподходящих наблюдений, которые придётся удалять вручную.
-          </p>
-          <p class="description">
-          Агрегатор будет работать только при соблюдении следующих условий:
-          </p>
-          <ol>
-          <li class="readable description">
-          В вашем проекте должно быть хотя бы одно правило «наблюдение должно иметь место» для мест небольшого и среднего размера (сопоставимых с размером Техаса или Украины)
-          </li>
-          <li class="readable description">
-          ИЛИ ваш проект должен иметь хотя бы одно правило «наблюдение должно принадлежать таксону»
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Активы проекта - это просто файлы, связанные с вашим проектом, созданные по особыми правилам:
-          </p>
-          <ol class="description">
-          <li>Файлы, заканчивающиеся на .logo.jpg, .logo.png и т. д. будут использоваться в качестве логотипа проекта на странице проекта вместо иконки проекта</li>
-          <li>файлы KML и KMZ будут добавлены на карту на странице проекта</li></ol>
-        project_list_desc_html: |
-          <p class="description">
-          Вы можете создать пользовательский список проектов таксонов и связать его с вашим проектом. Это может быть полезно для ограничения наблюдений, добавляемых в ваш проект, теми, которые соответствуют таксонам в вашем списке, с помощью правила «должно быть таксоном в списке проектов».
-          </p>
         rules:
           captive: в искусственных условиях/в естественных условиях
           coordinates_shareable_by_project_curators: координаты, предоставляемые кураторами проектов
@@ -6560,20 +6051,6 @@ ru:
           Доверять проекту означает, что менеджеры проекта могут добавить в проект активы и пользовательские атрибуты проекта (например, баннер HTML, CSS). Доступ к пользовательским атрибутам проекта означает, что менеджеры проектов теоретически могут добавить вредоносный JavaScript, поэтому доверяйте только тем проектам, у которых как ответственные, так и технически грамотные менеджеры.
         you_can_preview: |
           Вы можете просмотреть, как будет выглядеть ваш проект в виде проекта коллекции, <a href="%{url}">нажав здесь</a>.
-      invite:
-        description_html: |
-          <h3>О приглашениях</h3>
-          <p class="ui">
-            Приглашение людей к вашему проекту несколько отличается от приглашения отдельных наблюдений. Приглашение людей приведёт к 
-          </p>
-          <ol>
-            <li>Отправке им по электронной почте приглашения присоединиться к вашему проекту</li>
-            <li>Выводу приглашения на их панели мониторинга</li>
-            <li>Разрешению им присоединиться к вашему проекту, если доступ к проекту  настроен только через приглашение</li>
-          </ol>
-          <p class="ui">
-            Только кураторы проектов могут приглашать людей присоединиться к проекту. Вы должны иметь возможность искать людей по имени пользователя iNat или их <em>полному</em> адресу электронной почты, предполагаем, что у нас есть это в файле.
-          </p>
       join:
         invite_only_description: |
           Участие в этом проекте только по приглашению. Если вы хотели бы присоединиться, пожалуйста, свяжитесь с одним из указанных ниже кураторов и запросите приглашение.
@@ -6669,13 +6146,6 @@ ru:
           name_already_taken: Такое название проекта уже существует
           cannot_have_more_than_x_project_rules: Не может быть более% %{x} правил проекта
           summary_is_required: Требуется задать текст описания проекта
-      project_location_privacy_notice_html: |
-        <p>
-        Помните, что кураторы проектов смогут увидеть любые конфиденциальные или скрытые местоположения ваших наблюдений в этом проекте, если вы не отмените это разрешение, и они смогут добавить любые ваши наблюдения в этот проект, если вы не <a href="/users/edit">измените ваши настройки</a>. Вы также можете предоставлять или отзывать доступ к наблюдениям проекта в каждом конкретном случае.
-        </p>
-        <p>
-        Если вас беспокоит конфиденциальность местоположения, не присоединяйтесь к проектам, если вы не доверяете кураторам проекта.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Да, но только если я добавлю наблюдение к проекту самостоятельно.
         any: Да, безотносительно того, кто добавляет наблюдения к проекту.
@@ -6689,23 +6159,8 @@ ru:
       show:
         are_you_sure_you_want_to_convert: |
           Вы уверены, что хотите преобразовать этот проект в коллекционный?
-        bioblitz_results_desc_html: |
-          <p>
-            В отличие от обычных проектов, биоблицы отображают статистику событий 
-          <em>всех</em> наблюдений в пределах места и периода времени, а не только наблюдений, которых люди намеренно добавили в проект. Это сделано, чтобы  устранить препятствие для добавления наблюдений в проект, только для того, чтобы управлять статистикой в реальном времени. Обратите внимание, что наблюдения не будут доступны для экспорта или отображения в различных проектных представлениях, таких как вклады участников на веб-сайте или поиск наблюдений в проекте в мобильных приложениях, пока команда проекта и участники не будут активно добавлять соответствующие наблюдения, как в обычном проекте.
-          </p>
-          <p>
-            Обратите внимание, что, хотя этот вид проекта показывает статистику наблюдений, которые не были намеренно добавлены к проекту, он не позволяет кураторам видеть конфиденциальные или скрытые координаты этих наблюдений или не позволяет считать, что наблюдатели согласились с условиями проекта. Если вы являетесь куратором проекта и вам нужен доступ к частным координатам, вам необходимо, чтобы ваши участники согласились с условиями проекта, или, если  вы хотите, чтобы замечания учитывались в контрольном списке кураторского проекта, убедитесь, что ваши участники присоединились к проекту и добавили свои наблюдения, как в обычном проекте.
-          </p>
         click_here_to_convert_this_project: |
           Кликните здесь, чтобы преобразовать этот проект в коллекционный
-        no_journal_blurb_html: |
-          <p>
-          Журнал вашего проекта-это инструмент для общения с участниками проекта. Вы можете использовать его, чтобы делать объявления, устанавливать приоритеты или говорить о результатах вашего проекта.
-          </p>
-          <p>
-          Чтобы начать, <a href="%{url}" class="readmore">создайте сообщение</a>
-          </p>
         curated_checklist_desc: |
           Это курируемый контрольный список, и указано количество таксонов из наблюдений, явным образом добавленных в этот проект, а не всех наблюдений, зарегистрированных в месте и во время этого события.
         make_sure_you_have_read_about_the_differences: |
@@ -6883,33 +6338,6 @@ ru:
           Краткое описание этого таксона основано на его <a target="_blank"
           href="%{url}">странице Википедии</a> , которую мы кэшируем неопределенно долго, пока не обновим вручную. Обновление этого описания приводит к немедленному обновлению нашего кэша базового контента Википедии, который автоматически обновляется еженедельно и показывается на веб-сайте.
       show:
-        about_names_desc: |
-          <p>
-            Большинство категорий организмов имеют «народные названия» в разговорных языках. 
-            Эти имена обычно узнаваемы, легко произносятся и стабильны с течением 
-            времени, но многие организмы имеют несколько различных имён в разных 
-            местах, даже на одном языке, что может затруднить общение по теме об этих 
-            организмах и внести  путаницу.
-            Учёные решают эту проблему, используя одно «научное название»
-            для каждой категории организма, соответствующее правилам
-            <a 
-            href="https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%BD%D0%BE%D0%BC%D0%B5%D0%BD%D0%BA%D0%BB%D0%B0%D1%82%D1%83%D1%80%D0%B0">Биологическая номенклатура</a>, но эти названия, как правило, основаны на латыни, языке, 
-            на котором никто не   говорит, поэтому для многих людей они не такие 
-            запоминающиеся, как народные названия. Научные названия также могут 
-            отражать таксономическую позицию, поэтому они могут меняться, когда 
-            учёные разрабатывают более точные теории об эволюционных отношениях между
-            различными организмами, что вновь уменьшает их полезность в общении, даже 
-            среди людей, которые знакомы с научными названиями.
-          </p>
-          <p>
-            Старая пословица гласит: «Народные названия меняются от места к месту, а 
-            научные названия меняются время от времени».
-          </p>
-          <p>
-            Мы пытаемся устранить эти недостатки, показывая как народные названия, так и научные 
-            названия там, где это возможно, и выбирая народные названия, основанные на 
-            языковых и географических предпочтениях пользователя.
-          </p>
         about_conservation_status_desc: |
           Природоохранный статус суммирует риск исчезновения группы организмов.
         about_establishment_desc: |
@@ -6978,28 +6406,6 @@ ru:
           Название таксона с рангом. Для внутривидовых рангов ранг устанавливается после биномиального имени.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Старайтесь добавлять имена, которые используются повсеместно. Пожалуйста, не изобретайте новые имена.</p></li>
-          <li><p>Не добавляйте задвоенные имена, например, не называйте ястребов "ястреб"</p></li>
-          <li><p>Для таксонов более высокого уровня старайтесь использовать имена, которые включают всех потомков, например, «цаплевые» или «семейство вересковых»</p></li>
-          <li>
-          <p>
-          Не добавляйте информацию, которая не является именем, например, информацию о том, как, по вашему мнению, следует использовать имя
-          </p>
-          </li>
-          <li>
-          <p>
-          Новые лексиконы должны быть на английском языке. Пожалуйста, не добавляйте переведённые названия языков, такие как "French,  Français", потому что это просто затруднит или сделает невозможным для нас показать локализованные имена для людей, которые используют сайт на разных языках.
-          </p>
-          </li>
-          <li>
-          <p>
-          Народные названия, связанные с переведёнными языками, будут отображаться как народное имя по умолчанию для этого языка (за исключением эффекта предпочтений места, порядка имён и т.д.).
-          <a class="readmore" href="/pages/translate">Узнать больше о переводе</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Добавьте имя месту, чтобы придать ему приоритет для сайтов и пользователей, связанных с этим местом. Если место имеет несколько имён, вы можете задать их приоритет <a href="%{url}">здесь</a>. <strong>Не добавляйте<strong> имена для КАЖДОГО места, где используется имя, добавляйте только для мест, которые конфликтуют с другими местами.
       taxon:
@@ -7069,44 +6475,14 @@ ru:
           Вы должны ввести %{confirmation_code} в форму, чтобы удалить вашу учётную запись
       edit:
         about_third_party_tracking: Об отслеживании третьими сторонами
-        blocking_desc_html: |
-          <p>
-          Блокировка кого-либо не позволяет ему отправлять вам сообщения, комментировать ваши наблюдения, идентифицировать ваши наблюдения и иным образом взаимодействовать с вами на %{site_name}. Это также удаляет их наблюдения из результатов вашего поиска и удаляет ваши наблюдения из результатов их поиска. Однако это не делает вас невидимым для них. Они все еще могут находить ваши наблюдения и просматривать ваш профиль, они просто не могут взаимодействовать с вами.
-          </p>
-          <p>
-          Блокировка предназначена для ситуаций, когда вы просто не можете поладить с кем-то, и они не оставляют вас в покое, несмотря на все ваши усилия урегулировать споры цивилизованным способом. Это не способ спрятаться от людей, предотвратить идентификацию людей, чьему мнению вы не доверяете, или отказаться от идентификатора сообщества (для этого есть другая настройка). Таким образом, блокировка работает в обоих направлениях: если вы блокируете кого-то, он не может взаимодействовать с вами, но вы также не можете взаимодействовать с ним. Если вы неправильно используете её, чтобы помешать кому-то идентифицировать ваши наблюдения, вы также не сможете идентифицировать его наблюдения.
-          </p>
-          <p>
-          Вы можете заблокировать только троих человек. Мы считаем, что это разумное число, которое учитывает людей, нуждающихся в блокировке, и в то же время предотвращает злоупотребление блокировкой. Если вы чувствуете, что вам нужно заблокировать больше людей, пожалуйста, <a href="mailto:%{help_email}">свяжитесь с нами</a>.
-          </p>
-          <p>
-          Если кто-то оскорбляет или преследует вас на %{site_name}, <a href="mailto:%{help_email}">пожалуйста, сообщите нам об этом</a>. Если это представляет собой нарушение наших Условий использования или это другое поведение, которое мы считаем неуместным для нашего сайта, мы проведем расследование.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Если вы измените ваше мнение, вы всегда сможете <a href='/users/edit'>отредактировать ваши настройки</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          Сеть <a href="%{url}" target="_blank">iNaturalist</a> представляет собой набор локализованных веб-сайтов, которые полностью связаны с глобальным сообществом iNaturalist. Сетевые сайты поддерживаются местными учреждениями, которые подписали соглашение с iNaturalist о том, чтобы пропагандировать местное биоразнообразие и приносить ему пользу. Они имеют доступ к истинным координатам, относящимся к своим странам, которые автоматически скрываются от общественности в целях защиты находящихся под угрозой видов.
-          </p>
-          <p>
-          Ваши имя пользователя и пароль работают на всех сайтах, входящих в сеть iNaturalist. Если вы решите присоединиться к сетевому сайту, местные учреждения, которые управляют каждым сайтом, также будут иметь доступ к вашему адресу электронной почты (только для связи с вами о деятельности сайта) и доступ к истинным координатам наблюдений, которые публично скрыты или являются конфиденциальными.
-          </p>
-          <p>
-          Примечание: пожалуйста, не меняйте экспериментально свою сетевую принадлежность, если у вас имеется более 1000 наблюдений.
-          </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
           <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
           Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.
-        muting_desc_html: |
-          <p>
-          Игнорирование кого-либо предотвращает получение вами уведомления о том, что они делают, в том числе о комментировании ваших наблюдений, отправке вам сообщения, упоминании вас и т.д. Эта опция помогает, не мешая при этом ему что-либо делать.
-          </p>
-          <p>
-          Вы можете игнорировать любое желаемое количество людей, но имейте в виду, что вы будете упускать потенциально важные уведомления, такие как идентификации, которые меняют идентификатор сообщества у ваших наблюдений.
-          </p>
         name_place_help_html: |
           Установить приоритет народных названий, используемых в этом месте.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7171,11 +6547,6 @@ ru:
       recent:
         about_recent_users: Подробно
         definitions_html: <dl> <dt>Вероятно, спам</dt> <dd> Пользователь, который, вероятно, является спамером, что означает, что у него нет наблюдений или идентификаций, но у него есть описание профиля. </dd> <dt>Автомати</dt> <dd>ческий спам</dt> <dd> Спамер, автоматически помеченный системой как спамер. </dd> <dt>Ручной спам</dt> <dd>Спамер, который был вручную помечен куратором сайта как спамер. </dd> <dt>Ложное срабатывание</dt> <dd>Пользователи, которые были помечены как спамеры, но флаги были разрешены кураторами сайта, поскольку они на самом деле спамерами не были.</dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Мы хотим приветствовать новых пользователей, но мы также хотим бороться со спамерами. Надеюсь, этот инструмент поможет с обоими. Мы автоматически помечаем многих пользователей как спамеров, с помощью <a
-          href="https://akismet.com/">Akismet</a>, но Akismet не идеален, поэтому, если хотите потратить несколько минут, помечая новые учетные записи как спамеров или не спамеров, это поможет.
-          </p>
       show:
         take_a_moment_to_review_html: 'Уделите время и прочтите <a href="%{link}">наши руководства</a>.'
         this_user_was_banned: Этот пользователь был заблокирован
@@ -7183,17 +6554,6 @@ ru:
           Хотите показать некоторые из ваших любимых таксонов? %{link_start_tag}Создайте список%{link_end_tag} под названием "Фавориты", и последние дополнения появятся в этом разделе.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Спасибо за то, что вы являетесь донором iNaturalist! Мы смогли использовать вашу текущую дотацию, чтобы подтвердить вашу идентичность, и от вас не требуются никакие дополнительные действия. <strong>Учетная запись вашего ребенка была активирована.</strong>
-          </p>
-          <p>
-          Пожалуйста, войдите в учетную запись из приложения Seek вашего ребенка,  нажав кнопку "iNaturalist" в меню, а затем "Log in with
-          iNaturalist" в нижней части экрана.
-          </p>
-          <p>
-          После этого ваш ребенок сможет размещать наблюдения под своей учётной записью в iNaturalist, используя приложение Seek так, что они будут видны в iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: БЛАГОДАРИМ ВАС ЗА СОЗДАНИЕ УЧЁТНОЙ ЗАПИСИ ДЛЯ ВАШЕГО РЕБЁНКА!
         we_will_send_you_an_email: |
           Мы отправим вам электронное письмо после активации учетной записи вашего ребенка.
