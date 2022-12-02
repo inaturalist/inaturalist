@@ -1,14 +1,7 @@
 da:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} ændring"
-    other: "%{count} ændringer"
   x_comments:
     one: '1 kommentar'
     other: '%{count} kommentarer'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> kommentar'
-    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '1 favorit'
     other: '%{count} favoritter'
@@ -18,27 +11,6 @@ da:
   x_identifications:
     one: '1 identifikation'
     other: '%{count} identifikationer'
-  x_identifications_html:
-    one: '<span class="count">1</span> identifikation'
-    other: '<span class="count">%{count}</span> identifikationer'
-  x_identifications_:
-    one: '1 Identifikation'
-    other: '%{count} Identifikationer'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatorer'
-  x_languages:
-    one: "%{count} sprog"
-    other: "%{count} sprog"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} livsliste første"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} livsliste førsteindførsler"
   x_journal_posts_html:
     one: '<span class="count">1</span> journalindlæg'
     other: '<span class="count">%{count}</span> journalindlæg'
@@ -59,30 +31,15 @@ da:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} fejlidentifikation af arter i denne %{rank}"
     other: "%{count} fejlidentifikationer af arter i denne %{rank}"
-  x_observations:
-    one: "1 observation"
-    other: "%{count} observationer"
-  x_observations_:
-    one: "1 Observation"
-    other: "%{count} Observationer"
-  x_observations_html:
-    one: "<span class='count'>1</span> observation"
-    other: "<span class='count'>%{count}</span> observationer"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observation</a>"
     other: "<a href='%{url}'>%{count} observationer</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observation gennemgået"
     other: "<span class='count'>%{count}</span> observationer gennemgået"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observatør'
-    other: '<span class="count">%{count}</span> Observatører'
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
-  x_people:
-    one: "%{count} person"
-    other: "%{count} personer"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
@@ -90,24 +47,12 @@ da:
   x_new_species:
     one: "%{count} ny art"
     other: "%{count} nye arter"
-  x_new_users:
-    one: '%{count} ny bruger'
-    other: '%{count} nye brugere'
-  x_species:
-    one: '%{count} art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> art"
-    other: "<span class='count'>%{count}</span> arter"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} art</a>"
     other: "<a href='%{url}'>%{count} arter</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} forslag filtreret efter:"
     other: "%{count} forslag filtreret efter:"
-  x_taxa:
-    one: "%{count} takson"
-    other: "%{count} taksa"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> takson observeret"
     other: "<span class='count'>%{count}</span> taksa observeret"
@@ -117,9 +62,6 @@ da:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observation af forskningskvalitet identificeret til art eller lavere</span>"
     other: "<span class='count'>%{count}</span> observationer af forskningskvalitet identificerede til art eller lavere</span>"
-  x_sounds:
-    one: "%{count} lyd"
-    other: "%{count} lyde"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> takson kurateret"
     other: "<span class='count'>%{count}</span> taksa kurateret"
@@ -184,8 +126,6 @@ da:
   about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
-  about_trips_html: |
-    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din målliste, som du var i stand til at observere inden for søgeområdet og intervallet tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur' for at generere en tabel over tilstedeværende-fraværende registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
   about_trusting_projects: Om Tillid til Projekter
   about_trusting_projects_options_any: Alle dine observationer i dette projekt
   about_trusting_projects_options_any_desc: |-
@@ -749,14 +689,6 @@ da:
   back_to_your_observations: Tilbage til dine observationer
   back_to_your_profile: Tilbage til din profil
   badges: Badges
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Baseret på en stikprøve på %{percent}% af disse ID'er, anslås det, at dette vil
-      resultere i <strong>%{count} utilsigtet uenighed</strong> med ID'er på %{child}.
-    other: |
-      Baseret på en stikprøve på %{percent}% af disse ID'er, anslås det, at dette vil
-      resultere i <strong>%{count} utilsigtede uenigheder</strong> med ID'er på %{child}.
   based_on_the_evidence_can_id_be_improved: |
     På baggrund af ovenstående, kan fællesskabs ID'et stadig bekræftes eller forbedres?
   batch: Bundt
@@ -1296,7 +1228,7 @@ da:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigere iNaturalists taksonomi efter de politikker, som er beskrevet under <a href="/pages/curator+guide#policies" target="_blank">Politikker i Kurator Guide</a>. Det betyder, at de kan tilføje, opdele, ombytte, sammenlægge, deaktivere og slette taksa på iNaturalist. De kan også redigere bevaringsstatus og taksongeofortrolighed, samt redigere og administrere almindelige navne tilføjet af enhver bruger.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigere iNaturalists taksonomi efter de politikker, som er beskrevet under <a href="/pages/curator+guide#policies" target="_blank">Politikker i Kurator Guide</a>. Det betyder, at de kan tilføje, opdele, ombytte, sammenlægge, deaktivere og slette taksa på iNaturalist. De kan også redigere bevaringsstatus og taksongeofortrolighed, samt redigere og administrere almindelige navne tilføjet af enhver bruger.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Skjule kommentarer og suspendere brugere for overtrædelse af <a
     href="/pages/community+guidelines" target="_blank">Fællesskabsretningslinjer</a>.
@@ -1497,7 +1429,6 @@ da:
     failure:
       already_authenticated: 'Du er allerede logget ind.'
       unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
-      invalid: 'Ugyldig e-mail eller adgangskode.'
       invalid_token: 'Ugyldig godkendelsestoken'
       user:
         suspended: Din konto er suspenderet
@@ -1511,19 +1442,17 @@ da:
       send_paranoid_instructions: "Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode."
       no_token: "Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen."
     registrations:
+      destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
       signed_up: 'Velkommen! Din registrering lykkedes.'
       updated: 'Din kontoopdatering er nu gennemført.'
-      destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
     mailer:
-      confirmation_instructions:
-        subject: 'Bekræftelsesinstruktioner'
       reset_password_instructions:
         subject: 'Instruktioner til adgangskodenulstilling'
   devise_reset_password_instructions_hello_email: Hej %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Nogen har anmodet om et link til skift af din adgangskode. Du kan gøre dette via linket nedenfor.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Nogen har anmodet om et link til skift af din adgangskode. Du kan gøre dette via linket nedenfor.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2660,8 +2589,6 @@ da:
       yy: "%då"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3157,13 +3084,6 @@ da:
     updates_by_you_panel_body: Husk, at i fanen 'Alle opdateringer' får du opdateringer, ikke kun på dit eget indhold, men også på indhold fra personer, du følger og de taksa eller steder, du abonnerer på, ved hjælp af værktøjet Abonnementer til højre.
     youve_got_updates_panel_title: Du har fået opdateringer!
     youve_got_updates_panel_body_p1: Forbliv aktuel med opdateringer om følgende ...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-         <li><strong>Dit indhold: </strong> Aktivitet vedr. dine observationer, såsom kommentarer, identifikationer eller favoritter fra fællesskabet %{site_name}. Du modtager også underretninger, når nogen tilføjer din observation til et projekt eller tilføjer yderligere felter. </li>
-         <li><strong>Personer: </strong> Nye observationer eller journalindlæg fra de personer, du følger. </li>
-         <li><strong>Organismer, projekter og steder: </strong> Nye observationer af bestemte organismer eller steder, som du abonnerer på. Hvis du deltager i projekter, så vil du blive underrettet, når de udgiver projektjournaler. </li>
-         <li><strong>Diskussioner, du har deltaget i: </strong> Kommentering eller tilføjelse af identifikationer til andres indhold, tilmelder dig automatisk enhver ny aktivitet på dette indhold. Brug værktøjet 'Administrer dit abonnement' for at stoppe modtagelsen af underretninger. </li>
-      </ul>
   one_by_one: "En efter en"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "et af flg. skal være sandt:"
@@ -3308,36 +3228,11 @@ da:
     original: original
   photos_updated: Foto´s opdateret
   pi_consent_desc_title: Om personlig information
-  pi_consent_desc_html: |
-    <p>
-    Vi opbevarer personlig information såsom brugernavne og e-mailadresser for at håndtere konti på dette websted, og for at overholde persondatalove, skal du afkrydse dette felt som indikation på din accept af denne brug af
-    personlig information. Se mere om, hvilken information vi indsamler, og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>Fortrolighedspolitik</a>
-    og vores <a href='%{terms_url}' target='_blank'>Vilkår for brug</a>.
-    </p>
-    <p>
-    Der er ingen mulighed for at have en iNaturalist-konto, uden at der lagres personlige oplysninger, så dette samtykke kan kun tilbagekaldes ved at slette kontoen.
-    </p>
   pi_consent_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mig, for at administrere min konto
   pi_consent_child_label: |
     Jeg accepterer, at iNaturalist får tilladelse til at gemme og behandle begrænsede former for personlig information om mit barn, for at administrere mit barns konto
   data_transfer_consent_desc_title: Om Personlig Informationsoverførselssamtykke
-  data_transfer_consent_desc_html: |
-    <p>
-    Visse databeskyttelseslove, såsom EUs Generelle Databeskyttelsesforordning (GDPR), kræver udtrykkeligt samtykke for overførsel af personlige oplysninger fra deres jurisdiktioner til andre jurisdiktioner, hvor den retlige beskyttelse af disse oplysninger ikke anses for at være tilstrækkelig. Fra <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, anser Den Europæiske Union ikke længere USA for at være en jurisdiktion, der yder tilstrækkelig retsbeskyttelse af personlige oplysninger, navnlig grundet muligheden for, at amerikansk regeringsovervågningsdata indberettes til USA. Det er muligt, at andre jurisdiktioner kan have samme opfattelse.
-    </p>
-    <p>
-    Brug af iNaturalist kræver opbevaring af personlige oplysninger såsom 
-    e-mailadresse, og alle iNaturalist-data lagres i USA, og vi kan ikke være sikre på, hvilken juridisk jurisdiktion du er i under brug af iNaturalist, så for at overholde fortrolighedslove såsom GDPR, skal du erklære, at du forstår og accepterer denne risiko samt give samtykke til overførsel af dine personlige oplysninger til iNaturalist-servere i
-    USA.
-    </p>
-    <p>
-    For mere information om, hvilke oplysninger vi indsamler, og hvordan vi bruger dem, se venligst vores <a href='%{privacy_url}' target='_blank'>Fortrolighedspolitik</a>
-    og vores <a href='%{terms_url}' target='_blank'>Vilkår for brug</a>.
-    </p>
-    <p>
-    Det er ikke på nogen måde muligt at have en iNaturalist-konto, uden at gemme personlige oplysninger, så den eneste måde at tilbagekalde dette samtykke på, er at slette din konto.
-    </p>
   data_transfer_consent_label: |
     Jeg giver samtykke til, at mine personlige oplysninger overføres til USA
   data_transfer_consent_child_label: |
@@ -4623,10 +4518,6 @@ da:
   supporting: Støtter
   suspend_user: Suspenderet bruger
   suspend_user_html: Suspendér %{user}
-  suspend_user_reason_instructions_html: |
-    Forklar, hvorfor du suspenderer denne konto og citér evt. overtrædelser af
-    %{link_start_tag}Fællesskabsretningslinjer%{link_end_tag}. Undlad venligst
-    at tilføje personlige meninger.
   sw_lat: SV Bre.
   sw_lon: SV Læn.
   sync: Synk?
@@ -4931,9 +4822,6 @@ da:
   this_list_only_accepts_taxa_that_are_species: Denne liste tager kun taksa, som udgør arter
   this_list_only_accepts_taxa_that_are_species_or_lower: Denne liste tager kun taksa, som udgør arter eller lavere
   this_observation: Denne observation
-  this_observation_is_featured_on_x_sites:
-    one: Denne observation er fremhævet på %{count} side
-    other: Denne observation fremhævet på %{count} sider
   this_observation_is_research_grade: Denne observation har forskningskvalitet!
   this_observation_was_created_using: "Denne observation blev oprettet ved hjælp af:"
   this_photo_is_already_associated: Dette billede er allerede forbundet med en af dine observationer.
@@ -5331,10 +5219,6 @@ da:
   view_all_fields: Vis alle felter
   view_all_flags: Vis alle markeringer
   view_all_members: Vis alle medlemmer
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Vis alle (%{count} i alt)"
-    other: "Vis alle %{count}"
   view_all_observations: Vis alle observationer
   view_all_photocount_photos: "Vis alle %{photo_count}foto´s"
   view_assessment: Vis vurderinger
@@ -5512,12 +5396,6 @@ da:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x}/%{y}"
-  x_of_count_confirmed:
-    one: "%{x} of %{count} bekræftet"
-    other: "%{x} of %{count} bekræftet"
-  x_of_count_observed:
-    one: "%{x} af %{count} observeret"
-    other: "%{x} af %{count} observeret"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} af %{y} personer (over 2/3) er enig i det er"
   x_is_the_root_of_the_tree: "%{rank} %{name} er roden af træet"
   x_project_journal: "%{project}s %{name}"
@@ -5741,38 +5619,10 @@ da:
             tips til at bruge %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist er et af verdens største fællesskaber, som er dedikeret til udforskningen af biodiversitet. Tak fordi du er en del af det!</strong>
-        </p>
-        <p class="lead">
-        Hvis du tror på dette globale fællesskab af naturelskeres evne til at dele viden og skabe uerstattelige data om biodiversitet, så overvej venligst at give et engangs- eller tilbagevendende bidrag online, eller overvej <a
-        href="https://www.inaturalist.org/pages/giving">andre måder at støtte</a>.
-        </p>
-        <p class="lead">
-        Din donation hjælper med at støtte iNaturalist, når fællesskabet vokser, med alt fra at forbedre computervision og implementering af nye funktioner til støtte af vores servere og personale.
-        </p>
-        <p class="text-muted">
-        iNaturalist er et fælles initiativ fra California Academy of Sciences og National Geographic Society. Alle donationer modtages af California Academy of Sciences, en 501(c)(3) skattefritaget non-profit-organisation med base i Amerikas Forenede Stater (Skatte-ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLIV EN INATURALIST MÅNEDLIG SUPPORTER
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist er et af verdens største fællesskaber dedikeret til udforskning af biodiversitet. Tak fordi du er en del af det!</strong>
-          </p>
-          <p class="lead">
-          Vi ønsker, at iNaturalist skal forblive gratis at bruge, men det er ikke gratis at drive. Hvis du elsker iNaturalist, så overvej venligst at blive en månedlig supporter. Tilbagevendende gaver er med til at sikre, at iNaturalist fortsat kan tilpasse sin infrastruktur og personale ved at give en stabil indkomst. Du har mulighed for at vise din status som månedlig supporter på din brugerprofil.
-          </p>
-          <p class="lead">
-          Dine velgørende donationer er med til at støtte iNaturalist efterhånden som fællesskabet vokser, fra videreudvikling af billedgenkendelse og implementering af nye funktioner til støtte af servere og personale. Hvis du foretrækker at give en engangsdonation, så klik venligst a href="%{donate_url}">her</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist er et fælles initiativ fra California Academy of Sciences
-          og National Geographic Society. Alle donationer vil blive modtaget af California Academy of Sciences, en 501(c)(3) skattefritaget, nonprofit-orgqnisation med base i USA.
-          </p>
         thank_you_for_being_a_monthly_supporter: Tak for at være en Månedlig Supporter!
         thank_you_for_being_a_monthly_supporter_caps: TAK FOR AT VÆRE EN MÅNEDLIG SUPPORTER
     flags:
@@ -5825,44 +5675,6 @@ da:
           Ved at tilknytte din guide til et sted kan andre personer finde guiden, når de søger i steder og stedets omrids på
           %{site_name}kortet vil blive vist, hvis det er indstillet til det. 
           (f.eks. vis "kort", taksonsider osv.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Upload en CSV fil med tags til taksa i denne Guide. Din CSV-fil skal se sådan ud:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Navn</th>
-          <th>Farve</th>
-          <th>Antal hænder</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>tobenet</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>rød|sort</td>
-          <td>0</td>
-          <td>firbenet</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Første række starter med "Navn" efterfulgt af tagget
-             prædikater/kategorier. Så starter hver følgende række med
-             navn på takson, efterfulgt af tags tilsvarende prædikat toppen
-             af søjlen. I dette eksempel får <i>Homo sapiens</i> (mennesket) disse
-             tags <code>tobenet</code> og <code>Antal hænder = 2 </code>,
-             og <i>Vulpes vulpes </i> (rød ræv) får <code>firbenet</code>,
-             <code>farve=rød</code>, <code>farve=sort</code> og
-             <code>Antal hænder=0</code>. Blanke vil blive ignoreret, og du
-             kan tilføje flere linjer pr. takson. Du kan også tilføje flere
-             værdier pr. celle adskilt af en lodret streg.
-          </p>
         licensing_explanation: |
           Licensering af dit indhold giver andre personer ret til at kopiere og
           ændre det uden at spørge om din tilladelse. Det gør det meget nemmere at
@@ -5890,18 +5702,6 @@ da:
         Det kan tage et stykke tid, så prøv at opdatere denne side om et par minutter.
       mobile_downloads_tip_html: |
         Denne Guide kan downloades til offline brug i mobilappen.
-      mobile_downloads_help_html: |
-        <p>
-        Dette vil oprette et arkiv til download af alle de data og medier
-        tilknyttet denne Guide, så mobilapp brugere kan se alt indhold i denne
-        Guide uden internetforbindelse. Det vil tage nogle få minutter at
-        generere arkivet, og når først det er genereret, vil arkivet opdateres
-        hver gang du ændrer i denne Guide.
-        </p>
-        <p class="alert status">
-           Aktivér <strong> venligst ikke offline mobil downloads, medmindre du
-           faktisk har til hensigt at bruge dem, </strong> Da det belaster vores system betydeligt.
-        </p>
       pdf_layouts:
         grid: gitter
         book: bog
@@ -6045,13 +5845,6 @@ da:
         disagreement_count: Uenigheds antal
         identification_count: Identifikations antal
         score: Score
-        explanation: |
-          <p>
-          Hvis en bruger af en eller anden grund er uenig med fællesskabs takson, kan de afvise den, hvilket betyder at det er deres eget ID, der bruges for at linke til andre observationer, opdatere livslisten, etc. Det betyder også at deres observation kun kan opnå forskningskvalitet hvis fællesskabet er enige i deres identifikation.
-          </p>
-          <p>
-          Dog vises fællesskabets ID stadig, så alle kan se de forskellige ID der er blevet foreslået.
-          </p>
         you_have_opted_out: Du fravalgte fælleskabs identifikationerne
         opt_in_for_this_observation: Opt ind for denne observation
         your_id_does_not_match: |
@@ -6094,30 +5887,6 @@ da:
           del af dens træ.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertikal
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} til fælles"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} til fælles"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} ikke til fælles"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} ikke til fælles"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} i alt"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} i alt"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} unik"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} unikke"
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
         create_a_query_desc_html: |
@@ -6146,36 +5915,6 @@ da:
         taking_a_while: "Det tager et stykke tid. Prøv venligst en af nedenstående muligheder."
         date_range_help: "Start- og slutdatoer observeret i formatet ÅÅÅÅ-MM-DD, f.eks. 2015-01-17"
         created_on_help: "Dato for oprettelse af observationer, ikke observeret, f.eks. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3> Andre indstillinger </h3>
-          <p>
-          Stor eksporter gør vores infrastruktur langsommere og gør det sværere for os for at frigive nye ændringer. Her er nogle andre muligheder at overveje:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF indtager det meste af vores Forskningskvalitet, licenserede observationer og deres eksportværktøjer er fremragende. GBIF-eksport kommer også med en <a href="https://www.doi.org/">DOI</a>, du kan nævne, hvis du offentliggør forskning baseret på de data, du eksporterer, og disse citater er enormt nyttige for os, da de lader os at se, hvordan iNat-data bliver benyttet.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip"> DarwinCore Arkiv (DwC-A) til GBIF </a>: Dette er <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DWC-A</a>-filen, vi genererer til GBIF at indtage, så den bør ikke indeholde alt, hvad der ikke er i GBIF, men hvis du vil have hele arkivet, kan du downloade den. Det er en meget stor zip-fil, der indeholder poster i CSV. Opdateres ugentligt.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Udfordring på FGVC 2017</a>: Links til 675.000 licens iNaturalistiske fotos af 5.089 arter til brug for computervisionstræning. Oprettet juni 2017, ikke opdateret.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Unik identifikator til observation"
         species_guess: "Navngiv observatøren, der er indtastet for den observerede takson"
@@ -6258,37 +5997,6 @@ da:
         allow_curator_coordinate_access_desc_html: |
           Tillad projekt kuratorer at se de skjulte koordinater for denne observation.
         ancestor_disagreements_desc: "Antal af identificerede taksa, der er blandt en taksons stamfædre, men ikke stemmer overens med dette takson (dvs. \"Jeg tror det er indenfor slægten, men jeg er uenig i arten\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Fællesskabets takson (eller
-          fællesskabets identifikation) fortæller hvilken takson %{site_name}
-          fællesskabet mener, er afbildet i en observation. Hvis du er interesseret i at vide, hvordan
-          vi vælger et fællesskabstakson, så se bemærkningerne om algoritmen nedenfor,
-          men generelt forsøger vi at <strong>vælge en takson som mere end 2/3  af
-          identifikatorerne er enige i </strong>. Nogle gange betyder det et valg
-          af et højere taksonomisk niveau, der indeholder en række uenigheder
-          om taksa (f.eks. hvis du synes det er en kongeslange, og jeg mener det er
-          klapperslange, så vælger iNat underordenen slanger Serpentes) som
-          indeholder alle slanger). Algoritmen favoriserer også til dels uenighed, fordi vi har fundet ud af, at dem der er uenige ofte har
-          ret.
-          </p>
-          <p class="ui">
-          En observation af forskningskvalitet skal (blandt andre kriterier) have et fællesskabstakson. Hvis en observation kun har én identifikation, vil den ikke have et fællesskabstakson. Alle observationer med mindst én identifikation vil også have observationstakson. Denne observationstakson er den takson vi bruger, når vi deler
-          observationer med datapartnere, samler observationer af samme
-          takson på hjemmesiden, opdatering af din livsliste etc. I de fleste tilfælde vil observationstakson ende med at blive til fællesskabets takson, men sommetider vil de afvige, især før fællesskabet har fundet til enighed om en identifikation. Hvis for eksempel du mener, at det er en slange (underordenen Serpentes) og jeg mener, at det er en kongesnog (slægten <i>Lampropeltis</i>), vil observationstakson blive kongesnog (kun understøttet af min identifikation), men fællesskabets takson vil være serpentes (understøttet af mindst to identifikationer). Hvis du af en
-          eller anden grund ikke er enig med fællesskabets takson, kan du
-          afvise det, hvilket betyder at observationstakson aldrig vil blive sat til fællesskabets takson (i stedet for din eget identifikation). Det betyder også, at din observation kun kan opnå
-          forskningskvalitet hvis fællesskabet er enig med <em>dig</em>. Hvis
-          du ikke kan lide ideen om fællesskabstaksa, kan du fravælge
-          dem helt ved at <a href="/users/edit" target="_blank">redigere
-          dine indstillinger</a>.
-          </p>
-          <p class="ui">
-          <strong>Algoritmen:</strong> for alle identificerede taksa og de
-          taksa, der indeholder dem (f.eks. slægt <i>Homo</i> indeholder
-          <i>Homo sapiens </i>), scorer hver som forholdet mellem antallet af 'enigheder - kumulative ID'er for det takson over summen af ​​de kumulative
-          ID'er, 'uenigheder' - antallet af ID'er der er helt forskellige (dvs. ID'er af taksa der ikke indholder det takson som scores) og 'stamfader-uenigheder' - antallet af mere konservative ID'er, der ikke stemmer overens med det finere takson. For identificerede taksa, der har en score på over 2/3 og med mindst 2 identifikationer, vælges den lavest rangerede takson.
-          </p>
         cumulative_count_desc: 'Antal af identifikationer for en enkelt takson og alle dets efterkommere'
         curator_coordinate_access_disabled_desc_html: |
           Dette projekt tillader ikke observationer med koordinater som projekt kuratorer ikke kan se. Hvis du ikke vil dele koordinater for denne observation med kuratorerne af dette projekt, skal du fjerne observationen fra projektet.
@@ -6305,71 +6013,6 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help2_html: |
-          <p>
-          Datakvalitetsvurderingen er et sammendrag af en observations nøjagtighed. Alle observationer gradueres indledningsvis som <strong>"tilfældig"</strong>, og bliver så til <strong>"behøver ID"</strong>, når
-          </p>
-
-          <ul>
-          <li>observationen <strong>har en dato</strong></li>
-          <li>observationen <strong>georafgrænses</strong> (dvs. har br.gr./lg.gr. koordinater)</li>
-          <li>observationen <strong>har fotos eller lyde</strong></li>
-          <li>observationen <strong>er ikke fra et menneske</strong></li>
-          </ul>
-          <p>
-          Observationer bliver <strong>"forskningskvalitet"</strong>, når
-          </p>
-          <ul>
-          <li>
-           %{site_name} <strong>-fællesskabet er enig i artsniveau ID eller
-          lavere</strong>, dvs. ved konsensus blandt flere end 2/3 af de identificerende parter om en takson (hvis fællesskabet har stemt om, at Fællesskabets Takson ikke kan forbedres yderligere, 
-          reverseres dette til underfamilieniveau-ID eller lavere)
-          </li>
-          </ul>
-          <p>
-          Observationer reverseres til <strong>"tilfældig"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om at
-          </p>
-          <ul>
-          <li>
-           <strong>placeringen ikke ser
-          præcis ud</strong> (f. eks. aber i midten af havet,
-          flodheste i kontorbygninger osv.)
-          </li>
-          <li>
-          <strong>organismen ikke er vild/naturaliseret</strong> (f. eks. fangenskab eller opdrættet af mennesker
-          eller intelligente rumvæsen)
-          </li>
-          <li>
-          observationen <strong>ikke præsenterer dokumentation for en
-          organisme</strong>, f.eks. billeder af vandsærpræg,
-          klipper, landskaber, som ikke omfatter organismen mv.
-          </li>
-          <li>
-          observationen <strong>ikke repræsenterer nyere (~100 år) tegn på
-          organismen</strong> (f.eks. fossiler, men spor, ekskrementer og døde blade
-          er OK)
-          </li>
-          <li>
-          observationen ikke længere behøver en ID <em>og</em> fællesskabs-ID'en er højere end familie
-          </li>
-          <li>
-          observatøren har fravalgt fællesskabs-ID, og fællesskabs-ID
-          taksonen ikke er en forfader eller efterkommer af den takson, der er tilknyttet
-          observatørens ID
-          </li>
-          </ul>
-          <p>
-          Og var dette ikke var kompliceret nok, så der er også situationer, hvor systemet får en stemme:
-          </p>
-          <ul>
-          <li>
-          Systemet vil stemme for, at observationen ikke er vild/naturaliseret, 
-          hvis der er mindst 10 andre observationer af en slægt eller færre i
-          det mindste amt, stat eller landeækvivalent sted, som
-          indeholder denne observation og 80% eller flere af disse observationer
-          er blevet markeret som ikke-vilde/-naturaliseret.
-          </li>
-          </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
         observation_flagged_notice_html: |
           Denne observation er blevet markeret som spam og er ikke længere
@@ -6385,18 +6028,6 @@ da:
           500, da de to lister sandsynligvis ikke indeholder de samme brugere.
           En værdi markeret med '*' betyder at den ikke var i top 500 i denne statistik.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Du kan redigere dette observationsfelt, fordi du oprettede det eller
-        fordi du er side kurator. Hvis du er kurator på siden, skal du følge
-        disse retningslinjer
-        </p>
-        <ol>
-           <li> Udfør ikke vilkårlig navneændringer (f.eks. skifte "spiser" til "nectarering") </li>
-           <li> Husk at observationsfelter kan bruges til observationer af hvilken som helst takson, så prøv ikke at anvende en takson specifik terminologi </li>
-           <li> Slet ikke felter, som andre personer bruger </li>
-           <li> Oversæt ikke eksisterende feltnavne til forskellige sprog. Engelsk er lingua franca (fællessprog) på dette websted. Hvis du virkelig vil have et felt, der indkapsler det samme koncept, men på et andet sprog, skal du oprette et nyt observationsfelt. </li>
-        </ol>
       dna_help: |
         For at aktivere FED DNA stregkode svarende til funktionalitet, sørg for dit
         feltnavn indeholder ordene "COI", "COX1", "ITS" eller "matK"
@@ -6446,77 +6077,6 @@ da:
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       parental_consent:
         subject: Dit barn ønsker at benytte iNaturalist
-        content_html: |
-          <p>
-          Dit barn benytter lærings-appen <strong>Seek fra iNaturalist</strong> og vil gerne dele data med borgervidenskabsplatformen iNaturalist. Da indsendelser til iNaturalist afslører
-          personligt identificerbare oplysninger, kan iNaturalist ikke benyttes af en person under 13 år uden samtykke fra en forælder.
-          </p>
-          <p>
-          <strong>Seek fra iNaturalist</strong> kan benyttes uden at oprette en konto, og ingen personligt identificerbare oplysninger vil blive delt,
-          men dit barn vil ikke kunne bidrage med observationer til iNaturalist. iNaturalist er et borgervidenskabeligt socialt netværk, hvor deltagere deler observationer og identifikationer af levende ting for at lære hinanden om naturen og generere biodiversitetsdata til videnskaben.
-          </p>
-          <p>
-          Hvis du ønsker at give dit barn samtykke til at bruge iNaturalist,
-          har vi brug for, at du gør flg-:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Opret en iNaturalist-konto til brug for dit barn ved at følge dette link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Efter oprettelsen af dit barns konto bedes du via et kreditkort foretage en lille donation på 1 US$ til iNaturalist for at bekræfte, at du er voksen. Sørg ifm. donationen for at benytte samme e-mail, som du angav som "Forælder e-mail" under oprettelsesproceduren.
-          </p>
-          </li>
-          <li>
-          <p>
-          Når vi behandler donationen, sender vi dig endnu en e-mail for at oplyse dig om, at dit barns konto er blevet aktiveret, og at du kan benytte det af dig oprettede iNaturalist-brugernavn og -adgangskode til at logge ind på dit barns Seek-app.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist indsamler flg- personligt identificerbare oplysninger:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-mailadresse (fortrolig):</strong> enhver iNaturalist-konto har en tilknyttet e-mailadresse, som ikke offentliggøres.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>brugernavn (offentligt, obligatorisk):</strong> enhver iNaturalist-konto har et offentligt brugernavn og brugeridentifikationsnummer.
-          Brugernavnet behøver ikke være personens rigtige navn, men det kan bruges til at kontakte personen via offentlige kommentarer og private direkte beskeder.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-adresse (fortrolig, obligatorisk):</strong> iNaturalist
-          indsamler, men offentliggøre ikke, brugerens IP-adresse, som kan bruges til at udlede personligt identificerbare oplysninger såsom placering (med nøjagtighed på by-niveau).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>Profilbillede (offentligt, valgfrit):</strong> iNaturalist-konti har mulighed for at have et profilbillede, som ofte er billeder af brugeren.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>observationsplacering (offentlig eller fortrolig,
-          obligatorisk):</strong> iNaturalist-observationer indeholder placeringsinformation om, hvor observationen blev gjort. Denne kan gøres offentlig eller forblive fortrolig, men er som standard offentlig.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist tillader brugere at dele offentlige billeder, offentlige kommentarer og private direkte beskeder i forbindelse med deres konto.
-          Der er muligt, at brugere kan inkluderer personligt identificerbare oplysninger i sådant indhold.
-          </p>
-          <p>
-          Få mere at vide om iNaturalists Fortrolighedspolitik <a href="%{privacy_policy_url}">her</a>.
-          </p>
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |
@@ -6540,24 +6100,6 @@ da:
           Vi har medtaget links til de berørte billeder nedenfor.
       user_parent_confirmation:
         subject: Dit barns iNaturalist-konto er blevet aktiveret
-        content_html: |
-          <p>
-          Tak fordi du har oprettet en iNaturalist-konto til dit barn! Kontoen er blevet aktiveret. Her er de detaljer, som du oplyste, og som vi har gemt:
-          </p>
-          <ul>
-          <li><strong>Forælder eller værges navn:</strong> %{parent_name}</li>
-          <li><strong>Forælder eller værges e-mail:</strong> %{parent_email}</li>
-          <li><strong>Barns navn:</strong> %{child_name}</li>
-          <li><strong>Barns fødselsdag:</strong> %{child_birthday}</li>
-          <li><strong>Børnekonto e-mail:</strong> %{child_email}</li>
-          <li><strong>Børnekonto brugernavn:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Log venligst ind på kontoen fra dit barns Seek's app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
-          </p>
-          <p>
-          Dit barn vil da kunne oprette observationer på deres iNaturalist-konto med Seek-app'en, så de kan ses på iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
@@ -6637,13 +6179,6 @@ da:
           og sørg for, at du staver navnet på stedet korrekt. Hvis du ikke kan finde det sted, du søger, så kan du
           <a href="%{new_place_url}" target="_blank"> oprette et nyt sted,</a>,
           men du må være sikker på, at du ikke laver en kopi af et eksisterende sted.
-        bioblitz_desc_html: |
-          <p>
-             En bioblitz er en begivenhed, hvor deltagerne forsøger at observere så mange
-             arter som muligt inden for tidsrummet. Det er en sjov måde at
-          introducere andre personer for biodiversitet samtidig med at man
-          indsamler værdifuld data.
-          </p>
         change_admin_desc: Vælg en af projekt kuratorerne til at være den nye administrator.
         change_owner_alert: |
           Dette fjerner din mulighed for at slette dette projekt eller overføre
@@ -6666,36 +6201,6 @@ da:
           Der er ingen projektkuratorer. Hvis du vil udnævne en ny person som
           administrator, skal de først være medlem af dette projekt, og du skal gøre dem
           kurator.
-        observation_aggregation_desc_html: |
-          <p class = "description">
-             Observations samling vil automatisk tilføje passende observationer til dit
-             projekt som angivet i dine projektregler. Da der ikke er nogen måde at fjerne mange observationer fra et projekt
-             på en gang, er dette potentielt farligt, så vær sikker på at du har
-             valgt det sted og de takson regler, som du vil have, ellers kan du ende
-             op med mange uhensigtsmæssige observationer, der skal fjernes manuelt.
-          </p>
-          <p class = "description">
-             Samleren fungerer kun, hvis følgende betingelser er opfyldt:
-          </p>
-          <Ol>
-             <li class = "læsbar beskrivelse">
-               Dit projekt har mindst en "skal være observeret et sted" regel for et lille til mellemstort sted (ca.
-               størrelsen af Texas eller Ukraine)
-             </li>
-             <li class = "læsbar beskrivelse">
-               ELLER dit projekt har mindst en 'skal være i takson' regel
-             </li>
-          </Ol>
-        project_assets_desc_html: |
-          <p class="description"> Projektaktiver er bare filer, der er tilknyttet dit projekt, med nogle særlige regler: </p>
-          <ol class = "description">
-             <li> Filer, der enden med .logo.jpg, .logo.png osv. vil blive brugt som projektets logo på projektsiden i stedet for projektikonet </li>
-             <li> KML- og KMZ-filer vil blive føjet til kortet på projektsiden </li>
-          </Ol>
-        project_list_desc_html: |
-          <p class="description">
-          Du kan oprette en brugerdefineret projektliste over taksa og tilknytte den til dit projekt. Dette kan bruges til at begrænse de observationer, der bliver tilføjet dit projekt til kun at være dem, der matcher taksa på din liste. Det gøres via en "skal være takson på projektlisten "regel.
-          </P>
         rules:
           captive: være i fangenskab/dyrket
           coordinates_shareable_by_project_curators: have koordinater læsbare for projektkuratorer
@@ -6729,23 +6234,6 @@ da:
           potentielt kan tilføje ondsindet Javascript, så hav kun tillid til projekter, som har ledere, der både er ansvarlige og teknisk kompetente.
         you_can_preview: |
           Du kan se hvordan dit projekt vil se ud som et samlingsprojekt ved at  <a href="%{url}">klikke her</a>.
-      invite:
-        description_html: |
-          <h3> Om Invitationer </h3>
-          <p class = "ui">
-             At invitere andre personer til dit projekt er lidt anderledes end at invitere
-             individuelle observationer. At invitere andre personer vil
-          </p>
-          <Ol>
-             <li> Sende dem en e-mail, med en invitation til at deltage i dit projekt </li>
-             <li> Vise en invitation på deres betjeningspanel </li>
-             <li> Tillade dem, at deltage i dit projekt, hvis det er blevet indstillet til kun invitationer </li>
-          </Ol>
-          <p class = "ui">
-             Kun projektkuratorer kan invitere andre personer til at deltage i et projekt. Du
-             skal kunne søge efter personer med deres iNat brugernavn eller
-             deres <em> fuldstændige </em> e-mail adresse, forudsat vi har den registreret.
-          </p>
       join:
         invite_only_description: |
           Medlemskab af dette projekt sker alene ved invitation. Hvis du vil
@@ -6851,15 +6339,6 @@ da:
           name_already_taken: Projektnavn allerede taget
           cannot_have_more_than_x_project_rules: Kan ikke have mere end %{x} projektregler
           summary_is_required: Projektsammenfatning er påkrævet
-      project_location_privacy_notice_html: |
-        <p>
-        Vær opmærksom på, at projektkuratorer vil kunne se enhver fortrolig eller
-        sløret placering af dine observationer i dette projekt, medmindre du
-        tilbagekalder denne tilladelse, og de vil være i stand til at føje enhver af dine observationer til dette projekt, medmindre du <a href="/users/edit">ændrer dine indstillinger</a>. Du kan også tildele eller tilbagekalde adgang til projektobservationer fra gang til gang.
-        </p>
-        <p>
-        Hvis du lægger vægt på lokalitetsbeskyttelse, så deltag ikke i projekter, medmindre du stoler på projektkuratorerne.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, men kun hvis jeg selv tilføjer observationen til projektet.
         any: Ja, uanset hvem der tilføjer observationen til projektet.
@@ -6875,29 +6354,8 @@ da:
       show:
         are_you_sure_you_want_to_convert: |
           Er du sikker på, at du vil konvertere dette projekt til et samlingsprojekt?
-        bioblitz_results_desc_html: |
-          <p>
-          I modsætning til almindelige projekter viser bioblitzer begivenhedsstatistikker fra <em>alle</em> observationer inden for et sted og en tidsperiode, ikke blot
-          observationer, som andre personer med vilje har føjet til projektet.
-          Dette er for at fjerne forhindringen i at tilføje observationer til et projekt
-          bare for at køre statistikken i realtid. Bemærk, at observationer ikke vil
-          være til rådighed for eksport eller visning i forskellige projektvisninger såsom medlemsbidrag på webstedet eller projektobservationssøgninger i mobil-apperne, medmindre projektteamet og deltagerne aktivt tilføjer relevante observationer, som de ville i et almindeligt projekt.
-          </p>
-          <p>
-          Bemærk, at mens denne type projekt viser statistik for observationer, som
-          ikke med vilje er blevet føjet til projektet, tillader det ikke
-          kuratorer at se fortrolige eller slørede koordinater for disse
-          observationer eller at antage, at observatører har accepteret projektbetingelserne. Hvis du er projektkurator, og du har brug for adgang til fortrolige koordinater, har du brug for at dine deltagere skal acceptere projektvilkårene, eller du vil have observationer talt med i den kuraterede projekttjekliste, så sørg for at deltagerne tilmelder sig i projektet og tilføjer deres observationer, som de ville i et almindeligt projekt.
-          </p>
         click_here_to_convert_this_project: |
           Klik her for at konvertere dette projekt til et samlingsprojekt.
-        no_journal_blurb_html: |
-          <P>
-             Din projekt journal er et redskab til kommunikation med dine projektmedlemmer. Du kan bruge den til at lave meddelelser, sætte prioriteringer eller fortælle om projektets resultater.
-          </p>
-          <P>
-             For at komme i gang, <a href="%{url}" class="readmore"> opret et indlæg </a>
-          </p>
         curated_checklist_desc: |
           Dette er den kuraterede tjekliste og antal af taksa fra observationer, der specifikt er tilføjet til dette projekt, og ikke alle observationer er registreret ved tid og sted for dette event.
         make_sure_you_have_read_about_the_differences: |
@@ -7149,17 +6607,6 @@ da:
           manuelt opfrisket. Opfriskning af denne opsummering opdateres også straks cache-lagrimgen af underliggende Wikipedia-indhold, der fremgår på webstedet
           hvilket automatisk opfriskes efter én uge.
       show:
-        about_names_desc: |
-          <P>
-            De fleste kategorier af organismer har "lokale navne" i de talte sprog. Disse navne er normalt genkendelige, lette at udtale, og stabile over tid, men mange organismer har flere forskellige navne i forskellige lande, selv på samme sprog, som kan gøre det svært at kommunikere om disse organismer uden at skabe forvirring.
-            Forskerne har løst dette problem ved at bruge et enkelt "videnskabeligt navn" for hver kategori af organismer, der opfylder reglerne i <ahref="https://en.wikipedia.org/wiki/Binomial_nomenclature"> biologisk nomenklatur </a>, men disse navne har tendens til at være baseret på Latin, et sprog ingen længere taler, så for mange mennesker, er de ikke så nemme at huske som de lokale navne. Videnskabelige navne kan også afspejle en organismes taksonomiske placering, så de kan også ændre sig, når forskere udvikler mere nøjagtige teorier om de evolutionære forhold mellem forskellige organismer, som igen reducerer deres anvendelighed i kommunikationen, selv blandt personer, der kender de videnskabelige navne.
-          </p>
-          <P>
-            Det gamle ordsprog siger: "Lokale navne skifter fra sted til sted og de videnskabelige navne fra tid til anden. "
-          </p>
-          <P>
-            Vi forsøger at løse disse udfordringer ved at vise både de lokale - og de videnskabelige navne, hvor det er muligt, og vælge lokale navne baseret på brugerens præferencer for sprog og geografi.
-          </p>
         about_conservation_status_desc: |
           Bevaringsstatus opsummerer risikoen for udryddelse for en gruppe af organismer.
         about_establishment_desc: |
@@ -7261,22 +6708,6 @@ da:
           indsættes efter binomialet.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <Ul>
-          <li> <p> Prøv at tilføje navne, der er blevet brugt andetsteds. Opfind venligst ikke nye navne.</P></li>
-           <li> <p> Tilføj ikke dubletter, f.eks. navngiv ikke mange høge "høg"</p</li>
-           <li><p> For taksa på højere niveau, prøv at bruge navne, der omfatter alle efterkommere, som "hejrefugle" eller "Lyngfamilie"</p></li>
-          <li>
-          <p>
-             Tilføj ikke oplysninger, der ikke er selve navnet, f.eks. oplysninger i parentes om, hvordan du mener, at navnet skal bruges
-          </p>
-          </li>
-          <li>
-          <p>
-              Leksikaer skal være på engelsk. Tilføj venligst ikke oversatte sprognavne som "Fransk, Français", fordi det bare vil gøre det svært eller umuligt for os at vise lokale navne for de personer, der bruger websiden på forskellige sprog
-            </p>
-           </li>
-          </Ul>
         places_help_html: |
           Tilføj et navn til et sted for at give det prioritet for websteder og brugere af det sted. Hvis der er flere navne per sted, kan du prioritere
           dem <a href="%{url}"> her </a>. Tilføj venligst <strong> ikke </strong> navne til HVERT sted hvor navnet bruges, kun til steder, der konflikter med
@@ -7362,35 +6793,9 @@ da:
           Du skal indtaste "%{confirmation_code}" i formularen, for at slette din konto
       edit:
         about_third_party_tracking: Om tredjepartssporing
-        blocking_desc_html: |
-          <p>
-          Blokeres nogen, forhindres vedkommende i at sende dig beskeder, kommentere på dine observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også vedkommendes observationer fra dine søgeresultater og fjerner dine observationer fra vedkommendes søgeresultater. Det gør dig dog ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan blot ikke interagere med dig.
-          </p>
-          <p>
-          Blokering er til situationer, hvor du blot ikke kan enes med nogen, der bare ikke vil lade dig være, trods dine forsøg at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening man ikke stoler på eller for at fravælge fællesskabs-ID'et (der er en anden indstilling til dét). Blokering virker således begge veje: Blokerer du nogen, så kan vedkommende ikke interagere med dig, men du kan heller ikke interagere med vedkommende. Misbruger du blokering til at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
-          </p>
-          <p>
-          Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der tilgodeser personer med behov for blokering, men samtidig forhindrer misbrug af blokering. Ved behov for blokering af flere personer, så <a href="mailto:%{help_email}">kontakt os</a>.
-          </p>
-          <p>
-          Chikanerer eller stalker nogen dig på %{site_name},
-          <a href="mailto:%{help_email}">så lad os vide det</a>. Udgør dette en overtrædelse af vores Vilkår for brug eller anden adfærd, som vi anser for upassende på vores websted, vil vi undersøge sagen.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist Network</a> er en
-          samling af lokale websteder, som er forbundet med det globale INaturalist-fællesskab.
-          Netværkswebsteder understøttes af lokale institutioner, som har underskrevet en aftale med iNaturalist om at fremme lokalt brug og gavn af biodiversitet. De har adgang til reelle koordinater fra deres lande, som automatisk er sløre for offentligheden for at beskytte truede arter.
-          </p>
-          <p>
-          Dit brugernavn og adgangskode fungerer på alle websteder, som udgør en del af iNaturalist Network. Hvis du vælger at deltage i et netværkswebsted, vil de lokale institutioner, som driver hvert websted, også have adgang til din e-mailadresse (kun for at kommunikere med dig om iNat-aktiviteter) og adgang til de reelle koordinater for observationer, som er offentligt sløret eller fortrolige.
-          </p>
-          <p>
-          Bemærk: Skift ikke for sjov din tilknytning, hvis du har flere end 1.000 observationer.
-          </p>
         licensing_desc_html: |
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
@@ -7400,13 +6805,6 @@ da:
           States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
           <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
           Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
-        muting_desc_html: |
-          <P>
-             At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
-          </P>
-          <P>
-             Du kan slukke for så mange personer som du vil, men husk at du kan gå glip af potentielt vigtige opdateringer, som f.eks identifikationer, der ændrer fællesskabs id'et på dine observationer.
-          </p>
         name_place_help_html: |
           Prioritér lokale navne brugt på dette sted.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7500,15 +6898,6 @@ da:
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis er en spammer, hvilket betyder, at de ikke har nogen observationer eller identifikationer, men de har en profilbeskrivelse. </dd><dt> Auto Spam </dt><dd> Spammer, der automatisk blev markeret som en spammer af systemet. </dd><dt> Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev markeret som spammere, men markeringerne blev løst af sidens kuratorer, fordi de ikke var virkelig spammere. </dd></dl>
-        recent_users_desc_html: |
-          <p>
-          Vi ønsker at byde nye brugere velkommen, men vi ønsker også at
-          bekæmpe spammere. Forhåbentlig hjælper dette værktøj med begge dele. Vi
-          markerer automatisk mange brugere som spammere ved hjælp af <a
-          href="https://akismet.com/">Akismet</a>, men Akismet er ikke
-          perfekt, så hvis du vil bruge et par minutter på at markere nye
-          konti som spammere eller ikke spammere, vil det hjælpe.
-          </p>
       show:
         take_a_moment_to_review_html: 'Brug et øjeblik på at gennemse <a href="%{link}">vores retningslinjer</a>'
         this_user_was_banned: Denne bruger er blevet suspenderet
@@ -7518,16 +6907,6 @@ da:
           vil fremgå dér.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Tak for at være en iNaturalist-donor! Vi kunne bruge din eksisterende donation til at bekræfte din identitet og behøver ikke yderligere handling fra dig. <strong>Dit barns konto er blevet aktiveret.</strong>
-          </p>
-          <p>
-          Log venligst ind på kontoen via dit barns Seek-app ved at trykke på "iNaturalist" knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
-          </p>
-          <p>
-          Dit barn vil da kunne oprette observationer på deres iNaturalist-konto ved hjælp af Seek-app'en, så de kan ses på iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: TAK FOR AT OPRETTE EN MINDREÅRIG KONTO!
         we_will_send_you_an_email: |
           Vi sender en e-mail til dig, når dit barns konto er blevet aktiveret.
@@ -7878,6 +7257,9 @@ da:
           other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Bekendtgørelse
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
@@ -7897,6 +7279,11 @@ da:
       OauthApplication: Applikation
       TaxonLink: Takson link
     attributes:
+      announcement:
+        created_at: Oprettet
+        updated_at: Opdateret
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: Websteds-ID'er
       assessment:
         description: Beskrivelse
       assessment_section:
