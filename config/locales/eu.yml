@@ -2,9 +2,6 @@ eu:
   x_comments:
     one: 'iruzkin %{count}'
     other: '%{count} iruzkin'
-  x_comments_html:
-    one: 'iruzkin <span class="count">%{count}</span>'
-    other: '<span class="count">%{count}</span> iruzkin'
   x_faves:
     one: 'gogoko %{count}'
     other: '%{count} gogoko'
@@ -14,27 +11,6 @@ eu:
   x_identifications:
     one: '1 identifikazio'
     other: '%{count} identifikazio'
-  x_identifications_html:
-    one: 'identifikazio <span class="count">%{count}</span>'
-    other: '<span class="count">%{count}</span> identifikazio'
-  x_identifications_:
-    one: 'Identifikazio %{count}'
-    other: '%{count} Identifikazio'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'Identifikatzaile <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatzaile'
-  x_languages:
-    one: "hizkuntza %{count}"
-    other: "%{count} hizkuntza"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} lehen aldiz ikusia"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "lehen aldiz ikusitako %{count}"
   x_journal_posts_html:
     one: 'eguneroko sarrera <span class="count">%{count}</span>'
     other: '<span class="count">%{count}</span> sarrera egunerokoan'
@@ -47,36 +23,15 @@ eu:
   x_misidentifications_of_this_species:
     one: "%{count} espezie honen identifikazio desegoki"
     other: "espezie honen %{count} identifikazio desegoki"
-  x_observations:
-    one: "1 behaketa"
-    other: "%{count} behaketa"
-  x_observations_:
-    one: "Behaketa %{count}"
-    other: "%{count} Behaketa"
-  x_observations_html:
-    one: "<span class='count'>1</span> behaketa"
-    other: "<span class='count'>%{count}</span> behaketak"
   x_others:
     one: "bestelako %{count}"
     other: "%{count} bestelako"
-  x_people:
-    one: "pertsona %{count}"
-    other: "%{count} pertsona"
   x_photos:
     one: "argazki %{count}"
     other: "%{count} argazki"
   x_new_species:
     one: "Espezie Berri %{count}"
     other: "%{count} Espezie Berri"
-  x_new_users:
-    one: 'Erabiltzaile Berri %{count}'
-    other: '%{count} Erabiltzaile Berri'
-  x_species:
-    one: '1 espezie'
-    other: '%{count} espezie'
-  x_species_html:
-    one: "<span class='count'>1</span> espezie"
-    other: "<span class='count'>%{count}</span> espezieak"
   x_suggestions_filtered_by_colon:
     one: "1 Iradukizuna Hautatua:"
     other: "%{count} Iradokizunak Hautatuta:"
@@ -89,9 +44,6 @@ eu:
   x_research_grade_observations_to_species_html:
     one: "<span class=count>1</span> behaketa ikerketa maila espezieak identifikatu zituzten</span>"
     other: "<span class=count>%{count}</span> behaketak ikerketa maila espezieak identifikatu zituzten</span>"
-  x_sounds:
-    one: "%{count} soinua"
-    other: "%{count} soinuak"
   _100_day_trends: 100 Eguneko Joerak
   _percent_ID_d: "identifikatuen %"
   a_community_for_naturalist: Naturalistentzako komunitatea
@@ -2486,11 +2438,6 @@ eu:
         map_instruction: Poligonoaren tresna erabili lekuaren ingurua marrazteko.
     projects:
       edit:
-        bioblitz_desc_html: |
-          <p>
-          Bioblitz ekitaldia honetan oinarritzen da: beste pertsona batzuek leku batean eta denbora tarte jakin batean ahalik eta espezie gehien beha ditzaten saiatuko zara.
-          Jendea biodibertsitatean sartzeko modu dibertigarria da eta aldi berean datu baliotsuak biltzen dira.
-          </p>
         cover_desc: "Proiektuaren orrialdearen goialdean azalduko den hautazko banner-aren irudia. Hau izan behar du... 950 pixel zabal, 400 pixel baino gutxiago altu."
         custom_project_fields_means: "Proiektuko banner-a aldatzeko, proiektuaren eskuinaldean edukia gehitzeko eta itxura hobetzeko nolabaiteko estiloa emateko aukera ematen du."
         end_time_desc: "Bioblitz-erako ordua amaitzea. Hasiera-ordutik urtebete baino gutxiagokoa izan behar du"
@@ -2498,14 +2445,6 @@ eu:
           Zure bioblitz-erako erabiltzen ari zaren ekitaldi-erregistro zerbitzuaren URLa.
           Zenbakizko identifikatzailea duen Eventbrite URLa baldin bada, harpidetza widget-a gehituko dugu zure proiektuaren orrialdean bioblitz-a hasi arte.
         icon_desc: "Lauki batera moztuko da"
-        project_assets_desc_html: |
-          <p class="description">Proiektuko fitxategiak proiektuari lotutako fitxategiak dira, zenbait arau bereziren arabera: </p>
-          <ol class="description">
-          <li>
-          <code>.logo.jpg</code>, <code>.logo.png</code> eta abar amaitzen diren fitxategiak proiektuko logotipo gisa erabiliko dira proiektuaren orrialdean, proiektuko ikonoaren ordez
-          </li>
-          <li>KML eta KMZ fitxategiak mapari gehituko zaizkio proiektuaren orrialdean</li>
-          </ol>
         submission_models:
           any: edozein
         trusted_project_means: |
