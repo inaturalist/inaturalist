@@ -1,22 +1,12 @@
 ko:
   x_comments:
     other: '댓글 %{count} 개'
-  x_comments_html:
-    other: '댓글 <span class="count">%{count}</span> 개'
   x_faves:
     other: '즐겨찾기 %{count} 개'
   x_flags_resolved_html:
     other: "플래그 <span class='count'>%{count}</span>개를 해결함"
   x_identifications:
     other: '동정 %{count} 개'
-  x_identifications_html:
-    other: '동정 <span class="count">%{count}</span> 개'
-  x_identifications_:
-    other: '동정 %{count} 개'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span>'
   x_journal_posts_html:
     other: '일지 포스팅 <span class="count">%{count}</span> 개'
   x_matching_taxa:
@@ -29,18 +19,10 @@ ko:
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "%{rank} 에 속하는 종의 오동정 %{count} 개"
-  x_observations:
-    other: "관찰 %{count} 개"
-  x_observations_:
-    other: "관찰 %{count} 개"
-  x_observations_html:
-    other: "관찰 <span class='count'>%{count}</span> 개"
   x_observations_link_html:
     other: "<a href='%{url}'>관찰 %{count} 개</a>"
   x_observations_reviewed_html:
     other: "검토한 관찰 <span class='count'>%{count}</span> 개"
-  x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} 명</strong>이 %{user} 님에게 <strong>%{y} 동정</strong>에 도움을 주었습니다"
@@ -48,10 +30,6 @@ ko:
     other: "사진 %{count} 개"
   x_new_species:
     other: "새로운 종 %{count} 종"
-  x_species:
-    other: '%{count} 종'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> 종"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} 종</a>"
   x_suggestions_filtered_by_colon:
@@ -1557,13 +1535,6 @@ ko:
   onboarding:
     following_panel_title: 사람, 분류군, 장소에 대한 알림 받기
     youve_got_updates_panel_title: 새 업데이트가 있습니다!
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>내 콘텐츠:</strong> 내 관찰에 대한 %{site_name} 공동체의 댓글, 동정, 관찰 필드 추가, 프로젝트에 관찰 추가 등의 활동이 알림으로 표시됩니다.</li>
-      <li><strong>사용자들:</strong> 팔로우한 사용자들의 새로운 관찰, 일지 등이 표시됩니다.</li>
-      <li><strong>분류군, 프로젝트, 장소:</strong> 팔로우한 분류군, 장소에 대한 새로운 관찰이 표시됩니다. 프로젝트에 가입할 경우 프로젝트 일지에 대한 알림도 표시됩니다. </li>
-      <li><strong>관여한 토론:</strong> 다른 사람의 관찰에 댓글 및 동정을 추가하면 자동적으로 그 관찰에 팔로우됩니다. '알림 관리' 항목을 통해 알림 수신 여부를 수정할 수 있습니다.</li>
-      </ul>
   only_show_active_taxa: 활성 분류군만 보기
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
   only_show_for_species_subspecies_varieties_etc: 종, 아종, 변종 만 보기
@@ -2374,18 +2345,6 @@ ko:
           <code>family=Laridae</code>
           또는
           <code>family=Gulls and Allies</code>
-      mobile_downloads_help_html: |
-        <p>이 안내서와 관련된 모든 데이터와 미디어의 다운로드할
-        수 있는 보존을 만들 것이며 이는 모바일 앱 사용자가
-        인터넷 연결 없이 안내서의 모든 내용을 볼 수 있게 하기
-        위함입니다. 보존을 생성하는 데는 몇 분이 걸리지만,
-        이 안내서를 바꿀 때에는 언제라도 보존이 업데이트되도록
-        활성화됩니다.</p>
-        <p class="alert status">
-        <strong>실제로 오프라인 모바일 다운로드를 사용할
-        생각이 없다면 활성화하지 마시기를</strong> 바랍니다.
-        우리 시스템에 상당한 부담을 주게 됩니다.
-        </p>
       pdf_layouts:
         grid: 격자
         book: 책
@@ -2490,16 +2449,6 @@ ko:
         include_usa: 미국 포함
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          대부분의 생물들은 각 언어에 맞게 불리는 '일반명'이 있습니다. 이런 이름들은 일반적으로 변하지 않지만, 많은 생물들의 경우 지역에 따라 많은 방언들을 가지고 있어 혼동될 가능성이 높습니다. 과학자들은 이러한 혼동을 방지하기 위하여 분류 체계(<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>)에 따라서 한 생물마다 특정한 '학명'을 부여합니다. 이러한 학명들은 일반적으로 라틴어로 되어 있기 때문에, 일반인들이 사용하고,기억하기가 쉽지 않습니다. 또한, 학명은 분류학이 발전해 나가면서 지속적으로 변화하기 때문에, 학명을 알고 있는 사람들끼리 소통하는 데도 지장이 있는 경우도 있습니다. 
-          </p>
-          <p>
-          "일반명은 장소에 따라 변하고, 학명은 시간에 따라 변한다"
-          </p>
-          <p>
-          iNaturalist는 이러한 문제들을 해결하기 위해 일반명과 학명을 모두 사용하고 있습니다. 각 사용자가 사용하고 있는 언어나 지역에 따라 알맞은 이름을 제공해 주려고 합니다. 각 사용자들은 모두 '이름 추가하기' 버튼을 이용하여서 자신의 언어권 또는 지역에서 사용하는 일반명을 추가할 수 있습니다. 한국 사용자들의 경우, 국립생물자원관 및 환경부가 사용하고 있는 공인된 일반명을 사용해 주시기 바라며, 필요에 따라서 방언을 추가하는 것도 가능합니다. 
-          </p>
         frequency:
           research: 연구 자료 등급
           "Alive or Dead=Alive": 살아있음
