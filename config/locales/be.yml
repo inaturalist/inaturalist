@@ -1,20 +1,9 @@
 be:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} змяненне"
-    few: "%{count} змяненні"
-    many: "%{count} змяненняў"
-    other: "%{count} змянення"
   x_comments:
     one: '%{count} каментарый'
     few: '%{count} каментарыі'
     many: '%{count} каментарыяў'
     other: '%{count} каментарыя'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> каментарый'
-    few: '<span class="count">%{count}</span> каментарыі'
-    many: '<span class="count">%{count}</span> каментарыяў'
-    other: '<span class="count">%{count}</span> каментарыя'
   x_faves:
     one: '%{count} упадабанне'
     few: '%{count} упадабанні'
@@ -30,41 +19,6 @@ be:
     few: '%{count} вызначэння'
     many: '%{count} вызначэнняў'
     other: '%{count} вызначэнні'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> вызначэнне'
-    few: '<span class="count">%{count}</span> вызначэнні'
-    many: '<span class="count">%{count}</span> вызначэнняў'
-    other: '<span class="count">%{count}</span> вызначэнні'
-  x_identifications_:
-    one: '%{count} Вызначэнне'
-    few: '%{count} Вызначэнні'
-    many: '%{count} Вызначэнняў'
-    other: '%{count} Вызначэння'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Вызначальнік'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Вызначальніка'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Вызначальнікаў'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Вызначальніка'
-  x_languages:
-    one: "%{count} мова"
-    few: "%{count} мовы"
-    many: "%{count} моў"
-    other: "%{count} мовы"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} упершыню ў спісе жывога"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} упершыню ў спісе жывога"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} упершыню ў спісе жывога"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} упершыню ў спісе жывога"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> запіс у часопісе'
     few: '<span class="count">%{count}</span> запісы у часопісе'
@@ -97,21 +51,6 @@ be:
     few: "%{count} памылковых вызначэнні ў гэтым %{rank}"
     many: "%{count} памылковых вызначэнняў ў гэтым %{rank}"
     other: "%{count} памылковага вызначэння ў гэтым %{rank}"
-  x_observations:
-    one: "%{count} назіранне"
-    few: "%{count} назіранні"
-    many: "%{count} назіранняў"
-    other: "%{count} назірання"
-  x_observations_:
-    one: "%{count} Назіранне"
-    few: "%{count} Назіранні"
-    many: "%{count} Назіранняў"
-    other: "%{count} Назірання"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> назіранне"
-    few: "<span class='count'>%{count}</span> назіранні"
-    many: "<span class='count'>%{count}</span> назіранняў"
-    other: "<span class='count'>%{count}</span> назірання"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} назіранне</a>"
     few: "<a href='%{url}'>%{count} назіранні</a>"
@@ -122,21 +61,11 @@ be:
     few: "<span class='count'>%{count}</span> назіранні прагледжана"
     many: "<span class='count'>%{count}</span> назіранняў прагледжана"
     other: "<span class='count'>%{count}</span> назірання прагледжана"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Назіральнік'
-    few: '<span class="count">%{count}</span> Назіральнікі'
-    many: '<span class="count">%{count}</span> Назіральнікаў'
-    other: '<span class="count">%{count}</span> Назіральніка'
   x_others:
     one: "%{count} іншы"
     few: "%{count} іншыя"
     many: "%{count} іншых"
     other: "%{count} іншага"
-  x_people:
-    one: "%{count} асоба"
-    few: "%{count} асобы"
-    many: "%{count} асобаў"
-    other: "%{count} асобы"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} людзей</strong> дапамаглі %{user} з <strong>%{y} вызначэннем</strong>"
   x_photos:
     one: "%{count} фота"
@@ -148,21 +77,6 @@ be:
     few: "%{count} Новыя віды"
     many: "%{count} Новых відаў"
     other: "%{count} Новага віда"
-  x_new_users:
-    one: '%{count} Новы карыстальнік'
-    few: '%{count} Новыя карыстальнікі'
-    many: '%{count} Новых карыстальнікаў'
-    other: '%{count} Новага карыстальніка'
-  x_species:
-    one: '%{count} від'
-    few: '%{count} віды'
-    many: '%{count} відаў'
-    other: '%{count} віда'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> від"
-    few: "<span class='count'>%{count}</span> віды"
-    many: "<span class='count'>%{count}</span> відаў"
-    other: "<span class='count'>%{count}</span> віда"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} від</a>"
     few: "<a href='%{url}'>%{count} віды</a>"
@@ -173,11 +87,6 @@ be:
     few: "%{count} прапановы, адфільтраваныя па:"
     many: "%{count} прапаноў, адфільтраваных па:"
     other: "%{count} прапановы, адфільтраваных па:"
-  x_taxa:
-    one: "%{count} таксон"
-    few: "%{count} таксона"
-    many: "%{count} таксонаў"
-    other: "%{count} таксона"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> назіранне таксона"
     few: "<span class='count'>%{count}</span> назіранні таксона"
@@ -193,11 +102,6 @@ be:
     few: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
     many: "<span class='count'>%{count}</span> назіранняў узроўня даследвання вызначана да віда ці ніжэй"
     other: "<span class='count'>%{count}</span> назірання ўзроўня даследвання вызначана да віда ці ніжэй"
-  x_sounds:
-    one: "%{count} гук"
-    few: "%{count} гукі"
-    many: "%{count} гукаў"
-    other: "%{count} гука"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> таксон, які курыруецца"
     few: "<span class='count'>%{count}</span> таксоны, якія курыруюцца"
@@ -269,30 +173,6 @@ be:
   about_this_bioblitz: Пра гэты біябліц
   about_this_map: Пра гэтую мапу
   about_this_project: Пра гэты праект
-  about_trips_html: |
-    <h4>
-    Падарожжы дазваляюць збіраць дадзеныя аб адсутнасці/прысутнасці, дадаючы кантэкст
-    да вашых назіранняў
-    </h4>
-    <p>
-    <strong>Чаму</strong> Дадзеныя аб прысутнасці і адсутнасці ўключаюць інфармацыю пра
-    адбор проб, што можа быць карысным для навуковых аналізаў, такіх як мадэляванне размеркавання
-     (неапрацаваныя назіранні iNaturalist - гэта "толькі прысутнасць").
-    </p>
-    <p>
-    <strong>Як</strong> Падарожжа дадае кантэкст вашым назіранням, запісваючы:
-    </p>
-    <ul>
-    <li><strong>Што</strong> вы шукалі (спіс мэтаў)</li>
-    <li><strong>Дзе</strong> вы шукалі (абшар пошукаў)</li>
-    <li><strong>Калі</strong> вы шукалі (інтэрвал пошуку)</li>
-    </ul>
-    <p>
-    Віды ў вашым спісе мэтаў, якія вы змаглі назіраць у межах
-    абшару пошуку і інтэрвал інтэрпрэтуюцца як прысутнасць. Калі вы не здолелі назіраць від з вашага спісу мэтаў, гэта інтэрпрэтуецца як адсутнасць. Націсніце "Стварыць табліцу дадзеных аб адсутнасці/прысутнасці з падарожжаў", каб стварыць
-    табліцу запісаў пра наяўнасць і адсутнасць відаў з падарожжаў і звязаных з імі
-    назіранняў. <a href='%{url}'>Даведацца больш</a>
-    </p>
   about_trusting_projects: Пра давер праектам
   about_trusting_projects_options_any: Усе вашыя назіранні ў гэтым праекце
   about_trusting_projects_options_any_desc: |-
@@ -1376,7 +1256,7 @@ be:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Рэдагаваць таксанамію iNaturalist''s адпаведна правілаў <a href="/pages/curator+guide#policies" target="_blank">падзелу "Правілы" Кіраўніцтва куратара</a>. Гэта значыць, што яны могуць дадаваць, раздзяляць, замяняць, аб''ядноўваць, дэактываваць і выдаляць таксоны iNaturalist. Яны таксама могуць рэдагаваць ахоўныя статусы і гэапрыватнасць таксонаў, а таксама рэдагаваць і кіраваць агульнымі назвамі, якія былі дададзены любым карыстальнікам.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Рэдагаваць таксанамію iNaturalist''s адпаведна правілаў <a href="/pages/curator+guide#policies" target="_blank">падзелу "Правілы" Кіраўніцтва куратара</a>. Гэта значыць, што яны могуць дадаваць, раздзяляць, замяняць, аб''ядноўваць, дэактываваць і выдаляць таксоны iNaturalist. Яны таксама могуць рэдагаваць ахоўныя статусы і гэапрыватнасць таксонаў, а таксама рэдагаваць і кіраваць агульнымі назвамі, якія былі дададзены любым карыстальнікам.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Схаваць каментары і блакаваць карыстальніка за парушэнне <a
     href="/pages/community+guidelines" target="_blank">Правілаў супольніцтва</a>.
@@ -1576,7 +1456,6 @@ be:
     failure:
       already_authenticated: 'Вы ўжо ўвайшлі.'
       unauthenticated: 'Вам патрэбна зайсці або зарэгістравацца каб працягнуць.'
-      invalid: 'Няправільны адрас электроннай пошты або пароль.'
       invalid_token: 'Няправільны токен аўтэнтыфікацыі.'
       user:
         suspended: Ваш уліковы запіс быў прыпынены
@@ -1590,19 +1469,17 @@ be:
       send_paranoid_instructions: "Калі ваш адрас электроннай пошты існуе ў нашай базе дадзеных, вы атрымаеце спасылку на свой адрас электроннай пошты за некалькі\nхвілін."
       no_token: "Вы можаце перайсці на гэтую старонку толькі па спасылцы з электронна ліста для змены паролю. Калі вы сапраўды пераходзіце з электроннага ліста для змены паролю, пераканайцеся, што вы выкарыстоўваеце поўны URL-адрас."
     registrations:
+      destroyed: 'Да пабачэння. Ваш уліковы запіс быў паспяхова выдалены. Мы спадзяемся хутка пабачыць вас зноў.'
       signed_up: 'Сардэчна запрашаем! Вы паспяхова зарэгістраваліся.'
       updated: 'Вы паспяхова аднавілі свой уліковы запіс.'
-      destroyed: 'Да пабачэння. Ваш уліковы запіс быў паспяхова выдалены. Мы спадзяемся хутка пабачыць вас зноў.'
     mailer:
-      confirmation_instructions:
-        subject: 'Інструцыі па пацвярджэнню'
       reset_password_instructions:
         subject: 'Інструкцыі па скіду паролю'
   devise_reset_password_instructions_hello_email: Прывітанне, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Нехта запытаў спасылку каб змяніць ваш пароль. Вы можаце зрабіць гэта праз спасылку ніжэй.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Калі вы не рабілі гэты запыт, вы можаце праігнараваць гэты ліст.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Нехта запытаў спасылку каб змяніць ваш пароль. Вы можаце зрабіць гэта праз спасылку ніжэй.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будзе зменены, да той пары, калі вы не скарыстаецеся спасылкай вышэй, каб стварыць новы.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2696,8 +2573,6 @@ be:
       yy: "%dг.т."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3171,13 +3046,6 @@ be:
     updates_by_you_panel_body: Памятайце, што на вокладцы «Усе абнаўленні» вы будзеце атрымліваць абнаўленні не толькі па вашаму кантэнту, але і пра кантэнты людзей, за якімі вы сочыце, а таксама аб таксонах або месцах, на якія вы падпісаліся з дапамогай інструмента «Падпіскі» справа.
     youve_got_updates_panel_title: У вас ёсць абнаўленні!
     youve_got_updates_panel_body_p1: Сачыце за абнаўленнямі наступных...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Ваш змест:</strong> Дзейнасць, звязаная з вашымі назіраннямі, такая як каментарыі, вызначэнні, або ўпадабанні ад супольніцтва %{site_name}. Вы таксама будзеце атрымліваць абнаўленні калі нехта дадасць вашае назіранне да праэкту, або дадасць інфармацыю ў ягоныя дадатковыя палі.</li>
-      <li><strong>Людзі:</strong> Новыя назіранні або допісы ў дзённіках ад людзей, на якіх вы падпісаныя.</li>
-      <li><strong>Арганізмы, Праэкты і Месцы:</strong> Новыя назірання для асбоных арганізмаў або месцаў, на якія вы падпісаныя</li>
-      <li><strong>Дыскусіі, у якіх вы ўдзельнічаеце:</strong> Каментаванне або даданне вызначэнняў да чыёга-небудзь зместа аўтаматычна падпісвае вас да новых падзей, звязанных з гэтым зместам. Карыстайцеся інструментам 'Кіраванне сваімі падпіскамі' каб перастаць атрымліваць абнаўленні.</li>
-      </ul>
   one_by_one: "Па аднаму"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "адно з наступнага павінна быць праўдай:"
@@ -3316,33 +3184,11 @@ be:
     original: зыходны
   photos_updated: Фота адноўлены.
   pi_consent_desc_title: Пра асабістую інфармацыю
-  pi_consent_desc_html: |
-    <p>
-    Мы захоўваем асабістую інфармацыю, такую як імёны карыстальнікаў і адрасы электроннай пошты, для кіравання ўліковымі запісамі на гэтым сайце, і ў адпаведнасці з законамі аб канфідэнцыяльнасці нам трэба, каб вы паставілі гэты сцяжок, каб паказаць, што згаджаецеся на такое выкарыстанне асабістай інфармацыі. Каб даведацца больш пра тое, якую інфармацыю мы збіраем і як яе выкарыстоўваем, глядзіце нашу <a href='%{privacy_url}' target='_blank'>Палітыку прыватнасці</a> і нашыя <a href='%{terms_url} ' target='_blank'>Умовы выкарыстання</a>.
-    </p>
-    <p>
-    Немагчыма мець уліковы запіс iNaturalist без захоўвання асабістай інфармацыі, таму адзіны спосаб адмяніць гэтую згоду - гэта выдаліць свой уліковы запіс.
-    </p>
   pi_consent_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі пра мяне для кіравання маім уліковым запісам
   pi_consent_child_label: |
     Я згаджаюся дазволіць iNaturalist захоўваць і апрацоўваць абмежаваныя віды асабістай інфармацыі аб маім дзіцяці для кіравання уліковым запісам майго дзіцяці
   data_transfer_consent_desc_title: Аб згодзе на перадачу персанальнай інфармацыі
-  data_transfer_consent_desc_html: |
-    <p>
-    Некаторыя законы аб канфідэнцыяльнасці даных, напрыклад, Агульны рэгламент Еўрапейскага саюза аб абароне даных (GDPR), патрабуюць яўнай згоды на перадачу асабістай інфармацыі з іх юрысдыкцыі ў іншыя юрысдыкцыі, дзе прававая абарона гэтай інфармацыі не лічыцца дастатковай. Па стане на <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    Еўрапейскі Саюз больш не лічыць Злучаныя Штаты юрысдыкцыяй, якая забяспечвае адэкватную прававую абарону асабістай інфармацыі, у прыватнасці, з-за магчымасці назірання ўрада ЗША за дадзенымі, якія трапляюць у ЗША. Магчыма, іншыя юрысдыкцыі могуць мець такое ж меркаванне.
-    </p>
-    <p>
-    Выкарыстанне iNaturalist патрабуе захоўвання асабістай інфармацыі, такой як ваш адрас электроннай пошты, усе дадзеныя iNaturalist захоўваюцца ў Злучаных Штатах, і мы не можам быць упэўнены, у якой юрысдыкцыі вы знаходзіцеся, калі выкарыстоўваеце iNaturalist, таму, каб выконваць законы аб канфідэнцыяльнасці, напрыклад, GDPR, вы павінны прызнаць, што разумееце і прымаеце гэту рызыку і згоду на перадачу вашай асабістай інфармацыі на серверы iNaturalist у ЗША.
-    </p>
-    <p>
-    Каб даведацца больш аб тым, якую інфармацыю мы збіраем і як яе выкарыстоўваем,
-    глядзіце нашу <a href='%{privacy_url}' target='_blank'>Палітыку прыватнасці</a> і нашы <a href='%{terms_url}' target='_blank'>Умовы выкарыстання</a> .
-    </p>
-    <p>
-    Немагчыма мець уліковы запіс iNaturalist без захавання асабістай інфармацыі, таму адзіны спосаб адмяніць гэтую згоду - гэта выдаліць свой уліковы запіс.
-    </p>
   data_transfer_consent_label: |
     Я даю згоду на перадачу маёй асабістай інфармацыі ў Злучаныя Штаты Амерыкі
   data_transfer_consent_child_label: |
@@ -4248,29 +4094,6 @@ be:
         leaderboards_among_projects_and_bioblitzes: |
           Табліца лідараў сярод <strong>праэктаў</strong>
         users_can_follow_your_project: Карыстальнікі могуць сачыць за наванамі вашага праэкту праз допісы ў дзённіку
-      show:
-        bioblitz_results_desc_html: |
-          <p>
-          У адрозненні ад звычайных праэктаў, біябліцы адлюстроўваюць статыстыку
-          <em>усіх</em> назіранняў у дазеным часе і месцы, а не толькі назіранні, якія былі дадазены людзьмі да праэкту наўмысна.
-          Гэта зроблена каб унікнуць цяжкасцей дадання назіранняў да праэкту каб маць статыстыку ў рэальным часе.
-          Звярніце ўвагу, што назіранні не будуць дасяжныя для экспарту або адлюстравання ў розных выглядах праэкта, напрыклад
-          унёскі членаў на вэб-сайце або пошук назіранняў праэкта
-          ў мабільных прыкладаннях, калі толькі каманда праэкта і
-          удзельнікі не дадаюць адпаведныя назіранні актыўна, як гэта робіцца ў звычайных
-          праэктах.
-          </p>
-          <p>
-          Звярніце ўвагу, што ў той час як гэты від праекта паказвае статыстыку для назіранняў, што
-          не былі наўмысна дададзеныя ў праект, гэта не дазваляе
-          куратарам убачыць прыватныя або схаваныя каардынаты для гэтых
-          назіранняў або выказаць здагадку, што назіральнікі пагадзіліся з умовамі праэкту. 
-          Калі вы куратар праэкта і вам патрэбны доступ да прыватных
-          каардынатаў, вам трэба, каб ўдзельнікі пагадзіліся з умовамі праэкту , 
-          а калі вы хочаце, каб назіранні залічваліся ў кантрольны спіс куратарскага праэкту,
-          пераканайцеся, што вашыя ўдзельнікі далучаюцца да праэкта і дадаюць свае
-          назіранні, як у звычайным праэкце.
-          </p>
     taxa:
       show:
         frequency:
