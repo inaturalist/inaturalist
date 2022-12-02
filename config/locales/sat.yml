@@ -1,14 +1,7 @@
 sat:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} ᱵᱚᱫᱚᱞ"
-    other: "%{count} ᱵᱚᱫᱚᱞ ᱠᱚ"
   x_comments:
     one: '%{count} ᱴᱤᱯᱬᱤ'
     other: '%{count} ᱴᱤᱯᱬᱤ ᱠᱚ'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> ᱴᱤᱯᱚᱬᱤ'
-    other: '<span class="count">%{count}</span> ᱴᱤᱯᱚᱬᱤ ᱠᱚ'
   x_faves:
     one: '%{count} ᱠᱩᱥᱤ'
     other: '%{count} ᱠᱩᱥᱤ ᱠᱚ'
@@ -18,27 +11,6 @@ sat:
   x_identifications:
     one: '%{count} ᱪᱤᱱᱦᱟᱹᱯ'
     other: '%{count} ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯ'
-    other: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
-  x_identifications_:
-    one: '%{count} ᱪᱤᱱᱦᱟᱹᱯ'
-    other: '%{count} ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ ᱠᱚ'
-  x_languages:
-    one: "%{count} ᱯᱟᱹᱨᱥᱤ"
-    other: "%{count} ᱯᱟᱹᱨᱥᱤ ᱠᱚ"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} ᱯᱩᱭᱞᱩ ᱨᱮ ᱡᱤᱣᱚᱱ ᱨᱮᱭᱟᱜ ᱞᱤᱥᱴᱭ"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} ᱯᱩᱭᱞᱩ ᱨᱮ ᱡᱤᱣᱚᱱ ᱨᱮᱭᱟᱜ ᱞᱤᱥᱴᱭ"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> ᱡᱚᱨᱱᱟᱞ ᱯᱚᱥᱴ'
     other: '<span class="count">%{count}</span> ᱡᱚᱨᱱᱟᱞ ᱯᱚᱥᱴ ᱠᱚ'
@@ -51,15 +23,6 @@ sat:
   x_misidentifications_of_this_species:
     one: "%{count} ᱱᱚᱶᱟ ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱵᱷᱩᱞ ᱪᱤᱱᱦᱟᱹᱯ"
     other: "%{count} ᱱᱚᱶᱟ ᱡᱟᱹᱛ ᱠᱚ ᱨᱮᱭᱟᱜ ᱵᱷᱩᱞ ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ"
-    other: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ ᱠᱚ"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ'
-    other: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ ᱠᱚ'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ"
-    other: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ ᱠᱚ"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ᱠᱷᱚᱱ Z"
