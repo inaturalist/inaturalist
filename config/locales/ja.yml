@@ -1,31 +1,12 @@
 ja:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "%{count}件の変更"
   x_comments:
     other: '%{count}件のコメント'
-  x_comments_html:
-    other: '<span class="count">%{count}</span> コメント'
   x_faves:
     other: '%{count}件のお気に入り'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span> 件のフラグを解決"
   x_identifications:
     other: '%{count} 件の同定'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span>件の同定'
-  x_identifications_:
-    other: '%{count} 同定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> 同定者'
-  x_languages:
-    other: "%{count} 言語"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} ライフリスト初"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span>件の日記'
   x_matching_taxa:
@@ -40,47 +21,27 @@ ja:
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "%この%{rank}中誤同定は%{count}件"
-  x_observations:
-    other: "%{count}件の観察記録"
-  x_observations_:
-    other: "%{count}件の観察記録"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span>件の観察記録"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> 観察者'
   x_others:
     other: "その他%{count}人"
-  x_people:
-    other: "%{count} 人"
   x_people_helped_user_with_y_ids_html: "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました"
   x_photos:
     other: "%{count}枚の写真"
   x_new_species:
     other: "%{count}件の新種"
-  x_new_users:
-    other: '%{count} 新規ユーザー'
-  x_species:
-    other: '%{count}種'
-  x_species_html:
-    other: "<span class='count'>%{count}</span>種"
   x_species_link_html:
     other: "<a href='%{url}'>%{count}種</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count}件の提案を検出:"
-  x_taxa:
-    other: "%{count} 種"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span>件の観察済分類群"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span>件の研究用観察記録"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録"
-  x_sounds:
-    other: "%{count} 音声"
   x_taxa_curated_html:
     other: "<span class='count'>%{count}</span> つの分類群を整理"
   x_taxa_matching_current_filters:
@@ -650,10 +611,6 @@ ja:
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   badges: バッジ
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    other: |
-      この %{percent} %のサンプルに基づき、%{child} の観察記録で<strong>意図しない不一致が %{count} 件</strong>発生すると試算されます。
   based_on_the_evidence_can_id_be_improved: |
     証拠に基づいてコミュニティ分類群を確定しますか、改善しますか？
   batch: 一括
@@ -1121,7 +1078,7 @@ ja:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や場所公開度を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や場所公開度を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     <a
     href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>.に違反しているコメントを隠すこと、上に違反しているユーザーを利用停止すること
@@ -1307,7 +1264,6 @@ ja:
     failure:
       already_authenticated: 'すでにログインしています。'
       unauthenticated: '続行するにはログインするか、アカウントを作成してください。'
-      invalid: 'メールアドレスかパスワードが正しくありません'
       invalid_token: '認証が無効です'
       user:
         suspended: あなたのアカウントは使用停止されました。
@@ -1321,19 +1277,17 @@ ja:
       send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
       no_token: "パスワード再発行のメール以外からこのページにアクセスすることはできません。 \nパスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。"
     registrations:
+      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
       updated: 'アカウントを正常に更新しました。'
-      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
     mailer:
-      confirmation_instructions:
-        subject: 'メールアドレス確認の説明'
       reset_password_instructions:
         subject: 'パスワードの再設定について'
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     なお、本メールにお心当たりがない場合は、本メールを無視してくださるようお願いいたします。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_your_password_wont_change_until: |
     あなたのパスワードは上記のリンクにアクセスして新しいパスワードを作成するまでは変更されません。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2689,13 +2643,6 @@ ja:
     updates_by_you_panel_body: '「すべての更新」タブには、自分のコンテンツに限らず、画面右手の「フォローツール」を使ってフォローした相手やフォローした分類群･場所すべてから更新情報が集まります。'
     youve_got_updates_panel_title: 新着情報あります！
     youve_got_updates_panel_body_p1: 以下の最新情報をご確認ください。
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を加えたり、新規フィールドに注釈を追加した場合には更新の通知が届きます。</li>
-      <li><strong>人々:</strong>フォローしている人々の新しい観察記録、日記。</li>
-      <li><strong>生物、プロジェクト、場所: </strong>フォローしている特定の生物や場所の新しい観察記録。プロジェクトに参加すると、プロジェクトのニュースが公開されたときに通知を受け取るように設定できます。</li>
-      <li><strong>参加した議論:</strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツのフォロワーに登録されます。フォロー解除には「フォローの管理」ツールを使います。</li>
-      </ul>
   one_by_one: "１個ずつ"
   one_of_your_lists: "自分のリストに"
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
@@ -3835,8 +3782,6 @@ ja:
   supporting: サポート
   suspend_user: ユーザーの利用停止
   suspend_user_html: '%{user} を利用停止する'
-  suspend_user_reason_instructions_html: |
-    このアカウントの利用停止を行う理由を記載し、%{link_start_tag}コミュニティガイドライン%{link_end_tag}のどの部分に違反しているのかを明記してください。個人的な意見は含めないでください。このアカウントが%{link_start_tag}コミュニティガイドライン%{link_end_tag}を明確に違反しているわけではない場合はあなたの一存で利用停止は行わないでください。
   sw_lat: 南西緯度
   sw_lon: 南西経度
   sync: 同期？
@@ -4040,8 +3985,6 @@ ja:
   this_list_only_accepts_taxa_that_are_species: このリストでは、種である分類群のみを受け付けています。
   this_list_only_accepts_taxa_that_are_species_or_lower: このリストでは、種以下の分類群のみを受け付けています。
   this_observation: この観察記録
-  this_observation_is_featured_on_x_sites:
-    other: この観察はウェブサイト %{count}箇所に掲載されています
   this_observation_is_research_grade: この観察記録は研究用グレードです！
   this_observation_was_created_using: "この観察記録は以下を使用して作成されました："
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
@@ -4692,13 +4635,6 @@ ja:
         cumulative_count: 一致数
         disagreement_count: 不一致数
         identification_count: 同定件数
-        explanation: |
-          <p>
-          もしユーザーが何らかの理由でコミュニティ分類群に同意しない場合はそれを否定できます。その場合、そのユーザーの判定が他の観察やライフリストの更新へのリンクなどに使われます。またコミュニティの同意が得られた場合にのみ、その観察は研究用に使用できます。
-          </p>
-          <p>
-          しかしその場合でも、コミュニティ同定は表示されるため、判定の違いを誰でも確認できます。
-          </p>
         you_have_opted_out: コミュニティ同定の通知を解除しました
         your_id_does_not_match: |
           あなたの同定（<span class="bold">%{taxon_name}</span>）はコミュニティ同定と一致しません
@@ -4741,15 +4677,6 @@ ja:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
         ancestor_disagreements_desc: "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)"
-        community_taxon_desc_html: |
-          <p class="ui">
-          コミュニティ分類群（もしくはコミュニティ同定）とは、特定の観察記録において%{site_name}コミュニティが考えている分類群を表しています。もしコミュニティ分類群がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>がコミュニティ分類群となります。場合によっては、異なる分類群を複数含む、より上位の分類群がコミュニティ分類群になります（例：あなたがキングヘビだと予想し、私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含むヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が正しい場合が多いことがわかっているため、反対派をやや優先する傾向にあります。
-          </p>
-          <p class="ui">
-          観察記録が研究用レベルになるには（他にも基準はありますが）コミュニティ分類群が必要です。特定の観察記録において同定の提案が1件のみの場合、コミュニティ分類群はありません。すべての観察記録で、同定の提案が1件でもあれば必ず観察分類群を伴います。観察分類群は、データパートナーと観察を共有したり、サイト上で同じ分類群の観察をリンクしたり、ライフリストを更新したりするときに使用する分類群です。ほとんどの場合、最終的に観察分類群はコミュニティ分類群と一致しますが、特にコミュニティが同定を決定する前では、その２つは異なる場合があります。例えば、あなたがヘビ亜目 Serpentesだと考えていて、私がキングヘビ属 <i>Lampropeltis</i> だと考えている場合は、観察分類群はキングヘビ属 <i>Lampropeltis</i> になります（私の同定にのみ支持される）。しかし、コミュニティ分類群はヘビ亜目 Serpentes となります（こちらは最低２人の同意が必要）。もし自分の観察記録で、あなたが何らかの理由でコミュニティ分類群に同意できない場合は、コミュニティ分類群を拒否することができます。つまり、観察分類群がコミュニティ分類群とはなりません（あなたが設定した分類群になります）。これは、コミュニティがあなたに同意した場合のみ、観察記録が研究用となることを意味しています。コミュニティ分類群という考え方そのものを認められない場合、<a href="/users/edit" target="_blank">アカウント設定・プロフィール編集</a>を編集してコミュニティ分類群を採用しないことも可能です。
-          </p>
-          <p class="ui">
-          <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
         data_quality_assessment_desc_html: |
           データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。
@@ -4796,8 +4723,6 @@ ja:
         icon_desc: "正方形にトリミングされます"
         #Label for button to make another user the owner of a project
         make_owner: 所有者に設定
-        project_assets_desc_html: |
-          <p class=\"description\">プロジェクトアセットはプロジェクトに関わるファイルです。ただし、次のように特別な決まりがあります</p>\n<ol class=\"description\">\n <li>ファイル名が.logo.jpg, .logo.png,などで終わるものはプロジェクトページでプロジェクトアイコンの代わりに使用されます</li>\n<li>KML及びKMZファイルはプロジェクトページ上のマップに追加されます</li>\n</ol>
         rules:
           captive: 飼育/栽培
           georeferenced: 座標あり
@@ -4880,20 +4805,6 @@ ja:
       curator_coordinate_access_note: |
         あなたは非公開・不明瞭に設定された観察記録の座標を状況次第で共有することもできます。これはプロジェクトに追加された新規追加された観察記録のデフォルトです。
       show:
-        bioblitz_results_desc_html: |
-          <p>
-          通常のプロジェクトと異なり、bioblitzes は特定の場所と時間枠で記録された<em>全ての</em>観察統計を表示し、対象は人々が意図的にプロジェクトに追加した観察に限定されません。これは、統計をリアルタイムで操作するには、観察をプロジェクトに追加しなければいけないというハードルを取り除くためです。プロジェクトチームと参加者が通常のプロジェクトのように、関連する観察を積極的に追加しない限り、観察をエクスポートしたり、さまざまなプロジェクトビュー（Webサイトのメンバー投稿やモバイルアプリのプロジェクト観察検索など）に表示することはできません。
-          </p>
-          <p>
-          この種のプロジェクトは、プロジェクトに不注意に追加した観察も統計に表示しますが、キュレータがそれらの観察の非公開または不明瞭な座標を表示することはできず、また観察者がプロジェクトの規約を遵守したとは見なしません。あなたがプロジェクトのキュレータで非公開の座標にアクセスしたい場合、あるいはまた観察をキュレーション済みのプロジェクトのチェックリストに含めたい場合は、通常のプロジェクトの場合と同様、プロジェクトに登録した人に観察を追加してもらう必要があります。
-          </p>
-        no_journal_blurb_html: |
-          <p>
-          ニュースはプロジェクトのメンバーとコミュニケーションするためのツールです。告知や優先順位の設定、プロジェクトの成果を宣伝することなどに利用できます。
-          </p>
-          <p>
-          まずは、 <a href="%{url}" class="readmore">記事の作成</a>から始めてみましょう！
-          </p>
         curated_checklist_desc: |
           これはこのプロジェクトに明示的に追加され専門家が吟味したチェックリストと種数の観測であり、対象はこのイベントを行った場所と時間に記録された観測すべではありません。
       updates_desc: |
@@ -4944,16 +4855,6 @@ ja:
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
     taxa:
       show:
-        about_names_desc: |
-          <p>
-          ほとんどの生き物には、話し言葉に「一般名」があります。一般名は通常、認識・発音しやすく、時間が経過してもあまり変化しません。一方、生物は同じ言語であっても、場所により複数の異なる名前をもつことがあります。そのため、生物について混乱することなくコミュニケーションをとることが困難になることがあります。科学者はこの問題に対処するために、<a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">二名法</a>のルールに準拠した、生物の分類群ごとに単一の「学名」を使用しています。しかし、学名は基本的に誰も話さない言語であるラテン語に基づいているため、ほとんどの人にとっては一般名に比べて記憶に残りません。また、学名は生物の分類学的な扱いが反映されるため、科学者が生物間の進化関係についてより正確な理解を得たときに変更されることもあり、学名を知っている人たちの間でも、コミュニケーションにおける有用性は低下します。
-          </p>
-          <p>
-          古い格言がそれを要約しています。"一般的な名前は場所によって変わり、科学的な名前は時と場合によって変わる。
-          </p>
-          <p>
-          我々はこのような欠点に対応するために、可能な限り一般名と学名の両方を表示し、見る人の言語や地理的な好みに基づいて一般名を選択するようにしています。
-          </p>
         about_establishment_desc: |
           「定着方法」とは、ある種がどのように現在の場所で棲息することになったかを示します。「外来種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固有種」とは、特定の場所にしか存在しないことを表します。
         frequency:
@@ -4961,29 +4862,6 @@ ja:
           verifiable: 研究用+要同定
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>他の場所で使用されている名前を追加してみてください。新しい名前を作らないでください。</p></li>
-          <li><p>重複した名前を付けないようにしましょう。例えば、多数の鷹に対して「鷹」と名付けてはいけません。</p></li>
-          <li><p>高次分類群の場合は、「herons and allies (サギとシギ)」や「heath family (ツツジの科)」のようにすべての下位分類群を含む名前を使用してみてください。</p></li>
-          <li>
-          <p>
-          名前以外の情報を追加しないでください。
-          例：どのように名前が使用されるべきか
-          </p>
-          </li>
-          <li>
-          <p>
-          新しい言語名を追加する場合は英語表記にしてください。翻訳された言語名、例えば「日本語」ではなく、英語の「Japanese」としましょう。異なる言語でサイトを利用している人のために地域化された名前を表示するのが難しくなるか、あるいは不可能になるからです。
-          </p>
-          </li>
-          <li>
-          <p>
-          翻訳された言語に関連付けられた一般名は、その言語の既定の一般名として表示されます（場所の設定や名前の順序などの影響を除く）。
-          翻訳についてより詳しく知りたい方は<a class="readmore" href="/pages/translate">こちら</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:
@@ -4992,27 +4870,10 @@ ja:
           other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
         about_third_party_tracking: サードパーティのトラッキングについて
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist Network</a> は、世界のiNaturalistコミュニティに完全に接続された地域に特化したウェブサイトの集合体です。ネットワークサイトは、地元での利用を促進し地元の生物多様性に利益をもたらすために、iNaturalistと契約を結んだ地元の機関によってサポートされています。これらのサイトは、絶滅の危機に瀕している種を保護するために、自動的に一般の目には見えないようになっている自国の真の座標にアクセスすることができます。
-          </p>
-          <p>
-          あなたのユーザー名とパスワードは、iNaturalist Networkの一部であるすべてのサイトで使用できます。ネットワークサイトとのアフィリエイトを選択した場合、各サイトを運営している現地機関は、あなたのメールアドレスにもアクセスすることができます（サイトの活動についてあなたと連絡を取るためだけに使用します）。
-          </p>
-          <p>
-          注意: 1000件以上の観察記録がある場合は、実験的に所属を変更しないでください。
-          </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
         monthly_supporter_desc_html: |
           iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
-        muting_desc_html: |
-          <p>
-          誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。
-          </p>
-          <p>
-          ミュート対象の人数に上限はありませんが、特定の同定により、あなたの同定をコミュニティ同定で上書きするなど、潜在的に重要な通知を見逃すことになる点にご注意ください。
-          </p>
         name_place_help_html: |
           この場所で使用される一般名を優先します
         #Checkbox label for user preference about what to receive in the daily email update
