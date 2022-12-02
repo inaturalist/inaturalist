@@ -1,20 +1,9 @@
 lt:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} pakeitimas"
-    few: "%{count} pakeitimai"
-    many: "%{count} pakeitimai"
-    other: "%{count} pakeitimai"
   x_comments:
     one: '%{count} komentaras'
     few: '%{count} komentarai'
     many: '%{count} komentarai'
     other: '%{count} komentarai(-ų)'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> komentaras'
-    few: '<span class="count">%{count}</span> komentarai'
-    many: '<span class="count">%{count}</span> komentarai'
-    other: '<span class="count">%{count}</span> komentarai'
   x_faves:
     one: '%{count} pamėgimas'
     few: '%{count} pamėgimai'
@@ -30,41 +19,6 @@ lt:
     few: '%{count} identifikacijos'
     many: '%{count} identifikacijos'
     other: '%{count} identifikacijos'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> identifikacija'
-    few: '<span class="count">%{count}</span> identifikacijos'
-    many: '<span class="count">%{count}</span> identifikacijos'
-    other: '<span class="count">%{count}</span> identifikacijos'
-  x_identifications_:
-    one: '%{count} identifikacija'
-    few: '%{count} identifikacijos'
-    many: '%{count} identifikacijos'
-    other: '%{count} identifikacijos'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identifikuotojas'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> identifikuotojai'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> identifikuotojai'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identifikuotojai'
-  x_languages:
-    one: "%{count} kalba"
-    few: "%{count} kalbos"
-    many: "%{count} kalbos"
-    other: "%{count} kalbos"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} gyvenimo sąrašo pirmasis"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} gyvenimo sąraše pirmieji"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} gyvenimo sąraše pirmieji"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} gyvenimo sąraše pirmieji"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> žurnalo įrašas'
     few: '<span class="count">%{count}</span> žurnalo įrašai'
@@ -92,21 +46,6 @@ lt:
     few: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
     many: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
     other: "%{count} neteisingos rušies identifikacijos šiame %{rank}"
-  x_observations:
-    one: "%{count} stebėjimas"
-    few: "%{count} stebėjimai"
-    many: "%{count} stebėjimai"
-    other: "%{count} stebėjimai"
-  x_observations_:
-    one: "%{count} Stebėjimas"
-    few: "%{count} Stebėjimai"
-    many: "%{count} Stebėjimai"
-    other: "%{count} Stebėjimai"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> stebėjimas"
-    few: "<span class='count'>%{count}</span> stebėjimai"
-    many: "<span class='count'>%{count}</span> stebėjimai"
-    other: "<span class='count'>%{count}</span> stebėjimai"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} stebėjimas</a>"
     few: "<a href='%{url}'>%{count} stebėjimai</a>"
@@ -117,21 +56,11 @@ lt:
     few: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
     many: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
     other: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Stebėtojas'
-    few: '<span class="count">%{count}</span> Stebėtojai'
-    many: '<span class="count">%{count}</span> Stebėtojai'
-    other: '<span class="count">%{count}</span> Stebėtojai'
   x_others:
     one: "%{count} kitas"
     few: "%{count} kiti"
     many: "%{count} kiti"
     other: "%{count} kiti"
-  x_people:
-    one: "%{count} žmogus"
-    few: "%{count} žmonės"
-    many: "%{count} žmonės"
-    other: "%{count} žmonės"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} žmonės(-ių)</strong> padėjo %{user} su <strong>%{y} ID</strong>"
   x_photos:
     one: "%{count} nuotrauka"
@@ -143,21 +72,6 @@ lt:
     few: "%{count} Naujos rūšys"
     many: "%{count} Naujos rūšys"
     other: "%{count} Naujos rūšys"
-  x_new_users:
-    one: '%{count} Naujas Vartotojas'
-    few: '%{count} Nauji vartotojai'
-    many: '%{count} Nauji vartotojai'
-    other: '%{count} Nauji vartotojai'
-  x_species:
-    one: '%{count} Rūšis'
-    few: '%{count} Rūšys'
-    many: '%{count} Rūšys'
-    other: '%{count} Rūšys'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> rūšis"
-    few: "<span class='count'>%{count}</span> rūšys"
-    many: "<span class='count'>%{count}</span> rūšys"
-    other: "<span class='count'>%{count}</span> rūšys"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} rūšis</a>"
     few: "<a href='%{url}'>%{count} rūšys</a>"
@@ -168,11 +82,6 @@ lt:
     few: "%{count} Pasiūlymai atrinkti pagal:"
     many: "%{count} Pasiūlymai atrinkti pagal:"
     other: "%{count} Pasiūlymai atrinkti pagal:"
-  x_taxa:
-    one: "%{count} taksonas"
-    few: "%{count} taksonai"
-    many: "%{count} taksonai"
-    other: "%{count} taksonai"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> stebėtas taksonas"
     few: "<span class='count'>%{count}</span> stebėti taksonai"
@@ -188,11 +97,6 @@ lt:
     few: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
     many: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
     other: "<span class='count'>%{count}</span> identifikuoti stebėjimai iki rūšies ar žemesnio taksono"
-  x_sounds:
-    one: "%{count} garsas"
-    few: "%{count} garsai"
-    many: "%{count} garsai"
-    other: "%{count} garsai"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> kuruojamas taksonas"
     few: "<span class='count'>%{count}</span> kuruojami taksonai"
@@ -241,29 +145,6 @@ lt:
   about_this_bioblitz: Apie šį bioblicą
   about_this_map: Apie šį žemėlapį
   about_this_project: Apie šį projektą
-  about_trips_html: |
-    <h4>
-    Kelionės leidžia rinkti stebėjimo duomenis, pridedant kontekstą prie
-    jūsų pastebėjimų.
-    </h4>
-    <p>
-    <strong>Todėl</strong> stebėjimo duomenys apima informaciją apie
-    mėginių ėmimo sąlygas, naudingas atliekant mokslinę analizę, pavyzdžiui, paskirstymo
-    modeliavimą (neapdoroti iNaturalistiniai stebėjimai yra „tik lokacijos" duomenys).
-    </p>
-    <p>
-    <strong>Kas</strong> saugoma kelionės duomenyse, norit sukurti kontekstinę stebėjimo informaciją:
-    </p>
-    <ul>
-    <li><strong>Ką</strong> jūs tikėjotės aptikti (stebėjimų sąrašas)</li>
-    <li><strong>Kur</strong> vykdėte stebėjimą (paieškos vieta)</li>
-    <li><strong>Kada</strong> vykdėte stebėjimą (stebėjimo intervalai)</li>
-    </ul>
-    <p>
-    Kelionės tikslų sąraše esančios rūšys, kurias aptikote planuotoje paieškos vietoje ir planuotu laiku, laikomos aptiktomis rūšimis. Tuo tarpu nepastebėtos, sąraše esančios rūšys yra laikomos neaptiktomis rūšimis. 
-    Spustelėkite „Pateikti aptikimo-neaptikimo duomenis lentelėje“, kad sukurtumėte
-    kelionių ir susijusių rūšių buvimo ir nebuvimo įrašų lentelę. <a href='%{url}'>Sužinokite daugiau</a>
-    </p>
   about_trusting_projects: Apie projekto duomenų prieinamumą
   about_trusting_projects_options_any: Visi jūsų stebėjimai šiame projekte
   about_trusting_projects_options_any_desc: |-
@@ -1361,7 +1242,6 @@ lt:
     failure:
       already_authenticated: 'Jūs jau esate prisijungęs.'
       unauthenticated: 'Prieš tęsiant, Jums reikia prisijungti arba užsiregistruoti.'
-      invalid: 'Neteisingas el. paštas arba slaptažodis.'
       invalid_token: 'Neteisingas autentifikavimo prieigos raktas.'
       user:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
@@ -1375,19 +1255,17 @@ lt:
       send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
       no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
     registrations:
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
       signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
       updated: 'Jūsų paskyra sėkmingai atnaujinta.'
-      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
     mailer:
-      confirmation_instructions:
-        subject: 'Patvirtinimo instrukcijos'
       reset_password_instructions:
         subject: 'Atstatyti slaptažodžio instrukcijas'
   devise_reset_password_instructions_hello_email: Sveiki, %{email},
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   devise_unlock_instructions_unlock: Atblokuoti paskyrą
@@ -4264,16 +4142,6 @@ lt:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} iš %{count} patvirtintas"
-    few: "%{x} iš %{count} patvirtinti"
-    many: "%{x} iš %{count} patvirtinti"
-    other: "%{x} iš %{count} patvirtinti"
-  x_of_count_observed:
-    one: "%{x} iš %{count} stebėtas"
-    few: "%{x} iš %{count} stebėti"
-    many: "%{x} iš %{count} stebėti"
-    other: "%{x} iš %{count} stebėti"
   x_project_stats: "%{project} statistika"
   x_site_is_a_social_network_for_naturalist: |
     %{site} yra socialinis tinklas skirtas gamtininkams! Fiksuokite savo augalų ir gyvūnų stebėjimus,
@@ -4372,36 +4240,9 @@ lt:
         Mes numatome, kad funkcija sugrįš iki %{date}.
     donate:
       donate_short_desc: "Paremkite mus paaukodami dabar!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist yra viena didžiausių biologinę įvairovę tiriančių bendruomenių pasaulyje. Ačiū, kad esate jos dalis!
-        </p>
-        <p class="lead">
-        Jeigu tikite šios pasaulinės gamtos mylėtojų bendruomenės galia dalintis žiniomis ir generuoti nepakeičiamus biologinės įvairovės duomenis, prašome prisidėti su vienkartine ar pasikartojančia dovana, arba žiūrėkite <a
-        href="https://www.inaturalist.org/pages/giving">kiti būdai teikti paramą</a>.
-        </p>
-        <p class="lead">
-        Jūsų parama padeda iNaturalist bendruomenei tobulinti kompiuterinio matymo sistemą ir realizuoti naujas idėjas, taip pat palaiko mūsų serverius ir personalą.
-        </p>
-        <p class="text-muted">
-        iNaturalist yra Kalifornijos Mokslų Akademijos ir Nacionalinės Geografijos Bendruomenės bendra iniciatyva. Visos aukos skiriamos Kalifornijos Mokslų Akademijai, neapmokestinamai, pelno nesiekiančiai organizacijai, įsikūrusiai Jungtinėse Amerikos Valstijose (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Aš remiu iNaturalist nes...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Tapkite mėnesiniu iNaturalist remėju
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist yra viena didžiausių biologinę įvairovę tiriančių bendruomenių pasaulyje. Ačiū, kad esate jos dalis!
-          </p>
-          <p class="lead">
-          Mes norime, kad iNaturalist liktu nemokama programa, tačiau ją valdyti kainuoja. Jeigu mėgstate iNaturalist, prašome tapti mėnesiniu remėju. Pasikartojanti parama užtikrina stabilias pajamas, kurios leidžia tobulinti iNaturalist infrastruktūrą ir personalą. Jūs taip pat galite rinktis demonstruoti savo mėnesinio remėjo statusą savo paskyros profilyje.
-          </p>
-          <p class="lead">
-          Jūsų parama padeda iNaturalist bendruomenei tobulinti kompiuterinio matymo sistemą ir realizuoti nauajs idėjas, taip pat palaiko mūsų serverius ir personalą. Jeigu norite suteikti vienkartinę paramą, prašome <a href="%{donate_url}">spausti čia</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist yra Kalifornijos Mokslų Akademijos ir Nacionalinės Geografijos Bendruomenės bendra iniciatyva. Visos aukos skiriamos Kalifornijos Mokslų Akademijai, 501(c)(3) neapmokestinamai, pelno nesiekiančiai organizacijai, įsikūrusiai Jungtinėse Amerikos Valstijose.
-          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -4410,36 +4251,6 @@ lt:
       index:
         deprecated_banner: |
           Prašome atkreipti dėmesį, kad nuo 2019 metų sausio mėnesio Vadovų funkcija nebeplėtojama; mes jos neištrinsime, bet ir nebetobulinsime.
-      edit:
-        import_tags_from_csv_help_html: |
-          <p>
-          Įkelkite CSV failą, kuriame yra šio vadovo taksonų žymos. Jūsų CSV turi atrodyti šitaip:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Pavadinimas</th>
-          <th>spalva</th>
-          <th>Rankų skaičius</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>dvikojis</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>raudona|juoda</td>
-          <td>0</td>
-          <td>keturkojis</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Pirmoji eilė prasideda su „Pavadinimu“, tada seka žymų kategorijos. Tada kiekviena sekanti eilutė prasideda su tasono pavadinimu ir stulpelį atitinkančia žyma. Šiame pavyzdyje <i>Homo sapiens</i> gauna žymą <code>dvikojis</code> ir <code>rankų skaičius=2</code>, ir <i>Vulpes vulpes</i> gauna <code>keturkojis</code>, <code>spalva=raudona</code>, <code>spalva=juoda</code> ir <code>Rankų skaičius=0</code>. Tušti langeliai bus nepaisomi. Galite įkelti keletą eilučių vienam taksonui. Taip pat galite įrašyti daug reikšmių viename langelyje, jeigu jos atskirtos vertikalaus brūkšnio simboliu.
-          </p>
       eolupdate_notice: |
         Būkite kantrūs, turinio iš EOL importas gali užtrukti kelias minutes.
       pdf_layouts:
@@ -4540,10 +4351,6 @@ lt:
           Ištrinti visus savo stebėjimus iš šio projekto
       edit:
         admins_must_be_existing_members: Administratoriais gali būti tik projekto nariai.
-        bioblitz_desc_html: |
-          <p>
-          Bioblicas yra renginys, kuriame dalyviai bando surasti kiek galima daugiau rūšių per tam tikrą laiko tarpą. Tai smagus būdas žmones supažindinti su biologine įvairove ir tuo pačiu surinkti naudingų duomenų.
-          </p>
         change_admin_desc: Pasirinkite vieną iš projekto kuratorių, kuris bus naujas administratorius.
         change_owner_alert: |
           Tai pašalins jūsų galimybę ištrinti šį projektą arba vėl ką nors padaryti savininku. Ar norite tęsti?
@@ -4686,27 +4493,6 @@ lt:
           unannotated: Be papildomos informacijos
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Prašome pridėti tik pavadinimus, kurie iš tiesų yra kažkur naudojami. Prašome neišgalvoti pavadinimų patiems.</p></li>
-          <li><p>Nepridėkite dublikatų.</p></li>
-          <li>
-          <p>
-          Nepridėkite informacijos, kuri nėra pavadinimas, pvz.: papildoma informacija, kur ir kaip pavadinimas turi būti naudojamas.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nauji leksikonai turi būti anglų kalba. Nepridėkite išverstų kalbų pavadinimų (pvz.: Français).
-          </p>
-          </li>
-          <li>
-          <p>
-          Tam tikros kalbos pavadinimai bus rodomi tinklalapyje, jeigu nustatymuose bus pasirinkta tinklalapio kalba arba vieta, kurioje kalbama ta kalba.
-          <a class="readmore" href="/pages/translate">Sužinokite daugiau apie vertimą</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pridėkite vietoves, kad vartotojai iš šių vietovių pirmiausiai matytų šį pavadinimą. Jeigu vietovėje yra vartojami keli skirtingi pavadinimai, pirmenybę galite keisti <a href="%{url}">čia</a>. Prašome <strong>nepridėti</strong> visų vietovių, kur pavadinimas yra naudojamas. Pridėkite tik tas vietoves, kuriose naudojamas pavadinimas yra kitoks, nei kitur.
     users:
@@ -4725,13 +4511,6 @@ lt:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jei apsigalvosite visada galite
           <a href='/users/edit'>keisti savo nustatymus</a>.
-        muting_desc_html: |
-          <p>
-          Kažką nutildžius nebegausite pranešimų apie jų veiklą, tokią kaip jūsų stebėjimų komentavimas, žinučių jums rašymas, jūsų paminėjimas komentaruose ir t. t. Nutildymas padeda jums ignoruoti kitus vartotojus nevaržant jų veiklos.
-          </p>
-          <p>
-          Galite nutildyti kiek tik norite žmonių, bet atminkite, kad galite praleisti kažką svarbaus, pavyzdžiui jūsų stebėjimo identifikacijas, kurios pakeičia bendruomenės ID.
-          </p>
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Komentarai
         #Checkbox label for user preference about what to receive in the daily email update
