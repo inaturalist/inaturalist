@@ -5,12 +5,6 @@ sq:
   x_identifications:
     one: '1 identifikim'
     other: '%{count} identifikimet'
-  x_species:
-    one: '1 lloj'
-    other: '%{count} species'
-  x_species_html:
-    one: "<span class='count'>1</span> speciet"
-    other: "<span class='count'>%{count}</span> speciet"
   x_species_link_html:
     one: "<a href='%{url}'>1 speciet</nje>"
     other: "<a href='%{url}'>%{count} speciet</a>"
@@ -1747,13 +1741,6 @@ sq:
     updates_by_you_panel_body: Mbani mend, në dritaren "Të gjitha përditësimet" ju do të pranoni përditësimet jo vetëm të përmbajtjes suaj, por gjithashtu të përmbajtjeve të njerëzve që ju ndiqni, si dhe taxave apo vendeve për të cilat ju abonoheni, përmes përdorimit të veglës "Abonimet" në të djathtë.
     youve_got_updates_panel_title: Ke të reja!
     youve_got_updates_panel_body_p1: Qëndro i kyqur me përditësimet në vazhdim...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Permbajtja juaj:</strong> Aktiviteti ne vezhgimet tuaja si komentet, identifikimet apo te preferuarat nga komuniteti %{site_name} . Ju gjithashtu do te pranoni perditesimet kur dikush shton vezhgim ne nje projekt apo shton shenime me fusha shtese </li>
-      <li><strong>Njerezit:</strong> Vezhgime te reja apo postime te revistes nga njerezit qe ju ndiqni</li>
-      <li><strong>Organizmat, Projektet & Vendet:</strong> Vezhgime te reja nga organizma specifike ose nga vendet per te cilat jeni abonuar. Ju gjithashtu mund te ju bashkangjiteni projekteve, ne menyre qe te njoftoheni me te rejat, kur ata postojne projekte apo postime nga revista.</li>
-      <li><strong>Diskutimet ne te cilat jeni interesuar:</strong> Te komentuarit apo te shtuarit e identifikimeve ne permbajtjen e te tjereve ben qe ju automatikisht te abonoheni per cdo aktivitet tjeter te asaj permbajtjeje. Perdorni opsiononin: "Menagjoni abonimet tuaja, ne menyre qe mos te pranoni te rejat"</li>
-      </ul>
   one_by_one: "Një nga një"
   one_of_your_lists: "Një nga listat tuaja..."
   only_a_project_manager_can_add: Vetëm njëri nga menaxherët e projektit mund të shtoj gjendjen e projektit të përzgjedhur
