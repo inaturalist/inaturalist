@@ -1,14 +1,7 @@
 sv:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} ändring"
-    other: "%{count} ändringar"
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> kommentar'
-    other: '<span class="count">%{count}</span> kommentarer'
   x_faves:
     one: '%{count} favorit'
     other: '%{count} favoriter'
@@ -18,27 +11,6 @@ sv:
   x_identifications:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> bestämning'
-    other: '<span class="count">%{count}</span> bestämningar'
-  x_identifications_:
-    one: '%{count} bestämning'
-    other: '%{count} bestämningar'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
-  x_languages:
-    one: "%{count} språk"
-    other: "%{count} språk"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} först i livslistan"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} första i livslistan"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> dagboksinlägg'
     other: '<span class="count">%{count}</span> dagboksinlägg'
@@ -59,30 +31,15 @@ sv:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} felbestämning av art i denna %{rank}"
     other: "%{count} felbestämningar av arter i denna %{rank}"
-  x_observations:
-    one: "%{count} fynd"
-    other: "%{count} fynd"
-  x_observations_:
-    one: "%{count} fynd"
-    other: "%{count} fynd"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> fynd"
-    other: "<span class='count'>%{count}</span> fynd"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} fynd</a>"
     other: "<a href='%{url}'>%{count} fynd</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> fynd granskat"
     other: "<span class='count'>%{count}</span> fynd granskade"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatör'
-    other: '<span class="count">%{count}</span> observatörer'
   x_others:
     one: "%{count} annan"
     other: "%{count} andra"
-  x_people:
-    one: "%{count} person"
-    other: "%{count} personer"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
   x_photos:
     one: "%{count} bild"
@@ -90,24 +47,12 @@ sv:
   x_new_species:
     one: "%{count} ny art"
     other: "%{count} nya arter"
-  x_new_users:
-    one: '%{count} ny användare'
-    other: '%{count} nya användare'
-  x_species:
-    one: '%{count} art'
-    other: '%{count} arter'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> art"
-    other: "<span class='count'>%{count}</span> arter"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} art</a>"
     other: "<a href='%{url}'>%{count} arter</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} förslag filtrerades på:"
     other: "%{count} förslag filtrerades på:"
-  x_taxa:
-    one: "%{count} taxon"
-    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> observerat taxon"
     other: "<span class='count'>%{count}</span> observerade taxa"
@@ -117,9 +62,6 @@ sv:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> fynd av forskningsklass bestämt till art eller lägre"
     other: "<span class='count'>%{count}</span> fynd av forskningsklass bestämda till art eller lägre"
-  x_sounds:
-    one: "%{count} ljud"
-    other: "%{count} ljud"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> förvaltat taxon"
     other: "<span class='count'>%{count}</span> förvaltade taxa"
@@ -184,24 +126,6 @@ sv:
   about_this_bioblitz: Om denna bioblitz
   about_this_map: Om denna karta
   about_this_project: Om detta projekt
-  about_trips_html: |
-    <h4>
-    Resor gör det möjligt att spara närvaro/frånvaro-data genom att lägga till omständigheterna kring dina fynd
-    </h4>
-    <p>
-    <strong>Varför</strong> Närvaro/frånvaro-data innehåller information om insats vilket är användbart vid vetenskapliga analyser såsom modellering av utbredning (vanliga iNaturalist-fynd är 'endast närvaro'-data).
-    </p>
-    <p>
-    <strong>Hur</strong> En resa ger sammanhang till ditt fynd genom att spara:
-    </p>
-    <ul>
-    <li><strong>Det</strong> du letade efter (mållista)</li>
-    <li><strong>Var</strong> du letade (sökområde)</li>
-    <li><strong>När</strong> du letade (sökintervall)</li>
-    </ul>
-    <p>
-    Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera närvaro/frånvaro-data från resor' för att generera en tabell med närvaro/frånvaro-data för arter från resor med tillhörande fynd. <a href='%{url}'>Läs mer</a>
-    </p>
   about_trusting_projects: Om att lita på projekt
   about_trusting_projects_options_any: Alla dina fynd i detta projekt
   about_trusting_projects_options_any_desc: |-
@@ -764,14 +688,6 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
-      kommer att resultera i <strong>%{count} oavsiktlig oenighet</strong> för bestämningar av %{child}.
-    other: |
-      Baserat på ett urval om %{percent}% av dessa bestämningar, uppskattar vi att detta
-      kommer att resultera i <strong>%{count} oavsiktliga oenigheter</strong> för bestämningar av %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Baserat på ovan, kan community-bestämningen ytterligare bekräftas eller förbättras?
   batch: Batch
@@ -1302,7 +1218,7 @@ sv:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons koordinatsekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Redigera iNaturalists taxonomi enligt de policyer som anges i <a href="/pages/curator+guide#policies" target="_blank">Policysektionen i Förvaltarvägledningen</a>. Detta innebär att de kan lägga till, dela upp, byta, slå ihop, inaktivera och radera taxa på iNaturalist. De kan också redigera bevarandestatus och ett taxons koordinatsekretess, samt redigera och hantera vardagliga namn som lagts till av andra användare.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Dölja kommentarer och stänga av användare för att de bryter mot <a
     href="/pages/community+guidelines" target="_blank">Communityns
@@ -1510,7 +1426,6 @@ sv:
     failure:
       already_authenticated: 'Du är redan inloggad.'
       unauthenticated: 'Du måste logga in eller registrera dig för att kunna fortsätta.'
-      invalid: 'Ogiltig e-postadress eller lösenord.'
       invalid_token: 'Ogiltig autentiseringstoken.'
       user:
         suspended: Ditt konto har blivit avstängt
@@ -1524,19 +1439,17 @@ sv:
       send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
       no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
     registrations:
+      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
       signed_up: 'Välkommen! Du har lyckats registrera dig.'
       updated: 'Ditt konto har uppdaterats.'
-      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruktioner för bekräftelse'
       reset_password_instructions:
         subject: 'Instruktioner för återställning av lösenord'
   devise_reset_password_instructions_hello_email: Hej %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Om du inte har begärt detta, vänligen ignorera detta mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2684,8 +2597,6 @@ sv:
       yy: "%då"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3170,13 +3081,6 @@ sv:
     updates_by_you_panel_body: Kom ihåg, i fliken "Alla uppdateringar" får du inte bara uppdateringar som rör ditt innehåll utan även innehåll från personer du följer samt taxa eller fyndplatser som du prenumererar på med hjälp av prenumerationsverktyget till höger.
     youve_got_updates_panel_title: Du har fått uppdateringar!
     youve_got_updates_panel_body_p1: Häng med genom uppdateringar om följande...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Ditt innehåll:</strong> Aktivitet rörande dina fynd såsom kommentarer, artbestämningar eller favoriter från %{site_name}-communityn. Du kommer också att få uppdateringar när någon lägger till ditt fynd till ett projekt, eller lägger till ytterligare anteckningsfält.</li>
-      <li><strong>Personer:</strong> Nya fynd eller dagboksinlägg från de personer du följer.</li>
-      <li><strong>Organismer, projekt & fyndplatser:</strong> Nya fynd av särskilda organismer eller fyndplatser som du prenumererar på. Du kan också gå med i projekt så att du blir meddelad när de publicerar dagboksinlägg.</li>
-      <li><strong>Diskussioner du bidrar till:</strong> Genom att kommentera eller lägga till bestämningar till någon annans innehåll prenumererar du automatiskt på all ny aktivitet för detta innehåll. Använd verktyget "Hantera dina prenumerationer" för att sluta få meddelanden.</li>
-      </ul>
   one_by_one: "En-efter-en"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "ett av följande måste vara sant:"
@@ -3322,59 +3226,11 @@ sv:
     original: original
   photos_updated: Bilder uppdaterade.
   pi_consent_desc_title: Om personuppgifter
-  pi_consent_desc_html: |
-    <p>
-    Vi sparar personuppgifter som användarnamn och e-postadresser
-    för att kunna hantera konton på denna webbplats, och för att vi ska kunna
-    följa integritetslagar behöver du kryssa i denna ruta för att visa att du samtycker
-    till denna användning av personuppgifter. För att lära dig mer om vilken
-    information vi samlar in och hur vi använder den, vänligen se vår
-    <a href='%{privacy_url}' target='_blank'>Integritetspolicy</a>
-    och våra <a href='%{terms_url}' target='_blank'>Användarvillkor</a>.
-    </p>
-    <p>
-    Man kan inte ha ett iNaturalist-konto utan att personuppgifter
-    lagras, så det enda sättet du kan återkalla detta samtycke är genom
-    att ta bort ditt konto.
-    </p>
   pi_consent_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mig för att kunna hantera mitt konto
   pi_consent_child_label: |
     Jag medger att iNaturalist får lagra och bearbeta en begränsad typ av personuppgifter om mitt barn för att kunna hantera mitt barns konto
   data_transfer_consent_desc_title: Om samtycke till överföring av personuppgifter
-  data_transfer_consent_desc_html: |
-    <p>
-    Vissa integritetslagar, såsom Europeiska unionens dataskyddsförordning
-    (GDPR), kräver uttryckligt samtycke för att överföra personuppgifter
-     från deras jurisdiktioner till andra jurisdiktioner där det rättsliga skyddet
-    för denna information inte anses vara tillräckligt. Från och med
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    anser inte längre den Europeiska unionen att USA är en
-    jurisdiktion som ger tillräckligt rättsligt skydd för personuppgifter,
-    särskilt då på grund av möjligheten att den amerikanska regeringen
-    övervakar data som kommer in i USA. Det är möjligt att andra jurisdiktioner
-    kan ha samma åsikt.
-    </p>
-    <p>
-    Användning av iNaturalist kräver lagring av personuppgifter som din
-    e-postadress, all iNaturalist-data lagras i USA, och
-    vi kan inte vara säkra på vilken jurisdiktion du är i när du använder
-    iNaturalist, så för att följa integritetslagar som GDPR,
-    måste du uppge att du förstår och accepterar denna risk och samtycker
-    till att dina personuppgifter överförs till iNaturalists servrar i
-    USA.
-    </p>
-    <p>
-    Lär dig mer om vilken information vi samlar in och hur vi använder den,
-    se vår
-    <a href='%{privacy_url}' target='_blank'>Integritetspolicy</a>
-    och våra <a href='%{terms_url}' target='_blank'>Användarvillkor</a>.
-    </p>
-    <p>
-    Det finns inget sätt att ha ett iNaturalist-konto utan att lagra personuppgifter,
-    så det enda sättet att återkalla detta samtycke är genom att ta bort ditt
-    konto.
-    </p>
   data_transfer_consent_label: |
     Jag samtycker till att mina personuppgifter får överföras till USA
   data_transfer_consent_child_label: |
@@ -4621,10 +4477,6 @@ sv:
   supporting: Stödjer
   suspend_user: Stäng av användare
   suspend_user_html: Stäng av %{user}
-  suspend_user_reason_instructions_html: |
-    Förklara varför du stänger av detta konto och lista överträdelser av
-    %{link_start_tag}gemenskapens riktlinjer%{link_end_tag}. Vänligen avstå
-    från personliga åsikter.
   sw_lat: SV Lat.
   sw_lon: SV Long.
   sync: Synka?
@@ -4910,9 +4762,6 @@ sv:
   this_list_only_accepts_taxa_that_are_species: Denna lista accepterar endast taxa på artnivå
   this_list_only_accepts_taxa_that_are_species_or_lower: Denna lista accepterar endast taxa på artnivå eller lägre
   this_observation: Detta fynd
-  this_observation_is_featured_on_x_sites:
-    one: Detta fynd uppmärksammas på %{count} sajt
-    other: Detta fynd uppmärksammas på %{count} sajter
   this_observation_is_research_grade: Detta fynd är av forskningsklass!
   this_observation_was_created_using: "Detta fynd skapades med:"
   this_photo_is_already_associated: Denna bild är redan kopplad till ett av dina fynd.
@@ -5308,10 +5157,6 @@ sv:
   view_all_fields: Visa alla fält
   view_all_flags: Visa alla flaggor
   view_all_members: Visa alla medlemmar
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Visa alla %{count}"
-    other: "Visa alla %{count}"
   view_all_observations: Visa alla fynd
   view_all_photocount_photos: "Visa alla %{photo_count} bilder"
   view_assessment: Visa bedömning
@@ -5492,12 +5337,6 @@ sv:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} av %{count} bekräftad"
-    other: "%{x} av %{count} bekräftade"
-  x_of_count_observed:
-    one: "%{x} av %{count} observerad"
-    other: "%{x} av %{count} observerade"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} av %{y} personer (över 2/3) håller med om det"
   x_is_the_root_of_the_tree: "%{rank} %{name} är trädets rot"
   x_project_journal: "%{project}s %{name}"
@@ -5707,41 +5546,10 @@ sv:
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
-        </p>
-        <p class="lead">
-        Om du tror på kraften hos denna globala community av naturälskare att dela kunskap och generera oersättlig biologisk mångfalds-data,
-        överväg en engångs- eller återkommande gåva online, eller se <a
-        href="https://www.inaturalist.org/pages/giving">andra sätt att
-        ge</a>.
-        </p>
-        <p class="lead">
-        Din donation hjälper till att stödja iNaturalist när communityn växer, från framsteg inom bildigenkänning och implementering av nya funktioner till att stödja våra servrar och personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-        California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater (Skatte-ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jag stöder iNaturalist eftersom...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Bli månatlig bidragsgivare till iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: BLI MÅNATLIG GIVARE TILL INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist är en av världens största communitys som ägnar sig åt att utforska biologisk mångfald. Tack för att du är en del av den!</strong>
-          </p>
-          <p class="lead">
-          Vi vill behålla iNaturalist gratis för användning, men den är inte gratis att driva. Om du älskar iNaturalist, vänligen överväg att bli en månatlig bidragsgivare. Återkommande gåvor hjälper se till att iNaturalist kan fortsätta skala upp sin infrastruktur och personal genom att bidra till förutsägbara intäkter. Du kan också välja att visa din månatliga givarstatus i din användarprofil.
-          </p>
-          <p class="lead">
-          Dina välgörenhetsdonationer hjälper till att stödja iNaturalist när communityn växer, från framsteg i bildigenkänning och implementera nya funktioner till att stödja våra servrar och personal. Om du föredrar att ge en engångsdonation, vänligen <a href="%{donate_url}">klicka här</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist är ett gemensamt initiativ från California Academy of Sciences och National Geographic Society. Alla donationer kommer att tas emot av
-          California Academy of Sciences, en 501(c)(3) skattebefriad icke-vinstdrivande organisation baserad i Amerikas förenta stater.
-          </p>
         thank_you_for_being_a_monthly_supporter: Tack för att du är en Månatlig givare!
         thank_you_for_being_a_monthly_supporter_caps: TACK FÖR ATT DU ÄR EN MÅNATLIG GIVARE!
     flags:
@@ -5780,38 +5588,6 @@ sv:
           med arter. Om du vill importera arter från en EOL-samling, klistra då in URL:en till den samlingen här.
         guide_place_desc: |
           Genom att knyta din guide till en fyndplats kan folk hitta den när de söker efter fyndplatser, och den kommer att visa fyndplatsgränsen på %{site_name}-kartor där de visas om en gräns har satts (t.ex. "kort"-vy, taxonsidor etc.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Ladda upp en CSV-fil med taggningar för taxa in denna guide. Din CSV-fil bör se ut så här:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Namn</th>
-          <th>färg</th>
-          <th>Antal händer</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>tvåbent</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>röd|svart</td>
-          <td>0</td>
-          <td>fyrbent</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Den första raden börjar med "Namn" följt av taggningen karaktärer/kategorier. Varje följande rad startar sedan med taxonnamn följt av taggningar som motsvarar karaktären överst i kolumnen. I detta exempel får <i>Homo sapiens</i> taggningarna
-          <code>tvåbent</code> och <code>Antal händer=2</code>,
-          och <i>Vulpes vulpes</i> får <code>fyrbent</code>,
-          <code>färg=röd</code>, <code>färg=svart</code>, och <code>Antal händer=0</code>. Tomma ignoreras och man kan addera flera rader per taxon. Man kan även lägga till flera värden per cell separerade av ett vertikalstreck.
-          </p>
         licensing_explanation: |
           Genom att licensiera ditt innehåll ger du andra personer rätt att kopiera och ändra utan att be om lov. Detta underlättar delning av ditt arbete, och om du införlivar tredjepartsinnehåll från andra källor som använder Creative Commons dela lika-licenser (som
           Wikipedia), är du juridiskt skyldig att använda en liknande licens. Här är en översikt över alla Creative Commons-licenser och vad de betyder:
@@ -5831,12 +5607,6 @@ sv:
         Detta kan ta ett tag, så prova att ladda om sidan om några minuter.
       mobile_downloads_tip_html: |
         Denna guide kan laddas ned till mobilappen för att kunna användas offline.
-      mobile_downloads_help_html: |
-        <p>Detta kommer att skapa ett nedladdningsbart arkiv över alla data och media som är kopplade till denna guide så att användare av mobilappar kan se allt
-        innehåll i guiden utan internetanslutning. Det kommer att ta några minuter att generera arkivet, men när detta väl är aktiverat kommer arkivet att uppdateras närhelst du ändrar i guiden.</p>
-        <p class="alert status">
-        Vänligen <strong>aktivera inte mobil nedladdning för offline-åtkomst om du inte verkligen har för avsikt att använda den.</strong> Den utgör en avsevärd belastning för vårt system.
-        </p>
       pdf_layouts:
         grid: rutnät
         book: bok
@@ -5969,13 +5739,6 @@ sv:
         disagreement_count: Antal oeniga
         identification_count: Antal bestämningar
         score: Poäng
-        explanation: |
-          <p>
-          Om en användare av någon anledning inte godkänner community-taxonet, kan den avvisa det, vilket innebär att användarens bestämning används för länkning till andra fynd, uppdatering av livslistor etc. Det betyder också att hens fynd endast kan uppnå forskningsklass när communityn håller med hen.
-          </p>
-          <p>
-          Community-bestämningen visas dock fortfarande, så att alla kan se de olika bestämningar som har föreslagits.
-          </p>
         you_have_opted_out: Du har valt bort community-bestämningar
         opt_in_for_this_observation: Välj communityn för detta fynd
         your_id_does_not_match: |
@@ -6013,30 +5776,6 @@ sv:
           innebär ytterligare en rad för släktet Homo från fråga 1, som inte inkluderade det i sitt totalantal eftersom det bara räknade arten Homo sapiens inom det släktet, eftersom det var "lövet" i den delen av dess träd.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Lodrät
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} gemensam"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} gemensamma"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} som skiljer"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} som skiljer"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} totalt"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} totalt"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} unik"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} unika"
       export:
         choose_columns_desc: Välj de kolumner du vill exportera
         create_a_query_desc_html: |
@@ -6062,40 +5801,6 @@ sv:
         taking_a_while: "Detta tar ett tag. Försök med ett av alternativen nedan."
         date_range_help: "Max- och mindatum observerad anges i YYYY-MM-DD-format, t.ex. 2015-01-17"
         created_on_help: "Datum då fynd skapades, inte observerades, t.ex. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Andra alternativ</h3>
-          <p>
-          Stor exporter slöar ner vår infrastruktur och gör det svårare för oss att släppa nya ändringar. Här är några andra alternativ att överväga:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF skördar de flesta av våra fynd som är licensierade och av forskningsklass, och deras exportverktyg är mycket bra. GBIF-exporter inkluderar också en <a href="https://www.doi.org/">DOI</a>
-          som du kan citera om du publicerar forskning baserad på de data du exporterar, och dessa citeringar hjälper oss enormt eftersom de gör det möjligt för oss att se hur iNat-data kommer till användning.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
-          Archive (DwC-A) för GBIF</a>: detta är <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>-
-          filen vi genererar som GBIF skördar, så där ska inte finnas något som inte också finns på GBIF, men om du vill ha hela arkivet, kan du ladda ner det. Det är en mycket stor zip-fil som innehåller poster i CSV. Uppdateras veckovis.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge på FGVC 2017</a>: länkar till 675 000 licensierade
-          iNaturalist-bilder av 5 089 arter som kan användas för att träna datorer i bildigenkänning. Skapad juni 2017, inte uppdaterad.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Unik identifierare för fyndet"
         species_guess: "Namnet observatören angav för observerat taxon"
@@ -6169,20 +5874,6 @@ sv:
         allow_curator_coordinate_access_desc_html: |
           Tillåt projektförvaltare att se de dolda koordinaterna för detta fynd.
         ancestor_disagreements_desc: "Antal bestämda taxa som stämmer med ett taxons förfäder, men inte håller med om specifikt taxon (dvs \"Jag tror att det är i det släktet men jag håller inte med om arten\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Ett community-taxon (eller den kollektiva bestämningen) representerar det taxon %{site_name}-communityn tror skildras i ett fynd. Om du är intresserad av hur vi väljer community-taxon kan du läsa kommentarerna om algoritmen nedan, men
-          i princip försöker vi <strong>välja ett taxon som mer än 2/3 av determinatörerna är överens om</strong>. Ibland betyder det att vi väljer ett taxon på högre nivå som innehåller ett antal motsägande taxa (t.ex. du tror att det är en kungssnok och jag tror på en skallerorm, så iNat väljer underordning Serpentes som omfattar alla ormar). Algoritmen lutar aningen åt avvikande åsikter då vi har upptäckt att dessa ofta är de korrekta.
-          </p>
-          <p class="ui">
-          Ett fynd av forskningsklass måste (bland annat) ha ett community-taxon. Om ett fynd endast har en artbestämning kommer den heller inte att ha något community-taxon. Alla fynd med minst en artbestämning kommer också att ha ett fyndtaxon. Ett fyndtaxon är det taxon vi använder när vi delar fynd med datapartners, länkar fynd av samma taxon på sajten, uppdaterar din livslista etc. I de flesta fall kommer fyndtaxonet till slut att bli satt till samma som community-taxonet, men ibland skiljer de sig, särskilt innan communityn har enats om en bestämning. T.ex., om du tror att det är en orm
-          (underordning Serpentes) och jag tror att det är en kungssnok (släkte <i>Lampropeltis</i>) kommer fyndtaxonet bli kungssnok (stödd endast av min bestämning) medan community-taxonet blir Serpentes (stödd av åtminstone två bestämningar).
-          Om du av någon anledning inte håller med om community-taxonet, kan du förkasta det baserat på dina egna iakttagelser, vilket betyder att fyndtaxonet aldrig kommer att bli community-taxonet (utan snarare din egen bestämning). Det betyder också att ditt fynd endast kan uppnå forskningsklass när communityn håller med <em>dig</em>. Om du inte gillar idén med community-taxa kan du välja bort dem helt och hållet genom att
-          <a href="/users/edit" target="_blank">ändra dina inställningar</a>.
-          </p>
-          <p class="ui">
-          <strong>Algoritmen:</strong> för alla bestämda taxa och de taxa som omfattar dem (t.ex. släktet<i>Homo</i> omfattar <i>Homo sapiens</i>), ger poäng till var och en som förhållandet mellan de som 'håller med' - sammanräknade bestämningar till detta taxon och totala antalet bestämningar, 'håller inte med' - antalet bestämningar som helt skiljer sig (dvs bestämningar till taxa som inte omfattar det taxon som poängbedöms), och 'håller bara med om förälder' - antalet mer försiktiga bestämningar som inte håller med om den mer exakta bestämningen. För artbestämda taxa som har en poäng över 2/3 och minst 2 bestämningar, välj taxon med lägst rang.
-          </p>
         cumulative_count_desc: 'Antal bestämning av ett enskilt taxon och alla underliggande'
         curator_coordinate_access_disabled_desc_html: |
           Detta projekt tillåter inte fynd med koordinater som förvaltarna inte kan se. Om du inte vill dela koordinaterna för detta fynd med förvaltarna av detta projekt, måste du ta bort fyndet från projektet.
@@ -6194,75 +5885,6 @@ sv:
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
         join_project_desc_html: |
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Datakvalitetsbedömningen är en summering av ett fynds noggrannhet. Alla
-          fynd börjar som <strong>"grund</strong>klass och får
-          <strong>"behöver bestämning"</strong> när
-          </p>
-
-          <ul>
-          <li>fyndet <strong>har datum</strong></li>
-          <li>fyndet <strong>är georefererat</strong> (d.v.s. har lat/long-koordinater)</li>
-          <li>fyndet <strong>har bilder eller ljud</strong></li>
-          <li>fyndet <strong>inte föreställer en människa</strong></li>
-          </ul>
-          <p>
-          Fyndet får <strong>"forskningsklass"</strong> när
-          </p>
-          <ul>
-          <li>
-          %{site_name}-<strong>communityn är överens om en bestämning till artnivå eller
-          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna håller med om ett
-          taxon (om communityn har röstat att community-taxonet inte längre kan
-          förbättras, återgår detta till bestämning på underfamiljsnivå eller lägre)
-          </li>
-          </ul>
-          <p>
-          Fynd återgår till <strong>"grundklass"</strong> om villkoren ovan inte är uppnådda
-          eller communityn är överens om att
-          </p>
-          <ul>
-          <li>
-          <strong>fyndplatsen inte verkar
-          korrekt</strong> (t.ex. apor mitt i havet,
-          flodhästar på kontoret, etc.)
-          </li>
-          <li>
-          <strong>organismen inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad
-          av människor eller intelligenta rymdvarelser)
-          </li>
-          <li>
-          fyndet <strong>inte visar några tecken på en
-          organism</strong>, t.ex. bilder av vattenformationer,
-          stenar, landskap som inte Innehåller organismen, osv.
-          </li>
-          <li>
-          fyndet <strong>inte består av nutida (~100 years) belägg för
-          organismen</strong> (t.ex. fossil, men spår, avföring och döda löv
-          är ok)
-          </li>
-          <li>
-          fyndet inte länger behöver bestämmas <em>och</em> communitybestämningen är över familj
-          </li>
-          <li>
-          observatören har frånsagt sig communitybestämning och communitytaxonet
-          är vare sig en förfader eller ättling till det taxon som är knutet till observatörens
-          bestämning
-          </li>
-          </ul>
-          <p>
-          Och som om det inte var krångligt nog, finns det även situationer där systemet får rösta:
-          </p>
-          <ul>
-          <li>
-          Systemet röstar att fyndet inte är vilt/naturaliserat
-          om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta plats motsvarande län, region eller land som
-          omfattar detta fynd och 80 % eller flera av dessa fynd har
-          markerats som ej vilda/naturaliserade.
-          </li>
-          </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
         observation_flagged_notice_html: |
           Detta fynd har flaggats som spam och är inte längre offentligt synlig. Du kan se den eftersom du skapade den, eller är en webbplatsförvaltare. Om du tror att detta är ett misstag, vänligen
@@ -6275,16 +5897,6 @@ sv:
           Användarstatistiken är begränsad till max topp 500 baserat på fynd eller antal arter, så totalt antal är oftast lite mer än 500, eftersom de två listorna förmodligen inte utgörs av samma användare.
           Ett värde märkt '*' betyder att det inte var i topp 500 för den statistiken.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Du kan redigera det här fyndfältet eftersom du skapade det eller för att är förvaltare av webbplatsen. Om du är förvaltare, var snäll och följ dessa riktlinjer:
-        </p>
-        <ol>
-        <li>Gör inte godtyckliga namnändringar (t.ex. ändra "födosök" till "nektarsök")</li>
-        <li>Tänk på att fyndfält kan användas för fynd av alla sorters taxa, så försök att inte använda taxon-specifik terminologi</li>
-        <li>Ta inte bort fält som folk använder</li>
-        <li>Översätt inte befintliga fältnamn till olika språk. Engelska är lingua franca på denna webbplats. Om du verkligen vill ha ett fält som representerar samma begrepp på ett annat språk, skapa då ett nytt fyndfält.</li>
-        </ol>
       dna_help: |
         För att aktivera matchning mot DNA-streckkod i BOLD, se till att ditt fältnamn innehåller orden "COI", "COX1", "ITS" eller "matK", motsvarande den gen fältet avser.
       merge:
@@ -6324,75 +5936,6 @@ sv:
           <a href="%{url}">fyndexportsidan</a> för en lista över dina exporter.
       parental_consent:
         subject: Ditt barn vill använda iNaturalist
-        content_html: |
-          <p>
-          Ditt barn använder utbildningsappen <strong>Seek av iNaturalist</strong> och vill dela data med medborgarforskningsplattformen iNaturalist.
-          Då identifierbara personuppgifter visas när man gör inlägg till iNaturalist, får ingen under 13 år använda iNaturalist utan förälders medgivande.
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> kan användas utan att skapa ett konto, och inga identifierbara personuppgifter kommer att delas, men ditt barn kommer inte att kunna bidra med fynd till iNaturalist. iNaturalist är ett socialt nätverk för medborgarforskning där deltagare delar fynd och bestämningar av levande saker i naturen med varandra och generera data om biologisk mångfald för
-          vetenskapen.
-          </p>
-          <p>
-          Om du vill ge ditt medgivande till att ditt barn får använda iNaturalist behöver du göra följande:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Skapa ett iNaturalist-konto för ditt barn genom att följa denna länk:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          När du väl har skapat ditt barns konto kommer vi att be dig göra en smärre dontation om US$1 med ett bankkort till iNaturalist för att bekräfta att du är vuxen. Se till att använda samma e-postadresss om du angav i "Förälders e-post"-fältet när du registrerade dig när du gör donationen.
-          </p>
-          </li>
-          <li>
-          <p>
-          När vi väl har behandlat donation kommer vi att skicka ytterligare ett e-postmeddelande där vi talar om att ditt barns konto har aktiverats och att du nu kan använda de användarnamn och lösenord för iNaturalist som du skapade för att logga in på ditt barns Seek-app.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist samlar in följande identifierbara personuppgifter:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-postadress (privat):</strong> varje iNaturalist-konto är kopplat mot en e-postadress som inte görs publik.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>användarnamn (publikt, obligatoriskt):</strong> varje iNaturalist-konto har ett publikt användarnamn och användarID.
-          Användarnamnet behöver inte påminna om en persons riktiga namn, men det kan användas för att kontakta personen via publika kommentarer och privata direktmeddelanden.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP-adress (privat, obligatorisk):</strong> iNaturalist sparar användarens IP-adress utan att göra den offentlig. Den kan användas för att komma åt personuppgifter för identifiering såsom plats (med noggrannhet på stadsnivå).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>profilbild (publik, frivillig):</strong> iNaturalist-konton kan valfritt ha profilbilder som ofta är bilder av användaren.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>fyndplats (publik eller privat,
-          obligatorisk):</strong> iNaturalist-fynd innehåller platsinformation om var fyndet gjordes. Detta kan visas publikt eller hållas privat, men är publikt som standard.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist låter också användare dela publika bilder, publika kommentarer och privata direktmeddelanden kopplade till deras konton.
-          Det är möjligt för användare att inkludera identifierbara personuppgifter med sådant användargenererat innehåll.
-          </p>
-          <p>
-          Lär dig mer om iNaturalists integritetspolicy <a href="%{privacy_policy_url}">här</a>.
-          </p>
       photos_missing:
         subject: Vissa bilder behöver repareras
         we_have_been_housekeeping: |
@@ -6410,24 +5953,6 @@ sv:
           Vi har inkluderat länkar till de berörda bilderna nedan.
       user_parent_confirmation:
         subject: Ditt barns iNaturalist-konto har aktiverats
-        content_html: |
-          <p>
-          Tack för att du skapade ett iNaturalist-konto åt ditt barn! Kontot har aktiverats. Här är den information du uppgav som vi har sparad:
-          </p>
-          <ul>
-          <li><strong>Förälder eller målsmans namn:</strong> %{parent_name}</li>
-          <li><strong>Förälder eller målsmans e-post:</strong> %{parent_email}</li>
-          <li><strong>Barnets namn:</strong> %{child_name}</li>
-          <li><strong>Barnets födelsedatum:</strong> %{child_birthday}</li>
-          <li><strong>Barnkontots e-post:</strong> %{child_email}</li>
-          <li><strong>Barnkontots användarnamn:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Vänligen logga in på kontot från ditt barns Seek-app genom att trycka på "iNaturalist"-knappen i menyn och sedan "Logga in med iNaturalist" längst ned på skärmen.
-          </p>
-          <p>
-          Ditt barn kommer nu att kunna lägga upp fynd till sitt iNaturalist-konto med Seek-appen så att de blir synliga på iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Du har varit inaktiv på %{site_name} ett tag, så vi har stängt av dina prenumerationer. För att fortsätta få uppdateringar om aktivitet på sajten, var vänlig och <a href="%{login_url}">logga in på ditt konto</a> igen.
@@ -6489,10 +6014,6 @@ sv:
         new_place_desc_html: |
           Försök kolla igenom
           <a href="%{places_url}" target="_blank">våra befintliga fyndplatser</a> och se till att du får namnet på fyndplatsen rätt. Om du verkligen inte kan hitta den fyndplats du letar efter, överväg att <a href="%{new_place_url}" target="_blank">skapa en ny fyndplats</a>, men försäkra dig om att du inte skapar en dubblett av en befintlig fyndplats.
-        bioblitz_desc_html: |
-          <p>
-          En bioblitz är en händelse där deltagarna försöker observera så många arter som möjligt inom en viss tidsperiod. Det är ett roligt sätt att öppna människors ögon för biologisk mångfald samtidigt som man samlar in värdefulla data.
-          </p>
         change_admin_desc: Välj den av projektförvaltarna som ska bli den nya administratören.
         change_owner_alert: |
           Detta kommer att ta bort din möjlighet att ta bort detta projekt eller överföra äganderätt igen. Vill du fortsätta?
@@ -6510,32 +6031,6 @@ sv:
         make_owner: Gör till ägare
         no_curators: |
           Det finns inga projektetförvaltare. Om du vill tilldela en ny person rollen som administratör, måste denne först gå med i projektet och sedan måste du göra dem till förvaltare.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Aggregering av fynd lägger automatiskt till lämpliga fynd till ditt projekt baserat på dina projektregler. Eftersom det inte finns något sätt att ta bort många fynd från ett projekt i taget, är detta riskabelt, så se till att du har valt den plats och de taxonregler som du verkligen vill ha. I annat fall kan det sluta med en massa olämpliga fynd som måste tas bort manuellt.
-          </p>
-          <p class="description">
-          Aggregeraren fungerar endast om följande villkor är uppfyllda:
-          </p>
-          <ol>
-          <li class="readable description">
-          Ditt projekt har minst en 'måste observeras på plats'-regel för en liten-till-medelstor fyndplats (ung.
-          storleken på Texas eller Ukraina)
-          </li>
-          <li class="readable description">
-          ELLER så har projekt minst en 'måste tillhöra taxon'-regel
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Projekttillgångar är bara filer som är kopplade till ditt projekt, med några specielregler:</p>
-          <ol class="description">
-          <li>Filer som slutar på .logo.jpg, .logo.png etc. kommer att användas som projektets logotyp på projektsidan istället för projektikonen</li>
-          <li>KML- och KMZ-filer kommer att läggas till kartan på projektsidan</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Du kan skapa en anpassad taxonlista och länka den till ditt projekt. Detta kan vara användbart för att begränsa fynd som läggs till i ditt projekt till de som matchar taxa på din lista via regeln "måste vara ett taxon från projektlistan".
-          </p>
         rules:
           captive: vara i fångenskap/odlad
           coordinates_shareable_by_project_curators: koordinater kan delas av projektförvaltare
@@ -6566,20 +6061,6 @@ sv:
           till anpassade projektattribut innebär att projektledarna skulle kunna lägga till skadliga Javascript, så lita bara på projekt som har ledare som är både ansvarsfulla och tekniskt kompetenta.
         you_can_preview: |
           Du kan förhandsgranska utseendet på ditt projekt om det vore ett samlingsprojekt genom att <a href="%{url}">klicka här</a>.
-      invite:
-        description_html: |
-          <h3>Om inbjudningar</h3>
-          <p class="ui">
-          Att bjuda in personer till ditt projekt är lite annorlunda än att bjuda in individuella fynd. Att bjuda in personer kommer att
-          </p>
-          <ol>
-          <li>Skicka en e-post till dem där de bjuds in till ditt projekt</li>
-          <li>Visa en inbjudan på deras anslagstavla</li>
-          <li>Göra det möjligt för dem att gå med i ditt projekt om det är inställt på endast via inbjudan</li>
-          </ol>
-          <p class="ui">
-          Endast projektförvaltare kan bjuda in personer att gå med i ett projekt. Du ska kunna söka efter personer via deras iNat-användarnamn eller deras <em>fullständiga</em> e-postadress, förutsatt att vi har detta sparat.
-          </p>
       join:
         invite_only_description: |
           Medlemskap i detta projekt är endast genom inbjudan. Om du vill gå med, vänligen kontakta en av förvaltarna nedan och be om en inbjudan.
@@ -6681,14 +6162,6 @@ sv:
           name_already_taken: Projektnamnet är redan taget
           cannot_have_more_than_x_project_rules: Kan inte ha fler än %{x} projektregler
           summary_is_required: Projektsammanfattning är obligatorisk
-      project_location_privacy_notice_html: |
-        <p>
-        Tänk på att projektförvaltare kommer att kunna se alla privata eller diffuserade platser för dina fynd i detta projekt om du inte drar tillbaka tillståndet, och de kommer att kunna lägga till vilket som av dina fynd i projektet såvida du inte <a href="/users/edit">
-        ändrar dina inställningar</a>. Du kan också bevilja eller återkalla åtkomst till projektfynd från fall till fall.
-        </p>
-        <p>
-        Om du är bekymrad över positionssekretess, gå inte med i projekt om du inte litar på projektets förvaltare.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, men bara om jag lägger till fyndet till projektet själv.
         any: Ja, oavsett vem som lägger till fyndet till projektet.
@@ -6702,23 +6175,8 @@ sv:
       show:
         are_you_sure_you_want_to_convert: |
           Är du säker på att du vill konvertera detta projekt till ett Samlingsprojekt?
-        bioblitz_results_desc_html: |
-          <p>
-          Till skillnad från vanliga projekt visar bioblitzar händelsestatistik från <em>alla</em> fynd inom en fyndplats och tidsperiod, inte bara fynd som användare avsiktligt har lagt till projektet. Detta, för att ta bort hindret med att lägga till fynd till ett projekt bara för att köra statistiken i realtid. Observera att fynd inte kommer att vara tillgängliga för export eller visning i olika projektvyer såsom medlemsbidrag på webbplatsen eller sökning på projektfynd i mobilapparna såvida inte projektgruppen och
-          deltagarna aktivt lägger till relevanta fynd som de skulle göra i ett vanligt projekt.
-          </p>
-          <p>
-          Observera att även om denna typ av projekt visar statistik för fynd som inte medvetet har lagts till i projektet, tillåter det inte förvaltarna att se privata eller diffuserade koordinater för dessa fynd eller förutsätta att observatörer har godkänt projektets villkor. Om du är en projektförvaltare och behöver tillgång till privata koordinater behöver du få dina deltagare att godkänna projektets villkor, eller om du vill ha fynd medräknade i den förvaltade projektchecklistan, se då till att dina deltagare går med i projektet och lägger till sina fynd som de skulle i ett vanligt projekt.
-          </p>
         click_here_to_convert_this_project: |
           Klicka här för att konvertera detta projekt till ett Samlingsprojekt.
-        no_journal_blurb_html: |
-          <p>
-          Din projektdagbok är ett verktyg för att kommunicera med projektmedlemmarna. Med den kan du göra tillkännagivanden, sätta prioriteringar, eller prata om ditt projekts resultat.
-          </p>
-          <p>
-          <a href="%{url}" class="readmore">Skapa ett inlägg</a> för att komma igång
-          </p>
         curated_checklist_desc: |
           Detta är den förvaltade checklistan och antalet taxa från fynd som uttryckligen lagts till i detta projekt, inte alla fynd som registrerats på samma fyndplats och tid som denna händelse.
         make_sure_you_have_read_about_the_differences: |
@@ -6893,18 +6351,6 @@ sv:
           Kort sammanfattning av detta taxon baserat på dess <a target="_blank" href="%{url}">Wikipedia-sida</a> som vi cachar på obestämd tid tills den manuellt uppdateras. Uppdatering av denna sammanfattning uppdaterar också omedelbart vår cache av det underliggande Wikipedia-innehåll som vi visar på
           webbplatsen, som uppdateras automatiskt efter en vecka.
       show:
-        about_names_desc: |
-          <p>
-          De flesta organismgrupper har "vardagliga namn" i talspråk. Dessa namn är vanligtvis förståeliga, lätta att uttala, och stabila över tid, men många organismer har flera olika namn på olika platser, även på samma språk, som kan göra det svårt att kommunicera om dessa organismer utan förvirring.
-          Vetenskapsmän försöker råda bot på detta genom att använda ett enda "vetenskapligt namn" för varje organismkategori som omfattas av reglerna för <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologisk nomenklatur</a>, men dessa namn tenderar att baseras på latin, ett språk ingen talar, så de är inte lika lätta att komma ihåg som vardagliga namn för många personer. Vetenskapliga namn kan också återspegla en organisms taxonomiska placering, så att de kan förändras när forskare lägger fram nya hypoteser om evolutionära förhållanden
-          mellan olika organismer, vilket minskar deras användbarhet för kommunikation, även bland människor som kan vetenskapliga namn.
-          </p>
-          <p>
-          Det gamla talesättet summerar det: "Vardagliga namn ändras från plats till plats, medan vetenskapliga namn ändras då och då.
-          </p>
-          <p>
-          Vi försöker åtgärda dessa brister genom att visa både vardagliga och vetenskapliga namn när det är möjligt, och välja vardagliga namn baserat på läsarens språkliga och geografiska preferenser.
-          </p>
         about_conservation_status_desc: |
           Bevarandestatus sammanfattar risken för utrotning för en grupp organismer.
         about_establishment_desc: |
@@ -6975,28 +6421,6 @@ sv:
           Namnet på taxon med rangen. För ranger under art, infogas rangen efter binomial-delen.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Försök att lägga till namn som har använts någon annanstans. Vänligen uppfinn inte nya namn.</p></li>
-          <li><p>Lägg inte till dubblettnamn, t.ex. namnge inte flera hökar "hök"</p></li>
-          <li><p>För taxa på högre nivå, försök att använda namn som beskriver alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
-          <li>
-          <p>
-          Lägg inte till information som inte är en del av namnet, t.ex. information inom parentes om hur du tycker att namnet ska användas
-          </p>
-          </li>
-          <li>
-          <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
-          </p>
-          </li>
-          <li>
-          <p>
-          Vardagliga namn som är kopplade till översatta språk kommer att visas som vardagligt standardnamn på det språket (bortsett från effekten av platsinställningar, namnsortering etc.).
-          <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Lägg till ett namn till en fyndplats för att ge det prioritet för webbplatser och användare från den fyndplatsen. Om det finns flera namn per fyndplats kan du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för VARJE fyndplats som namnet används på, bara till fyndplatser där det finns en konflikt med andra fyndplatser.
       taxon:
@@ -7059,33 +6483,8 @@ sv:
           Du måste ange "%{confirmation_code}" i formuläret för att radera ditt konto
       edit:
         about_third_party_tracking: Om spårning av tredjepart
-        blocking_desc_html: |
-          <p>
-          Att blockera någon hindrar dem från att skicka meddelanden till dig, kommentera dina fynd, artbestämma dina fynd, och på annat sätt interagera med dig på %{site_name}. Det tar också bort deras fynd från dina sökresultat och dina fynd från deras sökresultat. Det gör dig dock inte osynlig för dem. De kan fortfarande hitta dina fynd och se din profil, de kan helt enkelt bara inte interagera med dig.
-          </p>
-          <p>
-          Blockering är till för situationer där du helt enkelt inte kan komma överens med någon och de lämnar dig inte i fred, trots att du ansträngt dig för att lösa tvister på ett civiliserat sätt. Det är inte ett sätt att gömma sig från personer, förhindra artbestämningar från personer vars åsikter du inte litar på eller välja bort community-bestämningar (det finns en annan inställning för det). Blockeringen verkar alltså åt
-          båda hållen: om du blockerar någon kan de inte interagera med dig, men du kan inte heller interagera med dem. Om du missbrukar detta för att hindra någon från att artbestämma dina fynd hindrar du också dig själv från att bestämma deras fynd.
-          </p>
-          <p>
-          Du kan bara blockera tre personer. Vi tycker att det är ett rimligt antal som tillmötesgår de personer som behöver blockera någon medan det förhindrar missbruk av blockering. Om du känner att du behöver blockera fler personer, vänligen <a href="mailto:%{help_email}">kontakta oss</a>.
-          </p>
-          <p>
-          Om någon trakasserar eller förföljer dig på %{site_name},
-          <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats, kommer vi att titta närmare på det.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-           <a href="%{url}" target="_blank">iNaturalist-nätverket</a> är en samling lokaliserade webbplatser som är helt anslutna till den globala iNaturalist-communityn. Nätverksplatserna stöds av lokala institutioner som har undertecknat ett avtal med iNaturalist att främja lokal användning och gynna lokal biologisk mångfald. De har tillgång till exakta koordinater, från sina länder, som automatiskt diffuseras vid publik visning för att skydda hotade arter.
-          </p>
-          <p>
-          Ditt användarnamn och lösenord fungerar på alla webbplatser som ingår i iNaturalist-nätverket. Om du väljer att knyta an till ett nätverks webbplats, kommer den lokala institution som driver webbplatsen också att ha tillgång till din e-postadress (endast för att kommunicera med dig om webbplatsaktiviteter) och tillgång till de exakta koordinaterna för fynd som offentligt är diffuserade eller privata.
-          </p>
-          <p>
-          Obs: Teständra inte din anknytning om du har mer än 1000 fynd.
-          </p>
         licensing_desc_html: |
           Licensiering av ditt innehåll ger vem som helst laglig rätt att använda det utan att be om ditt tillstånd förutsatt att de följer licensvillkoren. Dessutom inkluderar %{site_name} ditt Creative Commons-licensierade innehåll i regelbundet uppdaterade arkiv som produceras för utvalda partnerorganisationer som är intresserade av våra data. Till exempel
           inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
@@ -7096,13 +6495,6 @@ sv:
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
           När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
           Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
-        muting_desc_html: |
-          <p>
-          Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina fynd, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
-          </p>
-          <p>
-          Du kan tysta så många som du vill, men kom ihåg att du kommer att missa potentiellt viktiga meddelanden, t.ex. bestämningar som ändrar community-taxon för dina fynd.
-          </p>
         name_place_help_html: |
           Prioritera vardagliga namn som används på denna fyndplats.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7171,11 +6563,6 @@ sv:
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt>Antagligen spam</dt> <dd> Användare som förmodligen är spammare vilket innebär att de inte har några fynd eller bestämningar, men har en profilbeskrivning. </dd> <dt>Autospam</dt> <dd> Spammare som automatiskt markerades som en spammare av systemet. </dd> <dt>Manuellt spam</dt> <dd> Spammare som manuellt markerades som en spammare av en webbplatsförvaltare. </dd> <dt>Falsklarm</dt> <dd> Användare som flaggades som spammare men flaggorna lyftes av webbplatsens förvaltare eftersom den faktiskt inte var spammare. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Vi vill välkomna nya användare, men vi vill också bekämpa spammare. Förhoppningsvis kommer detta verktyg hjälpa till med båda. Vi flaggar automatiskt många användare som spammare med <a
-          href="https://akismet.com/">Akismet</a>, men Akismet är inte perfekt, så om du kan lägga några minuter på att markera nya konton som spammare eller inte spammare, skulle det hjälpa oss långt.
-          </p>
       show:
         take_a_moment_to_review_html: 'Passa på att läsa igenom <a href="%{link}">våra riktlinjer</a>.'
         this_user_was_banned: Denna användare har stängts av
@@ -7183,16 +6570,6 @@ sv:
           Vill du visa upp några av dina favorittaxa? %{link_start_tag}Skapa en lista%{link_end_tag} med rubriken "Favoriter" och de senaste tilläggen kommer att visas här.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Tack för att du är en iNaturalist-givare! Vi kunde använda din befintliga donation för att bekräfta din identitet och behöver inte ytterligare åtgärder från dig. <strong>Ditt barns konto har aktiverats.</strong>
-          </p>
-          <p>
-          Logga in på kontot från ditt barns Seek-app genom att trycka på "iNaturalist" knappen i menyn och sedan "Logga in med iNaturalist" längst ner på skärmen.
-          </p>
-          <p>
-          Ditt barn kommer då att kunna lägga upp fynd på sitt iNaturalist-konto med hjälp av Seek-appen så att de kan ses på iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: TACK FÖR ATT DU SKAPAR ETT KONTO FÖR MINDERÅRIGA!
         we_will_send_you_an_email: |
           Vi kommer att skicka dig ett e-postmeddelande när ditt barns konto har aktiverats.
@@ -7539,6 +6916,9 @@ sv:
           other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Meddelande
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
       BlockedUser: Blockerad användare
@@ -7558,6 +6938,11 @@ sv:
       OauthApplication: Applikation
       TaxonLink: Taxonlänk
     attributes:
+      announcement:
+        created_at: Skapad den
+        updated_at: Uppdaterad den
+        #Numerical IDs of the sites the announcement should be shown on
+        site_ids: WebbplatsID:n
       assessment:
         description: Beskrivning
       assessment_section:
