@@ -2,33 +2,9 @@ lb:
   x_comments:
     one: '%{count} Bemierkung'
     other: '%{count} Bemierkungen'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> Kommentar'
-    other: '<span class="count">%{count}</span> Kommentarer'
   x_identifications:
     one: '%{count} Identifikatioun'
     other: '%{count} Identifikatiounen'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> Bestëmmung'
-    other: '<span class="count">%{count}</span> Bestëmmungen'
-  x_identifications_:
-    one: '1 Identifikatioun'
-    other: '%{count} Identifikatiounen'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestëmmer'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestëmmer'
-  x_languages:
-    one: "%{count} Sprooch"
-    other: "%{count} Sproochen"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} Éischten ob der Liewenslëscht"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} Éischt ob der Liewenslëscht"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> Journal Posts'
     other: '<span class="count">%{count}</span> Journal Posts'
@@ -46,30 +22,15 @@ lb:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} Falschbestëmmung vun Aarten an dese(m/r) %{rank}"
     other: "%{count} Falschbestëmmungen vun Aarten an desem %{rank}"
-  x_observations:
-    one: "1 Observatioun"
-    other: "%{count} Observatiounen"
-  x_observations_:
-    one: "1 Observatioun"
-    other: "%{count} Observatiounen"
-  x_observations_html:
-    one: "<span class='count'>1</span> Observatioun"
-    other: "<span class='count'>%{count}</span> Observatiounen"
   x_observations_link_html:
     one: "<a href='%{url}'>1 Observatioun</a>"
     other: "<a href='%{url}'>%{count} Observatiounen</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> Bestëmmung iwwerpréift"
     other: "<span class='count'>%{count}</span> Bestëmmungen iwwerpréift"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Beobachter'
-    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "1 anerer"
     other: "%{count} anerer"
-  x_people:
-    one: "%{count} Persounen"
-    other: "%{count} Persounen"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Leit </strong> hunn dem User %{user} mat <strong>%{y}IDs</strong> gehollef"
   x_photos:
     one: "%{count} Foto"
@@ -77,33 +38,18 @@ lb:
   x_new_species:
     one: "%{count} Nei Aart"
     other: "%{count} Nei Aarten"
-  x_new_users:
-    one: '%{count} Neie Benotzer'
-    other: '%{count} Nei Benotzer'
-  x_species:
-    one: '1 Aart'
-    other: '%{count} Aarten'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> Aart"
-    other: "<span class='count'>%{count}</span> Aarten"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} Aart</a>"
     other: "<a href='%{url}'>%{count} Aarten</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Suggestioun gefiltert no:"
     other: "%{count} Suggestiounen gefiltert no:"
-  x_taxa:
-    one: "%{count} Taxon"
-    other: "%{count} Taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> Taxon observéiert"
     other: "<span class='count'>%{count}</span> Taxa observéiert"
   x_research_grade_observations_html:
     one: "<span class='count'>%{count}</span> Recherche-Grade Observatioun"
     other: "<span class='count'>%{count}</span> Recherche-Grade Observatiounen"
-  x_sounds:
-    one: "%{count} Sound"
-    other: "%{count} Sounds"
   _100_day_trends: Tendenz iwwer 100 Deeg
   _percent_ID_d: "% ID bestëmmt"
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
