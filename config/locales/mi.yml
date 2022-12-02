@@ -1,36 +1,10 @@
 mi:
   x_identifications:
     other: '%{count} tautuhi'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> tautuhi'
-  x_identifications_:
-    other: '%{count} Tautuhi'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> kaitautuhi'
-  x_languages:
-    other: "%{count} ngā reo"
-  x_observations:
-    other: "%{count} mauhanga"
-  x_observations_:
-    other: "%{count} Mauhanga"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> mauhanga"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> kaimātaki'
   x_new_species:
     other: "%{count} Momo hōu"
-  x_species:
-    other: '%{count} Momo'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> momo"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} momo</a>"
-  x_taxa:
-    other: "%{count} ngā rōpū"
-  x_sounds:
-    other: "%{count} oro"
   _100_day_trends: Ia kotahi rau rā
   a_community_for_naturalist: He hapori mō kaitaiao
   a_member_of_taxon_html: "He huānga i %{taxon}"
@@ -612,8 +586,6 @@ mi:
       yy: "%d t"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
