@@ -1,14 +1,7 @@
 nl:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} wijziging"
-    other: "%{count} wijzigingen"
   x_comments:
     one: '1 reactie'
     other: '%{count} reacties'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> reactie'
-    other: '<span class="count">%{count}</span> reacties'
   x_faves:
     one: '1 favoriet'
     other: '%{count} favorieten'
@@ -18,27 +11,6 @@ nl:
   x_identifications:
     one: '1 determinatie'
     other: '%{count} determinaties'
-  x_identifications_html:
-    one: '<span class="count">1</span> determinatie'
-    other: '<span class="count">%{count}</span> determinaties'
-  x_identifications_:
-    one: '1 determinatie'
-    other: '%{count} determinaties'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> determineerder'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> determineerders'
-  x_languages:
-    one: "%{count} taal"
-    other: "%{count} talen"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "1 levenslijst-primeur"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} levenslijst-primeurs"
   x_journal_posts_html:
     one: '<span class="count">1</span> dagboekbericht'
     other: '<span class="count">%{count}</span> dagboekberichten'
@@ -59,30 +31,15 @@ nl:
   x_misidentifications_of_species_in_this_rank:
     one: "1 onjuiste determinatie van soorten in @gender{n:dit|deze} %{rank}"
     other: "%{count} onjuiste determinaties van soorten in @gender{n:dit|deze} %{rank}"
-  x_observations:
-    one: "1 waarneming"
-    other: "%{count} waarnemingen"
-  x_observations_:
-    one: "1 Waarneming"
-    other: "%{count} Waarnemingen"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> waarneming"
-    other: "<span class='count'>%{count}</span> waarnemingen"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} waarneming</a>"
     other: "<a href='%{url}'>%{count} waarnemingen</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> waarneming nagekeken"
     other: "<span class='count'>%{count}</span> waarnemingen nagekeken"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> waarnemer'
-    other: '<span class="count">%{count}</span> waarnemers'
   x_others:
     one: "%{count} ander persoon"
     other: "%{count} anderen"
-  x_people:
-    one: "%{count} persoon"
-    other: "%{count} mensen"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>"
   x_photos:
     one: "%{count} foto"
@@ -90,24 +47,12 @@ nl:
   x_new_species:
     one: "%{count} nieuwe soort"
     other: "%{count} nieuwe soorten"
-  x_new_users:
-    one: '%{count} nieuwe gebruiker'
-    other: '%{count} nieuwe gebruikers'
-  x_species:
-    one: '%{count} soort'
-    other: '%{count} soorten'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> soort"
-    other: "<span class='count'>%{count}</span> soorten"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} soort</a>"
     other: "<a href='%{url}'>%{count}</a> soorten"
   x_suggestions_filtered_by_colon:
     one: "%{count} suggestie gefilterd op:"
     other: "%{count} suggesties gefilterd op:"
-  x_taxa:
-    one: "%{count} taxon"
-    other: "%{count} taxa"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxon waargenomen"
     other: "<span class='count'>%{count}</span> taxa waargenomen"
@@ -117,9 +62,6 @@ nl:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> waarneming van onderzoekskwaliteit gedetermineerd tot op soort of lager"
     other: "<span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit gedetermineerd tot op soort of lager"
-  x_sounds:
-    one: "%{count} geluid"
-    other: "%{count} geluiden"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxon gecureerd"
     other: "<span class='count'>%{count}</span> taxa gecureerd"
@@ -185,22 +127,6 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
-  about_trips_html: |
-    <h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>
-
-    <p><strong>Waarom</strong>
-    Aanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
-
-    <p><strong>Hoe</strong>
-    Een route voegt context aan je waarnemingen toe door extra informatie over:</p>
-    <ul> 
-    <li><strong>Wat</strong> je zocht (doellijst)</li> 
-    <li><strong>Waar</strong> je zocht (zoekgebied)</li> 
-    <li><strong>Wanneer</strong> je zocht (zoekinterval)</li> 
-    </ul>
-
-    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
-    <a href='%{url}'>Meer informatie</a></p>
   about_trusting_projects: Over het vertrouwen van projecten
   about_trusting_projects_options_any: Al je waarnemingen in dit project
   about_trusting_projects_options_any_desc: |-
@@ -757,14 +683,6 @@ nl:
   back_to_your_observations: Terug naar je waarnemingen
   back_to_your_profile: Terug naar je profiel
   badges: Badges
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
-      zal resulteren in <strong>%{count} onbedoelde onenigheid</strong> met IDs van %{child}.
-    other: |
-      Gebaseerd op een steekproef van %{percent}% van deze ID's schatten we dat dit
-      zal resulteren in <strong>%{count} onbedoelde tegenspraken</strong> met IDs van %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Gebaseerd op het bewijs, kan het gemeenschapstaxon nog steeds bevestigd of verbeterd worden?
   batch: Batch
@@ -1285,7 +1203,7 @@ nl:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Bewerk de taxonomie van iNaturalist volgens het beleid in het <a href="/pages/curator+guide#policies" target="_blank">beleidsgedeelte van de Curator Guide</a>. Dit betekent dat ze taxa kunnen toevoegen, splitsen, omwisselen, samenvoegen, deactiveren en verwijderen op iNaturalist. Ze kunnen ook behoud statussen en de taxon geoprivacy bewerken, evenals lokale namen bewerken en beheren die zijn toegevoegd door een willekeurige gebruiker.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Bewerk de taxonomie van iNaturalist volgens het beleid in het <a href="/pages/curator+guide#policies" target="_blank">beleidsgedeelte van de Curator Guide</a>. Dit betekent dat ze taxa kunnen toevoegen, splitsen, omwisselen, samenvoegen, deactiveren en verwijderen op iNaturalist. Ze kunnen ook behoud statussen en de taxon geoprivacy bewerken, evenals lokale namen bewerken en beheren die zijn toegevoegd door een willekeurige gebruiker.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Verberg reacties en stop gebruikers voor schending van de <a
     href="/pages/community+guidelines" target="_blank">Gemeenschapsrichtlijnen</a>.
@@ -1485,7 +1403,6 @@ nl:
     failure:
       already_authenticated: 'Je bent al ingelogd.'
       unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
-      invalid: 'Ongeldig e-mailadres of wachtwoord.'
       invalid_token: 'Ongeldig authenticatie-token.'
       user:
         suspended: Je account is opgeschort
@@ -1499,19 +1416,17 @@ nl:
       send_paranoid_instructions: "Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen."
       no_token: "Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt."
     registrations:
+      destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
       signed_up: 'Welkom! Je bent succesvol aangemeld.'
       updated: 'Je hebt je account succesvol bijgewerkt.'
-      destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instructies voor bevestiging'
       reset_password_instructions:
         subject: 'Instructies voor wachtwoord resetten'
   devise_reset_password_instructions_hello_email: Hallo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Als je dit niet hebt aangevraagd negeer dan deze e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Je wachtwoord zal niet gewijzigd worden totdat je op de bovenstaande link klikt en een nieuw wachtwoord instelt.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2628,8 +2543,6 @@ nl:
       yy: "%dj"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3130,13 +3043,6 @@ nl:
     updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of plaatsen waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
     youve_got_updates_panel_title: Er zijn updates!
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-         <li><strong>Jouw inhoud:</strong> Reacties op je waarnemingen, bijv. opmerkingen, determinaties of markeringen als favoriet van de %{site_name}-gemeenschap. Je ontvangt ook updates wanneer iemand jouw waarneming toevoegt aan een project of annoteert met extra velden.</li>
-      <li><strong>Mensen:</strong> Nieuwe waarnemingen of journaalberichten van de mensen die je volgt.</li>
-      <li><strong>Organismen, projecten en plaatsen:</strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop je geabonneerd bent. Je kunt je ook aansluiten bij projecten, zodat je wordt geïnformeerd wanneer ze projectdagboek-berichten publiceren.</li>
-      <li><strong>Discussies waaraan je deelneemt:</strong>Wanneer je opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneer je je automatisch op nieuwe activiteiten bij deze inhoud. Gebruik de tool 'Beheer je abonnementen' om geen updates meer te ontvangen. </li>
-      </ul>
   one_by_one: "Eén voor één"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "een van de volgende zaken moet waar zijn:"
@@ -3282,36 +3188,11 @@ nl:
     original: origineel
   photos_updated: Foto's bijgewerkt.
   pi_consent_desc_title: Persoonlijke gegevens
-  pi_consent_desc_html: |
-    <p>
-    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie ons <a href='%{privacy_url}' target='_blank'>Privacybeleid</a> en onze <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaarden</a>.
-    </p>
-    <p>
-    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke
-    informatie op te slaan dus de enige manier om deze toestemming in te trekken is door je
-    account te verwijderen.
-    </p>
   pi_consent_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mij kan opslaan en verwerken om mijn account te beheren
   pi_consent_child_label: |
     Ik stem ermee in dat iNaturalist persoonlijke informatie over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
   data_transfer_consent_desc_title: Over toestemming voor persoonlijke informatieoverdracht
-  data_transfer_consent_desc_html: |
-    <p>
-    Bepaalde privacywetgeving, zoals de Algemene Verordening Gegevensbescherming (AVG) van de Europese Unie, vereist expliciete toestemming om persoonlijke informatie te verzenden vanuit hun jurisdictie naar andere jurisdicties waar de wettelijke bescherming van deze informatie als onvoldoende wordt beschouwd. Vanaf 
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> beschouwt de Europese Unie de Verenigde Staten niet langer als een jurisdictie waar voldoende wettelijke bescherming wordt geboden voor persoonlijke informatie, met name vanwege de mogelijkheid van surveillance door de regering van de Verenigde Staten van data die de VS binnenkomt. Mogelijk hebben andere jurisdicties dezelfde mening.
-    </p>
-    <p>
-    Het gebruik van iNaturalist vereist het opslaan van persoonlijke informatie zoals je e-mailadres en alle iNaturalist data wordt opgeslagen in de Verenigde Staten, en we kunnen niet met zekerheid zeggen in welke jurisdictie je je bevindt als je iNaturalist gebruikt, dus om te voldoen aan privacywetgeving zoals AVG, moet je aangeven dat je dit risico begrijpt en aanvaardt, en toestemming geven om je persoonlijke informatie naar de servers van iNaturalist te versturen in de Verenigde Staten.
-    </p>
-    <p>
-    Om meer te leren over wat voor informatie we verzamelen en hoe we het gebruiken, zie ons 
-    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
-    en onze <a href='%{terms_url}' target='_blank'>gebruiksvoorwaarden</a>.
-    </p>
-    <p>
-    Er is geen manier om een iNaturalist account te hebben zonder persoonlijke informatie op te slaan, dus de enige manier om je toestemming in te trekken is het verwijderen van je account.
-    </p>
   data_transfer_consent_label: |
     Ik sta toe dat mijn persoonlijke gegevens aan de
     Verenigde Staten van Amerika worden overgedragen
@@ -4585,10 +4466,6 @@ nl:
   supporting: Ondersteunend
   suspend_user: Gebruiker schorsen
   suspend_user_html: Schors %{user}
-  suspend_user_reason_instructions_html: |
-    Leg uit waarom je dit account opschort en noem alle schendingen van de
-    %{link_start_tag}Gemeenschapsrichtlijnen%{link_end_tag}. Voeg geen
-    persoonlijke opinies toe.
   sw_lat: ZW Lat.
   sw_lon: ZW Lon.
   sync: Synchroniseren?
@@ -4877,9 +4754,6 @@ nl:
   this_list_only_accepts_taxa_that_are_species: Deze lijst accepteert alleen taxa die soorten zijn
   this_list_only_accepts_taxa_that_are_species_or_lower: Deze lijst accepteert alleen taxa die soorten of lager zijn
   this_observation: Deze waarneming
-  this_observation_is_featured_on_x_sites:
-    one: Deze waarneming is te zien op %{count} site
-    other: Deze waarneming is te zien op %{count} sites
   this_observation_is_research_grade: Deze waarneming is van onderzoekskwaliteit!
   this_observation_was_created_using: "Deze waarneming is gemaakt met:"
   this_photo_is_already_associated: Deze foto is reeds verbonden met één van je waarnemingen.
@@ -5278,10 +5152,6 @@ nl:
   view_all_fields: Toon alle velden
   view_all_flags: Alle meldingen bekijken
   view_all_members: Alle leden weergeven
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Toon %{count}"
-    other: "Toon alle %{count}"
   view_all_observations: Alle waarnemingen weergeven
   view_all_photocount_photos: "Alle %{photo_count} foto's weergeven"
   view_assessment: Beoordeling bekijken
@@ -5457,12 +5327,6 @@ nl:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} van %{count} bevestigd"
-    other: "%{x} van %{count} bevestigd"
-  x_of_count_observed:
-    one: "%{x} van %{count} waargenomen"
-    other: "%{x} van %{count} waargenomen"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} van %{y} mensen (meer dan 2/3) zijn het er over eens dat hij het is"
   x_is_the_root_of_the_tree: "%{rank} %{name} is de wortel van de boom"
   x_project_journal: "%{name} van %{project}"
@@ -5680,33 +5544,10 @@ nl:
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
-        </p>
-        <p class="lead">
-        Als je gelooft in de kracht van deze wereldwijde gemeenschap van natuurliefhebbers die kennis delen en onvervangbare biodiversiteitsdata genereren, overweeg dan een eenmalige of vaste donatie, of zie <a
-        href="https://www.inaturalist.org/pages/giving">andere manieren om te geven</a>.
-        </p>
-        <p class="lead">
-        Met jouw donatie steun je iNaturalist en help je de gemeenschap groeien, de toepassing van geavanceerde technologie zoals Computer Vision bevorderen en het implementeren van nieuwe functies ter ondersteuning onze gebruikers, servers en personeel.
-        </p>
-        <p class="text-muted">
-        iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V.S. (Tax ID: 94-1156258).</p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: WORD EEN MAANDELIJKSE SUPPORTER VAN INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist is één van 's werelds grootste gemeenschappen toegewijd aan het ontdekken van biodiversiteit. Bedankt voor het meedoen!</strong>
-          </p>
-          <p class="lead">We willen iNaturalist gratis houden, maar het leveren van deze dienst is niet gratis. Als je van iNaturalist houdt, kun je overwegen om iNaturalist maandelijks te steunen. Vaste donaties dragen ertoe bij dat iNaturalist door kan gaan met het opschalen van zijn infrastructuur en personeel, door voorspelbare inkomsten te genereren. Je kunt er ook voor kiezen om je status als donateur weer te geven op je gebruikersprofiel.
-          </p>
-          <p class="lead">Je vrijwillige donaties steunen iNaturalist terwijl de gemeenschap groeit, bijvoorbeeld door het verbeteren van Computer Vision en het implementeren van nieuwe functies ter ondersteuning van onze servers en medewerkers. Als je liever een eenmalige donatie wilt doen <a href="%{donate_url}">klik dan hier</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de California Academy of Sciences, een 501(c)(3) tax-exempt not-for-profit organization in de V. S.</p>
         thank_you_for_being_a_monthly_supporter: Dankje voor het zijn van een maandelijkse supporter.
         thank_you_for_being_a_monthly_supporter_caps: DANK JE VOOR HET ZIJN VAN EEN MAANDELIJKSE SUPPORTER!
     flags:
@@ -5747,43 +5588,6 @@ nl:
           plak dan hier de URL van die verzameling.
         guide_place_desc: |
           Door jouw gids aan een plaats te koppelen kunnen mensen hem vinden wanneer ze zoeken naar plaatsen en het zal de plaatsgrens tonen op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Upload een CSV-bestand dat labels bevat voor taxa in deze gids. Je CSV-bestand hoort er alsvolgt uit te zien:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Naam</th>
-          <th>Kleur</th>
-          <th>Aantal handen</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>tweevoeter</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>rood|zwart</td>
-          <td>0</td>
-          <td>viervoeter</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          De eerste rij begint met "Naam" gevolgd door het predicaat of de categorieën van het label.
-          Dan begint iedere volgende rij met de naam van het taxon, gevolgd door het bijbehorende predicaat van de kolom.
-          In dit voorbeeld krijgt <i>Homo sapiens</i> de labels
-          <code>tweevoeter</code> en <code>Aantal handen=2</code>,
-          en <i>Vulpes vulpes</i> krijgt <code>viervoeter</code>,
-          <code>Kleur=rood</code>, <code>Kleur=zwart</code>, en
-          <code>Aantal handen=0</code>. Lege velden worden genegeerd, en je
-          kunt meerdere regels per taxon toevoegen. Je kunt ook meerdere
-          waarden per cel toevoegen, gescheiden door een vertikale streep.
-          </p>
         licensing_explanation: |
           Als je een licentie verleent aan andere mensen geeft dat hen het recht om je informatie te kopiëren en te wijzigen zonder dat ze je om toestemming hoeven te vragen. Het maakt het veel gemakkelijker om je werk te delen en als je inhoud van derden opneemt van andere
           bronnen die Creative Commons ShareAlike-licenties gebruiken (zoals Wikipedia), dan ben je wettelijk verplicht om een vergelijkbare licentie te gebruiken. Hier is een overzicht van alle Creative Commons-licenties en wat ze betekenen:
@@ -5804,12 +5608,6 @@ nl:
         Dit kan even duren, vernieuw de pagina over enkele minuten.
       mobile_downloads_tip_html: |
         Deze gids kan gedownload worden naar de mobiele app voor offline-gebruik.
-      mobile_downloads_help_html: |
-        <p>Hiermee wordt een downloadbaar archief gemaakt van alle gegevens en media gekoppeld aan deze handleiding, zodat gebruikers van mobiele apps de inhoud in de gids kunnen raadplegen zonder internetverbinding. Het duurt
-        enkele minuten om het archief te genereren, maar zodra dit is ingeschakeld, is het archief wordt bijgewerkt wanneer u deze handleiding wijzigt.</p>
-        <p class="alert status">
-        <strong>Schakel offline mobiele downloads alleen in als je daadwerkelijk van plan bent om ze te gebruiken.</strong> Ze veroorzaken een aanzienlijk belasting van ons systeem.
-        </p>
       pdf_layouts:
         grid: raster
         book: boek
@@ -5943,12 +5741,6 @@ nl:
         disagreement_count: Onenigheid Aantal
         identification_count: Aantal determinaties
         score: Score
-        explanation: |
-          <p>Als een gebruiker het niet eens is met het gemeenschapstaxon kan zij het weigeren. Haar determinatie is de naam die gebruikt wordt bij het koppelen aan andere waarnemingen, levenslijsten bijwerken, etc. De waarneming kan alleen onderzoekskwaliteit worden als de
-          gemeenschap het met haar eens is.
-          </p>
-          <p>Het gemeenschaps-ID wordt echter nog steeds weergegeven, dus iedereen kan de verschillende ID's zien die zijn voorgesteld.
-          </p>
         you_have_opted_out: Je hebt je afgemeld voor gemeenschapsdeterminaties
         opt_in_for_this_observation: Kies voor deze waarneming
         your_id_does_not_match: |
@@ -5984,30 +5776,6 @@ nl:
           Dit is het totale aantal "eind"-taxa gerepresenteerd in de zoekopdracht. Soms zie je meer rijen met aantallen dan dit omdat er hogere taxa zijn toegevoegd vanuit andere zoekopdrachten. Als zoekopdracht 1 bijv. een waarneming van Homo sapiens heeft, en zoekopdracht 2 een waarneming van het geslacht Homo, staan beide taxa in de tabel, maar dat staat voor één extra rij voor het geslacht Homo voor zoekopdracht 1, die het niet in zijn totale aantal meerekent omdat het alleen de soort Homo sapiens telt uit dat geslacht, omdat dat het "uiteinde" van dat deel van de boom is.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Verticaal
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} gemeenschappelijk"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} gemeenschappelijk"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} niet gemeenschappelijk"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} niet gemeenschappelijk"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} in totaal"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} in totaal"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} unieke"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} unieke"
       export:
         choose_columns_desc: Selecteer de kolommen die je wenst te exporteren
         create_a_query_desc_html: |
@@ -6039,46 +5807,6 @@ nl:
         taking_a_while: "Dit duurt even. Probeer alsjeblieft een van de onderstaande opties."
         date_range_help: "Max en min data in het formaat YYYY-MM-DD, bijv. 2015-01-17"
         created_on_help: "Datumwaarnemingen werden gecreëerd, niet waargenomen, bijv. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Andere opties</h3>
-          <p>
-          Grote exporten maken onze infrastructuur trager en moeilijker om wijzigingen te releasen. Hier zijn een aantal opties om te overwegen:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF neemt het grootste deel van onze waarnemingen met onderzoekskwaliteit over
-          en hun exporttools zijn uitstekend. GBIF-exports komen ook
-          met een <a href="https://www.doi.org/">DOI</a> die je kunt citeren als
-          je onderzoek publiceert op basis van de data die je exporteert, en deze
-          citaties zijn enorm nuttig voor ons omdat ze ons in staat stellen te zien
-          hoe iNat-gegevens worden gebruikt.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
-          Archive (DwC-A) voor GBIF</a>: dit is het <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
-          bestand dat we genereren voor GBIF, dus het bestand bevat als het goed is niets dat niet ook in GBIF zit, maar als je het hele archief wilt kun je het downloaden. Het is een zeer groot zip-bestand in CSV-formaat. Het wordt wekelijks bijgewerkt.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist
-          Challenge op FGVC 2017</a>: links naar 675.000 gelicentieerde
-          iNaturalist foto's van 5.089 soorten voor gebruik in computer vision
-          training. Aangemaakt in juni 2017, wordt niet bijgewerkt.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Unieke identifier voor de waarneming"
         species_guess: "Naam door de waarnemer ingegeven voor het waargenomen taxon"
@@ -6150,16 +5878,6 @@ nl:
         allow_curator_coordinate_access_desc_html: |
           Sta toe dat projectcuratoren de verborgen coördinaten van deze waarneming kunnen bekijken.
         ancestor_disagreements_desc: "# gedetermineerde taxa die behoren tot de voorouders van een taxon, maar die niet overeenkomen met het taxon (\"Ik denk dat het in dit geslacht zit maar ik ben het er niet mee eens dat het deze soort is\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Het gemeenschapstaxon (of gemeenschapsdeterminatie) staat voor welk taxon de %{site_name}-gemeenschap denkt dat afgebeeld is in de waarneming. Als je geïnteresseerd bent in hoe we het gemeenschapstaxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's het mee eens zijn</strong>. Dit betekent soms dat er een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat waartussen onenigheid is (als jij bijvoorbeeld denkt dat het een koningsslang is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme neigt enigzins naar afwijkende meningen, omdat we hebben gemerkt dat andersdenkenden vaak gelijk hebben.
-          </p>
-          <p class="ui">
-          Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet akkoord gaat met het gemeenschapstaxon kun je het afwijzen, wat betekent dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken, het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>. Als je het hele idee van community-taxa niet leuk vindt, kun je het volledig uitzetten in <a href="/users/edit" target="_blank">uw instellingen</a>.
-          </p>
-          <p class="ui">
-          <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen (bijvoorbeeld het geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score elk als de verhouding tussen het aantal cumulatieve ID's voor dat taxon over de som van de cumulatieve ID's, het aantal meer conservatieve ID's toegevoegd na de eerste ID van dat taxon en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's van taxa die niet het taxon bevatten dat gescoord wordt). Voor de geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2 determinaties, wordt het laagst gerangschikte taxon gekozen.
-          </p>
         cumulative_count_desc: '# determinaties voor een individueel taxon en al zijn afstammelingen'
         curator_coordinate_access_disabled_desc_html: |
           Dit project staat geen waarnemingen toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Als je de coördinaten van deze waarneming niet wilt delen met de curatoren van dit project, moet je de waarneming uit het project verwijderen.
@@ -6172,73 +5890,6 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help2_html: |
-          <p>
-          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
-          <strong>"ID nodig"</strong> als
-          </p>
-
-          <ul>
-          <li>de waarneming <strong>heeft een datum</strong></li>
-          <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-          <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-          <li>de waarneming <strong>is geen mens</strong></li>
-          </ul>
-          <p>
-          Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-          </p>
-          <ul>
-          <li>
-          the %{site_name} <strong>community agrees on species-level ID or
-          lower</strong>, i.e. when more than 2/3 of identifiers agree on a
-          taxon (if the community has voted that the Community Taxon can no
-          longer be improved, this reverts to subfamily-level ID or lower)
-          </li>
-          </ul>
-          <p>
-          Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
-          </p>
-          <ul>
-          <li>
-          the <strong>location doesn't look
-          accurate</strong> (e.g. monkeys in the middle of the ocean,
-          hippos in office buildings, etc.)
-          </li>
-          <li>
-          the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans
-          or intelligent space aliens)
-          </li>
-          <li>
-          the observation <strong>doesn't present evidence of an
-          organism</strong>, e.g. images of water features,
-          rocks, landscapes that don't include the organism, etc.
-          </li>
-          <li>
-          the observation <strong>doesn't present recent (~100 years) evidence of
-          the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
-          are ok)
-          </li>
-          <li>
-          the observation no longer needs an ID <em>and</em> the community ID is above family
-          </li>
-          <li>
-          the observer has opted out of the community ID and the community
-          ID taxon is not an ancestor or descendant of the taxon associated
-          with the observer's ID
-          </li>
-          </ul>
-          <p>
-          And if that wasn't complicated enough, there are also situations where the system gets a vote:
-          </p>
-          <ul>
-          <li>
-          The system will vote that the observation is not wild/naturalized
-          if there are at least 10 other observations of a genus or lower in
-          the smallest county-, state-, or country-equivalent place that
-          contains this observation and 80% or more of those observations
-          have been marked as not wild/naturalized.
-          </li>
-          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -6254,14 +5905,6 @@ nl:
           500, omdat de twee lijsten waarschijnlijk niet dezelfde gebruikers bevatten.
           Een waarde gemarkeerd met '*' betekent dat deze niet in de top 500 voor die stat stond.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>Je kunt dit waarnemingsveld bewerken omdat je het hebt gemaakt of omdat je een sitecurator bent. Als je een sitecurator bent, volg dan deze richtlijnen</p>
-        <ol>
-        <li>Voer geen willekeurige naamswijzigingen door (bijv. het veranderen van "eten" in "nectar eten") </li>
-        <li>Houd er rekening mee dat waarnemingsvelden kunnen worden gebruikt voor waarnemingen van elk taxon, dus probeer taxonspecifieke terminologie te vermijden</li>
-        <li>Verwijder geen velden die mensen gebruiken</li>
-        <li>Vertaal geen bestaande veldnamen in verschillende talen. Engels is de lingua franca van deze site. Als je echt een veld wilt dat hetzelfde concept bevat maar in een andere taal, maak dan een nieuw waarnemingsveld aan.</li>
-        </ol>
       dna_help: |
         Om BOLD DNA-barcodeaanpassingsfunctionaliteit in te schakelen, moet je ervoor zorgen dat jouw veldnaam de woorden "COI", "COX1", "ITS" of "matK" bevat,
         overeenkomend met het gen dat dit veld beoogt.
@@ -6313,25 +5956,6 @@ nl:
           <a href="%{url}">waarnemingenexportpagina</a> voor een lijst met jouw exports.
       parental_consent:
         subject: Je kind wil graag iNaturalist gebruiken
-        content_html: |
-          <p> Je kind gebruikt de educatieve app <strong>Seek van iNaturalist</strong> en wil graag gegevens delen met het iNaturalist platform voor burgerwetenschap. Omdat deelname aan iNaturalist persoonsgebonden gegevens openbaar maakt, kan iNaturalist niet worden gebruikt door personen jonger dan 13 jaar zonder de toestemming van een ouder.
-          </p>
-          <p>
-          <strong>Seek van iNaturalist</strong> kan worden gebruikt zonder een account aan te maken en dan worden er geen persoonsgebonden gegevens gedeeld, maar je kind kan dan geen waarnemingen doorgeven aan iNaturalist. iNaturalist is een sociaal netwerk van burgerwetenschappers waar deelnemers waarnemingen en determinaties van levende wezens delen om elkaar meer over de natuur te leren en biodiversiteits-gegevens te genereren voor de wetenschap.
-          </p>
-          <p>
-          Als je je kind toestemming wilt geven om iNaturalist te gebruiken moet je het volgende doen:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Maak een iNaturalist-account aan dat je kind zal gebruiken door deze link te volgen: <a href="%{registration_url}">%{registration_url}</a> </p> </li> <li> <p> Na het aanmaken van het account vragen we je een kleine donatie te doen van $1 om te verifiëren dat je een volwassene bent. Zorg ervoor dat je hetzelfde e-mailadres opgeeft bij de donatie dat je ook hebt gebruikt om het account aan te maken. </p> </li> <li> <p> Zodra we de donatie hebben verwerkt sturen we nog een e-mail dat het account is geactiveerd, en dat je de iNaturalist-gebruikersnaam en -wachtwoord die je hebt aangemaakt kunt gebruiken om in te loggen in de Seek-app van je kind. </p> </li> </ol> <p> iNaturalist verzamelt de volgende persoonsgebonden informatie: </p> <ol> <li> <p> <strong>e-mailadres (privé):</strong> ieder iNaturalist-account is gekoppeld aan een e-mailadres wat niet openbaar wordt gemaakt. </p> </li> <li> <p> <strong>gebruikersnaam (openbaar, vereist):</strong> ieder iNaturalist-account heeft een publieke gebruikersnaam en een nummer wat de gebruiker identifiseert. De gebruikersnaam hoeft niet op de echte naam van een persoon te lijken, maar kan worden gebruikt om contact op te nemen met die persoon via publieke reacties en privéberichten. </p> </li> <li> <p> <strong>IP-adres (privé, vereist):</strong> iNaturalist slaat het IP-adres van de gebruiker op maar maakt deze niet openbaar. Hieruit kan persoonsgebonden informatie zoals de locatie (tot op stadsniveau) worden afgeleid.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>profielfoto (openbaar, optioneel):</strong> iNaturalist-accounts kunnen een profielfoto hebben, vaak een foto van de gebruiker. </p> </li> <li> <p> <strong>waarnemingslocatie (openbaar of or privé, vereist):</strong> iNaturalist-waarnemingen bevatten locatiegegevens over waar de waarneming is gedaan. Dit kan openbaar worden gemaakt of privé worden gehouden, maar is standaard openbaar. </p> </li> </ol> <p> iNaturalist laat gebruikers ook publieke foto's, publieke reacties en privéberichten delen die aan hun account zijn gekoppeld. Het is mogelijk dat zulke data die door gebruikers is gemaakt persoonsgegevens bevat. </p> <p> Meer informatie over het privacybeleid van iNaturalist vind je <a href="%{privacy_policy_url}">hier</a>.
-          </p>
       photos_missing:
         subject: Sommige foto's moeten worden gerepareerd
         we_have_been_housekeeping: |
@@ -6348,28 +5972,6 @@ nl:
           We hebben links naar de betreffende foto's hieronder toegevoegd.
       user_parent_confirmation:
         subject: Het account van je kind is geactiveerd
-        content_html: |
-          <p>
-          Bedankt voor het aanmaken van een account op iNaturalist voor je kind!
-          Het account is nu geactiveerd. Hier zijn de gegevens die we hebben geregistreerd:
-          </p>
-          <ul>
-          <li><strong>Naam van ouder of voogd:</strong> %{parent_name}</li>
-          <li><strong>E-mailadres van ouder of voogd:</strong> %{parent_email}</li>
-          <li><strong>Naam kind:</strong> %{child_name}</li>
-          <li><strong>Geboortedatum kind:</strong> %{child_birthday}</li>
-          <li><strong>E-mailadres kind:</strong> %{child_email}</li>
-          <li><strong>Gebruikersnaam account kind:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Meld je alsjeblieft aan via de Seek-app van je kind door op de knop "iNaturalist" te klikken, en dan
-          "Aanmelden met iNaturalist" onderin het scherm.
-          </p>
-          <p>
-          Je kind kan daarna waarnemingen toevoegen aan zijn of haar iNaturalist-account 
-          met behulp van de Seek-app, zodat die zichtbaar worden op
-          iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Je bent al een tijdje inactief op %{site_name}, dus we hebben je abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op je account</a>.
@@ -6432,12 +6034,6 @@ nl:
         aggregation_pending: Aggregatie is in behandeling
         new_place_desc_html: |
           Zoek bij <a href="%{places_url}" target="_blank">onze bestaande plaatsen</a> en zorg ervoor dat je de juiste naam van de plaats krijgt. Als jij echt niet de plaats kan vinden die je wilt, overweeg dan <a href="%{new_place_url}" target="_blank">een nieuwe plaats aan te maken</a>, maar zorg er alsjeblieft voor dat je niet een bestaande plaats dupliceert.
-        bioblitz_desc_html: |
-          <p>
-          Een bioblitz is een evenement waarbij deelnemers zoveel mogelijk soorten proberen te noteren
-             mogelijk binnen de tijdsperiode. Het is een leuke manier om mensen kennis te laten maken met biodiversiteit terwijl ze waardevolle gegevens aan het verzamelen zijn
-             op hetzelfde moment.
-          </p>
         change_admin_desc: Kies één van de projectcuratoren als de nieuwe administrator.
         change_owner_alert: |
           Hiermee verwijder jij jouw mogelijkheid om dit project te verwijderen of
@@ -6458,30 +6054,6 @@ nl:
         make_owner: Eigenaar maken
         no_curators: |
           Er zijn geen projectcuratoren. Als je een nieuw persoon wilt toewijzen als de administrator, moet deze zich eerst aansluiten bij dit project en moet je ze curator maken.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Waarnemingsaggregatie voegt automatisch passende waarnemingen toe aan je project zoals gespecificeerd in je projectregels. Er is geen manier om veel waarnemingen uit een project te verwijderen en dit is bovendien potentieel gevaarlijk.
-          Zorg er dus voor dat je zeker weet dat je de plaats- en de taxonregels gekozen hebt die je wilt, anders krijg je veel ongeschikte waarnemingen in je project die je weer handmatig moet verwijderen.
-          </p>
-          <p class="description">
-          De aggregator werkt alleen als aan de volgende voorwaarden is voldaan:
-          </p>
-          <ol>
-          <li class="readable description">Je project heeft op zijn minst één 'moet waargenomen zijn in gebied'-regel voor een klein tot middelgroot gebied (ongeveer ter grootte van Texas of Oekraïne)</li>
-          <li class="readable description">
-          OF je project heeft ten minste één 'moet onder taxon vallen'-regel.
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description"> Projectbestanden zijn gewoon bestanden die aan je project zijn gekoppeld, met enkele speciale regels:</p>
-          <ol class="description">
-          <li>Bestanden die eindigen op .logo.jpg, .logo.png, enz. worden gebruikt als het logo van het project op de projectpagina in plaats van het projectpictogram</li>
-          <li>KML- en KMZ-bestanden worden toegevoegd aan de kaart op de projectpagina</li>
-          </ol>
-        project_list_desc_html: |
-          <p class = "description">
-          Je kunt een aangepaste projectlijst van taxa maken en deze koppelen aan je project. Dit kan handig zijn om waarnemingen die aan je project toegevoegd kunnen worden te beperken tot taxa die op je lijst voorkomen via de "moet taxon zijn op de projectlijst"-regel.
-          </p>
         rules:
           captive: in gevangenschap/gecultiveerd zijn
           coordinates_shareable_by_project_curators: hebben coördinaten die zichtbaar zijn voor projectcuratoren
@@ -6512,23 +6084,6 @@ nl:
         you_can_preview: |
           Je kunt alvast bekijken hoe je project eruit zou zien als een verzamelproject
           door <a href="%{url}">hier te klikken</a>.
-      invite:
-        description_html: |
-          <h3> Over uitnodigingen </h3>
-          <p class = "ui">
-             Mensen uitnodigen voor je project is een beetje anders dan 
-             individuele waarnemingen uitnodigen. Mensen uitnodigen zal:
-          </p>
-          <ol>
-             <li> Ze een e-mail sturen met de uitnodiging om deel te nemen aan je project </li>
-             <li> Een uitnodiging op hun dashboard weergeven </li>
-             <li> Ze in staat stellen om deel te nemen aan je project als dit is ingesteld op alleen op uitnodiging</li>
-          </ol>
-          <p class = "ui">
-             Alleen projectcuratoren kunnen mensen uitnodigen om deel te nemen aan een project. Je
-             zou mensen moeten kunnen vinden via hun iNat-gebruikersnaam of
-             hun <em>complete</em> e-mailadres, ervan uitgaande dat we dat hebben opgeslagen.
-          </p>
       join:
         invite_only_description: |
           Het lidmaatschap van dit project is alleen op uitnodiging. Als je deel wilt
@@ -6637,16 +6192,6 @@ nl:
           name_already_taken: Projectnaam is al in gebruik
           cannot_have_more_than_x_project_rules: Kan niet meer dan %{x} projectregels hebben
           summary_is_required: Projectsamenvatting is vereist
-      project_location_privacy_notice_html: |
-        <p>
-           Houd er rekening mee dat projectcuratoren privé of
-           vervaagde locaties van je waarnemingen in dit project kunnen zien tenzij je
-           die toestemming intrekt en zij zullen elke willekeurige waarneming van jou kunnen toevoegen aan dit project, tenzij je <a href="/users/edit">dit wijzigt in je instellingen</a>. Je kunt ook per projectwaarneming toegang geven of intrekken.
-        </p>
-        <p>
-           Als jij je zorgen maakt over de privacy van je locaties, doe dan niet mee aan projecten
-           tenzij je de projectcurators vertrouwt.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, maar alleen als ik de waarneming zelf aan het project toevoeg.
         any: Ja, ongeacht wie de waarneming aan het project toevoegt.
@@ -6661,20 +6206,8 @@ nl:
       show:
         are_you_sure_you_want_to_convert: |
           Weet je zeker dat je dit project wilt omzetten in een verzamelproject?
-        bioblitz_results_desc_html: |
-          <p>In tegenstelling tot reguliere projecten geven bioblitzes evenementstatistieken weer van <em>alle</em> waarnemingen binnen een bepaalde tijd en plaats, niet alleen waarnemingen die mensen opzettelijk aan het project hebben toegevoegd. Dit is om de drempel weg te nemen van het moeten toevoegen van waarnemingen aan een project, alleen om live statistieken te kunnen tonen. Merk op dat die waarnemingen niet beschikbaar zijn voor export of weergave un verschillende projectweergaven zoals ledenbijdragen op de website of zoekopdrachten naar waarnemingen in een project in de mobiele apps tenzij het projectteam en deelnemers actief relevante waarnemingen toevoegen, zoals bij een normaal project.
-          </p>
-          <p>Merk op dat dit soort projecten statistieken toont voor waarnemingen die niet opzettelijk aan het project zijn toegevoegd. Het staat curatoren niet toe om daar private of verborgen coördinaten van te zien of aan te nemen dat waarnemers de projectvoorwaarden hebben goedgekeurd. Als u een projectconservator bent hebt u toegang tot privécoördinaten nodig, dus moeten uw deelnemers toestemmen met de projectvoorwaarden, of je wilt dat er opmerkingen worden geteld in de richting van de beheerde projectchecklist, zorg ervoor dat uw deelnemers gaan deelnemen aan het project en hun waarnemingen toevoegen zoals ze zouden doen in een normaal project.
-          </p>
         click_here_to_convert_this_project: |
           Klik hier om dit project om te zetten in een verzamelproject.
-        no_journal_blurb_html: |
-          <p>
-          Je projectdagboek is een middel om te communiceren met projectleden. Je kunt er zaken aankondigingen, prioriteiten stellen, en de resultaten van je project bespreken.
-          </p>
-          <p>
-          Maak <a href="%{url}" class="readmore">een bericht aan</a> om te beginnen
-          </p>
         curated_checklist_desc: |
           Dit is de gecureerde checklist en het aantal taxa van waarnemingen die nadrukkelijk aan dit project zijn toegevoegd, dus niet alle waarnemingen die zijn geregistreerd op de plaats en het tijdstip van dit evenement.
         make_sure_you_have_read_about_the_differences: |
@@ -6871,16 +6404,6 @@ nl:
           onze cache van de onderliggende Wikipedia-inhoud die we laten zien op de
           website, die automatisch verversd wordt na een week.
       show:
-        about_names_desc: |
-          <p>
-           De meeste categorieën organismen hebben "lokale namen". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken en stabiel in de tijd. Maar veel organismen hebben verschillende namen op verschillende plaatsen, zelfs in dezelfde taal, zodat het moeilijk is om zonder verwarring over deze organismen te praten. Wetenschappers pakken dit probleem aan door één "wetenschappelijke naam" te gebruiken voor elk organisme dat voldoet aan de regels van <a href="https://nl.wikipedia.org/wiki/Binomiale_nomenclatuur">Binomiale nomenclatuur</a>, maar deze namen zijn meestal gebaseerd op het Latijn, een taal die niemand kent en spreekt, dus ze zijn niet zo gemakkelijk te onthouden als lokale namen voor veel mensen. Wetenschappelijke namen kunnen ook de taxonomie van een organisme weerspiegelen, zodat ze veranderen wanneer wetenschappers meer accurate theorieën ontwikkelen over de evolutionaire relaties tussen verschillende organismen, zodat opnieuw hun nut wordt verminderd in de communicatie, zelfs tussen mensen die wetenschappelijke namen kennen.
-          </p>
-          <p>
-            Het oude gezegde vat het samen: "lokale namen veranderen van plaats naar plaats en wetenschappelijke namen veranderen van tijd tot tijd."
-          </p>
-          <p>
-            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker.
-          </p>
         about_conservation_status_desc: |
           De natuurbeschermingstatus vat het risico van uitsterven samen voor een groep organismen.
         about_establishment_desc: |
@@ -6976,25 +6499,6 @@ nl:
           ingevoegd na de binomiaal.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-            <li><p>Probeer namen toe te voegen die elders in gebruik zijn. Maak geen nieuwe namen.</p> 
-            </li>
-            <li><p>Voeg geen dubbele namen toe, bijv. noem niet meer dan één havik "havik"</p> 
-            </li>
-            <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken die alle afstammelingen bevatten, zoals<BR>
-              'Rallen, koeten en waterhoentjes' bij Rallidae,<BR>
-              'Fregatvogels, genten, aalscholvers en slangenhalsvogels' bij Suliformes,<BR> 
-              'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae of<BR>
-              'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>
-            </li>
-            <li><p>Voeg geen informatie toe die geen naam is, bijvoorbeeld verklarende informatie (tussen haakjes) over hoe de naam gebruikt zou moet worden</p>
-            </li>
-            <li><p>Nieuwe lexicons moeten in het Engels zijn. Voeg geen vertalingen toe van taalnamen zoals "Dutch, Nederlands" omdat dat dit het moeilijk of onmogelijk voor ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in verschillende talen gebruiken.</p>
-            </li>
-            <li><p>Lokale namen die zijn gekoppeld aan vertaalde talen verschijnen als de standaard lokale naam voor die taal (met behoud van het effect van plaatsvoorkeuren, naamvolgorde, etc.). <a class="readmore" href="/pages/translate">Meer informatie over het vertalen voor iNaturalist</a></p>
-            </li>
-          </ul>
         places_help_html: |
           Voeg een naam toe aan een plaats om deze te prioriteren voor
           sites en gebruikers van die plaats. Als er meerdere namen per plaats
@@ -7057,32 +6561,9 @@ nl:
           Je moet de "%{confirmation_code}" in het formulier invoeren om je account te verwijderen
       edit:
         about_third_party_tracking: Over het volgen door derden
-        blocking_desc_html: |
-          <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien of reageren op jouw waarnemingen, je waarnemingen determineren of andere interacties met je hebben op %{site_name}. Het verwijdert ook hun waarnemingen uit je zoekresultaten en verwijdert jouw waarnemingen uit hun zoekresultaten. Het maakt je echter niet onzichtbaar voor ze. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met je aangaan.
-          </p>
-          <p>
-            Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en ze je niet met rust laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of niet voor het gemeenschaps-ID kiest (daar is een andere instelling voor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je diegenes waarnemingen kan determineren.
-          </p>
-          <p>
-            Je kunt maar drie mensen blokkeren. We denken dat dit een redelijk aantal is dat geschikt is voor de mensen die blokkering nodig hebben. Dit is om misbruik van blokkering te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren <a href="mailto:%{help_email}">neem dan contact met ons op</a>.
-          </p>
-          <p>
-            Als iemand je lastigvalt of stalkt op %{site_name}, <a href="mailto:%{help_email}">laat het ons weten</a>. Als
-            het een schending van onze gebruiksvoorwaarden is of ander gedrag dat we ongepast achten voor onze site, zullen we onderzoek doen.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Als je van gedachten verandert, kun je dat altijd via 
           <a href='/users/edit'>je instellingen wijzigen</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          Het <a href="%{url}" target="_blank">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst met iNaturalist hebben gesloten om lokaal gebruik te bevorderen en de lokale biodiversiteit ten goede te komen. Ze hebben toegang tot de echte coördinaten uit hun eigen land die automatisch worden verborgen om bedreigde soorten te beschermen.
-          </p>
-          <p>
-          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar verduisterd of privé zijn.
-          </p>
-          <p>
-          Let op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.
-          </p>
         licensing_desc_html: |
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
@@ -7092,14 +6573,6 @@ nl:
           Als je steun door ons is bevestigd kun je deze checkbox aanvinken
           zodat deze status in je profiel wordt weergegeven. Je moet wel
           exact hetzelfde e-mailadres gebruiken op Donorbox als op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent geworden.
-        muting_desc_html: |
-          <p>
-             Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.
-          </p>
-          <p>
-             Je kunt zoveel mensen dempen als je wilt, maar onthoud dat je mogelijk belangrijke meldingen mist, zoals
-             determinaties die de gemeenschapsdeterminatie op je waarnemingen veranderen.
-          </p>
         name_place_help_html: |
           Geef prioriteit aan lokale namen die op deze plaats worden gebruikt.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7174,13 +6647,6 @@ nl:
       recent:
         about_recent_users: Over
         definitions_html: "<dl><dt>Waarschijnlijk spam</dt><dd>Gebruiker die waarschijnlijk een spammer is, wat betekent dat ze geen waarnemingen of determinaties hebben maar wel een profielbeschrijving.\n</dd><dt>Automatische spam</dt><dd>Spammer die door het systeem automatisch als spammer is gemarkeerd. \n</dd><dt>Handmatige spam</dt><dd>Spammer die handmatig door een site-curator als spammer is gemarkeerd. \n</dd><dt>Valse positieven</dt><dd>Gebruikers die zijn gemarkeerd als spammers, maar de meldingen zijn opgelost door sitecuratoren omdat het toch geen spammers waren.</dd></dl>"
-        recent_users_desc_html: |
-          <p>
-             We willen nieuwe gebruikers verwelkomen maar we willen ook spammers bestrijden. Hopelijk helpt deze tool met beide. Wij zijn automatisch veel gebruikers aan het markeren als spammers door gebruik te maken van <a
-             href = "https://akismet.com/">Akismet</a>, maar Akismet is niet perfect,
-             dus als je een paar minuten wilt besteden aan het melden van nieuwe accounts als
-             spammers of niet, zou dat helpen.
-          </p>
       show:
         take_a_moment_to_review_html: 'Neem even de tijd om <a href="%{link}">onze richtlijnen</a> te bekijken.'
         this_user_was_banned: Deze gebruiker werd geschorst
@@ -7190,16 +6656,6 @@ nl:
           verschijnen hier.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>Bedankt dat je een iNaturalist-donor bent! We hebben je bestaande donatie kunnen gebruiken om je identiteit te bevestigen en er is geen enkele actie van jou nodig.
-          <strong>Het account van je kind is geactiveerd.</strong>
-          </p>
-          <p>
-          Meld je aan met het account van je kind via de Seek-app door op de knop "iNaturalist" te drukken in het menu en vervolgens "Aanmelden met iNaturalist" onderaan het scherm.
-          </p>
-          <p>
-          Je kind kan dan waarnemingen invoeren op zijn iNaturalist-account met behulp van de Seek-app, zodat ze zichtbaar zijn iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: BEDANKT VOOR HET AAMAKEN VAN EEN MINDERJARIGEN-ACCOUNT!
         we_will_send_you_an_email: |
           We sturen je een e-mail zodra het account van je kind is geactiveerd.
@@ -7555,6 +7011,9 @@ nl:
           other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Bekendmaking
       AssessmentSection: Beoordelingssectie
       Atlas: Atlas
       BlockedUser: Geblokkeerde gebruiker
@@ -7574,6 +7033,9 @@ nl:
       OauthApplication: Toepassing
       TaxonLink: Taxonlink
     attributes:
+      announcement:
+        created_at: Aangemaakt op
+        updated_at: Bijgewerkt op
       assessment:
         description: Beschrijving
       assessment_section:
