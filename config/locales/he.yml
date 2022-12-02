@@ -1,20 +1,9 @@
 he:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "שינוי %{count}"
-    two: "%{count} שינויים"
-    many: "%{count} שינויים"
-    other: "%{count} שינויים"
   x_comments:
     one: 'תגובה %{count}'
     two: '%{count} תגובות'
     many: '%{count} תגובות'
     other: '%{count} תגובות'
-  x_comments_html:
-    one: 'תגובה <span class="count">%{count}</span>'
-    two: '<span class="count">%{count}</span> תגובות'
-    many: '<span class="count">%{count}</span> תגובות'
-    other: '<span class="count">%{count}</span> תגובות'
   x_faves:
     one: 'מועדף %{count}'
     two: '%{count} מועדפים'
@@ -30,41 +19,6 @@ he:
     two: '%{count} זיהויים'
     many: '%{count} זיהויים'
     other: '%{count} זיהויים'
-  x_identifications_html:
-    one: 'זיהוי <span class="count">%{count}</span>'
-    two: '<span class="count">%{count}</span> זיהויים'
-    many: '<span class="count">%{count}</span> זיהויים'
-    other: '<span class="count">%{count}</span> זיהויים'
-  x_identifications_:
-    one: 'זיהוי %{count}'
-    two: '%{count} זיהויים'
-    many: '%{count} זיהויים'
-    other: '%{count} זיהויים'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'מזהה <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    two: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> מזהות.ים'
-  x_languages:
-    one: "%{count} שפה"
-    two: "%{count} שפות"
-    many: "%{count} שפות"
-    other: "%{count} שפות"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} טקסונים שניצפו לראשונה"
-    #Count of number of taxa that represent the first addition to a life list
-    two: "%{count} טקסונים שניצפו לראשונה"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} טקסונים שניצפו לראשונה"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} טקסונים שניצפו לראשונה"
   x_journal_posts_html:
     one: 'פוסט <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> פוסטים'
@@ -97,21 +51,6 @@ he:
     two: "%{count} זיהויים שגויים ב %{rank} הזה"
     many: "%{count} זיהויים שגויים ב %{rank} הזה"
     other: "%{count} זיהויים שגויים ב %{rank} הזה"
-  x_observations:
-    one: "תצפית %{count}"
-    two: "%{count} תצפיות"
-    many: "%{count} תצפיות"
-    other: "%{count} תצפיות"
-  x_observations_:
-    one: "תצפית %{count}"
-    two: "%{count} תצפיות"
-    many: "%{count} תצפיות"
-    other: "%{count} תצפיות"
-  x_observations_html:
-    one: "תצפית <span class='count'>%{count}</span>"
-    two: "<span class='count'>%{count}</span> תצפיות"
-    many: "<span class='count'>%{count}</span> תצפיות"
-    other: "<span class='count'>%{count}</span> תצפיות"
   x_observations_link_html:
     one: "<a href='%{url}'>תצפית %{count}</a>"
     two: "<a href='%{url}'>%{count} תצפיות</a>"
@@ -122,21 +61,11 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
     many: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
     other: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
-  x_observers_html:
-    one: 'מתצפת.ת <span class="count">%{count}</span>'
-    two: '<span class="count">%{count}</span> מתצפתות.ים'
-    many: '<span class="count">%{count}</span> מתצפתות.ים'
-    other: '<span class="count">%{count}</span> מתצפתות.ים'
   x_others:
     one: "אחר %{count}"
     two: "%{count} אחרים"
     many: "ו%{count} נוספים"
     other: "%{count} אחרים"
-  x_people:
-    one: "בן אדם %{count}"
-    two: "%{count} בני אדם"
-    many: "%{count} בני אדם"
-    other: "%{count} בני אדם"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} א.נשים</strong> עזרו ל%{user} עם <strong>%{y} זיהויים</strong>"
   x_photos:
     one: "תמונה אחת"
@@ -148,21 +77,6 @@ he:
     two: "%{count} מינים חדשים"
     many: "%{count} מינים חדשים"
     other: "%{count} מינים חדשים"
-  x_new_users:
-    one: 'משתמש חדש %{count}'
-    two: '%{count} משתמשים חדשים'
-    many: '%{count} משתמשים חדשים'
-    other: '%{count} משתמשים חדשים'
-  x_species:
-    one: 'מין %{count}'
-    two: '%{count} מינים'
-    many: '%{count} מינים'
-    other: '%{count} מינים'
-  x_species_html:
-    one: "מין <span class=\"count\">%{count}</span>"
-    two: "<span class=\"count\">%{count}</span> מינים"
-    many: "<span class=\"count\">%{count}</span> מינים"
-    other: "<span class=\"count\">%{count}</span> מינים"
   x_species_link_html:
     one: "<a href='%{url}'>מין %{count}</a>"
     two: "<a href='%{url}'>%{count} מינים</a>"
@@ -173,11 +87,6 @@ he:
     two: "%{count} הצעות מסוננות לפי:"
     many: "%{count} הצעות מסוננות לפי:"
     other: "%{count} הצעות מסוננות לפי:"
-  x_taxa:
-    one: "טקסון %{count}"
-    two: "%{count} טקסונים"
-    many: "%{count} טקסונים"
-    other: "%{count} טקסונים"
   x_taxa_observed_html:
     one: "טקסון <span class='count'>%{count}</span> ניצפה"
     two: "<span class='count'>%{count}</span> טקסונים ניצפו"
@@ -193,11 +102,6 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
     many: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
     other: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
-  x_sounds:
-    one: "%{count} צליל"
-    two: "%{count} צלילים"
-    many: "%{count} צלילים"
-    other: "%{count} צלילים"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> טקסון טופל ע\"י אוצר"
     two: "<span class='count'>%{count}</span> טקסונים טופלים ע\"י אוצר"
@@ -269,8 +173,6 @@ he:
   about_this_bioblitz: אודות ביו-בליץ זה
   about_this_map: אודות מפה זו
   about_this_project: אודות פרויקט זה
-  about_trips_html: |
-    <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
   about_trusting_projects: אודות אמון בפרויקטים
   about_trusting_projects_options_any: כל התצפיות שלך בפרויקט זה
   about_trusting_projects_options_any_desc: |-
@@ -835,16 +737,6 @@ he:
   back_to_your_observations: חזרה לתצפיות שלך
   back_to_your_profile: חזרה לפרופיל שלך
   badges: תגים
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
-    two: |
-      על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
-    many: |
-      על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
-    other: |
-      על פי מדגם של %{percent}% מתוך הזיהויים הללו, להערכתנו זה יביא ל-<strong>%{count} חילוקי דעות לא מכוונים</strong> עם זיהויים של %{child}.
   based_on_the_evidence_can_id_be_improved: |
     בהתבסס על הראיות, האם אפשר לאשר או לשפר טקסון הקהילה?
   batch: קבוצה
@@ -1529,7 +1421,6 @@ he:
     failure:
       already_authenticated: 'חשבון זה כבר מחובר.'
       unauthenticated: 'עליך להתחבר או להירשם כדי להמשיך.'
-      invalid: 'דואר אלקטרוני או סיסמה לא נכונים.'
       invalid_token: 'קוד אימות לא תקין'
       user:
         suspended: חשבונך הושהה
@@ -1543,19 +1434,17 @@ he:
       send_paranoid_instructions: "אם כתובת הדוא\"ל שלך קיימת במאגר שלנו, תקבל.י קישור לשחזור סיסמה אל כתובת הדוא\"ל שלך בעוד כמה דקות."
       no_token: "לא ניתן לגשת לדף זה מבלי להגיע מאימייל לאיפוס סיסמה. אם באת מאימייל לאיפוס סיסמה, נא לוודא כי השתמשת בכתובת ה-URL המלאה שסופקה."
     registrations:
+      destroyed: 'ביי! החשבון שלך בוטל בהצלחה. נשמח לראותך שוב בקרוב.'
       signed_up: 'ברכות! הצטרפת בהצלחה.'
       updated: 'עדכנת את החשבון שלך בהצלחה'
-      destroyed: 'ביי! החשבון שלך בוטל בהצלחה. נשמח לראותך שוב בקרוב.'
     mailer:
-      confirmation_instructions:
-        subject: 'הנחיות אישור'
       reset_password_instructions:
         subject: 'הנחיות לאיפוס סיסמה'
   devise_reset_password_instructions_hello_email: שלום %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    מישהו/י ביקש.ה קישור לשינוי הסיסמה שלך. באפשרותך לעשות זאת דרך הקישור למטה.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     אם לא ביקשת זאת, נא להתעלם ממייל זה.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    מישהו/י ביקש.ה קישור לשינוי הסיסמה שלך. באפשרותך לעשות זאת דרך הקישור למטה.
   devise_reset_password_instructions_your_password_wont_change_until: |
     הסיסמה שלך לא תשתנה עד שתגש.י לקישור למעלה כדי ליצור אחת חדשה.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2649,8 +2538,6 @@ he:
       yy: "%dשנים"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3130,14 +3017,6 @@ he:
     updates_by_you_panel_body: זִכרו, בלשונית "כל העדכונים" תקבלו עדכונים לא רק עבור התוכן שלכם, אלא גם עבור תכנים של אנשים שאתם עוקבים אחריהם וטקסונים או מקומות שאתם מנויים אליהם באמצעות כלי המינוי.
     youve_got_updates_panel_title: יש לך עדכונים!
     youve_got_updates_panel_body_p1: קבלת עדכונים עבור התכנים הבאים...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>התוכן שלכם:</strong> פעילות הקשורה לתצפיות שלכם, למשל תגובות, הזדהויות והוספות למועדפים מקהילת %{site_name}. תקבלו גם עדכונים כשמישהו יוסיף תצפית שלכם לפרויקט או לשדות נוספים.</li>
-      <li><strong>אנשים:</strong> תצפיות חדשות או פרסומים בעיתונים של אנשים שאתם עוקבים אחריהם.</li>
-      <li><strong>אורגניזמים, פרויקטים ומקומות:</strong> תצפיות חדשות מאורגניזמים או מקומות שאתם מנויים אליהם. באפשרותכם גם להצטרף לפרויקטים כדי להתעדכן כשפרסומים בעיתונים נוספים אליהם.
-      </li>
-      <li><strong>דיונים שאתם מעורבים בהם:</strong> אם אתם מגיבים או מוסיפים הזדהויות לתוכן של מישהו אחר, תהיו מנויים באופן אוטומטי לכל פעילות חדשה הקשורה לתוכן הזה. אם ברצונכם להפסיק לקבל עדכונים, השתמשו בכלי "ניהול מינויים".</li>
-      </ul>
   one_by_one: "אחד אחד"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "אחת מהבאות חייב להיות נכונה:"
@@ -3281,31 +3160,11 @@ he:
     original: מקור
   photos_updated: תמונות עודכנו.
   pi_consent_desc_title: אודות מידע אישי
-  pi_consent_desc_html: |
-    <p>
-    שמירת מידע אישי כמו שם משתמש וכתובת דוא"ל מיועדת לניהול חשבונות באתר זה, וכן על מנת לציית לחוקי פרטיות. יש לסמן תיבה זו כדי לציין את הסכמתך לשימוש זה במידע אישי. כדי ללמוד עוד אודות המידע הנאסף והשימוש בו, ניתן לעיין ב<a href='%{privacy_url}' target='_blank'>מדיניות הפרטיות</a> ו<a href='%{terms_url}' target='_blank'>תנאי השימוש</a> שלנו.
-    </p>
-    <p>
-    אין דרך להחזיק חשבון iNaturalist מבלי לאחסן מידע אישי, לכן הדרך היחידה לבטל הסכמה זו היא למחוק את החשבון שלך.
-    </p>
   pi_consent_label: |
     אני נותנ.ת את הסכמתי לאפשר ל-iNaturalist לשמור ולעבד מידע אישי מוגבל אודותיי על מנת לנהל את חשבוני
   pi_consent_child_label: |
     אני נותנ.ת את הסכמתי לאפשר ל-iNaturalist לשמור ולעבד מידע אישי מוגבל של בני/בתי על מנת לנהל את חשבונו/ה
   data_transfer_consent_desc_title: אודות הסכמה להעברת מידע אישי
-  data_transfer_consent_desc_html: |
-    <p>
-    חלק מהחוקים לפרטיות נתונים, כגון התקנה הכללית של האיחוד האירופי להגנה על נתונים (GDPR), דורשים הסכמה מפורשת להעביר מידע אישי מתחום השיפוט שלהם אל תחומי שיפוט אחרים בהם ההגנה המשפטית על מידע זה לא נחשבת מספקת. נכון ל<a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>, האיחוד האירופי לא מחשיב יותר את ארצות הברית כתחום שיפוט שנותן הגנה משפטית מספקת על מידע אישי, בפרט בגלל האפשרות שממשלת ארה"ב עוקבת אחר מידע הנכנס לארה"ב. יתכן כי לתחומי שיפוט אחרים יש אותה הדעה.
-    </p>
-    <p>
-    השימוש ב-iNaturalist דורש אחסון של מידע אישי כגון כתובת הדוא"ל שלך. כל המידע של iNaturalist נשמר בארצות הברית, ואין ביכולתנו לוודא באיזה תחום שיפוט משפטי את.ה נמצא.ת בזמן השימוש ב-iNaturalist, לכן על מנת לציית לחוקי הגנה כמו GDPR, עליך לאשר שאת.ה מבין.ה ומקבל.ת את סיכון זה ונותן.ת את הסכמתך להעביר את המידע האישי שלך אל שרתי iNaturalist בארה"ב.
-    </p>
-    <p>
-    למידע נוסף אודות המידע שנאסף על ידינו והשימוש בו, ניתן לעיין ב<a href='%{privacy_url}' target='_blank'>מדיניות הפרטיות</a> וב<a href='%{terms_url}' target='_blank'>תנאי השימוש</a> שלנו.
-    </p>
-    <p>
-    אין דרך להחזיק חשבון iNaturalist מבלי לאחסן מידע אישי, לכן הדרך היחידה לבטל הסכמה זו היא למחוק את החשבון שלך.
-    </p>
   data_transfer_consent_label: |
     אני נותנ.ת את הסכמתי להעברת מידע אישי שלי לארצות הברית.
   data_transfer_consent_child_label: |
@@ -4532,8 +4391,6 @@ he:
   supporting: תומך
   suspend_user: השהיית משתמש
   suspend_user_html: השהיית %{user}
-  suspend_user_reason_instructions_html: |
-    נא להסביר מדוע הנך משהה את החשבון הזה ונא לרשום כל הפרה של %{link_start_tag}כללי הקהילה%{link_end_tag}. נא להימנע מהוספת דעות אישיות.
   sw_lat: קו רוחב
   sw_lon: קו אורך
   sync: לסנכרן?
@@ -4835,11 +4692,6 @@ he:
   this_list_only_accepts_taxa_that_are_species: לרשימה זו ניתן להזין טקסות ברמת המין בלבד
   this_list_only_accepts_taxa_that_are_species_or_lower: לרשימה זו ניתן להזין טקסות ברמת המין או רמה טקסונומית נמוכה יותר בלבד
   this_observation: תצפית זו
-  this_observation_is_featured_on_x_sites:
-    one: תצפית זו מוצגת באתר %{count}
-    two: תצפית זו מוצגת ב-%{count} אתרים
-    many: תצפית זו מוצגת ב-%{count} אתרים
-    other: תצפית זו מוצגת ב-%{count} אתרים
   this_observation_is_research_grade: תצפית זאת היא בדרגת מחקר!
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך
@@ -5236,12 +5088,6 @@ he:
   view_all_fields: צפייה בכל השדות
   view_all_flags: צפייה בכל השדות
   view_all_members: הצגת כל המשתמשות.ים
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "צפייה בכל %{count}"
-    two: "צפייה בכל %{count}"
-    many: "צפייה בכל %{count}"
-    other: "צפייה בכל %{count}"
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
   view_assessment: צפייה הערכה
@@ -5413,16 +5259,6 @@ he:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} מתוך %{count} מאושר"
-    two: "%{x} מתוך %{count} מאושרים"
-    many: "%{x} מתוך %{count} מאושרים"
-    other: "%{x} מתוך %{count} מאושרים"
-  x_of_count_observed:
-    one: "נצפה %{x} מתוך %{count}"
-    two: "נצפו %{x} מתוך %{count}"
-    many: "נצפו %{x} מתוך %{count}"
-    other: "נצפו %{x} מתוך %{count}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} מתוך %{y} א.נשים (יותר מ-2/3) בהסכמה שזה"
   x_is_the_root_of_the_tree: "%{rank} %{name} הוא השורש של העץ"
   x_project_journal: "%{name} של %{project}"
@@ -5671,11 +5507,6 @@ he:
         זה יכול לקחת זמן מה, יש לנסות לרענן עמוד זה בעוד כמה דקות.
       mobile_downloads_tip_html: |
         ניתן להוריד מדריך זה ליישומון לשימוש לא מקוון
-      mobile_downloads_help_html: |
-        <p>זה יצור ארכיון הניתן להורדה של כל הנתונים והמדיה המשוייכים למדריך זה כדי שמשתמשות.ים באפליקצייה הניידת יוכלו לצפות בכל התוכן במדריך ללא חיבור לאינטרנט. זה יקח מספר דקות לייצר את הארכיון, אך לאחר ההפעלה הארכיון יתעדכן בכל פעם שתבצע.י שינוי במדריך.</p>
-        <p class="alert status">
-        נא <strong>לא לאפשר הורדות ניידות לא מקוונות אלא אם בכוותך באמת להשתמש בהן.</strong> הן יוצרות עומס משמעותי על המערכת שלנו.
-        </p>
       pdf_layouts:
         grid: שריג
         book: ספר
@@ -5837,46 +5668,6 @@ he:
           זהו המספר הכולל של טקסוני "עלה" המיוצגים בשאילתה. לפעמים יופיעו יותר שורות מזה עם ספירות שאינן אפס מכיוון שיש טקסונים מרמה גבוהה יותר אשר נוספו משאילתות אחרות. למשל אם שאילתה 1 כוללת תצפית של 'הומו ספיאנס' ושאילתה 2 כוללת תצפית מהסוג 'הומו', שני הטקסונים יופיעו בטבלה, אבל תהיה שורה אחת נוספת עבור הסוג 'הומו' בשאילתה 1, אשר לא נכללה בספירה הכוללת שלה כי היא ספרה רק את המין 'הומו ספיאנס' בתוך הסוג, מכיוון שהוא חלק ה"עלה" של אותו חלק בעץ שלה.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: אנכי
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} משותף"
-          #Count of how many taxa several observation searches have in common
-          two: "%{count} משותפים"
-          #Count of how many taxa several observation searches have in common
-          many: "%{count} משותפים"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} משותפים"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} לא במשותף"
-          #Count of how many taxa are not present in *all* of several observation searches
-          two: "%{count} לא במשותף"
-          #Count of how many taxa are not present in *all* of several observation searches
-          many: "%{count} לא במשותף"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} לא במשותף"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} סך הכל"
-          #Count of how many taxa are present in an observation search
-          two: "%{count} סך הכל"
-          #Count of how many taxa are present in an observation search
-          many: "%{count} סך הכל"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} סך הכל"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} יחודי"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          two: "%{count} יחודיים"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          many: "%{count} יחודיים"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} יחודיים"
       export:
         choose_columns_desc: בחירת העמודות שברצונך לייצא
         create_a_query_desc_html: |
@@ -5959,16 +5750,6 @@ he:
         allow_curator_coordinate_access_desc_html: |
           לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות עבור התצפית הזאת.
         ancestor_disagreements_desc: "מספר הטקסונים המזוהים שלהם הסכמה הורית, אבל נמצאים באי-הסכמה עם הטקסון (למשל \"אני חושב.ת שזה בסוג אבל אני לא מסכימ.ה שזה המין ההוא\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          טקסון קהילתי (או זיהוי קהילה) מייצג את הטקסון שקהילת %{site_name} חושבת שמופיע בתצפית. אם מעניין אותך לדעת כיצד נבחר טקסון קהילתי, ראו את ההערות על האלגורתם בתחתית העמוד, אך באופן כללי, אנו משתדלות <strong>לבחור טקסון שלפחות 2/3 מהמזהים מסכימים איתו</strong>. לפעמים זה אומר שייבחר טקסון ברמה גבוהה יותר שמכיל מספר טקסונים חולקים (למשל, אם את חושבת שמדובר בזעמן אלמוגי ואני חושב שזה עכסן, תיבחר תת-הסדרה "נחשים" שמכילה את כל הנחשים). האלגורתם גם מוטה מעט לטובת מחלוקת, מכיוון שמצאנו שחולקות וחולקים לעתים קרובות צודקות וצודקים.
-          </p>
-          <p class="ui">
-          תצפית בדרגת מחקר חייבת (בין היתר) טקסון קהילתי. אם לתצפית זיהוי אחד בלבד, לא יהיה לה טקסון קהילתי. כל התצפיות עם לפחות זיהוי אחד, יהיה להם טקסון של התצפית. טקסון התצפית הוא הטקסון שבו אנו משתמשים כאשר משתפים תצפיות עם מאגרי נתונים שונים, מקשרים בין תצפיות של אותו טקסון באתר, מעדכנים את רשימת החיים שלך, וכו'. ברוב המקרים טקסון התצפית בסוף ייקבע בתור בתור טקסון קהילתי, אך לפעמים הם יהיו שונים, במיוחד לפני שדעת הקהילה מתיישבת על זיהוי אחד. למשל, אם אתה חושב שמדובר בנחש (תת-הסדרה "נחשים") ואני חושבת שזה זעמן אלמוגי (סוג <i>זעמן אלמוגי</i>) טקסון התצפית יהיה זעמן אלמוגי (על סמך הזיהוי שלי בלבד) אבל הטקסון הקהילתי יהיה "נחש" (על סמך שני זיהויים לפחות). אם משום מה אתה לא מסכים עם הטקסון הקהילתי, באפשרותך לבטל אותו על התצפיות שלך, ואז טקסון התצפית לעולם לא ייקבע בתור הטקסון הקהילתי (אלא ע״ב הזיהוי שלך). זה גם אומר שהתצפית שלך תוכל להפוך לדרגת מחקר רק כאשר הקהילה תסכים <em>איתך</em>. אם את.ה לא מתחבר.ת לכל הרעיון של טקסונים קהילתיים, באפשרותך לבטל אפשרות זו על כל התצפיות שלך באמצעות <a href="/users/edit" target="_blank">עריכת ההגדרות שלך</a>.
-          </p>
-          <p class="ui">
-          <strong>האלגורתם:</strong> עבור כל הטקסונים המזוהים וכל הטקסונים שמכילים אותם (למשל הסוג <i>אדם</i> מכיל בתוכו את <i>הומו ספיינס</i>), כל אחד מחושב כיחס בין מספר ה'הסכמות' - זיהויים מצטברים של אותו טקסון חלקי סכום הזיהויים המצטברים, 'אי-הסכמות' - מספר הזיהויים שהם שונים לחלוטין (למשל זיהויים של טקסונים שלא מכילים את הטקסון המחושב), ו'אי-הסכמות הוריות' - מספר הזיהויים השמרניים יותר שחולקים על הטקסון בדרגה הנמוכה יותר. עבור הטקסונים המזוהים עם ציון מעל 2/3 ולפחות 2 זיהויים, ייבחר הטקסון בעל הדרגה הנמוכה ביותר.
-          </p>
         cumulative_count_desc: 'מספר הזיהויים עבור טקסון מסוים וכל צאצאיו'
         curator_coordinate_access_disabled_desc_html: |
           פרויקט זה אינו מרשה תצפיות עם קואורדינטות שאינן ניגשות לאוצרות ואוצרי הפרויקט. אם אינך רוצה לשתף את הקואורדינטות של תצפית זו עם אוצרות ואוצרי הפרויקט, עליך להסיר את התצפית מהפרויקט.
@@ -5980,56 +5761,6 @@ he:
           חלק מתמונות אלה סומנו בדגל בגלל תוכן לא מתאים או כי הן הועלו בנגד לחוק. לפרטים אנא צפו ב%{links}
         join_project_desc_html: |
           הצטרפות לפרויקט תתן לאוצרות ולאוצרי הפרויקט יכולת לראות את הקואורדינטות המוסתרות של תצפית זו ושל כל תצפית אחרת בפרויקט, וגם מציינת את הסכמתך <a href="%{url}" target="_blank">לתנאי</a> הפרויקט.
-        quality_assessment_help2_html: |
-          <p>
-          הערכת איכות הנתונים היא סיכום של דיוק של תצפית. כל התצפיות מתחילות בדרגת <strong>"חסר"</strong>, והופכות ל<strong>"צריכות זיהוי"</strong> כאשר
-          </p>
-
-          <ul>
-          <li>לתצפית <strong>יש תאריך</strong></li>
-          <li>לתצפית <strong>יש ציון מיקום</strong> (כלומר קואורדינטות אורך ורוחב)</li>
-          <li>לתצפית <strong>יש תמונות או קולות</strong></li>
-          <li>התצפית <strong>אינה של בן אדם</strong></li>
-          </ul>
-          <p>
-          תצפיות הופכות ל<strong>"דרגת מחקר"</strong> כאשר
-          </p>
-          <ul>
-          <li>
-          <strong>קהילת %{site_name} מסכימה על זיהוי ברמת המין או יותר נמוך</strong>, כלומר כאשר יותר מ-2/3 מהמזהות והמזהים יסכימו על טקסון (אם הקהילה הצביעה שטקסון הקהילה לא יכול להשתפר עוד, זה חוזר לזיהוי ברמת תת-משפחה או נמוך יותר)
-          </li>
-          </ul>
-          <p>
-          תצפיות יחזרו להיות בדרגת <strong>"חסר"</strong> אם התנאים הנ"ל לא יתקיימו או אם הקהילה תסכים ש
-          </p>
-          <ul>
-          <li>
-          ה<strong>מיקום לא נראה מדויק</strong> (למשל קופים בלב הים, היפופוטמים בבנייני משרדים וכו')
-          </li>
-          <li>
-          <strong>האורגניזם אינו בר/מאוקלם</strong> (למשל בשבי או מתורבת על ידי בני אדם או חייזרים נבונים)
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה לאורגניזם</strong>, למשל תמונות של סימני מים, סלעים, נופים שלא כוללים את האורגניזם וכו'
-          </li>
-          <li>
-          התצפית <strong>אינה מהווה הוכחה עדכנית (~100 שנים) לאורגניזם</strong> (למשל מאובנים, אבל עקבות, גללים ועלים מתים הם בסדר)
-          </li>
-          <li>
-          התצפית לא צריכה יותר זיהוי <em>וגם</em> הזיהוי הקהילתי הוא מעל משפחה
-          </li>
-          <li>
-          המתצפת.ת בחר.ה שלא להשתתף בזיהוי הקהילתי וטקסון הזיהוי הקהילתי אינו הורה או צאצא של הטקסון המשוייך לזיהוי של המתצפת.ת.
-          </li>
-          </ul>
-          <p>
-          ואם זה לא היה מספיק מסובך, יש גם מצבים שבהם המערכת מקבלת קול הצבעה:
-          </p>
-          <ul>
-          <li>
-          המערכת תצביע שהתצפית אינה בר/מאוקלם אם יש לפחות 10 תצפיות אחרות של סוג או יותר נמוך במקום הקטן ביותר ברמת מחוז, מדינה או ארץ המכיל את התצפית הזו ו-80% או יותר מהתצפיות ההן סומנו כלא בר/מאוקלם.
-          </li>
-          </ul>
         score_desc: "ציון = ספירה מצטברת / (ספירה מצטברת + ספירת אי-הסכמות + אי-הסכמות הוריות)"
         observation_flagged_notice_html: |
           תצפית זו סומנה כספאם ואינה גלויה יותר לציבור. ביכולתך לראות אותה או כי יצרת אותה או כי את.ה אוצר.ת של האתר. אם לדעתך מדובר בטעות באפשרותך<a href="mailto:%{help_email}" class="contact">ליצור קשר</a>.<a href="/observations/%{observation_id}/flags">לנהל סימונים (דגלים)</a>
@@ -6063,70 +5794,6 @@ he:
           ייצוא התצפיות שלך נכשל. לרשימת הייצואים שלך נא לעיין ב<a href="%{url}">עמוד ייצוא התצפיות</a>.
       parental_consent:
         subject: הילד.ה שלך רוצה להשתמש ב-iNaturalist.
-        content_html: |
-          <p>
-          הילד/ה שלך משתמש/ת באפלקציה <strong>Seek by iNaturalist</strong> ורוצה לשתף מידע עם הפלטפורמה למדע אזרחי iNaturalist. משום ששיתוף בפלטפורמה מגלה מידע אישי לציבור הכללי, אסור לילדים מתחת לגיל 13 להשתמש בiNaturalist ללא הסכמתם של אחד מן ההורים.
-          </p>
-          <p>
-          אפשר להשתמש ב<strong>Seek by iNaturalist</strong> בלי ליצור חשבון, ושום מידע אישי נאסף בפלטפורמה זו, אבל ילדך לא ת/יוכל לתרום תצפיות לiNaturalist. iNaturalist היא רשת חברתית למיגע אזרחי בה משתמשים שותפים תצפיות וזיהויים של בעלי חיים כדי ללמד אחד את השני וכדי ליצור מידע על בעלי חיים בשביל שימוש על ידי מדענים.
-          </p>
-          <p>
-          אם ברצונך להסכים בהצטרפות ילדך בiNaturalist, אנא לעשות את דברים הבאים:
-          </p>
-          <ol>
-          <li>
-          <p>
-          ליצור חשבון בשביל הילד/ה דרך קישור הבא:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          אחר כך, נבקש ממך לתרום לiNaturalist תרומה סמלית של $1.00 עם כרטיס אשראי כדי להראות כי את/ה בוגר. נא לוודא כי השתמשת באותה כתובת מייל בה השתמשת בשדה "כתובת מייל הורה" בעת יצירת החשבון של ילדך.
-          </p>
-          </li>
-          <li>
-          <p>
-          כשנקבל את התרומה, נשלח אלייך מייל שמודיע לך אשר חבשונו/ה של ילדך מופעל. גם ניתן להשתמש בחשבון זה באפלקציית Seek.
-          </p>
-          </li>
-          </ol>
-          <p>
-          מידע האישי הבאים נאספים על ידי iNaturalist:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>כתובת מייל (פרטי):</strong> לכל חשבון iNaturalist משויכת כתובת מייל, שלא משותף עם ציבור הרחב.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>שם משתמש (ציבורי, חובה):</strong> לכל חשבון iNaturalist יש שם משתמש ומספר דיהוי אשר גלויים. אין חובה ששם המשתמש יזדהה עם או שיהיה דומה לשם האמיתי של המשתמש. ניתן יהיה לקבל הודעות פרטיות וגם לפנות על המשתמש דרך תגובות ציבוריות.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP address (פרטי, חובה):</strong> iNaturalist אוסף אבל שומר בפרטיות את IP address של המשתמש. ניתן לקבל מידע אישי מן הIP address כמו מיקום (ברמת עיר מסוימת).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>תמונת פרופיל (ציבורי, לא חובה):</strong> מותר לשים תמונת פרופיל, שלעתים קרובות היא תמונה של המשתמש.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>מיקום תצפיות (פרטח או ציבורי, חובה):</strong> תצפיות בiNaturalist כוללות מידע על מיקום התצפית. ניתן לבחור עם מידע על המיקום יהיה פרטי או ציבורי, אך בדרך כלל הוא ציבורי.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist גם מאפשר למשתמשים לשתף תמונות ותגובות ציבוריות, והודעות פרטיות, אשר משויכים לחשבון. ייתכן שיהיה מידע אישי בתוך תמונות, תגובות, או הודעות אלה.
-          </p>
-          <p>
-          למדו עוד בקשר לתנאי הפרטיות של iNaturalist <a href="%{privacy_policy_url}">כאן</a>.
-          </p>
       photos_missing:
         subject: ישנן תמונות הדורשות תיקון
         we_have_been_housekeeping: |
@@ -6193,10 +5860,6 @@ he:
       edit:
         admins_must_be_existing_members: על האדמיניות.ים להיות חברות.ים קיימות.ים בפרויקט.
         aggregation_pending: הצבירה ממתינה
-        bioblitz_desc_html: |
-          <p>
-          ביו-בליץ הוא אירוע שבו המשתתפות והמשתתפים מנסות.ים לצפות בכמה יותר מינים תוך פרק זמן מסוים. זוהי דרך כיפית להכיר מגוון ביולוגי לא.נשים תוך איסוף נתונים ערכיים בו זמנית.
-          </p>
         change_admin_desc: נא לבחור אוצר.ת של הפרויקט לתפקיד האדמינ.ית החדש.ה.
         change_owner_alert: |
           זה יסיר את יכולתך למחוק את פרויקט זה או להעביר בעלות שוב. האם ברצונך להמשיך?
@@ -6214,16 +5877,6 @@ he:
         make_owner: להפוך לבעלים
         no_curators: |
           אין אוצרות או אוצרים לפרויקט. אם ברצונך למנות אדם חדש בתור אדמינ.ית, עליו או עליה להצטרף לפרויקט זה קודם ואז את.ה צריכ.ה להגדיר אותו או אותה כאוצר.ת.
-        project_assets_desc_html: |
-          <p class="description">נכסי פרויקט הם רק קבצים משויכים לפרויקט שלך, עם מספר כללים מיוחדים:</p>
-          <ol class="description"> 
-          <li>קבצים עם הסיומות .logo.jpg, .logo.png וכו' ישמשו ללוגו של הפקויט בעמוד הפרויקט במקום אייקון הפרויקט</li> 
-          <li>קובצי KML ו-KMZ יתווספו למפה בעמוד הפרויקט</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          באפשרותך ליצור רשימת טקסונים מותאמת ולקשר אותה לפרויקט שלך. זה עשוי להיות שימושי בהגבלה של הוספת תצפיות לפרויקט שלך בהתאם לטקסונים ברשימה שלך, באמצעות הכלל "חייב להיות טקסון ברשימת הפרויקט".
-          </p>
         rules:
           captive: בשבי/מתורבת
           coordinates_shareable_by_project_curators: מכילות קואורדינטות הגלויות לאוצרי הפרויקט
@@ -6247,19 +5900,6 @@ he:
           אם ברצונך לקבל גישה לקואורדינטות מוסתרות של תצפיות מוסתרות, אופציה זו תאפשר לא.נשים שהצטרפו לפרויקט זה לבטוח מנהלי הפרויקט עם גישה לאותן קואורדינטות מוסתרות. חברות וחברי הפרויקט יוכלו לאשר גישה לקואורדינטות המוסתרות בכל אחת מהתצפיות שלהם המשויכות לפרויקט זה, או רק לתצפיות מוסתרות של טקסונים בסיכון (מינים רגישים).
         you_can_preview: |
           באפשרותך לראות תצוגה מקדימה של הפרויקט שלך בתור פרויקט אוסף באמצעות <a href="%{url}">לחיצה כאן</a>.
-      invite:
-        description_html: |
-          <h3>אודות הזמנות</h3>
-          <p class="ui">
-          הזמנת א.נשים לפרויקט שלך היא מעט שונה מהזמנת תצפיות בודדות. הזמנת א.נשים
-          </p>
-          <ol><li>תשלח להן.ם דוא"ל המזמין אותן.ם להצטרף לפרויקט שלך</li>
-          <li>תציג הזמנה בלוח המחוונים שלהן.ם</li>
-          <li>תאפשר להן.ם להצטרף לפרויקט שלך במידה והוא הוגדר להזמנה בלבד</li>
-          </ol>
-          <p class="ui">
-          רק לאוצרות ולאוצרי פרויקטים יש יכולת להזמין א.נשים להצטרף לפרויקט. באפשרותך לחפש א.נשים לפי שם iNaturalist או כתובת הדוא"ל <em>מלאה</em>, בהם קיימים ברשותנו.
-          </p>
       join:
         invite_only_description: |
           חברות בפרוייקט זה על פי הזמנה בלבד. אם תרצו להצטרף, נא ליצור קשר עם אחד האוצרים שברשימה, ולבקש הזמנה.
@@ -6367,12 +6007,6 @@ he:
           האם ברצונך להמיר פרויקט זה לפרויקט אוסף?
         click_here_to_convert_this_project: |
           יש ללחוץ כאן כדי להמיר פרויקט זה לפרויקט אוסף.
-        no_journal_blurb_html: |
-          <p>
-          יומן הפרויקט הוא כלי המאפשר אותך לשוחח עם חברי הפרויקט. את/ה יכול/ה להשתמש בו לטובת עידכונים, להגדיר עדיפויות, או לשתף מציאות או חדשות הרלוונטים לפרויקט.
-          </p>
-          <p>
-          כדי להתחיל, <a href="%{url}" class="readmore">כתב פוסט חדש</a></p>
         curated_checklist_desc: |
           זוהי רשימת המינים וספירת הטקסונים האצורות מתצפיות שנוספות בפירוש לפרויקט זה, לא כל התצפיות שתועדו במקום ובזמן של אירוע זה.
         make_sure_you_have_read_about_the_differences: |
@@ -6510,16 +6144,6 @@ he:
         complete_rank_desc_html: |
           הדרגה שבה הטקסון נחשב שלם, למשל אם משפחה זו מכילה את כל הסוגים שלה אך לא מכילה את כל המינים שלה, הדרגה תוגדר כ"סוג". ברירת המחדל היא מין.
       show:
-        about_names_desc: |
-          <p>
-          רוב הקטגוריות של אורגניזמים הן בעלות "שמות עממיים" בשפות מדוברות. שמות אלו הם בדרך כלל מוכרים, קלים להגייה, וקבועים לאורך זמן. אולם להרבה אורגניזמים יש כמה שמות במקומות שונים, אפילו באותה השפה, דבר אשר יכול להקשות על תקשורת בהירה אודות אורגניזמים אלו. מדעניות ומדענים מתייחסים לבעיה זו באמצעות שימוש ב"שם מדעי" אחד לכל קטגוריה של אורגניזם שמשתלבת בכללי <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">נומנקלטורה דו-שמית</a>, אבל שמות אלו נוטים להיות מבוססים על לטינית, שפה שאף אחד לא מדבר, ולכן הם לא קליטים כמו שמות עממיים עבור א.נשים רבים. שמות מדעיים יכולים גם לשקף מיקום טקסונומי של אורגניזם, ועקב כך הם יכולים להשתנות כאשר מדעניות ומדענים מפתחות.ים תיאוריות יותר מדויקות על היחסים האבולוציוניים בין אורגניזמים שונים, מה ששוב מוריד את השימושיות של שמות אלו בתקשורת, אפילו בין א.נשים שמכירות שמות מדעיים.
-          </p>
-          <p>
-          הפתגם הישן מסכם היטב: "שמות עממיים משתנים בין מקום למקום, ושמות מדעיים משתנים בין זמן לזמן."
-          </p>
-          <p>
-          אנו משתדלים להתייחס לחסרונות הללו באמצעות הצגת גם שמות עממיים וגם שמות מדעיים היכן שאפשר, ובחירת שמות עממיים לפי השפה וההעדפות הגיאוגרפיות של המשתמש.ת.
-          </p>
         about_conservation_status_desc: |
           סטטוס השימור מסכם את סכנת ההכחדה עבור קבוצת אורגניזמים.
         about_establishment_desc: |
@@ -6629,38 +6253,8 @@ he:
           חובה להזין %{confirmation_code} בטופס על מנת למחוק את החשבון שלך
       edit:
         about_third_party_tracking: אודות איסוף מידע עליך על ידי צד שלישי
-        blocking_desc_html: |
-          <p>
-          חסימת משתמש מונעת ממנו לשלוח לך הודעות, להגיב על תצפיות שלך, לזהות תצפיות שלך, וכל אינטרקציה אחרת איתך ב%{site_name}. זה גם מסיר את התצפיות שלו מתוצאות החיפוש שלך ומסיר את התצפיות שלך מתוצאות החיפוש שלו. עם זאת, זה לא הופך אותך לבלתי-נראה עבורו. הם יכולים עדיין למצוא את התצפיות שלך ולצפות בפרופיל שלך, הם רק לא יכולים לתקשר איתך.
-          </p>
-          <p>
-          חסימה מיועדת למצבים בהם את.ה פשוט לא מצליח.ה להסתדר עם מישהו או מישהי והם לא מוכנים להניח לך, על אף מיטב נסיונותיך ליישב מחלוקות בצורה מנומסת. זו אינה דרך להסתתר מא.נשים, למנוע זיהויים מא.נשים שאת לא סומכת על שיקול דעתם, או להמנע מזיהוי קהילתי (יש הגדרה ייעודית בשביל זה). כך, חסימה פועלת לשני הכיוונים: אם אתה חוסם מישהי, היא לא יכולה לתקשר איתך, אבל גם אתה לא יכול לתקשר איתה. אם תנצל חסימה לרעה כדי למנוע זיהויים של מישהי על התצפיות שלך, אתה גם מונע מעצמך לזהות את התצפיות שלה.
-          </p>
-          <p>
-          ניתן לחסום עד 3 א.נשים בלבד. אנו חושבות שזה מספר סביר שנותן מענה עבור הא.נשים שדורשים חסימה מחד, ומאידך מונע ניצול לרעה של חסימות. אם יש לך צורך לחסום יותר א.נשים, נא <a href="mailto:%{help_email}">ליצור עמנו קשר</a>.
-          </p>
-          <p>
-          אם מישהו מטריד אותך ב%{site_name}, <a href="mailto:%{help_email}"> נא ליידע אותנו</a>. אם זה נחשב הפרה של תנאי השימוש שלנו או התנהגות אחרת שלא הולמת את אתרנו, נבצע חקירה.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           במידה ותתחרט.י תמיד אפשר <a href='/users/edit'>לערוך את ההגדרות שלך</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">רשת iNaturalist</a> היא אוסף של אתרים מותאמים שמקושרים בצורה מלאה לרשת iNaturalist הגלובלית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שחתמו על הסכם עם iNaturalist כדי לקדם שימוש מקומי ולהועיל למגוון הביולוגי המקומי. יש להם גישה לקואורדינטות אמיתיות מהמדינות שלהם המוסתרות באופן אוטומטי, כדי להגן על מינים בסיכון.
-          </p>
-          <p>
-          שם המשתמש והסיסמה שלך עובדים בכל האתרים שהם חלק מהרשת של iNaturalist. במידה ותבחר.י להשתייך לאתר ברשת, המוסדות המקומיים שמנהלים כל אתר גם יקבלו גישה לכתובת הדוא"ל שלך (רק לתקשר איתך אודות פעילות באתר) וגישה לקואורדינטות האמיתיות עבור תצפיות שהן מוסתרות מהציבור או פרטיות.
-          </p>
-          <p>
-          חשוב: במידה ויש לך מעל 1000 תצפיות, נא לא לשנות את השיוך שלך ברשת למטרת ניסוי .
-          </p>
-        muting_desc_html: |
-          <p>
-          השתקת משתמש.ת מונעת ממך לקבל התראות על פעילותם, כולל תגובות על תצפיות שלך, שליחת הודעות אליך, אזכורים עליך, וכו'. השתקה עוזרת לך להתעלם ממישהי או ממישהו מבלי למנוע מהם לעשות דבר.
-          </p>
-          <p>
-          ביכולתך להשתיק כמה אנשים שאת.ה רוצה, רק יש לזכור כי תפסיד.י התראות שעשויות להיות חשובות, כגון זיהויים שמכריעים את זיהוי הקהילה על תצפיות שלך.
-          </p>
         name_place_help_html: |
           לתעדף שמות עממיים שנמצאים בשימוש במקום זה.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6728,16 +6322,6 @@ he:
           רוצים לחלוק את הטקסות האהובות עליכם? %{link_start_tag}צרו רשימה%{link_end_tag} שכותרתה "אהובים" והתצפיות האחרונות יופיעו בה.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          תודה על התרומה לאיי-נטורליסט! הצלחנו לזהות אותך עם תרומה הקיימת, ולא מבקשים עוד פעילות ממך. <strong>החשבון של ילדך מופעל.</strong>
-          </p>
-          <p>
-          אנא תיכנס לחשבון של ילדך דרך אפלקציית Seek. הקליק את "איי-נטורליסט" בתפריט, ואז "כניסה לחשבון איי-נטורליסט".
-          </p>
-          <p>
-          מעכשיו ילדך יכול לשתף את התצפיות שלו בSeek עם איי-נטורליסט, והן תופיעו בiNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: תודה שיצרת חשבון קטין!
         we_will_send_you_an_email: |
           נשלח עליך מייל כאשר חשבון ילדך מופעל
