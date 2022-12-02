@@ -1,31 +1,12 @@
 th:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    other: "เปลี่ยนแปลง %{count} รายการ"
   x_comments:
     other: '%{count} ความคิดเห็น'
-  x_comments_html:
-    other: '<span class="count">%{count}</span> คอมเมนต์'
   x_faves:
     other: '%{count} ชอบ'
   x_flags_resolved_html:
     other: "<span class='count'>%{count}</span> flag resolved แก้ปัญหารายงานแล้ว"
   x_identifications:
     other: '%{count} การจำแนก'
-  x_identifications_html:
-    other: '<span class="count">%{count}</span> การจำแนก'
-  x_identifications_:
-    other: '%{count} การจำแนก'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ผู้จำแนก'
-  x_languages:
-    other: "%{count} ภาษา"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    other: "รายการสิ่งมีชีวิต %{count} รายการแรก"
   x_journal_posts_html:
     other: '<span class="count">%{count}</span> โพสต์บทความ'
   x_matching_taxa:
@@ -40,47 +21,27 @@ th:
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
     other: "มีการจำแนกชนิดผิด %{count} ครั้งใน%{rank}นี้"
-  x_observations:
-    other: "%{count} การสังเกต"
-  x_observations_:
-    other: "%{count} การสังเกต"
-  x_observations_html:
-    other: "<span class='count'>%{count}</span> การสังเกต"
   x_observations_link_html:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
-  x_people:
-    other: "%{count} คน"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วยจำนวน <strong>%{y} IDs</strong>"
   x_photos:
     other: "%{count} รูป"
   x_new_species:
     other: "%{count} ชนิดใหม่"
-  x_new_users:
-    other: '%{count} ผู้ใช้งานใหม่'
-  x_species:
-    other: '%{count} ชนิด'
-  x_species_html:
-    other: "<span class='count'>%{count}</span> ชนิด"
   x_species_link_html:
     other: "<a href='%{url}'>%{count} ชนิด</a>"
   x_suggestions_filtered_by_colon:
     other: "%{count} คำแนะนำกรองข้อมูลโดย:"
-  x_taxa:
-    other: "%{count} หน่วยอนุกรมวิธาน"
   x_taxa_observed_html:
     other: "<span class='count'>%{count}</span> หน่วยอนุกรมวิธานที่สังเกตแล้ว"
   x_research_grade_observations_html:
     other: "<span class='count'>%{count}</span> การสังเกตระดับการวิจัย"
   x_research_grade_observations_to_species_html:
     other: "<span class='count'>%{count}</span> การสังเกตระดับงานวิจัยที่ได้รับจำแนกตั้งแต่ระดับชนิดลงไป"
-  x_sounds:
-    other: "%{count} เสียง"
   x_taxa_matching_current_filters:
     other: "%{count} ลำดับอนุกรมวิธานที่ตรงกับตัวกรองปัจจุบัน"
   x_taxon_changes_added_html:
@@ -2523,30 +2484,6 @@ th:
           "Life Stage=Larva": ตัวอ่อน
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
           unannotated: ไม่มีหมายเหตุ
-    taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>ควรเพิ่มชื่อที่มีคนใช้อยู่แล้ว โปรดอย่าตั้งชื่อใหม่เอง</p></li>
-          <li><p>อย่าเพิ่มชื่อซ้ำ เช่น อย่าตั้งชื่อเหยี่ยวหลายชนิดว่า "เหยี่ยว" เท่านั้น</p></li>
-          <li><p>ควรตั้งชื่อที่ครอบคลุมสมาชิกทั้งหมด เช่น "นกยาง ฯลฯ" หรือ "วงศ์กุหลาบป่า" สำหรับลำดับอนุกรมวิธานที่สูงกว่าระดับชนิด</p></li>
-          <li>
-          <p>
-          อย่าใส่ข้อมูลที่ไม่ใช่ส่วนหนึ่งของชื่อ เช่น วงเล็บที่มีความคิดเห็นส่วนตัวเกี่ยวกับชื่อนั้น
-          </p>
-          </li>
-          <li>
-          <p>
-          ชื่อภาษาที่เพิ่มขึ้นใหม่ควรเขียนเป็นภาษาอังกฤษ โปรดอย่าเพิ่มชื่อภาษาที่แปลมา เช่น "French, Français" เพราะจะทำให้ผู้ที่ไม่รู้ภาษานั้นค้นหาชื่อที่คุณตั้งยากขึ้น
-          </p>
-          </li>
-          <li>
-          <p>
-          ชื่อสามัญตามภาษาที่แปลจะแสดงเป็นชื่อเริ่มต้นสำหรับภาษานั้น (เว้นแต่จะมีการตั้งค่าชื่อสามัญตามสถานที่ การเรียงลำดับชื่อ ฯลฯ)
-          <a class="readmore" href="/pages/translate">เรียนรู้เพิ่มเติมเกี่ยวกับการแปล</a>
-          </p>
-          </li>
-          </ul>
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
