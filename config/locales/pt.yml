@@ -2,9 +2,6 @@ pt:
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> comentário'
-    other: '<span class="count">%{count}</span> comentários'
   x_faves:
     one: '1 favorito'
     other: '%{count} favoritos'
@@ -14,27 +11,6 @@ pt:
   x_identifications:
     one: '1 identificação'
     other: '%{count} identificações'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificação'
-    other: '<span class="count">%{count}</span> identificações'
-  x_identifications_:
-    one: '1 identificação'
-    other: '%{count} identificações'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
-  x_languages:
-    one: "%{count} idioma"
-    other: "%{count} idiomas"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} primeira observação"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} primeiras observações"
   x_journal_posts_html:
     one: '<span class="count">1</span> publicação do boletim'
     other: '<span class="count">%{count}</span> publicações do boletim'
@@ -52,30 +28,15 @@ pt:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} identificação incorreta de espécies neste %{rank}"
     other: "%{count} identificações incorretas de espécies neste %{rank}"
-  x_observations:
-    one: "1 observação"
-    other: "%{count} observações"
-  x_observations_:
-    one: "1 observação"
-    other: "%{count} observações"
-  x_observations_html:
-    one: "<span class='count'>1</span> observação"
-    other: "<span class='count'>%{count}</span> observações"
   x_observations_link_html:
     one: "<a href='%{url}'>1</a> observação"
     other: "<a href='%{url}'>%{count}</a> observações"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observação revista"
     other: "<span class='count'>%{count}</span> observações revistas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 outro"
     other: "%{count} outros"
-  x_people:
-    one: "%{count} pessoa"
-    other: "%{count} pessoas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -83,24 +44,12 @@ pt:
   x_new_species:
     one: "1 Nova Espécie"
     other: "%{count} Novas Espécies"
-  x_new_users:
-    one: '%{count} Novo Utilizador'
-    other: '%{count} Novos Utilizadores'
-  x_species:
-    one: '1 Espécie'
-    other: '%{count} Espécies'
-  x_species_html:
-    one: "<span class='count'>Uma</span> espécie"
-    other: "<span class='count'>%{count}</span> espécies"
   x_species_link_html:
     one: "<a href='%{url}'>1</a> espécie"
     other: "<a href='%{url}'>%{count}</a> espécies"
   x_suggestions_filtered_by_colon:
     one: "Uma sugestão filtrada por:"
     other: "%{count} sugestões filtradas por:"
-  x_taxa:
-    one: "%{count} táxon"
-    other: "%{count} táxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> táxon observado"
     other: "<span class='count'>%{count}</span> táxons observados"
@@ -110,9 +59,6 @@ pt:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> observação com grau de pesquisa identificada até à espécie ou até ao nível inferior</span>"
     other: "<span class='count'>%{count}</span> observações com grau de pesquisa identificadas até à espécie ou até ao nível inferior</span>"
-  x_sounds:
-    one: "%{count} som"
-    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> táxon verificado"
     other: "<span class='count'>%{count}</span> táxons verificados"
@@ -1071,7 +1017,7 @@ pt:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar a taxonomia do iNaturalist seguindo as políticas estabelecidas na seção de <a href="/pages/curator+guide#policies" target="_blank">Políticas do Guia do Curador</a>. Isto significa que podem adicionar, dividir, trocar, mesclar, desativar e excluir táxons no iNaturalist. Também podem editar status de conservação e geoprivacidade de táxons, bem como editar e gerir nomes comuns adicionados por qualquer usuário.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar a taxonomia do iNaturalist seguindo as políticas estabelecidas na seção de <a href="/pages/curator+guide#policies" target="_blank">Políticas do Guia do Curador</a>. Isto significa que podem adicionar, dividir, trocar, mesclar, desativar e excluir táxons no iNaturalist. Também podem editar status de conservação e geoprivacidade de táxons, bem como editar e gerir nomes comuns adicionados por qualquer usuário.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Ocultar comentários e suspender utilizadores por violar as <a
     href="/pages/community+guidelines" target="_blank">Orientações da Comunidade</a>.
@@ -2357,13 +2303,6 @@ pt:
     updates_by_you_panel_body: Lembre-se, na aba 'Todas as atualizações' não só receberá atualizações do seu próprio conteúdo mas, também, do conteúdo das  pessoas que segue e dos táxons ou lugares a que subscreveu utilizando a ferramenta Subscrições, à direita.
     youve_got_updates_panel_title: Tem atualizações!
     youve_got_updates_panel_body_p1: Mantenha-se atualizado acerca de...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Seu conteúdo:</strong> Actividade nas suas observações tais como comentários, identificações ou favoritos da comunidade %{site_name}. Também irá receber actualizações quando alguém adiciona a sua observação a um projecto ou inclui anotações com campos adicionais.</li>
-      <li><strong>People:</strong> Novas observações ou publicações de pessoas que segue.</li>
-      <li><strong>Organismos, Projectos e Locais:</strong> Novas observações de organismos ou locais específicos a que subscreveu. Também pode aderir a projectos para que seja actualizado sempre que exista uma nova publicação relacionada com o projecto.</li>
-      <li><strong>Discussões em que participou:</strong> Ao comentar ou adicionar identificações ao conteúdo de outra pessoa subscreve automaticamente qualquer nova actividade desse conteúdo. Utilize a ferramenta 'Gerir as suas subscrições' para deixar de receber actualizações.</li>
-      </ul>
   one_by_one: "Um a um"
   one_of_your_lists: "uma das suas listas..."
   only_a_project_manager_can_add: Só um gestor de projeto pode atribuir o estatuto de curador do projeto
@@ -3206,9 +3145,6 @@ pt:
   third_party_tracking: Rastreamento de terceiros
   this: isto
   this_is_how_taxon_names_will_be_displayed: É assim que todos os nomes de táxon serão exibidos para si no %{site_name}
-  this_observation_is_featured_on_x_sites:
-    one: Esta observação é destacada em %{count} site
-    other: Esta observação é destacada em %{count} sites
   this_photo_is_already_associated: Esta foto já está associada com uma das suas observações.
   this_taxon_concept_is_inactive: este conceito de táxon está inativo
   this_taxon_has_no_default_photo: Este táxon não tem foto predefinidaǃ
@@ -3384,18 +3320,6 @@ pt:
       edit:
         lifelist_titles_cannot_be_changed: Títulos da Lista de Vida não podem ser alterados
     observations:
-      community_id:
-        explanation: |
-          <p>
-          Se por alguma razão um utilizador não concorda com o táxon da comunidade,
-          ele pode rejeitá-lo, o que significa que a sua ID é a usada para
-          ligar a outras observações, atualizar listas de vida, etc. Também
-          significa que as suas observações só se tornarão grau de pesquisa quando a
-          comunidade concordar com elas.
-          </p>
-          <p>
-          No entanto, a ID da comunidade ainda é mostrada, para todos poderem ver as diferentes IDs que foram sugeridas.
-          </p>
       captive_help_html: |
         O organismo observado é uma espécie <strong>cultivada</strong> ou
         de <strong>cativeiro</strong>? Por exemplo, a sua observação foi feita num <strong>jardim,
@@ -3444,22 +3368,6 @@ pt:
           se querem continuar a confiar no projeto dadas as novas exigências.
           O seu acesso a coordenadas ocultas será revogado durante uma semana após
           alterar os requisitos de observação, para que os membros tenham tempo para fazer isso
-      invite:
-        description_html: |
-          <h3>Sobre convites</h3>
-          <p class="ui">
-            Convidar pessoas para o seu projeto é um pouco diferente de convidar observações individuais. Ao convidar pessoas
-          </p>
-          <ol>
-            <li>Será enviado um e-mail para convidar a juntar-se ao seu projeto</li>
-            <li>Mostrará um convite no painel de controlo</li>
-            <li>Permitirá que essas pessoas se juntem ao seu projeto se este foi definido para funcionar somente por convite</li>
-          </ol>
-          <p class="ui">
-            Somente os coordenadores do projeto podem convidar pessoas para entrar em projetos. 
-            Deverá poder pesquisar por pessoas através do nome de utilizador do iNaturalist ou 
-            através do endereço de e-mail <em>completo</em>, assumindo que temos esse e-mail no nosso arquivo.
-          </p>
       new:
         trusting_members_will_be_notified: |
           Você alterou os requisitos do projeto ou ativou a confiança do utilizador. Isto
@@ -3525,28 +3433,6 @@ pt:
           "Sex=Male": Macho
     users:
       edit:
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          A <a href="%{url}" target="_blank">iNaturalist Network</a> é uma coleção
-          de sites localizados que estão totalmente conectados à
-          comunidade global iNaturalist. Os sites da rede são apoiados por instituições
-          locais que assinaram um acordo com a iNaturalist para
-          promover o uso local e beneficiar a biodiversidade local. Têm acesso
-          a verdadeiras coordenadas dos seus países que são automaticamente
-          ocultas da visão pública, a fim de proteger as espécies ameaçadas.
-          </p>
-          <p>
-          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte
-          da rede iNaturalist. Se você optar por se afiliar a uma rede
-          local, as instituições locais que operam cada site terão também
-          acesso ao seu endereço de e-mail (apenas para comunicar consigo sobre
-          atividades do site) e acesso às coordenadas verdadeiras para as observações
-          obscurecidas ou privadas do público.
-          </p>
-          <p>
-          Nota: Por favor, não altere experimentalmente sua afiliação se
-          tiver mais de 1000 observações.
-          </p>
         project_addition_preferences:
           any: Qualquer
           joined: Projetos a que aderiu
