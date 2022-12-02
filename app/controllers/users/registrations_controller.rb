@@ -1,39 +1,35 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
-  layout "registrations"
+  include Users::CustomDeviseModule
 
   skip_before_action :verify_authenticity_token
 
-  before_action :load_registration_form_data, only: [:new, :create]
-
   def permit_params
-    if params[:user]
-      params.require(:user).permit(
-        :birthday,
-        :description,
-        :data_transfer_consent,
-        :email,
-        :icon,
-        :icon_url,
-        :locale,
-        :login,
-        :name,
-        :password,
-        :password_confirmation,
-        :pi_consent,
-        :place_id,
-        :preferred_observation_fields_by,
-        :preferred_observation_license,
-        :preferred_photo_license,
-        :preferred_sound_license,
-        :prefers_community_taxa,
-        :time_zone
-      )
-    end
+    return unless params[:user]
+    params.require(:user).permit(
+      :birthday,
+      :description,
+      :data_transfer_consent,
+      :email,
+      :icon,
+      :icon_url,
+      :locale,
+      :login,
+      :name,
+      :password,
+      :password_confirmation,
+      :pi_consent,
+      :place_id,
+      :preferred_observation_fields_by,
+      :preferred_observation_license,
+      :preferred_photo_license,
+      :preferred_sound_license,
+      :prefers_community_taxa,
+      :time_zone
+    )
   end
 
   def create
-    build_resource(permit_params)
+    build_resource( permit_params )
     resource.site = @site
 
     requestor_ip = Logstasher.ip_from_request_env(request.env)

@@ -693,6 +693,7 @@ class User < ApplicationRecord
   end
 
   def set_locale
+    # self.locale = site&.locale if locale.blank?
     self.locale = I18n.locale if locale.blank?
     true
   end
