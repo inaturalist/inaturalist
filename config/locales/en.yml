@@ -393,6 +393,9 @@ en:
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
   add_observations_project: Add Observations to This Project
+  # Used for buttons to add observations where the words "Add"
+  # and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Add</span> <span>Observations</span>"
   # Prompt to add a new journal post
   add_one: Add One!
   # Prompt to add add a default photo to a taxon when one doesn't exist, so here
