@@ -1,8 +1,4 @@
 et:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} muutus"
-    other: "%{count} muudatust"
   x_comments:
     one: '1 kommentaar'
     other: '%{count} kommentaari'
@@ -15,27 +11,6 @@ et:
   x_identifications:
     one: '1 määratlus'
     other: '%{count} määratlust'
-  x_identifications_html:
-    one: '<span class="count">1</span> määratlus'
-    other: '<span class="count">%{count}</span> määratlust'
-  x_identifications_:
-    one: '1 määratlus'
-    other: '%{count} määratlust'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> määraja'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> määrajat'
-  x_languages:
-    one: "%{count} keel"
-    other: "%{count} keelt"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} elunimekirja esmasissekanne"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} elunimekirja esmasissekannet"
   x_journal_posts_html:
     one: '<span class="count">1</span> päevikukanne'
     other: '<span class="count">%{count}</span> päevikukannet'
@@ -56,30 +31,15 @@ et:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} liigi valemääratlus tasemel: %{rank}"
     other: "%{count} liigi valemääratlust tasemel: %{rank}"
-  x_observations:
-    one: "1 vaatlus"
-    other: "%{count} vaatlust"
-  x_observations_:
-    one: "1 vaatlus"
-    other: "%{count} vaatlust"
-  x_observations_html:
-    one: "<span class='count'>1</span> vaatlus"
-    other: "<span class='count'>%{count}</span> vaatlust"
   x_observations_link_html:
     one: "<a href='%{url}'>1 vaatlus</a>"
     other: "<a href='%{url}'>%{count} vaatlust</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> kontrollitud vaatlus"
     other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
-  x_observers_html:
-    one: '<span class="count">1</span> vaatleja'
-    other: '<span class="count">%{count}</span> vaatlejat'
   x_others:
     one: "1 muu"
     other: "%{count} muud"
-  x_people:
-    one: "%{count} inimene"
-    other: "%{count} inimest"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   x_photos:
     one: "1 foto"
@@ -87,15 +47,6 @@ et:
   x_new_species:
     one: "1 uus liik"
     other: "%{count} uut liiki"
-  x_new_users:
-    one: '%{count} uus liik'
-    other: '%{count} uut kasutajat'
-  x_species:
-    one: '1 liik'
-    other: '%{count} liiki'
-  x_species_html:
-    one: "<span class='count'>1</span> liik"
-    other: "<span class='count'>%{count}</span> liiki"
   x_species_link_html:
     one: "<a href='%{url}'>1 liik</a>"
     other: "<a href='%{url}'>%{count} liiki</a>"
@@ -175,22 +126,6 @@ et:
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
-  about_trips_html: |
-    <h4>Reiside abil saab koguda kohalolu-puudumise andmeid lisades vaatlustele konteksti</h4>
-    <p>
-    <strong>Miks</strong> Kohalolu-puudumise andmed sisaldavad infot valimi mahu kohta, mida saab kasutada teaduslikuks analüüsiks, muuhulgas leviku modelleerimine (iNaturalist vaatluste toor-andmed näitavad ainult olemasolus).
-    </p>
-    <p>
-    <strong>Kuidas</strong> Reis lisab su vaatlustele konteksti, sest salvestatakse:
-    </p>
-    <ul>
-    <li><strong>Mida</strong> sa otsisid (eesmärkide nimekiri)</li>
-    <li><strong>Kus</strong> sa otsisid (otsinguala)</li>
-    <li><strong>Kuna</strong> sa otsisid (otsingu ajavahemik)</li>
-    </ul>
-    <p>
-    Sinu eesmärkide nimekirjas olevad liigid, mida sul õnnestus otsinguala sees ja otsingu ajavahemikul vaadelda, loetakse kohal olnud liikideks. Liigid, mida vaadelda ei õnnestunud, loetakse puuduvateks. Vajuta nupule 'Koonda reiside kohalolnud / puudunud andmed', mille tulemusena luuakse reiside liigipõhine kohalolu / puudumise andmete tabel koos seotud vaatlustega. <a href='%{url}'>Loe veel</a>
-    </p>
   about_trusting_projects: Projektide usaldamisest
   about_trusting_projects_options_any: Kõiki sinu selles projektis osalevad vaatlused
   about_trusting_projects_options_any_desc: |-
@@ -726,12 +661,6 @@ et:
   back_to_your_observations: Tagasi oma vaatluste juurde
   back_to_your_profile: Tagasi oma profiilile
   badges: Medalid
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Nende määratluste valimi põhjal (%{percent}%) arvame, et selle muutuse tulemusena tekiks alamtaksoni %{child} määratluste hulgas <strong>%{count} tahtmatu erimeelsus</strong>.
-    other: |
-      Nende määratluste valimi põhjal (%{percent}%) arvame, et selle muutuse tulemusena tekiks alamtaksoni %{child} määratluste hulgas <strong>%{count} tahtmatut erimeelsust</strong>.
   based_on_the_evidence_can_id_be_improved: |
     Kas vastavalt tõenditele saab kogukondliku määratluse kinnitada või seda parandada?
   batch: Komplekt
@@ -1399,7 +1328,6 @@ et:
     failure:
       already_authenticated: 'Olete juba sisse logitud.'
       unauthenticated: 'Pead jätkamiseks sisse logima või endale konto looma.'
-      invalid: 'Vigane e-posti aadress või salasõna.'
       invalid_token: 'Väär autentimiskood.'
       user:
         suspended: Sinu konto on deaktiveeritud
@@ -1413,19 +1341,17 @@ et:
       send_paranoid_instructions: "Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja."
       no_token: "Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki."
     registrations:
+      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
-      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
     mailer:
-      confirmation_instructions:
-        subject: 'Kinnitamisjuhised'
       reset_password_instructions:
         subject: 'Salasõna lähtestamise juhised'
   devise_reset_password_instructions_hello_email: Tere, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Kui sa seda ei taotlenud, siis ära pane seda e-kirja tähele.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sinu salasõna ei muutu, kui sa ülalolevale lingile ej vajuta ja uut salasõna ei loe.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2366,8 +2292,6 @@ et:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2728,13 +2652,6 @@ et:
     updates_by_you_panel_body: Pea meeles sakis 'Kõik täiendused' näed sa lisaks enda sisuga seotud täiendustele ka värsket infot kõigi jälgitavate inimeste, liikide või kohtade kohta, mida oled paremal olevasse jälgimise tööriista lisanud.
     youve_got_updates_panel_title: Sul on uudiseid!
     youve_got_updates_panel_body_p1: Jälgi uudiseid...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Sinu sisu:</strong> Sinu vaatlustega seotud teiste %{site_name} kasutajate tegevused nagu kommentaarid, määratlused ja lemmikuks kuulutamised. Samuti antakse sulle teada, kui su vaatlus lisatakse mõnda projekti või sellele lisatakse uusi andmeid.</li>
-      <li><strong>Inimesed:</strong> Sinu jälgitavate inimeste uued vaatlused ja päevikukanded.</li>
-      <li><strong>Organismid, projektid ja kohad:</strong> Jälgitavate liikide või kohtadega seotud uued vaatlused. Samuti võid ühineda projektidega, et saada teada, kui nad uusi päevikukandeid postitavad.</li>
-      <li><strong>Sinuga seotud vestlused:</strong> Kellegi teise sisu kommenteerimisel või määratlemisel pannaks sind automaatselt selle sisuga seotud täiendusi jälgima. Kasuta 'Halda oma jälgimisi' tööriista, kui ei soovi neid täiendusi enam näha.</li>
-      </ul>
   one_by_one: "Ükshaaval"
   one_of_your_lists: "ühes nimekirjas..."
   only_a_project_manager_can_add: Ainult projekti haldaja saab jagada kuraatori staatust
@@ -2846,31 +2763,11 @@ et:
     original: algne
   photos_updated: Fotod värskendatud.
   pi_consent_desc_title: Isikuandmetest
-  pi_consent_desc_html: |
-    <p>
-    Salvestame isikuandmeid nagu kasutajatunnused ja e-posti aadressid, et meie lehe kontosid hallata. Selleks, et olla vastavuses privaatsusseadustega, peame sult paluma sellesse kasti linnuke panna, mis näitaks, et sa nõustud enda isikuandmete kasutamisega. Kui soovid rohkem teada, millist infot me kogume ja kuidas seda kasutame, siis palun loe meie <a href='%{privacy_url}' target='_blank'>privaatsuspoliitikat</a> ja <a href='%{terms_url}' target='_blank'>kasutustingimusi</a>.
-    </p>
-    <p>
-    Kuna iNaturalisti kontot ei ole võimalik omada ilma isikuandmeid salvestamata, siis ainus võimalus sellest nõusolekust taganemiseks on enda konto kustutamine.
-    </p>
   pi_consent_label: |
     Luban iNaturalistil salvestada ja töödelda piiratud kujul endaga seotud andmeid, et nad saaksid minu kontot hallata.
   pi_consent_child_label: |
     Luban iNaturalistil salvestada ja töödelda piiratud kujul enda lapsega seotud andmeid, et nad saaksid tema kontot hallata.
   data_transfer_consent_desc_title: IIsikuandmete edasikandmisega nõustumisest
-  data_transfer_consent_desc_html: |
-    <p>
-    Mõned isikuandmete kaitse seadused nagu Euroopa Liidu isikuandmete kaitse üldmäärus (GDPR) nõuavad otsesõnalist nõusolekut isikuandmete edasi kandmiseks enda jurisdiktsioon alt teiste jurisdiktsioonide alla, mille puhul ei peeta nende andmete kaitstust piisavaks. Alates aastast <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> ei pea Euroopa Liit enam Ameerika Ühendriike jurisdiktsiooniks, mis pakuks isikuandmetele adekvaatset seadusandlikku kaitset, kuna USA valitsusel on võimalik jälgida riigi sisenevaid andmeid. On võimalik, et teiste jurisdiktsioonide arvamus on sama.
-    </p>
-    <p>
-    iNaturalisti kasutamine nõuab sinu isikuandmete nagu e-posti aadress salvestamist. Kõiki iNaturalisti andmeid hoitakse Ameerika Ühendriikides ning me ei saa olla kindlad, millises jurisdiktsioonis sina iNaturalisti kasutades asud. Seega, et olla vastavuses seadustega nagu GDPR, pead sa kinnitama, et mõistad seda riski ja nõustud sellega ning oled nõus oma isikuandmete edastamisega iNaturalisti USAs asuvatesse serveritesse.
-    </p>
-    <p>
-    Kui soovid rohkem teada, millist infot me kogume ja kuidas seda kasutame, siis palun loe meie <a href='%{privacy_url}' target='_blank'>privaatsuspoliitikat</a> ja <a href='%{terms_url}' target='_blank'>kasutustingimusi</a>.
-    </p>
-    <p>
-    Kuna iNaturalisti kontot ei ole võimalik omada ilma isikuandmeid salvestamata, siis ainus võimalus sellest nõusolekust taganemiseks on enda konto kustutamine.
-    </p>
   data_transfer_consent_label: |
     Luban enda isikliku info Ameerika Ühendriikidesse saatmisega
   data_transfer_consent_child_label: |
@@ -3783,8 +3680,6 @@ et:
   summary: Kokkuvõte
   supporting: Toetab
   suspend_user: Deaktiveeri kasutajakonto
-  suspend_user_reason_instructions_html: |
-    Seleta, miks sa selle konto deaktiveerid ning viita %{link_start_tag}kogukonna reeglite%{link_end_tag} vastavatele punktidele. Palun ära lisa isiklike arvamusi.
   sw_lat: Edelalaius
   sw_lon: Edelapikkus
   sync: Sünkroniseeri?
@@ -4003,9 +3898,6 @@ et:
   this_job_failed_to_run: Ülesande käivitamine ebaõnnestus. Palun kirjuta aadressile %{email}
   this_list_is_empty!: Nimekiri on tühi!
   this_observation: See vaatlus
-  this_observation_is_featured_on_x_sites:
-    one: Seda vaatlust kasutatakse %{count} lehel
-    other: Seda vaatlust kasutatakse %{count} lehel
   this_observation_is_research_grade: See vaatlus on teaduskõlbulik!
   this_observation_was_created_using: "Selle vaatluse tegemiseks kasutati:"
   this_photo_is_already_associated: See foto on juba ühe sinu vaatlusega seotud.
@@ -4220,10 +4112,6 @@ et:
   view_all_caps: VAATA KÕIKI
   view_all_fields: Vaata kõiki väljasid
   view_all_members: Vaata kõiki liikmeid
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Vaata kõiki (%{count})"
-    other: "Vaata kõiki (%{count})"
   view_all_observations: Vaata kõiki vaatluseid
   view_all_photocount_photos: "Näita kõik %{photo_count} fotot"
   view_assessment: Näita hinnangut
@@ -4575,35 +4463,6 @@ et:
           <a href="http://eol.org/" target="_blank">Encyclopedia of Life (EOL, Elu Entsoklüpeedia)</a> on planeedil Maa oleva eluga seotud informatsiooni kogum. EOLis saad luua liikide <a href="http://eol.org/info/252" target="_blank">kollektsioone</a>. Kui soovid mõnes EOLi kollektsioonis olevaid liike importida, lisa siia selle kollektsiooni URL.
         guide_place_desc: |
           Seostades oma juhendi mõne kohaga, leiavad inimesed selle seda kohta otsides üles ning koha piirjoont näidatakse lehe %{site_name} kaartidel, kui piirkond on määratletud (nt "kaardi" vaates", taksonilehtedel, jne).
-        import_tags_from_csv_help_html: |
-          <p>
-          Lae üles selles juhendis sisalduvate märksõnadega CSV-fail. Fail peaks välja nägema selline:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nimi</th>
-          <th>värvus</th>
-          <th>Käte arv</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>kahejalgne</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>punane|must</td>
-          <td>0</td>
-          <td>neljajalgne</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          Esimene rida algab "Nimega", millele järgnevad märksõnade kategoorias. Iga järgnev rida algab taksoni nimega, millele järgnevad tulba päises olevatele kategooriatele vastavad märksõnad. Antud näites saab <i>Homo sapiens</i> endale märksõnad <code>kahejalgne</code> ja <code>Käte arv=2</code> ning <i>Vulpes Vulpes</i> märksõnad <code>neljajalgne</code>, <code>värvus=punane</code>, <code>värvus=must</code> ja <code>Käte arv=0</code>. Tühjad lahtrid jäetakse vahele ning iga taksoni puhul võib olla mitu rida. Ühte lahtrisse saab ka lisada mitu püstkriipsuga eraldatud väärtust.
-          </p>
         licensing_explanation: |
           Enda loodud sisu litsenseerimine annab teistele inimestele võimaluse seda kopeerida ja muuta ilma sinult luba küsimata. See muudab sinu tehtud töö jagamise lihtsamaks ning kui kasutatakse litsentsiga Creative Commons Samatingimuslik varustatud asju (nagu Wikipedia), siis on kohustus kasutada ka tulemi puhul sarnast litsentsi. Järgneb ülevaade Creative Commons litsentsidest ja sellest, mida need tähendavad:
         paste_note_html: |
@@ -4622,11 +4481,6 @@ et:
         See võib natuke aega võta, nii et värskenda mõne minuti pärast lehte.
       mobile_downloads_tip_html: |
         Selle juhendi saab moobili rakenduste jaoks levita kasutamiseks alla laadida.
-      mobile_downloads_help_html: |
-        <p>See loob kogu antud juhendiga seotud andmete ja meediaga allalaetava arhiivi, mida mobiili rakenduse kasutajad saavad ilma interneti kasutamata täielikult kasutada. Arhiivi loomine võtab paar minutit, kuid peale selle sisse lülitamist uuendatakse arhiivi iga kord, kui juhendis midagi muudad.</p>
-        <p class="alert status">
-        Palun <strong>ära luba internetita mobiilset allalaadimist, kui sa seda tegelikult ei kasuta.</strong> Need koormavad tõsiselt meie süsteemi.
-        </p>
       pdf_layouts:
         grid: ruudustik
         book: raamat
@@ -4691,13 +4545,6 @@ et:
         disagreement_count: Erimeelsuste arv
         identification_count: Määratluste arv
         score: Skoor
-        explanation: |
-          <p>
-          Kui kasutaja mingil põhjusel ei nõustu kogukondliku taksoniga, saavad nad selle tagasi lükata, mis tähendab, et teiste vaatlustega seostamiseks, elunimekirjade täiendamiseks, jne kasutatakse nende endi pakutud määratlust. Samas tähendab see ka seda, et see vaatlus saab teaduskõlbulikuks alles siis, kui kogukond sellega nõustub.
-          </p>
-          <p>
-          Samas näidatakse kogukondlikku määratlust edasi, et kõik erinevad pakutud määratlused oleksid nähtavad.
-          </p>
         you_have_opted_out: Sa ei soovi kogukondlike määratlusi
         opt_in_for_this_observation: Kasuta selle vaatluse puhul
       copy_tip: "Lisa selle vaatluse kuupäeva, asukohta, fotosid ja muidu vaatluse välju kasutades uus vaatlus."
@@ -4790,55 +4637,6 @@ et:
           Mõnedele neist fotodest on lisatud märge ebasobiva sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}
         join_project_desc_html: |
           Projektiga liitudes saavad projekti kuraatorid näha nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
-        quality_assessment_help2_html: |
-          <p>
-          Andmete kvaliteedihinnang on kokkuvõte vaatluse täpsusest. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning saavad endale märke <strong>"vajab määramist"</strong>, kui
-          </p>
-          <ul>
-          <li>vaatlusel on <strong>kuupäev</strong></li>
-          <li>vaatlusel on <strong>asukoha andmed</strong> (st sellel on pikkus-/laius-koordinaadid)</li>
-          <li>vaatlusel on <strong>fotod või helid</strong></li>
-          <li>vaatlus <strong>pole tehtud inimesest</strong></li>
-          </ul>
-          <p>
-          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong>, kui
-          </p>
-          <ul>
-          <li>
-          lehe %{site_name} <strong>kogukond nõustub liigi või täpsema tasandi määratlusega</strong>. See tähendab, et 2/3 või rohkem määrajatest nõustub mingi taksoniga (kui kogukond on hinnanud, et kogukondlikust taksonist enam paremaks minna ei saa, siis on nõudeks alamsugukond või sellest täpsem määratlus)
-          </li>
-          </ul>
-          <p>
-          Vaatlused muutuvad taaskord <strong>"juhuvaatlusteks"</strong>, kui eeltoodud tingimused pole täidetud või kogukond nõustub, et
-          </p>
-          <ul>
-          <li>
-          <strong>asukoht ei tundu täpne</strong> (nt ahvid keset ookeanit, jõehobud kontorihoones jne)
-          </li>
-          <li>
-          <strong>organism ei ole metsik/kohandunud</strong> (nt inimeste või intelligentsete tulnukate poolt vangistatud või kasvatatud)
-          </li>
-          <li>
-          vaatlus <strong>ei näita organismi olemasolu</strong> (nt pildid veekogudest, kividest või maastikest, milles organism ei sisaldu jne)
-          </li>
-          <li>
-          vaatlus <strong>ei tõenda hiljutist (~100 aastat) organismi kohalolu</strong> (nt kivistised, kuigi jäljed, väljaheited ja surnud lehed sobivad)
-          </li>
-          <li>
-          vaatlus ei vaja enam määratlust <em>ja</em> kogukondlik määratlus on sugukonnast ebatäpsemal tasemel
-          </li>
-          <li>
-          vaatleja on keeldunud kogukondlikust määratlusest ning kogukondlik määratlus ei ole taksonipuus vaatleja määratluse madalam või kõrgem tase
-          </li>
-          </ul>
-          <p>
-          Kui see polnud veel piisavalt keeruline, siis on ka olukordi, kus hääletada saab süsteem:
-          </p>
-          <ul>
-          <li>
-          Süsteem hääletab, et vaatlus ei ole metsik/kohandunud, kui on vähemalt kümme teist vaatlust perekonna või täpsemal tasemel, mis asuvad antud vaatlust sisaldavas väikseimas omvalitsuse, osariigi või riigi tasandil üksuses ning kui 80% neist vaatlustest on märgitud mitte metsikuks/kohandunuks.
-          </li>
-          </ul>
         score_desc: "skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite ebakõlad)"
         observation_flagged_notice_html: |
           Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
@@ -4847,14 +4645,6 @@ et:
         user_stats_desc: |
           Kasutajate statistika on piiratud top 500ga vaatluste või liikide arvu järgi, mis tähendab, et enamasti näidatakse natuke üle viiesaja kasutaja, sest need kaks nimekirja ei sisalda enamasti samu kasutajaid. '*' märgitud väärtus tähendab, et kasutaja on selle väärtuse top 500 sees.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>Saad seda vaatlusvälja muuta, kuna oled selle looja või lehe kuraator. Kui oled lehe kuraator, järgi palun allolevaid juhiseid</p>
-        <ol>
-        <li>Ära tee ebaolulisi nime muutuseid (nt muutes sõna "söök" sõnaks "nektar")</li>
-        <li>Pea meeles, et vaatlusvälju saab kasutada kõigi taksonite vaatluste puhul, nii et proovi mitte kasutada mingile taksonile eripärast terminoloogiat</li>
-        <li>Ära kustuta välju, mida inimesed kasutavad</li>
-        <li>Ära tõlgi olemasolevaid välju erinvatesse keeltesse. Selle lehe peamine keel on inglise keel. Kui sa tõesti soovid välja, mis sisaldaks sama mõtet aga oleks mõnes teises keeles, siis loo palun uus vaatlusväli.</li>
-        </ol>
       dna_help: |
         Et lülitada sisse BOLD DNA triipkoodide võrdlemise võimalus, peab su välja nime sisaldama sõnu "COI", "COX1", "ITS" või "matK", mis vastab geenile, millega see väli tegeleb.
       merge:
@@ -4938,10 +4728,6 @@ et:
         aggregation_pending: Koondamine on ootel
         new_place_desc_html: |
           Vaata esmalt <a href="%{places_url}" target="_blank">olemasolevaid kohti</a> ja kontrolli, kas sinu sisestatud kohanimi on ikka õige. Kui sa ka siis ei suuda soovitud kohta leida või proovida <a href="%{new_place_url}" target="_blank">uue koha loomist</a>, aga ole palun kindel, et tegu pole olemasoleva koha duplikaadiga.
-        bioblitz_desc_html: |
-          <p>
-          Välkvaatlus on üritus, mille puhul osalejad proovivad kindla aja jooksul vaadelda võimalikult palju liike. See on lõbus viis, millega tutvustada inimestele elu mitmekesisust, kogudes samal ajal olulisi andmeid.
-          </p>
         change_admin_desc: Vali üks projekti kuraatoritest uuest administraatoriks.
         cover_desc: "Projekti päises ilmuv valikuline bänneripilt. Peab olema 950 pikslit lai ja vähemalt 400 pikslit kõrge."
         custom_project_fields_means: "Muuda projekti bännerit, lisa sisu külgtulpadesse ja redigeeri CSSi."
@@ -4955,31 +4741,6 @@ et:
           Aeg, kui projekti lisati viimased vaatlused
         no_curators: |
           Projektil ei ole kuraatoreid. Kui soovid määrata uue kasutaja projekti administraatoriks, peavad nad esmalt projektiga liituma ja sa pead tegema neist kuraatorid.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Vaatluste koondamine lisab projekti vastavalt selle reeglitele automaatselt sobivad vaatlused. Kuna projektist ei saa korraga suurt hulka vaatluseid eemalda, võib see olla ohtlik, seega ole kindel, et oled valinud kõik soovitud koha ja taksonite reeglid või muidu võib lisanduda suur hulk ebasobivaid vaatluseid, mida pead siis käsitsi eemaldama.
-          </p>
-          <p class="description">
-          Koondamine toimub vaid siis, kui projekt vastab järgnevatele nõuetele:
-          </p>
-          <ol>
-          <li class="readable description">
-          Projektil peab olema vähemalt üks 'vaatlus peab olema tehtud kohas' reegel, mille puhul koht on väikese või keskmise suurusega (umbes Texase või Ukraina suurune)
-          </li>
-          <li class="readable description">
-          VÕI on projektil vähemalt üks 'peab olema taksonis' reegel
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Projekti lisad on lihtsalt sellega seotud failid, mille puhul kehtivad mõned spetsiaalsed reeglid:</p>
-          <ol class="description">
-          <li>Sõnadega .logo.jpg, .logo.png, jne lõppevaid faile kasutatakse projekti lehel projekti ikooni asemel logona</li>
-          <li>KML- ja KMZ-failid lisatakse projekti lehel olevale kaardile</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Võid teha projekti jaoks spetsiaalse taksonite nimekirja ja selle projektiga seostada. Seeläbi saad piirata projektile lisatavaid vaatluseid kasutades reeglit "peab olema projekti nimekirja takson".
-          </p>
         rules:
           captive: olema vangistatud/kultiveeritud
           georeferenced: omama koordinaate
@@ -5000,20 +4761,6 @@ et:
           Projekti usaldamine on seotud sellega, et projektide haldajad saavad projekte täiendada lisade ning atribuutidega (nt bänneri HTML, CSS). Ligipääs nendele lisadele tähendab seda, et projekti haldajatel on teoorias võimalik täiendada koodi kuritahtliku Javascriptiga, seega tuleks usaldada ainult projekte, mille haldajad on nii usaldusväärsed kui tehniliselt kompetentsed.
         you_can_preview: |
           Saad näha eelvaadet sellest, milline su projekt näeks välja kogumisprojektina, <a href="%{url}">vajutades siia</a>.
-      invite:
-        description_html: |
-          <h3>Kutsetest</h3>
-          <p class="ui">
-          Inimeste kutsumine projekti on natuke teistsugune, kui üksikute vaatluste kutsumine. Inimeste kutsumise puhul
-          </p>
-          <ol>
-          <li>Saadetakse neile e-kiri kutsega projektiga liituma</li>
-          <li>Näitab neile kutset ka nende töölaual</li>
-          <li>Lubab neil sinu projektiga liituda, kui projekt on mõeldud vaid kutsututele</li>
-          </ol>
-          <p class="ui">
-          Vaid projekti kuraatorid saavad inimesi projekti kutsuda. Inimesi peaks saama otsida nende iNat kasutajatunnuse või nende <em>täieliku</em> e-posti aadressi abil, kui viimane meil andmebaasis olemas on.
-          </p>
       join:
         invite_only_description: |
           Selle projektis on vaid kutsutud liikmed. Kui soovid liituda, kontakteeru palun mõne alloleva kuraatoriga ning küsi endale kutset.
@@ -5072,13 +4819,6 @@ et:
         welcome_to_projects: Teretulemast projektide maailma!
         you_have_not_defined_any_observation_requirements: |
           Sa ei ole määranud ühtegi vaatlusnõuet. Vali üks või enam taksonit (nt linnud, okaspuud), kohta (nt Eesti, Saaremaa), kasutajat ja/või kuupäeva, et panna paika, mida sa soovid selle projekti alla koondada.
-      project_location_privacy_notice_html: |
-        <p>
-        Pea meeles, et ainult projekti kuraatorid näevad selles projektis sinu privaatseid või varjatud asukohti, kui sa ise seda spetsiaalselt keelanud pole, ning nad saavad sellesse projekti lisada kõiki sinu vaatlusi kui sa oma <a href="/users/edit">sätteid ei muuda</a>. Saad ka iga vaatluse puhul eraldi koordinaate peita või näidata.
-        </p>
-        <p>
-        Kui sa oled asukoha privaatsuse pärast mures, ära liitu projektidega, kui sa just nende kuraatoreid ei usalda.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Jah, aga ainult siis, kui ma ise vaatluse projekti lisan.
         any: Jah, ükskõik kes vaatluse projekti lisab.
@@ -5092,22 +4832,8 @@ et:
       show:
         are_you_sure_you_want_to_convert: |
           Oled sa kindel, et soovid projekti muuta kogumisprojektiks?
-        bioblitz_results_desc_html: |
-          <p>
-          Erinevalt tavalistest projektidest näitavad välkvaatlused statistikat <em>kõikide</em> teatud koha ja ajaperioodi vaatluste kohta, mitte ainult nende vaatluste kohta, mis on projekti tahtlikult lisatud. Seetõttu ei pea reaalajas statistika saamiseks eraldi käsitsi vaatluste lisamisega vaeva nägema. Pane tähele, et vaatlused pole eksporditavad või erinevatel projekti alamlehtedel (liikmete panus kodulehel või vaatluste otsing mobiiliäppides) nähtavad kui projekti meeskond ja osalejad pole vastavaid vaatluseid ise lisanud nagu see toimub tavaliste projektide puhul.
-          </p>
-          <p>
-          Pane tähele, et kuigi seda tüübi projekti näitavad statistikat vaatluste kohta, mida pole tahtlikult lisatud, ei tähenda see samas, et kuraatorid näeksid nende vaatluste priivatseid või varjatud koordinaate, või usuksid, et vaatlejad on nõustunud projekti tingimustega. Kui oles projekti kuraator ning vajad ligipääsu privaatsetele koordinaatidele, pead paluma liikmetelt, et nad nõustuksid projekti tingimustega. Kui soovid, et vaatlused ilmuksid kureeritud projekti kontrollnimekirja, pead paluma osalejatelt, et nad projektiga liituksid ja lisaksid vaatluseid nagu tavaliste projektide puhulgi.
-          </p>
         click_here_to_convert_this_project: |
           Vajuta siia, et muuta projekt kogumisprojektiks.
-        no_journal_blurb_html: |
-          <p>
-          Projekti päevik on tööriist, mille abil saad suhelda oma projekti liikmetega. Saad teha teadaandeid, määrata prioriteete või tutvustada oma projekti tulemusi.
-          </p>
-          <p>
-          Alustamiseks <a href="%{url}" class="readmore">loo päevikukanne</a>
-          </p>
         curated_checklist_desc: |
           See on antud projekti reaalselt lisatud vaatluste kureeritud kontrollnimekiri ja taksonite loend. See ei vasta kõigile selles kohas ja sellel ajal tehtud vaatlustele.
         make_sure_you_have_read_about_the_differences: |
@@ -5200,16 +4926,6 @@ et:
         complete_rank_desc_html: |
           Tase milleni see takson on täielik. Kui see sugukond sisaldab kõiki perekondi, kuid mitte kõiki liike, märgitaks siia "perekond". Vaikimisi valik on liik.
       show:
-        about_names_desc: |
-          <p>
-          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooria puhul, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele samavõrd meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
-          </p>
-          <p>
-          Vana ütlus võtab selle kokku: "Rahvapärased nimed muutuvad kohast kohta ja teaduslikud nimed ajast aega."
-          </p>
-          <p>
-          Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
-          </p>
         about_conservation_status_desc: |
           Kaitsestaatus võtab kokku organismidegrupi hävimisohu.
         about_establishment_desc: |
@@ -5262,15 +4978,6 @@ et:
           Taksoni nimi koos kategooriaga. Infraliikide kategooriate puhul lisatakse kategooria binaarset nimetust.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Proovi lisada nimesid, mida kasutatakse ka mujal. Palun ära leiuta uusi nimesid.</p></li>
-          <li><p>Palun ära lisa korduvaid nimesid, st ära nimeta mitmet kulli lihtsalt "kulliks"</p></li>
-          <li><p>Kõrgema taseme taksonite puhul proovi kasutada nimesid, mis viitaksid kõigile alamtaksonitele, nt "roosilased" või "suitsupääsukesed"</p></li>
-          <li><p>Ära lisa infot, mis ei ole nime osa, nt sulgudes infot selle kohta, kuidas sinu arust tuleks nime kasutada</p></li>
-          <li><p>Uute sõnaraamatute nimed peaksid olema inglise keeles. Palun ära lisa tõlgitud keelte nimesid nagu "Estonian, eesti", sest see muudab erinevates keeltes lehte kasutavate inimeste jaoks kohalike nimede kuvamise keeruliseks või isegi võimatuks</p></li>
-          <li><p>Tõlgitud keelega seotud rahvapärased nimed ilmuvad tolles keeles vaikimisi nimedena (kui prioriteeti ei määra koha eelistus, nimede järjekord, vms). <a class="readmore" href="/pages/translate">Loe lähemalt tõlkimise kohta</a></p></li>
-          </ul>
         places_help_html: |
           Pane nimi kokku mõne kohaga, et see oleks tolle kohaga seotud kasutajatel ja lehtedel eelistatud. Kui ühes kohas on palju nimesid, saad nende järjekorda määrata <a href="%{url}">siin</a>. Palun <strong>ära</strong> pane nime kokku IGA seda kasutava kohaga, vaid ainult nendega, mille puhul kasutus teistest erineb.
       taxon:
@@ -5291,28 +4998,11 @@ et:
         about_third_party_tracking: Kolmandate osapoolte jälgimisest
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Kui meelt muudada, võid alati <a href='/users/edit'>muuta oma sätteid</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist Võrgustik</a> on kogum kohalikke interneti lehekülgi, mida ühendab globaalne iNaturalist-i kogukond. Võrgustikku kuuluvaid lehekülgi toetavad kohalikud institutsioonid, mis on sõlminud iNaturalistiga lepingu, mille eesmärgiks on arendada kohalikku kasutamist ning aidata kaasa kohalikule looduslikule mitmekesisusele. Neil on ligipääs oma riigis asuvatele koordinatele, mida avalikult ohustatud liikide kaitsmise eesmärgil varjatakse.
-          </p>
-          <p>
-          Sinu kasutajatunnus ja salasõna toimivad kõigil iNaturalist Võrgustiku lehtedel. Kui sa otsustad liituda mõne kohaliku leheküljega, näeb seda juhatav institutsioon sinu e-posti aadressi (ainult selleks, et sinuga lehel toimuva osas suhelda) ning pääseb ligi sinu vaatluste tõelistele koordinaatidele, mis on varjatud või privaatsed.
-          </p>
-          <p>
-          Märkus: palun ära vaheta eksperimendi korras niisama oma kohalikku lehte, kui sul on enam kui 1000 vaatlust.
-          </p>
         licensing_desc_html: |
           Enda loodud sisu litsenseerimine lubab teistel seda legaalselt kasutada ilma sinult eraldi luba küsimata, kui nad käituvad vastavalt litsentsi tingimustele. %{site_name} jagab sinu Creative Commons litsentsiga sisu regulaarselt valitud partnerorganisatsioonidega, keda huvitavad meie andmed. Näiteks lisame me autoriõiguseta (CC0), viitamine (CC BY) ja viitamine-mitteäriline (CC BY-NC) tähisega andmeid sellesse arhiivi, mida loome <a href="http://www.gbif.org/">Globaalse Loodusliku Mitmekesisuse Andmesüsteemi</a> (Global Biodiversity Information Facility, GBIF) jaoks, mis on rahvusvaheline valitsuste ülene organisatsioon, mis kogub ja jagab infot terve maailma loodusliku mitmekesisuse kohta.
         monthly_supporter_desc_html: |
           iNaturalisti igakuised toetajad teevad automaatseid igakuiseid annetusi, mille adressaadiks on California Teaduste Akadeemia (Ameerika Ühendriikide maksuameti tunnus 94-1156258), millega toetatakse iNaturalisti ja iNaturalisti võrgustikku kuuluvate lehtede mittetulunduslikku tegevust.
           <a href="%{url}">Igakuiseks toetajaks saamiseks vajuta siia</a>. Kui oleme sinu toetuse kinnitanud, saad panna sellesse kasti linnukese, et näidata oma profiili juures vastavat märget. NB! Pead Donorbox-i lehel kasutama täpselt sama e-posti aadressit nagu iNaturalistis, et saaksime kinnitada, et sinust on saanud igakuine toetaja.
-        muting_desc_html: |
-          <p>
-          Kellegi vaigistamisel ei saa sa enam teateid nende tegevuse kohta nagu sinu vaatluste kommenteerimine, sulle sõnumite saatmine, sinu mainimine, jne. Vaigistamisega saad kedagi ignoreerida, ilma et sa neil midagi teha keelaks.
-          </p>
-          <p>
-          Võid vaigistada nii palju inimesi kui soovid, kuid pea meeles, et võid niimoodi ilma jääda olulistest teavitustest nagu näiteks määratlused, mis muudavad sinu vaatluste kogukondlikku määratlust.
-          </p>
         name_place_help_html: |
           Eelista selles kohas kasutatavaid rahvapäraseid nimesid.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5351,10 +5041,6 @@ et:
       recent:
         about_recent_users: Info
         definitions_html: <dl> <dt>Eeldatavasti rämpspost</dt> <dd> Kasutaja, kes on eeldatavasti rämpspostitaja, mis tähendab, et neil pole vaatlusi või määratlusi, kuid nende profiil sisaldab kirjeldust. </dd> <dt>Automaatne rämpspost</dt> <dd> Rämpspostitaja, kelle märgistas vastavalt süsteem ise. </dd> <dt>Manuaalne rämspost</dt> <dd> Rämspostitaja, kelle märgistas vastavalt mõni lehe kuraator. </dd> <dt>Valepositiivne</dt> <dd> Kasutajad, kes märgiti rämpspostitajateks, kuid kelle märkus kustutati lehe kuraatorite poolt, sest nad tegelikult polnud seda. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Tervitame uusi kasutajaid, kuid soovime samas võidelda ka rämpspostitajate vastu. Loodetavasti aitab see tööriist mõlemat. Märgime <a href="https://akismet.com/">Akismet-i</a> abil paljud kasutajad rämpspostitajateks, kuid Akismet pole täiuslik. Kui soovid annetada paar minutit oma ajast, et märkida uusi kasutajaid rämspostitajateks ja päris kontoteks, oleks sellest palju abi.
-          </p>
       show:
         this_user_was_banned: See kasutaja on deaktiveeritud
         favorites_list_prompt_html: |
