@@ -1,6 +1,15 @@
 id:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} perubahan"
+    one: "%{count} perubahan"
+    few: "%{count} perubahan"
+    many: "%{count} perubahan"
+    other: "%{count} perubahan"
   x_comments:
     other: '%{count} komentar'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> komentar'
   x_faves:
     other: '%{count} favorit'
   x_flags_resolved_html:
