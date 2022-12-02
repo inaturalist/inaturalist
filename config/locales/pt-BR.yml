@@ -1,14 +1,7 @@
 pt-BR:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} modificação"
-    other: "%{count} modificações"
   x_comments:
     one: '%{count} comentário'
     other: '%{count} comentários'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> comentário'
-    other: '<span class="count">%{count}</span> comentários'
   x_faves:
     one: '1 favorito'
     other: '%{count} favoritos'
@@ -18,27 +11,6 @@ pt-BR:
   x_identifications:
     one: '1 identificação'
     other: '%{count} identificações'
-  x_identifications_html:
-    one: '<span class="count">1</span> identificação'
-    other: '<span class="count">%{count}</span> identificações'
-  x_identifications_:
-    one: '1 identificação'
-    other: '%{count} Identificações'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
-  x_languages:
-    one: "%{count} Idioma"
-    other: "%{count} Idiomas"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} primeira avistagem"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} primeiras avistagens"
   x_journal_posts_html:
     one: '<span class="count">1</span> publicação do boletim'
     other: '<span class="count">%{count}</span> publicações do boletim'
@@ -59,30 +31,15 @@ pt-BR:
   x_misidentifications_of_species_in_this_rank:
     one: "1 erro de identificação de espécies neste %{rank}"
     other: "%{count} identificações erradas de espécies neste %{rank}"
-  x_observations:
-    one: "1 observação"
-    other: "%{count} observações"
-  x_observations_:
-    one: "1 Observação"
-    other: "%{count} Observações"
-  x_observations_html:
-    one: "<span class='count'>1</span> observação"
-    other: "<span class='count'>%{count}</span> observações"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observação</a>"
     other: "<a href='%{url}'>%{count} observações</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observações revisadas"
     other: "<span class='count'>%{count}</span> observações revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 outra"
     other: "%{count} outras"
-  x_people:
-    one: "%{count} pessoa"
-    other: "%{count} pessoas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -90,24 +47,12 @@ pt-BR:
   x_new_species:
     one: "1 Nova Espécie"
     other: "%{count} Novas Espécies"
-  x_new_users:
-    one: '%{count} Novo Usuário'
-    other: '%{count} Novos Usuários'
-  x_species:
-    one: '1 Espécie'
-    other: '%{count} Espécies'
-  x_species_html:
-    one: "<span class='count'>1</span> espécies"
-    other: "<span class='count'>%{count}</span> espécies"
   x_species_link_html:
     one: "<a href='%{url}'>1 espécie</a>"
     other: "<a href='%{url}'>%{count} espécies</a>"
   x_suggestions_filtered_by_colon:
     one: "1 Sugestões Filtradas Por:"
     other: "%{count} Sugestões Filtradas Por:"
-  x_taxa:
-    one: "%{count} táxon"
-    other: "%{count} táxons"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> táxon observado"
     other: "<span class='count'>%{count}</span> táxons observados"
@@ -117,9 +62,6 @@ pt-BR:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> observação em Nível de Pesquisa identificada a nível de espécie ou menor"
     other: "<span class='count'>%{count}</span> observações em Nível de Pesquisa identificadas a nível de espécie ou menor"
-  x_sounds:
-    one: "%{count} som"
-    other: "%{count} sons"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> táxon verificado"
     other: "<span class='count'>%{count}</span> táxons verificados"
@@ -186,8 +128,6 @@ pt-BR:
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre este mapa
   about_this_project: Sobre este Projeto
-  about_trips_html: |
-    <h4>Viagens permitem a coleção de dados de presença-ausência por adicionar contexto as suas observações</h4><p><strong>Por quê</strong> Dado de presença-ausência inclui informação sobre esforço de amostragem que é útil para analises cientificas como modelagem de distribuição (Observações cruas do iNaturalist são dados de "somente-presença").</p> <p><strong>Como</strong> Uma viagem adiciona contexto as suas observações por recordar:</p> <ul> <li><strong>O que</strong> você pesquisou (lista alvo)</li> <li><strong>Onde</strong> você pesquisou (área de pesquisa)</li> <li><strong>Quando</strong> você pesquisou (intervalo de pesquisa)</li> </ul> <p>Especies da lista alvo que você conseguiu observar dentro da área de pesquisa e intervalo são interpretadas como presenças. Enquanto espécies da sua lista alvo que não foi capaz de observar são interpretadas como ausências. Clique 'Tabular Dados de Presença-Ausência De Viagens' para gerar uma tabela de registros de presença-ausência para espécies de viagens e observações associadas. <a href='%{url}'>Saber mais</a></p>
   about_trusting_projects: Sobre Confiar em Projetos
   about_trusting_projects_options_any: Todas as suas observações neste projeto
   about_trusting_projects_options_any_desc: |-
@@ -746,14 +686,6 @@ pt-BR:
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   badges: Insígnias
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Baseado em uma amostra de %{percent}% dessas IDs, estimamos que isso irá
-      resultar em <strong>%{count} de desacordo não intencional</strong> com IDs de %{child}.
-    other: |
-      Baseado em uma amostra de %{percent}% dessas IDs, estimamos que isso irá
-      resultar em <strong>%{count} desacordos não intencionais</strong> com IDs de %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Com base nas evidências, o Táxon comunitário ainda pode ser confirmado ou melhorado?
   batch: Grupo
@@ -1290,7 +1222,7 @@ pt-BR:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar a taxonomia do iNaturalist seguindo as políticas estabelecidas na seção de <a href="/pages/curator+guide#policies" target="_blank">Políticas do Guia do Curador</a>. Isto significa que podem adicionar, dividir, trocar, mesclar, desativar e excluir táxons no iNaturalist. Também podem editar status de conservação e geoprivacidade de táxons, bem como editar e gerir nomes comuns adicionados por qualquer usuário.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar a taxonomia do iNaturalist seguindo as políticas estabelecidas na seção de <a href="/pages/curator+guide#policies" target="_blank">Políticas do Guia do Curador</a>. Isto significa que podem adicionar, dividir, trocar, mesclar, desativar e excluir táxons no iNaturalist. Também podem editar status de conservação e geoprivacidade de táxons, bem como editar e gerir nomes comuns adicionados por qualquer usuário.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Ocultar comentários e suspender utilizadores por violar as <a
     href="/pages/community+guidelines" target="_blank">Diretrizes da Comunidade</a>.
@@ -1491,7 +1423,6 @@ pt-BR:
     failure:
       already_authenticated: 'Você já está logado.'
       unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
-      invalid: 'E-mail ou senha inválidos.'
       invalid_token: 'Token de autenticação inválido.'
       user:
         suspended: Sua conta foi suspensa
@@ -1505,19 +1436,17 @@ pt-BR:
       send_paranoid_instructions: "Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu endereço de e-mail em alguns minutos."
       no_token: "Você só pode acessar essa página através de um e-mail de redefinição de senha. Se já estiver acessando por um e-mail de redefinição de senha, verifique se a URL fornecida está completa."
     registrations:
+      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
       signed_up: 'Bem-vindo! Você se registrou com sucesso.'
       updated: 'Você atualizou sua conta com sucesso.'
-      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruções de confirmação'
       reset_password_instructions:
         subject: 'Instruções de redefinição de senha'
   devise_reset_password_instructions_hello_email: Olá %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se você não solicitou isso, ignore este e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sua senha não será alterada até que você acesse o link acima e crie uma nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2647,8 +2576,6 @@ pt-BR:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D [de] MMMM, HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3130,13 +3057,6 @@ pt-BR:
     updates_by_you_panel_body: Lembre-se, na aba 'Todas as suas notificações'você terá acesso não apenas ao seu próprio conteúdo mas, também, ao conteúdo de pessoas que você segue e, táxons ou lugares aos quais você se inscreveu utilizando a ferramenta de inscrição à direita.
     youve_got_updates_panel_title: Você tem atualizações!
     youve_got_updates_panel_body_p1: Se mantenha atento as atualizações...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>Seu Conteúdo:</strong> As atividades em suas observações tal como comentários, identificações, ou quando marcadas como favoritas da comunidade do %{site_name}. Você também receberá atualizações sempre que alguém adicionar suas observações à um projeto, ou incluir anotações nos campos adicionais.</li>
-      <li><strong>Pessoas:</strong> Novas posts ou observações de pessoas que você segue.</li>
-      <li><strong>Organismos, Projetos e Lugares:</strong> Novas observações de organismos ou locais específicos que você acompanha. Você pode também ingressar em projetos assim, você será atualizado sempre que houveram novos posts nos jornais destes projetos.</li>
-      <li><strong>Discussões em que você participa:</strong> Ao comentar ou adicionar identificações as observações de alguém você se inscreve, automaticamente, para receber notificações sobre qualquer atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
-      </ul>
   one_by_one: "Um por um"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "um dos seguintes deve ser verdadeiro:"
@@ -3287,31 +3207,6 @@ pt-BR:
   pi_consent_child_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre meu filho para gerenciar a conta do meu filho
   data_transfer_consent_desc_title: Sobre o consentimento para transferência de informações pessoais
-  data_transfer_consent_desc_html: |
-    <p>
-    Algumas leis de privacidade de dados, como o Regulamento Geral de Proteção de Dados da União Europeia (European Union's General Data Protection Regulation GDPR), exigem consentimento explícito para transferir informações pessoais de suas jurisdições para outras jurisdições onde a proteção legal desta informação não é considerada adequado. A partir de 
-    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
-    a União Europeia não considera os Estados Unidos como uma
-    jurisdição que fornece proteção legal adequada para informações pessoais, especificamente devido à possibilidade de o governo dos EUA exercer vigilância de dados entrando nos EUA. É possível que outras jurisdições possam ter a mesma politica.
-    </p>
-    <p>
-    O uso do iNaturalist requer o armazenamento de informações pessoais como seu
-    endereço de e-mail, todos os dados do iNaturalist são armazenados nos Estados Unidos e
-    não podemos ter certeza sobre em qual jurisdição legal você está quando está usando
-    iNaturalist, portanto, para cumprir as leis de privacidade como o GDPR, você
-    deve reconhecer que você entende e aceita esse risco e consentir em transferir suas informações pessoais para os servidores do iNaturalist nos EUA.
-    </p>
-    <p>
-    Para saber mais sobre quais informações coletamos e como as usamos,
-    por favor veja o nossa
-    <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a>
-    e nossos <a href='%{terms_url}' target='_blank'>Termos de Uso</a>.
-    </p>
-    <p>
-    Não há como ter uma conta iNaturalist sem armazenar 
-    informações pessoais, portanto, a única maneira de revogar esse consentimento é excluir sua
-    conta.
-    </p>
   data_transfer_consent_label: |
     Eu concordo em permitir que minhas informações pessoais sejam transferidas para os Estados Unidos
     da América
@@ -4597,8 +4492,6 @@ pt-BR:
   supporting: Concordante
   suspend_user: Suspender usuário
   suspend_user_html: Suspender %{user}
-  suspend_user_reason_instructions_html: |
-    Explique porque está suspendendo esta conta e cite quaisquer violações das %{link_start_tag}Diretrizes da Comunidade%{link_end_tag}. Por favor, evite adicionar opiniões pessoais.
   sw_lat: Lat. S.O.
   sw_lon: Lon. S.O.
   sync: Sincronizar
@@ -4873,9 +4766,6 @@ pt-BR:
   this_list_only_accepts_taxa_that_are_species: Esta lista só aceita táxons que são espécies
   this_list_only_accepts_taxa_that_are_species_or_lower: Esta lista só aceita táxons que são espécies ou inferiores
   this_observation: Esta observação
-  this_observation_is_featured_on_x_sites:
-    one: Esta observação esta é destaque em %{count} local
-    other: Esta observação esta é destaque em %{count} locais
   this_observation_is_research_grade: Esta observação é Nível de Pesquisa!
   this_observation_was_created_using: "Esta observação foi criada com:"
   this_photo_is_already_associated: Esta foto já está associada com uma de suas observações.
@@ -5241,10 +5131,6 @@ pt-BR:
   view_all_fields: Ver todos os campos
   view_all_flags: Ver Todas as Sinalizações
   view_all_members: Ver todos os membros
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Ver todos %{count}"
-    other: "Ver todos %{count}"
   view_all_observations: Ver todas observações
   view_all_photocount_photos: "Exibir todas as %{photo_count} fotos"
   view_assessment: Ver avaliação
@@ -5422,12 +5308,6 @@ pt-BR:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} de %{count} foi confirmado"
-    other: "%{x} de %{count} foram confirmados"
-  x_of_count_observed:
-    one: "%{x} de %{count} foi observado"
-    other: "%{x} de %{count} foram observados"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} de  %{y} pessoas  (mais de 2/3) concordam que é"
   x_is_the_root_of_the_tree: "%{rank} %{name} é a raiz da árvore"
   x_project_journal: "%{name} do projeto %{project}"
@@ -5649,37 +5529,10 @@ pt-BR:
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
     donate:
       donate_short_desc: "Doe agora para mostrar seu apoio!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
-        </p>
-        <p class="lead">
-        Se você acredita no poder desta comunidade global de amantes da natureza para compartilhar conhecimento e gerar dados insubstituíveis sobre a biodiversidade, por favor considere um presente único ou recorrente online, ou veja <a
-        href="https://www.inaturalist.org/pages/giving">outras maneiras de doar</a>.
-        </p>
-        <p class="lead">
-        Sua doação ajuda a apoiar o iNaturalist a medida que a comunidade cresce, de avançar a visão computacional e implementar novos recursos até apoiar nossos servidores e equipe.
-        </p>
-        <p class="text-muted">
-        O iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society. Todas as doações serão recebidas pela Academia de Ciências da Califórnia, uma organização 501(c)(3) isenta de impostos e sem fins lucrativos baseada nos Estados Unidos da América (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Torne-se um apoiador mensal do iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: TORNE-SE UM CONTRIBUINTE MENSAL DE INATURALISTA
-        desc_html: |
-          <p class="lead">
-          <strong>O iNaturalist é uma das maiores comunidades do mundo dedicada a explorar a biodiversidade. Obrigado por fazer parte disso!</strong>
-          </p>
-          <p class="lead">
-          Nós desejamos manter o iNaturalist gratuito para ser utilizado, mas ele não é gratuito para operar. Se você ama o iNaturalist, por favor considere se tornar um apoiador mensal. Doações recorrentes ajudam a garantir que o iNaturalist pode continuar a aumentar sua infraestrutura e equipe por prover uma renda previsível. Você também pode optar por mostrar seu status de apoiador mensal no seu perfil de usuário.
-          </p>
-          <p class="lead">
-          Suas doações generosas ajudam a apoiar o iNaturalist a medida que a comunidade cresce, de avançar a visão computacional e implementar novos recursos até apoiar nossos servidores e equipe. Se você prefere doar uma única vez, por favor <a href="%{donate_url}">clique aqui</a>.
-          </p>
-          <p class="text-muted">
-          O iNaturalist é uma iniciativa conjunta da Academia de Ciências da Califórnia e da National Geographic Society. Todas as doações serão recebidas pela Academia de Ciências da Califórnia, uma organização 501(c)(3) isenta de impostos e sem fins lucrativos baseada nos Estados Unidos da América.
-          </p>
         thank_you_for_being_a_monthly_supporter: Obrigado por ser um Apoiador Mensal!
         thank_you_for_being_a_monthly_supporter_caps: OBRIGADO POR SER UM APOIADOR MENSAL
     flags:
@@ -5715,38 +5568,6 @@ pt-BR:
           de espécies. Caso queira importar uma coleção de espécies da EOL cole aqui o URL de detino.
         guide_place_desc: |
           Associar seu Guia a um local pode ajudar as pessoas a encontrá-lo quando realizarem buscas por localidade, e exibirá os limites de distribuição de espécies para %{site_name} nos mapas quando estes limites forem previamente estabelecidos.
-        import_tags_from_csv_help_html: |
-          <p>
-          Carregue um arquivo CSV com marcações de táxons para este guia. Seu arquivo CSV deve ser exatamente como este:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>Nome</th>
-          <th>color</th>
-          <th>Número de mãos</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bípede</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>red|black</td>
-          <td>0</td>
-          <td>quadrúpedpe</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          A primeira linha começa com "Nome" seguida de marcações sobre características/categorias. Depois, cada uma das linhas seguintes começa com o nome do táxon, seguido por marcações que correspondam as características inseridas no topo da coluna. Neste exemplo, <i>Homo sapiens</i> recebe a marcação <code>bípedal</code> e <code>Número de mãos=2</code>,
-          e <i>Vulpes vulpes</i> recebe <code>quadrúpede</code>,
-          <code>color=vermelho</code>, <code>color=preto</code>, e
-          <code>Número de mãos=0</code>. Espaços em branco serão ignorados, e você poderá adicionar múltiplas linhas por táxon. Você poderá também adicionar múltiplos valores por célula separados por barra vertical (|).
-          </p>
         licensing_explanation: |
           Atribuir licenças de uso para os seus registros e imagens disponibilizará a outros usuários a opção de copiar e modificar este conteúdo sem consentimento prévio. O que torna muito mais fácil compartilhar suas coleções com o mundo todo, e se você incorporar a sua conta conteúdos exportados de sites que utilizam  licenças Creative Commons de Compartilhamento (igual as utilizadas pelo Wikipedia), você esta legalmente obrigado a optar por uma licença igual. Acesse aqui uma visão geral das normas de uso da maioria da licenças Creative Commons e seu significado:
         paste_note_html: |
@@ -5765,11 +5586,6 @@ pt-BR:
         Isto pode levar algum tempo, então tente atualizar esta página em alguns minutos.
       mobile_downloads_tip_html: |
         Este guia pode ser baixado para o aplicativo móvel para ser utilizado offline.
-      mobile_downloads_help_html: |
-        <p>Isto irá criar um arquivo para download de todos os dados e mídias associados a este guia, desta forma todos os usuários de smartphones poderão acessar o guia mesmo sem conexão à internet. O arquivo será gerado após alguns minutos, mas após habilitar esta opção o arquivo será atualizado automaticamente e qualquer alteração no guia será incluída.</p>
-        <p class="alert status">
-        Por favor <strong>não habilite o uso offline do guia a não ser que você realmente vá utilizar os dados desta forma.</strong> Este recurso consome um espaço considerável de nosso sistema.
-        </p>
       pdf_layouts:
         grid: grade
         book: livro
@@ -5899,13 +5715,6 @@ pt-BR:
         disagreement_count: Quantidade de Desacordos
         identification_count: Contagem de Identificação
         score: Pontuação
-        explanation: |
-          <p>
-          Se, por algum motivo, um usuário discordar da classificação da comunidade a nível de táxon, ele poderá rejeitar esta ID, o que significa que a sua identificação será aquela utilizada para se associar à outras observações, , atualizações de listas de vida, etc. Também significa que suas observações poderão receber o status de Nível de Pesquisa quando a comunidade concordar com sua identificação.
-          </p>
-          <p>
-          Entretanto, a identificação feita pela comunidade ainda, permanecerá visível, assim todos os membros da plataforma poderão visualizar as diferentes identificações sugeridas pelos usuários.
-          </p>
         you_have_opted_out: Você optou por rejeitar identificações da comunidade
         opt_in_for_this_observation: Opine sobre esta observação
         your_id_does_not_match: |
@@ -5944,30 +5753,6 @@ pt-BR:
           Este é o número total de táxons "folhas" representados na consulta. Às vezes, você verá mais linhas do que isso com contagens não-zero, porque existem táxons de nível mais alto adicionados a partir de outras consultas. Por exemplo, se a Consulta 1 tem uma observação de Homo sapiens e a Consulta 2 tem uma observação do gênero Homo, ambos os táxons estarão presentes na tabela, mas isso representa uma linha adicional para o gênero Homo na Coluna 1, que não o incluiu em sua contagem total porque contou apenas as espécies do Homo sapiens dentral deste gênero, porque essa foi a "folha" dessa parte da sua árvore.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Vertical
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} em comum"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} em comum"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} não está em comum"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} não está em comum"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} total"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} total"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} único"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} únicos"
       export:
         choose_columns_desc: Selecione as colunas que você deseja exportar
         create_a_query_desc_html: |
@@ -5991,36 +5776,6 @@ pt-BR:
         taking_a_while: "Isto está demorando um pouco. Por favor, tente uma das opções abaixo."
         date_range_help: "Datas de observação máxima e mínima em formato AAAA-MM-DD, p.ex. 1979-02-09"
         created_on_help: "As observações de data foram criadas, não observadas, p.ex. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Other Options</h3>
-          <p>
-          Exportações grandes desaceleram nossa infraestrutura e faz ficar mais difícil para lançarmos novas mudanças. Aqui estão algumas outras opções para considerar:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
-          GBIF incorpora a maioria das nossas observações licenciadas e em Nível de Pesquisa e suas ferramentas de exportação são excelentes. Exportações do GBIF também vêm com um <a href="https://www.doi.org/">DOI</a> que você pode citar se você publicar uma pesquisa baseada no dados que você exportar, e essas citações nos ajudam muito já que elas nos permitem ver como os dados do iNat são utilizados.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">Arquivo DarwinCore (DwC-A) para o GBIF</a>: esse é o arquivo <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> que nós geramos para o GBIF incorporar, então ele não deveria conter nada que não está no GBIF, mas, se você quiser o arquivo completo, você pode baixá-lo. É um arquivo zip bem grande contendo registros em CSV. Atualizado semanalmente.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">Desafio iNaturalist na FGVC 2017</a>: links para 675,000 fotos licenciadas do iNaturalist de 5,089 espécies para uso no treinamento de visão computacional. Criado em Junho de 2017, não é atualizado.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Um único identificador para a observação"
         species_guess: "Nomeie o observador que incluiu o táxon observado"
@@ -6097,19 +5852,6 @@ pt-BR:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
         ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
-          </p>
-          <p class="ui">
-            Utilizamos um táxon comunitário para compartilhar observações com parceiros, conectando diversos registros para o mesmo táxon no site, atualizando sua lifelist, entre outras coisas. Se por alguma razão você discordar de um táxon comunitário, você pode rejeitá-lo, o que significa que a sua identificação será aquela utilizada pelo sistema. 
-          Também significa que sua observação somente poderá ser incluída na categoria pesquisa quando os membros da comunidade concordarem com <em>você/em>.
-          Se você simplesmente não gosta do conceito de táxon comunitário, você pode se desligar do processo <a href="/users/edit" target="_blank">editando suas configurações</a>.
-          </p>
-          <p class="ui">
-            <strong>O algoritmo:</strong> para todos os dados de identificação de espécies, como por exemplo, o táxon <i>Homo</i> engloba a espécie <i>Homo sapiens</i>), bingo, a razão entre o número de IDs acumuladas para o mesmo táxon através da soma das identificações acumuladas, o número de IDs mais conservadoras acrescentadas após a primeira ID desse táxon, além do número de IDs que são completamente diferentes (isto é, identificações
-             de táxons que não contêm o táxon ser marcado). Para os táxons identificados que possuem uma nota de acerto próxima a 2/3 e no mínimo 2 identificações, escolha o táxon mais baixo.
-          </p>
         cumulative_count_desc: '# de identificações para um único táxon e todos os seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este projeto não permite a inclusão de observações sem o acesso habilitado as coordenadas geográficas por seus administradores. Caso não deseje compartilhar as coordenadas desta observação, é preciso que a remova do projeto.
@@ -6131,14 +5873,6 @@ pt-BR:
         user_stats_desc: |
           Estatísticas do usuário tem um limite máximo de 500 observações ou espécies contadas, assim sendo o total listado é normalmente um pouco mais de 500, já que as duas listas provavelmente não contém os mesmos usuários. Um valor marcado com '*' significa que ela não estava nos primeiros 500 para esta estatística.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>Você pode editar este campo de observação porque você o criou ou porque você é um coordenador do site. Se você é um coordenador do site, por favor siga estas orientações</p>
-        <ol>
-        <li>Não faça mudanças de nome arbitrárias (ex: mudar "comendo" pelo termo "polinizando")</li>
-        <li>Tenha em mente que os campos de observação podem ser utilizados para observações de qualquer táxons, então tente não utilizar terminologias específicas de alguns táxons</li>
-        <li>Não apague campos que as pessoas estão utilizando</li>
-        <li>Não traduza nomes de campos existentes em diferentes línguas. Inglês é a língua mãe deste site. Se realmente você deseja um campo que tenha o mesmo conceito em língua diferente, por favor crie um novo campo de observação.</li>
-        </ol>
       dna_help: |
         Para habilitar as funcionalidades correspondentes ao código de barras BOLD DNA assegure-se de incluir no nome de campo as palavras "COI", "COX1", "ITS", ou "matK" correspondentes ao gene-alvo desse campo.
       merge:
@@ -6173,71 +5907,6 @@ pt-BR:
           Houve uma falha na exportação de suas observações. Visite a <a href="%{url}">página de exportação de observações</a> para ver sua lista de exportações.
       parental_consent:
         subject: Seu filho gostaria de usar o iNaturalist
-        content_html: |
-          <p>
-          Seu filho está usando o aplicativo educacional <strong>Seek por iNaturalist</strong> e gostaria de compartilhar dados com a plataforma de ciência cidadã iNaturalist. Já que postar no iNaturalist revela informações pessoais, o iNaturalist não pode ser utilizado por pessoas menores de 13 anos sem consentimento de um responsável.
-          </p>
-          <p>
-          <strong>Seek by iNaturalist</strong> pode ser usado sem criar uma conta e nenhuma informação pessoal será compartilhada, mas o seu filho não poderá contribuir com observações no iNaturalist. O iNaturalist é uma rede social de ciência cidadã onde os participantes compartilham observações e identificações de seres vivos para ensinar um ao outro sobre a natureza e gerar dados sobre biodiversidade para a ciência.
-          </p>
-          <p>
-          Se você gostaria de dar consentimento para seu filho utilizar o iNaturalist, precisaremos que você faça o seguinte:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Criar uma conta no iNaturalist que seu filho utilizará, por meio deste link:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Após criar a conta de seu filho, nós lhe pediremos para fazer uma pequena doação de US$1 com um cartão de crédito para verificar que você é um adulto. Por favor, tenha certeza de utilizar o mesmo endereço de e-mail que você pôs no campo de "E-mail dos pais ou responsável legal" durante o cadastro enquanto fizer sua doação.
-          </p>
-          </li>
-          <li>
-          <p>
-          Assim que processarmos a doação, nós lhe enviaremos outro e-mail notificando-lhe de que a conta de seu filho foi ativada e você poderá utilizar o usuário e senha que você criou para entrar no aplicativo Seek de seu filho.
-          </p>
-          </li>
-          </ol>
-          <p>
-          O iNaturalist coleta as seguintes informações pessoais:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>endereço de e-mail (privado):</strong> toda conta do iNaturalist possui um endereço de e-mail associado a ela, que não é mostrado publicamente.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>nome de usuário (público, requerido):</strong> toda conta do iNaturalist possui um nome de usuário público e um número de identificação de usuário. O nome de usuário não precisa ser similar a um nome de uma pessoa real, mas ele pode ser usado para contatar a pessoa por meio de comentários públicos e mensagens diretas privadas.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>endereço de IP (privado, requerido):</strong> O iNaturalist armazena, mas não torna público, o endereço de IP do usuário, que pode ser usado para derivar informações pessoais como local (com precisão em nível de cidade).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>foto do perfil (público, opcional):</strong> contas do iNaturalist podem opcionalmente ter fotos de perfil que muitas vezes são fotos do usuário.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>local da observação (público or privado, requerido):</strong> observações no iNaturalist possuem informações sobre localização de onde a observação foi feita. Isso pode ser deixado público ou mantido privado, mas, por padrão, é público.
-          </p>
-          </li>
-          </ol>
-          <p>
-          O iNaturalist também permite compartilhar imagens públicas, comentários públicos e mensagens diretas privadas associadas com sua conta.
-          É possível que usuários incluam informação pessoal neste conteúdo gerado pelo usuário.
-          </p>
-          <p>
-          Aprenda mais sobre a Política de Privacidade do iNaturalist <a href="%{privacy_policy_url}">aqui</a>.
-          </p>
       photos_missing:
         subject: Algumas fotos precisam de reparos
         we_have_been_housekeeping: |
@@ -6252,30 +5921,6 @@ pt-BR:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
-        content_html: |
-          <p>
-          Obrigado por criar uma conta iNaturalist para o seu filho! o
-             conta foi ativada. Aqui estão os detalhes que você digitou
-             nós temos no registro:
-          </p>
-          <ul>
-            <li><strong>Nome do pais ou responsável legal:</strong> %{parent_name}</li>
-            <li><strong>E-mail dos pais ou responsável legal:</strong> %{parent_email}</li>
-            <li><strong>Nome da criança:</strong> %{child_name}</li>
-            <li><strong>Aniversário da criança:</strong> %{child_birthday}</li>
-           \ <li><strong>E-mail da conta infantil:</strong> %{child_email}</li>
-            <li><strong>Nome de usuário da conta da criança:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Por favor, entre na conta do aplicativo Seek do seu filho tocando em
-             o botão "iNaturalist" no menu e, em seguida, "Entrar com
-             iNaturalist "na parte inferior da tela.
-          </p>
-          <p>
-          Seu filho poderá então postar observações em sua 
-             conta iNaturalist usando o aplicativo Seek para que eles possam ser vistos em
-             iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Você esteve inativo em %{site_name} por algum tempo, por este motivo suspendemos suas inscrições. Para receber o resumo de atualizações neste local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
@@ -6338,13 +5983,6 @@ pt-BR:
         aggregation_pending: Associação pendente
         new_place_desc_html: |
           Tente buscar entre <a href="%{places_url}" target="_blank">nossos lugares existentes</a> e se certifique de inserir o nome correto na busca. Caso realmente não consiga encontrar o local buscado, considere <a href="%{new_place_url}" target="_blank">criar um novo local</a>, mas antes disso verifique cuidadosamente que sua ação não duplicará um local já criado anteriormente.
-        bioblitz_desc_html: |
-          <p>
-          Bioblitz é um super evento onde os participantes tentam observar a maior quantidade
-          de espécies que podem em, um determinado local em, um determinado período de tempo. É uma maneira
-          divertida de, introduzir o conceito de biodiversidade as pessoas enquanto ao mesmo tempo elas estão
-          coletando dados valiosos.
-          </p>
         change_admin_desc: Escolha um dos coordenadores do projeto para se tornar o novo administrador principal.
         change_owner_alert: |
           Isso removerá a sua capacidade de excluir este projeto ou de transferir a propriedade novamente. Você deseja continuar?
@@ -6362,34 +6000,6 @@ pt-BR:
         make_owner: Tornar proprietário
         no_curators: |
           Ainda não existem administrador neste projeto. Se você decidir tornar um membro administrador, ele deverá primeiro inscrever-se no projeto e, somente depois poderá ser promovido.
-        observation_aggregation_desc_html: |
-          <p class="description">
-            A agregador de observações irá automaticamente adicionar observações que se adequem as suas normas ao seu projeto. Já que não existe uma forma de remover, de uma só vez, um número elevado de observações de um projeto, utilizar este recurso pode ser potencialmente perigoso, então por favor verifique com cuidado e, seja preciso, ao escolher quais táxons e/ou lugares lhe interessam ao criar as normas do seu projeto, ou você poderá acabar com centenas de observações inadequadas que somente poderão ser removidas manualmente. 
-          </p>
-          <p class="description">
-            O agregador apenas funcionará se a seguintes condições forem cumpridas:
-          </p>
-          <ol>
-            <li class="readable description">
-              Seu projeto apresenta ao menos uma regra definindo que 'o registro deve ser observado em uma localização' com área relativamente pequena (mais ou menos com a área do estado de Minas Gerais)
-            </li>
-            <li class="readable description">
-           \   Ou o seu projeto apresenta pelo menos uma regra 'especificando um táxon' 
-            </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Ativos de projetos são somente arquivos associados com seu projeto, com algumas regras especiais:</p>
-          <ol class="description">
-          <li>Arquivos que terminam em .logo.jpg, .logo.png, etc. serão utilizados como o logotipo do projeto na página ao invés do ícone do projeto</li>
-          <li>Arquivos KML e KMZ serão adicionados ao mapa na página do projeto</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-            Você pode criar uma lista personalizada de um táxon e conectá-la ao seu 
-            projeto. Isto pode ser útil para restringir observações adicionadas ao seu 
-            projeto aquelas previamente escolhidas para combinar com o táxon em sua 
-            lista em "deve haver táxon na lista do projeto" norma.
-          </p>
         rules:
           captive: ser de cativeiro/cultivado
           coordinates_shareable_by_project_curators: coordenação a ser compartilhada pelos curadores do projeto
@@ -6427,23 +6037,6 @@ pt-BR:
         you_can_preview: |
           Você pode ver a visualização de como seu projeto se parecerá com um projeto de coleção
           Por quê? <a href="%{url}">selecione aqui</a>.
-      invite:
-        description_html: |
-          <h3>Sobre convites</h3>
-          <p class="ui">
-            Convidar pessoas para o seu projeto é um pouco diferente do que convidar 
-            observações individuais. Ao Convidar pessoas
-          </p>
-          <ol>
-            <li>Será enviado um e-mail para convidar a juntar-se ao seu projeto</li>
-            <li>Mostrará um convite no painel de controle</li>
-            <li>Permitirá que eles juntem-se ao seu projeto se este foi definido para funcionar somente com convites</li>
-          </ol>
-          <p class="ui">
-            Somente os coordenadores do projeto podem convidar pessoas para entrar em projetos. 
-            Você deve poder pesquisar por pessoas através do nome de usuário do iNaturalist ou 
-            através do endereço de e-mail <em>completo</em>, supondo que temos este e-mail arquivado.
-          </p>
       join:
         invite_only_description: |
           A participação neste projeto como membro só pode ser feita através de convite. Se você deseja entrar no grupo. por favor contate um dos administradores abaixo e solicite um convite.
@@ -6546,13 +6139,6 @@ pt-BR:
           name_already_taken: Nome do projeto já usado
           cannot_have_more_than_x_project_rules: Não é possível ter mais de %{x} regras de projeto
           summary_is_required: O texto do resumo do projeto é obrigatório
-      project_location_privacy_notice_html: |
-        <p>
-        Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.
-        </p>
-        <p>
-        Se você esta preocupado em relação a privacidade da localização de suas observações, não se inscreva em projetos a não que confie em seus administradores.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Sim, mas somente se eu mesmo adicionar a observação ao projeto.
         any: Sim, independente de quem adicione a observação ao projeto.
@@ -6566,33 +6152,8 @@ pt-BR:
       show:
         are_you_sure_you_want_to_convert: |
           Tem certeza de que deseja converter este projeto em um projeto de coleção?
-        bioblitz_results_desc_html: |
-          <p>
-            Diferente de projetos regulares, as bioblitz divulgam o status do evento abaixo de
-            <em>todas</em> observações naquele local e período, não somente 
-            as observações que as pessoas adicionaram intencionalmente ao projeto.
-            Isto remove a dificuldade de adicionar observações ao projeto só para definir as estatísticas em tempo real. Note que as observações não estarão disponíveis para exportar ou mostrar em vários projetos em várias exibições de projeto como em contribuições de membros no website ou buscas de observações de projeto em aplicativos móveis a menos que a equipe e participantes do projeto ativamente adicionem observações relevantes como eles fariam em projeto normal.
-          </p>
-          <p>
-            Perceba que enquanto este tipo de projeto mostra também as estatísticas de observações que 
-            não foram adicionadas por conta do projeto, isto não permite que 
-            os coordenadores vejam as coordenadas ocultas dessas observações 
-            ou assumam que os observadores tenham concordado com os termos do projeto. 
-            Se você é um coordenador de projetos e precisa acessar coordenadas particulares, 
-            você precisa que os participantes concordem com os termos do projeto, 
-            ou se você deseja que as observações sejam tidas em conta para a lista de verificação 
-            moderada do projeto, faça questão de garantir que seus participantes entrem no projeto 
-            e adicionem as observações deles como fariam em um projeto normal.
-          </p>
         click_here_to_convert_this_project: |
           Clique aqui para converter este projeto em um projeto de coleção.
-        no_journal_blurb_html: |
-          <p>
-          O jornal do seu projeto é uma ferramenta específica para comunicação com todos os participantes de seus projeto. Você pode utilizá-lo para realizar anúncios, estabelecer prioridades ou compartilhar descobertas.
-          </p>
-          <p>
-          Para começar, <a href="%{url}" class="readmore">publique seu primeiro post</a>
-          </p>
         curated_checklist_desc: |
           Esta é a lista de verificação moderada e a lista de contagem dos táxons de observações explicitas adicionadas à esta projeto, nem todas as observações foram gravadas neste local e neste período do evento.
         make_sure_you_have_read_about_the_differences: |
@@ -6797,17 +6358,6 @@ pt-BR:
           href="%{url}">página da Wikipédia</a> que armazenamos indefinidamente até que
           seja atualizado manualmente. Atualizar este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
-        about_names_desc: |
-          <p>
-            A grande maioria dos organismos vivos possuem "nomes comuns" nas línguas faladas em seus locais de origem. Estes nomes são comumente, popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo, mas muitos outros organismos possuem mais de um nome popular em diferentes locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar muito difícil o processo de comunicar qual espécie é qual, causando confusão. \  
-            Os cientistas solucionaram este problema criando o uso do "nome científico" para nomear cada uma das espécies do mundo, seguindo regras específicas conforme <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biological nomenclature</a>,
-            mas este nomes são normalmente baseados no Latim, uma língua que praticamente ninguém mais fala, então não são tão fáceis de memorizar como os nomes comuns, ou populares. Nomes científicos pode também refletir a posição taxonômica de um organismo, assim podem acabar sendo alterados sempre que pesquisadoress com base em novas tecnologias ou, novos dados desenvolvem novas teorias sobre a evolução de determinada espécie, o que novamente reduz a facilidade do seu uso na comunicação diária, mesmo entre especialistas.
-          </p>
-          <p>
-            Um velho ditado popular já dizia: "Nomes comuns se alteram de um local para o outro e, nomes científicos de tempos em tempos."
-          </p>
-          <p>
-           \ Por esse motivo tentamos resolver esta questão exibindo ambos os nomes das espécies, tanto os comuns quanto os científicos sempre que possível e, escolhendo os nomes comuns com base na localização e preferências geográficas do usuário. </p>
         about_conservation_status_desc: |
           O Estado de Conservação sintetiza o risco de extinção para um determinado grupo de organismos.
         about_establishment_desc: |
@@ -6892,29 +6442,6 @@ pt-BR:
           O nome do táxon com o rank. Para intervalos infraespecíficos, a classificação é inserida após o binômio.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li><p>Tente incluir nomes que já foram utilizados anteriormente. Por favor não invente novos nomes.</p></li>
-          <li><p>Não submeta observações com nomes duplicados, por exemplo, não nomeie diversas fotos de falcões como "falcão"</p></li>
-          <li><p>Para táxons superiores, tente utilizar nomes que incluam todos os descendentes</p></li>
-          <li>
-          <p>
-          Não adicione informações que não seja o nome, e.g., informação entre parêntesis sobre como você acha que o nome deve ser usado
-          </p>
-          </li>
-          <li>
-          <p>
-          Novos léxicos devem ser em inglês. Por favor não adicione nomes traduzidos de línguas como "French, francês" porque isso somente nos vai dificultar ou impossibilitar de mostrar nomes localizados para pessoas que usam o site em diferentes línguas.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nomes comuns associados com línguas traduzidas aparecerão como o nome comum padrão para aquela língua (exceto considerando o efeito de preferências de lugar, ordem de nomes, etc.).
-          <a class="readmore" href="/pages/translate">Aprenda mais sobre tradução</a>
-          </p>
-          </li>
-          </ul>
-          </ul>
         places_help_html: |
           Adicione um nome ao local para dar prioridade aos sites e usuários deste lugar. Se por acaso tiver vários nomes por lugar você pode indicar quais são os nomes mais prioritários <a href="%{url}">aqui</a>. Por favor <strong>não</strong> adicione nomes para TODO local onde o nome é utilizado, mas somente onde existe conflito com outros lugares.
       taxon:
@@ -6987,28 +6514,6 @@ pt-BR:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Se você mudar de ideia você sempre pode
           <a href='/users/edit'>editar suas configurações</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          A <a href="%{url}" target="_blank">iNaturalist Network</a> é uma coleção
-          de sites localizados que estão totalmente conectados à
-          comunidade global iNaturalist. Os sites da rede são apoiados por instituições
-          locais que assinaram um acordo com a iNaturalist para
-          promover o uso local e beneficiar a biodiversidade local. Têm acesso
-          a verdadeiras coordenadas dos seus países que são automaticamente
-          ocultas da visão pública, a fim de proteger as espécies ameaçadas.
-          </p>
-          <p>
-          O seu nome de utilizador e senha funcionam em todos os sites que fazem parte
-          da rede iNaturalist. Se você optar por se afiliar a uma rede
-          local, as instituições locais que operam cada site terão também
-          acesso ao seu endereço de e-mail (apenas para comunicar consigo sobre
-          atividades do site) e acesso às coordenadas verdadeiras para as observações
-          obscurecidas ou privadas do público.
-          </p>
-          <p>
-          Nota: Por favor, não altere experimentalmente sua afiliação se
-          tiver mais de 1000 observações.
-          </p>
         licensing_desc_html: |
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
@@ -7022,19 +6527,6 @@ pt-BR:
           para exibir esse status no seu perfil. Nota: você precisará usar
           exatamente o mesmo endereço de email no Donorbox que você usa no iNaturalist
           para confirmarmos que você se tornou um Suporte mensal.
-        muting_desc_html: |
-          ↓
-          <p>
-          Silenciar alguém impede que você receba notificações sobre coisas
-             eles fazem, inclusive comentando suas observações, enviando mensagens para você,
-             mencionando você, etc. Muting ajuda você a ignorar alguém sem
-             impedindo-os de fazer qualquer coisa.
-          </p>
-          <p>
-          Você pode silenciar quantas pessoas quiser, mas tenha em mente que
-             você estará perdendo notificações potencialmente importantes, como
-             identificações que mudam o ID da Comunidade em suas observações.
-          </p>
         name_place_help_html: |
           Priorize os nomes comuns usados neste local.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7111,11 +6603,6 @@ pt-BR:
       recent:
         about_recent_users: Sobre
         definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente é um difusor de spam, o que significa que não possui observações ou identificações, mas possui uma descrição do perfil. </dd> <dt>Auto Spam</dt> <dd> Difusor de spam que foi automaticamente marcado como difusor de spam pelo sistema. </dd> <dt>Spam Manual</dt> <dd> Difusor de spam que foi marcado manualmente como difusor de spam por um curador do site. </dd> <dt>Falsos Positivos</dt> <dd> Usuários que foram marcados como difusores de spam cujas sinalizações foram resolvidas pelos curadores do site, já que não eram realmente difusores de spam. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Queremos receber novos usuários, mas também queremos combater difusores de spam. Espero que esta ferramenta ajude com ambos. Nós estamos automaticamente sinalizando muitos usuários como difusores de spam usando <a
-          href="https://akismet.com/">Akismet</a>, mas Akismet não é perfeito, então, se você quiser gastar alguns minutos marcando novas contas como difusores ou não de spam, nos ajudaria.
-          </p>
       show:
         take_a_moment_to_review_html: 'Reserve um momento para analisar <a href="%{link}">as nossas diretrizes</a>.'
         this_user_was_banned: O usuário foi suspenso
@@ -7125,23 +6612,6 @@ pt-BR:
           aparecerão neste espaço.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          Obrigado por ser um doador naturalista! Conseguimos usar seu
-             doação existente para confirmar sua identidade e não precisa de
-             mais ação de você. <strong>A conta do seu filho foi
-             ativado.</strong>
-          </p>
-          <p>
-          Por favor, entre na conta do aplicativo Seek do seu filho tocando em
-             o botão "iNaturalist" no menu e, em seguida, "Entrar com
-             iNaturalist "na parte inferior da tela.
-          </p>
-          <p>
-          Seu filho poderá então postar observações na sua
-             conta iNaturalist usando o aplicativo Seek para que eles possam ser vistos em
-             iNaturalist.org.
-          </p>
         thanks_for_creating_a_minor_account: OBRIGADO POR CRIAR UMA CONTA SECUNDÁRIA!
         we_will_send_you_an_email: |
           Enviaremos um e-mail para você assim que a conta do seu filho for ativada.
