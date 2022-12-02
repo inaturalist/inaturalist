@@ -160,7 +160,11 @@ class UserText extends React.Component {
           }}
           className={`btn btn-nostyle linky ${truncate && truncate > 0 ? "more" : "collapse"}`}
         >
-          { more ? I18n.t( "less" ) : I18n.t( "more" ) }
+          {
+            more
+              ? I18n.t( "less__context_text", { defaultValue: I18n.t( "less" ) } )
+              : I18n.t( "more__context_text", { defaultValue: I18n.t( "more" ) } )
+          }
         </button>
       );
     }

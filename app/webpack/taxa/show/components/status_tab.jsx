@@ -265,7 +265,9 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
                 { " " }
                 <a href="https://en.wikipedia.org/wiki/Conservation_status">
-                  { I18n.t( "more" ) }
+                  { I18n.t( "more__context_conservation_statuses", {
+                    defaultValue: I18n.t( "more" )
+                  } ) }
                   { " " }
                   <i className="icon-link-external" />
                 </a>
@@ -316,8 +318,10 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
               <h4>{ I18n.t( "about_establishment_means" ) }</h4>
               <p>
                 { I18n.t( "views.taxa.show.about_establishment_desc" ) }
-                <a href="https://en.wikipedia.org/wiki/Conservation_status">
-                  { I18n.t( "more" ) }
+                <a href="https://dwc.tdwg.org/list/#dwc_establishmentMeans">
+                  { I18n.t( "more__context_establishment_means", {
+                    defaultValue: I18n.t( "more" )
+                  } ) }
                   { " " }
                   <i className="icon-link-external" />
                 </a>

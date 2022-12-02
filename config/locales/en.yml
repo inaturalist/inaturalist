@@ -1937,6 +1937,8 @@ en:
   feedback: Feedback
   # Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  # Button to show fewer places
+  fewer__context_places: Fewer
   failed: Failed
   field_note: |
     <strong>Note:</strong> If you'd like to create a field, check to see if
@@ -2567,6 +2569,8 @@ en:
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Less
+  # Button show less text
+  less__context_text: Less
   licensed_site_photos: "Licensed %{site_name} photos"
   license: License
   licensing: Licensing
@@ -2897,6 +2901,14 @@ en:
     <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
   more: More
+  # Button to show more observations
+  more__context_observations_caps: MORE
+  # Button to show more places
+  more__context_places: More
+  # Button to show more text
+  more__context_text: More
+  # Button to show more translators, as in people who added translations
+  more__context_translators_caps: MORE
   more_caps: MORE
   more_about_sharing: More About Sharing
   more_fields: More Fields
@@ -3428,6 +3440,7 @@ en:
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   open_street_map: OpenStreetMap
   optional: optional
+  options: Options
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
   # sign in fields OR sign in with Facebook
