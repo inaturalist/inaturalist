@@ -5,24 +5,12 @@ mk:
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
-  x_languages:
-    one: "%{count} јазик"
-    other: "%{count} јазици"
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
   x_matching_taxa_html:
     one: '<span class="count">1</span> совпаднат таксон'
     other: '<span class="count">%{count}</span> совпаднати таксони'
-  x_observations:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_:
-    one: "1 набљудување"
-    other: "%{count} набљудувања"
-  x_observations_html:
-    one: "<span class='count'>1</span> набљудување"
-    other: "<span class='count'>%{count}</span> набљудувања"
   x_observations_link_html:
     one: "<a href='%{url}'>1 набљудување</a>"
     other: "<a href='%{url}'>%{count} набљудувања</a>"
@@ -35,12 +23,6 @@ mk:
   x_new_species:
     one: "1 нов вид"
     other: "%{count} нови видови"
-  x_species:
-    one: '1 вид'
-    other: '%{count} видови'
-  x_species_html:
-    one: "<span class='count'>1</span> вид"
-    other: "<span class='count'>%{count}</span> видови"
   x_species_link_html:
     one: "<a href='%{url}'>1 вид</a>"
     other: "<a href='%{url}'>%{count} видови</a>"
