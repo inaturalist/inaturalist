@@ -2,9 +2,6 @@ es-CO:
   x_comments:
     one: '%{count} comentario'
     other: '%{count} comentarios'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> comentario'
-    other: '<span class="count">%{count}</span> comentarios'
   x_faves:
     one: '%{count} favorito'
     other: '%{count} favoritos'
@@ -14,27 +11,6 @@ es-CO:
   x_identifications:
     one: '%{count} identificación'
     other: '%{count} identificaciones'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> identificación'
-    other: '<span class="count">%{count}</span> identificaciones'
-  x_identifications_:
-    one: '%{count} Identificación'
-    other: '%{count} identificaciones'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
-  x_languages:
-    one: "%{count} idioma"
-    other: "%{count} idiomas"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} Primera vez en la Lista de Vida"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} Primera vez en la Lista de Vida"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> entrada del diario'
     other: '<span class="count">%{count}</span> entradas del diario'
@@ -55,30 +31,15 @@ es-CO:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} identificación errónea de especie en este %{rank}"
     other: "%{count} identificaciones erróneas de especies en este %{rank}"
-  x_observations:
-    one: "%{count} observación"
-    other: "%{count} observaciones"
-  x_observations_:
-    one: "%{count} Observación"
-    other: "%{count} Observaciones"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> observación"
-    other: "<span class='count'>%{count}</span> observaciones"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observación</a>"
     other: "<a href='%{url}'>%{count} observaciones</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "%{count} otro"
     other: "%{count} otros"
-  x_people:
-    one: "%{count} persona"
-    other: "%{count} personas"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} imagen"
@@ -86,24 +47,12 @@ es-CO:
   x_new_species:
     one: "%{count} Nueva Especie"
     other: "%{count} Nuevas Especies"
-  x_new_users:
-    one: '%{count} Nuevo usuario'
-    other: '%{count} Nuevos usuarios'
-  x_species:
-    one: '%{count} Especie'
-    other: '%{count} Especies'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> especie"
-    other: "<span class='count'>%{count}</span> especies"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} especie</a>"
     other: "<a href='%{url}'>%{count} especies</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Sugerencia Filtrada Por:"
     other: "%{count} Sugerencias Filtradas Por:"
-  x_taxa:
-    one: "%{count} taxón"
-    other: "%{count} taxones"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> taxón observado"
     other: "<span class='count'>%{count}</span> taxones observados"
@@ -113,9 +62,6 @@ es-CO:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> Observación con grado de investigación identificado a especie o categoría inferior"
     other: "<span class='count'>%{count}</span> observaciones con grado de investigación identificadas a especie o categoría inferior"
-  x_sounds:
-    one: "%{count} sonido"
-    other: "%{count} sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> taxón curado"
     other: "<span class='count'>%{count}</span> taxones curados"
@@ -181,23 +127,6 @@ es-CO:
   about_this_bioblitz: Acerca de este maratón naturalista
   about_this_map: Sobre este mapa
   about_this_project: Acerca del proyecto
-  about_trips_html: |
-    <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones
-    </h4>
-    <p>
-    <strong>¿Por qué?</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos de 'sólo presencia').
-    </p>
-     <p>
-    <strong>¿Cómo?</strong> Un viaje añade contexto a tus observaciones registrando:
-    </p>
-    <ul>
-    <li><strong>¿Qué</strong> buscaste (lista objetivo)?</li>
-    <li><strong>¿Dónde</strong> buscaste (área de búsqueda)?</li>
-    <li><strong>¿Cuándo?</strong> buscaste (intervalo de búsqueda)?</li>
-    </ul>
-    <p>
-    Las especies en tu lista objetivo que pudiste observar dentro del área y el intervalo de búsqueda se interpretan como presencias. Mientras que las especies en tu lista objetivo que no lograste observar se interpretan como ausencias. Haga clic en 'Tabular Datos de Presencia-Ausencia de Viajes' para generar una tabla de registros de presencia-ausencia de las especies de los viajes y las observaciones asociadas. <a href='%{url}'>Más información</a>
-    </p>
   about_trusting_projects: Acerca de confiar en proyectos
   about_trusting_projects_options_any: Todas tus observaciones en este proyecto
   about_trusting_projects_options_any_desc: |-
@@ -1178,7 +1107,7 @@ es-CO:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del Curador</a>. Esto significa que pueden añadir, dividir, intercambiar, fusionar, desactivar y eliminar taxones de iNaturalist. También pueden editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del Curador</a>. Esto significa que pueden añadir, dividir, intercambiar, fusionar, desactivar y eliminar taxones de iNaturalist. También pueden editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Ocultar comentarios y suspender a usuario por violar las <a
     href="/pages/community+guidelines" target="_blank">Reglas
@@ -1372,7 +1301,6 @@ es-CO:
     failure:
       already_authenticated: 'Ya has iniciado sesión.'
       unauthenticated: 'Necesitas iniciar sesión o registrarte antes de continuar.'
-      invalid: 'El correo electrónico o la contraseña no son válidos'
       invalid_token: 'Token de autenticación inválido.'
       user:
         suspended: Tu cuenta ha sido suspendida
@@ -1386,19 +1314,17 @@ es-CO:
       send_paranoid_instructions: "Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos."
       no_token: "No puedes acceder a esta página si no es a través de un enlace para restablecer tu contraseña. Si has llegado hasta aquí desde el email, por favor asegúrate de que la URL introducida esté completa."
     registrations:
+      destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto.'
       signed_up: '¡Bienvenido! Te has registrado correctamente.'
       updated: 'Has actualizado tu cuenta con éxito.'
-      destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instrucciones de confirmación'
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no has solicitado esto, por favor ignora este correo electrónico.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguien ha solicitado un enlace para cambiar tu contraseña. Puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
   devise_unlock_instructions_your_account_has_been_locked: |
