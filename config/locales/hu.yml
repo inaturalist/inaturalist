@@ -1,7 +1,20 @@
 hu:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    zero: "%{count} módosítás"
+    one: "%{count} módosítás"
+    few: "%{count} módosítás"
+    many: "%{count} módosítás"
+    other: "%{count} módosítás"
   x_comments:
     one: '%{count} megjegyzés'
     other: '%{count} megjegyzés'
+  x_comments_html:
+    zero: '<span class="count">%{count}</span> megjegyzés'
+    one: '<span class="count">%{count}</span> megjegyzés'
+    few: '<span class="count">%{count}</span> megjegyzés'
+    many: '<span class="count">%{count}</span> megjegyzés'
+    other: '<span class="count">%{count}</span> megjegyzés'
   x_faves:
     one: '%{count} kedvenc'
     other: '%{count} kedvenc'
@@ -11,6 +24,36 @@ hu:
   x_identifications:
     one: '%{count} meghatározás'
     other: '%{count} meghatározás'
+  x_identifications_html:
+    zero: '<span class="count">%{count}</span> meghatározás'
+    one: '<span class="count">%{count}</span> meghatározás'
+    few: '<span class="count">%{count}</span> meghatározás'
+    many: '<span class="count">%{count}</span> meghatározás'
+    other: '<span class="count">%{count}</span> meghatározás'
+  x_identifications_:
+    zero: '%{count} meghatározás'
+    one: '%{count} meghatározás'
+    few: '%{count} meghatározás'
+    many: '%{count} meghatározás'
+    other: '%{count} meghatározás'
+  x_languages:
+    zero: "%{count} nyelv"
+    one: "%{count} nyelv"
+    few: "%{count} nyelv"
+    many: "%{count} nyelv"
+    other: "%{count} nyelv"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    zero: "%{count} életlista első"
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} életlista első"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} életlista első"
+    #Count of number of taxa that represent the first addition to a life list
+    many: "%{count} életlista első"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} életlista első"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> bejegyzés'
     other: '<span class="count">%{count}</span> bejegyzés'
@@ -31,6 +74,24 @@ hu:
   x_misidentifications_of_species_in_this_rank:
     one: "%{count} hibás meghatározás %{rank} fajainál"
     other: "%{count} hibás meghatározás %{rank} fajainál"
+  x_observations:
+    zero: "%{count} megfigyelés"
+    one: "%{count} megfigyelés"
+    few: "%{count} megfigyelés"
+    many: "%{count} megfigyelés"
+    other: "%{count} megfigyelés"
+  x_observations_:
+    zero: "%{count} megfigyelés"
+    one: "%{count} megfigyelés"
+    few: "%{count} megfigyelés"
+    many: "%{count} megfigyelés"
+    other: "%{count} megfigyelés"
+  x_observations_html:
+    zero: "<span class='count'>%{count}</span> megfigyelés"
+    one: "<span class='count'>%{count}</span> megfigyelés"
+    few: "<span class='count'>%{count}</span> megfigyelés"
+    many: "<span class='count'>%{count}</span> megfigyelés"
+    other: "<span class='count'>%{count}</span> megfigyelés"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} megfigyelés</a>"
     other: "<a href='%{url}'>%{count} megfigyelés</a>"
