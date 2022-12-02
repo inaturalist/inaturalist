@@ -5,33 +5,15 @@ oc:
   x_identifications:
     one: '1 identificacion'
     other: '%{count} identificacions'
-  x_identifications_:
-    one: '1 identificacion'
-    other: '%{count} identificacions'
   x_matching_taxa:
     one: '1 taxon correspondent'
     other: '%{count} taxons correspondents'
   x_matching_taxa_html:
     one: '<span class="count">1</span> taxon correspondent'
     other: '<span class="count">%{count}</span> taxons correspondents'
-  x_observations:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_:
-    one: "1 observacion"
-    other: "%{count} observacions"
-  x_observations_html:
-    one: "<span class='count'>1</span> observacion"
-    other: "<span class='count'>%{count}</span> observacions"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observacion</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
-  x_species:
-    one: '1 espècia'
-    other: '%{count} espècias'
-  x_species_html:
-    one: "<span class='count'>1</span> espècia"
-    other: "<span class='count'>%{count}</span> espècias"
   x_species_link_html:
     one: "<a href='%{url}'>1 espècia</a>"
     other: "<a href='%{url}'>%{count} espècias</a>"
