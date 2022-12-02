@@ -1,14 +1,7 @@
 tr:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} değişiklik"
-    other: "%{count} değişiklik"
   x_comments:
     one: '%{count} yorum'
     other: '%{count} yorum'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> yorum'
-    other: '<span class="count">%{count}</span> yorum'
   x_faves:
     one: '%{count} favori'
     other: '%{count} favori'
@@ -18,27 +11,6 @@ tr:
   x_identifications:
     one: '%{count} tanımlama'
     other: '%{count} tanımlama'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> tanımlama'
-    other: '<span class="count">%{count}</span> tanımlama'
-  x_identifications_:
-    one: '%{count} Tanımlama'
-    other: '%{count} Tanımlama'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Tanımlayıcı'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Tanımlayıcı'
-  x_languages:
-    one: "%{count} dil"
-    other: "%{count} dil"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} tür yaşam listesinde ilk"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} tür yaşam listesinde ilk"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> günlük gönderisi'
     other: '<span class="count">%{count}</span> günlük gönderisi'
@@ -59,30 +31,15 @@ tr:
   x_misidentifications_of_species_in_this_rank:
     one: "Bu %{rank} düzeyindeki türlere ait %{count} yanlış tanımlama"
     other: "Bu %{rank} düzeyindeki türlere ait %{count} yanlış tanımlama"
-  x_observations:
-    one: "%{count} gözlem"
-    other: "%{count} gözlem"
-  x_observations_:
-    one: "%{count} Gözlem"
-    other: "%{count} Gözlem"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> gözlem"
-    other: "<span class='count'>%{count}</span> gözlem"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} gözlem</a>"
     other: "<a href='%{url}'>%{count} gözlem</a>"
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
     other: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Gözlemci'
-    other: '<span class="count">%{count}</span> Gözlemci'
   x_others:
     one: "diğer %{count}"
     other: "diğer %{count}"
-  x_people:
-    one: "%{count} kişi"
-    other: "%{count} kişi"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} kişi</strong> %{user} kullanıcısına <strong> %{y} tanımlamada</strong> yardım etti"
   x_photos:
     one: "%{count} fotoğraf"
@@ -90,24 +47,12 @@ tr:
   x_new_species:
     one: "%{count} Yeni Tür"
     other: "%{count} Yeni Tür"
-  x_new_users:
-    one: '%{count} Yeni Kullanıcı'
-    other: '%{count} Yeni Kullanıcı'
-  x_species:
-    one: '%{count} Tür'
-    other: '%{count} Tür'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> tür"
-    other: "<span class='count'>%{count}</span> tür"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} tür</a>"
     other: "<a href='%{url}'>%{count} tür</a>"
   x_suggestions_filtered_by_colon:
     one: "%{count} Öneri Filtrelendi:"
     other: "%{count} Öneri Filtrelendi:"
-  x_taxa:
-    one: "%{count} sınıf"
-    other: "%{count} sınıf"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> sınıf gözlemlendi"
     other: "<span class='count'>%{count}</span> sınıf gözlemlendi"
@@ -117,9 +62,6 @@ tr:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
     other: "<span class='count'>%{count}</span> araştırma sınıfı gözlem tanımlaması ya da daha altı"
-  x_sounds:
-    one: "%{count} ses"
-    other: "%{count} ses"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> sınıf düzenlendi"
     other: "<span class='count'>%{count}</span> sınıf düzenlendi"
@@ -184,24 +126,6 @@ tr:
   about_this_bioblitz: Bu bioblitz hakkında
   about_this_map: Bu Harita Hakkında
   about_this_project: Bu Proje Hakkında
-  about_trips_html: |
-    <h4>
-    Geziler, gözlemlerine bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
-    </h4>
-    <p>
-    <strong>Neden</strong> varlık-yokluk verileri dağılım modellemesi gibi bilimsel analizler için yararlı olan örnekleme çabası hakkında bilgi içerir? (ham iNaturalist gözlemleri 'yalnızca varlık' verileridir).
-    </p>
-    <p>
-    <strong>Nasıl</strong> bir gezi, kayıtla gözlemlerine içerik ekler:
-    </p>
-    <ul>
-    <li><strong>Ne</strong> aradın? (hedef listesi)</li>
-    <li><strong>Nerede</strong> aradın? (arama alanı)</li>
-    <li><strong>Ne zaman</strong> aradın? (arama zamanı)</li>
-    </ul>
-    <p>
-    Hedef listende bulunan ve arama alanı ve zamanı içinde gözlemleyebildiğin türler var olarak yorumlanır. Hedef listende gözlemleyemediğin türler ise yok olarak yorumlanır. Gezilerden ve ilgili gözlemlerden bir tür için varlık-yokluk kaydının bir tablosunu oluşturmak için 'Gezilerden Varlık Yokluk Verilerini Tablolaştır' seçeneğine tıklayın. <a href='%{url}'>Daha fazla bilgi edin</a>
-    </p>
   about_trusting_projects: Güvenilir Projeler Hakkında
   about_trusting_projects_options_any: Bu projedeki tüm gözlemlerin
   about_trusting_projects_options_any_desc: |-
@@ -742,12 +666,6 @@ tr:
   back_to_your_observations: Gözlemlerine dön
   back_to_your_profile: Profiline dön
   badges: Rozetler
-  #disagreements are identifications that disagree with other identifications on the same observation
-  based_on_a_sample_of_percent_of_these_ids_html:
-    one: |
-      Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
-    other: |
-      Bu tanımlamaların %%{percent} oranındaki örneklemine dayanarak, bunun %{child} tanımlamalarıyla <strong>%{count} istenmeyen anlaşmazlığa</strong> yol açacağını düşünüyoruz.
   based_on_the_evidence_can_id_be_improved: |
     Kanıtlara dayanarak, Topluluk Sınıfı hâlâ onaylanabilir ya da geliştirilebilir mi?
   batch: Toplu
@@ -1253,7 +1171,7 @@ tr:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: '<a href="/pages/curator+guide#policies" target="_blank">Küratör Kılavuzu''nun Politikalar bölümünde</a> belirtilen politikaları izleyerek iNaturalist''in sınıflandırmasını düzenleyin. Bunun anlamı; iNaturalist''te sınıf ekleyebilir, ayırabilir, yer değiştirebilir, birleştirebilir, pasifleştirebilir ve silebilir demek. Ayrıca hem koruma durumlarını ve sınıfların coğrafi gizliliklerini düzenleyebilirken hem de herhangi bir kullanıcı tarafından eklenen yaygın isimleri düzenleyebilir veya yönetebilir.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: '<a href="/pages/curator+guide#policies" target="_blank">Küratör Kılavuzu''nun Politikalar bölümünde</a> belirtilen politikaları izleyerek iNaturalist''in sınıflandırmasını düzenleyin. Bunun anlamı; iNaturalist''te sınıf ekleyebilir, ayırabilir, yer değiştirebilir, birleştirebilir, pasifleştirebilir ve silebilir demek. Ayrıca hem koruma durumlarını ve sınıfların coğrafi gizliliklerini düzenleyebilirken hem de herhangi bir kullanıcı tarafından eklenen yaygın isimleri düzenleyebilir veya yönetebilir.' #Description of a curator's ability to hide comments; part of a list of # things curators can do, so you might imagine it is preceded with "Curators # can..."
   curator_application_what_curators_can_do_hide_comments_html: |
     Kullanıcıyı <a
     href="/pages/community+guidelines" target="_blank">Topluluk İlkelerini</a> ihlalden dolayı askıya al ve yorumlarını gizle.
@@ -1450,7 +1368,6 @@ tr:
     failure:
       already_authenticated: 'Zaten giriş yaptın.'
       unauthenticated: 'Devam etmeden önce giriş yapman ya da kayıt olman gereklidir.'
-      invalid: 'Geçersiz e-posta ya da şifre.'
       invalid_token: 'Geçersiz kimlik doğrulama belirteci.'
       user:
         suspended: Hesabın askıya alındı
@@ -1464,19 +1381,17 @@ tr:
       send_paranoid_instructions: "Eğer e-posta adresin veri tabanımızda mevcut ise birkaç dakika içinde e-posta adresine bir şifre kurtarma bağlantısı gönderilecektir."
       no_token: "Şifre sıfırlama e-postası gelmeden bu sayfaya erişemezsin. Şifre sıfırlama e-postasından geliyorsan, lütfen sağlanan tam URL'yi kullandığından emin ol."
     registrations:
+      destroyed: 'Güle güle! Hesabın başarıyla iptal edildi. Yakında tekrar görüşmek dileğiyle.'
       signed_up: 'Hoş geldin! Başarılı bir şekilde oturum açtın.'
       updated: 'Hesabını başarıyla güncelledin.'
-      destroyed: 'Güle güle! Hesabın başarıyla iptal edildi. Yakında tekrar görüşmek dileğiyle.'
     mailer:
-      confirmation_instructions:
-        subject: 'Onaylama talimatları'
       reset_password_instructions:
         subject: 'Şifre sıfırlama talimatları'
   devise_reset_password_instructions_hello_email: Merhaba %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Birisi şifreni değiştirmek için bir bağlantı istedi. Bunu aşağıdaki bağlantıdan yapabilirsin.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Bunu istemediysen, lütfen bu e-postayı dikkate alma.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Birisi şifreni değiştirmek için bir bağlantı istedi. Bunu aşağıdaki bağlantıdan yapabilirsin.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Yukarıdaki bağlantıya erişip yeni bir şifre oluşturana kadar şifren değişmeyecektir.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2581,8 +2496,6 @@ tr:
       yy: "%dyıl"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3062,13 +2975,6 @@ tr:
     updates_by_you_panel_body: '''Tüm güncellemeler'' sekmesinde yalnızca kendi içeriğinle ilgili değil, aynı zamanda takip ettiğin kişilerin ve sağdaki Abonelikler aracını kullanarak abone olduğun sınıfların ya da konumların içerikleriyle ilgili güncellemeler de alacağını unutma.'
     youve_got_updates_panel_title: Güncellemeler var!
     youve_got_updates_panel_body_p1: Aşağıdaki güncellemeler ile güncel kalın...
-    youve_got_updates_panel_body_p2: |
-      <ul>
-      <li><strong>İçeriğin:</strong> Yorumlar, tanımlamalar ya da %{site_name} topluluğunun favorileri gibi gözlemlerinizle ilgili etkinlik. Ayrıca, birisi gözlemini bir projeye eklediğinde ya da dipnot eklediğinde güncelleme alacaksın.</li>
-      <li><strong>İnsanlar:</strong> Takip ettiğin kişilerden yeni gözlemler ya da günlük gönderileri.</li>
-      <li><strong>Organizmalar, Projeler & Konumlar:</strong> Abone olduğun belirli organizmalar ya da konumlardan yeni gözlemler. Ayrıca projelere katılabilirsin, böylece proje günlük gönderileri yapıldığında güncelleme gelir.</li>
-      <li><strong>Katıldığın Tartışmalar:</strong> Başka birinin içeriğine yorum eklemek ya da tanımlama eklemek, seni kendiliğinden abone yapar ve bildirimleri alırsın. Güncellemeleri almayı durdurmak için 'Aboneliklerimi Yönet'i kullan.</li>
-      </ul>
   one_by_one: "Birer birer"
   #Header for a list of project observation requirements
   one_of_the_following_must_be_true: "aşağıdakilerden biri doğru olmalıdır:"
@@ -3212,31 +3118,11 @@ tr:
     original: orijinal
   photos_updated: Fotoğraflar güncellendi.
   pi_consent_desc_title: Kişisel Bilgiler Hakkında
-  pi_consent_desc_html: |
-    <p>
-    Bu sitedeki hesapları yönetmek için kullanıcı adları ve e-posta adresleri gibi kişisel bilgileri saklıyoruz ve gizlilik yasalarına uymak için kişisel bilgilerin bu şekilde kullanılmasına izin verdiğini belirtmek adına bu kutuyu işaretlemen gerekiyor. Hangi bilgileri topladığımız ve bunları nasıl kullandığımız hakkında daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Koşullarımıza</a> bakın.
-    </p>
-    <p>
-    Kişisel bilgileri saklamadan bir iNaturalist hesabına sahip olmanın bir yolu yoktur, bu nedenle bu izni iptal etmenin tek yolu hesabını silmektir.
-    </p>
   pi_consent_label: |
     Hesabımı yönetmek için iNaturalist'in hakkımdaki sınırlı türdeki kişisel bilgileri saklamasına ve işlemesine izin veriyorum
   pi_consent_child_label: |
     iNaturalist'in çocuğumun hesabını yönetmek için çocuğumla ilgili sınırlı türde kişisel bilgileri saklamasına ve işlemesine izin veriyorum
   data_transfer_consent_desc_title: Kişisel Bilgi Aktarımı İzni Hakkında
-  data_transfer_consent_desc_html: |
-    <p>
-    Avrupa Birliği'nin Genel Veri Koruma Yönetmeliği (GDPR) gibi bazı veri gizliliği yasaları, kişisel bilgilerin kendi yetki alanlarından bu bilgilerin yasal olarak korunmasının yeterli görülmediği diğer yetki alanlarına aktarılması için açık rıza gerektirir. <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> itibariyle Avrupa Birliği, özellikle ABD hükümetinin ABD'ye giren verileri gözetleme olasılığı nedeniyle, ABD'yi artık kişisel bilgilerin yeterli yasal korumasını sağlayan bir otorite olarak görmemektedir. Diğer otoritelerin de aynı görüşte olması olasıdır.
-    </p>
-    <p>
-    iNaturalist'i kullanmak e-posta adresiniz gibi kişisel bilgilerin saklanmasını gerektirir, tüm iNaturalist verileri ABD'de saklanır ve iNaturalist'i kullanırken hangi yasal yetki alanında olduğunuzdan emin olamayız, bu nedenle GDPR gibi gizlilik yasalarına uymak için bu riski anladığınızı ve kabul ettiğinizi ve kişisel bilgilerinizin iNaturalist'in ABD'deki sunucularına aktarılmasına izin verdiğinizi onaylamanız gerekir. 
-    </p>
-    <p>
-    Hangi bilgileri topladığımız ve bunları nasıl kullandığımız hakkında daha çok bilgi için lütfen <a href='%{privacy_url}' target='_blank'>Gizlilik Politikamıza</a> ve <a href='%{terms_url}' target='_blank'>Kullanım Koşullarımıza</a> bakın.
-    </p>
-    <p>
-    Kişisel bilgileri saklamadan bir iNaturalist hesabına sahip olmanın bir yolu yoktur, bu nedenle bu izni iptal etmenin tek yolu hesabınızı silmektir.
-    </p>
   data_transfer_consent_label: |
     Kişisel bilgilerimin Amerika Birleşik Devletleri'ne aktarılmasına izin veriyorum
   data_transfer_consent_child_label: |
@@ -4452,8 +4338,6 @@ tr:
   supporting: Destekleyici
   suspend_user: Kullanıcıyı askıya al
   suspend_user_html: '%{user} kullanıcısını askıya al'
-  suspend_user_reason_instructions_html: |
-    Bu hesabı neden askıya aldığınızı açıklayın ve %{link_start_tag}Topluluk İlkelerinin%{link_end_tag} herhangi bir ihlalini belirtin. Lütfen kişisel görüşlerinizi eklemekten kaçının.
   sw_lat: GB Enlemi.
   sw_lon: GB Boylamı.
   sync: Eşitlensin mi?
@@ -4728,9 +4612,6 @@ tr:
   this_list_only_accepts_taxa_that_are_species: Bu liste yalnızca tür olan sınıfları kabul eder
   this_list_only_accepts_taxa_that_are_species_or_lower: Bu liste yalnızca tür ya da daha alt sınıfları kabul eder
   this_observation: Bu gözlem
-  this_observation_is_featured_on_x_sites:
-    one: Bu gözlem %{count} sitede yayınlandı
-    other: Bu gözlem %{count} sitede yayınlandı
   this_observation_is_research_grade: Bu gözlem Araştırma Sınıfı!
   this_observation_was_created_using: "Bu gözlem şununla oluşturuldu:"
   this_photo_is_already_associated: Bu fotoğraf zaten gözlemlerinizden birisi ile bağlantılı.
@@ -5122,10 +5003,6 @@ tr:
   view_all_fields: Tüm Alanları Göster
   view_all_flags: Tüm İşaretleri Görüntüle
   view_all_members: Tüm Üyeleri Görüntüle
-  #As in "View all 5" to view all 5 observations, comments, or other
-  view_all_number:
-    one: "Tümünü Göster (%{count})"
-    other: "Tümünü Göster (%{count})"
   view_all_observations: Tüm Gözlemleri Görüntüle
   view_all_photocount_photos: "%{photo_count} Fotoğrafı Görüntüle"
   view_assessment: Değerlendirmeyi Görüntüle
@@ -5302,12 +5179,6 @@ tr:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
-  x_of_count_confirmed:
-    one: "%{x} / %{count} onaylandı"
-    other: "%{x} / %{count} onaylandı"
-  x_of_count_observed:
-    one: "%{x} / %{count} gözlemlendi"
-    other: "%{x} / %{count} gözlemlendi"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x}/%{y} kişi (2/3'ü geçen) bunu kabul ediyor"
   x_is_the_root_of_the_tree: "%{rank} %{name} ağacın köküdür"
   x_project_journal: "%{project} projesinin adı: %{name}"
@@ -5522,37 +5393,10 @@ tr:
             Eğer öyleyse, öğrencilerle %{site_name} kullanımına ilişkin ipuçları için lütfen <a href="%{url}">Öğretmen Rehberimizi</a> okuyun.
     donate:
       donate_short_desc: "Desteğinizi göstermek için şimdi bağış yapın!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
-        </p>
-        <p class="lead">
-        Doğaseverlerden oluşan bu küresel topluluğun bilgi paylaşma ve yeri doldurulamaz biyoçeşitlilik verileri üretme gücüne inanıyorsan, lütfen çevrim içi olarak tek seferlik ya da yinelenen bir bağış yapmayı düşün veya <a
-        href="https://www.inaturalist.org/pages/giving">bağış yapmanın diğer yollarına göz at</a>.
-        </p>
-        <p class="lead">
-        Bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur.
-        </p>
-        <p class="text-muted">
-        iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır (Vergi Kimliği: 94-1156258).
-        </p>
       post_donate_social_media_text: iNaturalist'i destekliyorum çünkü...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Olun
         become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
-          </p>
-          <p class="lead">
-          iNaturalist'i kullanmanın ücretsiz olmasını istiyoruz ancak işletmesi ücretsiz değil. Eğer iNaturalist'i seviyorsan, lütfen aylık destekçi olmayı düşün. Yinelenen hediyeler, öngörülebilir gelir sağlayarak iNaturalist'in altyapısını ve personelini sürdürülebilir kılmaya yardımcı olur. Aylık destekçi statünü kullanıcı profilinde göstermeyi de tercih edebilirsin.
-          </p>
-          <p class="lead">
-          Hayırsever bağışın, topluluk büyüdükçe bilgisayarlı görüyü geliştirmek ve yeni özellikler uygulamaktan sunucularımızı ve personelimizi desteklemeye kadar iNaturalist'i desteklemeye yardımcı olur. Tek seferlik bağış yapmayı tercih ediyorsan, lütfen <a href="%{donate_url}">buraya tıkla</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır.
-          </p>
         thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
     flags:
@@ -5587,42 +5431,6 @@ tr:
           <a href="http://eol.org/" target="_blank">Yaşam Ansiklopedisi (EOL)</a>, Dünya üzerindeki yaşam hakkında bir bilgi deposudur. EOL'de tür <a href="http://eol.org/info/252" target="_blank">koleksiyonları</a> oluşturabilirsin. Bir EOL koleksiyonundan türleri içe aktarmak istiyorsan, o koleksiyonun URL'sini buraya yapıştır.
         guide_place_desc: |
           Rehberini bir konumla ilişkilendirmek, insanların konum ararken rehberini bulmasını sağlayacak ve bir sınır belirlenmişse %{site_name} haritalarında konum sınırını gösterecektir (örn. "kart" görünümü, sınıf sayfaları, vb.)
-        import_tags_from_csv_help_html: |
-          <p>
-          Bu rehbere sınıflar için etiketleri içeren bir CSV dosyası yükleyin. CSV dosyanız şu şekilde görünmelidir:
-          </p>
-          <table class="table">
-          <tbody>
-          <tr>
-          <th>İsim</th>
-          <th>renk</th>
-          <th>Ellerin sayısı</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>iki ayaklı</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>kırmızı|siyah</td>
-          <td>0</td>
-          <td>dört ayaklı</td>
-          </tr>
-          </tbody>
-          </table>
-          <p>
-          İlk satır "İsim" ile başlayıp ardından tahminler/kategoriler etiketine göre devam etti. 
-          Ardından her satır sınıfın ismiyle başlar, karşılık gelen etiketler 
-          sütunun üstünü belirtir. Bu örnekte, <i>Homo sapiens</i>, <code>bipedal</code> ve
-          <code>Ellerin sayısı=2</code> etiketlerini alır, ve <i>Vulpes vulpes</i>, <code>dört ayaklı</code>,
-          <code>renk=kırmızı</code>,<code>renk=siyah</code>, ve 
-          <code>Ellerin sayısı=0</code> etiketlerini alır. Boşluklar yok sayılacak, ve sınıf 
-          başına birden fazla satır ekleyebilirsiniz. Ayrıca şerit karakteriyle ayrılmış 
-          hücre başına, birden fazla değer ekleyebilirsiniz.
-          </p>
         licensing_explanation: |
           İçeriğini lisanslamak, diğer kişilere senden izin almadan kopyalama ve değiştirme hakkı verir. Çalışmanı paylaşmayı çok daha kolay hale getirir ve Creative Commons Aynı Lisansla Paylaş lisanslarını kullanan diğer kaynaklardan (Vikipedi gibi) 3. taraf içeriği dahil edersen, yasal olarak benzer bir lisans kullanmak zorundasın. İşte tüm Creative Commons lisanslarına ve ne anlama geldiklerine genel bir bakış:
         paste_note_html: |
@@ -5641,11 +5449,6 @@ tr:
         Bu biraz zaman alabilir, bu yüzden birkaç dakika içerisinde sayfayı yenilemeyi deneyin.
       mobile_downloads_tip_html: |
         Bu rehber çevrim dışı kullanım için mobil uygulamaya indirilebilir.
-      mobile_downloads_help_html: |
-        <p>Bu, mobil uygulama kullanıcılarının rehberdeki tüm içeriği internet bağlantısı olmadan görüntüleyebilmeleri için bu rehberle ilişkili tüm verilerin ve medyanın indirilebilir bir arşivini oluşturacaktır. Arşivin oluşturulması birkaç dakika sürecektir ancak bu etkinleştirildikten sonra bu rehberi her değiştirdiğinde arşiv güncellenecektir.</p>
-        <p class="alert status">
-        Lütfen <strong>gerçekten kullanmayı düşünmüyorsan çevrim dışı mobil indirmeleri etkinleştirme.</strong> Sistemimiz üzerinde önemli bir yük oluşturmaktadırlar.
-        </p>
       pdf_layouts:
         grid: ızgara
         book: kitap
@@ -5776,18 +5579,6 @@ tr:
         disagreement_count: Uyuşmazlık Sayısı
         identification_count: Tanımlama Sayısı
         score: Puan
-        explanation: |
-          <p>
-          Herhangi bir sebepten dolayı bir kullanıcı topluluk sınıfına katılmıyorsa, 
-          onu reddedebilir, yani tanımlamaları diğer gözlemlerle bağlantı kurmak, yaşam 
-          listelerini güncellemek vb. için kullanılır. Ayrıca, gözlemleri ancak 
-          topluluk onlarla aynı fikirde olduğunda araştırma sınıfı haline gelebileceği 
-          anlamına gelir.
-          </p>
-          <p>
-          Bununla birlikte, topluluk tanımlaması hala gösterilmektedir, yani 
-          herkes önerilen farklı tanımlamaları görebilir.
-          </p>
         you_have_opted_out: Topluluk tanımlamalarını yapmamaya karar verdin
         opt_in_for_this_observation: Bu gözlem için dahil olun
         your_id_does_not_match: |
@@ -5826,30 +5617,6 @@ tr:
           Bu, sorguda temsil edilen toplam "yaprak" sınıf sayısıdır. Bazen sıfır olmayan sayılarla bundan daha çok satır görürsün çünkü diğer sorgulardan eklenen daha yüksek seviyeli sınıflar vardır. Örneğin, Sorgu 1'de Homo sapiens gözlemi ve Sorgu 2'de Homo cinsi gözlemi varsa, her iki sınıf da tabloda mevcut olacaktır ancak bu, Sorgu 1 için Homo cinsi için ek bir satır anlamına gelir çünkü bu cins içinde yalnızca Homo sapiens türünü saymıştır zira bu, ağacın o kısmının "yaprağı"dır.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Dikey
-        #Count of how many taxa several observation searches have in common
-        x_in_common:
-          #Count of how many taxa several observation searches have in common
-          one: "%{count} benzer"
-          #Count of how many taxa several observation searches have in common
-          other: "%{count} benzer"
-        #Count of how many taxa are not present in *all* of several observation searches
-        x_not_in_common:
-          #Count of how many taxa are not present in *all* of several observation searches
-          one: "%{count} benzer olmayan"
-          #Count of how many taxa are not present in *all* of several observation searches
-          other: "%{count} benzer olmayan"
-        #Count of how many taxa are present in an observation search
-        x_total:
-          #Count of how many taxa are present in an observation search
-          one: "%{count} toplam"
-          #Count of how many taxa are present in an observation search
-          other: "%{count} toplam"
-        #Count of how many taxa in several observation searches are present in only one of those searches
-        x_unique:
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          one: "%{count} benzersiz"
-          #Count of how many taxa in several observation searches are present in only one of those searches
-          other: "%{count} benzersiz"
       export:
         choose_columns_desc: Dışa aktarmak istediğiniz sütunları seçin
         create_a_query_desc_html: |
@@ -5873,35 +5640,6 @@ tr:
         taking_a_while: "Bu biraz zaman alıyor. Lütfen aşağıdaki seçeneklerden birini deneyin."
         date_range_help: "GG-AA-YYYY biçiminde gözlemlenen azami ve asgari tarihler, örneğin 01-17-2015"
         created_on_help: "Tarih gözlemleri oluşturuldu, gözlenmedi, örn. 2015-01-17, 2015-01, 2015"
-        other_options_html: |
-          <h3>Diğer Seçenekler</h3>
-          <p>
-          Büyük dışa aktarımlar altyapımızı yavaşlatır ve yeni değişiklikleri yayınlamamızı zorlaştırır. İşte dikkate alabileceğiniz diğer bazı seçenekler:
-          </p>
-          <ul>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a> GBIF, Araştırma Sınıfı, lisanslı gözlemlerimizin çoğunu alıyor ve dışa aktarma araçları mükemmel. GBIF dışa aktarımları, dışa aktardığın verilere dayalı bir araştırma yayınlarsan atıfta bulunabileceğin bir <a href="https://www.doi.org/">DOI</a> ile birlikte gelir ve bu atıflar, iNat verilerinin nasıl kullanıldığını görmemizi sağladığından bizim için son derece yararlıdır.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">GBIF için DarwinCore Arşivi (DwC-A)</a>: Bu, GBIF'in alması için oluşturduğumuz <a
-          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> dosyasıdır, bu nedenle GBIF'te olmayan hiçbir şey içermemelidir ancak tüm arşivi istiyorsan indirebilirsin. CSV'deki kayıtları içeren çok büyük bir zip dosyasıdır. Haftalık olarak güncellenmektedir.
-          </p>
-          </li>
-          <li>
-          <p>
-          <a
-          rel="nofollow noreferrer noopener"
-          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">FGVC 2017'deki iNaturalist Mücadelesi</a>: Bilgisayarlı görü eğitiminde kullanılmak üzere 5.089 türe ait 675.000 lisanslı iNaturalist fotoğrafını bağlantılar. Haziran 2017'de oluşturuldu, güncellenmedi.
-          </p>
-          </li>
-          </ul>
       field_descriptions:
         id: "Gözlem için benzersiz tanımlayıcı"
         species_guess: "Gözlemcinin gözlemlenen sınıf için yazdığı ad"
@@ -5994,16 +5732,6 @@ tr:
         allow_curator_coordinate_access_desc_html: |
           Proje sorumlularının bu gözlem için gizli koordinatları görüntülemesine izin verin.
         ancestor_disagreements_desc: "sınıfın ataları arasında olan ancak sınıfa uymayan tanımlı sınıfların # (örn \"Sanırım cinsin içerisinde ama türüne katılmıyorum\")"
-        community_taxon_desc_html: |
-          <p class="ui">
-          Topluluk sınıfı (ya da topluluk tanımlaması), %{site_name} topluluğunun bir gözlemde hangi sınıfın gösterildiğini temsil eder. Topluluk sınıfını nasıl seçtiğimizle ilgileniyorsan, aşağıdaki algoritma notlarına bak ancak genel olarak, <strong>tanımlayıcıların 2/3'ünden çoğunun aynı fikirde olduğu bir sınıf seçmeye</strong> çalışıyoruz. Bazen bu, aynı fikirde olmayan birkaç sınıf içeren daha yüksek seviyeli bir sınıf seçmek anlamına gelir (ör. sen bunun bir kral yılanı olduğunu düşünüyorsun ve ben bunun çıngıraklı yılan olduğunu düşünüyorum, bu yüzden iNat tüm yılanları içeren Serpentes alt takımını seçiyor). Algoritma ayrıca farklı fikirleri biraz destekliyor çünkü bunların genellikle doğru olduğunu gördük.
-          </p>
-          <p class="ui">
-          Araştırma sınıfı bir gözlem (diğer ölçütlerin yanı sıra) bir topluluk sınıfına sahip olmalıdır. Bir gözlemin yalnızca bir tanımlaması varsa, bir topluluk sınıfı olmayacaktır. En az bir tanımlamaya sahip tüm gözlemlerin ayrıca bir gözlem sınıfı olacaktır. Gözlem sınıfı , gözlemleri veri ortaklarıyla paylaşırken, sitedeki aynı sınıfa ait gözlemleri birbirine bağlarken, yaşam listenizi güncellerken vb. kullandığımız sınıftır. Çoğu durumda gözlem sınıfı eninde sonunda topluluk sınıfına ulaşacaktır ancak bazen özellikle topluluk bir tanımlamaya karar vermeden önce farklılık gösterebilir. Örn. sen bunun bir yılan (Serpentes alt takımı) olduğunu düşünüyorsan ve ben bunun bir kral yılanı (<i>Lampropeltis</i> cinsi) olduğunu düşünüyorsam, gözlem sınıfı kral yılanı (yalnız benim tanımlamamla desteklenir) olacaktır ancak topluluk sınıfı serpentes (en az iki tanımlamayla desteklenir) olacaktır. Herhangi bir nedenle topluluk sınıfını kabul etmiyorsan, kendi gözlemlerinde bunu reddedebilirsin, bu da gözlem sınıfının asla topluluk sınıfına (daha ziyade kendi tanımlamana) dönmeyeceği anlamına gelir. Bu aynı zamanda gözleminin ancak topluluk <em>seninle</em> aynı fikirde olduğunda araştırma sınıfı olabileceği anlamına gelir. Topluluk sınıfı fikrini kabul etmiyorsan, <a href="/users/edit" target="_blank">ayarlarını düzenleyerek</a> tamamen devre dışı bırakabilirsin.
-          </p>
-          <p class="ui">
-          <strong>Algoritma:</strong> Tanımlanan tüm sınıflar ve onları içeren sınıflar için (örneğin <i>Homo</i> cinsi <i>Homo sapiens'i</i> içerir), her birini, anlaşma sayısı (kümülatif tanımlamaların toplamı üzerinden o sınıf için kümülatif tanımlamalar), anlaşmazlıklar (tamamen farklı olan tanımlamaların sayısı yani, puanlanan sınıfı içermeyen sınıfların tanımlamaları) ve üst soy anlaşmazlıkları (daha ayrıntılı sınıfla aynı fikirde olmayan daha muhafazakar tanımlamaların sayısı) arasındaki oran olarak puanlayın. 2/3'ün üzerinde bir puana ve en az 2 tanımlamaya sahip olan tanımlanmış sınıflar için en düşük sıradaki sınıfı seçin.
-          </p>
         cumulative_count_desc: 'bir sınıf ve onun soyundan gelenler için tanımlamaların #'
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje sorumlularının göremediği koordinatlarla gözlemlere izin vermiyor. 
@@ -6021,56 +5749,6 @@ tr:
           projedeki diğer gözlemleri görme yetkisi verecek 
           ve bu, proje <a href="%{url}" target="_blank">şartlarını</a>
           kabul ettiğiniz anlamına gelir.
-        quality_assessment_help2_html: |
-          <p>
-          Veri niteliği değerlendirmesi, bir gözlemin doğruluğunun özetidir. Aşağıdaki durumlarda, tüm gözlemler <strong>"sıradan"</strong> sınıf olarak başlar ve <strong>"tanımlama gerekiyor"</strong> hâlini alır:
-          </p>
-
-          <ul>
-          <li>gözlemin <strong>bir tarihi vardır</strong></li>
-          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (örn. enlem/boylam koordinatları)</li>
-          <li>gözlem, <strong>fotoğraflara ya da seslere sahiptir</strong></li>
-          <li>gözlem, <strong>bir insana ait değildir</strong></li>
-          </ul>
-          <p>
-          Gözlemler aşağıdaki durumda <strong>"araştırma sınıfı"</strong> olur:
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>topluluğu tür düzeyinde ya da daha düşük bir düzeyde tanımlama üzerinde anlaştığında</strong>, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise, alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
-          </li>
-          </ul>
-          <p>
-          Adı geçen koşullar yerine getirilmezse ya da topluluk kabul ederse gözlemler <strong>"sıradan"a</strong> dönecektir.
-          </p>
-          <ul>
-          <li>
-          <strong>konum doğru görünmemektedir</strong> (örn. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
-          </li>
-          <li>
-          <strong>organizma yabani ya da doğal değildir</strong> (örn. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
-          </li>
-          <li>
-          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, örn. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
-          </li>
-          <li>
-          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (örn. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
-          </li>
-          <li>
-          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk kimliği familyanın üstündedir
-          </li>
-          <li>
-          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlamasıyla ilişkili sınıfın atası ya da alt soyundan değildir.
-          </li>
-          </ul>
-          <p>
-          Ve eğer bu yeterince karmaşık değilse, sistemin oy aldığı durumlar da vardır:
-          </p>
-          <ul>
-          <li>
-          Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri yerde bir cins ya da daha düşük düzey en az 10 gözlem varsa ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmişse, gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
-          </li>
-          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkese açık değil. 
@@ -6087,17 +5765,6 @@ tr:
           liste aynı kullanıcıları içermez. '*' İşaretli bir değer, bu durum için ilk 500'de 
           olmadığı anlamına gelir.
     observation_fields:
-      about_editing_observation_fields_desc_html: |
-        <p class='ui'>
-        Bu gözlem alanını, oluşturduğunuz için veya bir site sorumlusu olduğunuz için
-        düzenleyebilirsiniz. Bir site sorumlusuysanız, lütfen aşağıdaki ilkeleri takip edin:
-        </p>
-        <ol>
-        <li>İsteğe bağlı isim değişiklikleri yapmayın (örn. "eating" ismini "nectaring"'e değiştirme)</li>
-        <li>Gözlem alanlarının, herhangi bir sınıfın gözlemleri için kullanılabileceğini unutmayın, bu nedenle sınıfa özel terminoloji kullanmamaya çalışın</li>
-        <li>İnsanların kullandığı alanları silmeyin</li>
-        <li>Mevcut alan isimlerini farklı dillere çevirmeyin. İngilizce, bu sitenin ortak dilidir. Aynı kavramı kapsayan ancak farklı bir dilde olan bir alan istiyorsanız, lütfen yeni bir gözlem alanı oluşturun.</li>
-        </ol>
       dna_help: |
         BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
         bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
@@ -6138,105 +5805,6 @@ tr:
           <a href="%{url}">gözlem dışa aktarma sayfasını</a> ziyaret edin.
       parental_consent:
         subject: Çocuğunuz iNaturalist kullanmak istiyor
-        content_html: |
-          <p>
-          Çocuğunuz <strong>iNaturalist'den Seek</strong> eğitim uygulamasını
-          kullanıyor ve veriyi iNaturalist vatandaşlık bilimi platformu ile paylaşmak
-          istiyor. iNaturalist'e gönderim Kişisel Olarak Tanımlanabilir Bilgileri ortaya
-          çıkardığı için, iNaturalist, 13 yaşın altındaki kişiler tarafından ebeveyn izni
-          olmadan kullanılamaz.
-          </p>
-          <p>
-          <strong>iNaturalist'den Seek</strong>, hesap oluşturmadan kullanılabilir
-          ve Kişisel Olarak Tanımlanabilir Bilgiler paylaşılmaz, ancak çocuğunuz
-          iNaturalist'e gözlemlerde bulunamayacaktır. iNaturalist, katılımcıların
-          doğa hakkında birbirlerini eğitmek ve bilim için, biyoçeşitlilik verilerini
-          oluşturmak için canlıların gözlemlerini ve tanımlarını paylaştığı bir
-          vatandaş-bilim sosyal ağıdır.
-          </p>
-          <p>
-          Çocuğunuza iNaturalist'i kullanması için izin vermek istiyorsanız,
-          aşağıdakileri yapmanız gerekmektedir:
-          </p>
-          <ol>
-          <li>
-          <p>
-          Bu bağlantıyı izleyerek çocuğunuzun kullanacağı bir iNaturalist hesabı
-          oluşturun:
-          <a href="%{registration_url}">%{registration_url}</a>
-          </p>
-          </li>
-          <li>
-          <p>
-          Çocuğunuzun hesabını oluşturduktan sonra, yetişkin olduğunuzu
-          doğrulamak için iNaturalist'e 1 ABD Doları tutarında kredi kartıyla
-          küçük bir bağışta bulunmanızı rica ederiz. Bağış yaparken kayıt 
-          sırasında "Ana e-posta" alanına girdiğiniz e-posta adresini 
-          kullandığınızdan emin olun.
-          </p>
-          </li>
-          <li>
-          <p>
-          Bağışı işleme koyduğumuzda, çocuğunuzun hesabının etkinleştirildiğini 
-          bildiren başka bir e-posta göndereceğiz ve çocuğunuzun Seek 
-          uygulamasına giriş yapmak için, oluşturduğunuz iNaturalist kullanıcı 
-          adını ve şifresini kullanabilirsiniz.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist, aşağıdaki Kişisel Olarak Tanımlanabilir Bilgileri Toplar:
-          </p>
-          <ol>
-          <li>
-          <p>
-          <strong>e-posta adresi (özel):</strong> her iNaturalist hesabının, 
-          kendisiyle ilişkilendirilmeyen ve herkese açık olmayan bir e-posta 
-          adresi vardır.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>kullanıcı adı (herkese açık, gerekli):</strong> her iNaturalist
-          hesabının herkese açık bir kullanıcı adı ve kullanıcı kimlik numarası vardır.
-          Kullanıcı adı, bir kişinin gerçek adına benzer olmak zorunda değildir, 
-          ancak herkese açık yorumlar ve özel doğrudan iletiler yoluyla, 
-          kişiyle iletişim kurmak için kullanılabilir.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>IP adresi (özel, gerekli):</strong> iNaturalist, kullanıcının, 
-          bulunduğu konum gibi Kişisel Tanımlama Bilgilerini elde etmek 
-          için kullanılabilecek IP adresini saklar ancak herkese açık yapmaz 
-          (şehir düzeyinde doğrulukla).
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>profil resmi (herkese açık, isteğe bağlı):</strong> iNaturalist 
-          hesapları, isteğe bağlı olarak genellikle kullanıcının resimleri olan
-          profil resimlerine sahip olabilir.
-          </p>
-          </li>
-          <li>
-          <p>
-          <strong>gözlem konumu (özel veya herkese açık, gerekli):</strong>
-          iNaturalist gözlemleri, gözlemin yapıldığı yer hakkında bilgi içerir. 
-          Bu, herkese açık hale getirilebilir veya gizli tutulabilir, ancak 
-          varsayılan olarak herkese açıktır.
-          </p>
-          </li>
-          </ol>
-          <p>
-          iNaturalist, kullanıcıların herkese açık resimleri, herkese açık yorumları 
-          ve hesaplarıyla ilişkili özel doğrudan mesajları paylaşmalarına da izin verir. 
-          Kullanıcıların, bu kullanıcı tarafından oluşturulan içeriğe, Kişisel Kimlik 
-          Bilgilerini eklemesi mümkündür.
-          </p>
-          <p>
-          iNaturalist’in Gizlilik Politikası hakkında <a href="%{privacy_policy_url}">buradan</a> daha fazla bilgi edinin.
-          </p>
       photos_missing:
         subject: Bazı fotoğrafların onarılması gerekiyor
         we_have_been_housekeeping: |
@@ -6261,28 +5829,6 @@ tr:
           Aşağıda etkilenen fotoğraflara bağlantılar ekledik.
       user_parent_confirmation:
         subject: Çocuğunuzun iNaturalist hesabı etkinleştirildi
-        content_html: |
-          <p>
-          Çocuğunuz için bir iNaturalist hesabı oluşturduğunuz için teşekkür ederiz! 
-          Hesap aktifleştirildi. Girdiğiniz kayıtlarda kaydettiğimiz detaylar:
-          </p>
-          <ul>
-          <li><strong>Ebeveyn ya da yasal vasi ismi:</strong>%{parent_name}</li>
-          <li><strong>Ebeveyn ya da yasal vasi e-postası:</strong>%{parent_email}</li>
-          <li><strong>Çocuğun ismi:</strong>%{child_name}</li>
-          <li><strong>Çocuğun doğum günü:</strong>%{child_birthday}</li>
-          <li><strong>Çocuk hesabı e-postası:</strong>%{child_email}</li>
-          <li><strong>Çocuk hesabı kullanıcı adı:</strong>%{child_username}</li>
-          </ul>
-          <p>
-          Lütfen menüdeki "iNaturalist" butonuna dokunarak ve ardından ekranın altındaki 
-          "iNaturalist ile giriş yap" seçeneğini tıklayarak çocuğunuzun Seek uygulamasından 
-          hesaba giriş yapın.
-          </p>
-          <p>
-          Çocuğunuz daha sonra, iNaturalist.org sitesinde görülmeleri için Seek uygulamasını kullanarak,
-          iNaturalist hesabına gözlemler gönderebilir.
-          </p>
       users_updates_suspended:
         message: |
           Bir süredir %{site_name}'te etkin değilsin, bu nedenle aboneliklerini askıya aldık. Site etkinliği ile ilgili güncellemeleri almaya devam etmek için lütfen hesabına tekrar <a href="%{login_url}">giriş yap</a>.
@@ -6346,12 +5892,6 @@ tr:
         aggregation_pending: Yığınlama beklemede
         new_place_desc_html: |
           <a href="%{places_url}" target="_blank">Mevcut konumlarımıza</a> bakmayı dene ve konumun adını doğru aldığından emin ol. İstediğin konumu gerçekten bulamıyorsan, <a href="%{new_place_url}" target="_blank">yeni bir konum oluşturmayı</a> düşün ancak lütfen mevcut bir konumu kopyalamadığından emin ol.
-        bioblitz_desc_html: |
-          <p>
-          Bioblitz, katılımcıların belirli bir zaman diliminde mümkün olduğunca 
-          çok sayıda tür gözlemlemeye çalıştıkları bir olaydır. İnsanları biyoçeşitliliğe 
-          tanıtmanın eğlenceli bir yoludur, aynı zamanda değerli veriler toplar.
-          </p>
         change_admin_desc: Yeni yönetici olması için proje sorumlularından birini seçin.
         change_owner_alert: |
           Bu, bu projeyi silme ya da sahipliğini tekrar devretme yeteneğini ortadan kaldıracaktır. Devam etmek istiyor musun?
@@ -6372,37 +5912,6 @@ tr:
         no_curators: |
           Burada proje sorumlusu yok. Yönetici olarak yeni bir kişi atamak istiyorsanız, 
           önce bu projeye katılmalılar ve onları bir sorumlu yapmalısınız.
-        observation_aggregation_desc_html: |
-          <p class="description">
-          Gözlem toplama, proje kurallarınızda belirtildiği şekilde projenize otomatik olarak uygun gözlemler ekleyecektir. 
-          Bir seferde bir projeden çok sayıda gözlem kaldırmanın bir yolu olmadığından, bu potansiyel olarak tehlikelidir, 
-          bu nedenle lütfen istediğiniz yeri ve sınıf kurallarını seçtiğinizden emin olun, 
-          yoksa manuel olarak kaldırmak için uygun olmayan birçok gözlemle sonuçlanabilir.
-          </p>
-          <p class="description">
-          Toplayıcı, yalnızca aşağıdaki koşullar yerine getirildiğinde çalışır:
-          </p>
-          <ol>
-          <li class="readable description">
-          Projeniz en az bir orta-büyüklükteki bir yer için (Teksas ya da Ukrayna büyüklüğü gibi) en az bir “yerinde gözetilmelidir” kuralına sahip
-          </li>
-          <li class="readable description">
-          VEYA projeniz en az bir 'sınıfta olmalı' kuralına sahip
-          </li>
-          </ol>
-        project_assets_desc_html: |
-          <p class="description">Proje Varlıkları yalnızca projenizle ilişkilendirilmiş, bazı özel kurallara sahip dosyalardır:</p>
-          <ol class="description">
-          <li>.logo.jpg, .logo.png, vb. ile biten dosyalar proje simgesi yerine proje sayfasında projenin logosu olarak kullanılacaktır</li>
-          <li>Proje sayfasındaki haritaya KML ve KMZ dosyaları eklenecek</li>
-          </ol>
-        project_list_desc_html: |
-          <p class="description">
-          Sınıfların özel bir proje listesini oluşturabilir ve projenize 
-          bağlayabilirsiniz. Bu, "proje listesindeki sınıf olmalı" kuralı yoluyla, 
-          projenize eklenen gözlemleri listenizdeki eşleşen sınıflarla
-          sınırlandırmak için yararlı olabilir.
-          </p>
         rules:
           captive: kısıtlanmış/ekili
           coordinates_shareable_by_project_curators: proje sorumluları tarafından paylaşılabilir koordinatlar
@@ -6430,23 +5939,6 @@ tr:
           Bir projeye güvenmek, proje yürütücülerinin Proje İçerikleri ve özel proje nitelikleri (örn. banner HTML, CSS) ekleyebileceği anlamına gelir. Özel proje niteliklerine erişim, proje yürütücülerinin potansiyel olarak kötü amaçlı Javascript ekleyebileceği anlamına gelir, bu nedenle yalnızca hem sorumlu hem de teknik olarak yetkin yürütücülere sahip projelere güvenin.
         you_can_preview: |
           Projenin bir Koleksiyon Projesi olarak nasıl görüneceğini <a href="%{url}">buraya tıklayarak</a> ön izleyebilirsin.
-      invite:
-        description_html: |
-          <h3>Davetiyeler Hakkında</h3>
-          <p class="ui">
-          İnsanları projenize davet etmek bireysel gözlemlere davet etmekten biraz farklıdır.
-          İnsanları davet etmek
-          </p>
-          <ol>
-          <li>Onlara projenize katılmaya davet eden bir e-posta gönderir</li>
-          <li>Kontrol panelinde bir davetiye gösterir</li>
-          <li>Yalnızca davet edilmek üzere ayarlandıysa, projenize katılmalarını sağlar</li>
-          </ol>
-          <p class="ui">
-          Yalnızca proje sorumluları insanları bir projeye katılmaya davet edebilir. İnsanları 
-          iNaturalist kullanıcı adlarıyla ya da <em>tam</em> e-posta adresleriyle arayarak, 
-          dosyada bulduğumuzu düşünerek aramanız gerekir.
-          </p>
       join:
         invite_only_description: |
           Bu projeye üyelik, yalnızca davetiye ile gerçekleşmektedir. Katılmak istersen, lütfen aşağıdaki küratörlerden biriyle iletişime geç ve davetiye talep et.
@@ -6554,18 +6046,6 @@ tr:
           name_already_taken: Proje ismi zaten alınmış
           cannot_have_more_than_x_project_rules: '%{x} proje kuralından daha fazlası olamaz'
           summary_is_required: Proje özet metni gerekli
-      project_location_privacy_notice_html: |
-        <p>
-        Lütfen, proje sorumlularının, bu izni iptal etmediğiniz sürece bu projedeki 
-        gözlemlerinizin herhangi bir özel veya gizlenmiş yerini görebileceklerini ve 
-        <a href="/users/edit">ayarlarınızı değiştirmediğiniz</a> sürece bu projeye 
-        gözlemlerinizi ekleyebileceklerini unutmayın. Durum bazında proje gözlemlerine 
-        erişim izni verebilir veya iptal edebilirsiniz.
-        </p>
-        <p>
-        Konum gizliliği konusunda endişeleriniz varsa, proje sorumlularına güvenmediğiniz 
-        sürece projelere katılmayın.
-        </p>
       project_user_curator_coordinate_access_labels:
         observer: Evet, ama yalnızca gözlemi projeye kendim eklersem.
         any: Evet, projeye gözlemi kimin eklediği önemli değil.
@@ -6581,38 +6061,8 @@ tr:
       show:
         are_you_sure_you_want_to_convert: |
           Bu projeyi bir Koleksiyon Projesine dönüştürmek istediğine emin misin?
-        bioblitz_results_desc_html: |
-          <p>
-          Düzenli projelerden farklı olarak, bioblitzler, insanların projeye kasıtlı 
-          olarak ekledikleri gözlemleri değil, bir yer ve zaman içindeki <em>tüm</em> 
-          gözlemlerden olay istatistiklerini görüntüler. Bu, sadece istatistikleri gerçek zamanlı olarak 
-          yürütmek için bir projeye gözlem ekleme zorluğunu ortadan kaldırmaktır. 
-          Proje ekibi ve katılımcılar normal bir projede olduğu gibi ilgili gözlemleri aktif bir şekilde 
-          eklemediği sürece, web sitesinde üye katkıları veya mobil uygulamalarda 
-          proje gözlemi aramaları gibi çeşitli proje görünümlerinde dışa aktarma veya 
-          gösterme için mevcut olmayacağını unutmayın.
-          </p>
-          <p>
-          Bu tür bir projenin, projeye kasıtlı olarak eklenmemiş gözlemler için istatistikler 
-          göstermesine rağmen, sorumluların bu gözlemler için özel veya gizlenmiş 
-          koordinatlar görmelerine izin vermediğini veya gözlemcilerin proje şartlarını 
-          kabul ettiklerini varsaymadıklarını unutmayın. Bir proje sorumlusuysanız ve 
-          özel koordinatlara erişmeniz gerekiyorsa, katılımcılarınızın proje şartlarını 
-          kabul etmelerini isteyin veya düzenlenmiş proje kontrol listesine sayılan gözlemleri isteyin, 
-          katılımcılarınızın projeye katıldığından emin olun ve gözlemlerini normal bir projede 
-          olduğu gibi ekleyin.
-          </p>
         click_here_to_convert_this_project: |
           Bu projeyi bir Koleksiyon Projesine dönüştürmek için buraya tıkla.
-        no_journal_blurb_html: |
-          <p>
-          Proje yayınınız, proje üyeleri ile iletişim kurmak için bir araçtır. 
-          Bunu duyurular yapmak, öncelikler belirlemek veya projenizin bulguları 
-          hakkında konuşmak için kullanabilirsiniz.
-          </p>
-          <p>
-          Başlamak için, <a href="%{url}" class="readmore">bir gönderi oluşturun</a>
-          </p>
         curated_checklist_desc: |
           Bu, düzenlenmiş kontrol listesi ve bu projeye açıkça eklenen gözlemlerden elde edilen sınıfların
           sayısıdır, tüm gözlemler bu olayın yerinde ve zamanında kaydedilmemiştir.
@@ -6829,16 +6279,6 @@ tr:
           Bu, sınıfın <a target="_blank"
           href="%{url}">Wikipedia sayfasına</a> dayanan ve manuel olarak yenilenene kadar süresiz olarak önbelleğe aldığımız kısa özetidir. Bu özetin yenilenmesi, web sitesinde gösterdiğimiz ve bir hafta sonra otomatik olarak yenilenen temel Wikipedia içeriğinin önbelleğini de hemen günceller.
       show:
-        about_names_desc: |
-          <p>
-          Çoğu organizma kategorisinin konuşulan dillerde "yaygın adları" vardır. Bu adlar genellikle tanınabilir, söylenmesi kolay ve zaman içinde aynı kalır ancak birçok organizmanın değişik yerlerde hatta aynı dilde bile bu organizmalarla ilgili karışıklık olmadan iletişimini zorlaştırabilen birkaç değişik adı vardır. Bilim insanları, <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biyolojik terminoloji</a> kurallarına uyan her organizma kategorisi için tek bir "bilimsel ad" kullanarak bu sorunu çözüyorlar ancak bu adlar kimsenin konuşamadığı bir dil olan Latince'ye dayanmaktadır, bu yüzden birçok insan için yaygın adlar kadar akılda kalıcı değillerdir. Bilimsel adlar aynı zamanda bir organizmanın sınıflandırmasal yerleşimini yansıtabilir, böylece bilim insanları değişik organizmalar arasındaki evrimsel ilişkilerle ilgili daha doğru kuramlar geliştirdiklerinde bu adlar değişebilirler ve yine bilimsel adları bilen insanlar arasında bile iletişimdeki yararlarını azaltırlar.
-          </p>
-          <p>
-          Eski atasözü şöyle özetliyor: "Yaygın adlar bölgeden bölgeden değişiyor ve bilimsel adlar zaman zaman değişiyor."
-          </p>
-          <p>
-          Olanaklı olan yerlerde hem yaygın hem de bilimsel adlar göstererek ve görüntüleyen kişinin dil ve coğrafi seçimlerine göre genel adlar seçerek bu eksiklikleri gidermeye çalışıyoruz.
-          </p>
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
@@ -6927,32 +6367,6 @@ tr:
           için, sıralama iki terimliden sonra eklenir.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Başka yerlerde kullanılan isimleri eklemeyi deneyin. Lütfen yeni isimler oluşturmayın.</p></li>
-          <li><p>Yinelenen isimler eklemeyin. ör. birçok şahine "şahin" ismini vermeyin</p></li>
-          <li><p>Daha yüksek seviyeli sınıflar için, tüm soy ağacını içeren, "balıkçıllar ve yakınları" veya "sağlıklı familya" gibi isimler kullanmayı deneyin</p></li>
-          <li>
-          <p>
-          İsim olmayan bilgileri eklemeyin, ör. ismin nasıl kullanılması 
-          gerektiğini düşündüğünüz fikir hakkında parantez içi bilgi
-          </p>
-          </li>
-          <li>
-          <p>
-          Yeni sözcükler İngilizce olmalı. Lütfen "French, Français" gibi çevrilmiş 
-          dil isimleri eklemeyin, çünkü bu siteyi farklı dillerde kullanan kişilere yerel 
-          isimler göstermemizi zorlaştırır veya imkansız hale getirir.
-          </p>
-          </li>
-          <li>
-          <p>
-          Tercüme edilmiş dillerle ilişkilendirilmiş yaygın isimler, o dilin varsayılan yaygın 
-          ismi olarak görünecektir (Yer tercihlerinin etkisinin engellenmesi, isim sıralaması, vb.).
-          <a class="readmore" href="/pages/translate">Çeviri hakkında daha fazla bilgi edinin</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
@@ -7025,40 +6439,9 @@ tr:
           Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
-        blocking_desc_html: |
-          <p>
-          Birini engellemek, size mesaj göndermesini, gözlemlerinize yorum yapmasını, gözlemlerinizi tanımlamasını ve %{site_name}'te sizinle başka şekilde etkileşime girmesini engeller. Ayrıca onların gözlemlerini sizin arama sonuçlarınızdan ve sizin gözlemlerinizi de onların arama sonuçlarından kaldırır. Ancak, sizi, onlar için görünmez yapmaz. Hâlâ gözlemlerinizi bulabilir ve profilinizi görüntüleyebilirler, yalnızca sizinle etkileşime giremezler.
-          </p>
-          <p>
-          Engelleme, biriyle anlaşamadığınız ve anlaşmazlıkları medeni bir şekilde çözmek için elinizden gelenin en iyisini yapmanıza karşın sizi rahat bırakmadığı durumlar içindir. Bu; insanlardan saklanmanın, düşüncelerine güvenmediğiniz kişilerin sizi tanımlamasını engellemenin ya da topluluk kimliğinden çıkmanın bir yolu değildir (bunun için başka bir ayar vardır). Bu nedenle, engelleme her iki şekilde de çalışır: birini engellerseniz, sizinle etkileşime giremez ancak siz de onunla etkileşime giremezsiniz. Birinin gözlemlerinizi tanımlamasını engellemek için yanlış şekilde kullanırsanız, kendinizin de onların gözlemlerini tanımlamasını engellemiş olursunuz.
-          </p>
-          <p>
-          Yalnızca üç kişiyi engelleyebilirsiniz. Bunun, engellemenin kötüye kullanılmasını önlerken engellemeye gerek duyan kişileri barındıran makul bir sayı olduğunu düşünüyoruz. Daha çok kişiyi engellemeniz gerektiğini düşünüyorsanız, lütfen <a href="mailto:%{help_email}">bizimle iletişime geçin</a>.
-          </p>
-          <p>
-          Birisi sizi %{site_name}'te taciz ediyorsa, <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu, Kullanım Koşullarımızın ihlali anlamına geliyor ise ya da sitemiz için uygunsuz olduğunu düşündüğümüz başka bir davranışı temsil ediyor ise, araştıracağız.
-          </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Fikrinizi değiştirirseniz, her zaman 
           <a href='/users/edit'>ayarlarınızı düzenleyebilirsiniz</a>.
-        inaturalist_network_affiliation_desc_html: |
-          <p>
-          <a href="%{url}" target="_blank">iNaturalist Ağı </a>, küresel iNaturalist
-          topluluğuna tamamen bağlı yerelleştirilmiş web siteleri topluluğudur.
-          Ağ siteleri, yerel kullanımı teşvik etmek ve yerel biyolojik çeşitliliğe
-          fayda sağlamak için iNaturalist ile bir anlaşma imzalayan yerel kurumlar
-          tarafından desteklenmektedir. Tehdit altındaki türleri korumak için ülkelerinden,
-          kamuoyundan otomatik olarak gizlenen gerçek koordinatlara erişimlere sahiptirler.
-          </p>
-          <p>
-          Kullanıcı adınız ve şifreniz, iNaturalist Ağının bir parçası olan tüm sitelerde çalışır.
-          Bir ağ sitesine üye olmayı seçerseniz, her siteyi işleten yerel kurumlar e-posta adresinize
-          (yalnızca sizinle site etkinlikleri hakkında iletişim kurmak için) erişebilir ve kamuya
-          gizlenmiş veya özel gözlemler için gerçek koordinatlara erişebilir.
-          </p>
-          <p>
-          Not: Lütfen 1000'den fazla gözleminiz varsa, üyeliğinizi deneysel olarak değiştirmeyin.
-          </p>
         licensing_desc_html: |
           İçeriğinizi lisanslamak, izninize, lisansın şartlarına uyup uymadıklarını sormadan, 
           kullanma hakkını yasal olarak verir. Ayrıca, %{site_name}, Creative Commons lisanslı 
@@ -7075,13 +6458,6 @@ tr:
           Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu
           kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,
           iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
-        muting_desc_html: |
-          <p>
-          Birini sessize almak; gözlemlerine yorum yapması, sana mesaj atması, senden bahsetmesi gibi benzer durumlar hakkında bildirim almanı önler. Sessize almak, kişinin herhangi bir şey yapmasını engellemeden onu görmezden gelmene yardımcı olur.
-          </p>
-          <p>
-          İstediğin kadar kişiyi sessize alabilirsin, ancak gözlemlerinde Topluluk Tanımlamasını değiştiren tanımlamalar gibi, potansiyel olarak önemli bildirimlerden de mahrum kalacağını unutmamalısın.
-          </p>
         name_place_help_html: |
           Bu konumda kullanılan yaygın adlara öncelik ver.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -7158,15 +6534,6 @@ tr:
       recent:
         about_recent_users: Hakkında
         definitions_html: <dl><dt>Olasılıkla Gereksiz İleti</dt><dd>Muhtemelen gereksiz ileti oluşturan bir kullanıcı, başka bir deyişle gözlem veya tanımları yok, ancak bir profil açıklaması var.</dd><dt>Otomatik Gereksiz İleti</dt><dd>Sistem tarafından otomatik olarak gereksiz ileti oluşturan bir kullanıcı olarak işaretlendi.</dd><dt>Manuel Gereksiz İleti</dt><dd>Bir site sorumlusu tarafından el ile gereksiz ileti oluşturan kullanıcı olarak işaretlendi.</dd><dt>Yalancı Pozitiflik</dt><dd>Gereksiz ileti oluşturan kullanıcı olarak işaretlenen ancak site sorumluları tarafından gerçekten gereksiz ileti oluşturan kullanıcılar olmadıklarından dolayı işaretleri kaldırılan kullanıcılar.</dd></dl>
-        recent_users_desc_html: |
-          <p>
-          Yeni kullanıcıları memmuniyetle karşılamak istiyoruz, aynı zamanda da 
-          istenmeyen kullanıcılarla mücadele etmek istiyoruz. Umuyoruz ki bu araç her ikisi
-          için de yardımcı olacaktır. <a href="https://akismet.com/">Akismet</a> kullanarak birçok
-          kullanıcıyı istenmeyen kullanıcı olarak işaretliyoruz, ancak Akismet mükemmel değil,
-          birkaç dakika içerisinde yeni hesaplara istenmeyen kullanıcı veya istenmeyen kullanıcı
-          değil şeklinde işaret koymak isterseniz, yardımcı olacaktır.
-          </p>
       show:
         take_a_moment_to_review_html: '<a href="%{link}">İlkelerimizi</a> incelemek için birkaç dakikanı ayır.'
         this_user_was_banned: Bu kullanıcı askıya alındı
@@ -7174,21 +6541,6 @@ tr:
           En sevdiğin sınıflardan bazılarını göstermek ister misin? "Favoriler" başlıklı %{link_start_tag}bir liste oluşturun%{link_end_tag} ve en son eklenenler bu alanda görünecektir.
     user_parents:
       confirm:
-        thanks_donor_html: |
-          <p>
-          iNaturalist bağışçısı olduğunuz için teşekkürler! Kimliğinizi doğrulamak
-          için mevcut bağışınızı kullanabildik, ve sizden istediğimiz başka bir işlem 
-          yapmanıza gerek yok. <strong>Çocuğunuzun hesabı aktive edildi.</strong>
-          </p>
-          <p>
-          Lütfen menüdeki "iNaturalist" düğmesine dokunarak ve ardından ekranın
-          altındaki "iNaturalist ile giriş yap" seçeneğini tıklayarak çocuğunuzun 
-          Seek uygulamasından hesaba giriş yapın.
-          </p>
-          <p>
-          Çocuğunuz daha sonra Seek uygulamasını kullanarak iNaturalist hesabına
-          gözlemler gönderebilir böylece iNaturalist.org adresinde görülebilirler.
-          </p>
         thanks_for_creating_a_minor_account: ÇOCUK HESABI OLUŞTURDUĞUNUZ İÇİN TEŞEKKÜRLER!
         we_will_send_you_an_email: |
           Çocuğunuzun hesabı aktif hale geldiğinde size bir e-posta göndereceğiz.
