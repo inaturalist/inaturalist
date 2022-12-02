@@ -1,20 +1,9 @@
 pl:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} zmiana"
-    few: "%{count} zmiany"
-    many: "%{count} zmian"
-    other: "%{count} zmiany"
   x_comments:
     one: '1 komentarz'
     few: '%{count} komentarze'
     many: '%{count} komentarzy'
     other: '%{count} komentarza'
-  x_comments_html:
-    one: '<span class="count">%{count}</span> komentarz'
-    few: '<span class="count">%{count}</span> komentarze'
-    many: '<span class="count">%{count}</span> komentarzy'
-    other: '<span class="count">%{count}</span> komentarza'
   x_faves:
     one: '%{count} dodanie do ulubionych'
     few: '%{count} dodania do ulubionych'
@@ -30,41 +19,6 @@ pl:
     few: '%{count} oznaczenia'
     many: '%{count} oznaczeń'
     other: '%{count} oznaczenia'
-  x_identifications_html:
-    one: '<span class="count">%{count}</span> oznaczenie'
-    few: '<span class="count">%{count}</span> oznaczenia'
-    many: '<span class="count">%{count}</span> oznaczeń'
-    other: '<span class="count">%{count}</span> oznaczenia'
-  x_identifications_:
-    one: '%{count} oznaczenie'
-    few: '%{count} oznaczenia'
-    many: '%{count} oznaczeń'
-    other: '%{count} oznaczenia'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> oznaczający'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> oznaczających'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> oznaczających'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> oznaczającego'
-  x_languages:
-    one: "%{count} język"
-    few: "%{count} języki"
-    many: "%{count} języków"
-    other: "%{count} języka"
-  #Count of number of taxa that represent the first addition to a life list
-  x_life_list_firsts:
-    #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} pierwsza obserwacja na liście życia"
-    #Count of number of taxa that represent the first addition to a life list
-    few: "%{count} pierwsze obserwacje na liście życia"
-    #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} pierwszych obserwacji na liście życia"
-    #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} pierwszej obserwacji na liście życia"
   x_journal_posts_html:
     one: '<span class="count">%{count}</span> wpis w dzienniku'
     few: '<span class="count">%{count}</span> wpisy w dzienniku'
@@ -97,21 +51,6 @@ pl:
     few: "%{count} błędne oznaczenia gatunku w tym %{rank}"
     many: "%{count} błędnych oznaczeń gatunku w tym %{rank}"
     other: "%{count} błędnego oznaczenia gatunku w tym %{rank}"
-  x_observations:
-    one: "%{count} obserwacja"
-    few: "%{count} obserwacje"
-    many: "%{count} obserwacji"
-    other: "%{count} obserwacji"
-  x_observations_:
-    one: "%{count} obserwacja"
-    few: "%{count} obserwacje"
-    many: "%{count} obserwacji"
-    other: "%{count} obserwacji"
-  x_observations_html:
-    one: "<span class='count'>%{count}</span> obserwacja"
-    few: "<span class='count'>%{count}</span> obserwacje"
-    many: "<span class='count'>%{count}</span> obserwacji"
-    other: "<span class='count'>%{count}</span> obserwacji"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} obserwacja</a>"
     few: "<a href='%{url}'>%{count} obserwacje</a>"
@@ -122,21 +61,11 @@ pl:
     few: "<span class='count'>%{count}</span> przejrzane obserwacje"
     many: "<span class='count'>%{count}</span> przejrzanych obserwacji"
     other: "<span class='count'>%{count}</span> przejrzanej obserwacji"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> obserwator'
-    few: '<span class="count">%{count}</span> obserwatorów'
-    many: '<span class="count">%{count}</span> obserwatorów'
-    other: '<span class="count">%{count}</span> obserwatora'
   x_others:
     one: "1 inna osoba"
     few: "%{count} inne osoby"
     many: "%{count} innych osób"
     other: "%{count} innej osoby"
-  x_people:
-    one: "%{count} osoba"
-    few: "%{count} osoby"
-    many: "%{count} osób"
-    other: "%{count} osoby"
   x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   x_photos:
     one: "%{count} zdjęcie"
@@ -148,21 +77,6 @@ pl:
     few: "%{count} nowe gatunki"
     many: "%{count} nowych gatunków"
     other: "%{count} nowego gatunku"
-  x_new_users:
-    one: '%{count} nowy użytkownik'
-    few: '%{count} nowi użytkownicy'
-    many: '%{count} nowych użytkowników'
-    other: '%{count} nowego użytkownika'
-  x_species:
-    one: '%{count} gatunek'
-    few: '%{count} gatunki'
-    many: '%{count} gatunków'
-    other: '%{count} gatunku'
-  x_species_html:
-    one: "<span class='count'>%{count}</span> gatunek"
-    few: "<span class='count'>%{count}</span> gatunki"
-    many: "<span class='count'>%{count}</span> gatunków"
-    other: "<span class='count'>%{count}</span> gatunku"
   x_species_link_html:
     one: "<a href='%{url}'>%{count} gatunek</a>"
     few: "<a href='%{url}'>%{count} gatunki</a>"
@@ -173,11 +87,6 @@ pl:
     few: "%{count} sugestie odfiltrowane według:"
     many: "%{count} sugestii odfiltrowanych według:"
     other: "%{count} sugestii odfiltrowanej według:"
-  x_taxa:
-    one: "%{count} takson"
-    few: "%{count} taksony"
-    many: "%{count} taksonów"
-    other: "%{count} taksonu"
   x_taxa_observed_html:
     one: "<span class='count'>%{count}</span> zaobserwowany takson"
     few: "<span class='count'>%{count}</span> zaobserwowane taksony"
@@ -193,11 +102,6 @@ pl:
     few: "<span class='count'>%{count}</span> obserwacje posiadające stopnień badawczy oznaczone co do gatunku lub niżej"
     many: "<span class='count'>%{count}</span> obserwacji posiadających stopnień badawczy oznaczonych co do gatunku lub niżej"
     other: "<span class='count'>%{count}</span> obserwacji posiadającej stopnień badawczy oznaczonej co do gatunku lub niżej"
-  x_sounds:
-    one: "%{count} dźwięk"
-    few: "%{count} dźwięki"
-    many: "%{count} dźwięków"
-    other: "%{count} dźwięku"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> edytowany takson"
     few: "<span class='count'>%{count}</span> edytowane taksony"
@@ -266,8 +170,6 @@ pl:
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
-  about_trips_html: |
-    <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_trusting_projects: O ufaniu projektom
   about_trusting_projects_options_any: Wszystkich swoich obserwacji w tym projekcie
   about_trusting_projects_options_any_desc: |-
@@ -1322,7 +1224,6 @@ pl:
   devise:
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
-      invalid: 'Niepoprawny e-mail lub hasło.'
       invalid_token: 'Nieprawidłowy token uwierzytelniania.'
       user:
         suspended: Twoje konto zostało zawieszone
@@ -1334,11 +1235,9 @@ pl:
       updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
-      updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      updated: 'Pomyślnie zaktualizowałeś swoje konto'
     mailer:
-      confirmation_instructions:
-        subject: 'Instrukcje potwierdzenia'
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
@@ -2234,8 +2133,6 @@ pl:
       yy: "%d l."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4372,10 +4269,6 @@ pl:
       recent:
         about_recent_users: O
         definitions_html: <dl> <dt>Prawdopodobnie spam</dt> <dd> Użytkownik, który jest prawdopodobnie spamerem, co oznacza, że nie posiada żadnych obserwacji ani oznaczeń, ale posiada opis profilu. </dd> <dt>Automatyczny spam</dt> <dd> Spamer, który został automatycznie oznaczony jako spamer przez system. </dd> <dt>Ręczny spam</dt> <dd> Spamer, który został ręcznie oznaczony jako spamer przez kuratora strony. </dd> <dt>False Positives</dt> <dd> Użytkownicy, którzy zostali oznaczeni jako spamerzy, ale zgłoszenia zostały rozstrzygnięte przez kuratorów, ponieważ użytkownicy w rzeczywistości nie byli spamerami. </dd> </dl>
-        recent_users_desc_html: |
-          <p>
-          Chcemy powitać nowych użytkowników, ale chcemy również walczyć ze spamerami. Mamy nadzieję, że to narzędzie pomoże w obu przypadkach. Automatycznie oznaczamy wielu użytkowników jako spamerów używając <a href="https://akismet.com/">Akismet</a>, ale Akismet nie jest idealny, więc jeśli chcesz poświęcić kilka minut na oznaczanie nowych kont jako spamerów lub nie spamerów, to by nam to pomogło.
-          </p>
       show:
         this_user_was_banned: Ten użytkownik został zawieszony
     user_parents:
