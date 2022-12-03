@@ -7587,6 +7587,9 @@ ru:
           other: '%{count} ошибок препятствуют сохранению этой %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Объявления
       AssessmentSection: Раздел оценки
       Atlas: Атлас
       BlockedUser: Заблокированный пользователь
@@ -7606,6 +7609,12 @@ ru:
       OauthApplication: Приложение
       TaxonLink: Ссылка на таксон
     attributes:
+      announcement:
+        created_at: Создано
+        updated_at: Обновлено
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID сайта
       assessment:
         description: Описание
       assessment_section:
