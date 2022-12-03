@@ -724,6 +724,8 @@ fi:
   batch_edit_taxa_for_x_html: "Massamuokkaa taksoneita kohteelle %{x}"
   batch_operations: Erätoiminnot
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
+  become_a_donor_caps: Ryhdy lahjoittajaksi
+  become_a_donor_today_caps: Ryhdy lahjoittajaksi tänään
   before_importing_photos: ennen kuvien tuontia
   bg_color: Taustaväri
   bio: Kuvaus
@@ -2229,6 +2231,7 @@ fi:
     de: saksa
     el: kreikka
     en: englanti
+    en-GB: Englanti (UK)
     eo: esperanto
     es: espanja
     es-AR: espanja (Argentiina)
@@ -3894,7 +3897,7 @@ fi:
   second_person_possessive_singular: "Sinun %{noun}"
   see_something_wrong_with_taxon: Onko tässä taksonissa jotain vikaa? Ilmoita asiasta kuraattoreille.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
-  seek: Etsi
+  seek: Seek
   seen_nearby: Nähty lähistöllä
   seen_one: Nähnyt yhden?
   select: Valitse
@@ -3961,7 +3964,7 @@ fi:
   simple: Yksinkertainen
   single_observation: Yksittäinen havainto
   #@vow_or_con should work with %{site}
-  site_year_in_review: "%{site}n %{year} vuosikatsaus"
+  site_year_in_review: "%{site} - %{year} vuosikatsaus"
   sizes: Koot
   skip_to_next_page: "Siirry seuraavalle sivulle"
   small: pieni
@@ -5755,6 +5758,8 @@ fi:
         observations_per_year: Havainnot / vuosi
         observations_per_year_by_date_added: Lisäyspäivämäärän mukaan
         observations_per_year_by_date_observed: Havainnointipäivämäärän mukaan
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Havaintoputket
         observation_streaks_color_desc: |
           Väri kuvastaa päivien lukumäärää logaritmisella asteikolla:
         observation_streaks_desc2: |
@@ -5768,6 +5773,7 @@ fi:
         species_per_year: Lajit / vuosi
         species_per_year_by_date_added: Lisäyspäivämäärän mukaan
         species_per_year_by_date_observed: Havainnointipäivämäärän mukaan
+        stats_generated_datetime: Tilastot luotu %{datetime}
         stats_generation_schedule: Tilastot tuotetaan joka sunnuntai joulukuussa ja 1. tammikuuta
         sunburst_desc_html: |
           Havaitut lajit sunburst-kaaviona. Kaavion keskellä on kaikki elämä, ja ulkokehällä lajit. Jokaisen kaaren koko on suhteessa havaintomäärään tästä taksonista. Värit vastaavat taksonien värejä (vihreä kasveille, punainen hyönteisille, sininen useimmille muille eläimille jne.). <strong>Klikkaa kaarta asettaaksesi tämä taksoni kaavion keskustaksi</strong>, tai <strong>klikkaa keskustaa siirtyäksesi hierarkiassa ylöspäin</strong>.
@@ -6304,6 +6310,9 @@ fi:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ilmoitus
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       BlockedUser: Estetty Käyttäjä
@@ -6320,6 +6329,12 @@ fi:
       ModeratorNote: Valvojien muistiinpanot
       TaxonLink: Taksonilinkki
     attributes:
+      announcement:
+        created_at: Luotu
+        updated_at: Päivitetty
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Sivuston tunniste
       assessment:
         description: Kuvaus
       assessment_section:
@@ -6465,6 +6480,13 @@ fi:
             redirect_uri:
               invalid_uri: "pitää olla kelvollinen URL"
               relative_uri: "oltava absoluuttinen URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: on poistettuja kommentteja
         flag:
           attributes:
             user_id:

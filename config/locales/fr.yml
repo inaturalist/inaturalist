@@ -7876,6 +7876,9 @@ fr:
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Annonce
       AssessmentSection: Section d’évaluation
       Atlas: Atlas
       BlockedUser: Utilisateur bloqué
@@ -7895,6 +7898,12 @@ fr:
       OauthApplication: Application
       TaxonLink: Lien de taxon
     attributes:
+      announcement:
+        created_at: 'Création :'
+        updated_at: 'Mise à jour :'
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID du site
       assessment:
         description: Description
       assessment_section:

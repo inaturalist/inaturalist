@@ -7173,6 +7173,9 @@ id:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Pengumuman
       AssessmentSection: Bagian Penilaian
       Atlas: Atlas
       BlockedUser: Pengguna Diblokir
@@ -7192,6 +7195,12 @@ id:
       OauthApplication: Aplikasi
       TaxonLink: Tautan Takson
     attributes:
+      announcement:
+        created_at: Dibuat pada
+        updated_at: Diperbarui pada
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID Situs
       assessment:
         description: Deskripsi
       assessment_section:

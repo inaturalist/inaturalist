@@ -7878,6 +7878,9 @@ da:
           other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Bekendtgørelse
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
@@ -7897,6 +7900,12 @@ da:
       OauthApplication: Applikation
       TaxonLink: Takson link
     attributes:
+      announcement:
+        created_at: Oprettet
+        updated_at: Opdateret
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Websteds-ID'er
       assessment:
         description: Beskrivelse
       assessment_section:

@@ -5067,9 +5067,9 @@ it:
   user_added_a_fave_html: "%{user} ha aggiunto un preferito"
   user_added_a_flag_html: "%{user} ha aggiunto un contrassegno"
   user_added_a_x: "%{user} ha aggiunto una %{x}"
-  user_added_a_x_to_noun_by_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
-  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
-  user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
+  user_added_a_x_to_noun_by_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  user_added_a_x_to_noun_by_user_html: "%{user} ha aggiunto un/una %{x} a %{noun} di %{by}"
+  user_added_a_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
   user_added_a_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha aggiunto un'identificazione"
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}" ad un''osservazione di %{owner}'
@@ -5078,7 +5078,7 @@ it:
   user_added_an_x: "%{user} ha aggiunto una %{x}"
   user_added_an_x_to_noun_by_html: "%{user} ha aggiunto una %{x} a %{noun} di %{by}"
   user_added_an_x_to_noun_by_user_html: "%{user} ha aggiunto una/una %{x} a %{noun} di %{by}"
-  user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto una/una %{x} a %{noun} di te"
+  user_added_an_x_to_noun_by_you_html: "%{user} ha aggiunto un/una %{x} a %{noun} di te"
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations_html: "%{user} ha aggiunto %{x} osservazioni"
   user_already_authenticated: L'utente è già autenticato
@@ -7297,6 +7297,9 @@ it:
           other: '%{count} errori impediscono a questo %{model} di essere salvato'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Avviso
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
       BlockedUser: Utente Bloccato
@@ -7316,6 +7319,12 @@ it:
       OauthApplication: Applicazione
       TaxonLink: Link del Taxon
     attributes:
+      announcement:
+        created_at: Creato il
+        updated_at: Aggiornato al
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID Sito
       assessment:
         description: Descrizione
       assessment_section:

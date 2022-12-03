@@ -556,6 +556,8 @@ de:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Alle
+  app_owner_application_explanation_required: |
+    Du musst eine detailliertere Erklärung geben, was du bauen möchtest.
   app_owner_application_fields_explanation_html: Beschreiben Sie die Funktionalität, die Ihre Anwendung haben wird und wie Sie sie nutzen möchten.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -1704,8 +1706,10 @@ de:
   filters: Filter
   find: Finden
   find_a_guide: Einen Guide finden
+  find_a_post: Einen Beitrag finden
   find_a_place: Ein Gebiet finden
   find_guides: Guides finden
+  find_posts_for: "Beiträge finden für: %{journal_name}"
   find_new_place_to_explore: Ein neues Gebiet zum Erkunden finden!
   find_observations: Beobachtungen finden
   find_photos: Fotos finden
@@ -2301,6 +2305,7 @@ de:
     de: Deutsch
     el: Griechisch
     en: Englisch
+    en-GB: Englisch (UK)
     eo: Esperanto
     es: Spanisch
     es-AR: Spanisch (Argentinien)
@@ -2657,6 +2662,7 @@ de:
   new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
   new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu @vow_or_con{vow:einer|einer} %{parent} von %{user_link}
+  new_conservation_status: Neuer Schutzstatus
   new_flag_for: Neue Meldung für
   new_guide: Neuer Guide
   new_journal_post: Neuer Journal-Eintrag
@@ -4176,6 +4182,7 @@ de:
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
   show_history_by_this_user: Verlauf dieses Benutzers anzeigen
   show_history_for_this_kind_of_action: Verlauf für diese Art von Aktion anzeigen
+  show_history_for_this_record: Verlauf für diesen Eintrag anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -4822,6 +4829,8 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_kolkata: Indische Standardzeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnojarsk-Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_shanghai: China-Standardzeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_singapore: Singapur Standard Zeit
@@ -4829,6 +4838,8 @@ de:
   time_zone_asia_taipei: Taiwan-Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_tokyo: Japan Standard Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Jekaterinburg-Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_adelaide: Adelaide Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4880,7 +4891,11 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoa-Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Neuseeland Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaiianisch–Aleutianische Zeit
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
@@ -7367,6 +7382,9 @@ de:
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ankündigung
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
       BlockedUser: Blockierter Benutzer
@@ -7386,6 +7404,12 @@ de:
       OauthApplication: Anwendung
       TaxonLink: Taxon-Link
     attributes:
+      announcement:
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Website-IDs
       assessment:
         description: Beschreibung
       assessment_section:
@@ -7488,6 +7512,8 @@ de:
       taxon:
         ancestry: Vorfahren
         auto_description: Automatische Beschreibung
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Schutzstatus
         #Datetime this taxon was featured for display on /taxa
         featured_at: Empfohlen am
         #ID of the iconic taxon this taxon belongs to

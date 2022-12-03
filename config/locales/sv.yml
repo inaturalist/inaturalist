@@ -7539,6 +7539,9 @@ sv:
           other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Meddelande
       AssessmentSection: Bedömningsdel
       Atlas: Atlas
       BlockedUser: Blockerad användare
@@ -7558,6 +7561,12 @@ sv:
       OauthApplication: Applikation
       TaxonLink: Taxonlänk
     attributes:
+      announcement:
+        created_at: Skapad den
+        updated_at: Uppdaterad den
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: WebbplatsID:n
       assessment:
         description: Beskrivning
       assessment_section:

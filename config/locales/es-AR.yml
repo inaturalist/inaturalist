@@ -6396,6 +6396,9 @@ es-AR:
           other: '%{count} errores prohibieron este %{model} de ser salvado'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Anuncio
       AssessmentSection: Sección de evaluación
       Atlas: Atlas
       CompleteSet: Lista completa
