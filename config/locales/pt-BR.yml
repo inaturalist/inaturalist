@@ -5263,6 +5263,7 @@ pt-BR:
   #Text in link to view Year in Review for a specific site. %{site} should
   #support @vow_or_con
   view_site_year_in_review: Veja o ano de %{year} do %{site} em revisão
+  view_site_year_in_review_caps: VEJA O ANO DE %{year} DO %{site} EM REVISÃO
   view_journal: Ver Boletim Informativo
   view_leaderboard_from_last_month: Ver ranking do último mês
   view_leaderboard_from_last_year: Ver ranking para o último ano
@@ -7490,6 +7491,9 @@ pt-BR:
           other: '%{count} alguns erros pribiram isto %{model} de ser salvo'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Aviso
       AssessmentSection: Seção de avaliação
       Atlas: Atlas
       BlockedUser: Usuário Bloqueado
@@ -7509,6 +7513,10 @@ pt-BR:
       OauthApplication: Aplicativo
       TaxonLink: Link de táxon
     attributes:
+      announcement:
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: IDs do Site
       assessment:
         description: Descrição
       assessment_section:
