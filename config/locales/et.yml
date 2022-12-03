@@ -5639,10 +5639,19 @@ et:
           other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Teadaanne
       AssessmentSection: Hinnangu osa
       CompleteSet: Täiskomplekt
       TaxonLink: Taksoni link
     attributes:
+      announcement:
+        created_at: 'Loodud:'
+        updated_at: 'Uuendatud:'
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Lehtede ID-koodid
       assessment:
         description: Kirjeldus
       assessment_section:
