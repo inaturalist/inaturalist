@@ -792,6 +792,10 @@ en:
   # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribute
   attribution: Attribution
+  # Shows photo attribution along with who uploaded the photo. %
+  # {attribution} will be one of the copyright.* keys, like
+  # copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, uploaded by %{user}"
   authority_list:
     iucn_red_list: IUCN Red List
     natureserve: NatureServe
@@ -2338,6 +2342,8 @@ en:
   improving: Improving
   in_n: "in %{n}"
   in_place_x: in %{place}
+  # As in a reason to flag something
+  inappropriate: Inappropriate
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
@@ -5540,6 +5546,7 @@ en:
   upload_new_photo: Upload new photo
   upload_photo: Upload Photo
   upload_range: Upload Range
+  # Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uploaded by
   uploader:
     errors:
@@ -8711,7 +8718,11 @@ en:
         geoprivacy: Geoprivacy
         iucn: IUCN Equivalent
       flag:
+        # The reason the item was flagged
         reason: Reason
+        # The person who resolved the flag
+        resolver_id: Resolver
+        # The kind of flag that was made
         flag: Flag
       guide:
         source_url: Source URL
