@@ -155,10 +155,11 @@ class MapDetails extends React.Component {
                   showAllPlaces ? (
                     <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: false } )}>
                       { I18n.t( "less" ) }
+                      { I18n.t( "fewer__context_places", { defaultValue: I18n.t( "more" ) } ) }
                     </button>
                   ) : (
                     <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: true } )}>
-                      { I18n.t( "more" ) }
+                      { I18n.t( "more__context_places", { defaultValue: I18n.t( "more" ) } ) }
                     </button>
                   )
                 ) }
