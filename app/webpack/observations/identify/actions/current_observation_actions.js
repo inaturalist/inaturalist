@@ -1128,20 +1128,17 @@ export function subscribe( ) {
 
 export function togglePlayFirstSound( ) {
   return ( ) => {
-    const player = $(".obs-media .sounds").find("audio:first")[0];
-    const is_active_element_audio = $(document.activeElement).is("audio");
-    if ( !player ) { 
-      return; 
-    }
-    // Use default processing if an audio element is already active.
-    if ( is_active_element_audio ) {
+    const player = $( ".obs-media .sounds" ).find( "audio:first" )[0];
+    const hasFocus = player === document.activeElement;
+    if ( !player ) {
       return;
     }
-    player.focus();
+    if ( !hasFocus ) {
+      player.focus();
+    }
     if ( player.paused ) {
       player.play( );
-    }
-    else {
+    } else {
       player.pause( );
     }
   };
