@@ -391,7 +391,7 @@ class ObservationModal extends React.Component {
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
-      { keys: ["Space"], label: I18n.t( "play_first_sound" ) },
+      { keys: ["SPACE"], label: I18n.t( "play_first_sound" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
       { keys: ["SHIFT", "&larr;"], label: I18n.t( "previous_tab" ) },
