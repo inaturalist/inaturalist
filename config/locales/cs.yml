@@ -5822,6 +5822,7 @@ cs:
       post_donate_social_media_text: Podporuji iNaturalist protože...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: STAŇTE SE MĚSÍČNÍM PODPOROVATELEM INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist je jednou z největších světových komunit věnovaných
@@ -5843,6 +5844,7 @@ cs:
           se sídlem ve Spojených státech amerických.
           </p>
         thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
+        thank_you_for_being_a_monthly_supporter_caps: DĚKUJEME ŽE JSTE SE STAL MĚSÍČNÍM PODPO|RO|VATELEM
     flags:
       show:
         flaggable_content_desc: |
@@ -7787,6 +7789,9 @@ cs:
           other: '%{count} chyb zabránilo %{model} v uložení'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Oznámení
       AssessmentSection: Části hodnocení
       Atlas: Atlas
       BlockedUser: Blokovaný uživatel
@@ -7806,6 +7811,12 @@ cs:
       OauthApplication: Žádost
       TaxonLink: Odkazy taxonu
     attributes:
+      announcement:
+        created_at: Vytvořeno
+        updated_at: Aktualizováno
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID webu
       assessment:
         description: Popis
       assessment_section:
