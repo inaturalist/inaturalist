@@ -7536,6 +7536,9 @@ tr:
           other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Duyuru
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
       BlockedUser: Engellenmiş Kullanıcı
@@ -7555,6 +7558,12 @@ tr:
       OauthApplication: Uygulama
       TaxonLink: Sınıf Bağlantısı
     attributes:
+      announcement:
+        created_at: 'Oluşturuldu:'
+        updated_at: 'Güncellendi:'
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Site ID'leri
       assessment:
         description: Açıklama
       assessment_section:
