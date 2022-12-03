@@ -1542,6 +1542,7 @@ es:
   #add the file as, for example, a new photo in the Uploader
   drop_it: '¡Suéltalo!'
   download: Descarga
+  download_caps: DESCARGA
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga plantilla</a> para usar en el
     <a href="/observations/import#csv_import">cargador masivo</a>
@@ -2650,6 +2651,8 @@ es:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Mes
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Patrocinador mensual
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
@@ -4254,6 +4257,7 @@ es:
   set_license: Fijar licencia
   settings: Configuración
   share: Comparte
+  share_caps: COMPARTE
   share_colon: "Compartir:"
   short_code_for_this_place: Código corto para el país, ej. MX para México
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
@@ -4298,6 +4302,8 @@ es:
   #Journal post formatting option
   simple: Simple
   single_observation: Observación sencilla
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Resumen de %{site} del %{year}"
   sizes: Tamaños
   skip_to_next_page: "Ir a la sig. página"
   small: pequeño
@@ -5198,6 +5204,8 @@ es:
   users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Resumen de %{site} del %{year} del usuario %{user}"
   valid_options_are: Las opciones válidas son
   value: Valor
   values: Valores
@@ -5205,6 +5213,7 @@ es:
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
   view_all: Ver todas
+  view_all_caps: VER TODOS
   view_all_fields: Ver todos los Campos
   view_all_flags: Ver Todas las Marcas
   view_all_members: Ve todos los miembros
@@ -5225,6 +5234,12 @@ es:
   view_flags_for_x_html: "Ve advertencias para %{x}"
   view_full_observation: Ve observación completa
   view_full_size_photo: Mira imagen a tamaño completo
+  view_inaturalist_global_year_in_review: Ver el Resumen Global de iNaturalist del año %{year}
+  view_inaturalist_global_year_in_review_caps: VER EL RESUMEN GLOBAL DE INATURALIST DEL AÑO %{year}
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Ver el resumen del año %{year} en %{site}
+  view_site_year_in_review_caps: VER EL RESUMEN DEL AÑO %{year} EN %{site}
   view_journal: Ve Diario
   view_leaderboard_from_last_month: Ver el más activo del mes pasado
   view_leaderboard_from_last_year: Ver el más activo del año pasado
@@ -5269,6 +5284,8 @@ es:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ver tu tablero</a> para más actualizaciones"
   view_your_inbox: Ver tu buzón
   view_your_observations: Ver sus observaciones
+  view_your_personal_year_in_review: "Ver tu resumen personal del año %{year}"
+  view_your_personal_year_in_review_caps: "VER TU RESUMEN PERSONAL DEL AÑO %{year}"
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: "Ver todas tus observaciones de %{x}"
   video_tutorials: Videotutoriales
@@ -5615,6 +5632,7 @@ es:
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador Mensual de Naturalista.
+        become_a_monthly_supporter_of_inaturalist_caps: CONVIÉRTETE EN UN PATROCINADOR MENSUAL DE INATURALIST
         desc_html: |
           <p class="lead">
           <strong>NaturaLista es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de esto!</strong>
@@ -5628,6 +5646,8 @@ es:
           <p class="text-muted">
           NaturaLista es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización sin fines de lucro 501(c)(3) exenta de impuestos con sede en los Estados Unidos de América.
           </p>
+        thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
+        thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
     flags:
       show:
         flaggable_content_desc: |
