@@ -907,6 +907,7 @@ th:
     introduced: ถูกนำเข้ามาในภูมิภาคนี้โดยมนุษย์
   everyone: ทุกคน
   everyone_: ทุกคน
+  everyone_journal_posts: โพสต์วารสารของทุกคน
   everywhere: ทุกที่
   exact_date: เฉพาะวันที่
   except: ยกเว้น
@@ -1323,7 +1324,7 @@ th:
   media_type: ประเภทสื่อ
   medium: กลาง
   member_of_the_inaturalist_network_html: |
-    สมาชิกของ<a href="%{url}">เครือข่าย iNaturalist</a>
+    ส่วนหนึ่งของ<a href="%{url}">เครือข่าย iNaturalist</a>
   #As in members of a project
   members: สมาชิก
   message: ข้อความ
@@ -1715,6 +1716,8 @@ th:
   project_rules: กฎของโครงการ
   project_settings: การตั้งค่าโครงการ
   projects: โครงการ
+  projects_description: |
+    โครงการช่วยรวบรวมการสังเกตของคุณร่วมกับผู้อื่นใน %{site_name} ไม่ว่าวัตถุประสงค์ของคุณจะเป็นการรวบรวมข้อมูลรายงานวิทยาศาสตร์พลเมืองหรือแค่จดบันทึกนกในสวนหลังบ้านก็ตาม โครงการจะตอบโจทย์ของคุณ
   #@vow_or_con should work on %{place}
   projects_from_place: "โครงการจาก %{place}"
   #"admins" is equivalent to "administrates"
@@ -1855,7 +1858,7 @@ th:
   ranks_lowercase_infrahybrid: ลูกผสมฐาน
   read_more: อ่านเพิ่มเติม
   read_our_getting_started_guide: อ่านคู่มือเริ่มต้นใช้งานของเรา
-  real_time_discussions: การอภิปรายในขณะนี้
+  real_time_discussions: การพูดคุยในขณะนี้
   reason: เหตุผล
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
   recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
