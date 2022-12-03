@@ -2062,6 +2062,7 @@ nl:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Determinatie ingetrokken.
   identifications: Determinaties
+  inaturalist_global_year_in_review: "iNaturalist's %{year} Jaaroverzicht van de Wereld"
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |
     Computervisie is het proces waarbij computers worden geleerd om patronen te herkennen in afbeeldingen. We bieden hulpmiddelen die gebruik maken van computervisie-modellen die zijn getraind met de foto's van de gemeenschap om determinatiesuggesties te doen, zoals functionaliteit voor automatisch aanvullen en vergelijken. Dit pictogram geeft aan dat een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
@@ -5346,6 +5347,7 @@ nl:
   view_your_inbox: Bekijk je inbox
   view_your_observations: Bekijk je waarnemingen
   view_your_personal_year_in_review: "Bekijk jouw persoonlijke %{year} jaaroverzicht"
+  view_your_personal_year_in_review_caps: "BEKIJK JE PERSOONLIJK %{year} JAAROVERZICHT"
   view_yours: Bekijk die van jou
   view_all_of_your_observations_from_x: "Bekijk al je waarnemingen van %{x}"
   video_tutorials: Videohandleidingen
@@ -7580,6 +7582,9 @@ nl:
       announcement:
         created_at: Aangemaakt op
         updated_at: Bijgewerkt op
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Site ID's
       assessment:
         description: Beschrijving
       assessment_section:
