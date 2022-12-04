@@ -5272,6 +5272,7 @@ cs:
   upload_new_photo: Nahrát novou fotografii
   upload_photo: Nahrát fotografii
   upload_range: Nahrát rozsah
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Nahráno uživatelem
   uploader:
     errors:
@@ -7834,7 +7835,9 @@ cs:
         geoprivacy: Soukromí zeměpisné polohy
         iucn: Ekvivalent IUCN
       flag:
+        #The reason the item was flagged
         reason: Důvod
+        #The kind of flag that was made
         flag: Vlajka
       guide:
         source_url: URL zdroje
