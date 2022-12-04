@@ -3296,6 +3296,7 @@ ar:
     جدول بيانات أو قاعدة بيانات، فربما يكون هذا هو الطريق المناسب.
   upload_photo: رفع صورة
   upload_range: رفع نطاق
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: تم الرفع بواسطة
   uploader:
     errors:
@@ -5427,7 +5428,9 @@ ar:
         geoprivacy: خصوصية جغرافية
         iucn: نظير الاتحاد الدولي لحفظ الطبيعة
       flag:
+        #The reason the item was flagged
         reason: السبب
+        #The kind of flag that was made
         flag: علم
       guide:
         source_url: مسار المصدر
