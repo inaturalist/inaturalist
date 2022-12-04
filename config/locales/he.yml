@@ -5120,6 +5120,7 @@ he:
   upload_new_photo: העלאת תמונה חדשה
   upload_photo: העלאת תמונה
   upload_range: העלאת תפוצה
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: הועלה על־ידי
   uploader:
     errors:
@@ -7292,7 +7293,9 @@ he:
         geoprivacy: פרטיות נתוני מיקום
         iucn: שקיל לערך ב-IUCN
       flag:
+        #The reason the item was flagged
         reason: סיבה
+        #The kind of flag that was made
         flag: סימון
       guide:
         source_url: URL המקור
