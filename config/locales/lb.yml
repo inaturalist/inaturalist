@@ -2142,6 +2142,7 @@ lb:
   upload: Eroplueden
   upload_a_csv_file: CSV-Fichier eroplueden
   upload_photo: Foto eroplueden
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Eropgeluede vum
   uploader:
     tooltips:
@@ -2716,6 +2717,7 @@ lb:
         place_id: Plaz
         url: URL
       flag:
+        #The reason the item was flagged
         reason: Grond
       message:
         subject: Sujet
