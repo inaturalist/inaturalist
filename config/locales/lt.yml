@@ -4032,6 +4032,7 @@ lt:
     Įkelti CSV failą su stebėjimo duomenimis. Jeigu jūsų duomenys yra skaičiuoklėje ar duomenų bazėje, tai tikriausiai yra geriausias būdas tai padaryti.
   upload_new_photo: Įkelti naują nuotrauką
   upload_photo: Įkelti nuotrauką
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Įkėlė
   uploader:
     errors:
@@ -5102,7 +5103,9 @@ lt:
         geoprivacy: Vietos privatumas
         iucn: IUCN atitikmuo
       flag:
+        #The reason the item was flagged
         reason: Priežastis
+        #The kind of flag that was made
         flag: Žymė
       guide:
         source_url: Šaltinio URL
