@@ -5008,6 +5008,7 @@ ca:
   upload_new_photo: Carrega una nova foto
   upload_photo: Pugeu Foto
   upload_range: Carregar distribució
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Pujat per
   uploader:
     errors:
@@ -7286,7 +7287,9 @@ ca:
         geoprivacy: Geo-privacitat
         iucn: Equivalent a la UICN
       flag:
+        #The reason the item was flagged
         reason: Raó
+        #The kind of flag that was made
         flag: Marca
       guide:
         source_url: URL d'origen
