@@ -317,6 +317,9 @@ nl:
   add_observations: Waarnemingen toevoegen
   add_observations_by_checking_off: Voeg waarnemingen toe door soorten van een lijst af te vinken
   add_observations_project: Voeg waarnemingen toe aan dit project
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Voeg</span> <span>Waarnemingen toe</span>"
   #Prompt to add a new journal post
   add_one: Voeg er één toe!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -702,6 +705,10 @@ nl:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Eigenschap
   attribution: Naamsvermelding
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, geüpload door %{user}"
   authority_list:
     iucn_red_list: De IUCN Rode Lijst
     natureserve: NatureServe
@@ -2331,6 +2338,8 @@ nl:
     waray_waray: Winaray
     visayan: Visayan
   less: Minder
+  #Button show less text
+  less__context_text: Minder
   licensed_site_photos: "Foto's van %{site_name} met licentie"
   license: Licentie
   licensing: Licentie
@@ -2652,6 +2661,14 @@ nl:
     <a href="%{url}">Maandelijkse Supporter</a> sinds %{date}
   months: Maanden
   more: Meer
+  #Button to show more observations
+  more__context_observations_caps: MEER
+  #Button to show more places
+  more__context_places: Meer
+  #Button to show more text
+  more__context_text: Meer
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MEER
   more_caps: MEER
   more_about_sharing: Meer over delen
   more_fields: Meer velden
@@ -5150,6 +5167,7 @@ nl:
   upload_new_photo: Nieuwe foto uploaden
   upload_photo: Upload foto
   upload_range: Upload Reeks
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Geüpload door
   uploader:
     errors:
@@ -7602,7 +7620,9 @@ nl:
         geoprivacy: Geoprivacy
         iucn: IUCN-equivalent
       flag:
+        #The reason the item was flagged
         reason: Reden
+        #The kind of flag that was made
         flag: Melding
       guide:
         source_url: Bron-URL
