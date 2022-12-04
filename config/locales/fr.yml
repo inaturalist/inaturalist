@@ -5102,6 +5102,7 @@ fr:
   upload_new_photo: Uploader une nouvelle photo
   upload_photo: Uploader des photos
   upload_range: Uploader l'aire de répartition
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Téléversé par
   uploader:
     errors:
@@ -7921,7 +7922,9 @@ fr:
         geoprivacy: Géoconfidentialité
         iucn: Équivalent de l’UICN
       flag:
+        #The reason the item was flagged
         reason: Motif
+        #The kind of flag that was made
         flag: Drapeau
       guide:
         source_url: URL source
