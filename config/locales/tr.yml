@@ -4994,6 +4994,7 @@ tr:
   upload_new_photo: Yeni fotoğraf yükle
   upload_photo: Fotoğraf Yükle
   upload_range: Yayılımı Yükle
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 'Yükleyen:'
   uploader:
     errors:
@@ -7581,7 +7582,9 @@ tr:
         geoprivacy: Coğrafi Gizlilik
         iucn: IUCN Eşdeğeri
       flag:
+        #The reason the item was flagged
         reason: Sebep
+        #The kind of flag that was made
         flag: İşaret
       guide:
         source_url: Kaynak URL
