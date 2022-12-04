@@ -4261,6 +4261,7 @@ el:
   upload_new_photo: Ανεβάστε νέα φωτογραφία
   upload_photo: Ανέβασμα φωτογραφίας
   upload_range: Φόρτωμα Εύρους
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Μεταφορτώθηκε από
   uploader:
     errors:
@@ -6531,7 +6532,9 @@ el:
         geoprivacy: Γεωαπόρρητο
         iucn: Ισοδύναμο του IUCN
       flag:
+        #The reason the item was flagged
         reason: Αιτία
+        #The kind of flag that was made
         flag: Αναφορά
       guide:
         source_url: URL πηγής
