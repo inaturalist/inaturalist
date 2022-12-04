@@ -3798,6 +3798,7 @@ pl:
   upload_a_csv_file: Prześlij plik CSV
   upload_new_photo: Prześlij nowe zdjęcie
   upload_photo: Prześlij zdjęcie
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Przesłane przez
   uploader:
     errors:
@@ -4702,7 +4703,9 @@ pl:
         geoprivacy: Geoprywatność
         iucn: Odpowiednik IUCN
       flag:
+        #The reason the item was flagged
         reason: Powód
+        #The kind of flag that was made
         flag: Zgłoś
       guide:
         source_url: Źródłowy adres URL
