@@ -4777,6 +4777,7 @@ uk:
   upload_new_photo: Завантажити нове фото
   upload_photo: Завантажити фото
   upload_range: Завантажити область поширення
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Завантажено
   uploader:
     errors:
@@ -7190,7 +7191,9 @@ uk:
         geoprivacy: Конфіденційність геоданих
         iucn: Відповідник МСОП
       flag:
+        #The reason the item was flagged
         reason: Причина
+        #The kind of flag that was made
         flag: Прапорець
       guide:
         source_url: URL джерела
