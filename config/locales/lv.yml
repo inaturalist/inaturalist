@@ -5028,6 +5028,7 @@ lv:
   upload_new_photo: Augšuplādēt jaunu fotogrāfiju
   upload_photo: Augšuplādēt fotogrāfiju
   upload_range: Augšupielādēt izplatības apgabalu
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Augšupielādējis
   uploader:
     errors:
@@ -7273,7 +7274,9 @@ lv:
         geoprivacy: Ģeoprivātums
         iucn: Atbilstošs IUCN
       flag:
+        #The reason the item was flagged
         reason: Iemesls
+        #The kind of flag that was made
         flag: Karodziņš
       guide:
         source_url: Avota URL
