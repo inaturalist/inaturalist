@@ -2979,6 +2979,9 @@ hu:
   profile_picture: Profilkép
   profile_visibility_desc: |
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos kutatási szintű megfigyelést tett közzé.
+  project_admins:
+    one: Projekt admin
+    other: Projekt adminok
   project_coordinate_access_warning: |
     A koordinátákhoz való hozzáférés fontos a tudósok számára, de ezt kihasználhatják az orrvadászok. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában mielőtt megbíznál ebben a projektben.
   project_curators: A projekt kurátorai
@@ -2992,6 +2995,7 @@ hu:
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
   project_settings: Projektbeállítások
+  project_start_time_datetime: "Kezdete:"
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3767,6 +3771,7 @@ hu:
   upload_a_csv_file: CSV-fájl feltöltése
   upload_new_photo: Új fénykép feltöltése
   upload_photo: Fotó feltöltése
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 'Feltöltötte:'
   uploader:
     errors:
@@ -3965,6 +3970,7 @@ hu:
   withdraw: Visszavonás
   withdrawing: Visszavonás...
   with_errors: Hibával
+  worldwide: globális
   would_you_prefer_to_view_common_names_used_in_place_html: 'Szeretnéd a köznevek megjelenítését innen: <strong>%{place}</strong>?'
   x_blog: "%{x} blogja"
   x_deleted: "%{x} törölve"
@@ -4785,7 +4791,9 @@ hu:
         url: URL
         geoprivacy: Pozíció láthatósága
       flag:
+        #The reason the item was flagged
         reason: Ok
+        #The kind of flag that was made
         flag: Bejelentés
       guide:
         source_url: Forrás URL
@@ -4834,6 +4842,7 @@ hu:
         project_icon: Projekt ikon
         project_type: Projekt típusa
         description: Leírás
+        end_time: Vége
         terms: Feltételek
         map_type: Térkép típusa
         zoom_level: Nagyítás mértéke
