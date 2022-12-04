@@ -1001,7 +1001,7 @@ ja:
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
-    no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
+    no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
     teneral: 羽化したばかりで、まだ成熟していない成体
     cannot_be_determined: 提供された証拠から判断することはできません
     feather: 生物の本体から分離した羽毛
@@ -1861,7 +1861,7 @@ ja:
   inbox: 受信箱
   include_places: 場所を含む
   include_projects: プロジェクトを含む
-  include_suggestions_not_seen_nearby: 近くで見られない候補を含める
+  include_suggestions_not_seen_nearby: 近隣で観察されていない候補を含める
   include_taxa: 分類群を含む
   include_users: ユーザーを含む
   including: 次を含む：
@@ -2717,7 +2717,7 @@ ja:
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
   only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはいけません。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
-  only_view_nearby_suggestions: 近くで見られた候補のみ表示
+  only_view_nearby_suggestions: 近隣で観察された候補のみ表示
   only_you: 自分のみ
   open: 公開
   open_: オープン
@@ -4273,6 +4273,7 @@ ja:
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
     errors:
@@ -5286,7 +5287,9 @@ ja:
         geoprivacy: 位置情報プライバシー
         iucn: IUCN相当
       flag:
+        #The reason the item was flagged
         reason: 理由
+        #The kind of flag that was made
         flag: フラグ
       guide:
         source_url: ソースURL
