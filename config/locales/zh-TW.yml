@@ -4629,6 +4629,7 @@ zh-TW:
   upload_new_photo: 上傳新照片
   upload_photo: 上傳照片
   upload_range: 上傳範圍
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 上傳由
   uploader:
     errors:
@@ -6825,7 +6826,9 @@ zh-TW:
         geoprivacy: 位置隱私
         iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄
       flag:
+        #The reason the item was flagged
         reason: 原因
+        #The kind of flag that was made
         flag: 標記
       guide:
         source_url: 來源 URL
