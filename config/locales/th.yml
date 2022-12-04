@@ -507,7 +507,7 @@ th:
   associated_observations: การสังเกตที่เกี่ยวข้อง
   you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
   you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
-  asc: วันแรกสุดก่อน
+  asc: จากเก่าไปใหม่
   assessment: การประเมินผล
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -836,7 +836,7 @@ th:
   deleting: กำลังลบ...
   deleting_verb: กำลังลบ
   deny: ปฏิเสธ
-  desc: วันล่าสุดก่อน
+  desc: จากใหม่ไปเก่า
   descending: มากไปน้อย
   description: คำอธิบาย
   description_from: คำอธิบายจาก
@@ -2255,6 +2255,7 @@ th:
     อัปโหลดไฟล์ CSV พร้อมข้อมูลการสังเกต ถ้าผู้ใช้มีข้อมูลใน spreadsheet หรือฐานข้อมูล
   upload_new_photo: อัพโหลดรูปภาพใหม่
   upload_photo: อัปโหลดรูปภาพ
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: อัปโหลดโดย
   uploader:
     tooltips:
@@ -2684,6 +2685,7 @@ th:
         description: คำอธิบาย
         geoprivacy: การเปิดเผยพิกัด
       flag:
+        #The reason the item was flagged
         reason: เหตุผล
       listed_taxon:
         establishment_means: การเข้ามาตั้งถิ่นฐาน
