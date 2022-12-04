@@ -5200,6 +5200,7 @@ da:
   upload_new_photo: Upload nyt foto
   upload_photo: Upload foto
   upload_range: Upload område
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uploaded af
   uploader:
     errors:
@@ -7923,7 +7924,9 @@ da:
         geoprivacy: geofortrolighed
         iucn: ICUN tilsvarende
       flag:
+        #The reason the item was flagged
         reason: Årsag
+        #The kind of flag that was made
         flag: Markering
       guide:
         source_url: Kilde URL
