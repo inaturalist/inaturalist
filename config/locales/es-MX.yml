@@ -5067,6 +5067,7 @@ es-MX:
   upload_new_photo: Cargar una nueva foto
   upload_photo: Cargar foto
   upload_range: Cargar distribución
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Subido por
   uploader:
     errors:
@@ -7508,7 +7509,9 @@ es-MX:
         geoprivacy: Geoprivacidad
         iucn: Equivalente a IUCN
       flag:
+        #The reason the item was flagged
         reason: Razón
+        #The kind of flag that was made
         flag: Advertencia
       guide:
         source_url: URL de origen
