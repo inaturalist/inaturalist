@@ -4538,6 +4538,7 @@ gl:
   upload_new_photo: Carga unha foto nova
   upload_photo: Cargar Foto
   upload_range: Cargar Intervalo
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Subido por
   uploader:
     errors:
@@ -6668,7 +6669,9 @@ gl:
         geoprivacy: Xeoprivacidade
         iucn: Equivalente da IUCN
       flag:
+        #The reason the item was flagged
         reason: Razón
+        #The kind of flag that was made
         flag: Marca
       guide:
         source_url: URL Fonte
