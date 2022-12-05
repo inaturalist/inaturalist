@@ -680,6 +680,10 @@ fr:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
   attribution: Attribution
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, téléchargé par %{user}"
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
     natureserve: NatureServe
@@ -3174,6 +3178,7 @@ fr:
   open_description: "Tout le monde peut voir les coordonnées sauf si le taxon est menacé."
   open_street_map: OpenStreetMap
   optional: facultatif
+  options: Options
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
