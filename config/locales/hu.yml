@@ -258,6 +258,9 @@ hu:
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
   add_observations_project: Megfigyelések hozzáadása ehhez a projekthez
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Megfigyelések</span> <span>hozzáadása</span>"
   #Prompt to add a new journal post
   add_one: Új létrehozása
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -559,6 +562,10 @@ hu:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribútum
   attribution: Felhasználás
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, feltöltötte: %{user}"
   authority_list:
     iucn_red_list: IUCN vörös lista
     natureserve: NatureServe
@@ -613,7 +620,7 @@ hu:
   back_to_your_profile: Vissza a profilodhoz
   badges: Jelvények
   based_on_the_evidence_can_id_be_improved: |
-    A bizonyíték alapján lehet még javítani a közösségi meghatározáson?
+    A bizonyíték alapján lehet még javítani a közösségi taxonon?
   batch: Köteg
   batch_edit: Tömeges szerkesztés
   #Where x is the title of a list of taxa
@@ -781,9 +788,11 @@ hu:
   community_curated: A közösségtől
   community_guidelines: Közösségi irányelvek
   community_id_heading: Közösségi taxon
-  community_id_at_species_level_or_lower: Közösségi meghatározás faji szinten vagy alatta
+  community_id_at_species_or_lower?: Közösségi taxon faji szinten vagy alatta?
+  community_id_at_species_level_or_lower: Közösségi taxon faji szinten vagy alatta
   community_id_is_precise: Pontos közösségi taxon
   community_moderation_settings: Közösségi moderációs beállítások
+  community_supported_id: A közösség által elfogadott taxon?
   compare: Összehasonlítás
   compare_with: 'Összehasonlítás ezzel:'
   comparing: összehasonlítás
@@ -1345,6 +1354,8 @@ hu:
   #Title for a button or section describing the "featured" status of a project
   featuring: Kiemelt
   feedback: Visszajelzés
+  #Button to show fewer places
+  fewer__context_places: Kevesebb
   failed: Sikertelen
   fields: mezők
   fields_: Mezők
@@ -1592,6 +1603,8 @@ hu:
   improving: Javító
   in_n: "itt: %{n}"
   in_place_x: 'itt: %{place}'
+  #As in a reason to flag something
+  inappropriate: Kifogásolható
   inaturalist_network: iNaturalist-hálózat
   inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
@@ -1786,6 +1799,8 @@ hu:
     turkish: Török
     ukrainian: Ukrán
   less: Kevesebb
+  #Button show less text
+  less__context_text: Kevesebb
   licensed_site_photos: "Licenccel rendelkező %{site_name} fotók"
   license: Licenc
   licensing: Engedélyezés
@@ -2029,6 +2044,14 @@ hu:
   monthly_supporters: Havi támogatók
   months: Hónapok
   more: Továbbiak
+  #Button to show more observations
+  more__context_observations_caps: TÖBB
+  #Button to show more places
+  more__context_places: Több
+  #Button to show more text
+  more__context_text: Több
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: TÖBB
   more_caps: TOVÁBBIAK
   more_fields: További mezők
   more_filters: További szűrők
@@ -2404,6 +2427,7 @@ hu:
   open_: Nyilvános
   open_street_map: OpenStreetMap
   optional: opcionális
+  options: Beállítások
   or: vagy
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3538,7 +3562,7 @@ hu:
   that_observation_hasnt_been_added_this_project: A megfigyelést nem adtuk hozzá ehhez a projekthez.
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
-  the_community_id_requires_at_least_two_identifications: A közösségi taxonhoz legalább két felhasználó meghatározása szükséges.
+  the_community_id_requires_at_least_two_identifications: A közösségi meghatározáshoz legalább két felhasználó meghatározása szükséges.
   the_community_must_feel_that: |
     A közösség számára meggyőzőnek kell lennie, hogy a közösségi taxon a lehető legpontosabb a bizonyítékok alapján
   the_following_photos_have_been_tagged: "A következő fotók kaptak címkét:"
@@ -3821,6 +3845,7 @@ hu:
   user_faved_a_noun_by_owner: "%{user} kedvencelte %{owner} %{noun}ét"
   user_faved_this_observation: "%{user} kedvencelte ezt a megfigyelést"
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
+  user_has_opted_out_of_community_id: A megfigyelő kikapcsolta a közösségi a közösségi taxont.
   user_hasnt_joined_any_projects: "%{user} még nem csatlakozott egy projekthez sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
   user_invite_observation_to_project: '%{user} meghívja "%{observation}" megfigyelésedet a %{project} projektbe.'
@@ -4173,6 +4198,13 @@ hu:
         disagreement_count: Egyetnemértések száma
         identification_count: Azonosítások száma
         score: Pontszám
+        explanation: |
+          <p>
+          Ha a megfigyelő valamilyen oknál fogva nem ért egyet a közösségi taxonnal, elutasíthatja azt, ezzel az általa megadott meghatározás lesz az alapja például az egyéb megfigyelésekkkel történő összekapcsolásnak és az életlistán való szerepeltetésnek. Ez azt is jelenti, hogy a megfigyelés csak akkor válik tudományos szintűvé, ha a közösség egyetért vele.
+          </p>
+          <p>
+          Ugyanakkor, a közösségi meghatározások fel vannak tüntetve, így bárki láthatja az összes meghatározást.
+          </p>
         your_id_does_not_match: |
           Az azonosításod (<span class="bold">%{taxon_name}</span>) nem egyezik a közösségi azonosítással
       copy_tip: "Adj hozzá egy új megfigyelést miközben lemásolod e megfigyelés dátumát, helyét, képeit és megfigyelésmezőit."
@@ -4793,6 +4825,8 @@ hu:
       flag:
         #The reason the item was flagged
         reason: Ok
+        #The person who resolved the flag
+        resolver_id: Megoldotta
         #The kind of flag that was made
         flag: Bejelentés
       guide:
