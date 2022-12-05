@@ -412,7 +412,13 @@ class SiteDataExporter
           msg += " batch_filters: #{batch_filters}"
           puts msg
         end
-        observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
+        observations = try_and_try_again(
+          [
+            Patron::TimeoutError,
+            Faraday::TimeoutError,
+            Elasticsearch::Transport::Transport::Errors::TooManyRequests
+          ]
+        ) do
           Observation.elastic_paginate( base_es_params.merge( filters: batch_filters ) )
         end
         if observations.size.zero?
