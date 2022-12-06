@@ -2990,7 +2990,7 @@ select[multiple].input-lg {
   }
 }
 .form-horizontal .has-feedback .form-control-feedback {
-  right: 15px;
+  inset-inline-end: 15px;
 }
 @media (min-width: 768px) {
   .form-horizontal .form-group-lg .control-label {
@@ -3597,12 +3597,12 @@ tbody.collapse.in {
   outline: 0;
 }
 .dropdown-menu-right {
-  right: 0;
-  left: auto;
+  left: 0;
+  right: auto;
 }
 .dropdown-menu-left {
-  right: auto;
-  left: 0;
+  left: auto;
+  right: 0;
 }
 .dropdown-header {
   display: block;
