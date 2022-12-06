@@ -580,6 +580,7 @@ sr:
   black: crna
   blocked_users: Blokirani korisnici
   blue: plavo
+  blue_butterfly_etc: "plavo, leptir itd."
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: podebljan tekst
   breadcrumbs: Putokaz
@@ -1658,6 +1659,7 @@ sr:
   n_person_disagrees: "%{amount} osoba se ne slaže"
   name: Ime
   name_entered: Ime uneto
+  name_or_slug: "Naziv ili glavni deo URL-a, npr. my-project"
   name_providers:
     col: Katalog života
   native: autohton
@@ -1749,6 +1751,7 @@ sr:
   no_reply_yet: Nema još odgovora
   no_subject_parens: "(Bez naslova)"
   no_taxa: Nema taksona
+  none: Ništa
   none_found: Nije nađena nijedna
   not_confident_top_suggestions: Ne možemo sa sigurnošću dati preporuku ali evo naših predloga
   not_found: Nije pronađeno
@@ -2789,6 +2792,7 @@ sr:
   search_this_taxon: pretraži takson
   search_your_photos: Pretraži tvoje fotografije
   searching: "Pretraga..."
+  seasonality: Sezonalnost
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "Your
   #Identifications", but we generally handle those with more specific
@@ -4068,10 +4072,12 @@ sr:
           Stara izreka kaže: "Naučni nazivi se menjaju iz mesta u mesto a naučni nazivi se menjaju s vremena na vreme."
           </p>
           <p>
-          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima gorisnika.
+          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima korisnika.
           </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
+        charts_help_other: |
+          Takođe se prikazuju grafici sezonalnosti za pribeleške opservacija. Pribeleške služe da upotpune opservacije pomoću predefinisanih izraza, npr. da li je opservacijom zabeležena biljka koja je u fazi cvetanja ili u fazi rađanja ploda.
         discoveries_desc: "Najskorije novoidentifikovane vrste u ovom taksonu"
         frequency:
           research: Istraživački nivo
