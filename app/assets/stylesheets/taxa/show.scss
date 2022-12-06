@@ -44,8 +44,10 @@
   color: black;
 }
 
-#TaxonHeader .has-com-name .secondary-name {
-  font-size: 20px;
+#TaxonHeader .has-com-name {
+  .secondary-name, .secondary-names {
+    font-size: 20px;
+  }
 }
 
 #hero {
@@ -235,8 +237,10 @@
   display: none;
 }
 
-.TaxonCrumbs .has-com-name .secondary-name {
-  display: none;
+.TaxonCrumbs .has-com-name {
+  .secondary-name, .secondary-names {
+    display: none;
+  }
 }
 
 .TaxonCrumbs .contract-control {
@@ -246,8 +250,10 @@
 .taxon-crumbs-children .taxon a {
   color: #333;
 }
-.taxon-crumbs-children .taxon.has-com-name .secondary-name {
-  color: #aaa;
+.taxon-crumbs-children .taxon.has-com-name {
+  .secondary-name, .secondary-names {
+    color: #aaa;
+  }
 }
 .taxon-crumbs-children .SplitTaxon:before {
   content: '\021B3';
@@ -1143,5 +1149,17 @@ body > [role="dialog"] .PhotoChooserModal {
   }
   .label-success {
     background-color: $inat-green;
+  }
+}
+
+.TaxonThumbnail {
+  .SplitTaxon.taxon {
+    .display-names .display-name + .display-name,
+    .secondary-names .secondary-name + .secondary-name {
+      &:before {
+        content: "";
+        display: inline;
+      }
+    }
   }
 }

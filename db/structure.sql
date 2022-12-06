@@ -4595,6 +4595,41 @@ ALTER SEQUENCE public.taxon_links_id_seq OWNED BY public.taxon_links.id;
 
 
 --
+-- Name: taxon_name_preferences; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.taxon_name_preferences (
+    id integer NOT NULL,
+    "position" smallint,
+    user_id integer NOT NULL,
+    place_id integer,
+    lexicon character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_name_preferences_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.taxon_name_preferences_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_name_preferences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.taxon_name_preferences_id_seq OWNED BY public.taxon_name_preferences.id;
+
+
+--
 -- Name: taxon_names; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6069,6 +6104,13 @@ ALTER TABLE ONLY public.taxon_links ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: taxon_name_preferences id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_name_preferences ALTER COLUMN id SET DEFAULT nextval('public.taxon_name_preferences_id_seq'::regclass);
+
+
+--
 -- Name: taxon_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7072,6 +7114,14 @@ ALTER TABLE ONLY public.taxon_frameworks
 
 ALTER TABLE ONLY public.taxon_links
     ADD CONSTRAINT taxon_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxon_name_preferences taxon_name_preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.taxon_name_preferences
+    ADD CONSTRAINT taxon_name_preferences_pkey PRIMARY KEY (id);
 
 
 --
@@ -9298,6 +9348,13 @@ CREATE INDEX index_taxon_links_on_user_id ON public.taxon_links USING btree (use
 
 
 --
+-- Name: index_taxon_name_preferences_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_name_preferences_on_user_id ON public.taxon_name_preferences USING btree (user_id);
+
+
+--
 -- Name: index_taxon_names_on_lexicon; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10185,6 +10242,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220310001916'),
 ('20220317205240'),
 ('20220317210522'),
+('20220407173712'),
 ('20220407173712');
 
 

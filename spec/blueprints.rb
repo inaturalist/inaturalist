@@ -462,6 +462,10 @@ TaxonLink.blueprint do
   site_title { Faker::Lorem.sentence }
 end
 
+TaxonNamePreference.blueprint do
+  user { User.make! }
+end
+
 TaxonPhoto.blueprint do
   taxon { Taxon.make! }
   photo { Photo.make }

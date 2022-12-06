@@ -202,7 +202,8 @@ class User < ApplicationRecord
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
-  
+  has_many :taxon_name_preferences, dependent: :destroy
+
   file_options = {
     processors: [:deanimator],
     styles: {

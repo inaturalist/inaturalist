@@ -31,6 +31,7 @@ class Place < ApplicationRecord
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
+  has_many :taxon_name_preferences, dependent: :nullify
   has_one :place_geometry, dependent: :destroy, inverse_of: :place
   has_one :place_geometry_without_geom, -> { select(PlaceGeometry.column_names - ['geom']) }, :class_name => 'PlaceGeometry'
   
