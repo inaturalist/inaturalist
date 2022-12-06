@@ -302,6 +302,9 @@ da:
   add_observations: Tilføj observationer
   add_observations_by_checking_off: Tilføj observationer ved at afkrydse arter på en liste.
   add_observations_project: Tilføj observationer til dette projekt
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Tilføj</span> <span>Observationer</span>"
   #Prompt to add a new journal post
   add_one: Tilføj et!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -694,6 +697,10 @@ da:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Egenskab
   attribution: Kildeangivelse
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, uploadet af %{user}"
   authority_list:
     iucn_red_list: IUCN rødliste
     natureserve: NatureServe
@@ -1768,6 +1775,8 @@ da:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Færre
   failed: Mislykkedes
   field_note: |
     <strong>OBS:</strong> Hvis du vil oprette et felt, skal du tjekke om en anden allerede har oprettet det for at undgå dobbeltarbejde.
@@ -2134,6 +2143,8 @@ da:
   improving: Forbedring
   in_n: "i %{n}"
   in_place_x: i %{place}
+  #As in a reason to flag something
+  inappropriate: Upassende
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
@@ -2361,6 +2372,8 @@ da:
     waray_waray: Waray-Waray
     visayan: Visayansk
   less: Mindre
+  #Button show less text
+  less__context_text: Mindre
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
   licensing: Valg af licens
@@ -2683,6 +2696,14 @@ da:
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
   months: Måneder
   more: Mere
+  #Button to show more observations
+  more__context_observations_caps: FLERE
+  #Button to show more places
+  more__context_places: Flere
+  #Button to show more text
+  more__context_text: Mere
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: FLERE
   more_caps: MERE
   more_about_sharing: Mere om Deling
   more_fields: Flere felter
@@ -3197,6 +3218,7 @@ da:
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
   open_street_map: OpenStreetMap
   optional: valgfri
+  options: Valgmuligheder
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -5200,6 +5222,7 @@ da:
   upload_new_photo: Upload nyt foto
   upload_photo: Upload foto
   upload_range: Upload område
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uploaded af
   uploader:
     errors:
@@ -7923,7 +7946,11 @@ da:
         geoprivacy: geofortrolighed
         iucn: ICUN tilsvarende
       flag:
+        #The reason the item was flagged
         reason: Årsag
+        #The person who resolved the flag
+        resolver_id: Problemløser
+        #The kind of flag that was made
         flag: Markering
       guide:
         source_url: Kilde URL

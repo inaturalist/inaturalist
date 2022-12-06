@@ -4127,6 +4127,7 @@ et:
   upload_new_photo: Lae uus foto
   upload_photo: Lae foto üles
   upload_range: Lae piirkond üles
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 'Üleslaadija:'
   uploader:
     tooltips:
@@ -5666,7 +5667,9 @@ et:
         geoprivacy: Asukoha privaatsus
         iucn: IUCNilaadne organisatsioon
       flag:
+        #The reason the item was flagged
         reason: Põhjus
+        #The kind of flag that was made
         flag: Märkus
       guide:
         source_url: Allika URL

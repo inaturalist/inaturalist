@@ -304,6 +304,9 @@ de:
   add_observations: Beobachtung(en) hinzufügen
   add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Beobachtungen</span> <span>hinzufügen</span>"
   #Prompt to add a new journal post
   add_one: Hinzufügen
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -673,6 +676,10 @@ de:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Eigenschaft
   attribution: Namensnennung
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, hochgeladen von %{user}"
   authority_list:
     iucn_red_list: Rote Liste der IUCN
     natureserve: NatureServe
@@ -1681,6 +1688,8 @@ de:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Weniger
   failed: Fehlgeschlagen
   field_note: |
     <strong>Beachte:</strong> Wenn du ein Feld erstellen möchtest, überprüfe vorher, ob
@@ -2008,6 +2017,8 @@ de:
   improving: Verbesserung
   in_n: "in %{n}"
   in_place_x: in %{place}
+  #As in a reason to flag something
+  inappropriate: Unangemessen
   inaturalist_network: iNaturalist-Netzwerk
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
@@ -2235,6 +2246,8 @@ de:
     waray_waray: Wáray-Wáray
     visayan: Visayan
   less: Weniger
+  #Button show less text
+  less__context_text: Weniger
   licensed_site_photos: "Lizenzierte %{site_name} Fotos"
   license: Lizenz
   licensing: Lizenzierung
@@ -2559,6 +2572,14 @@ de:
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
   months: Monate
   more: Mehr
+  #Button to show more observations
+  more__context_observations_caps: MEHR
+  #Button to show more places
+  more__context_places: Mehr
+  #Button to show more text
+  more__context_text: Mehr
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MEHR
   more_caps: MEHR
   more_about_sharing: Mehr Informationen über Datenaustausch
   more_fields: Mehr Felder
@@ -3058,6 +3079,7 @@ de:
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
   optional: optional
+  options: Optionen
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -5011,6 +5033,7 @@ de:
   upload_new_photo: Neues Foto hochladen
   upload_photo: Foto hochladen
   upload_range: Verbreitungsgebiet hochladen
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Hochgeladen von
   uploader:
     errors:
@@ -7427,7 +7450,11 @@ de:
         geoprivacy: Geo-Privatsphäre
         iucn: IUCN Äquivalent
       flag:
+        #The reason the item was flagged
         reason: Grund
+        #The person who resolved the flag
+        resolver_id: Geklärt durch
+        #The kind of flag that was made
         flag: Meldung
       guide:
         source_url: Quell-URL

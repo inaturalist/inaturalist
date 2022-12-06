@@ -4540,6 +4540,7 @@ fi:
   upload_a_csv_file: Lataa CSV-tiedosto
   upload_new_photo: Lataa uusi kuva
   upload_photo: Tallenna kuva
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Tallentanut
   uploader:
     errors:
@@ -6352,7 +6353,9 @@ fi:
         geoprivacy: Sijainnin tietosuoja
         iucn: IUCN vastine
       flag:
+        #The reason the item was flagged
         reason: Syy
+        #The kind of flag that was made
         flag: Lippu
       guide:
         source_url: Lähteen URL-osoite

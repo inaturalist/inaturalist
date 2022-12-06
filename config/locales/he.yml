@@ -381,6 +381,9 @@ he:
   add_observations: הוספת תצפיות
   add_observations_by_checking_off: הוספת תצפיות באמצעות בחירת מינים מרשימה.
   add_observations_project: הוספת תצפיות לפרויקט זה
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>הוספת</span> <span>תצפיות</span>"
   #Prompt to add a new journal post
   add_one: הוספה!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -782,6 +785,10 @@ he:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: תכונה
   attribution: שיוך
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, הועלה על ידי %{user}"
   authority_list:
     iucn_red_list: הרשימה האדומה של IUCN
     natureserve: NatureServe
@@ -1023,6 +1030,9 @@ he:
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   clashes_occur_for_moves_html: |
     חילוקי דעות לא מכוונים מתרחשים כאשר הורה <strong>(B)</strong> עובר דילול באמצעות הזזת צאצא <strong>(E)</strong> אל חלק אחר בעץ הטקסונומי, מה שגורם לזיהויים קיימים של ההורה להתפרש כחילוקי דעות עם זיהויים קיימים של הצאצא שהוזז.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    חילוקי דעות לא מכוונים מתרחשים כאשר הורה <strong>(B)</strong> עובר דילול באמצעות החלפת צאצא <strong>(E)</strong> אל חלק אחר בעץ הטקסונומי, מה שגורם לזיהויים קיימים של ההורה להתפרש כחילוקי דעות עם זיהויים קיימים של הצאצא שהוחלף.
   classification: מיון
   clear: ניקוי
   clear_filters: נקה פילטרים
@@ -1106,6 +1116,7 @@ he:
   concept_status: מצב הקונספט
   confidential: חסוי
   configure: הגדרה
+  configure_a_widget_to_show: ניתן לקנפג וידג'ט שיציג תצפיות %{site_name} באתר או בבלוג שלך. יתכן כי תידרש.י לכלול את ה-CSS המוטמע ב-<code>&lt;head&gt;&lt;head&gt;</code> של ה-HTML שלך. תרגישי.י בנוח לכתוב מחדש את ה-CSS.
   confirm: אישור
   confirm_membership: אישור חברות
   confirm_new_password: אישור ססמה חדשה
@@ -1139,6 +1150,8 @@ he:
     url: URL לדף המתאר סטטוס זה
     geoprivacy: |
       פרטיות המיקום ברירת המחדל עבור תצפיות מטקסון זה. יש לציין כי פרטיות המיקום של סטטוס המשוייך למקום ברמת יבשת, ארץ או מדינה יכולה לעקוף סטטוס שהוא גלובי או משוייך למקום בדרגה יותר גבוהה.
+    iucn: |
+      קוד זהה של הרשימה האדומה של ה-IUCN. זה אינו הערכת ה-IUCN בפועל, רק הקוד המתאים ביותר של ה-IUCN לסיכון הכרוך בחשיפת קואורדינטות כפי שמשתמע מסטטוס זה. זה יעקוף את פרטיות המיקום אם הסטטוס הוא "לא חשש" או פחות, כך שאם רצית להסתיר תצפיות של טקסון זה, יש להגדירו כ"קרוב לסיכון" או יותר.
   conservation_status_geoprivacy_desc: |
     מיקום מוסתר מוגדר כברירת מחדל עבור טקסון זה במקום זה
   contact_support: יצירת קשר עם תמיכה
@@ -1331,6 +1344,10 @@ he:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     אינם מציגים התנהגות הולמת בעצמם.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible: |
+    על מנת להגיש מועמדות לתפקיד אוצר.ת של האתר, עליך להיות בעל.ת חשבון מזה 60 ימים או יותר ולהוסיף 100 זיהויים משפרים לתצפיות כלשהן, כולל אלו של עצמך (הוספת עד כה %{num_idents}). כאשר תגיע.י לשני ההישגים הללו, יש לחזור הנה ותוכל.י להגיש את טופס הבקשה.
   curator_application_inelligible_error: |
     על מנת להגיש מועמדות להיות אוצר.ת האתר, עליך להיות בעל חשבון מזה 60 יום לפחות ולהוסיף 100 זיהויים משפרים לתצפיות, כולל של עצמך.
   #Message shown when a curator application has been succesfully submitted
@@ -1636,6 +1653,7 @@ he:
   drawings: ציורים
   duplicate_verb: שכפול
   duration_value: "משך זמן: %{duration} דקות"
+  each_place_displays_all_species_inat_knows: "כל דף מקום מציג את כל המינים ש-%{site_name} יודע עליהם מאותו המקום, כולל מידע אודות השפע וסטטוס השימור שלהם ומי תיצפת.ה עליהם לראשונה מאותו המקום ב%{site_name}. באפשרותך לסנן מינים לפי קבוצה טקסונומית, צבע, סטטוס שימור או פשוט חיפוש רגיל."
   earliest_added: נוסף ראשון
   edit: עריכה
   #Title of the moderation note editor
@@ -1801,6 +1819,8 @@ he:
   feedback: משוב
   #Plural noun, as in Atom and RSS feeds
   feeds: 'פיידים'
+  #Button to show fewer places
+  fewer__context_places: פחות
   failed: נכשל
   field_note: |
     <strong>לתשומת לבך:</strong> אם ברצונך להוסיף שדה, יש לבדוק אם הדבר טרם נעשה, על מנת להמנע מכפילויות.
@@ -2024,10 +2044,16 @@ he:
   header_your_projects: הפרויקטים שלך
   header_your_profile: הפרופיל שלך
   heads_up: שימו לב
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>שימו לב:</strong> באישור שינוי זה, הזיהויים ישוייכו מחדש לטקסוני הפלט לפי האטלסים שלהם. אם לחלק או לכל הפלטים חסרים אטלסים, או אם יש חפיפה בין אטלסים עבור רשומה מסוימת, הזיהויים יוחלפו בזיהויים של הטקסון ההורי המשותף הקרוב ביותר (%{taxon})
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>שימו לב:</strong> פיצול הטקסון הזה פולט טקסונים ללא אטלסים או ללא הורה משותף, כך שהרשומות המשויכות לטקסוני הקלט לא יכולות להשתייך אוטומטית לטקסוני הפלט במעמד אישור הפיצול, והקהילה תצטרך להוסיף זיהויים חדשים עבור רשומות אלו.
   heads_up_automatable_split_notice_html: |
     <strong>שימו לב:</strong> כל הזיהויים או חלקם שהושפעו מפיצול זה הוחלפו בזיהויים של %{taxon}. זה קורה כשאין ביכולתנו להגדיר זיהוי לאחד הטקסונים היוצאים באופן אוטומטי.
   heads_up_observose_taxon_change_html: |
     <strong>שימו לב:</strong> לאחד או יותר מהטקסונים שהוכנסו לשינוי זה יש יותר מ-%{observose_taxon_threshold} תצפיות במורד העץ הטקסונומי. רק לאדמינים.ות ולאוצרות.ים של מסגרת הטקסון ההיא יש יכולת לבצע את השינוי הזה.
+  heads_up_taxon_change_inputs_covered_by_framework_html: |
+    <strong>שימו לב:</strong> אחד או יותר מהטקסונים שהוכנסו לשינוי זה הם בתוך <a href="%{framework_url}">מסגרת טקסון</a>. רק לאוצרות.ים או לאדמיני.ות מסגרת הטקסון ההיא יש יכולת לבצע שינויים המשפיעים על טקסונים מכוסים. נא ליצור קשר עם אחד.ת מאוצרות או אוצרי הטקסון ההוא לביצוע שינוי זה.
   heads_up_there_are_other_draft_taxon_changes_html:
     one: "<strong>שימו לב!</strong> יש %{count} טיוטת שינוי טקסון אחרת עם אותם הטקסונים שהוכנסו:"
     two: "<strong>שימו לב!</strong> יש %{count} טיוטות שינוי טקסון אחרות עם אותם הטקסונים שהוכנסו:"
@@ -2152,6 +2178,8 @@ he:
   improving: משתפר.ת
   in_n: "ב %{n}"
   in_place_x: ב%{place}
+  #As in a reason to flag something
+  inappropriate: בלתי-הולם
   inaturalist_network: רשת iNaturalist
   inaturalist_network_affiliation: השתייכות לרשת ב-iNaturalist
   #Label for messages you've received
@@ -2373,6 +2401,8 @@ he:
     waray_waray: ווראי-ווראי
     visayan: ויסאיאן
   less: פחות
+  #Button show less text
+  less__context_text: פחות
   licensed_site_photos: "תמונות ברשיון מ%{site_name}"
   license: רשיון
   licensing: רישוי
@@ -2628,6 +2658,8 @@ he:
   missing_date: חסר תאריך
   mobile: נייד
   moderation_history_for_user_html: היסטוריית הניהול עבור %{user}
+  moderation_history_desc_html: |
+    זה כולל פעולות תיווך (למשל הסתרה או ביטול הסתרה של תגובות), הערות, וסימונים על כל מה נוצר על ידי יוזר זה מלבד טקסונים. זה <strong>גלוי רק לאוצרות.ים</strong> ו<strong>ואוצרות.ים לא יכולות.ים לצפות בהיסטוריה של עצמן.ם</strong>, כך שהערות על יוזר לעולם לא צריכות להיות גלויות בפניו.
   moderator_note_desc: |
     הערות מנהל.ת הן רשומה של תגובות מנהל.ת או חששות מבוססי-ראיות אודות יוזר מסוים, למשל אם הוא חשבון בדוי פוטנציאלי. נא לא להכניס דעות אישיות או שמועות אודות היוזר.
   #Person who executed a moderator action or flagged something
@@ -2684,6 +2716,14 @@ he:
     <a href="%{url}">תומכ.ת על בסיס חודשי</a> מאז %{date}
   months: חודשים
   more: עוד
+  #Button to show more observations
+  more__context_observations_caps: עוד
+  #Button to show more places
+  more__context_places: עוד
+  #Button to show more text
+  more__context_text: עוד
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: עוד
   more_caps: עוד
   more_about_sharing: עוד אודות שיתוף
   more_fields: שדות נוספים
@@ -2765,6 +2805,9 @@ he:
   needs_id_expandable_html: "<span class='full'>צריך </span>זיהוי"
   needs_id_tooltip_html: 'תצפיות "צריך זיהוי" מכילות מדיה, מיקום ותאריך אך צריכות עדיין קונצנזוס קהילתי על זיהוי מדויק. <a href="https://www.inaturalist.org/pages/help#quality">למידע נוסף על דרגות איכות</a>'
   needs_to_be_identified: יש צורך בזיהוי
+  #@vow_or_con can be used here for the first letter of %{place}
+  network_affiliation_prompt_from_inat_html: |
+    <strong>%{site_name}</strong>, חלק מרשת iNaturalist הבינלאומית, מתמקד במגוון הביולוגי ובא.נשים ב%{place}. האם ברצונך לשנות את שיוך החשבון שלך מ-<strong>%{inat_site_name}</strong> ל-<strong>%{site_name}</strong> ולשתף נתונים עם מוסדות מקומיים?
   #Special version for network_affiliation_prompt_from_inat_html, which cannot
   #be properly translated into Finnish with the %{place} variable. Please don't
   #feel obligated to translate this into any language other than Finnish
@@ -3182,6 +3225,7 @@ he:
   open_description: "כולם יכולים לצפות בקואורדינטות אלא אם הטקסון בסכנת הכחדה."
   open_street_map: OpenStreetMap
   optional: אופציונלי
+  options: אפשרויות
   or: או
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3467,6 +3511,8 @@ he:
   place_must_have_a_boundary_defined: למקום חייבת להיות הגדרת גבול
   place_name: שם המקום
   place_notes: שם המקום
+  place_too_big_for_check_list: |
+    המקום גדול מדי עבור רשימת מינים. חישוב סטטיסטיקות של רשימות מינים הוא יקר למדי, כך שאיננו מאפשרים אותו עבור מקומות מאוד גדולים, אלא אם הם נוספו על ידי אדמיני.ות האתר. אולם באפשרותך עדיין להשתמש במקום הזה עבור גבולות פרויקטים ושאילתות תצפיות.
   place_updated: מקום עודכן!
   placement: מיקום
   places: מקומות
@@ -4389,6 +4435,8 @@ he:
   some_agree: חלק מסכימות.ים
   some_observations_are_missing_media_or_identifications: |
     יש תצפיות שחסרים להן זיהויים או מדיה
+  some_observations_are_missing_media_or_identifications_desc: |
+    תצפיות ללא מדיה לא יהיו גלויות בחיפושים כברירת מחדל, ותצפיות ללא אף זיהוי עלולות לא להיראות על ידי מומחיות.ים בחיפוש טקסונים מסויימים. אפילו זיהוי רחב כגון "צמחים" עשוי לעזור למומחה.ית צמחים למצוא את התצפית שלך.
   some_observations_failed_to_be_added: חלק מהתצפיות לא נוספו לפרויקטים
   some_observations_failed_to_save: חלק מהתצפיות לא נשמרו
   some_of_those_photos_couldnt_be_saved: "לא ניתן היה לשמור חלק מהתמונות: %{error}"
@@ -4533,6 +4581,8 @@ he:
   subscribe_to_observations_from_this_place_html: <a>מינוי</a> לתצפיות מהמקום הזה
   subscribe_to_observations_in_a_taxon: מינוי לכל התצפיות של מין מסוים או קבוצת אורגניזמים (למשל "עקרבים").
   subscribe_to_observations_in_a_place: הירשמו כמנויים לכל התצפיות מהמקום הזה. אפשר גם להוסיף מסנן טקסונים (למשל "עקרבים מטקסס").
+  subscribe_to_places_help: |
+    מינויים קובעים מה את.ה רואה בעדכונים שלך בלוח המחוונים. למשל, באפשרותך לעשות מינוי לטקסון כדי לקבל עדכונים על תצפיות חדשות של אותו הטקסון. הנך מנוי.ה באופן אוטומטי לעדכונים על תצפיות שזיהית או שהגבת עליהן.
   subscribe_to_this: הרשמה
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">מינוי</a> ל%{x} מ%{y} זה.
@@ -4660,6 +4710,8 @@ he:
   taxon_is_threatened_coordinates_obscured_desc: |
     אחד מהטקסונים שהוצעו בזיהויים, או אחד מהטקסונים שמכילים טקסונים אלו, ידוע כנדיר או בסיכון, ולכן המיקום של תצפית זו הוסתר.
   taxonomy: טקסונומיה
+  taxon_assessments_are: |
+    הערכות טקסון הן מסמכים המעריכים את הסטטוס הנוכחי של מין, לרוב סטטוס שימור. למשל, ארגון שמירת טבע מקומי עשוי להשתמש בהן לסידור מידע ולבקש פידבק אודות הסטטוסים של טקסונים מרובים בסיכון באזור.
   taxon_change_commit_may_still_be_processing: |
     אישור שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
   taxon_change_must_be_committed_to_update_records: שינוי טקסון חייב להיות מאושר כדי לעדכן רישומים
@@ -5120,6 +5172,7 @@ he:
   upload_new_photo: העלאת תמונה חדשה
   upload_photo: העלאת תמונה
   upload_range: העלאת תפוצה
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: הועלה על־ידי
   uploader:
     errors:
@@ -5404,6 +5457,8 @@ he:
   widget_for: ווידג'ט בשביל
   wikipedia_attribution_cc_by_sa_3: |
     מקור: ויקיפדיה, "%{title}", %{url}, CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: |
+    ערך זה עושה שימוש בתוכן מערך הויקיפדיה <a href="%{url}">%{title}</a>, שפורסם תחת <a href="https://creativecommons.org/licenses/by-sa/3.0/">CreativeCommons Attribution-Share-Alike License 3.0</a>. יתכן כי תוכן הוחסר מהמקור, אך אף תוכן לא שונה או הוארך.
   with: עם
   withdraw: לסגת
   with_errors: עם טעויות
@@ -5656,6 +5711,19 @@ he:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: הצטרפ.י כתומכ.ת חודשי.ת של iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: להפוך לתומכ.ת חודשי.ת של iNaturalist
+        desc_html: |
+          <p class="lead">
+          <strong>iNaturalist היא אחת הקהילות הגדולות בעולם המסורות למחקר המגוון הביולוגי. תודה על השתתפותך בה!</strong>
+          </p>
+          <p class="lead">
+          ברצוננו לשמור על iNaturalist חינמי, אך התפעול שלו אינו חינם. את את.ה אוהב.ת את iNaturalist, נא לשקול להיות תומכ.ת חודשי.ת. מתנות חוזרות עוזרות לוודא ש-iNaturalist יוכל להמשיך להתאים את גודל התשתיות והצוות שלו כי הן מספקות הכנסה קבועה. באפשרותך גם לבחור להציג את הסטטוס שלך כתורמ.ת חודשי.ת בפרופיל המשתמש.ת שלך.
+          </p>
+          <p class="lead">
+          התרומה שלך עוזרת לתמוך ב-iNaturalist ככל שהקהילה הולכת וגדלה, החל מקידום ראייה ממוחשבת ויישום פיצ'רים חדשים וכלה בתמיכת השרתים והצוות שלנו. אם את.ה מעדיפ.ה לתת תרומה חד-פעמית, נא <a href="%{donate_url}">ללחוץ כאן</a>.
+          </p>
+          <p class="text-muted">
+           iNaturalist הוא מיזם משותף של אקדמיית קליפורניה למדעים עם נשיונל ג'אוגרפיק. כל התרומות תתקבלנה על ידי אקדמיית קליפורניה למדעים, ארגון 501(c)(3) ללא מטרות רווח ופטור ממס המבוסס בארצות הברית.
+          </p>
         thank_you_for_being_a_monthly_supporter: תודה על היותך תומכ.ת חודשי.ת!
         thank_you_for_being_a_monthly_supporter_caps: תודה על היותך תומכ.ת חודשי.ת!
     flags:
@@ -5685,6 +5753,10 @@ he:
           <code>משפחה=שחפים וקרוביהם</code>
         coordinates_desc: |
           מתן קואורדינטות למדריך שלך יעזור לא.נשים למצוא אותו בחיפוש לפי מיקום.
+        eol_subjects_desc: |
+          אינצקלופדיית החיים מפרסמת תוכן תחת מספר כותרות נושאיות שונות, שלא כולן זמינות עבור כל טקסון. בחירת "סקירה כללית" פשוט תייבא את מקטע הטקסט הזמין הראשון מ-EOL, מה שבדרך כלל מכיל סיכום כשהוא זמין.
+        eol_collection_desc_html: |
+          <a href="http://eol.org/" target="_blank">אינצקלופדיית החיים (EOL)</a> היא מאגר של מידע אודות החיים על כדור הארץ. ב-EOL באפשרותך ליצור <a href="http://eol.org/info/252" target="_blank">אוספים</a> של מינים. אם ברצונך לייבא מינים מאוסף EOL, יש להדביק את ה-URL של אותו האוסף כאן.
         guide_place_desc: |
           שיוך המדריך שלך למקום יאפשר לא.נשים למצוא אותו בחיפושי מקומות, והוא יציג את גבול המקום במפות %{site_name} איפה שהן מוצגות במידה ונקבע גבול (למשל תצוגת "כרטיס", עמודי טקסון וכו')
         import_tags_from_csv_help_html: |
@@ -5718,6 +5790,8 @@ he:
           </p>
         licensing_explanation: |
           מתן רישיון לתוכן שלך מעניק לא.נשים אחרים זכות להעתיק ולהתאים אותו מבלי לבקש את רשותך. זה מאוד מקל על שיתוף העבודה שלך, ואם תשלב.י תוכן מגורם צד שלישי ממקורות אחרים המשתמשים ברישיונות Creative Commons ShareAlike (כמו ויקיפדיה), יש לך חובה משפטית להשתמש ברישיון דומה. הנה סקירה כללית של רישיונות Creative Commons ומה המשמעות של כל אחד:
+        paste_note_html: |
+          יש להדביק עד 500 שמות מינים, אחד לכל שורה. %{site_name} יעשה כמיטב יכולתו להתאים שמות עממיים למינים, אך כדי להימנע מחוסר וודאות עדיף להשתמש בשמות מדעיים. אם ברצונך לפרט את שניהם, יש להפריד בין השם המדעי לעממי באמצעות פסיק, כגון <code>Homo sapiens,אדם</code>.
         places_note: |
           שימו לב: לא לכל המקומות יש רשימות עם טקסונים. אם נתקלת בקושי במציאת מקום עם טקסונים, יש לנסות לבחור אזורים גדולים יותר עם גבולות פוליטיים, כמו ארצות, מדינות או מחוזות.
         replace_existing_eol_desc: יש למחוק תוכן קיים לפני ייבוא מ-EOL
@@ -5750,6 +5824,8 @@ he:
           מדריך מלא כולל כל התמונות ותיאורים, משתרע על עמודים מרובים.
       pdf_generation_notice: |
         תודה על הסבלנות, ייצור קובצי PDF גדולים יכול לקחת דקה או שתיים.
+      tags_help_html: |
+        תגים הם כמו קטגוריות עבור המינים במדריך שלך, רק שמינים מרובים יכולים לחלוק את אותו התג. יש להכניס תגים כאן כרשימה המופרדת באמצעות פסיקים, למשל <code>קטן, פרוותי</code>. להוספת קטגוריות בעלות שם, יש להשתמש בתגים כגון <code>שם_קטגוריה=ערך_קטגוריה</code>, למשל <code>צבע=צהוב</code>.
       sorts:
         default: סדר המדריך
         alphaname: שמות המינים בסדר אלף-ביתי
@@ -5843,6 +5919,8 @@ he:
       show:
         flag_notice_html: |
           סימנת תכתובת זו ב-%{date}. הסימון יישאר אפילו אם תמחק.י את העותק שלך של התכתובת, לכן זה בטיחותי לעשות זאת אם ברצונך לא לראות את זה יותר.
+        privacy_notice_html: |
+          אמנם הודעות הן פרטיות בינך לבין הנמענ.ת, אך גם צוות iNaturalist יכול לצפות בהודעות אלו, ויעשה זאת כאשר הודעות מסומנות לתיווך. אם יש לך צורך בתקשורת פרטית באמת, נא לבדוק אמצעי תקשורת אחרים התומכים בהצפנה חזקה.
     oauth:
       authorizations:
         new:
@@ -5958,6 +6036,9 @@ he:
         limit_alert: הייצוא שלך יהיה גדול מדי. יש לשנות את המסננים שלך עד שיהיו פחות מ-200,000 תצפיות.
         query_placeholder: "בחירת פרמטרים לשאילתה, כמו כן ניתן להדביק URL של תצפיות"
         taxon_extras_help_html: "הערה: עמודות אלו יאטו את ייצור הייצוא שלך"
+        geo_help_html: |
+          השדות ישוב, מחוז, מדינה, ארץ מבוססים על קואורדינטות. רמות אדמיניסטרטיביות מקבילות ישמשו לתצפיות איפה שסוגי המקומות הללו לא תקפים.
+          השדות פרטי_* ייכללו רק בשימוש במסנן משתמש.ת ואת.ה המשתמש.ת, או בשימוש במסנן פרויקט ואת.ה אוצר.ת הפרויקט.
         be_patient: |
           זה יכול לקחת כמה דקות, תודה על סבלנותך. אם זה לוקח יותר מדי זמן, באפשרותך
         check_back: |
@@ -5968,6 +6049,38 @@ he:
         taking_a_while: "זה לוקח קצת זמן. נסו את האפשרויות האחרות."
         date_range_help: "תאריכי מקסימום ומינימום שנצפו, בפורמט YYYY-MM-DD, למשל 2015-01-17"
         created_on_help: "תאריך יצירת התצפיות, לא של התצפיות עצמן, למשל 2015-01-17, 2015-01, 2015"
+        other_options_html: |
+          <h3>אפשרויות אחרות</h3>
+          <p>
+          ייצואים גדולים מאטים את התשתיות שלנו ומקשים עלינו לפרסם שינויים חדשים. הנה מספר אפשרויות חלופיות שיש לשקול:
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF:</a>
+          GBIF צורך את רוב התצפיות המורשות שלנן שהן בדרגת מחקר, וכלי הייצוא שלהם מעולים. ייצואי GBIF גם באים עם <a href="https://www.doi.org/">DOI</a> שניתן לצטט אם תפרסמ.י מחקר המתבסס על הנתונים שייצאת, וציטוטים אלו עוזרים לנו בגדול מכיוון שהם מאפשרים לנו לראות כיצד נעשה שימוש בנתוני iNaturalist.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">DarwinCore
+          Archive (DwC-A) for GBIF</a>: זהו קובץ ה-<a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a> שאנו מייצרות עבור הצריכה של GBIF, שלא יכיל שום דבר שלא בתוך GBIF, אבל אם את.ה רוצה את הארכיון המלא, באפשרותך להוריד אותו. הוא קובץ zip גדול מאוד המכיל רשומות בצורת CSV. מתעדכן אחת לשבוע.
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">אתגר iNaturalist
+          ב-FGVC 2017</a>: קישורים ל-675,000 תמונות iNaturalist מורשות של 5,089 מינים לשימוש בהכשרת ראייה ממוחשבת. נוצר ביוני 2017, לא עודכן.
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "מזהה ייחודי.ת עבור התצפית"
         species_guess: "נא לציין את שם המתצפת.ת שהוכנס.ה עבור הטקסון הנצפה"
@@ -6025,6 +6138,8 @@ he:
         project_csv_template_notice_html: |
           ישנו קובץ טמפלייט עבור פרויקט זה העשוי לעזור לך עם מבנה קובץ ה-CSV.
           <a href="%{url}">להורדת הטמפלייט</a>
+        soundcloud_notice_html: |
+          בשנת 2018 סאונדקלאוד שינו את ה-API שלהם וביטלו את היכולת שלנו לעשות קישורים חדשים לחשבון הסאונדקלאוד שלך. במידה ויחזירו את הפונקציונאליות הזו, נוכל לחזור לקשר חשבונות לסאונדקלאוד. בינתיים, באפשרותך להעלות קובצי קול ישירות באמצעות <a href="/observations/upload">המעלה</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות עבור התצפית הזאת.
@@ -6105,6 +6220,9 @@ he:
           תצפית זו סומנה כספאם ואינה גלויה יותר לציבור. ביכולתך לראות אותה או כי יצרת אותה או כי את.ה אוצר.ת של האתר. אם לדעתך מדובר בטעות באפשרותך<a href="mailto:%{help_email}" class="contact">ליצור קשר</a>.<a href="/observations/%{observation_id}/flags">לנהל סימונים (דגלים)</a>
         observer_does_not_allow_observation_fields: הצופה אינו מאפשר הוספת שדות תצפית
         observer_only_allows_curators_to_add_fields: הצופה מאפשר לאוצרי האתר בלבד להוסיף שדות תצפית
+      user_stats:
+        user_stats_desc: |
+          סטטיסטיקות משתמשות.ים מוגבלות ל-500 הראשונות לפי ספירת תצפיות או ספירת מינים, כך שהרשימה כוללת מעט יותר מ-500 מכיוון ששתי הרשימות כנראה לא כוללות את אותם המשתמשות.ים. ערך אשר מסומן '*' אומר שהוא לא היה ב-500 הראשונים עבור אותה הסטטיסטיקה.
     observation_fields:
       merge:
         warning_html: |
@@ -6208,6 +6326,8 @@ he:
           נשמח להסיר כל קישור לתמונות שבורות בעתיד הקרוב, אבל אין ברצוננו לזרוק כל דבר שיכול לעבור תיקון. יתכן כי חלק מהתמונות הללו עוד קיימות במארח החיצוני שלהן וניתן לתקן אותן. יתכן כי חלק מהתמונות הועלו באמצעות קישור חשבון ה-<a href='%{account_url}'>%{site_name}</a> שלך לחשבון אירוח תמונות אחר, ופג תוקפו של חיבור זה והוא צריך רענון.
         you_can_attempt_repair: |
           את/ה יכול/ה לנסות לתקן את התמונות. בקר את דף התמונה, והקליקו ב"%{repair_link_text}". אם את/ה יודע/ת שהתמונה זו לא קיימת, את/ה יכול/ה למחוק אותה.
+        please_address: |
+          נא להתייחס לסוגיות אלו <b>ב-30 הימים הקרובים</b>. לאחר 30 ימים נתחיל למחוק תמונות שבורות ב- iNaturalist. כל התצפיות שלך יישארו. הן יוערכו מחדש לאחר מחיקת התמונות, ויתכן כי יהיו תצפיות בדרגת מחקר שיהפכו לדרגת "חסר" אם לא יהיו להן תמונות יותר.
         we_included_links: |
           כללנו קישורים לתמונות המושפעות למטה.
       user_parent_confirmation:
@@ -6345,6 +6465,8 @@ he:
           אם ברצונך לקבל גישה לקואורדינטות מוסתרות של תצפיות מוסתרות, אופציה זו תאפשר לא.נשים שהצטרפו לפרויקט זה לבטוח מנהלי הפרויקט עם גישה לאותן קואורדינטות מוסתרות. חברות וחברי הפרויקט יוכלו לאשר גישה לקואורדינטות המוסתרות בכל אחת מהתצפיות שלהם המשויכות לפרויקט זה, או רק לתצפיות מוסתרות של טקסונים בסיכון (מינים רגישים).
         trust_help_notification2: |-
           אולם זה גם יודיע לכל חברות וחברי הפרויקט הבוטחות.ים בכל פעם שתבצע.י שינוי בדרישות של תצפיות הפרויקט, כדי שיעריכו מחדש אם ברצונן.ם להמשיך לבטוח בך בהינתן הדרישות החדשות. הגישה שלך לקואורדינטות מוסתרות תישלל למשך שבוע אחד לאחר שינוי דרישות התצפיות כדי שיהיה להן.ם זמן לעשות זאת.
+        trusted_project_means: |
+          מתן אמון בפרויקט פירושו שמנהלות ומנהלי הפרויקט יוכלו להוסיף נכסי פרויקט ומאפייני פרויקט מותאמים (למשל HTML של כרזה, CSS). גישה למאפייני פרויקט מותאמים פירושה שביכולת מנהלות ומנהלי הפרויקט להוסיף בפוטנציאל Javascript זדוני, לכן יש לתת אמון רק לפרויקטים בעלי מנהלות.ים שהן.ם גם אחראיות.ים וגם כשירות.ים טכנולוגית.
         you_can_preview: |
           באפשרותך לראות תצוגה מקדימה של הפרויקט שלך בתור פרויקט אוסף באמצעות <a href="%{url}">לחיצה כאן</a>.
       invite:
@@ -6568,6 +6690,8 @@ he:
         growth_by_country_desc_html: |
           איפה צמיחה מתרחשת? מפה וטבלה אלו מנסות לפרק זאת לפי מדינה, מה שמתגלה כמסובך כי צמיחה לפי מדינה יכולה להיות מאוד לא מאוזנת. כאן בחרנו להשמיט את ארה"ב ולהשתמש בסקאלת לוג כברירת מחדל כדי להבליט הבדלים בין מדינות שונות. אם מדינה צבועה בשחור זה אומר שהיא לא תרמה משמעותית לאחוז, או שלא הייתה לה צמיחה השנה, או שאין לה יותר תצפיות השנה לעומת שנה שעברה (ריחוף מעל מדינה יציג עוד פרטים). <strong>"% מתוך כלל הצמיחה"</strong> אומר כמה צמיחה עולמית באה ממדינה מסוימת, למשל אם היו 20 תצפיות ב-2018 ו-10 ב-2017, זו תהיה צמיחה של 10 תצפיות, ואם 5 מתוך התצפיות הללו היו מבנין, אז בנין תרמה 50% מכלל הצמיחה. <strong>"% הצמיחה"</strong> מתכוון למספר התצפיות השנה באותה המדינה כאחוז לעומת השנה הקודמת, למשל אם היו 10 תצפיות בלאוס בשנה שעברה אבל 20 השנה, זו תהיה צמיחה של 100%, ואם היו 0 בשנה שעברה ואחת השנה, זוהי צמיחה של אינסוף %.
         growth_by_country_title: צמיחה לפי מדינה
+        growth_desc: |
+          הטבלאות "תצפיות" ו"טקסונים" עשויות להכיל נתונים הגלויים ב-%{site_name} אשר נתרמו על ידי א.נשים שאינם משויכים ל-%{site_name}, כאשר הטבלה "משתמשות.ים" מציגה רק את התאריכים בהם משתמשות.ים עם שיוך נוכחי ל-%{site_name} הצטרפו ל-iNaturalist.
         growth_in_year_obs: "צמיחה ב%{year} (תצפיות)"
         growth_title: צמיחה
         #Label when a mark on a chart has a value that is too small to
@@ -6626,6 +6750,9 @@ he:
           טקסון "שלם" מכיל את <em>כל</em> הטקסונים הצאצאים המוכרים בדרגה מסוימת העונים על כללי אצירת הטקסונים של iNaturalist, בין אם הם נצפו ובין אם לא. רק לאדמיני.ות האתר יש הרשאה להכריז על טקסונים כשלמים כרגע.
         complete_rank_desc_html: |
           הדרגה שבה הטקסון נחשב שלם, למשל אם משפחה זו מכילה את כל הסוגים שלה אך לא מכילה את כל המינים שלה, הדרגה תוגדר כ"סוג". ברירת המחדל היא מין.
+        wikipedia_summary_desc_html: |
+          סיכום קצר של טקסון זה המבוסס של <a target="_blank"
+          href="%{url}">עמוד הויקיפדיה</a> שלו הנמצא במטמון שלנו עד לרענון ידני. רענון סיכום זה גם מעדכן מייד את המטמון שלנו של תוכן ויקיפדיה יסודי המוצג באתר שלנו, המתעדכן אוטומטית לאחר שבוע.
       show:
         about_names_desc: |
           <p>
@@ -6643,6 +6770,8 @@ he:
           המושג "דרכי התבססות" מתאר כיצד מין הגיע לאן שהוא נמצא כיום. "פולש" מציין שהגיע עקב פעילות אדם, כאשר "מקומי" מציין שהגיע ללא סיוע אנושי. מינים "אנדמיים" נמצאים באזורים מאוד ספציפיים ולא באף אזור אחר.
         about_taxon_curators_desc: |
           א.נשים אלו מנהלות ומנהלים את החלק בעץ הטקסונומי הכולל את טקסון זה. אם ברצונך לבצע שינויים, נא לסמן את הטקסון או ליצור קשר עם חלק מא.נשים אלו.
+        charts_help_history: |
+          טבלה זו מציגה את מספר התצפיות של טקסון זה לפי חודש בעשר השנים האחרונות. שוב, היא מוטית על ידי מספר המתצפתות.ים, אך היא תציג לך עליות חדות חריגות בתצפיות, ואם היא נראית שטוחה או יורדת על אף מספר הולך וגדל של מתצפתות.ים, זה עשוי להצביע על שינוי בשפע.
         charts_help_other: |
           אנחנו מציגות גם טבלאות של עונתיות עבור תוויות של תצפיות. תוויות הן דרך להוסיף מטה-נתונים לתצפיות באמצעות אוסף מונחים מבוקר, למשל האם תצפית מתארת צמח שהוא פורח או נושא פרי.
         discoveries_desc: "המינים האחרונים שזוהו לראשונה בטקסון זה"
@@ -6677,15 +6806,42 @@ he:
           יש לשים לב שעמוד הטקסון יציג תמונות של טקסון זה וצאצאיו, אבל התמונות שנבחרו עבור הטקסון עצמו תוצגנה ראשונות. התמונה הראשונה תהיה ברירת המחדל שייעשה בה שימוש ברחבי האתר.
         rare_desc: הטקסונים בסיכון הכי פחות נצפים
         rare_in_place_desc_html: טקסונים בסיכון הכי פחות נצפים ב<a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          אוצרות ואוצרי האתר השביתו באופן זמני את הצגת <a href="%{url}">תוכן זה מויקיפדיה</a>. באפשרותך לעזור באמצעות עריכת העמוד בויקיפדיה כדי שיתאים לטקסון זה, או דרך סימון טקסון זה להביאו לתשומת הלב של אוצרות ואוצרי האתר.
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
+    taxon_changes:
+      move_children_desc: |
+        צאצאים של טקסון הקלט שהם בדרגת סוג או מעליה יועברו לקלט; מינים, תת-מינים, זנים, וכו' יוחלפו לאקוויבלנטים עם שם הסוג או המין החדש.
     taxon_links:
       form:
         name_with_rank_desc: |
           השם של הטקסון עם הדרגה. עבור דרגות אינפרא-ספציפיות, הדרגה מוכנסת אחרי הבינומיאל.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>נסו להוסיף שמות הנמצאים שימוש במקומות אחרים. נא לא להמציא שמות חדשים.</p></li>
+          <li><p>נא לא להוסיף שמות משוכפלים, למשל אין לתת לניצים מרובים את השם "נץ"</p></li>
+          <li><p>עבור טקסונים בדרגות גבוהות יותר, נסו להשתמש בשמות הכוללים את כל הצאצאים, למשל "אנפות וקרוביהן" או "משפחת האברשיים"</p></li>
+          <li>
+          <p>
+          אין להוסיף מידע שאינו השם, למשל מידע מוסגר המפרט איך לדעתך יהיה נכון להשתמש בשם 
+          </p>
+          </li>
+          <li>
+          <p>
+          על לקסיקונים חדשים להיות באנגלית. נא לא להוסיף שמות של שפות מתורגמות כמו "French, Français" כי זה רק יקשה או ימנע מעמנו להציג שמות מותאמים למקומות עבור א.נשים העושות.ים שימוש באתר בשפות שונות.
+          </p>
+          </li>
+          <li>
+          <p>
+          שמות עממים המשוייכים לשפות מתורגמות יופיעו בתור השם העממי ברירת המחדל עבור השפה ההיא (בחסימת האפשרות של העדפות מקום, סידור שמות וכו').
+          <a class="readmore" href="/pages/translate">למידע נוסף אודות תרגום</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           הוספת שם למקום תתן לו עדיפות עבור אתרים ויוזרים מהמקום ההוא. במידה ויש למקום שמות מרובים באפשרותך לתעדף ביניהם <a href="%{url}">כאן</a>. בבקשה <strong>לא</strong> להוסיף שמות על *כל* מקום שבו השם משמש, רק עבור מקומות שחולקים עם מקומות אחרים.
       taxon:
@@ -6741,6 +6897,8 @@ he:
           other: <strong class="count">%{count} תגובות</strong> שהוספת
         furthermore_cannot_undo_html: |
           ומה עוד, <strong>לא ניתן לבטל פעילות הזאת.</strong> אם תשנה את דעתך, לא ניתן יהיה לקבל את התוכן שלך בחזרה.
+        settings_and_mute_html: |
+          אם אתר זה מייצר יותר מדי התראות, יש לשקול <a href="/users/edit">לערוך את ההגדרות שלך</a> כדי להיפטר מהתראות מסוימות או להפסיק לקבל דוא"ל מעמנו. אם יש לך קושי עם אדם מסוים באתר, יש לשקול <a href="/users/edit">השתקה שלו</a> במקום מחיקת החשבון שלך.
         still_want_to_delete_html: |
           אם את.ה עדיין בטוח.ה שברצונך למחוק את החשבון שלך, יש להכניס <code>%{confirmation_code}</code> בטופס למטה וללחוץ על הכפתור כדי למחוק את החשבון שלך ואת כל הנתונים שלך.
         type_confirmation_code: הקלדת %{confirmation_code}
@@ -6812,6 +6970,8 @@ he:
           none: "אף אחד, רק את.ה יכול.ה להוסיף את התצפיות שלך לפרויקטים"
         prefers_community_taxa_desc: |
           %{site_name} בוחן את דעתך על התצפיות שלך, בהשוואה לדעת הקהילה. הזיהויים שאנו חולקים עם שותפים לנתונים הם זיהויי הקהילה, אולם במידה ולדעתך זיהוי הקהילה אינו ראוי להחליף את שלך, ניתן לבטל את הסכמתך לזיהויים אלו כאן. אחרים עדיין יוכלו להוסיף זיהויים, אולם דעת הקהילה לא תועדף על פני הזיהוי שלך. משמעות הדבר כי התצפיות לא תועלנה לדרגת מחקר, אלא אם תסכימ.י עם זיהוי הקהילה.
+        prefers_coordinate_interpolation_protection_desc: |
+          כאשר את.ה מגדיר.ה את פרטיות המיקום של תצפית להיות "מוסתרת" או "פרטית", זה יתן את אותה פרטיות המיקום לכל התצפיות האחרות שלך מאותו היום כדי להקשות על א.נשים לנחש את הקואורדינטות האמיתיות לפי תצפיות אחרות שנעשו בערך באותו הזמן.
         prefers_no_tracking_label: אין לאסוף מידע אודות יציבות והשימוש בפלטפורמה באמצעות שירותים של גוף שלישי
         prefers_no_tracking_label_desc_we_use: |
           אנחנו משתמשות במגוון שירותים של גופי צד שלישי על מנת לנטר יציבות, ולאבחן באגים ובעיות אחרות בתוכנה שלנו. גופי צד שלישי אלו כוללים
@@ -7256,6 +7416,9 @@ he:
           other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: הודעה
       AssessmentSection: סעיף אומדן
       Atlas: אטלס
       BlockedUser: משתמש חסום
@@ -7275,6 +7438,12 @@ he:
       OauthApplication: אפליקציה
       TaxonLink: קישור אודות טקסון
     attributes:
+      announcement:
+        created_at: נוצר ב
+        updated_at: עודכן ב
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: זיהויי אתרים
       assessment:
         description: תיאור
       assessment_section:
@@ -7292,7 +7461,11 @@ he:
         geoprivacy: פרטיות נתוני מיקום
         iucn: שקיל לערך ב-IUCN
       flag:
+        #The reason the item was flagged
         reason: סיבה
+        #The person who resolved the flag
+        resolver_id: פותר.ת
+        #The kind of flag that was made
         flag: סימון
       guide:
         source_url: URL המקור

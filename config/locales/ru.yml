@@ -9,7 +9,7 @@ ru:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} комментариев'
+    other: '%{count} Комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span>комментарий'
     few: '<span class="count">%{count}</span>комментария'
@@ -5203,6 +5203,7 @@ ru:
   upload_new_photo: Загрузить новое фото
   upload_photo: Загрузить фото
   upload_range: Диапазон загрузки
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Загружено
   uploader:
     errors:
@@ -7632,7 +7633,9 @@ ru:
         geoprivacy: Приватность местоположения
         iucn: Эквивалент МСОП
       flag:
+        #The reason the item was flagged
         reason: Причина
+        #The kind of flag that was made
         flag: Флаг
       guide:
         source_url: URL источника

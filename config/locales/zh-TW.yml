@@ -164,6 +164,8 @@ zh-TW:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以選擇分享隱藏的座標給：
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: 關於無意中的意見分歧
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -253,6 +255,9 @@ zh-TW:
   add_observations: 新增多個觀察紀錄。
   add_observations_by_checking_off: 從生物名錄中挑選物種以新增觀察紀錄。
   add_observations_project: 新增多個觀察紀錄到本專案
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>新增</span><span>觀察紀錄</span>"
   #Prompt to add a new journal post
   add_one: 新增一項!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -439,6 +444,10 @@ zh-TW:
   alphabetical_order: 依字母排序
   already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: 分析無意中的意見分歧
   analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
   and: 和
@@ -482,6 +491,7 @@ zh-TW:
   #Label for an option to show/include content by any user
   any_user: 任一
   anyone: 任何人
+  app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: 應用程式
@@ -492,6 +502,8 @@ zh-TW:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申請
+  apply_to_be_an_app_owner: 套用以成為 App 擁有者
+  apply_to_create_applications_title: 套用以建立應用程式
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
   apply_fields: 套用欄位
@@ -505,6 +517,8 @@ zh-TW:
   are_you_really_sure_want_delete_this_user: 您真的、真的確定要刪除此用戶和其所有內容嗎？
   are_you_sure?: 您確定嗎？
   are_you_sure_no_undo: 您確定嗎？這將無法恢復。
+  are_you_sure_delete_conservation_status: |
+    您確定您想要刪除此保育等級？這個動作也許會更動此分類群以及其中所屬分類群的座標模糊狀態。
   are_you_sure_delete_post: 您確定要刪除此發表內容？
   are_you_sure_delete_taxon_move_associates: "您確定您要刪除%{taxonname}（%{taxonid}）並移動所有相關項目嗎？"
   are_you_sure_delete_this_place: 您確定要刪除此地點？
@@ -595,11 +609,18 @@ zh-TW:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 屬性
   attribution: 姓名標示
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "由 %{user} 所上傳的 %{attribution}"
   authority_list:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
     natureserve: NatureServe
     cites: 引用
   authorize: 授權
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: 以 PKCE 授權
   authorize_permissions_from_provider: "來自於%{provider}的授權許可"
   automatic_short: 自動
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
@@ -898,6 +919,8 @@ zh-TW:
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
+  conservation_status_deleted: 保育等級已刪除
+  conservation_status_updated: 保育等級已更新
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
@@ -1179,6 +1202,8 @@ zh-TW:
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
+  #Label for a custom boundary for an observation search
+  custom_boundary: 自訂邊界
   custom_project_fields: 自訂專案欄位
   custom_project_was_successfully_created: 自訂專案建立成功。
   custom_project_was_successfully_updated: 自訂專案更新成功。
@@ -1252,6 +1277,7 @@ zh-TW:
   default: 預設
   #Default option
   default_: 預設
+  default_display_time_zone: 預設顯示時區
   default_invite_comment: "很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}"
   default_observation_license: 預設觀察許可協議
   default_photo_license: 預設照片許可權
@@ -1381,6 +1407,7 @@ zh-TW:
   #add the file as, for example, a new photo in the Uploader
   drop_it: 放開
   download: 下載
+  download_caps: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
     <a href="/observations/import#csv_import">大量上傳</a>
@@ -1399,6 +1426,10 @@ zh-TW:
   draft_saved: 草稿已儲存！
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: 描繪圓形邊界
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: 描繪矩形邊界
   drawings: 圖形
   duplicate_verb: 重複
   duration_value: "持續時間：%{duration} 分"
@@ -1438,6 +1469,8 @@ zh-TW:
   edit_taxon_link: 編輯分類群連結
   edit_taxon_range: 編輯分類群範圍
   edit_the_observation: 編輯觀察
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    當您建立此分類群後，編輯並新增它的保育等級
   edit_your_account_and_profile_html: "編輯您的帳號和個人檔案"
   edit_your_default_settings: "編輯您的預設設定"
   edit_your_global_project_settings: 編輯您的全域專案設定
@@ -1565,6 +1598,8 @@ zh-TW:
   feedback: 意見回饋
   #Plural noun, as in Atom and RSS feeds
   feeds: '訊息來源'
+  #Button to show fewer places
+  fewer__context_places: 較少的
   failed: 已失敗
   field_note: |
     <strong>備註：</strong>如果您想要創建一項欄位，請先檢察是否已被其他人建立以避免重複。
@@ -1589,8 +1624,10 @@ zh-TW:
   filters: 篩選
   find: 尋找
   find_a_guide: 尋找一個指南
+  find_a_post: 尋找貼文
   find_a_place: 尋找一個地點
   find_guides: 尋找指南
+  find_posts_for: "以 %{journal_name} 來尋找貼文"
   find_new_place_to_explore: 尋找一個新地點來探索！
   find_observations: 尋找觀察
   find_photos: 尋找照片
@@ -1614,6 +1651,7 @@ zh-TW:
   flag_as_non_spammer: 標記為非濫發垃圾訊息者
   #Label for the date/time when a flag was created
   flag_created: 標記已建立
+  flag_deleted: 標記已刪除
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
@@ -4629,6 +4667,7 @@ zh-TW:
   upload_new_photo: 上傳新照片
   upload_photo: 上傳照片
   upload_range: 上傳範圍
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 上傳由
   uploader:
     errors:
@@ -6825,7 +6864,9 @@ zh-TW:
         geoprivacy: 位置隱私
         iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄
       flag:
+        #The reason the item was flagged
         reason: 原因
+        #The kind of flag that was made
         flag: 標記
       guide:
         source_url: 來源 URL

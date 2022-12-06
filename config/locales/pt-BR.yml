@@ -5114,6 +5114,7 @@ pt-BR:
   upload_new_photo: Carregar nova foto
   upload_photo: Carregar foto
   upload_range: Alcance de carregamento
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Enviado por
   uploader:
     errors:
@@ -7534,7 +7535,9 @@ pt-BR:
         geoprivacy: Geoprivacidade
         iucn: Equivalente à IUCN
       flag:
+        #The reason the item was flagged
         reason: 'Razão:'
+        #The kind of flag that was made
         flag: Sinalizar
       guide:
         source_url: URL de origem

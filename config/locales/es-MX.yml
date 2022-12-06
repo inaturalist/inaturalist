@@ -21,6 +21,9 @@ es-MX:
   x_identifications_html:
     one: '<span class="count">1</span> identificación'
     other: '<span class="count">%{count}</span> identificaciones'
+  x_identifications_:
+    one: '1 identificación'
+    other: '%{count} identificaciones'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -293,6 +296,9 @@ es-MX:
   add_observations: Añade observaciones
   add_observations_by_checking_off: Añade observaciones marcando las especies de una lista
   add_observations_project: Añade observaciones a este proyecto
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Añadir</span> <span>observaciones</span>"
   #Prompt to add a new journal post
   add_one: '¡Añade una!'
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -680,6 +686,10 @@ es-MX:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atributo
   attribution: Atribución
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, subido por %{user}"
   authority_list:
     iucn_red_list: Lista Roja UICN
     natureserve: NatureServe
@@ -1342,6 +1352,8 @@ es-MX:
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
   current_flags: Advertencias actuales
+  #Label for a custom boundary for an observation search
+  custom_boundary: Límite personalizado
   custom_project_fields: Campos a la medida del proyecto
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
@@ -1549,6 +1561,7 @@ es-MX:
   #add the file as, for example, a new photo in the Uploader
   drop_it: '¡Suéltalo!'
   download: Descargar
+  download_caps: DESCARGA
   download_bulk_import_template_html: |
     <a href="%{url}">Descarga la plantilla</a> para usarla en
     <a href="/observations/import#csv_import">la importaci&oacute;n de observaciones</a>
@@ -1567,6 +1580,10 @@ es-MX:
   draft_saved: '¡Guardado en borrador!'
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Dibuja límite circular
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Dibuja límite rectangular
   drawings: Dibujos
   duplicate_verb: Duplicado
   duration_value: "Duración: %{duration} minutos"
@@ -1736,6 +1753,8 @@ es-MX:
   feedback: Retroalimentación
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds:'
+  #Button to show fewer places
+  fewer__context_places: Menos
   failed: Fallido
   field_note: |
     <strong>Nota:</strong> Si vas a crear un campo
@@ -1762,8 +1781,10 @@ es-MX:
   filters: Filtros
   find: Encuentra
   find_a_guide: Encuentra una guía
+  find_a_post: Busca un mensaje
   find_a_place: Encuentra un lugar
   find_guides: Encuentra guías
+  find_posts_for: "Busca mensajes para: %{journal_name}"
   find_new_place_to_explore: '¡Encuentra un nuevo lugar para explorar!'
   find_observations: Encuentra observaciones
   find_photos: Encuentra fotos
@@ -2044,6 +2065,7 @@ es-MX:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
+  inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     La visión artificial es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión artificial enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -2093,6 +2115,8 @@ es-MX:
   improving: Mejorando
   in_n: "en %{n}"
   in_place_x: en %{place}
+  #As in a reason to flag something
+  inappropriate: Inapropiado
   inaturalist_network: Red de iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
@@ -2304,6 +2328,7 @@ es-MX:
     romanian: Rumano
     russian: Ruso
     santali: Santalí
+    serbian: Serbio
     setswana: Setswana
     sinhala: Cingalés
     slovak: Eslovaco
@@ -2320,6 +2345,8 @@ es-MX:
     waray_waray: Samareño
     visayan: Visayo
   less: Menos
+  #Button show less text
+  less__context_text: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
   licensing: Licencias
@@ -2390,6 +2417,7 @@ es-MX:
     de: Alemán
     el: Griego
     en: Inglés
+    en-GB: Inglés (Reino Unido)
     eo: Esperanto
     es: Español
     es-AR: Español (Argentina)
@@ -2426,6 +2454,7 @@ es-MX:
     sk: Eslovaco
     sl: Esloveno
     sq: Albanés
+    sr: Serbio
     sv: Sueco
     th: Tailandés
     tr: Turco
@@ -2635,10 +2664,21 @@ es-MX:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'AA"
   month: Mes
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Patrocinador mensual
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> desde %{date}
   months: Meses
   more: Más
+  #Button to show more observations
+  more__context_observations_caps: MÁS
+  #Button to show more places
+  more__context_places: Más
+  #Button to show more text
+  more__context_text: Más
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MÁS
+  more_caps: MÁS
   more_about_sharing: Más sobre compartir
   more_fields: Más campos
   more_filters: Más filtros
@@ -3150,6 +3190,7 @@ es-MX:
   open_description: "Todos pueden ver las coordenadas a menos que la especie esté en riesgo"
   open_street_map: Mapa OpenStreetMap
   optional: opcional
+  options: Opciones
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3718,6 +3759,8 @@ es-MX:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
   places_warning_look_for_existing_html: |
     Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
+  places_warning_please_keep_in_mind: |
+    Ten en cuenta las siguientes restricciones:
   places_warning_projects_can_have_multiple_places: |
     Si estás intentando crear un lugar para un límite de proyecto, los proyectos pueden estar compuestos por múltiples lugares. Por ejemplo, si quieres hacer un proyecto para Nueva Zelanda y Australia, puedes añadir requisitos para dos lugares en lugar de hacer uno nuevo.
   places_warning_new_places_are_slow_html: |
@@ -4104,6 +4147,8 @@ es-MX:
   research_grade_tooltip_html: 'Las observaciones de "Grado de Investigación" tienen medios, ubicación, una fecha y el consenso de la comunidad sobre su identificación precisa (generalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   research_grade_observations_have: 'Las observaciones con "grado de Investigación" tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale para ver la evaluación de calidad de los datos.'
   research_grade_qualification: Calificación de Grado de Investigación
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Restablece
   reset_filters_short: Restablecer
   reset_brightness: Restablecer brillo
   reset_search_filters: Restablecer los filtros de búsqueda
@@ -4240,6 +4285,7 @@ es-MX:
   set_license: Escoge la licencia
   settings: Propiedades
   share: Comparte
+  share_caps: COMPARTE
   share_colon: "Compartir:"
   short_code_for_this_place: Código corto para el país, ej. MX para México
   short_or_abbreviated_title_for_display: Regularmente es una abreviatura del título cuando el espacio es muy limitado (máximo 10 caracteres).
@@ -4284,6 +4330,8 @@ es-MX:
   #Journal post formatting option
   simple: Simple
   single_observation: Observación única
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Resumen de %{site} del %{year}"
   sizes: Tamaños
   skip_to_next_page: "Ir a la sig. página"
   small: chica
@@ -5067,6 +5115,7 @@ es-MX:
   upload_new_photo: Cargar una nueva foto
   upload_photo: Cargar foto
   upload_range: Cargar distribución
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Subido por
   uploader:
     errors:
@@ -5183,6 +5232,8 @@ es-MX:
   users_lists: "Listas de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Proyectos de %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Resumen de %{site} del %{year} de %{user}"
   valid_options_are: Las opciones válidas son
   value: Valor
   values: Valores
@@ -5190,6 +5241,7 @@ es-MX:
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
   view: Ver
   view_all: Ver todas
+  view_all_caps: VER TODOS
   view_all_fields: Ver todos los Campos
   view_all_flags: Ver todas las marcas
   view_all_members: Ver a todos los miembros
@@ -5210,6 +5262,12 @@ es-MX:
   view_flags_for_x_html: "Ve advertencias para %{x}"
   view_full_observation: Ve la observación completa
   view_full_size_photo: Ver foto a tamaño completo
+  view_inaturalist_global_year_in_review: Ver el Resumen Global de iNaturalist del año %{year}
+  view_inaturalist_global_year_in_review_caps: VER EL RESUMEN GLOBAL DE INATURALIST DEL AÑO %{year}
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Ver el resumen del año %{year} en %{site}
+  view_site_year_in_review_caps: VER EL RESUMEN DEL AÑO %{year} EN %{site}
   view_journal: Ver Diario
   view_leaderboard_from_last_month: Ver el más activo del mes pasado
   view_leaderboard_from_last_year: Ver el más activo del año pasado
@@ -5254,6 +5312,8 @@ es-MX:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Ve tu tablero</a> para más actualizaciones"
   view_your_inbox: Ve tu buzón
   view_your_observations: Ve tus observaciones
+  view_your_personal_year_in_review: "Ver tu resumen personal del año %{year}"
+  view_your_personal_year_in_review_caps: "VER TU RESUMEN PERSONAL DEL AÑO %{year}"
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: "Ve todas tus observaciones de %{x}"
   video_tutorials: Videotutoriales
@@ -5385,6 +5445,7 @@ es-MX:
   x_wrote_y_new_posts_html: "%{x} escribió %{y} nuevas noticias"
   year: año
   year_in_review: "Resumen del año %{year}"
+  year_in_review2: "Resumen del año %{year}"
   year_month: año/mes
   year_on_site: "El %{year} en %{site}"
   yellow: Amarillo
@@ -5602,6 +5663,7 @@ es-MX:
       post_donate_social_media_text: Apoyo iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Conviértete en un Patrocinador Mensual de iNaturalist.
+        become_a_monthly_supporter_of_inaturalist_caps: CONVIÉRTETE EN UN PATROCINADOR MENSUAL DE INATURALIST
         desc_html: |
           <p class="lead">
           <strong>INaturalist es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de esto!</strong>
@@ -5615,6 +5677,8 @@ es-MX:
           <p class="text-muted">
           iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización sin fines de lucro 501(c)(3) exenta de impuestos con sede en los Estados Unidos de América.
           </p>
+        thank_you_for_being_a_monthly_supporter: '¡Gracias por ser un Patrocinador Mensual!'
+        thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
     flags:
       show:
         flaggable_content_desc: |
@@ -6800,6 +6864,7 @@ es-MX:
         species_per_year_by_date_added: Por fecha añadida
         species_per_year_by_date_observed: Por fecha de observación
         stats_generated_datetime: Estadísticas generadas el %{datetime}
+        stats_generation_schedule: Las estadísticas se generarán cada domingo en diciembre y el 1 de enero
         store_prompt: |
           ¿Quieres mostrar tu orgullo de iNat dondequiera que vayas? ¡Échale un vistazo la tienda de iNat!
         sunburst_desc_html: |
@@ -7472,6 +7537,9 @@ es-MX:
           other: '% {count} errores no permitieron que este %{model} se guardara'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Anuncio
       AssessmentSection: Sección de evaluación
       Atlas: Atlas
       BlockedUser: Usuario bloqueado
@@ -7491,6 +7559,12 @@ es-MX:
       OauthApplication: Aplicación
       TaxonLink: Enlace de taxón
     attributes:
+      announcement:
+        created_at: Fecha de creación
+        updated_at: Actualizado en
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID de sitio
       assessment:
         description: Descripción
       assessment_section:
@@ -7508,7 +7582,11 @@ es-MX:
         geoprivacy: Geoprivacidad
         iucn: Equivalente a IUCN
       flag:
+        #The reason the item was flagged
         reason: Razón
+        #The person who resolved the flag
+        resolver_id: Resuelto por
+        #The kind of flag that was made
         flag: Advertencia
       guide:
         source_url: URL de origen
@@ -7697,6 +7775,13 @@ es-MX:
               has_query_parameter: "No puede contener un parámetro de consulta."
               invalid_uri: "debe ser un URI válido."
               relative_uri: "debe ser un URI absoluto."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: ha deshabilitado los comentarios
         flag:
           attributes:
             flag:

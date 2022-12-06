@@ -313,6 +313,9 @@ sv:
   add_observations: Lägg till fynd
   add_observations_by_checking_off: Lägg till fynd genom att markera arter i en lista.
   add_observations_project: Lägg till fynd till detta projekt
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Lägg till</span> <span>Fynd</span>"
   #Prompt to add a new journal post
   add_one: Lägg till en!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -708,6 +711,10 @@ sv:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribut
   attribution: Erkännande
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, uppladdad av %{user}"
   authority_list:
     iucn_red_list: IUCN:s Röda lista
     natureserve: NatureServe
@@ -1783,6 +1790,8 @@ sv:
   feedback: Återkoppling
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Flöden'
+  #Button to show fewer places
+  fewer__context_places: Färre
   failed: Misslyckades
   field_note: |
     <strong>Obs:</strong> Om du vill skapa ett fält, kontrollera först om
@@ -2158,6 +2167,8 @@ sv:
   improving: Förbättrar
   in_n: "i %{n}"
   in_place_x: i %{place}
+  #As in a reason to flag something
+  inappropriate: Olämpligt
   inaturalist_network: iNaturalist-nätverket
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
@@ -2385,6 +2396,8 @@ sv:
     waray_waray: Waray-Waray
     visayan: Cebuano
   less: Mindre
+  #Button show less text
+  less__context_text: Mindre
   licensed_site_photos: "Licensierade %{site_name}-bilder"
   license: Licens
   licensing: Licensiering
@@ -2707,6 +2720,14 @@ sv:
     <a href="%{url}">Månatlig supporter</a> sedan %{date}
   months: Månader
   more: Mer
+  #Button to show more observations
+  more__context_observations_caps: FLER
+  #Button to show more places
+  more__context_places: Fler
+  #Button to show more text
+  more__context_text: Mer
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: FLER
   more_caps: MER
   more_about_sharing: Mer om delning
   more_fields: Fler fält
@@ -3211,6 +3232,7 @@ sv:
   open_description: "Alla kan se koordinaterna såvida detta taxon inte är hotat."
   open_street_map: OpenStreetMap
   optional: valfritt
+  options: Alternativ
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -5178,6 +5200,7 @@ sv:
   upload_new_photo: Ladda upp ny bild
   upload_photo: Ladda upp bild
   upload_range: Ladda upp område
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uppladdad av
   uploader:
     errors:
@@ -7584,7 +7607,11 @@ sv:
         geoprivacy: Koordinatsekretess
         iucn: IUCN-motsvarighet
       flag:
+        #The reason the item was flagged
         reason: Anledning
+        #The person who resolved the flag
+        resolver_id: Löst av
+        #The kind of flag that was made
         flag: Flagga
       guide:
         source_url: Källans URL

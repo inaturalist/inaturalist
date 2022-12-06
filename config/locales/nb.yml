@@ -4303,6 +4303,7 @@ nb:
   upload_new_photo: Last opp nytt bilde
   upload_photo: Last opp bilde
   upload_range: Last opp utbredelse
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Lastet opp av
   uploader:
     errors:
@@ -6398,7 +6399,9 @@ nb:
         geoprivacy: Geosperring
         iucn: IUCN-ekvivalent
       flag:
+        #The reason the item was flagged
         reason: Grunn
+        #The kind of flag that was made
         flag: Markering
       guide:
         source_url: Kilde-URL

@@ -2739,7 +2739,9 @@ eu:
         description: Deskribapena
         iucn: IUCN Baliokidea
       flag:
+        #The reason the item was flagged
         reason: Arrazoia
+        #The kind of flag that was made
         flag: Marka
       guide:
         source_url: Jatorrizko URL

@@ -4356,6 +4356,7 @@ zh-CN:
   upload_new_photo: 上传新照片
   upload_photo: 上传照片
   upload_range: 上传范围
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 上传者
   uploader:
     errors:
@@ -6015,7 +6016,9 @@ zh-CN:
         geoprivacy: 位置隐私
         iucn: IUCN等价物
       flag:
+        #The reason the item was flagged
         reason: 原因
+        #The kind of flag that was made
         flag: 标记
       guide:
         source_url: 来源URL

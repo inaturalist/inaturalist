@@ -4978,6 +4978,7 @@ id:
   upload_new_photo: Unggah foto baru
   upload_photo: Unggah Foto
   upload_range: Unggah Jangkauan
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Diunggah oleh
   uploader:
     errors:
@@ -7218,7 +7219,9 @@ id:
         geoprivacy: Geoprivasi
         iucn: setara IUCN
       flag:
+        #The reason the item was flagged
         reason: Alasan
+        #The kind of flag that was made
         flag: Tanda
       guide:
         source_url: Sumber URL
