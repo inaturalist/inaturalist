@@ -312,6 +312,9 @@ tr:
   add_observations: Gözlem Ekle
   add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
   add_observations_project: Bu Projeye Gözlem Ekle
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Gözlem</span> <span>Ekle</span>"
   #Prompt to add a new journal post
   add_one: Bir Tane Ekle!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -689,6 +692,10 @@ tr:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Nitelik
   attribution: Nitelik
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, yükleyen: %{user}"
   authority_list:
     iucn_red_list: IUCN Kırmızı Listesi
     natureserve: NatureServe
@@ -1715,6 +1722,8 @@ tr:
   feedback: Geri bildirim
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Akış'
+  #Button to show fewer places
+  fewer__context_places: Daha az
   failed: Başarısız oldu
   field_note: |
     <strong>Not:</strong> Bir alan oluşturmak istiyorsan, aynılığı önlemek için başkasının daha önce yapıp yapmadığını kontrol edin.
@@ -2066,6 +2075,8 @@ tr:
   improving: Geliştirici
   in_n: "Konum: %{n}"
   in_place_x: 'Konum: %{place}'
+  #As in a reason to flag something
+  inappropriate: Uygunsuz
   inaturalist_network: iNaturalist Ağı
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
@@ -2290,6 +2301,8 @@ tr:
     waray_waray: Varay
     visayan: Visayanca
   less: Daha az
+  #Button show less text
+  less__context_text: Daha az
   licensed_site_photos: "Lisanslı %{site_name} fotoğrafları"
   license: Lisans
   licensing: Lisanslama
@@ -2604,6 +2617,14 @@ tr:
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
   months: Aylar
   more: Daha Fazla
+  #Button to show more observations
+  more__context_observations_caps: DAHA ÇOK
+  #Button to show more places
+  more__context_places: Daha çok
+  #Button to show more text
+  more__context_text: Daha çok
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: DAHA ÇOK
   more_caps: DAHA ÇOK
   more_about_sharing: Paylaşım Hakkında Fazla Bilgi
   more_fields: Daha Çok Alan
@@ -3101,6 +3122,7 @@ tr:
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
   optional: isteğe bağlı
+  options: Seçenekler
   or: ya da
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -7584,6 +7606,8 @@ tr:
       flag:
         #The reason the item was flagged
         reason: Sebep
+        #The person who resolved the flag
+        resolver_id: Çözen
         #The kind of flag that was made
         flag: İşaret
       guide:
