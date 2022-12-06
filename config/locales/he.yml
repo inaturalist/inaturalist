@@ -2240,6 +2240,9 @@ he:
   it_can_now_be_used_for_research: מעכשיו ניתן לשימוש במחקר והכללה שאתרים אחרים
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: כתב נטוי
+  item_flagged_notice_html: |
+    זה סומן כספאם ואינו גלוי יותר לציבור. ביכולתך לראות אותו או כי יצרת אותו או כי את.ה אוצר.ת של האתר. אם לדעתך מדובר בטעות נא<a href="mailto:%{help_email}" class="contact">ליצור קשר</a>.
+    <a href="%{manage_flags_path}">ניהול סימונים</a>
   jobs: משרות
   join: הצטרפות
   join_and_add_an_observation_to_project_html: הצטרפות והוספת תצפית ל%{project}
