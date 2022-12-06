@@ -2,9 +2,9 @@
 .identification_form_wrapper h4{margin-bottom:0.2em;}
 .identifications-list .identification.yours{background-color:#eee;}
 #owners-identification.box{margin-bottom:10px;position:relative;}
-#owners-identification.box.withupperright{padding-right: 15px;}
+#owners-identification.box.withupperright{padding-inline-end: 15px;}
 .identification_form_wrapper input.text{width:196px;margin-top:0;}
 .identification_form_wrapper .button.default,
 .identification_form_wrapper img.loading{margin:0 auto;float:none;}
 .identification_form_wrapper{background-color:#eee;padding:10px;}
-.identification .identification_image{float:left;margin-right:10px;}
+.identification .identification_image{float:inline-start;margin-inline-end:10px;}
