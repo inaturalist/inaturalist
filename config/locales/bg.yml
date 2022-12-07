@@ -268,6 +268,9 @@ bg:
   add_obs_from_a_list: Добавете наблюдения от списък
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Добави</span> <span>наблюдения</span>"
   #Prompt to add a new journal post
   add_one: Добави!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -550,6 +553,10 @@ bg:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Признание
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, качено от %{user}"
   authority_list:
     iucn_red_list: Червен списък на IUCN
     natureserve: NatureServe
@@ -1256,6 +1263,8 @@ bg:
   favorites: "Любими"
   featured: Препоръчани
   feedback: Обратна връзка
+  #Button to show fewer places
+  fewer__context_places: По-малко
   field_note: |
     <strong>Забележка:</strong> Ако искате да създадете поле, проверете дали някой друг не го е създал вече за да се избегне дублирането.
   fields: полета
@@ -1500,6 +1509,8 @@ bg:
   importing: "Импортиране..."
   in_n: "във %{n}"
   in_place_x: във %{place}
+  #As in a reason to flag something
+  inappropriate: Неуместно
   inaturalist_network: Мрежа на iNaturalist
   inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
@@ -1690,6 +1701,8 @@ bg:
     ukrainian: украински
     waray_waray: варайски
   less: По-малко
+  #Button show less text
+  less__context_text: По-малко
   licensed_site_photos: "Лицензирани снимки от %{site_name}"
   license: Лиценз
   licensing: Лицензиране
@@ -1945,6 +1958,14 @@ bg:
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
   months: Месеци
   more: Още
+  #Button to show more observations
+  more__context_observations_caps: ОЩЕ
+  #Button to show more places
+  more__context_places: Още
+  #Button to show more text
+  more__context_text: Още
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ОЩЕ
   more_caps: ОЩЕ
   more_fields: Още полета
   more_filters: Още филтри
@@ -2318,6 +2339,7 @@ bg:
   open_: Открито
   open_description: "Всеки може да види координатите освен когато таксонът е застрашен."
   optional: незадължително
+  options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -5100,6 +5122,8 @@ bg:
       flag:
         #The reason the item was flagged
         reason: Причина
+        #The person who resolved the flag
+        resolver_id: Решител
       guide:
         source_url: Уебадрес на източника
         published_at: Публикация
