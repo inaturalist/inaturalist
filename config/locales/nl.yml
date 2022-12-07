@@ -911,6 +911,8 @@ nl:
   change_your_password: Wijzig je wachtwoord
   #Plural noun, as in changes to a taxon record over time
   changes: Wijzigingen
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Het veranderen van de voorouders van deze ouder kan leiden tot onbedoelde meningsverschillen. Analyseer ze eerst, wat enige tijd kan duren.
   changing_the_geoprivacy: 'Het wijzigen van de geoprivacy verandert hoe anderen de locatie van je waarneming zien.'
   check_above_for_errors: Controleer hierboven op fouten
   check_back_soon: Tot binnenkort!
@@ -2032,6 +2034,12 @@ nl:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Uren om aan te passen:"
   however_there_were_some_issues: "Er waren echter wat problemen: %{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Maar misschien wil je reageren op de waarnemingen met onbedoelde
+    meningsverschillen die hierboven zijn gekoppeld om identifiers te waarschuwen dat de scope van %{old_parent}
+    is gewijzigd.
   i_dont_know_but_i_am_sure_this_is_taxon: Dat weet ik niet, maar ik weet zeker dat dit %{taxon} is
   icon: Pictogram
   icon_size: Pictogramgrootte
