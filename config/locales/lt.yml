@@ -813,6 +813,8 @@ lt:
   batch_edit_taxa_for_x_html: "Grupinis taksonų redagavimas %{x}"
   batch_operations: Grupinės operacijos
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
+  become_a_donor_caps: PAREMTI
+  become_a_donor_today_caps: PAREMTI ŠIANDIEN
   before_importing_photos: prieš importuodami nuotraukas
   bg_color: Fono Spalva
   bio: Apie mane
@@ -1053,6 +1055,9 @@ lt:
   connecting_your_inat_account_to_accounts_other_sites: "Sujungus jūsų %{site_name} paskyrą su kitų tinklalapių paskyromis leis jums prisijungti prie %{site_name} naudojantis kitų tinklalapių įgaliojimais."
   cannot_be_changed_during_a_content_freeze: negali būti pakeista, kai turinys užšaldytas
   conservation_status: Apsaugos statusas
+  conservation_status_created: Apsaugos statusas sukurtas
+  conservation_status_deleted: Apsaugos statusas ištrintas
+  conservation_status_updated: Apsaugos statusas atnaujintas
   conservation_status_descriptions:
     status: 'Statuso kodas, rangas ir t. t. Jeigu sutrumpinimai, kaip E ar CR egzistuoja, naudokite juos. Kitu atveju naudokite pilną statusą, pvz.: nykstantis arba grėsmingai nykstantis.'
     description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
@@ -1316,6 +1321,7 @@ lt:
   default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Numatytoji stebėjimo licencija
   default_photo_license: Numatytoji nuotraukos licencija
+  default_search_place: Numatytoji paieškos vieta
   default_sound_license: Numatytoji garso licencija
   defaults_to_your_name_or_username: Naudoja arba jūsų vardą arba vartotojo vardą
   defines_a_taxon_framework_for: Apibrėžia %{taxon_name} taksono struktūrą
@@ -1403,6 +1409,8 @@ lt:
   disconnect: Atsijungti
   disconnect_caps: ATSIJUNGTI
   disconnect_provider: "Atjungti %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Atmesti
   display: Rodymas
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
   display_name: Rodomas vardas
@@ -1581,6 +1589,8 @@ lt:
   feedback: Atsiliepimai
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Srautai'
+  #Button to show fewer places
+  fewer__context_places: Mažiau
   failed: Nepavyko
   field_note: |
     <strong>Pastaba:</strong> Jei norite sukurti lauką, patikrinkite ar kas nors kitas to dar nepadarė, kad būtų išvengta dublikatų.
@@ -1603,6 +1613,7 @@ lt:
   filters: Filtrai
   find: Rasti
   find_a_guide: Rasti gidą
+  find_a_post: Rasti įrašą
   find_a_place: Rasti Vietą
   find_guides: Rasti Gidus
   find_new_place_to_explore: Rasti naują vietą tyrinėjimui!
@@ -1969,9 +1980,9 @@ lt:
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Sluoksniai
   layout: Išdėstymas
-  leaderboard: Pirmaujančiųjų sarašas
-  leaderboard_for_x: "%{x} pirmaujančiųjų sarašas"
-  leaderboards: Pirmaujančiųjų sarašai
+  leaderboard: Pirmaujančiųjų sąrašas
+  leaderboard_for_x: "%{x} pirmaujančiųjų sąrašas"
+  leaderboards: Pirmaujančiųjų sąrašai
   leading: Vedantis
   learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
@@ -1989,13 +2000,17 @@ lt:
     afrikaans: Afrikanų
     albanian: Albanų
     arabic: Arabų
+    armenian: Armėnų
+    belarusian: Baltarusių
     bengali: Bengalų
+    bulgarian: Bulgarų
     catalan: Katalonų
     cebuano: Sebuanų
     chinese_simplified: Kinų (supaprastinta)
     chinese_traditional: Kinų (tradicinė)
     creole_french: kreolų (Prancūzų)
     creole_portuguese: kreolų (Portugalų)
+    croatian: Kroatų
     czech: Čekų
     danish: Danų
     dutch: Olandų
@@ -2008,6 +2023,7 @@ lt:
     greek: Graikų
     hawaiian: Havajiečių
     hebrew: Hebrajų
+    hungarian: Vengrų
     icelandic: Islandiečių
     indonesian: Indoneziečių
     italian: Italų
@@ -2024,10 +2040,12 @@ lt:
     norwegian: Norvegų
     occitan: Oksitanų
     pangasinan: Pangasinanas
+    persian: Persų
     polish: Lenkų
     portuguese: Portugalų
     romanian: Rumunų
     russian: Rusų
+    serbian: Serbų
     sinhala: Sinhalų
     slovak: Slovakų
     slovenian: Slovėnų
@@ -2294,6 +2312,15 @@ lt:
     <a href="%{url}">Mėnesinis remėjas</a> nuo %{date}
   months: Mėnesiai
   more: Daugiau
+  #Button to show more observations
+  more__context_observations_caps: DAUGIAU
+  #Button to show more places
+  more__context_places: Daugiau
+  #Button to show more text
+  more__context_text: Daugiau
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: DAUGIAU
+  more_caps: DAUGIAU
   more_fields: Daugiau laukų
   more_filters: Daugiau filtrų
   more_from_x: Daugiau iš %{x}
@@ -2623,6 +2650,7 @@ lt:
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   open_street_map: OpenStreetMap
   optional: neprivaloma
+  options: Parinktys
   or: arba
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3121,6 +3149,8 @@ lt:
   please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
   please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Prašome savo tėvų paprašyti leidimo
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Prašome būti atsargiems!
   please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
