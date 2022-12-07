@@ -293,7 +293,7 @@ hu:
   add_several_observations_at_once: Több megfigyelés hozzáadása egyszerre.
   add_sex_female_annotation: '"Nem: Nőstény" megjelölés hozzáadása'
   add_sex_male_annotation: '"Nem: Hím" megjelölés hozzáadása'
-  add_sex_cannot_be_determined_annotation: '"Nem: Nem meghatározható" megjelölés hozzáadása'
+  add_sex_cannot_be_determined_annotation: '"Nem: Nem határozható meg" megjelölés hozzáadása'
   add_some_now: Hozzáadás most
   add_tag: Címke hozzáadása
   add_tags: Címkék hozzáadása
@@ -1432,7 +1432,7 @@ hu:
   flag_reason: "&ldquo;Bejelentem ezt a %{record}t, mert"
   flag_resolution: Megoldás
   flag_saved: Bejelölés elmentve
-  flag_saved_thanks_html: Bejelölés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelölések megtekintése</a>
+  flag_saved_thanks_html: Bejelentés elmentve. Köszönjük! <a href="%{url}" class="readmore">Bejelentések megtekintése</a>
   flag_this_observation: Megfigyelés bejelentése
   flag_this_photo: Kép bejelentése
   flag_this_place: Hely bejelentése
@@ -2976,7 +2976,7 @@ hu:
   #Post is a noun
   post_from_your_journal_html: <a href="%{url}">Hírmondód</a> bejegyzései
   post_published: Bejegyzés közzétéve
-  posted_by: Írta
+  posted_by: 'Írta:'
   posted_on: 'Közzétéve:'
   posts: Bejegyzések
   potential_disagreement: Lehetséges konfliktus
@@ -3045,6 +3045,7 @@ hu:
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
+    stateofmatter: Valami
     kingdom: Ország
     x_kingdoms:
       one: Ország
@@ -3104,6 +3105,8 @@ hu:
     form: Forma
     infrahybrid: Infrahibrid
     leaves: Végpontok
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: valami
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: ország
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
@@ -3350,6 +3353,7 @@ hu:
   short_code_for_this_place: Ennek a helynek egy rövid kódja, pl. USA az Amerikai Egyesült Államoknak
   show: Megjelenítés
   show_hidden_content: Rejtett tartalom megjelenítése
+  show_keyboard_shortcuts: Gyorsbillentyűk megjelenítése
   show_less: Kevesebb megjelenítése
   show_more: Továbbiak
   #Option to show data series that show "No Annotation" data, i.e. records that
@@ -3403,6 +3407,7 @@ hu:
   something_: valami
   something_went_wrong_adding: Hiba történt a faj hozzáadásakor a listádhoz
   something_went_wrong_deleting_the_taxon_name: "Hiba történt \"%{taxon_name}\" taxonnév törlésekor!"
+  somewhere_on_earth: Valahol a Földön
   sorry_how_about_we_try_repeat: "Bocsánat! Mit szólnál ha megismételjük keresésedet valamilyen másik fajneveket tartalmazó adatbázisvan? Ha találunk valamit elmentjük, hogy legközelebb azt megtaláld."
   sorry_we_didnt_find_that_photo: "Sajnos nem találtuk azt a fotót."
   sorry_x_is_not_responding: "Sajnáljuk, de %{x} nem válaszol. Kérünk próbáld meg később."
@@ -3524,6 +3529,7 @@ hu:
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
   taxon_is_threatened_coordinates_obscured: Veszélyeztetett taxon, a koordinátákat kitakarjuk
   taxonomy: Rendszertan
+  taxon_change_title_taxon_swap: Taxoncsere
   taxon_map:
     overlays: Rétegek
   taxon_changes: Taxonváltozások
@@ -3571,6 +3577,7 @@ hu:
   the_observation_was_already_added_to_that_project: A megfigyelés már hozzá volt adva ahhoz a projekthez.
   the_people_of_inat: "Emberek az %{site_name} mögött"
   the_world: A világ
+  then_keybord_sequence: majd
   there_merge_problems_with_the_merge: "Hiba történt az egyesítéssel: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
   there_were_problems_importing_that_place: "Hiba történt a hely importálásakor: %{place_error}"
