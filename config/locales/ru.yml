@@ -1,9 +1,9 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} изменение"
-    few: "%{count} изменения"
-    many: "%{count} изменений"
+    one: "%{count} Изменение"
+    few: "%{count} Изменения"
+    many: "%{count} Изменений"
     other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
@@ -194,10 +194,10 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} звук"
-    few: "%{count} звука"
-    many: "%{count} звуков"
-    other: "%{count} звуков"
+    one: "%{count} Звук"
+    few: "%{count} Звука"
+    many: "%{count} Звуков"
+    other: "%{count} Звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -222,7 +222,7 @@ ru:
   a_member_of_taxon_html: "член %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "A - Z"
+  a_to_z: "<![CDATA[А — Я]]>"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
