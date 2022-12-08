@@ -401,7 +401,6 @@ en:
   # Prompt to add add a default photo to a taxon when one doesn't exist, so here
   # "one" refers to a photo
   add_one_now: Add One Now
-  add_photos: Add Photos
   add_place: Add Place
   add_alive_or_dead_alive_annotation: 'Add "Alive or Dead: Alive" annotation'
   add_alive_or_dead_cannot_be_determined_annotation: 'Add "Alive or Dead: Cannot Be Determined" annotation'
@@ -1172,8 +1171,6 @@ en:
   # connecting to Flickr
   connect: Connect
   connect_to_provider: "Connect to %{provider}"
-  # Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Connected accounts
   connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
   connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
@@ -1357,7 +1354,6 @@ en:
   created_by: Created by
   created_by_user_on_date: Created by %{user} on %{date}
   created_on: Created on
-  creating_your_account: "Creating your account..."
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: Critically Endangered
@@ -2714,7 +2710,6 @@ en:
   log_scale_label: Log
   # Status message shown while logging in
   logging_in: Logging in...
-  login_slash_username: Login / username
   logo:
     logo: Logo
     white_bg_gif: white BG GIF
@@ -4582,7 +4577,7 @@ en:
   select: Select
   select_all: Select All
   select_at_least_one: Select At Least One
-  select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Select None
   select_observations_to_edit: Select Observations to Edit...
   select_one_of_friends_albums: Select One of %{friend}'s Albums
@@ -7697,14 +7692,6 @@ en:
         one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
-        publications_desc_html: |
-          Click the flower charts for more information about what the numbers
-          and colors mean. Impact data and charts courtesy of
-          <a href="https://www.altmetric.com">Altmetric</a>. Information
-          about data usage courtesy of our friends at the
-          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">View all %{numStudies} studies</a>
         publications_desc_short_html: |
           Click the flower charts for more information about what the numbers
           and colors mean. Impact data and charts courtesy of
