@@ -83,7 +83,7 @@ hu:
   x_people:
     one: "%{count} személy"
     other: "%{count} személy"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user} <strong>%{y} meghatározással</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} személy</strong> segített %{user} felhasználónak <strong>%{y} meghatározással</strong>"
   x_photos:
     one: "%{count} fénykép"
     other: "%{count} fénykép"
@@ -836,7 +836,7 @@ hu:
   connecting_flickr: "Kapcsolódás a Flickr-re... "
   connecting_to_facebook: "Kapcsolódás a Facebookra…"
   cannot_be_changed_during_a_content_freeze: Nem változtatható meg ameddig a tartalom be van fagyasztva
-  conservation_status: Természetvédelmi helyzet
+  conservation_status: Természetvédelmi státusz
   conservation_status_created: Természetvédelmi státusz létrehozva
   conservation_status_deleted: Természetvédelmi státusz törölve
   conservation_status_updated: Természetvédelmi státusz frissítve
@@ -1904,7 +1904,7 @@ hu:
   log_out_caps: KIJELENTKEZÉS
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kijelentkezés innen: %{site_name}?"
-  log_scale_label: Napló
+  log_scale_label: Logaritmikus
   #Status message shown while logging in
   logging_in: Bejelentkezés...
   login_slash_username: Login / felhasználónév
@@ -2961,6 +2961,7 @@ hu:
   places_warning_quota: |
     Csak három helyet hozhatsz létre egy nap.
   plants: növények
+  play_first_sound: Az első hang lejátszása
   please_allow_a_few_weeks_for_external_sites: Kérünk adj pár hetet a külső honlapoknak e megfigyelés változtatásainak szinkronizálásához #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Kérd a szüleid engedélyét
   #Title to a section warning a user to exercise caution
@@ -3468,6 +3469,7 @@ hu:
   #can buy merchandise. Please try to keep translations as short as possible
   store: Bolt
   store_caps: BOLT
+  studies_that_used_inaturalist_data_in_year: Az iNaturalist adatait felhasználó %{year} évi kutatások
   stuff_just_added: "Dolgok amiket nemrég adtál hozzá"
   subject_resolved_noun_html: "%{subject} megoldotta %{noun}t"
   subject_committed_thing_affecting_stuff_html: "%{subject} általi %{thing} érinti ezt: %{stuff}"
@@ -3744,6 +3746,7 @@ hu:
   total_observations: Minden megfigyelés
   total_observations_caps: ÖSSZES MEGFIGYELÉS
   total_species_observed_caps: ÖSSZES MEGFIGYELT FAJ
+  translated_languages: Célnyelv
   'true': 'Igen'
   trending: Népszerű
   trends: Trendek
@@ -3951,7 +3954,7 @@ hu:
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_conservation_status_for_this_taxon: Ez a taxon nem rendlkezik természetvédelmi státusszal
-  we_have_no_establishment_data_for_this_taxon: "Nincs letelepedési adatunk erről a taxonról"
+  we_have_no_establishment_data_for_this_taxon: "Nincs honossási adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
   welcome: üdvözlünk
@@ -4032,10 +4035,21 @@ hu:
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yes_reject_it: Igen, elutasítom
   yesterday: Tegnap
+  yir_donate_banner_reaching_millions: Többmilliós közösség. Reflektorfényben a biodiverzitás. Globális együttműködés.
+  #"You" is singular
+  yir_donate_banner_all_thanks: Minden köszönet Neked és a közösségnek!
   #"You" is singular
   yir_donate_banner_you_helped_inaturalist_thrive: Nagy szereped volt idén az iNaturalist sikerében. Köszönjük szépen!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: Az iNaturalist a támogatásodat kéri
+  yir_generating_and_sharing: |
+    A magasszintű biodiverzitási adatok ilyen méretű és sebességű generálása és megosztása egyre növekvő költségekkel jár
+  yir_millions_of_people_used_inaturalist: |
+    Idén emberek milliói használták az iNaturalist-ot és a Seek-et a természettel való kapcsolattartáshoz
+  yir_thank_your_for_being_generous: |
+    Köszönettel tartozunk a ránk fordídott idődért, figyelmedért, szakértelmedért és támogatásodért. Az iNaturalist a California Academy of Science és a National Geographic Society közös, nonprofit kezdeményezése. A program működését támogatási alapok és adományok segítik, beleértve a felhasználói tábor töredékétől érkező adományokat. Külön hálával tartozunk a havi támogatóinknak, akik rendszeres felajánlásaikkal segítik a munkánkat hosszabb távon.
+  yir_your_gift_sustains: |
+    Az adományod révén hozzájárulsz a program globális fenntartásához és eredményeihez személyes és ökológiai szinten
   you: te
   you_: Te
   you_are_already_a_member_of_this_project: "Ennek a projektnek már tagja vagy!"
@@ -4395,7 +4409,7 @@ hu:
         iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         med_ttcid: Med TTCID
         new_users_desc: Regisztrált ezen a napon
-        obs_1_day: "Megf. (1 nap)"
+        obs_1_day: "Megfigyelés (1 nap)"
         observations_1_week_moving_window: Megfigyelések (egyhetes mozgóátlag)
         observers_desc: Megfigyelést adott hozzá ezen a napon
         recent_desc: Az utóbbi hét nap alatt regisztrált
@@ -4409,26 +4423,52 @@ hu:
         compare_desc: |
           Hogy alakult ez az év az előzőekhez képest? Három vagy több év használat révén össze tudjuk hasonlítani az éves aktivitásaidat. A zöld csík jelzi az idei évet, a fehér függőleges vonal mutatja a tavalyi évet, a szürke mezők pedig a legalacsonyabb, legmagasabb és átlagos aktivitás évét. Az aktivitás nélküli éveket nem jelenítjük meg.
         compared_to_previous_years: Összehasonlítás az előző évekkel
+        donate_title: "Külön köszönet a támogatóinknak"
         donors: Támogatók
-        include_usa: Tartalmazza az AEÁ-t
+        inaturalist_network_desc: |
+          Az iNaturalist Network tagjainak éves visszatekintői
+        include_usa: Tartalmazza az USÁ-t
+        growth_by_country_desc_html: |
+          Hol van a növekvés? Erre próbál választ adni országonkénti lebontásban az alábbi térkép és diagram, amit az országonkénti növekedés kiegyenlítetlensége is bonyolít. Úgy döntöttünk, hogy a különségek hangsúlyozása érdekében nem vesszük figyelembe az Amerikai Egyesült Államokat, és alapértelmezetten logaritmikus skálát alkalmazunk. A feketével ábrázolt országok nem járultak hozzá jelentős mértékben a növekedéshez. Az egyes országok százalékainak megtekintéséhez húzd az egeret az országra. Az<strong>összes növekedés %-a</strong> azt fejezi ki, hogy a globális növekedés hány százaléka származik egy adott országból. Ha például 2018-ban 20, 2017-ben pedig 10 megfigyelés volt globálisan, és abból 5 Beninből érkezett, akkor Benin 50%-ban járult hosszá a globális növekedéshez. A <strong>növekedési %</strong> pedig azt mutatja, hogy milyen mértékben növekedett egy adott országban a megfigyelések száma tavalyhoz képest. Ha például Laoszban 10 megfigyelés volt tavaly, idén pedig 20, akkor a 100%-os a növekedés.
+        growth_by_country_title: Növekedés országonként
+        growth_in_year_obs: "%{year} növekedés (megfigyelés)"
         growth_title: Növekedés
+        new_species_desc_html: |
+          Az először idén megfigyelt fajok száma. Az adott hónap új fajainak megtekintéséhez kattints a hónap oszlopára. Megtekintheted az összesítést kumulatívan is, a csuszka segítségével pedig visszaléphetsz az időskálán. Ez a diagram az %{site_name}ra feltöltött, megerősíthető megfigyelések fajszámát mutatja, havi bontásban, a feltöltés (nem pedig a megfigyelés) ideje alapján. Nem tartalmazza a a fajnál magasabb vagy alacsonyabb rangú taxonokat, vagyis például egy emlősként meghatározott megfigyelés nem szerepel itt. Ugyanígy egy <i>Canis lupus</i> ssp. <i>arctos</i> egyszerűen <i>Canus lupus</i>-ként szerepel.
         new_species_per_year: Új faj / Év
         new_species_per_year_by_date_added: Hozzáadás dátuma szerint
-        obs_in_year: Megf. %{year}ben
+        new_species_per_year_by_date_observed: Megfigyelés dátuma szerint
+        obs_in_year: '%{year} évi megfigyelés'
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: Egyszeri
         percent_growth_in_year: "%{year} évi növekedés"
+        percent_of_total_growth: "Összes növekedés %-a"
+        publications_desc_html: |
+          A színek és számok jelentéséhez kattints a virágdiagramra. Az adatok és a diagramok szolgáltatója az <a href="https://www.altmetric.com">Altmetric</a>. Az adatok felhasználását jelölő információk forrása a <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br>
+          <a href="%{url}">Az összes %{numStudies} tanulány megtekintése</a>
+        publications_desc_short_html: |
+          A színek és számok jelentéséhez kattints a virágdiagramra. Az adatok és a diagramok szolgáltatója az <a href="https://www.altmetric.com">Altmetric</a>. Az adatok felhasználását jelölő információk forrása a <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+          <br>
+          <a href="%{url}">Az összes %{numStudies} tanulmány megtekintése</a>
         observations_per_year: Megfigyelés / Év
         observations_per_year_by_date_added: Hozzáadás dátuma szerint
+        observations_per_year_by_date_observed: Megfigyelés dátuma szerint
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: A megfigyelések huzama
+        observation_streaks_color_desc: |
+          A színek jelentik a napok számát, logaritmikus skálán:
         observation_streaks_desc2: |
           Egy megfigyelési huzam egy legalább öt napból álló periódus, ami alatt valaki minden nap kimegy a természetbe és új, megerősíthető megfigyeléseket végez minden egyes napon. Itt a leghosszabb huzamokat mutatjuk meg, amelyek az idén kezdődtek, vagy amelyek folyamatban voltak a statisztikák generálásának időpontjában. (Egyéni felhasználóknak azokat a huzamokat is mutatjuk, amelyek idén értek véget.)
         #Adjective, as in a donor who gives on a recurring basis, e.g. every month
         recurring: Ismétlődő
         species_per_year: Faj / Év
         species_per_year_by_date_added: Hozzáadás dátuma szerint
+        species_per_year_by_date_observed: Megfigyelés dátuma szerint
         stats_generated_datetime: A statisztikák a %{datetime} időpontot tükrözik.
+        stats_generation_schedule: A statisztikák december minden vasárnapján és január elsején generálódnak.
+        sunburst_desc_html: |
+          A megfigyelt taxonok hierarhikus sugárdiagrammal szemléltetve. A hierarhia bázisa a középpont: az élettel kezdődik és kifelé haladva fajokban végződik. Az ívek mérete az általuk képviselt taxonok megfigyelési volumenével arányosak, a színek pedig "szokásos módon" jelképezik a taxonokat (a növényeké zöld, a rovaroké narancssárga, a legtöbb egyéb állaté kék). Ezért például a sok zöld arra utal, hogy aránylag sok növényt figyeltél meg. <strong>Egy adott taxon középpontba helyezéséhez kattints a taxon felületére</strong>, <strong>a visszalépéshez pedig kattints a középpontra.</strong>
         translators_title: Fordítók
         translators_desc: |
           Tudtad, hogy az iNaturalist szinte teljes fordítását %{x_people} végezte el %{x_languages}re, és ezek közül egy páran nem is használják az iNatot? Itt vannak a csodálatos fordítók, akik idén fordítottak, valamint a lefordított szavak száma a
