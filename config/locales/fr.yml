@@ -2121,6 +2121,8 @@ fr:
   improving: Amélioration
   in_n: "dans %{n}"
   in_place_x: '%{place}'
+  #As in a reason to flag something
+  inappropriate: Inapproprié
   inaturalist_network: Réseau iNaturalist
   inaturalist_network_affiliation: Affiliation au réseau iNaturalist
   #Label for messages you've received
@@ -2350,6 +2352,8 @@ fr:
     waray_waray: Waray-Waray
     visayan: cebuano
   less: Moins
+  #Button show less text
+  less__context_text: Moins
   licensed_site_photos: "Photos d’%{site_name} sous licence"
   license: Licence
   licensing: Mise sous licence
@@ -2670,6 +2674,14 @@ fr:
     <a href="%{url}">Soutien mensuel</a> depuis %{date}
   months: Mois
   more: Plus
+  #Button to show more observations
+  more__context_observations_caps: PLUS
+  #Button to show more places
+  more__context_places: Plus
+  #Button to show more text
+  more__context_text: Plus
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: PLUS
   more_caps: PLUS
   more_about_sharing: En savoir plus sur le partage des données
   more_fields: Plus de champs
