@@ -281,7 +281,6 @@ id:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Tambah Satu Sekarang
-  add_photos: Tambahkan Foto
   add_place: Tambahkan Tempat
   add_alive_or_dead_alive_annotation: 'Tambahkan catatan "Hidup atau Mati: Hidup"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Tambahkan catatan "Hidup atau Mati: Tidak Dapat Ditentukan"'
@@ -970,8 +969,6 @@ id:
   #connecting to Flickr
   connect: Hubungkan
   connect_to_provider: "Hubungkan ke %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Akun yang terhubung
   connected_accounts_description: Akun yang terhubung adalah akun Anda dari aplikasi atau situs web lainnya yang telah Anda izinkan untuk mengakses iNaturalist atas nama Anda untuk mendukung proses masuk, mengimpor foto, atau fungsi-fungsi lainnya.
   connected_accounts_titlecase: Akun Yang Terhubung
   connecting_flickr: "Menghubungkan ke Flickr... "
@@ -1146,7 +1143,6 @@ id:
   created_by: Dibuat oleh
   created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
-  creating_your_account: "sedang membuat akun anda..."
   creative_commons_flickr_tagged: Foto Flickr Creative Commons Yang Diberi Tag
   creative_commons_unless_otherwise_noted: "Creative Commons kecuali dinyatakan lain."
   critically_endangered: Terancam punah
@@ -2401,7 +2397,6 @@ id:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Sedang masuk...
-  login_slash_username: Masuk / nama pengguna
   logo:
     logo: Logo
     white_bg_gif: BG GIF putih
@@ -4159,11 +4154,12 @@ id:
   select: Pilih
   select_all: Pilih Semua
   select_at_least_one: Pilih Minimal Satu
-  select_one_or_more_photos: 'Pilih Satu atau Lebih Foto'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Kosongkan Pilihan
   select_observations_to_edit: Pilih Pengamatan untuk Diubah...
   select_one_of_friends_albums: Pilih Salah Satu Album %{friend}
   select_one_of_your_albums: Pilih Salah Satu Album Anda
+  select_one_or_more_photos: 'Pilih Satu atau Lebih Foto'
   select_options: Opsi pilihan
   select_photos_from_your_photo_stream: |
     Pilih foto dari situs berbagi foto eksternal untuk dikonversi menjadi pengamatan %{site_name}. Kami akan mengisikan tanggal, waktu, dan lokasi dari metadata foto ini, dan mencoba untuk mencari nama spesies dari labelnya.
@@ -6537,10 +6533,6 @@ id:
         one_time: Satu kali
         percent_growth_in_year: "% Pertumbuhan pada %{year}"
         percent_of_total_growth: "% Total Pertumbuhan"
-        publications_desc_html: |
-          Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Lihat seluruh %{numStudies} penelitian</a>
         publications_desc_short_html: |
           Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Pengamatan / Tahun
