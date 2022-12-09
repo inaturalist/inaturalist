@@ -320,7 +320,6 @@ tr:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Şimdi Bir Tane Ekle
-  add_photos: Fotoğraf Ekle
   add_place: Konum Ekle
   add_alive_or_dead_alive_annotation: '"Canlı ya da Ölü: Canlı" açıklaması ekle'
   add_alive_or_dead_cannot_be_determined_annotation: '"Canlı ya da Ölü: Belirlenemeyen" açıklaması ekle'
@@ -1029,8 +1028,6 @@ tr:
   #connecting to Flickr
   connect: Bağlan
   connect_to_provider: "Şuna bağlan: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Hesaplara bağlandı
   connected_accounts_description: Bağlantılı hesaplar, diğer uygulamalarındaki veya web sitelerindeki hesaplarında, iNaturalist'in senin adına giriş yapılmasını desteklediği, fotoğraf aktarılabilen veya diğer fonksiyonları gerçekleştirmek için izin verdiğin hesaplardır.
   connected_accounts_titlecase: Bağlı Hesaplar
   connecting_flickr: "Flickr'a bağlanıyor... "
@@ -1199,7 +1196,6 @@ tr:
   created_by: Oluşturan
   created_by_user_on_date: '%{user} tarafından %{date} tarihinde oluşturuldu'
   created_on: Oluşturma tarihi
-  creating_your_account: "Hesabınız oluşturuluyor..."
   creative_commons_flickr_tagged: Creative Commons Flickr Fotoğrafları Etiketlendi
   creative_commons_unless_otherwise_noted: "Tersi belirtilmediği sürece Creative Commons."
   critically_endangered: Kritik Derecede Tehlikede
@@ -2439,7 +2435,6 @@ tr:
   log_scale_label: Günlük
   #Status message shown while logging in
   logging_in: Oturum açılıyor...
-  login_slash_username: Giriş yap / kullanıcı adı
   logo:
     logo: Logo
     white_bg_gif: beyaz arka plan GIF
@@ -3699,6 +3694,7 @@ tr:
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
+  play_first_sound: İlk Sesi Çal
   please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekle.
   please_allow_a_few_weeks_for_external_sites: Lütfen harici sitelerin bu gözlemden değişiklikleri eşitlemesi için birkaç hafta bekle #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Lütfen ebeveynlerinden izin iste
@@ -4189,11 +4185,12 @@ tr:
   select: Seç
   select_all: Tümünü Seç
   select_at_least_one: En Az Birini Seç
-  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Hiçbirini Seçme
   select_observations_to_edit: Gözlemleri Düzenlemek için Seç...
   select_one_of_friends_albums: '%{friend} Kullanıcısının Albümlerinden Birini Seç'
   select_one_of_your_albums: Albümlerinden Birini Seç
+  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
   select_options: Seçenekler
   select_photos_from_your_photo_stream: |
     Harici fotoğraf paylaşım sitelerinden %{site_name} gözlemlerine dönüştürmek için fotoğraflar seç. Bir fotoğrafın meta verilerinden tarih, saat ve konumu dolduracağız ve etiketlerden tür adlarını bulmaya çalışacağız.
@@ -6776,14 +6773,6 @@ tr:
         one_time: Tek sefer
         percent_growth_in_year: "%{year} içindeki büyüme %'si"
         percent_of_total_growth: "Toplam Büyüme %'si"
-        publications_desc_html: |
-          Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi 
-          için çiçek çizelgelerine tıklayın. <a href="https://www.altmetric.com">Altmetric</a>'in 
-          izniyle etki verileri ve çizelgeler. 
-          <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki 
-          arkadaşlarımızın veri kullanımı nezaket bilgileri.
-          <br/>
-          <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         publications_desc_short_html: |
           Sayıların ve renklerin ne anlama geldiği hakkında daha çok bilgi için çiçek grafiklerine tıkla. Etki verileri ve grafikler <a href="https://www.altmetric.com">Altmetric</a>'in izniyledir. Veri kullanımına ilişkin bilgiler <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki dostlarımızın izniyledir.
         observations_per_year: Gözlemler / Yıl
