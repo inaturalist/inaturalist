@@ -310,7 +310,6 @@ da:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Tilføj en nu
-  add_photos: Tilføj fotos
   add_place: Tilføj sted
   add_alive_or_dead_alive_annotation: 'Tilføj "Levende eller Død: Levende" anmærkning'
   add_alive_or_dead_cannot_be_determined_annotation: 'Tilføj "Levende eller Død: Kan ikke bestemmes" anmærkning'
@@ -1052,8 +1051,6 @@ da:
   #connecting to Flickr
   connect: Forbind
   connect_to_provider: "Tilknyt %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Tilknyttede konti
   connected_accounts_description: Forbundne konti er dine konti fra andre apps eller websteder, som du har givet iNaturalist adgang til på dine vegne for at understøtte indlogning, fotoimport eller anden funktionalitet.
   connected_accounts_titlecase: Forbundne konti
   connecting_flickr: "Tilknytter til Flickr..."
@@ -1230,7 +1227,6 @@ da:
   created_by: Oprettet af
   created_by_user_on_date: Oprettet af %{user} den %{date}
   created_on: Oprettet den
-  creating_your_account: "Opretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr fotos tagget
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre andet er noteret."
   critically_endangered: kritisk truet
@@ -2510,7 +2506,6 @@ da:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Logger ind...
-  login_slash_username: Login / brugernavn
   logo:
     logo: Logo
     white_bg_gif: hvid BG GIF
@@ -4310,11 +4305,12 @@ da:
   select: Vælg
   select_all: Vælg alle
   select_at_least_one: Vælg mindst en
-  select_one_or_more_photos: 'Vælg et eller flere foto´s'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Vælg ingen
   select_observations_to_edit: Vælg observationer, der skal redigeres...
   select_one_of_friends_albums: Vælg en af %{friend}'s albummer
   select_one_of_your_albums: Vælg et af dine albummer
+  select_one_or_more_photos: 'Vælg et eller flere foto´s'
   select_options: Vælg indstillinger
   select_photos_from_your_photo_stream: |
     Vælg billeder fra eksterne fotodelingstjenester, som skal konverteres til observationer på %{site_name}. Vi vil indsætte dato, klokkeslæt og placering ud fra billedets metadata, og prøve at finde artsnavne ud fra billedets tags.
@@ -7086,10 +7082,6 @@ da:
         one_time: Én gang
         percent_growth_in_year: "% Vækst i %{year}"
         percent_of_total_growth: "% af samlet vækst"
-        publications_desc_html: |
-          Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Se alle %{numStudies} studier</a>
         publications_desc_short_html: |
           Klik på blomsterdiagrammerne for mere information om betydning
           af numre og farver. Indvirkningsdata og diagrammer med
