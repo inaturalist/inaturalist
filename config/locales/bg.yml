@@ -276,7 +276,6 @@ bg:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Добавете такава
-  add_photos: Добавяне на снимки
   add_place: Добави място
   add_alive_or_dead_alive_annotation: 'Добави анотация „Жив или мъртъв: Жив“'
   add_alive_or_dead_cannot_be_determined_annotation: 'Добави анотация „Жив или мъртъв: Неопределим“'
@@ -786,8 +785,6 @@ bg:
   #connecting to Flickr
   connect: Свържи
   connect_to_provider: "Свържи с %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Свързани акаунти
   connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
   connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
@@ -928,7 +925,6 @@ bg:
   created_by: Създадено от
   created_by_user_on_date: Създадено от %{user} на %{date}
   created_on: Създадено на
-  creating_your_account: "Създаване на акаунт..."
   critically_endangered: Критично застрашен
   csv: CSV
   csv_file: CSV файл
@@ -1818,7 +1814,6 @@ bg:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Излизане от %{site_name}?"
   log_scale_label: Лог.
-  login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
     white_bg_gif: GIF с бял фон
@@ -3241,10 +3236,11 @@ bg:
   select: Избери
   select_all: Избери всички
   select_at_least_one: Изберете поне едно
-  select_one_or_more_photos: 'Изберете една или повече снимки'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Празен избор
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
+  select_one_or_more_photos: 'Изберете една или повече снимки'
   select_options: Избери опция
   select_photos_from_your_photo_stream: |
     Изберете снимки от външни сайтове за споделяне на снимки, за да ги направите наблюдения в %{site_name}. Ще попълним дата, час и място от метаданните на снимката и ще опитаме да открием вида сред етикетите (таговете) на снимката.
