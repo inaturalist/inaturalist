@@ -271,7 +271,6 @@ sr:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Dodaj novu
-  add_photos: Dodaj slike
   add_place: Dodaj mesto
   add_alive_or_dead_alive_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Živo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Nepoznato"'
@@ -707,8 +706,6 @@ sr:
   #connecting to Flickr
   connect: Poveži se
   connect_to_provider: "Poveži se na %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Povezani nalozi
   connected_accounts_description: Povezani nalozi su nalozi na drugim aplikacijama ili veb-sajtovima kojima će iNaturalist imati pristup u tvoje ime kako bi se omogućilo logovanje, uvoz fotografija ili neka druga funkcionalnost.
   connected_accounts_titlecase: Povezani nalozi
   connecting_flickr: "Povezivanje sa Flickr... "
@@ -2804,8 +2801,9 @@ sr:
   select: Izaberi
   select_all: Izaberi sve
   select_at_least_one: Označi bar jedno
-  select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
   select_options: Izaberi opciju
   selected: označeno
   selected_photos: Izabrane fotografije
