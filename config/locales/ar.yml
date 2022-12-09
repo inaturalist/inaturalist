@@ -105,7 +105,6 @@ ar:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: إضافة واحد الآن
-  add_photos: أضف صورًا
   add_place: أضف مكانا
   add_plant_phenology_budding_annotation: 'إضافة شرح "الفينولوجيا النباتي: التبرعم"'
   add_plant_phenology_flowering_annotation: 'إضافة شرح "الفينولوجيا النباتي: الإزهار"'
@@ -574,8 +573,6 @@ ar:
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
   connect_to_provider: "الاتصال بـ%{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: حسابات متصلة
   connecting_flickr: "جارٍ الاتصال بفليكر..."
   connecting_to_facebook: "جارٍ الاتصال بفيسبوك..."
   connecting_your_inat_account_to_accounts_other_sites: "سيتيح لك ربط حسابك %{site_name} بالحسابات على مواقع أخرى تسجيل الدخول إلى %{site_name} باستخدام بيانات الاعتماد من تلك المواقع."
@@ -668,7 +665,6 @@ ar:
   created_by: أنشأه
   created_by_user_on_date: تم الإنشاء بواسطة %{user} في %{date}
   created_on: تم الإنشاء في
-  creating_your_account: "جارٍ إنشاء حسابك..."
   creative_commons_flickr_tagged: صور فليكر الموسومة بالمشاع الإبداعي
   creative_commons_unless_otherwise_noted: "المشاع الإبداعي ما لم يُذكَر خلاف ذلك."
   critically_endangered: مهدد بخطر انقراض أقصى
@@ -1484,7 +1480,6 @@ ar:
   locked_taxa_will_not_allow_new: الأصناف المغلقة لن تسمح لأصناف نسل جديدة بأن تُضَاف إليها; لذلك إذا أقفلت البرمائيات وحاول شخص استيراد <i>ضفدع الثور</i> من موفر اسم خارجي، سيتم إنشاء أصنوفة جديدة ولكن لا يمكن تصنيفه على أنه برمائي، عندما يحدث هذا، يجب أن يتم وضع علامة على الأصناف المضافة حديثا لاهتمام الأمناء، وهذا ينبغي حقا أن يُستخدَم فقط للأصنوفة التي نعتقد أن لدينا بالفعل جميع المنحدرين منها، يمكن للأمين تجاوز هذا الأمر عن طريق تعديل الأصناف وإدخال معرفات الوالدين مباشرة، ولكن الرجاء مراعاة دمج الأصناف الجديدة في أصناف موجودة بدلا من ذلك.
   log_in: تسجيل الدخول
   log_scale_label: سجل
-  login_slash_username: تسجيل الدخول / اسم المستخدم
   logo:
     logo: شعار
     white_bg_gif: خلفية GIF بيضاء
@@ -2781,11 +2776,12 @@ ar:
   select: اختر
   select_all: تحديد الكل
   select_at_least_one: حدد واحدا على الأقل
-  select_one_or_more_photos: 'حدد صورة أو أكثر'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: لا تختر شيئا
   select_observations_to_edit: تحديد ملاحظات للتعديل...
   select_one_of_friends_albums: اختر أحد ألبومات %{friend}
   select_one_of_your_albums: اختر أحد ألبوماتك
+  select_one_or_more_photos: 'حدد صورة أو أكثر'
   select_options: تحديد الخيارات
   select_photos_from_your_photo_stream: |
     حدد الصور من مواقع مشاركة الصور الخارجية للتحويل إلى ملاحظات %{site_name}،
