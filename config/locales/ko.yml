@@ -158,7 +158,6 @@ ko:
   add_observations_project: 이 프로젝트에 관찰 추가하기
   #Prompt to add a new journal post
   add_one: 하나 추가하기!
-  add_photos: 사진 추가하기
   add_place: 장소 추가하기
   add_alive_or_dead_alive_annotation: '생존 여부: 살아있음'
   add_alive_or_dead_cannot_be_determined_annotation: '생존 여부: 확인할 수 없음'
@@ -569,8 +568,6 @@ ko:
   confirm_now: 지금 확인
   confirm_your_info: 정보 확인
   connect_to_provider: "%{provider}에 연결"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 연결된 계정
   connecting_flickr: "플리커에 연결 중..."
   connecting_to_facebook: "페이스북에 연결 중..."
   connecting_your_inat_account_to_accounts_other_sites: " %{site_name} 계정을 다른 계정에 연결하면 %{site_name}에 다른 계정의 정보로 로그인할 수 있습니다."
@@ -650,7 +647,6 @@ ko:
   created_by: '작성자:'
   created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
   created_on: '작성일:'
-  creating_your_account: "계정 만드는 중..."
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
   creative_commons_unless_otherwise_noted: "별도의 언급이 없으면 크리에이티브 커먼즈입니다."
   critically_endangered: 절멸 위급(CR)
@@ -1271,7 +1267,6 @@ ko:
   location_is_private: 위치가 비공개이다
   log_in: 로그인
   log_scale_label: 로그
-  login_slash_username: 로그인 / 사용자 이름
   logo:
     logo: 로고
     white_bg_gif: 흰색 배경 GIF
@@ -2085,10 +2080,11 @@ ko:
   select: 선택
   select_all: 모두 선택
   select_at_least_one: 적어도 하나를 선택하십시오
-  select_one_or_more_photos: '하나 이상의 사진 선택하기'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 선택 없음
   select_observations_to_edit: 편집할 관찰 선택하기...
   select_one_of_your_albums: 내 앨범 중 하나를 선택하십시오
+  select_one_or_more_photos: '하나 이상의 사진 선택하기'
   select_options: 옵션 선택
   selected: 삭제됨
   selected_photos: 선택된 사진들
