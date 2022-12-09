@@ -325,7 +325,6 @@ nl:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Voeg er nu één toe
-  add_photos: Foto's toevoegen
   add_place: Plaats toevoegen
   add_alive_or_dead_alive_annotation: 'Aantekening "Levend of dood: levend" toevoegen'
   add_alive_or_dead_cannot_be_determined_annotation: 'Aantekening "Levend of dood: kan niet worden vastgesteld" toevoegen'
@@ -1052,8 +1051,6 @@ nl:
   #connecting to Flickr
   connect: Koppelen
   connect_to_provider: "Verbinden met %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Gekoppelde accounts
   connected_accounts_description: "Gekoppelde accounts zijn je accounts voor andere apps of websites waar je iNaturalist toegang toe hebt gegeven om \ninloggen, import van foto's, of andere functionaliteit te ondersteunen."
   connected_accounts_titlecase: Gekoppelde accounts
   connecting_flickr: "Verbinden met Flickr ..."
@@ -1230,7 +1227,6 @@ nl:
   created_by: Aangemaakt door
   created_by_user_on_date: Aangemaakt door %{user} op %{date}
   created_on: Aangemaakt op
-  creating_your_account: "Je account aan het aanmaken..."
   creative_commons_flickr_tagged: Creative Commons Flickr foto's getagd
   creative_commons_unless_otherwise_noted: "Creative Commons tenzij anders vermeld."
   critically_endangered: Ernstig bedreigd
@@ -1760,6 +1756,8 @@ nl:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Minder
   failed: Mislukt
   field_note: |
     <strong>Let op:</strong> Als je een veld wilt maken, controleer dan of het al niet is aangemaakt door iemand anders om dubbele velden te voorkomen.
@@ -2117,6 +2115,8 @@ nl:
   improving: Verbeterend
   in_n: "in %{n}"
   in_place_x: in %{place}
+  #As in a reason to flag something
+  inappropriate: Ongepast
   inaturalist_network: iNaturalist netwerk
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
@@ -2484,7 +2484,6 @@ nl:
   log_scale_label: Logboek
   #Status message shown while logging in
   logging_in: Aanmelden...
-  login_slash_username: Login / gebruikersnaam
   logo:
     logo: Logo
     white_bg_gif: witte achtergrond GIF
@@ -3197,6 +3196,7 @@ nl:
   open_description: "De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om een bedreigd taxon."
   open_street_map: OpenStreetMap
   optional: optioneel
+  options: Opties
   or: of
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3793,6 +3793,7 @@ nl:
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst plaatsen kunnen toevoegen.
   plants: planten
+  play_first_sound: Eerste geluid afspelen
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
   please_allow_a_few_weeks_for_external_sites: Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Vraag je ouders om toestemming
@@ -4290,11 +4291,12 @@ nl:
   select: Selecteer
   select_all: Alles selecteren
   select_at_least_one: Selecteer minstens één
-  select_one_or_more_photos: 'Selecteer één of meerdere foto''s'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: geen selectie
   select_observations_to_edit: Selecteer waarnemingen om te bewerken ...
   select_one_of_friends_albums: Selecteer een album van %{friend}
   select_one_of_your_albums: Selecteer één van je albums
+  select_one_or_more_photos: 'Selecteer één of meerdere foto''s'
   select_options: Selecteer opties
   select_photos_from_your_photo_stream: |
     Selecteer foto's van externe fotosites om die om te zetten in 
@@ -6833,10 +6835,6 @@ nl:
         one_time: Eenmalig
         percent_growth_in_year: "% Groei in %{year}"
         percent_of_total_growth: "% of Totaal Groei"
-        publications_desc_html: |
-          Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
-          <br/>
-          <a href="%{url}">Toon alle %{numStudies} studies</a>
         publications_desc_short_html: |
           Klik op de bloemdiagrammen voor meer informatie over de betekenis van de nummers en kleuren. Met dank aan <a href="https://www.altmetric.com">Altmetric</a> voor de impactgegevens en visualisaties. Met dank aan onze vrienden van de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a> voor de informatie over het gebruik van de gegevens.
         observations_per_year: Waarnemingen / jaar
@@ -7630,6 +7628,8 @@ nl:
       flag:
         #The reason the item was flagged
         reason: Reden
+        #The person who resolved the flag
+        resolver_id: Oplosser
         #The kind of flag that was made
         flag: Melding
       guide:
@@ -8028,7 +8028,7 @@ nl:
         unsupported_response_type: 'De machtigingsserver ondersteunt dit antwoordtype niet.'
         #Access token errors
         invalid_client: 'Clientverificatie is mislukt vanwege onbekende client, geen clientverificatie opgenomen of een niet-ondersteunde verificatiemethode.'
-        invalid_grant: 'De verleende autorisatieverlening is ongeldig, verlopen, ingetrokken, komt niet overeen met de omleidings-URI die is gebruikt in het autorisatieverzoek, of is aan een andere klant verstrekt.'
+        invalid_grant: 'De verstrekte autorisatieverlening is ongeldig, verlopen, ingetrokken, komt niet overeen met de omleidings-URI die is gebruikt in het autorisatieverzoek of is aan een andere klant verstrekt.'
         unsupported_grant_type: 'Het type autorisatieverlening wordt niet ondersteund door de autorisatieserver.'
         #Password Access token errors
         invalid_resource_owner: 'De opgegeven credentials voor de broneigenaar zijn niet geldig of de broneigenaar kan niet worden gevonden'
