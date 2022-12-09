@@ -382,7 +382,6 @@ pl:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Dodaj jakieś teraz
-  add_photos: Dodaj zdjęcia
   add_place: Dodaj lokalizację
   add_alive_or_dead_alive_annotation: 'Dodaj adnotację "Żywy czy martwy: Żywy"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj adnotację "Żywy czy martwy: Nie można określić"'
@@ -1021,8 +1020,6 @@ pl:
   #connecting to Flickr
   connect: Połącz
   connect_to_provider: "Połącz z %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Podłączone konta
   connected_accounts_titlecase: Połączone konta
   connecting_flickr: "Łączenie z Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Połącz się ponownie z Flickr, aby autoryzować uprawnienia do zapisu
@@ -1169,7 +1166,6 @@ pl:
   created_by: Utworzone przez
   created_by_user_on_date: Utworzone %{date} przez %{user}
   created_on: Utworzone
-  creating_your_account: "Tworzenie konta..."
   creative_commons_flickr_tagged: Otagowane zdjęcia z Flickra na licencji Creative Commons
   creative_commons_unless_otherwise_noted: "Na licencji Creative Commons, chyba że podano inaczej."
   critically_endangered: Krytycznie zagrożony
@@ -2121,7 +2117,6 @@ pl:
   log_scale_label: Dziennik
   #Status message shown while logging in
   logging_in: Logowanie...
-  login_slash_username: Login / nazwa użytkownika
   logo:
     logo: Logo
     white_bg_gif: GIF z białym tłem
@@ -3370,11 +3365,12 @@ pl:
   seen_nearby: Widziany w pobliżu
   select: Wybierz
   select_all: Zaznacz wszystkie
-  select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Odznacz wszystkie
   select_observations_to_edit: Wybierz obserwacje do edycji...
   select_one_of_friends_albums: Wybierz jeden z albumów użytkownika %{friend}
   select_one_of_your_albums: Wybierz jeden ze swoich albumów
+  select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
   select_options: Wybierz opcje
   selected_photos: Wybrane zdjęcia
   selected_taxon: Wybrany takson
