@@ -380,7 +380,6 @@ lt:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pridėti dabar
-  add_photos: Pridėti nuotraukas
   add_place: Pridėti vietovę
   add_alive_or_dead_alive_annotation: 'Pridėti pastabą: „Gyvas ar miręs: Gyvas“'
   add_alive_or_dead_cannot_be_determined_annotation: 'Pridėti pastabą: „Gyvas ar miręs; negalima nustatyti“'
@@ -1045,8 +1044,6 @@ lt:
   #connecting to Flickr
   connect: Sujungti
   connect_to_provider: "Prisijungti prie %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Prijungtos paskyros
   connected_accounts_description: Prijungtos paskyros yra kitų programėlių ar tinklalapių paskyros, kurias leidote pasiekti iNaturalist prisijungimo, nuotraukų įkėlimo ar kitais tikslais.
   connected_accounts_titlecase: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
@@ -1202,7 +1199,6 @@ lt:
   created_by: Sukūrė
   created_by_user_on_date: '%{date} sukūrė %{user}'
   created_on: Sukurta
-  creating_your_account: "Jūsų paskyra kuriama..."
   critically_endangered: Grėsmingai nykstantis
   csv: CSV
   csv_file: CSV failas
@@ -2178,7 +2174,6 @@ lt:
   log_scale_label: Įrašas
   #Status message shown while logging in
   logging_in: Prisijungiama...
-  login_slash_username: Prisijungimo / vartotojo vardas
   logo:
     logo: Logotipas
     white_bg_gif: baltas BG GIF
@@ -3536,11 +3531,12 @@ lt:
   select: Pasirinkite
   select_all: Pasirinkti visus
   select_at_least_one: Pasirinkite bent vieną
-  select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nieko nepažymėti
   select_observations_to_edit: Pasirinkite, kuriuos stebėjimus redaguoti...
   select_one_of_friends_albums: Pasirinkti vieną iš %{friend} albumų
   select_one_of_your_albums: Pasirinkti vieną iš jūsų albumų
+  select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
   select_options: Pažymėkite pasirinkimus
   select_photos_from_your_photo_stream: |
     Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
