@@ -266,7 +266,6 @@ hu:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Adj hozzá egyet
-  add_photos: Fénykép hozzáadása
   add_place: Hely hozzáadása
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
   add_alive_or_dead_cannot_be_determined_annotation: '"Élő vagy élettelen: Nem meghatározható" megjelölés hozzáadása'
@@ -829,8 +828,6 @@ hu:
   #connecting to Flickr
   connect: Csatlakozás
   connect_to_provider: "Kapcsolódás %{provider} szolgáltatóhoz"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Csatlakoztatott fiókok
   connected_accounts_description: A csatlakoztatott fiókok olyan más alkalmazások fiókjai melyeknek engedélyt adtál az iNaturalistnak, hogy nevedben belépjen, fotókat importáljon és egyéb funkciókat hajtson végre.
   connected_accounts_titlecase: Csatlakoztatott fiókok
   connecting_flickr: "Kapcsolódás a Flickr-re... "
@@ -965,7 +962,6 @@ hu:
   created_by: Létrehozta
   created_by_user_on_date: '%{user} készítette ekkor: %{date}'
   created_on: 'Létrehozva:'
-  creating_your_account: "Fiókod létrehozása folyamatban..."
   creative_commons_unless_otherwise_noted: "Creative Commons ha nincs más megadva"
   critically_endangered: Súlyosan veszélyeztetett
   csv: CSV
@@ -1907,7 +1903,6 @@ hu:
   log_scale_label: Logaritmikus
   #Status message shown while logging in
   logging_in: Bejelentkezés...
-  login_slash_username: Login / felhasználónév
   logo:
     logo: Logó
     white_bg_gif: Fehér hátterű GIF
@@ -3334,10 +3329,11 @@ hu:
   select: Kiválasztás
   select_all: Összes kijelölése
   select_at_least_one: Legalább egyet válassz
-  select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Kijelölés visszavonása
   select_observations_to_edit: Válassz ki megfigyelést a szerkesztéshez
   select_one_of_friends_albums: Válassz egyet %{friend} albumai közül
+  select_one_or_more_photos: 'Fénykép(ek) kiválasztása'
   select_options: válassz
   selected: kiválasztva
   selected_photos: Kiválasztott fényképek
@@ -4443,14 +4439,6 @@ hu:
         one_time: Egyszeri
         percent_growth_in_year: "%{year} évi növekedés"
         percent_of_total_growth: "Összes növekedés %-a"
-        publications_desc_html: |
-          A színek és számok jelentéséhez kattints a virágdiagramra. Az adatok és a diagramok szolgáltatója az <a href="https://www.altmetric.com">Altmetric</a>. Az adatok felhasználását jelölő információk forrása a <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br>
-          <a href="%{url}">Az összes %{numStudies} tanulány megtekintése</a>
-        publications_desc_short_html: |
-          A színek és számok jelentéséhez kattints a virágdiagramra. Az adatok és a diagramok szolgáltatója az <a href="https://www.altmetric.com">Altmetric</a>. Az adatok felhasználását jelölő információk forrása a <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br>
-          <a href="%{url}">Az összes %{numStudies} tanulmány megtekintése</a>
         observations_per_year: Megfigyelés / Év
         observations_per_year_by_date_added: Hozzáadás dátuma szerint
         observations_per_year_by_date_observed: Megfigyelés dátuma szerint
@@ -5123,6 +5111,8 @@ hu:
           attributes:
             name:
               already_exists: már létezik ehhez a taxonhoz ebben a szókészletben
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                nem lehet azonos a tudományos fajnévvel e lexikonban
         taxon_photo:
           attributes:
             taxon:
