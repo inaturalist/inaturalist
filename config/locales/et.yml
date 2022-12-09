@@ -306,7 +306,6 @@ et:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Lisa
-  add_photos: Lisa fotod
   add_place: Lisa koht
   add_alive_or_dead_alive_annotation: 'Lisa märge "Elus või surnud: elus"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisa märge "Elus või surnud: ei saa lõpuni otsustada"'
@@ -1005,8 +1004,6 @@ et:
   #connecting to Flickr
   connect: Ühenda
   connect_to_provider: "Ühendan: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Ühendatud kontod
   connected_accounts_description: Ühendatud kontod on sinule kuuluvad kontod teistes rakendustes või teistel lehekülgedel, millele oled võimaldanud iNatutalisti poolt ligipääsu lihtsustamaks sisse logimist, fotode importi või muid tegevusi.
   connected_accounts_titlecase: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
@@ -1173,7 +1170,6 @@ et:
   created_by: Loonud
   created_by_user_on_date: Loonud %{user} kuupäeval %{date}
   created_on: Loodud kuupäeval
-  creating_your_account: "Loon sinu kontot..."
   creative_commons_flickr_tagged: Märksõnadega Creative Commons litsentsiga Flickr fotod
   creative_commons_unless_otherwise_noted: "Kui teisiti pole määratletud, kehtib Creative Commons litsents."
   critically_endangered: Kriitlises hävimisohus
@@ -2246,7 +2242,6 @@ et:
   log_scale_label: Logi
   #Status message shown while logging in
   logging_in: Login sisse...
-  login_slash_username: Kasutajatunnus
   logo:
     logo: Logo
     white_bg_gif: valge taustaga GIF
@@ -3566,11 +3561,12 @@ et:
   select: Vali
   select_all: Vali kõik
   select_at_least_one: Vali vähemalt üks
-  select_one_or_more_photos: 'Vali üks või enam fotot'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Tühista valik
   select_observations_to_edit: Vali muutmiseks vaatlus...
   select_one_of_friends_albums: Vali üks kasutaja %{friend} album
   select_one_of_your_albums: Vali üks enda album
+  select_one_or_more_photos: 'Vali üks või enam fotot'
   select_options: Valikud
   select_photos_from_your_photo_stream: |
     Vali väliste fotojagamislehtede pildid, mida muuta vaatlusteks lehel %{site_name}. Me lisame foto metaandmetest kuupäeva, kellaaja ja asukoha ning proovime märksõnadest leida liikide nimed.
