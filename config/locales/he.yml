@@ -389,7 +389,6 @@ he:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: להוסיף אחד עכשיו
-  add_photos: הוספת תמונות
   add_place: הוספת מקום
   add_alive_or_dead_alive_annotation: 'הוסף תווית:"חי או מת: חי"'
   add_alive_or_dead_cannot_be_determined_annotation: 'הוסף תווית "חי או מת: לא ניתן לקביעה"'
@@ -1128,8 +1127,6 @@ he:
   #connecting to Flickr
   connect: התחברות
   connect_to_provider: "התחבר ל %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: חשבונות משוייכים
   connected_accounts_description: חשבונות מקושרים הם החשבונות שלך מאפליקציות או מאתרים אחרים אליהם נתת ל-iNaturalist גישה מטעמך לתמוך בהתחברות, ייבוא תמונות או פונקציות אחרות.
   connected_accounts_titlecase: חשבונות משוייכים
   connecting_flickr: "מתחבר לפליקר..."
@@ -1296,7 +1293,6 @@ he:
   created_by: נוצר על־ידי
   created_by_user_on_date: נוצר על־ידי %{user} בתאריך %{date}
   created_on: נוצר ב-
-  creating_your_account: "יצירת החשבון שלך"
   creative_commons_flickr_tagged: תמונות קריאטיב קומונס המתוייגות בפליקר
   creative_commons_unless_otherwise_noted: "קריאטיב קומונס אלא אם מצוין אחרת."
   critically_endangered: בסכנת הכחדה קריטית
@@ -2542,7 +2538,6 @@ he:
   log_scale_label: יומן
   #Status message shown while logging in
   logging_in: מתחבר...
-  login_slash_username: שם מתשמש
   logo:
     logo: סמליל
     white_bg_gif: GIF רקע לבן
@@ -4314,11 +4309,12 @@ he:
   select: בחירה
   select_all: לבחור הכל
   select_at_least_one: לבחור אחד לפחות
-  select_one_or_more_photos: 'לבחור תמונה אחת או יותר'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: בטל כל הבחירות
   select_observations_to_edit: נא לבחור תצפיות לעריכה...
   select_one_of_friends_albums: בחירת אחד האלבומים של %{friend}
   select_one_of_your_albums: בחירת אחד האלבומים שלך
+  select_one_or_more_photos: 'לבחור תמונה אחת או יותר'
   select_options: לבחור אפשרויות
   select_photos_from_your_photo_stream: |
     נא לבחור תמונות מאתרי שיתוף תמונות חיצוניים על מנת להמיר אותן לתצפיות %{site_name}. אנחנו נשלים את התאריך והשעה מהמטה-נתונים של הקול, וננסה לחפש שמות מינים מהתגים.
@@ -6714,10 +6710,6 @@ he:
         one_time: חד-פעמי
         percent_growth_in_year: "אחוז צמיחה ב%{year}"
         percent_of_total_growth: "% מתוך כלל הצמיחה"
-        publications_desc_html: |
-          למידע נוסף על הצבעים והמספרים יש ללחוץ על טבלאות הפרחים. נתוני ההשפעה והטבלאות הם בחסות <a href="https://www.altmetric.com">אלמטריק</a>. מידע על השימוש בנתונים הוא בחסות חברינו ב-<a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>.
-          <br/>
-          <a href="%{url}">צפייה בכל %{numStudies} המחקרים</a>
         publications_desc_short_html: |
           למידע נוסף על הצבעים והמספרים יש ללחוץ על טבלאות הפרחים. נתוני ההשפעה והטבלאות הם בחסות <a href="https://www.altmetric.com">אלמטריק</a>. מידע על השימוש בנתונים הוא בחסות חברינו ב-<a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>.
         observations_per_year: תצפיות / שנה
