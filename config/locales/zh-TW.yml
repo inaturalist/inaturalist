@@ -263,7 +263,6 @@ zh-TW:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 現在新增一個
-  add_photos: 新增相片
   add_place: 加入地點
   add_alive_or_dead_alive_annotation: '新增註解「活體或死亡：活體」'
   add_alive_or_dead_cannot_be_determined_annotation: '新增註解「活體或死亡：無法判斷」'
@@ -909,8 +908,6 @@ zh-TW:
   #connecting to Flickr
   connect: 連接
   connect_to_provider: "連接至%{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 已連接帳號
   connected_accounts_description: 連結的帳號是您允許透過其他 app 或網站的帳號來代表您登入、匯入照片或使用其他功能。
   connected_accounts_titlecase: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
@@ -1077,7 +1074,6 @@ zh-TW:
   created_by: 建立由
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
   created_on: 創立於
-  creating_your_account: "建立您的帳號中…"
   creative_commons_flickr_tagged: 創用 CC 的 Flickr 照片已標記
   creative_commons_unless_otherwise_noted: "創用 CC，除非另有聲明。"
   critically_endangered: 極度瀕危
@@ -2285,7 +2281,6 @@ zh-TW:
   log_scale_label: 對數
   #Status message shown while logging in
   logging_in: 登入中...
-  login_slash_username: 登入 / 用戶名稱
   logo:
     logo: 標誌
     white_bg_gif: 白色背景 GIF
@@ -3958,11 +3953,12 @@ zh-TW:
   select: 選擇
   select_all: 選擇全部
   select_at_least_one: 選擇至少一個
-  select_one_or_more_photos: '選擇一張或更多照片'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 都不選擇
   select_observations_to_edit: 選擇觀察來編輯...
   select_one_of_friends_albums: 選擇一個 %{friend} 的相簿
   select_one_of_your_albums: 選擇一個您的相簿
+  select_one_or_more_photos: '選擇一張或更多照片'
   select_options: 選擇選項
   select_photos_from_your_photo_stream: |
     選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
@@ -6178,13 +6174,6 @@ zh-TW:
         one_time: 一次性捐款
         percent_growth_in_year: "在%{year}的成長比例(%)"
         percent_of_total_growth: "總成長比例(%)"
-        publications_desc_html: |
-          點選花型圖來了解更多關於數字和顏色的意義。
-          <a href="https://www.altmetric.com">Altmetric</a>上具影響力的資料和圖表。
-          有關我們的朋友於<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>
-          上數據使用的資訊。
-          <br/>
-          <a href="%{url}">檢視全部的 %{numStudies} 份研究</a>
         publications_desc_short_html: |
           點選花型圖來了解更多關於數字和顏色的意義。
           <a href="https://www.altmetric.com">Altmetric</a>上具影響力的資料和圖表。
