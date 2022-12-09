@@ -360,7 +360,6 @@ lv:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pievienot tagad
-  add_photos: Pievienot foto
   add_place: Pievienot vietu
   add_alive_or_dead_alive_annotation: 'Pievienot piezīmi "Dzīvs vai miris: dzīvs"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzīvs vai miris: nenoteicams"'
@@ -1084,8 +1083,6 @@ lv:
   #connecting to Flickr
   connect: Savienot
   connect_to_provider: "Savienoties ar %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Savienotie konti
   connected_accounts_description: Savienotie konti ir citu lietotņu un tīmekļa vietņu konti, kuriem esi devis iNaturalist piekļuvi, lai tavā vārdā pierakstītos, importētu fotogrāfijas u.t.m.l.
   connected_accounts_titlecase: Savienotie konti
   connecting_flickr: "Savienojas ar Flickr... "
@@ -1254,7 +1251,6 @@ lv:
   created_by: Izveidojis
   created_by_user_on_date: Izveidojis %{user} %{date}
   created_on: Izveidots
-  creating_your_account: "Izveido kontu..."
   creative_commons_flickr_tagged: Flickr fotogrāfijām ar Creative Commons licenci pievienots tags
   creative_commons_unless_otherwise_noted: "Tiek pielietota Creative Commons licence, ja vien nav norādīta cita."
   critically_endangered: Kritiski apdraudēts
@@ -2483,7 +2479,6 @@ lv:
   log_scale_label: Žurnāls
   #Status message shown while logging in
   logging_in: Pieslēdzas...
-  login_slash_username: Lietotājvārds
   logo:
     logo: Logo
     white_bg_gif: GIF ar baltu fonu
@@ -4194,11 +4189,12 @@ lv:
   select: Atlasīt
   select_all: Atlasīt visu
   select_at_least_one: Atlasīt vismaz vienu
-  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nodzēst lauciņus
   select_observations_to_edit: Atlasīt rediģēšanai paredzētos novērojumus
   select_one_of_friends_albums: Atlasīt lietotāja %{friend} albumu
   select_one_of_your_albums: Atlasīt kādu no saviem albumiem
+  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
   select_options: Atlasīt
   select_photos_from_your_photo_stream: |
     Atlasi fotogrāfijas fotogrāfiju koplietošanas vietnēs, lai tās pārveidotu par %{site_name} vietnē reģistrētiem novērojumiem. Datums, laiks un atrašanās vieta tiks automātiski aizpildīta, izmantojot fotogrāfiju metadatus. Centīsimies atrast sugu, vadoties pēc pievienotajiem tagiem.
@@ -6532,10 +6528,6 @@ lv:
         one_time: Vienreizējs
         percent_growth_in_year: "% pieaugums %{year}. gadā"
         percent_of_total_growth: "% no kopējā pieauguma"
-        publications_desc_html: |
-          Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
-          <br/>
-          <a href="%{url}">Skatīt visus %{numStudies} pētījumus</a>
         publications_desc_short_html: |
           Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
         observations_per_year: Novērojumi / gads

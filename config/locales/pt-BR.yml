@@ -304,7 +304,6 @@ pt-BR:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Adicionar Uma Agora
-  add_photos: Adicione fotos
   add_place: Adicionar lugar
   add_alive_or_dead_alive_annotation: 'Adicionar anotação "Vivo ou Morto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Adicionar anotação "Vivo ou Morto: Não Pode ser Determinado"'
@@ -1043,8 +1042,6 @@ pt-BR:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Conectar com %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Contas conectadas
   connected_accounts_description: Contas conectadas são suas contas de outros aplicativos ou sites aos quais você permitiu o acesso do iNaturalist em seu nome para oferecer suporte a login, importação de fotos ou outra funcionalidade.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectando ao Flickr..."
@@ -1220,7 +1217,6 @@ pt-BR:
   created_by: Criado por
   created_by_user_on_date: Criado por %{user} em %{date}
   created_on: Criado em
-  creating_your_account: "Criando sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons marcadas no Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons a não ser que prefira não licenciar desta maneira."
   critically_endangered: Criticamente em perigo
@@ -2487,7 +2483,6 @@ pt-BR:
   log_scale_label: Registro
   #Status message shown while logging in
   logging_in: Iniciando sessão...
-  login_slash_username: Login / nome de usuário
   logo:
     logo: Logotipo
     white_bg_gif: branco BG GIF
@@ -4260,11 +4255,12 @@ pt-BR:
   select: Selecionar
   select_all: Selecionar todas
   select_at_least_one: Selecione pelo menos um
-  select_one_or_more_photos: 'Selecione uma ou mais fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Limpar seleção
   select_observations_to_edit: Selecione observações para editar...
   select_one_of_friends_albums: Selecione um dos álbuns de %{friend}
   select_one_of_your_albums: Selecione um dos seus álbuns
+  select_one_or_more_photos: 'Selecione uma ou mais fotos'
   select_options: Selecionar opções
   select_photos_from_your_photo_stream: |
     Selecione fotos de sites de armazenamento de imagens externos para converte-las em %{site_name} observações. Data, horário e local serão automaticamente inseridos com base em metadados, de preferência busque pelos nomes das espécies nas marcações.
@@ -6740,10 +6736,6 @@ pt-BR:
         one_time: Doação única
         percent_growth_in_year: "% crescimento em %{year}"
         percent_of_total_growth: "% do crescimento total"
-        publications_desc_html: |
-          Clique os gráficos em flor para mais informações sobre o que os números e cores significam. Gráficos e dados sobre impacto são cortesia de <a href="https://www.altmetric.com">Altmetric</a>. Informação sobre uso de data é cortesia de nossos amigos do <a href="https://www.gbif.org/">Sistema Global de Informação sobre Biodiversidade</a>.
-          <br/>
-          <a href="%{url}">Ver todos os %{numStudies} estudos</a>
         publications_desc_short_html: |
           Clique os gráficos em flor para mais informações sobre o que os números e cores significam. Gráficos e dados sobre impacto são cortesia de <a href="https://www.altmetric.com">Altmetric</a>. Informação sobre uso de data é cortesia de nossos amigos do <a href="https://www.gbif.org/">Sistema Global de Informação sobre Biodiversidade</a>.
         observations_per_year: Observações / Ano

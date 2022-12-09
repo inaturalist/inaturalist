@@ -271,10 +271,9 @@ sr:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Dodaj novu
-  add_photos: Dodaj slike
   add_place: Dodaj mesto
   add_alive_or_dead_alive_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Živo"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Ne može se utvrditi"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Nepoznato"'
   add_alive_or_dead_dead_annotation: 'Dodaj pribelešku za "Živo ili mrtvo: Mrtvo"'
   add_plant_phenology_budding_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Pupenje"'
   add_plant_phenology_flowering_annotation: 'Dodaj pribelešku za "Fenologija biljaka: Cvetanje"'
@@ -298,7 +297,7 @@ sr:
   add_several_observations_at_once: Dodaj više opservacija odjednom
   add_sex_female_annotation: 'Dodaj pribelešku "Pol: Ženski"'
   add_sex_male_annotation: 'Dodaj pribelešku "Pol: Muški"'
-  add_sex_cannot_be_determined_annotation: 'Dodaj pribelešku "Pol: Ne može se utvrditi"'
+  add_sex_cannot_be_determined_annotation: 'Dodaj pribelešku "Pol: Nepoznat"'
   add_some_now: Dodaj sada
   add_tag: Dodaj oznaku
   add_tags: Dodaj oznake
@@ -580,6 +579,7 @@ sr:
   black: crna
   blocked_users: Blokirani korisnici
   blue: plavo
+  blue_butterfly_etc: "plavo, leptir itd."
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: podebljan tekst
   breadcrumbs: Putokaz
@@ -706,8 +706,6 @@ sr:
   #connecting to Flickr
   connect: Poveži se
   connect_to_provider: "Poveži se na %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Povezani nalozi
   connected_accounts_description: Povezani nalozi su nalozi na drugim aplikacijama ili veb-sajtovima kojima će iNaturalist imati pristup u tvoje ime kako bi se omogućilo logovanje, uvoz fotografija ili neka druga funkcionalnost.
   connected_accounts_titlecase: Povezani nalozi
   connecting_flickr: "Povezivanje sa Flickr... "
@@ -743,7 +741,7 @@ sr:
     alive_or_dead: Živo ili mrtvo
     alive: Živo
     dead: Mrtvo
-    cannot_be_determined: Ne može se utvrditi
+    cannot_be_determined: Nepoznato
     evidence_of_presence: Dokaz prisustva
     #As in the feather on a bird
     feather: Pero
@@ -1658,6 +1656,7 @@ sr:
   n_person_disagrees: "%{amount} osoba se ne slaže"
   name: Ime
   name_entered: Ime uneto
+  name_or_slug: "Naziv ili glavni deo URL-a, npr. my-project"
   name_providers:
     col: Katalog života
   native: autohton
@@ -1749,6 +1748,7 @@ sr:
   no_reply_yet: Nema još odgovora
   no_subject_parens: "(Bez naslova)"
   no_taxa: Nema taksona
+  none: Ništa
   none_found: Nije nađena nijedna
   not_confident_top_suggestions: Ne možemo sa sigurnošću dati preporuku ali evo naših predloga
   not_found: Nije pronađeno
@@ -2789,6 +2789,7 @@ sr:
   search_this_taxon: pretraži takson
   search_your_photos: Pretraži tvoje fotografije
   searching: "Pretraga..."
+  seasonality: Sezonalnost
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "Your
   #Identifications", but we generally handle those with more specific
@@ -2800,8 +2801,9 @@ sr:
   select: Izaberi
   select_all: Izaberi sve
   select_at_least_one: Označi bar jedno
-  select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
   select_options: Izaberi opciju
   selected: označeno
   selected_photos: Izabrane fotografije
@@ -3337,7 +3339,7 @@ sr:
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> je sada kustos projekta %{project}
   user_muted: Korisnik ućutkan
-  user_suggested_an_id: "%{user} predlože ID"
+  user_suggested_an_id: "%{user} predlaže ID"
   user_trusts_this_project_for_none: Korisnik nije poverio svoje skrivene koordinate ovom projektu.
   user_trusts_you_with_their_private_coordinates: "%{user} ti poverava njegove/njene skrivene koordinate"
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> je napisao/la,
@@ -4068,10 +4070,12 @@ sr:
           Stara izreka kaže: "Naučni nazivi se menjaju iz mesta u mesto a naučni nazivi se menjaju s vremena na vreme."
           </p>
           <p>
-          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima gorisnika.
+          Mi težimo da rešimo te nedostatke prikazom i narodnog i naučnog naziva kad god je to moguće i prikazani narodni nazivi su u skladu sa jezikom i geografskim podešavanjima korisnika.
           </p>
         about_conservation_status_desc: |
           Status ugroženosti opisuje rizik od izumiranja za neku grupu organizama.
+        charts_help_other: |
+          Takođe se prikazuju grafici sezonalnosti za pribeleške opservacija. Pribeleške služe da upotpune opservacije pomoću predefinisanih izraza, npr. da li je opservacijom zabeležena biljka koja je u fazi cvetanja ili u fazi rađanja ploda.
         discoveries_desc: "Najskorije novoidentifikovane vrste u ovom taksonu"
         frequency:
           research: Istraživački nivo
@@ -4087,7 +4091,7 @@ sr:
           "Life Stage=Juvenile": Juvenil
           "Life Stage=Nymph": Nimfa
           "Life Stage=Pupa": Lutka
-          "Sex=Cannot Be Determined": Ne može se utvrditi
+          "Sex=Cannot Be Determined": Nepoznat
           "Sex=Female": Ženka
           "Sex=Male": Mužjak
           unannotated: Nema pribeleške

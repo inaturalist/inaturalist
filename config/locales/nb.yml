@@ -294,7 +294,6 @@ nb:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Legg til et nå
-  add_photos: Legg til bilder
   add_place: Legg til sted
   add_alive_or_dead_alive_annotation: 'Legg til merknad "Levende eller død: levende"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Legg til merknad "Levende eller død: kan ikke bestemmes"'
@@ -932,8 +931,6 @@ nb:
   #connecting to Flickr
   connect: Koble til
   connect_to_provider: "Koble til %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Koblete kontoer
   connected_accounts_titlecase: Koblete kontoer
   connecting_flickr: "Kobler til Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Koble til Flickr igjen for å gi skrivetillatelser
@@ -1084,7 +1081,6 @@ nb:
   created_by: Opprettet av
   created_by_user_on_date: Opprettet av %{user} på %{date}
   created_on: Opprettet på
-  creating_your_account: "Oppretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr bilder merket
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre annet er angitt."
   critically_endangered: Kritisk truet
@@ -2119,7 +2115,6 @@ nb:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Logger inn...
-  login_slash_username: Login / brukernavn
   logo:
     logo: Logo
     white_bg_gif: gif med hvit bakgrunn
@@ -3703,11 +3698,12 @@ nb:
   select: Velg
   select_all: Velg alle
   select_at_least_one: Velg minst en
-  select_one_or_more_photos: 'Velg ett eller flere bilder'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Velg ingen
   select_observations_to_edit: Velg observasjoner til redigering...
   select_one_of_friends_albums: Velg ett av %{friend} sine album
   select_one_of_your_albums: Velg et av dine album
+  select_one_or_more_photos: 'Velg ett eller flere bilder'
   select_options: Velg muligheter
   select_photos_from_your_photo_stream: |
     Velg bilder fra eksterne bildedelingssider for å konvertere de til observasjoner på %{site_name}. Vi fyller ut dato, tid, og sted ut fra bildets metadata, og prøver å finne artsnavn i taggene.
@@ -5712,10 +5708,6 @@ nb:
         one_time: Engangs
         percent_growth_in_year: "% vekst i %{year}"
         percent_of_total_growth: "% av total vekst"
-        publications_desc_html: |
-          Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
-          <br/>
-          <a href="%{url}">Vis alle %{numStudies} studier</a>
         publications_desc_short_html: |
           Trykk på blomstergrafene for mer informasjon om hva tallene og fargene betyr. Påvirkningsdata og visualisering fra <a href="https://www.altmetric.com">Altmetric</a>. Informasjon om bruk av data fra våre venner hos <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
         observations_per_year: Observasjoner / år

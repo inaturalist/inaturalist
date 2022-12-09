@@ -277,7 +277,6 @@ zh-CN:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 现在添加一个
-  add_photos: 添加照片
   add_place: 添加地点
   add_alive_or_dead_alive_annotation: '添加注释 "活体或死亡:活体"'
   add_alive_or_dead_cannot_be_determined_annotation: '添加注释 "活体或死亡: 不确定"'
@@ -928,8 +927,6 @@ zh-CN:
   #connecting to Flickr
   connect: 绑定
   connect_to_provider: "连接至 %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 已连接账户
   connected_accounts_titlecase: 已关联的账号
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
@@ -1084,7 +1081,6 @@ zh-CN:
   created_by: 创建由
   created_by_user_on_date: 由%{user}于%{date}创建
   created_on: 创建于
-  creating_your_account: "创建您的账户……"
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
   creative_commons_unless_otherwise_noted: "知识共享，除非另有声明。"
   critically_endangered: 极度濒危
@@ -2176,7 +2172,6 @@ zh-CN:
   log_scale_label: 日志
   #Status message shown while logging in
   logging_in: 登陆中……
-  login_slash_username: 登录 / 用户名
   logo:
     logo: 标志
     white_bg_gif: 白色BG GIF
@@ -3786,11 +3781,12 @@ zh-CN:
   select: 选择
   select_all: 全选
   select_at_least_one: 选择至少一个
-  select_one_or_more_photos: '请选择一个或多个照片'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 均不选择
   select_observations_to_edit: 选择观察编辑...
   select_one_of_friends_albums: 选择%{friend}的专辑之一
   select_one_of_your_albums: 选择您的专辑之一
+  select_one_or_more_photos: '请选择一个或多个照片'
   select_options: 选择选项
   select_photos_from_your_photo_stream: |
     从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。

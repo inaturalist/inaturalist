@@ -268,12 +268,14 @@ bg:
   add_obs_from_a_list: Добавете наблюдения от списък
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Добави</span> <span>наблюдения</span>"
   #Prompt to add a new journal post
   add_one: Добави!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Добавете такава
-  add_photos: Добавяне на снимки
   add_place: Добави място
   add_alive_or_dead_alive_annotation: 'Добави анотация „Жив или мъртъв: Жив“'
   add_alive_or_dead_cannot_be_determined_annotation: 'Добави анотация „Жив или мъртъв: Неопределим“'
@@ -550,6 +552,10 @@ bg:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Признание
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, качено от %{user}"
   authority_list:
     iucn_red_list: Червен списък на IUCN
     natureserve: NatureServe
@@ -779,8 +785,6 @@ bg:
   #connecting to Flickr
   connect: Свържи
   connect_to_provider: "Свържи с %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Свързани акаунти
   connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
   connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
@@ -921,7 +925,6 @@ bg:
   created_by: Създадено от
   created_by_user_on_date: Създадено от %{user} на %{date}
   created_on: Създадено на
-  creating_your_account: "Създаване на акаунт..."
   critically_endangered: Критично застрашен
   csv: CSV
   csv_file: CSV файл
@@ -1256,6 +1259,8 @@ bg:
   favorites: "Любими"
   featured: Препоръчани
   feedback: Обратна връзка
+  #Button to show fewer places
+  fewer__context_places: По-малко
   field_note: |
     <strong>Забележка:</strong> Ако искате да създадете поле, проверете дали някой друг не го е създал вече за да се избегне дублирането.
   fields: полета
@@ -1500,6 +1505,8 @@ bg:
   importing: "Импортиране..."
   in_n: "във %{n}"
   in_place_x: във %{place}
+  #As in a reason to flag something
+  inappropriate: Неуместно
   inaturalist_network: Мрежа на iNaturalist
   inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
@@ -1690,6 +1697,8 @@ bg:
     ukrainian: украински
     waray_waray: варайски
   less: По-малко
+  #Button show less text
+  less__context_text: По-малко
   licensed_site_photos: "Лицензирани снимки от %{site_name}"
   license: Лиценз
   licensing: Лицензиране
@@ -1805,7 +1814,6 @@ bg:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Излизане от %{site_name}?"
   log_scale_label: Лог.
-  login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
     white_bg_gif: GIF с бял фон
@@ -1945,6 +1953,14 @@ bg:
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
   months: Месеци
   more: Още
+  #Button to show more observations
+  more__context_observations_caps: ОЩЕ
+  #Button to show more places
+  more__context_places: Още
+  #Button to show more text
+  more__context_text: Още
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ОЩЕ
   more_caps: ОЩЕ
   more_fields: Още полета
   more_filters: Още филтри
@@ -2318,6 +2334,7 @@ bg:
   open_: Открито
   open_description: "Всеки може да види координатите освен когато таксонът е застрашен."
   optional: незадължително
+  options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3219,10 +3236,11 @@ bg:
   select: Избери
   select_all: Избери всички
   select_at_least_one: Изберете поне едно
-  select_one_or_more_photos: 'Изберете една или повече снимки'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Празен избор
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
+  select_one_or_more_photos: 'Изберете една или повече снимки'
   select_options: Избери опция
   select_photos_from_your_photo_stream: |
     Изберете снимки от външни сайтове за споделяне на снимки, за да ги направите наблюдения в %{site_name}. Ще попълним дата, час и място от метаданните на снимката и ще опитаме да открием вида сред етикетите (таговете) на снимката.
@@ -5100,6 +5118,8 @@ bg:
       flag:
         #The reason the item was flagged
         reason: Причина
+        #The person who resolved the flag
+        resolver_id: Решител
       guide:
         source_url: Уебадрес на източника
         published_at: Публикация

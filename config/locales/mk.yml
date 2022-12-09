@@ -126,7 +126,6 @@ mk:
   add_new_source: "Додај нов извор..."
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
-  add_photos: Додај слики
   #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
   #As in a Guide Section
@@ -704,7 +703,6 @@ mk:
   location: Местоположба
   location_is_exact: местоположбата е докрај уточнета
   log_in: Најава
-  login_slash_username: Најава/ корисничко име
   logo:
     logo: Лого
     white_bg_gif: GIF со бела заднина
@@ -1148,8 +1146,9 @@ mk:
   searching: "Пребарувам..."
   select: Избери
   select_all: Избери сè
-  select_one_or_more_photos: 'Изерете една или повеќе слики'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Ниедно
+  select_one_or_more_photos: 'Изерете една или повеќе слики'
   send: испрати
   sending: Испраќам...
   set_license: Задај лиценца

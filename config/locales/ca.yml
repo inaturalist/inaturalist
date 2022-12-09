@@ -302,7 +302,6 @@ ca:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Afegir-ne un ara
-  add_photos: Afegiu fotos
   add_place: Afegiu un lloc
   add_alive_or_dead_alive_annotation: 'Afegir anotació "Viu o Mort: Viu"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Afegir anotació "Viu o Mort: No s''ha determinat"'
@@ -1016,8 +1015,6 @@ ca:
   #connecting to Flickr
   connect: Connectar
   connect_to_provider: "Connecteu-vos a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Comptes vinculats
   connected_accounts_description: Els comptes connectats són els comptes d'altres Apps o llocs Web a les quals heu autoritzat a accedir a iNaturalist per facilitar l'inici de la vostra sessió, la importació de fotografies o altres funcions.
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
@@ -1186,7 +1183,6 @@ ca:
   created_by: Creat per
   created_by_user_on_date: Creat per %{user} el %{date}
   created_on: Creat el
-  creating_your_account: "Creant el vostre compte..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, llevat que s'indiqui el contrari."
   critically_endangered: En perill crític
@@ -2425,7 +2421,6 @@ ca:
   log_scale_label: Registre
   #Status message shown while logging in
   logging_in: Iniciant sessió...
-  login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
     white_bg_gif: Imatge GIF amb fons blanc
@@ -4172,11 +4167,12 @@ ca:
   select: Selecciona
   select_all: Selecciona-ho tot
   select_at_least_one: Seleccioneu com a mínim un
-  select_one_or_more_photos: 'Seleccioneu una o més fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: No en seleccioneu cap
   select_observations_to_edit: Seleccioneu observacions per a editar...
   select_one_of_friends_albums: Seleccioneu un dels àlbums de %{friend}
   select_one_of_your_albums: Seleccioneu un dels vostres àlbums
+  select_one_or_more_photos: 'Seleccioneu una o més fotos'
   select_options: Seleccioneu opcions
   select_photos_from_your_photo_stream: |
     Seleccioneu fotos de llocs de compartició de fotografies per convertir-les en observacions a %{site_name}. El nostre equip completarà la data, hora i ubicació de les metadades de la foto i intentarem buscar els noms de les espècies a les etiquetes.
@@ -6589,10 +6585,6 @@ ca:
         one_time: Una única vegada
         percent_growth_in_year: "% creixement l'any %{year}"
         percent_of_total_growth: "% de creixement total"
-        publications_desc_html: |
-          Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Veure tots els %{numStudies} estudis</a>
         publications_desc_short_html: |
           Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observacions/Any
