@@ -306,7 +306,6 @@ fr:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: En ajouter une
-  add_photos: Ajouter des photos
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation "Vivant ou Mort : Vivant"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation "Vivant ou Mort : Indéterminé"'
@@ -1037,8 +1036,6 @@ fr:
   #connecting to Flickr
   connect: Connecter
   connect_to_provider: "Connectez-vous à %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Comptes connectés
   connected_accounts_description: Les comptes connectés sont vos comptes dans d'autres applications et sur d'autres sites Web, auxquels vous avez donné l'accès à iNaturalist pour lui permettre d'ouvrir une session, d'importer des photos et de tirer parti d'autres fonctionnalités.
   connected_accounts_titlecase: Comptes connectés
   connecting_flickr: "Connexion à Flickr…"
@@ -1211,7 +1208,6 @@ fr:
   created_by: Créé par
   created_by_user_on_date: Créé par %{user} le %{date}
   created_on: Créé le
-  creating_your_account: "Création de votre compte…"
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: "Creative Commons, sauf mention contraire."
   critically_endangered: Gravement menacée
@@ -2490,7 +2486,6 @@ fr:
   log_scale_label: Trace
   #Status message shown while logging in
   logging_in: Connexion en cours...
-  login_slash_username: Connexion/nom d’utilisateur
   logo:
     logo: Logo
     white_bg_gif: GIF à fond blanc
@@ -3779,6 +3774,7 @@ fr:
   places_warning_the_future: |
     NDLR: compte tenu du taux de croissance actuel d'iNat, nous allons prochainement devoir restreindre les conditions dans lesquelles les gens peuvent créer de nouveaux lieux.
   plants: plantes
+  play_first_sound: Lire le premier son
   please_add_a_citation_for_this_change: Veuillez ajouter une citation pour cette modification.
   please_allow_a_few_weeks_for_external_sites: Veuillez accorder quelques semaines aux sites externes pour synchroniser les changements de cette observation #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Demande la permission à tes parents.
@@ -4272,11 +4268,12 @@ fr:
   select: Sélectionner
   select_all: Sélectionner tout
   select_at_least_one: Sélectionnez au moins un élément
-  select_one_or_more_photos: 'Sélectionnez une ou plusieurs photos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Ne rien sélectionner
   select_observations_to_edit: Sélectionner les observations à modifier...
   select_one_of_friends_albums: Sélectionner un des albums de %{friend}
   select_one_of_your_albums: Sélectionnez un de vos albums
+  select_one_or_more_photos: 'Sélectionnez une ou plusieurs photos'
   select_options: Sélectionnez
   select_photos_from_your_photo_stream: |
     Sélectionnez des photos des sites d’échange externes pour les convertir en observations %{site_name}. Nous remplirons la date, l’heure et le lieu à partir des métadonnées de la photo et essayerons de trouver les noms des espèces à partir des étiquettes.
@@ -7015,14 +7012,6 @@ fr:
         one_time: Unique
         percent_growth_in_year: "% de croissance en %{year}"
         percent_of_total_growth: "% de croissance totale"
-        publications_desc_html: |
-          Cliquez sur les graphiques pour plus d'informations sur ce que les chiffres
-          et les couleurs signifient. Données d'impact et graphiques fournis par
-          <a href="https://www.altmetric.com">Altmetric</a>. Information
-          sur l'utilisation des données fournie par nos amis de 
-          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Voir l'ensemble des %{numStudies} études</a>
         publications_desc_short_html: |
           Cliquez sur les graphiques pour plus d'informations sur ce que les chiffres
           et les couleurs signifient. Les données d'impact et les graphiques sont fournis par
