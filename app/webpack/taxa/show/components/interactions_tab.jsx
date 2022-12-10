@@ -84,7 +84,15 @@ const InteractionsTab = ( { interactions } ) => {
         <Col xs={4}>
           <h3>About Interactions</h3>
           <p>
-            Most organisms interact with other organisms in some way or another, and how they do so usually defines how they fit into an ecosystem. These interactions come to us from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>, a database and webservice that combines interaction data from numerous sources, including iNaturalist. You can actually contribute to this database by adding the "Eating", "Eaten by", and "Host" observation fields to observations that demonstrate those interactions.
+            Most organisms interact with other organisms in some way or
+            another, and how they do so usually defines how they fit into an
+            ecosystem. These interactions come to us
+            from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
+            a database and webservice that combines
+            interaction data from numerous sources, including iNaturalist.
+            You can actually contribute to this database by adding the
+            "Eating", "Eaten by", and "Host" observation fields to
+            observations that demonstrate those interactions.
           </p>
           <h3>Learn More</h3>
           <ul className="tab-links list-group">
