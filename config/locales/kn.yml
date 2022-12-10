@@ -274,7 +274,6 @@ kn:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: ಈಗ ಒಂದನ್ನು ಸೇರಿಸಿ
-  add_photos: ಚಿತ್ರಗಳನ್ನು ಸೇರಿಸಿ
   add_place: ಸ್ಥಳಗಳನ್ನು ಸೇರಿಸಿ
   add_alive_or_dead_alive_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ಜೀವಂತ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_alive_or_dead_cannot_be_determined_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ನಿರ್ಣಯಿಸಲಾಗಲಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -868,8 +867,6 @@ kn:
   #connecting to Flickr
   connect: ಸಂಪರ್ಕಿಸಿ
   connect_to_provider: "%{provider} ಗೆ ಸಂಪರ್ಕಿಸಿ"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connected_accounts_titlecase: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connecting_flickr: "Flickr ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ... "
   connect_to_flickr_again_to_authorize_write_permissions: ಬರವಣಿಗೆ ಅನುಮತಿಗಳನ್ನು ಧೃಢೀಕರಿಸಲು ಫ್ಲಿಕರ್ ಗೆ ಮತ್ತೊಮ್ಮೆ ಸಂಪರ್ಕಿಸಿ
@@ -1020,7 +1017,6 @@ kn:
   created_by: ರಚಿಸಿದವರು
   created_by_user_on_date: '%{date} ರಂದು %{user} ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ'
   created_on: ರಂದು ರಚಿಸಲಾಗಿದೆ
-  creating_your_account: "ಖಾತೆಯೊಂದನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ..."
   creative_commons_flickr_tagged: ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳು ಟ್ಯಾಗ್ ಆಗಿವೆ
   creative_commons_unless_otherwise_noted: "ಸೂಚಿಸಿರದೇ ಇದ್ದ ಪಕ್ಷದಲ್ಲಿ ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಆಗಿರುತ್ತದೆ."
   critically_endangered: ತೀರಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ
@@ -2018,7 +2014,6 @@ kn:
   log_scale_label: ಲಾಗ್
   #Status message shown while logging in
   logging_in: ಲಾಗಿನ್ ಆಗುತ್ತಿದೆ...
-  login_slash_username: ಲಾಗಿನ್ / ಬಳಕೆದಾರರ ಹೆಸರು
   logo:
     logo: ಲಾಂಛನ
     white_bg_gif: ಬಿಳಿಬಣ್ಣದ ಹಿನ್ನೆಲೆ GIF
@@ -3612,11 +3607,12 @@ kn:
   select: ಆರಿಸಿ
   select_all: ಎಲ್ಲವನ್ನೂ ಆರಿಸಿ
   select_at_least_one: ಕನಿಷ್ಟ ಒಂದನ್ನಾದರೂ ಆಯ್ಕೆಮಾಡಿ
-  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: ಯಾವುದನ್ನೂ ಆರಿಸಬೇಡಿ
   select_observations_to_edit: ಸಂಪಾದಿಸಲು ವೀಕ್ಷಣೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ...
   select_one_of_friends_albums: ನನ್ನ ಒಬ್ಬ %{friend} ಅವರ ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
   select_one_of_your_albums: ನನ್ನ ಒಂದು ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
+  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
   select_options: ಆಯ್ಕೆಗಳನ್ನು ಆರಿಸಿ
   select_photos_from_your_photo_stream: |
     %{site_name} ವೀಕ್ಷಣೆಗಳನ್ನಾಗಿ ಪರಿವರ್ತಿಸಲು ಬಾಹ್ಯ ಚಿತ್ರ-ಹಂಚಿಕೆ ತಾಣಗಳಿಂದ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ. ನಾವು ಚಿತ್ರಗಳ ಮೆಟಾಡೇಟಾದಿಂದ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳವನ್ನು ತುಂಬುತ್ತೇವೆ ಮತ್ತು ಟ್ಯಾಗ್ ಗಳಿಂದ ಪ್ರಭೇದದ ಹೆಸರುಗಳನ್ನು ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ.
@@ -5216,10 +5212,6 @@ kn:
         one_time: ಒಮ್ಮೆ
         percent_growth_in_year: "%{year} ದಲ್ಲಿ % ಬೆಳವಣಿಗೆ"
         percent_of_total_growth: "ಒಟ್ಟು ಬೆಳವಣಿಗೆ %"
-        publications_desc_html: |
-          ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
-          <br/>
-          <a href="%{url}">ಎಲ್ಲಾ %{numStudies} ಅಧ್ಯಯನಗಳನ್ನು ನೋಡಿ</a>
         publications_desc_short_html: |
           ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
         observations_per_year: ವೀಕ್ಷಣೆಗಳು / ವರ್ಷ

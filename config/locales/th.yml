@@ -223,7 +223,6 @@ th:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: เพิ่มเดี๋ยวนี้
-  add_photos: เพิ่มภาพถ่าย
   add_place: เพิ่มสถานที่
   add_alive_or_dead_alive_annotation: 'เพิ่มหมายเหตุ "มีชีวิตหรือตาย: มีชีวิต"'
   add_alive_or_dead_cannot_be_determined_annotation: 'เพิ่มคำอธิบายประกอบ "มีชีวิต หรือ ตาย: ไม่สามารถกำหนดได้"'
@@ -1289,7 +1288,6 @@ th:
   location_is_obscured: ตำแหน่งคลุมเครือ
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
-  login_slash_username: ลงชื่อเข้าใช้ / ชื่อผู้ใช้
   long: ลองจิจูด
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
@@ -1955,6 +1953,7 @@ th:
   select: เลือก
   select_all: เลือกทั้งหมด
   select_at_least_one: เลือกอย่างน้อยหนึ่งข้อ
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: ไม่เลือก
   select_observations_to_edit: เลือกการสังเกตที่จะแก้ไข...
   select_options: เลือก

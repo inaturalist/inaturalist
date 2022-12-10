@@ -321,7 +321,6 @@ sv:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Lägg till en nu
-  add_photos: Lägg till bilder
   add_place: Lägg till fyndplats
   add_alive_or_dead_alive_annotation: 'Lägg till anteckningen "Levande eller Död: Levande"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lägg till anteckningen "Levande eller Död: Kan inte avgöras"'
@@ -1073,8 +1072,6 @@ sv:
   #connecting to Flickr
   connect: Koppla
   connect_to_provider: "Koppla till %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Kopplade konton
   connected_accounts_description: Kopplade konton är dina konton i andra appar eller webbplatser som du har låtit iNaturalist ha tillgång till för att kunna stödja inloggning, bildimport eller annan funktionalitet åt dig.
   connected_accounts_titlecase: Kopplade Konton
   connecting_flickr: "Kopplar till Flickr... "
@@ -1245,7 +1242,6 @@ sv:
   created_by: Skapad av
   created_by_user_on_date: Skapad av %{user} den %{date}
   created_on: Skapad den
-  creating_your_account: "Skapar ditt konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr-bilder taggade
   creative_commons_unless_otherwise_noted: "Creative Commons om inte annat anges."
   critically_endangered: Akut hotad
@@ -2534,7 +2530,6 @@ sv:
   log_scale_label: Logaritmisk
   #Status message shown while logging in
   logging_in: Loggar in...
-  login_slash_username: Inlogg / användarnamn
   logo:
     logo: Logotyp
     white_bg_gif: vit BG GIF
@@ -3842,6 +3837,7 @@ sv:
   places_warning_the_future: |
     Tänk på att vi att vi kommer att behöva begränsa de villkor under vilka användare kan lägga till fyndplatser i framtiden givet iNats nuvarande tillväxttakt.
   plants: växter
+  play_first_sound: Spela upp första ljudet
   please_add_a_citation_for_this_change: Lägg till en referens för denna ändring.
   please_allow_a_few_weeks_for_external_sites: Vänta några veckor innan externa webbplatser har synkroniserat ändringar från detta fynd #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Fråga dina föräldrar om tillåtelse
@@ -4334,11 +4330,12 @@ sv:
   select: Välj
   select_all: Markera alla
   select_at_least_one: Välj minst en
-  select_one_or_more_photos: 'Markera en eller flera bilder'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Markera ingen
   select_observations_to_edit: Välj fynd att redigera...
   select_one_of_friends_albums: Markera ett av %{friend}s album
   select_one_of_your_albums: Markera ett av dina album
+  select_one_or_more_photos: 'Markera en eller flera bilder'
   select_options: Välj alternativ
   select_photos_from_your_photo_stream: |
     Välj bilder från externa fotodelningssajter för att konvertera till %{site_name}-fynd. Vi fyller i datum, tid och plats från en bilds metadata, och försöker slå upp artnamn utifrån taggningarna.
@@ -6862,10 +6859,6 @@ sv:
         one_time: Engångs
         percent_growth_in_year: "% tillväxt i %{year}"
         percent_of_total_growth: "% av total tillväxt"
-        publications_desc_html: |
-          Klicka på blomdiagrammen för mer information om vad siffrorna och färgerna betyder. Påverkansdata och -diagram tack vare <a href="https://www.altmetric.com">Altmetric</a>. Information om dataanvändning tack vare våra vänner på <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Se alla %{numStudies} studier</a>
         publications_desc_short_html: |
           Klicka på blomdiagrammen för mer information om vad siffrorna och färgerna betyder. Påverkansdata och -diagram tack vare <a href="https://www.altmetric.com">Altmetric</a>. Information om dataanvändning tack vare våra vänner på <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Fynd / År

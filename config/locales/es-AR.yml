@@ -280,7 +280,6 @@ es-AR:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Agregar una ahora
-  add_photos: Agregar fotos
   add_place: Agregar lugar
   add_alive_or_dead_alive_annotation: 'Añadir anotación "Vivo o Muerto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Añadir anotación "Vivo o Muerto: Indeterminado"'
@@ -926,8 +925,6 @@ es-AR:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Conectar a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Cuentas vinculadas
   connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para permitir iniciar sesión, importar de fotos u otra funciones.
   connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectándose a Flickr..."
@@ -1093,7 +1090,6 @@ es-AR:
   created_by: Creado por
   created_by_user_on_date: Creado por %{user} el %{date}
   created_on: Creado el
-  creating_your_account: "Creando tu cuenta..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
@@ -2295,7 +2291,6 @@ es-AR:
   log_scale_label: Registro
   #Status message shown while logging in
   logging_in: Iniciando sesión...
-  login_slash_username: Registro / nombre de usuario
   logo:
     logo: Logotipo
     white_bg_gif: Fondo blanco con imagen GIF
@@ -3853,11 +3848,12 @@ es-AR:
   select: Selecciona
   select_all: Selecciona todo
   select_at_least_one: Selecciona por lo menos un elemento
-  select_one_or_more_photos: 'Selecciona una o más fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: No selecciones ninguno
   select_observations_to_edit: Selecciona observaciones para editar ...
   select_one_of_friends_albums: Selecciona uno de los álbumes de %{friend}
   select_one_of_your_albums: Selecciona uno de tus álbumes
+  select_one_or_more_photos: 'Selecciona una o más fotos'
   select_options: Selecciona opciones
   select_photos_from_your_photo_stream: |
     Selecciona las fotos de sitios que comparten fotos para convertirlas en observaciones de {site_name}. Encontraremos la fecha, la  hora y lugar de los metadatos de la foto y trataremos de buscar los nombres de las especies de las etiquetas.

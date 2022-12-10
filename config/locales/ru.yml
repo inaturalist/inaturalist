@@ -1,9 +1,9 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} изменение"
-    few: "%{count} изменения"
-    many: "%{count} изменений"
+    one: "%{count} Изменение"
+    few: "%{count} Изменения"
+    many: "%{count} Изменений"
     other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
@@ -194,10 +194,10 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} звук"
-    few: "%{count} звука"
-    many: "%{count} звуков"
-    other: "%{count} звуков"
+    one: "%{count} Звук"
+    few: "%{count} Звука"
+    many: "%{count} Звуков"
+    other: "%{count} Звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -222,7 +222,7 @@ ru:
   a_member_of_taxon_html: "член %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "A - Z"
+  a_to_z: "<![CDATA[А — Я]]>"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -387,7 +387,6 @@ ru:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Добавьте его сейчас
-  add_photos: Добавить фото
   add_place: Добавить место
   add_alive_or_dead_alive_annotation: 'Добавить значение "Живой или мёртвый: живой"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Добавить значение "Живой или мёртвый: нельзя определить"'
@@ -1136,8 +1135,6 @@ ru:
   #connecting to Flickr
   connect: Подключиться
   connect_to_provider: "Подключиться к %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Связанные учётные записи
   connected_accounts_description: Подключенные учетные записи - это ваши учетные записи других приложений или веб-сайтов, к которым вы разрешили iNaturalist-доступ от вашего имени для поддержки входа в систему, импорта фотографий или других функций.
   connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
@@ -1309,7 +1306,6 @@ ru:
   created_by: Создано 
   created_by_user_on_date: Создано %{user} %{date}
   created_on: Создано в
-  creating_your_account: "Создаётся ваша учётная запись..."
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, если не указано иное."
   critically_endangered: На грани исчезновения
@@ -2558,7 +2554,6 @@ ru:
   log_scale_label: Логарифмическая
   #Status message shown while logging in
   logging_in: Вход...
-  login_slash_username: Логин / имя пользователя
   logo:
     logo: Логотип
     white_bg_gif: GIF на белом фоне
@@ -4328,11 +4323,12 @@ ru:
   select: Выбрать
   select_all: Выбрать все
   select_at_least_one: Выберите хотя бы одно
-  select_one_or_more_photos: 'Выберите одно или несколько фото'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Не выбирать
   select_observations_to_edit: Выберите наблюдения для редактирования...
   select_one_of_friends_albums: Выберите один из альбомов ваших %{friend}
   select_one_of_your_albums: Выберите один из ваших альбомов
+  select_one_or_more_photos: 'Выберите одно или несколько фото'
   select_options: Выберите
   select_photos_from_your_photo_stream: |
     Выберите фото на внешних фотохостингах, которые вы хотите преобразовать в наблюдения %{site_name}. Мы заполним дату, время и местоположение из метаданных фото и попытаемся найти видовые названия в тегах.
@@ -6822,12 +6818,6 @@ ru:
         one_time: Однократно
         percent_growth_in_year: "% роста в %{year}"
         percent_of_total_growth: "% от общего роста"
-        publications_desc_html: |
-          Нажмите на диаграмму цветов, чтобы получить больше информации о значении чисел
-          и цвета. Влияющие данные и диаграммы любезно предоставлены
-          <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href="https://www.gbif.org/">Глобального информационного центра по биоразнообразию</a>.
-          <br/>
-          <a href="%{url}">Просмотр всех %{numStudies} исследований</a>
         publications_desc_short_html: |
           Нажмите на цветовую диаграмму, чтобы получить больше информации о значении чисел
           и цвета. Влияющие данные и диаграммы любезно предоставлены

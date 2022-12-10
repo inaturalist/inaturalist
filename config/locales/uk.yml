@@ -403,7 +403,6 @@ uk:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Додати нове
-  add_photos: Додати фото
   add_place: Додати місце
   add_alive_or_dead_alive_annotation: 'Додати примітку "живий чи мертвий: живий"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Додати примітку "живий чи мертвий: неможливо визначити"'
@@ -1080,8 +1079,6 @@ uk:
   #connecting to Flickr
   connect: Під'єднати
   connect_to_provider: "Під'єднати до %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Під’єднані облікові записи
   connected_accounts_description: Під'єднані облікові записи — це ваші облікові записи з інших програм або веб-сайтів, до яких ви надали iNaturalist доступ від вашого імені, для виконання входу, імпорту фото або інших функцій.
   connected_accounts_titlecase: Під’єднані облікові записи
   connecting_flickr: "Підключення до Flickr... "
@@ -1244,7 +1241,6 @@ uk:
   created_by: 'Ким створено:'
   created_by_user_on_date: Створено %{user} %{date}
   created_on: Дата створення
-  creating_your_account: "Створення облікового запису..."
   creative_commons_flickr_tagged: Фото с Flickr під ліцензією Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, якщо не зазначено інше."
   critically_endangered: У критичній небезпеці
@@ -2394,7 +2390,6 @@ uk:
   log_scale_label: Журнал подій
   #Status message shown while logging in
   logging_in: Вхід...
-  login_slash_username: Логін / ім'я користувача
   logo:
     logo: Логотип
     white_bg_gif: GIF на білому тлі
@@ -4114,11 +4109,12 @@ uk:
   select: Обрати
   select_all: Обрати все
   select_at_least_one: Оберіть принаймні один
-  select_one_or_more_photos: 'Оберіть одне або декілька фото'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Зняти вибір
   select_observations_to_edit: Оберіть спостереження для редагування...
   select_one_of_friends_albums: Оберіть один з альбомів %{friend}
   select_one_of_your_albums: Оберіть один зі своїх альбомів
+  select_one_or_more_photos: 'Оберіть одне або декілька фото'
   select_options: Оберіть варіант
   select_photos_from_your_photo_stream: |
     Обрати фото із зовнішніх сайтів обміну фото для перетворення на спостереження %{site_name}. Ми заповнимо дату, час і розташування з метаданих фото й спробуємо знайти назви видів за допомогою позначок.
@@ -6374,14 +6370,6 @@ uk:
         one_time: Один внесок
         percent_growth_in_year: "% зростання у %{year}"
         percent_of_total_growth: "% від загального зростання"
-        publications_desc_html: |
-          Натисніть на квіткові діаграми, аби дізнатися більше про те, що означають цифри
-          та кольори. Дані та графіки щодо впливу люб'язно надані 
-          <a href="https://www.altmetric.com">Altmetric</a>. Інформація
-          про використання даних люб'язно надана нашими друзями з
-          <a href="https://www.gbif.org/">Глобальної інформаційної системи з біорізноманіття</a>.
-          <br/>
-          <a href="%{url}">Переглянути всі %{numStudies} дослідження</a>
         publications_desc_short_html: |
           Натисніть на квіткові діаграми, аби дізнатися більше про те, що означають цифри
           та кольори. Дані та графіки щодо впливу люб'язно надані 

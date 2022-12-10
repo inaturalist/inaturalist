@@ -99,7 +99,6 @@ sk:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pridať teraz
-  add_photos: Vložiť fotky
   add_place: Pridať miesto
   add_plant_phenology_budding_annotation: 'Pridať anotáciu „Fenológia rastliny: pučenie“'
   add_plant_phenology_flowering_annotation: 'Pridať anotáciu „Fenológia rastliny: kvitnutie“'
@@ -547,8 +546,6 @@ sk:
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Pripojené účty
   connecting_flickr: "Pripájanie k Flickr..."
   connecting_to_facebook: "Pripájanie k Facebooku..."
   conservation_status: Stav ochrany
@@ -632,7 +629,6 @@ sk:
   created_by: Vytvorené
   created_by_user_on_date: Vytvorené užívateľom %{user} dňa %{date}
   created_on: Vytvorená dňa
-  creating_your_account: "Vytváram váš účet..."
   creative_commons_flickr_tagged: Označené fotky Creative Commons na Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, ak nie je uvedené inak."
   critically_endangered: kriticky ohrozený
@@ -1374,7 +1370,6 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
-  login_slash_username: Prihlásenie / užívateľské meno
   logo:
     white_bg_gif: GIF s bielym pozadím
     transparent_png: transparentný PNG
@@ -2517,11 +2512,12 @@ sk:
   select: Vybrať
   select_all: Vybrať všetko
   select_at_least_one: Vybrať aspoň jeden
-  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nevybrať žiadny
   select_observations_to_edit: Vyberte pozorovanie na úpravu...
   select_one_of_friends_albums: Vyberte jeden z albumov užívateľa %{friend}
   select_one_of_your_albums: Vyberte jeden z vašich albumov
+  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
   select_options: Vybrať možnosti
   selected: vybrané
   selected_photos: Vybrané fotky

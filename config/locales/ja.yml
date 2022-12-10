@@ -254,7 +254,6 @@ ja:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 今すぐ追加
-  add_photos: 写真を追加
   add_place: 場所を追加
   add_alive_or_dead_alive_annotation: '"生死：生きている"の注釈を追加する'
   add_alive_or_dead_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
@@ -901,8 +900,6 @@ ja:
   #connecting to Flickr
   connect: 接続
   connect_to_provider: "%{provider}に接続"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 関連づけられたアカウント
   connected_accounts_description: 関連づけられたアカウントは、サインイン、写真のインポート、その他の機能をサポートするためにiNaturalistにアクセスを許可した他のアプリやウェブサイトのアカウントです。
   connected_accounts_titlecase: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
@@ -1065,7 +1062,6 @@ ja:
   created_by: 作成者：
   created_by_user_on_date: 作成者:%{user}さん 作成日:%{date}
   created_on: '作成日:'
-  creating_your_account: "アカウントを作成しています..."
   creative_commons_flickr_tagged: Flickrにタグ付けされたクリエイティブ・コモンズの写真があります
   creative_commons_unless_otherwise_noted: "特に明記されていない限り、クリエイティブ・コモンズです。"
   critically_endangered: 絶滅危惧IA類
@@ -2180,7 +2176,6 @@ ja:
   log_scale_label: ログ
   #Status message shown while logging in
   logging_in: ログインしています...
-  login_slash_username: ログイン / ユーザー名
   logo:
     logo: ロゴ
     white_bg_gif: 白背景色GIF
@@ -3614,11 +3609,12 @@ ja:
   select: 選択
   select_all: すべて選択
   select_at_least_one: 少なくとも1つを選択
-  select_one_or_more_photos: '1枚以上の写真を選択'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: すべて選択解除
   select_observations_to_edit: 編集する観察記録を選択...
   select_one_of_friends_albums: '%{friend} のアルバムからいずれかを選択'
   select_one_of_your_albums: アルバムの1つを選択
+  select_one_or_more_photos: '1枚以上の写真を選択'
   select_options: 選択
   select_photos_from_your_photo_stream: |
     外部の写真共有サイトから写真を選択すると、%{site_name} の観察記録に変換されます。写真のメタデータから日付、時刻、場所を補完し、タグから種名を検索します。

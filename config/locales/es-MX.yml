@@ -304,7 +304,6 @@ es-MX:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Añadir una ahora
-  add_photos: Añade fotos
   add_place: Añade lugar
   add_alive_or_dead_alive_annotation: 'Añade anotación "Vivo o muerto: vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Añade anotación "Vivo o Muerto: No se puede determinar"'
@@ -1050,8 +1049,6 @@ es-MX:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Conecta a  %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Cuentas conectadas
   connected_accounts_description: Las cuentas conectadas son tus cuentas de otras aplicaciones o sitios web a las que has permitido el acceso a iNaturalist para apoyar el inicio de sesión, importar fotos u otras funciones.
   connected_accounts_titlecase: Cuentas conectadas
   connecting_flickr: "Conectando a Flickr"
@@ -1222,7 +1219,6 @@ es-MX:
   created_by: Creado por
   created_by_user_on_date: Creado por %{user} el %{date}
   created_on: Creado en
-  creating_your_account: "Creando tu cuenta..."
   creative_commons_flickr_tagged: Fotos de Flickr etiquetadas con Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons a menos que se indique lo contrario"
   critically_endangered: En peligro crítico
@@ -2483,7 +2479,6 @@ es-MX:
   log_scale_label: Registro
   #Status message shown while logging in
   logging_in: Iniciando sesión ...
-  login_slash_username: Login / nombre de usuario
   logo:
     logo: Logotipo
     white_bg_gif: Fondo blanco con imagen GIF
@@ -3773,6 +3768,7 @@ es-MX:
   places_warning_the_future: |
     Por si sirve de algo, en el futuro tendremos que restringir las condiciones para añadir lugares, dada la tasa actual de crecimiento de iNat.
   plants: Plantas
+  play_first_sound: Reproducir el primer sonido
   please_add_a_citation_for_this_change: Porfavor añade una referencia para este cambio.
   please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para que los sitios externos sincronicen los cambios en esta observación #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Por favor, pide permiso a tus padres
@@ -4263,11 +4259,12 @@ es-MX:
   select: Selecciona
   select_all: Marca todos
   select_at_least_one: Selecciona por lo menos un elemento
-  select_one_or_more_photos: 'Selecciona una o mas fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Desmarca todos
   select_observations_to_edit: Selecciona observaciones para editar ...
   select_one_of_friends_albums: Selecciona uno de los álbumes de %{friend}
   select_one_of_your_albums: Selecciona uno de tus álbumes
+  select_one_or_more_photos: 'Selecciona una o mas fotos'
   select_options: Seleccione opciones
   select_photos_from_your_photo_stream: |
     Selecciona fotos de tus álbums para convertirlas en observaciones de  %{site_name}. Nosotros incluiremos la fecha, hora y ubicación de los metadatos de la foto e intentaremos buscar el nombre de las especies a partir de las etiquetas.
@@ -6841,11 +6838,6 @@ es-MX:
         one_time: Una sola vez
         percent_growth_in_year: "% Crecimiento en %{year}"
         percent_of_total_growth: "% del crecimiento total"
-        publications_desc_html: |
-          Datos de impacto y visualizaciones cortesía de <a href="https://www.altmetric.com">Altmetric</a>. Información
-          sobre uso de los datos cortesía de nuestros amigos en <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Ver todos %{numStudies} estudios</a>
         publications_desc_short_html: |
           Haz click en los gráficos para acceder a la información sobre el significado de los números y de los colores. Datos de impacto y visualizaciones cortesía de <a href="https://www.altmetric.com">Altmetric</a>. Información
           sobre uso de los datos cortesía de nuestros amigos en <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.

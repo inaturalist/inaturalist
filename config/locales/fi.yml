@@ -308,7 +308,6 @@ fi:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Lisää yksi nyt
-  add_photos: Lisää valokuvia
   add_place: Lisää paikka
   add_alive_or_dead_alive_annotation: 'Lisää "elävä tai kuollut: elävä" -merkintä'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisää "elävä tai kuollut: ei voida määrittää" -merkintä'
@@ -967,8 +966,6 @@ fi:
   #connecting to Flickr
   connect: Yhdistä
   connect_to_provider: "Yhdistä palveluun %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Yhdistetyt tilit
   connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
@@ -1122,7 +1119,6 @@ fi:
   created_by: Luonut
   created_by_user_on_date: Lisännyt %{user} %{date}
   created_on: Luotu
-  creating_your_account: "Käyttäjätunnustasi luodaan..."
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
@@ -2297,7 +2293,6 @@ fi:
   log_scale_label: Loki
   #Status message shown while logging in
   logging_in: Kirjaudutaan sisään...
-  login_slash_username: Kirjautumis / käyttäjänimi
   logo:
     logo: Logo
     white_bg_gif: valkoinen BG GIF
@@ -3903,11 +3898,12 @@ fi:
   select: Valitse
   select_all: Valitse kaikki
   select_at_least_one: Valitse ainakin yksi
-  select_one_or_more_photos: 'Valitse yksi tai useampia kuvia'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Poista valinnat
   select_observations_to_edit: Valitse muokattavat havainnot...
   select_one_of_friends_albums: Valitse yksi käyttäjän %{friend} albumeista
   select_one_of_your_albums: Valitse yksi albumeistasi
+  select_one_or_more_photos: 'Valitse yksi tai useampia kuvia'
   select_options: Valitse
   selected: valittu
   selected_photos: Valitut kuvat

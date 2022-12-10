@@ -312,12 +312,14 @@ tr:
   add_observations: Gözlem Ekle
   add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
   add_observations_project: Bu Projeye Gözlem Ekle
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Gözlem</span> <span>Ekle</span>"
   #Prompt to add a new journal post
   add_one: Bir Tane Ekle!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Şimdi Bir Tane Ekle
-  add_photos: Fotoğraf Ekle
   add_place: Konum Ekle
   add_alive_or_dead_alive_annotation: '"Canlı ya da Ölü: Canlı" açıklaması ekle'
   add_alive_or_dead_cannot_be_determined_annotation: '"Canlı ya da Ölü: Belirlenemeyen" açıklaması ekle'
@@ -689,6 +691,10 @@ tr:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Nitelik
   attribution: Nitelik
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, yükleyen: %{user}"
   authority_list:
     iucn_red_list: IUCN Kırmızı Listesi
     natureserve: NatureServe
@@ -1022,8 +1028,6 @@ tr:
   #connecting to Flickr
   connect: Bağlan
   connect_to_provider: "Şuna bağlan: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Hesaplara bağlandı
   connected_accounts_description: Bağlantılı hesaplar, diğer uygulamalarındaki veya web sitelerindeki hesaplarında, iNaturalist'in senin adına giriş yapılmasını desteklediği, fotoğraf aktarılabilen veya diğer fonksiyonları gerçekleştirmek için izin verdiğin hesaplardır.
   connected_accounts_titlecase: Bağlı Hesaplar
   connecting_flickr: "Flickr'a bağlanıyor... "
@@ -1192,7 +1196,6 @@ tr:
   created_by: Oluşturan
   created_by_user_on_date: '%{user} tarafından %{date} tarihinde oluşturuldu'
   created_on: Oluşturma tarihi
-  creating_your_account: "Hesabınız oluşturuluyor..."
   creative_commons_flickr_tagged: Creative Commons Flickr Fotoğrafları Etiketlendi
   creative_commons_unless_otherwise_noted: "Tersi belirtilmediği sürece Creative Commons."
   critically_endangered: Kritik Derecede Tehlikede
@@ -1715,6 +1718,8 @@ tr:
   feedback: Geri bildirim
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Akış'
+  #Button to show fewer places
+  fewer__context_places: Daha az
   failed: Başarısız oldu
   field_note: |
     <strong>Not:</strong> Bir alan oluşturmak istiyorsan, aynılığı önlemek için başkasının daha önce yapıp yapmadığını kontrol edin.
@@ -2066,6 +2071,8 @@ tr:
   improving: Geliştirici
   in_n: "Konum: %{n}"
   in_place_x: 'Konum: %{place}'
+  #As in a reason to flag something
+  inappropriate: Uygunsuz
   inaturalist_network: iNaturalist Ağı
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
@@ -2290,6 +2297,8 @@ tr:
     waray_waray: Varay
     visayan: Visayanca
   less: Daha az
+  #Button show less text
+  less__context_text: Daha az
   licensed_site_photos: "Lisanslı %{site_name} fotoğrafları"
   license: Lisans
   licensing: Lisanslama
@@ -2426,7 +2435,6 @@ tr:
   log_scale_label: Günlük
   #Status message shown while logging in
   logging_in: Oturum açılıyor...
-  login_slash_username: Giriş yap / kullanıcı adı
   logo:
     logo: Logo
     white_bg_gif: beyaz arka plan GIF
@@ -2604,6 +2612,14 @@ tr:
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
   months: Aylar
   more: Daha Fazla
+  #Button to show more observations
+  more__context_observations_caps: DAHA ÇOK
+  #Button to show more places
+  more__context_places: Daha çok
+  #Button to show more text
+  more__context_text: Daha çok
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: DAHA ÇOK
   more_caps: DAHA ÇOK
   more_about_sharing: Paylaşım Hakkında Fazla Bilgi
   more_fields: Daha Çok Alan
@@ -3101,6 +3117,7 @@ tr:
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
   optional: isteğe bağlı
+  options: Seçenekler
   or: ya da
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3677,6 +3694,7 @@ tr:
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
+  play_first_sound: İlk Sesi Çal
   please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekle.
   please_allow_a_few_weeks_for_external_sites: Lütfen harici sitelerin bu gözlemden değişiklikleri eşitlemesi için birkaç hafta bekle #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Lütfen ebeveynlerinden izin iste
@@ -4167,11 +4185,12 @@ tr:
   select: Seç
   select_all: Tümünü Seç
   select_at_least_one: En Az Birini Seç
-  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Hiçbirini Seçme
   select_observations_to_edit: Gözlemleri Düzenlemek için Seç...
   select_one_of_friends_albums: '%{friend} Kullanıcısının Albümlerinden Birini Seç'
   select_one_of_your_albums: Albümlerinden Birini Seç
+  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
   select_options: Seçenekler
   select_photos_from_your_photo_stream: |
     Harici fotoğraf paylaşım sitelerinden %{site_name} gözlemlerine dönüştürmek için fotoğraflar seç. Bir fotoğrafın meta verilerinden tarih, saat ve konumu dolduracağız ve etiketlerden tür adlarını bulmaya çalışacağız.
@@ -6754,14 +6773,6 @@ tr:
         one_time: Tek sefer
         percent_growth_in_year: "%{year} içindeki büyüme %'si"
         percent_of_total_growth: "Toplam Büyüme %'si"
-        publications_desc_html: |
-          Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi 
-          için çiçek çizelgelerine tıklayın. <a href="https://www.altmetric.com">Altmetric</a>'in 
-          izniyle etki verileri ve çizelgeler. 
-          <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki 
-          arkadaşlarımızın veri kullanımı nezaket bilgileri.
-          <br/>
-          <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         publications_desc_short_html: |
           Sayıların ve renklerin ne anlama geldiği hakkında daha çok bilgi için çiçek grafiklerine tıkla. Etki verileri ve grafikler <a href="https://www.altmetric.com">Altmetric</a>'in izniyledir. Veri kullanımına ilişkin bilgiler <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki dostlarımızın izniyledir.
         observations_per_year: Gözlemler / Yıl
@@ -7584,6 +7595,8 @@ tr:
       flag:
         #The reason the item was flagged
         reason: Sebep
+        #The person who resolved the flag
+        resolver_id: Çözen
         #The kind of flag that was made
         flag: İşaret
       guide:

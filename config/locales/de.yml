@@ -312,7 +312,6 @@ de:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Jetzt hinzufügen
-  add_photos: Fotos hinzufügen
   add_place: Gebiet hinzufügen
   add_alive_or_dead_alive_annotation: 'Angabe hinzufügen "lebendig/tot: lebendig"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Angabe hinzufügen "lebendig/tot: Kann nicht bestimmt werden"'
@@ -992,8 +991,6 @@ de:
   #connecting to Flickr
   connect: Verbinden
   connect_to_provider: "Verbinde mit %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Verbundene Konten
   connected_accounts_description: '''Verknüpfte Accounts'' beziehen sich auf deine Konten auf anderen Apps oder Websites, auf die iNaturalist Zugriff in deinem Namen gewährt wurde, um die Anmeldung zu erleichtern, Fotos zu importieren oder andere Funktionalitäten.'
   connected_accounts_titlecase: Verknüpfte Accounts
   connecting_flickr: "Verbinde mit Flickr..."
@@ -1165,7 +1162,6 @@ de:
   created_by: Erstellt von
   created_by_user_on_date: Erstellt von %{user} am %{date}
   created_on: Erstellt am
-  creating_your_account: "Benutzerkonto erstellen..."
   creative_commons_flickr_tagged: Creative Commons Flickr Bilder Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons, sofern nicht anders angegeben."
   critically_endangered: vom Aussterben bedroht
@@ -2384,7 +2380,6 @@ de:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Anmeldung läuft...
-  login_slash_username: Login/Benutzername
   logo:
     logo: Logo
     white_bg_gif: weißer Hintergrund GIF
@@ -3679,6 +3674,7 @@ de:
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
+  play_first_sound: Ersten Ton abspielen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
   please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Bitte frage deine Eltern um Erlaubnis
@@ -4173,11 +4169,12 @@ de:
   select: Auswählen
   select_all: Alles auswählen
   select_at_least_one: mind. eine auswählen
-  select_one_or_more_photos: 'Ein oder mehrere Bilder auswählen'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Keine auswählen
   select_observations_to_edit: Beobachtung zum Bearbeiten auswählen...
   select_one_of_friends_albums: Wähle eines der Alben von %{friend}
   select_one_of_your_albums: Wähle eines deiner Alben
+  select_one_or_more_photos: 'Ein oder mehrere Bilder auswählen'
   select_options: Optionen auswählen
   select_photos_from_your_photo_stream: |
     Wähle Bilder von externen Foto-Sharing-Seiten aus, um sie in %{site_name}-Beobachtungen umzuwandeln. Wir übernehmen Datum, Uhrzeit und Ort aus den Metadaten eines Bildes und versuchen die Namen der Arten aus den Tags herauszufinden.
@@ -6669,10 +6666,6 @@ de:
         one_time: Einmalig
         percent_growth_in_year: "% Wachstum in %{year}"
         percent_of_total_growth: "% des Gesamtwachstums"
-        publications_desc_html: |
-          Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Alle %{numStudies} Studien anzeigen</a>
         publications_desc_short_html: |
           Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Beobachtungen / Jahr
