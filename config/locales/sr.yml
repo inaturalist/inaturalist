@@ -312,6 +312,9 @@ sr:
   add_to_list: Dodaj na listu
   add_to_project: Dodaj u projekat
   add_to_your_list: Dodaj na svoju listu
+  add_your_email_to_get: |
+    Dodaj imejl da bi od zajednice dobio/la povratne informacije o tvojoj opservaciji.
+    Ako radije ne bi, vrati se opet u nekom trenutku!
   add_your_own_observations_at: "Dodaj svoju opservaciju na %{site_name}"
   added: Postavljeno
   added!: Dodato!
@@ -672,8 +675,10 @@ sr:
   community: Zajednica
   community_guidelines: Smernice zajednice
   community_id_heading: Takson zajednice
+  community_id_at_species_or_lower?: Takson zajednice na nivou vrste ili niže?
   community_id_at_species_level_or_lower: Takson zajednice na nivou vrste ili niže
   community_id_is_precise: Takson zajednice je precizan
+  community_supported_id: Takson podržala zajednica?
   compare: Uporedi
   compare_with: Uporedi sa
   comparing: upoređivanje
@@ -801,8 +806,20 @@ sr:
   curator: Kustos
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Zašto želiš da budeš kustos?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Ako želiš da uređuješ ponašanje na iNaturalist-u, navedi dva primera povrede Smernica zajednice i kako bi postupio/la u takvoj situaciji
   #Header
   curator_application_what_curators_can_do: Ovlašćenja kustosa
+  curator_application_what_curators_can_do_hide_comments_html: |
+    Sakrij komentare ili suspenduj korisnike koji krše <a
+    href="/pages/community+guidelines" target="_blank">Smernice zajednice</a>.
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Više utiče na takson zajednice ili kvalitet podataka opservacije od bilo kog drugog korisnika.
   #Label for a custom boundary for an observation search
   custom_boundary: Posebna granica
   daily_users: Korisnika dnevno
@@ -928,7 +945,7 @@ sr:
   display_name_description: Ovo ime će biti vidljivo na tvom profilu i dodeljeno kao nosilac autorskih prava
   documentation_for_developers_html: Dokumentacija za <a href="/pages/developers">programere</a>
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Proučavaš nematode? Da li si vodeći svetski stručnjak za taksonomiju prilepaka? Da li jednostavno voliš da vidiš lepo cveće? Popunjavanjem tvog profila daje lični pečat i omogućava da pokažeš kredibilnost kada pomažeš ljudima sa identifikacijama.
+    Proučavaš nematode? Da li si vodeći svetski stručnjak za taksonomiju prilepaka? Da li jednostavno voliš da vidiš lepo cveće? Popunjavanje tvog profila daje lični pečat i omogućava da pokažeš kredibilnost kada pomažeš ljudima sa identifikacijama.
   doh_something_went_wrong: Ups, došlo je do greške
   doh_something_went_wrong_error: "Ups, došlo je do greške: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -1160,6 +1177,14 @@ sr:
   icon: Ikonica
   icon_size: Veličina ikonice
   id: ID
+  id_categories:
+    tooltips:
+      leading: |
+        Takson potiče od taksona zajednice. Ova identifikacija verovatno ide u pravom smeru.
+      improving: |
+        Prvi predlog ovog taksona sa kojim se zajednica slaže. Ovo unapređuje takson zajednice.
+      maverick: |
+        Takson nije predak ni potomak taksona zajednice, tj. zajednica se ne slaže sa ovim taksonom.
   id_withdrawn: ID povučen
   ids_by_taxon: ID-jevi po taksonu
   identify: Identifikuj
@@ -1179,8 +1204,10 @@ sr:
   identifications: Identifikacije
   inaturalist_global_year_in_review: "Globalni iNaturalist pregled godine %{year}"
   computer_vision_suggestion: Predlog kompjuterske vizije
+  computer_vision_suggestion_desc: |
+    Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
   identifiers: Identifikatori
-  ids: "ID-jevi"
+  ids: "Identifikacije"
   ids_made_for_others: ID-jevi dati za druge
   ignore_and_continue: Zanemari i nastavi
   ignore_times: Ignoriši vremena
@@ -1570,6 +1597,10 @@ sr:
   messages: Poruke
   messages_new_correspondent_personal: |
     Ne deli svoje privatne podatke sa ljudima kojima ne veruješ.
+  messages_new_correspondent_actions_html: |
+    Ako misliš da ova osoba krši naše <a href="%{tos_url}"
+    target="_blank">Uslove korišćenja</a> ili se ne ponaša u skladu sa<a
+    href="%{guidelines_url}" target="_blank">Smernicama zajednice</a>, molimo te da prijaviš ovu poruku ispod.
   misidentifications: Pogrešne identifikacije
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
@@ -1669,6 +1700,7 @@ sr:
   needs_id: potreban ID
   needs_id_: Potreban ID
   needs_id_expandable_html: "<span class='full'>Potreban </span>ID"
+  needs_id_tooltip_html: '"Potreban ID" imaju medije, lokaciju i datum ali ipak zahtevaju slaganje zajednice oko tačne identifikacije. <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   needs_to_be_identified: Potrebno identifikovati
   #Column header in a table listing iNaturalist Network members
   network_member: Članovi mreže
@@ -1912,6 +1944,7 @@ sr:
     observe_panel_body_p1_local: Treba ti inspiracija? Evo nekih organizama koji su zabeleženi u blizini...
     observe_panel_body_p1_global: Treba ti inspiracija? Evo nekih organizama koji su zabeleženi...
     observe_panel_body_p2: Izađi u prirodu, i zabeleži neki organizam. Izaberi nešto iz divljine i napravi jasnu fotografiju punog kadra. Ako već imaš neku takvu fotografiju, <a href="%{new_observation_path}">dodaj je sada</a>. Takođe možeš koristiti %{site_name} mobilne aplikacije da zabeležiš opservaciju.
+    observe_panel_body_p3: Kada dodaš opservacije, na ovoj stranici ćeš videti obaveštenja od zajednice u formi komentara i identifikacija. Ko zna šta sve možeš otkriti!
     follow_panel_title_local: Prati Prirodnjake u blizini
     follow_panel_title_global: Prati neke aktivne prirodnjake
     follow_panel_body: Ako posetiš ove profile i klikneš na dugme "Prati", bićeš obavešten kada oni budu postavljali opservacije
@@ -2162,6 +2195,7 @@ sr:
   place_notes: Beleške o mestu
   place_updated: Mesto ažurirano!
   places: Mesta
+  places_added_by_members_of_the_community: Mesta koja su dodali članovi zajednice
   places_name:
     afghanistan: Avganistan
     africa: Afrika
@@ -2865,6 +2899,8 @@ sr:
     iNaturalist automatski sakriva koordinate za neke vrste radi zaštite od uznemiravanja, prikupljanja i krivolova. Ako su koordinate opservacije automatski skrivene da bi se žaštitile vrste, iNaturalist deli koordinate svih opservacija u njihovim zemljama sa članovima mreže.
   sites_affiliation_more_user_hidden_coordinates: |
     Koordinate koje je korisnik sakrio (prikrivene ili privatne zbog podešavanja "geoprivatnosti")
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist mreža%{end_tag_network} je skup lokalizovanih veb-sajtova u %{start_tag_global}globalnoj iNaturalist zajednici%{end_tag_global}.
   sites_network_consists_of: "iNaturalist mreža se sastoji od sledećih organizacija:"
   sites_network_inaturalist_network_collection: |
     iNaturalist mreža je kolekcija lokalnih sajtova koji su potpuno povezani sa globalnom iNaturalist zajednicom. Ti sajtovi imaju punu podršku lokalnih institucija koji promovišu lokalnu upotrebu i omogućavaju upotrebu podataka sa iNaturalist-a što ide u korist proučavanju lokalnog biodiverziteta. Imaju pristup pravim koordinatama u okviru njihovih geografskih oblasti koje su automatski skrivene od javnog pristupa kako bi se zaštitile ugrožene vrste.
@@ -2929,6 +2965,7 @@ sr:
   status: Status
   status_globally: '"%{status}" globalno'
   status_in_place: '"%{status}" u %{place}'
+  still_needs_id?: Zajednica može da potvrdi/unapredi ID?
   stop_editing: Prekini uređivanje
   stop_following_user: "Otprati %{user}"
   stop_testing: Prekini testiranje
@@ -2957,6 +2994,8 @@ sr:
   supporting: Podržava
   suspend_user: Suspenduj korisnika
   suspend_user_html: Suspenduj %{user}
+  suspend_user_reason_instructions_html: |
+    Objasni zašto suspenduješ ovaj nalog i navedi sve povrede %{link_start_tag}Smernica zajednice%{link_end_tag}. Molimo da izostaviš tvoje lično mišljenje.
   sync: Sinhronizuj?
   synonyms: Sinonimi
   table: Tabela
@@ -3043,7 +3082,7 @@ sr:
   taxon_doesnt_have_a_range: Takson nema opseg
   taxon_drop: poništen takson
   taxon_id: Takson ID
-  taxon_ids: Takson ID-jevi
+  taxon_ids: ID-jevi taksona
   taxon_map:
     overlays: Preklapanja
   taxon_changes: Promene taksona
@@ -3297,6 +3336,8 @@ sr:
     other: Otpremanje fotografija
   url_of_this_taxon_on_the_source_website: URL ovog taksona na veb sajtu izvora
   usage_stats: Statistika upotrebe
+  use_this_if_the_url_needs_genus_species_separated: |
+    Ovo koristi ako je potrebno da rod i vrsta budu razdvojeni na poseban način u URL-u. Ako takson nije vrsta ili infravrsta, sve između [GENUS] i [SPECIES] će biti zamenjeno nazivom taksona, upotrebiti samo ako je to neophodno.
   used_x_times:
     one: Korišćeno jedanput
     few: Korišćeno %{count} puta
@@ -3326,6 +3367,7 @@ sr:
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} je dodao u favorite %{noun} od %{owner}"
   user_faved_this_observation: "%{user} je doda opservaciju u favorite"
+  user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
   user_helped_x_people_with_y_ids_html: "%{user} je pomogao <strong>%{x} ljudi</strong> sa<strong>%{y} ID-jeva</strong>"
   user_invited_you_to_join_html: "%{user} te je pozvao da se pridružiš"
@@ -3760,6 +3802,7 @@ sr:
         disagreement: Neslaganje
         identification_count: Brojač identifikacija
         score: Rezultat
+        you_have_opted_out: Izabrao/la si da ne dobijaš identifikacije zajednice
         your_id_does_not_match: |
           Tvoj ID (<span class="bold">%{taxon_name}</span>) se ne poklapa sa ID-jem zajednice
       compare:
@@ -3997,6 +4040,7 @@ sr:
         obs_cid_d_desc: Kreirane u prethodnih 7 dana i imaju ID zajednice
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: Ops sa IDZ do nivoa roda
+        obs_cid_d_to_genus_desc: Kreirano u poslednjih nedelju dana i ima ID zajednice na nivou roda ili niže
         obs_desc: Kreirane u poslednjih 7 dana
         obs_id_d_desc: Kreirane u poslednjih 7 dana i imaju ID (može biti i posmatračev)
         observations_1_week_moving_window: Opservacije (vremenski period od jedne nedelje)
@@ -4149,6 +4193,8 @@ sr:
           any: Bilo koji
           joined: Projekti kojima si se pridružio/la
           none: "Nijedan, samo ti možeš dodati svoju opservaciju u projekte"
+        prefers_community_taxa_desc: |
+          %{site_name} prati kako identifikuješ tvoje opservacije i kako ih zajednica identifikuje. Ako misliš da mišljenje zajednce ne treba da ima prednost nad tvojim, ovde to možeš izabrati. Ljudi će i dalje moći da dodaju identifikacije ali će opservacije ostati povezane sa taksonom tvoje identifikacije. To znači da opservacije neće steći status istraživačkog nivoa sve dok se tvoja identifikacija ne poklapa sa onom zajednice.
         prefers_coordinate_interpolation_protection_desc: |
           Kada podesiš geoprivatnost opservacije na "prikriveno" ili "privatno", to će biti primenjeno na sve druge opservacije koje su zabeležene istog dana kako bi drugima bilo teže da na osnovu drugih opservacija koje su zabeležene otprilike u to vreme pretpostave prave koordinate.
         prefers_no_tracking_label: Ne sakupljaj podatke o stabilnosti i upotrebi sajta pomoću servisa trećih strana
