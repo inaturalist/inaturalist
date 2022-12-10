@@ -779,9 +779,9 @@ hu:
   commercial_solicitation: Üzleti ajánlat, nemműködő linkek, stb.
   #Second person verb to commit a taxon change, i.e. the change has been executed
   commit: Közzététel
-  committed_by_user_on_date_html: 'Készítette %{user} ekkor: %{date}'
+  committed_by_user_on_date_html: 'Elvégezte %{user} ekkor: %{date}'
   #Label for date the taxon change was committed
-  committed_on: 'Készítve ekkor: %{date}'
+  committed_on: 'Dátum: %{date}'
   common_name: Köznyelvi név
   community: Közösség
   community_curated: A közösségtől
@@ -947,6 +947,7 @@ hu:
   copyright_info: Szerzői jogi információ
   copyright_info_and_more: Szerzői jogi információk és egyebek
   copyright_infringement: Szerzői jogok megsértése
+  covered_by_a_taxon_framework_html: "%{link} fedi le."
   covered_by_a_taxon_framework_link: "%{taxon_framework_rank} %{taxon_framework_name} taxonkeretrendszere"
   couldnt_change_your_password: "A jelszócsre sikertelen: %{e}"
   couldnt_find_that_taxon: Nem találtuk azt a taxont.
@@ -3432,6 +3433,7 @@ hu:
   source_eg:
     url: pl. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
   source_url: Forrás URL
+  sourced_to: 'Átemelve ide:'
   sources: Források
   sources_youve_added: Források, melyeket hozzáadtál
   spam: Spam
@@ -3527,6 +3529,8 @@ hu:
     A meghatározások között van legalább egy olyan taxon, amely (vagy amelynek egy altaxonja) ritkaság és/vagy veszélyeztetett. Emiatt a hely nem publikus.
   taxon_is_threatened_coordinates_obscured: Veszélyeztetett taxon, a koordinátákat kitakarjuk
   taxonomy: Rendszertan
+  taxon_change_commit_may_still_be_processing: |
+    A taxonmódosítás még folyamatban lehet, ezért elképzelhető, hogy nem minden adatsor van frissítve
   taxon_change_title_taxon_swap: Taxoncsere
   taxon_map:
     overlays: Rétegek
@@ -3574,7 +3578,7 @@ hu:
   the_name_of_the_taxon_underscores: E taxon neve, a szóközöket alulvonásra cserélve.
   the_observation_was_already_added_to_that_project: A megfigyelés már hozzá volt adva ahhoz a projekthez.
   the_people_of_inat: "Emberek az %{site_name} mögött"
-  the_world: A világ
+  the_world: A Föld
   then_keybord_sequence: majd
   there_merge_problems_with_the_merge: "Hiba történt az egyesítéssel: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
@@ -3917,7 +3921,7 @@ hu:
   view_more_unreviewed: "További átnézetlenek megtekintése"
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
-  view_observations_of_this_taxon_by: 'E taxon megfigyeléseinek megtekintése tőle:'
+  view_observations_of_this_taxon_by: E taxon megfigyeléseinek megtekintése tőle
   view_on: 'Megtekintés itt:'
   view_on_flickr: Megtekintés Flickr-en
   view_original: "Eredeti megtekintése"
@@ -4209,6 +4213,8 @@ hu:
     observations:
       community_id:
         agreement: Egyetértés
+        algorithm_summary: Az algoritmusról dióhéjban
+        ancestor_disagreements: Felmenői egyetnemértések
         below_cutoff: Küszöb alatt
         cumulative_count: Összesített szám
         disagreement: Egyetnemértés
@@ -4260,10 +4266,15 @@ hu:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
       show:
+        ancestor_disagreements_desc: "Azon meghatározási taxonok száma, amelyek a felsőbb szintű taxonokon belül esnek, de nem értenek egyet a taxon szintű meghatározással (például \"egyetértek a nemzetséggel, de szerintem ez egy másik faj\")."
+        cumulative_count_desc: 'A meghatározások száma az egyéni taxon szintjén és az alatt'
         data_quality_assessment_desc_html: |
           Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
+        disagreement_count_desc: "Azon meghatározási taxonok száma, amelyek a magasabb szintű taxonokon is kívül esnek"
+        identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
+        score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
     observation_fields:
