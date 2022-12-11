@@ -411,7 +411,7 @@ hu:
   and_other_taxa: "&amp; Más taxonok"
   android: Android
   animals: Állatok
-  annotation: Jegyzet
+  annotation: Megjelölés
   annotations: Megjelölések
   announcement_was_successfully_created: A közlemény sikeresen létrehozva.
   announcement_was_successfully_updated: A közlemény sikeresen frissítve.
@@ -968,7 +968,7 @@ hu:
   csv: CSV
   csv_file: CSV fájl
   csv_should_not_contain_a_header_row: A CSV ne tartalmazzon fejléc sort
-  cumulative_ids: "Kumulatív meghatározások: %{count}/%{total}"
+  cumulative_ids: "Összesített meghatározások: %{count}/%{total}"
   curate_observations: Megfigyelések gondozása
   curate_taxa: Taxon gondozása
   curate_user: Felhasználó gondozása
@@ -1290,7 +1290,7 @@ hu:
   error_updating_photo: "Hiba a fotó frissítésekor: %{photo_errors}"
   establishment:
     endemic: Endemikus
-    establishment: Letelepedés
+    establishment: Honosság
     introduced: Jövevény
     invasive: Inváziós
     managed: Felügyelt
@@ -1539,7 +1539,7 @@ hu:
     A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap gondozói és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  hide_no_annotation: Rejtsd el a "jegyzet nélkülit"
+  hide_no_annotation: '"Megjelölés nélküli" elrejtése'
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Kumulatív elrejtése
   hide_uncountable_species: A megszámlálhatatlan fajok elrejtése
@@ -1586,7 +1586,7 @@ hu:
   ids: "Azonosítás"
   ids_made_for_others: Meghatározás mások számára
   if_for_some_reason_a_user_doesnt_agree: |
-    Ha valamilyen okból nem értesz egyet a közösségi taxonnal, visszautasíthatod azt. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját mehatórozásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért veled.
+    Ha valamilyen okból nem értesz egyet a közösségi taxonnal, elutasíthatod azt. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját mehatórozásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
   import: Importálás
   import_all_photos_as_observations: Minden fotó importálása megfigyelésekként
@@ -3005,6 +3005,7 @@ hu:
     other: Projekt adminok
   project_coordinate_access_warning: |
     A koordinátákhoz való hozzáférés fontos a tudósok számára, de ezt kihasználhatják az orrvadászok. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában mielőtt megbíznál ebben a projektben.
+  project_created_on: 'hozta létre ezt a projektet ekkor: %{date}'
   project_curators: A projekt kurátorai
   project_group_label: Csoport
   project_journal: Hírmondó
@@ -3015,6 +3016,7 @@ hu:
     <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
+  project_rules: Projektszabályzat
   project_settings: Projektbeállítások
   project_start_time_datetime: "Kezdete:"
   project_was_successfully_updated: A projekt frissítése sikeres.
@@ -3190,6 +3192,7 @@ hu:
   recent_new_users: Nemrég regisztrált felhasználók
   recent_observations: Új megfigyelések
   recent_observations_: Új megfigyelések
+  recent_post: Legutóbbi bejegyzések
   #Atom is a syndication format: https://en.wikipedia.org/wiki/Atom_(Web_standard)
   recent_atom_observations_by: "%{login} új megfigyelései (Atom)"
   recent_observations_by: "%{login} új megfigyelései"
@@ -3204,6 +3207,7 @@ hu:
   refreshing: frissül
   regenerate_stats: Statisztikák újragenerálása
   reject?: Elutasítod?
+  relative_observations: Relatív megfigyelésszám
   relationship: "Viszony"
   relationship_x: "Kapcsolat: %{relationship}"
   relationships:
@@ -3356,7 +3360,7 @@ hu:
   show_more: Továbbiak
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
-  show_no_annotation: Mutasd a "jegyzet nélkülit"
+  show_no_annotation: '"Megjelölés nélküli" megjelenítése'
   show_off_your_recent_observations: Mutasd meg legújabb megfigyeléseidet saját blogodon vagy honlapodon!
   show_only: Csak ezek
   show_relative_proportions_of_all_observations: Az összes megfigyeléshez képest
@@ -3561,6 +3565,7 @@ hu:
   tell_the_world_a_little_about_yourself: Mesélj magadról
   tell_us_why: Miért gondolod?
   terms: Feltételek
+  terms_and_rules_html: "Szabályzat"
   terms_service: Felhasználási feltételek
   terrain: terep
   thanks!: Köszönjük!
@@ -3743,9 +3748,12 @@ hu:
   tos_privacy_guidelines_label: |
     Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
   total: Összes
+  totals: Összesen
+  total_members: Tagok száma
   total_observations: Minden megfigyelés
   total_observations_caps: ÖSSZES MEGFIGYELÉS
   total_species_observed_caps: ÖSSZES MEGFIGYELT FAJ
+  total_unique_observers: Összes egyedi megfigyelő
   translated_languages: Célnyelv
   'true': 'Igen'
   trending: Népszerű
@@ -3769,6 +3777,7 @@ hu:
   unblock: Letiltás feloldása
   unhide_content: Tartalom felfedése
   unique_identifier_of_this_taxon: E taxon egyedi azonosítója a forrás adatbázisban
+  unique_observers: egyedi megfigyelő
   unknown: Ismeretlen
   unknown_error: Ismeretlen hiba
   unknown_rank: '(Ismeretlen besorolás)'
@@ -3821,6 +3830,7 @@ hu:
     other: Fényképek feltöltése (%{count}/%{num})
   url_identifier_of_a_project_derived_from: "Egy projekt URL-je / azonosítója valamilyen külső forrásból származtatva"
   url_of_this_taxon_on_the_source_website: E taxon URL-je a forrás weboldalán
+  usage_stats: Használati statisztikák
   user: Felhasználó
   user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvencelték ezt a megfigyelést"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvencelték ezt a megfigyelést"
@@ -3954,7 +3964,7 @@ hu:
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_conservation_status_for_this_taxon: Ez a taxon nem rendlkezik természetvédelmi státusszal
-  we_have_no_establishment_data_for_this_taxon: "Nincs honossási adatunk erről a taxonról"
+  we_have_no_establishment_data_for_this_taxon: "Nincs honossági adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
   welcome: üdvözlünk
@@ -3995,7 +4005,7 @@ hu:
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
   why_the_coordinates_are_obscured: Miért rejtettek a koordináták
-  with_annotation: Megjelölés
+  with_annotation: Megjelöléssel
   without_annotation: Megjelölés nélkül
   widget: Modul
   widget_code: Modul kódrészlet
@@ -4267,6 +4277,24 @@ hu:
         decimal_degrees_format: dd.dddd
       show:
         ancestor_disagreements_desc: "Azon meghatározási taxonok száma, amelyek a felsőbb szintű taxonokon belül esnek, de nem értenek egyet a taxon szintű meghatározással (például \"egyetértek a nemzetséggel, de szerintem ez egy másik faj\")."
+        community_taxon_desc_html: |
+          A közösségi taxon (vagy közösségi azonosítás) képviseli az %{site_name} felhasználói közösségének véleményét az adott megfigyelést illetően. A közösségi taxon megállapítását az alábbiakban ismertetett algoritmus végzi, aminek eredménye képpen <strong>megpróbáljuk azt taxont a megfigyeléshez rendelni, amellyel az azonosítók több, mint kétharmada egyetért</strong>. Gyakran ez egy tágabb taxonhoz vezet, amely tartalmazza az ellentmondásos azonosításokat. (Például ha szerintem ez bíboros kosbor, szerinted pedig vitézvirág, akkor az eredmény az Orchidinae alnemzetségcsoport lesz, amely mindkét fajt tartalmazza.) Az algoritmus valamennyire kedvez az eltérő véleményeknek, mivel úgy találtuk, hogy azok sokszor helyesek.
+          </p>
+          <p class="ui">
+          A tudományos szint eléréhez a megfigyelésnek többek között közösségi taxonnal kell rendelkezniük. Ha egy megfigyelés csak egy meghatározást tartalmaz, akkor annak nincs közösségi taxona. Minden megfigyelésnek, amelyhez legalább egy meghatározás társul, van egy megfigyelési taxona is. A megfigyelési taxont vesszük figyelembe többek között a megfigyelés adatpartnerekkel való megosztása során, ugyanazon taxon megfigyeléseinek összerendezésénél, valamint az életlista frissítésénél. A legtöbb esetben a megfigyelési taxon közösségi taxonná válik, de olykor a kettő különbözik, legfőképp amíg a közösség egyetértésre nem jut a meghatározásnál. Például ha ez szerintem egy kosborféle, szerinted pedig bíboros kosbor, akkor a megfigyelési taxon a bíboros kosbor lesz (amit a te meghatározásod támaszt alá), viszont a közösségi taxon a kosbérfélék lesz, amit legalább két meghatározás támogat. Ha valamilyen okból nem értesz egyet a közösségi taxonnal, elutasíthatod azt a saját megfigyelésednél. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját meghatározásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért <em>veled</em>. Ha egyáltalán nem szeretnéd a közösségi taxont figyelembe venni, kikapcsolhatod azt <a href="/users/edit" target="_blank">a beállításaidnál</a>.
+          </p>
+          <p class="ui">
+          <strong>Az algoritmus:</strong> minden meghatározott taxonhoz és az afeletti taxonhoz (például a <i>Homo sapiens</i> taxon felett található a <i>Homo</i> nemzetség) egyenként hozzárendel egy pontszámot, ami a következők arányát fejezi ki: (1) az `egyetértések` száma - vagyis az összesített azonosítások száma egy taxonra, osztva az összesített azonosítások számával, (2) az `egyetnemértések` száma - vagyis a teljesen eltérő azonosítások száma (például azon taxonoké, amelyek nem tartalmazzák a pontozott taxont), és a (3) felmenői egyetnemértések száma - vagyis azon konzervatívabb meghatározások száma, amelyek ellentmondanak a szűkebb taxonnak. A legalább 2/3 pontszámmal és legalább két meghatározással rendelkező meghatározott taxonok közül a szűkebbet választja az algoritmus.
+          </p>  
+          <strong>Az algoritmus eredeti angol magyarázata:</strong> for all identified taxa and the taxa that contain them
+          (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between
+          the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative
+          IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa
+          that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of
+          more conservative IDs that disagree with the finer taxon. For the identified taxa that
+          have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
+          </p>
+
         cumulative_count_desc: 'A meghatározások száma az egyéni taxon szintjén és az alatt'
         data_quality_assessment_desc_html: |
           Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
@@ -4450,6 +4478,8 @@ hu:
         one_time: Egyszeri
         percent_growth_in_year: "%{year} évi növekedés"
         percent_of_total_growth: "Összes növekedés %-a"
+        publications_desc_short_html: |
+          A színek és számok jelentéséhez kattints a virágdiagramra. Az adatok és a diagramok szolgáltatója az <a href="https://www.altmetric.com">Altmetric</a>. Az adatok felhasználását jelölő információk forrása a <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Megfigyelés / Év
         observations_per_year_by_date_added: Hozzáadás dátuma szerint
         observations_per_year_by_date_observed: Megfigyelés dátuma szerint
@@ -4499,6 +4529,14 @@ hu:
           A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
           A "Honosság státusza" azt írja le, hogy milyen módon jutott el egy adott faj oda, ahol jelenleg előfordul. Jövevény azt jelenti, hogy emberi tevékenység miatt került be egy adott területre, őshonos pedig azt, hogy emberi segítség nélkül érkezett.
+        charts_help_seasonality: |
+          Ez a diagram az adott taxon megfigyeléseinek számát szemlélteti havi bontásban. Vedd figyelembe, hogy ezek megfigyelési számok, amelyeket befolyásolja mind az élőlény megfigyelhetősége, mind pedig a felhasználók egyéni megfigyelői szokása. Például egy madár nagyon aktívnak tűnhet májusban, ami annak is betudható, hogy a madárfigyelők májusban a legaktívabbak. Ugyanígy több szitakötő-megfigyelés jut júniusra mint januárra, valószínűleg azért, mert több megfigyelő van az északi féltekén, mint a délin, nem pedig azért, mert a a szitakötők aktívabban júniusban. Emiatt vedd vigyelembe a megfigyeléseket ábrázoló térképet is. Fogadd kritikusan ezeket a diagramaokat, ha alacsony a megfigyelések száma, és/vagy ha nagy a különbség a megerősíthető és a tudományos szintű megfigyelések száma között.
+        charts_help_history: |
+          Ez a diagram az adott taxon megfigyeléseinek számát szemlélteti havi bontásban, 10 évre visszamenőleg. Itt is hangsúlyozzuk, hogy ezt nagyban befolyásolja a megfigyelő felhasználók száma, ugyanakkor a kiugróan magas vagy alacsony értékek, különösen a növekvő felhasználószám tükrében, utalhatnak az élőlény számosságának változására.
+        charts_help_other: |
+          A szezonalitási diagramot a megjelölések bontásában is megjelenítjük. A megjelölések révén metaadatokat rendelhetsz a megfigyeléshez meghatározott attribútomokkal, pl. megjelölheted, hogy a megfigyelés tárgya milyen nemű vagy milyen fenológiai fázisban van (virágzó vagy termő).
+        charts_help_relative_observations: |
+          Egy taxon megfigyelési gyakoriságának megjelenítése az összes megfigyelés arányában segít a felhasználó szám növekedéséből adódó torzítás mérséklésében. Például ha a közösség és a megfigyelések száma évről évre növekszik, akkor egy bizonyos taxonra is több megfigyelés érkezik, ami azt is jelentheti, hogy az élőlény többször fordul elő, és azt is, hogy egyszerűen több felhasználó készít megfigyelést. Ha összesen 100 megfigyelés van, és abból 20 egy adott taxonban, akkor a relatív megfigyelésszám 20 / 100 = 0,2. Ha a következő évben 2000 megfigyelést töltenek fel, és abból 400 van ugyanebben a taxonban, akkor a relatív megfigyelésszám még mindig 0,2 (400/2000). Ez torzításokhoz vezet ha egy területen nagyon kevés megfigyelő tevékenykedik, vagy ha a taxont nagyon ritkán figyelik meg, de ez az abszolút megfigyelésszámokra is igaz.
         frequency:
           research: Tudományos szintű
           verifiable: Hiteles
@@ -4520,7 +4558,7 @@ hu:
           "Sex=Cannot Be Determined": Nem határozható meg
           "Sex=Female": Nőstény
           "Sex=Male": Hím
-          unannotated: Nincs magyarázat
+          unannotated: Nincs megjelölés
         max_photos_desc: |
           Egy taxonnak csak %{max} fotója lehet. El kell távolíts létező fotókat ahhoz, hogy többet adj hozzá.
         photo_chooser_modal_desc: |
