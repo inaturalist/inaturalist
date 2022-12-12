@@ -46,6 +46,7 @@ mi:
   #should work here
   about_place: "Mō te %{place}"
   about_places: Mō ngā wāhi
+  about_the_network: Mo te tūhononga
   about_this_map: Mō te mahere tēnei
   about_this_project: Mō te kohinga tēnei
   about_trusting_projects_options_any: Āu mauhanga katoa i roto i kohinga tēnei
@@ -623,6 +624,8 @@ mi:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
@@ -892,6 +895,7 @@ mi:
     zambia: Tāmipia
     zimbabwe: Timuwawe
   plants: tipu
+  play_first_sound: Pureingia te oro tuatahi
   #Title to a section warning a user to exercise caution
   please_be_careful!: Kia tūpato!
   press: Arapāho
@@ -1267,6 +1271,10 @@ mi:
     observations:
       compare:
         about_missing_taxa: Mō rōpū ngaro
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Huapae
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Poutū
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
         user_login: Ingoa rorohiko o te kaimātaki

@@ -377,6 +377,9 @@ pl:
   add_observations: Dodaj obserwacje
   add_observations_by_checking_off: Dodaj obserwacje poprzez odhaczenie gatunków z listy.
   add_observations_project: Dodaj obserwacje do tego projektu
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Dodaj</span> <span>obserwacje</span>"
   #Prompt to add a new journal post
   add_one: Dodaj jakiś!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -1376,6 +1379,7 @@ pl:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Upuść
   download: Pobierz
+  download_caps: POBIERZ
   download_csv: Pobierz CSV
   download_csv_template: Pobierz szablon CSV
   download_kml: Pobierz KML
@@ -1527,6 +1531,8 @@ pl:
   feedback: Opinia
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Kanały'
+  #Button to show fewer places
+  fewer__context_places: Mniej
   failed: Nie powiodło się
   field_note: |
     <strong>Uwaga:</strong> zanim dodasz kolejną notatkę terenową, upewnij się, że nie istnieje podobna.
@@ -2001,6 +2007,8 @@ pl:
     waray_waray: Warajski
     visayan: bisajski
   less: Mniej
+  #Button show less text
+  less__context_text: Mniej
   license: Licencja
   life: Życie
   life_list: "Lista życiowa użytkownika %{user}"
@@ -2248,6 +2256,15 @@ pl:
   month: Miesiąc
   months: Miesiące
   more: Więcej
+  #Button to show more observations
+  more__context_observations_caps: WIĘCEJ
+  #Button to show more places
+  more__context_places: Więcej
+  #Button to show more text
+  more__context_text: Więcej
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: WIĘCEJ
+  more_caps: WIĘCEJ
   more_fields: Więcej notatek
   more_filters: Więcej filtrów
   more_from_x: Więcej od %{x}
@@ -2587,6 +2604,7 @@ pl:
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
   optional: opcjonalne
+  options: Opcje
   or: lub
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3383,6 +3401,7 @@ pl:
   set_license: Ustaw licencję
   settings: Ustawienia
   share: Udostępnij
+  share_caps: UDOSTĘPNIJ
   share_colon: "Udostępnij:"
   show: Pokaż
   show_active_and_inactive_taxa: Pokaż aktywne i nieaktywne taksony
@@ -3872,6 +3891,7 @@ pl:
   verifiable_observations_by_observation_date: Obserwacje weryfikowalne według daty obserwacji
   view: Zobacz
   view_all: Zobacz wszystkie
+  view_all_caps: ZOBACZ WSZYSTKO
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
   view_all_observations: Zobacz wszystkie obserwacje
