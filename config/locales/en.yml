@@ -1866,9 +1866,12 @@ en:
     native: evolved in this region or arrived by non-anthropogenic means
     endemic: native and occurs nowhere else
     introduced: arrived in the region via anthropogenic means
-  estimate_which_input: |
-    Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
-    a moment to calculate. Links to observations are truncated to subsets of 200.
+  # Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Estimate which identifications of the input taxon will be replaced by
+    identifications of the output taxa and which will be coarsened to a
+    common ancestor once the split is comitted. This may take a moment to
+    calculate. Links to observations are truncated to subsets of 200.
   event_in_progress: Event in progress
   event_stats: Event Stats
   event_url: Event URL
@@ -5574,6 +5577,7 @@ en:
   use_this_form_to_create_a_new: |
     Use this form to create a new draft taxonomic change describing a proposed
     split, merge or swap on active taxa to be later committed.
+  # Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Use this if the URL needs to have the genus and species separated in a
     particular way. If the taxon is not a species or infraspecies, everything
@@ -5845,7 +5849,10 @@ en:
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
   with: with
+  # Label for a button to withdraw an identification, i.e. to deactivate it
+  # without deleting it
   withdraw: Withdraw
+  # Loading status while an identification is being withdrawn
   withdrawing: Withdrawing...
   with_errors: With errors
   worldwide: Worldwide
@@ -6743,7 +6750,10 @@ en:
       show:
         allow_curator_coordinate_access_desc_html: |
           Allow project curators to view the hidden coordinates for this observation.
-        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but disagree with the taxon (ie \"I think its in the genus but I disagree its that species\")"
+        ancestor_disagreements_desc2: |
+          Number of identified taxa that are among a taxon's ancestors, but
+          disagree with the taxon (i.e. "I think it is in the genus but I
+          disagree it is that species")
         community_taxon_desc_html: |
           <p class="ui">
             The community taxon (or community identification) represents
@@ -8846,6 +8856,21 @@ en:
         position: Position
         source_url: Source URL
         source_identifier: Source identifier
+      taxon_link:
+        url: URL
+        # Name of the web site being linked to bey a taxon link, e.g. Global
+        # Biodiversity Information Facility
+        site_title: Site title
+        # Short or abbreviated title for the web site being linked to bey a
+        # taxon link, e.g. GBIF
+        short_title: Short title
+        # Taxon this link is associated with
+        taxon: Taxon
+        # Place this link is associated with
+        place: Place
+        # Controls whether the taxon link is visible for descendants of this
+        # taxon
+        show_for_descendent_taxa: Show for descendant taxa
       user:
         email: Email
         login: Username
