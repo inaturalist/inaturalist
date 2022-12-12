@@ -4302,6 +4302,55 @@ hu:
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
+        quality_assessment_help2_html: |
+          <p>
+          Az adatminőségi kiértékelés a megfigyelés pontosságát összegzi. Minden megfigyelés <strong>"hobbiszintű"</strong>ről indul, majd <strong>"meghatározásra vár"</strong>ra vált, ha teljesülnek az alábbi feltételek:
+          </p>
+          <ul>
+          <li>a megfigyelésnek <strong>van dátuma</strong></li>
+          <li>a megfigyelésnek vannak <strong>helyi koordinátái</strong> (szélességi és hosszúsági kör)</li>
+          <li>a megfigyeléshez tartozik <strong>kép és/vagy hang</strong></li>
+          <li>a megfigyelés tárgya <strong>nem ember</strong></li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"kutatási szint"</strong>re emelkedik, ha:
+          </p>
+          <ul>
+          <li>
+          az %{site_name} <strong>közössége egyetértésre jut faji szinten, vagy az alatt</strong>, vagy is ha a meghatározók több, mint kétharmada egyetért a taxonon (ha a közösség szerint a közösségi taxon nem javítható tovább, akkor a taxon alcsalád-szintűre vagy az alattira vált.
+          </li>
+          </ul>
+          <p>
+          A megfigyelés <strong>"hobbiszintű"</strong>re vált, ha a fenti feltételek nem teljesülnek, vagy ha a közösség egyetért a következőkben:
+          </p>
+          <ul>
+          <li>
+          a <strong>hely nem tűnik pontosnak</strong> (például majom van az ócián közepén, vagy víziló egy irodaközpontban)
+          </li>
+          <li>
+          az <strong>élőlény nem vadon vagy természetben fordul elő</strong> (például emberi kultiváció eredménye)
+          </li>
+          <li>
+          a megfigyelés <strong>nem szolgál bizonyítékul az élőlényről</strong>, például az élőlényt nem tartalmazó képek vízfelszínről, sziklákról, tájakról.
+          </li>
+          <li>
+          a megfigyelés <strong>túl régi (100 évnél régebbi) bizonyítékkal szolgál</strong> (például fosszíliák, viszont elfogadhatóak nyomok, ürülék, száradt levél)
+          </li>
+          <li>
+          a megfigyelésnek már nincs szüksége meghatározásra <em>és</em> a közösségi meghatározás családszintű vagy afeletti
+          </li>
+          <li>
+          a megfigyelő kikapcsolta a közösségi meghatározást és a közösségi taxon nem a felmenője vagy gyermeke a megfigyelő által kiválasztott taxonnak
+          </li>
+          </ul>
+          <p>
+          Ha ez még mindig nem lenne elég bonyolult:
+          </p>
+          <ul>
+          <li>
+          Bizonyos esetekben a rendszer automatikusan "nem vadonélő" szavazattal látja el a megfigyelést, ha az adott nemzetségnek vagy az alatt van legalább 10 egyéb megfigyelése az adott régióban/államban/országban, és ezen megfigyelések legalább 80 százaléka nem vadonélőként van megjelölve.
+          </li>
+          </ul>
         score_desc: "pontszám = összesített szám / (összesített szám + egyetnemértések száma + felmenői egyetnemértések)"
         observer_does_not_allow_observation_fields: A megfigyelő nem teszi lehetővé új adatmezők hozzáadását
         observer_only_allows_curators_to_add_fields: A megfigyelő csak kurátorok számára engedélyezi adatmezők hozzáadását
