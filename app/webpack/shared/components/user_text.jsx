@@ -51,9 +51,22 @@ const ALLOWED_TAGS = ( `
 ` ).split( /\s+/m ).filter( e => e !== "" );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
-  "href src width height alt cite title class name abbr value align target rel"
+  "href src width height alt cite title class name abbr value align rel"
   // + "xml:lang style controls preload"
 ).split( " " );
+/*
+  Some notes on attributes we don't want to allow:
+
+  * target: allowing users to specify target="_blank" allows attackers to
+    publish links on iNat to sites that manipulate the window / tab that
+    opened the link, so a person could click the link, land on the attacker's
+    website, and the attackers website uses window.opener.location to
+    navigate the opening tab to a page that looks like iNat but isn't, and
+    when the person returns to that tab they might be prompted to enter their
+    password, exposing it to the atacker. This can be mitigated by include
+    rel="noopener" in links, but I'm not seeing a great reason for users to
+    use the target attribute regardless.
+*/
 
 const ALLOWED_ATTRIBUTES = { a: ["href"] };
 ALLOWED_TAGS.filter( tag => tag !== "a" ).forEach( tag => { ALLOWED_ATTRIBUTES[tag] = ALLOWED_ATTRIBUTES_NAMES; } );
@@ -130,7 +143,7 @@ class UserText extends React.Component {
     // we're not URLs don't get truncated in the middle.
     html = linkifyHtml( html, {
       className: null,
-      attributes: { rel: "nofollow" },
+      attributes: { rel: "nofollow noopener" },
       ignoreTags: ["a", "code", "pre"]
     } );
     if ( stripTags ) {

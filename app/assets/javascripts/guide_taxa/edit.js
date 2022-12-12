@@ -99,7 +99,7 @@ function sectionToHtml( section ) {
   );
   var attribution = $( "<div class='small meta'></div>" ).html( section.attribution );
   if ( section.source_url ) {
-    var link = $( "<a></a>" ).attr( "href", section.source_url ).attr( "target", "_blank" );
+    var link = $( "<a></a>" ).attr( "href", section.source_url ).attr( "rel", "nofollow noopener" );
     attribution = attribution.wrap( link );
   }
   div.append(
@@ -149,7 +149,7 @@ function rangeToHtml( range ) {
   );
   var attribution = $( "<div class='small meta upstacked'></div>" ).html( range.attribution );
   if ( range.source_url ) {
-    var link = $( "<a></a>" ).attr( "href", range.source_url ).attr( "target", "_blank" );
+    var link = $( "<a></a>" ).attr( "href", range.source_url ).attr( "rel", "nofollow noopener" );
     attribution = attribution.wrap( link );
   }
   div.append( attribution );

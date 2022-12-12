@@ -318,6 +318,19 @@ describe UsersController, "show" do
     expect( assigns( :user ) ).to eq u
     expect( response ).to be_successful
   end
+
+  describe "profile text" do
+    render_views
+
+    it "should not allow target=_blank" do
+      u = create :user,
+        spammer: false,
+        description: '<a target="_blank" href="https://www.evil.com">foo</a>'
+      get :show, params: { id: u.id }
+      elt = Nokogiri::HTML( response.body ).at_css( "a[href='https://www.evil.com']" )
+      expect( elt[:target] ).to be_nil
+    end
+  end
 end
 
 describe UsersController, "moderation" do

@@ -329,7 +329,7 @@ module ApplicationHelper
     parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
     # Ensure all links have nofollow
     parsed_text.css( "a" ).each do | node |
-      node[:rel] = "#{node[:rel]} nofollow".strip
+      node[:rel] = "#{node[:rel]} nofollow noopener".strip
     end
     text = parsed_text.to_s
     # Remove empty paragraphs
