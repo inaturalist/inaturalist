@@ -1440,7 +1440,6 @@ ca:
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
-      invalid: 'Correu electrònic o contrasenya incorrectes'
       invalid_token: 'Autenticació no vàlida'
       user:
         suspended: El vostre compte s'ha suspès
@@ -1454,19 +1453,17 @@ ca:
       send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
       no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
     registrations:
+      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
       updated: 'Heu actualitzat el vostre compte amb èxit.'
-      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruccions de confirmació'
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La vostra contrasenya no canviarà fins que accediu a l'enllaç de dalt i en creeu una de nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1641,8 +1638,6 @@ ca:
     native: desenvolupat en aquesta regió o arribà per mitjans no antropogènics
     endemic: nadiu i no succeeix a enlloc més
     introduced: va arribar a la regió per mitjans antropogènics
-  estimate_which_input: |
-    Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -2576,8 +2571,6 @@ ca:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "LT, D MMM YYYY z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5033,6 +5026,7 @@ ca:
     Utilitza <span class="ac-placeholder">"%{name}"</span> com a marcador del lloc
   use_this_form_to_create_a_new: |
     Utilitzeu aquesta forma per crear un canvi taxonòmic en l'esborrany, especificant si és per separar, ajuntar o és un canvi en el grup o espècie, perquè després es desi.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilitzeu-lo si l’URL té els gèneres i les espècies separats de manera diferent. Si el tàxon no és una espècie o infraespècie, tot el que estigui entre [GÈNERE] i [ESPÈCIE] es reemplaçarà pel nom del tàxon, així que feu-lo servir moderadament.
   use_unique_file_names_for_separate_uploads: Utilitza noms únics d'arxius per a separar les pujades
@@ -5290,7 +5284,10 @@ ca:
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
   with: amb
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirant...
   with_errors: Amb errors
   worldwide: Mundial
@@ -5972,7 +5969,6 @@ ca:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permet als supervisors del projecte veure les coordenades ocultes d'aquesta observació.
-        ancestor_disagreements_desc: "# dels tàxons identificats es troben entre els avantpassats d'un tàxon, però en desacord amb el tàxon (p.e. creieu que són d'aquest però esteu en desacord amb aquesta espècie)"
         community_taxon_desc_html: |
           <p class="ui">
           El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
