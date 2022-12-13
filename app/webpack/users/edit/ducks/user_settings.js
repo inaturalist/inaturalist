@@ -71,16 +71,17 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
 }
 
 export async function handleSaveError( e ) {
-  // If the user is no longer authenticated, reload the window since they were
-  // probably signed out for some reason
-  if ( e?.response?.status === 401 ) {
-    window.location.reload( );
-    return {};
-  }
-  // If there's no response, we don't know what to show the user
+  // If there's no response, this wasn't an HTTP error response and we don't
+  // know what to show the user
   if ( !e.response ) {
     alert( I18n.t( "doh_something_went_wrong_error", { error: e.message } ) );
     throw e;
+  }
+  // If the user is no longer authenticated, reload the window since they were
+  // probably signed out for some reason
+  if ( e.response.status === 401 ) {
+    window.location.reload( );
+    return {};
   }
   const body = await e.response.json( );
   return body.error.original.errors;
