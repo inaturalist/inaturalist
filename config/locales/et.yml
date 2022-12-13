@@ -1395,7 +1395,6 @@ et:
     failure:
       already_authenticated: 'Olete juba sisse logitud.'
       unauthenticated: 'Pead jätkamiseks sisse logima või endale konto looma.'
-      invalid: 'Vigane e-posti aadress või salasõna.'
       invalid_token: 'Väär autentimiskood.'
       user:
         suspended: Sinu konto on deaktiveeritud
@@ -1409,19 +1408,17 @@ et:
       send_paranoid_instructions: "Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja."
       no_token: "Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki."
     registrations:
+      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
-      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
     mailer:
-      confirmation_instructions:
-        subject: 'Kinnitamisjuhised'
       reset_password_instructions:
         subject: 'Salasõna lähtestamise juhised'
   devise_reset_password_instructions_hello_email: Tere, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Kui sa seda ei taotlenud, siis ära pane seda e-kirja tähele.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sinu salasõna ei muutu, kui sa ülalolevale lingile ej vajuta ja uut salasõna ei loe.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2361,8 +2358,6 @@ et:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4144,6 +4139,7 @@ et:
     Kasuta <span class='ac-placeholder'>"%{name}"</span> kohatäitjana
   use_this_form_to_create_a_new: |
     Kasuta seda vormi, et luua uus taksonoomilise muutuse visand, mis kirjeldab mõne aktiivse taksoni jagamist, ühendamist või vahetamist tulevikus.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Kasuta seda, kui URLis peavad perekond ja liik mingil erilisel moel olema eristatud. Kui takson pole liik või infraliik, siis asendatakse kõik [GENUS] ja [SPECIES] vahel olev taksoni nimega. Seega kasuta ettevaatlikult.
   use_unique_file_names_for_separate_uploads: Kasuta erinevate üleslaaditavate failide puhul unikaalseid nimesid
@@ -4361,7 +4357,10 @@ et:
   wikipedia_attribution_cc_by_sa_3_html: |
     See artikkel kasutab materjali Wikipedia artiklist <a href="%{url}">"%{title}"</a>, mis on saadaval <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commonsi Autorile viitamine + Jagamine samadel tingimustel 3.0</a> litsentsi alusel. Osa algsest sisust võib siit puududa, kuid miskit pole muudetud või lisatud.
   with: koos
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Võta tagasi
+  #Loading status while an identification is being withdrawn
   withdrawing: Võtan tagasi...
   with_errors: Vigadega
   worldwide: Globaalselt
@@ -4775,7 +4774,6 @@ et:
       show:
         allow_curator_coordinate_access_desc_html: |
           Luba projektide kuraatoritel näha selle vaatluse peidetud koordinaate.
-        ancestor_disagreements_desc: "Määratletud taksonite hulk, milles sisalduvad antud taksoni ülemtaksonid, kuid mis ei nõustu antud taksoniga (st \"Ma arvan, et tegu on selle perekonnnaga, kuid ei usu, et tegu on selle liigiga\")"
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
