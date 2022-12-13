@@ -5,7 +5,7 @@ const SET_CONFIRM_MODAL_STATE = "obs-show/confirm_modal/SET_CONFIRM_MODAL_STATE"
 export default function reducer( state = { show: false }, action ) {
   switch ( action.type ) {
     case SET_CONFIRM_MODAL_STATE:
-      return Object.assign( { }, action.newState );
+      return { ...action.newState };
     default:
       // nothing to see here
   }

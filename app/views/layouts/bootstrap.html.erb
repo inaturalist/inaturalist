@@ -112,6 +112,14 @@
               </div>
             </div>
           </div>
+        <% elsif current_user && !current_user.confirmed? && !current_page?( controller: :users, action: :edit ) %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="bg-warning">
+              <div class="container">
+                <p><%=t :email_confirmation_banner_html, date: l( Date.parse( "2023-07-01" ), format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+              </div>
+            </div>
+          </div>
         <% end %>
       <% end %>
 

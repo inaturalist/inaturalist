@@ -1,39 +1,35 @@
 class Users::RegistrationsController < Devise::RegistrationsController
-
-  layout "registrations"
+  include Users::CustomDeviseModule
 
   skip_before_action :verify_authenticity_token
 
-  before_action :load_registration_form_data, only: [:new, :create]
-
   def permit_params
-    if params[:user]
-      params.require(:user).permit(
-        :birthday,
-        :description,
-        :data_transfer_consent,
-        :email,
-        :icon,
-        :icon_url,
-        :locale,
-        :login,
-        :name,
-        :password,
-        :password_confirmation,
-        :pi_consent,
-        :place_id,
-        :preferred_observation_fields_by,
-        :preferred_observation_license,
-        :preferred_photo_license,
-        :preferred_sound_license,
-        :prefers_community_taxa,
-        :time_zone
-      )
-    end
+    return unless params[:user]
+    params.require(:user).permit(
+      :birthday,
+      :description,
+      :data_transfer_consent,
+      :email,
+      :icon,
+      :icon_url,
+      :locale,
+      :login,
+      :name,
+      :password,
+      :password_confirmation,
+      :pi_consent,
+      :place_id,
+      :preferred_observation_fields_by,
+      :preferred_observation_license,
+      :preferred_photo_license,
+      :preferred_sound_license,
+      :prefers_community_taxa,
+      :time_zone
+    )
   end
 
   def create
-    build_resource(permit_params)
+    build_resource( permit_params )
     resource.site = @site
 
     requestor_ip = Logstasher.ip_from_request_env(request.env)
@@ -86,9 +82,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
           end
           return
         else
-          set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
-          expire_session_data_after_sign_in!
-          redirect_to root_url
+          msg = case resource.inactive_message
+          when "inactive"
+            t( "devise.registrations.signed_up_but_inactive" )
+          when "locked"
+            t( "devise.registrations.signed_up_but_locked" )
+          when "unconfirmed"
+            t( "devise.registrations.signed_up_but_unconfirmed" )
+          else
+            t( "devise.registrations.signed_up_but_#{resource.inactive_message}" )
+          end
+          flash[:notice] = msg if is_navigational_format?
+          expire_data_after_sign_in!
+          respond_with( resource ) do | format |
+            format.json { render status: :created, json: { message: msg } }
+            format.html { redirect_to root_url }
+          end
           return
         end
       else

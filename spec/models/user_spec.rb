@@ -110,16 +110,9 @@ describe User do
     end
 
     it "should require email under normal circumstances" do
-      u = User.make
+      u = build :user
       u.email = nil
-      expect(u).not_to be_valid
-    end
-    
-    it "should allow skipping email validation" do
-      u = User.make
-      u.email = nil
-      u.skip_email_validation = true
-      expect(u).to be_valid
+      expect( u ).not_to be_valid
     end
 
     it "should set the URI" do
@@ -1409,7 +1402,7 @@ describe User do
     let(:auth_info) { {
       "info" => {
         "email" => email,
-        "name" => email
+        "name" => Faker::Name.name
       },
       "extra" => {
         "user_hash" => {
@@ -1417,19 +1410,63 @@ describe User do
         }
       }
     } }
-    it "should not allow an email in the name field" do
+    it "should set the confirmation_token" do
       u = User.create_from_omniauth( auth_info )
-      expect( u.email ).to eq email
-      expect( u.name ).not_to include email
+      expect( u ).not_to be_confirmed
+      expect( u.confirmation_token ).not_to be_blank
     end
-    it "should not automatically suggest something like the email in the name field" do
-      u = User.create_from_omniauth( auth_info )
-      expect( u.name ).to be_blank
+    it "should send the confirmation email" do
+      User.create_from_omniauth( auth_info )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
     end
-    it "should not automatically suggest something like the email in the login field" do
-      email_login_suggestion = User.suggest_login( email )
-      u = User.create_from_omniauth( auth_info )
-      expect( u.login ).not_to include email_login_suggestion
+    describe "with an email in the name field" do
+      let(:auth_info) { {
+        "info" => {
+          "email" => email,
+          "name" => email
+        },
+        "extra" => {
+          "user_hash" => {
+            "email" => email
+          }
+        }
+      } }
+      it "should not allow an email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.email ).to eq email
+        expect( u.name ).not_to include email
+      end
+      it "should not automatically suggest something like the email in the name field" do
+        u = User.create_from_omniauth( auth_info )
+        expect( u.name ).to be_blank
+      end
+      it "should not automatically suggest something like the email in the login field" do
+        email_login_suggestion = User.suggest_login( email )
+        u = User.create_from_omniauth( auth_info )
+        expect( u.login ).not_to include email_login_suggestion
+      end
+    end
+  end
+
+  describe "confirmation" do
+    it "should deliver the welcome email when a new user is confirmed" do
+      user = create :user, :as_unconfirmed
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+      expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
+    end
+    it "should not deliver the welcome email when confirmation_sent_at is nil" do
+      user = create :user
+      user.update( confirmed_at: nil, confirmation_sent_at: nil )
+      expect( user ).not_to be_confirmed
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
+    end
+    it "should not deliver the welcome email when user has privileges" do
+      user = create :user, :as_unconfirmed
+      create :user_privilege, user: user
+      expect( user ).not_to be_confirmed
+      expect( user.user_privileges ).not_to be_blank
+      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end
 

@@ -971,6 +971,10 @@ en:
   change_group: Change group
   change_icon: Change icon
   change_password: Change Password
+  # Message shown after you change your email address
+  change_to_email_requested_html:
+    Change to <strong>%{email}</strong> requested. Check your email at that
+    address to confirm the change.
   change_types:
     activated_soon: activated soon
     change_types: Change types
@@ -1165,6 +1169,10 @@ en:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
+  # date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Confirmation email sent at %{datetime}
+  # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   # Label for a button to connect your iNat account to another account, e.g.
@@ -1651,6 +1659,8 @@ en:
   deviation: Deviation
   devise:
     confirmations:
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       # Message a user sees when they try to manually trigger email
       # confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1660,8 +1670,11 @@ en:
     failure:
       already_authenticated: 'You are already signed in.'
       unauthenticated: 'You need to sign in or sign up before continuing.'
-      invalid: 'Invalid email or password.'
+      invalid: 'Invalid email, username, or password.'
       invalid_token: 'Invalid authentication token.'
+      unconfirmed: |
+        Please check your email and click the link in the email you received
+        to confirm your account.
       user:
         suspended: Your account has been suspended
     sessions:
@@ -1674,19 +1687,44 @@ en:
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
     registrations:
-      signed_up: 'Welcome! You have signed up successfully.'
-      updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      signed_up: 'Welcome! You have signed up successfully.'
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      updated: 'You updated your account successfully.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        # Subject of an email sent to confirm your account
+        subject: Confirm your email address
+      email_changed:
+        # Subject of an email sent when you try to change the email address
+        # associated with your account
+        subject: Email change requested
       reset_password_instructions:
         subject: 'Reset password instructions'
+  devise_confirmation_instructions_if_you_did_not: |
+    If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
+  devise_confirmation_instructions_please_click: |
+    Please click the link below to confirm your email address:
+  devise_confirmation_instructions_resend_instructions: |
+    You must have a working email address to use iNaturalist. When you signed
+    up for an account, you should have received a confirmation email with a
+    link to click to confirm that your email address works, but if you didn't
+    you can send yourself another confirmation email here.
+  devise_confirmation_instructions_send_confirmation_email: Send confirmation email
+  devise_email_changed_you_requested: You requested a change from %{old_email} to %{new_email}.
+  devise_email_changed_you_will_receive: |
+    You will receive an email at the new address to confirm the change, but we
+    wanted to notify you at your old address just in case someone else has
+    access to your account and is trying to change it without you knowing. If
+    you did not intentionally change your email address, please forward this
+    email to help@inaturalist.org immediately so we can investigate.
   devise_reset_password_instructions_hello_email: Hello %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     If you didn't request this, please ignore this email.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1832,6 +1870,12 @@ en:
   email: Email
   email_description: Your email is not shared with other users on iNaturalist
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
+    All users must confirm their email address by %{date}. After that
+    date anyone who has not confirmed their email address will be unable to
+    sign in unless they reset their password. To confirm your email address,
+    go to your %{link_start_tag}account settings%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
@@ -2883,7 +2927,7 @@ en:
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
+    datetime_with_zone_no_year: "MMMM D, h:mma z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     # Note that this should display an offset and not a time zone code, so
     # please use Z and not z
@@ -4203,6 +4247,26 @@ en:
   proposed_taxa_that_support_the_community_id: Proposed taxa that support the Community ID
   protozoans: protozoans
   provider_authorizations: Provider Authorizations
+  provider_without_email_error_apple: |
+    Apple did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Apple.
+  provider_without_email_error_flickr: |
+    Facebook did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Facebook.
+  provider_without_email_error_flickr: |
+    Flickr did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Flickr.
+  provider_without_email_error_generic: |
+    That service did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via third parties.
+  provider_without_email_error_google_oauth2: |
+    Google did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Google.
   public_domain: Public Domain
   publish: Publish
   purple: purple
@@ -4463,6 +4527,10 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
+  resend_and_sign_out: Re-send and Sign Out
+  resend_confirmation_email: Re-send confirmation email
   # Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Reset
@@ -5663,6 +5731,11 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    After you resend the confirmation email, you will be signed out and you
+    will not be able to sign in to your account until you click the link in
+    the email, so <strong>make absolutely sure you have entered your email address
+    correctly.</strong>
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
@@ -6020,6 +6093,7 @@ en:
   you_dont_have_permission_to_edit_those_photos: You don't have permission to edit those photos.
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
+  you_have_not_confirmed_your_email_address: You have not confirmed your email address!
   you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
   you_joined_this_project: You joined this project!
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that

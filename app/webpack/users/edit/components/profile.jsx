@@ -1,6 +1,7 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
+import moment from "moment";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
@@ -13,7 +14,9 @@ const Profile = ( {
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
-  changePassword
+  changePassword,
+  confirmResendConfirmation,
+  resendConfirmation
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
@@ -46,6 +49,53 @@ const Profile = ( {
       </div>
     );
   };
+  let emailConfirmation = (
+    <div>
+      <p className="text-success">
+        { I18n.t( "confirmed_on_date", { date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) ) } )}
+      </p>
+      { profile.unconfirmed_email && (
+        <div className="alert alert-warning">
+          <span
+            dangerouslySetInnerHTML={{
+              __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
+            }}
+          />
+          { " " }
+          <button
+            type="button"
+            className="btn btn-nostyle alert-link"
+            onClick={( ) => resendConfirmation( )}
+          >
+            { I18n.t( "resend_confirmation_email" ) }
+          </button>
+        </div>
+      ) }
+    </div>
+  );
+  if ( !profile.confirmed_at ) {
+    emailConfirmation = (
+      <div
+        className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+      >
+        {
+          profile.confirmation_sent_at
+            ? I18n.t( "confirmation_email_sent_at_datetime", {
+              datetime: moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )
+            } )
+            : I18n.t( "you_have_not_confirmed_your_email_address" )
+        }
+        { " " }
+        <button
+          type="button"
+          className="btn btn-nostyle alert-link"
+          onClick={( ) => confirmResendConfirmation( )}
+        >
+          { I18n.t( "resend_confirmation_email" ) }
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="row">
@@ -73,7 +123,15 @@ const Profile = ( {
                 >
                   {I18n.t( "upload_new_photo" )}
                 </button>
-                <input id="user_icon" className="hide" type="file" ref={hiddenFileInput} onChange={handlePhotoUpload} accept="image/*" />
+                <input
+                  id="user_icon"
+                  className="hide"
+                  value=""
+                  type="file"
+                  ref={hiddenFileInput}
+                  onChange={handlePhotoUpload}
+                  accept="image/*"
+                />
                 <button className="btn btn-default remove-photo-margin" type="button" onClick={removePhoto}>
                   {I18n.t( "remove_photo" )}
                 </button>
@@ -84,19 +142,41 @@ const Profile = ( {
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
           {showError( "login", "username" )}
-          <input id="user_login" type="text" className="form-control" value={profile.login} name="login" onChange={handleInputChange} />
+          <input
+            id="user_login"
+            type="text"
+            className="form-control"
+            value={profile.login}
+            name="login"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
           {showError( "email" )}
-          <input id="user_email" type="text" className="form-control" value={profile.email} name="email" onChange={handleInputChange} />
+          <input
+            id="user_email"
+            type="text"
+            className="form-control"
+            value={profile.email}
+            name="email"
+            onChange={handleInputChange}
+          />
+          { emailConfirmation }
         </SettingsItem>
         <ChangePassword changePassword={changePassword} showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          <input id="user_name" type="text" className="form-control" value={profile.name} name="name" onChange={handleInputChange} />
+          <input
+            id="user_name"
+            type="text"
+            className="form-control"
+            value={profile.name || ""}
+            name="name"
+            onChange={handleInputChange}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
@@ -125,7 +205,9 @@ Profile.propTypes = {
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
-  changePassword: PropTypes.func
+  changePassword: PropTypes.func,
+  resendConfirmation: PropTypes.func,
+  confirmResendConfirmation: PropTypes.func
 };
 
 export default Profile;

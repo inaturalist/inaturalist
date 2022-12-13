@@ -11,20 +11,16 @@ class DeviseMailer < Devise::Mailer
     elsif record.respond_to?( :user )
       record.user
     end
-    site = @site || user.try( :site ) || Site.default
+    @site ||= user&.site || Site.default
     if user
       old_locale = I18n.locale
       I18n.locale = user.locale.blank? ? I18n.default_locale : user.locale
       opts = opts.merge(
-        from: "#{site.name} <#{site.email_noreply}>",
-        reply_to: site.email_noreply
+        from: "#{@site.name} <#{@site.email_noreply}>",
+        reply_to: @site.email_noreply
       )
-      if action.to_s == "confirmation_instructions"
-        return false unless user.active_for_authentication?
-        opts = opts.merge( subject: t( :welcome_to_inat, site_name: site.name ) )
-      end
       begin
-        DeviseMailer.default_url_options[:host] = URI.parse(site.url).host
+        DeviseMailer.default_url_options[:host] = URI.parse( @site.url ).host
       rescue
         # url didn't parse for some reason, leave it as the default
       end
@@ -40,7 +36,7 @@ class DeviseMailer < Devise::Mailer
   def set_x_smtpapi_headers_for_action( action )
     asm_group_id = nil
     if CONFIG.sendgrid && CONFIG.sendgrid.asm_group_ids
-      asm_group_id = if action.to_s == "confirmation_instructions"
+      asm_group_id = if action.to_s == "welcome"
         # Treat the initial welcome email as a default "transactional" email
         # like the daily updates so that when people click the unsubscribe link,
         # they don't unsubscribe from password reset emails
