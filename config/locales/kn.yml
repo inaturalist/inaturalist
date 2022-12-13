@@ -1216,7 +1216,6 @@ kn:
     failure:
       already_authenticated: 'ನೀವು ಈಗಾಗಲೇ ಸೈನ್ ಇನ್ ಆಗಿರುವಿರಿ.'
       unauthenticated: 'ಮುಂದುವರೆಯುವ ಮುನ್ನ ನೀವು ಸೈನ್ ಇನ್ ಅಥವಾ ನೋಂದಣಿಯಾಗಬೇಕಾದ ಅಗತ್ಯವಿದೆ.'
-      invalid: 'ಅಸಿಂಧುವಾದ ಬಳಕೆದಾರಹೆಸರು ಅಥವಾ ಗುಪ್ತಪದ.'
       invalid_token: 'ಅಸಿಂಧುವಾದ ಧೃಢೀಕರಣದ ಟೋಕನ್.'
       user:
         suspended: ನಿಮ್ಮ ಖಾತೆಯನ್ನು ತಡೆಹಿಡಿಯಲಾಗಿದೆ
@@ -1229,19 +1228,17 @@ kn:
       updated_not_active: 'ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ.'
       send_paranoid_instructions: "ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿ ನಿಮ್ಮ್ ಮಿಂಚೆ ವಿಳಾಸ ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ನೀವು ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ಗುಪ್ತಪದ ಮರುಹೊಂದಿಕೆ ಲಿಂಕ್ ಅನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸದಲ್ಲಿ ಪಡೆಯುವಿರಿ."
     registrations:
+      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
       signed_up: 'ಸುಸ್ವಾಗತ! ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾವಣೆಯಾಗಿದ್ದೀರಿ.'
       updated: 'ನೀವು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಿದ್ದೀರಿ.'
-      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
     mailer:
-      confirmation_instructions:
-        subject: 'ಧೃಢೀಕರಣದ ಸೂಚನೆಗಳು'
       reset_password_instructions:
         subject: 'ಗುಪ್ತಪದ ಮದುಹೊಂದಿಕೆ ಸೂಚನೆಗಳು'
   devise_reset_password_instructions_hello_email: ನಮಸ್ತೆ %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     ನೀವು ಇದನ್ನು ವಿನಂತಿಸಿರದಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಈ ಮಿಂಚೆಯನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_your_password_wont_change_until: |
     ನೀವು ಲಿಂಕ್ ಅನ್ನು ಪ್ರವೇಶಿಸಿ ಹೊಸದೊಂದನ್ನು ರಚಿಸುವವರೆಗೂ ನಿಮ್ಮ ಗುಪ್ತಪದ ಬದಲಾಗುವುದಿಲ್ಲ.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2149,8 +2146,6 @@ kn:
       yy: "%dy"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4283,6 +4278,7 @@ kn:
   usage_stats: ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳು
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> ಅನ್ನು ಸ್ಥಳಸೂಚಕವನ್ನಾಗಿ ಬಳಸಿ
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     ಕುಲ ಮತ್ತು ಪ್ರಭೇದಗಳು ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ರಮದಲ್ಲಿ ಬೇರೆಯಾಗಿರುವುದು URLಗೆ ಅಗತ್ಯವಿದ್ದರೆ ಇದನ್ನು ಬಳಸಿ. ಜೀವಿವರ್ಗ ಪ್ರಭೇದ ಅಥವಾ ಕೆಳಪ್ರಭೇದವಾಗಿಲ್ಲದಿದ್ದರೆ, [GENUS] ಮತ್ತು [SPECIES] ನಡುವಿನ ಎಲ್ಲವೂ ಜೀವಿವರ್ಗದ ಹೆಸರಿನಿಂದ ಬದಲಿಸ್ಪಡುತ್ತದೆ, ಹಾಗಾಗಿ ಇದನ್ನು ಮಿತವಾಗಿ ಬಳಸಿ.
   use_unique_file_names_for_separate_uploads: ಅನನ್ಯ ಕಡತದ ಹೆಸರುಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾದ ಅಪ್ಲೋಡ್‍ಗಳಿಗೆ ಬಳಸಿ
@@ -4489,7 +4485,10 @@ kn:
   wikipedia_attribution_cc_by_sa_3_html: |
     ಈ ಲೇಖನವು ವಿಕಿಪೀಡಿಯಾದ <a href="https://creativecommons.org/licenses/by-sa/3.0/">ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ Attribution-Share-Alike ಪರವಾನಿಗೆ 3.0</a> ನ ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆಯಾಗಿರುವ <a href="%{url}">"%{title}"</a> ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಬಳಸಿಕೊಂಡಿದೆ. ಮೂಲ ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಕೈಬಿಡಲಾಗಿರಬಹುದು, ಆದರೆ ಯಾವುದೇ ವಿಷಯವನ್ನು ಬದಲಿಸಲಾಗಿಲ್ಲ ಅಥವಾ ವಿಸ್ತರಿಸಲಾಗಿಲ್ಲ.
   with: ಜೊತೆಗೆ
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: ಹಿಂಪಡೆಯಿರಿ
+  #Loading status while an identification is being withdrawn
   withdrawing: ಹಿಂಪಡೆಯಲಾಗುತ್ತಿದೆ...
   with_errors: ದೋಷಗಳೊಂದಿಗೆ
   worldwide: ಪ್ರಪಂಚದಾದ್ಯಂತ
