@@ -1390,7 +1390,6 @@ gl:
     failure:
       already_authenticated: 'Xa iniciaches a sesión.'
       unauthenticated: 'Necesitas iniciar sesión ou darte de alta antes de continuar.'
-      invalid: 'Correo electrónico ou palabra chave inválida.'
       invalid_token: 'Autenticación inválida'
       user:
         suspended: A túa conta foi suspensa
@@ -1404,19 +1403,17 @@ gl:
       send_paranoid_instructions: "Se o teu enderezo de correo electónico está na nosa base de dados, recibirás un vínculo de recuperación da palabra chave no teu correo nuns minutos."
       no_token: "Non podes acceder a esta páxina sen vir dun correo electrónico de restauro de palabra chave. Se vés dun correo de restauro de palabra chave, por favor, asegúrate de empregar a URL fornecida enteira."
     registrations:
+      destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
       signed_up: '¡Benvido/a! Iniciaches a sesión correctamente.'
       updated: 'Actualizaches a túa conta exitosamente.'
-      destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruccións para a confirmación'
       reset_password_instructions:
         subject: 'Instruccións para restablecer o contrasinal.'
   devise_reset_password_instructions_hello_email: Ola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Aguén solicitou un vencello para cambiar o teu contrasinal. Pódelo facer por medio do seguinte vencello.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se ti non o solicitaches, por favor, ingora este correo electrónico.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Aguén solicitou un vencello para cambiar o teu contrasinal. Pódelo facer por medio do seguinte vencello.
   devise_reset_password_instructions_your_password_wont_change_until: |
     O teu contrasinal non cambiará ata que accedas ó vencello de arriba e crees un novo.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2409,8 +2406,6 @@ gl:
       yy: "%dy"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT Z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4562,6 +4557,7 @@ gl:
     Usar <span class='ac-placeholder'>%{name}</span> como marcador de posición
   use_this_form_to_create_a_new: |
     Emprega esta formulario para crear un borrador de cambio taxonómico, especificando se é para dividir, combinar ou intercambiar nos taxons activos, para que despois se garde.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Emprega isto se a URL ten os xéneros e especies separados de forma particular. Se o taxón non é unha especie ou infraespecie, todo o que estea entre [XÉNERO] e [ESPECIE] será substituído polo nome do taxón, así que emprégao moderadamente. <br/><br/> <strong>Exemplo.</strong><br/>
   use_unique_file_names_for_separate_uploads: Usar nomes de ficheiros únicos para cargas separadas
@@ -4781,7 +4777,10 @@ gl:
   wikipedia_attribution_cc_by_sa_3_html: |
     Este artigo usa material do artigo da Wikipedia <a href="%{url}">%{title}</a>, que é lanzado baixo a licenza <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a>. O contido poderá ter sido omitido do orixinal, pero ningún contido foi mudado ou extendido.
   with: Con
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirando...
   with_errors: Con erros
   worldwide: Mundial
@@ -5424,7 +5423,6 @@ gl:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permitir que os conservadores do proxecto vexan as coordenadas ocultas para esta observación
-        ancestor_disagreements_desc: "Nº de taxons identificados están entre os ancestros do taxon, pero desacordan có taxon (p.e.\"Creo que está no xénero pero desacordo que é esa especie)"
         community_taxon_desc_html: |
           <p class="ui">
           O taxon da comunidade (ou a identificación da comunidade) representa qué taxon pensa a comunidade de %{site_name} está representado nunha observación. Se estás interesado en saber cómo escollemos o taxon da comunidade, ve as notas do algoritmo embaixo, pero xeralmente, tentamos <strong>escoller un taxon có que 2/3 da comunidade estean de acordo</strong>. Ás veces, isto significa escoller un nivel taxonómico superior que contén unha cantidade de taxons desconcordantes (p.e. pensas que é unha serpe-rei e eu penso que é unha serpe de cascabel, logo iNat escolle a suborde Serpentes que contén tódalas serpes). O algoritmo tamén favorece lixeiramente ós disidentes, porque atopamos que os disidentes frecuentemente están no certo.
