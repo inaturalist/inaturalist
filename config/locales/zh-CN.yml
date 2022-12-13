@@ -1280,7 +1280,6 @@ zh-CN:
     failure:
       already_authenticated: '您已经登录'
       unauthenticated: '您需要登录或注册才能继续。'
-      invalid: '电子邮箱或密码无效。'
       invalid_token: '无效的认证安全码'
       user:
         suspended: 您的账户已被停用
@@ -1294,19 +1293,17 @@ zh-CN:
       send_paranoid_instructions: "如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。"
       no_token: "您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。"
     registrations:
+      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
-      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
     mailer:
-      confirmation_instructions:
-        subject: '确认说明'
       reset_password_instructions:
         subject: '重设密码的说明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您没有提出这个请求，请忽略这个电子邮件。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2313,8 +2310,6 @@ zh-CN:
       yy: "%d 年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4379,6 +4374,7 @@ zh-CN:
     使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
   use_this_form_to_create_a_new: |
     使用此表单以创建一个新的草稿分类学更改，它正在描述一次在稍后委托某人在活跃的分类中进行拆分、合并或交换的提议。
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     如果需要在URL中以特定方式分隔属和种，请使用此选项。如果分类单元不是属和种，那么[GENUS]和[SPECIES]之间的内容将被分类单元名称替换，因此请谨慎使用。
   use_unique_file_names_for_separate_uploads: 为各自上传使用唯一的文件名
@@ -4593,7 +4589,10 @@ zh-CN:
   wikipedia_attribution_cc_by_sa_3_html: |
     此文章使用源自维基百科条目<a href="%{url}">"%{title}"</a>中的内容，该基于<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">创用 CC 姓名标示协议-相同方式分享 3.0 未本地化</a>授权条款所释出。该内容可能已从原始内容中去除，但还未有更改或扩充的內容。
   with: 带
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: 放弃
+  #Loading status while an identification is being withdrawn
   withdrawing: 正在放弃...
   with_errors: 带错误
   worldwide: 世界各地
@@ -5094,7 +5093,6 @@ zh-CN:
       show:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
-        ancestor_disagreements_desc: "在分类单元的祖先中确定的分类群的编号，它在使用该分类单元进行第一次识别后创建的"
         community_taxon_desc_html: |
           <p class="ui">
           社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
