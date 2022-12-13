@@ -2244,7 +2244,10 @@ lb:
   with_annotation: Mat Annotatiounen
   without_annotation: Ouni Annotatiounen
   with: mat
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Zréckzéien
+  #Loading status while an identification is being withdrawn
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
   worldwide: Weltwäit
