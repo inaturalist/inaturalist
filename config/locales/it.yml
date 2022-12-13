@@ -1459,7 +1459,6 @@ it:
     failure:
       already_authenticated: 'Hai già eseguito l''accesso.'
       unauthenticated: 'Per continuare è necessario accedere o registrarsi.'
-      invalid: 'E-mail o password non valida.'
       invalid_token: 'Token di autenticazione non valido.'
       user:
         suspended: Il tuo account è stato sospeso
@@ -1473,19 +1472,17 @@ it:
       send_paranoid_instructions: "Se la tua email esiste nel nostro database, entro qualche minuto riceverai un messaggio email contenente un link per il ripristino della password"
       no_token: "Non è possibile accedere a questa pagina a meno di esservi stati indirizzati da un'e-mail di reset della password. Se sei stato indirizzato su questa pagina da un'e-mail di reset della password, assicurati di aver utilizzato l'URL completo fornito."
     registrations:
+      destroyed: 'Arrivederci! L''account è stato cancellato. Speriamo di rivederci presto.'
       signed_up: 'Benvenuto! Ti sei registrato correttamente.'
       updated: 'L''account è stato aggiornato correttamente.'
-      destroyed: 'Arrivederci! L''account è stato cancellato. Speriamo di rivederci presto.'
     mailer:
-      confirmation_instructions:
-        subject: 'Istruzioni per la conferma'
       reset_password_instructions:
         subject: 'Istruzioni per reimpostare la password'
   devise_reset_password_instructions_hello_email: Ciao %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Qualcuno ha chiesto un link per cambiare la tua password. È possibile farlo attraverso il link sottostante.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se non sei stato tu ad aver richiesto il cambio password, ignora questa email.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Qualcuno ha chiesto un link per cambiare la tua password. È possibile farlo attraverso il link sottostante.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La tua password verrà modificata solo se accedi al link riportato sopra e ne crei una nuova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1661,8 +1658,6 @@ it:
     native: evoluta in questa regione o arrivata con mezzi non antropogenici
     endemic: nativa e non si trova altrove
     introduced: arrivata nella regione con mezzi antropogenici
-  estimate_which_input: |
-    Stima quali id del taxon saranno sostituite con quali taxa in uscita e quali saranno raggruppate in un antenato comune una volta avviata la divisione. Questo potrebbe richiedere un attimo per esser calcolato. I link alle osservazioni sono troncati in sotto-serie da 200.
   event_in_progress: Attività in corso
   event_stats: Statistiche evento
   event_url: URL dell'attività
@@ -2604,8 +2599,6 @@ it:
       yy: "%d anni"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5071,6 +5064,7 @@ it:
     Usa <span class='ac-placeholder'>"%{name}"</span> come segnaposto
   use_this_form_to_create_a_new: |
     Usa questo formulario per creare una bozza di modifica tassonomica descrivendo la divisione, l'unione o lo scambio proposti sui taxa attivi
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilizza questo se l'URL deve avere genere e specie separate in un modo particolare. Se il taxon non è una specie o una infraspecie, tutto tra [GENERE] e [SPECIE] sarà rimpiazzato dal nome del taxon, perciò usalo con moderazione.
   use_unique_file_names_for_separate_uploads: Utilizza nomi di file univoci per caricamenti separati
@@ -5330,7 +5324,10 @@ it:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
   with: con
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Ritira
+  #Loading status while an identification is being withdrawn
   withdrawing: Ritiro in corso...
   with_errors: Con errori
   worldwide: Tutto il mondo
@@ -6000,7 +5997,6 @@ it:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permetti ai curatori del progetto di visualizzare le coordinate nascoste di questa osservazione.
-        ancestor_disagreements_desc: "# di taxa identificati che appartengono agli antenati del taxon, ma in disaccordo con il taxon (e.g., \"Penso che sia nel genere ma non che sia quella specie\")"
         community_taxon_desc_html: |
           <p class="ui">
           Il taxon della community (o l'identificazione della community) è il taxon a cui la community di %{site_name} ritiene possa appartenere l'organismo che hai osservato. Se sei interessato alla modalità di scelta del taxon della community, leggi le note sull'algoritmo qui sotto, ma in generale proviamo a <strong>scegliere il taxon che mette d'accordo i 2/3 degli identificatori</strong>.
