@@ -1303,7 +1303,6 @@ ja:
     failure:
       already_authenticated: 'すでにログインしています。'
       unauthenticated: '続行するにはログインするか、アカウントを作成してください。'
-      invalid: 'メールアドレスかパスワードが正しくありません'
       invalid_token: '認証が無効です'
       user:
         suspended: あなたのアカウントは使用停止されました。
@@ -1317,19 +1316,17 @@ ja:
       send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
       no_token: "パスワード再発行のメール以外からこのページにアクセスすることはできません。 \nパスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。"
     registrations:
+      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
       updated: 'アカウントを正常に更新しました。'
-      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
     mailer:
-      confirmation_instructions:
-        subject: 'メールアドレス確認の説明'
       reset_password_instructions:
         subject: 'パスワードの再設定について'
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     なお、本メールにお心当たりがない場合は、本メールを無視してくださるようお願いいたします。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_your_password_wont_change_until: |
     あなたのパスワードは上記のリンクにアクセスして新しいパスワードを作成するまでは変更されません。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1499,9 +1496,6 @@ ja:
     native: この地域で進化または非人為的に到達（例：海流によって流され分布域を広げる）
     endemic: 他には生息しない固有種
     introduced: 人為的な外来種
-  estimate_which_input: |
-    分類群分割はほどんどの場合使用すべきではありません。分類群分割が行われると、どの分類群がどの出力分類群に置き換えられ、以前のIDを自動的に変更する分類群の共通祖先を決定するための計算を行います。
-    これには時間がかかる場合があります。観察記録へのリンクは200のサブセットに切り捨てられます。
   event_in_progress: 進行中のイベント
   event_stats: イベントの統計情報
   event_url: イベントURL
@@ -4478,7 +4472,10 @@ ja:
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: 撤回
+  #Loading status while an identification is being withdrawn
   withdrawing: 撤回中...
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
@@ -4737,7 +4734,6 @@ ja:
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
-        ancestor_disagreements_desc: "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)"
         community_taxon_desc_html: |
           <p class="ui">
           コミュニティ分類群（もしくはコミュニティ同定）とは、特定の観察記録において%{site_name}コミュニティが考えている分類群を表しています。もしコミュニティ分類群がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>がコミュニティ分類群となります。場合によっては、異なる分類群を複数含む、より上位の分類群がコミュニティ分類群になります（例：あなたがキングヘビだと予想し、私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含むヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が正しい場合が多いことがわかっているため、反対派をやや優先する傾向にあります。
