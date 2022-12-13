@@ -595,6 +595,8 @@ th:
     merge_into: ยุบรวมเป็น
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
+    input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} จะถูกแยกเป็น %{output_taxa}"
+    input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} จะถูกรวมเป็น %{output_taxon}"
   change_your_password: เปลี่ยนรหัสผ่านของคุณ
   check_back_soon: กลับมาดูทีหลังนะ!
   check_list: รายการตรวจสอบ
@@ -860,6 +862,10 @@ th:
   download_kml: ดาวน์โหลด KML
   draft_saved: บันทึกฉบับร่างแล้ว!
   drag_and_drop_some_photos_or_sounds: ลากแล้ววางรูปถ่ายหรือเสียง
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: วาดขอบเขตวงกลม
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: วาดขอบเขตสี่เหลี่ยม
   duplicate_verb: คัดลอก
   duration_value: "ระยะเวลา: %{duration} นาที"
   edit: แก้ไข
@@ -1118,6 +1124,7 @@ th:
   journal: วารสาร
   journal_post: โพสต์วารสาร
   journal_posts: โพสต์วารสาร
+  labels: ป้ายกำกับ
   #Label shown when a location has not been entered. Originally "unknown" in
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
@@ -1146,6 +1153,7 @@ th:
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
   lexicon: ภาษา/ศัพท์เฉพาะ
+  lexicon_cannot_contain_words: "ไม่สามารถมีคำต่อไปนี้: %{words}"
   lexicons:
     scientific_names: ชื่อวิทยาศาสตร์
     afrikaans: ภาษาอาฟรีกานส์
@@ -1209,6 +1217,7 @@ th:
     romanian: ภาษาโรมาเนีย
     russian: ภาษารัสเซีย
     santali: ภาษาสันถาลี
+    serbian: ภาษาเซอร์เบีย
     setswana: ภาษาเซตสวานา
     sinhala: ภาษาสิงหล
     slovak: ภาษาสโลวัก
@@ -1325,6 +1334,7 @@ th:
     ส่วนหนึ่งของ<a href="%{url}">เครือข่าย iNaturalist</a>
   #As in members of a project
   members: สมาชิก
+  merge_two_places_together: รวมสองสถานที่เข้าด้วยกัน ทุกชนิดในรายการตรวจสอบและข้อมูลทางภูมิศาสตร์จะถูกรวมด้วย
   message: ข้อความ
   message_from_user_at_time: จาก %{user} เมื่อ %{time}
   message_from_user_on_date: จาก %{user} เมื่อ %{date}
@@ -1467,6 +1477,7 @@ th:
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
   not_recorded: ไม่ได้บันทึก
+  not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
   notes: คำอธิบาย
   number_of_observations: จำนวนการสังเกต
   number_of_observers_value: "จำนวนผู้สังเกต: %{number}"
@@ -1871,6 +1882,7 @@ th:
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
   reject?: ปฏิเสธ?
+  relative_observations: การสังเกตสัมพัทธ์
   relationship: "ความสัมพันธ์"
   relationship_x: "ความสัมพันธ์: %{relationship}"
   relationships:
@@ -2085,6 +2097,7 @@ th:
   taxon_search_results_for: ผลการค้นหาหน่วยอนุกรมวิธานสำหรับ
   taxon_name_was_deleted: ลบชื่อหน่วยอนุกรมวิธานแล้ว
   taxonomic_changes: การเปลี่ยนแปลงหน่วยอนุกรมวิธาน
+  taxonomic_groups: กลุ่มอนุกรมวิธาน
   taxonomy_details: รายละเอียดหน่วยอนุกรมวิธาน
   taxonomy_details_for: รายละเอียดหน่วยอนุกรมวิธานสำหรับ
   tell_the_world_a_little_about_yourself: บอกเราเกี่ยวกับตัวคุณ
@@ -2278,7 +2291,9 @@ th:
   user_invited_you_to_join_this_project_on_date_html: "%{user} เชิญคุณเข้าร่วมโครงการนี้เมื่อ %{date}"
   user_is_a_naturalist: "%{user} เป็นนักธรรมชาติวิทยา!"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  users: ผู้ใช้งาน
   users_journal: "วารสารของ %{user}"
+  users_lists: "รายการของ %{user}"
   users_profile: "โปรไฟล์ของ %{user}"
   value: ค่า
   values: ค่า
@@ -2360,7 +2375,10 @@ th:
   widget_for: วิดเจ็ตสำหรับ
   wikipedia_attribution_cc_by_sa_3: |
     ที่มา: วิกิพีเดีย, "%{title}", %{url}, CC BY-SA 3.0
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: ถอนออก
+  #Loading status while an identification is being withdrawn
   withdrawing: กำลังถอน...
   x_journal: "วารสารของ %{user}"
   x_project_journal: "%{name} ของ %{project}"
@@ -2380,6 +2398,7 @@ th:
     คุณกำลังส่งการสังเกตที่ไม่มีวันที่หรือตำแหน่ง การสังเกตที่ไม่มีข้อมูลเหล่านี้มักจะจำแนกไม่ได้ และเบื้องต้นจะไม่สามารถมองเห็นจากการค้นหาการสังเกต
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
   you_are_subscribed_to_comments_on_this_post: คุณติดตามความคิดเห็นในโพสต์นี้แล้ว
+  you_can_only_block_three_users: คุณบล็อกผู้ใช้ได้เพียงสามคนเท่านั้น
   you_didnt_select_any_observations: คุณไม่ได้เลือกการสังเกตใด ๆ
   you_didnt_select_any_photos_to_tag: คุณไม่ได้เลือกรูปภาพที่จะแท็ก!
   you_faved_this: เพิ่มเข้ารายการโปรดแล้ว!
@@ -2466,6 +2485,9 @@ th:
         wondering_what_this_means_html: |
           สงสัยว่าความเป็นส่วนตัวของพิกัดคืออะไรใช่ไหม? <a href="%{url}">เรียนรู้เพิ่มเติมในเอกสารของเรา</a>
     projects:
+      confirm_leave:
+        remove_observations_desc_html: |
+          อย่าลืมว่าผู้ดูแลโครงการยังเพิ่มการสังเกตของคุณไปที่โครงการของพวกเขาได้ถ้าคุณยังไม่เปลี่ยนแปลง<a href="/users/edit">การตั้งค่าบัญชี</a>ของคุณ
       edit:
         admins_must_be_existing_members: แอดมินต้องเป็นสมาชิกที่มีตัวตนอยู่จริงในโครงการนี้
         rules:
@@ -2483,6 +2505,8 @@ th:
         display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
         multiple_project_administrators: แอดมินโครงการหลายคน
+        note_about_unselected_filters: |
+          หมายเหตุ: ถ้าคุณไม่เลือกหน่วยอนุกรมวิธาน สถานที่ หรือผู้ใช้งาน จะถือว่าเลือกทั้งหมดเป็นค่าเริ่มต้น
         only_display_member_observations: |
           แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
         or_drag_and_drop: (หรือลากแล้ววาง)
@@ -2495,6 +2519,10 @@ th:
         errors:
           name_is_required: ต้องมีชื่อโครงการ
           name_already_taken: มีผู้ใช้ชื่อโครงการนี้แล้ว
+      project_user_curator_coordinate_access_labels:
+        observer: ใช่ แต่ฉันต้องเป็นคนเพิ่มการสังเกตเข้าโครงการเอง
+        any: ใช่ ไม่สำคัญว่าใครเป็นคนเพิ่มการสังเกตเข้าโครงการ
+        none: ไม่
     search:
       index:
         no_taxa_forum: ติดต่อกระดานสนทนา
