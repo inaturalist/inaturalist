@@ -917,7 +917,6 @@ sr:
   devise:
     failure:
       already_authenticated: 'Već si prijavljen/a.'
-      invalid: 'Pogrešan imejl ili lozinka.'
     sessions:
       signed_in: 'Prijavljivanje uspešno.'
       signed_out: 'Odjavljivanje uspešno.'
@@ -1630,8 +1629,6 @@ sr:
       yy: "%dg"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, GGGG · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D S:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3339,6 +3336,7 @@ sr:
     other: Otpremanje fotografija
   url_of_this_taxon_on_the_source_website: URL ovog taksona na veb sajtu izvora
   usage_stats: Statistika upotrebe
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Ovo koristi ako je potrebno da rod i vrsta budu razdvojeni na poseban način u URL-u. Ako takson nije vrsta ili infravrsta, sve između [GENUS] i [SPECIES] će biti zamenjeno nazivom taksona, upotrebiti samo ako je to neophodno.
   used_x_times:
@@ -3524,7 +3522,10 @@ sr:
   wikipedia_attribution_cc_by_sa_3: |
     Izvor: Vikipedija, "%{title}", %{url}, CC BY-SA 3.0
   with: sa
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Povuci
+  #Loading status while an identification is being withdrawn
   withdrawing: Povlačenje...
   with_errors: Sa greškama
   worldwide: Globalno
