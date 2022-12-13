@@ -1487,7 +1487,6 @@ pt-BR:
     failure:
       already_authenticated: 'Você já está logado.'
       unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
-      invalid: 'E-mail ou senha inválidos.'
       invalid_token: 'Token de autenticação inválido.'
       user:
         suspended: Sua conta foi suspensa
@@ -1501,19 +1500,17 @@ pt-BR:
       send_paranoid_instructions: "Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu endereço de e-mail em alguns minutos."
       no_token: "Você só pode acessar essa página através de um e-mail de redefinição de senha. Se já estiver acessando por um e-mail de redefinição de senha, verifique se a URL fornecida está completa."
     registrations:
+      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
       signed_up: 'Bem-vindo! Você se registrou com sucesso.'
       updated: 'Você atualizou sua conta com sucesso.'
-      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruções de confirmação'
       reset_password_instructions:
         subject: 'Instruções de redefinição de senha'
   devise_reset_password_instructions_hello_email: Olá %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se você não solicitou isso, ignore este e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sua senha não será alterada até que você acesse o link acima e crie uma nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1689,8 +1686,6 @@ pt-BR:
     native: evoluiu nesta região ou chegou por meios não-antropogênicos
     endemic: nativo e endêmico
     introduced: chegou à região por meios antropogênicos
-  estimate_which_input: |
-    Avaliação de quais IDs do táxon de origem serão substituidos por quais táxons de saída e quais serão atribuidos a um táxon inferior comum quando for efetuada a separação. Este processo de avaliação pode demorar. Links para as observações serão apresentadas em grupos de 200.
   event_in_progress: Evento em andamento
   event_stats: Estatísticas do evento
   event_url: URL do evento
@@ -2642,8 +2637,6 @@ pt-BR:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D [de] MMMM, HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5139,6 +5132,7 @@ pt-BR:
     Use <span class='ac-placeholder'>"%{name}"</span> como um marcador de posição
   use_this_form_to_create_a_new: |
     Utilize este formulário para criar uma mudança taxonômica descrevendo a proposta de separação, combinação ou troca de táxons ativos, para ser alterado depois.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Use este recurso se o URL necessita ter o gênero e a espécie separados de alguma forma específica. Se o táxon não é uma espécie ou infraespécie, tudo entre [GENUS] e [SPECIES] será automaticamente substituído pelo nome do táxon, então seja cauteloso.
   use_unique_file_names_for_separate_uploads: Utilize nomes diferenciados para carregar arquivos
@@ -5397,7 +5391,10 @@ pt-BR:
     <a href="%{url}">"%{title}"</a>, que é lançado sob a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
   with: com
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirando...
   with_errors: Com erros
   worldwide: Global
@@ -6094,7 +6091,6 @@ pt-BR:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
-        ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
         community_taxon_desc_html: |
           <p class="ui">
           O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
