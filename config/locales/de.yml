@@ -1425,7 +1425,6 @@ de:
     failure:
       already_authenticated: 'Du bist bereits angemeldet.'
       unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
-      invalid: 'Email-Adresse oder Passwort ungültig.'
       invalid_token: 'Identifizierungscode ungültig'
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
@@ -1439,19 +1438,17 @@ de:
       send_paranoid_instructions: "Wenn deine E-Mail-Adresse in unserer Datenbank ist, wirst du in wenigen Minuten einen 'Passwort wiederherstellen' Link erhalten."
       no_token: "Du kannst auf diese Seite nicht ohne eine 'Passwort zurücksetzen' E-Mail zugreifen. Wenn du von einer 'Passwort zurücksetzen' E-Mail kommst, bitte stelle sicher, dass du die enthaltene URL vollständig benutzt hast."
     registrations:
+      destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
       signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
       updated: 'Du hast dein Konto erfolgreich aktualisiert.'
-      destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
     mailer:
-      confirmation_instructions:
-        subject: 'Bestätigungsanweisungen'
       reset_password_instructions:
         subject: 'Anweisungen zum Zurücksetzen des Passworts'
   devise_reset_password_instructions_hello_email: Hallo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Jemand hat einen Link zur Änderungen deies Passwortes angefordert. Dies funktioniert durch den folgenden Link:
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Falls du kein neues Passwort angefordert hast, ignoriere diese E-Mail einfach.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Jemand hat einen Link zur Änderungen deies Passwortes angefordert. Dies funktioniert durch den folgenden Link:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Dein Passwort bleibt so lange unverändert, bis Du über den oberen Link ein neues Passwort erstellst.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2544,8 +2541,6 @@ de:
       yy: "%d J"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM T h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5314,7 +5309,10 @@ de:
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
   with: mit
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Zurücknehmen
+  #Loading status while an identification is being withdrawn
   withdrawing: Nehme zurück …
   with_errors: Mit Fehlern
   worldwide: Weltweit
@@ -5993,7 +5991,6 @@ de:
       show:
         allow_curator_coordinate_access_desc_html: |
           Den Projekt-Kuratoren erlauben, die versteckten Koordinaten für diese Beobachtung einzusehen.
-        ancestor_disagreements_desc: "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")"
         community_taxon_desc_html: |
           <p class="ui">
            Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
