@@ -1598,7 +1598,6 @@ cs:
     failure:
       already_authenticated: 'Již jste přihlášeni.'
       unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
-      invalid: 'Neplatný e-mail nebo heslo.'
       invalid_token: 'Neplatný ověřovací token.'
       user:
         suspended: Váš účet byl pozastaven
@@ -1612,19 +1611,17 @@ cs:
       send_paranoid_instructions: "Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla."
       no_token: "Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL."
     registrations:
+      destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
       signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
       updated: 'Účet byl úspěšně aktualizován.'
-      destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
     mailer:
-      confirmation_instructions:
-        subject: 'Pokyny k potvrzení'
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
   devise_reset_password_instructions_hello_email: Dobrý den %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Pokud jste o změnu hesla nežádali, prosím ignorujte tento e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Vaše heslo nebude změněno, pokud se nepřihlásíte na následující odkaz a nevytvoříte si nové heslo.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1801,8 +1798,6 @@ cs:
     native: vyvinutý v této oblasti nebo přijatý neantropogenními prostředky
     endemic: původní a nikde jinde se neobjevuje
     introduced: do regionu přišel prostřednictvím antropogenního působení
-  estimate_which_input: |
-    Odhadněte, které vstupní taxony budou nahrazeny kterými výstupními taxony a které budou po dokončení rozdělení zestručněny na společného předka. Výpočet může chvíli trvat. Odkazy na pozorování jsou zkráceny na podmnožiny 200.
   event_in_progress: Událost probíhá
   event_stats: Statistiky události
   event_url: URL události
@@ -2745,8 +2740,6 @@ cs:
       yy: "%d let"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5300,6 +5293,7 @@ cs:
     Použít <span class='ac-placeholder'>"%{name}"</span> jako placeholder
   use_this_form_to_create_a_new: |
     Použijte tento formulář k vytvoření nového konceptu taxonomické změny s popisem navrhovaného rozdělení, sloučení nebo záměny aktivních taxonů, ke které má později dojít.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Toto použijte, pokud URL vyžaduje oddělení rodu a druhu určitým způsobem. Pokud taxon není druh nebo infradruh, všechno mezi [RODEM] a [DRUHEM] bude nahrazeno názvem taxonu, takže tuto možnost používejte střídmě.
   use_unique_file_names_for_separate_uploads: Pro jednotlivá nahrání použijte jedinečné názvy souborů
@@ -5555,7 +5549,10 @@ cs:
     Commons Uveďte autora-Sdílej-Podobně 3.</a>Obsah byl možná
     vynechán v originálu, ale žádný obsah nebyl změněn ani rozšířen.
   with: s
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Odstranit
+  #Loading status while an identification is being withdrawn
   withdrawing: Odstoupení...
   with_errors: S chybami
   worldwide: Celosvětové
@@ -6301,7 +6298,6 @@ cs:
       show:
         allow_curator_coordinate_access_desc_html: |
           Umožnit kurátorům projektu zobrazit soukromé souřadnice tohoto pozorování.
-        ancestor_disagreements_desc: "# identifikovaných taxonů patří do následných taxonů, ale byly vytvořeny po první identifikaci s použitím tohoto taxonu"
         community_taxon_desc_html: |
           <p class="ui">
           Komunitní taxon (nebo komunitní identifikace) představuje to, jaký taxon je podle komunity %{site_name} zobrazen v pozorování. Pokud vás zajímá, jak komunitní taxon volíme, podívejte se na poznámky k algoritmu níže, ale obecně se snažíme <strong>vybírat taxony, s nimiž souhlasí více než 2/3
