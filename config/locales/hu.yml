@@ -1134,7 +1134,6 @@ hu:
     failure:
       already_authenticated: 'Már be vagy jelentkezve.'
       unauthenticated: 'A folytatás előtt be kell jelentkezned.'
-      invalid: 'Érvénytelen e-mail cím vagy jelszó.'
       invalid_token: 'Érvénytelen hitelesítési token.'
       user:
         suspended: A fiókod fel van függesztetve
@@ -1146,12 +1145,10 @@ hu:
       updated: 'A jelszó sikeresen megváltoztatva. Be vagy jelentkezve.'
       updated_not_active: 'Sikeresen megváltoztattad jelszavadat.'
     registrations:
+      destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
       updated: 'Fiókod sikeresen frissítve.'
-      destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
     mailer:
-      confirmation_instructions:
-        subject: 'Megerősítési utasítások'
       reset_password_instructions:
         subject: 'Jelszóvisszaállítási utasítások'
   devise_reset_password_instructions_hello_email: Kedves %{email}!
@@ -2019,8 +2016,6 @@ hu:
       yy: "%dé"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY, MMM D, · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4012,7 +4007,10 @@ hu:
   widget_for: 'Modul:'
   wikipedia_attribution_cc_by_sa_3: |
     Forrás: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Visszavonás
+  #Loading status while an identification is being withdrawn
   withdrawing: Visszavonás...
   with_errors: Hibával
   worldwide: globális
@@ -4276,7 +4274,6 @@ hu:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
       show:
-        ancestor_disagreements_desc: "Azon meghatározási taxonok száma, amelyek a felsőbb szintű taxonokon belül esnek, de nem értenek egyet a taxon szintű meghatározással (például \"egyetértek a nemzetséggel, de szerintem ez egy másik faj\")."
         community_taxon_desc_html: |
           A közösségi taxon (vagy közösségi azonosítás) képviseli az %{site_name} felhasználói közösségének véleményét az adott megfigyelést illetően. A közösségi taxon megállapítását az alábbiakban ismertetett algoritmus végzi, aminek eredménye képpen <strong>megpróbáljuk azt taxont a megfigyeléshez rendelni, amellyel az azonosítók több, mint kétharmada egyetért</strong>. Gyakran ez egy tágabb taxonhoz vezet, amely tartalmazza az ellentmondásos azonosításokat. (Például ha szerintem ez bíboros kosbor, szerinted pedig vitézvirág, akkor az eredmény az Orchidinae alnemzetségcsoport lesz, amely mindkét fajt tartalmazza.) Az algoritmus valamennyire kedvez az eltérő véleményeknek, mivel úgy találtuk, hogy azok sokszor helyesek.
           </p>
@@ -5071,6 +5068,18 @@ hu:
         name_provider: Névszolgáltató
         source_url: Forrás URL
         source_identifier: Forrás azonosító
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Weblap neve
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Rövid név
+        #Taxon this link is associated with
+        taxon: Taxon
+        #Place this link is associated with
+        place: Hely
       user:
         email: Email
         login: Felhasználónév
