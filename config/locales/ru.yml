@@ -1564,7 +1564,6 @@ ru:
     failure:
       already_authenticated: 'Вы уже вошли в систему.'
       unauthenticated: 'Прежде чем продолжать, вам нужно войти в систему или зарегистрироваться'
-      invalid: 'Неверный email или пароль'
       invalid_token: 'Неверный маркер аутентификации.'
       user:
         suspended: Ваш аккаунт был приостановлен
@@ -1578,19 +1577,17 @@ ru:
       send_paranoid_instructions: "Если ваш адрес email есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
       no_token: "Эта страница доступна только при переходе с адреса электронной почты для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что Вы используете полную URL-ссылку."
     registrations:
+      destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
       signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
       updated: 'Вы успешно обновили свою учётную запись.'
-      destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
     mailer:
-      confirmation_instructions:
-        subject: 'Инструкции по подтверждению'
       reset_password_instructions:
         subject: 'Инструкции по восстановлению пароля'
   devise_reset_password_instructions_hello_email: Здравствуйте, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Если вы не посылали этот запрос, проигнорируйте это письмо.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будет изменён, пока Вы не перейдете по указанной ссылке и не укажете новый пароль.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1768,8 +1765,6 @@ ru:
     native: эволюционировал в этом регионе или занесён неантропогенным способом
     endemic: местный и больше нигде не встречается
     introduced: Занесен в регион антропогенным способом
-  estimate_which_input: |
-    Оцените, какие идентификации входных таксонов будут заменены и на какие выходные таксоны, а какие будут укрупнены до общего предка после завершения разделения. На расчет может уйти некоторое время. Ссылки на наблюдения усекаются до подмножеств из 200.
   event_in_progress: Событие в ходе выполнения
   event_stats: Статистика События
   event_url: URL события
@@ -2707,8 +2702,6 @@ ru:
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -5230,6 +5223,7 @@ ru:
     Используйте <span class='ac-placeholder'>"%{name}"</span> в качестве заполнителя
   use_this_form_to_create_a_new: |
     Используйте эту форму для создания нового проекта таксономического изменения, описывающего предлагаемые разделение, слияние или замену на активные таксоны, которые впоследствии будут реализованы.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Используйте это, если URL-адрес должен иметь род и вид, разделенные определенным образом. Если таксон - это не вид или подвид, всё между [GENUS] и [SPECIES] будет заменено на наименование таксона, так что используйте с осторожностью.
   use_unique_file_names_for_separate_uploads: Используйте уникальные имена файлов для отдельных загрузок
@@ -5493,7 +5487,10 @@ ru:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
   with: с
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Отозвать
+  #Loading status while an identification is being withdrawn
   withdrawing: Отзыв...
   with_errors: С ошибками
   worldwide: По всему миру
@@ -6199,7 +6196,6 @@ ru:
       show:
         allow_curator_coordinate_access_desc_html: |
           Позволить кураторам проекта видеть скрытые координаты этого наблюдения
-        ancestor_disagreements_desc: "# идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (т.е. \"я думаю, что этот род, но не согласен, что этот вид\")"
         community_taxon_desc_html: |
           <p class="ui">
           Таксон сообщества (или идентификация сообществом) представляет собой тот таксон, который, по мнению сообщества %{site_name}, изображен в наблюдении. Если вам интересно, как выбирается таксон сообщества, посмотрите указанные ниже примечания к алгоритму, однако в общем случае мы стараемся <strong>выбрать таксон, с которым согласны более чем 2/3 идентифицирующих</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд несогласующихся таксонов (например, вы думаете, что это kingsnake, а я думаю, что это rattlesnake, в таком случае iNat выбирает подотряд Serpentes (Змеи), который содержит всех змей). Алгоритм также немного поддерживает инакомыслие, потому что мы обнаружили, что инакомыслящие часто правы.
