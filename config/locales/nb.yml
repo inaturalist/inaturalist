@@ -1240,7 +1240,6 @@ nb:
     failure:
       already_authenticated: 'Du allerede er logget på.'
       unauthenticated: 'Du må logge inn eller registrere deg før du fortsetter.'
-      invalid: 'Ugyldig e-post eller passord.'
       invalid_token: 'Ugyldig autoriseringsnøkkel.'
       user:
         suspended: Din konto har blitt suspendert
@@ -1254,19 +1253,17 @@ nb:
       send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
       no_token: "Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen."
     registrations:
+      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
       signed_up: 'Velkommen! Registreringen var vellykket.'
       updated: 'Du har oppdatert din konto.'
-      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
     mailer:
-      confirmation_instructions:
-        subject: 'Instruksjoner for bekreftelse'
       reset_password_instructions:
         subject: 'Instruksjoner for å tilbakestille passord'
   devise_reset_password_instructions_hello_email: Hei %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
   devise_unlock_instructions_click_the_link: |
@@ -2249,8 +2246,6 @@ nb:
       yy: "%då"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D. MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4327,6 +4322,7 @@ nb:
     Bruk <span class='ac-placeholder'>"%{name}"</span> som et midlertidig navn
   use_this_form_to_create_a_new: |
     Bruk dette skjemaet for å opprette et nytt utkast til en taksonomisk endring som beskriver en foreslått oppdeling, sammenslåing eller bytte av aktive taksa for gjennomførelse på et senere tidspunkt.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Bruk dette hvis URL-en trenger å ha slekta og arten separert på en bestemt måte. Hvis taksonet ikke er en art eller infra-art, blir alt mellom [GENUS] og [SPECIES] erstattet med taksonnavnet, så bruk sparsomt.
   use_unique_file_names_for_separate_uploads: Bruk unike filnavn for separate opplastinger
@@ -4542,7 +4538,10 @@ nb:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Navngivelse-DelPåSammeVilkår lisens 3.0</a>. Innhold fra originalen kan være utelatt, men ingen innhold har blitt endret eller utvidet.
   with: med
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Trekk
+  #Loading status while an identification is being withdrawn
   withdrawing: Trekker...
   with_errors: Med feil
   worldwide: I hele verden
@@ -5170,7 +5169,6 @@ nb:
       show:
         allow_curator_coordinate_access_desc_html: |
           Tillat at prosjektkuratorer kan se de skjulte koordinatene for denne observasjonen.
-        ancestor_disagreements_desc: "Antall taksa som er blant taksonets aner, men som er uenige i taksonet (f.eks. \"Jeg tror at det er i slekten men jeg er uenig at det er den arten\")"
         community_taxon_desc_html: |
           <p class="ui">
           Fellesskapets takson (eller fellesskapets identifikasjon) er det fellesskapet på %{site_name} tror avbildes i en observasjon. Hvis du lurer på hvordan vi velger fellesskapets takson, se notatene om algoritmen under, men generelt prøver vi å <strong>velge et takson som over 2/3 av de som identifiserte taksonet var enige i</strong>. Noen ganger betyr dette at det velges et høyere takson som inkluderer flere forskjellige taksa (f.eks. du mener at det er en kongeslange og jeg tror at det er en klapperslange, så da velger iNat underordenen Serpentes som inneholder alle slanger). Algoritmen heller også litt mer mot avvikende svar, fordi vi fant ut at de ofte er korrekte.
