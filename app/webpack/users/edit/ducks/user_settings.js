@@ -71,8 +71,16 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
 }
 
 export async function handleSaveError( e ) {
-  if ( !e.response || e.response.status !== 422 ) {
-    return null;
+  // If the user is no longer authenticated, reload the window since they were
+  // probably signed out for some reason
+  if ( e?.response?.status === 401 ) {
+    window.location.reload( );
+    return {};
+  }
+  // If there's no response, we don't know what to show the user
+  if ( !e.response ) {
+    alert( I18n.t( "doh_something_went_wrong_error", { error: e.message } ) );
+    throw e;
   }
   const body = await e.response.json( );
   return body.error.original.errors;
@@ -85,7 +93,7 @@ export function saveUserSettings( ) {
 
     const params = {
       id,
-      user: profile
+      user: { ...profile }
     };
 
     const topLevelAttributes = [
@@ -119,17 +127,15 @@ export function saveUserSettings( ) {
     delete params.user.icon_url;
     delete params.user.orcid;
 
-    return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
-      // fetching user settings here to get the source of truth
-      // currently users.me returns different results than
-      // dispatching setUserData( results[0] ) from users.update response
-      dispatch( fetchUserSettings( "saved" ) );
-    } ).catch( e => {
-      handleSaveError( e ).then( errors => {
+    // fetching user settings here to get the source of truth
+    // currently users.me returns different results than
+    // dispatching setUserData( results[0] ) from users.update response
+    return inatjs.users.update( params, { useAuth: true } )
+      .then( ( ) => dispatch( fetchUserSettings( "saved" ) ) )
+      .catch( e => handleSaveError( e ).then( errors => {
         profile.errors = errors;
         dispatch( setUserData( profile, null ) );
-      } );
-    } );
+      } ) );
   };
 }
 
@@ -254,13 +260,17 @@ export function resendConfirmation( ) {
 }
 
 export function confirmResendConfirmation( ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "users_edit_resend_confirmation_prompt_html" ),
       confirmText: I18n.t( "resend_and_sign_out" ),
-      onConfirm: ( ) => {
-        dispatch( resendConfirmation( ) );
+      onConfirm: async ( ) => {
+        await dispatch( saveUserSettings( ) );
+        const { profile } = getState( );
+        if ( !profile.errors || profile.errors.length <= 0 ) {
+          dispatch( resendConfirmation( ) );
+        }
       }
     } ) );
   };
