@@ -1321,7 +1321,6 @@ pl:
   devise:
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
-      invalid: 'Niepoprawny e-mail lub hasło.'
       invalid_token: 'Nieprawidłowy token uwierzytelniania.'
       user:
         suspended: Twoje konto zostało zawieszone
@@ -1333,11 +1332,9 @@ pl:
       updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
-      updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      updated: 'Pomyślnie zaktualizowałeś swoje konto'
     mailer:
-      confirmation_instructions:
-        subject: 'Instrukcje potwierdzenia'
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
@@ -2237,8 +2234,6 @@ pl:
       yy: "%d l."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
-    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM k:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -3980,7 +3975,10 @@ pl:
   wikipedia_attribution_cc_by_sa_3: |
     Źródło: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   with: z
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Wycofaj
+  #Loading status while an identification is being withdrawn
   withdrawing: Wycofywanie...
   with_errors: Z błędami
   would_you_like_to: Czy chciałbyś
