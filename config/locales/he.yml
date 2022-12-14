@@ -1556,6 +1556,10 @@ he:
     confirmations:
       confirmed: "כתובת הדוא\"ל שלך אושרה בהצלחה"
       send_instructions: "בעוד כמה דקות תקבל.י הודעת דוא\"ל עם הוראות כיצד לאמת את כתובת הדוא\"ל שלך."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        אם כתובת הדואר האלקטרוני שלך קיימת במאגר שלנו, תקבל.י הודעת דוא"ל בעוד כמה דקות עם הוראות כיצד לאמת את כתובת הדוא"ל .
     failure:
       already_authenticated: 'חשבון זה כבר מחובר.'
       unauthenticated: 'עליך להתחבר או להירשם כדי להמשיך.'
@@ -1569,8 +1573,14 @@ he:
       signed_in: 'ההתחברות בוצעה בהצלחה.'
       signed_out: 'היציאה בוצעה בהצלחה.'
     passwords:
+      send_instructions: |
+        בעוד כמה דקות תקבל.י הודעת דוא"ל עם הוראות כיצד לאפס את הסיסמה שלך.
       updated: 'הסיסמה שלך עודכנה בהצלחה. את.ה מחובר.ת כעת.'
       updated_not_active: 'הסיסמה שלך עודכנה בהצלחה.'
+      send_paranoid_instructions: |
+        אם כתובת הדוא"ל שלך קיימת במאגר שלנו, תקבל.י קישור לשחזור סיסמה אל כתובת הדוא"ל שלך בעוד כמה דקות.
+      no_token: |
+        לא ניתן לגשת לדף זה מבלי להגיע מאימייל לאיפוס סיסמה. אם באת מאימייל לאיפוס סיסמה, נא לוודא כי השתמשת בכתובת ה-URL המלאה שסופקה.
     registrations:
       destroyed: 'ביי! החשבון שלך בוטל בהצלחה. נשמח לראותך שוב בקרוב.'
       signed_up: 'ברכות! הצטרפת בהצלחה.'
