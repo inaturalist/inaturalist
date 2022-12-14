@@ -1590,11 +1590,6 @@ cs:
   details: Podrobnosti
   deviation: Odchylka
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během několika minut e-mail s pokyny k potvrzení vaší e-mailové adresy.
     failure:
       already_authenticated: 'Již jste přihlášeni.'
       unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
@@ -1605,11 +1600,8 @@ cs:
       signed_in: 'Přihlášení proběhlo úspěšně.'
       signed_out: 'Odhlášení proběhlo úspěšně.'
     passwords:
-      send_instructions: 'Během několika minut obdržíte e-mail s pokyny pro obnovení hesla.'
       updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.'
       updated_not_active: 'Vaše heslo bylo úspěšně změněno.'
-      send_paranoid_instructions: "Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla."
-      no_token: "Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL."
     registrations:
       destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
       signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
