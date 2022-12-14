@@ -1451,11 +1451,6 @@ it:
   details: Dettagli
   deviation: Scostamento
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Se il tuo indirizzo email esiste nel nostro database, riceverai un'email con le istruzioni per come confermare il tuo indirizzo email in pochi minuti.
     failure:
       already_authenticated: 'Hai già eseguito l''accesso.'
       unauthenticated: 'Per continuare è necessario accedere o registrarsi.'
@@ -1466,11 +1461,8 @@ it:
       signed_in: 'Accesso effettuato con successo.'
       signed_out: 'Logout eseguito correttamente.'
     passwords:
-      send_instructions: 'Entro qualche minuto riceverai un messaggio email con le istruzioni per reimpostare la tua password.'
       updated: 'Password modificata correttamente. Hai eseguito l''accesso.'
       updated_not_active: 'Password modificata correttamente.'
-      send_paranoid_instructions: "Se la tua email esiste nel nostro database, entro qualche minuto riceverai un messaggio email contenente un link per il ripristino della password"
-      no_token: "Non è possibile accedere a questa pagina a meno di esservi stati indirizzati da un'e-mail di reset della password. Se sei stato indirizzato su questa pagina da un'e-mail di reset della password, assicurati di aver utilizzato l'URL completo fornito."
     registrations:
       destroyed: 'Arrivederci! L''account è stato cancellato. Speriamo di rivederci presto.'
       signed_up: 'Benvenuto! Ti sei registrato correttamente.'
