@@ -249,6 +249,9 @@ ja:
   add_observations: 観察記録を追加
   add_observations_by_checking_off: リストから削除した種に観察記録を追加
   add_observations_project: このプロジェクトに観測記録を追加
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>観察記録</span>を<span>追加</span>"
   #Prompt to add a new journal post
   add_one: 1件、追加しよう！
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -602,6 +605,10 @@ ja:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 属性
   attribution: 帰属
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, %{user} によって投稿されました"
   authority_list:
     iucn_red_list: IUCNレッドリスト
     cites: ワシントン条約（CITES）
@@ -1295,9 +1302,15 @@ ja:
   details: 詳細
   deviation: 逸脱
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
       already_authenticated: 'すでにログインしています。'
       unauthenticated: '続行するにはログインするか、アカウントを作成してください。'
+      invalid: 'メールアドレスかパスワードが正しくありません'
       invalid_token: '認証が無効です'
       user:
         suspended: あなたのアカウントは使用停止されました。
@@ -1305,13 +1318,23 @@ ja:
       signed_in: '正常にログインしました。'
       signed_out: '正常にログアウトしました。'
     passwords:
+      send_instructions: |
+        数分以内にパスワードをリセットする方法の説明を含むメールが届きます。
       updated: 'パスワードは正常に変更されました。既にログイン済みです。'
       updated_not_active: 'パスワードは安全に変更されました！'
+      send_paranoid_instructions: |
+        メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。
+      no_token: |
+        パスワード再発行のメール以外からこのページにアクセスすることはできません。 
+        パスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。
     registrations:
       destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
       updated: 'アカウントを正常に更新しました。'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: メールアドレス確認の説明
       reset_password_instructions:
         subject: 'パスワードの再設定について'
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
@@ -1837,6 +1860,8 @@ ja:
   improving: 改善
   in_n: "%{n}に"
   in_place_x: '%{place} で'
+  #As in a reason to flag something
+  inappropriate: 不適切
   inaturalist_network: iNaturalistネットワーク
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   #Label for messages you've received
@@ -2306,6 +2331,14 @@ ja:
     <a href="%{url}">マンスリーサポーター</a>: %{date} から
   months: 月
   more: その他
+  #Button to show more observations
+  more__context_observations_caps: もっと見る
+  #Button to show more places
+  more__context_places: もっと表示
+  #Button to show more text
+  more__context_text: 詳細
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: もっと見る
   more_caps: もっと見る
   more_about_sharing: 共有についての詳細
   more_fields: 追加フィールド
@@ -2705,6 +2738,7 @@ ja:
   open_description: "分類群の位置情報は、絶滅の恐れがある場合を除き一般公開されます"
   open_street_map: OpenStreetMap
   optional: 任意
+  options: オプション
   or: または
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3215,6 +3249,7 @@ ja:
   places_warning_please_keep_in_mind: |
     以下の説明をご確認ください:
   plants: 植物
+  play_first_sound: 最初の音声を再生する
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: お父さんやお母さんに使っていいか、聞いてみましょう！
@@ -4726,6 +4761,8 @@ ja:
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
+        ancestor_disagreements_desc2: |
+          提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることには同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)
         community_taxon_desc_html: |
           <p class="ui">
           コミュニティ分類群（もしくはコミュニティ同定）とは、特定の観察記録において%{site_name}コミュニティが考えている分類群を表しています。もしコミュニティ分類群がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>がコミュニティ分類群となります。場合によっては、異なる分類群を複数含む、より上位の分類群がコミュニティ分類群になります（例：あなたがキングヘビだと予想し、私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含むヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が正しい場合が多いことがわかっているため、反対派をやや優先する傾向にあります。
@@ -5258,6 +5295,10 @@ ja:
         header:
           other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
+    models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: お知らせ
     attributes:
       assessment:
         description: 説明
@@ -5273,6 +5314,8 @@ ja:
       flag:
         #The reason the item was flagged
         reason: 理由
+        #The person who resolved the flag
+        resolver_id: 解決者
         #The kind of flag that was made
         flag: フラグ
       guide:
@@ -5326,6 +5369,21 @@ ja:
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: サイト名
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: 短いタイトル
+        #Taxon this link is associated with
+        taxon: 分類群
+        #Place this link is associated with
+        place: 場所
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: 子孫分類群を表示
       user:
         locale: 地域
         time_zone: タイムゾーン
