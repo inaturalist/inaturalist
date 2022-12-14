@@ -1454,10 +1454,6 @@ tr:
     confirmations:
       confirmed: "E-posta adresin başarıyla doğrulandı."
       send_instructions: "Birkaç dakika içinde e-posta adresini doğrulamak için talimat içeren bir e-posta alacaksın."
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        E-posta adresin veritabanımızda mevcutsa, birkaç dakika içinde e-posta adresini nasıl onaylayacağına ilişkin talimatları içeren bir e-posta alacaksın.
     failure:
       already_authenticated: 'Zaten giriş yaptın.'
       unauthenticated: 'Devam etmeden önce giriş yapman ya da kayıt olman gereklidir.'
@@ -1471,11 +1467,8 @@ tr:
       signed_in: 'Başarıyla giriş yapıldı.'
       signed_out: 'Başarıyla çıkış yapıldı.'
     passwords:
-      send_instructions: 'Birkaç dakika içinde şifreni nasıl sıfırlayacağına dair talimatları içeren bir e-posta alacaksın.'
       updated: 'Şifren başarılı bir şekilde değiştirildi. Şimdi oturum açtın.'
       updated_not_active: 'Şifren başarılı bir şekilde değiştirildi.'
-      send_paranoid_instructions: "Eğer e-posta adresin veri tabanımızda mevcut ise birkaç dakika içinde e-posta adresine bir şifre kurtarma bağlantısı gönderilecektir."
-      no_token: "Şifre sıfırlama e-postası gelmeden bu sayfaya erişemezsin. Şifre sıfırlama e-postasından geliyorsan, lütfen sağlanan tam URL'yi kullandığından emin ol."
     registrations:
       destroyed: 'Güle güle! Hesabın başarıyla iptal edildi. Yakında tekrar görüşmek dileğiyle.'
       signed_up: 'Hoş geldin! Başarılı bir şekilde oturum açtın.'
