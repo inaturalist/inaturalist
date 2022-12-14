@@ -1295,11 +1295,6 @@ ja:
   details: 詳細
   deviation: 逸脱
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
       already_authenticated: 'すでにログインしています。'
       unauthenticated: '続行するにはログインするか、アカウントを作成してください。'
@@ -1310,11 +1305,8 @@ ja:
       signed_in: '正常にログインしました。'
       signed_out: '正常にログアウトしました。'
     passwords:
-      send_instructions: '数分以内にパスワードをリセットする方法の説明を含むメールが届きます。'
       updated: 'パスワードは正常に変更されました。既にログイン済みです。'
       updated_not_active: 'パスワードは安全に変更されました！'
-      send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
-      no_token: "パスワード再発行のメール以外からこのページにアクセスすることはできません。 \nパスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。"
     registrations:
       destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
