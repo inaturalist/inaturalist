@@ -1387,11 +1387,6 @@ et:
   details: Üksikasjad
   deviation: Kõrvalekalle
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul juhised, kuidas oma aadressi kinnitada.
     failure:
       already_authenticated: 'Olete juba sisse logitud.'
       unauthenticated: 'Pead jätkamiseks sisse logima või endale konto looma.'
@@ -1402,11 +1397,8 @@ et:
       signed_in: 'Sisenemine õnnestus.'
       signed_out: 'Välja logimine õnnestus.'
     passwords:
-      send_instructions: 'Saadame sulle paari minuti jooksul e-kirja salasõna lähtestamise juhistega.'
       updated: 'Sinu salasõna muutmine õnnestus. Oled nüüd sisse logitud.'
       updated_not_active: 'Sinu salasõna muutmine õnnestus.'
-      send_paranoid_instructions: "Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja."
-      no_token: "Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki."
     registrations:
       destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
