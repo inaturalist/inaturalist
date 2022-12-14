@@ -535,6 +535,7 @@ nb:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Applikasjoner
+  apply_app_owner: Bruk
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Send søknad
@@ -629,6 +630,7 @@ nb:
   assessment_x: "%{assessment}-vurdering"
   assessments: vurderinger
   associations: Tilknytninger
+  atlased: Hørt
   atlas_for_taxon_html: Atlas for %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1240,6 +1242,7 @@ nb:
     failure:
       already_authenticated: 'Du allerede er logget på.'
       unauthenticated: 'Du må logge inn eller registrere deg før du fortsetter.'
+      invalid: 'Ugyldig e-post eller passord.'
       invalid_token: 'Ugyldig autoriseringsnøkkel.'
       user:
         suspended: Din konto har blitt suspendert
@@ -1247,13 +1250,22 @@ nb:
       signed_in: 'Pålogging vellykket.'
       signed_out: 'Avlogging vellykket.'
     passwords:
+      send_instructions: |
+        Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.
       updated: 'Passordet ditt ble endret. Du er nå logget inn.'
       updated_not_active: 'Endring av ditt passord var vellykket.'
+      send_paranoid_instructions: |
+        Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter.
+      no_token: |
+        Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen.
     registrations:
       destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
       signed_up: 'Velkommen! Registreringen var vellykket.'
       updated: 'Du har oppdatert din konto.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Instruksjoner for bekreftelse
       reset_password_instructions:
         subject: 'Instruksjoner for å tilbakestille passord'
   devise_reset_password_instructions_hello_email: Hei %{email}
@@ -1471,6 +1483,8 @@ nb:
   feedback: Tilbakemelding
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Nyhetsstrømmer'
+  #Button to show fewer places
+  fewer__context_places: Færre
   failed: Mislykket
   field_note: |
     <strong>Obs:</strong> Hvis du vil opprette et felt, sjekk for å se om noen andre allerede har opprettet det for å unngå duplisering.
@@ -1782,6 +1796,8 @@ nb:
   improving: Forbedrer
   in_n: "i %{n}"
   in_place_x: i %{place}
+  #As in a reason to flag something
+  inappropriate: Upassende
   inaturalist_network_affiliation: iNaturalist nettverkstilknytning
   #Label for messages you've received
   inbox: Innboks
@@ -1987,6 +2003,8 @@ nb:
     turkish: Tyrkisk
     waray_waray: Waray-Waray
   less: Mindre
+  #Button show less text
+  less__context_text: Mindre
   licensed_site_photos: "Lisensierte %{site_name}-bilder"
   license: Lisens
   licensing: Lisensiering
@@ -2243,6 +2261,8 @@ nb:
       yy: "%då"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D. MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2262,6 +2282,10 @@ nb:
     <a href="%{url}">Månedlig supporter</a> siden %{date}
   months: Måneder
   more: Mer
+  #Button to show more observations
+  more__context_observations_caps: MER
+  #Button to show more places
+  more__context_places: Mer
   more_caps: MER
   more_fields: Flere felt
   more_filters: Flere filtre
@@ -3236,6 +3260,7 @@ nb:
   places_warning_the_future: |
     For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter
+  play_first_sound: Spill første lyd
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen #Request that a known child ask their parents for permission to use this service
   #Title to a section warning a user to exercise caution
