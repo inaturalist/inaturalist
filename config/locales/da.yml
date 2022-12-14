@@ -4378,6 +4378,10 @@ da:
   selected_taxon: Valgte takson
   select_this_taxon: Vælg denne takson
   send: send
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Afsend og log ud
+  send_confirmation_email: Send bekræftelsesmail
   send_me_reset_password_instructions: Send mig info om nulstilling af adgangskode
   sending: Sender...
   #Label for messages you've sent
@@ -5394,6 +5398,26 @@ da:
     vil ikke kunne logge ind på din konto, før du klikker på linket i
     e-mailen, så <strong>sørg for at den korrekte e-mailadresse
     angives.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Du er ved at logge ud</h3>
+    <p>
+    Efter afsendelse af bekræftelsesmailen logges du ud og
+    vil ikke kunne logge ind på kontoen, før du klikker på linket i
+    e-mailen, så <strong class="bg-warning">sørg for at angive den korrekte e-mailadressen.</strong>
+    </p>
+    <p>
+    Her er e-mailadressen, hvortil bekræftelsen sendes:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Hvis alle e-mails er afmeldt...</h4>
+    <p>
+    Har du afmeldt <em>alle</em> e-mails fra os, kan vi ikke sende
+    dig en bekræftelsesmail. For at tilmelde dig igen, så find en tidligere
+    e-mail fra os, klik på afmeldingslinket, og vælg så at modtage e-mails igen. Er dette ikke muligt, så send en
+    e-mail til
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a> fra
+    den e-mailadresse, du har angivet her, så vi kan hjælpe dig.
+    </p>
   users_favorites: "%{user}s favoritter"
   users_highlights_and_stats_from_year_on_site: "%{user}s højdepunkter og statistik fra %{year} på %{site}"
   users_id: "%{user}s ID"
