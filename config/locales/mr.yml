@@ -507,12 +507,6 @@ mr:
   default_display_time_zone: सर्वसाधारण दृश्यमान वेळ क्षेत्र
   default_time_zone_desc: |
     हे सर्वसाधारण वेळ क्षेत्र आहे. अंतिम वेळ क्षेत्र निरीक्षणाच्या स्थानावर आधारित जेव्हा ते जतन केले जाते त्यानुसार नियुक्त केले जाईल.
-  devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
   #Button label for drawing a circular boundary for an observation search
