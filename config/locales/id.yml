@@ -793,6 +793,8 @@ id:
   change_group: Kelompok perubahan
   change_icon: Ubah ikon
   change_password: Ubah Kata Sandi
+  #Message shown after you change your email address
+  change_to_email_requested_html: Ubah menjadi <strong>%{email}</strong> yang dimohon. Cek email Anda sesuai alamat yang tertera untuk mengonfirmasi perubahan Anda.
   change_types:
     activated_soon: diaktifkan segera
     change_types: Ubah jenis
@@ -963,6 +965,10 @@ id:
   confirm_new_password: Konfirmasi Kata Sandi Baru
   confirm_now: Konfirmasi sekarang
   confirm_your_info: Konfirmasi info Anda
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Email konfirmasi telah dikirimkan pada %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Dikonfirmasi pada %{date}
   confirming_ids: ID Konfirmasi
   confirming_ids_description: Jika Anda mematikan fungsi ini, Anda tidak akan lagi mendapatkan notifikasi mengenai ID yang setuju dengan Anda.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1410,6 +1416,8 @@ id:
   deviation: Deviasi
   devise:
     confirmations:
+      confirmed: "Email Anda berhasil dikonfirmasi."
+      send_instructions: "Anda akan menerima sebuah email dengan instruksi tentang cara mengonfirmasi email Anda."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1419,31 +1427,44 @@ id:
       unauthenticated: 'Anda harus masuk atau daftar untuk melanjutkan.'
       invalid: 'Email atau kata sandi tidak valid.'
       invalid_token: 'Token otentikasi salah.'
+      unconfirmed: |
+        Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
     sessions:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
     passwords:
-      send_instructions: 'Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.'
+      send_instructions: |
+        Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.
       updated: 'Kata sandi Anda berhasil diganti. Anda sudah masuk sekarang.'
       updated_not_active: 'Kata sandi Anda sudah berhasil diganti.'
-      send_paranoid_instructions: "Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit."
-      no_token: "Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap."
+      send_paranoid_instructions: |
+        Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit.
+      no_token: |
+        Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap.
     registrations:
-      signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
-      updated: 'Anda berhasil memperbarui akun Anda.'
       destroyed: 'Sampai nanti! Akun Anda berhasil dibatalkan. Semoga kita dapat segera berjumpa lagi.'
+      signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
+      signed_up_but_inactive: "Anda berhasil terdaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda belum diaktifkan."
+      signed_up_but_locked: "Anda berhasil mendaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda terkunci."
+      signed_up_but_unconfirmed: "Sebuah pesan dengan tautan untuk konfirmasi telah dikirimkan ke alamat email Anda. Harap ikuti tautan yang ada untuk mengaktifkan akun Anda."
+      updated: 'Anda berhasil memperbarui akun Anda.'
     mailer:
       confirmation_instructions:
-        subject: 'Petunjuk konfirmasi'
+        #Subject of an email sent to confirm your account
+        subject: Petunjuk konfirmasi
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Perubahan email telah diminta
       reset_password_instructions:
         subject: 'Petunjuk pengaturan ulang kata sandi'
   devise_reset_password_instructions_hello_email: Halo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Seseorang telah meminta tautan untuk mengubah kata sandi Anda. Anda dapat melakukannya melalui tautan di bawah ini.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jika Anda tidak meminta pengaturan ulang ini, harap abaikan pesan ini.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Seseorang telah meminta tautan untuk mengubah kata sandi Anda. Anda dapat melakukannya melalui tautan di bawah ini.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Kata sandi Anda tidak akan terganti sampai Anda mengakses tautan di atas dan membuat kata sandi baru.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1618,8 +1639,9 @@ id:
     native: berevolusi di area ini atau tiba melalui cara non-antropogenik
     endemic: asli dan tidak ada di tempat lain
     introduced: tiba di area ini melalui sarana antropogenik
-  estimate_which_input: |
-    Memperkirakan id takson input mana diganti dengan taksa output mana dan yang mana yang akan diperkasar menjadi induk yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan dipotong menjadi subset berisi 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Memperkirakan identifikasi takson input mana yang akan diganti dengan identifikasi taksa output dan identifikasi yang mana yang akan diperkasar menjadi nenek moyang yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan-pengamatannya dipotong menjadi subset berisi 200.
   event_in_progress: Acara sedang berlangsung
   event_stats: Statistik Acara
   event_url: URL Acara
@@ -4168,6 +4190,10 @@ id:
   selected_taxon: Takson Yang Dipilih
   select_this_taxon: Pilih Takson Ini
   send: kirim
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Kirim dan Keluar
+  send_confirmation_email: Kirim email konfirmasi
   send_me_reset_password_instructions: Kirim saya petunjuk pengubahan kata sandi
   sending: Mengirim...
   #Label for messages you've sent
@@ -5002,6 +5028,7 @@ id:
     Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
     Gunakan formulir ini untuk membuat draf baru perubahan taksonomi yang menggambarkan usulan pemisahan, penggabungan, atau penukaran pada taksa aktif untuk diterapkan nantinya.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Pakai ini jika nama genus dan spesies dalam URL perlu dipisahkan dengan cara tertentu. Jika taksonnya bukan berupa spesies atau infraspesies, semua di antara [GENUS] dan [SPECIES] akan diganti dengan nama taksonnya, jadi jangan gunakan banyak-banyak.
   use_unique_file_names_for_separate_uploads: Gunakan nama file yang unik untuk memisahkan unggahan
@@ -5255,7 +5282,10 @@ id:
     Artikel ini menggunakan materi dari artikel Wikipedia <a href="%{url}">"%{title}"</a>, yang diluncurkan di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
   with: dengan
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Mundur
+  #Loading status while an identification is being withdrawn
   withdrawing: Mengundur...
   with_errors: Dengan kesalahan
   worldwide: Seluruh Dunia
@@ -5914,7 +5944,8 @@ id:
       show:
         allow_curator_coordinate_access_desc_html: |
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
-        ancestor_disagreements_desc: "# taksa yang diidentifikasi yang merupakan induk sebuah takson, tetapi bertentangan dengan taksonnya (contohnya \"Menurut saya, ini ada di genus itu, tetapi saya tidak setuju bahwa itu nama spesiesnya\")"
+        ancestor_disagreements_desc2: |
+          Jumlah takson yang teridentifikasi yang merupakan nenek moyang dari sebuah takson, tetapi bertentangan dengan taksonnya (contohnya "Menurut saya, ini ada di genus itu, tetapi saya tidak setuju bahwa itu nama spesiesnya")
         community_taxon_desc_html: |
           <p class="ui">
           Takson komunitas (atau identifikasi komunitas) mewakili takson yang komunitas %{site_name} pikirkan sesuai apa yang digambarkan pada pengamatan. Jika Anda tertarik tentang cara kami memilih takson komunitas, Anda bisa melihat catatan pada algoritma di bawah ini, tetapi secara umum, kami mencoba untuk <strong>memilih takson yang lebih dari 2/3 pengidentifikasinya setuju dengan itu</strong>. Kadang, hal ini berarti mengharuskan kami memilih tingkat takson yang lebih tinggi yang mengandung sejumlah taksa yang bertentangan (contohnya, jika Anda pikir ini adalah ular raja dan saya berpikir ini adalah ular derik, iNat akan memilih subordo Serpentes yang mengandung semua jenis ular). Algoritma ini agak mendukung ketidaksepakatan, sebab kami menemukan bahwa orang-orang yang tidak sepakat biasanya benar.
@@ -7346,6 +7377,21 @@ id:
         position: Posisi
         source_url: URL Sumber
         source_identifier: Pengidentifikasi sumber
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Judul situs
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Judul pendek
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Tempat
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Tampilkan untuk takson turunan
       user:
         email: Email
         login: Nama pengguna

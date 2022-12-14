@@ -299,6 +299,9 @@ pt-BR:
   add_observations: Adicionar observações
   add_observations_by_checking_off: Adicione observações selecionando espécies de uma lista
   add_observations_project: Adicione observações para este projeto
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Adicione</span> <span>observações</span>"
   #Prompt to add a new journal post
   add_one: Adicione uma!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -689,6 +692,10 @@ pt-BR:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atributo
   attribution: Atribuição
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, carregado por %{user}"
   authority_list:
     iucn_red_list: Lista Vermelha da IUCN
     natureserve: NatureServe
@@ -1495,25 +1502,29 @@ pt-BR:
       signed_in: 'Login efetuado com sucesso.'
       signed_out: 'Logout efetuado com sucesso.'
     passwords:
-      send_instructions: 'Você receberá um email com instruções sobre como redefinir sua senha em alguns minutos.'
+      send_instructions: |
+        Você receberá um email com instruções sobre como redefinir sua senha em alguns minutos.
       updated: 'Sua senha foi alterada com sucesso. Você agora está conectado.'
       updated_not_active: 'Sua senha foi alterada com sucesso.'
-      send_paranoid_instructions: "Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu endereço de e-mail em alguns minutos."
-      no_token: "Você só pode acessar essa página através de um e-mail de redefinição de senha. Se já estiver acessando por um e-mail de redefinição de senha, verifique se a URL fornecida está completa."
+      send_paranoid_instructions: |
+        Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu endereço de e-mail em alguns minutos.
+      no_token: |
+        Você só pode acessar essa página através de um e-mail de redefinição de senha. Se já estiver acessando por um e-mail de redefinição de senha, verifique se a URL fornecida está completa.
     registrations:
+      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
       signed_up: 'Bem-vindo! Você se registrou com sucesso.'
       updated: 'Você atualizou sua conta com sucesso.'
-      destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruções de confirmação'
+        #Subject of an email sent to confirm your account
+        subject: Instruções de confirmação
       reset_password_instructions:
         subject: 'Instruções de redefinição de senha'
   devise_reset_password_instructions_hello_email: Olá %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se você não solicitou isso, ignore este e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguém solicitou um link para alterar sua senha. Você pode fazer isso através do link abaixo.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sua senha não será alterada até que você acesse o link acima e crie uma nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1689,7 +1700,8 @@ pt-BR:
     native: evoluiu nesta região ou chegou por meios não-antropogênicos
     endemic: nativo e endêmico
     introduced: chegou à região por meios antropogênicos
-  estimate_which_input: |
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
     Avaliação de quais IDs do táxon de origem serão substituidos por quais táxons de saída e quais serão atribuidos a um táxon inferior comum quando for efetuada a separação. Este processo de avaliação pode demorar. Links para as observações serão apresentadas em grupos de 200.
   event_in_progress: Evento em andamento
   event_stats: Estatísticas do evento
@@ -1753,6 +1765,8 @@ pt-BR:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Menos
   failed: Falhou
   field_note: |
     <strong>Atenção:</strong> Se você gostaria de criar um novo campo, confira se nenhum outro usuário já configurou esta área para evitar duplicações.
@@ -2082,6 +2096,7 @@ pt-BR:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificação retirada.
   identifications: Identificações
+  inaturalist_global_year_in_review: "O ano %{year} do iNaturalist global em revisão"
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -2121,6 +2136,8 @@ pt-BR:
   improving: Melhorando
   in_n: "em %{n}"
   in_place_x: no %{place}
+  #As in a reason to flag something
+  inappropriate: Inadequado
   inaturalist_network: Rede iNaturalist
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
@@ -2347,6 +2364,8 @@ pt-BR:
     waray_waray: Samarenho
     visayan: Cebuano
   less: Menos
+  #Button show less text
+  less__context_text: Menos
   licensed_site_photos: "Fotos com licença %{site_name}"
   license: Licença
   licensing: Licenciando
@@ -2600,6 +2619,7 @@ pt-BR:
     target="_blank">Termos de uso</a> ou não agindo de acordo com nossas <a
     href="%{guidelines_url}" target="_blank">diretrizes da comunidade</a>, por favor
     sinalize esta mensagem abaixo.
+  minimum_positional_accuracy: Precisão Mínima de Localização
   misidentifications: Identificações erradas
   misleading_or_illegal_content_html: |
     Conteúdo ilegal ou falso, insultos étnicos e raciais, etc. Para mais sobre nossa definição de "apropriado", veja as <a href="/help#inappropriate">Perguntas frequentes</a>.
@@ -2665,6 +2685,14 @@ pt-BR:
     <a href="%{url}">Apoiador Mensal</a> desde %{date}
   months: Meses
   more: Mais
+  #Button to show more observations
+  more__context_observations_caps: MAIS
+  #Button to show more places
+  more__context_places: Mais
+  #Button to show more text
+  more__context_text: Mais
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MAIS
   more_caps: MAIS
   more_about_sharing: Mais sobre compartilhamento
   more_fields: Mais campos
@@ -2852,6 +2880,7 @@ pt-BR:
   no_more_taxa_to_load: Não existem mais espécies ou grupos para carregar!
   no_more_results_found: Nenhum resultado encontrado
   no_new_messages: Não há novas mensagens
+  no_new_parent_specified: Não foi definido um novo pai
   no_observations: Não existem observações
   no_observations_from_this_place_yet: Ainda não existem observações neste local.
   no_observations_matching_those_ids: Não existem observações coincidentes com estas identificações.
@@ -3166,6 +3195,7 @@ pt-BR:
   open_description: "Qualquer um pode ter acesso as coordenadas a não ser que o táxon esteja em perigo."
   open_street_map: OpenStreetMap
   optional: opcional
+  options: Opções
   or: ou
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3277,6 +3307,21 @@ pt-BR:
     original: original
   photos_updated: Fotos atualizadas.
   pi_consent_desc_title: Sobre informações pessoais
+  pi_consent_desc_html: |
+    <p>
+    Armazenamos informações pessoais como nomes de usuário e endereços de e-mail
+    para gerenciar contas neste site, e cumprir as leis de privacidade.
+    Precisamos que você marque esta caixa para indicar que você concorda com esse uso
+    de informações pessoais. Para saber mais sobre quais informações
+    coletamos e como as usamos, consulte nossa
+    <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a>
+    e nossos <a href='%{terms_url}' target='_blank'>Termos de Uso</a>.
+    </p>
+    <p>
+    Não há como ter uma conta iNaturalist sem armazenar informações pessoais,
+    então a única forma de revogar este consentimento é excluir sua
+    conta.
+    </p>
   pi_consent_label: |
     Eu concordo em permitir que o iNaturalist armazene e processe tipos limitados de informações pessoais sobre mim para gerenciar minha conta
   pi_consent_child_label: |
@@ -3761,6 +3806,7 @@ pt-BR:
     Para o que vale, teremos que restringir as condições sob as quais
     pessoas podem adicionar lugares no futuro dada a taxa de crescimento atual do iNat.
   plants: plantas
+  play_first_sound: Reproduzir Primeiro Som
   please_add_a_citation_for_this_change: Por favor adicione uma referência para esta mudança.
   please_allow_a_few_weeks_for_external_sites: Por favor, espere algumas semanas até que os sites externos sincronizem esta observação #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Por favor, peça permissão aos seus pais
@@ -4323,6 +4369,8 @@ pt-BR:
   #Journal post formatting option
   simple: Simples
   single_observation: Uma única observação
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Veja o resumo do ano %{year} do %{site}"
   sizes: Tamanhos
   skip_to_next_page: "Ir para a próxima página"
   small: pequeno
@@ -4820,6 +4868,8 @@ pt-BR:
   the_world_is_full_of_interesting_places: |
     O mundo está cheio de lugares interessantes, cada um repleto com as mais estranhas e maravilhosas formas de vida. Algumas estão do outro lado do mundo, enquanto outras estão exatamente na mesma rua onde você mora! Os Lugares de %{site_name} permite que você procure vida em todo o planeta. Comece agora a explorar!
   then_keybord_sequence: então
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  there_are_no_current_ids: Não existem atualmente IDs de qualquer taxa pai potencialmente reduzido
   there_are_x_synonyms_html:
     one: "Existe um <span class='count'>1</span> synonym</span>"
     other: "Existem alguns <span class='count'>%{count}</span> synonyms</span>"
@@ -5139,6 +5189,7 @@ pt-BR:
     Use <span class='ac-placeholder'>"%{name}"</span> como um marcador de posição
   use_this_form_to_create_a_new: |
     Utilize este formulário para criar uma mudança taxonômica descrevendo a proposta de separação, combinação ou troca de táxons ativos, para ser alterado depois.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Use este recurso se o URL necessita ter o gênero e a espécie separados de alguma forma específica. Se o táxon não é uma espécie ou infraespécie, tudo entre [GENUS] e [SPECIES] será automaticamente substituído pelo nome do táxon, então seja cauteloso.
   use_unique_file_names_for_separate_uploads: Utilize nomes diferenciados para carregar arquivos
@@ -5397,7 +5448,10 @@ pt-BR:
     <a href="%{url}">"%{title}"</a>, que é lançado sob a
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
   with: com
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirando...
   with_errors: Com erros
   worldwide: Global
@@ -6094,7 +6148,10 @@ pt-BR:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permitir o acesso dos administradores do projeto para visualizar as coordenadas ocultas desta observação.
-        ancestor_disagreements_desc: "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")"
+        ancestor_disagreements_desc2: |
+          Número de táxons identificados que estão entre os ancestrais de um táxon, mas
+          não concorda com o táxon (i.e. "Eu acho que está no gênero, mas eu
+          discordo da espécie")
         community_taxon_desc_html: |
           <p class="ui">
           O táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.
@@ -7654,6 +7711,21 @@ pt-BR:
         position: Posição
         source_url: URL de origem
         source_identifier: Identificador de fonte
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Titulo do site
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Título Resumido
+        #Taxon this link is associated with
+        taxon: Táxon
+        #Place this link is associated with
+        place: Local
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Mostrar táxons descendentes
       user:
         email: E-mail
         login: Nome de usuário

@@ -1371,25 +1371,29 @@ lt:
       signed_in: 'Prisijungta sėkmingai.'
       signed_out: 'Atsijungta sėkmingai.'
     passwords:
-      send_instructions: 'Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.'
+      send_instructions: |
+        Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.
       updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jūs dabar esate prisijungę.'
       updated_not_active: 'Jūsų slaptažodis buvo sėkmingai pakeistas.'
-      send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
-      no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
+      send_paranoid_instructions: |
+        Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda.
+      no_token: |
+        Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL.
     registrations:
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
       signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
       updated: 'Jūsų paskyra sėkmingai atnaujinta.'
-      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
     mailer:
       confirmation_instructions:
-        subject: 'Patvirtinimo instrukcijos'
+        #Subject of an email sent to confirm your account
+        subject: Patvirtinimo instrukcijos
       reset_password_instructions:
         subject: 'Atstatyti slaptažodžio instrukcijas'
   devise_reset_password_instructions_hello_email: Sveiki, %{email},
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   devise_unlock_instructions_unlock: Atblokuoti paskyrą
@@ -4277,7 +4281,10 @@ lt:
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
   with: su
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Atsiimti
+  #Loading status while an identification is being withdrawn
   withdrawing: Atšaukiama...
   with_errors: Su klaidomis
   worldwide: Visame pasaulyje
@@ -5204,6 +5211,11 @@ lt:
         position: Pozicija
         source_url: Šaltinio URL
         source_identifier: Šaltinio identifikuotojas
+      taxon_link:
+        #Taxon this link is associated with
+        taxon: Taksonas
+        #Place this link is associated with
+        place: Vieta
       user:
         email: El. paštas
         login: Vartotojo vardas

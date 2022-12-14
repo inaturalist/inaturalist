@@ -1077,25 +1077,29 @@ bg:
       signed_in: 'Влязохте успешно.'
       signed_out: 'Излязохте успешно.'
     passwords:
-      send_instructions: 'До няколко минути ще получите имейл с инструкции как да възстановите паролата си.'
+      send_instructions: |
+        До няколко минути ще получите имейл с инструкции как да възстановите паролата си.
       updated: 'Вашата парола беше променена успешно. Вече сте влезли.'
       updated_not_active: 'Вашата парола беше променена успешно.'
-      send_paranoid_instructions: "Ако Вашият имейл адрес фигурира в нашата база данни – до няколко минути, на него ще получите препратка за възстановяване на паролата."
-      no_token: "Тази страница е достъпна само когато идвате от имейл за възстановяване на паролата. Ако действително идвате от такъв имейл – уверете се, че сте използвали пълния уебадрес, който сте получили."
+      send_paranoid_instructions: |
+        Ако Вашият имейл адрес фигурира в нашата база данни – до няколко минути, на него ще получите препратка за възстановяване на паролата.
+      no_token: |
+        Тази страница е достъпна само когато идвате от имейл за възстановяване на паролата. Ако действително идвате от такъв имейл – уверете се, че сте използвали пълния уебадрес, който сте получили.
     registrations:
+      destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
       signed_up: 'Добре дошли! Регистрацията е успешна.'
       updated: 'Успешно обновихте акаунта си.'
-      destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
     mailer:
       confirmation_instructions:
-        subject: 'Инструкции за потвърждение'
+        #Subject of an email sent to confirm your account
+        subject: Инструкции за потвърждение
       reset_password_instructions:
         subject: 'Инструкции за възстановяване на паролата'
   devise_reset_password_instructions_hello_email: Привет, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Някой е поискал препратка за промяна на паролата Ви. Можете да я промените чрез препратката по-долу.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ако не сте го поискали Вие – моля, игнорирайте този имейл.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Някой е поискал препратка за промяна на паролата Ви. Можете да я промените чрез препратката по-долу.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Паролата Ви няма да бъде променена, докато не отворите горната препратка и не създадете нова парола.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -4001,7 +4005,10 @@ bg:
   widget_for: Приставка за
   wikipedia_attribution_cc_by_sa_3: |
     Източник: Уикипедия, „%{title}“, %{url}, CC BY-SA 3.0
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Оттегли
+  #Loading status while an identification is being withdrawn
   withdrawing: Оттегляне...
   with_errors: С грешки
   worldwide: Цял свят

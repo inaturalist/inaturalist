@@ -1521,25 +1521,29 @@ sv:
       signed_in: 'Inloggningen lyckades.'
       signed_out: 'Utloggningen lyckades.'
     passwords:
-      send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
+      send_instructions: |
+        Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.
       updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
       updated_not_active: 'Ditt lösenord har ändrats.'
-      send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
-      no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
+      send_paranoid_instructions: |
+        Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter.
+      no_token: |
+        Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån.
     registrations:
+      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
       signed_up: 'Välkommen! Du har lyckats registrera dig.'
       updated: 'Ditt konto har uppdaterats.'
-      destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruktioner för bekräftelse'
+        #Subject of an email sent to confirm your account
+        subject: Instruktioner för bekräftelse
       reset_password_instructions:
         subject: 'Instruktioner för återställning av lösenord'
   devise_reset_password_instructions_hello_email: Hej %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Om du inte har begärt detta, vänligen ignorera detta mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Någon har begärt en länk för att ändra ditt lösenord. Du kan göra detta via länken nedan.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt lösenord kommer inte att ändras förrän du följer länken ovan och skapar ett nytt.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1719,8 +1723,6 @@ sv:
     native: utvecklad i denna region eller inkommen utan människans hjälp
     endemic: inhemsk och förekommer ingen annanstans
     introduced: inkommen till regionen med människans hjälp
-  estimate_which_input: |
-    Uppskatta vilka intaxon-id:n som kommer att ersättas med vilka uttaxa och vilka som kommer att hänvisas till en gemensam förfader när uppdelningen är antagen. Detta kan ta en stund att beräkna. Länkar till fynd begränsas till uppsättningar om 200.
   event_in_progress: Händelse pågår
   event_stats: Händelsestatistik
   event_url: Händelse-URL
@@ -5226,6 +5228,7 @@ sv:
     Använd <span class='ac-placeholder'>"%{name}"</span> som platshållare
   use_this_form_to_create_a_new: |
     Använd detta formulär för att beskriva ett förslag på en taxonomisk förändring som delar, sammanfogar eller byter ut accepterade taxa, för att kunna genomföras senare.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Använd detta om URL:en behöver ha släktet och arten uppdelade på något speciellt sätt. Om detta taxon inte är en art eller lägre, kommer allt mellan [GENUS] och [SPECIES] att ersättas av taxonnamnet, så använd
     sparsamt.
@@ -5489,7 +5492,10 @@ sv:
     Commons Erkännande Dela Lika-licens 3.0</a>. Delar av innehållet kan ha
     utelämnats jämfört med originalet, men inget har ändrats eller lagts till.
   with: med
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Dra tillbaka
+  #Loading status while an identification is being withdrawn
   withdrawing: Drar tillbaka...
   with_errors: Med fel
   worldwide: Världsomfattande
@@ -6188,7 +6194,6 @@ sv:
       show:
         allow_curator_coordinate_access_desc_html: |
           Tillåt projektförvaltare att se de dolda koordinaterna för detta fynd.
-        ancestor_disagreements_desc: "Antal bestämda taxa som stämmer med ett taxons förfäder, men inte håller med om specifikt taxon (dvs \"Jag tror att det är i det släktet men jag håller inte med om arten\")"
         community_taxon_desc_html: |
           <p class="ui">
           Ett community-taxon (eller den kollektiva bestämningen) representerar det taxon %{site_name}-communityn tror skildras i ett fynd. Om du är intresserad av hur vi väljer community-taxon kan du läsa kommentarerna om algoritmen nedan, men

@@ -3319,6 +3319,7 @@ ar:
   use_this_form_to_create_a_new: |
     استخدم هذا النموذج لإنشاء مسودة تغيير تصنيف جديد تصف 
     تقسيم مقترح أو دمج أو مقايضة على أصناف نشطة ليتم الالتزام بها لاحقا.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     استخدم هذا إذا كان المسار يحتاج إلى فصل الأنواع
     بطريقة معينة، إذا كانت الأصنوفة ليست نوعا أو فصيلة، فإن كل شيء 
@@ -3517,7 +3518,10 @@ ar:
     المشاع الإبداعي: النسبة-الترخيص بالمثل 3.0</a>، ربما تم 
     حذف المحتوى من الأصل، ولكن لم يتم تغيير أي محتوى أو تمديده.
   with: مع
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: سحب
+  #Loading status while an identification is being withdrawn
   withdrawing: جارٍ السحب...
   with_errors: بأخطاء
   worldwide: في جميع أنحاء العالم
@@ -4072,7 +4076,6 @@ ar:
       show:
         allow_curator_coordinate_access_desc_html: |
           السماح لأمناء المشروع بعرض الإحداثيات المخفية لهذه الملاحظة.
-        ancestor_disagreements_desc: "# الأصناف المحددة التي هي من بين أسلاف الأصناف، لكن لا أوافق على الأصناف (أي \"أعتقد أنها في الجنس ولكني أعارض تلك الأنواع\")"
         community_taxon_desc_html: |
           <p class="ui">
             تمثل أصنوفة المجتمع (أو تعريف المجتمع)

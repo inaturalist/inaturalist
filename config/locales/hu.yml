@@ -384,7 +384,7 @@ hu:
     protozoans: Állati egysejtűek
     ray_finned_fishes: Sugarasúszójú halak
     reptiles: Hüllők
-    life: Élet
+    life: élőlény
     x_mollusca:
       one: "%{count} puhatestű"
       other: "%{count} puhatestű"
@@ -1142,16 +1142,18 @@ hu:
       signed_in: 'Sikeres bejelentkezés.'
       signed_out: 'A kijelentkezés sikeres.'
     passwords:
-      send_instructions: 'Perceken belül fogsz kapni egy emailt a jelszavad visszaállításáról.'
+      send_instructions: |
+        Perceken belül fogsz kapni egy emailt a jelszavad visszaállításáról.
       updated: 'A jelszó sikeresen megváltoztatva. Be vagy jelentkezve.'
       updated_not_active: 'Sikeresen megváltoztattad jelszavadat.'
     registrations:
+      destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
       updated: 'Fiókod sikeresen frissítve.'
-      destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
     mailer:
       confirmation_instructions:
-        subject: 'Megerősítési utasítások'
+        #Subject of an email sent to confirm your account
+        subject: Megerősítési utasítások
       reset_password_instructions:
         subject: 'Jelszóvisszaállítási utasítások'
   devise_reset_password_instructions_hello_email: Kedves %{email}!
@@ -1698,7 +1700,7 @@ hu:
   last_active_with_date: "Utolsó aktivitás: %{date}"
   last_confirmed_observation: Utolsó megerősített megfigyelés
   last_observation: Utóljára megfigyelte
-  last_observation_caps: UTOLJÁRA MEGFIGYELVE
+  last_observation_caps: Utoljára mefigyelve
   last_seen: Utoljára látva
   last_year: Tavaly
   lat: Szél
@@ -2288,8 +2290,8 @@ hu:
   observation_brief_taxon_from_place_by_user: "%{taxon} %{user} által, innen: %{place}"
   observation_brief_taxon_from_place_on_day: "%{taxon} innen: %{place}, %{day} napon"
   observation_brief_taxon_from_place_on_day_by_user: "%{taxon} innen: %{place}, %{day} napon, %{user} által"
-  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} innen: %{place}, %{day} napon, %{time}kor"
-  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} innen: %{place}, %{day} napon, %{time}kor, %{user} által"
+  observation_brief_taxon_from_place_on_day_at_time: "%{taxon} innen: %{place}, %{day} napon, %{time}-kor"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{taxon} innen: %{place}, %{day} napon, %{time}-kor, %{user} által"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year: "%{taxon} %{place} helyről, %{year} %{month}"
   #%{month} will be filled in the name of the month
@@ -2315,6 +2317,9 @@ hu:
   observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    pl. 2019-10-29 13:12:21
   observation_removed_from_the_project: "A megfigyelést törölték a \"%{project}\" projektből"
   observation_requirements: A megfigyelések listázási követelményei
   #Label for a field showing the date when the observation requirements for a
@@ -3509,6 +3514,7 @@ hu:
   sw_lat: DNy Szél.
   sw_lon: DNy Hossz.
   sync: Frissít?
+  sync_obs_with_photo_metadata: "Frissítés a fénykép metaadataival?"
   synonyms: Szinonimák
   table: Táblázat
   table_of_contents: Tartalomjegyzék
@@ -3740,10 +3746,10 @@ hu:
   to_recipient: címzett
   today: Ma
   tools: Eszközök
-  top_identifier_caps: FŐ AZONOSÍTÓ
+  top_identifier_caps: Legtöbbször azonosította
   top_identifiers: Legtöbbször azonosította
   top_identifiers_of_taxon: '%{taxon} taxon legaktívabb meghatározói'
-  top_observer_caps: LEGTÖBBSZÖR MEGFIGYELTE
+  top_observer_caps: Legtöbbször megfigyelte
   top_observers: Legtöbbször megfigyelte
   tos_privacy_guidelines_label: |
     Egyetértek a <a href="/terms" target="_blank">Felhasználási feltételekkel</a> és az <a href="/privacy" target="_blank">Adatvédelmi nyilatkozattal</a>, és átolvastam a <a href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a>.
@@ -3751,7 +3757,7 @@ hu:
   totals: Összesen
   total_members: Tagok száma
   total_observations: Minden megfigyelés
-  total_observations_caps: ÖSSZES MEGFIGYELÉS
+  total_observations_caps: Összes megfigyelés
   total_species_observed_caps: ÖSSZES MEGFIGYELT FAJ
   total_unique_observers: Összes egyedi megfigyelő
   translated_languages: Célnyelv
@@ -4012,7 +4018,10 @@ hu:
   widget_for: 'Modul:'
   wikipedia_attribution_cc_by_sa_3: |
     Forrás: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Visszavonás
+  #Loading status while an identification is being withdrawn
   withdrawing: Visszavonás...
   with_errors: Hibával
   worldwide: globális
@@ -4276,7 +4285,6 @@ hu:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
       show:
-        ancestor_disagreements_desc: "Azon meghatározási taxonok száma, amelyek a felsőbb szintű taxonokon belül esnek, de nem értenek egyet a taxon szintű meghatározással (például \"egyetértek a nemzetséggel, de szerintem ez egy másik faj\")."
         community_taxon_desc_html: |
           A közösségi taxon (vagy közösségi azonosítás) képviseli az %{site_name} felhasználói közösségének véleményét az adott megfigyelést illetően. A közösségi taxon megállapítását az alábbiakban ismertetett algoritmus végzi, aminek eredménye képpen <strong>megpróbáljuk azt taxont a megfigyeléshez rendelni, amellyel az azonosítók több, mint kétharmada egyetért</strong>. Gyakran ez egy tágabb taxonhoz vezet, amely tartalmazza az ellentmondásos azonosításokat. (Például ha szerintem ez bíboros kosbor, szerinted pedig vitézvirág, akkor az eredmény az Orchidinae alnemzetségcsoport lesz, amely mindkét fajt tartalmazza.) Az algoritmus valamennyire kedvez az eltérő véleményeknek, mivel úgy találtuk, hogy azok sokszor helyesek.
           </p>
@@ -5071,6 +5079,18 @@ hu:
         name_provider: Névszolgáltató
         source_url: Forrás URL
         source_identifier: Forrás azonosító
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Weblap neve
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Rövid név
+        #Taxon this link is associated with
+        taxon: Taxon
+        #Place this link is associated with
+        place: Hely
       user:
         email: Email
         login: Felhasználónév

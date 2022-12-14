@@ -301,6 +301,9 @@ fr:
   add_observations: Ajouter des observations
   add_observations_by_checking_off: Ajouter des observations en cochant les espèces dans une liste.
   add_observations_project: Ajouter des observations à ce projet
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Ajouter des</span> <span>Observations</span>"
   #Prompt to add a new journal post
   add_one: En ajouter un!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -1490,25 +1493,29 @@ fr:
       signed_in: 'Connexion réussie.'
       signed_out: 'Déconnexion réussie.'
     passwords:
-      send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
+      send_instructions: |
+        Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.
       updated: 'Votre mot de passe a été changé avec succès. Vous êtes maintenant connecté.'
       updated_not_active: 'Votre mot de passe a été modifié avec succès.'
-      send_paranoid_instructions: "Si votre adresse e-mail existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
-      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un email de réinitialisation de mot de passe. Si vous venez effectivement d'un email de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
+      send_paranoid_instructions: |
+        Si votre adresse e-mail existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes.
+      no_token: |
+        Vous ne pouvez pas accéder à cette page sans venir d'un email de réinitialisation de mot de passe. Si vous venez effectivement d'un email de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie.
     registrations:
+      destroyed: 'Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
       signed_up: 'Bienvenue ! Vous vous êtes inscrit avec succès.'
       updated: 'Vous avez mis à jour votre compte avec succès.'
-      destroyed: 'Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
     mailer:
       confirmation_instructions:
-        subject: 'Instructions de confirmation'
+        #Subject of an email sent to confirm your account
+        subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
   devise_reset_password_instructions_hello_email: Bonjour %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Quelqu'un a demandé le changement de votre mot de passe. Vous pouvez le modifier via le lien ci-dessous.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce courriel.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Quelqu'un a demandé le changement de votre mot de passe. Vous pouvez le modifier via le lien ci-dessous.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué le lien ci-dessus pour en créer un nouveau.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1685,9 +1692,6 @@ fr:
     native: A évolué dans cette région ou bien est arrivée par des moyens non anthropiques
     endemic: Indigène et n’existe nulle part ailleurs
     introduced: Arrivée dans la région par des moyens anthropiques
-  estimate_which_input: |
-    Estimation des Id de taxon d'entrée qui seront remplacées par des taxons de sortie et de celles qui seront ramenées à un parent commun une fois la scission validée. Le calcul peut prendre
-    un moment. Les liens vers les observations sont tronqués à des sous-ensembles de 200.
   event_in_progress: Activité en cours
   event_stats: Statistiques de l'évènement
   event_url: URL de l’activité
@@ -1752,6 +1756,8 @@ fr:
   feedback: Commentaires
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Flux'
+  #Button to show fewer places
+  fewer__context_places: Moins
   failed: Échec
   field_note: |
     <strong>Note :</strong> Si vous voulez créer un champ, vérifiez si
@@ -4282,6 +4288,7 @@ fr:
   selected_taxon: Taxon sélectionné
   select_this_taxon: Sélectionner ce taxon
   send: envoyer
+  send_confirmation_email: Envoyer un courriel de confirmation
   send_me_reset_password_instructions: Envoyez-moi les instructions de réinitialisation du mot de passe
   sending: Envoi en cours…
   #Label for messages you've sent
@@ -5146,6 +5153,7 @@ fr:
   use_this_form_to_create_a_new: |
     Utilisez ce formulaire pour créer l’ébauche d’un modification taxinomique décrivant une proposition de
     séparation, de fusion ou d'échange de taxons actifs.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une
     façon particulière. Si le taxon n’est pas une espèce ou une sous-espèce, tout ce qui se trouve
@@ -5410,7 +5418,10 @@ fr:
     Commons Attribution-Share-Alike License 3.0</a>. Son contenu peut avoir été
     supprimé dans l’original, mais aucun contenu n’a été modifié ou complété.
   with: avec
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirer
+  #Loading status while an identification is being withdrawn
   withdrawing: Retrait…
   with_errors: Avec des erreurs
   worldwide: Dans le monde entier
@@ -6195,7 +6206,6 @@ fr:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permettre aux responsables de projet de voir les coordonnées masquées de cette observation.
-        ancestor_disagreements_desc: "Nombre de taxons identifiés faisant partie des parents d’un taxon, mais qui sont en désaccord avec ce taxon (par exemple, « Je pense qu'il s'agit d'une autre espèce du même genre. »)"
         community_taxon_desc_html: |
           <p class="ui">
           Le taxon de la communauté (ou l’identification de la communauté) représente
@@ -7930,6 +7940,8 @@ fr:
       flag:
         #The reason the item was flagged
         reason: Motif
+        #The person who resolved the flag
+        resolver_id: Résolveur
         #The kind of flag that was made
         flag: Drapeau
       guide:

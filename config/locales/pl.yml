@@ -1329,15 +1329,17 @@ pl:
       signed_in: 'Zalogowano pomyślnie.'
       signed_out: 'Wylogowano pomyślnie.'
     passwords:
-      send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.'
+      send_instructions: |
+        W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.
       updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
-      updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      updated: 'Pomyślnie zaktualizowałeś swoje konto'
     mailer:
       confirmation_instructions:
-        subject: 'Instrukcje potwierdzenia'
+        #Subject of an email sent to confirm your account
+        subject: Instrukcje potwierdzenia
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
   devise_reset_password_instructions_hello_email: Witaj %{email}
@@ -3980,7 +3982,10 @@ pl:
   wikipedia_attribution_cc_by_sa_3: |
     Źródło: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   with: z
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Wycofaj
+  #Loading status while an identification is being withdrawn
   withdrawing: Wycofywanie...
   with_errors: Z błędami
   would_you_like_to: Czy chciałbyś

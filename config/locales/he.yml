@@ -953,6 +953,8 @@ he:
   change_group: שינוי הקבוצה
   change_icon: שינוי הסמל
   change_password: שינוי סיסמה
+  #Message shown after you change your email address
+  change_to_email_requested_html: מבוקש שינוי ל-<strong>%{email}</strong>. יש לבדוק בדוא"ל שלך כדי לאשר את השינוי.
   change_types:
     activated_soon: יופעל בקרוב
     change_types: שינוי הסוגים
@@ -1124,6 +1126,10 @@ he:
   confirm_new_password: אישור ססמה חדשה
   confirm_now: אשר עכשיו
   confirm_your_info: אשר את המידע שלך
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: דוא"ל אישור נשלח ב-%{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: אושר בתאריך %{date}
   confirming_ids: זיהויים מאשרים
   confirming_ids_description: במידה ותבטל.י אפשרות זו, לא תקבל.י עדכונים על זיהויים מהקהילה התומכים בזיהוי שלך.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1548,6 +1554,8 @@ he:
   deviation: סטייה
   devise:
     confirmations:
+      confirmed: "כתובת הדוא\"ל שלך אושרה בהצלחה"
+      send_instructions: "בעוד כמה דקות תקבל.י הודעת דוא\"ל עם הוראות כיצד לאמת את כתובת הדוא\"ל שלך."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1557,31 +1565,54 @@ he:
       unauthenticated: 'עליך להתחבר או להירשם כדי להמשיך.'
       invalid: 'דואר אלקטרוני או סיסמה לא נכונים.'
       invalid_token: 'קוד אימות לא תקין'
+      unconfirmed: |
+        נא לבדוק את הדוא"ל שלך וללחוץ על הקישור במייל שקיבלת כדי לאשר את חשבונך.
       user:
         suspended: חשבונך הושהה
     sessions:
       signed_in: 'ההתחברות בוצעה בהצלחה.'
       signed_out: 'היציאה בוצעה בהצלחה.'
     passwords:
-      send_instructions: 'בעוד כמה דקות תקבל.י הודעת דוא"ל עם הוראות כיצד לאפס את הסיסמה שלך.'
+      send_instructions: |
+        בעוד כמה דקות תקבל.י הודעת דוא"ל עם הוראות כיצד לאפס את הסיסמה שלך.
       updated: 'הסיסמה שלך עודכנה בהצלחה. את.ה מחובר.ת כעת.'
       updated_not_active: 'הסיסמה שלך עודכנה בהצלחה.'
-      send_paranoid_instructions: "אם כתובת הדוא\"ל שלך קיימת במאגר שלנו, תקבל.י קישור לשחזור סיסמה אל כתובת הדוא\"ל שלך בעוד כמה דקות."
-      no_token: "לא ניתן לגשת לדף זה מבלי להגיע מאימייל לאיפוס סיסמה. אם באת מאימייל לאיפוס סיסמה, נא לוודא כי השתמשת בכתובת ה-URL המלאה שסופקה."
+      send_paranoid_instructions: |
+        אם כתובת הדוא"ל שלך קיימת במאגר שלנו, תקבל.י קישור לשחזור סיסמה אל כתובת הדוא"ל שלך בעוד כמה דקות.
+      no_token: |
+        לא ניתן לגשת לדף זה מבלי להגיע מאימייל לאיפוס סיסמה. אם באת מאימייל לאיפוס סיסמה, נא לוודא כי השתמשת בכתובת ה-URL המלאה שסופקה.
     registrations:
-      signed_up: 'ברכות! הצטרפת בהצלחה.'
-      updated: 'עדכנת את החשבון שלך בהצלחה'
       destroyed: 'ביי! החשבון שלך בוטל בהצלחה. נשמח לראותך שוב בקרוב.'
+      signed_up: 'ברכות! הצטרפת בהצלחה.'
+      signed_up_but_inactive: "נרשמת בהצלחה. אולם לא הצלחנו לחבר אותך כי החשבון שלך טרם הופעל."
+      signed_up_but_locked: "נרשמת בהצלחה. אולם לא הצלחנו לחבר אותך כי החשבון שלך נעול."
+      signed_up_but_unconfirmed: "הודעה עם קישור לאימות נשלחה אל כתובת הדוא\"ל שלך. נא ללחוץ על הקישור להפעלת החשבון שלך."
+      updated: 'עדכנת את החשבון שלך בהצלחה'
     mailer:
       confirmation_instructions:
-        subject: 'הנחיות אישור'
+        #Subject of an email sent to confirm your account
+        subject: אשר.י את כתובת הדוא"ל שלך
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: שינוי דוא"ל מבוקש
       reset_password_instructions:
         subject: 'הנחיות לאיפוס סיסמה'
+  devise_confirmation_instructions_if_you_did_not: |
+    אם לא נרשמת לחשבון @vow_or_con{vow:an|a} %{site_name}, נא להתעלם ממייל זה.
+  devise_confirmation_instructions_please_click: |
+    נא ללחוץ על הקישור להלן לאישור כתובת הדוא"ל שלך:
+  devise_confirmation_instructions_resend_instructions: |
+    דרושה כתובת דוא"ל תקינה בשביל להשתמש ב-iNaturalist. כאשר נרשמת לחשבון, היית צריכ.ה לקבל מייל אישור עם קישור לאשר שכתובת הדוא"ל שלך עובדת, אבל אם לא קיבלת אפשר לשלוח לעצמך מייל אישור נוסף כאן.
+  devise_confirmation_instructions_send_confirmation_email: שליחת דוא"ל לאישור
+  devise_email_changed_you_requested: ביקשת שינוי מ-%{old_email} ל-%{new_email}.
+  devise_email_changed_you_will_receive: |
+    תקבל.י מייל בכתובת החדשה לאישור השינוי, אבל רצינו להודיע לך בכתובת הישנה שלך למקרה שמישהו או מישהי השיג.ה גישה לחשבון שלך ומנסה לשנות אותו ללא ידיעתך. במידה ולא שינית את כתובת הדוא"ל שלך בכוונה, לא להעביר את המייל הזה לכתובת help@inaturalist.org מייד כדי שנוכל לתחקר.
   devise_reset_password_instructions_hello_email: שלום %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    מישהו/י ביקש.ה קישור לשינוי הסיסמה שלך. באפשרותך לעשות זאת דרך הקישור למטה.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     אם לא ביקשת זאת, נא להתעלם ממייל זה.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    מישהו/י ביקש.ה קישור לשינוי הסיסמה שלך. באפשרותך לעשות זאת דרך הקישור למטה.
   devise_reset_password_instructions_your_password_wont_change_until: |
     הסיסמה שלך לא תשתנה עד שתגש.י לקישור למעלה כדי ליצור אחת חדשה.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1725,6 +1756,9 @@ he:
   email: דוא״ל
   email_description: כתובת הדוא"ל שלך לא משותפת עם משתמשות ומשתמשים אחרים ב-iNaturalist
   email_address_for_comments_and_other_feedback: כתובת דוא"ל להערות ומשובים אחרים
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}נא לאשר את כתובת הדוא"ל שלך%{link_end_tag}</strong>.
+    כל היוזרים חייבים לאשר את כתובת הדוא"ל שלהם עד %{date}. לאחר תאריך זה כל מי שטרם אישרו כתובות הדוא"ל לא יוכלו להתחבר עד שיאפסו סיסמה. לאישור כתובת הדוא"ל שלך, יש לגשת %{link_start_tag}להגדרות החשבון%{link_end_tag} שלך.
   email_copyright: "זכויות יוצרים של &copy; %{x}, כל הזכויות שמורות"
   email_notifications: התראות דוא"ל
   embed: 'הטמע'
@@ -1758,6 +1792,9 @@ he:
     native: שעברו אבולוציה באזור זה או שהגיעו לא באמצעות האדם
     endemic: מקומי ושאינו מופיע במקומות אחרים
     introduced: מופיע באזור בעקבות הבאתו על ידי פעילות אדם
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    יש להעריך אילו זיהויים של טקסון הקלט יוחלפו על ידי זיהויים של טקסוני הפלט, ואילו מהם יתקהו לרמת הורה משותף לאחר אישור הפיצול. זה עשוי לקחת זמן מה לחשב. קישורים לתצפיות מוגבלים לתתי-קבוצות של 200.
   event_in_progress: אירוע בתהליך
   event_stats: סטטיסטיקות האירוע
   event_url: URL של האירוע
@@ -3924,6 +3961,14 @@ he:
   proposed_taxa_that_support_the_community_id: טקסונים מוצעים התומכים בזיהוי הקהילתי
   protozoans: פרוטוזואות
   provider_authorizations: אישורי ספק
+  provider_without_email_error_apple: |
+    אפל לא סיפקו כתובת דוא"ל דרושה עבור חשבון זה. נא ליצור חשבון באתר זה במקום להתחבר דרך אפל.
+  provider_without_email_error_flickr: |
+    פליקר לא סיפקו כתובת דוא"ל דרושה עבור חשבון זה. נא ליצור חשבון באתר זה במקום להתחבר דרך פליקר.
+  provider_without_email_error_generic: |
+    השירות ההוא לא סיפק כתובת דוא"ל דרושה עבור החשבון ההוא. נא ליצור חשבון באתר זה במקום התחברות דרך גורמי צד שלישי.
+  provider_without_email_error_google_oauth2: |
+    גוגל לא סיפקו כתובת דוא"ל דרושה עבור חשבון זה. נא ליצור חשבון באתר זה במקום להתחבר דרך גוגל.
   public_domain: נחלת הכלל
   publish: פרסם\י
   purple: סגול
@@ -4200,6 +4245,10 @@ he:
   research_grade_tooltip_html: 'תצפיות ב"דרגת מחקר" מכילות מדיה, מיקום, תאריך וקונצנזוס קהילתי על זיהוי מדויק (בדרך כלל ברמת המין). <a href="https://www.inaturalist.org/pages/help#quality">למידע נוסף על דרגות איכות</a>'
   research_grade_observations_have: 'לתצפיות ב"רמה מחקרית" קיימים תאריך, תמונה, קואורדינטות, וזיהוי שנתמך על ידי הקהילה. הקלקה תוביל אותך לראות את אומדן איכות הנתונים.'
   research_grade_qualification: אישור על ציון מחקר מדעי
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: שליחה מחדש ויציאה
+  resend_confirmation_email: שליחת דוא"ל האישור מחדש
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: איפוס
   reset_filters_short: איפוס
@@ -4623,6 +4672,7 @@ he:
   take_me_facebook: כן, קחו אותי לפייסבוק!
   take_me_flickr!: כן, קחו אותי ל Flickr!
   target_list_alert: האם את.ה בטוח.ה שניסית לתצפת על כל המינים המכוסים על ידי רשימת היעדים שלך? יש לזכור שכל מה שמכוסה על ידי הרשימה שלך ולא תצפתת עליו יתפרש כהיעדרות, לכן חשוב מאוד שרימת היעדים שלך תשקף בדיוק את סט המינים שניסית לגלות
+  target_list_warning: יש לזכור שכל מה שמכוסה על ידי רשימת היעדים שלך ולא צפית בו בתוך רדיוס ומשך הטיול הזה יתפרש כהיעדרות. מאוד חשוב שרשימת היעדים שלך תשקף באופן מדויק את סט המינים שניסית למצוא. אם לא ניסית למצוא מין ברשימת היעדים שלך או כל המינים המכוסים על ידי קבוצה, יש להסיר אותו.
   task_deleted: המטלה נמחקה
   taxa: טקסונים
   taxa_show_obs_photo_search_tip: |
@@ -5214,6 +5264,7 @@ he:
     להשתמש ב<span class='ac-placeholder'>%{name}</span> כממלא מקום
   use_this_form_to_create_a_new: |
     בטופס זה ניתן ליצור טיוטת שינוי טקסונומי חדשה שמתארת הצעה לפיצול, איחוד או החלפה של טקסונים פעילים - לאישור בהמשך.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     יש להשתמש בזה אם ה-URL צריך הפרדה מסוימת בין הסוג למין. אם הטקסון אינו מין או אינפרא-מין, הכל בין [GENUS] לבין [SPECIES] יוחלף על ידי שם הטקסון, לכן יש להשתמש באופן חסכני.
   use_unique_file_names_for_separate_uploads: יש להשתמש בשמות קבצים ייחודיים עבור העלאות נפרדות
@@ -5294,6 +5345,8 @@ he:
   username_or_user_id: שם משתמש או מזהה משתמש
   users: משתמשות.ים
   users_contributions_to_project_html: התרומות של <a href="%{url}">%{login}</a> ל%{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    לאחר שתשלח.י מחדש את מייל האישור, תנותק.י ולא תוכל.י להתחבר לחשבון שלך עד שתלחצ.י על הקשירו במייל. לכן <strong>יש לוודא שהכנסת את כתובת הדוא"ל שלך נכון.</strong>
   users_favorites: "המועדפים של %{user}"
   users_highlights_and_stats_from_year_on_site: "רגעי השיא והסטטיסטיקות של %{user} מ%{year} ב%{site}"
   users_id: "הזיהוי של %{user}"
@@ -5366,6 +5419,7 @@ he:
   view_on_flickr: צפייה ב Flickr
   view_original: "צפייה במקור"
   view_original_by: "צפייה במקורי על ידי %{by} ב%{photo}"
+  view_original_ccD_photo: "צפייה בתמונת המקור שהורשתה ברשיון קריאטיב קומונס על ידי %{owner}"
   view_photos_ranges_observations_more: "צפו בתמונות, תפוצות מינים, תצפיות מ%{site_name}, ועוד! אספנו מידע ממקורות רבים ושילבנו ביניהם לכדי סיכום מהיר של כל מין בכל מקום."
   view_place: הצגת מקום
   view_post: הצגת פוסט
@@ -5471,7 +5525,11 @@ he:
   wikipedia_attribution_cc_by_sa_3_html: |
     ערך זה עושה שימוש בתוכן מערך הויקיפדיה <a href="%{url}">%{title}</a>, שפורסם תחת <a href="https://creativecommons.org/licenses/by-sa/3.0/">CreativeCommons Attribution-Share-Alike License 3.0</a>. יתכן כי תוכן הוחסר מהמקור, אך אף תוכן לא שונה או הוארך.
   with: עם
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: לסגת
+  #Loading status while an identification is being withdrawn
+  withdrawing: מושך...
   with_errors: עם טעויות
   worldwide: בכל העולם
   wondering_what_to_do_next: הנה כמה צעדים באים להוציא אותך לדרכך בתצפיות וזיהוי של עולם הטבע
@@ -5534,6 +5592,7 @@ he:
   yes_license_my_childs_observations: כן, אשרו את התמונות, הקולות והתצפיות של בני/בתי כדי לאפשר שימוש מדעי במידע (מומלץ).
   yes_license_my_observations_so_scientists_can_use: כן, אשרו את התמונות, הקולות והתצפיות שלי על מנת שחוקרות וחוקרים יוכלו להשתמש בנתונים שלי (מומלץ).
   yes_reject_it: כן, לדחות אותו
+  yes_show_this_in_the_box: כן, להציג זאת בריבוע הגדול בראש עמוד הטקסונים
   yesterday: אתמול
   yir_donate_banner_inaturalist_in_year: "INATURALIST בשנת %{year}"
   yir_donate_banner_reaching_millions: מגיעים למיליוני א.נשים. מאירים את חשיבות המגוון הביולוגי. שיתוף פעולה חוצה גבולות.
@@ -5614,6 +5673,7 @@ he:
   you_dont_have_permission_to_edit_those_photos: אין לך הרשאה לערוך תמונות אלו.
   you_faved_this: העדפת את זה!
   you_have_left_x_project: "עזבת את %{project}"
+  you_have_not_confirmed_your_email_address: טרם אישרת את כתובת הדוא"ל שלך!
   you_havent_linked_your_inaturalist_google_account: "עוד לא קישרת בין חשבון ה%{site_name} לחשבון הגוגל שלך"
   you_joined_this_project: הצטרפת לפרוייקט!
   you_must_be_a_member_of_this_project_to_do_that: רק חברי פרוייקט יכולים לעשות את זה
@@ -6162,7 +6222,8 @@ he:
       show:
         allow_curator_coordinate_access_desc_html: |
           לאפשר למשגיחי המיזם לצפות בנקודות הציון המוסתרות עבור התצפית הזאת.
-        ancestor_disagreements_desc: "מספר הטקסונים המזוהים שלהם הסכמה הורית, אבל נמצאים באי-הסכמה עם הטקסון (למשל \"אני חושב.ת שזה בסוג אבל אני לא מסכימ.ה שזה המין ההוא\")"
+        ancestor_disagreements_desc2: |
+          מספר הטקסונים המזוהים אשר נמנים בין ההורים של טקסון, אבל נמצאים באי-הסכמה עם הטקסון עצמו (למשל "אני חושב.ת שזה בסוג אבל אני לא מסכימ.ה שזה המין ההוא")
         community_taxon_desc_html: |
           <p class="ui">
           טקסון קהילתי (או זיהוי קהילה) מייצג את הטקסון שקהילת %{site_name} חושבת שמופיע בתצפית. אם מעניין אותך לדעת כיצד נבחר טקסון קהילתי, ראו את ההערות על האלגורתם בתחתית העמוד, אך באופן כללי, אנו משתדלות <strong>לבחור טקסון שלפחות 2/3 מהמזהים מסכימים איתו</strong>. לפעמים זה אומר שייבחר טקסון ברמה גבוהה יותר שמכיל מספר טקסונים חולקים (למשל, אם את חושבת שמדובר בזעמן אלמוגי ואני חושב שזה עכסן, תיבחר תת-הסדרה "נחשים" שמכילה את כל הנחשים). האלגורתם גם מוטה מעט לטובת מחלוקת, מכיוון שמצאנו שחולקות וחולקים לעתים קרובות צודקות וצודקים.
@@ -6620,6 +6681,13 @@ he:
           name_already_taken: קיים כבר פרוייקט בשם זה
           cannot_have_more_than_x_project_rules: אי אפשר שיהיה מעל %{x} חוקים לפרויקט
           summary_is_required: חובה בסיכום לפרויקט
+      project_location_privacy_notice_html: |
+        <p>
+        נא לשים לב שאוצרות ואוצרי הפרויקט יוכלו לראות את כל המיקומים הפרטיים או המוסתרים של התצפיות שלך אלא אם תשלול את ההרשאה, והם יוכלו להוסיף כל תצפית שלך לפרויקט זה אלא אם <a href="/users/edit">תבצע.י שינוי להגדרות שלך</a>. באפשרותך גם להעניק או לשלול גישה לתצפיות הפרויקט לפי כל מקרה לגופו.
+        </p>
+        <p>
+        אם את.ה חושש.ת לגבי פרטיות המיקום, אין להצטרף לפרויקטים אלא אם את.ה סומכ.ת על אוצרות ואוצרי הפרויקט.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: כן, אבל רק אם אני מוסיף את התצפית לפרויקט בעצמי.
         any: כן, ולא משנה מי מוסיף את התצפית לפרוייקט.
@@ -6798,6 +6866,16 @@ he:
           סיכום קצר של טקסון זה המבוסס של <a target="_blank"
           href="%{url}">עמוד הויקיפדיה</a> שלו הנמצא במטמון שלנו עד לרענון ידני. רענון סיכום זה גם מעדכן מייד את המטמון שלנו של תוכן ויקיפדיה יסודי המוצג באתר שלנו, המתעדכן אוטומטית לאחר שבוע.
       show:
+        about_names_desc: |
+          <p>
+          רוב הקטגוריות של אורגניזמים הן בעלות "שמות עממיים" בשפות מדוברות. שמות אלו הם בדרך כלל מוכרים, קלים להגייה, וקבועים לאורך זמן. אולם להרבה אורגניזמים יש כמה שמות במקומות שונים, אפילו באותה השפה, דבר אשר יכול להקשות על תקשורת בהירה אודות אורגניזמים אלו. מדעניות ומדענים מתייחסים לבעיה זו באמצעות שימוש ב"שם מדעי" אחד לכל קטגוריה של אורגניזם שמשתלבת בכללי <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">נומנקלטורה דו-שמית</a>, אבל שמות אלו נוטים להיות מבוססים על לטינית, שפה שאף אחד לא מדבר, ולכן הם לא קליטים כמו שמות עממיים עבור א.נשים רבים. שמות מדעיים יכולים גם לשקף מיקום טקסונומי של אורגניזם, ועקב כך הם יכולים להשתנות כאשר מדעניות ומדענים מפתחות.ים תיאוריות יותר מדויקות על היחסים האבולוציוניים בין אורגניזמים שונים, מה ששוב מוריד את השימושיות של שמות אלו בתקשורת, אפילו בין א.נשים שמכירות שמות מדעיים.
+          </p>
+          <p>
+          הפתגם הישן מסכם היטב: "שמות עממיים משתנים בין מקומות, ושמות מדעיים משתנים בזמן."
+          </p>
+          <p>
+          אנו משתדלים להתייחס לחסרונות הללו באמצעות הצגת גם שמות עממיים וגם שמות מדעיים היכן שאפשר, ובחירת שמות עממיים לפי השפה וההעדפות הגיאוגרפיות של המשתמש.ת.
+          </p>
         about_conservation_status_desc: |
           סטטוס השימור מסכם את סכנת ההכחדה עבור קבוצת אורגניזמים.
         about_establishment_desc: |
@@ -7647,6 +7725,21 @@ he:
         position: מיקום
         source_url: URL של המקור
         source_identifier: מזהה מקור
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: כותרת האתר
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: כותרת קצרה
+        #Taxon this link is associated with
+        taxon: טקסון
+        #Place this link is associated with
+        place: מקום
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: הצגה עבור טקסונים צאצאים
       user:
         email: דוא״ל
         login: שם משתמש

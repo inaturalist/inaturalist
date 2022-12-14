@@ -535,6 +535,7 @@ nb:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Applikasjoner
+  apply_app_owner: Bruk
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Send søknad
@@ -629,6 +630,7 @@ nb:
   assessment_x: "%{assessment}-vurdering"
   assessments: vurderinger
   associations: Tilknytninger
+  atlased: Hørt
   atlas_for_taxon_html: Atlas for %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -1248,25 +1250,29 @@ nb:
       signed_in: 'Pålogging vellykket.'
       signed_out: 'Avlogging vellykket.'
     passwords:
-      send_instructions: 'Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.'
+      send_instructions: |
+        Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.
       updated: 'Passordet ditt ble endret. Du er nå logget inn.'
       updated_not_active: 'Endring av ditt passord var vellykket.'
-      send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
-      no_token: "Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen."
+      send_paranoid_instructions: |
+        Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter.
+      no_token: |
+        Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen.
     registrations:
+      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
       signed_up: 'Velkommen! Registreringen var vellykket.'
       updated: 'Du har oppdatert din konto.'
-      destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruksjoner for bekreftelse'
+        #Subject of an email sent to confirm your account
+        subject: Instruksjoner for bekreftelse
       reset_password_instructions:
         subject: 'Instruksjoner for å tilbakestille passord'
   devise_reset_password_instructions_hello_email: Hei %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Hvis du ikke har bedt om dette, kan du se bort fra denne e-posten.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Noen har bedt om en lenke for å endre passordet ditt. Du kan gjøre dette gjennom lenken nedenfor.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ditt passord endres ikke før du åpner lenken ovenfor og oppretter et nytt ett.
   devise_unlock_instructions_click_the_link: |
@@ -1477,6 +1483,8 @@ nb:
   feedback: Tilbakemelding
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Nyhetsstrømmer'
+  #Button to show fewer places
+  fewer__context_places: Færre
   failed: Mislykket
   field_note: |
     <strong>Obs:</strong> Hvis du vil opprette et felt, sjekk for å se om noen andre allerede har opprettet det for å unngå duplisering.
@@ -1788,6 +1796,8 @@ nb:
   improving: Forbedrer
   in_n: "i %{n}"
   in_place_x: i %{place}
+  #As in a reason to flag something
+  inappropriate: Upassende
   inaturalist_network_affiliation: iNaturalist nettverkstilknytning
   #Label for messages you've received
   inbox: Innboks
@@ -1993,6 +2003,8 @@ nb:
     turkish: Tyrkisk
     waray_waray: Waray-Waray
   less: Mindre
+  #Button show less text
+  less__context_text: Mindre
   licensed_site_photos: "Lisensierte %{site_name}-bilder"
   license: Lisens
   licensing: Lisensiering
@@ -2270,6 +2282,10 @@ nb:
     <a href="%{url}">Månedlig supporter</a> siden %{date}
   months: Måneder
   more: Mer
+  #Button to show more observations
+  more__context_observations_caps: MER
+  #Button to show more places
+  more__context_places: Mer
   more_caps: MER
   more_fields: Flere felt
   more_filters: Flere filtre
@@ -3244,6 +3260,7 @@ nb:
   places_warning_the_future: |
     For hva det er verdt, vi må begrense under hvilke betingelser folk kan legge til steder i fremtiden gitt iNats vekst for tiden.
   plants: planter
+  play_first_sound: Spill første lyd
   please_add_a_citation_for_this_change: Vennligst legg inn en referanse for denne endringen.
   please_allow_a_few_weeks_for_external_sites: Det kan ta noen uker før eksterne sider synkroniserer endringer fra denne observasjonen #Request that a known child ask their parents for permission to use this service
   #Title to a section warning a user to exercise caution
@@ -4327,6 +4344,7 @@ nb:
     Bruk <span class='ac-placeholder'>"%{name}"</span> som et midlertidig navn
   use_this_form_to_create_a_new: |
     Bruk dette skjemaet for å opprette et nytt utkast til en taksonomisk endring som beskriver en foreslått oppdeling, sammenslåing eller bytte av aktive taksa for gjennomførelse på et senere tidspunkt.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Bruk dette hvis URL-en trenger å ha slekta og arten separert på en bestemt måte. Hvis taksonet ikke er en art eller infra-art, blir alt mellom [GENUS] og [SPECIES] erstattet med taksonnavnet, så bruk sparsomt.
   use_unique_file_names_for_separate_uploads: Bruk unike filnavn for separate opplastinger
@@ -4542,7 +4560,10 @@ nb:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Navngivelse-DelPåSammeVilkår lisens 3.0</a>. Innhold fra originalen kan være utelatt, men ingen innhold har blitt endret eller utvidet.
   with: med
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Trekk
+  #Loading status while an identification is being withdrawn
   withdrawing: Trekker...
   with_errors: Med feil
   worldwide: I hele verden
@@ -5170,7 +5191,6 @@ nb:
       show:
         allow_curator_coordinate_access_desc_html: |
           Tillat at prosjektkuratorer kan se de skjulte koordinatene for denne observasjonen.
-        ancestor_disagreements_desc: "Antall taksa som er blant taksonets aner, men som er uenige i taksonet (f.eks. \"Jeg tror at det er i slekten men jeg er uenig at det er den arten\")"
         community_taxon_desc_html: |
           <p class="ui">
           Fellesskapets takson (eller fellesskapets identifikasjon) er det fellesskapet på %{site_name} tror avbildes i en observasjon. Hvis du lurer på hvordan vi velger fellesskapets takson, se notatene om algoritmen under, men generelt prøver vi å <strong>velge et takson som over 2/3 av de som identifiserte taksonet var enige i</strong>. Noen ganger betyr dette at det velges et høyere takson som inkluderer flere forskjellige taksa (f.eks. du mener at det er en kongeslange og jeg tror at det er en klapperslange, så da velger iNat underordenen Serpentes som inneholder alle slanger). Algoritmen heller også litt mer mot avvikende svar, fordi vi fant ut at de ofte er korrekte.

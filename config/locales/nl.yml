@@ -874,6 +874,8 @@ nl:
   change_group: Wijzig groep
   change_icon: Icoon wijzigen
   change_password: Wachtwoord wijzigen
+  #Message shown after you change your email address
+  change_to_email_requested_html: Verandering naar <strong>%{email}</strong> aangevraagd. Controleer jouw e-mail op dat adres om de wijziging te bevestigen.
   change_types:
     activated_soon: binnenkort geactiveerd
     change_types: Types wijzigen
@@ -1045,6 +1047,10 @@ nl:
   confirm_new_password: Bevestig nieuw wachtwoord
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig je informatie
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Bevestigings-e-mail verzonden op %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bevestigd op %{date}
   confirming_ids: Bevestigende ID's
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1483,6 +1489,8 @@ nl:
   deviation: Afwijking
   devise:
     confirmations:
+      confirmed: "Jouw e-mailadres is succesvol bevestigd."
+      send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies voor het bevestigen van uw e-mailadres."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1492,31 +1500,62 @@ nl:
       unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
       invalid: 'Ongeldig e-mailadres of wachtwoord.'
       invalid_token: 'Ongeldig authenticatie-token.'
+      unconfirmed: |
+        Controleer jouw e-mail en klik op de link in de e-mail die je hebt ontvangen
+        om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
     sessions:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
     passwords:
-      send_instructions: 'Binnen enkele minuten ontvang je een e-mail met instructies om je wachtwoord te resetten.'
+      send_instructions: |
+        Binnen enkele minuten ontvang je een e-mail met instructies om je wachtwoord te resetten.
       updated: 'Je wachtwoord is succesvol gewijzigd. Je bent nu ingelogd.'
       updated_not_active: 'Je wachtwoord is succesvol gewijzigd.'
-      send_paranoid_instructions: "Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen."
-      no_token: "Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt."
+      send_paranoid_instructions: |
+        Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen.
+      no_token: |
+        Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt.
     registrations:
-      signed_up: 'Welkom! Je bent succesvol aangemeld.'
-      updated: 'Je hebt je account succesvol bijgewerkt.'
       destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
+      signed_up: 'Welkom! Je bent succesvol aangemeld.'
+      signed_up_but_inactive: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account nog niet is geactiveerd."
+      signed_up_but_locked: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account is vergrendeld."
+      signed_up_but_unconfirmed: "Een bericht met een bevestigingslink is verzonden naar jouw e-mailadres. Volg de link om je account te activeren."
+      updated: 'Je hebt je account succesvol bijgewerkt.'
     mailer:
       confirmation_instructions:
-        subject: 'Instructies voor bevestiging'
+        #Subject of an email sent to confirm your account
+        subject: Instructies voor bevestiging
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: E-mail wijziging aangevraagd
       reset_password_instructions:
         subject: 'Instructies voor wachtwoord resetten'
+  devise_confirmation_instructions_if_you_did_not: |
+    Als je je niet hebt ingeschreven voor @vow_or_con{vow:een|een} %{site_name} account, negeer dan deze e-mail.
+  devise_confirmation_instructions_please_click: |
+    Klik op de onderstaande link om jouw e-mailadres te bevestigen:
+  devise_confirmation_instructions_resend_instructions: |
+    Je moet een werkend e-mailadres hebben om iNaturalist te kunnen gebruiken. Toen jij je aanmeldde
+    voor een account had je een bevestigingsmail moeten ontvangen met een
+    link om op te klikken om te bevestigen dat je e-mailadres werkt. Als je dat nog niet
+    hebt gedaan kun je hier jezelf alsnog een bevestigingsmail sturen.
+  devise_confirmation_instructions_send_confirmation_email: Stuur bevestigings-e-mail
+  devise_email_changed_you_requested: Je hebt een verzoek gestuurd om %{old_email} naar %{new_email} te wijzigen.
+  devise_email_changed_you_will_receive: |
+    Je ontvangt een e-mail op het nieuwe adres om de wijziging te bevestigen maar we
+    wilden je op je oude adres informeren voor het geval dat iemand anders
+    toegang heeft tot je account en het probeert te wijzigen zonder dat je het weet. Als
+    jij je e-mailadres niet opzettelijk hebt gewijzigd, stuur deze
+    e-mail dan onmiddellijk naar help@inaturalist.org zodat we het kunnen onderzoeken.
   devise_reset_password_instructions_hello_email: Hallo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Als je dit niet hebt aangevraagd negeer dan deze e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Iemand heeft een link aangevraagd om je wachtwoord te wijzigen. Je kunt dit doen via de onderstaande link.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Je wachtwoord zal niet gewijzigd worden totdat je op de bovenstaande link klikt en een nieuw wachtwoord instelt.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1659,6 +1698,12 @@ nl:
   email: E-mail
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
+    Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
+    datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
+    inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
+    naar je %{link_start_tag}account instellingen%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
@@ -1692,8 +1737,9 @@ nl:
     native: evolueerde in deze regio of kwam op niet-antropogene wijze aan
     endemic: inheems en komt nergens anders voor
     introduced: in de regio gekomen op antropogene wijze
-  estimate_which_input: |
-    Schat welke invoertaxonid's zullen worden vervangen met welke uitvoertaxa en welke zullen worden gekoppeld aan een gemeenschappelijke voorouder zodra de splitsing wordt doorgevoerd. Het kan even duren om dit te berekenen. Links naar waarnemingen worden ingekort naar subsets van 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Schat welke determinaties van het invoertaxon worden vervangen door determinaties van de uitvoertaxa en welke zullen worden gekoppeld aan een gemeenschappelijke voorouder zodra de splitsing wordt doorgevoerd. Het kan even duren om dit te berekenen. Links naar waarnemingen worden ingekort naar subsets van 200.
   event_in_progress: Gebeurtenis aan de gang
   event_stats: Evenement statistieken
   event_url: Evenement URL
@@ -2087,6 +2133,12 @@ nl:
   ids_made_for_others: ID's voor anderen gedaan
   if_for_some_reason_a_user_doesnt_agree: |
     Als je niet akkoord gaat met het gemeenschapstaxon kun je het verwerpen. Jouw determinatie wordt dan gebruikt bij het koppelen aan andere waarnemingen, het bijwerken van levenslijsten, etc. Je waarneming kan alleen van onderzoekskwaliteit worden wanneer de gemeenschap het met je eens is.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Als het uitdiepen van een ouder resulteert in meer dan 10 onbedoelde meningsverschillen moet je
+    de bovenliggende splitsen nadat je het kind hebt verplaatst om bestaande ID's van
+    de bovenliggende <strong>(B)</strong> te vervangen door ID's die het niet oneens zijn.
   if_matches_come_from_a_comprehensive_list: Als gevonden items van een volledige lijst komen, wordt hier een groene balk weergegeven.
   if_this_is_a_scientific_name: Als dit een wetenschappelijk naam betreft, is hij momenteel aanvaard?
   if_this_link_will_apply_to_descendant: Als deze link van toepassing is op onderliggende taxa kun je sjabloontags gebruiken om de taxonnaam in de URL in te vullen
@@ -3915,6 +3967,14 @@ nl:
   proposed_taxa_that_support_the_community_id: Voorgestelde taxa die de gemeenschaps-ID ondersteunen
   protozoans: protozoa
   provider_authorizations: Provider autorisaties
+  provider_without_email_error_apple: |
+    Apple heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Apple.
+  provider_without_email_error_flickr: |
+    Flickr heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Flickr.
+  provider_without_email_error_generic: |
+    Deze dienst heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via een andere partij of dienst.
+  provider_without_email_error_google_oauth2: |
+    Google heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Google.
   public_domain: Publiek domein
   publish: Publiceren
   purple: purper
@@ -4175,6 +4235,10 @@ nl:
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Opnieuw verzenden en afmelden
+  resend_confirmation_email: Bevestigingsmail opnieuw verzenden
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Reset
@@ -4306,6 +4370,10 @@ nl:
   selected_taxon: Geselecteerd taxon
   select_this_taxon: Selecteer dit taxon
   send: verzenden
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Verzenden en afmelden
+  send_confirmation_email: Stuur bevestigingsmail
   send_me_reset_password_instructions: Stuur mij wachtwoordresetinstructies
   sending: Aan het verzenden ...
   #Label for messages you've sent
@@ -5206,6 +5274,7 @@ nl:
     <span class='ac-placeholder'>"%{name}"</span> als een placeholder gebruiken
   use_this_form_to_create_a_new: |
     Gebruik dit formulier om een nieuw voorstel voor een taxonomische wijziging aan te maken die een voorgestelde opsplitsing, samenvoeging of wissel beschrijft van actieve taxa om later te worden vastgelegd.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Gebruik dit als het geslacht en de soort op een bepaalde manier moeten worden gescheiden de URL. Als het taxon geen soort of infrasoort is, wordt alles tussen [GENUS] en [SPECIES] vervangen door de taxonnaam, dus gebruik het spaarzaam.
   use_unique_file_names_for_separate_uploads: Gebruik unieke bestandsnamen voor afzonderlijke uploads
@@ -5285,6 +5354,10 @@ nl:
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
   users_contributions_to_project_html: Bijdragen van <a href="%{url}">%{login}</a> aan %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Nadat je de bevestigingsmail opnieuw hebt verstuurd word je afgemeld en kan 
+    je niet inloggen op je account totdat je op de link in
+    de e-mail klikt dus <strong>zorg ervoor dat je een geldig e-mailadres hebt ingevoerd.</strong>
   users_favorites: "Favorieten van %{user}"
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
@@ -5464,7 +5537,10 @@ nl:
     Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
   with: met
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Intrekken
+  #Loading status while an identification is being withdrawn
   withdrawing: Intrekken
   with_errors: Met fouten
   worldwide: Wereldwijd
@@ -5609,6 +5685,7 @@ nl:
   you_dont_have_permission_to_edit_those_photos: Je hebt geen rechten om deze foto's te bewerken.
   you_faved_this: Je hebt dit opgeslagen als favoriet!
   you_have_left_x_project: "Je hebt %{project} verlaten"
+  you_have_not_confirmed_your_email_address: Je hebt je e-mailadres nog niet bevestigd!
   you_havent_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account nog niet aan je Google-account gekoppeld."
   you_joined_this_project: Je bent lid geworden van dit project!
   you_must_be_a_member_of_this_project_to_do_that: Je moet lid zijn van dit project om dat te kunnen doen
@@ -6179,7 +6256,10 @@ nl:
       show:
         allow_curator_coordinate_access_desc_html: |
           Sta toe dat projectcuratoren de verborgen coördinaten van deze waarneming kunnen bekijken.
-        ancestor_disagreements_desc: "# gedetermineerde taxa die behoren tot de voorouders van een taxon, maar die niet overeenkomen met het taxon (\"Ik denk dat het in dit geslacht zit maar ik ben het er niet mee eens dat het deze soort is\")"
+        ancestor_disagreements_desc2: |
+          Aantal gedetermineerde taxa die behoren tot de voorouders van een taxon, maar
+          die niet overeenkomen met het taxon ("Ik denk dat het in dit geslacht ligt maar ik
+          ben het niet met je eens dat het die soort is")
         community_taxon_desc_html: |
           <p class="ui">
           Het gemeenschapstaxon (of gemeenschapsdeterminatie) staat voor welk taxon de %{site_name}-gemeenschap denkt dat afgebeeld is in de waarneming. Als je geïnteresseerd bent in hoe we het gemeenschapstaxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's het mee eens zijn</strong>. Dit betekent soms dat er een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat waartussen onenigheid is (als jij bijvoorbeeld denkt dat het een koningsslang is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme neigt enigzins naar afwijkende meningen, omdat we hebben gemerkt dat andersdenkenden vaak gelijk hebben.
@@ -7763,6 +7843,21 @@ nl:
         position: Positie
         source_url: Bron-URL
         source_identifier: Bron-id
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Titel website
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Korte titel
+        #Taxon this link is associated with
+        taxon: Taxon
+        #Place this link is associated with
+        place: Plaats
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Toon voor afstammende taxa
       user:
         email: E-mail
         login: Gebruikersnaam

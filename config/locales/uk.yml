@@ -683,6 +683,7 @@ uk:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Додатки
+  apply_app_owner: Застосувати
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Застосувати
@@ -1486,6 +1487,7 @@ uk:
   description_slash_tags: Опис / Мітки
   description_tags_more: "Опис, мітки, &amp; більше"
   desription: Опис
+  destination: Призначення
   destroy: Знищити
   details: Докладніше
   deviation: Відхилення
@@ -1501,25 +1503,29 @@ uk:
       signed_in: 'Ви успішно увійшли в систему.'
       signed_out: 'Ви успішно вийшли з системи.'
     passwords:
-      send_instructions: 'За декілька хвилин ви отримаєте лист с інструкціями щодо зміни пароля.'
+      send_instructions: |
+        За декілька хвилин ви отримаєте лист с інструкціями щодо зміни пароля.
       updated: 'Ваш пароль було успішно змінено. Зараз ви увійшли в систему.'
       updated_not_active: 'Ваш пароль було успішно змінено.'
-      send_paranoid_instructions: "Якщо ваша електронна адреса є в нашій базі данних, то за декілька хвилин ви отримаєте на вашу пошту посилання на відновлення паролю."
-      no_token: "Ви не можете отримати доступ до цієї сторінки, не переходячи з електронного листа щодо зміни паролю. Якщо ви переходите з електронного листа щодо зміни паролю, переконайтеся, що ви використали повну URL-адресу."
+      send_paranoid_instructions: |
+        Якщо ваша електронна адреса є в нашій базі данних, то за декілька хвилин ви отримаєте на вашу пошту посилання на відновлення паролю.
+      no_token: |
+        Ви не можете отримати доступ до цієї сторінки, не переходячи з електронного листа щодо зміни паролю. Якщо ви переходите з електронного листа щодо зміни паролю, переконайтеся, що ви використали повну URL-адресу.
     registrations:
+      destroyed: 'До побачення! Ваш обліковий запис було успішно видалено. Сподіваємось, ви скоро повернетеся.'
       signed_up: 'Ласкаво просимо! Ви успішно зареєструвались.'
       updated: 'Ви успішно внесли зміни до вашого облікового запису.'
-      destroyed: 'До побачення! Ваш обліковий запис було успішно видалено. Сподіваємось, ви скоро повернетеся.'
     mailer:
       confirmation_instructions:
-        subject: 'Інструкції щодо підтвердження'
+        #Subject of an email sent to confirm your account
+        subject: Інструкції щодо підтвердження
       reset_password_instructions:
         subject: 'Інструкції з відновлення пароля'
   devise_reset_password_instructions_hello_email: Вітаємо, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Хтось зробив запит на зміну паролю. Ви можете зробити це через посилання нижче.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Якщо Ви не робили запит на це, ви можете проігнорувати цей лист.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Хтось зробив запит на зміну паролю. Ви можете зробити це через посилання нижче.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не зміниться, доки Ви не відкриєте посилання вище і не створите новий пароль.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -4803,6 +4809,7 @@ uk:
     Використовуйте <span class='ac-placeholder'>"%{name}"</span> в якості замісника
   use_this_form_to_create_a_new: |
     Використовуйте цю форму, щоб створити нову чернетку таксономічної зміни, що описуватиме запропоноване розділення, злиття або заміну наявних таксонів, які пізніше будуть запропоновані до впровадження.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Використайте це, якщо URL потребує роду й виду, розділених у певний спосіб. Якщо таксон не є видом чи внутрішньовидовим таксоном, все, що знаходиться поміж [GENUS] і [SPECIES] буде замінено на назву таксону, тож використовуйте з обачністю.
   use_unique_file_names_for_separate_uploads: Використовувати унікальні імена файлів для окремих вивантажень
@@ -5024,7 +5031,10 @@ uk:
   wikipedia_attribution_cc_by_sa_3_html: |
     Ця стаття використовує матеріал зі статті на Вікіпедії <a href="%{url}">"%{title}"</a>, який випускається під <a href="https://creativecommons.org/licenses/by-sa/3.0/"><a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. Вміст може бути скорочено у порівнянні з оригіналом, але твір не був змінений або продовжений.
   with: з
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Відкликати
+  #Loading status while an identification is being withdrawn
   withdrawing: Відкликання...
   with_errors: З помилками
   worldwide: По всьому світу
@@ -5734,7 +5744,6 @@ uk:
       show:
         allow_curator_coordinate_access_desc_html: |
           Дозволити кураторам проєкту переглядати приховані координати для цього спостереження.
-        ancestor_disagreements_desc: "Кількість визначений таксонів, що лежать у межах таксонів вищого рангу, але не співпадають з поточним таксоном (напр., \"Я гадаю, що це щось з цього роду, але я не згодний з видом\")"
         community_taxon_desc_html: |
           <p class="ui">
           Таксон спільноти (чи визначення спільноти) – це той таксон, який за думкою спільноти

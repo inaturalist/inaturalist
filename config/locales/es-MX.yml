@@ -855,6 +855,8 @@ es-MX:
   change_group: Cambiar grupo
   change_icon: Cambia el ícono
   change_password: Cambia contraseña
+  #Message shown after you change your email address
+  change_to_email_requested_html: Cambio a <strong>%{email}</strong> solicitado. Revisa tu correo electrónico en esa dirección para confirmar el cambio.
   change_types:
     activated_soon: activado hace poco
     change_types: Tipo de cambios
@@ -1043,6 +1045,10 @@ es-MX:
   confirm_new_password: Confirma la nueva contraseña
   confirm_now: Confirma ahora
   confirm_your_info: Confirma tu información
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Correo electrónico de confirmación enviado a %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmada el %{date}
   confirming_ids: Identificaciones en acuerdo
   confirming_ids_description: Si lo deshabilitas, no recibirás más notificaciones sobre identificaciones que concuerden con las tuyas.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1475,6 +1481,8 @@ es-MX:
   deviation: Desviacion
   devise:
     confirmations:
+      confirmed: "Su dirección de correo electrónico ha sido confirmada con éxito."
+      send_instructions: "Recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo electrónico en unos minutos."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1485,31 +1493,56 @@ es-MX:
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
       invalid: 'El correo electrónico o la contraseña no son válidos'
       invalid_token: 'Código de identificación inválido'
+      unconfirmed: |
+        Por favor, comprueba tu correo electrónico y haz clic en el enlace del correo electrónico que recibiste para confirmar tu cuenta.
       user:
         suspended: Tu cuenta ha sido suspendida
     sessions:
       signed_in: 'Sesión iniciada correctamente.'
       signed_out: 'Has cerrado sesión correctamente.'
     passwords:
-      send_instructions: 'Recibirás un correo con instrucciones sobre cómo modificar tu contraseña en unos pocos minutos.'
+      send_instructions: |
+        Recibirás un correo con instrucciones sobre cómo modificar tu contraseña en unos pocos minutos.
       updated: 'Tu contraseña se ha modificado correctamente. Has iniciado sesión.'
       updated_not_active: 'Tu contraseña se ha modificado correctamente.'
-      send_paranoid_instructions: "Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos."
-      no_token: "No puedes acceder esta página a no ser que provenga desde un correo electrónico de cambio de contraseña. Si vienes desde un correo electrónico de cambio de contraseña, por favor asegúrate de utilizar la dirección URL completa provista."
+      send_paranoid_instructions: |
+        Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos.
+      no_token: |
+        No puedes acceder esta página a no ser que provenga desde un correo electrónico de cambio de contraseña. Si vienes desde un correo electrónico de cambio de contraseña, por favor asegúrate de utilizar la dirección URL completa provista.
     registrations:
-      signed_up: '¡Bienvenido/a! Te has registrado con éxito.'
-      updated: 'Has actualizado tu cuenta correctamente.'
       destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto de nuevo.'
+      signed_up: '¡Bienvenido/a! Te has registrado con éxito.'
+      signed_up_but_inactive: "Te has registrado correctamente. Sin embargo, no pudimos iniciar sesión porque tu cuenta aún no está activada."
+      signed_up_but_locked: "Te has registrado correctamente. Sin embargo, no pudimos iniciar sesión porque tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Se ha enviado un mensaje con un enlace de confirmación a tu dirección de correo electrónico. Por favor, sigue el enlace para activar tu cuenta."
+      updated: 'Has actualizado tu cuenta correctamente.'
     mailer:
       confirmation_instructions:
-        subject: 'Instrucciones de confirmación'
+        #Subject of an email sent to confirm your account
+        subject: Instrucciones de confirmación
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Cambio de correo electrónico solicitado
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
+  devise_confirmation_instructions_if_you_did_not: |
+    Si no te registraste en la cuenta de @vow_or_con{vow:an|a} %{site_name} , ignora este correo electrónico.
+  devise_confirmation_instructions_please_click: |
+    Por favor, haga clic en el enlace de abajo para confirmar su dirección de correo electrónico:
+  devise_confirmation_instructions_resend_instructions: |
+    Debes tener una dirección de correo electrónico funcional para usar iNaturalist. Cuando te registraste en una cuenta, deberías haber recibido un correo electrónico de confirmación con un enlace para hacer clic para confirmar que tu dirección de correo electrónico funciona. pero si no, puedes enviarte otro correo electrónico de confirmación aquí.
+  devise_confirmation_instructions_send_confirmation_email: Enviar correo electrónico de confirmación
+  devise_email_changed_you_requested: Has solicitado un cambio de %{old_email} a %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Recibirás un correo electrónico en la nueva dirección para confirmar el cambio, pero nosotros
+    queríamos notificarle a su dirección antigua, solo en caso de que otra persona tenga
+    acceso a su cuenta y esté intentando cambiarla sin que lo sepan. Si no ha cambiado intencionalmente su dirección de correo electrónico, reenvíe este correo electrónico a help@inaturalist.org inmediatamente para que podamos investigarlo.
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Alguien ha solicitado un enlace para cambiar tu contraseña, puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no lo has solicitado, por favor, ignora este correo electrónico.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Alguien ha solicitado un enlace para cambiar tu contraseña, puedes hacerlo a través del siguiente enlace.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tu contraseña no cambiará hasta que accedas al enlace de arriba y crees una nueva.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1652,6 +1685,9 @@ es-MX:
   email: Correo
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo para comentarios y feedback
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Por favor confirma su dirección de correo electrónico%{link_end_tag}</strong>.
+    Todos los usuarios deben confirmar su dirección de correo electrónico para el %{date}. Después de esa fecha, cualquiera que no haya confirmado su dirección de correo electrónico no podrá iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico, ve a la %{link_start_tag}configuración de tu cuenta%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Insertar:'
@@ -1685,8 +1721,11 @@ es-MX:
     native: evolucionó en esta región o llegó por medios no antropogénicos
     endemic: nativo y no ocurre en ningún otro lugar
     introduced: llegó a la región por medios antropogénicos
-  estimate_which_input: |
-    Estimar qué identificaciones de taxón de entrada serán reemplazados con qué taxones de salida y cuales serán agregados a un antepasado común una vez que la separación se haya realizado. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan en subconjuntos de 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Estima qué identificaciones del taxón de entrada serán reemplazadas por
+    identificaciones de los taxones de salida y que se agruparán a un
+    antepasado común una vez que se haya realizado la división. Esto puede tardar un momento en calcular. Los enlaces a las observaciones se truncan a subconjuntos de 200.
   event_in_progress: Evento en curso
   event_stats: Estadísticas del evento
   event_url: URL del evento
@@ -3883,6 +3922,22 @@ es-MX:
   proposed_taxa_that_support_the_community_id: Taxa propuestos que apoyan la ID de comunidad
   protozoans: Protozoarios
   provider_authorizations: Autorizaciones del proovedor
+  provider_without_email_error_apple: |
+    Apple no proporcionó una dirección de correo electrónico para esa cuenta, el cual es
+    requerido. Por favor, cree una cuenta en este sitio en lugar de iniciar sesión
+    a través de Apple.
+  provider_without_email_error_flickr: |
+    Flickr no proporcionó una dirección de correo electrónico para esa cuenta, que es
+    requerido. Por favor, crea una cuenta en este sitio en lugar de iniciar sesión
+    a través de Flickr.
+  provider_without_email_error_generic: |
+    Ese servicio no proporcionó una dirección de correo electrónico para esa cuenta, la cual es
+    requerida. Por favor, cree una cuenta en este sitio en lugar de iniciar sesión
+    a través de terceros.
+  provider_without_email_error_google_oauth2: |
+    Google no proporcionó una dirección de correo electrónico para esa cuenta, la cual es
+    requerida. Por favor, cree una cuenta en este sitio en lugar de iniciar sesión
+    a través de Google.
   public_domain: Dominio público
   publish: Publica
   purple: Púrpura
@@ -4143,6 +4198,10 @@ es-MX:
   research_grade_tooltip_html: 'Las observaciones de "Grado de Investigación" tienen medios, ubicación, una fecha y el consenso de la comunidad sobre su identificación precisa (generalmente a nivel de especie). <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre los grados de calidad</a>'
   research_grade_observations_have: 'Las observaciones con "grado de Investigación" tienen fecha, foto, coordenadas y una comunidad que apoya la identificación. Pícale para ver la evaluación de calidad de los datos.'
   research_grade_qualification: Calificación de Grado de Investigación
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Reenviar y cerrar sesión
+  resend_confirmation_email: Reenviar correo electrónico de confirmación
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Restablece
   reset_filters_short: Restablecer
@@ -4273,6 +4332,10 @@ es-MX:
   selected_taxon: Selecciona una especie o grupo
   select_this_taxon: Seleccione este taxón
   send: Envía
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Enviar y cerrar sesión
+  send_confirmation_email: Enviar correo de confirmación
   send_me_reset_password_instructions: Eviarme las instrucciones para restablecer mi contraseña
   sending: Enviando...
   #Label for messages you've sent
@@ -5141,6 +5204,7 @@ es-MX:
     Usa <span class='ac-placeholder'>"%{name}"</span> como un marcador de posición
   use_this_form_to_create_a_new: |
     Usa esta forma para crear un cambio taxonómico en el borrador, describiendo si es para separar, juntar o es un cambio en el grupo o especie, para que posteriormente sea guardado.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Usa esto si el URL requiere tener el género y la especie separados de alguna forma. Si el grupo no es una especie o infraespecie, entonces todo lo que este entre [GÉNERO] y [ESPECIE] será reemplazado por el nombre del grupo, así que úsalo cuidadosamente. <br/><br/> <strong>Por ejemplo:</strong><br/>
   use_unique_file_names_for_separate_uploads: Usa nombres únicos de archivos para subidas separadas
@@ -5220,6 +5284,26 @@ es-MX:
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> contribuciones de %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Después de reenviar el correo de confirmación, se cerrará la sesión y
+    no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
+    el correo electrónico, así que <strong>asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Estás a punto de cerrar sesión</h3>
+    <p>
+    Después de enviar el correo electrónico de confirmación, se cerrará la sesión y no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en el correo electrónico, así que <strong class="bg-warning">asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
+    </p>
+    <p>
+    Esta es la dirección de correo electrónico a la que enviaremos la confirmación:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si cancelas la suscripción de todos los correos electrónicos. .</h4>
+    <p>
+    Si te has dado de baja de <em>todos</em> los correos electrónicos de nosotros, no podemos enviar tu correo de confirmación. Para volver a suscribirte, necesitas encontrar un correo electrónico anterior de nosotros, haz clic en el enlace de darse de baja y elige volver a
+    en el correo electrónico recibido. Si no puede hacer esto, por favor correo electrónico
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
+    la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
+    </p>
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "de %{user}"
@@ -5401,7 +5485,10 @@ es-MX:
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
   with: Con
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirando...
   with_errors: Con errores
   worldwide: Mundial
@@ -5549,6 +5636,7 @@ es-MX:
   you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas fotos.
   you_faved_this: '¡Has marcado esto como favorito!'
   you_have_left_x_project: "Has abandonado al proyecto %{project}"
+  you_have_not_confirmed_your_email_address: '¡No has confirmado tu dirección de correo electrónico!'
   you_havent_linked_your_inaturalist_google_account: "Aún no has vinculado tus cuentas de %{site_name} y de Google"
   you_joined_this_project: '¡Te uniste a este proyecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto para poder hacer eso.
@@ -6140,7 +6228,9 @@ es-MX:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permite a los curadores del proyecto ver las coordenadas privadas de esta observación.
-        ancestor_disagreements_desc: "nº de taxones identificados que estan entre los ancestros de un taxón pero que fueron creados después de la primera identificación usando este taxón"
+        ancestor_disagreements_desc2: |
+          Número de taxones identificados que están entre los antepasados de un taxón, pero
+          no están de acuerdo con el taxón (e.g. "Creo que es el género, pero no lo estoy de acuerdo es esa especie")
         community_taxon_desc_html: |
           <p class="ui">
           El taxón comunitario (o la identificación por la comunidad) representa qué taxón %{site_name} la comunidad piensa que es representado en una observación. Si estás interesado en cómo seleccionamos un taxón comunitario consulta las notas sobre el algoritmo de abajo, pero en general, tratamos de <strong>elegir un taxón con un acuerdo de más de 2/3 de los identificadores. A veces esto significa que la elección de un nivel superior de taxón que contiene un número de desacuerdos (por ejemplo, tú piensas que es una culebra rey y yo creo es la serpiente de cascabel, así NaturaLista elige el suborden Serpentes que contiene a todas las serpientes). El algoritmo también favorece ligeramente la disidencia, porque hemos encontrado que los disidentes a menudo tienen razón.
@@ -7711,6 +7801,21 @@ es-MX:
         position: Posición
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Título del sitio
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Título corto
+        #Taxon this link is associated with
+        taxon: Taxón
+        #Place this link is associated with
+        place: Lugar
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Mostrar para taxones descendientes
       user:
         email: Correo
         login: Nombre de usuario
