@@ -1280,6 +1280,7 @@ el:
     failure:
       already_authenticated: 'Είστε ήδη συνδεδεμένοι.'
       unauthenticated: 'Πρέπει να συνδεθείτε ή να εγγραφείτε για να συνεχίσετε.'
+      invalid: 'Μη έγκυρο email ή κωδικός πρόσβασης.'
       invalid_token: 'Μη έγκυρο διακριτικό ταυτοποίησης.'
       user:
         suspended: Ο λογαριασμός σας έχει ανασταλεί
@@ -1287,13 +1288,22 @@ el:
       signed_in: 'Επιτυχής σύνδεση.'
       signed_out: 'Επιτυχής αποσύνδεση.'
     passwords:
+      send_instructions: |
+        Θα λάβετε ένα email με οδηγίες για το πως να επαναφέρετε τον κωδικό σας σε μερικά λεπτά.
       updated: 'Ο κωδικός πρόσβασής σας άλλαξε επιτυχώς. Τώρα είστε συνδεδεμένοι.'
       updated_not_active: 'Ο κωδικός πρόσβασής σας άλλαξε επιτυχώς.'
+      send_paranoid_instructions: |
+        Εάν η διεύθυνση email σας υπάρχει στη βάση δεδομένων μας, θα λάβετε έναν σύνδεσμο ανάκτησης κωδικού πρόσβασης στο email σας σε λίγα λεπτά.
+      no_token: |
+        Δεν μπορείτε να έχετε πρόσβαση σε αυτήν τη σελίδα εάν δεν λάβατε ένα email επαναφοράς κωδικού πρόσβασης. Εάν έχετε λάβει email επαναφοράς κωδικού πρόσβασης, βεβαιωθείτε ότι έχετε χρησιμοποιήσει την πλήρη διεύθυνση URL που σας δόθηκε.
     registrations:
       destroyed: 'Αντίο! Ο λογαριασμός σας ακυρώθηκε επιτυχώς. Ελπίζουμε να σας δούμε ξανά σύντομα.'
       signed_up: 'Καλώς ορίσατε! Η εγγραφή σας ολοκληρώθηκε με επιτυχία.'
       updated: 'Ενημερώσατε τον λογαριασμό σας επιτυχώς'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Οδηγίες επιβεβαίωσης
       reset_password_instructions:
         subject: 'Οδηγίες επαναφοράς κωδικού πρόσβασης'
   devise_reset_password_instructions_hello_email: Γεια σας %{email}
@@ -2251,6 +2261,8 @@ el:
       yy: "%dχ"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
