@@ -1501,6 +1501,10 @@ da:
     confirmations:
       confirmed: "E-mailadressen er hermed bekræftet."
       send_instructions: "Du bør om få minutter modtage en e-mail med vejledning til, hvordan din e-mailadresse bekræftes."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Findes din e-mailadresse i vores database, modtager du om få minutter en e-mail med instruktioner til, hvordan du bekræfter din e.mailadresse.
     failure:
       already_authenticated: 'Du er allerede logget ind.'
       unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
@@ -1514,8 +1518,14 @@ da:
       signed_in: 'Du er nu logget ind.'
       signed_out: 'Du er nu logget ud.'
     passwords:
+      send_instructions: |
+        Du vil om et øjeblik modtage en e-mail med instruktioner til nulstilling af din adgangskode.
       updated: 'Din adgangskode er skiftet, og du er nu logget ind.'
       updated_not_active: 'Du har nu skiftet din adgangskode.'
+      send_paranoid_instructions: |
+        Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode.
+      no_token: |
+        Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen.
     registrations:
       destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
       signed_up: 'Velkommen! Din registrering lykkedes.'
