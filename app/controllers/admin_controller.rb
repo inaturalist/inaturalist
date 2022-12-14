@@ -92,6 +92,9 @@ class AdminController < ApplicationController
       u.icon = nil
       u.icon_url = nil
     end
+    if params[:confirm]
+      u.confirm
+    end
     if params[:user]
       u.update( params[:user] )
     else
