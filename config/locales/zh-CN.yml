@@ -1287,11 +1287,8 @@ zh-CN:
       signed_in: '登录成功。'
       signed_out: '已成功登出。'
     passwords:
-      send_instructions: '您将很快收到一封关于如何重设密码的电子邮件说明。'
       updated: '您已成功修改密码，现在您已成功登录。'
       updated_not_active: '您已成功修改密码。'
-      send_paranoid_instructions: "如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。"
-      no_token: "您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。"
     registrations:
       destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
