@@ -1479,11 +1479,6 @@ pt-BR:
   details: Detalhes
   deviation: Desvio
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um e-mail com instruções sobre como confirmar seu endereço de e-mail em alguns minutos.
     failure:
       already_authenticated: 'Você já está logado.'
       unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
@@ -1494,11 +1489,8 @@ pt-BR:
       signed_in: 'Login efetuado com sucesso.'
       signed_out: 'Logout efetuado com sucesso.'
     passwords:
-      send_instructions: 'Você receberá um email com instruções sobre como redefinir sua senha em alguns minutos.'
       updated: 'Sua senha foi alterada com sucesso. Você agora está conectado.'
       updated_not_active: 'Sua senha foi alterada com sucesso.'
-      send_paranoid_instructions: "Se o seu endereço de e-mail existir em nosso banco de dados, você receberá um link de recuperação de senha em seu endereço de e-mail em alguns minutos."
-      no_token: "Você só pode acessar essa página através de um e-mail de redefinição de senha. Se já estiver acessando por um e-mail de redefinição de senha, verifique se a URL fornecida está completa."
     registrations:
       destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
       signed_up: 'Bem-vindo! Você se registrou com sucesso.'
