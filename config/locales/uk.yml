@@ -683,6 +683,7 @@ uk:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Додатки
+  apply_app_owner: Застосувати
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Застосувати
@@ -1486,6 +1487,7 @@ uk:
   description_slash_tags: Опис / Мітки
   description_tags_more: "Опис, мітки, &amp; більше"
   desription: Опис
+  destination: Призначення
   destroy: Знищити
   details: Докладніше
   deviation: Відхилення
@@ -1493,6 +1495,7 @@ uk:
     failure:
       already_authenticated: 'Ви вже авторизовані на сайті'
       unauthenticated: 'Перш ніж продовжити Ви повинні увійти або зареєструватися.'
+      invalid: 'Недійсна адреса електронної пошти або пароль'
       invalid_token: 'Недійсний код автентифікації.'
       user:
         suspended: Ваш обліковий запис було призупинено
@@ -1500,13 +1503,22 @@ uk:
       signed_in: 'Ви успішно увійшли в систему.'
       signed_out: 'Ви успішно вийшли з системи.'
     passwords:
+      send_instructions: |
+        За декілька хвилин ви отримаєте лист с інструкціями щодо зміни пароля.
       updated: 'Ваш пароль було успішно змінено. Зараз ви увійшли в систему.'
       updated_not_active: 'Ваш пароль було успішно змінено.'
+      send_paranoid_instructions: |
+        Якщо ваша електронна адреса є в нашій базі данних, то за декілька хвилин ви отримаєте на вашу пошту посилання на відновлення паролю.
+      no_token: |
+        Ви не можете отримати доступ до цієї сторінки, не переходячи з електронного листа щодо зміни паролю. Якщо ви переходите з електронного листа щодо зміни паролю, переконайтеся, що ви використали повну URL-адресу.
     registrations:
       destroyed: 'До побачення! Ваш обліковий запис було успішно видалено. Сподіваємось, ви скоро повернетеся.'
       signed_up: 'Ласкаво просимо! Ви успішно зареєструвались.'
       updated: 'Ви успішно внесли зміни до вашого облікового запису.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Інструкції щодо підтвердження
       reset_password_instructions:
         subject: 'Інструкції з відновлення пароля'
   devise_reset_password_instructions_hello_email: Вітаємо, %{email}
@@ -2534,6 +2546,8 @@ uk:
       yy: "%d рр."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
