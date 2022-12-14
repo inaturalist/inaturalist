@@ -384,7 +384,7 @@ hu:
     protozoans: Állati egysejtűek
     ray_finned_fishes: Sugarasúszójú halak
     reptiles: Hüllők
-    life: Élet
+    life: élőlény
     x_mollusca:
       one: "%{count} puhatestű"
       other: "%{count} puhatestű"
@@ -1134,6 +1134,7 @@ hu:
     failure:
       already_authenticated: 'Már be vagy jelentkezve.'
       unauthenticated: 'A folytatás előtt be kell jelentkezned.'
+      invalid: 'Érvénytelen e-mail cím vagy jelszó.'
       invalid_token: 'Érvénytelen hitelesítési token.'
       user:
         suspended: A fiókod fel van függesztetve
@@ -1141,6 +1142,8 @@ hu:
       signed_in: 'Sikeres bejelentkezés.'
       signed_out: 'A kijelentkezés sikeres.'
     passwords:
+      send_instructions: |
+        Perceken belül fogsz kapni egy emailt a jelszavad visszaállításáról.
       updated: 'A jelszó sikeresen megváltoztatva. Be vagy jelentkezve.'
       updated_not_active: 'Sikeresen megváltoztattad jelszavadat.'
     registrations:
@@ -1148,6 +1151,9 @@ hu:
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
       updated: 'Fiókod sikeresen frissítve.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Megerősítési utasítások
       reset_password_instructions:
         subject: 'Jelszóvisszaállítási utasítások'
   devise_reset_password_instructions_hello_email: Kedves %{email}!
@@ -2015,6 +2021,8 @@ hu:
       yy: "%dé"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY, MMM D, · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
