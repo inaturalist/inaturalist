@@ -1418,9 +1418,14 @@ id:
     confirmations:
       confirmed: "Email Anda berhasil dikonfirmasi."
       send_instructions: "Anda akan menerima sebuah email dengan instruksi tentang cara mengonfirmasi email Anda."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jika alamat surel Anda ada di dalam database kami, Anda akan menerima surel dengan petunjuk cara untuk mengonfirmasi alamat surel Anda di dalam beberapa menit.
     failure:
       already_authenticated: 'Anda sudah masuk.'
       unauthenticated: 'Anda harus masuk atau daftar untuk melanjutkan.'
+      invalid: 'Email atau kata sandi tidak valid.'
       invalid_token: 'Token otentikasi salah.'
       unconfirmed: |
         Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
@@ -1430,8 +1435,14 @@ id:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
     passwords:
+      send_instructions: |
+        Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.
       updated: 'Kata sandi Anda berhasil diganti. Anda sudah masuk sekarang.'
       updated_not_active: 'Kata sandi Anda sudah berhasil diganti.'
+      send_paranoid_instructions: |
+        Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit.
+      no_token: |
+        Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap.
     registrations:
       destroyed: 'Sampai nanti! Akun Anda berhasil dibatalkan. Semoga kita dapat segera berjumpa lagi.'
       signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
@@ -1440,6 +1451,9 @@ id:
       signed_up_but_unconfirmed: "Sebuah pesan dengan tautan untuk konfirmasi telah dikirimkan ke alamat email Anda. Harap ikuti tautan yang ada untuk mengaktifkan akun Anda."
       updated: 'Anda berhasil memperbarui akun Anda.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Petunjuk konfirmasi
       email_changed:
         #Subject of an email sent when you try to change the email address
         #associated with your account
@@ -2559,6 +2573,8 @@ id:
       yy: "%dthn"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
