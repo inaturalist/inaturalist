@@ -301,6 +301,9 @@ et:
   add_observations: Lisa vaatlusi
   add_observations_by_checking_off: Lisa vaatlusi märgistades nimekirjas olevaid liike.
   add_observations_project: Lisa projekti alla vaatlusi
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Lisa</span> <span>vaatlused</span>"
   #Prompt to add a new journal post
   add_one: Lisa!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -672,6 +675,10 @@ et:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Omadus
   attribution: Omistus
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, lisanud kasutaja %{user}"
   authority_list:
     iucn_red_list: IUCNi punane nimestik
     natureserve: NatureServe
@@ -1387,9 +1394,15 @@ et:
   details: Üksikasjad
   deviation: Kõrvalekalle
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul juhised, kuidas oma aadressi kinnitada.
     failure:
       already_authenticated: 'Olete juba sisse logitud.'
       unauthenticated: 'Pead jätkamiseks sisse logima või endale konto looma.'
+      invalid: 'Vigane e-posti aadress või salasõna.'
       invalid_token: 'Väär autentimiskood.'
       user:
         suspended: Sinu konto on deaktiveeritud
@@ -1397,13 +1410,22 @@ et:
       signed_in: 'Sisenemine õnnestus.'
       signed_out: 'Välja logimine õnnestus.'
     passwords:
+      send_instructions: |
+        Saadame sulle paari minuti jooksul e-kirja salasõna lähtestamise juhistega.
       updated: 'Sinu salasõna muutmine õnnestus. Oled nüüd sisse logitud.'
       updated_not_active: 'Sinu salasõna muutmine õnnestus.'
+      send_paranoid_instructions: |
+        Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja.
+      no_token: |
+        Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki.
     registrations:
       destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Kinnitamisjuhised
       reset_password_instructions:
         subject: 'Salasõna lähtestamise juhised'
   devise_reset_password_instructions_hello_email: Tere, %{email}
@@ -1618,6 +1640,8 @@ et:
   feedback: Tagasiside
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Vood'
+  #Button to show fewer places
+  fewer__context_places: Vähem
   failed: Ebaõnnestus
   field_note: |
     <strong>Tähelepanu:</strong> Kui soovid teha uut välja, kontrolli esmalt
@@ -1898,6 +1922,8 @@ et:
   improving: Täiendaja
   in_n: "kohas %{n}"
   in_place_x: kohas %{place}
+  #As in a reason to flag something
+  inappropriate: Ebasobiv
   inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   #Label for messages you've received
   inbox: Saabunud kirjad
@@ -2098,6 +2124,8 @@ et:
     waray_waray: Varai
     visayan: Visayani
   less: Vähem
+  #Button show less text
+  less__context_text: Vähem
   licensed_site_photos: "Litsenseeritud %{site_name} fotod"
   license: Litsents
   licensing: Litsentsimine
@@ -2350,6 +2378,8 @@ et:
       yy: "%da"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2371,6 +2401,14 @@ et:
     <a href="%{url}">Igakuine toetaja</a> alates %{date}
   months: Kuud
   more: Veel
+  #Button to show more observations
+  more__context_observations_caps: ROHKEM
+  #Button to show more places
+  more__context_places: Rohkem
+  #Button to show more text
+  more__context_text: Rohkem
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ROHKEM
   more_caps: VEEL
   more_about_sharing: Jagamise lisainfo
   more_fields: Veel välju
@@ -2742,6 +2780,7 @@ et:
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
   open_street_map: OpenStreetMap
   optional: valikuline
+  options: Sätted
   or: või
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3169,6 +3208,7 @@ et:
   places_warning_please_keep_in_mind: |
     Pea palun meeles järgnevaid piiranguid:
   plants: taimed
+  play_first_sound: Mängi esimest heli
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
   please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
@@ -5655,6 +5695,8 @@ et:
       flag:
         #The reason the item was flagged
         reason: Põhjus
+        #The person who resolved the flag
+        resolver_id: Lahendaja
         #The kind of flag that was made
         flag: Märkus
       guide:
