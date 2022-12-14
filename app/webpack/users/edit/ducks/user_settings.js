@@ -36,9 +36,19 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
       // this is kind of unnecessary, but removing these since they're read-only keys
       // and don't need to be included in UI or users.update
       const keysToIgnore = [
-        "spam", "suspended", "created_at", "login_autocomplete", "login_exact",
-        "name_autocomplete", "observations_count", "identifications_count", "journal_posts_count",
-        "activity_count", "species_count", "universal_search_rank", "prefers_automatic_taxon_changes"
+        "activity_count",
+        "created_at",
+        "identifications_count",
+        "journal_posts_count",
+        "login_autocomplete",
+        "login_exact",
+        "name_autocomplete",
+        "observations_count",
+        "prefers_automatic_taxon_changes",
+        "spam",
+        "species_count",
+        "suspended",
+        "universal_search_rank"
       ];
 
       const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
@@ -115,18 +125,20 @@ export function saveUserSettings( ) {
     }
 
     // could leave these, but they're unpermitted parameters
-    delete params.user.updated_at;
-    delete params.user.saved_status;
-    delete params.user.errors;
-    delete params.user.site;
-    delete params.user.id;
-    delete params.user.roles;
-    delete params.user.monthly_supporter;
     delete params.user.blocked_user_ids;
-    delete params.user.muted_user_ids;
-    delete params.user.privileges;
+    delete params.user.confirmation_sent_at;
+    delete params.user.confirmed_at;
+    delete params.user.errors;
     delete params.user.icon_url;
+    delete params.user.id;
+    delete params.user.monthly_supporter;
+    delete params.user.muted_user_ids;
     delete params.user.orcid;
+    delete params.user.privileges;
+    delete params.user.roles;
+    delete params.user.saved_status;
+    delete params.user.site;
+    delete params.user.updated_at;
 
     // fetching user settings here to get the source of truth
     // currently users.me returns different results than

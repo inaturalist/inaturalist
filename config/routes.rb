@@ -129,6 +129,7 @@ Rails.application.routes.draw do
   get "/" => "welcome#index"
   get "/home" => "users#dashboard", :as => :home
   get "/home.:format" => "users#dashboard", :as => :formatted_home
+  get "/home" => "users#dashboard", as: :user_root
 
   get "/users/edit" => "users#edit", :as => "generic_edit_user"
   begin
@@ -605,10 +606,8 @@ Rails.application.routes.draw do
       get :cnc2016
       get :cnc2017
       get :cnc2017_stats
-      # rubocop:disable Naming/VariableNumber
       get :canada_150
       get :parks_canada_2017
-      # rubocop:enable Naming/VariableNumber
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
