@@ -1418,10 +1418,6 @@ id:
     confirmations:
       confirmed: "Email Anda berhasil dikonfirmasi."
       send_instructions: "Anda akan menerima sebuah email dengan instruksi tentang cara mengonfirmasi email Anda."
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Jika alamat surel Anda ada di dalam database kami, Anda akan menerima surel dengan petunjuk cara untuk mengonfirmasi alamat surel Anda di dalam beberapa menit.
     failure:
       already_authenticated: 'Anda sudah masuk.'
       unauthenticated: 'Anda harus masuk atau daftar untuk melanjutkan.'
@@ -1434,11 +1430,8 @@ id:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
     passwords:
-      send_instructions: 'Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.'
       updated: 'Kata sandi Anda berhasil diganti. Anda sudah masuk sekarang.'
       updated_not_active: 'Kata sandi Anda sudah berhasil diganti.'
-      send_paranoid_instructions: "Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit."
-      no_token: "Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap."
     registrations:
       destroyed: 'Sampai nanti! Akun Anda berhasil dibatalkan. Semoga kita dapat segera berjumpa lagi.'
       signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
