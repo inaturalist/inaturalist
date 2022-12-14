@@ -9525,6 +9525,13 @@ CREATE INDEX index_user_privileges_on_user_id ON public.user_privileges USING bt
 
 
 --
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_confirmation_token ON public.users USING btree (confirmation_token);
+
+
+--
 -- Name: index_users_on_curator_sponsor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10232,6 +10239,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220310001916'),
 ('20220317205240'),
 ('20220317210522'),
-('20220407173712');
+('20220407173712'),
+('20221214192739');
 
 
