@@ -4332,6 +4332,10 @@ es-MX:
   selected_taxon: Selecciona una especie o grupo
   select_this_taxon: Seleccione este taxón
   send: Envía
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Enviar y cerrar sesión
+  send_confirmation_email: Enviar correo de confirmación
   send_me_reset_password_instructions: Eviarme las instrucciones para restablecer mi contraseña
   sending: Enviando...
   #Label for messages you've sent
@@ -5284,6 +5288,22 @@ es-MX:
     Después de reenviar el correo de confirmación, se cerrará la sesión y
     no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
     el correo electrónico, así que <strong>asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Estás a punto de cerrar sesión</h3>
+    <p>
+    Después de enviar el correo electrónico de confirmación, se cerrará la sesión y no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en el correo electrónico, así que <strong class="bg-warning">asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
+    </p>
+    <p>
+    Esta es la dirección de correo electrónico a la que enviaremos la confirmación:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si cancelas la suscripción de todos los correos electrónicos. .</h4>
+    <p>
+    Si te has dado de baja de <em>todos</em> los correos electrónicos de nosotros, no podemos enviar tu correo de confirmación. Para volver a suscribirte, necesitas encontrar un correo electrónico anterior de nosotros, haz clic en el enlace de darse de baja y elige volver a
+    en el correo electrónico recibido. Si no puede hacer esto, por favor correo electrónico
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
+    la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
+    </p>
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "de %{user}"
