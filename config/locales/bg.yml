@@ -1069,6 +1069,7 @@ bg:
     failure:
       already_authenticated: 'Вече сте влезли.'
       unauthenticated: 'Трябва да влезете или да се регистрирате, преди да продължите.'
+      invalid: 'Невалиден имейл или парола.'
       invalid_token: 'Не валиден код за удостоверение.'
       user:
         suspended: Вашият акаунт е запориран
@@ -1076,13 +1077,22 @@ bg:
       signed_in: 'Влязохте успешно.'
       signed_out: 'Излязохте успешно.'
     passwords:
+      send_instructions: |
+        До няколко минути ще получите имейл с инструкции как да възстановите паролата си.
       updated: 'Вашата парола беше променена успешно. Вече сте влезли.'
       updated_not_active: 'Вашата парола беше променена успешно.'
+      send_paranoid_instructions: |
+        Ако Вашият имейл адрес фигурира в нашата база данни – до няколко минути, на него ще получите препратка за възстановяване на паролата.
+      no_token: |
+        Тази страница е достъпна само когато идвате от имейл за възстановяване на паролата. Ако действително идвате от такъв имейл – уверете се, че сте използвали пълния уебадрес, който сте получили.
     registrations:
       destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
       signed_up: 'Добре дошли! Регистрацията е успешна.'
       updated: 'Успешно обновихте акаунта си.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Инструкции за потвърждение
       reset_password_instructions:
         subject: 'Инструкции за възстановяване на паролата'
   devise_reset_password_instructions_hello_email: Привет, %{email}
@@ -1924,6 +1934,8 @@ bg:
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
