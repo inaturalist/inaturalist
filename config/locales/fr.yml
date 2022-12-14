@@ -1474,14 +1474,10 @@ fr:
   details: Détails
   deviation: Déviation
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Si votre adresse email existe dans notre base de données, vous recevrez un message avec les instructions pour confirmer celle-ci d'ici quelques minutes.
     failure:
       already_authenticated: 'Vous êtes déjà connecté.'
       unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
+      invalid: 'E-mail ou mot de passe non valide.'
       invalid_token: 'Code d''authentification non valide.'
       user:
         suspended: Votre compte a été suspendu
@@ -1489,16 +1485,16 @@ fr:
       signed_in: 'Connexion réussie.'
       signed_out: 'Déconnexion réussie.'
     passwords:
-      send_instructions: 'Vous recevrez un courrier électronique contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
       updated: 'Votre mot de passe a été changé avec succès. Vous êtes maintenant connecté.'
       updated_not_active: 'Votre mot de passe a été modifié avec succès.'
-      send_paranoid_instructions: "Si votre adresse e-mail existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
-      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un email de réinitialisation de mot de passe. Si vous venez effectivement d'un email de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
     registrations:
       destroyed: 'Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
       signed_up: 'Bienvenue ! Vous vous êtes inscrit avec succès.'
       updated: 'Vous avez mis à jour votre compte avec succès.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
   devise_reset_password_instructions_hello_email: Bonjour %{email}
