@@ -1045,6 +1045,8 @@ nl:
   confirm_new_password: Bevestig nieuw wachtwoord
   confirm_now: Bevestig nu
   confirm_your_info: Bevestig je informatie
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Bevestigings-e-mail verzonden op %{datetime}
   confirming_ids: Bevestigende ID's
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1482,11 +1484,6 @@ nl:
   details: Details
   deviation: Afwijking
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Als je e-mailadres in onze database staat ontvang je binnen enkele minuten een link met instructies hoe je jouw wachtwoord kan bevestigen.
     failure:
       already_authenticated: 'Je bent al ingelogd.'
       unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
@@ -1497,11 +1494,8 @@ nl:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
     passwords:
-      send_instructions: 'Binnen enkele minuten ontvang je een e-mail met instructies om je wachtwoord te resetten.'
       updated: 'Je wachtwoord is succesvol gewijzigd. Je bent nu ingelogd.'
       updated_not_active: 'Je wachtwoord is succesvol gewijzigd.'
-      send_paranoid_instructions: "Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen."
-      no_token: "Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt."
     registrations:
       destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
       signed_up: 'Welkom! Je bent succesvol aangemeld.'
@@ -3911,6 +3905,14 @@ nl:
   proposed_taxa_that_support_the_community_id: Voorgestelde taxa die de gemeenschaps-ID ondersteunen
   protozoans: protozoa
   provider_authorizations: Provider autorisaties
+  provider_without_email_error_apple: |
+    Apple heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Apple.
+  provider_without_email_error_flickr: |
+    Flickr heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Flickr.
+  provider_without_email_error_generic: |
+    Deze dienst heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via een andere partij of dienst.
+  provider_without_email_error_google_oauth2: |
+    Google heeft geen e-mailadres voor dat account opgegeven en dat is vereist. Maak een account aan op deze site in plaats van in te loggen via Google.
   public_domain: Publiek domein
   publish: Publiceren
   purple: purper
