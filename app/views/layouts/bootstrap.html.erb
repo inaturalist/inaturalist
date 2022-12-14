@@ -65,12 +65,12 @@
       <% end %>
 
       <% if !@headless && flash.empty? %>
-        <% if current_user && session[:potential_place] %>
+        <% if current_user && !current_user.confirmed? && !current_page?( controller: :users, action: :edit ) %>
           <div class="bootstrap">
-            <div id="full-width-notice" class="container-fluid bg-warning">
-              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
-              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
-              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+            <div id="full-width-notice" class="bg-warning">
+              <div class="container">
+                <p><%=t :email_confirmation_banner_html, date: l( Date.parse( "2023-07-01" ), format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+              </div>
             </div>
           </div>
         <% elsif current_user && session[:potential_site] %>
@@ -112,12 +112,12 @@
               </div>
             </div>
           </div>
-        <% elsif current_user && !current_user.confirmed? && !current_page?( controller: :users, action: :edit ) %>
+        <% elsif current_user && session[:potential_place] %>
           <div class="bootstrap">
-            <div id="full-width-notice" class="bg-warning">
-              <div class="container">
-                <p><%=t :email_confirmation_banner_html, date: l( Date.parse( "2023-07-01" ), format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
-              </div>
+            <div id="full-width-notice" class="container-fluid bg-warning">
+              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
             </div>
           </div>
         <% end %>

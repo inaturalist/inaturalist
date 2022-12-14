@@ -4671,6 +4671,10 @@ en:
   selected_taxon: Selected Taxon
   select_this_taxon: Select This Taxon
   send: send
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
+  send_and_sign_out: Send and Sign Out
+  send_confirmation_email: Send confirmation email
   send_me_reset_password_instructions: Send me reset password instructions
   sending: Sending...
   # Label for messages you've sent
@@ -5743,6 +5747,28 @@ en:
     will not be able to sign in to your account until you click the link in
     the email, so <strong>make absolutely sure you have entered your email address
     correctly.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>You are about to sign out</h3>
+    <p>
+      After you send the confirmation email, you will be signed out and you
+      will not be able to log in to your account until you click the link in
+      the email, so <strong class="bg-warning">make absolutely sure you have
+      entered your email address correctly.</strong>
+    </p>
+    <p>
+      Here's the email address we will send the confirmation to:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>If you unsubscribed from all emails...</h4>
+    <p>
+      If you have unsubscribed from <em>all</em> email from us, we cannot send
+      you a confirmation email. To re-subscribe, you need to find a previous
+      email from us, click the unsubscribe link, and choose to opt back
+      in to receiving email. If you cannot do this, please
+      email
+      <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> using
+      the email address you've entered here so we can assist you.
+    </p>
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"

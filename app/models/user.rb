@@ -298,9 +298,9 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern, on: :create
-  validate :validate_email_domain_exists, on: :create
-  
+  validate :validate_email_pattern
+  validate :validate_email_domain_exists
+
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
@@ -310,6 +310,7 @@ class User < ApplicationRecord
   scope :active, -> { where("suspended_at IS NULL") }
 
   def validate_email_pattern
+    return unless new_record? || email_changed?
     return if CONFIG.banned_emails.blank?
     return if self.email.blank?
     failed = false
@@ -327,8 +328,11 @@ class User < ApplicationRecord
   # this approach is probably going to have some false positives... but probably
   # not many
   def validate_email_domain_exists
+    return unless new_record? || email_changed?
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
-    return true if self.email.blank?
+    return true if email.blank?
+    return true unless email.include?( "@" )
+
     domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil

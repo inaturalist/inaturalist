@@ -262,10 +262,16 @@ export function resendConfirmation( ) {
 
 export function confirmResendConfirmation( ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_resend_confirmation_prompt_html" ),
-      confirmText: I18n.t( "resend_and_sign_out" ),
+      message: I18n.t( "users_edit_send_confirmation_prompt_html", {
+        email: state.profile.email,
+        defaultValue: I18n.t( "users_edit_resend_confirmation_prompt_html" )
+      } ),
+      confirmText: I18n.t( "send_and_sign_out", {
+        defaultValue: I18n.t( "resend_and_sign_out" )
+      } ),
       onConfirm: async ( ) => {
         await dispatch( saveUserSettings( ) );
         const { profile } = getState( );

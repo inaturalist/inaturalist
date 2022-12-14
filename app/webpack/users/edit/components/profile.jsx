@@ -52,7 +52,9 @@ const Profile = ( {
   let emailConfirmation = (
     <div>
       <p className="text-success">
-        { I18n.t( "confirmed_on_date", { date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) ) } )}
+        { I18n.t( "confirmed_on_date", {
+          date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )
+        } )}
       </p>
       { profile.unconfirmed_email && (
         <div className="alert alert-warning">
@@ -91,7 +93,13 @@ const Profile = ( {
           className="btn btn-nostyle alert-link"
           onClick={( ) => confirmResendConfirmation( )}
         >
-          { I18n.t( "resend_confirmation_email" ) }
+          {
+            profile.confirmation_sent_at
+              ? I18n.t( "resend_confirmation_email" )
+              : I18n.t( "send_confirmation_email", {
+                defaultValue: I18n.t( "resend_confirmation_email" )
+              } )
+          }
         </button>
       </div>
     );
