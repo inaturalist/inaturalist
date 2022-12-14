@@ -92,7 +92,7 @@ th:
     ชื่อตามลำดับอนุกรมวิธานจะถูกสร้างขึ้นมาโดยอัตโนมัติจากชื่อวิทยาศาสตร์ของสิ่งมีชีวิตในลำดับอนุกรมวิธานดังกล่าว
     เมื่อบันทึกชื่อตามอนุกรมวิธานใหม่นี้ ผู้ใช้สามารถเพิ่มชื่ออื่น ๆ ได้ที่นี่ (ชื่อสามัญ ชื่อวิทยาศาสตร์เดิมที่ถูกยกเลิก ฯลฯ)
   a_flag_for_x: "ติดธงสำหรับ %{x}"
-  a_member_of_taxon_html: "สมาชิกของ %{taxon}"
+  a_member_of_taxon_html: "สมาชิกของ%{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A ถึง Z"
@@ -543,9 +543,9 @@ th:
   back_to_your_observations: กลับไปที่การสังเกตของคุณ
   back_to_your_profile: กลับไปที่โปรไฟล์ของคุณ
   based_on_the_evidence_can_id_be_improved: |
-    จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังสามารถยืนยันหรือจำแนกย่อยได้อีกหรือไม่?
+    จากหลักฐาน หน่วยฯ ที่เสนอโดยชุมชนยังยืนยันหรือจำแนกย่อยได้อีกหรือไม่?
   batch_edit: แก้ไขหลายรายการ
-  be_the_first_to_fave_this_observation: เพิ่มการสังเกตนี้เข้ารายการโปรดเป็นคนแรก!
+  be_the_first_to_fave_this_observation: ชอบการสังเกตนี้เป็นคนแรก!
   bg_color: สีพื้นหลัง
   birds: นก
   birthday: วันเกิด
@@ -1334,6 +1334,18 @@ th:
     ส่วนหนึ่งของ<a href="%{url}">เครือข่าย iNaturalist</a>
   #As in members of a project
   members: สมาชิก
+  mentioned_you_in_noun_html: "%{user} พูดถึงคุณใน%{noun}"
+  mentioned_you_in_noun_by_html: "%{user} พูดถึงคุณใน%{noun}โดย %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} พูดถึงคุณใน%{noun}โดย %{by}"
+  mentioned_you_in_noun_by_you_html: "%{user} พูดถึงคุณใน%{noun}โดยคุณ"
+  mentioned_you_in_a_x_on_noun_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}"
+  mentioned_you_in_an_x_on_noun_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดยคุณ"
+  mentioned_you_in_an_x_on_noun_by_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดย %{by}"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} พูดถึงคุณใน%{x}บน%{noun}โดยคุณ"
   merge_two_places_together: รวมสองสถานที่เข้าด้วยกัน ทุกชนิดในรายการตรวจสอบและข้อมูลทางภูมิศาสตร์จะถูกรวมด้วย
   message: ข้อความ
   message_from_user_at_time: จาก %{user} เมื่อ %{time}
