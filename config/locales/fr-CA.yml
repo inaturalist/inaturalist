@@ -266,10 +266,6 @@ fr-CA:
   configure_a_widget_to_show: "Configurez un widget pour afficher les observations\nd’%{site_name} sur votre site Web ou votre blogue. Vous devrez peut-être inclure\nle CSS intégré dans le <code>&lt;head&gt;</code> de votre HTML. N’hésitez pas\nà réécrire le CSS."
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   devise:
-    passwords:
-      send_instructions: 'Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
-      send_paranoid_instructions: "Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
-      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
     mailer:
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
