@@ -102,6 +102,9 @@ eu:
     eguneratutako izen zientifikoak eta abar).
   a_flag_for_x: "marka bat: %{x}"
   a_member_of_taxon_html: "honetako kide bat: %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A-Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -155,6 +158,10 @@ eu:
   action: Ekintza
   actions: Ekintzak
   active: Aktiboa
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiboa
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiboa
   active_users: Erabiltzaile aktiboak
   activity: Jarduera
   adapted_by_name_from_a_work_by_original: "%{name}(e)k onartua %{original}(r)en lan batean oinarritua"
