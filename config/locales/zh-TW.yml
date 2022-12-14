@@ -840,6 +840,10 @@ zh-TW:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 評論
   comment_deleted: 評論已刪除
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: 隱藏內容
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: 取消隱藏內容
   comments: 評論
   comments_by_me: 由我做出的評論
   comments_have_been_disabled: 已停用評論
@@ -895,6 +899,7 @@ zh-TW:
     目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
     而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
+  confidential: 保密的
   configure: 設置
   configure_a_widget_to_show: 設定小工具來在您的網站，或部落格上顯示出 %{site_name} 的觀察。您可能會需要於您的 HTML 裡 <code>&lt;head&gt;</code> 元素來包含內嵌式 CSS。請隨意重新編寫 CSS 吧。
   confirm: 確認
@@ -916,6 +921,7 @@ zh-TW:
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
+  conservation_status_created: 保育等級已建立
   conservation_status_deleted: 保育等級已刪除
   conservation_status_updated: 保育等級已更新
   conservation_status_descriptions:
@@ -1323,9 +1329,15 @@ zh-TW:
   details: 詳細資料
   deviation: 偏差
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        如果我們的資料庫中有您的 email 地址，您將會在幾分鐘內收到一封 email，裡頭有確認您 email 方法的說明。
     failure:
       already_authenticated: '您已經登入了。'
       unauthenticated: '您必須登入或是註冊才能繼續使用。'
+      invalid: '無效的電子郵件或密碼。'
       invalid_token: '無效的認證安全碼。'
       user:
         suspended: 您的帳號已被停用
@@ -1333,13 +1345,22 @@ zh-TW:
       signed_in: '已成功登入。'
       signed_out: '已成功登出。'
     passwords:
+      send_instructions: |
+        在幾分鐘內，您將收到一封電子郵件說明有關如何重置您的密碼。
       updated: '您的密碼已變更成功，現在已登入。'
       updated_not_active: '您的密碼已成功變更。'
+      send_paranoid_instructions: |
+        如果您的 email 存在我們的資料庫中，您會在幾分鐘內在您 email 中收到回復密碼的網址。
+      no_token: |
+        若您不是從密碼重設的 email 中點選連結，您無法存取此頁面。如果您是來自密碼重設的 email，請確保您使用所提供的完整網址。
     registrations:
       destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
       signed_up: '歡迎！您已成功註冊。'
       updated: '您已成功更新您的帳戶。'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: 帳號確認說明
       reset_password_instructions:
         subject: '重設密碼的說明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
@@ -2414,6 +2435,8 @@ zh-TW:
       yy: "%d年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MM/DD h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
