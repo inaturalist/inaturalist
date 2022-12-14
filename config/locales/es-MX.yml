@@ -1483,11 +1483,6 @@ es-MX:
     confirmations:
       confirmed: "Su dirección de correo electrónico ha sido confirmada con éxito."
       send_instructions: "Recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo electrónico en unos minutos."
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Si tu dirección de correo electrónico ya existe en nuestra base de datos, recibirás un correo electrónico con instrucciones para confirmar tu dirección de correo en unos
-        minutos.
     failure:
       already_authenticated: 'Ya has iniciado sesión.'
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
@@ -1501,11 +1496,8 @@ es-MX:
       signed_in: 'Sesión iniciada correctamente.'
       signed_out: 'Has cerrado sesión correctamente.'
     passwords:
-      send_instructions: 'Recibirás un correo con instrucciones sobre cómo modificar tu contraseña en unos pocos minutos.'
       updated: 'Tu contraseña se ha modificado correctamente. Has iniciado sesión.'
       updated_not_active: 'Tu contraseña se ha modificado correctamente.'
-      send_paranoid_instructions: "Si tu dirección de correo electrónico existe en nuestra base de datos, recibirás un enlace de recuperación de contraseña en tu dirección de correo electrónico en unos minutos."
-      no_token: "No puedes acceder esta página a no ser que provenga desde un correo electrónico de cambio de contraseña. Si vienes desde un correo electrónico de cambio de contraseña, por favor asegúrate de utilizar la dirección URL completa provista."
     registrations:
       destroyed: '¡Adiós! Tu cuenta se ha cerrado con éxito. Esperamos verte pronto de nuevo.'
       signed_up: '¡Bienvenido/a! Te has registrado con éxito.'
