@@ -1377,9 +1377,15 @@ fi:
   details: Tiedot
   deviation: Poikkeama
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin kuluttua sähköpostiviestin, jossa on ohjeet sähköpostiosoitteesi vahvistamiseen.
     failure:
       already_authenticated: 'Olet jo kirjautunut sisään.'
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
+      invalid: 'Väärä sähköposti tai salasana.'
       invalid_token: 'Todennuskoodi ei kelpaa.'
       user:
         suspended: Käyttäjätunnuksesi on suljettu
@@ -1387,13 +1393,22 @@ fi:
       signed_in: 'Sisäänkirjautuminen onnistui.'
       signed_out: 'Uloskirjautuminen onnistui.'
     passwords:
+      send_instructions: |
+        Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.
       updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
       updated_not_active: 'Salasanasi on vaihdettu onnistuneesti.'
+      send_paranoid_instructions: |
+        Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.
+      no_token: |
+        Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä.
     registrations:
       destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
       signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
       updated: 'Päivitit tilisi onnistuneesti.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Vahvistusohjeet
       reset_password_instructions:
         subject: 'Ohjeet salasanan nollaukseen'
   devise_reset_password_instructions_hello_email: Hei %{email}
@@ -2436,6 +2451,8 @@ fi:
       yy: "%dv"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D. MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D.MM HH.mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
