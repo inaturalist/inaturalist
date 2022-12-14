@@ -1280,6 +1280,7 @@ zh-CN:
     failure:
       already_authenticated: '您已经登录'
       unauthenticated: '您需要登录或注册才能继续。'
+      invalid: '电子邮箱或密码无效。'
       invalid_token: '无效的认证安全码'
       user:
         suspended: 您的账户已被停用
@@ -1287,13 +1288,22 @@ zh-CN:
       signed_in: '登录成功。'
       signed_out: '已成功登出。'
     passwords:
+      send_instructions: |
+        您将很快收到一封关于如何重设密码的电子邮件说明。
       updated: '您已成功修改密码，现在您已成功登录。'
       updated_not_active: '您已成功修改密码。'
+      send_paranoid_instructions: |
+        如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。
+      no_token: |
+        您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。
     registrations:
       destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: 确认说明
       reset_password_instructions:
         subject: '重设密码的说明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
@@ -2307,6 +2317,8 @@ zh-CN:
       yy: "%d 年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
