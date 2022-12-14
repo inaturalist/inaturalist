@@ -1417,9 +1417,15 @@ de:
   details: Details
   deviation: Abweichung
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Wenn deine E-Mail-Adresse in unserer Datenbank existiert, wirst du in wenigen Minuten eine E-Mail mit einer Anleitung zum Bestätigen deiner E-Mail-Adresse erhalten.
     failure:
       already_authenticated: 'Du bist bereits angemeldet.'
       unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
+      invalid: 'Email-Adresse oder Passwort ungültig.'
       invalid_token: 'Identifizierungscode ungültig'
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
@@ -1427,13 +1433,22 @@ de:
       signed_in: 'Erfolgreich angemeldet.'
       signed_out: 'Erfolgreich abgemeldet.'
     passwords:
+      send_instructions: |
+        In wenigen Minuten wirst du eine Email mit Anweisungen erhalten, wie das Passwort zurückgesetzt werden kann.
       updated: 'Das Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.'
       updated_not_active: 'Dein Passwort wurde erfolgreich geändert.'
+      send_paranoid_instructions: |
+        Wenn deine E-Mail-Adresse in unserer Datenbank ist, wirst du in wenigen Minuten einen 'Passwort wiederherstellen' Link erhalten.
+      no_token: |
+        Du kannst auf diese Seite nicht ohne eine 'Passwort zurücksetzen' E-Mail zugreifen. Wenn du von einer 'Passwort zurücksetzen' E-Mail kommst, bitte stelle sicher, dass du die enthaltene URL vollständig benutzt hast.
     registrations:
       destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
       signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
       updated: 'Du hast dein Konto erfolgreich aktualisiert.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Bestätigungsanweisungen
       reset_password_instructions:
         subject: 'Anweisungen zum Zurücksetzen des Passworts'
   devise_reset_password_instructions_hello_email: Hallo %{email}
@@ -2533,6 +2548,8 @@ de:
       yy: "%d J"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM T h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
