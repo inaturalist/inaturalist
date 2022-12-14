@@ -917,6 +917,7 @@ sr:
   devise:
     failure:
       already_authenticated: 'Već si prijavljen/a.'
+      invalid: 'Pogrešan imejl ili lozinka.'
     sessions:
       signed_in: 'Prijavljivanje uspešno.'
       signed_out: 'Odjavljivanje uspešno.'
@@ -1629,6 +1630,8 @@ sr:
       yy: "%dg"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, GGGG · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "MMMM D S:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
