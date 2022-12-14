@@ -1382,11 +1382,6 @@ gl:
   details: Detalles
   deviation: Desviación
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Se o teu enderezo de correo electrónico está na nosa base de dados, recibirás un correo con instruccións para confirmar a túa dirección de email nuns minutos.
     failure:
       already_authenticated: 'Xa iniciaches a sesión.'
       unauthenticated: 'Necesitas iniciar sesión ou darte de alta antes de continuar.'
@@ -1397,11 +1392,8 @@ gl:
       signed_in: 'Iniciouse a sesión correctamente.'
       signed_out: 'Pechouse a sesión correctamente.'
     passwords:
-      send_instructions: 'Recibirás un correo electrónico con instruccións sobre como restaurar a túa palabra chave nuns intres.'
       updated: 'Cambiouse a túa palabra chave correctamente. Agora xa estás rexistrado/a.'
       updated_not_active: 'A túa palabra chave cambiouse correctamente.'
-      send_paranoid_instructions: "Se o teu enderezo de correo electónico está na nosa base de dados, recibirás un vínculo de recuperación da palabra chave no teu correo nuns minutos."
-      no_token: "Non podes acceder a esta páxina sen vir dun correo electrónico de restauro de palabra chave. Se vés dun correo de restauro de palabra chave, por favor, asegúrate de empregar a URL fornecida enteira."
     registrations:
       destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
       signed_up: '¡Benvido/a! Iniciaches a sesión correctamente.'
