@@ -1499,9 +1499,15 @@ lv:
   details: Apraksts
   deviation: Novirze
   devise:
+    confirmations:
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Ja esi saglabājis savu e-pasta adresi mūsu datu bāzē, pēc pāris minūtēm saņemsi ziņu ar e-pasta adreses apstiprināšanas instrukcijām.
     failure:
       already_authenticated: 'Jau esi pierakstījies.'
       unauthenticated: 'Lai turpinātu, jāpierakstās vai jāreģistrējas.'
+      invalid: 'Nepareizs e-pasts vai parole.'
       invalid_token: 'Nederīgs autentifikācijas marķieris'
       user:
         suspended: Tavs konts ir uz laiku bloķēts
@@ -1509,13 +1515,22 @@ lv:
       signed_in: 'Pierakstīšanās notika veiksmīgi.'
       signed_out: 'Izrakstīšanās notika veiksmīgi.'
     passwords:
+      send_instructions: |
+        Pēc dažām minūtēm saņemsi e-pasta ziņu ar norādījumiem paroles atjaunošanai.
       updated: 'Parole ir veiksmīgi nomainīta. Tagad esi pierakstījies.'
       updated_not_active: 'Parole ir veiksmīgi nomainīta.'
+      send_paranoid_instructions: |
+        Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai.
+      no_token: |
+        Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs.
     registrations:
       destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
       signed_up: 'Laipni lūdzam! Esi veiksmīgi reģistrējies.'
       updated: 'Konts ir veiksmīgi atjaunots.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Apstiprināšanas norādījumi
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
@@ -2619,6 +2634,8 @@ lv:
       yy: "%d g."
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
