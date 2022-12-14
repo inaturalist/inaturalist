@@ -16,12 +16,10 @@ module Users
     skip_before_action :verify_authenticity_token
 
     before_action do
-      return unless current_user
-
       # If the user is already confirmed and they're not clicking a
       # confirmation link to confirm a change to their email address, don't
       # show them any confirmation UI b/c there's nothing for them to do
-      if current_user.confirmed? && !current_user.unconfirmed_email?
+      if current_user&.confirmed? && !current_user.unconfirmed_email?
         set_flash_message :notice, :confirmed if is_navigational_format?
         redirect_to dashboard_path
       end

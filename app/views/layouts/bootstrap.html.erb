@@ -65,7 +65,7 @@
       <% end %>
 
       <% if !@headless && flash.empty? %>
-        <% if current_user && !current_user.confirmed? && !current_page?( controller: :users, action: :edit ) %>
+        <% if current_user && !current_user.confirmed? && !( controller.controller_name == "users" && controller.action_name == "edit" ) %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
