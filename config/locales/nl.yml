@@ -874,6 +874,8 @@ nl:
   change_group: Wijzig groep
   change_icon: Icoon wijzigen
   change_password: Wachtwoord wijzigen
+  #Message shown after you change your email address
+  change_to_email_requested_html: Verandering naar <strong>%{email}</strong> aangevraagd. Controleer jouw e-mail op dat adres om de wijziging te bevestigen.
   change_types:
     activated_soon: binnenkort geactiveerd
     change_types: Types wijzigen
@@ -1047,6 +1049,8 @@ nl:
   confirm_your_info: Bevestig je informatie
   #date will be formated with momentjs.datetime_with_zone_no_year
   confirmation_email_sent_at_datetime: Bevestigings-e-mail verzonden op %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bevestigd op %{date}
   confirming_ids: Bevestigende ID's
   confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1484,25 +1488,69 @@ nl:
   details: Details
   deviation: Afwijking
   devise:
+    confirmations:
+      confirmed: "Jouw e-mailadres is succesvol bevestigd."
+      send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies voor het bevestigen van uw e-mailadres."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Als je e-mailadres in onze database staat ontvang je binnen enkele minuten een link met instructies hoe je jouw wachtwoord kan bevestigen.
     failure:
       already_authenticated: 'Je bent al ingelogd.'
       unauthenticated: 'Je moet inloggen of je aanmelden voor je verder gaat.'
+      invalid: 'Ongeldig e-mailadres of wachtwoord.'
       invalid_token: 'Ongeldig authenticatie-token.'
+      unconfirmed: |
+        Controleer jouw e-mail en klik op de link in de e-mail die je hebt ontvangen
+        om jouw account te bevestigen.
       user:
         suspended: Je account is opgeschort
     sessions:
       signed_in: 'Succesvol ingelogd.'
       signed_out: 'Succesvol uitgelogd.'
     passwords:
+      send_instructions: |
+        Binnen enkele minuten ontvang je een e-mail met instructies om je wachtwoord te resetten.
       updated: 'Je wachtwoord is succesvol gewijzigd. Je bent nu ingelogd.'
       updated_not_active: 'Je wachtwoord is succesvol gewijzigd.'
+      send_paranoid_instructions: |
+        Als je e-mailadres in onze database staat, ontvangt je binnen enkele minuten een link om je wachtwoord te herstellen.
+      no_token: |
+        Je hebt geen toegang tot deze pagina als je niet via een e-mail voor het herstellen van je wachtwoord komt. Als je wel via een e-mail voor het herstellen van je wachtwoord bent gekomen, controleer of je de volledige url hebt gebruikt.
     registrations:
       destroyed: 'Tot ziens! Je account is succesvol geannuleerd. We hopen je snel weer te zien.'
       signed_up: 'Welkom! Je bent succesvol aangemeld.'
+      signed_up_but_inactive: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account nog niet is geactiveerd."
+      signed_up_but_locked: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account is vergrendeld."
+      signed_up_but_unconfirmed: "Een bericht met een bevestigingslink is verzonden naar jouw e-mailadres. Volg de link om je account te activeren."
       updated: 'Je hebt je account succesvol bijgewerkt.'
     mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Instructies voor bevestiging
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: E-mail wijziging aangevraagd
       reset_password_instructions:
         subject: 'Instructies voor wachtwoord resetten'
+  devise_confirmation_instructions_if_you_did_not: |
+    Als je je niet hebt ingeschreven voor @vow_or_con{vow:een|een} %{site_name} account, negeer dan deze e-mail.
+  devise_confirmation_instructions_please_click: |
+    Klik op de onderstaande link om jouw e-mailadres te bevestigen:
+  devise_confirmation_instructions_resend_instructions: |
+    Je moet een werkend e-mailadres hebben om iNaturalist te kunnen gebruiken. Toen jij je aanmeldde
+    voor een account had je een bevestigingsmail moeten ontvangen met een
+    link om op te klikken om te bevestigen dat je e-mailadres werkt. Als je dat nog niet
+    hebt gedaan kun je hier jezelf alsnog een bevestigingsmail sturen.
+  devise_confirmation_instructions_send_confirmation_email: Stuur bevestigings-e-mail
+  devise_email_changed_you_requested: Je hebt een verzoek gestuurd om %{old_email} naar %{new_email} te wijzigen.
+  devise_email_changed_you_will_receive: |
+    Je ontvangt een e-mail op het nieuwe adres om de wijziging te bevestigen maar we
+    wilden je op je oude adres informeren voor het geval dat iemand anders
+    toegang heeft tot je account en het probeert te wijzigen zonder dat je het weet. Als
+    jij je e-mailadres niet opzettelijk hebt gewijzigd, stuur deze
+    e-mail dan onmiddellijk naar help@inaturalist.org zodat we het kunnen onderzoeken.
   devise_reset_password_instructions_hello_email: Hallo %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Als je dit niet hebt aangevraagd negeer dan deze e-mail.
@@ -1650,6 +1698,12 @@ nl:
   email: E-mail
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
+    Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
+    datum kan iedereen die zijn e-mailadres niet heeft bevestigd niet
+    inloggen tenzij hij zijn wachtwoord opnieuw instelt. Ga om je e-mailadres te bevestigen
+    naar je %{link_start_tag}account instellingen%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
@@ -2079,6 +2133,12 @@ nl:
   ids_made_for_others: ID's voor anderen gedaan
   if_for_some_reason_a_user_doesnt_agree: |
     Als je niet akkoord gaat met het gemeenschapstaxon kun je het verwerpen. Jouw determinatie wordt dan gebruikt bij het koppelen aan andere waarnemingen, het bijwerken van levenslijsten, etc. Je waarneming kan alleen van onderzoekskwaliteit worden wanneer de gemeenschap het met je eens is.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Als het uitdiepen van een ouder resulteert in meer dan 10 onbedoelde meningsverschillen moet je
+    de bovenliggende splitsen nadat je het kind hebt verplaatst om bestaande ID's van
+    de bovenliggende <strong>(B)</strong> te vervangen door ID's die het niet oneens zijn.
   if_matches_come_from_a_comprehensive_list: Als gevonden items van een volledige lijst komen, wordt hier een groene balk weergegeven.
   if_this_is_a_scientific_name: Als dit een wetenschappelijk naam betreft, is hij momenteel aanvaard?
   if_this_link_will_apply_to_descendant: Als deze link van toepassing is op onderliggende taxa kun je sjabloontags gebruiken om de taxonnaam in de URL in te vullen
@@ -2637,6 +2697,8 @@ nl:
       yy: "%dj"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -4173,6 +4235,10 @@ nl:
   research_grade_tooltip_html: '"Onderzoekskwaliteit"-waarnemingen hebben media, locatie, een datum en een gemeenschapsconsensus over een nauwkeurige determinatie (meestal op soortniveau). <a href="https://www.inaturalist.org/pages/help#quality">Meer informatie over kwaliteitsbeoordelingen</a>'
   research_grade_observations_have: 'Waarnemingen van "onderzoekskwaliteit" hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie. Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.'
   research_grade_qualification: Kwalificatie onderzoekskwaliteit
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Opnieuw verzenden en afmelden
+  resend_confirmation_email: Bevestigingsmail opnieuw verzenden
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Reset
@@ -5284,6 +5350,10 @@ nl:
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
   users_contributions_to_project_html: Bijdragen van <a href="%{url}">%{login}</a> aan %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Nadat je de bevestigingsmail opnieuw hebt verstuurd word je afgemeld en kan 
+    je niet inloggen op je account totdat je op de link in
+    de e-mail klikt dus <strong>zorg ervoor dat je een geldig e-mailadres hebt ingevoerd.</strong>
   users_favorites: "Favorieten van %{user}"
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
@@ -5611,6 +5681,7 @@ nl:
   you_dont_have_permission_to_edit_those_photos: Je hebt geen rechten om deze foto's te bewerken.
   you_faved_this: Je hebt dit opgeslagen als favoriet!
   you_have_left_x_project: "Je hebt %{project} verlaten"
+  you_have_not_confirmed_your_email_address: Je hebt je e-mailadres nog niet bevestigd!
   you_havent_linked_your_inaturalist_google_account: "Je hebt je %{site_name}-account nog niet aan je Google-account gekoppeld."
   you_joined_this_project: Je bent lid geworden van dit project!
   you_must_be_a_member_of_this_project_to_do_that: Je moet lid zijn van dit project om dat te kunnen doen
