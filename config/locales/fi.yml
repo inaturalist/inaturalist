@@ -1377,11 +1377,6 @@ fi:
   details: Tiedot
   deviation: Poikkeama
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin kuluttua sähköpostiviestin, jossa on ohjeet sähköpostiosoitteesi vahvistamiseen.
     failure:
       already_authenticated: 'Olet jo kirjautunut sisään.'
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
@@ -1392,11 +1387,8 @@ fi:
       signed_in: 'Sisäänkirjautuminen onnistui.'
       signed_out: 'Uloskirjautuminen onnistui.'
     passwords:
-      send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.'
       updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
       updated_not_active: 'Salasanasi on vaihdettu onnistuneesti.'
-      send_paranoid_instructions: "Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen."
-      no_token: "Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä."
     registrations:
       destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
       signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
