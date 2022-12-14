@@ -1503,13 +1503,6 @@ sv:
   details: Detaljer
   deviation: Avvikelse
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Om din e-postadress finns i vår databas, kommer du att få ett e-postmeddelande
-        med instruktioner för hur du bekräftar din e-postadress om några
-        minuter.
     failure:
       already_authenticated: 'Du är redan inloggad.'
       unauthenticated: 'Du måste logga in eller registrera dig för att kunna fortsätta.'
@@ -1520,11 +1513,8 @@ sv:
       signed_in: 'Inloggningen lyckades.'
       signed_out: 'Utloggningen lyckades.'
     passwords:
-      send_instructions: 'Du kommer att få ett e-postmeddelande med instruktioner om hur du återställer ditt lösenord inom några minuter.'
       updated: 'Ditt lösenord har ändrats. Du är nu inloggad.'
       updated_not_active: 'Ditt lösenord har ändrats.'
-      send_paranoid_instructions: "Om din e-postadress finns i vår databas kommer du att få en länk för återställning av lösenord till din e-postadress om några minuter."
-      no_token: "Du kan inte använda denna sida utan att komma från ett lösenordsåterställningsmejl. Om du kommer från ett sådant mejl, se till att du använde hela URL:en därifrån."
     registrations:
       destroyed: 'Hej då! Ditt konto har nu avslutats. Vi hoppas att vi snart ses igen.'
       signed_up: 'Välkommen! Du har lyckats registrera dig.'
