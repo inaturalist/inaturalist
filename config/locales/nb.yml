@@ -1247,11 +1247,8 @@ nb:
       signed_in: 'Pålogging vellykket.'
       signed_out: 'Avlogging vellykket.'
     passwords:
-      send_instructions: 'Du vil om noen minutter motta en e-post med instruksjoner om hvordan du tilbakestiller ditt passord.'
       updated: 'Passordet ditt ble endret. Du er nå logget inn.'
       updated_not_active: 'Endring av ditt passord var vellykket.'
-      send_paranoid_instructions: "Hvis din e-postadresse finnes i vår database, vil du motta en gjenopprett passord-kobling på din e-postadresse om noen få minutter."
-      no_token: "Du får ikke tilgang til denne siden uten å komme fra en e-post for tilbakestilling av passord. Hvis du kommer fra en tilbakestillings-e-post, sjekk at du brukte hele URL-adressen."
     registrations:
       destroyed: 'Ha det bra! Kontoen din ble avsluttet. Vi håper å se deg igjen snart.'
       signed_up: 'Velkommen! Registreringen var vellykket.'
