@@ -1432,11 +1432,6 @@ ca:
   details: Detalls
   deviation: Desviació
   devise:
-    confirmations:
-      #Message a user sees when they try to manually trigger email
-      #confirmation. This is a feature we'd like to use in the future.
-      send_paranoid_instructions: |
-        Si la teva adreça de correu-e existeix a la nostra base de dades, en rebràs un amb instruccions per confirmar-la en pocs minuts.
     failure:
       already_authenticated: 'Ja heu iniciat la sessió.'
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
@@ -1447,11 +1442,8 @@ ca:
       signed_in: 'Sessió iniciada correctament.'
       signed_out: 'Sessió finalitzada correctament.'
     passwords:
-      send_instructions: 'Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.'
       updated: 'La contrasenya ha canviat correctament. Ara ja esteu registrat.'
       updated_not_active: 'La vostra contrasenya s''ha modificat correctament.'
-      send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
-      no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
     registrations:
       destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
