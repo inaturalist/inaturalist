@@ -138,6 +138,7 @@ export function saveUserSettings( ) {
     delete params.user.roles;
     delete params.user.saved_status;
     delete params.user.site;
+    delete params.user.unconfirmed_email;
     delete params.user.updated_at;
 
     // fetching user settings here to get the source of truth
@@ -278,7 +279,7 @@ export function confirmResendConfirmation( ) {
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "users_edit_send_confirmation_prompt_html", {
-        email: state.profile.email,
+        email: state.profile.email || "",
         defaultValue: I18n.t( "users_edit_resend_confirmation_prompt_html" )
       } ),
       confirmText: I18n.t( "send_and_sign_out", {

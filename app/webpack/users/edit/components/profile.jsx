@@ -166,7 +166,7 @@ const Profile = ( {
             id="user_email"
             type="text"
             className="form-control"
-            value={profile.email}
+            value={profile.email || ""}
             name="email"
             onChange={handleInputChange}
           />
