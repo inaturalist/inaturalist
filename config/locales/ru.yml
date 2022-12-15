@@ -1570,7 +1570,6 @@ ru:
   deviation: Отклонение
   devise:
     confirmations:
-      confirmed: "Ваш адрес электронной почты почты успешно подтвержден."
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению адреса электронной почты."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -4407,6 +4406,9 @@ ru:
   selected_taxon: Выбранный таксон
   select_this_taxon: Выберите этот Таксон
   send: Отправить
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Отправить повторно и выйти
   send_me_reset_password_instructions: Отправьте мне инструкции по сбросу пароля
   sending: Отправка…
   #Label for messages you've sent
