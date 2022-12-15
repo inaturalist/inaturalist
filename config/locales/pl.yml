@@ -1324,7 +1324,8 @@ pl:
   deviation: Odchylenie
   devise:
     confirmations:
-      confirmed: "Twój adres e-mail został pomyślnie zweryfikowany."
+      confirmed: |
+        Twój adres e-mail został pomyślnie potwierdzony. Możesz teraz zalogować się tutaj na stronie internetowej lub w aplikacjach mobilnych iNaturalist lub Seek.
       send_instructions: "W ciągu kilku minut otrzymasz email z instrukcjami, jak potwierdzić Twój adres email."
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
