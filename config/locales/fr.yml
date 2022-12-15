@@ -851,6 +851,8 @@ fr:
   change_group: Modifier le groupe
   change_icon: Modifier l’icône
   change_password: Modifier le mot de passe
+  #Message shown after you change your email address
+  change_to_email_requested_html: 'Changement d''adresse e-mail demandé : <strong>%{email}</strong>. Consultez votre courrier à cette adresse pour confirmer la modification.'
   change_types:
     activated_soon: activé sous peu
     change_types: Modifier les types
@@ -1033,6 +1035,10 @@ fr:
   confirm_new_password: Confirmer le nouveau mot de passe
   confirm_now: Confirmer maintenant
   confirm_your_info: Confirmer votre information
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: E-mail de confirmation envoyé à %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmé le %{date}
   confirming_ids: M'informer des confirmations
   confirming_ids_description: Si vous désactivez cette option, vous ne recevrez plus de notification quand une identification concorde avec la vôtre.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1478,6 +1484,9 @@ fr:
   deviation: Déviation
   devise:
     confirmations:
+      confirmed: |
+        Votre adresse e-mail a été confirmée. Vous pouvez maintenant vous connecter à votre compte sur le site Web ou dans les applis iNaturalist et Seek.
+      send_instructions: "Vous recevrez dans quelques minutes des instructions par e-mail pour confirmer votre adresse e-mail."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1487,6 +1496,8 @@ fr:
       unauthenticated: 'Vous devez vous connecter ou vous inscrire avant de continuer.'
       invalid: 'E-mail ou mot de passe non valide.'
       invalid_token: 'Code d''authentification non valide.'
+      unconfirmed: |
+        Pour confirmer votre compte, veuillez consulter votre courrier et cliquer sur le lien dans l'e-mail que vous avez reçu.
       user:
         suspended: Votre compte a été suspendu
     sessions:
@@ -1504,13 +1515,30 @@ fr:
     registrations:
       destroyed: 'Au revoir ! Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.'
       signed_up: 'Bienvenue ! Vous vous êtes inscrit avec succès.'
+      signed_up_but_inactive: "Votre compte a été créé avec succès. Cependant, vous ne pouvez pas vous connecter, car votre compte n'est pas encore activé."
+      signed_up_but_locked: "Votre compte a été créé avec succès. Cependant, vous ne pouvez pas vous connecter, car votre compte est verrouillé."
+      signed_up_but_unconfirmed: "Un message contenant un lien de confirmation a été envoyé à votre adresse e-mail. Cliquez sur ce lien pour activer votre compte."
       updated: 'Vous avez mis à jour votre compte avec succès.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Instructions de confirmation
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Changement d'adresse e-mail demandé
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
+  devise_confirmation_instructions_if_you_did_not: |
+    Si vous n'avez pas créé de compte sur %{site_name}, veuillez ignorer cet e-mail.
+  devise_confirmation_instructions_please_click: |
+    Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse e-mail.
+  devise_confirmation_instructions_resend_instructions: |
+    Vous devez avoir une adresse e-mail fonctionnelle pour utiliser iNaturalist. Après avoir créé un compte, vous devriez avoir reçu un e-mail contenant un lien pour confirmer que votre adresse e-mail fonctionne. Cependant, si vous ne l'avez pas reçu, vous pouvez vous envoyer un autre e-mail de confirmation.
+  devise_confirmation_instructions_send_confirmation_email: Envoyer un e-mail de confirmation
+  devise_email_changed_you_requested: Vous avez demandé de remplacer %{old_email} par %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Vous recevrez un e-mail à la nouvelle adresse pour confirmer le changement, mais nous voulions vous envoyer une notification à votre ancienne adresse au cas où quelqu'un d'autre aurait accès à votre compte et essayerait de changer votre adresse à votre insu. Si vous n'avez pas modifié intentionnellement votre adresse e-mail, veuillez transmettre immédiatement le présent e-mail à help@inaturalist.org pour que nous puissions faire une enquête.
   devise_reset_password_instructions_hello_email: Bonjour %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce courriel.
@@ -1658,6 +1686,9 @@ fr:
   email: Courriel
   email_description: Votre e-mail n'est pas partagé avec d'autres utilisateurs
   email_address_for_comments_and_other_feedback: Adresse électronique pour les commentaires
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Veuillez svp confirmer votre courriel.%{link_end_tag}</strong>.
+    Tous les usagers et usagères doivent confirmer leur adresse courriel d’ici le 1er juillet 2023. Après cette date, quiconque n’aura pas confirmé son courriel ne pourra se connecter à son compte et devra réinitialiser son mot de passe. Pour confirmer votre courriel, allez aux %{link_start_tag}paramètres de votre compte%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
   email_notifications: Notifications par mail
   embed: 'Intégrer'
@@ -3898,6 +3929,14 @@ fr:
   proposed_taxa_that_support_the_community_id: Taxons proposés qui confirment l’ID de la communauté
   protozoans: protozoaires
   provider_authorizations: Autorisations des fournisseurs
+  provider_without_email_error_apple: |
+    Apple n'a pas fourni d'adresse e-mail pour ce compte alors qu'une adresse e-mail est requise. Veuillez créer un compte sur ce site au lieu de vous connecter par l'intermédiaire d'Apple.
+  provider_without_email_error_flickr: |
+    Flickr n'a pas fourni d'adresse e-mail pour ce compte alors qu'une adresse e-mail est requise. Veuillez créer un compte sur ce site au lieu de vous connecter par l'intermédiaire de Flickr.
+  provider_without_email_error_generic: |
+    Ce service n'a pas fourni d'adresse e-mail pour ce compte alors qu'une adresse e-mail est requise. Veuillez créer un compte sur ce site au lieu de vous connecter par l'intermédiaire d'une tierce partie.
+  provider_without_email_error_google_oauth2: |
+    Google n'a pas fourni d'adresse e-mail pour ce compte alors qu'une adresse e-mail est requise. Veuillez créer un compte sur ce site au lieu de vous connecter par l'intermédiaire de Google.
   public_domain: Domaine public
   publish: Publier
   purple: pourpre
@@ -4158,6 +4197,10 @@ fr:
   research_grade_tooltip_html: 'Les observations « niveau de recherche » sont documentées et ont un lieu, une date ainsi qu''une identification précise (en général au rang de l''espèce) qui fait l''objet d''un consensus dans la communauté. <a href="https://www.inaturalist.org/pages/help#quality">En savoir plus sur les degrés de qualité</a>'
   research_grade_observations_have: 'Les observations de « calibre recherche » ont une date, une photo, des coordonnées et une identification reconnue par la communauté. Cliquer dessus pour voir l’évaluation de la garantie des données.'
   research_grade_qualification: Classification en niveau recherche
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Renvoyer et fermer la session
+  resend_confirmation_email: Renvoyer l'e-mail de confirmation
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Réinitialiser
   reset_filters_short: Réinitialiser
@@ -4288,6 +4331,9 @@ fr:
   selected_taxon: Taxon sélectionné
   select_this_taxon: Sélectionner ce taxon
   send: envoyer
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Envoyer et fermer la session
   send_confirmation_email: Envoyer un courriel de confirmation
   send_me_reset_password_instructions: Envoyez-moi les instructions de réinitialisation du mot de passe
   sending: Envoi en cours…
@@ -5235,6 +5281,22 @@ fr:
   username_or_user_id: Nom ou ID d’utilisateur
   users: Utilisateurs
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a> à %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Dès que vous aurez renvoyé l'e-mail de confirmation, la session se fermera et vous ne pourrez plus vous connecter à votre compte tant que vous n'aurez pas cliqué sur le lien dans l'e-mail. <strong>Assurez-vous donc d'avoir entré votre adresse e-mail correctement.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Vous êtes sur le point de vous déconnecter</h3>
+    <p>
+    Dès que vous aurez envoyé l'e-mail de confirmation, la session se fermera et vous ne pourrez plus vous connecter à votre compte tant que vous n'aurez pas cliqué sur le lien dans l'e-mail. <strong class="bg-warning">Assurez-vous donc d'avoir entré votre adresse e-mail correctement.</strong>
+    </p>
+    <p>
+    Voici l'adresse e-mail à laquelle nous enverrons la confirmation :
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si vous avez choisi de vous désabonner de tous les e-mails...</h4>
+    <p>
+    Si vous avez choisi de vous désabonner de <em>tous</em> nos e-mails, nous ne pouvons pas vous envoyer un e-mail de confirmation. Pour vous réabonner, trouvez un ancien e-mail de notre part, cliquez sur le lien de désinscription et choisissez de vous réabonner aux e-mails. Si vous ne pouvez pas le faire, veuillez envoyer un e-mail à <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> en utilisant
+    l'adresse e-mail que vous avez entrée ici pour que nous puissions vous aider.
+    </p>
   users_favorites: "Favoris @vow_or_con{vow:d'|con:de }%{user}"
   users_highlights_and_stats_from_year_on_site: "Mises en évidence et statistiques de %{user} pour %{year} sur %{site}"
   users_id: "ID de %{user}"
@@ -5571,6 +5633,7 @@ fr:
   you_dont_have_permission_to_edit_those_photos: Vous n’avez pas le droit de modifier ces photos.
   you_faved_this: Vous avez mis cela en favori !
   you_have_left_x_project: "Vous avez quitté %{project}"
+  you_have_not_confirmed_your_email_address: Vous n'avez pas confirmé votre adresse e-mail !
   you_havent_linked_your_inaturalist_google_account: "Vous n’avez pas encore lié votre compte %{site_name} avec votre compte Google"
   you_joined_this_project: Vous avez joint ce projet!
   you_must_be_a_member_of_this_project_to_do_that: Vous devez être membre du projet pour exécuter cette action
@@ -8075,6 +8138,21 @@ fr:
         position: Position
         source_url: URL source
         source_identifier: Identifiant source
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Titre du site
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Titre court
+        #Taxon this link is associated with
+        taxon: Taxon
+        #Place this link is associated with
+        place: Lieu
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Afficher pour les taxons descendants
       user:
         email: Courriel
         login: Nom d’utilisateur
