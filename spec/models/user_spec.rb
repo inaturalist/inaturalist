@@ -1450,7 +1450,7 @@ describe User do
 
   describe "confirmation" do
     it "should deliver the welcome email when a new user is confirmed" do
-      user = create :user, :as_unconfirmed
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE + 1.day )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
       expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"

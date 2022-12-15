@@ -1260,9 +1260,8 @@ class User < ApplicationRecord
       # This is for existing users who explicitly request a confirmation
       # email, which sets confirmation_sent_at. This is imperfect, but it
       # should prevent most actual users from receiving the welcome email
-      # again. People with no privileges have not really added any content
-      # and could probably use a reminder of the links in the welcome email
-      !user_privileges.any?
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
     )
       Emailer.welcome( self ).deliver_now
     end
