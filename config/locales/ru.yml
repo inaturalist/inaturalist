@@ -1615,7 +1615,7 @@ ru:
       reset_password_instructions:
         subject: 'Инструкции по восстановлению пароля'
   devise_confirmation_instructions_if_you_did_not: |
-    Если вы не регистрировали учетную запись {vow:an|a} %{site_name}, пожалуйста, проигнорируйте это письмо.
+    Если вы не регистрировали учетную запись %{site_name}, пожалуйста, проигнорируйте это письмо.
   devise_confirmation_instructions_please_click: |
     Пожалуйста, перейдите по ссылке ниже, чтобы подтвердить свой адрес электронной почты:
   devise_confirmation_instructions_resend_instructions: |
