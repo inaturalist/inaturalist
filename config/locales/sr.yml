@@ -73,7 +73,7 @@ sr:
     few: '<span class="count">%{count}</span> Posmatrača'
     other: '<span class="count">%{count}</span> Posmatrača'
   x_others:
-    one: "još jedan/na"
+    one: "još neko"
     few: "%{count} drugih"
     other: "%{count} drugih"
   x_people:
@@ -945,7 +945,7 @@ sr:
   display_name_description: Ovo ime će biti vidljivo na tvom profilu i dodeljeno kao nosilac autorskih prava
   documentation_for_developers_html: Dokumentacija za <a href="/pages/developers">programere</a>
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
-    Proučavaš nematode? Da li si vodeći svetski stručnjak za taksonomiju prilepaka? Da li jednostavno voliš da vidiš lepo cveće? Popunjavanje tvog profila daje lični pečat i omogućava da pokažeš kredibilnost kada pomažeš ljudima sa identifikacijama.
+    Proučavaš nematode? Da li si vodeći svetski stručnjak za taksonomiju prilepaka? Da li jednostavno voliš da vidiš lepo cveće? Popunjavanje tvog profila daje lični pečat i omogućava da pokažeš kredibilitet kada pomažeš ljudima sa identifikacijama.
   doh_something_went_wrong: Ups, došlo je do greške
   doh_something_went_wrong_error: "Ups, došlo je do greške: %{error}"
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -3341,7 +3341,7 @@ sr:
   usage_stats: Statistika upotrebe
   #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
-    Ovo koristi ako je potrebno da rod i vrsta budu razdvojeni na poseban način u URL-u. Ako takson nije vrsta ili infravrsta, sve između [GENUS] i [SPECIES] će biti zamenjeno nazivom taksona, upotrebiti samo ako je to neophodno.
+    Ovo koristi samo ako je neophodno - ako je potrebno da rod i vrsta budu razdvojeni na poseban način u URL-u. Ako takson nije vrsta ili infravrsta, sve između [GENUS] i [SPECIES] će biti zamenjeno nazivom taksona.
   used_x_times:
     one: Korišćeno jedanput
     few: Korišćeno %{count} puta
@@ -3365,7 +3365,7 @@ sr:
   user_added_x_observations_html: "%{user} je dodao/la %{x} opservacija"
   user_autocomplete_placeholder: kueda, simon123, itd.
   user_blocked: Korisnik blokiran
-  user_commented: "%{user} je komentarisao"
+  user_commented: "%{user} komentariše"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"

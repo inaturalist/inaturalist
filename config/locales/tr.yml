@@ -1452,7 +1452,8 @@ tr:
   deviation: Uygunsuzluk
   devise:
     confirmations:
-      confirmed: "E-posta adresin başarıyla doğrulandı."
+      confirmed: |
+        E-posta adresiniz başarıyla doğrulandı. Artık burada ve iNaturalist veya Seek mobil uygulamalarında oturum açabilirsiniz.
       send_instructions: "Birkaç dakika içinde e-posta adresini doğrulamak için talimat içeren bir e-posta alacaksın."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -4245,6 +4246,10 @@ tr:
   selected_taxon: Seçilmiş Sınıf
   select_this_taxon: Bu Sınıfı Seç
   send: gönder
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Gönder ve Çıkış Yap
+  send_confirmation_email: Doğrulama e-postası gönder
   send_me_reset_password_instructions: Şifre sıfırlama yönergesini gönder
   sending: Gönderiliyor...
   #Label for messages you've sent
@@ -5169,6 +5174,20 @@ tr:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> kullanıcısının %{project_title} projesine katkıları
   users_edit_resend_confirmation_prompt_html: |
     Doğrulama e-postasını yeniden gönderdikten sonra oturumun kapatılacak ve e-postadaki bağlantıya tıklayana kadar hesabında oturum açamayacaksın, bu nedenle <strong>e-posta adresini doğru girdiğinden kesinlikle emin ol.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Çıkış yapmak üzeresiniz</h3>
+    <p>
+    Doğrulama e-postasını gönderdikten sonra oturumunuz kapatılacak ve
+    bağlantıya tıklayana kadar hesabınıza giriş yapamayacaksınız, bu yüzden <strong class="bg-warning">e-posta adresinizi doğru girdiğinizden kesinlikle emin olun.</strong>
+    </p>
+    <p>
+    Doğrulamayı göndereceğimiz e-posta adresi:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Tüm e-posta aboneliklerinden çıkış yaptıysanız...</h4>
+    <p>
+    Bizden gelen <em>tüm</em> e-posta aboneliklerini iptal ettiyseniz, size bir doğrulamam e-postası gönderemeyiz. Yeniden abone olmak için bizden gelen önceki bir e-postayı bulmanız, abonelikten çıkma bağlantısını tıklamanız ve e-posta almayı tekrar etkinleştirmeyi seçmeniz gerekir. Bunu yapamıyorsanız, size yardımcı olabilmemiz için lütfen buraya girdiğiniz e-posta adresini kullanarak<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> adresine e-posta gönderin.
+    </p>
   users_favorites: "%{user} kullanıcısının favorileri"
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{site}'teki %{year} yılına ait önemli anları ve istatistikleri"
   users_id: "%{user} Tanımlamaları"

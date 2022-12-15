@@ -764,6 +764,8 @@ es-AR:
   change_group: Cambiar grupo
   change_icon: Cambiar ícono
   change_password: Cambiar tu contraseña
+  #Message shown after you change your email address
+  change_to_email_requested_html: El cambio a <strong>%{email}</strong> ha sido solicitado. Revisa tu correo electrónico en esa dirección para confirmar el cambio.
   change_types:
     activated_soon: activado pronto
     change_types: Tipos de cambios
@@ -919,6 +921,10 @@ es-AR:
   confirm_new_password: Confirmar nueva contraseña
   confirm_now: Confirmar ahora
   confirm_your_info: Confirma tu información
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Correo electrónico de confirmación enviado el %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmado el %{date}
   confirming_ids: Confirmando la identificación
   confirming_ids_description: Si lo desactivas, ya no se te notificará sobre identificaciones que coincidan con la tuya.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1345,6 +1351,10 @@ es-AR:
   deviation: Desviacion
   devise:
     confirmations:
+      confirmed: |
+        Tu dirección de correo electrónico ha sido confirmada con éxito. Ahora ya podés iniciar sesión
+        aquí en el sitio web o en las aplicaciones móviles iNaturalist o Seek.
+      send_instructions: "En breve vas a recibir un correo electrónico con las instrucciones sobre cómo confirmar tu cuenta"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1354,6 +1364,8 @@ es-AR:
       unauthenticated: 'Debes iniciar sesión o registrarte antes de continuar.'
       invalid: 'El correo electrónico o la contraseña no son válidos'
       invalid_token: 'Token de autenticación inválido.'
+      unconfirmed: |
+        Por favor, revisá tu correo electrónico y hacé clic en el enlace del correo que recibiste para confirmar tu cuenta.
       user:
         suspended: Tu cuenta ha sido suspendida
     sessions:
@@ -1371,13 +1383,31 @@ es-AR:
     registrations:
       destroyed: '¡Chau! Tu cuenta se cerró con éxito. Esperamos verte pronto'
       signed_up: '¡Bienvenido! Te registraste exitosamente.'
+      signed_up_but_inactive: "Te registraste correctamente. Sin embargo, no podés iniciar sesión porque tu cuenta todavía no está activada."
+      signed_up_but_locked: "Te registraste correctamente. Sin embargo, no podés iniciar sesión porque tu cuenta está bloqueada."
+      signed_up_but_unconfirmed: "Hemos enviado un mensaje con el enlace de confirmación a tu dirección de correo electrónico. Por favor, seguí el enlace para activar tu cuenta."
       updated: 'Actualizaste tu cuenta correctamente.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Instrucciones de confirmación
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Cambio de dirección de correo electrónico solicitado
       reset_password_instructions:
         subject: 'Instrucciones para restablecer la contraseña'
+  devise_confirmation_instructions_please_click: |
+    Por favor, hacé clic en el siguiente enlace para confirmar tu cambio de dirección de correo electrónico.
+  devise_confirmation_instructions_resend_instructions: |
+    Debés tener una dirección de correo electrónico funcional para usar iNaturalist. Cuando registraste tu cuenta, deberías haber recibido un correo electrónico de confirmación con un enlace
+    para hacer clic y confirmar que tu dirección de correo electrónico funciona. Si no lo recibiste,
+    podés enviarte otro correo electrónico de confirmación aquí.
+  devise_confirmation_instructions_send_confirmation_email: Enviar correo de confirmación
+  devise_email_changed_you_requested: Has solicitado un cambio de %{old_email} a %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Vas a recibir un correo electrónico en la nueva dirección para confirmar el cambio, pero nosotros
+    quisimos notificarte a tu dirección antigua, por si acaso alguien tiene acceso a tu cuenta y está intentando cambiarla sin que lo sepas. Si no has cambiado intencionalmente tu dirección de correo electrónico, reenviá este correo a help@inaturalist.org inmediatamente para que podamos investigarlo.
   devise_reset_password_instructions_hello_email: Hola %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no lo solicitaste, por favor, ignorá este correo electrónico.
@@ -1515,6 +1545,10 @@ es-AR:
   email: Correo
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo electrónico para comentarios y retroalimentación
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Por favor confirmá tu dirección de correo electrónico%{link_end_tag}</strong>.
+    Todos los usuarios deben confirmar su dirección de correo electrónico antes del %{date}. Después de esa fecha, quien no hayan confirmado su dirección de correo electrónico no podrá
+    iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico, andá a la %{link_start_tag}configuración de tu cuenta%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, todos los derechos reservados"
   email_notifications: Notificaciones por correo electrónico
   embed: 'Inserta'
@@ -3518,6 +3552,16 @@ es-AR:
   proposed_taxa_that_support_the_community_id: Taxa propuesto que apoya la ID de Comunidad
   protozoans: protozoarios
   provider_authorizations: Autorizaciones de proveedores
+  provider_without_email_error_apple: |
+    Apple no proporcionó una dirección de correo electrónico para esa cuenta, la cual es requerida. Por favor, creá una cuenta en este sitio en lugar de iniciar sesión a través de Apple.
+  provider_without_email_error_flickr: |
+    Flickr no proporcionó una dirección de correo electrónico para esa cuenta, la cual es requerida. Por favor, creá una cuenta en este sitio en lugar de iniciar sesión a través de Flickr.
+  provider_without_email_error_generic: |
+    Ese servicio no proporcionó una dirección de correo electrónico para esa cuenta, la cual es
+    requerida. Por favor, creá una cuenta en este sitio en lugar de iniciar sesión
+    a través de terceros.
+  provider_without_email_error_google_oauth2: |
+    Google no proporcionó una dirección de correo electrónico para esa cuenta, la cual es requerida. Por favor, creá una cuenta en este sitio en lugar de iniciar sesión a través de Google.
   public_domain: Dominio público
   publish: Publicar
   purple: púrpura
@@ -3746,6 +3790,10 @@ es-AR:
   research_grade_short_html: "G<span class='full'>rado</span> de I<span class='full'>nv.</span>"
   research_grade_observations_have: 'Las observaciones de "grado de investigación" tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad. Haga clic para ver la evaluación de la calidad de LOS datos.'
   research_grade_qualification: Calificación de Grado de Investigación
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Volver a Enviar y Cerrar Sesión
+  resend_confirmation_email: Volver a enviar correo de confirmación
   reset_filters_short: Restablecer
   reset_brightness: Restablecer brillo
   reset_search_filters: Restablece filtros de búsqueda
@@ -3863,6 +3911,10 @@ es-AR:
   selected_taxon: Grupo o especie seleccionada
   select_this_taxon: Seleccione Este Taxón
   send: enviada(s)
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Enviar y Cerrar Sesión
+  send_confirmation_email: Enviar correo de confirmación
   send_me_reset_password_instructions: Eviarme las instrucciones para restablecer mi contraseña
   sending: Enviando...
   #Label for messages you've sent
@@ -4581,6 +4633,26 @@ es-AR:
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a> a %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Después de reenviar el correo de confirmación, cerrarás la sesión y
+    no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
+    el correo electrónico, así que <strong>asegúrate de haber introducido tu dirección de correo correctamente.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Estás a punto de cerrar la sesión</h3>
+    <p>
+    Después de enviar el correo electrónico de confirmación, la sesión se cerrará y no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en el correo electrónico, así que <strong class="bg-warning">asegurate de haber introducido tu dirección de correo electrónico correctamente.</strong>
+    </p>
+    <p>
+    Esta es la dirección de correo electrónico a la que enviaremos la confirmación a:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si cancelaste la suscripción de todos los correos electrónicos...</h4>
+    <p>
+    Si te has dado de baja de <em>todos</em> los correos electrónicos enviados por nosotros, no podemos enviarte un correo de confirmación. Para volver a suscribirte, necesitás buscar un correo electrónico nuestro anterior, hacer clic en el enlace de darse de baja y elegir volver a recibir
+    correos electrónicos. Si no puede hacer esto, por favor enviá un mensaje a
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a> usando
+    la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
+    </p>
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destaques y estadísticas de %{user} durante %{year} en %{site}"
   users_id: "Identificación de %{user}"
@@ -4855,6 +4927,7 @@ es-AR:
   you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas fotos.
   you_faved_this: '¡Has marcado esto como favorito!'
   you_have_left_x_project: "Has abandonado al proyecto %{project}"
+  you_have_not_confirmed_your_email_address: '¡No has confirmado tu dirección de correo electrónico!'
   you_havent_linked_your_inaturalist_google_account: "Aún no has enlazado tus cuentas de %{site_name} y de Google"
   you_joined_this_project: '¡Te uniste a este proyecto!'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto para poder hacer eso.
@@ -6519,6 +6592,18 @@ es-AR:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Título del sitio
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Título corto
+        #Taxon this link is associated with
+        taxon: Taxón
+        #Place this link is associated with
+        place: Lugar
       user:
         email: Correo
         login: Nombre de usuario

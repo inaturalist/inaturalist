@@ -1570,7 +1570,9 @@ ru:
   deviation: Отклонение
   devise:
     confirmations:
-      confirmed: "Ваш адрес электронной почты почты успешно подтвержден."
+      confirmed: |
+        Ваш адрес электронной почты успешно подтвержден. Теперь вы можете войти
+        здесь на сайте или в мобильных приложениях iNaturalist или Seek.
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению адреса электронной почты."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -4407,6 +4409,10 @@ ru:
   selected_taxon: Выбранный таксон
   select_this_taxon: Выберите этот Таксон
   send: Отправить
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Отправить повторно и выйти
+  send_confirmation_email: Отправить письмо с подтверждением
   send_me_reset_password_instructions: Отправьте мне инструкции по сбросу пароля
   sending: Отправка…
   #Label for messages you've sent
@@ -5383,6 +5389,39 @@ ru:
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     После того как вы повторно отправите электронное письмо с подтверждением, вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong>убедитесь, что вы ввели свой адрес электронной почты правильно.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Убедитесь пожалуйста, что ваш адрес электронной почты правильный. Мы посылали письмо с подтверждением на адрес:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Если вы не получили письмо, проделайте следующее:
+    </p>
+    <ul>
+    <li><p>Проверьте папку Спам</p></li>
+    <li><p>Проверьте правила фильтрации, удаляющие письма из папки входящих</p></li>
+    </ul>
+    <p>
+    Если по-прежнему вы нне получили письмо с подтверждением, пожалуйста, свяжитесь с нами по адресу
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    чтобы мы могли вам помочь.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Вы собираетесь выйти из системы</h3>
+
+    <p>
+    После отправки электронного письма с подтверждением вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong class="bg-warning">убедитесь, что вы
+    правильно ввели свой адрес электронной почты.</strong>
+    </p>
+    <p>
+    Вот адрес электронной почты, на который мы отправим подтверждение:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Если вы отписались от всех электронных писем...</h4>
+    <p>
+    Если вы отписались от <em>всех</em> электронных писем от нас, мы не сможем отправить вам электронное письмо с подтверждением. Для повторной подписки вам нужно найти предыдущее электронное письмо от нас, нажать на ссылку для отказа от подписки и выбрать опцию повторного получения электронного письма. Если вы не можете этого сделать, пожалуйста, напишите по электронной почте
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> using используя адрес электронной почты, который вы ввели здесь, с тем, чтобы мы могли вам помочь.
+    </p>
   users_favorites: "Фавориты %{user}"
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"

@@ -490,6 +490,8 @@ zh-TW:
   #Label for an option to show/include content by any user
   any_user: 任一
   anyone: 任何人
+  app_owner_application_explanation_required: |
+    您必須對您想要打造的應用程式提供更詳細的解釋。
   app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -3890,6 +3892,8 @@ zh-TW:
     must_be_observed_in_place: 需在地點裡觀察
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
+    must_be_verifiable: 必須是可證實的
+    must_be_wild: 必須是野生的
   running_total: 運行總計
   said: 說
   satellite: 衛星
@@ -5053,6 +5057,7 @@ zh-TW:
   you_dont_have_permission_to_edit_those_photos: 您沒有權限編輯這些照片。
   you_faved_this: 您已加為最愛！
   you_have_left_x_project: "您已離開 %{project}"
+  you_have_not_confirmed_your_email_address: 您尚未認證您的電子信箱！
   you_havent_linked_your_inaturalist_google_account: "您尚未連結您的 %{site_name} 帳號和您的 Google 帳號"
   you_joined_this_project: 您加入了此專案！
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
@@ -5167,6 +5172,7 @@ zh-TW:
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
+        become_a_monthly_supporter_of_inaturalist_caps: 成為 iNaturalist 的每月贊助者
         desc_html: |
           <p class="lead">
           <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
@@ -5180,6 +5186,7 @@ zh-TW:
           <p class="text-muted">
           iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
           </p>
+        thank_you_for_being_a_monthly_supporter: 感謝您成為每月贊助者！
     flags:
       show:
         flaggable_content_desc: |

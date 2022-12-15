@@ -807,6 +807,8 @@ fi:
   change_group: Vaihda ryhmä
   change_icon: Vaihda profiilikuva
   change_password: Vaihda salasana
+  #Message shown after you change your email address
+  change_to_email_requested_html: Pyyntö vaihtaa sähköpostiosoitteeksi <strong>%{email}</strong> vastaanotettu. Tarkista sähköpostisi ja vahvista muutos.
   change_types:
     activated_soon: aktivoituu pian
     change_types: Vaihda tyyppejä
@@ -960,6 +962,10 @@ fi:
   confirm_new_password: Vahvista uusi salasana
   confirm_now: Vahvista nyt
   confirm_your_info: Vahvista tietosi
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Vahvistussähköposti lähetetty osoitteeseen %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Vahvistettu %{date}
   confirming_ids: Tunnistusten vahvistus
   confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1378,6 +1384,10 @@ fi:
   deviation: Poikkeama
   devise:
     confirmations:
+      confirmed: |
+        Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
+        tänne sivustolle tai iNaturalist- tai Seek-mobiilisovelluksiin.
+      send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1387,6 +1397,9 @@ fi:
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
       invalid: 'Väärä sähköposti tai salasana.'
       invalid_token: 'Todennuskoodi ei kelpaa.'
+      unconfirmed: |
+        Ole hyvä ja tarkista sähköpostisi ja klikkaa vastaanottamasi sähköpostin linkkiä
+        vahvistaaksesi tilisi.
       user:
         suspended: Käyttäjätunnuksesi on suljettu
     sessions:
@@ -1404,13 +1417,35 @@ fi:
     registrations:
       destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
       signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
+      signed_up_but_inactive: "Olet rekisteröitynyt palveluun onnistuneesti. Emme kuitenkaan voineet kirjata sinua sisään, koska tilisi ei ole vielä aktivoitu."
+      signed_up_but_locked: "Rekisteröintisi onnistui. Emme kuitenkaan voineet kirjata sinua sisään koska tunnuksesi on lukittu."
+      signed_up_but_unconfirmed: "Vahvistusohjeet on lähetetty sähköpostiosoitteeseesi. Avaathan sähköpostissa olevan linkin vahvistaaksesi tunnuksen."
       updated: 'Päivitit tilisi onnistuneesti.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: Vahvistusohjeet
+        subject: Vahvista sähköpostiosoitteesi
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Sähköpostin vaihto pyydetty
       reset_password_instructions:
         subject: 'Ohjeet salasanan nollaukseen'
+  devise_confirmation_instructions_if_you_did_not: |
+    Jos et ole rekisteröitynyt @vow_or_con{vow:an|a} %{site_name} tilille, jätä tämä sähköposti huomiotta.
+  devise_confirmation_instructions_please_click: |
+    Ole hyvä ja klikkaa alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
+  devise_confirmation_instructions_resend_instructions: |
+    Sinulla on oltava toimiva sähköpostiosoite iNaturalistia varten. Kun olet rekisteröitynyt
+    tilille, sinun olisi pitänyt saada vahvistussähköposti, jonka linkkiä klikkaamalla vahvistat, että sähköpostiosoitteesi toimii, mutta jos et saanut viestiä, voit lähettää itsellesi toisen vahvistusviestin tästä.
+  devise_confirmation_instructions_send_confirmation_email: Lähetä vahvistusviesti
+  devise_email_changed_you_requested: Pyysit vaihtoa osoitteesta %{old_email} osoitteeseen %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Saat sähköpostin uuteen osoitteeseen ja voit vahvistaa vaihdon, mutta me
+    halusimme ilmoittaa sinulle vanhaan osoitteeseesi siltä varalta, että jollakulla muulla on
+    pääsy tiliisi ja yrittää muuttaa osoitetta tietämättäsi. Jos
+    et tarkoituksellisesti muuttanut sähköpostiosoitettasi, lähetä tämä
+    sähköposti osoitteeseen help@inaturalist.org välittömästi, jotta voimme tutkia asian.
   devise_reset_password_instructions_hello_email: Hei %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
@@ -1545,6 +1580,9 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
+    Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
@@ -1574,6 +1612,10 @@ fi:
   establishment_means: Lajin alkuperä
   establishment_means_describes_how: |
     Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Arvioi, mitkä lähtötaksonin tunnistukset korvataan kohdetaksonin tunnistuksilla
+    ja mitkä kootaan yhteen yhteiseen esitaksoniin sen jälkeen, kun jako on tehty. Tämä voi kestää hetken. Havaintolinkit katkaistaan 200 kappaleen alaryhmiin.
   event_in_progress: Tapahtuma käynnissä
   event_stats: Tapahtuman tilastot
   event_url: Tapahtuman URL
@@ -3551,6 +3593,17 @@ fi:
   projects_user_admins: Projektit joita %{user} hallinnoi
   projects_you_admin: Projektit joita hallinoit
   protozoans: Alkueläimet
+  provider_without_email_error_apple: |
+    Apple ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Applen kautta.
+  provider_without_email_error_flickr: |
+    Flickr ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Flickr kautta.
+  provider_without_email_error_generic: |
+    Tämä palvelu ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut sisään kolmannen osapuolen kautta.
+  provider_without_email_error_google_oauth2: |
+    Google ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Googlen kautta.
   public_domain: Tekijänoikeudeton
   publish: Julkaise
   purple: purppura
@@ -3793,6 +3846,10 @@ fi:
   research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Lähetä uudelleen ja kirjaudu ulos
+  resend_confirmation_email: Lähetä vahvistusviesti uudelleen
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Palauta
   reset_filters_short: Palauta
@@ -3914,6 +3971,10 @@ fi:
   selected_taxon: Valitut taksonit
   select_this_taxon: Valitse tämä taksoni
   send: lähetä
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Lähetä ja kirjaudu ulos
+  send_confirmation_email: Lähetä vahvistusviesti
   send_me_reset_password_instructions: Lähetä minulle salasanan nollausohjeet
   sending: Lähetetään...
   #Label for messages you've sent
@@ -4622,6 +4683,25 @@ fi:
   username_or_user_id: Käyttäjänimi tai käyttäjätunniste
   users: Käyttäjät
   users_contributions_to_project_html: Käyttäjän <a href="%{url}">%{login}</a> muokkaukset projektiin %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Kun olet lähettänyt vahvistusviestin uudelleen, olet kirjautunut ulos, etkä voi
+    kirjautua tilillesi ennen kuin klikkaat linkkiä
+    vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
+    oikein.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Olet kirjautumassa ulos</h3>
+    <p>
+    Kun lähetät vahvistusviestin, sinut kirjataan ulos, etkä voi kirjautua tunnuksellasi ennen kuin klikkaat viestin linkkiä, joten <strong class="bg-warning">ole ehdottoman varma, että olet kirjoittanut sähköpostiosoitteesi oikein.</strong>
+    </p>
+    <p>
+    Lähetämme vahvistusviestin tähän sähköpostiosoitteeseen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Jos olet perunut kaikki sähköpostit...</h4>
+    <p>
+    Jos olet perunut kaikki <em>all</em> lähettämämme sähköpostit, emme voi lähettää sinulle vahvistusviestiä. Tilataksesi viestit uudelleeen, sinun täytyy etsiä viimeisin lähettämämme sähköposti ja klikata unsubscribe-linkkiä ja valita, että haluat vastaanottaa viestejä. Jos et voi tehdä tätä, lähetä sähköpostia osoitteeseen
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> samasta osoitteesta kuin, minkä olet syöttänyt tähän, niin autamme sinua.
+    </p>
   users_highlights_and_stats_from_year_on_site: "Käyttäjän %{user} kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   users_id: "Käyttäjän %{user} tunniste"
   users_identifications: "Käyttäjän %{user} tunnistukset"
@@ -4887,6 +4967,7 @@ fi:
     Sinulla ei ole oikeuksia muokata tätä taksonia. Ole hyvä ja ota yhtyettä taksonin kuraattoriin tai liputa taksoni pyytääksesi muutoksia.
   you_faved_this: Merkitsit tämän suosikiksi!
   you_have_left_x_project: "Olet lähtenyt projektista %{project}"
+  you_have_not_confirmed_your_email_address: Et ole vahvistanut sähköpostiosoitettasi!
   you_havent_linked_your_inaturalist_google_account: "Et ole vielä linkittänyt %{site_name}-tiliäsi ja Google-tiliäsi"
   you_joined_this_project: Liityit tähän projektiin!
   you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin jäsen tehdäksesi tuon
@@ -5257,6 +5338,9 @@ fi:
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
+        ancestor_disagreements_desc2: |
+          Niiden tunnistettujen taksonien lukumäärä, jotka kuuluvat taksonin esi-isiin, mutta
+          ovat eri mieltä taksonin kanssa (i. . "Mielestäni se on suvussa, mutta olen eri mieltä se on, että tämä laji")
         community_taxon_desc_html: |
           <p class="ui">
           Yhteisötunnistettu taksoni on %{site_name} yhteisön mielipide siitä, mikä taksoni havainnossa on kuvattu. 
@@ -6436,6 +6520,21 @@ fi:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
+      taxon_link:
+        url: URL-osoite
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Sivuston otsikko
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Lyhyt otsikko
+        #Taxon this link is associated with
+        taxon: Taksoni
+        #Place this link is associated with
+        place: Paikka
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Näytä jälkeläistaksonit
       user:
         email: Sähköposti
         login: Käyttäjänimi
