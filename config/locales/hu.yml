@@ -1131,11 +1131,15 @@ hu:
   details: Részletek
   deviation: Eltérés
   devise:
+    confirmations:
+      confirmed: "Az e-mail címed sikeresen megerősítettük."
     failure:
       already_authenticated: 'Már be vagy jelentkezve.'
       unauthenticated: 'A folytatás előtt be kell jelentkezned.'
       invalid: 'Érvénytelen e-mail cím vagy jelszó.'
       invalid_token: 'Érvénytelen hitelesítési token.'
+      unconfirmed: |
+        Nézd meg az emailjeidet, és kattints a megerősítő emailünkben található linkre.
       user:
         suspended: A fiókod fel van függesztetve
     sessions:
@@ -1149,13 +1153,18 @@ hu:
     registrations:
       destroyed: 'Viszlát! Fiókod törlése sikeres volt. Reméljük, hamarosan újra látunk.'
       signed_up: 'Üdvözlünk! Sikeresen regisztráltál.'
+      signed_up_but_unconfirmed: "Egy megerősítő linket küldtünk a megadott e-mail címre. Kattints az emailben található linkre a fiók aktiválásához."
       updated: 'Fiókod sikeresen frissítve.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: Megerősítési utasítások
+        subject: Az email cím megerősítése
       reset_password_instructions:
         subject: 'Jelszóvisszaállítási utasítások'
+  devise_confirmation_instructions_if_you_did_not: |
+    Ha nem regisztáltál az @vow_or_con{vow:an|a} %{site_name}-ra, kérjük, hogy hagyd figyelmen kívül ezt az emailt.
+  devise_confirmation_instructions_please_click: |
+    Kérjük, hogy az emailcím megerősítéséhez kattints az alábbi linkre:
   devise_reset_password_instructions_hello_email: Kedves %{email}!
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ha nem kértél ilyen e-mailt, akkor tárgytalan, vedd figyelmen kívül.
@@ -1276,6 +1285,8 @@ hu:
   editors: Szerkesztők
   email: Email
   email_description: Az email címedet nem osztjuk meg más felhasználókkal az iNaturalist oldalon
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Kérjük, hogy erősítsd meg az email címed%{link_end_tag}</strong>. Ezt minden felhasználónak el kell végeznie %{date}-ig. E dátum után email cím megerősítés nélkül csak a jelszó módosítával lehet majd belépni. Az email cím megerősítését %{link_start_tag}a fiókbeállításoknál tudod elvégezni.%{link_end_tag}
   email_notifications: Email értesítések
   embed: 'Beágyazás'
   embed_place_widget: Helywidget beágyazása
@@ -1700,7 +1711,7 @@ hu:
   last_active_with_date: "Utolsó aktivitás: %{date}"
   last_confirmed_observation: Utolsó megerősített megfigyelés
   last_observation: Utóljára megfigyelte
-  last_observation_caps: Utoljára mefigyelve
+  last_observation_caps: Utoljára megfigyelve
   last_seen: Utoljára látva
   last_year: Tavaly
   lat: Szél
@@ -3265,6 +3276,10 @@ hu:
   research_grade_short_html: "T<span class='full'>udományos </span>Sz<span class='full'>intű</span>"
   research_grade_tooltip_html: 'A "Tudományos szintű" megfigyelések médiaanyaggal, hellyel, dátummal és a pontos meghatározásában közösségi egyetértéssel rendelkeznek (általában a faj szintjén). <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
   research_grade_qualification: A tudományos szint követelményei
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Újraküldés és kijelentkezés
+  resend_confirmation_email: Megerősítő e-mail újraküldése
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Visszaállítás
   reset_filters_short: Visszaállítás
@@ -3349,6 +3364,10 @@ hu:
   selected_photos: Kiválasztott fényképek
   select_this_taxon: E taxon kiválasztása
   send: küldés
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Küldés és kijelentkezés
+  send_confirmation_email: Megerősítő e-mail küldése
   sending: Küldés...
   #Label for messages you've sent
   sent: Elküldve
@@ -3887,6 +3906,21 @@ hu:
   username_or_user_id: Felhasználói név vagy azonosító
   users: Felhasználók
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> hozzájárulása a %{project_title} projekthez
+  users_edit_resend_confirmation_prompt_html: |
+    A megerősítő email újraküldése után a rendszer kiléptet, és nem fog tudni belépni mindaddig, amíg nem kattintasz az emailben található linkre. Ezért <strong>mindenképpen bizonyosodj meg arról, hogy helyesen adtad meg az email címet.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Ezzel ki fogsz jelentkezni</h3>
+    <p>
+    A megerősítő email küldése után a rendszer kiléptzet, és nem tudsz újra bejelentkezni mindaddig, amíg nem kattintasz az emailben található linkre. <strong class="bg-warning">Emiatt mindenképpen bizonyosodj meg arról, hogy helyes emailcímet adtál meg.</strong>
+    </p>
+    <p>
+    Ez az email cím, amelyre a megerősítő emailt küldjük:
+    </p>
+    <pre class="text-center text-large"> %{email} </pre>
+    <h4>Mi van, ha leíratkoztál minden, általunk küldött emailről?</h4>
+    <p>
+    Ha leíratkoztál <em>minden</em>, általunk küldött emailről, akkor nem tudunk megerősítő emailt küldeni. A visszaállításhoz keress meg egy korábbi emailünket, kattints benne a "leíratkozás" linkre, majd íratkozz fel ismét az emailre. Ha ezt nem tudod elvégezni, vedd fel velünk a kapcsolatot a <a href="mailto:help+confirmation@inaturalist.org">help+confirmation@inaturalist.org</a> címen, az itt megadott emailcímedről, és szívesen segítünk.
+    </p>
   users_favorites: "%{user} kedvencei"
   users_highlights_and_stats_from_year_on_site: "%{user} kiemelt teljesítménye és statisztikája %{year} évből %{site} honlapon"
   users_identifications: "%{user} meghatározásai"
@@ -4088,6 +4122,7 @@ hu:
   you_cant_do_that_for_the_default_check_list_place: Nem teheted ezt egy hely alapértelmezett listájával!
   you_cant_merge_standard_places: Nem vonhatsz össze szabványos helyeket
   you_faved_this: A kedvenced!
+  you_have_not_confirmed_your_email_address: Még nem erősítetted az email címedet.
   you_must_be_a_member_of_this_project_to_do_that: Ehhez projektagnak kellene lenned
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
   you_must_select_a_place_to_merge_with: Válassz egy helyet, amivel összevonod.
