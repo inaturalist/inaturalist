@@ -1489,7 +1489,6 @@ nl:
   deviation: Afwijking
   devise:
     confirmations:
-      confirmed: "Jouw e-mailadres is succesvol bevestigd."
       send_instructions: "U ontvangt binnen enkele minuten een e-mail met instructies voor het bevestigen van uw e-mailadres."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -5358,6 +5357,22 @@ nl:
     Nadat je de bevestigingsmail opnieuw hebt verstuurd word je afgemeld en kan 
     je niet inloggen op je account totdat je op de link in
     de e-mail klikt dus <strong>zorg ervoor dat je een geldig e-mailadres hebt ingevoerd.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Je staat op het punt uit te loggen</h3>
+    <p>
+    Nadat je de bevestigingsmail hebt verstuurd wordt je uitgelogd en kun je niet meer inloggen in je account totdat je op de link in je email hebt geklikt, dus <strong class="bg-warning">wees er dus absoluut zeker van dat je je emailadres juist hebt ingevoerd.</strong>
+    </p>
+    <p>
+    Dit is het e-mailadres waar we de bevestiging naar toe zullen sturen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Als je je hebt uitgeschreven voor alle e-mails...</h4>
+    <p>
+    Als je je hebt uitgeschreven voor <em>alle</em> e-mail
+    van ons kunnen we je geen bevestigingsmail sturen. Om je opnieuw in te schrijven
+    moet je een voorgaande e-mail van ons vinden en op de unsubscribe-link klikken en kiezen om weer e-mail van ons te ontvangen. Als dit niet lukt email dan naar 
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> en gebruik het e-mail adres dat je hier ingevuld hebt zodat we je kunnen helpen.
+    </p>
   users_favorites: "Favorieten van %{user}"
   users_highlights_and_stats_from_year_on_site: "%{user}'s hoogtepunten en statistieken van %{year} op %{site}"
   users_id: "ID van %{user}"
