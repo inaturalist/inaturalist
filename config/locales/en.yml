@@ -1659,7 +1659,9 @@ en:
   deviation: Deviation
   devise:
     confirmations:
-      confirmed: "Your email address has been successfully confirmed."
+      confirmed: |
+        Your email address has been successfully confirmed. You can now log
+        in here on the website or in the iNaturalist or Seek mobile apps.
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       # Message a user sees when they try to manually trigger email
       # confirmation. This is a feature we'd like to use in the future.

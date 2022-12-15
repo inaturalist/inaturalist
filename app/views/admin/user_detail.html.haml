@@ -329,7 +329,7 @@
           title: "Confirm the user's email or unconfirmed_email"
       - if @display_user.confirmation_sent_at || @display_user.confirmed?
         = link_to "Reset email confirmation",
-          admin_update_user_path( @display_user.id, "user[confirmed_at]" => "", "user[confirmation_sent_at]" => "", "user[confirmation_token]" => "" ),
+          admin_update_user_path( @display_user.id, reset_confirmation: true ),
           method: :put,
           data: { confirm: "Are you sure you want to reset the email confirmation state? This will allow the user to sign in but they will still need to confirm their email." },
           class: "btn btn-block btn-warning",
