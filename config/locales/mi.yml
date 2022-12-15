@@ -249,6 +249,8 @@ mi:
   confirm: Whakaū
   confirm_new_password: Whakaū i te kupuhipa hōu
   confirm_now: Whakaū ināianei
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: I whakamanahia i %{date}
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hono
@@ -363,6 +365,12 @@ mi:
   desc: Heke
   descending: Whakaheke
   details: Taipitopito
+  devise:
+    mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Whakamanahia tāku wāhitau īmēra
+  devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   disagree_: Whakahē
   #Label for a button to disconnect your iNat account from another account,
@@ -1031,6 +1039,10 @@ mi:
   remember_me: Maumahara ki ahau
   reptiles: ngārara
   research_grade: Kua pūruatia
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Tukuna anō me takiputa
+  resend_confirmation_email: Tukuna anō te īmera whakamana
   restore: Whakaoratia
   reviewed: I arotaketia
   satellite: amiorangi
@@ -1055,6 +1067,10 @@ mi:
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Tīpako kore
   send: tuku
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Tukuna me takiputa
+  send_confirmation_email: Tukuna te īmera whakamana
   sending: E tuku ana...
   show_more: Hurahia tonuhia
   sign_in: Takiuru
@@ -1239,6 +1255,7 @@ mi:
   yesterday: Inanahi
   you: koe
   you_: Koe
+  you_have_not_confirmed_your_email_address: Kāore koe i whakamanahia tāku wāhitau īmēra!
   your_email_address: Tōu īmēra
   your_identification: Tāu tautuhi
   your_observations: Āu mauhanga
@@ -1474,6 +1491,11 @@ mi:
         name: Ingoa
       taxon_name:
         name: Ingoa
+      taxon_link:
+        #Taxon this link is associated with
+        taxon: Rōpū
+        #Place this link is associated with
+        place: Wāhi
       user:
         email: Īmēra
         login: Ingoa rorohiko
