@@ -5749,6 +5749,24 @@ en:
     will not be able to sign in to your account until you click the link in
     the email, so <strong>make absolutely sure you have entered your email address
     correctly.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+      Please ensure your email address is correct. Here's the email address we
+      will send the confirmation to:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+      If you do not receive the email, here are some tips:
+    </p>
+    <ul>
+      <li><p>Check your spam folder</p></li>
+      <li><p>Check for any filters you made that might remove our emails from your inbox</p></li>
+    </ul>
+    <p>
+      If you are still not receiving the confirmation email, please contact us at
+      <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+      so we can assist you.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>You are about to sign out</h3>
     <p>

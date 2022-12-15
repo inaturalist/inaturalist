@@ -263,7 +263,9 @@ export function resendConfirmation( ) {
     dispatch( setUserData( profile ) );
     return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
       dispatch( fetchUserSettings( "saved" ) );
-      window.location.reload( );
+      // If we go back to signing people out after sending the confirmation,
+      // we will need to reload the window
+      // window.location.reload( );
     } ).catch( e => {
       handleSaveError( e ).then( errors => {
         profile.errors = errors;
@@ -278,13 +280,14 @@ export function confirmResendConfirmation( ) {
     const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_send_confirmation_prompt_html", {
-        email: state.profile.email || "",
-        defaultValue: I18n.t( "users_edit_resend_confirmation_prompt_html" )
+      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {
+        email: state.profile.email || ""
       } ),
-      confirmText: I18n.t( "send_and_sign_out", {
-        defaultValue: I18n.t( "resend_and_sign_out" )
-      } ),
+      confirmText: I18n.t( "send_confirmation_email" ),
+      // If we want to go back to signing people out, this is the text we should use
+      // confirmText: I18n.t( "send_and_sign_out", {
+      //   defaultValue: I18n.t( "resend_and_sign_out" )
+      // } ),
       onConfirm: async ( ) => {
         await dispatch( saveUserSettings( ) );
         const { profile } = getState( );
