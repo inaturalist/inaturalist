@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
-  allow_external_iframes( only: [:show] )
+  before_action :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
     expires_in: WIDGET_CACHE_EXPIRATION,

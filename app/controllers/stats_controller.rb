@@ -9,8 +9,7 @@ class StatsController < ApplicationController
   before_action :authenticate_user!,
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year],
     unless: -> { authenticated_with_oauth? }
-
-  allow_external_iframes( only: [:wed_bioblitz] )
+  before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   caches_action :summary, expires_in: 1.day
   caches_action :observation_weeks_json, expires_in: 1.day

@@ -179,37 +179,4 @@ describe ApplicationController do
       end
     end
   end
-
-  describe "allow_external_iframes" do
-    describe ObservationsController do
-      describe "X-FRAME-ORIGIN header" do
-        it "X-FRAME-ORIGIN is set by default" do
-          # the Observations#index endpoint does not call allow_external_iframes
-          # and impliments the default content security policy
-          get :index, format: :html
-          expect( response.headers["X-Frame-Options"] ).to eq "SAMEORIGIN"
-        end
-
-        it "X-FRAME-ORIGIN is set by default" do
-          # the Observations#stats endpoint calls allow_external_iframes
-          get :stats, format: :html
-          expect( response.headers["X-Frame-Options"] ).to eq "ALLOWALL"
-        end
-      end
-
-      describe "Content-Security-Policy header" do
-        it "Content-Security-Policy is set by default" do
-          expect_any_instance_of( ActionDispatch::ContentSecurityPolicy ).to_not receive( :frame_ancestors )
-          get :index, format: :html
-          expect( request.content_security_policy.directives ).to include( "frame-ancestors" => ["'self'"])
-        end
-
-        it "Content-Security-Policy is set by default" do
-          expect_any_instance_of( ActionDispatch::ContentSecurityPolicy ).to receive( :frame_ancestors ).with( nil )
-          # the Observations#stats endpoint calls allow_external_iframes
-          get :stats, format: :html
-        end
-      end
-    end
-  end
 end

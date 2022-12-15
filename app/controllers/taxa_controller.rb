@@ -22,8 +22,8 @@ class TaxaController < ApplicationController
     } },
     if: Proc.new {|c| request.format.json? }
 
-  allow_external_iframes( only: [:map] )
-
+  before_action :allow_external_iframes, only: [:map]
+  
   include TaxaHelper
   include Shared::WikipediaModule
   
