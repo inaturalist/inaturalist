@@ -5106,6 +5106,20 @@ id:
   username_or_user_id: Nama Pengguna atau ID Pengguna
   users: Pengguna
   users_contributions_to_project_html: Kontribusi <a href="%{url}">%{login}</a> untuk %{project_title}
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Anda akan keluar</h3>
+    <p>
+    Setelah Anda mengirim email konfirmasi, Anda akan keluar dan Anda tidak akan bisa masuk lagi ke akun Anda sampai Anda mengeklik tautan pada email-nya, jadi <strong class="bg-warning">pastikan dengan benar bahwa Anda sudah memasukkan alamat email Anda dengan benar.</strong>
+    </p>
+    <p>
+    Ini adalah alamat email yang akan kami kirimkan konfirmasinya:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Jika Anda tidak berlangganan lagi untuk semua email...</h4>
+    <p>
+    Jika Anda sudah tidak berlangganan lagi untuk <em>semua</em> email dari kami, kami tidak bisa mengirimkan email konfirmasi kepada Anda. Untuk berlangganan kembali, Anda perlu mencari email kami yang sebelumnya, klik tautan berhenti berlangganan, dan pilih untuk kembali berlangganan untuk menerima email ini. Jika Anda tidak bisa melakukan hal ini, harap kirimkan email ke
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> menggunakan alamat email yang sudah Anda masukkan di sini supaya kita bisa membantu Anda.
+    </p>
   users_favorites: "Favorit %{user}"
   users_highlights_and_stats_from_year_on_site: "Sorotan dan statistik %{user} pada %{year} di %{site}"
   users_id: "ID %{user}"

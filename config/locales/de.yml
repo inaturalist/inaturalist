@@ -4187,6 +4187,10 @@ de:
   selected_taxon: Ausgewähltes Taxon
   select_this_taxon: Dieses Taxon wählen
   send: senden
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Absenden & Ausloggen
+  send_confirmation_email: Bestätigungs-E-Mail senden
   send_me_reset_password_instructions: Senden Sie mir Anweisungen zum Zurücksetzen des Passworts
   sending: Sende …
   #Label for messages you've sent
@@ -5141,6 +5145,19 @@ de:
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Du bist kurz davor dich auszuloggen</h3>
+    <p>
+    Nachdem du die Bestätigungs-Mail abgeschickt hast, wirst du abgemeldet und kannst dich danach ausschließlich über den Link in der Email wieder anmelden, also <strong class="bg-warning">vergewissere dich, dass Email-Adresse korrekt eingegeben wurde.</strong>
+    </p>
+    <p>
+    Das hier ist die Adresse, an die wir den Bestätigungs-Link schicken:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Falls du dich aus allen Emails abgemeldet hast...</h4>
+    <p>
+    Wenn du eingestellt hast, <em>keine</em> Emails von uns zu erhalten, können wir dir keine Bestätigungs-Mail schicken. Um das zu ändern, musst du eine frühere Email von uns finden, dann den 'Abmelden'-Link anklicken und auswählen, wieder Emails zu erhalten. Wenn das nicht geht, schreib uns bitte an <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> mit der gleichen Email-Adresse, die du hier verwendest, so dass wir dir helfen können.
+    </p>
   users_favorites: "Favoriten von %{user}"
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
