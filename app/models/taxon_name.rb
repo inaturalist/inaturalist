@@ -490,9 +490,11 @@ class TaxonName < ApplicationRecord
   end
 
   def self.all_lexicons
-    Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
-      [l.parameterize, l]
-    end.sort].filter{ |k,v| !k.blank? }
+    Rails.cache.fetch( "TaxonName::all_lexicons", expires_in: 1.hour ) do
+      Hash[TaxonName.where( "lexicon IS NOT NULL" ).distinct.pluck( :lexicon ).map do |l|
+        [l.parameterize, l]
+      end.sort].filter{ |k,v| !k.blank? }
+    end
   end
 
   private

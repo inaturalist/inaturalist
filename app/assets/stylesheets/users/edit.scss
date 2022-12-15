@@ -472,3 +472,27 @@ select.dropdown {
     max-width: 60%;
   }
 }
+
+.TaxonNamePreferences {
+  .TaxonNamePreference {
+    min-height: 30px;
+    &.dragging {
+      opacity: 0.3;
+    }
+    .index {
+      display: inline-block;
+      width: 20px;
+    }
+    .place {
+      &:before {
+        content: " ("
+      }
+      &:after {
+        content: ")"
+      }
+    }
+    button {
+      float: right;
+    }
+  }
+}

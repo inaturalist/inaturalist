@@ -36,4 +36,23 @@ class TaxonNamePreferencesController < ApplicationController
       end
     end
   end
+
+  def update
+    # position is currently the only attribute that can be updated and has a custom update method
+    if params[:taxon_name_preference][:position]
+      @taxon_name_preference.update_position( params[:taxon_name_preference][:position] )
+    end
+    respond_to do |format|
+      format.html do
+        redirect_to( generic_edit_user_path )
+      end
+      format.json do
+        if @taxon_name_preference.errors.any?
+          render json: @taxon_name_preference.errors, status: :unprocessable_entity
+        else
+          render json: @taxon_name_preference.as_json
+        end
+      end
+    end
+  end
 end

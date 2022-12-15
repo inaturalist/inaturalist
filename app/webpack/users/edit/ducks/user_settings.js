@@ -117,6 +117,7 @@ export function saveUserSettings( ) {
     delete params.user.privileges;
     delete params.user.icon_url;
     delete params.user.orcid;
+    delete params.user.taxon_name_preferences;
 
     return inatjs.users.update( params, { useAuth: true } ).then( ( ) => {
       // fetching user settings here to get the source of truth

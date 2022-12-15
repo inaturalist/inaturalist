@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   resources :user_mutes, only: [:create, :destroy]
   resources :guide_users
   resources :taxon_curators, except: [:show, :index]
-  resources :taxon_name_preferences, only: [:create, :destroy]
+  resources :taxon_name_preferences, only: [:create, :update, :destroy]
 
   resources :guide_sections do
     collection do

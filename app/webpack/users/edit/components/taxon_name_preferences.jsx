@@ -3,16 +3,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import SettingsItem from "./settings_item";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
+import TaxonNamePreferencesDragdropContainer from "../containers/taxon_name_preferences_dragdrop_container";
 
 /* global TAXON_NAME_LEXICONS */
 
 class TaxonNamePreferences extends Component {
-  constructor( ) {
-    super( );
-    this.state = { };
-  }
-
-  taxonNamePreferenceLexicons( ) {
+  static taxonNamePreferenceLexicons( ) {
     return _.map( TAXON_NAME_LEXICONS, ( lexicon, parameterizedLexicon ) => (
       <option value={parameterizedLexicon} key={parameterizedLexicon}>
         {lexicon}
@@ -20,55 +16,33 @@ class TaxonNamePreferences extends Component {
     ) );
   }
 
+  constructor( ) {
+    super( );
+    this.state = { };
+  }
+
   render( ) {
     const {
-      profile,
       config,
-      addTaxonNamePreference,
-      deleteTaxonNamePreference
+      addTaxonNamePreference
     } = this.props;
     return (
-      <div>
+      <div className="TaxonNamePreferences">
         <SettingsItem header="Taxon Name Preferences" htmlFor="taxon_name_preferences">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Position</th>
-                <th>Lexicon</th>
-                <th>Place</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              { ( profile.taxon_name_preferences || [] ).map( ( taxonNamePreference, index ) => (
-                <tr key={`taxon-name-preference-${taxonNamePreference.id}`}>
-                  <td>{ taxonNamePreference.position }</td>
-                  <td>{ taxonNamePreference.lexicon }</td>
-                  <td>{ taxonNamePreference.place_id }</td>
-                  <td>
-                    { index > 0 && (
-                      <button
-                        type="button"
-                        onClick={( ) => deleteTaxonNamePreference( taxonNamePreference.id )}
-                      >
-                        Delete
-                      </button>
-                    ) }
-                  </td>
-                </tr>
-              ) ) }
-            </tbody>
-          </table>
+          <TaxonNamePreferencesDragdropContainer />
           <select
             id="user_locale"
             className="form-control dropdown"
             name="lexicon"
-            onChange={e => { this.state.selectedLexicon = e.target.value; }}
+            onChange={e => { this.state.selectedLexicon = e.target.value === "locale" ? null : e.target.value; }}
           >
-            <option value={null} key="no-lexicon">
+            <option value={undefined} key="no-lexicon">
               -- Select --
             </option>
-            { this.taxonNamePreferenceLexicons( ) }
+            <option value="locale" key="dynamic-lexicon">
+              Same as locale
+            </option>
+            { TaxonNamePreferences.taxonNamePreferenceLexicons( ) }
           </select>
           <PlaceAutocomplete
             config={config}
@@ -79,10 +53,14 @@ class TaxonNamePreferences extends Component {
           />
           <button
             type="button"
-            onClick={( ) => addTaxonNamePreference(
-              this.state.selectedLexicon,
-              this.state.selectedPlaceID
-            )}
+            onClick={( ) => {
+              if ( !_.isUndefined( this.state.selectedLexicon ) ) {
+                addTaxonNamePreference(
+                  this.state.selectedLexicon,
+                  this.state.selectedPlaceID
+                );
+              }
+            }}
           >
             Add New Taxon Name Preference
           </button>
@@ -98,10 +76,8 @@ class TaxonNamePreferences extends Component {
 }
 
 TaxonNamePreferences.propTypes = {
-  profile: PropTypes.object,
   config: PropTypes.object,
-  addTaxonNamePreference: PropTypes.func,
-  deleteTaxonNamePreference: PropTypes.func
+  addTaxonNamePreference: PropTypes.func
 };
 
 export default TaxonNamePreferences;

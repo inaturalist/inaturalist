@@ -229,25 +229,37 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
       };
       scope.shared = shared;
       scope.user = CURRENT_USER;
-      scope.displayName = function() {
-        var name;
+      scope.displayNames = function() {
+        var names = [];
         if ( !scope.taxon ) { return; }
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
-          name = scope.taxon.name;
+          names.push( scope.taxon.name );
+        } else if ( !_.isEmpty( scope.taxon.preferred_common_names ) ) {
+          names = _.map( scope.taxon.preferred_common_names, function( taxonName ) {
+            return iNatModels.Taxon.titleCaseName( taxonName.name )
+          } );
         } else if ( scope.taxon.preferred_common_name ) {
-          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
+          names.push( iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name ) );
+        } else {
+          names.push( scope.taxon.name );
         }
-        return name || scope.taxon.name;
+        return names;
       }
-      scope.secondaryName = function() {
-        var name;
+      scope.secondaryNames = function() {
+        var names = [];
         if ( !scope.taxon ) { return; }
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
-          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
+          if ( !_.isEmpty( scope.taxon.preferred_common_names ) ) {
+            names = _.map( scope.taxon.preferred_common_names, function( taxonName ) {
+              return iNatModels.Taxon.titleCaseName( taxonName.name )
+            } );
+          } else if ( scope.taxon.preferred_common_name ) {
+            names.push( iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name ) );
+          }
         } else if ( scope.taxon.preferred_common_name ) {
-          name = scope.taxon.name;
+          names.push( scope.taxon.name );
         }
-        return name;
+        return names;
       }
       scope.showRank = function() {
         return scope.taxon && scope.taxon.rank_level > 10;
