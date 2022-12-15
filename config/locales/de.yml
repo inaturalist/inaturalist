@@ -560,7 +560,7 @@ de:
   anyone: Alle
   app_owner_application_explanation_required: |
     Du musst eine detailliertere Erklärung geben, was du bauen möchtest.
-  app_owner_application_fields_explanation_html: Beschreiben Sie die Funktionalität, die Ihre Anwendung haben wird und wie Sie sie nutzen möchten.
+  app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
@@ -985,6 +985,10 @@ de:
   confirm_new_password: Neues Kennwort bestätigen
   confirm_now: Jetzt bestätigen
   confirm_your_info: Bestätige deine Info
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Bestätigung per E-mail am %{datetime} gesendet
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bestätigt am %{date}
   confirming_ids: Zustimmende IDs
   confirming_ids_description: Wenn du dies deaktivierst, wirst du nicht mehr über IDs informiert, die mit deinen übereinstimmen.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1289,7 +1293,7 @@ de:
     du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
-  curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Desweiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
+  curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_identification: Bestimmung des Kurators
   current_flags: Aktuelle Meldungen
   #Label for a custom boundary for an observation search
@@ -1418,6 +1422,10 @@ de:
   deviation: Abweichung
   devise:
     confirmations:
+      confirmed: |
+        Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich
+        jetzt hier auf der Website oder in den iNaturalist- oder Seek-Apps wieder anmelden.
+      send_instructions: "Du solltest in wenigen Minuten eine E-Mail mit einer Beschreibung erhalten, wie du deine E-Mail-Adresse bestätigen kannst."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1427,6 +1435,9 @@ de:
       unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
       invalid: 'Email-Adresse oder Passwort ungültig.'
       invalid_token: 'Identifizierungscode ungültig'
+      unconfirmed: |
+        Bitte überprüfe deine E-Mails und klicke auf den Link in der E-Mail, die du erhalten hast, 
+        um dein Konto zu bestätigen.
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
     sessions:
@@ -1444,13 +1455,32 @@ de:
     registrations:
       destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
       signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
+      signed_up_but_inactive: "Du hast dich erfolgreich registriert. Wir konnten dich jedoch nicht anmelden, weil dein Konto noch nicht aktiviert ist."
+      signed_up_but_locked: "Du hast dich erfolgreich angemeldet. Wir konnten dich jedoch nicht anmelden, da dein Account gesperrt ist."
+      signed_up_but_unconfirmed: "Eine Nachricht mit dem Bestätigungslink wurde an deine E-Mail-Adresse gesendet. Bitte folgen dem Link, um dein Konto zu aktivieren."
       updated: 'Du hast dein Konto erfolgreich aktualisiert.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Bestätigungsanweisungen
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: E-Mail-Änderung angefordert
       reset_password_instructions:
         subject: 'Anweisungen zum Zurücksetzen des Passworts'
+  devise_confirmation_instructions_if_you_did_not: |
+    Wenn du dich nicht für einen @vow_or_con{vow:an|a} %{site_name}-Account angemeldet hast, ignoriere bitte diese E-Mail.
+  devise_confirmation_instructions_please_click: |
+    Bitte klicke auf nachfolgenden Link, um deine E-Mail-Adresse zu verifizieren.
+  devise_confirmation_instructions_resend_instructions: |
+    Du musst eine funktionierende E-Mail-Adresse haben, um iNaturalist nutzen zu können. Wenn du
+    dich für einen Zugang angemeldet hast, solltest du eine Bestätigungs-E-Mail mit einem
+    Link erhalten haben, um zu bestätigen, dass deine E-Mail-Adresse funktioniert - aber wenn du keine erhaltens hast, kannst du hier eine weitere Bestätigungs-E-Mail senden.
+  devise_confirmation_instructions_send_confirmation_email: Bestätigungs-E-Mail senden
+  devise_email_changed_you_requested: Du hast eine Änderung von %{old_email} zu %{new_email} angefordert.
+  devise_email_changed_you_will_receive: |
+    Du solltest eine E-Mail an die neue Adresse zugeschickt bekommen, um die Änderung zu bestätigen. Wir haben dir aber eine Nachricht an deine alte Adresse geschickt für den Fall, dass jemand anderes Zugang zu deinem Konto hatte und versucht, ohne dein Wissen die E-Mail zu ändern. Falls du nicht beabsichtigt hast, die Adresse zu ändern, sende uns bitte schnell diese E-Mail an help@inaturalist.org weiter, so dass wir das überprüfen können.
   devise_reset_password_instructions_hello_email: Hallo %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Falls du kein neues Passwort angefordert hast, ignoriere diese E-Mail einfach.
@@ -3686,7 +3716,7 @@ de:
   please_be_careful!: Bitte sei vorsichtig!
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
-  please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
+  please_confirm_your_inat_username: "Bitte bestätige deinen Benutzernamen %{site_name}"
   please_explain_why_you_want_to_hide_this: Bitte gib einen Grund an, warum du das verbergen möchtest
   please_explain_why_you_want_to_unhide_this: Bitte gib einen Grund an, warum du das sichtbar machen möchtest
   please_fix_your_csv_and_try_again: Bitte korrigiere dein CSV und versuche es erneut.
@@ -3797,6 +3827,14 @@ de:
   proposed_taxa_that_support_the_community_id: Vorgeschlagene Taxa, die die Community-ID unterstützen
   protozoans: Protozoen
   provider_authorizations: Anbieter-Autorisierungen
+  provider_without_email_error_apple: |
+    Apple hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Apple
+  provider_without_email_error_flickr: |
+    Flickr hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Flickr
+  provider_without_email_error_generic: |
+    Dieser Anbieter hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via diesem Drittanbieter.
+  provider_without_email_error_google_oauth2: |
+    Google hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Google.
   public_domain: Gemeinfrei
   publish: Veröffentlichen
   purple: Lila
@@ -4057,6 +4095,10 @@ de:
   research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Erneut absenden & Ausloggen
+  resend_confirmation_email: Bestätigungs-E-Mail erneut senden
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Zurücksetzen
   reset_filters_short: Zurücksetzen
@@ -5060,7 +5102,7 @@ de:
   uploading_num_of_count_photos:
     one: Foto wird hochgeladen...
     other: Lade %{num} von %{count} Fotos hoch...
-  url_for_your_app_outside_of_inaturalist: URL für Ihre App außerhalb von iNaturalist
+  url_for_your_app_outside_of_inaturalist: URL für deine App außerhalb von iNaturalist
   url_identifier_of_a_project_derived_from: "URL/ Identifikation eines Projekts, welches von einer externen Quelle abgeleitet wurde"
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
   usage_stats: Nutzungsstatistiken
@@ -5145,6 +5187,8 @@ de:
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Nachdem du die Bestätigungs-Email gesendet hast, wirst du abgemeldet und du wirst dich erst wieder anmelden können, wenn du den Link in der E-Mail angeklickt hast - <strong>also überprüfe genau, dass die angegebene E-Mail-Adresse korrekt ist.</strong>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du bist kurz davor dich auszuloggen</h3>
     <p>
@@ -5488,6 +5532,7 @@ de:
   you_dont_have_permission_to_edit_those_photos: Du hast keine Berechtigung diese Bilder zu bearbeiten.
   you_faved_this: Du hast dies favorisiert!
   you_have_left_x_project: "Du hast %{project} verlassen"
+  you_have_not_confirmed_your_email_address: Du hast deine E-Mail-Adresse noch nicht bestätigt!
   you_havent_linked_your_inaturalist_google_account: "Du hast Deine Konten bei %{site_name} und Google noch nicht verknüpft"
   you_joined_this_project: Du bist diesem Projekt beigetreten!
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes sein, um das tun zu können
@@ -6540,7 +6585,7 @@ de:
           Bist du sicher, dass du dieses Projekt in ein Sammel-Projekt umwandeln möchtest?
         bioblitz_results_desc_html: |
           <p>
-          Im Gegensatz zu regulären Projekten zeigen Bioblitze Ereignisstatistiken von <em>all</em> Beobachtungen innerhalb eines Ortes und Zeitraums an, nicht nur Beobachtungen, die absichtlich dem Projekt hinzugefügt wurden. Damit wird die Hürde genommen, einem Projekt Beobachtungen hinzuzufügen, nur um die Statistiken in Echtzeit zu steuern. Es ist zu beachten, dass Beobachtungen nicht für den Export oder die Anzeige in verschiedenen Projektansichten verfügbar sind, wie z.B. Mitgliederbeiträge auf der Website oder in Suchen nach Beobachtungen in Projekten in den mobilen Anwendungen, es sei denn, das Projektteam und die Teilnehmer fügen aktiv relevante Beobachtungen hinzu, wie sie es in einem normalen Projekt tun würden.
+          Im Gegensatz zu regulären Projekten zeigen Bioblitze Ereignisstatistiken von <em>allen</em> Beobachtungen innerhalb eines Ortes und Zeitraums an, nicht nur Beobachtungen, die absichtlich dem Projekt hinzugefügt wurden. Damit wird die Hürde genommen, einem Projekt Beobachtungen hinzuzufügen, nur um die Statistiken in Echtzeit zu steuern. Es ist zu beachten, dass Beobachtungen nicht für den Export oder die Anzeige in verschiedenen Projektansichten verfügbar sind, wie z.B. Mitgliederbeiträge auf der Website oder in Suchen nach Beobachtungen in Projekten in den mobilen Anwendungen, es sei denn, das Projektteam und die Teilnehmer fügen aktiv relevante Beobachtungen hinzu, wie sie es in einem normalen Projekt tun würden.
           </p>
           <p>
           Es ist zu beachten, dass diese Art von Projekt zwar Statistiken für Beobachtungen anzeigt, die nicht absichtlich dem Projekt hinzugefügt wurden, es den Kuratoren aber nicht erlaubt, private oder verschleierte Koordinaten für diese Beobachtungen zu sehen oder anzunehmen, dass die Beobachter den Projektbedingungen zugestimmt haben. Wenn du ein Projektkurator bist und Zugang zu privaten Koordinaten benötigst, müssen deine Teilnehmer den Projektbedingungen zustimmen, oder du möchtest, dass Beobachtungen auf die kuratierte Projektcheckliste angerechnet werden, stelle sicher, dass deine Teilnehmer dem Projekt beitreten und ihre Beobachtungen wie in einem normalen Projekt hinzufügen.
@@ -6943,7 +6988,7 @@ de:
           <a href='/users/edit'>die Einstellungen ändern</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
-          Das <a href="%{url}" target="_blank">iNaturalist Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern. Sie haben Zugang zu echten Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.
+          Das <a href="%{url}" target="_blank">iNaturalist-Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die Erhebung der lokalen Biodiversität zu unterstützen. Diese Institutionen erhalten Zugang zu den verborgenen Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.
           </p>
           <p>
           Dein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind.
@@ -6959,9 +7004,9 @@ de:
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
         monthly_supporter_desc_html: |
           Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, die von der California Academy of Sciences (United States IRS EIN 94-1156258) verwendet werden, um den gemeinnützigen Betrieb von iNaturalist und den Websites des iNaturalist-Netzwerks zu unterstützen.
-          <a href="%{url}">Klicken Sie hier, um iNaturalist monatlich zu unterstützen</a>.
-          Sobald wir Ihre Zahlung bestätigt haben, können Sie dieses Feld ankreuzen, um diesen Status in Ihrem Profil anzuzeigen.
-          Hinweis: Damit wir Sie als monatlicher Unterstützer bestätigen können, müssen Sie in Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
+          <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
+          Sobald wir deine Zahlung bestätigt haben, kannst du dieses Feld ankreuzen, um diesen Status in deinem Profil anzuzeigen.
+          Hinweis: Damit wir dich als monatlichen Unterstützer bestätigen können, muss in der Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
         muting_desc_html: |
           <p>
           Jemanden stummzuschalten unterbindet es, Benachrichtigungen über dessen Verhalten zu erhalten
