@@ -20,7 +20,7 @@ module Users
 
     def update
       super do | user |
-        if resource.errors.empty?
+        if resource.errors.empty? && !user.confirmed?
           # If a user successfully reset their password, that means they
           # received an email and clicked a link with a valid password reset
           # token, which is the same as confirming that they have access to
