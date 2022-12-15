@@ -1416,6 +1416,8 @@ id:
   deviation: Deviasi
   devise:
     confirmations:
+      confirmed: |
+        Email Anda berhasil dikonfirmasi.
       send_instructions: "Anda akan menerima sebuah email dengan instruksi tentang cara mengonfirmasi email Anda."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
