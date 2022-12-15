@@ -1723,6 +1723,10 @@ fr:
     native: A évolué dans cette région ou bien est arrivée par des moyens non anthropiques
     endemic: Indigène et n’existe nulle part ailleurs
     introduced: Arrivée dans la région par des moyens anthropiques
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Estimation des Id du taxon d'entrée qui seront remplacées par les taxons de sortie et de celles qui seront ramenées à un parent commun une fois la scission validée. Le calcul peut prendre
+    un moment. Les liens vers les observations sont tronqués à des sous-ensembles de 200.
   event_in_progress: Activité en cours
   event_stats: Statistiques de l'évènement
   event_url: URL de l’activité
@@ -5283,6 +5287,24 @@ fr:
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a> à %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Dès que vous aurez renvoyé l'e-mail de confirmation, la session se fermera et vous ne pourrez plus vous connecter à votre compte tant que vous n'aurez pas cliqué sur le lien dans l'e-mail. <strong>Assurez-vous donc d'avoir entré votre adresse e-mail correctement.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Veuillez vous assurer que votre adresse e-mail est correcte. Voici l'adresse à laquelle nous
+    enverrons la confirmation :
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Si vous ne recevez pas l'e-mail, voici quelques conseils :
+    </p>
+    <ul>
+    <li><p>Vérifiez qu’il ne se trouve pas dans votre dossier de courrier indésirable;</p></li>
+    <li><p>Vérifiez les filtres que vous auriez créés pour supprimer nos e-mails de votre boîte de réception.</p></li>
+    </ul>
+    <p>
+    Si vous ne recevez toujours pas l'e-mail de confirmation, veuillez prendre contact avec nous à
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    pour que nous puissions vous aider.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Vous êtes sur le point de vous déconnecter</h3>
     <p>
@@ -6269,6 +6291,8 @@ fr:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permettre aux responsables de projet de voir les coordonnées masquées de cette observation.
+        ancestor_disagreements_desc2: |
+          Nombre de taxons identifiés faisant partie des parents d’un taxon, mais qui sont en désaccord avec ce taxon (par exemple : « Je pense qu'il s'agit d'une autre espèce du même genre. »)
         community_taxon_desc_html: |
           <p class="ui">
           Le taxon de la communauté (ou l’identification de la communauté) représente
