@@ -733,8 +733,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def allow_external_iframes
-    response.headers["X-Frame-Options"] = "ALLOWALL"
+  def self.allow_external_iframes( options )
+    # modify the content security policy for the actions specified in options to
+    # disable the frame_ancestors policy, thus allowing iframes to request these actions
+    content_security_policy( **options ) do |p|
+      p.frame_ancestors nil
+    end
+    before_action( options ) do
+      response.headers["X-Frame-Options"] = "ALLOWALL"
+    end
   end
 
   def allow_cors
