@@ -23,7 +23,7 @@ class PlacesController < ApplicationController
     if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
-  before_action :allow_external_iframes, only: [:guide_widget, :cached_guide]
+  allow_external_iframes( only: [:guide_widget, :cached_guide] )
 
   requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
     if: Proc.new{|c|
