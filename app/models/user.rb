@@ -392,6 +392,9 @@ class User < ApplicationRecord
     child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
@@ -401,8 +404,12 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
-    # Temporary state to allow existing users to sign in
+    # Temporary state to allow existing users to sign in. Probably redundant
+    # with the next grandparent exception
     return true if confirmation_sent_at.blank?
+
+    # Temporary state to allow existing users to sign in
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
 
     super
   end

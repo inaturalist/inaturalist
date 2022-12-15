@@ -69,7 +69,7 @@
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
-                <p><%=t :email_confirmation_banner_html, date: l( Date.parse( "2023-07-01" ), format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                <p><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
               </div>
             </div>
           </div>
