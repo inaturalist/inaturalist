@@ -5400,6 +5400,23 @@ da:
     vil ikke kunne logge ind på din konto, før du klikker på linket i
     e-mailen, så <strong>sørg for at den korrekte e-mailadresse
     angives.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Sørg for, at din e-mailadresse er korrekt. Her er e-mailadressen, hvortil bekræftelsen sendes:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Modtages e-mailen ikke, er her nogle tips:
+    </p>
+    <ul>
+    <li><p>Tjek spammappen</p></li>
+    <li><p>Tjek alle oprettede filtre, som kan fjerne e-mails fra indbakken</p></li>
+    </ul>
+    <p>
+    Modtages bekræftelsesmailen stadig ikke, så kontakt os via
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    så vi kan hjælpe dig.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du er ved at logge ud</h3>
     <p>
