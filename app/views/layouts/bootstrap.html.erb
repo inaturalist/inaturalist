@@ -73,7 +73,6 @@
                   <div class="row">
                     <div class="col-xs-8 col-xs-offset-2 text-left">
                       <h3><%=t :email_conf_banner_email_delivered_click_link %></h3>
-                      <p><%= current_user.time_zone %></p>
                       <p>
                         <%=t :email_conf_banner_we_delivered_todos, date: l( current_user.confirmation_sent_at.in_time_zone( Time.zone ), format: :long ) %>
                       </p>

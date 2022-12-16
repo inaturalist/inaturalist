@@ -15,6 +15,25 @@ class DeviseMailer < Devise::Mailer
     end
     @site ||= user&.site || Site.default
     if user
+      # Remove suppressions that would prevent delivery
+      EmailSuppression.destroy_for_email(
+        user.email,
+        only: [
+          # All devise email gets sent with this supression group... but the
+          # user needs to receive these. We probably should not send these
+          # emails with this group.
+          EmailSuppression::ACCOUNT_EMAILS,
+          # Receiving server *may* have removed us from their block list
+          EmailSuppression::BLOCKS,
+          # Sometimes this is due to a non-existent account, but sometimes
+          # it's just mysterious
+          EmailSuppression::BOUNCES,
+          # Receiving server or user may no longer consider us spammers
+          EmailSuppression::SPAM_REPORTS,
+          # Presumably we only got here because the user wants this email
+          EmailSuppression::UNSUBSCRIBES
+        ]
+      )
       old_locale = I18n.locale
       I18n.locale = user.locale.blank? ? I18n.default_locale : user.locale
       opts = opts.merge(
