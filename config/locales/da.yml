@@ -1707,6 +1707,20 @@ da:
   email: E-mail
   email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
+  email_conf_banner_email_delivered_click_link: |
+    Bekræftelses e-mail leveret. Klik venligst på linket i e-mailen.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Tilføj <code>%{email}</code> til din liste over kontakter og
+    <a href="%{url}">anmode om en anden bekræftelse e-mail</a>.</strong> Hvis din e-mail
+    -udbyder blokerede bekræftelses-e-mailen, kan dette overbevise dem om, at
+    du rent faktisk ønsker e-mail fra os.
+  email_conf_banner_check_your_spam_folder_html: <strong>Tjek din spam-mappe</strong>
+  email_conf_banner_contact_us_html: Fungerer det stadig ikke? Så send os en e-mail til %{email} så vi kan hjælpe dig.
+  email_conf_banner_search_for_emails_html: <strong>Søg efter e-mails fra <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Vi leverede en bekræftelses email til dig den %{date}. Hvis du ikke
+    har modtaget den, så er der nogle ting, du kan gøre:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
     Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
