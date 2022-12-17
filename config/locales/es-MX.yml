@@ -1687,6 +1687,18 @@ es-MX:
   email: Correo
   email_description: Tu correo electrónico no se comparte con otros usuarios de iNaturalist
   email_address_for_comments_and_other_feedback: Dirección de correo para comentarios y feedback
+  email_conf_banner_email_delivered_click_link: |
+    Correo de confirmación entregado. Por favor, haga clic en el enlace del correo electrónico.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Añade <code>%{email}</code> a tu lista de contactos y
+    <a href="%{url}">solicita otro correo electrónico de confirmación</a>.</strong> Si tu proveedor de correo electrónico bloqueó el correo electrónico de confirmación, esto podría convencerles de que realmente quieres que te enviemos un correo electrónico.
+  email_conf_banner_check_your_spam_folder_html: <strong>Revisa tu carpeta de spam</strong>
+  email_conf_banner_contact_us_html: '¿Aún no funciona? Escríbanos a %{email} para que podamos ayudarte.'
+  email_conf_banner_search_for_emails_html: <strong>Busca correos electrónicos de <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Te hemos enviado un correo electrónico de confirmación el %{date}. Si no lo has
+    recibido, aquí hay algunas cosas que puedes hacer:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Por favor confirma su dirección de correo electrónico%{link_end_tag}</strong>.
     Todos los usuarios deben confirmar su dirección de correo electrónico para el %{date}. Después de esa fecha, cualquiera que no haya confirmado su dirección de correo electrónico no podrá iniciar sesión a menos que restablezca su contraseña. Para confirmar tu dirección de correo electrónico, ve a la %{link_start_tag}configuración de tu cuenta%{link_end_tag}.
@@ -5290,6 +5302,23 @@ es-MX:
     Después de reenviar el correo de confirmación, se cerrará la sesión y
     no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
     el correo electrónico, así que <strong>asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Por favor asegúrate que tu correo electrónico es el correcto. Esta es la dirección de correo a la que te enviaremos la confirmación:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Si no recibes el correo electrónico, aquí hay algunas sugerencias:
+    </p>
+    <ul>
+    <li><p>Revisa tu carpeta de SPAM</p></li>
+    <li><p>Revisa si tienes algun filtro que remueva nuestros correos de tu bandeja de entrada</p></li>
+    </ul>
+    <p>
+    Si aun no recibes tu correo de confirmación, por favor contactanos en 
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    para poder ayudarte.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Estás a punto de cerrar sesión</h3>
     <p>
