@@ -1666,6 +1666,17 @@ pt-BR:
   email: E-mail
   email_description: Seu e-mail não é compartilhado com outros usuários do iNaturalist
   email_address_for_comments_and_other_feedback: Endereço de e-mail para comentários e outras colocações.
+  email_conf_banner_email_delivered_click_link: |
+    E-mail de confirmação entregue. Por favor, clique no link no e-mail.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Adicione <code>%{email}</code> à sua lista de contatos
+    <a href="%{url}">e solicite outro e-mail de confirmação </a>.</strong> Se seu provedor de e-mail bloqueou a mensagem de confirmação, isso poderia indicar a ele que voce deseja receber nossas mensagens.
+  email_conf_banner_check_your_spam_folder_html: <strong>Verifique sua pasta de spam</strong>
+  email_conf_banner_contact_us_html: Ainda não funcionou? Envie-nos uma mensagem para %{email} solicitando ajuda.
+  email_conf_banner_search_for_emails_html: <strong>Procure por e-mails de <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Enviamos um e-mail de confirmação no dia %{date}. Caso não tenha recebido, aqui vão algumas sugestões sobre como proceder:
   email_copyright: "Copyright &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
@@ -5269,6 +5280,23 @@ pt-BR:
   username_or_user_id: Nome de usuário ou sua ID
   users: Usuários
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> a %{project_title}
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Por favor certifique-se de que seu endereço de e-mail está correto. Este é o endereço de e-mail para o qual enviaremos o pedido de confirmação:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Se voce não receber a mensagem, aqui vão algumas dicas:
+    </p>
+    <ul>
+    <li><p>Verifique sua caixa de spam</p></li>
+    <li><p>Verifique se existem filtros que poderiam remover nossas mensagens da sua caixa de entrada</p></li>
+    </ul>
+    <p>
+    Se ainda assim não localizar a mensagem de confirmação, por favor entre em contato conosco através do endereço
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    de modo a podermos ajudá-lo.
+    </p>
   users_favorites: "Favoritos de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destaques e estatísticas de %{user} durante %{year} no %{site}"
   users_id: "Identificação de %{user}"
