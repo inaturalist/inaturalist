@@ -2243,7 +2243,7 @@ hu:
   not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
   not_finding_place_you_want?: Nem találod a keresett helyet?
   not_found: Nincs találat
-  not_recorded: Nincs feljegyezve
+  not_recorded: Nincs adat
   not_resolved: Nincs megoldva
   note: Megjegyzés
   notes: Megjegyzések
@@ -3909,6 +3909,22 @@ hu:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> hozzájárulása a %{project_title} projekthez
   users_edit_resend_confirmation_prompt_html: |
     A megerősítő email újraküldése után a rendszer kiléptet, és nem fog tudni belépni mindaddig, amíg nem kattintasz az emailben található linkre. Ezért <strong>mindenképpen bizonyosodj meg arról, hogy helyesen adtad meg az email címet.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Kérjük, hogy bizonyosodj meg arról, hogy a megadott email cím helyes. Erre az email címre küldjük a megerősítő emailt:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Ha nem érkezne meg az email:
+    </p>
+    <ul>
+    <li><p>Nézz utána a spamek között</p></li>
+    <li><p>Ellenőrizzd, hogy fennakadt-e az email a fiókod filterein</p></li>
+    </ul>
+    <p>
+    Ha még így sem találod az emailt, vedd fel velünk a kapcsolatot a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    címen.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Ezzel ki fogsz jelentkezni</h3>
     <p>
