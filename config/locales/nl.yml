@@ -1700,6 +1700,19 @@ nl:
   email: E-mail
   email_description: Jouw e-mail wordt niet gedeeld met andere gebruikers van iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadres voor reacties en andere feedback
+  email_conf_banner_email_delivered_click_link: |
+    Bevestigingse-mail verzonden. Klik op de link in de e-mail.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Voeg <code>%{email}</code> toe aan je lijst van contacten en
+    <a href="%{url}">vraag om een andere bevestigingse-mail</a>.</strong> Als je e-mail provider 
+    de bevestigingse-mail heeft geblokkeerd zou dit hen kunnen overtuigen dat je daadwerkelijk e-mail van ons wil ontvangen.
+  email_conf_banner_check_your_spam_folder_html: <strong>Controleer je spamfolder</strong>
+  email_conf_banner_contact_us_html: Werkt het nog steeds niet? E-mail ons op %{email} zodat we je kunnen helpen.
+  email_conf_banner_search_for_emails_html: <strong>Zoeken naar e-mails van <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    We hebben je een bevestigingsmail gestuurd op %{date}. Als je deze niet
+    hebt ontvangen dan zijn er enkele dingen die je kunt doen:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Bevestig jouw e-mailadres%{link_end_tag}</strong>.
     Alle gebruikers moeten hun e-mailadres bevestigen voor %{date}. Na die
@@ -5360,6 +5373,24 @@ nl:
     Nadat je de bevestigingsmail opnieuw hebt verstuurd word je afgemeld en kan 
     je niet inloggen op je account totdat je op de link in
     de e-mail klikt dus <strong>zorg ervoor dat je een geldig e-mailadres hebt ingevoerd.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Zorg ervoor dat jouw e-mailadres correct is. Hier is het e-mailadres waar wij
+    de bevestiging naar toesturen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Als je de e-mail niet ontvangt, volgen hier enkele tips:
+    </p>
+    <ul>
+    <li><p>Controleer je map met spam/ongewenste e-mail</p></li>
+    <li><p>Controleer alle filters die je hebt gemaakt die onze e-mails uit je inbox zouden kunnen verplaatsen of verwijderen</p></li>
+    </ul>
+    <p>
+    Als je de bevestigingsmail nog steeds niet ontvangt neem dan contact met ons op via
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    zodat we je kunnen helpen.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Je staat op het punt uit te loggen</h3>
     <p>

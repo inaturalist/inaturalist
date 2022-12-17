@@ -4227,6 +4227,21 @@ et:
   username_or_user_id: Kasutajatunnus või kasutaja ID
   users: Kasutajad
   users_contributions_to_project_html: Kasutaja <a href="%{url}">%{login}</a> panus projekti %{project_title}
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Palun kontrolli, kas su e-posti aadress on korrektne. Allpool on kirjas aadress, millele saadame kinnituskirja:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Kui sa ei saanud e-kirja, proovi järgnevat:
+    </p>
+    <ul>
+    <li><p>Kontrolli rämpsposti kausta</p></li>
+    <li><p>Kontrolli, et sa ei kasuta filtreid, mis eemaldavad postkastist kirju</p></li>
+    </ul>
+    <p>
+    Kui sa ei saa ikka veel kinnituskirja, palun võta meiega ühendust aadressil <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ja me aitame sind.
+    </p>
   users_highlights_and_stats_from_year_on_site: "Kasutaja %{user} %{year}. aasta tipud ja statistika lehel %{site}"
   users_id: "%{user} ID"
   users_identifications: "Kasutaja %{user} määratlused"

@@ -1478,6 +1478,8 @@ ja:
   email: 電子メール
   email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
+  email_conf_banner_email_delivered_click_link: |
+    確認メールが配信されました。メールに記載されているリンクをクリックしてください。
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
@@ -4369,6 +4371,21 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
+  users_edit_send_confirmation_prompt_html: |
+    <h3>サインアウトしようとしています</h3>
+    <p>
+    確認メールを送信した後、サインアウトされ、アカウントにログインできなくなります。
+    そのため、<strong class="bg-warning">メールアドレスが正しく入力されていることを必ずご確認ください。</strong>
+    </p>
+    <p>
+    こちらが確認メールをお送りするメールアドレスです。
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>すべてのメールの配信を停止している場合...</h4>
+    <p>
+    当社からの<em>すべての</em>メールの配信を停止されている場合、確認メールを送信することができません。再登録するには、当社からの過去のメールを見つけ、登録解除のリンクをクリックし、メール受信を再開することを選択する必要があります。これができない場合は、このページで入力されたEメールアドレスを使用して次のアドレスまでご連絡ください。お手伝いさせていただきます。
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 
+    </p>
   users_favorites: "%{user}のお気に入り観察記録"
   users_highlights_and_stats_from_year_on_site: "%{user}さんの%{year} における%{site} のハイライトと統計"
   users_id: "%{user}さんのID"
