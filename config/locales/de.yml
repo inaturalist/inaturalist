@@ -5189,6 +5189,24 @@ de:
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Nachdem du die Bestätigungs-Email gesendet hast, wirst du abgemeldet und du wirst dich erst wieder anmelden können, wenn du den Link in der E-Mail angeklickt hast - <strong>also überprüfe genau, dass die angegebene E-Mail-Adresse korrekt ist.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Bitte stelle sicher, dass deine E-Mail-Adresse korrekt ist. Hier ist die E-Mail-Adresse, an die wir die Bestätigung senden:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Falls du die E-Mail nicht erhältst, sind hier einige Tipps:
+    </p>
+
+    <ul>
+    <li><p>Überprüfe deinen Spam-Ordner</p></li>
+    <li><p>Überprüfe alle Filter, die du angelegt hast, um unsere E-Mails aus deinem Posteingang zu entfernen</p></li>
+    </ul>
+    <p>
+    Wenn du trotzdem noch keine Bestätigungs-E-Mail erhälst, dann kontaktiere uns bitte unter
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    damit wir dir helfen können.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du bist kurz davor dich auszuloggen</h3>
     <p>
