@@ -987,6 +987,8 @@ cs:
   change_group: Změna skupiny
   change_icon: Změna ikony
   change_password: Změna hesla
+  #Message shown after you change your email address
+  change_to_email_requested_html: Požadovaná změna na <strong>%{email}</strong>. Zkontrolujte svůj e-mail na této adrese a potvrďte změnu.
   change_types:
     activated_soon: aktivováno brzy
     change_types: Typy změn
@@ -1154,6 +1156,8 @@ cs:
   confirm_new_password: Potvrzení nového hesla
   confirm_now: potvrďte nyní
   confirm_your_info: Potvrďte vaše informace
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrzeno dne %{date}
   confirming_ids: Potvrzování ID
@@ -4479,6 +4483,10 @@ cs:
   selected_taxon: Vybraný taxon
   select_this_taxon: Vybrat tento taxon
   send: odeslat
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Odeslat a odhlásit
+  send_confirmation_email: Odeslat ověřovací e-mail
   send_me_reset_password_instructions: Odešlete mi pokyny k obnovení hesla
   sending: Odesílá se…
   #Label for messages you've sent
@@ -5467,6 +5475,46 @@ cs:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Po opětovném odeslání ověřovacího e-mailu budete odhlášeni a nebudete se moci přihlásit ke svému účtu, dokud nekliknete na odkaz v e-mailu, takže <strong>se naprosto ujistěte, že jste svou e-mailovou adresu zadali správně.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Ujistěte se, že je vaše e-mailová adresa správná. Zde je naše e-mailová adresa
+    zašle potvrzení na adresu:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Pokud e-mail neobdržíte, zde je několik tipů:
+    </p>
+    <ul>
+    <li><p>Zkontrolujte složku se spamem</p></li>
+    <li><p>Zkontrolujte, zda nemáte vytvořené filtry, které by mohly odstranit naše e-maily z vaší doručené pošty</p></li>
+    </ul>
+    <p>
+    Pokud stále neobdržíte potvrzovací e-mail, kontaktujte nás na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    takže vám můžeme pomoci.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Chystáte se odhlásit</h3>
+    <p>
+    Po odeslání potvrzovacího e-mailu budete odhlášeni a nebudete se moci 
+    přihlásit ke svému účtu, dokud nekliknete na odkaz
+    v e-mailu, takže se<strong class="bg-warning">ujistěte, že jste
+    zadali správně svou e-mailovou adresu.</strong>
+    </p>
+    <p>
+    Zde je e-mailová adresa, na kterou zašleme potvrzení:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Pokud jste se odhlásili z odběru všech e-mailů...</h4>
+    <p>
+    Pokud jste se odhlásili z odběru <em>všech</em> e-mailů od nás, nemůžeme vám odeslat
+    potvrzovací e-mail. Chcete-li se znovu přihlásit k odběru, musíte najít předchozí
+    poslaný e-mail, klepnout na odkaz pro odhlášení odběru a v dalším mailu zvolit možnost 
+    Přihlásit k odběru. Pokud to nemůžete udělat, pošlete prosím
+    e-mail na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 
+    z e-mailové adresy, kterou jste zde zadali, abychom vám mohli pomoci.
+    </p>
   users_favorites: "Oblíbené uživatele %{user}"
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
