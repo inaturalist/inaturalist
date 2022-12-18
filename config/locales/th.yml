@@ -520,6 +520,9 @@ th:
   attribution_uploaded_by_user: "%{attribution} อัปโหลดโดย %{user}"
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
+  automatic_short: อัตโนมัติ
+  automatically_add_observations_to_this_project: เพิ่มการสังเกตเข้าโครงการนี้อัตโนมัติ
+  automatically_update_my_content_for_taxon_changes: อัปเดตเนื้อหาของฉันอัตโนมัติสำหรับการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
   avg: ค่าเฉลี่ย
@@ -565,6 +568,7 @@ th:
   by_you: โดยคุณ
   calendar: ปฏิทิน
   cancel: ยกเลิก
+  cant_flag_an_object_that_doesnt_exist: ไม่สามารถรายงานสิ่งที่ไม่มีอยู่จริง
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
@@ -982,6 +986,8 @@ th:
   flag_for_user_title_html: |
     รายงานผู้ใช้งาน: %{title}
   flag_it!: รายงานเลย!
+  #Label for the object that was flagged, e.g. a table header
+  flag_object: สิ่งที่รายงาน
   flag_reason: "&ldquo;ฉันรายงาน%{record}นี้เพราะว่า"
   flag_resolution: การแก้ปัญหา
   flag_saved: บันทึกรายงานแล้ว
@@ -1110,6 +1116,8 @@ th:
   import_date_time_location_taxonomic: "นำเข้าข้อมูลวันที่ เวลา ตำแหน่ง คำอธิบาย และอนุกรมวิธานจากรูปนี้"
   import_observations: นำเข้าการสังเกต
   improving: แนะนำคนแรก
+  #As in a reason to flag something
+  inappropriate: ไม่เหมาะสม
   #Label for messages you've received
   inbox: กล่องข้อความ
   include_places: รวมสถานที่นี้
@@ -2079,6 +2087,7 @@ th:
   start_a_new_project: เริ่มโครงการใหม่
   start_a_project: เริ่มต้นโครงการ
   start_typing_place_name: พิมพ์ชื่อสถานที่...
+  start_typing_someones_name: "พิมพ์ชื่อคน..."
   stats: สถิติ
   status: สถานะ
   status_globally: '%{status} ทั่วโลก'
@@ -2170,6 +2179,12 @@ th:
   theres_something_wrong_with_taxon_framework_relationship: มีบางอย่างผิดพลาดที่นี่ - เราไม่สามารถกำหนดความสัมพันธ์ระหว่างหน่วยอนุกรมวิธานใด ๆ ระหว่างภายในกับภายนอก
   these_observations_have_not_been_uploaded_yet: |
     การสังเกตเหล่านี้ยังไม่ถูกอัปโหลด
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{noun}ของ%{object_phrase}"
   this_bioblitz_beings_in: Bioblitz นี้จะเริ่มในอีก
   this_is_your_observation: นี่คือการสังเกตของคุณ
   this_list_only_accepts_taxa_that_are_species: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่เป็นชนิดเท่านั้น
@@ -2556,6 +2571,8 @@ th:
       show:
         data_quality_assessment_desc_html: |
           การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
+        flagged_photos_desc_html: |
+          บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
@@ -2801,6 +2818,8 @@ th:
       flag:
         #The reason the item was flagged
         reason: เหตุผล
+        #The person who resolved the flag
+        resolver_id: ผู้แก้ปัญหา
       listed_taxon:
         establishment_means: การเข้ามาตั้งถิ่นฐาน
       moderator_action:
