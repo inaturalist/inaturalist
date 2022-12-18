@@ -2157,6 +2157,7 @@ hu:
   new_project: Új projekt
   new_source: Új forrás
   new_species_added_in_interval: Új faj hozzáadva az %{interval} intervallumban
+  new_species_added_in_interval_x_of_y: 'Új fajok hozzáadva ekkor: %{interval} (%{x} megjelenítve, összesen %{y})'
   new_taxon_change: Új taxonmódosítás
   new_taxon_link: Új taxonhivatkozás
   new_taxon_name_for: 'Új taxonnév: '
@@ -2426,6 +2427,7 @@ hu:
   one_of_the_following_must_be_true: "ez egyik ezek közül igaz kell legyen:"
   one_of_your_lists: "egyik listád..."
   only_an_admin_can_remove_project_users: Csak adminok távolíthatnak el projektfelhasználókat
+  only_files_with_10000_rows_at_a_time: Kérjük, hogy legfeljebb tízezer sorból álló fájlt tölts fel
   only_receive_updates_about_this_taxon: Csak erről a taxonról kapj értesítést
   only_show_active_taxa: Mutasd csak az aktív taxonokat
   only_show_events_that_last_less_than_2_weeks: Csak a 2 hétnél rövidebb eseményeket mutasd
@@ -3086,7 +3088,7 @@ hu:
       other: Rend
     suborder: Alrend
     infraorder: Alrendág
-    subterclass: Subterclass
+    subterclass: Subterosztály
     parvorder: Részalrend
     zoosection: Osztag
     zoosubsection: Alosztag
@@ -3148,7 +3150,7 @@ hu:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: alrendág
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
-  ranks_lowercase_subterclass: subterclass
+  ranks_lowercase_subterclass: subterosztály
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: részalrend
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
@@ -3299,6 +3301,7 @@ hu:
   rotate_left: Forgatás balra
   rotate_right: Forgatás jobbra
   row_singular_or_plural: Sor(ok)
+  rules_and_formatting: "Szabályok és formátum"
   rules_for_adding_observations: Megfigyelések hozzáadására vonatkozó szabályok
   rules_types:
     must_be_captive: Fogságban lévő / kultivált kell legyen
@@ -3567,6 +3570,7 @@ hu:
   taxon_changes: Taxonváltozások
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_name: Taxon neve
+  taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
   taxon_observed_by_user: "%{taxon} megfigyelve %{user} által"
   taxon_photos_updated: Taxonfotó frissítve!
   taxon_range_for_taxon_html: '%{taxon} taxonintervalluma'
@@ -3838,6 +3842,8 @@ hu:
   updated_photo: Fotó frissítve
   upload: Feltöltés
   upload_a_csv_file: CSV-fájl feltöltése
+  upload_a_csv_file_with_observation: |
+    Megfigyelési adatokat tartalmazó CSV-fájl feltöltése. Ha az adataidat táblázatos formátumban vagy adatbázisban tárolod, akkor valószínűleg ez a legegyszerűbb módja a feltöltésnek.
   upload_new_photo: Új fénykép feltöltése
   upload_photo: Fotó feltöltése
   #Label that notes who uploaded some content, not in a sentence
@@ -3857,6 +3863,9 @@ hu:
   url_identifier_of_a_project_derived_from: "Egy projekt URL-je / azonosítója valamilyen külső forrásból származtatva"
   url_of_this_taxon_on_the_source_website: E taxon URL-je a forrás weboldalán
   usage_stats: Használati statisztikák
+  use_unique_file_names_for_separate_uploads: Használj egyedi fájlneveket a különböző feltöltéseknél
+  use_well_formed_csv: |
+    Használj megfelelő formátummal rendelkező CSV-fájlt: vesszőt tartalmazó szövegnek két idézőjel között kell lennie. A legtöbb táblázatkezelő ennek megfelelően exportálja a CSV-fájlt.
   user: Felhasználó
   user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvencelték ezt a megfigyelést"
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvencelték ezt a megfigyelést"
@@ -4105,6 +4114,7 @@ hu:
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yes_reject_it: Igen, elutasítom
   yesterday: Tegnap
+  yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Többmilliós közösség. Reflektorfényben a biodiverzitás. Globális együttműködés.
   #"You" is singular
   yir_donate_banner_all_thanks: Minden köszönet Neked és a közösségnek!
@@ -4142,6 +4152,7 @@ hu:
   you_have_not_confirmed_your_email_address: Még nem erősítetted az email címedet.
   you_must_be_a_member_of_this_project_to_do_that: Ehhez projektagnak kellene lenned
   you_must_choose_an_observation_field: Ki kell választanod egy adatmezőt
+  you_must_have_a_header_row: Fejléc szükséges
   you_must_select_a_place_to_merge_with: Válassz egy helyet, amivel összevonod.
   you_retain_full_copyright: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
   you_retain_full_copyright_over_your_content: "A tartalmaid tekintetében minden szerző jogot megtartasz, kivéve azokat, amelyekkel az %{site_name}-ot felruháztad a Felhasználói Feltételek elfogadásával."
@@ -4573,7 +4584,7 @@ hu:
           Az iNaturalist Network tagjainak éves visszatekintői
         include_usa: Tartalmazza az USÁ-t
         growth_by_country_desc_html: |
-          Hol van a növekvés? Erre próbál választ adni országonkénti lebontásban az alábbi térkép és diagram, amit az országonkénti növekedés kiegyenlítetlensége is bonyolít. Úgy döntöttünk, hogy a különségek hangsúlyozása érdekében nem vesszük figyelembe az Amerikai Egyesült Államokat, és alapértelmezetten logaritmikus skálát alkalmazunk. A feketével ábrázolt országok nem járultak hozzá jelentős mértékben a növekedéshez. Az egyes országok százalékainak megtekintéséhez húzd az egeret az országra. Az<strong>összes növekedés %-a</strong> azt fejezi ki, hogy a globális növekedés hány százaléka származik egy adott országból. Ha például 2018-ban 20, 2017-ben pedig 10 megfigyelés volt globálisan, és abból 5 Beninből érkezett, akkor Benin 50%-ban járult hosszá a globális növekedéshez. A <strong>növekedési %</strong> pedig azt mutatja, hogy milyen mértékben növekedett egy adott országban a megfigyelések száma tavalyhoz képest. Ha például Laoszban 10 megfigyelés volt tavaly, idén pedig 20, akkor a 100%-os a növekedés.
+          Hol van a növekvés? Erre próbál választ adni országonkénti lebontásban az alábbi térkép és diagram, amit az országonkénti növekedés kiegyenlítetlensége is bonyolít. Úgy döntöttünk, hogy a különségek hangsúlyozása érdekében nem vesszük figyelembe az Amerikai Egyesült Államokat, és alapértelmezetten logaritmikus skálát alkalmazunk. A feketével ábrázolt országok nem járultak hozzá jelentős mértékben a növekedéshez. Az egyes országok százalékainak megtekintéséhez húzd az egeret az országra. Az <strong>összes növekedés %-a</strong> azt fejezi ki, hogy a globális növekedés hány százaléka származik egy adott országból. Ha például 2018-ban 20, 2017-ben pedig 10 megfigyelés volt globálisan, és abból 5 Beninből érkezett, akkor Benin 50%-ban járult hosszá a globális növekedéshez. A <strong>növekedési %</strong> pedig azt mutatja, hogy milyen mértékben növekedett egy adott országban a megfigyelések száma tavalyhoz képest. Ha például Laoszban 10 megfigyelés volt tavaly, idén pedig 20, akkor a 100%-os a növekedés.
         growth_by_country_title: Növekedés országonként
         growth_in_year_obs: "%{year} növekedés (megfigyelés)"
         growth_title: Növekedés
@@ -4856,7 +4867,16 @@ hu:
       - December
   datetime:
     distance_in_words:
+      about_x_years:
+        one: kb. %{count} éve
+        other: kb. %{count} éve
+      almost_x_years:
+        one: majdnem %{count} éve
+        other: majdnem %{count} éve
       half_a_minute: fél perce
+      over_x_years:
+        one: több, mint %{count} éve
+        other: több, mint %{count} éve
     prompts:
       day: Nap
       hour: Óra
