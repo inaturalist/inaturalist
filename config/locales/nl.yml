@@ -953,6 +953,18 @@ nl:
   choose_what_kind_of_change_youre_creating: "Kies welk type wijziging je aan het maken bent."
   cid_d_to_genus: CID'd naar Genus
   citation: Citaat
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Onbedoelde meningsverschillen ontstaan wanneer een ouder <strong>(B)</strong> is
+    uitgedund door het verplaatsen van een kind <strong>(E)</strong> naar een ander deel van de
+    taxonomische boom waardoor bestaande ID's van de ouder worden geïnterpreteerd
+    als meningsverschillen met bestaande ID's van het verplaatste kind.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Onbedoelde meningsverschillen ontstaan wanneer een ouder <strong>(B)</strong> is
+    uitgedund door een kind <strong>(E)</strong> te wissselen voor een ander deel van de
+    taxonomische boom waardoor bestaande ID's van de ouder worden geïnterpreteerd
+    als meningsverschillen met bestaande ID's van het verwisselde kind.
   classification: Classificatie
   clear: wissen
   clear_filters: Filters wissen
@@ -2154,6 +2166,12 @@ nl:
     Als het uitdiepen van een ouder resulteert in meer dan 10 onbedoelde meningsverschillen moet je
     de bovenliggende splitsen nadat je het kind hebt verplaatst om bestaande ID's van
     de bovenliggende <strong>(B)</strong> te vervangen door ID's die het niet oneens zijn.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Als het uitdunnen van een ouder resulteert in meer dan 10 onbedoelde meningsverschillen moet je
+    de bovenliggende pagina splitsen nadat je het kind hebt gewisseld om bestaande ID's
+    van het bovenliggend <strong>(B)</strong> te vervangen met ID's die het niet oneens zijn.
   if_matches_come_from_a_comprehensive_list: Als gevonden items van een volledige lijst komen, wordt hier een groene balk weergegeven.
   if_this_is_a_scientific_name: Als dit een wetenschappelijk naam betreft, is hij momenteel aanvaard?
   if_this_link_will_apply_to_descendant: Als deze link van toepassing is op onderliggende taxa kun je sjabloontags gebruiken om de taxonnaam in de URL in te vullen
