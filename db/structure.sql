@@ -1139,7 +1139,8 @@ CREATE TABLE public.deleted_observations (
     user_id integer,
     observation_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    observation_created_at timestamp without time zone
 );
 
 
@@ -10240,6 +10241,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220317205240'),
 ('20220317210522'),
 ('20220407173712'),
-('20221214192739');
+('20221214192739'),
+('20221219015021');
 
 
