@@ -1653,6 +1653,16 @@ tr:
   email: E-posta
   email_description: E-posta adresin iNaturalist kullanıcılarıyla paylaşılmamaktadır
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
+  email_conf_banner_email_delivered_click_link: |
+    Doğrulama e-postası gönderildi. Lütfen e-postadaki bağlantıya tıklayın.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Kişi listene <code>%{email}</code> adresini ekle ve <a href="%{url}">başka bir doğrulama e-postası talep et</a>.</strong> E-posta sağlayıcın doğrulama e-postasını engellediyse, bu, onları gerçekten bizden e-posta istediğine ikna edebilir.
+  email_conf_banner_check_your_spam_folder_html: <strong>Gereksiz kutunu kontrol et</strong>
+  email_conf_banner_contact_us_html: Hâlâ çalışmıyor mu? Size yardımcı olabilmemiz için %{email} adresinde e-posta gönderin.
+  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code> tarafından gönderilen e-postaları ara</strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    %{date} tarihinde sana bir doğrulama e-postası gönderdik. Almadıysan, yapabileceğin bazı şeyler:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
   email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
@@ -5174,6 +5184,21 @@ tr:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> kullanıcısının %{project_title} projesine katkıları
   users_edit_resend_confirmation_prompt_html: |
     Doğrulama e-postasını yeniden gönderdikten sonra oturumun kapatılacak ve e-postadaki bağlantıya tıklayana kadar hesabında oturum açamayacaksın, bu nedenle <strong>e-posta adresini doğru girdiğinden kesinlikle emin ol.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Lütfen e-posta adresinin doğru olduğundan emin ol. Doğrulamayı göndereceğimiz e-posta adresi:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    E-postayı almazsan, işte bazı ipuçları:
+    </p>
+    <ul>
+    <li><p>Gereksiz kutunu kontrol et</p></li>
+    <li><p>E-postalarımızı gelen kutundan kaldırabilecek herhangi bir filtre uygulayıp uygulamadığını kontrol et</p></li>
+    </ul>
+    <p>
+    Onay e-postasını hâlâ almadıysan, yardımcı olabilmemiz için lütfen <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> adresinden bizimle iletişime geç.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Çıkış yapmak üzeresiniz</h3>
     <p>
