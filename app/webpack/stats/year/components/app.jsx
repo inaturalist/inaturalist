@@ -112,12 +112,58 @@ const App = ( {
                   />
                 )
               }
-              { !user && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} /> }
+              {
+                !user
+                && <Sites year={year} site={site} sites={sites} defaultSiteId={DEFAULT_SITE_ID} />
+              }
             </Col>
           </Row>
         </Grid>
         { !user && ( !site || site.id === DEFAULT_SITE_ID ) && (
           <Donate year={year} data={data} forDonor={currentUser && currentUser.donor} />
+        ) }
+        { data.pull_requests && (
+          <div>
+            <Grid fluid={isTouchDevice}>
+              <Row>
+                <Col xs={12}>
+                  <h3>
+                    <a name="pulls" href="#pull">
+                      <span>Pull Requests</span>
+                    </a>
+                  </h3>
+                  <table className="table">
+                    <thead>
+                      <th>User</th>
+                      <th>Title</th>
+                      <th>Merged at</th>
+                    </thead>
+                    <tbody>
+                      { data.pull_requests.map( pr => (
+                        <tr key={pr.html_url}>
+                          <td>
+                            <a
+                              className="userimage UserImage"
+                              href={pr.user.html_url}
+                              style={{
+                                backgroundImage: `url('${pr.user.avatar_url}')`
+                              }}
+                            >
+                              { " " }
+                            </a>
+                            { " " }
+                            { pr.user.login }
+                          </td>
+                          <td>{ pr.title }</td>
+                          <td>{ pr.merged_at }</td>
+                        </tr>
+                      ) ) }
+                    </tbody>
+                  </table>
+                </Col>
+              </Row>
+            </Grid>
+          </div>
         ) }
         <Grid fluid={isTouchDevice}>
           <Row>

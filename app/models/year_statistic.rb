@@ -73,6 +73,7 @@ class YearStatistic < ApplicationRecord
           donors: donors( year, options )
         }
       end
+      json[:pull_requests] = github_pull_requests( year )
     end
     year_statistic.update( data: json )
     year_statistic.generate_shareable_image
@@ -1728,6 +1729,34 @@ class YearStatistic < ApplicationRecord
     return "UTC" unless ( tz = ActiveSupport::TimeZone[options[:user].time_zone] )
 
     tz.tzinfo.name
+  end
+
+  def self.github_pull_requests( year )
+    year_pulls = []
+    page = 1
+    loop do
+      url = "https://api.github.com/repos/inaturalist/inaturalist/pulls?state=closed&page=#{page}"
+      puts "Getting #{url}"
+      pulls = JSON.parse( RestClient.get( url ) )
+      page_pulls = pulls.select do | pull |
+        pull["merged_at"] &&
+          !%w(dependabot[bot]).include?( pull["user"]["login"] ) &&
+          pull["author_association"] != "MEMBER" &&
+          Date.parse( pull["merged_at"] ).year == year
+      end
+      puts "Date.parse( pulls.last['merged_at'] ): #{Date.parse( pulls.last["merged_at"] )}"
+      if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
+        break
+      end
+
+      year_pulls += page_pulls
+      page += 1
+    end
+    year_pulls.map do | pull |
+      new_pull = pull.slice( "title", "merged_at", "html_url" )
+      new_pull["user"] = pull["user"].slice( "login", "avatar_url", "html_url" )
+      new_pull
+    end
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )
