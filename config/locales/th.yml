@@ -56,7 +56,7 @@ th:
     other: "%{count} อื่น ๆ"
   x_people:
     other: "%{count} คน"
-  x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วยจำนวน <strong>%{y} IDs</strong>"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} คน</strong> ช่วย %{user} ด้วย <strong>%{y} การจำแนก</strong>"
   x_photos:
     other: "%{count} รูป"
   x_new_species:
@@ -1627,6 +1627,8 @@ th:
       #identification but the observation has been deleted
       without_observation: เพิ่ม<strong>การจำแนก</strong>
   per_day: ต่อวัน
+  per_month: ต่อเดือน
+  per_week: ต่อสัปดาห์
   person: ผู้ใช้งาน
   per_page: "จำนวนต่อหน้า"
   photo_licensing: สัญญาอนุญาตรูปถ่าย
@@ -1957,6 +1959,7 @@ th:
   rules_types:
     must_be_verifiable: ต้องพิสูจน์ได้
     must_be_wild: ต้องพบตามธรรมชาติ
+  running_total: ผลรวมสะสม
   satellite: ดาวเทียม
   save: บันทึก
   save_all: บันทึกทั้งหมด
@@ -2365,6 +2368,7 @@ th:
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
   user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
   user_flagged_as_a_spammer_html: "%{user} ถูกรายงานว่าเป็นผู้ส่งสแปม"
+  user_helped_x_people_with_y_ids_html: "%{user} ช่วย <strong>%{x} คน</strong> ด้วย <strong>%{y} การจำแนก</strong>"
   user_invited_you_to_join_this_project_on_date_html: "%{user} เชิญคุณเข้าร่วมโครงการนี้เมื่อ %{date}"
   user_is_a_naturalist: "%{user} เป็นนักธรรมชาติวิทยา!"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
@@ -2376,6 +2380,7 @@ th:
   users_profile: "โปรไฟล์ของ %{user}"
   value: ค่า
   values: ค่า
+  verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
   view: ดู
   view_all: ดูทั้งหมด
   view_all_flags: ดูการรายงานทั้งหมด
@@ -2446,6 +2451,8 @@ th:
   who_can_see_the_coordinates: ใครเห็นพิกัดได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับความไว้วางใจจากผู้สังเกตในการเปิดเผยพิกัด
+  who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
+  who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
   why_the_coordinates_are_obscured: เหตุผลที่พิกัดมีความคลุมเครือ
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
@@ -2632,13 +2639,21 @@ th:
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
       year:
+        compared_to_previous_years: เปรียบเทียบกับปีก่อน ๆ
         inaturalist_network: เครือข่าย iNaturalist
+        growth_in_year_obs: "การเติบโตในปี %{year} (การสังเกต)"
+        growth_title: การเติบโต
         new_species_desc: |
           ชนิดที่สังเกตเป็นครั้งแรกบน %{site_name} ในปีนี้ แสดง %{x} จาก <a href="%{url}">%{y} ชนิด</a>
         new_species_desc_html: |
           ชนิดที่เพิ่มเข้ามาเป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และดูชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ ได้ด้วย แผนภูมินี้แสดงชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
         new_species_per_year: ชนิดใหม่ / ปี
+        percent_growth_in_year: "% การเติบโตในปี %{year}"
+        percent_of_total_growth: "% การเติบโตทั้งหมด"
+        observations_per_year: การสังเกต / ปี
         species_per_year: ชนิด / ปี
+        stats_generated_datetime: สถิตินี้สร้างเมื่อ %{datetime}
+        stats_generation_schedule: สถิติจะสร้างทุกวันอาทิตย์ในเดือนธันวาคมและวันที่ 1 มกราคม
     taxa:
       show:
         about_conservation_status_desc: |
