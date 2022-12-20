@@ -133,6 +133,8 @@ th:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     คุณสามารถเลือกที่จะแบ่งปันพิกัดที่ซ่อนอยู่สำหรับ
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: เกี่ยวกับการไม่เห็นด้วยแบบไม่ตั้งใจ
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -297,6 +299,8 @@ th:
   agree_with_current_taxon: เห็นด้วยกับอันดับอนุกรมวิธานปัจจุบัน
   agreeing: กำลังยืนยัน...
   aka: เป็นที่รู้จักกันในชื่อ
+  #Noun, title of a popup alerting you to something
+  alert: แจ้งเตือน
   all: ทั้งหมด
   all_comments: ความคิดเห็นทั้งหมด
   all_flags_must_be_resolved: ธงปักทั้งหมดต้องได้รับการแก้ไข
@@ -387,6 +391,10 @@ th:
   all_updates: อัปเดตทั้งหมด
   allow_curator_access: อนุญาตให้ผู้ดูแลเข้าถึงได้
   allow_project_curators_to_view_your_private_coordinates: อนุญาตให้ผู้ดูแลโครงการดูพิกัดที่คุณซ่อนไว้
+  allowed_establish_means_values: ค่าการเข้ามาตั้งถิ่นฐานที่ใช้ได้
+  allowed_html: HTML ที่ใช้ได้
+  allowed_occurrence_status_values: ค่าสถานะการปรากฏที่ใช้ได้
+  allowed_values: ค่าที่ใช้ได้
   alphabetical: ตามตัวอักษร
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
@@ -396,6 +404,7 @@ th:
   animals: สัตว์
   annotation: หมายเหตุ
   annotations: หมายเหตุ
+  announcements: ประกาศ
   #Label to for an option to show content with any value. Often used as a
   #fallback when the more specific any_* keys aren't translated. If you're
   #seeing this used incorrectly somewhere we should be using a more specific
@@ -434,6 +443,7 @@ th:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: แอปพลิเคชัน
+  apply_app_owner: นำไปใช้
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: นำไปใช้
@@ -520,17 +530,20 @@ th:
   attribution_uploaded_by_user: "%{attribution} อัปโหลดโดย %{user}"
   authority_list:
     iucn_red_list: บัญชีแดง IUCN
+    cites: CITES
   automatic_short: อัตโนมัติ
   automatically_add_observations_to_this_project: เพิ่มการสังเกตเข้าโครงการนี้อัตโนมัติ
   automatically_update_my_content_for_taxon_changes: อัปเดตเนื้อหาของฉันอัตโนมัติสำหรับการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
   avg: ค่าเฉลี่ย
+  back: ย้อนกลับ
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
   back_to_editing_observation: กลับไปแก้ไขการสังเกต
   back_to_friends: กลับไปที่เพื่อน
   back_to_lists: "กลับไปที่รายการ %{name}"
   back_to_observation: กลับไปที่การสังเกต
+  back_to_observation_fields: กลับไปที่ข้อมูลเสริมการสังเกต
   back_to_people: กลับไปที่ผู้คน
   back_to_places: กลับไปที่สถานที่
   back_to_possessive_user_profile: "กลับไปที่โปรไฟล์ของ %{possuser}"
@@ -543,6 +556,8 @@ th:
   back_to_users_lists: "กลับไปที่รายการของ %{user}"
   back_to_viewing: "กลับไปดู<i>%{taxon}</i>"
   back_to_x: "กลับไปที่%{noun}"
+  back_to_x_assessment: "กลับไปที่การประเมิน %{project}"
+  back_to_x_history: "กลับไปที่ประวัติ %{x}"
   back_to_x_journal: "กลับไปที่วารสารของ %{user}"
   back_to_x_blog: "กลับไปที่บล็อกของ %{x}"
   back_to_your_calendar: กลับสู่ปฏิทิน
@@ -560,9 +575,16 @@ th:
   birthday: วันเกิด
   blocked_users: ผู้ใช้ที่ถูกบล็อก
   blue_butterfly_etc: "สีฟ้า ผีเสื้อ ฯลฯ"
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: ข้อความตัวหนา
+  browse: เรียกดู
   browse_all_projects: เรียกดูโครงการทั้งหมด
   browse_all_species: ค้นดูชนิดทั้งหมด
+  browse_observations: เรียกดูการสังเกต
+  browse_people: เรียกดูผู้คน
+  browse_projects: เรียกดูโครงการ
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
+  by: โดย
   by_everyone: โดยทุกคน
   by_user: "โดย %{user}"
   by_you: โดยคุณ
@@ -572,6 +594,7 @@ th:
   captive: ถูกจับมา
   captive_cultivated: ถูกจับมา / เพาะปลูก
   captive_observations: การสังเกตของสิ่งมีชีวิตที่ถูกจับมา
+  casual: ไม่เป็นทางการ
   casual_: ไม่เป็นทางการ
   casual_tooltip_html: 'การสังเกต "ไม่เป็นทางการ" คือการสังเกตที่ไม่มีสื่อ ตำแหน่ง หรือวันที่ หรือไม่เป็นไปตามคุณสมบัติที่ต้องการของการสังเกต "ระดับงานวิจัย" หรือ "รอจำแนกชนิด" <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เกี่ยวกับระดับคุณภาพข้อมูล</a>'
   categories: หมวดหมู่สิ่งมีชีวิต
@@ -605,6 +628,12 @@ th:
     merge_into: ยุบรวมเป็น
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: ถูกยุบรวมเป็น
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_by: แทนที่โดย
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replace_with: แทนที่ด้วย
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    replaced_with: ถูกแทนที่ด้วย
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} จะถูกแยกเป็น %{output_taxa}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} จะถูกรวมเป็น %{output_taxon}"
   change_your_password: เปลี่ยนรหัสผ่านของคุณ
@@ -622,6 +651,7 @@ th:
   choose_a_field: เลือกข้อมูลเสริม
   choose_a_place: เลือกสถานที่
   choose_a_taxon: เลือกหน่วยอนุกรมวิธาน (ไม่บังคับ)
+  choose_columns: เลือกคอลัมน์
   choose_file: เลือกไฟล์
   choose_files: เลือกไฟล์
   choose_from_your_lists: เลือกจากรายการของคุณ
@@ -630,6 +660,7 @@ th:
   choose_taxon: เลือกหน่วยอนุกรมวิธาน
   cid_d_to_genus: จำแนกถึงระดับสกุล
   classification: การจัดจำแนก
+  clear_search: ล้างการค้นหา
   colors: สี
   combine: รวม
   #Noun, used to label a comment or a comment field in a form
@@ -2494,6 +2525,7 @@ th:
   you_sure_delete_project?: คุณแน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   your_content: เนื้อหาของคุณ
   your_default: ค่าเริ่มต้นของคุณ
+  your_favorites: รายการโปรดของคุณ
   your_hard_drive: อุปกรณ์ของคุณ
   your_home: หน้าหลักของคุณ
   your_identification: การจำแนกของคุณ
