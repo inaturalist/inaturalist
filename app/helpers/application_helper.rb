@@ -525,7 +525,7 @@ module ApplicationHelper
         # doesn't seem to work here.
         raise e unless e.message =~ /root_url/
 
-        FakeView.root_url
+        UrlHelper.root_url
       end
       abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end

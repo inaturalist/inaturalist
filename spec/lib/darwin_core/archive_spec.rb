@@ -233,7 +233,7 @@ describe DarwinCore::Archive, "make_project_observations_data" do
     path = archive.extension_paths[:project_observations]
     expect( CSV.read( path ).size ).to be > 1
     CSV.foreach( path, headers: true ) do |row|
-      expect( row['projectID'] ).to eq FakeView.project_url( po.project_id )
+      expect( row['projectID'] ).to eq UrlHelper.project_url( po.project_id )
       expect( row['projectTitle'] ).to eq po.project.title
     end
   end
