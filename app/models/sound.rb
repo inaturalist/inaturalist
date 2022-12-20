@@ -181,7 +181,7 @@ class Sound < ApplicationRecord
       #   styles = %w(original large medium small thumb square)
       #   updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
       #   updates += styles.map do |s|
-      #     FakeView.image_url("copyright-infringement-#{s}.png").to_s
+      #     ApplicationController.helpers.image_url("copyright-infringement-#{s}.png").to_s
       #   end
       #   Photo.where(id: id).update_all(updates)
       # elsif %w(resolved destroyed).include?(options[:action])

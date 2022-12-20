@@ -93,7 +93,7 @@ class Photo < ApplicationRecord
 
   def sized_url( size = "original" )
     if flags.any?{ |f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved? }
-      return FakeView.image_url( "copyright-infringement-#{size}.png" )
+      return ApplicationController.helpers.image_url( "copyright-infringement-#{size}.png" )
     end
     if self.instance_variable_get("@remote_#{size}_url")
       return self.instance_variable_get("@remote_#{size}_url")
