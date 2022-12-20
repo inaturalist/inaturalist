@@ -746,10 +746,10 @@ module ObservationSearch
           }
         }
       }
-      if ( ( options[:limit] * 1.5 ) + 10 ) < 50
+      if ( ( options[:limit] * 1.5 ) + 10 ) < 200
         # attempting to account for inaccurate counts for queries with a small size
         # see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html#search-aggregations-bucket-terms-aggregation-shard-size
-        aggregation[:user_taxa][:terms][:shard_size] = 50
+        aggregation[:user_taxa][:terms][:shard_size] = 200
       end
       species_counts = Observation.elastic_search( elastic_params.merge( size: 0, aggregate: aggregation ) ).response.aggregations
       species_counts.user_taxa.buckets.
