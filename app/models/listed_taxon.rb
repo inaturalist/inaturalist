@@ -109,9 +109,9 @@ class ListedTaxon < ApplicationRecord
     order( Arel.sql( "taxa.ancestry || '/' || listed_taxa.taxon_id, listed_taxa.observations_count" ) )
   }
   scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
-  
+
   scope :excluding_infraspecies, -> { joins(:taxon).where("taxa.rank_level >= 10 ") }
-  
+
   #with taxonomic status (by itself)
   scope :with_taxonomic_status, ->(taxonomic_status) {
     # this would be a better way to do this, but it causes Rails 4 to freak when it gets nested in a subselect
@@ -167,7 +167,7 @@ class ListedTaxon < ApplicationRecord
     # among the ancestors, i.e. it is a leaf
     excluding_infraspecies.joins(join).where("ancestor_ids.ancestor_id IS NULL")
   }
-  
+
   ALPHABETICAL_ORDER = "alphabetical"
   TAXONOMIC_ORDER = "taxonomic"
   ORDERS = [ALPHABETICAL_ORDER, TAXONOMIC_ORDER]
@@ -184,11 +184,11 @@ class ListedTaxon < ApplicationRecord
   OCCURRENCE_STATUS_DESCRIPTIONS = ActiveSupport::OrderedHash.new
   OCCURRENCE_STATUS_DESCRIPTIONS["present" ] =  "occurs in the area"
   OCCURRENCE_STATUS_DESCRIPTIONS["common" ] =  "occurs frequently"
-  OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat" 
+  OCCURRENCE_STATUS_DESCRIPTIONS["uncommon" ] =  "occurs regularly, but in small numbers; requires careful searching of proper habitat"
   OCCURRENCE_STATUS_DESCRIPTIONS["irregular" ] =  "presence unpredictable, including vagrants; may be common in some years and absent others"
   OCCURRENCE_STATUS_DESCRIPTIONS["doubtful" ] =  "presumed to occur, but doubt exists over the evidence"
   OCCURRENCE_STATUS_DESCRIPTIONS["absent" ] =  "does not occur in the area"
-  
+
   OCCURRENCE_STATUS_LEVELS.each do |level, name|
     const_set name.upcase, level
     define_method "#{name}?" do
@@ -205,7 +205,7 @@ class ListedTaxon < ApplicationRecord
       establishment_means == means
     end
   end
-  
+
   NATIVE_EQUIVALENTS = %w(native endemic)
   INTRODUCED_EQUIVALENTS = %w(introduced)
   CHECK_LIST_FIELDS = %w(place_id occurrence_status establishment_means)
@@ -233,19 +233,19 @@ class ListedTaxon < ApplicationRecord
                 :old_list,
                 :force_trickle_down_establishment_means,
                 :skip_index_taxon
-  
+
   def ancestry
     taxon.ancestry
   end
-  
+
   def to_s
     "<ListedTaxon #{self.id}: taxon_id: #{self.taxon_id} list_id: #{self.list_id} place_id: #{place_id}>"
   end
-  
+
   def to_plain_s
     "#{taxon.default_name.name} on #{list.title}"
   end
-  
+
   def not_on_a_comprehensive_check_list
     return true unless taxon
     return true unless list.is_a?(CheckList)
@@ -257,7 +257,7 @@ class ListedTaxon < ApplicationRecord
     end
     true
   end
-  
+
   def existing_comprehensive_list
     return nil unless list.is_a?(CheckList)
     return @existing_comprehensive_list unless @existing_comprehensive_list.blank?
@@ -267,15 +267,15 @@ class ListedTaxon < ApplicationRecord
     end
     places.compact!
     @existing_comprehensive_list = CheckList.where([
-      "comprehensive = 't' AND id != ? AND taxon_id IN (?) AND place_id IN (?)", 
+      "comprehensive = 't' AND id != ? AND taxon_id IN (?) AND place_id IN (?)",
       list_id, taxon.ancestor_ids, places]).first
   end
-  
+
   def existing_comprehensive_listed_taxon
     return nil unless existing_comprehensive_list
     @existing_listed_taxon ||= existing_comprehensive_list.listed_taxa.where(taxon_id: taxon_id).first
   end
-  
+
   def absent_only_if_not_confirming_observations
     return true unless occurrence_status_level_changed?
     return true unless absent?
@@ -288,7 +288,7 @@ class ListedTaxon < ApplicationRecord
   def list_rules_pass
     # don't bother if validates_presence_of(:taxon) has already failed
     if !errors.include?(:taxon) && taxon
-      if list 
+      if list
         list.rules.each do |rule|
           if rule.operator == "observed_in_place?" && manually_added?
             next
@@ -303,8 +303,8 @@ class ListedTaxon < ApplicationRecord
     return false if taxon.blank?
     if last_observation
       if last_observation.taxon_id.blank? || !(
-          taxon_id == last_observation.taxon_id || 
-          taxon.ancestor_of?(last_observation.taxon) || 
+          taxon_id == last_observation.taxon_id ||
+          taxon.ancestor_of?(last_observation.taxon) ||
           last_observation.taxon.ancestor_of?(taxon))
         if taxon_matches_curator_identification? #cases where project listed_taxon is based on curator_id
           return true
@@ -313,7 +313,7 @@ class ListedTaxon < ApplicationRecord
       end
     end
   end
-  
+
   def taxon_matches_curator_identification?
     unless list.is_a?(ProjectList) && last_observation
       return false
@@ -325,14 +325,14 @@ class ListedTaxon < ApplicationRecord
       return false
     end
     if ident.taxon_id.blank? || !(
-        taxon_id == ident.taxon_id || 
-        taxon.ancestor_of?(ident.taxon) || 
+        taxon_id == ident.taxon_id ||
+        taxon.ancestor_of?(ident.taxon) ||
         ident.taxon.ancestor_of?(taxon))
       return false
     end
     return true
   end
-  
+
   def check_list_editability
     if list.is_a?(CheckList)
       if (list.comprehensive? || list.user) && user && user != list.user && !user.is_curator?
@@ -352,26 +352,26 @@ class ListedTaxon < ApplicationRecord
     end
     true
   end
-  
+
   def set_old_list
     @old_list = self.list
   end
-  
+
   def set_user_id
     self.user_id ||= list.user_id if list
     true
   end
-  
+
   def set_source_id
     self.source_id ||= list.source_id if list
     true
   end
-  
+
   def set_updater_id
     self.updater_id ||= user_id
     true
   end
-  
+
   def set_place_id
     self.place_id = self.list.place_id if list.is_a?(CheckList)
     true
@@ -400,7 +400,7 @@ class ListedTaxon < ApplicationRecord
     self.primary_listing = false unless can_set_as_primary?
     true
   end
-  
+
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
     return true if skip_sync_with_parent
@@ -409,7 +409,7 @@ class ListedTaxon < ApplicationRecord
       sync_with_parent(:time_since_last_sync => updated_at)
     true
   end
-  
+
   def sync_species_if_infraspecies
     return true if skip_species_for_infraspecies
     return true unless list.is_a?(CheckList) && taxon
@@ -435,7 +435,7 @@ class ListedTaxon < ApplicationRecord
     set_cache_columns
     true
   end
-  
+
   def set_cache_columns
     return unless taxon_id
     if cc = cache_columns
@@ -443,7 +443,7 @@ class ListedTaxon < ApplicationRecord
       self.observations_count = cc
     end
   end
-  
+
   def update_cache_columns_for_check_list
     return true if skip_update_cache_columns
     return true unless list.is_a?(CheckList)
@@ -490,7 +490,7 @@ class ListedTaxon < ApplicationRecord
     SQL
     ActiveRecord::Base.connection.execute(sql)
   end
-  
+
   def has_atlas_or_complete_set?(options = {})
     return false unless list.is_a?( CheckList ) && list.is_default?
     return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
@@ -514,7 +514,7 @@ class ListedTaxon < ApplicationRecord
     return true if cs > 0
     false
   end
-  
+
   def log_create
     if has_atlas_or_complete_set?
       ListedTaxonAlteration.create(
@@ -525,7 +525,7 @@ class ListedTaxon < ApplicationRecord
       )
     end
   end
-  
+
   def log_destroy
     if has_atlas_or_complete_set?
       updater_id = updater.nil? ? nil : updater.id
@@ -537,7 +537,7 @@ class ListedTaxon < ApplicationRecord
       )
     end
   end
-  
+
   def log_create_if_taxon_id_changed
     return true unless saved_change_to_taxon_id?
     return true if taxon_id_before_last_save.nil?
@@ -635,7 +635,7 @@ class ListedTaxon < ApplicationRecord
       last_observation_id: lt.last_observation_id,
       observations_count: lt.observations_count)
   end
-  
+
   def self.species_for_infraspecies(lt)
     lt = ListedTaxon.includes(:taxon,:place).find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt
@@ -672,7 +672,7 @@ class ListedTaxon < ApplicationRecord
     end
     true
   end
-  
+
   def occurrence_status
     OCCURRENCE_STATUS_LEVELS[occurrence_status_level]
   end
@@ -688,11 +688,11 @@ class ListedTaxon < ApplicationRecord
   def is_absent?
     !is_present?
   end
-  
+
   def editable_by?(target_user)
     list.editable_by?(target_user)
   end
-  
+
   def removable_by?(target_user)
     return false unless target_user
     return true if user == target_user
@@ -701,36 +701,36 @@ class ListedTaxon < ApplicationRecord
     return true if citation_object.blank?
     citation_object == target_user
   end
-  
+
   def citation_object
     source || taxon_range || first_observation || last_observation || user
   end
-  
+
   def auto_removable_from_check_list?
     list.is_a?(CheckList) &&
       first_observation_id.blank? &&
       last_observation_id.blank? &&
       taxon_range_id.blank? &&
       source_id.blank? &&
-      !user_id && 
-      !updater_id && 
+      !user_id &&
+      !updater_id &&
       comments_count.to_i == 0 &&
       list.is_default? &&
       !has_atlas_or_complete_set?
   end
-  
+
   def introduced?
     INTRODUCED_EQUIVALENTS.include?(establishment_means)
   end
-  
+
   def native?
     NATIVE_EQUIVALENTS.include?(establishment_means)
   end
-  
+
   def endemic?
     establishment_means == "endemic"
   end
-  
+
   def taxon_name
     taxon.name
   end
@@ -746,21 +746,24 @@ class ListedTaxon < ApplicationRecord
   def expire_caches
     ctrl = ActionController::Base.new
     if !place_id.blank? && manually_added && list.is_a?( CheckList )
-      I18N_SUPPORTED_LOCALES.each do |locale|
-        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
+      I18N_SUPPORTED_LOCALES.each do | locale |
+        ctrl.send( :expire_action, UrlHelper.url_for( controller: "places", action: "cached_guide", id: place_id,
+          locale: locale ) )
         if place && !place.slug.blank?
-          ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) )
+          ctrl.send( :expire_action, UrlHelper.url_for( controller: "places", action: "cached_guide", id: place.slug,
+            locale: locale ) )
         end
       end
     end
     if list
-      ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
-      ctrl.expire_page FakeView.list_show_formatted_view_path(list_id, :format => 'csv', :view_type => 'taxonomic')
-      ctrl.expire_page FakeView.list_path(list, :format => 'csv')
-      ctrl.expire_page FakeView.list_show_formatted_view_path(list, :format => 'csv', :view_type => 'taxonomic')
-      ctrl.expire_fragment(List.icon_preview_cache_key(list_id))
+      ctrl.expire_page( UrlHelper.list_path( list_id, format: "csv" ) )
+      ctrl.expire_page( UrlHelper.list_show_formatted_view_path( list_id, format: "csv", view_type: "taxonomic" ) )
+      ctrl.expire_page( UrlHelper.list_path( list, format: "csv" ) )
+      ctrl.expire_page( UrlHelper.list_show_formatted_view_path( list, format: "csv", view_type: "taxonomic" ) )
+      ctrl.expire_fragment( List.icon_preview_cache_key( list_id ) )
       ListedTaxon::ORDERS.each do |order|
-        ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
+        ctrl.expire_fragment( UrlHelper.url_for( controller: "observations", action: "add_from_list", id: list_id,
+          order: order ) )
       end
     end
     true
@@ -773,7 +776,7 @@ class ListedTaxon < ApplicationRecord
       lt.expire_caches
     end
   end
-  
+
   def merge(reject)
     mutable_columns = self.class.column_names - %w(id created_at updated_at)
     mutable_columns.each do |column|
@@ -790,7 +793,7 @@ class ListedTaxon < ApplicationRecord
     scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", p).of(taxon)
     scope.exists?
   end
-  
+
   def self.merge_duplicates(options = {})
     debug = options.delete(:debug)
     where = options.map{|k,v| "#{k} = #{v}"}.join(' AND ') unless options.blank?
@@ -809,7 +812,7 @@ class ListedTaxon < ApplicationRecord
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
       ListedTaxon.where(id: rejects).update_all(list_id: nil)
-      
+
       rejects.each do |reject|
         begin
           lt.merge( reject )
@@ -857,13 +860,13 @@ class ListedTaxon < ApplicationRecord
     scope = scope.where("id != ?", id) if id
     scope.count > 0
   end
-  
+
   def multiple_primary_listed_taxa?
     scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 1
   end
-  
+
   def primary_listed_taxon
     primary_listing ? self : ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true ).first
   end
@@ -876,14 +879,14 @@ class ListedTaxon < ApplicationRecord
   def can_set_as_primary?
     list && list.is_a?(CheckList)
   end
-  
+
   def remove_other_primary_listings
     return true unless primary_listing && multiple_primary_listed_taxa?
     ListedTaxon.where("taxon_id = ? AND place_id = ? AND id != ?",
       taxon_id, place_id, id).update_all(primary_listing: false)
     true
   end
-  
+
   def reassign_primary_listed_taxon
     return unless primary_listing
     related_listed_taxon = related_listed_taxa.first
@@ -896,7 +899,7 @@ class ListedTaxon < ApplicationRecord
       related_listed_taxon.primary_listing = false
       related_listed_taxon.establishment_means = establishment_means
       related_listed_taxon.first_observation_id = first_observation_id
-      related_listed_taxon.last_observation_id = last_observation_id 
+      related_listed_taxon.last_observation_id = last_observation_id
       related_listed_taxon.observations_count = observations_count
       related_listed_taxon.occurrence_status_level = occurrence_status_level
       related_listed_taxon.skip_index_taxon = true

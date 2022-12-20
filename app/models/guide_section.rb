@@ -146,7 +146,7 @@ class GuideSection < ApplicationRecord
   def reuse
     gs = clone
     gs.rights_holder = attribution_name
-    gs.source_url = FakeView.guide_taxon_url(guide_taxon_id)
+    gs.source_url = UrlHelper.guide_taxon_url( guide_taxon_id )
     gs
   end
 
