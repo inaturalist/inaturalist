@@ -149,10 +149,10 @@ he:
     many: "%{count} מינים חדשים"
     other: "%{count} מינים חדשים"
   x_new_users:
-    one: 'משתמש חדש %{count}'
-    two: '%{count} משתמשים חדשים'
-    many: '%{count} משתמשים חדשים'
-    other: '%{count} משתמשים חדשים'
+    one: 'משתמש.ת חדש.ה %{count}'
+    two: '%{count} משתמשות ומשתמשים חדשים'
+    many: '%{count} משתמשות ומשתמשים חדשים'
+    other: '%{count} משתמשות ומשתמשים חדשים'
   x_species:
     one: 'מין %{count}'
     two: '%{count} מינים'
@@ -593,7 +593,7 @@ he:
       many: "%{count} פרוטוזואות"
       other: "%{count} פרוטוזואות"
     x_other_animals:
-      one: "חיה אחרת %{count}"
+      one: "חיה אחרת אחת"
       two: "%{count} חיות אחרות"
       many: "%{count} חיות אחרות"
       other: "%{count} חיות אחרות"
@@ -816,7 +816,7 @@ he:
   back_to_all_species: חזרה לכל המינים
   back_to_editing_observation: חזרה לעריכת התצפית
   back_to_friends: חזרה ל'חברים'
-  back_to_flags_html: "&laquo; חזרה לדגלים"
+  back_to_flags_html: "&laquo; חזרה לסימונים"
   back_to_lists: "חזרה לרשימות של %{name}"
   back_to_observation: חזרה לתצפית
   back_to_observation_fields: חזרה לשדות התצפית
@@ -3912,10 +3912,10 @@ he:
     כדי למנוע הפצת ספאם ב%{site_name}, פרופילים של משתמשים חדשים מוסתרים עד שיש להם כמה תצפיות בדרגת מחקר.
   project: פרויקט
   project_admins:
-    one: מנהל פרוייקט
-    two: מנהלי פרוייקט
-    many: מנהלי פרוייקט
-    other: מנהלי פרוייקט
+    one: אדמינ.ית פרויקט
+    two: אדמיני.ות פרויקט
+    many: אדמיני.ות פרויקט
+    other: אדמיני.ות פרויקט
   project_aggregator_filter_error: |
     לא ניתן להשתמש בצבירת תצפיות אוטומטית אלא אם הפרויקט משויך למקום בגודל סביר, או אם הפרויקט מאפשר תצפיות של טקסונים מסוימים או טקסונים המופיעים ברשימה.
   project_assessments: הערכות פרויקט
@@ -4983,7 +4983,7 @@ he:
     two: תצפית זו מוצגת ב-%{count} אתרים
     many: תצפית זו מוצגת ב-%{count} אתרים
     other: תצפית זו מוצגת ב-%{count} אתרים
-  this_observation_is_research_grade: תצפית זאת היא בדרגת מחקר!
+  this_observation_is_research_grade: תצפית זו היא בדרגת מחקר!
   this_observation_was_created_using: "תצפית זו נוצרה באמצעות:"
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך
   this_place_has_no_check_list: "למקום זה אין רשימת פעולות לביצוע."
@@ -5420,7 +5420,7 @@ he:
     other: "צפייה בכל %{count}"
   view_all_observations: צפייה בכל התצפיות
   view_all_photocount_photos: "צפייה בכל %{photo_count} התמונות"
-  view_assessment: צפייה הערכה
+  view_assessment: צפייה בהערכה
   view_check_list_page: צפייה בעמוד רשימת הפעולות לביצוע שלך
   view_contributions: צפייה בתרומות
   view_details: הצגת פרטים
@@ -5528,7 +5528,7 @@ he:
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
-  were_pretty_sure_this_is_in_the_rank: אנחנו יחסית בטוחים שזה בתוך ה%{rank}
+  were_pretty_sure_this_is_in_the_rank: להערכתנו זה בתוך ה%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: "סליחה, הייבוא בצובר של %{filename} נכשל."
   what: מה
   what_did_you_see: מה ראית?
@@ -5581,7 +5581,7 @@ he:
   x_blog: "הבלוג של %{x}"
   x_deleted: "%{x} נמחק"
   x_does_not_exist: "\"%{x}\" אינו קיים"
-  x_flagged: "%{x} מסומן עם דגל"
+  x_flagged: "%{x} מסומן"
   x_flagged_as_flag: "%{x} מסומן בדגל %{flag}"
   x_journal: "היומן של %{user}"
   x_journal_archives_for_y: "היומן של %{user} • ארכיונים עבור"
@@ -5737,7 +5737,7 @@ he:
   you_sure_delete_comment?: האם ברצונך באמת למחוק את התגובה הזאת?
   you_sure_delete_identification?: האם ברצונך למחוק זיהוי זה?
   you_sure_delete_custom_field?: האם אתה בטוח שברצונך למחוק שדות מותאמים אלו?
-  you_sure_delete_flag?: האם ברצונך למחוק את הדגל הזה?
+  you_sure_delete_flag?: האם ברצונך למחוק את הסימון הזה?
   you_sure_delete_project?: האם ברצונך למחוק באמת את הפרוייקט הזה?
   you_sure_delete_this_observation: "האם באמת התכוונת למחוק את התצפית הזאת?"
   you_sure_remove_taxon_from?: "האם ברצונך להסיר את הטקסון הזה מ%{list}?"
@@ -6514,7 +6514,7 @@ he:
       formatting_none_help: "לא הוכנס HTML, משתמש רק בתגים שאת.ה מכניס.ה."
       formatting_simple_help: "קישור אוטומטי של קישורי URL והכנסת מעברי שורה."
     projects:
-      project_type: סוג פרוייקט
+      project_type: סוג פרויקט
       collection: אוסף
       umbrella: מטריה
       tracks_multiple_projects: לעקוב אחרי מספר פרוייקטים
@@ -6596,8 +6596,8 @@ he:
           captive: בשבי/מתורבת
           coordinates_shareable_by_project_curators: מכילות קואורדינטות הגלויות לאוצרי הפרויקט
           georeferenced: להכיל קואורדינטות
-          has_a_photo: לכלול תמונות
-          has_a_sound: לכלול קול
+          has_a_photo: להכיל תמונות
+          has_a_sound: להכיל קול
           has_media: מכיל מדיה (תמונה או קול)
           identified: בעלת זיהוי
           in_taxon: להיות בטקסון
@@ -7196,7 +7196,7 @@ he:
         we_will_send_you_an_email: |
           נשלח לך מייל כאשר חשבון ילדך מופעל
       new:
-        child_name_private: שם הילד (פרטי)
+        child_name_private: שם הילד.ה (פרטי)
         create_a_minor_account: הרשמה לחשבון קטין
         create_minor_account: יצירת חשבון לקטינ.ה
         parent_name_private: שם של הורה או אפוטרופוס (פרטי)
@@ -7212,7 +7212,7 @@ he:
         step3_title: יש להמתין עד לקבלת מייל האישור
         step3_desc: |
           לאחר שנזהה את מייל ההורה כאותו מייל אשר משומש לטובת התרומה, נשלח להורה הוראות להפעלת חשבון הילד. זה עלול לקחת עד 24 שעות.
-        step3_donor_title: חשבון של ילדך פעיל
+        step3_donor_title: החשבון של הילד.ה שלך הופעל
         step3_donor_desc: |
           כי את/ה תורם לאיי-נטורליסט, יכולנו לבדוק את זהותך עם תרומה הקיימת.
     welcome:
@@ -7716,7 +7716,7 @@ he:
         woeid: WOEID
       site:
         logo: Wordmark
-        logo_email_banner: באנר מייל
+        logo_email_banner: כרזת דוא"ל
       source:
         title: כותרת
         in_text: בתוך הטקסט
@@ -7764,7 +7764,7 @@ he:
         is_valid: תקין?
         lexicon: לקסיקון
         name: שם
-        name_provider: מספק שם
+        name_provider: ספק השם
         position: מיקום
         source_url: URL המקור
         source_identifier: מזהה מקור
