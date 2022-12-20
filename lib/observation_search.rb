@@ -734,13 +734,24 @@ module ObservationSearch
 
     def elastic_user_taxon_counts_batch(elastic_params, options = {})
       options[:limit] ||= 500
-      species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+      aggregation = {
         user_taxa: {
           terms: {
-            field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
+            field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc }
+          },
           aggs: {
             distinct_taxa: {
-              cardinality: { field: "taxon.id", precision_threshold: 100 }}}}})).response.aggregations
+              cardinality: { field: "taxon.id", precision_threshold: 100 }
+            }
+          }
+        }
+      }
+      if ( ( options[:limit] * 1.5 ) + 10 ) < 50
+        # attempting to account for inaccurate counts for queries with a small size
+        # see https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-bucket-terms-aggregation.html#search-aggregations-bucket-terms-aggregation-shard-size
+        aggregation[:user_taxa][:terms][:shard_size] = 50
+      end
+      species_counts = Observation.elastic_search( elastic_params.merge( size: 0, aggregate: aggregation ) ).response.aggregations
       species_counts.user_taxa.buckets.
         map{ |b| { "user_id" => b["key"], "count_all" => b["distinct_taxa"]["value"] } }
     end
