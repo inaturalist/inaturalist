@@ -117,7 +117,7 @@ describe User do
 
     it "should set the URI" do
       u = User.make!
-      expect(u.uri).to eq(FakeView.user_url(u))
+      expect(u.uri).to eq(UrlHelper.user_url(u))
     end
 
     it "should set a default locale" do
@@ -1461,11 +1461,11 @@ describe User do
       expect( user ).not_to be_confirmed
       expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
-    it "should not deliver the welcome email when user has privileges" do
-      user = create :user, :as_unconfirmed
+    it "should not deliver the welcome email when user created before release date" do
+      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.day )
       create :user_privilege, user: user
       expect( user ).not_to be_confirmed
-      expect( user.user_privileges ).not_to be_blank
+      expect( user.created_at ).to be < User::EMAIL_CONFIRMATION_RELEASE_DATE
       expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end

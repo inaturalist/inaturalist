@@ -715,7 +715,7 @@ class User < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
