@@ -17,6 +17,6 @@ describe DarwinCore::ObservationFields do
   end
 
   it "should set fieldID to the URI of the observation field" do
-    expect( ofv.fieldID ).to eq UrlHelper.observation_field_url( ofv.observation_field )
+    expect( ofv.fieldID ).to eq FakeView.observation_field_url( ofv.observation_field )
   end
 end
