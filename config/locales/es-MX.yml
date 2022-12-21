@@ -1694,6 +1694,8 @@ es-MX:
     <a href="%{url}">solicita otro correo electrónico de confirmación</a>.</strong> Si tu proveedor de correo electrónico bloqueó el correo electrónico de confirmación, esto podría convencerles de que realmente quieres que te enviemos un correo electrónico.
   email_conf_banner_check_your_spam_folder_html: <strong>Revisa tu carpeta de spam</strong>
   email_conf_banner_contact_us_html: '¿Aún no funciona? Escríbanos a %{email} para que podamos ayudarte.'
+  email_conf_banner_please_click: |
+    Por favor, haga click en el enlace de su correo electrónico para confirmar su dirección de correo electrónico.
   email_conf_banner_search_for_emails_html: <strong>Busca correos electrónicos de <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |

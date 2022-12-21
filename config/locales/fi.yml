@@ -1580,6 +1580,20 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  email_conf_banner_email_delivered_click_link: |
+    Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Lisää <code>%{email}</code> yhteystietoluetteloosi ja
+    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostiosoitteesi
+    tarjoaja on estänyt vahvistusviestin, tämä saattaa vakuuttaa heidät, että
+    haluat meiltä sähköpostia.
+  email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
+  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email} , jotta voimme auttaa sinua.
+  email_conf_banner_search_for_emails_html: <strong>Etsi sähköposteja osoitteesta <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Toimitimme sinulle vahvistusviestin %{date}. Jos et
+    saanut sitä, tässä on joitain asioita, joita voit tehdä:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
@@ -4688,6 +4702,22 @@ fi:
     kirjautua tilillesi ennen kuin klikkaat linkkiä
     vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
     oikein.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Tarkista, että sähköpostiosoitteesi on oikea. Lähetämme vahvistusviestin tähän osoitteeseen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Jos et saanut viestiä, tässä muutama vinkki:
+    </p>
+    <ul>
+    <li><p>Tarkista roskapostikansiosi</p></li>
+    <li><p>Tarkista, oletko luonut filttereitä, josta estävät viestin kulkeutumisen postilaatikkoosi</p></li>
+    </ul>
+    <p>
+    Jos et edelleenkään saa vahvistusviestiä, ota yhteyttä osoitteeseen
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, jotta voimme auttaa sinua.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Olet kirjautumassa ulos</h3>
     <p>
