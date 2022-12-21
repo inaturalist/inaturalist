@@ -20,6 +20,7 @@ import Donate from "./donate";
 import DonateBanner from "./donate_banner";
 import Donor from "./donor";
 import Translators from "./translators";
+import { isTouchDevice } from "../util";
 
 const App = ( {
   year,
@@ -34,10 +35,7 @@ const App = ( {
   let body;
   const inatUser = user ? new inatjs.User( user ) : null;
   const defaultSite = _.find( sites, s => s.id === DEFAULT_SITE_ID );
-  // https://gist.github.com/59naga/ed6714519284d36792ba
-  const isTouchDevice = navigator.userAgent.match(
-    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
-  ) !== null;
+  const fluid = isTouchDevice( );
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -61,7 +59,7 @@ const App = ( {
   } else {
     body = (
       <div>
-        <Grid fluid={isTouchDevice}>
+        <Grid fluid={fluid}>
           <Row>
             <Col xs={12}>
               <center>
@@ -133,7 +131,7 @@ const App = ( {
             defaultSiteId={DEFAULT_SITE_ID}
           />
         ) }
-        <Grid fluid={isTouchDevice}>
+        <Grid fluid={fluid}>
           <Row>
             <Col xs={12}>
               { updatedAt && (
@@ -305,7 +303,7 @@ const App = ( {
           </div>
         ) }
       </div>
-      <Grid fluid={isTouchDevice}>
+      <Grid fluid={fluid}>
         <Row>
           <Col xs={12}>
             { user && user.display_donor_since && (
@@ -326,7 +324,7 @@ const App = ( {
         </Row>
       </Grid>
       { body }
-      <Grid fluid={isTouchDevice}>
+      <Grid fluid={fluid}>
         <Row>
           <Col xs={12}>
             <div id="view-stats-buttons">

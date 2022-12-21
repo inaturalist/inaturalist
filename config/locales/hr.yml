@@ -225,7 +225,6 @@ hr:
   add_observations: Dodaj opažanja
   #Prompt to add a new journal post
   add_one: Dodaj jedan!
-  add_photos: Dodaj fotografije
   add_place: Dodaj mjesto
   add_sex_female_annotation: 'Dodaj anotaciju "Spol: Ženka"'
   add_sex_male_annotation: 'Dodaj anotaciju "Spol: Mužjak"'
@@ -425,9 +424,20 @@ hr:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Sve
     sex: Spol
+    male: Mužjak
+    female: Ženka
     life_stage: Životno razdoblje
+    adult: Odraslo
+    nymph: Nimfa
+    egg: Jaje
+    juvenile: Juvenilno
     alive_or_dead: Živo ili uginulo
+    alive: Živo
+    dead: Uginulo
+    cannot_be_determined: Ne može se odrediti
     evidence_of_presence: Dokaz o prisutnosti
+  controlled_term_definitions:
+    cannot_be_determined: Ne može se odrediti na temelju priloženih dokaza
   copyright:
     some_rights_reserved: neka prava pridržana
     some_rights_reserved_by: "(c) %{name}, neka prava pridržana (%{license_short})"
@@ -491,8 +501,8 @@ hr:
   details: Detalji
   devise:
     registrations:
-      updated: 'Uspješno si ažurirao svoj račun.'
       destroyed: 'Zbogom! Tvoj je račun uspješno otkazan. Nadamo se da ćemo te uskoro ponovno vidjeti.'
+      updated: 'Uspješno si ažurirao svoj račun.'
   disable_comments: Onemogući komentare
   disagree_: Ne slažem se
   display_monthly_supporter_badge: Prikaži mjesečnu značku podrške na profilu
@@ -648,6 +658,9 @@ hr:
   last_confirmed_observation: Zadnje potvrđeno opažanje
   last_observation: Zadnje opažanje
   last_observation_caps: ZADNJE OPAŽANJE
+  leaderboard: Poredak
+  leaderboard_for_x: "Poredak za %{x}"
+  leaderboards: Poredci
   leaderboard_most:
     species_in_month_year: Najviše vrsta u %{month_year}
     species_in_year: Najviše vrsta u %{year}
@@ -725,6 +738,7 @@ hr:
   locales:
     hr: Hrvatski
     sr: Srpski
+  locality_notes: Bilješke o lokalitetu
   location: Lokacija
   location_is_accurate: Lokacija je točna
   location_is_exact: Lokacija je precizna
@@ -735,7 +749,6 @@ hr:
   log_in: Prijavi se
   #Status message shown while logging in
   logging_in: Prijava...
-  login_slash_username: Prijava / korisničko ime
   look_up_name: "Pogledaj naziv"
   make_admin: Postavi za admina
   #Stub text for the main content section when editing custom project data
@@ -825,8 +838,20 @@ hr:
   no_users_found_with_those_filters: Nema korisnika s tim filtrima
   normal: normalno
   not_confident_top_suggestions: Nismo sigurni što je ovaj organizam, ali evo naših najboljih prijedloga
+  notes: Bilješke
   observation: Opažanje
   observation_: opažanje
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Opažanje korisnika %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Opažanje korisnika &copy; %{user}
+  observations_by_user_on_date: "Opažanja korisnika %{user} na datum: %{date}"
   observations_by_you: "Tvoja opažanja"
   observations_by_you_on_date: "Tvoja opažanja %{date}"
   observation_curation: Kuracija opažanja
@@ -1009,6 +1034,7 @@ hr:
       Zone: Zona
       zone: zona
   place_imported: Mjesto je uvezeno!
+  place_notes: Bilješke o mjestu
   places: Mjesta
   places_name:
     afghanistan: Afganistan
@@ -1413,6 +1439,7 @@ hr:
   search: Pretraživanje
   search_for_a_location: Traži lokaciju
   search_observations: "Traži opažanja"
+  search_species_: Traži vrste...
   seasonality: Sezonalnost
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "Your
@@ -1423,8 +1450,9 @@ hr:
   select: Odaberi
   select_all: Odaberi sve
   select_at_least_one: Odaberi barem jedno
-  select_one_or_more_photos: 'Odaberi jednu ili više slika'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Bez odabira
+  select_one_or_more_photos: 'Odaberi jednu ili više slika'
   selected: odabrano
   selected_photos: Odabrane slike
   selected_taxon: Odabrani taksoni
@@ -1508,6 +1536,7 @@ hr:
   terms_service: Uvjeti korištenja
   terrain: teren
   that_was_the_last_observation_matching_the_current_filters: To je bilo zadnje opažanje koje podudara s trenutnim filtrima
+  the_community_id_requires_at_least_two_identifications: ID zajednice zahtijeva barem dvije identifikacije.
   the_following_photos_have_been_tagged: "Ove fotografije su označene:"
   the_world: Svijet
   #This is a fallback translation for posessive phrases. It could be used on
@@ -1554,8 +1583,10 @@ hr:
       combine: Spoji odabrana opažanja
       select_all: Odaberi sva opažanja
   user: Korisnik
-  user_added_a_comment_html: "%{user} je dodao komentar"
+  user_added_a_comment_html: "%{user} dodaje komentar"
+  user_added_a_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
   user_added_an_identification_html: "%{user} je dodao identifikaciju"
+  user_added_an_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
   user_added_x_observations_html: "%{user} je dodao %{x} opažanja"
   user_autocomplete_placeholder: marinolinic, sebcato, itd.
   user_commented: "%{user} komentira"
@@ -1581,6 +1612,7 @@ hr:
   view_all_observations: Pogledaj sva opažanja
   view_all_photocount_photos: "Pogledaj preostali broj fotografija: %{photo_count}"
   view_details: Prikaži detalje
+  view_full_observation: Pogledaj cjelovito opažanje
   view_journal: Pogledaj dnevnik
   view_lists: Pogledaj popise
   view_more: Prikaži više
@@ -1590,7 +1622,9 @@ hr:
   view_more_observations_of_x_project: "Vidi više opažanja iz projekta %{project} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vidi više opažanja na %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vidi više nepregledanog"
+  view_observation: Pogledaj opažanje
   view_observations: Pogledaj opažanja
+  view_observation_flags: Pogledaj prijave za opažanje
   view_observations_by_everyone: Pogledaj opažanja sviju
   view_observations_by_these_users: Pogledaj opažanja ovih korisnika
   view_observations_of_this_taxon_by: 'Pogledaj opažanja ovog taksona koje je zabilježio:'
@@ -1642,6 +1676,7 @@ hr:
   your_favorites: Tvoji favoriti
   your_home: Tvoja naslovnica
   your_membership: Tvoje članstvo
+  your_name_was_saved: Tvoj naziv je spremljen.
   your_observations: Tvoja opažanja
   your_google_account: Tvoj Google račun
   your_pinned_locations: Tvoje prikvačene lokacije
@@ -1811,7 +1846,7 @@ hr:
           "Life Stage=Adult": Odraslo
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Larva
-          "Life Stage=Juvenile": Mlado
+          "Life Stage=Juvenile": Juvenilno
           "Life Stage=Nymph": Nimfa
           "Life Stage=Pupa": Kukuljica
           "Life Stage=Subimago": Subimago
@@ -2017,6 +2052,8 @@ hr:
         #The reason a moderator action was taken, e.g. an explanation for why
         #someone thought a comment should be hidden
         reason: Razlog
+      observation:
+        description: Bilješke
       observation_field_value:
         value: 'vrijednost'
       observations_export_flow_task:

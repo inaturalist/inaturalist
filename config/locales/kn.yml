@@ -269,12 +269,14 @@ kn:
   add_obs_from_a_list: ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   add_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   add_observations_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>ವೀಕ್ಷಣೆಗಳನ್ನು</span><span>ಸೇರಿಸಿ</span>"
   #Prompt to add a new journal post
   add_one: ಒಂದನ್ನು ಸೇರಿಸಿ!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: ಈಗ ಒಂದನ್ನು ಸೇರಿಸಿ
-  add_photos: ಚಿತ್ರಗಳನ್ನು ಸೇರಿಸಿ
   add_place: ಸ್ಥಳಗಳನ್ನು ಸೇರಿಸಿ
   add_alive_or_dead_alive_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ಜೀವಂತ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
   add_alive_or_dead_cannot_be_determined_annotation: '"ಜೀವಂತ ಅಥವಾ ಮೃತ : ನಿರ್ಣಯಿಸಲಾಗಲಿಲ್ಲ" ಕಿರುಟಿಪ್ಪಣೆಯನ್ನು ಸೇರಿಸಿ'
@@ -353,6 +355,8 @@ kn:
   agree?: ಸಮ್ಮತಿಸಿ?
   agree_with_current_taxon: ಪ್ರಸ್ತುತ ಜೀವಿವರ್ಗವನ್ನು ಸಮ್ಮತಿಸಿ
   agreeing: ಒಪ್ಪಿಕೊಳ್ಳಲಾಗುತ್ತಿದೆ...
+  #Noun, title of a popup alerting you to something
+  alert: ಎಚ್ಚರಿಕೆ
   all: ಎಲ್ಲಾ
   all_comments: ಎಲ್ಲಾ ಅಭಿಪ್ರಾಯಗಳು
   all_life: ಎಲ್ಲಾ ಜೀವಜಾಲ
@@ -868,8 +872,6 @@ kn:
   #connecting to Flickr
   connect: ಸಂಪರ್ಕಿಸಿ
   connect_to_provider: "%{provider} ಗೆ ಸಂಪರ್ಕಿಸಿ"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connected_accounts_titlecase: ಸಂಪರ್ಕವಾಗಿರುವ ಖಾತೆಗಳು
   connecting_flickr: "Flickr ಗೆ ಸಂಪರ್ಕಿಸಲಾಗುತ್ತಿದೆ... "
   connect_to_flickr_again_to_authorize_write_permissions: ಬರವಣಿಗೆ ಅನುಮತಿಗಳನ್ನು ಧೃಢೀಕರಿಸಲು ಫ್ಲಿಕರ್ ಗೆ ಮತ್ತೊಮ್ಮೆ ಸಂಪರ್ಕಿಸಿ
@@ -1020,7 +1022,6 @@ kn:
   created_by: ರಚಿಸಿದವರು
   created_by_user_on_date: '%{date} ರಂದು %{user} ಮೂಲಕ ರಚಿಸಲಾಗಿದೆ'
   created_on: ರಂದು ರಚಿಸಲಾಗಿದೆ
-  creating_your_account: "ಖಾತೆಯೊಂದನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ..."
   creative_commons_flickr_tagged: ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಫ್ಲಿಕರ್ ಚಿತ್ರಗಳು ಟ್ಯಾಗ್ ಆಗಿವೆ
   creative_commons_unless_otherwise_noted: "ಸೂಚಿಸಿರದೇ ಇದ್ದ ಪಕ್ಷದಲ್ಲಿ ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ ಆಗಿರುತ್ತದೆ."
   critically_endangered: ತೀರಾ ಅಳಿವಿನಂಚಿನಲ್ಲಿರುವ
@@ -1228,24 +1229,27 @@ kn:
       signed_in: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಇನ್ ಆಗಲಾಗಿದೆ.'
       signed_out: 'ಯಶಸ್ವಿಯಾಗಿ ಸೈನ್ ಔಟ್ ಆಗಲಾಗಿದೆ.'
     passwords:
-      send_instructions: 'ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಹೇಗೆ ಬದಲಿಸಬಹುದೆಂಬ ಸೂಚನೆಗಳುಳ್ಳ ಒಂದು ಮಿಂಚೆಯನ್ನು ಪಡೆಯಲಿದ್ದೀರಿ.'
+      send_instructions: |
+        ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ನೀವು ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಹೇಗೆ ಬದಲಿಸಬಹುದೆಂಬ ಸೂಚನೆಗಳುಳ್ಳ ಒಂದು ಮಿಂಚೆಯನ್ನು ಪಡೆಯಲಿದ್ದೀರಿ.
       updated: 'ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ. ಈಗ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿದ್ದೀರಿ.'
       updated_not_active: 'ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ.'
-      send_paranoid_instructions: "ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿ ನಿಮ್ಮ್ ಮಿಂಚೆ ವಿಳಾಸ ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ನೀವು ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ಗುಪ್ತಪದ ಮರುಹೊಂದಿಕೆ ಲಿಂಕ್ ಅನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸದಲ್ಲಿ ಪಡೆಯುವಿರಿ."
+      send_paranoid_instructions: |
+        ನಮ್ಮ ಡೇಟಾಬೇಸಿನಲ್ಲಿ ನಿಮ್ಮ್ ಮಿಂಚೆ ವಿಳಾಸ ಲಭ್ಯವಿದ್ದಲ್ಲಿ, ನೀವು ಇನ್ನು ಕೆಲವೇ ನಿಮಿಷಗಳಲ್ಲಿ ಗುಪ್ತಪದ ಮರುಹೊಂದಿಕೆ ಲಿಂಕ್ ಅನ್ನು ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸದಲ್ಲಿ ಪಡೆಯುವಿರಿ.
     registrations:
+      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
       signed_up: 'ಸುಸ್ವಾಗತ! ನೀವು ಯಶಸ್ವಿಯಾಗಿ ನೋಂದಾವಣೆಯಾಗಿದ್ದೀರಿ.'
       updated: 'ನೀವು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಿದ್ದೀರಿ.'
-      destroyed: 'ಮತ್ತೆ ಸಿಗೋಣ! ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ. ನಿಮ್ಮನ್ನು ಶೀಘ್ರದಲ್ಲೇ ಮತ್ತೆ ಭೇಟಿಮಾಡಲು ಬಯಸುತ್ತೇವೆ.'
     mailer:
       confirmation_instructions:
-        subject: 'ಧೃಢೀಕರಣದ ಸೂಚನೆಗಳು'
+        #Subject of an email sent to confirm your account
+        subject: ಧೃಢೀಕರಣದ ಸೂಚನೆಗಳು
       reset_password_instructions:
         subject: 'ಗುಪ್ತಪದ ಮದುಹೊಂದಿಕೆ ಸೂಚನೆಗಳು'
   devise_reset_password_instructions_hello_email: ನಮಸ್ತೆ %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     ನೀವು ಇದನ್ನು ವಿನಂತಿಸಿರದಿದ್ದಲ್ಲಿ, ದಯವಿಟ್ಟು ಈ ಮಿಂಚೆಯನ್ನು ನಿರ್ಲಕ್ಷಿಸಿ.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    ನಿಮ್ಮ ಗುಪ್ತಪದವನ್ನು ಬದಲಿಸಲು ಯಾರೋ ವಿನಂತಿಸಿದ್ದಾರೆ. ನೀವು ಅದನ್ನು ಈ ಕೆಳಗಿನ ಲಿಂಕ್ ಮೂಲಕ ಮಾಡಬಹುದು.
   devise_reset_password_instructions_your_password_wont_change_until: |
     ನೀವು ಲಿಂಕ್ ಅನ್ನು ಪ್ರವೇಶಿಸಿ ಹೊಸದೊಂದನ್ನು ರಚಿಸುವವರೆಗೂ ನಿಮ್ಮ ಗುಪ್ತಪದ ಬದಲಾಗುವುದಿಲ್ಲ.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1288,6 +1292,7 @@ kn:
   #add the file as, for example, a new photo in the Uploader
   drop_it: ಇಲ್ಲಿ ಬಿಡಿ
   download: ಡೌನ್‌ಲೋಡ್
+  download_caps: ಡೌನ್ಲೋಡ್ ಮಾಡಿ
   download_bulk_import_template_html: |
     <a href="/observations/import?project_id=%{project_id}#csv_import">ಸಗಟು ಅಪ್ಲೋಡರ್</a> ನಲ್ಲಿ ಬಳಸಲು <a href="%{url}">ಮಾದರಿಯನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ</a>
   download_csv: CSV ಡೌನ್‍ಲೋಡ್
@@ -1447,6 +1452,8 @@ kn:
   feedback: ಫೇಸ್‍ಬುಕ್
   #Plural noun, as in Atom and RSS feeds
   feeds: 'ಫೀಡ್‍ಗಳು'
+  #Button to show fewer places
+  fewer__context_places: ಸೀಮಿತ
   failed: ವಿಫಲಗೊಂಡಿದೆ
   field_note: |
     <strong>ಸೂಚನೆ:</strong> ನೀವು ಆವರಣವೊಂದನ್ನು ರಚಿಸಲು ಬಯಸುತ್ತಿದ್ದರೆ, ನಕಲನ್ನು ತಡೆಯುವ ಸಲುವಾಗಿ ಇತರೆ ಯಾರಾದರೂ ಈಗಾಗಲೇ ಅದನ್ನು ರಚಿಸಿದ್ದಾರೆಯೆಂಬುದನ್ನು ಒಮ್ಮೆ ನೋಡಿ.
@@ -1675,6 +1682,8 @@ kn:
   improving: ಸುಧಾರಿಸುತ್ತಿದೆ
   in_n: "%{n} ನಲ್ಲಿ"
   in_place_x: '%{place} ನಲ್ಲಿ'
+  #As in a reason to flag something
+  inappropriate: ಅನುಚಿತ
   inaturalist_network: iNaturalist ಜಾಲ
   inaturalist_network_affiliation: iNaturalist ಜಾಲದ ಸಹಭಾಗಿತ್ವ
   #Label for messages you've received
@@ -1890,6 +1899,8 @@ kn:
     waray_waray: ವಾರೆ-ವಾರೆ
     visayan: ವಿಸಯಾನ್
   less: ಕಡಿಮೆ
+  #Button show less text
+  less__context_text: ಕಡಿಮೆ
   licensed_site_photos: "ಪರವಾನಿಗೆಯುಳ್ಳ %{site_name} ಚಿತ್ರಗಳು"
   license: ಪರವಾನಗಿ
   licensing: ಪರವಾನಿಗೆ
@@ -2018,7 +2029,6 @@ kn:
   log_scale_label: ಲಾಗ್
   #Status message shown while logging in
   logging_in: ಲಾಗಿನ್ ಆಗುತ್ತಿದೆ...
-  login_slash_username: ಲಾಗಿನ್ / ಬಳಕೆದಾರರ ಹೆಸರು
   logo:
     logo: ಲಾಂಛನ
     white_bg_gif: ಬಿಳಿಬಣ್ಣದ ಹಿನ್ನೆಲೆ GIF
@@ -2171,10 +2181,21 @@ kn:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: ತಿಂಗಳು
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: ತಿಂಗಳ ಬೆಂಬಲಿಗರು
   monthly_supporter_since_date_html: |
     %{date} ರಿಂದ <a href="%{url}">ತಿಂಗಳ ಬೆಂಬಲಿಗರು</a>
   months: ತಿಂಗಳುಗಳು
   more: ಇನ್ನಷ್ಟು
+  #Button to show more observations
+  more__context_observations_caps: ಇನ್ನಷ್ಟು
+  #Button to show more places
+  more__context_places: ಇನ್ನಷ್ಟು
+  #Button to show more text
+  more__context_text: ಇನ್ನಷ್ಟು
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ಇನ್ನಷ್ಟು
+  more_caps: ಇನ್ನಷ್ಟು
   more_about_sharing: ಹಂಚಿಕೊಳ್ಳುವಿಕೆಯ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
   more_fields: ಇನ್ನಷ್ಟು ಆವರಣಗಳು
   more_filters: ಹೆಚ್ಚಿನ ಶೋಧಕಗಳು
@@ -2615,6 +2636,7 @@ kn:
   open_description: "ಜೀವಿವರ್ಗ ಅಪಾಯದಂಚಿನಲ್ಲಿ ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಎಲ್ಲರೂ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಬಹುದು."
   open_street_map: OpenStreetMap
   optional: ಐಚ್ಛಿಕ
+  options: ಆಯ್ಕೆಗಳು
   or: ಅಥವಾ
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3612,11 +3634,12 @@ kn:
   select: ಆರಿಸಿ
   select_all: ಎಲ್ಲವನ್ನೂ ಆರಿಸಿ
   select_at_least_one: ಕನಿಷ್ಟ ಒಂದನ್ನಾದರೂ ಆಯ್ಕೆಮಾಡಿ
-  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: ಯಾವುದನ್ನೂ ಆರಿಸಬೇಡಿ
   select_observations_to_edit: ಸಂಪಾದಿಸಲು ವೀಕ್ಷಣೆಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ...
   select_one_of_friends_albums: ನನ್ನ ಒಬ್ಬ %{friend} ಅವರ ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
   select_one_of_your_albums: ನನ್ನ ಒಂದು ಚಿತ್ರಸಂಪುಟವನ್ನು ಆಯ್ಕೆಮಾಡಿ
+  select_one_or_more_photos: 'ಒಂದು ಅಥವಾ ಹೆಚ್ಚಿನ ಚಿತ್ರಗಳನ್ನು ಆರಿಸಿ'
   select_options: ಆಯ್ಕೆಗಳನ್ನು ಆರಿಸಿ
   select_photos_from_your_photo_stream: |
     %{site_name} ವೀಕ್ಷಣೆಗಳನ್ನಾಗಿ ಪರಿವರ್ತಿಸಲು ಬಾಹ್ಯ ಚಿತ್ರ-ಹಂಚಿಕೆ ತಾಣಗಳಿಂದ ಚಿತ್ರಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ. ನಾವು ಚಿತ್ರಗಳ ಮೆಟಾಡೇಟಾದಿಂದ ದಿನಾಂಕ, ಸಮಯ ಮತ್ತು ಸ್ಥಳವನ್ನು ತುಂಬುತ್ತೇವೆ ಮತ್ತು ಟ್ಯಾಗ್ ಗಳಿಂದ ಪ್ರಭೇದದ ಹೆಸರುಗಳನ್ನು ಹುಡುಕಲು ಪ್ರಯತ್ನಿಸುತ್ತೇವೆ.
@@ -3633,6 +3656,7 @@ kn:
   set_license: ಪರವಾನಿಗೆ ಹೊಂದಿಸಿ
   settings: ಸಂಯೋಜನೆಗಳು
   share: ಹಂಚಿಕೊಳ್ಳಿ
+  share_caps: ಹಂಚಿಕೊಳ್ಳಿ
   share_colon: "ಹಂಚಿಕೊಳ್ಳಿ:"
   short_code_for_this_place: ಈ ಸ್ಥಳಕ್ಕೆ ಚಿಕ್ಕ ಸಂಕೇತ, ಉದಾ. ಯುನೈಟೆಡ್ ಸ್ಟೇಟ್ಸ್ ಗೆ ಯುಎಸ್
   short_or_abbreviated_title_for_display: ಸೀಮಿತ ಜಾಗಗಳಲ್ಲಿ ಪ್ರದರ್ಶಿಸಲು ಚಿಕ್ಕ ಅಥವಾ ಸಂಕ್ಷಿಪ್ತಗೊಳಿಸಲಾದ ಶೀರ್ಷಿಕೆಗಳು. ಗರಿಷ್ಟ 10 ಅಕ್ಷರಗಳು.
@@ -4123,9 +4147,13 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: ಕೊಲಂಬಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: ಕೇಂದ್ರೀಯ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chihuahua: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: ಗ್ವಾಟೆಮಾಲ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: ಅಟ್ಲಾಂಟಿಕ್ ಸಮಯ (ಕೆನಡಾ)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: ಬೊಲಿವಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4133,15 +4161,27 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_los_angeles: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_new_york: ಪೂರ್ವ ಸಮಯ (ಯು. ಎಸ್. ಮತ್ತು ಕೆನಡ )
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_phoenix: ಅರಿಜೋನಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: ಪ್ಯಾಸಿಫಿಕ್ ಸಮಯ (ಮೆಕ್ಸಿಕೋ)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: ಅರೇಬಿಯಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_bangkok: ಇಂಡೋಚೈನಾ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_hong_kong: ಹಾಂಗ್ ಕಾಂಗ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: ಪಶ್ಚಿಮ ಇಂಡೋನೇಷಿಯಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: ಇಸ್ರೇಲ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: ಚೀನಾ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: ತೈವಾನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_australia_adelaide: ಅಡಿಲೇಡ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_brisbane: ಬ್ರಿಸ್ಬೇನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4153,15 +4193,39 @@ kn:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_amsterdam: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_berlin: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_copenhagen: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: ಟರ್ಕಿ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: ಪಶ್ಚಿಮ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_madrid: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: ಮಾಸ್ಕೋ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: ಪೂರ್ವ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: ಮಧ್ಯ ಯೂರೋಪಿಯನ್ ಸಮಯ
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: ನ್ಯೂಜಿಲೆಂಡ್ ಸಮಯ
   #As in the title of a book or a blog post
   title: ಶೀರ್ಷಿಕೆ
   title_and_description: "ಶೀರ್ಷಿಕೆ & ವಿವರಣೆ"
@@ -4262,6 +4326,7 @@ kn:
   upload_new_photo: ಹೊಸ ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_photo: ಚಿತ್ರವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
   upload_range: ವ್ಯಾಪ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: ಮೂಲಕ ಅಪ್ಲೋಡ್ ಮಾಡಲಾಗಿದೆ
   uploader:
     errors:
@@ -4286,6 +4351,7 @@ kn:
   usage_stats: ಬಳಕೆಯ ಅಂಕಿಅಂಶಗಳು
   use_name_as_a_placeholder: |
     <span class='ac-placeholder'>"%{name}"</span> ಅನ್ನು ಸ್ಥಳಸೂಚಕವನ್ನಾಗಿ ಬಳಸಿ
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     ಕುಲ ಮತ್ತು ಪ್ರಭೇದಗಳು ಒಂದು ನಿರ್ದಿಷ್ಟ ಕ್ರಮದಲ್ಲಿ ಬೇರೆಯಾಗಿರುವುದು URLಗೆ ಅಗತ್ಯವಿದ್ದರೆ ಇದನ್ನು ಬಳಸಿ. ಜೀವಿವರ್ಗ ಪ್ರಭೇದ ಅಥವಾ ಕೆಳಪ್ರಭೇದವಾಗಿಲ್ಲದಿದ್ದರೆ, [GENUS] ಮತ್ತು [SPECIES] ನಡುವಿನ ಎಲ್ಲವೂ ಜೀವಿವರ್ಗದ ಹೆಸರಿನಿಂದ ಬದಲಿಸ್ಪಡುತ್ತದೆ, ಹಾಗಾಗಿ ಇದನ್ನು ಮಿತವಾಗಿ ಬಳಸಿ.
   use_unique_file_names_for_separate_uploads: ಅನನ್ಯ ಕಡತದ ಹೆಸರುಗಳನ್ನು ಪ್ರತ್ಯೇಕವಾದ ಅಪ್ಲೋಡ್‍ಗಳಿಗೆ ಬಳಸಿ
@@ -4362,6 +4428,7 @@ kn:
   verifiable_observations_by_observation_date: ವೀಕ್ಷಣೆಯ ದಿನಾಂಕದಂತೆ ಪರಿಶೀಲಿಸಬಲ್ಲ ವೀಕ್ಷಣೆಗಳು
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
+  view_all_caps: ಎಲ್ಲವನ್ನೂ ನೋಡಿ
   view_all_members: ಎಲ್ಲ ಸದಸ್ಯರನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_observations: ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_photocount_photos: "ಎಲ್ಲಾ %{photo_count} ಚಿತ್ರಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
@@ -4492,7 +4559,10 @@ kn:
   wikipedia_attribution_cc_by_sa_3_html: |
     ಈ ಲೇಖನವು ವಿಕಿಪೀಡಿಯಾದ <a href="https://creativecommons.org/licenses/by-sa/3.0/">ಕ್ರಿಯೇಟೀವ್ ಕಾಮನ್ಸ್ Attribution-Share-Alike ಪರವಾನಿಗೆ 3.0</a> ನ ಅಡಿಯಲ್ಲಿ ಬಿಡುಗಡೆಯಾಗಿರುವ <a href="%{url}">"%{title}"</a> ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಬಳಸಿಕೊಂಡಿದೆ. ಮೂಲ ಲೇಖನದಿಂದ ವಿಷಯವನ್ನು ಕೈಬಿಡಲಾಗಿರಬಹುದು, ಆದರೆ ಯಾವುದೇ ವಿಷಯವನ್ನು ಬದಲಿಸಲಾಗಿಲ್ಲ ಅಥವಾ ವಿಸ್ತರಿಸಲಾಗಿಲ್ಲ.
   with: ಜೊತೆಗೆ
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: ಹಿಂಪಡೆಯಿರಿ
+  #Loading status while an identification is being withdrawn
   withdrawing: ಹಿಂಪಡೆಯಲಾಗುತ್ತಿದೆ...
   with_errors: ದೋಷಗಳೊಂದಿಗೆ
   worldwide: ಪ್ರಪಂಚದಾದ್ಯಂತ
@@ -4528,6 +4598,7 @@ kn:
   x_wrote_y_new_posts_html: "%{x} ಅವರು %{y} ಗೆ ಹೊಸ ಲೇಖನ ಬರೆದಿದ್ದಾರೆ"
   year: ವರ್ಷ
   year_in_review: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
+  year_in_review2: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
   year_month: ವರ್ಷ/ತಿಂಗಳು
   year_on_site: "%{site} %{year} ರಲ್ಲಿ ವರ್ಷ"
   yellow: ಹಳದಿ
@@ -4694,6 +4765,7 @@ kn:
       post_donate_social_media_text: ನಾನು iNaturalist ಬೆಂಬಲಿಸುತ್ತೇನೆ ಏಕೆಂದರೆ...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist ನ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
+        become_a_monthly_supporter_of_inaturalist_caps: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಗೆ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
         desc_html: |
           <p class="lead">
           <strong>iNaturalist ಜೀವಿವೈವಿಧ್ಯದ ಅನ್ವೇಷಣೆಗೆ ಮೀಸಲಾದ ಜಗತ್ತಿನ ಅತಿದೊಡ್ಡ ಸಮುದಾಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ. ನೀವಿದರ ಭಾಗವಾಗಿರುವುದಕ್ಕೆ ನಿಮಗೆ ಧನ್ಯವಾದಗಳು!</strong>
@@ -4713,6 +4785,8 @@ kn:
           ನಿಮ್ಮೆಲ್ಲಾ ದೇಣಿಗೆಗಳು ಕ್ಯಾಲಿಫೋರ್ನಿಯಾ ಅಕಾಡೆಮಿ ಆಫ್ ಸೈನ್ಸಸ್ ನ , a 501(c)(3) tax-exempt not-for-profit
           organization based in the United States of America (Tax ID: 94-1156258) ಅಡಿಯಲ್ಲಿ ಸ್ವಿಕರಿಸಲ್ಪಡುತ್ತವೆ.
           </p>
+        thank_you_for_being_a_monthly_supporter: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
+        thank_you_for_being_a_monthly_supporter_caps: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
     guides:
       index:
         deprecated_banner: |
@@ -5215,10 +5289,6 @@ kn:
         one_time: ಒಮ್ಮೆ
         percent_growth_in_year: "%{year} ದಲ್ಲಿ % ಬೆಳವಣಿಗೆ"
         percent_of_total_growth: "ಒಟ್ಟು ಬೆಳವಣಿಗೆ %"
-        publications_desc_html: |
-          ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
-          <br/>
-          <a href="%{url}">ಎಲ್ಲಾ %{numStudies} ಅಧ್ಯಯನಗಳನ್ನು ನೋಡಿ</a>
         publications_desc_short_html: |
           ಅಂಕಿಗಳು ಮತ್ತು ಬಣ್ಣಗಳ ಅರ್ಥವೇನೆಂದು ತಿಳಿಯಲು ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ ಹೂ ಚಾರ್ಟ್‍ಗಳ ಮೇಲೆ ಕ್ಲಿಕ್ ಮಾಡಿ. ಪ್ರಭಾವಿ ದತ್ತಾಂಶ ಮತ್ತು ಚಾರ್ಟ್‍ಗಳ ಸೌಜನ್ಯ <a href="https://www.altmetric.com">ಆಲ್‍ಮೆಟ್ರಿಕ್</a>. ದತ್ತಾಂಶ ಬಳಕೆಯ ಬಗೆಗಿನ ಮಾಹಿತಿ <a href="https://www.gbif.org/">ಜಾಗತಿಕ ಜೀವಿವೈವಿಧ್ಯ ಮಾಹಿತಿ ಸೌಲಭ್ಯ</a> ದಲ್ಲಿನ ನಮ್ಮ ಗೆಳೆಯರ ಕೊಡುಗೆ.
         observations_per_year: ವೀಕ್ಷಣೆಗಳು / ವರ್ಷ
@@ -5735,6 +5805,9 @@ kn:
           other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: ಪ್ರಕಟಣೆ
       AssessmentSection: ಮೌಲ್ಯಮಾಪನ ವಿಭಾಗ
       Atlas: ಭೂಪಟ
       BlockedUser: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
@@ -5748,6 +5821,9 @@ kn:
       ModeratorNote: ಮಾಡರೇಟರ್ ಟಿಪ್ಪಣಿ
       TaxonLink: ಜೀವಿವರ್ಗದ ಲಿಂಕ್
     attributes:
+      announcement:
+        created_at: ರಂದು ರಚಿಸಲಾಗಿದೆ
+        updated_at: ಪರಿಷ್ಕರಿಸಿದ ದಿನಾಂಕ
       assessment:
         description: ವಿವರಣೆ
       assessment_section:
@@ -5763,6 +5839,7 @@ kn:
         geoprivacy: ಭೂಗೌಪ್ಯತೆ
         iucn: IUCN ಸಮಾನ
       flag:
+        #The reason the item was flagged
         reason: ಕಾರಣ
       guide:
         source_url: ಮೂಲ URL

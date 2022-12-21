@@ -749,7 +749,7 @@ class YearStatistic < ApplicationRecord
     density = 1024
     begin
       run_cmd <<~BASH
-        convert -resize x65 -background none +antialias -density #{density} \
+        convert -resize 384x65 -background none +antialias -density #{density} \
           #{wordmark_path} #{wordmark_resized_path}
       BASH
     rescue RuntimeError => e

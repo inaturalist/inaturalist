@@ -24,6 +24,7 @@ describe UserParent do
           password_confirmation: "foofoo"
         )
       )
+      expect( up ).not_to be_donor
       Delayed::Worker.new.work_off
       expect( Devise.mailer.deliveries.size ).to eq deliveries
     end

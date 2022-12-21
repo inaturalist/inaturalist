@@ -1,0 +1,11 @@
+= form_for( resource, as: resource_name, url: confirmation_path( resource_name ), html: { method: :post }) do |f|
+  %h1=t "devise.mailer.confirmation_instructions.subject"
+  %p=t :devise_confirmation_instructions_resend_instructions
+  - unless resource.errors[:confirmation_token].blank?
+    .error= formatted_error_sentence_for( resource, :confirmation_token )
+  .form-group.text-field.email
+    = f.text_field :email, autofocus: true, autocomplete: "email", autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control", value: ( resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email )
+    - unless resource.errors[:email].blank?
+      .error= formatted_error_sentence_for( resource, :email )
+  .actions
+    = f.submit t(:devise_confirmation_instructions_send_confirmation_email), class: "btn btn-inat btn-primary btn-lg"

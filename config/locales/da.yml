@@ -302,12 +302,14 @@ da:
   add_observations: Tilføj observationer
   add_observations_by_checking_off: Tilføj observationer ved at afkrydse arter på en liste.
   add_observations_project: Tilføj observationer til dette projekt
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Tilføj</span> <span>Observationer</span>"
   #Prompt to add a new journal post
   add_one: Tilføj et!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Tilføj en nu
-  add_photos: Tilføj fotos
   add_place: Tilføj sted
   add_alive_or_dead_alive_annotation: 'Tilføj "Levende eller Død: Levende" anmærkning'
   add_alive_or_dead_cannot_be_determined_annotation: 'Tilføj "Levende eller Død: Kan ikke bestemmes" anmærkning'
@@ -694,6 +696,10 @@ da:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Egenskab
   attribution: Kildeangivelse
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, uploadet af %{user}"
   authority_list:
     iucn_red_list: IUCN rødliste
     natureserve: NatureServe
@@ -859,6 +865,8 @@ da:
   change_group: Ændre gruppe
   change_icon: Skift ikon
   change_password: Ændre adgangskode
+  #Message shown after you change your email address
+  change_to_email_requested_html: Skift til <strong>%{email}</strong> anmodet. Tjek denne e-mailadresse mhp. at bekræfte skiftet.
   change_types:
     activated_soon: aktiveres snarrest
     change_types: Ændringstyper
@@ -1039,14 +1047,16 @@ da:
   confirm_new_password: Bekræft ny adgangskode
   confirm_now: Bekræft nu
   confirm_your_info: Bekræft din info
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Bekræftelsesmail sendt den %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bekræftet %{date}
   confirming_ids: Bekræfter ID'er
   confirming_ids_description: Slås dette fra, får du ikke længere besked om ID'er, som er i overensstemmelse med dine.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Forbind
   connect_to_provider: "Tilknyt %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Tilknyttede konti
   connected_accounts_description: Forbundne konti er dine konti fra andre apps eller websteder, som du har givet iNaturalist adgang til på dine vegne for at understøtte indlogning, fotoimport eller anden funktionalitet.
   connected_accounts_titlecase: Forbundne konti
   connecting_flickr: "Tilknytter til Flickr..."
@@ -1223,7 +1233,6 @@ da:
   created_by: Oprettet af
   created_by_user_on_date: Oprettet af %{user} den %{date}
   created_on: Oprettet den
-  creating_your_account: "Opretter din konto..."
   creative_commons_flickr_tagged: Creative Commons Flickr fotos tagget
   creative_commons_unless_otherwise_noted: "Creative Commons med mindre andet er noteret."
   critically_endangered: kritisk truet
@@ -1490,6 +1499,10 @@ da:
   deviation: Afvigelse
   devise:
     confirmations:
+      confirmed: |
+        E-mailadressen er hermed bekræftet. Du kan nu logge ind
+        her på hjemmesiden eller i iNaturalist eller Seek mobile apps.
+      send_instructions: "Du bør om få minutter modtage en e-mail med vejledning til, hvordan din e-mailadresse bekræftes."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1497,33 +1510,59 @@ da:
     failure:
       already_authenticated: 'Du er allerede logget ind.'
       unauthenticated: 'Du skal logge ind, eller registrere dig, for at fortsætte.'
-      invalid: 'Ugyldig e-mail eller adgangskode.'
+      invalid: 'Ugyldig e-mail, brugernavn eller adgangskode.'
       invalid_token: 'Ugyldig godkendelsestoken'
+      unconfirmed: |
+        Tjek din e-mail og klik på linket i den modtagne e-mail for at bekræfte din konto.
       user:
         suspended: Din konto er suspenderet
     sessions:
       signed_in: 'Du er nu logget ind.'
       signed_out: 'Du er nu logget ud.'
     passwords:
-      send_instructions: 'Du vil om et øjeblik modtage en e-mail med instruktioner til nulstilling af din adgangskode.'
+      send_instructions: |
+        Du vil om et øjeblik modtage en e-mail med instruktioner til nulstilling af din adgangskode.
       updated: 'Din adgangskode er skiftet, og du er nu logget ind.'
       updated_not_active: 'Du har nu skiftet din adgangskode.'
-      send_paranoid_instructions: "Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode."
-      no_token: "Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen."
+      send_paranoid_instructions: |
+        Findes din e-mailadresse i vores database, vil du modtage en e-mail med et link, hvormed du kan nulstille din adgangskode.
+      no_token: |
+        Du kan kun tilgå denne side via en adgangskodenulstillings e-mail, og er dette tilfældet hér, så tjek venligst, at du har brugt den fulde URL, som angivet i e-mailen.
     registrations:
-      signed_up: 'Velkommen! Din registrering lykkedes.'
-      updated: 'Din kontoopdatering er nu gennemført.'
       destroyed: 'Farvel! Nedlægning af din konto lykkedes. Vi håber snart at se dig igen.'
+      signed_up: 'Velkommen! Din registrering lykkedes.'
+      signed_up_but_inactive: "Du har nu oprettet dig. Indlogning kan dog ikke ske straks, da din konto endnu ikke er aktiveret."
+      signed_up_but_locked: "Din konto er oprettet. Indlogning kan imidlertid ikke ske, da din konto er låst."
+      signed_up_but_unconfirmed: "En besked med et bekræftelseslink er sendt til din e-mailadresse. Følg linket for at aktivere din konto."
+      updated: 'Din kontoopdatering er nu gennemført.'
     mailer:
       confirmation_instructions:
-        subject: 'Bekræftelsesinstruktioner'
+        #Subject of an email sent to confirm your account
+        subject: Bekræft din e-mailadresse
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Anmodning om skift af e-mailadresse
       reset_password_instructions:
         subject: 'Instruktioner til adgangskodenulstilling'
+  devise_confirmation_instructions_if_you_did_not: |
+    Har man ikke registreret en @vow_or_con{vow:an|a} %{site_name}-konto, så ignorér blot denne e-mail.
+  devise_confirmation_instructions_please_click: |
+    Klik på linket nedenfor for at godkende din e-mailadresse:
+  devise_confirmation_instructions_resend_instructions: |
+    En aktiv e-mailadresse kræves for at brug af iNaturalist. Efter registrering af en konto, bør du modtage en bekræftelsesbesked pr. e-mail med et
+    link til at bekræfte, at e-mailadressen fungerer. Har du intet modtaget,
+    kan du sende dig selv en ny bekræftelsesbesked hér.
+  devise_confirmation_instructions_send_confirmation_email: Send bekræftelsesmail
+  devise_email_changed_you_requested: Du har anmodet om at skifte fra %{old_email} til %{new_email}.
+  devise_email_changed_you_will_receive: |
+    En e-mail er sendt til den nye adresse for at bekræfte skiftet, men vi underretter ligeledes på den gamle adresse i tilfælde af, at andre har
+    adgang til denne konto og uvarslet forsøger at ændre den. Såfremt man ikke bevidst har skiftet e-mailadresse, bedes denne e-mail straks videresendes til help@inaturalist.org, så yderligere efterforskning kan ske.
   devise_reset_password_instructions_hello_email: Hej %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Nogen har anmodet om et link til skift af din adgangskode. Du kan gøre dette via linket nedenfor.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Har du ikke anmodet om dette, så ignorér venligst denne e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Nogen har anmodet om et link til skift af din adgangskode. Du kan gøre dette via linket nedenfor.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Din adgangskode skiftes ikke, før du anvender linket ovenfor til at opretter en ny.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1668,6 +1707,24 @@ da:
   email: E-mail
   email_description: Din e-mail deles ikke med andre brugere på iNaturalist
   email_address_for_comments_and_other_feedback: E-mailadresse til kommentarer og anden feedback
+  email_conf_banner_email_delivered_click_link: |
+    Bekræftelsesmail leveret. Klik på linket i e-mailen.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Føj <code>%{email}</code> til din kontaktliste og
+    <a href="%{url}">anmod om en ny bekræftelsesmail</a>.</strong> Blokerer e-mailudbyderen bekræftelsesmailen, kan dette muligvis overbevise dem om, at
+    du rent faktisk ønsker e-mails fra os.
+  email_conf_banner_check_your_spam_folder_html: <strong>Tjek spammappen</strong>
+  email_conf_banner_contact_us_html: Fungerer stadig ikke? E-mail os via %{email} så vi kan hjælpe dig.
+  email_conf_banner_search_for_emails_html: <strong>Søg efter e-mails fra <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Vi sendte dig en bekræftelsesmail d. %{date}. Er den ikke
+    modtaget, så er her nogle ting, du kan gøre:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Bekræft venligst din e-mailadresse%{link_end_tag}</strong>.
+    Alle brugere skal bekræfte deres e-mailadresse inden %{date}. Efter denne
+    dato vil brugere med ubekræftede e-mailadresser være ude af stand til at
+    logge ind, medmindre de nulstiller deres adgangskode. Gå til %{link_start_tag}kontoindstillingerne%{link_end_tag} for at bekræfte din e-mailadresse.
   email_copyright: "Ophavsret &copy; %{x}, alle rettigheder forbeholdt"
   email_notifications: E-mailnotifikationer
   embed: 'Integrér'
@@ -1702,9 +1759,9 @@ da:
     native: opstod i denne region eller ankom via ikke-menneskelig indblanden
     endemic: hjemmehørende og forekommer intet andet sted
     introduced: ankom til regionen via menneskelig indblanden
-  estimate_which_input: |
-    Anslå, hvilke input-takson ID'er, som vil blive erstattet med hvilke output-taksa, og hvilke som vil blive forsimplet til en fælles forfader, når opdelingen er udført. Dette kan tage
-    et øjeblik at beregne. Links til observationer afkortes til undersæt á 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Beregn, hvilke identifikationer af input-takson, som erstattes med identifikationer af output-taksa, samt hvilke som forsimples til en fælles forfader, når opdelingen er udført. Dette kan tage et øjeblik at beregne. Links til observationer afkortes til undersæt á 200.
   event_in_progress: Arrangement i gang
   event_stats: Hændelses statistik
   event_url: Begivenheds-URL
@@ -1768,6 +1825,8 @@ da:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Færre
   failed: Mislykkedes
   field_note: |
     <strong>OBS:</strong> Hvis du vil oprette et felt, skal du tjekke om en anden allerede har oprettet det for at undgå dobbeltarbejde.
@@ -2134,6 +2193,8 @@ da:
   improving: Forbedring
   in_n: "i %{n}"
   in_place_x: i %{place}
+  #As in a reason to flag something
+  inappropriate: Upassende
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
@@ -2361,6 +2422,8 @@ da:
     waray_waray: Waray-Waray
     visayan: Visayansk
   less: Mindre
+  #Button show less text
+  less__context_text: Mindre
   licensed_site_photos: "Licenserede %{site_name} fotos"
   license: Licens
   licensing: Valg af licens
@@ -2497,7 +2560,6 @@ da:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Logger ind...
-  login_slash_username: Login / brugernavn
   logo:
     logo: Logo
     white_bg_gif: hvid BG GIF
@@ -2661,7 +2723,7 @@ da:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM, YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MM HH:mm z"
+    datetime_with_zone_no_year: "D MMMM HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2683,6 +2745,14 @@ da:
     <a href="%{url}">Månedlig Supporter</a> sinden %{date}
   months: Måneder
   more: Mere
+  #Button to show more observations
+  more__context_observations_caps: FLERE
+  #Button to show more places
+  more__context_places: Flere
+  #Button to show more text
+  more__context_text: Mere
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: FLERE
   more_caps: MERE
   more_about_sharing: Mere om Deling
   more_fields: Flere felter
@@ -3197,6 +3267,7 @@ da:
   open_description: "Alle kan se koordinaterne, medmindre taksonen er truet."
   open_street_map: OpenStreetMap
   optional: valgfri
+  options: Valgmuligheder
   or: eller
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3792,6 +3863,7 @@ da:
   places_warning_the_future: |
     For hvad det er værd, så bliver vi, grundet iNat's nuværende vækstrate, fremadrettet nødt til at begrænse de betingelser, under hvilke folk kan tilføje steder.
   plants: planter
+  play_first_sound: Afspil første lyd
   please_add_a_citation_for_this_change: Tilføj venligst en henvisning til denne ændring.
   please_allow_a_few_weeks_for_external_sites: Hav tålmodighed et par uger, for at eksterne websteder kan synkronisere ændringer fra denne observation #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Spørg dine forældre om tilladelse
@@ -3910,6 +3982,22 @@ da:
   proposed_taxa_that_support_the_community_id: Foreslåede taksa, der støtter Fællesskabets ID
   protozoans: protozoer
   provider_authorizations: Udbyders tilladelser
+  provider_without_email_error_apple: |
+    Apple angav ingen e-mailadresse for denne konto, hvilket 
+    kræves. Opret en konto på dette websted i stedet for at logge ind
+    via Apple.
+  provider_without_email_error_flickr: |
+    Flickr angav ingen e-mailadresse for denne konto, hvilket 
+    kræves. Opret en konto på dette websted i stedet for at logge ind
+    via Flickr.
+  provider_without_email_error_generic: |
+    Den aktuelle tjeneste angav ingen e-mailadresse for denne konto, hvilket 
+    kræves. Opret en konto på dette websted i stedet for at logge ind
+    via tredjeparter.
+  provider_without_email_error_google_oauth2: |
+    Google angav ingen e-mailadresse for denne konto, hvilket 
+    kræves. Opret en konto på dette websted i stedet for at logge ind
+    via Google.
   public_domain: Offentlig ejendom
   publish: Offentliggør
   purple: lilla
@@ -4170,6 +4258,10 @@ da:
   research_grade_tooltip_html: 'Observationstypen "Forskningskvalitet" har medier, placering og dato samt en fællesskabskonsensus ift. en præcis identifikation (normalt på artsniveau). <a href="https://www.inaturalist.org/pages/help#quality">Få mere at vide om kvalitetsklasser</a>'
   research_grade_observations_have: 'Observationer af "forskningskvalitet" har en dato, et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen af datakvaliteten.'
   research_grade_qualification: Kvalifikation til Forskningskvalitet
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Gensend og log ud
+  resend_confirmation_email: Gensend bekræftelsesmail
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Nulstil
   reset_filters_short: Nulstil
@@ -4287,11 +4379,12 @@ da:
   select: Vælg
   select_all: Vælg alle
   select_at_least_one: Vælg mindst en
-  select_one_or_more_photos: 'Vælg et eller flere foto´s'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Vælg ingen
   select_observations_to_edit: Vælg observationer, der skal redigeres...
   select_one_of_friends_albums: Vælg en af %{friend}'s albummer
   select_one_of_your_albums: Vælg et af dine albummer
+  select_one_or_more_photos: 'Vælg et eller flere foto´s'
   select_options: Vælg indstillinger
   select_photos_from_your_photo_stream: |
     Vælg billeder fra eksterne fotodelingstjenester, som skal konverteres til observationer på %{site_name}. Vi vil indsætte dato, klokkeslæt og placering ud fra billedets metadata, og prøve at finde artsnavne ud fra billedets tags.
@@ -4300,6 +4393,10 @@ da:
   selected_taxon: Valgte takson
   select_this_taxon: Vælg denne takson
   send: send
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Afsend og log ud
+  send_confirmation_email: Send bekræftelsesmail
   send_me_reset_password_instructions: Send mig info om nulstilling af adgangskode
   sending: Sender...
   #Label for messages you've sent
@@ -5200,6 +5297,7 @@ da:
   upload_new_photo: Upload nyt foto
   upload_photo: Upload foto
   upload_range: Upload område
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uploaded af
   uploader:
     errors:
@@ -5230,6 +5328,7 @@ da:
     Brug <span class='ac-placeholder'>"%{name}"</span> som en pladsholder
   use_this_form_to_create_a_new: |
     Brug dette skema til at lave en kladde til en taksonomisk ændring, der beskriver en foreslået deling, en sammenlægning eller et skifte på aktive taksa, der senere vil blive udført.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Brug dette, hvis URL'en skal have slægten og arten adskilt på en særlig måde. Hvis taksonen ikke er en art eller infraart, alt mellem [GENUS] og [SPECIES] vil blive erstattet af taksonavnet, så brug det sparsomt.
   use_unique_file_names_for_separate_uploads: Brug unikke filnavne til særskilte uploads
@@ -5309,6 +5408,48 @@ da:
   username_or_user_id: Brugernavn eller bruger ID
   users: Brugere
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s bidrag til %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Efter at have sendt bekræftelsesmailen igen, logges du ud og 
+    vil ikke kunne logge ind på din konto, før du klikker på linket i
+    e-mailen, så <strong>sørg for at den korrekte e-mailadresse
+    angives.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Sørg for, at din e-mailadresse er korrekt. Her er e-mailadressen, hvortil bekræftelsen sendes:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Modtages e-mailen ikke, er her nogle tips:
+    </p>
+    <ul>
+    <li><p>Tjek spammappen</p></li>
+    <li><p>Tjek alle oprettede filtre, som kan fjerne e-mails fra indbakken</p></li>
+    </ul>
+    <p>
+    Modtages bekræftelsesmailen stadig ikke, så kontakt os via
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    så vi kan hjælpe dig.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Du er ved at logge ud</h3>
+    <p>
+    Efter afsendelse af bekræftelsesmailen logges du ud og
+    vil ikke kunne logge ind på kontoen, før du klikker på linket i
+    e-mailen, så <strong class="bg-warning">sørg for at angive den korrekte e-mailadressen.</strong>
+    </p>
+    <p>
+    Her er e-mailadressen, hvortil bekræftelsen sendes:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Hvis alle e-mails er afmeldt...</h4>
+    <p>
+    Har du afmeldt <em>alle</em> e-mails fra os, kan vi ikke sende
+    dig en bekræftelsesmail. For at tilmelde dig igen, så find en tidligere
+    e-mail fra os, klik på afmeldingslinket, og vælg så at modtage e-mails igen. Er dette ikke muligt, så send en
+    e-mail til
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a> fra
+    den e-mailadresse, du har angivet her, så vi kan hjælpe dig.
+    </p>
   users_favorites: "%{user}s favoritter"
   users_highlights_and_stats_from_year_on_site: "%{user}s højdepunkter og statistik fra %{year} på %{site}"
   users_id: "%{user}s ID"
@@ -5489,7 +5630,10 @@ da:
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
   with: med
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Træk tilbage
+  #Loading status while an identification is being withdrawn
   withdrawing: Trækker tilbage...
   with_errors: Med fejl
   worldwide: I hele verden
@@ -5639,6 +5783,7 @@ da:
   you_dont_have_permission_to_edit_those_photos: Du har ikke tilladelse til at redigere disse foto´s.
   you_faved_this: Du gjorde denne til favorit!
   you_have_left_x_project: "Du har forladt %{project}"
+  you_have_not_confirmed_your_email_address: Du har ikke bekræftet din e-mailadresse!
   you_havent_linked_your_inaturalist_google_account: "Du har ikke tilknyttet din %{site_name} konto og din Google konto endnu"
   you_joined_this_project: Du blev medlem af dette projekt!
   you_must_be_a_member_of_this_project_to_do_that: Du skal være medlem af dette projekt for at gøre det
@@ -6257,7 +6402,8 @@ da:
       show:
         allow_curator_coordinate_access_desc_html: |
           Tillad projekt kuratorer at se de skjulte koordinater for denne observation.
-        ancestor_disagreements_desc: "Antal af identificerede taksa, der er blandt en taksons stamfædre, men ikke stemmer overens med dette takson (dvs. \"Jeg tror det er indenfor slægten, men jeg er uenig i arten\")"
+        ancestor_disagreements_desc2: |
+          Antal af identificerede taksa, som er blandt en taksons stamfædre, men ikke stemmer overens med denne takson (dvs. "Jeg tror, at den er indenfor slægten, men jeg er uenig i arten")
         community_taxon_desc_html: |
           <p class="ui">
           Fællesskabets takson (eller
@@ -7062,10 +7208,6 @@ da:
         one_time: Én gang
         percent_growth_in_year: "% Vækst i %{year}"
         percent_of_total_growth: "% af samlet vækst"
-        publications_desc_html: |
-          Klik på blomsterdiagrammerne for mere information om betydningen af numrene og farverne. Påvirkningsdata og diagrammer med tilladelse fra <a href="https://www.altmetric.com">Altmetric</a>. Information om databrug med tilladelse fra vores venner ved <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Se alle %{numStudies} studier</a>
         publications_desc_short_html: |
           Klik på blomsterdiagrammerne for mere information om betydning
           af numre og farver. Indvirkningsdata og diagrammer med
@@ -7878,6 +8020,9 @@ da:
           other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Bekendtgørelse
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
       BlockedUser: Blokeret bruger
@@ -7897,6 +8042,12 @@ da:
       OauthApplication: Applikation
       TaxonLink: Takson link
     attributes:
+      announcement:
+        created_at: Oprettet
+        updated_at: Opdateret
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Websteds-ID'er
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -7914,7 +8065,11 @@ da:
         geoprivacy: geofortrolighed
         iucn: ICUN tilsvarende
       flag:
+        #The reason the item was flagged
         reason: Årsag
+        #The person who resolved the flag
+        resolver_id: Problemløser
+        #The kind of flag that was made
         flag: Markering
       guide:
         source_url: Kilde URL
@@ -8047,6 +8202,21 @@ da:
         position: Position
         source_url: Kilde URL
         source_identifier: Kilde identifikator
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Webstedstitel
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Kort titel
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Sted
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Vis for efterkommer-taksa
       user:
         email: E-mail
         login: Brugernavn

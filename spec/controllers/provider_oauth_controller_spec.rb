@@ -35,6 +35,15 @@ describe ProviderOauthController do
         expect( User.find_by_email( google_response[:email] ) ).not_to be_blank
       end
 
+      it "should not return a token for a new user" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, format: :json, params: assertion_params
+        expect( response ).not_to be_successful
+        expect( User.find_by_email( google_response[:email] ) ).not_to be_confirmed
+        expect( JSON.parse( response.body )["access_token"] ).to be_blank
+        expect( JSON.parse( response.body )["error"] ).not_to be_blank
+      end
+
       it "should return a token for a confirmed user" do
         u = create :user, email: google_response[:email], confirmed_at: Time.now
         expect( u ).to be_confirmed
@@ -137,6 +146,23 @@ describe ProviderOauthController do
           response_json = JSON.parse( response.body )
           expect( response_json["error"] ).to eq "unauthorized_client"
         end
+      end
+
+
+    end
+
+    describe "without an email address" do
+      let( :google_response ) { { id: Faker::Number.number.to_s } }
+      it "should not create an account" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, params: assertion_params
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+      end
+      it "should respond with an error" do
+        post :assertion, params: assertion_params
+        response_json = JSON.parse( response.body )
+        expect( response_json["error"] ).to eq "invalid_grant"
+        expect( response_json["error_description"] ).not_to be_blank
       end
     end
   end

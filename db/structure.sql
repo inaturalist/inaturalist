@@ -9,6 +9,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -4788,9 +4789,30 @@ ALTER SEQUENCE public.taxon_schemes_id_seq OWNED BY public.taxon_schemes.id;
 --
 
 CREATE TABLE public.time_zone_geometries (
-    tzid character varying,
+    ogc_fid integer NOT NULL,
+    tzid character varying(80),
     geom public.geometry(MultiPolygon)
 );
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.time_zone_geometries_ogc_fid_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: time_zone_geometries_ogc_fid_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.time_zone_geometries_ogc_fid_seq OWNED BY public.time_zone_geometries.ogc_fid;
 
 
 --
@@ -5101,7 +5123,8 @@ CREATE TABLE public.users (
     failed_attempts integer DEFAULT 0,
     unlock_token character varying,
     oauth_application_id integer,
-    data_transfer_consent_at timestamp without time zone
+    data_transfer_consent_at timestamp without time zone,
+    unconfirmed_email character varying
 );
 
 
@@ -6101,6 +6124,13 @@ ALTER TABLE ONLY public.taxon_scheme_taxa ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.taxon_schemes ALTER COLUMN id SET DEFAULT nextval('public.taxon_schemes_id_seq'::regclass);
+
+
+--
+-- Name: time_zone_geometries ogc_fid; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries ALTER COLUMN ogc_fid SET DEFAULT nextval('public.time_zone_geometries_ogc_fid_seq'::regclass);
 
 
 --
@@ -7112,6 +7142,14 @@ ALTER TABLE ONLY public.taxon_scheme_taxa
 
 ALTER TABLE ONLY public.taxon_schemes
     ADD CONSTRAINT taxon_schemes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: time_zone_geometries time_zone_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.time_zone_geometries
+    ADD CONSTRAINT time_zone_geometries_pkey PRIMARY KEY (ogc_fid);
 
 
 --
@@ -9487,6 +9525,13 @@ CREATE INDEX index_user_privileges_on_user_id ON public.user_privileges USING bt
 
 
 --
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_confirmation_token ON public.users USING btree (confirmation_token);
+
+
+--
 -- Name: index_users_on_curator_sponsor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9715,6 +9760,13 @@ CREATE UNIQUE INDEX taggings_idx ON public.taggings USING btree (tag_id, taggabl
 --
 
 CREATE INDEX taxon_names_lower_name_index ON public.taxon_names USING btree (lower((name)::text));
+
+
+--
+-- Name: time_zone_geometries_geom_geom_idx; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX time_zone_geometries_geom_geom_idx ON public.time_zone_geometries USING gist (geom);
 
 
 --
@@ -10177,14 +10229,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211001151300'),
 ('20211109220615'),
 ('20211216171216'),
+('20220127195113'),
 ('20220209191328'),
 ('20220217224804'),
 ('20220224012321'),
 ('20220225054243'),
+('20220305012626'),
 ('20220308015748'),
 ('20220310001916'),
 ('20220317205240'),
 ('20220317210522'),
-('20220407173712');
+('20220407173712'),
+('20221214192739');
 
 

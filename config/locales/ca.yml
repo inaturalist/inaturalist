@@ -302,7 +302,6 @@ ca:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Afegir-ne un ara
-  add_photos: Afegiu fotos
   add_place: Afegiu un lloc
   add_alive_or_dead_alive_annotation: 'Afegir anotació "Viu o Mort: Viu"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Afegir anotació "Viu o Mort: No s''ha determinat"'
@@ -1016,8 +1015,6 @@ ca:
   #connecting to Flickr
   connect: Connectar
   connect_to_provider: "Connecteu-vos a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Comptes vinculats
   connected_accounts_description: Els comptes connectats són els comptes d'altres Apps o llocs Web a les quals heu autoritzat a accedir a iNaturalist per facilitar l'inici de la vostra sessió, la importació de fotografies o altres funcions.
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
@@ -1186,7 +1183,6 @@ ca:
   created_by: Creat per
   created_by_user_on_date: Creat per %{user} el %{date}
   created_on: Creat el
-  creating_your_account: "Creant el vostre compte..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, llevat que s'indiqui el contrari."
   critically_endangered: En perill crític
@@ -1452,25 +1448,29 @@ ca:
       signed_in: 'Sessió iniciada correctament.'
       signed_out: 'Sessió finalitzada correctament.'
     passwords:
-      send_instructions: 'Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.'
+      send_instructions: |
+        Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.
       updated: 'La contrasenya ha canviat correctament. Ara ja esteu registrat.'
       updated_not_active: 'La vostra contrasenya s''ha modificat correctament.'
-      send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
-      no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
+      send_paranoid_instructions: |
+        Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts.
+      no_token: |
+        No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada.
     registrations:
+      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
       updated: 'Heu actualitzat el vostre compte amb èxit.'
-      destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruccions de confirmació'
+        #Subject of an email sent to confirm your account
+        subject: Instruccions de confirmació
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La vostra contrasenya no canviarà fins que accediu a l'enllaç de dalt i en creeu una de nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1518,6 +1518,7 @@ ca:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Desar-la
   download: 'Descarrega:'
+  download_caps: DESCARREGAR
   download_bulk_import_template_html: |
     <a href="%{url}">Descarregueu la plantilla</a> per utilitzar-la al <a href="/observations/import?project_id=%{project_id}#csv_import">programa de càrrega massiva</a>
   download_csv: Descarrega CSV
@@ -1644,8 +1645,6 @@ ca:
     native: desenvolupat en aquesta regió o arribà per mitjans no antropogènics
     endemic: nadiu i no succeeix a enlloc més
     introduced: va arribar a la regió per mitjans antropogènics
-  estimate_which_input: |
-    Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -2012,6 +2011,7 @@ ca:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
+  inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -2423,7 +2423,6 @@ ca:
   log_scale_label: Registre
   #Status message shown while logging in
   logging_in: Iniciant sessió...
-  login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
     white_bg_gif: Imatge GIF amb fons blanc
@@ -2596,10 +2595,13 @@ ca:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Mes
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Patrocinador mensual
   monthly_supporter_since_date_html: |
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
   months: Mesos
   more: Més
+  more_caps: MÉS
   more_about_sharing: Més Sobre Compartir
   more_fields: Més camps
   more_filters: Més filtres
@@ -4167,11 +4169,12 @@ ca:
   select: Selecciona
   select_all: Selecciona-ho tot
   select_at_least_one: Seleccioneu com a mínim un
-  select_one_or_more_photos: 'Seleccioneu una o més fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: No en seleccioneu cap
   select_observations_to_edit: Seleccioneu observacions per a editar...
   select_one_of_friends_albums: Seleccioneu un dels àlbums de %{friend}
   select_one_of_your_albums: Seleccioneu un dels vostres àlbums
+  select_one_or_more_photos: 'Seleccioneu una o més fotos'
   select_options: Seleccioneu opcions
   select_photos_from_your_photo_stream: |
     Seleccioneu fotos de llocs de compartició de fotografies per convertir-les en observacions a %{site_name}. El nostre equip completarà la data, hora i ubicació de les metadades de la foto i intentarem buscar els noms de les espècies a les etiquetes.
@@ -4189,6 +4192,7 @@ ca:
   set_license: Estableix llicència
   settings: Configuració
   share: Compartiu
+  share_caps: COMPARTEIX
   share_colon: "Compartiu:"
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
   short_or_abbreviated_title_for_display: Normalment és una abreviatura del títol quan l'espai és molt limitat (màxim 10 caràcters).
@@ -4233,6 +4237,8 @@ ca:
   #Journal post formatting option
   simple: Senzill
   single_observation: Observació simple
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Resum de l'any %{year} a %{site}"
   sizes: Mida
   skip_to_next_page: "Aneu a la pàgina següent"
   small: petit
@@ -5000,6 +5006,7 @@ ca:
   upload_new_photo: Carrega una nova foto
   upload_photo: Pugeu Foto
   upload_range: Carregar distribució
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Pujat per
   uploader:
     errors:
@@ -5028,6 +5035,7 @@ ca:
     Utilitza <span class="ac-placeholder">"%{name}"</span> com a marcador del lloc
   use_this_form_to_create_a_new: |
     Utilitzeu aquesta forma per crear un canvi taxonòmic en l'esborrany, especificant si és per separar, ajuntar o és un canvi en el grup o espècie, perquè després es desi.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilitzeu-lo si l’URL té els gèneres i les espècies separats de manera diferent. Si el tàxon no és una espècie o infraespècie, tot el que estigui entre [GÈNERE] i [ESPÈCIE] es reemplaçarà pel nom del tàxon, així que feu-lo servir moderadament.
   use_unique_file_names_for_separate_uploads: Utilitza noms únics d'arxius per a separar les pujades
@@ -5115,6 +5123,8 @@ ca:
   users_lists: "Llistes de %{user}"
   users_profile: "Perfil de %{user}"
   users_projects: "Projectes de %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Resum de l'any %{year} a %{site} de %{user}"
   valid_options_are: Les opcions vàlides són
   value: Valor
   values: Valors
@@ -5122,6 +5132,7 @@ ca:
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
   view: Mostra
   view_all: Mostra-ho tot
+  view_all_caps: VEURE-HO TOT
   view_all_fields: Veure tots els Camps
   view_all_flags: Veure totes les marques
   view_all_members: Veure tots els membres
@@ -5142,6 +5153,12 @@ ca:
   view_flags_for_x_html: "Veure les etiquetes per %{x}"
   view_full_observation: Veure l’observació completa
   view_full_size_photo: Veure la foto a mida completa
+  view_inaturalist_global_year_in_review: Veure el Resum Global d'iNaturalist de l'any %{year}
+  view_inaturalist_global_year_in_review_caps: VEURE LA RESUM GLOBAL D'INATURALIST DE L'ANY %{year}
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Veure el resum global a %{site} de l'any %{year}
+  view_site_year_in_review_caps: VEURE EL RESUM GLOBAL A %{site} DE L'ANY %{year}
   view_journal: Veure el diari
   view_leaderboard_from_last_month: Mostra els més actius del mes passat
   view_leaderboard_from_last_year: Mostra els més actius de l'any passat
@@ -5186,6 +5203,8 @@ ca:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'> Mostra el vostre tauler</a> per a més actualitzacions"
   view_your_inbox: Mostra la vostra bústia
   view_your_observations: Mostra les vostres observacions
+  view_your_personal_year_in_review: "Veure el teu resum personal de l'any %{year}"
+  view_your_personal_year_in_review_caps: "VEURE EL TEU RESUM PERSONAL DE L'ANY %{year}"
   view_yours: Veure el vostre
   view_all_of_your_observations_from_x: "Veure totes les vostres observacions des de %{x}"
   video_tutorials: Vídeo-tutorial
@@ -5274,7 +5293,10 @@ ca:
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
   with: amb
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirant...
   with_errors: Amb errors
   worldwide: Mundial
@@ -5314,6 +5336,7 @@ ca:
   x_wrote_y_new_posts_html: "%{x} ha afegit %{y} noves entrades"
   year: Any
   year_in_review: "Revisió de l'any %{year}"
+  year_in_review2: "Resum de l'any %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
   yellow: groc
@@ -5522,6 +5545,7 @@ ca:
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
@@ -5536,6 +5560,8 @@ ca:
           <p class="text-muted">
           iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
           </p>
+        thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
+        thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     flags:
       show:
         flaggable_content_desc: |
@@ -5952,7 +5978,6 @@ ca:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permet als supervisors del projecte veure les coordenades ocultes d'aquesta observació.
-        ancestor_disagreements_desc: "# dels tàxons identificats es troben entre els avantpassats d'un tàxon, però en desacord amb el tàxon (p.e. creieu que són d'aquest però esteu en desacord amb aquesta espècie)"
         community_taxon_desc_html: |
           <p class="ui">
           El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
@@ -6565,10 +6590,6 @@ ca:
         one_time: Una única vegada
         percent_growth_in_year: "% creixement l'any %{year}"
         percent_of_total_growth: "% de creixement total"
-        publications_desc_html: |
-          Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Veure tots els %{numStudies} estudis</a>
         publications_desc_short_html: |
           Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observacions/Any
@@ -7263,7 +7284,9 @@ ca:
         geoprivacy: Geo-privacitat
         iucn: Equivalent a la UICN
       flag:
+        #The reason the item was flagged
         reason: Raó
+        #The kind of flag that was made
         flag: Marca
       guide:
         source_url: URL d'origen

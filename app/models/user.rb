@@ -22,11 +22,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  handle_asynchronously :send_devise_notification
-  
-  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation
-  attr_accessor :skip_registration_email
+  # handle_asynchronously :send_devise_notification
   
   # licensing extras
   attr_accessor   :make_observation_licenses_same
@@ -252,6 +248,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
@@ -267,6 +264,7 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
+  after_update :send_welcome_email
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -300,9 +298,9 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern, on: :create
-  validate :validate_email_domain_exists, on: :create
-  
+  validate :validate_email_pattern
+  validate :validate_email_domain_exists
+
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
@@ -312,6 +310,7 @@ class User < ApplicationRecord
   scope :active, -> { where("suspended_at IS NULL") }
 
   def validate_email_pattern
+    return unless new_record? || email_changed?
     return if CONFIG.banned_emails.blank?
     return if self.email.blank?
     failed = false
@@ -329,8 +328,11 @@ class User < ApplicationRecord
   # this approach is probably going to have some false positives... but probably
   # not many
   def validate_email_domain_exists
+    return unless new_record? || email_changed?
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
-    return true if self.email.blank?
+    return true if email.blank?
+    return true unless email.include?( "@" )
+
     domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil
@@ -358,14 +360,6 @@ class User < ApplicationRecord
     end
     true
   end
-
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
-  def email_required?
-    !(skip_email_validation || provider_authorizations.count > 0)
-  end
   
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
@@ -390,11 +384,16 @@ class User < ApplicationRecord
     !suspended?
   end
 
-  def child_without_permission?
-    !birthday.blank? &&
-      birthday > 13.years.ago &&
-      UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  def child?
+    !birthday.blank? && birthday > 13.years.ago
   end
+
+  def child_without_permission?
+    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
 
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
@@ -405,7 +404,14 @@ class User < ApplicationRecord
 
     return false if child_without_permission?
 
-    true
+    # Temporary state to allow existing users to sign in. Probably redundant
+    # with the next grandparent exception
+    return true if confirmation_sent_at.blank?
+
+    # Temporary state to allow existing users to sign in
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+
+    super
   end
 
   def download_remote_icon
@@ -429,6 +435,11 @@ class User < ApplicationRecord
     return true if login.blank?
     self.login = login.strip
     true
+  end
+
+  # Confirmation should be sent to the child *after* the parent has been verified
+  def skip_confirmation_if_child
+    skip_confirmation! if child?
   end
   
   def allow_some_licenses
@@ -704,7 +715,7 @@ class User < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
@@ -822,8 +833,6 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
-    u.skip_email_validation = true
-    u.skip_confirmation!
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -835,7 +844,7 @@ class User < ApplicationRecord
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update(:login => suggestion)
     end
-    u.add_provider_auth(auth_info)
+    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
     u
   end
 
@@ -1237,6 +1246,25 @@ class User < ApplicationRecord
       Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
     end
     true
+  end
+
+  def send_welcome_email
+    if (
+      saved_change_to_confirmed_at? &&
+      confirmed? &&
+      # This might happen if an existing user successfully resets their
+      # password, i.e. they don't send themselves a confirmation email b/c
+      # they can't sign in, but they can request the reset password email,
+      # and successfully clicking that link also confirms the email address
+      !confirmation_sent_at.blank? &&
+      # This is for existing users who explicitly request a confirmation
+      # email, which sets confirmation_sent_at. This is imperfect, but it
+      # should prevent most actual users from receiving the welcome email
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
+    )
+      Emailer.welcome( self ).deliver_now
+    end
   end
 
   def recent_notifications(options={})

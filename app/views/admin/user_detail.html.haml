@@ -66,6 +66,22 @@
                   = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
               - elsif user_attr == "email"
                 = @display_user.send( user_attr ).to_s.html_safe
+                - if @display_user.confirmed?
+                  %span.label.label-success
+                    Confirmed at
+                    = @display_user.confirmed_at
+                - else
+                  %span.label.label-warning Unconfirmed
+                %details.stacked
+                  %summary Edit
+                  = form_for @display_user, url: admin_update_user_path, method: :put, data: { confirm: "This will email the user at the old address and the new address and they will still have to confirm the new address. Ok?" }, builder: BootstrapFormBuilder, html: {class: "form-inline"} do | f |
+                    .form-group
+                      = f.text_field :email, class: "form-control", label: false, style: "min-width: 300px"
+                    = f.submit "Send confirmation to new email", class: "btn btn-primary"
+                - unless @display_user.unconfirmed_email.blank?
+                  .alert.alert-warning
+                    Unconfirmed new email:
+                    = @display_user.unconfirmed_email
                 - unless @email_suppressions.blank?
                   .suppressions
                     %h4 Sendgrid Suppressions
@@ -263,10 +279,6 @@
       %p
         = link_to_user @display_user do
           = user_image( @display_user, size: "large", class: "img-responsive center-block" )
-      - if @display_user.is_curator?
-        = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
-      - else
-        = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"
       - if @display_user.active?
         = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"
       - else
@@ -277,6 +289,11 @@
         = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
           method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
           class: "btn btn-block btn-success"
+      %hr
+      - if @display_user.is_curator?
+        = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
+      - else
+        = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"
       = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
       - if @display_user.is_app_owner?
         = link_to t(:remove_app_owner_status), remove_role_path(@display_user, :role => Role::APP_OWNER), :method => :delete, class: "btn btn-block btn-warning"
@@ -300,9 +317,24 @@
                 = " [#{ s.short_url }]"
                 - if s.draft
                   = " (#{ I18n.t(:draft) })"
+      %hr
       = link_to "Log in as #{@display_user.login}", login_as_admin_path( @display_user.id ), class: "btn btn-block btn-info"
       = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
       = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
+
+      - unless @display_user.confirmed?
+        = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,
+          data: { confirm: "Are you sure #{@display_user.email} is actually this user's email address?" },
+          class: "btn btn-block btn-warning",
+          title: "Confirm the user's email or unconfirmed_email"
+      - if @display_user.confirmation_sent_at || @display_user.confirmed?
+        = link_to "Reset email confirmation",
+          admin_update_user_path( @display_user.id, reset_confirmation: true ),
+          method: :put,
+          data: { confirm: "Are you sure you want to reset the email confirmation state? This will allow the user to sign in but they will still need to confirm their email." },
+          class: "btn btn-block btn-warning",
+          title: "Reset email confirmation state so user can sign in and change their email"
+
       = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
         :data => {:confirm => t(:are_you_sure_no_undo)},
         class: "btn btn-block btn-danger"

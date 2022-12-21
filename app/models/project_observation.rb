@@ -231,10 +231,13 @@ class ProjectObservation < ApplicationRecord
 
   def expire_caches
     return true if project_id.blank?
+
     begin
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project, format: "csv" ) ),
+        force: true )
     rescue ActionController::RoutingError, ActionController::UrlGenerationError
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project_id, format: "csv" ) ),
+        force: true )
     end
     true
   end

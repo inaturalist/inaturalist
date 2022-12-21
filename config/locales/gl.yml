@@ -314,7 +314,6 @@ gl:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Engadir Unha Agora
-  add_photos: Engadir fotos
   add_place: Engade un lugar
   add_alive_or_dead_alive_annotation: 'Engadir anotación "Vivo ou Morto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Engadir anotación "Vivo ou Morto: Non Se Pode Determinar"'
@@ -981,8 +980,6 @@ gl:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Conectarse a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Contas vinculadas
   connected_accounts_description: As contas conectadas son as túas contas de outras aplicacións ou sitios web que permitiches a iNaturalist acceder da túa parte, para permitir o inicio de sesión, importar fotos ou otras funcionalidades.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Conectándose a Flickr..."
@@ -1143,7 +1140,6 @@ gl:
   created_by: Creado por
   created_by_user_on_date: Creado por %{user} o %{date}
   created_on: Creado o
-  creating_your_account: "Creando a túa conta..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons agás indicado outramente."
   critically_endangered: en perigo crítico
@@ -1402,25 +1398,29 @@ gl:
       signed_in: 'Iniciouse a sesión correctamente.'
       signed_out: 'Pechouse a sesión correctamente.'
     passwords:
-      send_instructions: 'Recibirás un correo electrónico con instruccións sobre como restaurar a túa palabra chave nuns intres.'
+      send_instructions: |
+        Recibirás un correo electrónico con instruccións sobre como restaurar a túa palabra chave nuns intres.
       updated: 'Cambiouse a túa palabra chave correctamente. Agora xa estás rexistrado/a.'
       updated_not_active: 'A túa palabra chave cambiouse correctamente.'
-      send_paranoid_instructions: "Se o teu enderezo de correo electónico está na nosa base de dados, recibirás un vínculo de recuperación da palabra chave no teu correo nuns minutos."
-      no_token: "Non podes acceder a esta páxina sen vir dun correo electrónico de restauro de palabra chave. Se vés dun correo de restauro de palabra chave, por favor, asegúrate de empregar a URL fornecida enteira."
+      send_paranoid_instructions: |
+        Se o teu enderezo de correo electónico está na nosa base de dados, recibirás un vínculo de recuperación da palabra chave no teu correo nuns minutos.
+      no_token: |
+        Non podes acceder a esta páxina sen vir dun correo electrónico de restauro de palabra chave. Se vés dun correo de restauro de palabra chave, por favor, asegúrate de empregar a URL fornecida enteira.
     registrations:
+      destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
       signed_up: '¡Benvido/a! Iniciaches a sesión correctamente.'
       updated: 'Actualizaches a túa conta exitosamente.'
-      destroyed: 'Adeus! A túa conta foi cancelada. Esperamos volverte a ver pronto.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruccións para a confirmación'
+        #Subject of an email sent to confirm your account
+        subject: Instruccións para a confirmación
       reset_password_instructions:
         subject: 'Instruccións para restablecer o contrasinal.'
   devise_reset_password_instructions_hello_email: Ola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Aguén solicitou un vencello para cambiar o teu contrasinal. Pódelo facer por medio do seguinte vencello.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se ti non o solicitaches, por favor, ingora este correo electrónico.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Aguén solicitou un vencello para cambiar o teu contrasinal. Pódelo facer por medio do seguinte vencello.
   devise_reset_password_instructions_your_password_wont_change_until: |
     O teu contrasinal non cambiará ata que accedas ó vencello de arriba e crees un novo.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2268,7 +2268,6 @@ gl:
   log_scale_label: Rexistro
   #Status message shown while logging in
   logging_in: Accedendo...
-  login_slash_username: Rexistro / nome de usuario
   logo:
     logo: Logotipo
     white_bg_gif: Fondo branco con imaxe GIF
@@ -3923,11 +3922,12 @@ gl:
   select: Selecciona
   select_all: Seleccionar todo
   select_at_least_one: Selecciona Polo Menos Un
-  select_one_or_more_photos: 'Selecciona unha ou máis fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Non seleccionar ningunha
   select_observations_to_edit: Selecciona Observacións a Editar...
   select_one_of_friends_albums: Selecciona Un Dos Álbums de %{friend}
   select_one_of_your_albums: Selecciona Un Dos Teus Álbums
+  select_one_or_more_photos: 'Selecciona unha ou máis fotos'
   select_options: Selecciona Opcións
   select_photos_from_your_photo_stream: |
     Seleccionar fotos de Photostream para convertelas en observacións en %{site_name}. O noso equipo completará a data, hora e localización dos metadatos da foto e trataremos de procurar nomes de especies nas etiquetas.
@@ -4538,6 +4538,7 @@ gl:
   upload_new_photo: Carga unha foto nova
   upload_photo: Cargar Foto
   upload_range: Cargar Intervalo
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Subido por
   uploader:
     errors:
@@ -4565,6 +4566,7 @@ gl:
     Usar <span class='ac-placeholder'>%{name}</span> como marcador de posición
   use_this_form_to_create_a_new: |
     Emprega esta formulario para crear un borrador de cambio taxonómico, especificando se é para dividir, combinar ou intercambiar nos taxons activos, para que despois se garde.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Emprega isto se a URL ten os xéneros e especies separados de forma particular. Se o taxón non é unha especie ou infraespecie, todo o que estea entre [XÉNERO] e [ESPECIE] será substituído polo nome do taxón, así que emprégao moderadamente. <br/><br/> <strong>Exemplo.</strong><br/>
   use_unique_file_names_for_separate_uploads: Usar nomes de ficheiros únicos para cargas separadas
@@ -4784,7 +4786,10 @@ gl:
   wikipedia_attribution_cc_by_sa_3_html: |
     Este artigo usa material do artigo da Wikipedia <a href="%{url}">%{title}</a>, que é lanzado baixo a licenza <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a>. O contido poderá ter sido omitido do orixinal, pero ningún contido foi mudado ou extendido.
   with: Con
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirando...
   with_errors: Con erros
   worldwide: Mundial
@@ -5427,7 +5432,6 @@ gl:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permitir que os conservadores do proxecto vexan as coordenadas ocultas para esta observación
-        ancestor_disagreements_desc: "Nº de taxons identificados están entre os ancestros do taxon, pero desacordan có taxon (p.e.\"Creo que está no xénero pero desacordo que é esa especie)"
         community_taxon_desc_html: |
           <p class="ui">
           O taxon da comunidade (ou a identificación da comunidade) representa qué taxon pensa a comunidade de %{site_name} está representado nunha observación. Se estás interesado en saber cómo escollemos o taxon da comunidade, ve as notas do algoritmo embaixo, pero xeralmente, tentamos <strong>escoller un taxon có que 2/3 da comunidade estean de acordo</strong>. Ás veces, isto significa escoller un nivel taxonómico superior que contén unha cantidade de taxons desconcordantes (p.e. pensas que é unha serpe-rei e eu penso que é unha serpe de cascabel, logo iNat escolle a suborde Serpentes que contén tódalas serpes). O algoritmo tamén favorece lixeiramente ós disidentes, porque atopamos que os disidentes frecuentemente están no certo.
@@ -5985,10 +5989,6 @@ gl:
         one_time: Unha vez
         percent_growth_in_year: "% de Crecemento en %{year}"
         percent_of_total_growth: "% de Crecemento Total"
-        publications_desc_html: |
-          Preme nas gráficas de pétalos para ver máis información sobre o que significan os números e as cores. Os dados de impacto e gráficas son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. A información sobre uso de dados é cortesía dos nosos amigos na <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Ver Todos%{numStudies} os estudos</a>
         publications_desc_short_html: |
           Preme nos gráficos de pétalos para máis información sobre o que significan os números e as cores. Os dados e gráficas de impacto son cortesía de <a href="https://www.altmetric.com">Altmetric</a>. 
           A información sobre uso de dados é cortesía dos nosos amigos da <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
@@ -6668,7 +6668,9 @@ gl:
         geoprivacy: Xeoprivacidade
         iucn: Equivalente da IUCN
       flag:
+        #The reason the item was flagged
         reason: Razón
+        #The kind of flag that was made
         flag: Marca
       guide:
         source_url: URL Fonte

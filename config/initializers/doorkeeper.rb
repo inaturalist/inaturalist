@@ -11,8 +11,12 @@ Doorkeeper.configure do
   resource_owner_from_credentials do |routes|
     username = params[:login] || params[:email] || params[:username]
     if username && params[:password]
-      user = User.find_for_authentication( email: username )
-      user && user.valid_password?( params[:password] ) ? user : nil
+      raise INat::Auth::BadUsernamePasswordError unless ( user = User.find_for_authentication( email: username ) )
+      raise INat::Auth::BadUsernamePasswordError unless user.valid_password?( params[:password] )
+      raise INat::Auth::SuspendedError if user.suspended?
+      raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
+      raise INat::Auth::UnconfirmedError if !user.confirmed? && !user.confirmation_sent_at.blank?
+      user
     elsif defined?( warden )
       warden.authenticate!(auth_options)
     end

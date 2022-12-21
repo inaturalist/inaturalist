@@ -301,12 +301,14 @@ et:
   add_observations: Lisa vaatlusi
   add_observations_by_checking_off: Lisa vaatlusi märgistades nimekirjas olevaid liike.
   add_observations_project: Lisa projekti alla vaatlusi
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Lisa</span> <span>vaatlused</span>"
   #Prompt to add a new journal post
   add_one: Lisa!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Lisa
-  add_photos: Lisa fotod
   add_place: Lisa koht
   add_alive_or_dead_alive_annotation: 'Lisa märge "Elus või surnud: elus"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisa märge "Elus või surnud: ei saa lõpuni otsustada"'
@@ -673,6 +675,10 @@ et:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Omadus
   attribution: Omistus
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, lisanud kasutaja %{user}"
   authority_list:
     iucn_red_list: IUCNi punane nimestik
     natureserve: NatureServe
@@ -1005,8 +1011,6 @@ et:
   #connecting to Flickr
   connect: Ühenda
   connect_to_provider: "Ühendan: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Ühendatud kontod
   connected_accounts_description: Ühendatud kontod on sinule kuuluvad kontod teistes rakendustes või teistel lehekülgedel, millele oled võimaldanud iNatutalisti poolt ligipääsu lihtsustamaks sisse logimist, fotode importi või muid tegevusi.
   connected_accounts_titlecase: Ühendatud kontod
   connecting_flickr: "Ühendan lehega Flickr..."
@@ -1173,7 +1177,6 @@ et:
   created_by: Loonud
   created_by_user_on_date: Loonud %{user} kuupäeval %{date}
   created_on: Loodud kuupäeval
-  creating_your_account: "Loon sinu kontot..."
   creative_commons_flickr_tagged: Märksõnadega Creative Commons litsentsiga Flickr fotod
   creative_commons_unless_otherwise_noted: "Kui teisiti pole määratletud, kehtib Creative Commons litsents."
   critically_endangered: Kriitlises hävimisohus
@@ -1407,25 +1410,29 @@ et:
       signed_in: 'Sisenemine õnnestus.'
       signed_out: 'Välja logimine õnnestus.'
     passwords:
-      send_instructions: 'Saadame sulle paari minuti jooksul e-kirja salasõna lähtestamise juhistega.'
+      send_instructions: |
+        Saadame sulle paari minuti jooksul e-kirja salasõna lähtestamise juhistega.
       updated: 'Sinu salasõna muutmine õnnestus. Oled nüüd sisse logitud.'
       updated_not_active: 'Sinu salasõna muutmine õnnestus.'
-      send_paranoid_instructions: "Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja."
-      no_token: "Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki."
+      send_paranoid_instructions: |
+        Kui su e-posti aadress on meie andmebaasis olemas, saadame sulle paari minuti jooksul salasõna taastamise lingiga e-kirja.
+      no_token: |
+        Seda lehte saab külastada vaid salasõna lähtestamise kirja kauda. Kui tuli salasõna lähtestamise e-kirjast, kontrolli palun üle, kas kasutad tervet seal olevat linki.
     registrations:
+      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
-      destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
     mailer:
       confirmation_instructions:
-        subject: 'Kinnitamisjuhised'
+        #Subject of an email sent to confirm your account
+        subject: Kinnitamisjuhised
       reset_password_instructions:
         subject: 'Salasõna lähtestamise juhised'
   devise_reset_password_instructions_hello_email: Tere, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Kui sa seda ei taotlenud, siis ära pane seda e-kirja tähele.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Keegi on esitanud teie salasõna muutmise taotluse. Saate salasõna muuta allolevat linki kasutades.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Sinu salasõna ei muutu, kui sa ülalolevale lingile ej vajuta ja uut salasõna ei loe.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1633,6 +1640,8 @@ et:
   feedback: Tagasiside
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Vood'
+  #Button to show fewer places
+  fewer__context_places: Vähem
   failed: Ebaõnnestus
   field_note: |
     <strong>Tähelepanu:</strong> Kui soovid teha uut välja, kontrolli esmalt
@@ -1913,6 +1922,8 @@ et:
   improving: Täiendaja
   in_n: "kohas %{n}"
   in_place_x: kohas %{place}
+  #As in a reason to flag something
+  inappropriate: Ebasobiv
   inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   #Label for messages you've received
   inbox: Saabunud kirjad
@@ -2113,6 +2124,8 @@ et:
     waray_waray: Varai
     visayan: Visayani
   less: Vähem
+  #Button show less text
+  less__context_text: Vähem
   licensed_site_photos: "Litsenseeritud %{site_name} fotod"
   license: Litsents
   licensing: Litsentsimine
@@ -2246,7 +2259,6 @@ et:
   log_scale_label: Logi
   #Status message shown while logging in
   logging_in: Login sisse...
-  login_slash_username: Kasutajatunnus
   logo:
     logo: Logo
     white_bg_gif: valge taustaga GIF
@@ -2389,6 +2401,14 @@ et:
     <a href="%{url}">Igakuine toetaja</a> alates %{date}
   months: Kuud
   more: Veel
+  #Button to show more observations
+  more__context_observations_caps: ROHKEM
+  #Button to show more places
+  more__context_places: Rohkem
+  #Button to show more text
+  more__context_text: Rohkem
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ROHKEM
   more_caps: VEEL
   more_about_sharing: Jagamise lisainfo
   more_fields: Veel välju
@@ -2760,6 +2780,7 @@ et:
   open_description: "Kõik näevad koordinaate kui takson pole ohustatud."
   open_street_map: OpenStreetMap
   optional: valikuline
+  options: Sätted
   or: või
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3187,6 +3208,7 @@ et:
   places_warning_please_keep_in_mind: |
     Pea palun meeles järgnevaid piiranguid:
   plants: taimed
+  play_first_sound: Mängi esimest heli
   please_add_a_citation_for_this_change: Palun lisa selle muudatuse juurde viide.
   please_allow_a_few_weeks_for_external_sites: Palun oota paar nädalat, et välised saidid selle vaatluse muudatused kätte saaksid #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
@@ -3566,11 +3588,12 @@ et:
   select: Vali
   select_all: Vali kõik
   select_at_least_one: Vali vähemalt üks
-  select_one_or_more_photos: 'Vali üks või enam fotot'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Tühista valik
   select_observations_to_edit: Vali muutmiseks vaatlus...
   select_one_of_friends_albums: Vali üks kasutaja %{friend} album
   select_one_of_your_albums: Vali üks enda album
+  select_one_or_more_photos: 'Vali üks või enam fotot'
   select_options: Valikud
   select_photos_from_your_photo_stream: |
     Vali väliste fotojagamislehtede pildid, mida muuta vaatlusteks lehel %{site_name}. Me lisame foto metaandmetest kuupäeva, kellaaja ja asukoha ning proovime märksõnadest leida liikide nimed.
@@ -4127,6 +4150,7 @@ et:
   upload_new_photo: Lae uus foto
   upload_photo: Lae foto üles
   upload_range: Lae piirkond üles
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 'Üleslaadija:'
   uploader:
     tooltips:
@@ -4147,6 +4171,7 @@ et:
     Kasuta <span class='ac-placeholder'>"%{name}"</span> kohatäitjana
   use_this_form_to_create_a_new: |
     Kasuta seda vormi, et luua uus taksonoomilise muutuse visand, mis kirjeldab mõne aktiivse taksoni jagamist, ühendamist või vahetamist tulevikus.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Kasuta seda, kui URLis peavad perekond ja liik mingil erilisel moel olema eristatud. Kui takson pole liik või infraliik, siis asendatakse kõik [GENUS] ja [SPECIES] vahel olev taksoni nimega. Seega kasuta ettevaatlikult.
   use_unique_file_names_for_separate_uploads: Kasuta erinevate üleslaaditavate failide puhul unikaalseid nimesid
@@ -4202,6 +4227,21 @@ et:
   username_or_user_id: Kasutajatunnus või kasutaja ID
   users: Kasutajad
   users_contributions_to_project_html: Kasutaja <a href="%{url}">%{login}</a> panus projekti %{project_title}
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Palun kontrolli, kas su e-posti aadress on korrektne. Allpool on kirjas aadress, millele saadame kinnituskirja:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Kui sa ei saanud e-kirja, proovi järgnevat:
+    </p>
+    <ul>
+    <li><p>Kontrolli rämpsposti kausta</p></li>
+    <li><p>Kontrolli, et sa ei kasuta filtreid, mis eemaldavad postkastist kirju</p></li>
+    </ul>
+    <p>
+    Kui sa ei saa ikka veel kinnituskirja, palun võta meiega ühendust aadressil <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ja me aitame sind.
+    </p>
   users_highlights_and_stats_from_year_on_site: "Kasutaja %{user} %{year}. aasta tipud ja statistika lehel %{site}"
   users_id: "%{user} ID"
   users_identifications: "Kasutaja %{user} määratlused"
@@ -4364,7 +4404,10 @@ et:
   wikipedia_attribution_cc_by_sa_3_html: |
     See artikkel kasutab materjali Wikipedia artiklist <a href="%{url}">"%{title}"</a>, mis on saadaval <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commonsi Autorile viitamine + Jagamine samadel tingimustel 3.0</a> litsentsi alusel. Osa algsest sisust võib siit puududa, kuid miskit pole muudetud või lisatud.
   with: koos
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Võta tagasi
+  #Loading status while an identification is being withdrawn
   withdrawing: Võtan tagasi...
   with_errors: Vigadega
   worldwide: Globaalselt
@@ -4778,7 +4821,6 @@ et:
       show:
         allow_curator_coordinate_access_desc_html: |
           Luba projektide kuraatoritel näha selle vaatluse peidetud koordinaate.
-        ancestor_disagreements_desc: "Määratletud taksonite hulk, milles sisalduvad antud taksoni ülemtaksonid, kuid mis ei nõustu antud taksoniga (st \"Ma arvan, et tegu on selle perekonnnaga, kuid ei usu, et tegu on selle liigiga\")"
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
@@ -5639,10 +5681,19 @@ et:
           other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Teadaanne
       AssessmentSection: Hinnangu osa
       CompleteSet: Täiskomplekt
       TaxonLink: Taksoni link
     attributes:
+      announcement:
+        created_at: 'Loodud:'
+        updated_at: 'Uuendatud:'
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Lehtede ID-koodid
       assessment:
         description: Kirjeldus
       assessment_section:
@@ -5657,7 +5708,11 @@ et:
         geoprivacy: Asukoha privaatsus
         iucn: IUCNilaadne organisatsioon
       flag:
+        #The reason the item was flagged
         reason: Põhjus
+        #The person who resolved the flag
+        resolver_id: Lahendaja
+        #The kind of flag that was made
         flag: Märkus
       guide:
         source_url: Allika URL

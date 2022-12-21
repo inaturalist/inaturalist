@@ -35,13 +35,16 @@
       }
     })
     window._.any = _.some; // Patch so torque won't miss underscore
-  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
+  = javascript_include_tag "https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+  = javascript_include_tag "//unpkg.com/leaflet-gesture-handling"
+  / required for Altmetric badges
   = javascript_include_tag "https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"
   = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "stats/year"
-  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
+  = stylesheet_link_tag "https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+  = stylesheet_link_tag "//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css"
 - content_for :extrahead do
   - if ( ys = @year_statistic ) && ys.year == 2019 && ys.site.blank? && ys.user.blank?
     %meta{ name: "og:image", property: "og:image", content: "https://static.inaturalist.org/misc/yir2019-shareable-v3.png" }

@@ -23,6 +23,7 @@ import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from
 import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
+import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import AppContainer from "./containers/app_container";
 
 const rootReducer = combineReducers( {
@@ -36,6 +37,7 @@ const rootReducer = combineReducers( {
   thirdPartyTracking: thirdPartyTrackingModalReducer,
   creativeCommonsLicensing: creativeCommonsLicensingModalReducer,
   section: sectionReducer,
+  confirmModal: confirmModalReducer,
   alertModal
 } );
 

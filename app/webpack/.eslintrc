@@ -49,12 +49,13 @@
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
     "react/forbid-prop-types": 0,
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/require-default-props": 0,
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/media-has-caption": "off",
     "react/no-find-dom-node": 0,
     "react/destructuring-assignment": 0,
-    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }]
+    "default-param-last": 0
   }
 }

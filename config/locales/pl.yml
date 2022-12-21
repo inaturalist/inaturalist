@@ -377,12 +377,14 @@ pl:
   add_observations: Dodaj obserwacje
   add_observations_by_checking_off: Dodaj obserwacje poprzez odhaczenie gatunków z listy.
   add_observations_project: Dodaj obserwacje do tego projektu
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Dodaj</span> <span>obserwacje</span>"
   #Prompt to add a new journal post
   add_one: Dodaj jakiś!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Dodaj jakieś teraz
-  add_photos: Dodaj zdjęcia
   add_place: Dodaj lokalizację
   add_alive_or_dead_alive_annotation: 'Dodaj adnotację "Żywy czy martwy: Żywy"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj adnotację "Żywy czy martwy: Nie można określić"'
@@ -1015,14 +1017,16 @@ pl:
   confirm_new_password: Potwierdź nowe hasło
   confirm_now: Potwierdź teraz
   confirm_your_info: Potwierdź swoje dane
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: E-mail z potwierdzeniem wysłany o %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Potwierdzono %{date}
   confirming_ids: Potwierdzanie oznaczeń
   confirming_ids_description: Jeśli wyłączysz tę opcję, nie będziesz już otrzymywać powiadomień o oznaczeniach, które są zgodne z Twoimi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Połącz
   connect_to_provider: "Połącz z %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Podłączone konta
   connected_accounts_titlecase: Połączone konta
   connecting_flickr: "Łączenie z Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Połącz się ponownie z Flickr, aby autoryzować uprawnienia do zapisu
@@ -1169,7 +1173,6 @@ pl:
   created_by: Utworzone przez
   created_by_user_on_date: Utworzone %{date} przez %{user}
   created_on: Utworzone
-  creating_your_account: "Tworzenie konta..."
   creative_commons_flickr_tagged: Otagowane zdjęcia z Flickra na licencji Creative Commons
   creative_commons_unless_otherwise_noted: "Na licencji Creative Commons, chyba że podano inaczej."
   critically_endangered: Krytycznie zagrożony
@@ -1320,27 +1323,45 @@ pl:
   details: Szczegóły
   deviation: Odchylenie
   devise:
+    confirmations:
+      confirmed: |
+        Twój adres e-mail został pomyślnie potwierdzony. Możesz teraz zalogować się tutaj na stronie internetowej lub w aplikacjach mobilnych iNaturalist lub Seek.
+      send_instructions: "W ciągu kilku minut otrzymasz email z instrukcjami, jak potwierdzić Twój adres email."
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
       invalid: 'Niepoprawny e-mail lub hasło.'
       invalid_token: 'Nieprawidłowy token uwierzytelniania.'
+      unconfirmed: |
+        Sprawdź swoją pocztę e-mail i kliknij link w otrzymanym e-mailu, aby potwierdzić swoje konto.
       user:
         suspended: Twoje konto zostało zawieszone
     sessions:
       signed_in: 'Zalogowano pomyślnie.'
       signed_out: 'Wylogowano pomyślnie.'
     passwords:
-      send_instructions: 'W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.'
+      send_instructions: |
+        W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.
       updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
     registrations:
-      updated: 'Pomyślnie zaktualizowałeś swoje konto'
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
+      signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto nie zostało jeszcze aktywowane."
+      signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto jest zablokowane."
+      updated: 'Pomyślnie zaktualizowałeś swoje konto'
     mailer:
       confirmation_instructions:
-        subject: 'Instrukcje potwierdzenia'
+        #Subject of an email sent to confirm your account
+        subject: Instrukcje potwierdzenia
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Prośba o zmianę adresu e-mail
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
+  devise_confirmation_instructions_please_click: |
+    Kliknij poniższy link, aby potwierdzić swój adres e-mail:
+  devise_confirmation_instructions_send_confirmation_email: Wyślij e-mail z potwierdzeniem
+  devise_email_changed_you_requested: Poprosiłeś o zmianę z %{old_email} na %{new_email}.
   devise_reset_password_instructions_hello_email: Witaj %{email}
   devise_unlock_instructions_your_account_has_been_locked: |
     Twoje konto zostało zablokowane z powodu zbyt dużej liczby nieudanych prób logowania.
@@ -1380,6 +1401,7 @@ pl:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Upuść
   download: Pobierz
+  download_caps: POBIERZ
   download_csv: Pobierz CSV
   download_csv_template: Pobierz szablon CSV
   download_kml: Pobierz KML
@@ -1531,6 +1553,8 @@ pl:
   feedback: Opinia
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Kanały'
+  #Button to show fewer places
+  fewer__context_places: Mniej
   failed: Nie powiodło się
   field_note: |
     <strong>Uwaga:</strong> zanim dodasz kolejną notatkę terenową, upewnij się, że nie istnieje podobna.
@@ -1771,6 +1795,7 @@ pl:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Oznaczenie wycofane.
   identifications: Oznaczenia
+  inaturalist_global_year_in_review: "Globalny przegląd roku %{year} iNaturalist"
   computer_vision_suggestion: Sugestia na podstawie rozpoznawania obrazów
   computer_vision_suggestion_desc: |
     Rozpoznawanie obrazów to proces uczenia komputerów rozpoznawania wzorów w ilustracjach. Dostarczamy narzędzi (np. autouzupełniania czy porównywania), które używają rozpoznawania obrazów wyuczonego na bazie zdjęć społeczności, aby proponować sugestie identyfikacji. Ta etykieta informuje, że osoba dodała identyfikację korzystając z jednego z tych narzędzi.
@@ -2005,6 +2030,8 @@ pl:
     waray_waray: Warajski
     visayan: bisajski
   less: Mniej
+  #Button show less text
+  less__context_text: Mniej
   license: Licencja
   life: Życie
   life_list: "Lista życiowa użytkownika %{user}"
@@ -2121,7 +2148,6 @@ pl:
   log_scale_label: Dziennik
   #Status message shown while logging in
   logging_in: Logowanie...
-  login_slash_username: Login / nazwa użytkownika
   logo:
     logo: Logo
     white_bg_gif: GIF z białym tłem
@@ -2251,8 +2277,19 @@ pl:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Miesiąc
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Comiesięczni ofiarodawcy
   months: Miesiące
   more: Więcej
+  #Button to show more observations
+  more__context_observations_caps: WIĘCEJ
+  #Button to show more places
+  more__context_places: Więcej
+  #Button to show more text
+  more__context_text: Więcej
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: WIĘCEJ
+  more_caps: WIĘCEJ
   more_fields: Więcej notatek
   more_filters: Więcej filtrów
   more_from_x: Więcej od %{x}
@@ -2592,6 +2629,7 @@ pl:
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
   optional: opcjonalne
+  options: Opcje
   or: lub
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3306,6 +3344,10 @@ pl:
   research_grade: Stopień badawczy
   research_grade_short_html: "S<span class='full'>topień</span>b<span class='full'>adawczy</span>"
   research_grade_qualification: Kwalifikacja do Stopnia badawczego
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Wyślij ponownie i wyloguj się
+  resend_confirmation_email: Wyślij ponownie e-mail z potwierdzeniem
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
   reset_brightness: Resetuj jasność
@@ -3370,15 +3412,20 @@ pl:
   seen_nearby: Widziany w pobliżu
   select: Wybierz
   select_all: Zaznacz wszystkie
-  select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Odznacz wszystkie
   select_observations_to_edit: Wybierz obserwacje do edycji...
   select_one_of_friends_albums: Wybierz jeden z albumów użytkownika %{friend}
   select_one_of_your_albums: Wybierz jeden ze swoich albumów
+  select_one_or_more_photos: 'Wybierz jedno lub więcej zdjęć'
   select_options: Wybierz opcje
   selected_photos: Wybrane zdjęcia
   selected_taxon: Wybrany takson
   select_this_taxon: Wybierz ten takson
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Wyślij i wyloguj
+  send_confirmation_email: Wyślij e-mail z potwierdzeniem
   send_me_reset_password_instructions: Wyślij mi instrukcje resetowania hasła
   sending: Wysyłanie...
   #Label for messages you've sent
@@ -3387,6 +3434,7 @@ pl:
   set_license: Ustaw licencję
   settings: Ustawienia
   share: Udostępnij
+  share_caps: UDOSTĘPNIJ
   share_colon: "Udostępnij:"
   show: Pokaż
   show_active_and_inactive_taxa: Pokaż aktywne i nieaktywne taksony
@@ -3404,6 +3452,8 @@ pl:
   #Journal post formatting option
   simple: Proste
   single_observation: Pojedyncza obserwacja
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Przegląd roku %{year} %{site}"
   sizes: Rozmiary
   skip_to_next_page: "Przejdź do następnej strony"
   site_admin_tools: Narzędzia administratora strony
@@ -3798,6 +3848,7 @@ pl:
   upload_a_csv_file: Prześlij plik CSV
   upload_new_photo: Prześlij nowe zdjęcie
   upload_photo: Prześlij zdjęcie
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Przesłane przez
   uploader:
     errors:
@@ -3864,17 +3915,23 @@ pl:
   username_or_email: Nazwa użytkownika lub adres e-mail
   username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
   users: Użytkownicy
+  users_edit_resend_confirmation_prompt_html: |
+    Po ponownym wysłaniu e-maila z potwierdzeniem zostaniesz wylogowany i nie będzie mógł zalogować się na swoje konto, dopóki nie klikniesz linku w
+    e-mailu, więc <strong>upewnij się, że wpisałeś swój adres e-mail poprawnie.</strong>
   users_favorites: "Ulubione użytkownika %{user}"
   users_identifications: "Oznaczenia użytkownika %{user}"
   users_journal: "Dziennik użytkownika %{user}"
   users_lists: "Listy użytkownika %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Projekty użytkownika %{user}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Przegląd roku %{year} %{site} użytkownika %{user}"
   value: Wartość
   values: Wartości
   verifiable_observations_by_observation_date: Obserwacje weryfikowalne według daty obserwacji
   view: Zobacz
   view_all: Zobacz wszystkie
+  view_all_caps: ZOBACZ WSZYSTKO
   view_all_flags: Zobacz wszystkie zgłoszenia
   view_all_members: Zobacz wszystkich użytkowników
   view_all_observations: Zobacz wszystkie obserwacje
@@ -3888,6 +3945,12 @@ pl:
   view_flags_for_x_html: "Zobacz zgłoszenie dla %{x}"
   view_full_observation: Zobacz pełną obserwację
   view_full_size_photo: Zobacz zdjęcie w pełnym rozmiarze
+  view_inaturalist_global_year_in_review: Zobacz globalny przegląd roku %{year} iNaturalist
+  view_inaturalist_global_year_in_review_caps: ZOBACZ GLOBALNY PRZEGLĄD ROKU %{year} INATURALIST
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Zobacz przegląd roku %{year} %{site}
+  view_site_year_in_review_caps: ZOBACZ PRZEGLĄD ROKU %{year} %{site}
   view_journal: Zobacz dziennik
   view_leaderboard_from_last_month: Zobacz rankingi z ostatniego miesiąca
   view_leaderboard_from_last_year: Zobacz rankingi z ostatniego roku
@@ -3918,6 +3981,8 @@ pl:
   view_x: "Zobacz %{x}"
   view_your_inbox: Zobacz skrzynkę odbiorczą
   view_your_observations: Zobacz swoje obserwacje
+  view_your_personal_year_in_review: "Zobacz swój osobisty przegląd roku %{year}"
+  view_your_personal_year_in_review_caps: "ZOBACZ SWÓJ OSOBISTY PRZEGLĄD ROKU %{year}"
   view_yours: Zobacz swoje
   view_all_of_your_observations_from_x: "Zobacz wszystkie swoje obserwacje z %{x}"
   visually_similar: Wizualnie podobny
@@ -3963,7 +4028,10 @@ pl:
   wikipedia_attribution_cc_by_sa_3: |
     Źródło: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
   with: z
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Wycofaj
+  #Loading status while an identification is being withdrawn
   withdrawing: Wycofywanie...
   with_errors: Z błędami
   would_you_like_to: Czy chciałbyś
@@ -3988,6 +4056,7 @@ pl:
   x_wrote_y_new_posts_html: "%{x} napisał %{y} nowych postów"
   year: Rok
   year_in_review: "Rok w przeglądzie %{year}"
+  year_in_review2: "Przegląd roku %{year}"
   year_month: rok/miesiąc
   year_on_site: "Rok na %{site} %{year}"
   yellow: żółty
@@ -4027,6 +4096,7 @@ pl:
   you_didnt_select_any_photos_to_tag: Nie wybrałeś żadnych zdjęć do otagowania!
   you_faved_this: Dodałeś to do ulubionych!
   you_have_left_x_project: "Opuściłeś %{project}"
+  you_have_not_confirmed_your_email_address: Nie potwierdziłeś swojego adresu e-mail!
   you_havent_linked_your_inaturalist_google_account: "Nie połączyłeś jeszcze swojego konta %{site_name} z kontem Google"
   you_joined_this_project: Dołączyłeś do tego projektu!
   you_must_be_a_member_of_this_project_to_do_that: Musisz być członkiem tego projektu, aby to zrobić
@@ -4090,6 +4160,10 @@ pl:
           are_you_planning_on_using_in_the_classroom: Czy planujesz korzystać z %{site_name} w klasie?
     donate:
       post_donate_social_media_text: Wspieram iNaturalist ponieważ...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist_caps: ZOSTAŃ COMIESIĘCZNYM OFIARODAWCĄ INATURALIST
+        thank_you_for_being_a_monthly_supporter: Dziękujemy za bycie comiesięcznym ofiarodawcą!
+        thank_you_for_being_a_monthly_supporter_caps: DZIĘKUJEMY ZA BYCIE COMIESIĘCZNYM OFIARODAWCĄ!
     guides:
       show:
         draft_desc: |
@@ -4702,7 +4776,9 @@ pl:
         geoprivacy: Geoprywatność
         iucn: Odpowiednik IUCN
       flag:
+        #The reason the item was flagged
         reason: Powód
+        #The kind of flag that was made
         flag: Zgłoś
       guide:
         source_url: Źródłowy adres URL
@@ -4779,6 +4855,18 @@ pl:
         position: Pozycja
         source_url: Źródłowy adres URL
         source_identifier: Identyfikator źródła
+      taxon_link:
+        url: Adres URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Nazwa strony
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Krótki tytuł
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Lokalizacja
       user:
         email: Adres e-mail
         login: Nazwa użytkownika
