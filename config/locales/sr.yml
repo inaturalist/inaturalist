@@ -784,6 +784,8 @@ sr:
   conservation_status_created: Status ugroženosti kreiran
   conservation_status_deleted: Status ugroženosti izbrisan
   conservation_status_updated: Status ugroženosti ažuriran
+  conservation_status_geoprivacy_desc: |
+    Podrazumevana geoprivatnost primenjena na sve opservacije ovog taksona na ovom mestu
   contact_support: Kontaktiraj korisničku podršku
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Sadržaj
@@ -1226,7 +1228,7 @@ sr:
   help_confirm_observations!: Pomozi u potvrđivanju opservacija!
   help_support_inaturalist: "Podrži iNaturalist"
   help_translate!: Pomozi u prevođenju!
-  here_are_our_top_suggestions: Ovo su naše najbolje preporuke
+  here_are_our_top_suggestions: Ovo su naši najbolji predlozi
   hex_color_eg: Hex kod boje, npr. 65644F
   hi_user: "Zdravo %{user}"
   #Verb, usually a button to hide an interface element
@@ -1295,6 +1297,7 @@ sr:
   #Label for messages you've received
   inbox: Poruke
   include_places: Uključi ova mesta
+  include_suggestions_not_seen_nearby: Uključi i predloge koji nisu viđeni u blizini
   include_taxa: Uključi ove taksone
   include_users: Uključi ove korisnike
   including: uključujući
