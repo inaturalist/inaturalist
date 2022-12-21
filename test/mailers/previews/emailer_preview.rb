@@ -116,6 +116,10 @@ class EmailerPreview < ActionMailer::Preview
     } )
   end
 
+  def welcome
+    Emailer.welcome( User.last )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

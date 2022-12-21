@@ -118,7 +118,6 @@ sq:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Shto një tani
-  add_photos: Shto fotografi
   add_place: Shtoni vendin
   add_plant_phenology_budding_annotation: 'Shto shënimin "Fenologjia e Bimëve: Nxjerrja e sytheve"'
   add_plant_phenology_flowering_annotation: 'Shto shënimin "Fenologjia e Bimëve: Lulëzimi"'
@@ -585,8 +584,6 @@ sq:
   confirm_now: Konfirmo tani
   confirm_your_info: Konfirmo informacionin tënd
   connect_to_provider: "Lidhu me %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Llogaritë e lidhura
   connecting_flickr: "Duke u lidhur me Flickr..."
   connecting_to_facebook: "Duke u lidhur me Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Lidhja e llogarisë tuaj %{site_name} me llogaritë në faqe tjera do t'u mundësojë të qaseni në %{site_name} duke shfrytëzuar kredencialet tuaja nga këto faqe."
@@ -663,7 +660,6 @@ sq:
   created_by: Krijuar nga
   created_by_user_on_date: Krijuar nga %{user} me %{date}
   created_on: Krijuar me
-  creating_your_account: "Krijimi i llogarisë suaj ..."
   creative_commons_flickr_tagged: Fotot Kreative te Përgjithshme te Flickr te Shenjuara
   creative_commons_unless_otherwise_noted: "Të zakonshmet e krijuara nese nuk jane shenuar ndryshe."
   critically_endangered: rrezikuar në mënyrë kritike
@@ -1353,7 +1349,6 @@ sq:
   location_specified: lokacioni është i specifikuar
   locked_taxa_will_not_allow_new: Klasat e kyçura nuk lejojnë shtimin e klasave të reja. Pra, nëse kyçni Amphibia dhe dikush përpiqet të importojë <i>Rana catesbeiana</i> nga një ofrues i jashtëm, krijohet një klasë e re por nuk klasifikohet si amfibe. Në këtë rast, klasa e re që shtohet duhet të shenjohet për vëmendje të mëtejshme nga ana e kuratorit. Në fakt, kjo duhet përdorur vetëm për klasa pasardhësit e të cilave mendojmë se i kemi të gjithë. Kuratori mund ta tejkalojë këtë duke ndryshuar klasat dhe duke vënë direkt identifikatin prindëror, por mundësisht sugjerohet bashkimi i klasave të reja me ato ekzistuese në vend të krijimit të klasave të tjera.
   log_in: Hyr
-  login_slash_username: Hyr / Emri i përdoruesit
   logo:
     white_bg_gif: Prapavijë e bardhë GIF
     transparent_png: E tejdukshme PNG
@@ -2309,11 +2304,12 @@ sq:
   select: Zgjidh
   select_all: Përzgjidh të gjitha
   select_at_least_one: Zgjidhe të paktën një
-  select_one_or_more_photos: 'Përzgjedhni një apo më shumë foto'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Mos zgjidh asnjë
   select_observations_to_edit: Zgjidh një vëzhgim për të redaktuar...
   select_one_of_friends_albums: Zgjidh një nga albumet e %{friend}
   select_one_of_your_albums: Zgjidh një nga albumet tuaja
+  select_one_or_more_photos: 'Përzgjedhni një apo më shumë foto'
   select_options: Opsionet e zgjedhjes
   select_photos_from_your_photo_stream: |
     Zgjidh foto nga faqe që postojnë fotografi për ti konvertuar në %{site_name} vëzhgime. ne do t'i plotësojmë datën, kohën dhe lokacionin nga të dhënat e fotografisë dhe do të mundohemi të kërkojmë për emrin e species nga etiketimet.
@@ -2673,7 +2669,9 @@ sq:
         geoprivacy: Privatësia e Gjeografike
         iucn: Ekuivalent i IUCN
       flag:
+        #The reason the item was flagged
         reason: Arsyeja
+        #The kind of flag that was made
         flag: Flamur
       guide:
         source_url: Burimi URL

@@ -294,7 +294,6 @@ el:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Προσθέστε ένα τώρα
-  add_photos: Προσθήκη φωτογραφιών
   add_place: Προσθήκη Τόπου
   add_alive_or_dead_alive_annotation: 'Προσθήκη ένδειξης "Ζωντανό ή Νεκρό: Ζωντανό"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Προσθήκη ένδειξης "Ζωντανό ή Νεκρό: Δεν Μπορεί Να Προσδιοριστεί"'
@@ -906,8 +905,6 @@ el:
   #connecting to Flickr
   connect: Σύνδεση
   connect_to_provider: "Σύνδεση με %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Συνδεδεμένοι λογαριασμοί
   connected_accounts_description: Συνδεδεμένοι λογαριασμοί είναι οι λογαριασμοί σας από άλλες εφαρμογές ή ιστότοπους στα οποία έχετε επιτρέψει στο iNaturalist να έχει πρόσβαση έτσι ώστε να υποστηρίζεται είσοδος, εισαγωγή φωτογραφιών ή άλλη λειτουργία.
   connected_accounts_titlecase: Συνδεδεμένοι Λογαριασμοί
   connecting_flickr: "Σύνδεση με το Flickr..."
@@ -1034,7 +1031,6 @@ el:
   created_by: Δημιουργήθηκε από
   created_by_user_on_date: Δημιουργήθηκε από %{user} την %{date}
   created_on: Δημιουργήθηκε την
-  creating_your_account: "Δημιουργείται ο λογαριασμός σας..."
   creative_commons_flickr_tagged: Φωτογραφίες στο Flickr επέκτησαν ετικέτα με άδεια Creative Commons
   creative_commons_unless_otherwise_noted: "Άδεια Creative Commons εκτός αν άλλως αναφέρεται."
   critically_endangered: Κρισίμως Κινδυνεύον
@@ -1292,25 +1288,29 @@ el:
       signed_in: 'Επιτυχής σύνδεση.'
       signed_out: 'Επιτυχής αποσύνδεση.'
     passwords:
-      send_instructions: 'Θα λάβετε ένα email με οδηγίες για το πως να επαναφέρετε τον κωδικό σας σε μερικά λεπτά.'
+      send_instructions: |
+        Θα λάβετε ένα email με οδηγίες για το πως να επαναφέρετε τον κωδικό σας σε μερικά λεπτά.
       updated: 'Ο κωδικός πρόσβασής σας άλλαξε επιτυχώς. Τώρα είστε συνδεδεμένοι.'
       updated_not_active: 'Ο κωδικός πρόσβασής σας άλλαξε επιτυχώς.'
-      send_paranoid_instructions: "Εάν η διεύθυνση email σας υπάρχει στη βάση δεδομένων μας, θα λάβετε έναν σύνδεσμο ανάκτησης κωδικού πρόσβασης στο email σας σε λίγα λεπτά."
-      no_token: "Δεν μπορείτε να έχετε πρόσβαση σε αυτήν τη σελίδα εάν δεν λάβατε ένα email επαναφοράς κωδικού πρόσβασης. Εάν έχετε λάβει email επαναφοράς κωδικού πρόσβασης, βεβαιωθείτε ότι έχετε χρησιμοποιήσει την πλήρη διεύθυνση URL που σας δόθηκε."
+      send_paranoid_instructions: |
+        Εάν η διεύθυνση email σας υπάρχει στη βάση δεδομένων μας, θα λάβετε έναν σύνδεσμο ανάκτησης κωδικού πρόσβασης στο email σας σε λίγα λεπτά.
+      no_token: |
+        Δεν μπορείτε να έχετε πρόσβαση σε αυτήν τη σελίδα εάν δεν λάβατε ένα email επαναφοράς κωδικού πρόσβασης. Εάν έχετε λάβει email επαναφοράς κωδικού πρόσβασης, βεβαιωθείτε ότι έχετε χρησιμοποιήσει την πλήρη διεύθυνση URL που σας δόθηκε.
     registrations:
+      destroyed: 'Αντίο! Ο λογαριασμός σας ακυρώθηκε επιτυχώς. Ελπίζουμε να σας δούμε ξανά σύντομα.'
       signed_up: 'Καλώς ορίσατε! Η εγγραφή σας ολοκληρώθηκε με επιτυχία.'
       updated: 'Ενημερώσατε τον λογαριασμό σας επιτυχώς'
-      destroyed: 'Αντίο! Ο λογαριασμός σας ακυρώθηκε επιτυχώς. Ελπίζουμε να σας δούμε ξανά σύντομα.'
     mailer:
       confirmation_instructions:
-        subject: 'Οδηγίες επιβεβαίωσης'
+        #Subject of an email sent to confirm your account
+        subject: Οδηγίες επιβεβαίωσης
       reset_password_instructions:
         subject: 'Οδηγίες επαναφοράς κωδικού πρόσβασης'
   devise_reset_password_instructions_hello_email: Γεια σας %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Κάποιος ζήτησε έναν σύνδεσμο για να αλλάξει τον κωδικό πρόσβασής σας. Μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο γι᾽ αυτήν την ενέργεια.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Εάν δεν ζητήσατε εσείς κάτι τέτοιο, αγνοήστε αυτό το email.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Κάποιος ζήτησε έναν σύνδεσμο για να αλλάξει τον κωδικό πρόσβασής σας. Μπορείτε να χρησιμοποιήσετε τον παρακάτω σύνδεσμο γι᾽ αυτήν την ενέργεια.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ο κωδικός πρόσβασής σας δε θα αλλάξει μέχρι να αποκτήσετε πρόσβαση στον παραπάνω σύνδεσμο και να δημιουργήσετε έναν νέο.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2120,7 +2120,6 @@ el:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Αποσύνδεση από %{site_name}?"
   log_scale_label: Καταγραφή
-  login_slash_username: Σύνδεση / όνομα χρήστη
   logo:
     logo: Λογότυπο
     white_bg_gif: άσπρο BG GIF
@@ -3653,11 +3652,12 @@ el:
   select: Επιλογή
   select_all: Επιλογή όλων
   select_at_least_one: Επιλέξτε τουλάχιστον ένα
-  select_one_or_more_photos: 'Επιλέξτε μια ή περισσότερες φωτογραφίες'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Επιλογή κανενός
   select_observations_to_edit: Επιλέξτε παρατηρήσεις για επεξεργασία...
   select_one_of_friends_albums: Επιλέξτε ένα από τα άλμπουμ του %{friend}
   select_one_of_your_albums: Επέλεξε ένα από τα άλμπουμ σου
+  select_one_or_more_photos: 'Επιλέξτε μια ή περισσότερες φωτογραφίες'
   select_options: Επιλογή επιλογών
   select_photos_from_your_photo_stream: |
     Επιλέξτε φωτογραφίες από εξωτερικούς ιστοτόπους κοινής χρήσης φωτογραφιών για να τις μετατρέψετε σε %{site_name} παρατηρήσεις. Θα συμπληρώσουμε την ημερομηνία,ώρα και τοποθεσία από τα μεταδεδομένα της φωτογραφίας και θα προσπαθήσουμε να εντοπίσουμε ονόματα ειδών από τις ετικέτες.
@@ -3851,6 +3851,7 @@ el:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: Κατάστημα
+  store_caps: Κατάστημα
   studies_that_used_inaturalist_data_in_year: Μελέτες που χρησιμοποίησαν δεδομένα από iNaturalist κατά τη διάρκεια του %{year}
   stuff_just_added: "Υλικό που έχετε προσθέσει..."
   subject_resolved_noun_html: "%{subject} επιδιόρθωσε %{noun}"
@@ -4260,6 +4261,7 @@ el:
   upload_new_photo: Ανεβάστε νέα φωτογραφία
   upload_photo: Ανέβασμα φωτογραφίας
   upload_range: Φόρτωμα Εύρους
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Μεταφορτώθηκε από
   uploader:
     errors:
@@ -4287,6 +4289,7 @@ el:
     Χρήση <span class='ac-placeholder'>%{name}</span> ως αντικαταστάτη
   use_this_form_to_create_a_new: |
     Χρησιμοποιήστε αυτή τη φόρμα για να δημιουργήσετε μια νέα πρόχειρη ταξινομική αλλαγή που περιγράφει μια προτεινόμενη διαίρεση, συγχώνευση ή ανταλλαγή σε υπάρχουσες ταξινομικές μονάδες που θα τεθεί σε ισχύ αργότερα.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Χρησιμοποιήστε αυτό αν το URL πρέπει να έχει το γένος και το είδος χωρισμένα με έναν
     συγκεκριμένο τρόπο. Εάν η ταξινομική μονάδα δεν είναι είδος ή κατώτερη του είδους, τα πάντα
@@ -4367,7 +4370,6 @@ el:
   users_latest_observations_on_site: "Οι πιο πρόσφατες παρατηρήσεις της/του %{user} στο %{site}"
   users_profile: "Το προφίλ του χρήστη %{user}"
   users_projects: "Τα πρότζεκτ του/της %{user}"
-  users_year_on_site: "Η χρονιά του %{user} στο %{site} %{year}"
   valid_options_are: Αποδεκτές επιλογές είναι
   value: Τιμή
   values: Τιμές
@@ -4429,12 +4431,10 @@ el:
   view_taxononomy_details_for_taxon: "Προβολή ταξινομικών λεπτομερειών για %{taxon}"
   view_user_observations: "Προβολή παρατηρήσεων της/του %{user}"
   view_x: "Προβολή %{x}"
-  view_year_stats_for_site: "Προβολή στατιστικών του %{site} για το %{year}"
   view_your_dashboard: Προβολή του αρχικού σας πάνελ
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Προβολή του αρχικού σας πάνελ</a> για περισσότερες ενημερώσεις"
   view_your_inbox: Προβολή εισερχόμενων μηνυμάτων
   view_your_observations: Προβολή των παρατηρήσεών σας
-  view_your_year_stats: "Προβολή των στατιστικών σας για το %{year}"
   view_yours: Δείτε τις δικές σας
   view_all_of_your_observations_from_x: "Προβολή των παρατηρήσεών σας από %{x}"
   video_tutorials: Εκπαιδευτικά βίντεο
@@ -4508,7 +4508,10 @@ el:
     Αυτό το άρθρο χρησιμοποιεί υλικό από το άρθρο της Βικιπαίδεια <a href="%{url}">"%{title}"</a>, το οποίο δημοσιεύθηκε σύμφωνα με το <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Το περιεχόμενο μπορεί να παραλείπεται από το αυθεντικό άρθρο, όμως το περιεχόμενο δεν έχει αλλάξει.
   with: με
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Απόσυρση
+  #Loading status while an identification is being withdrawn
   withdrawing: Αποσύρεται...
   with_errors: Με σφάλματα
   worldwide: Παγκόσμιες
@@ -5164,7 +5167,6 @@ el:
       show:
         allow_curator_coordinate_access_desc_html: |
           Επιτρέψτε στους επιμελητές του πρότζεκτ να βλέπουν τις κρυφές συντεταγμένες για αυτή την παρατήρηση.
-        ancestor_disagreements_desc: "# από τις ταυτοποιημένες ταξινομικές βαθμίδες είναι ανάμεσα στους προγόνους μιας ταξινομικής βαθμίδας, αλλά διαφωνούν με την ταξινομική βαθμίδα (δηλαδή, \"Νομίζω ότι είναι σε αυτό το γένος αλλά διαφωνώ ότι είναι αυτό το είδος\")"
         community_taxon_desc_html: |
           <p class="ui">
           Η κοινοτική ταξινομική μονάδα (ή κοινοτική ταυτοποίηση) αντιπροσωπεύει το τι ταξινομική μονάδα η %{site_name} κοινότητα πιστεύει ότι είναι η εικονιζόμενη παρατήρηση. Αν σας ενδιαφέρει ο τρόπος με τον οποίο επιλέγουμε την κοινοτική ταξινομική μονάδα, δείτε τις σημειώσεις του παρακάτω αλγόριθμου, αλλά γενικά, προσπαθούμε να <strong>επιλέγουμε μια ταξινομική μονάδα στην οποία συμφωνούν πάνω από τα 2/3 από όσους κάνουν ταυτοποιήσεις</strong>. Μερικές φορές αυτό σημαίνει ότι επιλέγουμε μια ταξινομική μονάδα μεγαλύτερου επιπέδου που περιέχει κάποιες από τις ταξινομικές μονάδες που διαφωνούν (π.χ. πιστεύεις ότι είναι kingsnake και εγώ πιστεύω ότι είναι rattlesnake, έτσι το iNat επιλέγει τα Ερπετά που περιέχουν όλα τα φίδια). Επίσης, ο αλγόριθμος κλείνει λίγο προς τις διαφωνίες διότι έχουμε δει ότι αυτοί που διαφωνούν είναι συνήθως σωστοί. 
@@ -5751,10 +5753,6 @@ el:
         one_time: Μία φορά
         percent_growth_in_year: "% Αύξηση το %{year}"
         percent_of_total_growth: "% από την ολική αύξηση"
-        publications_desc_html: |
-          Κάντε κλικ πάνω στα γραφήματα των λουλουδιών για περισσότερες πληροφορίες σχετικά με το τι σημαίνουν τα νούμερα και χρώματα. Τα γραφήματα με τα δεδομένα αντίκτυπου οφείλονται στο <a href="https://www.altmetric.com">Altmetric</a>. Πληροφορίες σχετικά με τη χρήση των δεδομένων στους φίλους μας στο <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Δείτε όλες τις %{numStudies} μελέτες</a>
         publications_desc_short_html: |
           Κάντε κλικ πάνω στα γραφήματα των λουλουδιών για περισσότερες πληροφορίες σχετικά με το τι σημαίνουν τα νούμερα και χρώματα. Τα γραφήματα με τα δεδομένα αντίκτυπου οφείλονται στο <a href="https://www.altmetric.com">Altmetric</a>. Πληροφορίες σχετικά με τη χρήση των δεδομένων στους φίλους μας στο <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Παρατηρήσεις / Έτος
@@ -6533,7 +6531,9 @@ el:
         geoprivacy: Γεωαπόρρητο
         iucn: Ισοδύναμο του IUCN
       flag:
+        #The reason the item was flagged
         reason: Αιτία
+        #The kind of flag that was made
         flag: Αναφορά
       guide:
         source_url: URL πηγής

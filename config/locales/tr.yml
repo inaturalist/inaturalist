@@ -312,12 +312,14 @@ tr:
   add_observations: Gözlem Ekle
   add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
   add_observations_project: Bu Projeye Gözlem Ekle
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Gözlem</span> <span>Ekle</span>"
   #Prompt to add a new journal post
   add_one: Bir Tane Ekle!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Şimdi Bir Tane Ekle
-  add_photos: Fotoğraf Ekle
   add_place: Konum Ekle
   add_alive_or_dead_alive_annotation: '"Canlı ya da Ölü: Canlı" açıklaması ekle'
   add_alive_or_dead_cannot_be_determined_annotation: '"Canlı ya da Ölü: Belirlenemeyen" açıklaması ekle'
@@ -689,6 +691,10 @@ tr:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Nitelik
   attribution: Nitelik
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, yükleyen: %{user}"
   authority_list:
     iucn_red_list: IUCN Kırmızı Listesi
     natureserve: NatureServe
@@ -847,6 +853,8 @@ tr:
   change_group: Değişim grubu
   change_icon: Simgeyi değiştir
   change_password: Şifreyi Değiştir
+  #Message shown after you change your email address
+  change_to_email_requested_html: <strong>%{email}</strong> adresinde değişiklik talep edildi. Değişikliği onaylamak için bu adresteki e-postanı kontrol et.
   change_types:
     activated_soon: yakında etkinleşecek
     change_types: Türleri değiştir
@@ -1016,14 +1024,16 @@ tr:
   confirm_new_password: Yeni Şifreyi Onayla
   confirm_now: Şimdi onayla
   confirm_your_info: Bilgini onayla
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Doğrulama e-postası %{datetime} tarihinde gönderildi
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 'Onay tarihi: %{date}'
   confirming_ids: Tanımlama Onayları
   confirming_ids_description: Eğer bunu kapatırsan, tanımlamalarında seninle aynı fikirde olanlar ile ilgili bildirimler almayacaksın.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Bağlan
   connect_to_provider: "Şuna bağlan: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Hesaplara bağlandı
   connected_accounts_description: Bağlantılı hesaplar, diğer uygulamalarındaki veya web sitelerindeki hesaplarında, iNaturalist'in senin adına giriş yapılmasını desteklediği, fotoğraf aktarılabilen veya diğer fonksiyonları gerçekleştirmek için izin verdiğin hesaplardır.
   connected_accounts_titlecase: Bağlı Hesaplar
   connecting_flickr: "Flickr'a bağlanıyor... "
@@ -1192,7 +1202,6 @@ tr:
   created_by: Oluşturan
   created_by_user_on_date: '%{user} tarafından %{date} tarihinde oluşturuldu'
   created_on: Oluşturma tarihi
-  creating_your_account: "Hesabınız oluşturuluyor..."
   creative_commons_flickr_tagged: Creative Commons Flickr Fotoğrafları Etiketlendi
   creative_commons_unless_otherwise_noted: "Tersi belirtilmediği sürece Creative Commons."
   critically_endangered: Kritik Derecede Tehlikede
@@ -1443,6 +1452,9 @@ tr:
   deviation: Uygunsuzluk
   devise:
     confirmations:
+      confirmed: |
+        E-posta adresiniz başarıyla doğrulandı. Artık burada ve iNaturalist veya Seek mobil uygulamalarında oturum açabilirsiniz.
+      send_instructions: "Birkaç dakika içinde e-posta adresini doğrulamak için talimat içeren bir e-posta alacaksın."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1452,31 +1464,54 @@ tr:
       unauthenticated: 'Devam etmeden önce giriş yapman ya da kayıt olman gereklidir.'
       invalid: 'Geçersiz e-posta ya da şifre.'
       invalid_token: 'Geçersiz kimlik doğrulama belirteci.'
+      unconfirmed: |
+        Lütfen e-postanı kontrol et ve hesabını doğrulamak için aldığın e-postadaki bağlantıya tıkla.
       user:
         suspended: Hesabın askıya alındı
     sessions:
       signed_in: 'Başarıyla giriş yapıldı.'
       signed_out: 'Başarıyla çıkış yapıldı.'
     passwords:
-      send_instructions: 'Birkaç dakika içinde şifreni nasıl sıfırlayacağına dair talimatları içeren bir e-posta alacaksın.'
+      send_instructions: |
+        Birkaç dakika içinde şifreni nasıl sıfırlayacağına dair talimatları içeren bir e-posta alacaksın.
       updated: 'Şifren başarılı bir şekilde değiştirildi. Şimdi oturum açtın.'
       updated_not_active: 'Şifren başarılı bir şekilde değiştirildi.'
-      send_paranoid_instructions: "Eğer e-posta adresin veri tabanımızda mevcut ise birkaç dakika içinde e-posta adresine bir şifre kurtarma bağlantısı gönderilecektir."
-      no_token: "Şifre sıfırlama e-postası gelmeden bu sayfaya erişemezsin. Şifre sıfırlama e-postasından geliyorsan, lütfen sağlanan tam URL'yi kullandığından emin ol."
+      send_paranoid_instructions: |
+        Eğer e-posta adresin veri tabanımızda mevcut ise birkaç dakika içinde e-posta adresine bir şifre kurtarma bağlantısı gönderilecektir.
+      no_token: |
+        Şifre sıfırlama e-postası gelmeden bu sayfaya erişemezsin. Şifre sıfırlama e-postasından geliyorsan, lütfen sağlanan tam URL'yi kullandığından emin ol.
     registrations:
-      signed_up: 'Hoş geldin! Başarılı bir şekilde oturum açtın.'
-      updated: 'Hesabını başarıyla güncelledin.'
       destroyed: 'Güle güle! Hesabın başarıyla iptal edildi. Yakında tekrar görüşmek dileğiyle.'
+      signed_up: 'Hoş geldin! Başarılı bir şekilde oturum açtın.'
+      signed_up_but_inactive: "Başarılı bir şekilde kaydoldun. Ancak, hesabın henüz etkinleştirilmediği için oturumunu açamadık."
+      signed_up_but_locked: "Başarılı bir şekilde kaydoldun. Ancak, hesabın kilitli olduğu için oturumunu açamadık."
+      signed_up_but_unconfirmed: "E-posta adresine onay bağlantısı içeren bir ileti gönderildi. Hesabını etkinleştirmek için lütfen bağlantıyı takip et."
+      updated: 'Hesabını başarıyla güncelledin.'
     mailer:
       confirmation_instructions:
-        subject: 'Onaylama talimatları'
+        #Subject of an email sent to confirm your account
+        subject: Onaylama talimatları
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: E-posta değişikliği talep edildi
       reset_password_instructions:
         subject: 'Şifre sıfırlama talimatları'
+  devise_confirmation_instructions_if_you_did_not: |
+    %{site_name} hesabı açmadıysan, lütfen bu e-postayı dikkate alma.
+  devise_confirmation_instructions_please_click: |
+    E-posta adresini doğrulamak için lütfen aşağıdaki bağlantıya tıkla:
+  devise_confirmation_instructions_resend_instructions: |
+    iNaturalist'i kullanmak için çalışan bir e-posta adresin olmalıdır. Kaydolduğunda, e-posta adresinin çalıştığını doğrulamak için tıklaman gereken bağlantı içeren bir onay e-postası almış olmalısın ancak almadıysan buradan kendine başka bir doğrulama e-postası gönderebilirsin.
+  devise_confirmation_instructions_send_confirmation_email: Doğrulama e-postası gönder
+  devise_email_changed_you_requested: '%{old_email}''dan %{new_email} adresine bir değişiklik talep ettin.'
+  devise_email_changed_you_will_receive: |
+    Değişikliği onaylamak için yeni adresten bir e-posta alacaksın ancak başka birinin hesabına erişimi olması ve senin haberin olmadan değiştirmeye çalışması ihtimaline karşı seni eski adresinden bilgilendirmek istedik. E-posta adresini kasıtlı olarak değiştirmediysen, lütfen araştırabilmemiz için bu e-postayı derhal help@inaturalist.org adresine iletin.
   devise_reset_password_instructions_hello_email: Merhaba %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Birisi şifreni değiştirmek için bir bağlantı istedi. Bunu aşağıdaki bağlantıdan yapabilirsin.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Bunu istemediysen, lütfen bu e-postayı dikkate alma.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Birisi şifreni değiştirmek için bir bağlantı istedi. Bunu aşağıdaki bağlantıdan yapabilirsin.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Yukarıdaki bağlantıya erişip yeni bir şifre oluşturana kadar şifren değişmeyecektir.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1524,6 +1559,7 @@ tr:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Bırak
   download: İndir
+  download_caps: İNDİR
   download_bulk_import_template_html: |
     <a href="/observations/import?project_id=%{project_id}#csv_import">Toplu yükleyicide</a> kullanmak için <a href="%{url}">şablonu indir</a>.
   download_csv: CSV'yi İndir
@@ -1617,6 +1653,8 @@ tr:
   email: E-posta
   email_description: E-posta adresin iNaturalist kullanıcılarıyla paylaşılmamaktadır
   email_address_for_comments_and_other_feedback: Yorumlar ve diğer geri bildirimler için e-posta adresi
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Lütfen e-posta adresini doğrula%{link_end_tag}</strong>. Tüm kullanıcılar e-posta adreslerini %{date} tarihine kadar onaylamalıdır. Bu tarihten sonra e-posta adresini teyit etmemiş olan herkes, şifrelerini sıfırlamadıkları sürece oturum açamayacaktır. E-posta adresini doğrulamak için %{link_start_tag}hesap ayarlarına%{link_end_tag} git.
   email_copyright: "Telif hakkı &copy; %{x}, tüm hakları saklıdır"
   email_notifications: E-posta Bildirimleri
   embed: 'Yerleştir'
@@ -1650,8 +1688,9 @@ tr:
     native: bu bölgede evrimleşti veya bu bölgeye doğal yollarla geldi
     endemic: yerel ve başka bir yerde görülmez
     introduced: bu bölgeye beşeri yollar ile geldi
-  estimate_which_input: |
-    Bölme işlemi tamamlandıktan sonra hangi girdi sınıf tanımlamalarının hangi çıktı sınıflarıyla değiştirileceğini ve hangilerinin ortak bir ataya bağlanacağını tahmin edin. Bunun hesaplanması biraz zaman alabilir. Gözlemlere bağlantılar 200'lük alt kümelere ayrılır.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Girdi sınıfının hangi tanımlamalarının çıktı sınıfının tanımlamalarıyla değiştirileceğini ve bölünme tamamlandığında hangilerinin ortak bir üst soya bağlanabileceğini tahmin edin. Bunun hesaplanması biraz zaman alabilir. Gözlem bağlantıları 200'lük alt kümelere ayrılır.
   event_in_progress: Etkinlik sürüyor
   event_stats: Etkinlik İstatistikleri
   event_url: Etkinlik URL'si
@@ -1714,6 +1753,8 @@ tr:
   feedback: Geri bildirim
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Akış'
+  #Button to show fewer places
+  fewer__context_places: Daha az
   failed: Başarısız oldu
   field_note: |
     <strong>Not:</strong> Bir alan oluşturmak istiyorsan, aynılığı önlemek için başkasının daha önce yapıp yapmadığını kontrol edin.
@@ -1738,8 +1779,10 @@ tr:
   filters: Filtreler
   find: Bul
   find_a_guide: Bir rehber bul
+  find_a_post: Bir gönderi bul
   find_a_place: Bir Konum Bul
   find_guides: Rehberleri Bul
+  find_posts_for: "%{journal_name} için gönderileri bul"
   find_new_place_to_explore: Yeni bir yer keşfet!
   find_observations: Gözlemleri bul
   find_photos: Fotoğrafları bul
@@ -2015,6 +2058,7 @@ tr:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Tanımlama geri alındı.
   identifications: Tanımlamalar
+  inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -2062,6 +2106,8 @@ tr:
   improving: Geliştirici
   in_n: "Konum: %{n}"
   in_place_x: 'Konum: %{place}'
+  #As in a reason to flag something
+  inappropriate: Uygunsuz
   inaturalist_network: iNaturalist Ağı
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
@@ -2286,6 +2332,8 @@ tr:
     waray_waray: Varay
     visayan: Visayanca
   less: Daha az
+  #Button show less text
+  less__context_text: Daha az
   licensed_site_photos: "Lisanslı %{site_name} fotoğrafları"
   license: Lisans
   licensing: Lisanslama
@@ -2356,6 +2404,7 @@ tr:
     de: Almanca
     el: Yunanca
     en: İngilizce
+    en-GB: İngilizce (BK)
     eo: Esperanto
     es: İspanyolca
     es-AR: İspanyolca (Arjantin)
@@ -2368,6 +2417,7 @@ tr:
     fr-CA: Fransızca (Kanada)
     gl: Galiççe
     he: İbranice
+    hr: Hırvatça
     hu: Macarca
     id: Endonezce
     it: İtalyanca
@@ -2420,7 +2470,6 @@ tr:
   log_scale_label: Günlük
   #Status message shown while logging in
   logging_in: Oturum açılıyor...
-  login_slash_username: Giriş yap / kullanıcı adı
   logo:
     logo: Logo
     white_bg_gif: beyaz arka plan GIF
@@ -2576,7 +2625,7 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
+    datetime_with_zone_no_year: "D MMMM, HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2592,10 +2641,21 @@ tr:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Ay
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Aylık Destekçiler
   monthly_supporter_since_date_html: |
     %{date} tarihinden beri <a href="%{url}">Aylık Destekçi</a>
   months: Aylar
   more: Daha Fazla
+  #Button to show more observations
+  more__context_observations_caps: DAHA ÇOK
+  #Button to show more places
+  more__context_places: Daha çok
+  #Button to show more text
+  more__context_text: Daha çok
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: DAHA ÇOK
+  more_caps: DAHA ÇOK
   more_about_sharing: Paylaşım Hakkında Fazla Bilgi
   more_fields: Daha Çok Alan
   more_filters: Daha Fazla Filtre
@@ -3092,6 +3152,7 @@ tr:
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
   optional: isteğe bağlı
+  options: Seçenekler
   or: ya da
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3668,6 +3729,7 @@ tr:
   places_warning_the_future: |
     Ne olursa olsun, iNat'in mevcut büyüme hızı göz önüne alındığında, gelecekte insanların konum ekleyebileceği koşulları kısıtlamamız gerekecek.
   plants: bitkiler
+  play_first_sound: İlk Sesi Çal
   please_add_a_citation_for_this_change: Lütfen bu değişiklik için bir alıntı ekle.
   please_allow_a_few_weeks_for_external_sites: Lütfen harici sitelerin bu gözlemden değişiklikleri eşitlemesi için birkaç hafta bekle #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Lütfen ebeveynlerinden izin iste
@@ -3782,6 +3844,14 @@ tr:
   proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş sınıflar
   protozoans: tek hücreliler
   provider_authorizations: Sağlayıcı Yetkileri
+  provider_without_email_error_apple: |
+    Apple, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen Apple üzerinden oturum açmak yerine bu sitede bir hesap oluşturun.
+  provider_without_email_error_flickr: |
+    Flickr, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen Flickr üzerinden oturum açmak yerine bu sitede bir hesap oluşturun.
+  provider_without_email_error_generic: |
+    Bu hizmet, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen üçüncü taraflar aracılığı ile oturum açmak yerine bu sitede bir hesap oluşturun.
+  provider_without_email_error_google_oauth2: |
+    Google, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen Google üzerinden oturum açmak yerine bu sitede bir hesap oluşturun.
   public_domain: Genel Kullanıma Açık
   publish: Yayınla
   purple: mor
@@ -4042,6 +4112,10 @@ tr:
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri nitelik değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Tekrar Gönder ve Oturumu Kapat
+  resend_confirmation_email: Doğrulama e-postasını tekrar gönder
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Sıfırla
   reset_filters_short: Sıfırla
@@ -4158,11 +4232,12 @@ tr:
   select: Seç
   select_all: Tümünü Seç
   select_at_least_one: En Az Birini Seç
-  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Hiçbirini Seçme
   select_observations_to_edit: Gözlemleri Düzenlemek için Seç...
   select_one_of_friends_albums: '%{friend} Kullanıcısının Albümlerinden Birini Seç'
   select_one_of_your_albums: Albümlerinden Birini Seç
+  select_one_or_more_photos: 'Bir veya Daha Fazla Fotoğraf Seç'
   select_options: Seçenekler
   select_photos_from_your_photo_stream: |
     Harici fotoğraf paylaşım sitelerinden %{site_name} gözlemlerine dönüştürmek için fotoğraflar seç. Bir fotoğrafın meta verilerinden tarih, saat ve konumu dolduracağız ve etiketlerden tür adlarını bulmaya çalışacağız.
@@ -4171,6 +4246,10 @@ tr:
   selected_taxon: Seçilmiş Sınıf
   select_this_taxon: Bu Sınıfı Seç
   send: gönder
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Gönder ve Çıkış Yap
+  send_confirmation_email: Doğrulama e-postası gönder
   send_me_reset_password_instructions: Şifre sıfırlama yönergesini gönder
   sending: Gönderiliyor...
   #Label for messages you've sent
@@ -4180,6 +4259,7 @@ tr:
   set_license: Lisans ayarla
   settings: Ayarlar
   share: Paylaş
+  share_caps: PAYLAŞ
   share_colon: "Paylaş:"
   short_code_for_this_place: Bu konum için kısa kod, ör. Birleşik Devletler için ABD
   short_or_abbreviated_title_for_display: Sınırlı alanlarda görüntülenmek üzere kısa ya da kısaltılmış başlık. En çok 10 karakter.
@@ -4224,6 +4304,8 @@ tr:
   #Journal post formatting option
   simple: Basit
   single_observation: Tek gözlem
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}'in %{year} Yılı Değerlendirmesi"
   sizes: Boyutlar
   skip_to_next_page: "Sonraki sayfaya atla"
   small: küçük
@@ -4398,7 +4480,8 @@ tr:
   stop_trusting_this_person_with_your_private_coordinates: Bu kişiye gizli koordinatlarınız ile güvenmeyi bırakın
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: MAĞAZA
+  store: Mağaza
+  store_caps: MAĞAZA
   studies_that_used_inaturalist_data_in_year: iNaturalist Verisini %{year} Yılı içinde Kullanan Çalışmalar
   stuff_just_added: "Yeni eklediğiniz öğeler..."
   subject_resolved_noun_html: "%{noun}, %{subject} tarafından çözüldü"
@@ -4981,6 +5064,7 @@ tr:
   upload_new_photo: Yeni fotoğraf yükle
   upload_photo: Fotoğraf Yükle
   upload_range: Yayılımı Yükle
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 'Yükleyen:'
   uploader:
     errors:
@@ -5009,6 +5093,7 @@ tr:
     Yer imi olarak <span class='ac-placeholder'>%{name}</span> kullanın
   use_this_form_to_create_a_new: |
     Bu formu, daha sonra işlenecek olan etkin sınıflara önerilen bir bölünmeyi, birleştirmeyi ya da yer değişimini tanımlayan yeni bir taslak sınıflandırmasal değişikliği oluşturmak için kullanın.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     URL'de cins ve türlerin belirli bir şekilde ayrılması gerekiyorsa bunu kullanın. Sınıf; bir tür ya da tür altı değilse, [GENUS] ve [SPECIES] arasındaki her şey sınıf adı ile değiştirilecektir, bu nedenle tedbirli kullanın.
   use_unique_file_names_for_separate_uploads: Ayrı yüklemeler için özgün dosya isimleri kullanın
@@ -5087,6 +5172,22 @@ tr:
   username_or_user_id: Kullanıcı Adı ya da Kimliği
   users: Kullanıcılar
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> kullanıcısının %{project_title} projesine katkıları
+  users_edit_resend_confirmation_prompt_html: |
+    Doğrulama e-postasını yeniden gönderdikten sonra oturumun kapatılacak ve e-postadaki bağlantıya tıklayana kadar hesabında oturum açamayacaksın, bu nedenle <strong>e-posta adresini doğru girdiğinden kesinlikle emin ol.</strong>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Çıkış yapmak üzeresiniz</h3>
+    <p>
+    Doğrulama e-postasını gönderdikten sonra oturumunuz kapatılacak ve
+    bağlantıya tıklayana kadar hesabınıza giriş yapamayacaksınız, bu yüzden <strong class="bg-warning">e-posta adresinizi doğru girdiğinizden kesinlikle emin olun.</strong>
+    </p>
+    <p>
+    Doğrulamayı göndereceğimiz e-posta adresi:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Tüm e-posta aboneliklerinden çıkış yaptıysanız...</h4>
+    <p>
+    Bizden gelen <em>tüm</em> e-posta aboneliklerini iptal ettiyseniz, size bir doğrulamam e-postası gönderemeyiz. Yeniden abone olmak için bizden gelen önceki bir e-postayı bulmanız, abonelikten çıkma bağlantısını tıklamanız ve e-posta almayı tekrar etkinleştirmeyi seçmeniz gerekir. Bunu yapamıyorsanız, size yardımcı olabilmemiz için lütfen buraya girdiğiniz e-posta adresini kullanarak<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> adresine e-posta gönderin.
+    </p>
   users_favorites: "%{user} kullanıcısının favorileri"
   users_highlights_and_stats_from_year_on_site: "%{user} kullanıcısının %{site}'teki %{year} yılına ait önemli anları ve istatistikleri"
   users_id: "%{user} Tanımlamaları"
@@ -5096,7 +5197,8 @@ tr:
   users_lists: "%{user} Kullanıcısının Listeleri"
   users_profile: "%{user} Kullanıcısının Profili"
   users_projects: "%{user} Kullanıcısının Projeleri"
-  users_year_on_site: "%{user} Kullanıcısının %{site}'teki Yılı %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user} kullanıcısının %{year} %{site} Değerlendirmesi"
   valid_options_are: Geçerli seçenekler şunlar
   value: Değer
   values: Değerler
@@ -5104,6 +5206,7 @@ tr:
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
   view: Görüntüle
   view_all: Tümünü Görüntüle
+  view_all_caps: HEPSİNİ GÖSTER
   view_all_fields: Tüm Alanları Göster
   view_all_flags: Tüm İşaretleri Görüntüle
   view_all_members: Tüm Üyeleri Görüntüle
@@ -5124,6 +5227,12 @@ tr:
   view_flags_for_x_html: "%{x} için İşaretleri Görüntüle"
   view_full_observation: Tam Gözlemi Görüntüle
   view_full_size_photo: Tam Boyutlu Fotoğrafları Görüntüle
+  view_inaturalist_global_year_in_review: iNaturalist'in Küresel %{year} Yılı Değerlendirmesini Görüntüle
+  view_inaturalist_global_year_in_review_caps: INATURALIST'İN KÜRESEL %{year} YILI DEĞERLENDİRMESİNİ GÖRÜNTÜLE
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} %{year} Yılı Değerlendirmesini Görüntüle'
+  view_site_year_in_review_caps: '%{site} %{year} YILI DEĞERLENDİRMESİNİ GÖRÜNTÜLE'
   view_journal: Yayını Görüntüle
   view_leaderboard_from_last_month: Geçen ayın lider tablosunu görüntüle
   view_leaderboard_from_last_year: Geçen yılın lider tablosunu görüntüle
@@ -5164,12 +5273,12 @@ tr:
   view_taxononomy_details_for_taxon: "%{taxon} için sınıflandırma detaylarını görüntüle"
   view_user_observations: "%{user}'ın gözlemlerini görüntüle"
   view_x: "Görüntüle: %{x}"
-  view_year_stats_for_site: "%{site} İçin %{year} İstatistiklerini Görüntüle"
   view_your_dashboard: Kontrol panelini görüntüle
   view_your_dashboard_for_more_updates_html: "Daha çok güncelleme için <a href='%{url}'>kontrol panelini görüntüle</a>"
   view_your_inbox: Gelen kutunuzu görüntüleyin
   view_your_observations: Gözlemlerini görüntüle
-  view_your_year_stats: "%{year} İstatistiklerinizi Görüntüleyin"
+  view_your_personal_year_in_review: "Kişisel %{year} Yılı Değerlendirmeni Görüntüle"
+  view_your_personal_year_in_review_caps: "KİŞİSEL %{year} YILI DEĞERLENDİRMENİ GÖRÜNTÜLE"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
   video_tutorials: Öğretici Videolar
@@ -5258,7 +5367,10 @@ tr:
   wikipedia_attribution_cc_by_sa_3_html: |
     Burada, <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Atıf-Aynı Lisansla Paylaş Lisansı 3.0</a> kullanılarak yayınlanan <a href="%{url}">%{title}</a> Vikipedi makalesinde kullanılan öğeler kullanılmıştır.
   with: ile
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Geri Al
+  #Loading status while an identification is being withdrawn
   withdrawing: Geri alınıyor...
   with_errors: Hatalar ile
   worldwide: Dünya çapında
@@ -5298,6 +5410,7 @@ tr:
   x_wrote_y_new_posts_html: "%{x}, %{y} tane yeni gönderi yazdı"
   year: Yıl
   year_in_review: "%{year} Yılı Değerlendirmesi"
+  year_in_review2: "%{year} Yılı Değerlendirmesi"
   year_month: yıl/ay
   year_on_site: "%{site}'te %{year} Yıl"
   yellow: sarı
@@ -5404,6 +5517,7 @@ tr:
   you_dont_have_permission_to_edit_those_photos: Bu fotoğrafları düzenleme iznine sahip değilsiniz.
   you_faved_this: Bunu favoriye ekledin!
   you_have_left_x_project: "%{project}'den ayrıldınız"
+  you_have_not_confirmed_your_email_address: E-posta adresini doğrulamadın!
   you_havent_linked_your_inaturalist_google_account: "%{site_name} hesabını ve Google hesabını henüz bağlamadın"
   you_joined_this_project: Bu projeye katıldınız!
   you_must_be_a_member_of_this_project_to_do_that: Bunu yapmak için bu projenin bir üyesi olmalısınız
@@ -5517,6 +5631,7 @@ tr:
       post_donate_social_media_text: iNaturalist'i destekliyorum çünkü...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: iNaturalist'in Aylık Destekçisi Olun
+        become_a_monthly_supporter_of_inaturalist_caps: INATURALIST'İN AYLIK DESTEKÇİSİ OL
         desc_html: |
           <p class="lead">
           <strong>iNaturalist, biyoçeşitliliği keşfetmeye adanmış dünyanın en büyük topluluklarından biridir. Bir parçası olduğun için teşekkür ederiz!</strong>
@@ -5530,6 +5645,8 @@ tr:
           <p class="text-muted">
           iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun ortak bir girişimidir. Tüm bağışlar, Amerika Birleşik Devletleri merkezli 501(c)(3) vergiden muaf kâr amacı gütmeyen bir kuruluş olan Kaliforniya Bilimler Akademisi tarafından alınacaktır.
           </p>
+        thank_you_for_being_a_monthly_supporter: Aylık Destekçi olduğun için teşekkür ederiz!
+        thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
     flags:
       show:
         flaggable_content_desc: |
@@ -5968,7 +6085,8 @@ tr:
       show:
         allow_curator_coordinate_access_desc_html: |
           Proje sorumlularının bu gözlem için gizli koordinatları görüntülemesine izin verin.
-        ancestor_disagreements_desc: "sınıfın ataları arasında olan ancak sınıfa uymayan tanımlı sınıfların # (örn \"Sanırım cinsin içerisinde ama türüne katılmıyorum\")"
+        ancestor_disagreements_desc2: |
+          Bir sınıfın üst soyu arasında yer alan ancak sınıf ile aynı fikirde olmayan tanımlanmış sınıf sayısı (ör. "Bence bu cinsin içinde ama şu tür olduğuna katılmıyorum")
         community_taxon_desc_html: |
           <p class="ui">
           Topluluk sınıfı (ya da topluluk tanımlaması), %{site_name} topluluğunun bir gözlemde hangi sınıfın gösterildiğini temsil eder. Topluluk sınıfını nasıl seçtiğimizle ilgileniyorsan, aşağıdaki algoritma notlarına bak ancak genel olarak, <strong>tanımlayıcıların 2/3'ünden çoğunun aynı fikirde olduğu bir sınıf seçmeye</strong> çalışıyoruz. Bazen bu, aynı fikirde olmayan birkaç sınıf içeren daha yüksek seviyeli bir sınıf seçmek anlamına gelir (ör. sen bunun bir kral yılanı olduğunu düşünüyorsun ve ben bunun çıngıraklı yılan olduğunu düşünüyorum, bu yüzden iNat tüm yılanları içeren Serpentes alt takımını seçiyor). Algoritma ayrıca farklı fikirleri biraz destekliyor çünkü bunların genellikle doğru olduğunu gördük.
@@ -6728,14 +6846,6 @@ tr:
         one_time: Tek sefer
         percent_growth_in_year: "%{year} içindeki büyüme %'si"
         percent_of_total_growth: "Toplam Büyüme %'si"
-        publications_desc_html: |
-          Sayıların ve renklerin ne anlama geldiği hakkında daha fazla bilgi 
-          için çiçek çizelgelerine tıklayın. <a href="https://www.altmetric.com">Altmetric</a>'in 
-          izniyle etki verileri ve çizelgeler. 
-          <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki 
-          arkadaşlarımızın veri kullanımı nezaket bilgileri.
-          <br/>
-          <a href="%{url}">%{numStudies} çalışmanın tamamını görüntüleyin</a>
         publications_desc_short_html: |
           Sayıların ve renklerin ne anlama geldiği hakkında daha çok bilgi için çiçek grafiklerine tıkla. Etki verileri ve grafikler <a href="https://www.altmetric.com">Altmetric</a>'in izniyledir. Veri kullanımına ilişkin bilgiler <a href="https://www.gbif.org/">Küresel Biyoçeşitlilik Danışma Tesisi</a>'ndeki dostlarımızın izniyledir.
         observations_per_year: Gözlemler / Yıl
@@ -6753,6 +6863,7 @@ tr:
         species_per_year_by_date_added: Ekleme tarihine göre
         species_per_year_by_date_observed: Gözlem tarihine göre
         stats_generated_datetime: İstatistikler %{datetime} tarihinde oluşturuldu
+        stats_generation_schedule: İstatistikler, aralık ayında her pazar ve 1 Ocak'ta oluşturulacaktır
         store_prompt: |
           iNat'ten duyduğun gururu gittiğin her yerde göstermek ister misin? iNat Mağazası'na göz at!
         sunburst_desc_html: |
@@ -7510,6 +7621,9 @@ tr:
           other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Duyuru
       AssessmentSection: Değerlendirme Bölümü
       Atlas: Atlas
       BlockedUser: Engellenmiş Kullanıcı
@@ -7529,6 +7643,12 @@ tr:
       OauthApplication: Uygulama
       TaxonLink: Sınıf Bağlantısı
     attributes:
+      announcement:
+        created_at: 'Oluşturuldu:'
+        updated_at: 'Güncellendi:'
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Site ID'leri
       assessment:
         description: Açıklama
       assessment_section:
@@ -7546,7 +7666,11 @@ tr:
         geoprivacy: Coğrafi Gizlilik
         iucn: IUCN Eşdeğeri
       flag:
+        #The reason the item was flagged
         reason: Sebep
+        #The person who resolved the flag
+        resolver_id: Çözen
+        #The kind of flag that was made
         flag: İşaret
       guide:
         source_url: Kaynak URL
@@ -7679,6 +7803,21 @@ tr:
         position: Konum
         source_url: Kaynak URL
         source_identifier: Kaynak tanımlayıcısı
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Site başlığı
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Kısa başlık
+        #Taxon this link is associated with
+        taxon: Sınıf
+        #Place this link is associated with
+        place: Konum
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Alt soy sınıflar için göster
       user:
         email: E-Posta
         login: Kullanıcı Adı
@@ -7735,6 +7874,13 @@ tr:
               has_query_parameter: "bir sorgu parametresi içeremez."
               invalid_uri: "geçerli bir URI olmalı."
               relative_uri: "eksiksiz bir URI olmalıdır."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: yorumları devre dışı bıraktı
         flag:
           attributes:
             flag:

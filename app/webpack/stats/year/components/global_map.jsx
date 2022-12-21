@@ -6,7 +6,6 @@ import inaturalistjs from "inaturalistjs";
 /* global DEFAULT_SITE_ID */
 
 class GlobalMap extends React.Component {
-
   componentDidMount( ) {
     const map = this.setupMap( );
     this.centerMapOnResultBounds( map );
@@ -22,7 +21,8 @@ class GlobalMap extends React.Component {
       ],
       zoom: 2,
       keyboard: false,
-      scrollWheelZoom: false
+      scrollWheelZoom: false,
+      gestureHandling: true
     } );
     const apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
     L.tileLayer( "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png", {

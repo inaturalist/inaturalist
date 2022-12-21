@@ -276,12 +276,14 @@ id:
   add_observations: Tambahkan Pengamatan
   add_observations_by_checking_off: Tambahkan pengamatan dengan memeriksa spesies dari daftar.
   add_observations_project: Tambahkan Pengamatan Untuk Proyek Ini
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Tambahkan</span> <span>Pengamatan</span>"
   #Prompt to add a new journal post
   add_one: Buat Satu!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Tambah Satu Sekarang
-  add_photos: Tambahkan Foto
   add_place: Tambahkan Tempat
   add_alive_or_dead_alive_annotation: 'Tambahkan catatan "Hidup atau Mati: Hidup"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Tambahkan catatan "Hidup atau Mati: Tidak Dapat Ditentukan"'
@@ -638,6 +640,10 @@ id:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
   attribution: Atribusi
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, diunggah oleh %{user}"
   authority_list:
     iucn_red_list: Daftar Merah IUCN
     natureserve: NatureServe
@@ -794,6 +800,8 @@ id:
   change_group: Kelompok perubahan
   change_icon: Ubah ikon
   change_password: Ubah Kata Sandi
+  #Message shown after you change your email address
+  change_to_email_requested_html: Ubah menjadi <strong>%{email}</strong> yang dimohon. Cek email Anda sesuai alamat yang tertera untuk mengonfirmasi perubahan Anda.
   change_types:
     activated_soon: diaktifkan segera
     change_types: Ubah jenis
@@ -964,14 +972,16 @@ id:
   confirm_new_password: Konfirmasi Kata Sandi Baru
   confirm_now: Konfirmasi sekarang
   confirm_your_info: Konfirmasi info Anda
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Email konfirmasi telah dikirimkan pada %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Dikonfirmasi pada %{date}
   confirming_ids: ID Konfirmasi
   confirming_ids_description: Jika Anda mematikan fungsi ini, Anda tidak akan lagi mendapatkan notifikasi mengenai ID yang setuju dengan Anda.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hubungkan
   connect_to_provider: "Hubungkan ke %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Akun yang terhubung
   connected_accounts_description: Akun yang terhubung adalah akun Anda dari aplikasi atau situs web lainnya yang telah Anda izinkan untuk mengakses iNaturalist atas nama Anda untuk mendukung proses masuk, mengimpor foto, atau fungsi-fungsi lainnya.
   connected_accounts_titlecase: Akun Yang Terhubung
   connecting_flickr: "Menghubungkan ke Flickr... "
@@ -1146,7 +1156,6 @@ id:
   created_by: Dibuat oleh
   created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
-  creating_your_account: "sedang membuat akun anda..."
   creative_commons_flickr_tagged: Foto Flickr Creative Commons Yang Diberi Tag
   creative_commons_unless_otherwise_noted: "Creative Commons kecuali dinyatakan lain."
   critically_endangered: Terancam punah
@@ -1414,6 +1423,9 @@ id:
   deviation: Deviasi
   devise:
     confirmations:
+      confirmed: |
+        Email Anda berhasil dikonfirmasi.
+      send_instructions: "Anda akan menerima sebuah email dengan instruksi tentang cara mengonfirmasi email Anda."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1423,31 +1435,54 @@ id:
       unauthenticated: 'Anda harus masuk atau daftar untuk melanjutkan.'
       invalid: 'Email atau kata sandi tidak valid.'
       invalid_token: 'Token otentikasi salah.'
+      unconfirmed: |
+        Silakan cek email Anda dan klik tautan pada email yang Anda terima untuk mengonfirmasi akun Anda.
       user:
         suspended: Akun Anda telah ditangguhkan
     sessions:
       signed_in: 'Berhasil masuk.'
       signed_out: 'Berhasil keluar.'
     passwords:
-      send_instructions: 'Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.'
+      send_instructions: |
+        Anda akan menerima email dengan petunjuk tentang cara untuk mengatur ulang kata sandi Anda dalam beberapa menit.
       updated: 'Kata sandi Anda berhasil diganti. Anda sudah masuk sekarang.'
       updated_not_active: 'Kata sandi Anda sudah berhasil diganti.'
-      send_paranoid_instructions: "Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit."
-      no_token: "Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap."
+      send_paranoid_instructions: |
+        Jika alamat email Anda sudah terdaftar di database kami, Anda akan menerima tautan pemulihan kata sandi ke email Anda dalam beberapa menit.
+      no_token: |
+        Anda tidak dapat mengakses halaman ini tanpa datang dari email pengaturan ulang kata sandi. Jika Anda memang datang dari email pengaturan ulang kata sandi, sila pastikan anda menggunakan URL yang tersedia dengan lengkap.
     registrations:
-      signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
-      updated: 'Anda berhasil memperbarui akun Anda.'
       destroyed: 'Sampai nanti! Akun Anda berhasil dibatalkan. Semoga kita dapat segera berjumpa lagi.'
+      signed_up: 'Selamat datang! Anda telah berhasil mendaftarkan diri.'
+      signed_up_but_inactive: "Anda berhasil terdaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda belum diaktifkan."
+      signed_up_but_locked: "Anda berhasil mendaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda terkunci."
+      signed_up_but_unconfirmed: "Sebuah pesan dengan tautan untuk konfirmasi telah dikirimkan ke alamat email Anda. Harap ikuti tautan yang ada untuk mengaktifkan akun Anda."
+      updated: 'Anda berhasil memperbarui akun Anda.'
     mailer:
       confirmation_instructions:
-        subject: 'Petunjuk konfirmasi'
+        #Subject of an email sent to confirm your account
+        subject: Petunjuk konfirmasi
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Perubahan email telah diminta
       reset_password_instructions:
         subject: 'Petunjuk pengaturan ulang kata sandi'
+  devise_confirmation_instructions_if_you_did_not: |
+    Jika Anda tidak mendaftar untuk akun @vow_or_con{vow:an|a} %{site_name}, harap mengabaikan email ini.
+  devise_confirmation_instructions_please_click: |
+    Silahkan klik tautan di bawah ini untuk mengonfirmasi alamat email Anda:
+  devise_confirmation_instructions_resend_instructions: |
+    Anda harus memiliki alamat email yang bekerja untuk menggunakan iNaturalist. Saat Anda membuat sebuah akun, Anda seharusnya sudah menerima email konfirmasi dengan sebuah tautan untuk diklik untuk mengonfirmasi bahwa alamat email Anda bekerja, tetapi jika tidak, Anda bisa mengirimkan email konfirmasi lain kepada diri Anda di sini.
+  devise_confirmation_instructions_send_confirmation_email: Kirim email konfirmasi
+  devise_email_changed_you_requested: Anda meminta perubahan dari %{old_email} ke %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Anda akan menerima email di alamat baru untuk mengonfirmasi perubahannya, tetapi kami ingin memberitahu Anda di alamat email Anda sebelumnya kalau-kalau ada orang lain yang memiliki akses ke akun Anda dan sedang mencoba untuk mengubahnya tanpa sepengetahuan Anda. Jika Anda tidak ingin mengubah alamat email Anda, harap langsung meneruskan email ini ke help@inaturalist.org supaya kami bisa menyelidikinya.
   devise_reset_password_instructions_hello_email: Halo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Seseorang telah meminta tautan untuk mengubah kata sandi Anda. Anda dapat melakukannya melalui tautan di bawah ini.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jika Anda tidak meminta pengaturan ulang ini, harap abaikan pesan ini.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Seseorang telah meminta tautan untuk mengubah kata sandi Anda. Anda dapat melakukannya melalui tautan di bawah ini.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Kata sandi Anda tidak akan terganti sampai Anda mengakses tautan di atas dan membuat kata sandi baru.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1495,6 +1530,7 @@ id:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Jatuhkan
   download: Unduh
+  download_caps: UNDUH
   download_bulk_import_template_html: |
     <a href="%{url}">Unduh template</a> untuk digunakan di <a href="/observations/import?project_id=%{project_id}#csv_import">pengunggahan sekaligus</a>
   download_csv: Unduh CSV
@@ -1587,6 +1623,23 @@ id:
   email: Email
   email_description: Email Anda tidak dibagikan kepada pengguna di iNaturalist
   email_address_for_comments_and_other_feedback: Alamat email untuk komentar dan umpan balik lainnya
+  email_conf_banner_email_delivered_click_link: |
+    Email konfirmasi sudah dikirim. Klik tautan pada email-nya.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Tambahkan <code>%{email}</code> ke daftar kontak Anda dan
+    <a href="%{url}">minta email konfirmasi lagi</a>.</strong> Jika penyedia email 
+    Anda memblokir email konfirmasi, hal ini mungkin akan meyakinkan mereka 
+    bahwa Anda ingin sebuah email dari kami.
+  email_conf_banner_check_your_spam_folder_html: <strong>Cek folder spam Anda</strong>
+  email_conf_banner_contact_us_html: Masih belum berhasil? Kirim email ke kami di %{email} supaya kami bisa menolong Anda.
+  email_conf_banner_search_for_emails_html: <strong>Cari email dari <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Kami sudah mengirimkan email konfirmasi pada tanggal %{date}. Jika Anda belum menerimanya, di sini ada beberapa hal yang bisa Anda lakukan:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Hatap mengonfirmasi alamat email Anda%{link_end_tag}</strong>.
+    Semua pengguna harus mengonfirmasi email mereka sebelum %{date}. Setelah tanggal tersebut, semua orang yang belum mengonfirmasi alamat email mereka tidak akan bisa masuk kecuali mereka mengatur ulang kata sandi mereka. Untuk mengonfirmasi alamat email Anda,
+    pergi ke %{link_start_tag}pengaturan akun%{link_end_tag}.
   email_copyright: "Hak Cipta &copy; %{x}, semua hak cipta dilindungi undang-undang"
   email_notifications: Notifikasi Email
   embed: 'Tanamkan'
@@ -1621,8 +1674,9 @@ id:
     native: berevolusi di area ini atau tiba melalui cara non-antropogenik
     endemic: asli dan tidak ada di tempat lain
     introduced: tiba di area ini melalui sarana antropogenik
-  estimate_which_input: |
-    Memperkirakan id takson input mana diganti dengan taksa output mana dan yang mana yang akan diperkasar menjadi induk yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan dipotong menjadi subset berisi 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Memperkirakan identifikasi takson input mana yang akan diganti dengan identifikasi taksa output dan identifikasi yang mana yang akan diperkasar menjadi nenek moyang yang lebih umum ketika pemisahan diterapkan. Hal ini dapat memerlukan beberapa waktu untuk dihitung. Tautan-tautan ke pengamatan-pengamatannya dipotong menjadi subset berisi 200.
   event_in_progress: Acara sedang berlangsung
   event_stats: Statistik Acara
   event_url: URL Acara
@@ -1685,6 +1739,8 @@ id:
   feedback: Umpan balik
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Umpan'
+  #Button to show fewer places
+  fewer__context_places: Lebih sedikit
   failed: Gagal
   field_note: |
     <strong>Catatan:</strong> Jika Anda ingin membuat bidang, periksalah dulu apakah ada
@@ -1710,8 +1766,10 @@ id:
   filters: Saringan
   find: Cari
   find_a_guide: Cari panduan
+  find_a_post: Temukan suatu post
   find_a_place: Cari Lokasi
   find_guides: Cari Panduan
+  find_posts_for: "Temukan Postingan untuk: %{journal_name}"
   find_new_place_to_explore: Cari lokasi baru untuk dijelajahi
   find_observations: Cari pengamatan
   find_photos: Cari foto
@@ -1986,6 +2044,7 @@ id:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikasi ditarik.
   identifications: Identifikasi
+  inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2036,6 +2095,8 @@ id:
   improving: Pengembang
   in_n: "di %{n}"
   in_place_x: di %{place}
+  #As in a reason to flag something
+  inappropriate: Tidak pantas
   inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
@@ -2238,29 +2299,31 @@ id:
     ojibwe: Ojibwe
     palauan: Palau
     pangasinan: Pangasinan
-    persian: Bahasa Persia
+    persian: Persia
     polish: Polandia
     portuguese: Portugis
     romanian: Romania
     russian: Rusia
     santali: Santali
-    serbian: Bahasa Serbia
+    serbian: Serbia
     setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
     spanish: Spanyol
-    swahili: Bahasa Swahili
+    swahili: Swahili
     swedish: Swedia
     tagalog: Tagalog
     tahitian: Tahiti
     thai: Thai
-    tokelauan: Tokelauan
+    tokelauan: Tokelau
     turkish: Turki
     ukrainian: Ukraina
     waray_waray: Waray-Waray
     visayan: Visaya
   less: Kurang
+  #Button show less text
+  less__context_text: Lebih Sedikit
   licensed_site_photos: "Foto %{site_name} berlisensi"
   license: Lisensi
   licensing: Lisensi
@@ -2331,8 +2394,9 @@ id:
     de: Jerman
     el: Yunani
     en: Inggris
+    en-GB: Inggris (UK)
     eo: Esperanto
-    es: Bahasa Spanyol
+    es: Spanyol
     es-AR: Spanyol (Argentina)
     es-CO: Spanyol (Kolombia)
     es-MX: Spanyol (Meksiko)
@@ -2343,6 +2407,7 @@ id:
     fr-CA: Prancis (Kanada)
     gl: Galisia
     he: Ibrani
+    hr: Bahasa Kroasia
     hu: Hungaria
     id: Indonesia
     it: Italia
@@ -2352,7 +2417,7 @@ id:
     lb: Luksemburg
     lt: Lituania
     lv: Latvia
-    mi: Bahasa Maori
+    mi: Maori
     mk: Makedonia
     mr: Marathi
     nb: Bokmål Norwegia
@@ -2366,7 +2431,7 @@ id:
     sk: Slovakia
     sl: Slovenia
     sq: Albania
-    sr: Bahasa Serbia
+    sr: Serbia
     sv: Swedia
     th: Thai
     tr: Turki
@@ -2395,7 +2460,6 @@ id:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Sedang masuk...
-  login_slash_username: Masuk / nama pengguna
   logo:
     logo: Logo
     white_bg_gif: BG GIF putih
@@ -2567,10 +2631,21 @@ id:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Bulan
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Pendukung Bulanan
   monthly_supporter_since_date_html: |
     <a href="%{url}">Pendukung Bulanan</a> sejak %{date}
   months: Bulan
   more: Lainnya
+  #Button to show more observations
+  more__context_observations_caps: LAINNYA
+  #Button to show more places
+  more__context_places: Lainnya
+  #Button to show more text
+  more__context_text: Lainnya
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: LAINNYA
+  more_caps: LAINNYA
   more_about_sharing: Lebih Lanjut Perihal Pembagian
   more_fields: Bidang Lainnya
   more_filters: Saringan Lainnya
@@ -3073,6 +3148,7 @@ id:
   open_description: "Semua orang dapat melihat koordinatnya kecuali takson yang terancam."
   open_street_map: OpenStreetMap
   optional: opsional
+  options: Pengaturan
   or: atau
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3670,6 +3746,7 @@ id:
   places_warning_the_future: |
     Setelah dipertimbangkan, kami harus membatasi kondisi di mana orang-orang dapat menambahkan tempat baru di masa yang akan datang dikarenakan tingkat pertumbuhan iNat saat ini.
   plants: tanaman
+  play_first_sound: Mainkan Suara Pertama
   please_add_a_citation_for_this_change: Harap tambahkan kutipan untuk perubahan ini.
   please_allow_a_few_weeks_for_external_sites: Harap menunggu beberapa minggu untuk situs eksternal menyinkronisasi perubahan dari pengamatan ini #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Harap meminta izin kepada orang tua Anda
@@ -3783,6 +3860,14 @@ id:
   proposed_taxa_that_support_the_community_id: Taksa yang diajukan yang mendukung ID Komunitas
   protozoans: protozoa
   provider_authorizations: Otoritas Penyedia
+  provider_without_email_error_apple: |
+    Apple tidak menyediakan alamat email untuk akun tersebut, tetapi kami memerlukannya. Harap membuat sebuah akun pada situs ini alih-alih masuk via Apple.
+  provider_without_email_error_flickr: |
+    Flickr tidak menyediakan alamat email untuk akun tersebut, tetapi kami memerlukannya. Harap membuat sebuah akun pada situs ini alih-alih masuk via Flickr.
+  provider_without_email_error_generic: |
+    Layanan tersebut tidak menyediakan alamat email untuk akun tersebut, tetapi kami memerlukannya. Harap membuat sebuah akun pada situs ini alih-alih masuk via pihak ketiga.
+  provider_without_email_error_google_oauth2: |
+    Google tidak menyediakan alamat email untuk akun tersebut, tetapi kami memerlukannya. Harap membuat sebuah akun pada situs ini alih-alih masuk via Google.
   public_domain: Domain Umum
   publish: Terbitkan
   purple: ungu
@@ -4035,6 +4120,10 @@ id:
   research_grade_tooltip_html: 'Pengamatan "Kelas Riset" memiliki media, lokasi, dan tanggal, dan konsensus komunitas pada sebuah identifikasi yang pasti (biasanya pada tingkat spesies). <a href="https://www.inaturalist.org/pages/help#quality">Pelajari tentang tingkat kualitas</a>'
   research_grade_observations_have: 'Pengamatan "Kelas Riset" memiliki tanggal, foto, koordinat dan ID dari komunitas. Klik untuk melihat penilaian kualitas data.'
   research_grade_qualification: Kualifikasi Kelas Riset
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Kirimkan Ulang dan Keluar
+  resend_confirmation_email: Kirim ulang email konfirmasi
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Atur Ulang
   reset_filters_short: Atur Ulang
@@ -4150,11 +4239,12 @@ id:
   select: Pilih
   select_all: Pilih Semua
   select_at_least_one: Pilih Minimal Satu
-  select_one_or_more_photos: 'Pilih Satu atau Lebih Foto'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Kosongkan Pilihan
   select_observations_to_edit: Pilih Pengamatan untuk Diubah...
   select_one_of_friends_albums: Pilih Salah Satu Album %{friend}
   select_one_of_your_albums: Pilih Salah Satu Album Anda
+  select_one_or_more_photos: 'Pilih Satu atau Lebih Foto'
   select_options: Opsi pilihan
   select_photos_from_your_photo_stream: |
     Pilih foto dari situs berbagi foto eksternal untuk dikonversi menjadi pengamatan %{site_name}. Kami akan mengisikan tanggal, waktu, dan lokasi dari metadata foto ini, dan mencoba untuk mencari nama spesies dari labelnya.
@@ -4163,6 +4253,10 @@ id:
   selected_taxon: Takson Yang Dipilih
   select_this_taxon: Pilih Takson Ini
   send: kirim
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Kirim dan Keluar
+  send_confirmation_email: Kirim email konfirmasi
   send_me_reset_password_instructions: Kirim saya petunjuk pengubahan kata sandi
   sending: Mengirim...
   #Label for messages you've sent
@@ -4172,6 +4266,7 @@ id:
   set_license: Atur lisensi
   settings: Pengaturan
   share: Bagikan
+  share_caps: BAGIKAN
   share_colon: "Bagikan:"
   short_code_for_this_place: Kode pendek untuk tempat ini, contohnya US untuk United States
   short_or_abbreviated_title_for_display: Judul pendek atau singkatan untuk ditampilkan di area yang memiliki ruang terbatas. Maks 10 karakter.
@@ -4216,6 +4311,8 @@ id:
   #Journal post formatting option
   simple: Sederhana
   single_observation: Pengamatan tunggal
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year}"
   sizes: Ukuran
   skip_to_next_page: "Lewati ke halaman selanjutnya"
   small: kecil
@@ -4391,7 +4488,8 @@ id:
   stop_trusting_this_person_with_your_private_coordinates: Berhenti memercayakan orang ini dengan koordinat tersembunyi milik Anda
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: TOKO
+  store: Toko
+  store_caps: TOKO
   studies_that_used_inaturalist_data_in_year: Penelitian Yang Menggunakan Data iNaturalist pada %{year}
   stuff_just_added: "Barang yang baru saja Anda tambahkan..."
   subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
@@ -4965,6 +5063,7 @@ id:
   upload_new_photo: Unggah foto baru
   upload_photo: Unggah Foto
   upload_range: Unggah Jangkauan
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Diunggah oleh
   uploader:
     errors:
@@ -4992,6 +5091,7 @@ id:
     Pakai <span class='ac-placeholder'>%{name}</span> sebagai penampung
   use_this_form_to_create_a_new: |
     Gunakan formulir ini untuk membuat draf baru perubahan taksonomi yang menggambarkan usulan pemisahan, penggabungan, atau penukaran pada taksa aktif untuk diterapkan nantinya.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Pakai ini jika nama genus dan spesies dalam URL perlu dipisahkan dengan cara tertentu. Jika taksonnya bukan berupa spesies atau infraspesies, semua di antara [GENUS] dan [SPECIES] akan diganti dengan nama taksonnya, jadi jangan gunakan banyak-banyak.
   use_unique_file_names_for_separate_uploads: Gunakan nama file yang unik untuk memisahkan unggahan
@@ -5069,6 +5169,42 @@ id:
   username_or_user_id: Nama Pengguna atau ID Pengguna
   users: Pengguna
   users_contributions_to_project_html: Kontribusi <a href="%{url}">%{login}</a> untuk %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Setelah Anda mengirim ulang email konfirmasinya, Anda akan dikeluarkan dan Anda
+    tidak akan bisa masuk ke akun Anda sampai Anda mengeklik tautan di
+    emailnya, jadi <strong>pastikan bahwa Anda yakin Anda telah memasukkan alamat email 
+    yang benar</strong>.
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Pastikan alamat email Anda sudah benar. Ini adalah alamat email yang akan dikirimkan konfirmasinya:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Jika Anda tidak mendapatkan email-nya, ada beberapa tip:
+    </p>
+    <ul>
+    <li><p>Cek folder spam</p></li>
+    <li><p>Cek filter yang Anda buat yang mungkin menghapus email kami dari kotak masuk Anda</p></li>
+    </ul>
+    <p>
+    Jika Anda masih belum menerima email konfirmasinya, harap menghubungi kami di
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    supaya kami bisa membantu Anda.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Anda akan keluar</h3>
+    <p>
+    Setelah Anda mengirim email konfirmasi, Anda akan keluar dan Anda tidak akan bisa masuk lagi ke akun Anda sampai Anda mengeklik tautan pada email-nya, jadi <strong class="bg-warning">pastikan dengan benar bahwa Anda sudah memasukkan alamat email Anda dengan benar.</strong>
+    </p>
+    <p>
+    Ini adalah alamat email yang akan kami kirimkan konfirmasinya:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Jika Anda tidak berlangganan lagi untuk semua email...</h4>
+    <p>
+    Jika Anda sudah tidak berlangganan lagi untuk <em>semua</em> email dari kami, kami tidak bisa mengirimkan email konfirmasi kepada Anda. Untuk berlangganan kembali, Anda perlu mencari email kami yang sebelumnya, klik tautan berhenti berlangganan, dan pilih untuk kembali berlangganan untuk menerima email ini. Jika Anda tidak bisa melakukan hal ini, harap kirimkan email ke
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> menggunakan alamat email yang sudah Anda masukkan di sini supaya kita bisa membantu Anda.
+    </p>
   users_favorites: "Favorit %{user}"
   users_highlights_and_stats_from_year_on_site: "Sorotan dan statistik %{user} pada %{year} di %{site}"
   users_id: "ID %{user}"
@@ -5078,7 +5214,8 @@ id:
   users_lists: "Daftar %{user}"
   users_profile: "Profil %{user}"
   users_projects: "Proyek %{user}"
-  users_year_on_site: "Tahun %{user} Di %{site} %{year}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Kilas Balik Satu Tahun %{site} %{year} %{user}"
   valid_options_are: Opsi yang valid adalah
   value: Nilai
   values: Nilai
@@ -5086,6 +5223,7 @@ id:
   verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
   view: Lihat
   view_all: Lihat Semua
+  view_all_caps: LIHAT SEMUA
   view_all_fields: Lihat Semua Bidang
   view_all_flags: Lihat Semua Tanda
   view_all_members: Lihat Semua Anggota
@@ -5105,6 +5243,12 @@ id:
   view_flags_for_x_html: "Lihat Tanda untuk %{x}"
   view_full_observation: Lihat Pengamatan Sepenuhnya
   view_full_size_photo: Lihat foto berukuran penuh
+  view_inaturalist_global_year_in_review: Lihat Kilas Balik Satu Tahun %{year} iNaturalist Global
+  view_inaturalist_global_year_in_review_caps: LIHAT KILAS BALIK SATU TAHUN INATURALIST %{year} GLOBAL
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Lihat Kilas Balik Satu Tahun %{site} %{year}
+  view_site_year_in_review_caps: LIHAT KILAS BALIK SATU TAHUN %{site} %{year}
   view_journal: Lihat Jurnal
   view_leaderboard_from_last_month: Lihat papan peringkat dari bulan kemarin
   view_leaderboard_from_last_year: Lihat papan peringkat dari tahun lalu
@@ -5145,12 +5289,12 @@ id:
   view_taxononomy_details_for_taxon: "Lihat detail taksonomi untuk %{taxon}"
   view_user_observations: "Lihat pengamatan %{user}"
   view_x: "Lihat %{x}"
-  view_year_stats_for_site: "Lihat Statistik %{year} Untuk %{site}"
   view_your_dashboard: Lihat dasbor anda
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Lihat dasbor Anda</a> untuk kabar terbaru"
   view_your_inbox: Lihat kotak masuk Anda
   view_your_observations: Lihat pengamatan Anda
-  view_your_year_stats: "Lihat Statistik %{year} Anda"
+  view_your_personal_year_in_review: "Lihat Kilas Balik Satu Tahun %{year} iNaturalist Global Milik Anda"
+  view_your_personal_year_in_review_caps: "LIHAT KILAS BALIK SATU TAHUN %{year} MILIK ANDA"
   view_yours: Lihat Kepunyaanmu
   view_all_of_your_observations_from_x: "Lihat semua pengamatan Anda dari %{x}"
   video_tutorials: Video Tutorial
@@ -5237,7 +5381,10 @@ id:
     Artikel ini menggunakan materi dari artikel Wikipedia <a href="%{url}">"%{title}"</a>, yang diluncurkan di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
   with: dengan
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Mundur
+  #Loading status while an identification is being withdrawn
   withdrawing: Mengundur...
   with_errors: Dengan kesalahan
   worldwide: Seluruh Dunia
@@ -5274,6 +5421,7 @@ id:
   x_wrote_y_new_posts_html: "%{x} menulis kepada %{y} postingan baru"
   year: Tahun
   year_in_review: "Melihat Kembali Tahun %{year}"
+  year_in_review2: "Kilas Balik Satu Tahun %{year}"
   year_month: tahun/bulan
   year_on_site: "Tahun Di %{site} %{year}"
   yellow: kuning
@@ -5374,6 +5522,7 @@ id:
   you_dont_have_permission_to_edit_those_photos: Anda tidak memiliki izin untuk mengubah foto tersebut.
   you_faved_this: Anda memfavoritkan ini!
   you_have_left_x_project: "Anda telah meninggalkan %{project}"
+  you_have_not_confirmed_your_email_address: Anda belum mengonfirmasi email Anda!
   you_havent_linked_your_inaturalist_google_account: "Anda belum menghubungkan akun %{site_name} Anda dan akun Google Anda"
   you_joined_this_project: Anda telah bergabung pada proyek ini!
   you_must_be_a_member_of_this_project_to_do_that: Anda harus menjadi anggota pada proyek ini untuk melakukan hal itu
@@ -5483,6 +5632,7 @@ id:
       post_donate_social_media_text: Saya mendukung iNaturalist karena...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Jadi Pendukung Bulanan iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: MENJADI PENDUKUNG BULANAN INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist merupakan salah satu komunitas terbesar di dunia yang didekasikan untuk menjelajah keanekaragaman hayati. Terima kasih telah menjadi bagian dari kami!</strong>
@@ -5496,6 +5646,8 @@ id:
           <p class="text-muted">
           iNaturalist adalah inisiatif gabungan dari California Academy of Sciences dan National Geographic Society. Semua donasi akan diterima oleh California Academy of Sciences, sebuah organisasi 501(c)(3) nirlaba yang tidak dipajaki yang berbasis di Amerika Serikat.
           </p>
+        thank_you_for_being_a_monthly_supporter: Terima kasih sudah menjadi Pendukung Bulanan!
+        thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
     flags:
       show:
         flaggable_content_desc: |
@@ -5892,7 +6044,8 @@ id:
       show:
         allow_curator_coordinate_access_desc_html: |
           Memungkinkan kurator proyek untuk melihat koordinat pribadi untuk pengamatan ini.
-        ancestor_disagreements_desc: "# taksa yang diidentifikasi yang merupakan induk sebuah takson, tetapi bertentangan dengan taksonnya (contohnya \"Menurut saya, ini ada di genus itu, tetapi saya tidak setuju bahwa itu nama spesiesnya\")"
+        ancestor_disagreements_desc2: |
+          Jumlah takson yang teridentifikasi yang merupakan nenek moyang dari sebuah takson, tetapi bertentangan dengan taksonnya (contohnya "Menurut saya, ini ada di genus itu, tetapi saya tidak setuju bahwa itu nama spesiesnya")
         community_taxon_desc_html: |
           <p class="ui">
           Takson komunitas (atau identifikasi komunitas) mewakili takson yang komunitas %{site_name} pikirkan sesuai apa yang digambarkan pada pengamatan. Jika Anda tertarik tentang cara kami memilih takson komunitas, Anda bisa melihat catatan pada algoritma di bawah ini, tetapi secara umum, kami mencoba untuk <strong>memilih takson yang lebih dari 2/3 pengidentifikasinya setuju dengan itu</strong>. Kadang, hal ini berarti mengharuskan kami memilih tingkat takson yang lebih tinggi yang mengandung sejumlah taksa yang bertentangan (contohnya, jika Anda pikir ini adalah ular raja dan saya berpikir ini adalah ular derik, iNat akan memilih subordo Serpentes yang mengandung semua jenis ular). Algoritma ini agak mendukung ketidaksepakatan, sebab kami menemukan bahwa orang-orang yang tidak sepakat biasanya benar.
@@ -6511,10 +6664,6 @@ id:
         one_time: Satu kali
         percent_growth_in_year: "% Pertumbuhan pada %{year}"
         percent_of_total_growth: "% Total Pertumbuhan"
-        publications_desc_html: |
-          Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Lihat seluruh %{numStudies} penelitian</a>
         publications_desc_short_html: |
           Klik grafik bunga untuk mendapatkan lebih banyak informasi tentang apa arti dari angka-angka dan warna-warnanya. Data dampak dan grafik bekerja sama dengan <a href="https://www.altmetric.com">Altmetric</a>. Informasi tentang penggunaan data bekerja sama dengan rekan-rekan kami di <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Pengamatan / Tahun
@@ -6532,6 +6681,7 @@ id:
         species_per_year_by_date_added: Berdasarkan tanggal ditambahkan
         species_per_year_by_date_observed: Berdasarkan tanggal diamati
         stats_generated_datetime: Statistik yang dihasilkan pada %{datetime}
+        stats_generation_schedule: Statistik akan dihasilkan setiap hari Minggu pada bulan Desember dan pada 1 Januari
         store_prompt: |
           Mau memamerkan kebanggaanmu akan iNat ke mana pun kamu pergi? Cek Toko iNat sekarang!
         sunburst_desc_html: |
@@ -7147,6 +7297,9 @@ id:
           other: '%{count} eror melarang %{model} ini untuk disimpan'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Pengumuman
       AssessmentSection: Bagian Penilaian
       Atlas: Atlas
       BlockedUser: Pengguna Diblokir
@@ -7166,6 +7319,12 @@ id:
       OauthApplication: Aplikasi
       TaxonLink: Tautan Takson
     attributes:
+      announcement:
+        created_at: Dibuat pada
+        updated_at: Diperbarui pada
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID Situs
       assessment:
         description: Deskripsi
       assessment_section:
@@ -7183,7 +7342,11 @@ id:
         geoprivacy: Geoprivasi
         iucn: setara IUCN
       flag:
+        #The reason the item was flagged
         reason: Alasan
+        #The person who resolved the flag
+        resolver_id: Penyelesai
+        #The kind of flag that was made
         flag: Tanda
       guide:
         source_url: Sumber URL
@@ -7316,6 +7479,21 @@ id:
         position: Posisi
         source_url: URL Sumber
         source_identifier: Pengidentifikasi sumber
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Judul situs
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Judul pendek
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Tempat
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Tampilkan untuk takson turunan
       user:
         email: Email
         login: Nama pengguna
@@ -7368,6 +7546,13 @@ id:
               has_query_parameter: "tidak boleh mengandung parameter query/permintaan."
               invalid_uri: "harus berupa URI yang valid."
               relative_uri: "harus berupa URI yang absolut."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: telah menonaktifkan komentar
         flag:
           attributes:
             flag:

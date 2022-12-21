@@ -566,7 +566,7 @@ describe Observation do
     it "should set the URI" do
       o = Observation.make!
       o.reload
-      expect(o.uri).to eq(FakeView.observation_url(o))
+      expect(o.uri).to eq(UrlHelper.observation_url(o))
     end
 
     it "should not set the URI if already set" do

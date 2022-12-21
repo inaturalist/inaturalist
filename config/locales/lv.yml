@@ -360,7 +360,6 @@ lv:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pievienot tagad
-  add_photos: Pievienot foto
   add_place: Pievienot vietu
   add_alive_or_dead_alive_annotation: 'Pievienot piezīmi "Dzīvs vai miris: dzīvs"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Pievienot piezīmi "Dzīvs vai miris: nenoteicams"'
@@ -1084,8 +1083,6 @@ lv:
   #connecting to Flickr
   connect: Savienot
   connect_to_provider: "Savienoties ar %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Savienotie konti
   connected_accounts_description: Savienotie konti ir citu lietotņu un tīmekļa vietņu konti, kuriem esi devis iNaturalist piekļuvi, lai tavā vārdā pierakstītos, importētu fotogrāfijas u.t.m.l.
   connected_accounts_titlecase: Savienotie konti
   connecting_flickr: "Savienojas ar Flickr... "
@@ -1254,7 +1251,6 @@ lv:
   created_by: Izveidojis
   created_by_user_on_date: Izveidojis %{user} %{date}
   created_on: Izveidots
-  creating_your_account: "Izveido kontu..."
   creative_commons_flickr_tagged: Flickr fotogrāfijām ar Creative Commons licenci pievienots tags
   creative_commons_unless_otherwise_noted: "Tiek pielietota Creative Commons licence, ja vien nav norādīta cita."
   critically_endangered: Kritiski apdraudēts
@@ -1519,25 +1515,29 @@ lv:
       signed_in: 'Pierakstīšanās notika veiksmīgi.'
       signed_out: 'Izrakstīšanās notika veiksmīgi.'
     passwords:
-      send_instructions: 'Pēc dažām minūtēm saņemsi e-pasta ziņu ar norādījumiem paroles atjaunošanai.'
+      send_instructions: |
+        Pēc dažām minūtēm saņemsi e-pasta ziņu ar norādījumiem paroles atjaunošanai.
       updated: 'Parole ir veiksmīgi nomainīta. Tagad esi pierakstījies.'
       updated_not_active: 'Parole ir veiksmīgi nomainīta.'
-      send_paranoid_instructions: "Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai."
-      no_token: "Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs."
+      send_paranoid_instructions: |
+        Ja tava e-pasta adrese ir mūsu datubāzē, dažu minūšu laikā saņemsi e-pastu paroles atjaunošanai.
+      no_token: |
+        Šai lapai var piekļūt tikai no paroles atjaunošanas e-pasta ziņas. Ja pašreiz veic tieši šo darbību, lūdzu, pārliecinies, vai URL ir pilnīgs.
     registrations:
+      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
       signed_up: 'Laipni lūdzam! Esi veiksmīgi reģistrējies.'
       updated: 'Konts ir veiksmīgi atjaunots.'
-      destroyed: 'Tava konta reģistrācija tika atcelta. Ceram uz drīzu redzēšanos!'
     mailer:
       confirmation_instructions:
-        subject: 'Apstiprināšanas norādījumi'
+        #Subject of an email sent to confirm your account
+        subject: Apstiprināšanas norādījumi
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kāds mēģina iegūt saiti, lai nomainītu tavu paroli. To iespējams izdarīt, nospiežot un zemāk redzamās saites.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Tava parole netiks nomainīta kamēr nebūsi uzspiedis uz saites un izveidojis jaunu.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1707,8 +1707,6 @@ lv:
     native: Attīstījās šajā reģionā vai nonāca šeit dabiskā ceļā
     endemic: endēmisks un nav novērojams citviet
     introduced: nonāca reģionā cilvēku darbības rezultātā
-  estimate_which_input: |
-    Iecerētie ievades taksoni, kas tiks aizstāti ar izvades taksoniem. Kad taksonu sadalīšana būs pabeigta, jauni izveidotajiem taksoniem tiks pielīdzināts kopējs priekšteču taksons. Var paiet kāds brīdis līdz aprēķini būs pabeigti. Saites uz novērojumiem tiks saīsinātas uz 200 apakškopām.
   event_in_progress: Pasākums ir procesā
   event_stats: Informācija par pasākumu
   event_url: Pasākuma URL
@@ -2483,7 +2481,6 @@ lv:
   log_scale_label: Žurnāls
   #Status message shown while logging in
   logging_in: Pieslēdzas...
-  login_slash_username: Lietotājvārds
   logo:
     logo: Logo
     white_bg_gif: GIF ar baltu fonu
@@ -4194,11 +4191,12 @@ lv:
   select: Atlasīt
   select_all: Atlasīt visu
   select_at_least_one: Atlasīt vismaz vienu
-  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nodzēst lauciņus
   select_observations_to_edit: Atlasīt rediģēšanai paredzētos novērojumus
   select_one_of_friends_albums: Atlasīt lietotāja %{friend} albumu
   select_one_of_your_albums: Atlasīt kādu no saviem albumiem
+  select_one_or_more_photos: 'Atlasīt vienu vai vairākas fotogrāfijas'
   select_options: Atlasīt
   select_photos_from_your_photo_stream: |
     Atlasi fotogrāfijas fotogrāfiju koplietošanas vietnēs, lai tās pārveidotu par %{site_name} vietnē reģistrētiem novērojumiem. Datums, laiks un atrašanās vieta tiks automātiski aizpildīta, izmantojot fotogrāfiju metadatus. Centīsimies atrast sugu, vadoties pēc pievienotajiem tagiem.
@@ -4437,7 +4435,8 @@ lv:
   stop_trusting_this_person_with_your_private_coordinates: Atņemt lietotājam piekļuvi pie savām noslēptajām koordinātām
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: VEIKALS
+  store: Veikals
+  store_caps: VEIKALS
   studies_that_used_inaturalist_data_in_year: Pētījumi, kuros tika izmantoti iNaturalist dati %{year}. gadā
   stuff_just_added: "Tevis nesen pievienotais"
   subject_resolved_noun_html: "%{subject} atrisināja %{noun}"
@@ -5027,6 +5026,7 @@ lv:
   upload_new_photo: Augšuplādēt jaunu fotogrāfiju
   upload_photo: Augšuplādēt fotogrāfiju
   upload_range: Augšupielādēt izplatības apgabalu
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Augšupielādējis
   uploader:
     errors:
@@ -5056,6 +5056,7 @@ lv:
     Izmantot <span class='ac-placeholder'>"%{name}"</span> kā vietturi
   use_this_form_to_create_a_new: |
     Veidlapa paredzēta, lai izveidotu melnrakstu par taksonomiskajām izmaiņām, piemēram, par aktīvu taksonu sadalīšanu, apvienošanu vai samainīšanu.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Izmanto šo funkciju, ja URL vietrādim nepieciešams, lai ģints un sugas tiktu nodalītas. Ja taksons nav suga vai infrasuga, viss starp [GENUS] un [SPECIES] tiks aizstāts ar taksona nosaukumu, tāpēc izmanto šo funkciju ar mēru.
   use_unique_file_names_for_separate_uploads: Atsevišķām augšupielādēm izmanto atšķirīgus failu nosaukumus
@@ -5139,7 +5140,6 @@ lv:
   users_lists: "Lietotāja %{user} saraksti"
   users_profile: "Lietotāja %{user} profils"
   users_projects: "Lietotāja %{user} projekti"
-  users_year_on_site: "Lietotāja %{user} pavadītais gads %{site} vietnē %{year}"
   valid_options_are: Derīgas opcijas ir
   value: Vērtība
   values: Vērtības
@@ -5208,12 +5208,10 @@ lv:
   view_taxononomy_details_for_taxon: "Skatīt %{taxon} taksonomijas datus"
   view_user_observations: "Skatīt lietotāja %{user} novērojumus"
   view_x: "Skatīt %{x}"
-  view_year_stats_for_site: "Skatīt %{site} vietnes statistiku %{year}. gadā"
   view_your_dashboard: Skatīt informācijas paneli
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Skatīt informācijas paneli</a>, lai uzzinātu vairāk jaunumus"
   view_your_inbox: Skatīt iesūtni
   view_your_observations: Skatīt savus novērojumus
-  view_your_year_stats: "Skatīt savu statistiku %{year}. gadā"
   view_yours: Skatīt savus
   view_all_of_your_observations_from_x: "Skatīt visus savus novērojumus no %{x}"
   video_tutorials: Video apmācības
@@ -5305,7 +5303,10 @@ lv:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Daļa no oriģināla satura var nebūt iekļauta, bet saturs nav ne izmainīts, ne pagarināts.
   with: ar
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Atsaukt
+  #Loading status while an identification is being withdrawn
   withdrawing: Atsauc...
   with_errors: Ar kļūdām
   worldwide: Visā pasaulē
@@ -5983,7 +5984,6 @@ lv:
       show:
         allow_curator_coordinate_access_desc_html: |
           Sniegt projekta pārziņiem piekļuvi pie novērojuma noslēptajām koordinātām.
-        ancestor_disagreements_desc: "Starp taksona priekštečiem identificēto taksonu skaits, kas nesakrīt ar taksonu, piemēram, uzskatu, ka taksons ir noteiktā ģintī, bet nepiekrītu tam, ka tā ir noteikta suga."
         community_taxon_desc_html: |
           <p class="ui">
           Kopienas taksons jeb kopienas identifikācija attēlo to, kas pēc %{site_name} kopienas domām redzams novērojumā. Ja vēlies uzzināt vairāk par to, kā izvēlamies kopienas taksonu, apskati zemāk atrodamo algoritma aprakstu. <strong>Cenšamies izvēlēties taksonus, kam piekrīt vismaz 2/3 identificētāju.</strong> Reizēm tas var nozīmēt to, ka nākas izvēlēties augstākas pakāpes taksonu ar vairākiem pretrunīgiem taksoniem, piemēram, pēc tavām domām tā ir karaļčūska, bet pēc manām klaburčūska. Šādā gadījumā iNat norādītu apakškārtu Serpentes, kurā iekļautas visas čūskas. Algoritms dod priekšroku identifikācijām, kas nesakrīt ar pārējām, jo bieži vien pierādas, ka tās ir pareizas.
@@ -6533,10 +6533,6 @@ lv:
         one_time: Vienreizējs
         percent_growth_in_year: "% pieaugums %{year}. gadā"
         percent_of_total_growth: "% no kopējā pieauguma"
-        publications_desc_html: |
-          Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
-          <br/>
-          <a href="%{url}">Skatīt visus %{numStudies} pētījumus</a>
         publications_desc_short_html: |
           Nospied uz ziedveida grafikiem, lai iegūtu vairāk informācijas par skaitļu un krāsu nozīmi. Dati un grafiki ģenerēti ar <a href="https://www.altmetric.com">Altmetric</a>. Ieguvām informāciju par datu patērējumu, pateicoties mūsu draugiem no <a href="https://www.gbif.org/">Globālās bioloģiskās daudzveidības informācijas datubāzes (GBIF)</a>.
         observations_per_year: Novērojumi / gads
@@ -7275,7 +7271,9 @@ lv:
         geoprivacy: Ģeoprivātums
         iucn: Atbilstošs IUCN
       flag:
+        #The reason the item was flagged
         reason: Iemesls
+        #The kind of flag that was made
         flag: Karodziņš
       guide:
         source_url: Avota URL

@@ -222,7 +222,6 @@ $tip-opacity: 1;
       color: white;
       border: 2px solid darken( $inat-green, 10% );
       border-radius: 100px;
-      text-transform: uppercase;
       font-weight: 100;
       i {
         margin-right: 5px;
@@ -360,8 +359,11 @@ $tip-opacity: 1;
       margin: 50px auto;
     }
 
-    .updated-at {
-      margin-top: 50px
+    .updated-at, .update-schedule {
+      margin-top: 50px;
+    }
+    .updated-at + .update-schedule {
+      margin-top: 0px;
     }
 
     #view-stats-buttons {
@@ -799,7 +801,18 @@ $tip-opacity: 1;
       }
     }
     .CountryGrowth {
+      .map {
+        position: relative;
+        .btn {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          min-width: 200px;
+          margin-left: -100px;
+        }
+      }
       .chart svg {
+        width: 100%;
         height: 500px;
         min-height: 500px;
       }
@@ -815,10 +828,12 @@ $tip-opacity: 1;
         stroke-width: 0;
       }
       .bars {
-        height: 500px;
-        overflow-x: visible;
-        overflow-y: scroll;
         select { width: 100%; }
+        @media (min-width: 501px) {
+          height: 500px;
+          overflow-x: visible;
+          overflow-y: scroll;
+        }
       }
       .bar {
         border: 0 transparent;
@@ -1125,7 +1140,7 @@ $tip-opacity: 1;
         color: $inat-green;
       }
     }
-    .btn {
+    .btn-donate {
       font-weight: bold !important;
     }
     .Donors .chart svg {
@@ -1165,7 +1180,7 @@ $tip-opacity: 1;
       margin-bottom: 20px;
     }
 
-    .DonateContent2021 {
+    .donate-content {
       .flex-row {
         align-items: center;
 
@@ -1521,6 +1536,11 @@ $tip-opacity: 1;
 
 
   .btn {
+    &.btn-primary {
+      white-space: normal;
+      word-break: break-word;
+    }
+
     &.btn-donate {
       background-color: white;
       border-color: white;
@@ -1540,5 +1560,11 @@ $tip-opacity: 1;
         color: $inat-green;
       }
     }
+  }
+
+  .btn-link-underline {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: $inat-green;
   }
 }

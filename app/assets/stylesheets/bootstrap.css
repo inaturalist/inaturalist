@@ -23,8 +23,9 @@ hgroup,
 main,
 menu,
 nav,
-section,
-summary {
+section
+/*summary*/
+{
   display: block;
 }
 audio,

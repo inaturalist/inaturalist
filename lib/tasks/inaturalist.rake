@@ -284,6 +284,7 @@ namespace :inaturalist do
       "green",
       "grey",
       "imperiled",
+      "inappropriate",
       "input_taxon",
       "insect_life_stage",
       "insects",

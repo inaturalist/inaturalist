@@ -321,12 +321,17 @@ module ApplicationHelper
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
     # scrub to fix any encoding issues
-    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
+    text = text.scrub
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
     # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
+    # Ensure all links have nofollow
+    parsed_text.css( "a" ).each do | node |
+      node[:rel] = "#{node[:rel]} nofollow noopener".strip
+    end
+    text = parsed_text.to_s
     # Remove empty paragraphs
     text = text.gsub( "<p></p>", "" )
     text.html_safe
@@ -1507,12 +1512,23 @@ module ApplicationHelper
 
   def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
+    before_mention_pattern = [
+      # Either it's at the start of the line, or...
+      "^|",
+      # It's not preceded by the end of a start tag (e.g. a link)
+      '(?<!">)',
+      # And it's not preceded by slash (e.g. a part of a URL)
+      "(?<!/)"
+    ].join
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
-    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+    linked_text.mentioned_users.sort_by {| u | u.login.length }.reverse.each do | u |
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
       login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{login_text}", person_by_login_url(u.login))}")
+      linked_text.gsub!(
+        /(#{before_mention_pattern})@#{u.login}/,
+        "\\1#{link_to( "@#{login_text}", person_by_login_url( u.login ) )}"
+      )
     end
     linked_text
   end

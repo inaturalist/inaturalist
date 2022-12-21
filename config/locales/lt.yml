@@ -380,7 +380,6 @@ lt:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pridėti dabar
-  add_photos: Pridėti nuotraukas
   add_place: Pridėti vietovę
   add_alive_or_dead_alive_annotation: 'Pridėti pastabą: „Gyvas ar miręs: Gyvas“'
   add_alive_or_dead_cannot_be_determined_annotation: 'Pridėti pastabą: „Gyvas ar miręs; negalima nustatyti“'
@@ -813,6 +812,8 @@ lt:
   batch_edit_taxa_for_x_html: "Grupinis taksonų redagavimas %{x}"
   batch_operations: Grupinės operacijos
   be_the_first_to_fave_this_observation: Pirmasis pamėk šį stebėjimą!
+  become_a_donor_caps: PAREMTI
+  become_a_donor_today_caps: PAREMTI ŠIANDIEN
   before_importing_photos: prieš importuodami nuotraukas
   bg_color: Fono Spalva
   bio: Apie mane
@@ -1043,8 +1044,6 @@ lt:
   #connecting to Flickr
   connect: Sujungti
   connect_to_provider: "Prisijungti prie %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Prijungtos paskyros
   connected_accounts_description: Prijungtos paskyros yra kitų programėlių ar tinklalapių paskyros, kurias leidote pasiekti iNaturalist prisijungimo, nuotraukų įkėlimo ar kitais tikslais.
   connected_accounts_titlecase: Prijungtos paskyros
   connecting_flickr: "Prisijungiama prie Flickr..."
@@ -1053,6 +1052,9 @@ lt:
   connecting_your_inat_account_to_accounts_other_sites: "Sujungus jūsų %{site_name} paskyrą su kitų tinklalapių paskyromis leis jums prisijungti prie %{site_name} naudojantis kitų tinklalapių įgaliojimais."
   cannot_be_changed_during_a_content_freeze: negali būti pakeista, kai turinys užšaldytas
   conservation_status: Apsaugos statusas
+  conservation_status_created: Apsaugos statusas sukurtas
+  conservation_status_deleted: Apsaugos statusas ištrintas
+  conservation_status_updated: Apsaugos statusas atnaujintas
   conservation_status_descriptions:
     status: 'Statuso kodas, rangas ir t. t. Jeigu sutrumpinimai, kaip E ar CR egzistuoja, naudokite juos. Kitu atveju naudokite pilną statusą, pvz.: nykstantis arba grėsmingai nykstantis.'
     description: Trumpas aprašymas, kodėl tai buvo įtraukta į sąrašą.
@@ -1197,7 +1199,6 @@ lt:
   created_by: Sukūrė
   created_by_user_on_date: '%{date} sukūrė %{user}'
   created_on: Sukurta
-  creating_your_account: "Jūsų paskyra kuriama..."
   critically_endangered: Grėsmingai nykstantis
   csv: CSV
   csv_file: CSV failas
@@ -1316,6 +1317,7 @@ lt:
   default_invite_comment: "Puiki nuotrauka!  Turėtumėte tai įkelti į %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Numatytoji stebėjimo licencija
   default_photo_license: Numatytoji nuotraukos licencija
+  default_search_place: Numatytoji paieškos vieta
   default_sound_license: Numatytoji garso licencija
   defaults_to_your_name_or_username: Naudoja arba jūsų vardą arba vartotojo vardą
   defines_a_taxon_framework_for: Apibrėžia %{taxon_name} taksono struktūrą
@@ -1369,25 +1371,29 @@ lt:
       signed_in: 'Prisijungta sėkmingai.'
       signed_out: 'Atsijungta sėkmingai.'
     passwords:
-      send_instructions: 'Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.'
+      send_instructions: |
+        Gausite el. laišką su instrukcijomis, kaip per kelias minutes pakeisti slaptažodį.
       updated: 'Jūsų slaptažodis buvo sėkmingai pakeistas. Jūs dabar esate prisijungę.'
       updated_not_active: 'Jūsų slaptažodis buvo sėkmingai pakeistas.'
-      send_paranoid_instructions: "Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda."
-      no_token: "Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL."
+      send_paranoid_instructions: |
+        Jei jūsų el. pašto adresas jau yra mūsų duomenų bazėje, per kelias minutes gausite elektroninį laišką su slaptažodžio atkūrimo nuoroda.
+      no_token: |
+        Šis puslapis negali būti pasiektas atėjus ne iš slaptažodžio atkūrimo el. laiško. Jeigu jūs atvykstate iš slaptažodžio atkūrimo el. laiško, įsitikinkite, kad naudojote visą pateiktą URL.
     registrations:
+      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
       signed_up: 'Sveiki atvykę! Jūs sėkmingai užsiregistravote.'
       updated: 'Jūsų paskyra sėkmingai atnaujinta.'
-      destroyed: 'Iki! Jūsų paskyra buvo sėkmingai atšaukta. Mes tikimės netrukus Jus vėl pamatyti.'
     mailer:
       confirmation_instructions:
-        subject: 'Patvirtinimo instrukcijos'
+        #Subject of an email sent to confirm your account
+        subject: Patvirtinimo instrukcijos
       reset_password_instructions:
         subject: 'Atstatyti slaptažodžio instrukcijas'
   devise_reset_password_instructions_hello_email: Sveiki, %{email},
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Kažkas paprašė slaptažodžio pakeitimo nuorodos. Jūs galite tai padaryti paspaudę žemiau esančią nuorodą.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Jūsų slaptažodis nepasikeis tol, kol nesukursite naujo paspausite aukščiau esančią nuorodą.
   devise_unlock_instructions_unlock: Atblokuoti paskyrą
@@ -1403,6 +1409,8 @@ lt:
   disconnect: Atsijungti
   disconnect_caps: ATSIJUNGTI
   disconnect_provider: "Atjungti %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Atmesti
   display: Rodymas
   display_link_to_checklist: Rodyti nuorodą į projekto sąrašą iš projekto puslapio
   display_name: Rodomas vardas
@@ -1581,6 +1589,8 @@ lt:
   feedback: Atsiliepimai
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Srautai'
+  #Button to show fewer places
+  fewer__context_places: Mažiau
   failed: Nepavyko
   field_note: |
     <strong>Pastaba:</strong> Jei norite sukurti lauką, patikrinkite ar kas nors kitas to dar nepadarė, kad būtų išvengta dublikatų.
@@ -1603,6 +1613,7 @@ lt:
   filters: Filtrai
   find: Rasti
   find_a_guide: Rasti gidą
+  find_a_post: Rasti įrašą
   find_a_place: Rasti Vietą
   find_guides: Rasti Gidus
   find_new_place_to_explore: Rasti naują vietą tyrinėjimui!
@@ -1969,9 +1980,9 @@ lt:
   #As in map layers, i.e. layers of data that might be overlayed on a map
   layers: Sluoksniai
   layout: Išdėstymas
-  leaderboard: Pirmaujančiųjų sarašas
-  leaderboard_for_x: "%{x} pirmaujančiųjų sarašas"
-  leaderboards: Pirmaujančiųjų sarašai
+  leaderboard: Pirmaujančiųjų sąrašas
+  leaderboard_for_x: "%{x} pirmaujančiųjų sąrašas"
+  leaderboards: Pirmaujančiųjų sąrašai
   leading: Vedantis
   learn: Sužinoti
   learn_about_the_species_live_in: Sužinokite apie rūšis, kurios gyvena
@@ -1989,13 +2000,17 @@ lt:
     afrikaans: Afrikanų
     albanian: Albanų
     arabic: Arabų
+    armenian: Armėnų
+    belarusian: Baltarusių
     bengali: Bengalų
+    bulgarian: Bulgarų
     catalan: Katalonų
     cebuano: Sebuanų
     chinese_simplified: Kinų (supaprastinta)
     chinese_traditional: Kinų (tradicinė)
     creole_french: kreolų (Prancūzų)
     creole_portuguese: kreolų (Portugalų)
+    croatian: Kroatų
     czech: Čekų
     danish: Danų
     dutch: Olandų
@@ -2008,6 +2023,7 @@ lt:
     greek: Graikų
     hawaiian: Havajiečių
     hebrew: Hebrajų
+    hungarian: Vengrų
     icelandic: Islandiečių
     indonesian: Indoneziečių
     italian: Italų
@@ -2024,10 +2040,12 @@ lt:
     norwegian: Norvegų
     occitan: Oksitanų
     pangasinan: Pangasinanas
+    persian: Persų
     polish: Lenkų
     portuguese: Portugalų
     romanian: Rumunų
     russian: Rusų
+    serbian: Serbų
     sinhala: Sinhalų
     slovak: Slovakų
     slovenian: Slovėnų
@@ -2160,7 +2178,6 @@ lt:
   log_scale_label: Įrašas
   #Status message shown while logging in
   logging_in: Prisijungiama...
-  login_slash_username: Prisijungimo / vartotojo vardas
   logo:
     logo: Logotipas
     white_bg_gif: baltas BG GIF
@@ -2294,6 +2311,15 @@ lt:
     <a href="%{url}">Mėnesinis remėjas</a> nuo %{date}
   months: Mėnesiai
   more: Daugiau
+  #Button to show more observations
+  more__context_observations_caps: DAUGIAU
+  #Button to show more places
+  more__context_places: Daugiau
+  #Button to show more text
+  more__context_text: Daugiau
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: DAUGIAU
+  more_caps: DAUGIAU
   more_fields: Daugiau laukų
   more_filters: Daugiau filtrų
   more_from_x: Daugiau iš %{x}
@@ -2623,6 +2649,7 @@ lt:
   open_description: "Visi gali matyti koordinates, nebent taksonui gresia išnykimas."
   open_street_map: OpenStreetMap
   optional: neprivaloma
+  options: Parinktys
   or: arba
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3121,6 +3148,8 @@ lt:
   please_add_a_citation_for_this_change: Prašome pridėti citatą prie šio pakeitimo.
   please_allow_a_few_weeks_for_external_sites: Prašome išoriniams tinklalapiams duoti kelias savaites sinchronizuoti šio stebėjimo pakeitimus #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Prašome savo tėvų paprašyti leidimo
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: Prašome būti atsargiems!
   please_confirm_your_inat_username: "Prašome patvirtinti savo %{site_name} vartotojo vardą"
   please_explain_why_you_want_to_hide_this: Paaiškinkite, kodėl norite tai slėpti
   please_explain_why_you_want_to_unhide_this: Paaiškinkite, kodėl nebenorite to slėpti
@@ -3506,11 +3535,12 @@ lt:
   select: Pasirinkite
   select_all: Pasirinkti visus
   select_at_least_one: Pasirinkite bent vieną
-  select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nieko nepažymėti
   select_observations_to_edit: Pasirinkite, kuriuos stebėjimus redaguoti...
   select_one_of_friends_albums: Pasirinkti vieną iš %{friend} albumų
   select_one_of_your_albums: Pasirinkti vieną iš jūsų albumų
+  select_one_or_more_photos: 'Pasirinkite vieną ar daugiau nuotraukų'
   select_options: Pažymėkite pasirinkimus
   select_photos_from_your_photo_stream: |
     Pasirinkite nuotraukas iš išorinio nuotraukų dalinimosi puslapio, skirtas paversti %{site_name} stebėjimais. Mes užpildysime datą, laiką ir vietovę iš nuotraukų metaduomenų ir bandysime aptikti rūšių pavadinimus žymose.
@@ -3675,7 +3705,8 @@ lt:
   stop_trusting_this_person_with_your_private_coordinates: Nebepatikėkite šiam žmogui paslėptų koordinačių
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: PIRKTI
+  store: Pirkti
+  store_caps: PIRKTI
   studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
   stuff_just_added: "Tai, ką ką tik pridėjote..."
   subject_resolved_noun_html: "%{subject} išsprendė %{noun}"
@@ -4031,6 +4062,7 @@ lt:
     Įkelti CSV failą su stebėjimo duomenimis. Jeigu jūsų duomenys yra skaičiuoklėje ar duomenų bazėje, tai tikriausiai yra geriausias būdas tai padaryti.
   upload_new_photo: Įkelti naują nuotrauką
   upload_photo: Įkelti nuotrauką
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Įkėlė
   uploader:
     errors:
@@ -4118,7 +4150,6 @@ lt:
   users_latest_observations_on_site: "%{user} paskutiniai stebėjimai %{site}"
   users_profile: "%{user} profilis"
   users_projects: "%{user} projektai"
-  users_year_on_site: "%{user} %{site} %{year} Metai"
   valid_options_are: Tinkami pasirinkimai yra
   value: Reikšmė
   values: Reikšmės
@@ -4178,11 +4209,9 @@ lt:
   view_taxononomy_details_for_taxon: "Rodyti taksonomijos informaciją: %{taxon}"
   view_user_observations: "Rodyti vartotojo %{user} stebėjimus"
   view_x: "Žiūrėti %{x}"
-  view_year_stats_for_site: "Žiūrėti %{year} %{site} Statistiką"
   view_your_dashboard: Žiūrėti jūsų valdymo skydą
   view_your_inbox: Žiūrėti žinutes
   view_your_observations: Žiūrėti jūsų stebėjimus
-  view_your_year_stats: "Žiūrėti Savo %{year} Statistiką"
   view_yours: Rodyti jūsų
   view_all_of_your_observations_from_x: "Žiūrėti visus %{x} stebėjimus"
   video_tutorials: Video pamokos
@@ -4252,7 +4281,10 @@ lt:
   wikipedia_attribution_cc_by_sa_3: |
     Šaltinis: Vikipedija, „%{title}“, %{url}, CC BY-SA 3.0
   with: su
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Atsiimti
+  #Loading status while an identification is being withdrawn
   withdrawing: Atšaukiama...
   with_errors: Su klaidomis
   worldwide: Visame pasaulyje
@@ -5104,7 +5136,9 @@ lt:
         geoprivacy: Vietos privatumas
         iucn: IUCN atitikmuo
       flag:
+        #The reason the item was flagged
         reason: Priežastis
+        #The kind of flag that was made
         flag: Žymė
       guide:
         source_url: Šaltinio URL
@@ -5177,6 +5211,11 @@ lt:
         position: Pozicija
         source_url: Šaltinio URL
         source_identifier: Šaltinio identifikuotojas
+      taxon_link:
+        #Taxon this link is associated with
+        taxon: Taksonas
+        #Place this link is associated with
+        place: Vieta
       user:
         email: El. paštas
         login: Vartotojo vardas

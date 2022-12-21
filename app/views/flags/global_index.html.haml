@@ -59,10 +59,10 @@
                       %input#flagger_user_id.form-control{ type: "hidden", name: "flagger_user_id", value: @flagger ? @flagger.id : nil }
             .col-xs-3
               %label#user-form-group.form-group
-                =t :content_author
+                %label=t :content_author
                 %input#user_name.form-control{ type: "search", name: "user_name", value: @user ? @user.login : nil, placeholder: t(:start_typing_someones_name) }
                 %input#user_id.form-control{ type: "hidden", name: "user_id", value: @user ? @user.id : nil }
-              .form-group
+              %label.form-group
                 %label=t :content_type
                 :ruby
                   flaggable_type_options = options_for_select( ( ["all"] + Flag::TYPES.sort ).map {|t|
@@ -91,7 +91,7 @@
               .form-group
                 %input.form-control{ type: "search", name: "reason_query", value: @reason_query, placeholder: t(:search_reasons, default: "Search Reasons") }
             .col-xs-3
-              .form-group
+              %label.form-group
                 %label=t :resolved
                 :ruby
                   resolved_options = options_for_select( %w(any yes no).map {|t|
@@ -99,7 +99,7 @@
                   }, @resolved )
                 = select_tag :resolved, resolved_options, class: "select form-control"
               %label.form-group
-                =t :resolver
+                %label=t "activerecord.attributes.flag.resolver_id"
                 %input#resolver_name.form-control{ type: "search", name: "resolver_name", value: @resolver ? @resolver.login : nil, placeholder: t(:start_typing_someones_name) }
                 %input#resolver_user_id.form-control{ type: "hidden", name: "resolver_user_id", value: @resolver ? @resolver.id : nil }
           .row

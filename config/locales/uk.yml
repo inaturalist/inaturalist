@@ -403,7 +403,6 @@ uk:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Додати нове
-  add_photos: Додати фото
   add_place: Додати місце
   add_alive_or_dead_alive_annotation: 'Додати примітку "живий чи мертвий: живий"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Додати примітку "живий чи мертвий: неможливо визначити"'
@@ -684,6 +683,7 @@ uk:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Додатки
+  apply_app_owner: Застосувати
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Застосувати
@@ -1080,8 +1080,6 @@ uk:
   #connecting to Flickr
   connect: Під'єднати
   connect_to_provider: "Під'єднати до %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Під’єднані облікові записи
   connected_accounts_description: Під'єднані облікові записи — це ваші облікові записи з інших програм або веб-сайтів, до яких ви надали iNaturalist доступ від вашого імені, для виконання входу, імпорту фото або інших функцій.
   connected_accounts_titlecase: Під’єднані облікові записи
   connecting_flickr: "Підключення до Flickr... "
@@ -1244,7 +1242,6 @@ uk:
   created_by: 'Ким створено:'
   created_by_user_on_date: Створено %{user} %{date}
   created_on: Дата створення
-  creating_your_account: "Створення облікового запису..."
   creative_commons_flickr_tagged: Фото с Flickr під ліцензією Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, якщо не зазначено інше."
   critically_endangered: У критичній небезпеці
@@ -1490,6 +1487,7 @@ uk:
   description_slash_tags: Опис / Мітки
   description_tags_more: "Опис, мітки, &amp; більше"
   desription: Опис
+  destination: Призначення
   destroy: Знищити
   details: Докладніше
   deviation: Відхилення
@@ -1505,25 +1503,29 @@ uk:
       signed_in: 'Ви успішно увійшли в систему.'
       signed_out: 'Ви успішно вийшли з системи.'
     passwords:
-      send_instructions: 'За декілька хвилин ви отримаєте лист с інструкціями щодо зміни пароля.'
+      send_instructions: |
+        За декілька хвилин ви отримаєте лист с інструкціями щодо зміни пароля.
       updated: 'Ваш пароль було успішно змінено. Зараз ви увійшли в систему.'
       updated_not_active: 'Ваш пароль було успішно змінено.'
-      send_paranoid_instructions: "Якщо ваша електронна адреса є в нашій базі данних, то за декілька хвилин ви отримаєте на вашу пошту посилання на відновлення паролю."
-      no_token: "Ви не можете отримати доступ до цієї сторінки, не переходячи з електронного листа щодо зміни паролю. Якщо ви переходите з електронного листа щодо зміни паролю, переконайтеся, що ви використали повну URL-адресу."
+      send_paranoid_instructions: |
+        Якщо ваша електронна адреса є в нашій базі данних, то за декілька хвилин ви отримаєте на вашу пошту посилання на відновлення паролю.
+      no_token: |
+        Ви не можете отримати доступ до цієї сторінки, не переходячи з електронного листа щодо зміни паролю. Якщо ви переходите з електронного листа щодо зміни паролю, переконайтеся, що ви використали повну URL-адресу.
     registrations:
+      destroyed: 'До побачення! Ваш обліковий запис було успішно видалено. Сподіваємось, ви скоро повернетеся.'
       signed_up: 'Ласкаво просимо! Ви успішно зареєструвались.'
       updated: 'Ви успішно внесли зміни до вашого облікового запису.'
-      destroyed: 'До побачення! Ваш обліковий запис було успішно видалено. Сподіваємось, ви скоро повернетеся.'
     mailer:
       confirmation_instructions:
-        subject: 'Інструкції щодо підтвердження'
+        #Subject of an email sent to confirm your account
+        subject: Інструкції щодо підтвердження
       reset_password_instructions:
         subject: 'Інструкції з відновлення пароля'
   devise_reset_password_instructions_hello_email: Вітаємо, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Хтось зробив запит на зміну паролю. Ви можете зробити це через посилання нижче.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Якщо Ви не робили запит на це, ви можете проігнорувати цей лист.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Хтось зробив запит на зміну паролю. Ви можете зробити це через посилання нижче.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не зміниться, доки Ви не відкриєте посилання вище і не створите новий пароль.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2394,7 +2396,6 @@ uk:
   log_scale_label: Журнал подій
   #Status message shown while logging in
   logging_in: Вхід...
-  login_slash_username: Логін / ім'я користувача
   logo:
     logo: Логотип
     white_bg_gif: GIF на білому тлі
@@ -4114,11 +4115,12 @@ uk:
   select: Обрати
   select_all: Обрати все
   select_at_least_one: Оберіть принаймні один
-  select_one_or_more_photos: 'Оберіть одне або декілька фото'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Зняти вибір
   select_observations_to_edit: Оберіть спостереження для редагування...
   select_one_of_friends_albums: Оберіть один з альбомів %{friend}
   select_one_of_your_albums: Оберіть один зі своїх альбомів
+  select_one_or_more_photos: 'Оберіть одне або декілька фото'
   select_options: Оберіть варіант
   select_photos_from_your_photo_stream: |
     Обрати фото із зовнішніх сайтів обміну фото для перетворення на спостереження %{site_name}. Ми заповнимо дату, час і розташування з метаданих фото й спробуємо знайти назви видів за допомогою позначок.
@@ -4310,7 +4312,8 @@ uk:
   stop_trusting_this_person_with_your_private_coordinates: Припинити довіряти цій людині свої приховані розташування
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: КРАМНИЦЯ
+  store: Крамниця
+  store_caps: КРАМНИЦЯ
   studies_that_used_inaturalist_data_in_year: Дослідження, що використовували дані з iNaturalist у %{year}
   stuff_just_added: "Те, що ви щойно додали..."
   subject_resolved_noun_html: "%{subject} розв'язав %{noun}"
@@ -4776,6 +4779,7 @@ uk:
   upload_new_photo: Завантажити нове фото
   upload_photo: Завантажити фото
   upload_range: Завантажити область поширення
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Завантажено
   uploader:
     errors:
@@ -4805,6 +4809,7 @@ uk:
     Використовуйте <span class='ac-placeholder'>"%{name}"</span> в якості замісника
   use_this_form_to_create_a_new: |
     Використовуйте цю форму, щоб створити нову чернетку таксономічної зміни, що описуватиме запропоноване розділення, злиття або заміну наявних таксонів, які пізніше будуть запропоновані до впровадження.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Використайте це, якщо URL потребує роду й виду, розділених у певний спосіб. Якщо таксон не є видом чи внутрішньовидовим таксоном, все, що знаходиться поміж [GENUS] і [SPECIES] буде замінено на назву таксону, тож використовуйте з обачністю.
   use_unique_file_names_for_separate_uploads: Використовувати унікальні імена файлів для окремих вивантажень
@@ -4885,7 +4890,6 @@ uk:
   users_latest_observations_on_site: "найновіші спостереження користувача %{user} на %{site}"
   users_profile: "Профіль користувача %{user}"
   users_projects: "Проєкти користувача %{user}"
-  users_year_on_site: "%{year} Рік користувача %{user} на %{site}"
   valid_options_are: Доступні опції
   value: Значення
   values: Значення
@@ -4947,12 +4951,10 @@ uk:
   view_taxononomy_details_for_taxon: "Переглянути подробиці таксономії для %{taxon}"
   view_user_observations: "Переглянути спостереження користувача %{user}"
   view_x: "Переглянути %{x}"
-  view_year_stats_for_site: "Переглянути статистику за %{year} рік для %{site}"
   view_your_dashboard: Переглянути панель керування
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Переглянути панель керування</a> для отримання додаткових оновлень"
   view_your_inbox: Усі повідомлення
   view_your_observations: Переглянути ваші спостереження
-  view_your_year_stats: "Переглянути вашу статистику за %{year}"
   view_yours: Переглянути ваші
   view_all_of_your_observations_from_x: "Переглянути всі ваші спостереження з %{x}"
   video_tutorials: Відеоінструкції
@@ -5029,7 +5031,10 @@ uk:
   wikipedia_attribution_cc_by_sa_3_html: |
     Ця стаття використовує матеріал зі статті на Вікіпедії <a href="%{url}">"%{title}"</a>, який випускається під <a href="https://creativecommons.org/licenses/by-sa/3.0/"><a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. Вміст може бути скорочено у порівнянні з оригіналом, але твір не був змінений або продовжений.
   with: з
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Відкликати
+  #Loading status while an identification is being withdrawn
   withdrawing: Відкликання...
   with_errors: З помилками
   worldwide: По всьому світу
@@ -5739,7 +5744,6 @@ uk:
       show:
         allow_curator_coordinate_access_desc_html: |
           Дозволити кураторам проєкту переглядати приховані координати для цього спостереження.
-        ancestor_disagreements_desc: "Кількість визначений таксонів, що лежать у межах таксонів вищого рангу, але не співпадають з поточним таксоном (напр., \"Я гадаю, що це щось з цього роду, але я не згодний з видом\")"
         community_taxon_desc_html: |
           <p class="ui">
           Таксон спільноти (чи визначення спільноти) – це той таксон, який за думкою спільноти
@@ -6375,14 +6379,6 @@ uk:
         one_time: Один внесок
         percent_growth_in_year: "% зростання у %{year}"
         percent_of_total_growth: "% від загального зростання"
-        publications_desc_html: |
-          Натисніть на квіткові діаграми, аби дізнатися більше про те, що означають цифри
-          та кольори. Дані та графіки щодо впливу люб'язно надані 
-          <a href="https://www.altmetric.com">Altmetric</a>. Інформація
-          про використання даних люб'язно надана нашими друзями з
-          <a href="https://www.gbif.org/">Глобальної інформаційної системи з біорізноманіття</a>.
-          <br/>
-          <a href="%{url}">Переглянути всі %{numStudies} дослідження</a>
         publications_desc_short_html: |
           Натисніть на квіткові діаграми, аби дізнатися більше про те, що означають цифри
           та кольори. Дані та графіки щодо впливу люб'язно надані 
@@ -7192,7 +7188,9 @@ uk:
         geoprivacy: Конфіденційність геоданих
         iucn: Відповідник МСОП
       flag:
+        #The reason the item was flagged
         reason: Причина
+        #The kind of flag that was made
         flag: Прапорець
       guide:
         source_url: URL джерела

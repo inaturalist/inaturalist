@@ -65,14 +65,48 @@
       <% end %>
 
       <% if !@headless && flash.empty? %>
-        <% if current_user && session[:potential_place] %>
-          <div class="bootstrap">
-            <div id="full-width-notice" class="container-fluid bg-warning">
-              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
-              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
-              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+        <% if current_user && !current_user.confirmed? && !( controller.controller_name == "users" && controller.action_name == "edit" ) %>
+          <% if current_user.confirmation_sent_at %>
+            <div class="bootstrap">
+              <div id="full-width-notice" class="bg-warning">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2 text-left">
+                      <h3><%=t :email_conf_banner_please_click, default: t( :email_conf_banner_email_delivered_click_link ) %></h3>
+                      <p>
+                        <%=t :email_conf_banner_we_delivered_todos, date: l( current_user.confirmation_sent_at.in_time_zone( Time.zone ), format: :long ) %>
+                      </p>
+                      <ul>
+                        <li>
+                          <p>
+                            <%=t :email_conf_banner_search_for_emails_html, email: ( current_user&.site || @site ).email_noreply %>
+                          </p>
+                        </li>
+                        <li><p><%=t :email_conf_banner_check_your_spam_folder_html %></p></li>
+                        <li>
+                          <p>
+                            <%=t :email_conf_banner_add_to_contacts_html, email: ( current_user&.site || @site ).email_noreply, url: generic_edit_user_path( anchor: "profile" ) %>
+                          </p>
+                        </li>
+                      </ul>
+                      <p>
+                        <%=t :email_conf_banner_contact_us_html, email: "<a href='mailto:help+confirmation@inaturalist.org'>help@inaturalist.org</a>".html_safe %>
+                      </p>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          <% else %>
+            <div class="bootstrap">
+              <div id="full-width-notice" class="bg-warning">
+                <div class="container">
+                  <p><%=t :email_confirmation_banner_html, date: l( User::EMAIL_CONFIRMATION_REQUIREMENT_DATE, format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% elsif current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
@@ -110,6 +144,14 @@
                   <%= link_to t(:no), user_path( current_user,  user: { prefers_no_site: true }, from_potential_site: true ), method: "PUT", class: "btn btn-default btn-xs" %>
                 </span>
               </div>
+            </div>
+          </div>
+        <% elsif current_user && session[:potential_place] %>
+          <div class="bootstrap">
+            <div id="full-width-notice" class="container-fluid bg-warning">
+              <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+              <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+              <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
             </div>
           </div>
         <% end %>
@@ -177,7 +219,8 @@
           prefers_not_nearby_suggestions: <%= !!session[:prefers_not_nearby_suggestions] %>,
           sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
-          donor: <%= !!current_user.donorbox_donor_id %>
+          donor: <%= current_user.donor? %>,
+          monthlyDonor: <%= current_user.monthly_donor? %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

@@ -304,12 +304,14 @@ de:
   add_observations: Beobachtung(en) hinzufügen
   add_observations_by_checking_off: Füge Beobachtungen durch das Auswählen von Arten aus einer Liste hinzu.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Beobachtungen</span> <span>hinzufügen</span>"
   #Prompt to add a new journal post
   add_one: Hinzufügen
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Jetzt hinzufügen
-  add_photos: Fotos hinzufügen
   add_place: Gebiet hinzufügen
   add_alive_or_dead_alive_annotation: 'Angabe hinzufügen "lebendig/tot: lebendig"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Angabe hinzufügen "lebendig/tot: Kann nicht bestimmt werden"'
@@ -556,7 +558,9 @@ de:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Alle
-  app_owner_application_fields_explanation_html: Beschreiben Sie die Funktionalität, die Ihre Anwendung haben wird und wie Sie sie nutzen möchten.
+  app_owner_application_explanation_required: |
+    Du musst eine detailliertere Erklärung geben, was du bauen möchtest.
+  app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
@@ -671,6 +675,10 @@ de:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Eigenschaft
   attribution: Namensnennung
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, hochgeladen von %{user}"
   authority_list:
     iucn_red_list: Rote Liste der IUCN
     natureserve: NatureServe
@@ -977,14 +985,16 @@ de:
   confirm_new_password: Neues Kennwort bestätigen
   confirm_now: Jetzt bestätigen
   confirm_your_info: Bestätige deine Info
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Bestätigung per E-mail am %{datetime} gesendet
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bestätigt am %{date}
   confirming_ids: Zustimmende IDs
   confirming_ids_description: Wenn du dies deaktivierst, wirst du nicht mehr über IDs informiert, die mit deinen übereinstimmen.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Verbinden
   connect_to_provider: "Verbinde mit %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Verbundene Konten
   connected_accounts_description: '''Verknüpfte Accounts'' beziehen sich auf deine Konten auf anderen Apps oder Websites, auf die iNaturalist Zugriff in deinem Namen gewährt wurde, um die Anmeldung zu erleichtern, Fotos zu importieren oder andere Funktionalitäten.'
   connected_accounts_titlecase: Verknüpfte Accounts
   connecting_flickr: "Verbinde mit Flickr..."
@@ -1156,7 +1166,6 @@ de:
   created_by: Erstellt von
   created_by_user_on_date: Erstellt von %{user} am %{date}
   created_on: Erstellt am
-  creating_your_account: "Benutzerkonto erstellen..."
   creative_commons_flickr_tagged: Creative Commons Flickr Bilder Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons, sofern nicht anders angegeben."
   critically_endangered: vom Aussterben bedroht
@@ -1284,7 +1293,7 @@ de:
     du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
-  curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Desweiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
+  curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
   curator_identification: Bestimmung des Kurators
   current_flags: Aktuelle Meldungen
   #Label for a custom boundary for an observation search
@@ -1413,6 +1422,10 @@ de:
   deviation: Abweichung
   devise:
     confirmations:
+      confirmed: |
+        Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich
+        jetzt hier auf der Website oder in den iNaturalist- oder Seek-Apps wieder anmelden.
+      send_instructions: "Du solltest in wenigen Minuten eine E-Mail mit einer Beschreibung erhalten, wie du deine E-Mail-Adresse bestätigen kannst."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1422,31 +1435,57 @@ de:
       unauthenticated: 'Du musst dich einloggen oder anmelden um fortzufahren.'
       invalid: 'Email-Adresse oder Passwort ungültig.'
       invalid_token: 'Identifizierungscode ungültig'
+      unconfirmed: |
+        Bitte überprüfe deine E-Mails und klicke auf den Link in der E-Mail, die du erhalten hast, 
+        um dein Konto zu bestätigen.
       user:
         suspended: Dein Benutzerkonto wurde gesperrt
     sessions:
       signed_in: 'Erfolgreich angemeldet.'
       signed_out: 'Erfolgreich abgemeldet.'
     passwords:
-      send_instructions: 'In wenigen Minuten wirst du eine Email mit Anweisungen erhalten, wie das Passwort zurückgesetzt werden kann.'
+      send_instructions: |
+        In wenigen Minuten wirst du eine Email mit Anweisungen erhalten, wie das Passwort zurückgesetzt werden kann.
       updated: 'Das Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.'
       updated_not_active: 'Dein Passwort wurde erfolgreich geändert.'
-      send_paranoid_instructions: "Wenn deine E-Mail-Adresse in unserer Datenbank ist, wirst du in wenigen Minuten einen 'Passwort wiederherstellen' Link erhalten."
-      no_token: "Du kannst auf diese Seite nicht ohne eine 'Passwort zurücksetzen' E-Mail zugreifen. Wenn du von einer 'Passwort zurücksetzen' E-Mail kommst, bitte stelle sicher, dass du die enthaltene URL vollständig benutzt hast."
+      send_paranoid_instructions: |
+        Wenn deine E-Mail-Adresse in unserer Datenbank ist, wirst du in wenigen Minuten einen 'Passwort wiederherstellen' Link erhalten.
+      no_token: |
+        Du kannst auf diese Seite nicht ohne eine 'Passwort zurücksetzen' E-Mail zugreifen. Wenn du von einer 'Passwort zurücksetzen' E-Mail kommst, bitte stelle sicher, dass du die enthaltene URL vollständig benutzt hast.
     registrations:
-      signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
-      updated: 'Du hast dein Konto erfolgreich aktualisiert.'
       destroyed: 'Tschüss! Dein Account wurde erfolgreich gelöscht. Wir hoffen dich bald wieder zu sehen.'
+      signed_up: 'Herzlich willkommen! Du hast dich erfolgreich angemeldet.'
+      signed_up_but_inactive: "Du hast dich erfolgreich registriert. Wir konnten dich jedoch nicht anmelden, weil dein Konto noch nicht aktiviert ist."
+      signed_up_but_locked: "Du hast dich erfolgreich angemeldet. Wir konnten dich jedoch nicht anmelden, da dein Account gesperrt ist."
+      signed_up_but_unconfirmed: "Eine Nachricht mit dem Bestätigungslink wurde an deine E-Mail-Adresse gesendet. Bitte folgen dem Link, um dein Konto zu aktivieren."
+      updated: 'Du hast dein Konto erfolgreich aktualisiert.'
     mailer:
       confirmation_instructions:
-        subject: 'Bestätigungsanweisungen'
+        #Subject of an email sent to confirm your account
+        subject: Bestätigungsanweisungen
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: E-Mail-Änderung angefordert
       reset_password_instructions:
         subject: 'Anweisungen zum Zurücksetzen des Passworts'
+  devise_confirmation_instructions_if_you_did_not: |
+    Wenn du dich nicht für einen @vow_or_con{vow:an|a} %{site_name}-Account angemeldet hast, ignoriere bitte diese E-Mail.
+  devise_confirmation_instructions_please_click: |
+    Bitte klicke auf nachfolgenden Link, um deine E-Mail-Adresse zu verifizieren.
+  devise_confirmation_instructions_resend_instructions: |
+    Du musst eine funktionierende E-Mail-Adresse haben, um iNaturalist nutzen zu können. Wenn du
+    dich für einen Zugang angemeldet hast, solltest du eine Bestätigungs-E-Mail mit einem
+    Link erhalten haben, um zu bestätigen, dass deine E-Mail-Adresse funktioniert - aber wenn du keine erhaltens hast, kannst du hier eine weitere Bestätigungs-E-Mail senden.
+  devise_confirmation_instructions_send_confirmation_email: Bestätigungs-E-Mail senden
+  devise_email_changed_you_requested: Du hast eine Änderung von %{old_email} zu %{new_email} angefordert.
+  devise_email_changed_you_will_receive: |
+    Du solltest eine E-Mail an die neue Adresse zugeschickt bekommen, um die Änderung zu bestätigen. Wir haben dir aber eine Nachricht an deine alte Adresse geschickt für den Fall, dass jemand anderes Zugang zu deinem Konto hatte und versucht, ohne dein Wissen die E-Mail zu ändern. Falls du nicht beabsichtigt hast, die Adresse zu ändern, sende uns bitte schnell diese E-Mail an help@inaturalist.org weiter, so dass wir das überprüfen können.
   devise_reset_password_instructions_hello_email: Hallo %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Jemand hat einen Link zur Änderungen deies Passwortes angefordert. Dies funktioniert durch den folgenden Link:
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Falls du kein neues Passwort angefordert hast, ignoriere diese E-Mail einfach.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Jemand hat einen Link zur Änderungen deies Passwortes angefordert. Dies funktioniert durch den folgenden Link:
   devise_reset_password_instructions_your_password_wont_change_until: |
     Dein Passwort bleibt so lange unverändert, bis Du über den oberen Link ein neues Passwort erstellst.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1494,6 +1533,7 @@ de:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Ablegen
   download: Herunterladen
+  download_caps: HERUNTERLADEN
   download_bulk_import_template_html: |
     <a href="%{url}">Vorlage herunterladen</a> für die Verwendung im
     <a href="/observations/import?project_id=%{project_id}#csv_import">"Bulk-Uploader"</a>
@@ -1678,6 +1718,8 @@ de:
   feedback: Feedback
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  #Button to show fewer places
+  fewer__context_places: Weniger
   failed: Fehlgeschlagen
   field_note: |
     <strong>Beachte:</strong> Wenn du ein Feld erstellen möchtest, überprüfe vorher, ob
@@ -1703,8 +1745,10 @@ de:
   filters: Filter
   find: Finden
   find_a_guide: Einen Guide finden
+  find_a_post: Einen Beitrag finden
   find_a_place: Ein Gebiet finden
   find_guides: Guides finden
+  find_posts_for: "Beiträge finden für: %{journal_name}"
   find_new_place_to_explore: Ein neues Gebiet zum Erkunden finden!
   find_observations: Beobachtungen finden
   find_photos: Fotos finden
@@ -1963,6 +2007,7 @@ de:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Bestimmung zurückgezogen.
   identifications: Bestimmungen
+  inaturalist_global_year_in_review: "Globaler Rückblick auf das iNaturalist-Jahr %{year}"
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -2002,6 +2047,8 @@ de:
   improving: Verbesserung
   in_n: "in %{n}"
   in_place_x: in %{place}
+  #As in a reason to flag something
+  inappropriate: Unangemessen
   inaturalist_network: iNaturalist-Netzwerk
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
@@ -2229,6 +2276,8 @@ de:
     waray_waray: Wáray-Wáray
     visayan: Visayan
   less: Weniger
+  #Button show less text
+  less__context_text: Weniger
   licensed_site_photos: "Lizenzierte %{site_name} Fotos"
   license: Lizenz
   licensing: Lizenzierung
@@ -2299,6 +2348,7 @@ de:
     de: Deutsch
     el: Griechisch
     en: Englisch
+    en-GB: Englisch (UK)
     eo: Esperanto
     es: Spanisch
     es-AR: Spanisch (Argentinien)
@@ -2311,6 +2361,7 @@ de:
     fr-CA: Französisch (Kanada)
     gl: Galicisch
     he: Hebräisch
+    hr: Kroatisch
     hu: Ungarisch
     id: Indonesisch
     it: Italienisch
@@ -2363,7 +2414,6 @@ de:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Anmeldung läuft...
-  login_slash_username: Login/Benutzername
   logo:
     logo: Logo
     white_bg_gif: weißer Hintergrund GIF
@@ -2545,10 +2595,21 @@ de:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Monat
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Monatliche Unterstützer
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monatlicher Unterstützer</a> seit %{date}
   months: Monate
   more: Mehr
+  #Button to show more observations
+  more__context_observations_caps: MEHR
+  #Button to show more places
+  more__context_places: Mehr
+  #Button to show more text
+  more__context_text: Mehr
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MEHR
+  more_caps: MEHR
   more_about_sharing: Mehr Informationen über Datenaustausch
   more_fields: Mehr Felder
   more_filters: Mehr Filter
@@ -2651,6 +2712,7 @@ de:
   new_check_list_for: "Eine neue Checkliste für %{place} erstellen"
   new_check_list_record: "Wenn du diese Liste als <em>umfassend</em> markieren möchtest, erstellen sie, füge die Taxa hinzu, und dann bearbeite es. Dann hast du die Möglichkeit, es hier als 'umfassend' zu kennzeichnen."
   new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu @vow_or_con{vow:einer|einer} %{parent} von %{user_link}
+  new_conservation_status: Neuer Schutzstatus
   new_flag_for: Neue Meldung für
   new_guide: Neuer Guide
   new_journal_post: Neuer Journal-Eintrag
@@ -3046,6 +3108,7 @@ de:
   open_description: "Jeder kann die Koordinaten sehen, außer das Taxon ist gefährdet."
   open_street_map: OpenStreetMap
   optional: optional
+  options: Optionen
   or: oder
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3645,6 +3708,7 @@ de:
   places_warning_the_future: |
     Nebenbei bemerkt, unter Berücksichtigung der aktuellen Wachstumsrate von iNat werden wir wohl die Befugnisse einschränken müssen, mit denen Benutzer in Zukunft Gebiete hinzufügen können.
   plants: Pflanzen
+  play_first_sound: Ersten Ton abspielen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung hinzufügen.
   please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe Seiten Änderungen aus dieser Beobachtung synchronisiert haben #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Bitte frage deine Eltern um Erlaubnis
@@ -3652,7 +3716,7 @@ de:
   please_be_careful!: Bitte sei vorsichtig!
   please_complete_the_following_to_add_project: |
     Bitte vervollständige die folgenden Schritte, um diese Beobachtung dem Projekt hinzuzufügen:
-  please_confirm_your_inat_username: "Bette bestätigen Sie ihren Benutzernamen %{site_name}"
+  please_confirm_your_inat_username: "Bitte bestätige deinen Benutzernamen %{site_name}"
   please_explain_why_you_want_to_hide_this: Bitte gib einen Grund an, warum du das verbergen möchtest
   please_explain_why_you_want_to_unhide_this: Bitte gib einen Grund an, warum du das sichtbar machen möchtest
   please_fix_your_csv_and_try_again: Bitte korrigiere dein CSV und versuche es erneut.
@@ -3763,6 +3827,14 @@ de:
   proposed_taxa_that_support_the_community_id: Vorgeschlagene Taxa, die die Community-ID unterstützen
   protozoans: Protozoen
   provider_authorizations: Anbieter-Autorisierungen
+  provider_without_email_error_apple: |
+    Apple hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Apple
+  provider_without_email_error_flickr: |
+    Flickr hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Flickr
+  provider_without_email_error_generic: |
+    Dieser Anbieter hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via diesem Drittanbieter.
+  provider_without_email_error_google_oauth2: |
+    Google hat keine E-Mail-Adresse für dieses Konto bereitgestellt. Bitte erstelle ein Konto auf dieser Webseite anstatt per Anmeldung via Google.
   public_domain: Gemeinfrei
   publish: Veröffentlichen
   purple: Lila
@@ -4023,6 +4095,10 @@ de:
   research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Erneut absenden & Ausloggen
+  resend_confirmation_email: Bestätigungs-E-Mail erneut senden
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Zurücksetzen
   reset_filters_short: Zurücksetzen
@@ -4139,11 +4215,12 @@ de:
   select: Auswählen
   select_all: Alles auswählen
   select_at_least_one: mind. eine auswählen
-  select_one_or_more_photos: 'Ein oder mehrere Bilder auswählen'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Keine auswählen
   select_observations_to_edit: Beobachtung zum Bearbeiten auswählen...
   select_one_of_friends_albums: Wähle eines der Alben von %{friend}
   select_one_of_your_albums: Wähle eines deiner Alben
+  select_one_or_more_photos: 'Ein oder mehrere Bilder auswählen'
   select_options: Optionen auswählen
   select_photos_from_your_photo_stream: |
     Wähle Bilder von externen Foto-Sharing-Seiten aus, um sie in %{site_name}-Beobachtungen umzuwandeln. Wir übernehmen Datum, Uhrzeit und Ort aus den Metadaten eines Bildes und versuchen die Namen der Arten aus den Tags herauszufinden.
@@ -4152,6 +4229,10 @@ de:
   selected_taxon: Ausgewähltes Taxon
   select_this_taxon: Dieses Taxon wählen
   send: senden
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Absenden & Ausloggen
+  send_confirmation_email: Bestätigungs-E-Mail senden
   send_me_reset_password_instructions: Senden Sie mir Anweisungen zum Zurücksetzen des Passworts
   sending: Sende …
   #Label for messages you've sent
@@ -4161,6 +4242,7 @@ de:
   set_license: Lizenz festlegen
   settings: Einstellungen
   share: Teilen
+  share_caps: TEILEN
   share_colon: "Teilen:"
   short_code_for_this_place: Kürzel für diesen Ort, z.B. US für Vereinigte Staaten
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
@@ -4169,6 +4251,7 @@ de:
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
   show_history_by_this_user: Verlauf dieses Benutzers anzeigen
   show_history_for_this_kind_of_action: Verlauf für diese Art von Aktion anzeigen
+  show_history_for_this_record: Verlauf für diesen Eintrag anzeigen
   show_keyboard_shortcuts: Tastaturkürzel anzeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -4204,6 +4287,8 @@ de:
   #Journal post formatting option
   simple: Einfach
   single_observation: Einzelne Beobachtung
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{year} Jahresrückblick von %{site}"
   sizes: Größe
   skip_to_next_page: "Zur nächsten Seite springen"
   small: klein
@@ -4402,7 +4487,8 @@ de:
   stop_trusting_this_person_with_your_private_coordinates: Vertrau dieser Person deine verborgenen Koordinaten nicht mehr an
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: Store
+  store: Shop
+  store_caps: STORE
   studies_that_used_inaturalist_data_in_year: Publikationen, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
@@ -4812,6 +4898,8 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_kolkata: Indische Standardzeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: Krasnojarsk-Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_shanghai: China-Standardzeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_singapore: Singapur Standard Zeit
@@ -4819,6 +4907,8 @@ de:
   time_zone_asia_taipei: Taiwan-Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_tokyo: Japan Standard Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: Jekaterinburg-Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_adelaide: Adelaide Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4870,7 +4960,11 @@ de:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: Mitteleuropäische Zeit
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Samoa-Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Neuseeland Zeit
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaiianisch–Aleutianische Zeit
   #As in the title of a book or a blog post
   title: Titel
   title_and_description: "Titel & Beschreibung"
@@ -4986,6 +5080,7 @@ de:
   upload_new_photo: Neues Foto hochladen
   upload_photo: Foto hochladen
   upload_range: Verbreitungsgebiet hochladen
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Hochgeladen von
   uploader:
     errors:
@@ -5007,7 +5102,7 @@ de:
   uploading_num_of_count_photos:
     one: Foto wird hochgeladen...
     other: Lade %{num} von %{count} Fotos hoch...
-  url_for_your_app_outside_of_inaturalist: URL für Ihre App außerhalb von iNaturalist
+  url_for_your_app_outside_of_inaturalist: URL für deine App außerhalb von iNaturalist
   url_identifier_of_a_project_derived_from: "URL/ Identifikation eines Projekts, welches von einer externen Quelle abgeleitet wurde"
   url_of_this_taxon_on_the_source_website: URL dieses Taxons auf der Website der Quelle
   usage_stats: Nutzungsstatistiken
@@ -5092,6 +5187,39 @@ de:
   username_or_user_id: Benutzername oder Benutzer-ID
   users: Benutzer
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Nachdem du die Bestätigungs-Email gesendet hast, wirst du abgemeldet und du wirst dich erst wieder anmelden können, wenn du den Link in der E-Mail angeklickt hast - <strong>also überprüfe genau, dass die angegebene E-Mail-Adresse korrekt ist.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Bitte stelle sicher, dass deine E-Mail-Adresse korrekt ist. Hier ist die E-Mail-Adresse, an die wir die Bestätigung senden:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Falls du die E-Mail nicht erhältst, sind hier einige Tipps:
+    </p>
+
+    <ul>
+    <li><p>Überprüfe deinen Spam-Ordner</p></li>
+    <li><p>Überprüfe alle Filter, die du angelegt hast, um unsere E-Mails aus deinem Posteingang zu entfernen</p></li>
+    </ul>
+    <p>
+    Wenn du trotzdem noch keine Bestätigungs-E-Mail erhälst, dann kontaktiere uns bitte unter
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    damit wir dir helfen können.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Du bist kurz davor dich auszuloggen</h3>
+    <p>
+    Nachdem du die Bestätigungs-Mail abgeschickt hast, wirst du abgemeldet und kannst dich danach ausschließlich über den Link in der Email wieder anmelden, also <strong class="bg-warning">vergewissere dich, dass Email-Adresse korrekt eingegeben wurde.</strong>
+    </p>
+    <p>
+    Das hier ist die Adresse, an die wir den Bestätigungs-Link schicken:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Falls du dich aus allen Emails abgemeldet hast...</h4>
+    <p>
+    Wenn du eingestellt hast, <em>keine</em> Emails von uns zu erhalten, können wir dir keine Bestätigungs-Mail schicken. Um das zu ändern, musst du eine frühere Email von uns finden, dann den 'Abmelden'-Link anklicken und auswählen, wieder Emails zu erhalten. Wenn das nicht geht, schreib uns bitte an <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> mit der gleichen Email-Adresse, die du hier verwendest, so dass wir dir helfen können.
+    </p>
   users_favorites: "Favoriten von %{user}"
   users_highlights_and_stats_from_year_on_site: "Highlights und Statistiken aus %{year} von %{user} auf %{site}"
   users_id: "%{user}s ID"
@@ -5101,7 +5229,8 @@ de:
   users_lists: "Listen von %{user}"
   users_profile: "%{user}s Profil"
   users_projects: "Projekte von %{user}"
-  users_year_on_site: "Das Jahr %{year} von %{user} auf %{site}"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{year} %{site} Jahresrückblick von %{user}"
   valid_options_are: Gültige Optionen sind
   value: Wert
   values: Werte
@@ -5109,6 +5238,7 @@ de:
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
   view: Ansehen
   view_all: Alle ansehen
+  view_all_caps: ALLE ANZEIGEN
   view_all_fields: Alle Felder anzeigen
   view_all_flags: Alle Meldungen anzeigen
   view_all_members: Alle Mitglieder ansehen
@@ -5129,6 +5259,12 @@ de:
   view_flags_for_x_html: "Meldungen für %{x} anzeigen"
   view_full_observation: Komplette Beobachtung anzeigen
   view_full_size_photo: Vollbildansicht zeigen
+  view_inaturalist_global_year_in_review: Das globale iNaturalist-Jahr %{year} im Rückblick
+  view_inaturalist_global_year_in_review_caps: DAS GLOBALE INATURALIST-JAHR %{year} IM RÜCKBLICK
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} %{year} Jahresrückblick ansehen'
+  view_site_year_in_review_caps: '%{site} %{year} JAHRESRÜCKBLICK ANSEHEN'
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_leaderboard_from_last_year: Bestenliste vom letzten Jahr anzeigen
@@ -5169,12 +5305,12 @@ de:
   view_taxononomy_details_for_taxon: "Taxonomie-Details für %{taxon} anzeigen"
   view_user_observations: "Beobachtungen von %{user} ansehen"
   view_x: "%{x} anzeigen"
-  view_year_stats_for_site: "Statistiken von %{year} für %{site} anzeigen"
   view_your_dashboard: Dein Dashboard anzeigen
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Dein Dashboard anzeigen</a> für weitere Aktualisierungen"
   view_your_inbox: Inbox anzeigen
   view_your_observations: Deine Beobachtungen ansehen
-  view_your_year_stats: "Deine Statistik für %{year} anzeigen"
+  view_your_personal_year_in_review: "Sieh dir deinen persönlichen Jahresrückblick %{year} an"
+  view_your_personal_year_in_review_caps: "SIEH DIR DEINEN PERSÖNLICHEN JAHRESRÜCKBLICK %{year} AN"
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: "Zeige alle deine Beobachtungen aus %{x}"
   video_tutorials: Videoanleitungen
@@ -5261,7 +5397,10 @@ de:
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
   with: mit
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Zurücknehmen
+  #Loading status while an identification is being withdrawn
   withdrawing: Nehme zurück …
   with_errors: Mit Fehlern
   worldwide: Weltweit
@@ -5301,6 +5440,7 @@ de:
   x_wrote_y_new_posts_html: "%{x} hat %{y} neue Beiträge geschrieben"
   year: Jahr
   year_in_review: "Jahresrückblick von %{year}"
+  year_in_review2: "Jahresrückblick %{year}"
   year_month: Jahr/Monat
   year_on_site: "Das Jahr %{year} auf %{site} "
   yellow: gelb
@@ -5410,6 +5550,7 @@ de:
   you_dont_have_permission_to_edit_those_photos: Du hast keine Berechtigung diese Bilder zu bearbeiten.
   you_faved_this: Du hast dies favorisiert!
   you_have_left_x_project: "Du hast %{project} verlassen"
+  you_have_not_confirmed_your_email_address: Du hast deine E-Mail-Adresse noch nicht bestätigt!
   you_havent_linked_your_inaturalist_google_account: "Du hast Deine Konten bei %{site_name} und Google noch nicht verknüpft"
   you_joined_this_project: Du bist diesem Projekt beigetreten!
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes sein, um das tun zu können
@@ -5524,6 +5665,7 @@ de:
       post_donate_social_media_text: Ich unterstütze iNaturalist weil...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Werde ein monatlicher Unterstützer von iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: WERDE EIN MONATLICHER UNTERSTÜTZER VON INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist ist eine der größten weltweiten Gemeinschaften, die sich dem Entdecken von Artenvielfalt widmen. Vielen Dank, dass du dabei mitmachst!</strong>
@@ -5540,6 +5682,8 @@ de:
           the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
           organization based in the United States of America.
           </p>
+        thank_you_for_being_a_monthly_supporter: Vielen Dank, dass du ein monatlicher Unterstützer bist!
+        thank_you_for_being_a_monthly_supporter_caps: DANKE DAFÜR, DASS DU EIN MONATLICHER UNTERSTÜTZER BIST!
     flags:
       show:
         flaggable_content_desc: |
@@ -5936,7 +6080,6 @@ de:
       show:
         allow_curator_coordinate_access_desc_html: |
           Den Projekt-Kuratoren erlauben, die versteckten Koordinaten für diese Beobachtung einzusehen.
-        ancestor_disagreements_desc: "# Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d.h. \"Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung, dass es diese Art ist\")"
         community_taxon_desc_html: |
           <p class="ui">
            Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
@@ -6460,7 +6603,7 @@ de:
           Bist du sicher, dass du dieses Projekt in ein Sammel-Projekt umwandeln möchtest?
         bioblitz_results_desc_html: |
           <p>
-          Im Gegensatz zu regulären Projekten zeigen Bioblitze Ereignisstatistiken von <em>all</em> Beobachtungen innerhalb eines Ortes und Zeitraums an, nicht nur Beobachtungen, die absichtlich dem Projekt hinzugefügt wurden. Damit wird die Hürde genommen, einem Projekt Beobachtungen hinzuzufügen, nur um die Statistiken in Echtzeit zu steuern. Es ist zu beachten, dass Beobachtungen nicht für den Export oder die Anzeige in verschiedenen Projektansichten verfügbar sind, wie z.B. Mitgliederbeiträge auf der Website oder in Suchen nach Beobachtungen in Projekten in den mobilen Anwendungen, es sei denn, das Projektteam und die Teilnehmer fügen aktiv relevante Beobachtungen hinzu, wie sie es in einem normalen Projekt tun würden.
+          Im Gegensatz zu regulären Projekten zeigen Bioblitze Ereignisstatistiken von <em>allen</em> Beobachtungen innerhalb eines Ortes und Zeitraums an, nicht nur Beobachtungen, die absichtlich dem Projekt hinzugefügt wurden. Damit wird die Hürde genommen, einem Projekt Beobachtungen hinzuzufügen, nur um die Statistiken in Echtzeit zu steuern. Es ist zu beachten, dass Beobachtungen nicht für den Export oder die Anzeige in verschiedenen Projektansichten verfügbar sind, wie z.B. Mitgliederbeiträge auf der Website oder in Suchen nach Beobachtungen in Projekten in den mobilen Anwendungen, es sei denn, das Projektteam und die Teilnehmer fügen aktiv relevante Beobachtungen hinzu, wie sie es in einem normalen Projekt tun würden.
           </p>
           <p>
           Es ist zu beachten, dass diese Art von Projekt zwar Statistiken für Beobachtungen anzeigt, die nicht absichtlich dem Projekt hinzugefügt wurden, es den Kuratoren aber nicht erlaubt, private oder verschleierte Koordinaten für diese Beobachtungen zu sehen oder anzunehmen, dass die Beobachter den Projektbedingungen zugestimmt haben. Wenn du ein Projektkurator bist und Zugang zu privaten Koordinaten benötigst, müssen deine Teilnehmer den Projektbedingungen zustimmen, oder du möchtest, dass Beobachtungen auf die kuratierte Projektcheckliste angerechnet werden, stelle sicher, dass deine Teilnehmer dem Projekt beitreten und ihre Beobachtungen wie in einem normalen Projekt hinzufügen.
@@ -6609,10 +6752,6 @@ de:
         one_time: Einmalig
         percent_growth_in_year: "% Wachstum in %{year}"
         percent_of_total_growth: "% des Gesamtwachstums"
-        publications_desc_html: |
-          Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Alle %{numStudies} Studien anzeigen</a>
         publications_desc_short_html: |
           Für weitere Informationen über die Bedeutung der Zahlen und Farben klicke auf die Blumendiagramme. Impact-Daten und Diagramme mit freundlicher Genehmigung von <a href="https://www.altmetric.com">Altmetric</a>. Informationen zur Datennutzung mit freundlicher Genehmigung unserer Freunde der <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Beobachtungen / Jahr
@@ -6630,6 +6769,7 @@ de:
         species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
         species_per_year_by_date_observed: Nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
+        stats_generation_schedule: Statistiken werden jeden Sonntag im Dezember und am 1. Januar erstellt
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
         sunburst_desc_html: |
@@ -6866,7 +7006,7 @@ de:
           <a href='/users/edit'>die Einstellungen ändern</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
-          Das <a href="%{url}" target="_blank">iNaturalist Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die lokale Biodiversität zu fördern. Sie haben Zugang zu echten Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.
+          Das <a href="%{url}" target="_blank">iNaturalist-Netzwerk</a> ist eine Sammlung von lokalisierten Websites, die vollständig mit der globalen iNaturalist Community verbunden sind. Die Websites der Netzwerke werden von lokalen Institutionen unterstützt, die eine Vereinbarung mit iNaturalist unterzeichnet haben, um die lokale Nutzung zu fördern und die Erhebung der lokalen Biodiversität zu unterstützen. Diese Institutionen erhalten Zugang zu den verborgenen Koordinaten aus ihren Ländern, die automatisch verschleiert werden, um bedrohte Arten zu schützen.
           </p>
           <p>
           Dein Benutzername und dein Passwort funktionieren auf allen Websites, die Teil des iNaturalist Netzwerks sind. Wenn du dich entscheidest, dich einer Netzwerk-Website anzuschließen, haben die lokalen Institutionen, die die einzelnen Websites betreiben, auch Zugang zu deiner E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und zu den echten Koordinaten der Beobachtungen, die verschleiert oder als privat gesetzt sind.
@@ -6882,9 +7022,9 @@ de:
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
         monthly_supporter_desc_html: |
           Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, die von der California Academy of Sciences (United States IRS EIN 94-1156258) verwendet werden, um den gemeinnützigen Betrieb von iNaturalist und den Websites des iNaturalist-Netzwerks zu unterstützen.
-          <a href="%{url}">Klicken Sie hier, um iNaturalist monatlich zu unterstützen</a>.
-          Sobald wir Ihre Zahlung bestätigt haben, können Sie dieses Feld ankreuzen, um diesen Status in Ihrem Profil anzuzeigen.
-          Hinweis: Damit wir Sie als monatlicher Unterstützer bestätigen können, müssen Sie in Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
+          <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
+          Sobald wir deine Zahlung bestätigt haben, kannst du dieses Feld ankreuzen, um diesen Status in deinem Profil anzuzeigen.
+          Hinweis: Damit wir dich als monatlichen Unterstützer bestätigen können, muss in der Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
         muting_desc_html: |
           <p>
           Jemanden stummzuschalten unterbindet es, Benachrichtigungen über dessen Verhalten zu erhalten
@@ -7344,6 +7484,9 @@ de:
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ankündigung
       AssessmentSection: Bewertungsabschnitt
       Atlas: Atlas
       BlockedUser: Blockierter Benutzer
@@ -7363,6 +7506,12 @@ de:
       OauthApplication: Anwendung
       TaxonLink: Taxon-Link
     attributes:
+      announcement:
+        created_at: Erstellt am
+        updated_at: Aktualisiert am
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Website-IDs
       assessment:
         description: Beschreibung
       assessment_section:
@@ -7380,7 +7529,11 @@ de:
         geoprivacy: Geo-Privatsphäre
         iucn: IUCN Äquivalent
       flag:
+        #The reason the item was flagged
         reason: Grund
+        #The person who resolved the flag
+        resolver_id: Geklärt durch
+        #The kind of flag that was made
         flag: Meldung
       guide:
         source_url: Quell-URL
@@ -7465,6 +7618,8 @@ de:
       taxon:
         ancestry: Vorfahren
         auto_description: Automatische Beschreibung
+        #The most conservative, global, IUCN Red List status for this taxon
+        conservation_status: Schutzstatus
         #Datetime this taxon was featured for display on /taxa
         featured_at: Empfohlen am
         #ID of the iconic taxon this taxon belongs to
@@ -7494,6 +7649,10 @@ de:
         position: Position
         source_url: Quellen-URL
         source_identifier: Quellbezeichner
+      taxon_link:
+        url: URL
+        #Taxon this link is associated with
+        taxon: Taxon
       user:
         email: E-Mail
         login: Benutzername

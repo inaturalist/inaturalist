@@ -123,7 +123,9 @@ class SiteDataExporter
     if dbconfig[:username]
       @psql_cmd += " -U #{dbconfig[:username]}"
     end
-    if dbconfig[:password]
+    # If this is a development env, really make sure the password gets passed
+    # in. In production this should work without a password
+    if dbconfig[:password] && !Rails.env.production?
       @psql_cmd = "PGPASSWORD=#{dbconfig[:password]} #{@psql_cmd}"
     end
     @max_obs_id = options[:max_obs_id] || Observation.calculate( :maximum, :id ) || 0
@@ -388,12 +390,6 @@ class SiteDataExporter
     end
 
     Parallel.each_with_index( partitions, in_processes: partitions.size ) do | partition, parition_i |
-      ActiveRecord::Base.connection.enable_replica
-      # Make sure Makara releases context and performs subsequent queries
-      # against the replica. It may be stuck on the primary due to previews
-      # requests to the primary. Not entirely sure if the context gets
-      # preserved when Parallel forks a subprocess
-      Makara::Context.release_all
       partition_filters = filters.dup
       partition_filters << {
         range: { id: { gte: partition.min, lte: partition.max } }
@@ -416,7 +412,13 @@ class SiteDataExporter
           msg += " batch_filters: #{batch_filters}"
           puts msg
         end
-        observations = try_and_try_again( [Patron::TimeoutError, Faraday::TimeoutError] ) do
+        observations = try_and_try_again(
+          [
+            Patron::TimeoutError,
+            Faraday::TimeoutError,
+            Elasticsearch::Transport::Transport::Errors::TooManyRequests
+          ]
+        ) do
           Observation.elastic_paginate( base_es_params.merge( filters: batch_filters ) )
         end
         if observations.size.zero?
@@ -488,7 +490,6 @@ class SiteDataExporter
           end
         end
       end
-      ActiveRecord::Base.connection.disable_replica
     end
     csv_path
   end
