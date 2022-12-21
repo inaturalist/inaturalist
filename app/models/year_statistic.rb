@@ -1751,24 +1751,37 @@ class YearStatistic < ApplicationRecord
 
   def self.github_pull_requests( year )
     year_pulls = []
-    page = 1
-    loop do
-      url = "https://api.github.com/repos/inaturalist/inaturalist/pulls?state=closed&page=#{page}"
-      puts "Getting #{url}"
-      pulls = JSON.parse( RestClient.get( url ) )
-      page_pulls = pulls.select do | pull |
-        pull["merged_at"] &&
-          !%w(dependabot[bot]).include?( pull["user"]["login"] ) &&
-          pull["author_association"] != "MEMBER" &&
-          Date.parse( pull["merged_at"] ).year == year
-      end
-      puts "Date.parse( pulls.last['merged_at'] ): #{Date.parse( pulls.last["merged_at"] )}"
-      if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
-        break
-      end
+    repos = %w(
+      inaturalist
+      iNaturalistAndroid
+      iNaturalistAPI
+      INaturalistIOS
+      inaturalistjs
+      iNaturalistReactNative
+    )
+    repos.each do | repo |
+      page = 1
+      loop do
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100"
+        puts "Getting #{url}"
+        pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
+          JSON.parse( RestClient.get( url ) )
+        end
+        page_pulls = ( pulls || [] ).select do | pull |
+          pull["merged_at"] &&
+            !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
+            # For some reason the MEMBER and COLLABOTOR filters don't always
+            # filter out everyone on staff...
+            !%w(dependabot[bot] meru20 carrieseltzer).include?( pull["user"]["login"] ) &&
+            Date.parse( pull["merged_at"] ).year == year
+        end
+        if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
+          break
+        end
 
-      year_pulls += page_pulls
-      page += 1
+        year_pulls += page_pulls
+        page += 1
+      end
     end
     year_pulls.map do | pull |
       new_pull = pull.slice( "title", "merged_at", "html_url" )
