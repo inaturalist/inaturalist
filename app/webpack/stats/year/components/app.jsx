@@ -118,7 +118,7 @@ const App = ( {
                 && ( !site || site.id === DEFAULT_SITE_ID )
                 // Hide if header isn't translated
                 && (
-                  I18n.locale === "en"
+                  I18n.locale.match( /^en/ )
                   || I18n.t( "code_contributors" ) !== I18n.t( "code_contributors", { locale: "en" } )
                 )
                 && (
