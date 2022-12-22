@@ -20,6 +20,7 @@ import Donate from "./donate";
 import DonateBanner from "./donate_banner";
 import Donor from "./donor";
 import Translators from "./translators";
+import CodeContributors from "./code_contributors";
 import { isTouchDevice } from "../util";
 
 const App = ( {
@@ -108,6 +109,20 @@ const App = ( {
                     data={data.translators}
                     siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
                   />
+                )
+              }
+              {
+                // Need data
+                data.pull_requests
+                // Only on global YIR
+                && ( !site || site.id === DEFAULT_SITE_ID )
+                // Hide if header isn't translated
+                && (
+                  I18n.locale.match( /^en/ )
+                  || I18n.t( "code_contributors" ) !== I18n.t( "code_contributors", { locale: "en" } )
+                )
+                && (
+                  <CodeContributors data={data.pull_requests} />
                 )
               }
               {
