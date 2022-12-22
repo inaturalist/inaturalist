@@ -1567,4 +1567,43 @@ $tip-opacity: 1;
     text-decoration: underline;
     color: $inat-green;
   }
+
+  #app {
+    .MonthlySupporters {
+      $monthly-supporter-dim: 80px;
+      margin-bottom: 20px;
+      .supporters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+
+        a {
+          color: $inat-green;
+        }
+        a:hover, a:active, a:focus {
+          color: lighten( $inat-green, 10% );
+        }
+      }
+
+      .monthly-supporter {
+        text-align: center;
+        width: $monthly-supporter-dim;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+      .UserImage {
+        width: $monthly-supporter-dim;
+        height: $monthly-supporter-dim;
+        margin-bottom: 10px;
+      }
+      .userlink {
+        display: block;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
 }
