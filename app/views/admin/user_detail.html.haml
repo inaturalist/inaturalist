@@ -322,9 +322,9 @@
       = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
       = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
 
-      - unless @display_user.confirmed?
+      - if !@display_user.confirmed? || @display_user.unconfirmed_email?
         = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,
-          data: { confirm: "Are you sure #{@display_user.email} is actually this user's email address?" },
+          data: { confirm: "Are you sure #{@display_user.unconfirmed_email || @display_user.email} is actually this user's email address?" },
           class: "btn btn-block btn-warning",
           title: "Confirm the user's email or unconfirmed_email"
       - if @display_user.confirmation_sent_at || @display_user.confirmed?

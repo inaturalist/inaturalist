@@ -105,7 +105,8 @@ class AdminController < ApplicationController
       User.where( id: user.id ).update_all(
         confirmation_token: nil,
         confirmation_sent_at: nil,
-        confirmed_at: nil
+        confirmed_at: nil,
+        unconfirmed_email: nil
       )
     end
     if params[:user]

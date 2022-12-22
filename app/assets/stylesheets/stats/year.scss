@@ -87,6 +87,15 @@ $tip-opacity: 1;
   }
 }
 
+@mixin green-links {
+  a {
+    color: $inat-green;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten( $inat-green, 10% );
+  }
+}
+
 #bodywrapper:after {
   height: 0px;
 }
@@ -214,6 +223,10 @@ $tip-opacity: 1;
       display: block;
       border-top: 1px solid #999;
       opacity: 0.5;
+    }
+
+    p.text-muted {
+      @include green-links;
     }
 
     .btn-bordered,
@@ -709,12 +722,6 @@ $tip-opacity: 1;
   }
 
   .Publications {
-    a {
-      color: $inat-green;
-    }
-    a:hover, a:active, a:focus {
-      color: lighten( $inat-green, 10% );
-    }
     .publication {
       display: flex;
       flex-direction: column;
@@ -1132,12 +1139,6 @@ $tip-opacity: 1;
       }
       h4 {
         margin-bottom: 0;
-      }
-    }
-    p {
-      a,
-      a:hover {
-        color: $inat-green;
       }
     }
     .btn-donate {
@@ -1566,6 +1567,27 @@ $tip-opacity: 1;
     margin-bottom: 20px;
     text-decoration: underline;
     color: $inat-green;
+  }
+
+  #app {
+    .CodeContributors {
+      li {
+        @include green-links;
+      }
+
+      .UserImage {
+        width: 64px;
+        height: 64px;
+        border-width: 3px;
+      }
+      .flex-row > :last-child {
+        width: 100%;
+      }
+      h4 {
+        font-size: 14px;
+        margin-top: 0;
+      }
+    }
   }
 
   #app {

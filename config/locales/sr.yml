@@ -176,6 +176,8 @@ sr:
   about_place: "O %{place}"
   about_places: O mestima
   about_taxon_ranges: O opsezima taksona
+  about_taxon_ranges_desc: |
+    Opsezi taksona označavaju globalnu rasprostranjenost taksona. Opseg taksona obično potiče sa IUCN crvene liste.
   about_the_network: O mreži
   about_this_bioblitz: O ovom bioblitz-u
   about_this_map: O ovoj mapi
@@ -452,6 +454,7 @@ sr:
   already_have_an_account_log_in_html: Već ste registrovani? <strong>Ulogujte se</strong>
   amphibians: vodozemci
   analyze_ids: Analiziraj ID-jeve
+  ancestor_taxon: Takson predak
   and: i
   and_other_taxa: "&amp; drugi taksoni"
   android: Android
@@ -466,6 +469,26 @@ sr:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any: svi
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: Svi
+  #Label for an option to show content from any date
+  any_date: Svi
+  #Label for an option to show content with any establishment means
+  any_establishment: Sve
+  #Label for an option to show content with any license
+  any_license: Sve
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Sve
+  #Label for an option to show content from any project
+  any_project: Sve
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Sve
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Sve
   #Label for an option to show/include content by any user
   any_user: Bilo koji
   anyone: Bilo ko
@@ -482,9 +505,13 @@ sr:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Prijavi se
+  apply_to_create_applications_title: Prijavi se da kreiraš aplikacije
   apply_to_selected: Primeni na označeno
+  apply_captive_cultivated: "Primeni u zatočeništvu / kultivisano"
+  apply_fields: Primeni polja
   apply_geoprivacy: Primeni geoprivatnost
   apply_darr: "Primeni &darr;"
+  apply_these_settings_to_all: Primeni ova podešavanja na sve opservacije ispod.
   appropriate?: Prikladno?
   arachnids: arahnidi
   archives: Arhivi
@@ -499,6 +526,21 @@ sr:
   are_you_sure_remove_relationship: Da li sigurno želiš da ukloniš ovaj odnos? Otpratićeš ovu osobu i povući pristup tvojim skrivenim koordinatama ako si odobrio pristup.
   are_you_sure_remove_taxon_from_list: "Da li sigurno želiš da ukloniš ovaj takson sa liste?"
   are_you_sure_want_delete_taxon: "Da li sigurno želiš da izbrišeš ovaj takson?"
+  are_you_sure_want_delete_taxon_descendant_taxa: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima taksone potomke.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima taksone potomke i identifikacije.
+  are_you_sure_want_delete_taxon_descendant_taxa_identifications_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima taksone potomke, identifikacije i opservacije.
+  are_you_sure_want_delete_taxon_descendant_taxa_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima taksone potomke i opservacije.
+  are_you_sure_want_delete_taxon_identifications: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima identifikacije.
+  are_you_sure_want_delete_taxon_identifications_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima identifikacije i opservacije.
+  are_you_sure_want_delete_taxon_observations: |
+    Da li sigurno želiš da izbrišeš ovaj takson? Ima opservacije.
+  are_you_sure_want_delete_taxon_link: Da li sigurno želiš da izbrišeš ovaj link taksona?
   are_you_sure_want_delete_this_name: Da li sigurno želiš da ukloniš ovo ime?
   are_you_sure_want_delete_this_range: Da li sigurno želiš da ukloniš ovaj opseg?
   are_you_sure_you_want_to_commit_this_change: Da li sigurno želiš potvrdiš ovu promenu? Ne može se povratiti
@@ -509,6 +551,9 @@ sr:
   are_you_sure_you_want_to_delete_this_taxon_change: Da li sigurno želiš da izbrišeš ovu promenu taksona?
   are_you_sure_you_want_to_remove_all_tags: Da li sigurno želiš da ukloniš sve oznake?
   are_you_sure_you_want_to_remove_from_project: Da li sigurno želiš da ukloniš %{user} iz ovog projekta?
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Da li sigurno želiš da ukloniš ove %{x} taksone?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Da li sigurno želiš da ukloniš ovu opservaciju iz %{project}?
   associated_observations: Povezane opservacije
   associated_taxa: Povezani taksoni
   attention: Pažnja
@@ -555,6 +600,7 @@ sr:
   back_to_taxon_changes: "Nazad na promene taksona"
   back_to_users_calendar: "Nazad na %{user} kalendar"
   back_to_users_lists: "Nazad na %{user} liste"
+  back_to_viewing: "Nazad na <i>%{taxon}</i>"
   back_to_x: "Nazad na %{noun}"
   back_to_x_history: "Nazad na %{x} istoriju"
   back_to_x_journal: "Nazad na %{user} dnevnik"
@@ -574,6 +620,7 @@ sr:
   be_the_first_to_fave_this_observation: Prvi/va dodaj ovu opservaciju u favorite!
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
+  bg_color: BG boja
   bio: Biografija
   bio_description: Ispričaj nešto o sebi drugim iNaturalist članovima!
   bioblitz: Bioblitz
@@ -581,8 +628,12 @@ sr:
   birthday: Rođendan
   black: crna
   blocked_users: Blokirani korisnici
+  blog_widget: Blog widget
   blue: plavo
   blue_butterfly_etc: "plavo, leptir itd."
+  body: Sadržaj
+  #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
+  bold_label_colon_value_html: "<strong>%{label}:</strong> %{value}"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: podebljan tekst
   breadcrumbs: Putokaz
@@ -594,9 +645,13 @@ sr:
   browse_people: Pretraži članove
   browse_projects: Pretraži projekte
   browse_species_that_occur_near_this_observation: Pretraži vrste koje se sreću u blizini ove opservacije.
+  by_user: "korisnika %{user}"
   calendar: Kalendar
+  calendars_only_show_x_observations_at_time: Kalendari prikazuju samo %{x} opservacija odjednom
+  callback_url: Povratni URL
   cancel: Otkaži
   cant_edit_or_delete_hidden_content: Ne možeš izmeniti ni izbrisati sadržaj koji su sakrili kustosi sajta
+  cant_merge_a_taxon_with_itself: Takson se ne može spojiti sa samim sobom.
   captive: U zatočeništvu
   captive_cultivated: U zatočeništvu / kultivisano
   captive_observations: Opservacije u zatočeništvu
@@ -608,6 +663,9 @@ sr:
   change_admin: Promeni administratora
   #Button to change the cover (or banner) image for a project
   change_cover: Izmeni naslovnu fotografiju
+  change_descriptions:
+    split: Stari takson podeljen u više novih taksona
+    merge: Nekoliko starih taksona sjedinjeno u jedan takson
   change_geoprivacy: 'Promeni geoprivatnost'
   change_group: Promeni grupu
   change_icon: Promeni ikonicu
@@ -629,6 +687,7 @@ sr:
   change_your_password: Promeni lozinku
   #Plural noun, as in changes to a taxon record over time
   changes: Izmene
+  changing_the_geoprivacy: 'Promenom geoprivatnosti menjaš kako drugi ljudi vide lokaciju tvoje opservacije.'
   check_this_box_if_html: |
     Označi ovo polje ako želiš da primeniš <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
@@ -644,6 +703,7 @@ sr:
   choose_tags: Izaberi oznake
   choose_taxon: Izaberi takson
   cid_d_to_genus: IDZ do nivoa roda
+  citation: Citiranje
   classification: Klasifikacija
   clear: ukloni
   clear_filters: Ukloni filtere
@@ -654,6 +714,7 @@ sr:
   colors: Boje
   columns: Kolone
   combine: Kombinuj
+  comma_separated_please: Razdvojeni zarezom
   #Noun, used to label a comment or a comment field in a form
   comment: komentar
   #Verb, generally a label on a button that allows the user to add a comment
@@ -705,6 +766,10 @@ sr:
   confirm_new_password: Potvrdi novu lozinku
   confirm_now: Potvrdi sada
   confirm_your_info: Potvrdi svoje podatke
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Imejl za potvrdu poslat %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Potvrđeno %{date}
   confirming_ids: Potvrdni ID-jevi
   confirming_ids_description: Ako isključiš ovu opciju, nećeš dobijati obaveštenja o ID-jevima koji se poklapaju sa tvojim.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1077,6 +1142,7 @@ sr:
   find_a_post: Nađi objavu
   find_a_place: Pronađi mesto
   find_guides: Pronađi vodiče
+  find_posts_for: "Nađi rubrike u: %{journal_name}"
   find_new_place_to_explore: Istraži novo mesto!
   find_observations: Pronađi opservacije
   find_photos: Pronađi slike
@@ -1551,6 +1617,7 @@ sr:
   manage_all_your_subscriptions: Upravljaj svojim praćenjima
   manage_your_projects: Upravljaj tvojim projektima
   manage_your_relationships: Upravljaj tvojim odnosima
+  managers_can_do: Menadžeri imaju ista ovlašćenja kao kustosi ali i uređivanje podešavanja projekta i kreiranje rubrika dnevnika projekta.
   managing_projects: Upravljane projektima
   map: Mapa
   map_legend: Legenda mape
@@ -2489,15 +2556,20 @@ sr:
   powered_by_inaturalist_open_source_software_html: 'Pokreće <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist softver otvorenog koda</a>'
   press: Štampa
   preview: Pregled
+  previous_date_short: Prethodno
+  prev: Prethodno
   previous_observation: Prethodna opservacija
   previous_page: Prethodna strana
   previous_page_short: Prethodna
   previous_photo: Prethodna fotografija
+  previous_post_short: Prethodno
   previous_tab: Prethodna kartica
+  previous_taxon_short: Prethodno
   print_verb: Štampaj
   privacy: Privatnost
   private: privatno
   private_: Privatno
+  probably_spam: Verovatno nepoželjno
   proceed: Nastavi
   processing: Obrada
   processing3p: "Obrada..."
@@ -2509,6 +2581,7 @@ sr:
     few: Administratori projekta
     other: Administratori projekta
   project_cover: Naslovna fotografija projekta
+  project_curator_id: ID kustosa projekta
   project_curators: Kustosi projekta
   project_group_label: Grupa
   project_home: Početna strana projekta
@@ -2674,6 +2747,7 @@ sr:
   ranks_lowercase_subspecies: podvrsta
   ranges: Opsezi
   ray_finned_fishes: zrakoperke
+  re_order_photos: "Presloži fotografije &raquo;"
   read_more: Pročitaj više
   read_our_getting_started_guide: pročitaj naš Vodič za početnike
   real_time_discussions: Diskusije u realnom vremenu
@@ -2681,6 +2755,7 @@ sr:
   recaptcha_verification_failed: reCAPTCHA verifikacija neuspela
   receive_email_notifications: Primaj imejl obaveštenja
   receive_email_notifications_description: "Ako ovo isključiš, nećeš više dobijati imejl notifikacije od %{site_name}"
+  receive_project_journal_notifications?: Primaj obaveštenja o dneviku projekta?
   receive_updates_from_this_project: Primaj obaveštenja o ovom projektu
   recent: Nedavno
   recent_evidence_of_organism: Nedavni dokaz prisustva organizma
@@ -2702,6 +2777,7 @@ sr:
   refreshing: osvežava se
   register_for_this_event_at_x_html: "Prijavi se za ovaj događaj %{x}"
   reject?: Odbaci?
+  relationship_x: "Odnos: %{relationship}"
   relationships:
     match: poklapanje
     error: greška
@@ -2712,6 +2788,7 @@ sr:
   remove_conservation_status: Ukloni status ugroženosti
   remove_from: Ukloni iz
   remove_curator: Ukloni kustosa
+  remove_from_featured: Ukloni iz istaknutih
   remove_from_guide: Ukloni iz vodiča
   remove_from_list: Ukloni sa liste
   remove_from_project: Ukloni iz projekta
@@ -2732,6 +2809,7 @@ sr:
   removed: Uklonjeno
   removed_project_user: Uklonjeni korisnici projekta
   removing: "Uklanjanje..."
+  reorder_by_taxonomy: Presloži po taksonomiji
   replace_parentesis: (zameni)
   reply: Odgovori
   reptiles: reptili
@@ -2752,6 +2830,7 @@ sr:
   reset_brightness: Resetuj svetlinu
   reset_search_filters: Resetuj filtere pretrage
   resolve: Reši
+  resolve_this_flag: Reši ovu pritužbu
   resolved: Rešeno
   resolved_by: Rešeno od strane
   resolved_by_user_on_date_html: Rešeno od strane %{user} %{date}
@@ -2765,6 +2844,7 @@ sr:
   #Application is a third-party app or service the user has authorized to
   #access their iNat account
   revoke_external_application: "opozovi %{site_name}?"
+  rg_observations: IN opservacije
   role: Uloga
   rotate_left: Rotiraj ulevo
   rotate_right: Rotiraj udesno
@@ -2786,6 +2866,8 @@ sr:
   save_changes: Sačuvaj izmene
   save_comment: Sačuvaj komentar
   save_draft: Sačuvaj nacrt
+  save_fields: Sačuvaj polja
+  save_flag: Sačuvaj pritužbu
   save_identification: Sačuvaj identifikaciju
   save_observation: Sačuvaj opservaciju
   save_photos: Sačuvaj fotografije
@@ -2830,8 +2912,10 @@ sr:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "Tvoje %{noun}"
+  see_something_wrong_with_taxon: Neto nije u redu sa ovim taksonom? Javi kustosima.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
+  seen_nearby: Viđeni u blizini
   select: Izaberi
   select_all: Izaberi sve
   select_at_least_one: Označi bar jedno
@@ -2844,14 +2928,17 @@ sr:
   selected_taxon: Izabran takson
   select_this_taxon: Izaberi takson
   send: pošalji
+  send_confirmation_email: Pošalji imejl za potvrdu
   send_me_reset_password_instructions: Pošalji mi uputstvo za resetovanje lozinke
   sending: Slanje...
   #Label for messages you've sent
   sent: Poslate
+  set_license: Podesi licencu
   settings: Podešavanja
   share: Podeli
   share_caps: PODELI
   share_colon: "Podeli:"
+  short_code_for_this_place: Skraćenica sa ovo mesto, npr. SAD za Sjedinjene Američke Države
   show: Prikaži
   show_active_and_inactive_taxa: Prikaži aktivne i neaktivne taksone
   show_hidden_content: Prikaži sakriveni sadržaj
@@ -2873,6 +2960,7 @@ sr:
   sign_in: Prijavi se
   #Button to sign in to iNat with your Apple account
   sign_in_with_apple: Prijavi se pomoću Apple-a
+  sign_in_with_provider: "Uloguj se sa %{provider}"
   sign_in_with_google: Prijavi se putem Google-a
   sign_out: Odjavi se
   sign_up: Registruj se
@@ -2981,6 +3069,12 @@ sr:
   submitted: Dodato
   subscribe_to_a_taxon: Prati takson
   subscribe_to_a_place: Prati mesto
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Prati%{tag_end} komentare na ovoj pritužbi"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Prati%{tag_end} komentare na ovoj objavi"
+  subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}Prati%{tag_end} komentare na ovoj zameni taksona"
+  subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}Prati%{tag_end} komentare na ovom spoju taksona"
+  subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}Prati%{tag_end} komentare na ovoj podeli taksona"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}Prati%{tag_end} komentare na ovom poništavanju taksona"
   subscribe_to_observations_from_this_place_html: <a>Prati</a> opservacije iz ovog mesta
   subscribe_to_observations_in_a_place: Prati sve opservacije dodate u okviru ovog mesta. Takođe možeš dodati opcioni filter taksona (npr. 'škorpije iz Teksasa').
   subscribe_to_places_help: |
@@ -3089,6 +3183,7 @@ sr:
   taxon_colors: Boje taksona
   taxon_curators: Kustosi taksona
   taxon_framework_deviations_with_count_html: "Devijacije: %{count}"
+  taxon_merge: spoj taksona
   taxon_name: Naziv taksona
   taxon_name_must_match_an_existing_taxon_in_our_database: Naziv taksona se mora poklapati sa postojećim taksonom u našoj bazi podataka
   taxon_observed_by_html: |
@@ -3096,6 +3191,9 @@ sr:
   taxon_observed_by_user: "%{taxon} zabeležio/la %{user}"
   taxon_photos_updated: Fotografije taksona ažurirane!
   taxon_range: Opseg taksona
+  taxon_range_iucn_relationship_is_this_an_iucn_red_list_range_map: Da li je ovo mapa opsega sa IUCN crvene liste? Ako nije, zašto?
+  taxon_range_iucn_relationship_this_is_an_iucn_red_list_range_map: Ovo je mapa opsega sa IUCN crvene liste
+  taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: Ovo nije mapa opsega sa IUCN crvene liste zato što ovaj takson nije na IUCN crvenoj listi
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: Mapa za ovaj takson na IUCN crvenoj listi nije odgovarajuća
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ovaj takson nije na IUCN crvenoj listi
   taxon_range_guidelines_learn_more_about_taxon_ranges: Saznaj više o opsezima taksona
@@ -3558,16 +3656,23 @@ sr:
     one: "%{x} od %{count} zabeleženo"
     few: "%{x} od %{count} zabeleženo"
     other: "%{x} od %{count} zabeleženo"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{x} od %{y} ljudi (preko 2/3) se slaže"
   x_project_journal: "%{project} %{name}"
+  x_project_stats: "Statistika %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} ti je poslao/la novu poruku na %{y}: "
   x_wrote_a_new_post_html: "%{x} je napisao/la novu objavu"
+  x_wrote_y_new_posts_html: "%{x} je napisao/la %{y} novih objava"
   year: Godina
+  year_in_review: "Pregled godine %{year}"
   year_in_review2: "Pregled godine %{year}"
   year_month: godina/mesec
   year_on_site: "Godina na %{site} %{year}"
   yellow: žuta
   'yes': "Da"
   yes_find_them!: "Da, pronađi ih!"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates
+  yes_for_any_of_my_observations: "Da, za sve moje opservacije"
   yes_i_want_to_join: Da, želim da se pridružim
   yes_license_my_childs_observations: Da, licenciraj fotografije, zvukove i opservacije mog deteta tako da naučnici mogu da ih koriste (preporučeno)
   yes_license_my_observations_so_scientists_can_use: Da, licenciraj moje fotografije, zvukove i opservacije tako da naučnici mogu da ih koriste (preporučeno)
@@ -3848,6 +3953,8 @@ sr:
         user_login: Korisničko ime posmatrača
         url: URL opservacije
         image_url: URL podrazumevane slike
+        positioning_method: Kako su koordinate određene
+        positioning_device: Uređaj korišćen za određivanje koordinata
       identify:
         review_all_tooltip: "Označi sve opservacije na strani kao pregledane"
         you_reviewed_message: "Pregledao/la si %{reviewed} od %{pageTotal} opservacija na ovoj strani od ukupno %{total} opservacija"
@@ -3956,6 +4063,7 @@ sr:
         new_place_desc_html: |
           Pretraži naša <a href="%{places_url}" target="_blank">postojeća mesta</a> i proveri da li si tačno uneo/la naziv mesta. Ako i dalje ne možeš da nađeš mesto koje tražiš, možeš <a href="%{new_place_url}" target="_blank">kreirati novo mesto</a>, ali molimo te da budeš siguran/na da mesto nije već uneto da bi se izbeglo dupliranje.
         end_time_desc: "Vreme završetka tvog bioblitz-a. Mora biti manje od godinu dana od početka"
+        icon_desc: "Biće opsečena u kvadrat"
         it_looks_like_this_project_can_be_converted: |
           Izgleda da ovaj projekat može biti konvertovan u novi <a href="%{url}">Pretražni projekat</a>.
         no_curators: |
@@ -3968,11 +4076,16 @@ sr:
           identified: biti identifikovana
           in_taxon: biti u taksonu
           observed_in_place: biti zabeležena u mestu
+          on_list: biti taksona sa projektne liste
           verifiable: biti argumentovana
           wild: biti u divljini/naturalizovana
+        start_time_desc: "Početak bioblitz-a. Format: DD-MM-YYYYThh:mm:ss±hh:mm"
         submission_models:
           any: bilo ko
           curators: kustosi projekta
+      join:
+        invite_only_description: |
+          Članstvo u ovom projektu je moguće samo po pozivu. Ako želiš da se pridružiš, kontaktiraj nekog od kustosa ispod i zatraži poziv.
       new:
         an_umbrella_project_can_be_used_to: |
           Skupni projekat se može upotrebiti da se uporede statistike 2 ili više pretražnih ili tradicionalnih projekata. Projekat mora već postojati da bi se dodao u skupni projekat. Možeš dodati stotine projekata u jednu skupinu. Skupni projekti ne mogu sadržati druge skupne projekte.
@@ -3998,17 +4111,27 @@ sr:
           Napomena: Ako ne označiš takson, mesto ili člana, svi će biti uključeni po podrazumevanim podešavanjima.
         or_drag_and_drop: (ili prevuci i spusti)
         project_background_color: Pozadina rezimea projekta
+        project_background_color_help: Izaberi boju koja je dovoljno tamna da bi beli tekst preko bio vidljiv.
         project_banner: Naslovna slika projekta (PNG ili JPG)
+        project_banner_help: Opciona naslovna slika. Idealne dimenzije bi bile 760px x 320px.
         project_details: Detalji projekta
         project_icon: Ikonica projekta (PNG, JPG, ili GIF)
+        project_icon_help: |
+          Opciona ikonica. Minimum 72px x 72px i biće opsečena u kvadrat.
         project_name: Naziv projekta
         project_summary: Rezime projekta
+        project_summary_placeholder: Istraži i prati ptice parka Golden Gate...
         traditional_projects_cannot_be_copied: Tradicionalni projekti ne mogu biti kopirani
         umbrella_project_features: "Odlike skupnog projekta:"
+        users_can_follow_your_project: Korisnici mogu pratiti tvoj projekat radi obaveštenja putem rubrika dnevnika
+        use_this_link_to_create_html: |
+          Klikni <a href="%{url}">ovde</a> da kreiraš tradicionalni projekat.
         visual_comparison_of_data_among: Vizuelno poređenje podataka projekata u okviru skupine projekata
         we_have_redesigned_projects: |
           Projekti su osmišljeni sa ciljem da okupe sve opservacije na osnovu parametara koje definišeš kao što su mesta, taksoni, korisnici, kvalitet i datumi. Izaberi jedan od 2 tipa: pretražni ili skupni projekat, koji imaju neke zajedničke odlike:
         welcome_to_projects: Dobrodošli u projekte!
+        you_can_learn_more_html: |
+          Saznaj više o upravljanju projektima <a href="https://www.inaturalist.org/pages/managing-projects">ovde</a> ili pročitaj istoriju projekata na <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">našem blogu</a>.
         errors:
           name_is_required: Naziv projekta je obavezan
           name_less_than_100_characters: Naziv projekta mora imat manje od 100 karaktera
@@ -4016,35 +4139,59 @@ sr:
           cannot_have_more_than_x_project_rules: Ne može imati više od %{x} pravila projekta
           summary_is_required: Rezime projekta je obavezan
       project_user_curator_coordinate_access_labels:
+        any: Da, bez obzira ko dodaje opservaciju u projekat.
         none: Br.
+      curator_coordinate_access_label: |
+        Da li želiš da tvoje privatne/prikrivene koordinate budu vidljive kustosima projekta?
+      project_terms_desc_html: |
+        Dozvoli kustosima projekta da koriste tvoje opservacije u skladu sa <a href="%{url}">uslovima projekta</a>.
       show:
         are_you_sure_you_want_to_convert: |
           Da li sigurno želiš da pretvoriš ovaj projekat u pretražni projekat
         click_here_to_convert_this_project: |
           Klikni ovde da pretvoriš ovaj projekat u pretražni projekat.
+        no_journal_blurb_html: |
+          <p>
+          Tvoj dnevnik projekta ti omogućava da komuniciraš sa članovima projekta. Može se koristiti za pravljenje objava, definisanje prioriteta ili diskusiju o pronalascima projekta.
+          </p>
+          <p>
+          Kako bi počeo/la, <a href="%{url}" class="readmore">kreiraj objavu</a>
+          </p>
         make_sure_you_have_read_about_the_differences: |
           Da bi shvati razliku, pročitaj našu <a href="%{url}" target="_blank">blog objavu o pretražnim projektima</a>.
         this_is_a_preview: |
           Ovo je prikaz kako bi ovaj projekat izgledao da je pretražni.
+      updates_desc: |
+        Primaj obaveštenja o ovom projektu na svojoj kontrolnoj tabli i u dnevnim imejlovima o novostima.
     search:
       index:
         no_taxa_options: "Imaš nekoliko opcija"
+        no_taxa_add_a_flag_desc: |
+          Npr. rod koji sadrži vrstu. Trebalo bi da neki kustos doda takson ako ima vremena i ako se to poklapa sa našom taksonomskom politikom.
         no_taxa_forum: Kontaktiraj forum
         no_taxa_forum_desc_html: |
           Mnogi kustosi volonteri prate objave na %{link_start_tag}Forumu%{link_end_tag}.
     shared:
       blocked:
         youve_been_blocked: Blokiran/a si
+        youve_been_blocked_desc: |
+          Vlasnik ovog resursa te je blokirao i više ne možeš da komuniciraš sa njim/njom. Većina interaktivnih opcija na ovoj strani neće raditi.
         youve_blocked: Blokirao/la si ovu osobu
+        youve_blocked_desc: |
+          Blokirao/la si vlasnika ovog resursa i više ne možeš da komuniciraš sa njim/njom. Većina interaktivnih opcija na ovoj strani neće raditi.
       spam:
         this_has_been_flagged_as_spam: Ovo je označeno kao nepoželjan sadržaj
       not_found:
         sorry_that_doesnt_exist: Ups, to ne postoji!
     stats:
       index:
+        active_desc: Dodao/la ID, opservaciju, komentar ili objavu u prethodnih 30 dana
         android_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist Android aplikacije</a>
+        avg_ttcid: Prosečno VDIDZ
+        avg_ttid: Prosečno VDID
         iphone_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist iPhone aplikacije</a>
         new_users_desc: Registrovani do danas
+        obs_1_day: "Ops (1 dan)"
         obs_1_day_desc: "Opservacije kreirane u jednom danu"
         obs_cid_d_desc: Kreirane u prethodnih 7 dana i imaju ID zajednice
         #Short for "observations community-identified to genus"
@@ -4218,6 +4365,8 @@ sr:
           Detalji o uređaju kao što je proizvođač i model mobilnog telefona
         prefers_no_tracking_label_desc_limits: |
           Imaj u vidu da se ova opcija odnosi samo na analitiku i podatke o kvarovima koje mi direktno šaljemo ovim kompanijama. Sve iNaturalist servere hostuje Microsoft, sve iNaturalist slike hostuje Amazon i skoro sve mape su od Google-a, što znači da svaki put kada gledaš opservaciju na iNaturalist-u, povezuješ se na servise omogućene od strane ovih kompanija i tvoja IP adresa im je izložena (u iPhone aplikaciji koristimo Apple-ove mape). iNaturalist verovatno ne bi postojao bez servisa koje ove kompanije pružaju i iako možemo da ograničimo količinu i vrstu podataka koju ti deliš sa njima prilikom korišćenja iNaturalist-a, ne možemo potpuno prekinuti tok podataka.
+        project_settings_desc: |
+          Imaj u vidu da ovim ne daješ projektima dozvolu da ti šalju obaveštenja ili pristup tvojim skrivenim koordinatama. Moraš se pridružiti projektima da bi im omogućio te dozvole ili samo određene dozvole.
         same_day_geoprivacy_protection: Istodnevna zaštita geoprivatnosti
         this_only_applies_to_traditional_projects: |
           Ovo se samo odnosi na tradicionalne projekte. Ne možeš isključiti opservacije iz pretražnih i skupnih projekata koji su u suštini samo sačuvane pretrage. Pročitaj više <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ovde</a>.
@@ -4291,6 +4440,9 @@ sr:
         who_uses_site_name: "Ko koristi %{site_name}?"
         what_are_you_waiting_for: Pa, šta čekaš?
         join_today: Pridruži se danas
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Sačuvaj i uredi da bi dodao/la priloge
   date:
     abbr_day_names:
       - Ned
@@ -4365,6 +4517,18 @@ sr:
         one: oko %{count} sat
         few: oko %{count} sata
         other: oko %{count} sati
+      about_x_months:
+        one: oko %{count} mesec
+        few: oko %{count} meseca
+        other: oko %{count} meseci
+      about_x_years:
+        one: oko %{count} godinu
+        few: oko %{count} godine
+        other: oko %{count} godina
+      almost_x_years:
+        one: skoro %{count} godinu
+        few: skoro %{count} godine
+        other: skoro %{count} godina
       half_a_minute: pola minuta
       less_than_x_minutes:
         one: manje od %{count} minuta
@@ -4374,6 +4538,10 @@ sr:
         one: manje od %{count} sekunde
         few: manje od %{count} sekunde
         other: manje od %{count} sekundi
+      over_x_years:
+        one: preko godinu dana
+        few: preko %{count} godine
+        other: preko %{count} godina
       x_days:
         one: "%{count} dan"
         few: '%{count} dana'
@@ -4435,10 +4603,28 @@ sr:
       odd: mora biti neparno
       only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
       record_invalid: 'Potvrda neuspela: %{errors}'
+      requires_privilege_speech: |
+        mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
       requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
       taken: već postoji
+      too_long:
+        one: je predugačka (maksimalno %{count} znak)
+        few: je predugačka (maksimalno %{count} znaka)
+        other: je predugačka (maksimalno %{count} znakova)
+      too_short:
+        one: je prekratka (minimalno %{count} znak)
+        few: je prekratka (minimalno %{count} znaka)
+        other: je prekratka (minimalno %{count} znakova)
+      wrong_length:
+        one: je pogrešne dužine (treba biti %{count} znak)
+        few: je pogrešne dužine (treba biti %{count} znaka)
+        other: je pogrešne dužine (treba biti %{count} znakova)
     template:
       body: 'Bilo je problema sa sledećim poljima:'
+      header:
+        one: "%{count} greška onemogućava da %{model} bude sačuvan"
+        few: '%{count} greške onemogućava da %{model} bude sačuvan'
+        other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
   helpers:
     defaults:
       title: "OVO JE NASLOV"
@@ -4501,6 +4687,23 @@ sr:
       words_connector: ', '
   time:
     am: am
+    formats:
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      default: '%d. %b %Y %H:%M:%S %z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      long: '%d. %B %Y %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      short: '%d. %b %H:%M'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      compact: "%H:%M"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      observed_at: '%H:%M %Z'
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      rfc: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      day_month_year: "%d. %B %Y"
+      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      hours: "%H:%M"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -4536,8 +4739,13 @@ sr:
         body: 'Bilo je problema sa sledećim poljima:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Najave
       Atlas: Atlas
       BlockedUser: Blokirani korisnici
+      #Noun
+      Flag: Pritužba
       #Text note left by a moderator about another user recording a response to
       #a concern, like messaging someone about plagiarism, or documenting
       #violations of the Community Guidelines for future reference
@@ -4546,6 +4754,9 @@ sr:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplikacija
     attributes:
+      announcement:
+        created_at: Kreirano
+        updated_at: Ažurirano
       assessment:
         description: Opis
       assessment_section:
@@ -4565,6 +4776,8 @@ sr:
       flag:
         #The reason the item was flagged
         reason: Razlog
+        #The kind of flag that was made
+        flag: Pritužba
       guide:
         source_url: Izvorni URL
         published_at: Publikacija
@@ -4577,6 +4790,8 @@ sr:
         reason: Razlog
       observation:
         description: Napomene
+        geo_x: Istočno
+        geo_y: Severno
         observed_on: Datum zapažanja
       observation_field_value:
         value: 'vrednost'
@@ -4649,11 +4864,25 @@ sr:
         rank: Rang
         source_id: Izvorni ID
         source_url: Izvorni URL
+        wikipedia_title: Vikipedija naslov
       taxon_name:
         is_valid: validan?
+        lexicon: Rečnik
         name: Ime
         position: Pozicija
         source_url: Izvorni URL
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Naziv sajta
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Skraćen naziv
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Mesto
       user:
         email: Imejl
         login: Korisničko ime
@@ -4683,6 +4912,7 @@ sr:
         odd: mora biti neparno
         only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
         record_invalid: 'Potvrda neuspela: %{errors}'
+        requires_privilege_speech: mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
         requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
         taken: već postoji
         too_long:
@@ -4693,21 +4923,43 @@ sr:
           one: je prekratko (minimalno %{count} karakter)
           few: je prekratko (minimalno %{count} karaktera)
           other: je prekratko (minimalno %{count} karaktera)
+        wrong_length:
+          one: je pogrešne dužine (treba biti %{count} znak)
+          few: je pogrešne dužine (treba biti %{count} znaka)
+          other: je pogrešne dužine (treba biti %{count} znakova)
       template:
         body: 'Bilo je problema sa sledećim poljima:'
+        header:
+          one: '%{count} greška onemogućava da %{model} bude sačuvan'
+          few: '%{count} greške onemogućava da %{model} bude sačuvan'
+          other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
       models:
         application:
           attributes:
             redirect_uri:
               invalid_uri: "mora biti ispravan URI."
               relative_uri: "mora biti apsolutni URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: onemogućeni komentari
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: "zahteva bar 3 taksona u tvom vodiču"
         guide_taxon:
           attributes:
             base:
               guide_has_too_many_taxa: "vodič može imati maksimalno 500 taksona"
         moderator_action:
           attributes:
+            action:
+              not_supported_for_this_kind_of_content: nije podržan za ovakav sadržaj
             base:
+              only_staff_can_unhide: Samo osoblje može da otkrije sakriven sadržaj
               staff_cannot_be_suspended: Osoblje ne može biti suspendovano
             user_id:
               must_be_a_curator: mora biti kustos
@@ -4725,6 +4977,12 @@ sr:
               date_format: |
                 mora biti u formatu YYYY-MM-DD za datum polje ("%{observation_field_name}"
                 u tvojoj opservaciji "%{observation_species_guess}")
+              time_format: |
+                mora biti u formatu hh:mm za vreme ("%{observation_field_name}" u tvojoj opservaciji "%{observation_species_guess}")
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_reasonable_number_of_rows: Izvoz ne može sadržati više od 200 000 opservacija
         place_geometry:
           attributes:
             geom:
@@ -4772,6 +5030,10 @@ sr:
             lexicon:
               should_not_contain_commas_or_slashes: ne može sadržati tačku ili kosu crtu
               should_be_in_english: mora biti na engleskom
+            name:
+              already_exists: već postoji za ovaj takson u ovom rečniku
+              must_match_the_taxon_if_valid: |
+                mora se poklopiti sa nazivom taksona ako je naučni naziv ispravan
         taxon_photo:
           attributes:
             taxon:
@@ -4785,6 +5047,9 @@ sr:
               already_has_a_range: već ima opseg
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: |
+                mora početi slovom, ne može sadržati razmake i moguće je upotrebiti samo slova, brojeve, crtice i donje crte
             email:
               must_look_like_an_email_address: mora biti prava imejl adresa
               domain_is_not_supported: domen nije podržan
