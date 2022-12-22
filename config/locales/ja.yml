@@ -1480,6 +1480,17 @@ ja:
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
   email_conf_banner_email_delivered_click_link: |
     確認メールが配信されました。メールに記載されているリンクをクリックしてください。
+  email_conf_banner_add_to_contacts_html: |
+    <strong>連絡先リストに<code>%{email}</code>を追加し、<a href="%{url}">確認メールを要求してください</a>。</strong> メールプロバイダーが確認メールをブロックした場合、あなたが実際に私たちからのメールを望んでいることを納得させられるかもしれません。
+  email_conf_banner_check_your_spam_folder_html: <strong>迷惑メールフォルダを確認してください</strong>
+  email_conf_banner_contact_us_html: まだうまくいきませんか？ %{email} までお問い合わせください。
+  email_conf_banner_please_click: |
+    メールアドレスを確認するには、メール内のリンクをクリックしてください。
+  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code>からのメールを検索</strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    %{date}に確認メールを送信しました。
+    受信していない場合は、以下の手順で確認できます。
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'

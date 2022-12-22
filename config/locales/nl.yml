@@ -972,6 +972,8 @@ nl:
   click_the_map: "<strong>Klik op de kaart</strong> om een locatie toe te voegen."
   close: Sluiten
   code: Code
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Programmeercode bijgedragen
   colors: Kleuren
   columns: Kolommen
   combine: Samenvoegen
@@ -1720,6 +1722,8 @@ nl:
     de bevestigingse-mail heeft geblokkeerd zou dit hen kunnen overtuigen dat je daadwerkelijk e-mail van ons wil ontvangen.
   email_conf_banner_check_your_spam_folder_html: <strong>Controleer je spamfolder</strong>
   email_conf_banner_contact_us_html: Werkt het nog steeds niet? E-mail ons op %{email} zodat we je kunnen helpen.
+  email_conf_banner_please_click: |
+    Klik op de link in je e-mail om jouw e-mailadres te bevestigen.
   email_conf_banner_search_for_emails_html: <strong>Zoeken naar e-mails van <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -5668,6 +5672,10 @@ nl:
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
+  yir_code_contributors_desc_html: |
+    Onze <a href="%{url}">software</a> is bijna volledig open-source wat betekent dat
+    iedereen kan bijdragen als ze weten hoe. Hieronder staan de mensen die dit jaar vrijwillig een bijdrage leverden met 
+    programmeren. Dank u, programmeurs!
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Bereik miljoenen mensen. Verlicht de biodiversiteit. Wereldwijde samenwerking.
   #"You" is singular
@@ -5684,6 +5692,8 @@ nl:
   yir_millions_of_people_used_inaturalist: |
     Miljoenen mensen hebben iNaturalist en 'Seek door iNaturalist' gebruikt om
     de natuur te beleven
+  yir_monthly_supporters_random_selection: |
+    Hieronder is een willekeurige selectie van iNaturalist's heroïsche communityleden die elke maand doneren.
   yir_thank_your_for_being_generous: |
     Bedankt dat je genereus bent met je tijd, aandacht, kennis en donaties! iNaturalist is een not-for-profit gezamenlijk initiatief van de California Academy of Sciences en de National Geographic Society. De website is afhankelijk van talrijke subsidies en donaties, inclusief charitatieve giften van minder dan een klein deel van de gemeenschap. Wij zijn in het bijzonder 
     de Maandelijkse Supporters dankbaar wiens terugkerende giften ons helpen met het plannen van de toekomst.

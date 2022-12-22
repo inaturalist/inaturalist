@@ -944,6 +944,8 @@ tr:
   click_the_map: "Bir konum eklemek için <strong>haritaya tıkla</strong>."
   close: Kapat
   code: Kod
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Koda Katkıda Bulunanlar
   colors: Renkler
   columns: Sütunlar
   combine: Birleştir
@@ -1490,7 +1492,7 @@ tr:
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
-        subject: Onaylama talimatları
+        subject: E-posta adresini doğrula
       email_changed:
         #Subject of an email sent when you try to change the email address
         #associated with your account
@@ -1659,6 +1661,8 @@ tr:
     <strong>Kişi listene <code>%{email}</code> adresini ekle ve <a href="%{url}">başka bir doğrulama e-postası talep et</a>.</strong> E-posta sağlayıcın doğrulama e-postasını engellediyse, bu, onları gerçekten bizden e-posta istediğine ikna edebilir.
   email_conf_banner_check_your_spam_folder_html: <strong>Gereksiz kutunu kontrol et</strong>
   email_conf_banner_contact_us_html: Hâlâ çalışmıyor mu? Size yardımcı olabilmemiz için %{email} adresinde e-posta gönderin.
+  email_conf_banner_please_click: |
+    Lütfen e-posta adresini doğrulamak için e-postandaki bağlantıya tıkla.
   email_conf_banner_search_for_emails_html: <strong><code>%{email}</code> tarafından gönderilen e-postaları ara</strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -5455,6 +5459,8 @@ tr:
   yes_reject_it: Evet, bunu reddet
   yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
   yesterday: Dün
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">Yazılımımızın</a> neredeyse tamamı açık kaynaklıdır, bu da nasıl yapılacağını bilen herkesin katkıda bulunabileceği anlamına gelir. İşte bu yıl gönüllü olarak kod yazan kişiler. Teşekkürler, kodlayıcılar!
   yir_donate_banner_inaturalist_in_year: "%{year} YILINDA INATURALIST"
   yir_donate_banner_reaching_millions: Milyonlara ulaşıyoruz. Biyoçeşitliliği ortaya çıkarıyoruz. Küresel iş birliği yapıyoruz.
   #"You" is singular
@@ -5469,6 +5475,8 @@ tr:
     Yüksek etkili biyoçeşitlilik verilerinin bu benzeri görülmemiş ölçek ve hızda üretilmesi ve paylaşılmasının artan maliyetleri vardır
   yir_millions_of_people_used_inaturalist: |
     Bu yıl milyonlarca kişi iNaturalist ve Seek'i doğa ile bağlantı kurmak için kullandı
+  yir_monthly_supporters_random_selection: |
+    İşte iNat'ın her ay bağış yapan kahraman topluluk üyelerinden rastgele bir seçki.
   yir_thank_your_for_being_generous: |
     Zamanın, ilgin, uzmanlığın ve bağışlarınla cömert davrandığın için teşekkür ederiz! iNaturalist, Kaliforniya Bilimler Akademisi ve National Geographic Topluluğu'nun kâr amacı gütmeyen ortak bir girişimidir. Program, toplumun çok küçük bir kısmından gelen hayırsever armağanlar da dahil olmak üzere çok sayıda hibe ve bağışa dayanmaktadır. Özellikle, yinelenen armağanlarla geleceği tasarlamamıza yardımcı olan Aylık Destekçilerimize minnettarız.
   yir_your_gift_sustains: |
