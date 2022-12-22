@@ -1571,6 +1571,10 @@ $tip-opacity: 1;
 
   #app {
     .CodeContributors {
+      p {
+        margin-bottom: 20px;
+      }
+
       li {
         @include green-links;
       }
@@ -1595,17 +1599,12 @@ $tip-opacity: 1;
       $monthly-supporter-dim: 80px;
       margin-bottom: 20px;
       .supporters {
+        @include green-links;
+
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: center;
-
-        a {
-          color: $inat-green;
-        }
-        a:hover, a:active, a:focus {
-          color: lighten( $inat-green, 10% );
-        }
       }
 
       .monthly-supporter {
