@@ -1571,6 +1571,10 @@ $tip-opacity: 1;
 
   #app {
     .CodeContributors {
+      p {
+        margin-bottom: 20px;
+      }
+
       li {
         @include green-links;
       }
@@ -1586,6 +1590,40 @@ $tip-opacity: 1;
       h4 {
         font-size: 14px;
         margin-top: 0;
+      }
+    }
+  }
+
+  #app {
+    .MonthlySupporters {
+      $monthly-supporter-dim: 80px;
+      margin-bottom: 20px;
+      .supporters {
+        @include green-links;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .monthly-supporter {
+        text-align: center;
+        width: $monthly-supporter-dim;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+      .UserImage {
+        width: $monthly-supporter-dim;
+        height: $monthly-supporter-dim;
+        margin-bottom: 10px;
+      }
+      .userlink {
+        display: block;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
   }

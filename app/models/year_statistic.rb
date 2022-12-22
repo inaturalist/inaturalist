@@ -74,6 +74,10 @@ class YearStatistic < ApplicationRecord
         }
       end
       json[:pull_requests] = github_pull_requests( year )
+      if year >= 2022
+        json[:budget] ||= {}
+        json[:budget][:monthly_supporters] = monthly_supporters( year, options )
+      end
     end
     year_statistic.update( data: json )
     year_statistic.generate_shareable_image
@@ -1616,6 +1620,23 @@ class YearStatistic < ApplicationRecord
         recurring_donors: d[:recurring_donors].size
         # monthly_net_amount_usd: d[:monthly_net_amount_usd],
         # monthly_donors: d[:monthly_donors].size
+      }
+    end
+  end
+
+  def self.monthly_supporters( _year, _options = {} )
+    users = User.limit( 30 ).
+      where( "donorbox_plan_type = 'monthly'" ).
+      where( "donorbox_plan_status = 'active'" ).
+      where( "donorbox_plan_started_at IS NOT NULL" ).
+      joins( :stored_preferences ).
+      where( "preferences.name = 'monthly_supporter_badge' AND preferences.value = 't'" ).
+      order( Arel.sql( "RANDOM()" ) )
+    users.reject( &:suspended? ).map do | user |
+      {
+        login: user.login,
+        name: user.name,
+        icon_url: FakeView.image_url( user.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
       }
     end
   end
