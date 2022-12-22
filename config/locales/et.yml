@@ -927,6 +927,8 @@ et:
   click_the_map: "Koha lisamiseks <strong>vajuta kaardile</strong>."
   close: Sulge
   code: Kood
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Koodi annetajad
   colors: Värvid
   columns: Tulbad
   combine: Ühenda
@@ -1561,6 +1563,18 @@ et:
   email: E-post
   email_description: Sinu e-posti aadressit ei jagata teiste iNaturalisti kasutajatega
   email_address_for_comments_and_other_feedback: E-posti aadress kommentaaride ja muu tagasiside saamiseks
+  email_conf_banner_email_delivered_click_link: |
+    Kinnituskiri kohalesaadetud. Palun vaja kirjas olevale lingile.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Lisa aadress <code>%{email}</code> oma kontaktide nimekirja ja <a href="%{url}">palu uue kinnituskirja saatmist</a>.</strong> Kui su e-posti haldaja kinnituskirja blokeeris, võib see samm neile näidata, et tõesti soovid meilt kirja saada.
+  email_conf_banner_check_your_spam_folder_html: <strong>Kontrolli oma rämpsposti kausta</strong>
+  email_conf_banner_contact_us_html: Ikka veel ei toimi? Saada meile kiri aadressile %{email} ja saame sind sedasi aidata.
+  email_conf_banner_please_click: |
+    Palun vajuta e-postiga saadetud lingile, et oma aadress kinnitada.
+  email_conf_banner_search_for_emails_html: <strong>Otsi aadresstil <code>%{email}</code> saabunud kirju</strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Saatsime kuupäeval %{date} sulle kinnituskirja. Kui sa seda kätte ei saanud, siis siin on sulle mõned soovitused:
   email_copyright: "&copy; %{x}, kõik õigused kaitstud"
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
@@ -3602,6 +3616,10 @@ et:
   selected_taxon: Valitud takson
   select_this_taxon: Vali see takson
   send: saada
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Saada ja logi välja
+  send_confirmation_email: Saada kinnituskiri
   send_me_reset_password_instructions: Saadke mulle salasõna lähtestamise juhised
   sending: Saadan...
   #Label for messages you've sent
@@ -4242,6 +4260,19 @@ et:
     <p>
     Kui sa ei saa ikka veel kinnituskirja, palun võta meiega ühendust aadressil <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ja me aitame sind.
     </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Sind logitakse peagi välja</h3>
+    <p>
+    Peale kinnituskirja saatmist logitakse sind välja ning sa ei saa enne oma kontole siseneda, kui vajutada e-kirjas sisalduvale lingile, nii et <strong class="bg-warning">ole 100% kindel, et sisestasid õige e-posti aadressi.</strong>
+    </p>
+    <p>
+    Saadame sulle kinnituskirja sellel aadressil:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Kui oled keeldunud kõigist me kirjadest...</h4>
+    <p>
+    Kui oled keeldunud <em>kõigist</em> me kirjadest, ei saa me sulle kinnituskirja saata. Meie kirjade uuesti saamiseks pead leidma mõne varasema kirja, vajutama kirjadest keeldumise lingile ning avaldama soovi uuesti meilt kirju saada. Kui sa seda teha ei saa, kirjuta aadressile <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> kasutades siia lisatud e-posti aadressit, et saaksime sind aidata.
+    </p>
   users_highlights_and_stats_from_year_on_site: "Kasutaja %{user} %{year}. aasta tipud ja statistika lehel %{site}"
   users_id: "%{user} ID"
   users_identifications: "Kasutaja %{user} määratlused"
@@ -4453,6 +4484,10 @@ et:
   yes_reject_it: Jah, lükka tagasi
   yes_show_this_in_the_box: Jah, näita seda taksoni päises olevas suures kastis
   yesterday: Eile
+  yir_code_contributors_desc_html: |
+    Meie <a href="%{url}">tarkvara</a> on pea täielikult vabavaraline, mis tähendab, et kõik inimesed saavad annetada meile koodi, kui seda oskavad. Siin on loetletud tänavu vabatahtlikult koodi annetanud isikud. Aitäht teile, programmeerijad!
+  yir_monthly_supporters_random_selection: |
+    Siin on juhuslik valik kangelaslikke iNati kogukonna liikmeid, kes meile igakuiselt annetavad.
   you: sina
   you_: Sina
   you_appear_offline_try_again: |
