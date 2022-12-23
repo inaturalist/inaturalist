@@ -47,14 +47,4 @@ class FakeView
   def respond_to_missing?( method, include_private = false )
     controller.send( :respond_to_missing?, method, include_private ) || controller.helpers.send( :respond_to_missing?, method, include_private )
   end
-
-  # Overriding this so that assets we have chosen not to be used with a digest
-  # don't actually use a digest
-  def asset_path( source, options = {} )
-    if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
-      return "/assets/#{source}"
-    end
-
-    super( source, options )
-  end
 end
