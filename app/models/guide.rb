@@ -408,7 +408,7 @@ class Guide < ApplicationRecord
     xml_fname = "#{id}.xml"
     xml_path = File.join( work_path, xml_fname )
     File.open xml_path, "w" do | f |
-      f.write FakeView.render( template: "guides/show", formats: [:xml], locals: {
+      f.write ApplicationController.render( template: "guides/show", formats: [:xml], locals: {
         local_asset_path: local_asset_path,
         guide: self,
         guide_taxa: ordered_guide_taxa,

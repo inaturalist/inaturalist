@@ -816,7 +816,7 @@ class Observation < ApplicationRecord
     i18n_vars = {}
     key = if taxon
       i18n_vars[:taxon] = if options[:viewer]
-        FakeView.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
+        ApplicationController.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
       else
         common_name( locale: I18n.locale )
       end
