@@ -57,7 +57,7 @@ module DarwinCore
         if is_a?( Photo )
           best_url( "original" )
         elsif is_a?( LocalSound )
-          URI.join( Site.default.url, file.url )
+          FakeView.uri_join( Site.default.url, file.url )
         end
       end
 

@@ -55,7 +55,7 @@ class Photo < ApplicationRecord
     original =  file.url( :original )
     return unless original
     if original !~ /http/
-      original = URI.join( UrlHelper.root_url, original ).to_s
+      original = FakeView.uri_join( UrlHelper.root_url, original ).to_s
     end
     if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
@@ -99,7 +99,7 @@ class Photo < ApplicationRecord
       return self.instance_variable_get("@remote_#{size}_url")
     end
     if processing?
-      return URI.join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
+      return FakeView.uri_join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
     end
     "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
