@@ -1918,12 +1918,8 @@ class Taxon < ApplicationRecord
     end
   end
 
-  def view_context
-    FakeView
-  end
-
   def image_url
-    view_context.taxon_image_url( self )
+    ApplicationController.helpers.taxon_image_url( self )
   end
 
   def photo_url
