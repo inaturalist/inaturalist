@@ -425,7 +425,7 @@ class Guide < ApplicationRecord
         image_sizes.each do | s |
           next unless ( url = gp.send( "#{s}_url" ) )
 
-          fname = FakeView.guide_asset_filename( gp, size: s )
+          fname = gp.asset_filename( size: s )
           path = File.join( full_asset_path, fname )
           Rails.logger.info "[INFO #{Time.now}] Fetching #{url} to #{path}"
           begin

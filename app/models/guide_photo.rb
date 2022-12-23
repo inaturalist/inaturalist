@@ -10,6 +10,7 @@ class GuidePhoto < ApplicationRecord
   after_destroy {|r| r.guide.expire_caches(:check_ngz => true) if r.guide}
 
   accepts_nested_attributes_for :photo
+  include HasGuideAsset
 
   acts_as_taggable
 

@@ -24,7 +24,9 @@ class GuideRange < ApplicationRecord
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_presence_of :thumb_url
-    
+
+  include HasGuideAsset
+
   def to_s
     "<GuideRange #{id}>"
   end
