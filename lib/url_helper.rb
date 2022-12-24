@@ -3,7 +3,6 @@
 class UrlHelper
   include Singleton
   include Rails.application.routes.url_helpers
-  include ActionView::Helpers::AssetUrlHelper
 
   class << self
     def method_missing( ... )
@@ -12,6 +11,16 @@ class UrlHelper
 
     def respond_to_missing?( method, include_private = false )
       UrlHelper.instance.respond_to?( method, include_private )
+    end
+
+    # Custom implementation of URI#join that compacts nil values in arguments and
+    # handles double slashes
+    # @param [Array] args Strings to send to URI#join, will be converted to RFC3986 URIs before merging
+    # @return [String] URI string
+    def uri_join( *args )
+      URI.join( *args.compact ).to_s
+    rescue URI::InvalidURIError
+      args.join( "/" ).gsub( %r{/+}, "/" )
     end
   end
 

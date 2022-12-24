@@ -29,9 +29,5 @@ module TaxonDescribers
       self.describer = new unless describer.is_a?(self)
       self.describer.send(method, *args)
     end
-
-    def fake_view
-      @fake_view ||= FakeView.new( view_paths: [File.expand_path( "../../views/", __FILE__ )] )
-    end
   end
 end

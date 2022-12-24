@@ -17,7 +17,7 @@ module TaxonDescribers
       data_objects = data_objects_from_page(page).to_a.uniq do |data_object|
         data_object.at('subject').content
       end
-      fake_view.render( partial: "/eol", locals: { data_objects: data_objects } )
+      ApplicationController.render( partial: "/eol", locals: { data_objects: data_objects } )
     rescue Timeout::Error => e
       nil
     end

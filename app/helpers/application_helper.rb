@@ -3,7 +3,7 @@
 # require 'recaptcha'
 module ApplicationHelper
   include Ambidextrous
-  
+
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
@@ -515,7 +515,8 @@ module ApplicationHelper
     abs_path = source =~ %r{^/} ? source : whitelisted_asset_path( source, options ).to_s
     return abs_path if abs_path =~ /\Ahttp/
 
-    uri_join( options[:base_url] || @site&.url || UrlHelper.root_url, abs_path ).to_s
+    the_root_url = defined?( root_url ) ? root_url : UrlHelper.root_url
+    uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
   end
 
   def whitelisted_asset_path(source, options)
