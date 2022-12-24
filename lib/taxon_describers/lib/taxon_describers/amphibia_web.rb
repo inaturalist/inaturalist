@@ -7,7 +7,7 @@ module TaxonDescribers
         xml, genus_name, species_name = data_for_name(names.pop)
       end
       return nil if xml.blank?
-      ApplicationController.render( partial: "/amphibia_web", locals: { doc: xml, genus_name: genus_name, species_name: species_name } )
+      fake_view.render( partial: "/amphibia_web", locals: { doc: xml, genus_name: genus_name, species_name: species_name } )
     end
 
     def data_for_name(name)
