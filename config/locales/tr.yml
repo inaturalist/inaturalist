@@ -6041,51 +6041,26 @@ tr:
         you_reviewed_message: "Bu sayfadaki %{total} eşleşen gözlemden %{pageTotal} gözlemin %{reviewed} tanesini inceledin."
         unreview_all_tooltip: "Sayfadaki tüm gözlemler için incelendi durumunu kaldır"
         too_many_results_desc: |
-          Sayfa sayısı çarpı sayfa başına sonuç sayısı 10,000'i aşamaz.
-          Sonuçların sayısını azaltmak için filtreler uygulamayı deneyin veya 
-          gözlemleri incelenmiş olarak işaretleyin ve sayfalama yerine 
-          "Daha Fazla Görüntüle" düğmesini kullanın
+          Sayfa sayısı ile sayfa başına sonuç sayısı çarpımı 10.000'i geçemez. Sonuç sayısını azaltmak için filtre uygulamayı dene ya da gözlemleri incelendi olarak işaretle ve sayfalandırma yerine "Daha Fazla Görüntüle" düğmesini kullan
       import:
         coordinate_systems_help: |
-          %{site_name} birkaç farklı koordinat sistemi kullanarak koordinatları kabul eder, 
-          bu nedenle enlem / boylam dışında bir sistemde koordinatlar sağladığınızda, 
-          onları doğru yorumlayabilmek için hangi koordinat sistemini kullandığınızı 
-          bilmemiz gerekir. Lütfen verileriniz için doğru koordinat sistemini seçtiğinizden emin olun, 
-          aksi takdirde konum olması gereken yerden çok daha uzakta olabilir. Koordinatlarınız bir GPS ünitesindeyse, 
-          kullandığı koordinat sisteminin adını kontrol edin. Özel koordinatları değil, yalnızca enlem / boylam 
-          dönüşümlerini kaydetmediğimizi unutmayın.
+          %{site_name} birkaç farklı koordinat sistemi kullanan koordinatları kabul eder, bu nedenle koordinatları enlem / boylam dışında bir sistemde verdiğinizde, bunları doğru bir şekilde yorumlayabilmek için hangi koordinat sistemini kullandığın bilmemiz gerekir. Lütfen verilerin için doğru koordinat sistemini seçtiğinden emin ol, aksi takdirde konum olması gereken yerden çok uzakta olabilir. Koordinatların bir GPS ünitesinden alındıysa, kullandığı koordinat sisteminin adını öğrenmek için ünitenin ayarlarını kontrol et. Özel koordinatları saklamadığımızı, yalnızca enlem/boylam dönüşümlerini sakladığımızı unutma.
         date_column_format: YYYY-AA-GG SS:DD
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
-          Coğrafi gizlilik sütunu İngilizce olmalı ve boş olmalı, veya "özel" ya da 
-          "gizlenmiş" bir değere sahip olmalı
+          Coğrafi gizlilik sütunu İngilizce olmalı ve boş olmalı, veya "özel" ya da "gizlenmiş" bir değere sahip olmalı
         google_photos_notice_html: |
-          Şubat 2019’da, Google API’lerini değiştirerek GPS koordinatlarına, 
-          lisans bilgilerine ve bir tanımlama eklemek için kullanabileceğimiz 
-          neredeyse tüm bilgilere (etiketler gibi) erişmemizi imkansız hale getirdi.
-          Ayrıca, metin arama ve sayısal sayfalamayı da kaldırdılar. Bunun üzerine, 
-          bağlı tüm hesapların ek izin almasını istediler ve üçüncü bir tarafın bu 
-          kullanıcılardan izin isteğinde bulunmadan önce üçüncü tarafın doğrulanması gerekiyor.
-          Doğrulanmayı bekliyoruz, ancak bu gerçekleşene kadar, Google’dan 
-          fotoğraf içe aktaramazsınız. Onaylanırsak, fotoğrafları içe aktarabilirsiniz, 
-          ancak Google Fotoğraflar’da görebileceğiniz hiçbir konum bilgisi veya 
-          lisans bilgisini içermez. Bu konuda buradan daha fazla okuyabilirsiniz<a
+          Şubat 2019'da, Google, API'sini değiştirerek GPS koordinatlarına, lisans bilgilerine ve bir kimlik eklemek için kullanabileceğimiz neredeyse tüm bilgilere (etiketler gibi) erişmemizi imkansız hale getirdi. Ayrıca, metin aramayı ve sayısal sayfalamayı da kaldırdılar. Bunun da ötesinde, tüm bağlı hesapların ek bir izne sahip olmasını istediler ve üçüncü bir tarafın kullanıcılardan bu izni talep edebilmesi için üçüncü tarafın doğrulanması gerekiyor. Doğrulama bekliyoruz ancak bu gerçekleşene kadar Google'dan fotoğraf aktaramayacaksın. Onay alırsak, fotoğrafları içe aktarabileceksin ancak Google Fotoğraflar'da görebileceğin herhangi bir konum bilgisi ya da lisans bilgisi içermeyecekler. Bu konuda daha çok bilgiyi <a
           href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Orijinal dosyaları indirmek 
-          ve bunları <a href="/observations/upload">Yükleyici</a> kullanarak eklemek 
-          en iyi geçici çözümdür.
+          web">https://developers.google.com/picasa-web</a> adresinde bulabilirsiniz. Asıl dosyaları indirmek ve <a
+          href="/observations/upload">Yükleyiciyi</a> kullanarak eklemek en iyi çözümdür.
         project_csv_template_notice_html: |
-          Bu proje için, CSV dosyasının yapısında size yardımcı olabilecek bir şablon dosyası bulunmaktadır.
-          <a href="%{url}">Şablonu indir</a>
+          Bu proje için, CSV dosyasının yapısında size yardımcı olabilecek bir şablon dosyası bulunmaktadır. <a href="%{url}">Şablonu indir</a>
         soundcloud_notice_html: |
-          2018'de Soundcloud API'lerini değiştirdi ve Soundcloud hesabınızla yeni 
-          bağlantılar kurmamızı imkansız hale getirdi. Bu işlevi eski durumuna 
-          getirirlerse, hesapları Soundcloud'a bağlamaya devam edebiliriz. 
-          Bu arada, ses dosyalarını doğrudan <a href="/observations/upload">yükleyiciyi</a> 
-          kullanarak yükleyebilirsiniz.
+          2018'de Soundcloud API'lerini değiştirdi ve Soundcloud hesabına yeni bağlantılar kurmamızı imkansız hale getirdi. Bu işlevselliği eski haline getirirlerse, hesapları Soundcloud'a bağlamaya devam edebiliriz. Bu arada, ses dosyalarını doğrudan <a href="/observations/upload">Yükleyiciyi</a> kullanarak yükleyebilirsin.
       show:
         allow_curator_coordinate_access_desc_html: |
-          Proje sorumlularının bu gözlem için gizli koordinatları görüntülemesine izin verin.
+          Proje küratörlerinin bu gözlem için gizli koordinatları görüntülemesine izin ver.
         ancestor_disagreements_desc2: |
           Bir sınıfın üst soyu arasında yer alan ancak sınıf ile aynı fikirde olmayan tanımlanmış sınıf sayısı (ör. "Bence bu cinsin içinde ama şu tür olduğuna katılmıyorum")
         community_taxon_desc_html: |
@@ -6098,23 +6073,17 @@ tr:
           <p class="ui">
           <strong>Algoritma:</strong> Tanımlanan tüm sınıflar ve onları içeren sınıflar için (örneğin <i>Homo</i> cinsi <i>Homo sapiens'i</i> içerir), her birini, anlaşma sayısı (kümülatif tanımlamaların toplamı üzerinden o sınıf için kümülatif tanımlamalar), anlaşmazlıklar (tamamen farklı olan tanımlamaların sayısı yani, puanlanan sınıfı içermeyen sınıfların tanımlamaları) ve üst soy anlaşmazlıkları (daha ayrıntılı sınıfla aynı fikirde olmayan daha muhafazakar tanımlamaların sayısı) arasındaki oran olarak puanlayın. 2/3'ün üzerinde bir puana ve en az 2 tanımlamaya sahip olan tanımlanmış sınıflar için en düşük sıradaki sınıfı seçin.
           </p>
-        cumulative_count_desc: 'bir sınıf ve onun soyundan gelenler için tanımlamaların #'
+        cumulative_count_desc: '# tek bir sınıf ve onun tüm alt soyu için tanımlama sayısı'
         curator_coordinate_access_disabled_desc_html: |
-          Bu proje, proje sorumlularının göremediği koordinatlarla gözlemlere izin vermiyor. 
-          Bu gözlemin koordinatlarını bu projenin sorumlularıyla paylaşmak istemiyorsanız, 
-          gözlemi projeden kaldırmanız gerekir.
+          Bu proje, proje küratörlerinin göremediği koordinatlara sahip gözlemlere izin vermez. Bu gözlemin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, gözlemi projeden kaldırman gerekir.
         data_quality_assessment_desc_html: |
           Veri Nitelik Değerlendirmesi, bir gözlemin doğruluğunun değerlendirilmesidir. Araştırma Sınıfı gözlemler bilim insanları tarafından araştırma için kullanılabilir. Aşağıdan oy verin:
-        disagreement_count_desc: "sınıfının ataları arasında olmayan tanımlı sınıfların #"
-        identification_count_desc: 'bir sınıf için tanımlamaların #'
+        disagreement_count_desc: "# bir sınıfın üst soyu arasında yer almayan tanımlanmış sınıfların sayısı"
+        identification_count_desc: '# tek bir sınıf için tanımlama sayısı'
         flagged_photos_desc_html: |
-          Bu fotoğraflardan bazıları uygunsuz içerik veya telif hakkı ihlali için işaretlendi.
-          Ayrıntılar için bakınız %{links}
+          Bu fotoğraflardan bazıları uygunsuz içerik veya telif hakkı ihlali için işaretlendi. Ayrıntılar için bakınız %{links}
         join_project_desc_html: |
-          Projeye katılmak, proje sorumlularına projenin gizli koordinatlarını veya 
-          projedeki diğer gözlemleri görme yetkisi verecek 
-          ve bu, proje <a href="%{url}" target="_blank">şartlarını</a>
-          kabul ettiğiniz anlamına gelir.
+          Projeye katılmak, proje küratörlerine bu ya da projedeki diğer gözlemlerin gizli koordinatlarını görme yetkisi verir ve proje <a href="%{url}" target="_blank">şartlarını</a> kabul ettiğin anlamına gelir.
         quality_assessment_help2_html: |
           <p>
           Veri niteliği değerlendirmesi, bir gözlemin doğruluğunun özetidir. Aşağıdaki durumlarda, tüm gözlemler <strong>"sıradan"</strong> sınıf olarak başlar ve <strong>"tanımlama gerekiyor"</strong> hâlini alır:
@@ -6165,47 +6134,36 @@ tr:
           Sistem, bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri yerde bir cins ya da daha düşük düzey en az 10 gözlem varsa ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmişse, gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
           </li>
           </ul>
-        score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + soy uyuşmazlıkları)"
+        score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + üst soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
-          Bu gözlem gereksiz olarak işaretlendi ve artık herkese açık değil. 
-          Oluşturduğunuz için ya da bir site sorumlusu olduğunuz için görebilirsiniz.
-          Bunun bir hata olduğunu düşünüyorsanız, lütfen
-          <a href="mailto:%{help_email}" class="contact">bizimle iletişime geçin</a>.
-          <a href="/observations/%{observation_id}/flags">İşaretleri yönetme</a>
+          Bu gözlem gereksiz olarak işaretlendi ve artık herkes tarafından görülemiyor. Bunu görebilirsin çünkü sen oluşturdun veya bir site küratörüsün. Bunun bir hata olduğunu düşünüyorsan, lütfen bizimle <a href="mailto:%{help_email}" class="contact">iletişime geç</a>. <a href="/observations/%{observation_id}/flags">İşaretleri düzenle</a>
         observer_does_not_allow_observation_fields: Gözlemci ek gözlem alanlarına izin vermiyor
         observer_only_allows_curators_to_add_fields: Gözlemci yalnızca site küratörlerinin gözlem alanları eklemesine izin verir
       user_stats:
         user_stats_desc: |
-          Kullanıcı istatistikleri, gözlem sayımı veya tür sayımıyla maksimum 500 ile 
-          sınırlıdır, bu nedenle listelenen toplam genellikle 500'den fazladır, çünkü iki 
-          liste aynı kullanıcıları içermez. '*' İşaretli bir değer, bu durum için ilk 500'de 
-          olmadığı anlamına gelir.
+          Kullanıcı istatistikleri gözlem sayısı veya tür sayısına göre en çok ilk 500 ile sınırlıdır, bu nedenle iki liste muhtemelen aynı kullanıcıları içermediğinden listelenen toplam değer genellikle 500'den biraz çoktur. '*' işaretli bir değer, o istatistik için ilk 500'de olmadığı anlamına gelir.
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>
-        Bu gözlem alanını, oluşturduğunuz için veya bir site sorumlusu olduğunuz için
-        düzenleyebilirsiniz. Bir site sorumlusuysanız, lütfen aşağıdaki ilkeleri takip edin:
+        Bu gözlem alanını sen oluşturduğun veya bir site küratörü olduğun için düzenleyebilirsin. Bir site küratörüysen, lütfen şu yönergeleri izle:
         </p>
         <ol>
-        <li>İsteğe bağlı isim değişiklikleri yapmayın (örn. "eating" ismini "nectaring"'e değiştirme)</li>
-        <li>Gözlem alanlarının, herhangi bir sınıfın gözlemleri için kullanılabileceğini unutmayın, bu nedenle sınıfa özel terminoloji kullanmamaya çalışın</li>
-        <li>İnsanların kullandığı alanları silmeyin</li>
-        <li>Mevcut alan isimlerini farklı dillere çevirmeyin. İngilizce, bu sitenin ortak dilidir. Aynı kavramı kapsayan ancak farklı bir dilde olan bir alan istiyorsanız, lütfen yeni bir gözlem alanı oluşturun.</li>
+        <li>Keyfi isim değişiklikleri yapma (ör. "yeme" kelimesini "nektarlama" olarak değiştirmek)</li>
+        <li>Gözlem alanlarının herhangi bir sınıfın gözlemleri için kullanılabileceğini unutma, bu nedenle sınıfa özgü terminoloji kullanmamaya çalış</li>
+        <li>İnsanların kullandığı alanları silme</li>
+        <li>Mevcut alan adlarını farklı dillere çevirme. İngilizce bu sitenin ana dilidir. Gerçekten aynı kavramı farklı bir dilde ifade eden bir alan istiyorsan, lütfen yeni bir gözlem alanı oluştur.</li>
         </ol>
       dna_help: |
-        BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adınızın, 
-        bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" 
-        kelimelerini içerdiğinden emin olun.
+        BOLD DNA barkod eşleştirme işlevini etkinleştirmek için alan adının bu alanın hedeflediği gene karşılık gelen "COI", "COX1", "ITS" veya "matK" kelimelerini içerdiğinden emin ol.
       merge:
         warning_html: |
-          Lütfen diğer kişilerin verilerine saygılı olun ve <strong>birleştirmeden önce bir gözlem
-          alanının yaratıcısıyla konuşun</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve
-          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong> Bu işlem geri alınamaz </strong>, bu yüzden dikkatli olun.
+          Lütfen diğer kişilerin verilerine saygılı ol ve <strong>birleştirmeden önce bir gözlem
+          alanının yaratıcısıyla konuş</strong>. Bu araç birleştirilen gözlem alanını imha edecek ve
+          tüm gözlemleri onu kullanan kişiye taşıyacak. <strong>Bu işlem geri alınamaz</strong>, bu yüzden dikkatli ol.
     emailer:
       bulk_import_success:
         success_message: |
-          %{filename} toplu içe aktarmanız başarılı oldu. Gözlemleriniz şimdi 
-          işleniyor ve yakında internet sitesinde olacak.
+          %{filename} toplu içe aktarman başarılı oldu. Gözlemlerin şimdi işleniyor ve yakında internet sitesinde olacak.
       bulk_import_error:
         taxon_spelling_notice_html: |
           Lütfen her giriş için yazımı kontrol edin. Yazımın doğruysa, türü %{search_taxa_url} adresinde arayın. Adın henüz %{site_name} veritabanında yoksa, toplu yüklemenin çalışması için önce eklemen gerekir. Yeni adları içe aktarmak için arama sayfasının altındaki kutuyu kullan. Ad mevcutsa ancak birden çok geçerli sınıf için mevcutsa, yalnızca tek bir sınıfla eşleşen daha az ya da daha spesifik bir ad kullanmayı dene.
@@ -6225,11 +6183,9 @@ tr:
           Tercihlerini değiştirebilir veya projeden <a href="%{url}">proje sayfası</a>'na giderek ayrılabilirsin.
       observations_export_notification:
         your_observations_export_is_ready_html: |
-          Gözlem dışa aktarımınız hazır. 
-          Bu e-postaya ekli bir kopya var veya <a href="%{url}">dışa aktarımınızı indirebilirsiniz</a>.
+          Gözlem dışa aktarımın hazır. Bu e-posta için ekli bir kopya var veya <a href="%{url}">dışa aktarımını indirebilirsin</a>.
         your_observations_export_failed_html: |
-          Gözlem dışa aktarımınız başarısız oldu. Dışa aktarma listeniz için
-          <a href="%{url}">gözlem dışa aktarma sayfasını</a> ziyaret edin.
+          Gözlem dışa aktarımın başarısız oldu. Dışa aktarma listen için <a href="%{url}">gözlem dışa aktarma sayfasını</a> ziyaret et.
       parental_consent:
         subject: Çocuğunuz iNaturalist kullanmak istiyor
         content_html: |
@@ -6334,23 +6290,13 @@ tr:
       photos_missing:
         subject: Bazı fotoğrafların onarılması gerekiyor
         we_have_been_housekeeping: |
-          Biraz temizlik yapıyorduk ve gözlemlerinize bağlı olarak orijinal kaynaklarından erişilemeyen fotoğraflar bulduk. 
-          Fotoğraflar %{providers} tarafından barındırılıyor.
+          Bazı temizlik yapıyorduk ve gözlemlerinle bağlantılı olan ve esas kaynaklarından artık erişilemeyen fotoğraflar bulduk. Fotoğraflar %{providers} tarafından barındırılıyor.
         we_would_like_to_remove: |
-          Yakın gelecekte bozuk fotoğraflara yapılan tüm referansları kaldırmak istiyoruz, 
-          ancak kurtarabilecek hiçbir şeyden kurtulmak istemiyoruz. Bu fotoğrafların bazılarının 
-          hala harici sunucu bilgisayarlarında mevcut olması ve onarılması mümkündür. 
-          <a href='%{account_url}'>%{site_name} Hesabınız</a> başka bir fotoğraf barındırma 
-          hesabına bağlanarak bazı fotoğraflar yüklemiş olabilir ve bu bağlantının süresi 
-          dolmuş ve yenilenmesi gerekiyor.
+          Yakın gelecekte bozuk fotoğraflarla ilgili tüm referansları kaldırmak istiyoruz ancak kurtarılabilecek şeyleri saklamak istiyoruz. Bu fotoğraflardan bazılarının harici ana bilgisayarlarında hâlâ mevcut olması ve onarılabilmesi mümkündür. Bazı fotoğraflar <a href='%{account_url}'>%{site_name} hesabını</a> başka bir fotoğraf barındırma hesabına bağlayarak yüklenmiş olabilir ve bu bağlantının süresi dolmuştur ve yenilenmesi gerekir.
         you_can_attempt_repair: |
-          Fotoğrafları sayfasını ziyaret ederek ve %{repair_link_text} linkine tıklayarak fotoğrafları 
-          onarmaya çalışabilirsiniz. Fotoğrafın artık mevcut olmadığını biliyorsanız, silin.
+          Fotoğraf sayfasını ziyaret ederek ve "%{repair_link_text}" bağlantısına tıklayarak fotoğrafları onarmayı deneyebilirsin. Fotoğrafın artık mevcut olmadığını biliyorsan, silmeyi seçebilirsin.
         please_address: |
-          Lütfen bu sorunları <b>önümüzdeki 30 gün içerisinde</b> belirtin. 30 günden
-          sonra bozuk fotoğrafları iNaturalist'den silmeye başlayacağız. Tüm gözlemleriniz aynen kalacak.
-          Fotoğraflar silindikten sonra yeniden değerlendirilecekler ve artık fotoğrafları yoksa bazı 
-          araştırma sınıfı gözlemlerinin sıradan hale gelmesi de mümkün olacak.
+          Lütfen bu sorunları <b>önümüzdeki 30 gün içerisinde</b> belirtin. 30 günden sonra bozuk fotoğrafları iNaturalist'den silmeye başlayacağız. Tüm gözlemlerin aynen kalacak. Fotoğraflar silindikten sonra yeniden değerlendirilecekler ve artık fotoğrafları yoksa bazı araştırma sınıfı gözlemlerinin sıradan hale gelmesi de mümkün olacak.
         we_included_links: |
           Aşağıda etkilenen fotoğraflara bağlantılar ekledik.
       user_parent_confirmation:
@@ -6382,9 +6328,7 @@ tr:
           Bir süredir %{site_name}'te etkin değilsin, bu nedenle aboneliklerini askıya aldık. Site etkinliği ile ilgili güncellemeleri almaya devam etmek için lütfen hesabına tekrar <a href="%{login_url}">giriş yap</a>.
     photos:
       forbidden_notice_html: |
-        Şu anda bu fotoğraflara erişim iznimiz yok. Bize ek izinler vermek için 
-        <a href="/users/edit">ayarlarınızdaki</a> hesabın bağlantısını kesmeniz 
-        ve yeniden bağlamanız gerekebilir.
+        Şu anda bu fotoğraflara erişim iznimiz yok. Bize ek izinler vermek için <a href="/users/edit">ayarlarındaki</a> hesabın bağlantısını kesmen ve yeniden bağlaman gerekebilir.
       show:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
@@ -6393,17 +6337,15 @@ tr:
         Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsiniz. En az bir poligonun 1 MB'ın altında olması (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olması gerekir.
       edit:
         complex_boundary_note_html: |
-          Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>,
-          seçtiğiniz GIS uygulmasında düzenleyebilir, ve düzenlediğiniz KML'yi doğrudan yükleyebilirsiniz.
+          Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
         admin_level_desc: |
-          Yalnızca siyasi kurumlar için ayarlanmalı.
-          ABD eşdeğerleri açısından, 0 = ülke, 10 = eyalet, 20 = il, 30 = şehir
+          Yalnızca siyasi kurumlar için ayarlanmalı. ABD eşdeğerleri açısından, 0 = ülke, 10 = eyalet, 20 = ilçe, 30 = kasaba
       new:
-        check_list_note: "Not: çok büyük yerler için kontrol listeleri otomatik olarak devre dışı bırakılacaktır."
-        coordinates_desc: Sınır çizmezseniz veya KML'yi yüklemezseniz, koordinatları belirtmelisiniz.
+        check_list_note: "Not: Çok büyük yerler için kontrol listeleri otomatik olarak devre dışı bırakılacaktır."
+        coordinates_desc: Sınır çizmezsen veya KML'yi yüklemezsen, koordinatları belirtmelisin.
         map_instruction: Konum sınırını çizmek için poligon aracını kullan.
     posts:
-      formatting_none_help: "Eklenen HTML yok, sadece girdiğiniz etiketleri kullanır."
+      formatting_none_help: "HTML eklenmez, yalnızca girdiğin etiketleri kullanır."
       formatting_simple_help: "URL'leri otomatik olarak bağla ve satır sonları ekle."
     projects:
       project_type: Proje Türü
@@ -6417,24 +6359,21 @@ tr:
         <a href="/users/edit">Hesap ayarlarında</a> devre dışı bırakmadığın sürece, <strong>proje küratörlerinin, gözlemlerinden herhangi birini projelerine ekleyebileceğini</strong> unutma. Bu kutuyu yalnızca proje küratörlerinin bu projeye eklenebilecek tüm gözlemlerinin gizli koordinatlarını görüntüleyebileceğine güveniyorsan işaretle. Onlara bu izni vermemeyi seçersen, yine de gözlem bazında gizli koordinatlara erişim izni verebilirsin.
       confirm_leave:
         what_would_you_like: |
-          Bu projedeki gözlemleriniz ile ne yapmak istersiniz?
+          Bu projedeki gözlemlerin ile ne yapmak istersin?
         keep_observations_label: |
-          Gözlemlerinizi bu projeye bırakın
+          Gözlemlerini bu projeye bırak
         keep_observations_desc: |
           Gözlemlerin projede kalacak ve sorumlular, gizli koordinatlarını görmeye devam edecekler.
         project_requires_curator_coordinate_access_desc: |
-          Bu proje, proje sorumlularının göremediği koordinatlarla gözlemlere izin vermiyor. 
-          Gözlemlerinizin koordinatlarını bu projenin sorumlularıyla paylaşmak istemiyorsanız, 
-          bunları projeden kaldırmanız gerekir.
+          Bu proje, proje küratörlerinin göremeyeceği koordinatlara sahip gözlemlere izin vermez. Gözlemlerinin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, onları projeden kaldırmalısın.
         remove_observations_label: |
-          Tüm gözlemlerinizi bu projeden kaldırın
+          Tüm gözlemlerini bu projeden kaldır
         remove_observations_desc_html: |
-          <a href="/users/edit">Hesap ayarlarınızı</a> değiştirmediğiniz sürece, proje sorumlularının gözlemlerinizi 
-          projelerine ekleyebileceklerini unutmayın.
+          <a href="/users/edit">Hesap ayarlarını</a> değiştirmediğin sürece, proje küratörlerinin, gözlemlerini, projelerine ekleyebileceklerini unutma.
         revoke_observations_label: |
-          Gözlemlerinizi bu projede bırakın, ancak sorumluların gizli koordinatlarını görüntülemesini önleyin
+          Gözlemlerini bu projede bırak ancak küratörlerin gizli koordinatlarını görüntülemesini önle
         revoke_observations_desc: |
-          Ayrılmanızın tek sebebi proje sorumlularının gizli koordinatlarınızı görüntülemelerini engellemekse.
+          Ayrılmanın tek sebebi proje küratörlerinin gizli koordinatlarını görüntülemelerini engellemekse.
       edit:
         admins_must_be_existing_members: Yöneticiler projenin var olan üyeleri olmalıdır.
         aggregation_pending: Yığınlama beklemede
@@ -6442,30 +6381,25 @@ tr:
           <a href="%{places_url}" target="_blank">Mevcut konumlarımıza</a> bakmayı dene ve konumun adını doğru aldığından emin ol. İstediğin konumu gerçekten bulamıyorsan, <a href="%{new_place_url}" target="_blank">yeni bir konum oluşturmayı</a> düşün ancak lütfen mevcut bir konumu kopyalamadığından emin ol.
         bioblitz_desc_html: |
           <p>
-          Bioblitz, katılımcıların belirli bir zaman diliminde mümkün olduğunca 
-          çok sayıda tür gözlemlemeye çalıştıkları bir olaydır. İnsanları biyoçeşitliliğe 
-          tanıtmanın eğlenceli bir yoludur, aynı zamanda değerli veriler toplar.
+          Bioblitz, katılımcıların belirli bir süre içinde mümkün olduğunca çok tür gözlemlemeye çalıştıkları bir etkinliktir. İnsanları biyolojik çeşitlilikle tanıştırmanın ve aynı zamanda değerli veriler toplamanın eğlenceli bir yoludur.
           </p>
-        change_admin_desc: Yeni yönetici olması için proje sorumlularından birini seçin.
+        change_admin_desc: Yeni yönetici olması için proje küratörlerinden birini seç.
         change_owner_alert: |
           Bu, bu projeyi silme ya da sahipliğini tekrar devretme yeteneğini ortadan kaldıracaktır. Devam etmek istiyor musun?
-        cover_desc: "Proje sayfanızın üstünde görünecek isteğe bağlı afiş resmi. Genişliği 950px, boyu 400px'den küçük olmalı."
-        custom_project_fields_means: "Projenin afişini kişiselleştirin, yan içerik ekleyin, ve CSS'i düzenleyin."
-        end_time_desc: "Bioblitzinizin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
+        cover_desc: "Proje sayfanın üstünde görünecek isteğe bağlı afiş resmi. Genişliği 950px, boyu 400px'den küçük olmalı."
+        custom_project_fields_means: "Projenin afişini kişiselleştir, yan içerik ekle ve CSS'yi düzenle."
+        end_time_desc: "Bioblitzin için bitiş zamanı. Başlangıç zamanından sonra bir yıldan az olmalı"
         event_url_desc: |
-          Bioblitz için kullandığınız bir etkinlik kayıt servisinin URL'si. 
-          Bu, sayısal bir tanımlama içeren bir Eventbrite URL'si ise, 
-          bioblitz'iniz başlayana kadar proje sayfanıza bir kayıt widget'ı ekleriz.
+          Bioblitz'iniz için kullandığın etkinlik kayıt hizmetinin URL'si. Bu, sayısal bir kimlik içeren bir Eventbrite URL'si ise, Bioblitzin başlayana kadar proje sayfana bir kayıt widgetı ekleyeceğiz.
         icon_desc: "Bir kare boyutuna kırpılacak"
         it_looks_like_this_project_can_be_converted: |
           Görünüşe göre bu proje yeni bir <a href="%{url}">Koleksiyon Projesine</a> dönüştürülebilir.
         last_aggregated_at_desc: |
-          Toplayıcı bu projeye en son gözlem eklemeyi bitirdiğinde zaman
+          Kümeleyicinin bu projeye gözlem eklemeyi bitirdiği en son zaman
         #Label for button to make another user the owner of a project
         make_owner: Sahibi Yap
         no_curators: |
-          Burada proje sorumlusu yok. Yönetici olarak yeni bir kişi atamak istiyorsanız, 
-          önce bu projeye katılmalılar ve onları bir sorumlu yapmalısınız.
+          Proje küratörü yoktur. Yeni bir kişiyi yönetici olarak atamak istiyorsan, önce bu projeye katılmalı ve onu küratör yapmalısın.
         observation_aggregation_desc_html: |
           <p class="description">
           Gözlem toplama, proje kurallarınızda belirtildiği şekilde projenize otomatik olarak uygun gözlemler ekleyecektir. 
@@ -6492,28 +6426,25 @@ tr:
           </ol>
         project_list_desc_html: |
           <p class="description">
-          Sınıfların özel bir proje listesini oluşturabilir ve projenize 
-          bağlayabilirsiniz. Bu, "proje listesindeki sınıf olmalı" kuralı yoluyla, 
-          projenize eklenen gözlemleri listenizdeki eşleşen sınıflarla
-          sınırlandırmak için yararlı olabilir.
+          Sınıflardan oluşan özel bir proje listesi oluşturabilir ve bunu projene bağlayabilirsin. Bu, projene eklenen gözlemleri "proje listesinde sınıf olmalı" kuralı aracılığıyla listendeki sınıflar ile eşleşenlerle kısıtlamak için yararlı olabilir.
           </p>
         rules:
           captive: kısıtlanmış/ekili
-          coordinates_shareable_by_project_curators: proje sorumluları tarafından paylaşılabilir koordinatlar
+          coordinates_shareable_by_project_curators: proje küratörleri tarafından görüntülenebilen koordinatlara sahip
           georeferenced: koordinatlara sahip
           has_a_photo: bir fotoğrafa sahip
           has_a_sound: bir sese sahip
           has_media: medyaya sahip (fotoğraf veya ses)
           identified: tanımlanmış
           in_taxon: sınıflandırılmış
-          observed_in_place: bir yerde gözlemlenmiş
+          observed_in_place: bir konumda gözlemlenmiş
           on_list: proje listesinde sınıflandırılmış
           verifiable: doğrulanabilir
           wild: vahşi/doğal
-        start_time_desc: "Bioblitz'iniz için başlangıç zamanı. Format: YYYY-AA-GG ss:dd:ss±ss:dd"
+        start_time_desc: "Bioblitzin için başlangıç zamanı. Format: YYYY-AA-GG ss:dd:ss±ss:dd"
         submission_models:
           any: herhangi biri
-          curators: proje sorumluları
+          curators: proje küratörleri
         trust_allow_members_to_trust: |-
           Üyelerin bu projede gizli koordinatlar için güvenmesine izin ver
         trust_help_desc: |-
@@ -6546,23 +6477,16 @@ tr:
           Bu projeye üyelik, yalnızca davetiye ile gerçekleşmektedir. Katılmak istersen, lütfen aşağıdaki küratörlerden biriyle iletişime geç ve davetiye talep et.
       new:
         a_project_allows_you_to_gather: |
-          Bir koleksiyon projesi, temel iNaturalist arama araçlarını kullanarak gözlem toplamanıza 
-          ve görselleştirmenize olanak sağlar. Proje tarafından belirlenen parametreleri karşılayan 
-          her şey otomatik olarak eklenecektir.
+          Bir koleksiyon projesi, temel iNaturalist arama araçlarını kullanarak gözlemleri toplamanı ve görselleştirmeni sağlar. Proje tarafından belirlenen parametreleri karşılayan her şey otomatik olarak dahil edilecektir.
         an_umbrella_project_can_be_used_to: |
-          İki ya da daha fazla Koleksiyon veya Geleneksel Proje arasındaki istatistikleri karşılaştırmak 
-          için bir şemsiye proje kullanılabilir. Bir şemsiye projeye ekleyebilmeniz için önce diğer projelerin 
-          var olması gerekir. Tek bir çatı altında yüzlerce proje ekleyebilirsiniz. 
-          Şemsiye projeleri başka şemsiye projeleri içeremez.
+          Bir şemsiye proje, iki ya da daha çok Koleksiyon ya da Geleneksel Projedeki istatistikleri karşılaştırmak için kullanılabilir. Bir şemsiye projeye ekleyebilmen için diğer projelerin mevcut olması gerekir. Yüzlerce projeyi tek bir şemsiye altına dahil edebilirsin. Şemsiye projeler başka şemsiye projeleri içeremez.
         are_you_ready_to_duplicate: |
-          Bu projeyi kopyalamak için bu sayfadan ayrılmaya hazır mısınız? Lütfen proje simgesinin 
-          ve afişin kopyalanmayacağını ve kopyalanan projeye yeniden yüklenmesi gerektiğini 
-          unutmayın.
-        are_you_sure_you_want_to_delete: Bu projeyi silmek istediğinize emin misiniz?
+          Bu projeyi kopyalamak için bu sayfadan ayrılmaya hazır mısın? Lütfen proje simgesinin ve afişin kopyalanmayacağını ve kopyalanan projeye yeniden yüklenmesi gerektiğini unutma.
+        are_you_sure_you_want_to_delete: Bu projeyi silmek istediğine emin misin?
         can_be_included_in_multiple: Birden fazla şemsiye projesine dahil edilebilir
         check_the_box_to_include_member_observations: |
           Yalnızca bu projeye katılan kullanıcılar tarafından yapılan gözlemleri dahil etmek için aşağıdaki kutuyu işaretle. Proje sahibi ve yöneticiler de dahil olmak üzere belirli kullanıcılardan gelen gözlemleri hariç tutmak için yukarıdaki Kullanıcıları Hariç Tut filtresini kullan.
-        click_through_to_individual_projects: Bireysel projeler için tıklayın
+        click_through_to_individual_projects: Bireysel projeler için tıkla
         collection_projects: Koleksiyon Projeleri
         collection_project_features: "Koleksiyon Projesi özellikleri:"
         contain_entire_image_without_cropping: Tüm resmi kırpmadan içer
@@ -6580,13 +6504,13 @@ tr:
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projeler</strong> arasında liderlik sıralaması
         multiple_project_administrators: Çoklu proje yöneticileri
-        name_placeholder: Chicago'nun Kuşları, Muhteşem Yusufçuklar, vb.
+        name_placeholder: Chicago'nun Kuşları, Muhteşem Yusufçuklar vb.
         no_need_to_rely_on_manual_addition: |
           Manuel gözlem ekleme yok
         note_these_users_will_be_able_to_edit: |
-          Not: bu kullanıcılar yöneticileri de içeren TÜM proje detaylarını düzenleyebilirler.
+          Not: Bu kullanıcılar, yöneticileri de içeren TÜM proje detaylarını düzenleyebilirler.
         note_you_can_delete_the_time: |
-          (Not: Tüm günleri dahil etmek istiyorsanız, saat dilimini ve kesin zamanları silebilirsiniz.)
+          (Not: Tüm günleri dahil etmek istiyorsan, saat dilimini ve kesin zamanları silebilirsin.)
         note_about_unselected_filters: |
           Not: Sınıfları, konumları ya da kullanıcıları seçmezsen, varsayılan olarak hepsi dahil edilecektir.
         only_display_member_observations: |
@@ -6594,9 +6518,9 @@ tr:
         optionally_filter_media: İsteğe bağlı olarak fotoğraf, ses ya da her ikisini içeren gözlemler için filtreleme yap.
         or_drag_and_drop: (veya sürükle ve bırak)
         please_specify_the_requirements: |
-          Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtiniz.
+          Lütfen bu projeye eklenecek gözlemlerin gerekliliklerini belirtin.
         project_background_color: Proje Özeti Arka Plan Rengi
-        project_background_color_help: Beyaz kaplanmış metnin okunaklı olması için yeterince koyu bir renk seçtiğinize emin olun.
+        project_background_color_help: Beyaz kaplanmış metnin okunaklı olması için yeterince koyu bir renk seçtiğine emin ol.
         project_banner: Proje Afişi (PNG veya JPG)
         project_banner_help: İsteğe bağlı afiş resmi. İdeal boyutlar 760px x 320px'dir.
         project_details: Proje Detayları
@@ -6606,9 +6530,8 @@ tr:
         project_name: Proje İsmi
         project_summary: Proje Özeti
         project_summary_help: |
-          Projeniz hakkında kısa bir açıklama verin. Yaklaşık ilk 200 karakter, projenin ana ekran başlığının 
-          sağında görünür olacak, bu yüzden en iyi şeyleri ilk sıraya koy!
-        project_summary_placeholder: Golden Gate Parkı'ın kuşlarını izleyin ve keşfedin...
+          Projen hakkında kısa bir açıklama yap. Yaklaşık ilk 200 karakter proje ana ekran başlığının sağında görünür olacaktır, bu nedenle önce en iyi şeyleri koy!
+        project_summary_placeholder: Golden Gate Parkı'nın kuşlarını izle ve keşfet...
         select_native_to_include: |
           Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş sınıfları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yabancı" olarak işaretlenmiş sınıfları eklemek için "Yabancı"yı seçin.
         select_quality_grade: |
@@ -6621,27 +6544,20 @@ tr:
         trusting_members_will_be_notified: |
           Proje gerekliliğini değiştirdin veya kullanıcı güvenirliğini açtın. Hali hazırda gizli koordinatları konusunda bu projeye güvenmiş tüm üyeler konu hakkında bilgilendirilecek. Bu sayede, projenin yeni gereklilikleri konusunda hala güvenirlik verip vermeyeceklerine karar verme seçenekleri olacak.
         umbrella_project_features: "Şemsiye Projesi özellikleri:"
-        unique_url_for_outreach: Sosyal yardım için özgün URL
+        unique_url_for_outreach: Erişim için özgün URL
         use_this_for_a_time_limited_event: |
           Bunu zaman sınırlı bir etkinlik, bioblitz ya da mevsimsel bir proje için kullan. Tek bir tarih, tarih aralığı ya da gözlemlerin yılın hangi aylarında yapılması gerektiğini (yıldan bağımsız olarak) seç. Tarih Aralığı bölümünü kullanıyorsan, doğru saatlerin ve saat dilimlerinin seçildiğinden emin ol ya da tüm gün boyunca yapılan gözlemleri dahil etmek için saat/saat dilimi metnini sil. Projeyi yalnızca bir tarihle sınırlamak istiyorsan Başlangıç Tarihi ya da Bitiş Tarihi'ni boş bırakabilirsin.
-        users_can_follow_your_project: Kullanıcılar güncellemeleri takip etmek için projenizi yayın gönderileri üzerinden takip edebilir
+        users_can_follow_your_project: Kullanıcılar, günlük gönderileri aracılığıyla güncellemeler için projeni takip edebilir
         use_this_link_to_create_html: |
-          Bunun yerine geleneksel bir proje oluşturmak için <a href="%{url}">bu linki</a> kullanın.
+          Bunun yerine geleneksel bir proje oluşturmak için <a href="%{url}">bu bağlantıyı</a> kullan.
         visual_comparison_of_data_among: Şemsiyenin altındaki projeler arasında verilerin görsel olarak karşılaştırılması
         we_have_redesigned_projects: |
-          Projeler, tanımladığınız yerlere, sınıflara, kullanıcılara, niteliğe ve tarihlere uyan 
-          tüm gözlemleri otomatik olarak içerecek şekilde tasarlanmıştır. İki ana tip arasından seçim yapın: 
-          Aşağıdaki özellikleri paylaşan Koleksiyon Projeleri ve Şemsiye Projeleri:
-        welcome_to_projects: Projelere Hoşgeldiniz!
+          Projeler; tanımladığın konumlar, sınıflar, kullanıcılar, nitelik ve tarihlere uyan tüm gözlemleri otomatik olarak içerecek şekilde tasarlanmıştır. İki ana tür arasından seçim yap: Aşağıdaki özellikleri paylaşan Koleksiyon Projeleri ve Şemsiye Projeler:
+        welcome_to_projects: Projelere Hoş Geldin!
         you_can_learn_more_html: |
-          <a href="https://www.inaturalist.org/pages/managing-projects">Buradan</a>
-          proje yönetimi hakkında daha fazla bilgi edinebilirsiniz veya
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogumuzdaki</a>
-          proje geçmişlerini okuyabilirsiniz.
+          <a href="https://www.inaturalist.org/pages/managing-projects">Buradan</a> proje yönetimi hakkında daha çok bilgi edinebilirsin veya <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogumuzdaki</a> proje geçmişlerini okuyabilirsin.
         you_have_not_defined_any_observation_requirements: |
-          Herhangi bir proje gereksinimi tanımlamadınız. Projenize dahil etmek istediğiniz gözlemleri 
-          tanımlamak için, bir veya daha fazla sınıf (örn. kuşlar, kozalaklı ağaçlar), yer 
-          (örn. Brezilya, Yellowstone), kullanıcı, ve/veya tarih seçtiğinizden emin olun.
+          Herhangi bir gözlem gereksinimi tanımlamadın. Projene dahil etmek istediğin gözlemleri tanımlamak için bir veya daha fazla sınıf (örn. kuşlar, kozalaklı ağaçlar), konum (örn. Brezilya, Yellowstone), kullanıcı ve/veya tarih seçtiğinden emin ol.
         errors:
           name_is_required: Proje ismi gerekli
           name_less_than_100_characters: Proje ismi 100 karakterden az olmalıdır
@@ -6650,66 +6566,42 @@ tr:
           summary_is_required: Proje özet metni gerekli
       project_location_privacy_notice_html: |
         <p>
-        Lütfen, proje sorumlularının, bu izni iptal etmediğiniz sürece bu projedeki 
-        gözlemlerinizin herhangi bir özel veya gizlenmiş yerini görebileceklerini ve 
-        <a href="/users/edit">ayarlarınızı değiştirmediğiniz</a> sürece bu projeye 
-        gözlemlerinizi ekleyebileceklerini unutmayın. Durum bazında proje gözlemlerine 
-        erişim izni verebilir veya iptal edebilirsiniz.
+        Bu izni iptal etmediğin sürece, proje küratörlerinin, bu projedeki gözlemlerinin özel veya gizlenmiş konumlarını görebileceklerini ve <a href="/users/edit">ayarlarını değiştirmediğin</a> sürece gözlemlerinden herhangi birini bu projeye ekleyebileceklerini lütfen unutma. Ayrıca duruma göre proje gözlemlerine erişim izni verebilir veya bu izni iptal edebilirsin.
         </p>
         <p>
-        Konum gizliliği konusunda endişeleriniz varsa, proje sorumlularına güvenmediğiniz 
-        sürece projelere katılmayın.
+        Konum gizliliği konusunda endişelerin varsa, proje küratörlerine güvenmediğin sürece projelere katılma.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Evet, ama yalnızca gözlemi projeye kendim eklersem.
+        observer: Evet ama yalnızca gözlemi projeye kendim eklersem.
         any: Evet, projeye gözlemi kimin eklediği önemli değil.
         none: Hayır.
       curator_coordinate_access_label: |
-        Özel/gizlenmiş gözlem koordinatlarınızı proje sorumlularına görünür kılmak ister misiniz?
+        Özel/gizli gözlem koordinatlarını, proje küratörlerine görünür kılmak istiyor musun?
       curator_coordinate_access_note: |
-        Ayrıca, bu projedeki gizli gözlem koordinatlarını olay bazında paylaşmayı da seçebilirsiniz. 
-        Bunlar sadece projeye eklenen yeni gözlemlerin varsayılanları.
+        Bu projedeki gözlemlerin gizli koordinatlarını duruma göre paylaşmayı da seçebilirsin. Bunlar sadece projeye eklenen yeni gözlemler için varsayılan değerlerdir.
       project_terms_desc_html: |
-        Bu projenin sorumlularının gözlemlerinizi <a href="%{url}">proje şartlarına</a> 
-        göre kullanmalarına izin verin.
+        Bu projenin küratörlerinin gözlemlerini <a href="%{url}">proje şartlarına</a> göre kullanmalarına izin ver.
       show:
         are_you_sure_you_want_to_convert: |
           Bu projeyi bir Koleksiyon Projesine dönüştürmek istediğine emin misin?
         bioblitz_results_desc_html: |
           <p>
-          Düzenli projelerden farklı olarak, bioblitzler, insanların projeye kasıtlı 
-          olarak ekledikleri gözlemleri değil, bir yer ve zaman içindeki <em>tüm</em> 
-          gözlemlerden olay istatistiklerini görüntüler. Bu, sadece istatistikleri gerçek zamanlı olarak 
-          yürütmek için bir projeye gözlem ekleme zorluğunu ortadan kaldırmaktır. 
-          Proje ekibi ve katılımcılar normal bir projede olduğu gibi ilgili gözlemleri aktif bir şekilde 
-          eklemediği sürece, web sitesinde üye katkıları veya mobil uygulamalarda 
-          proje gözlemi aramaları gibi çeşitli proje görünümlerinde dışa aktarma veya 
-          gösterme için mevcut olmayacağını unutmayın.
+          Normal projelerin aksine, bioblitzler sadece insanların kasıtlı olarak projeye ekledikleri gözlemleri değil, bir konum ve zaman dilimindeki <em>tüm</em> gözlemlerden elde edilen olay istatistiklerini görüntüler. Bu, sadece istatistikleri gerçek zamanlı olarak sürmek için bir projeye gözlem ekleme engelini ortadan kaldırmak içindir. Proje ekibi ve katılımcılar normal bir projede olduğu gibi ilgili gözlemleri aktif olarak eklemedikçe, gözlemlerin dışa aktarılamayacağını veya web sitesindeki üye katkıları veya mobil uygulamalardaki proje gözlem aramaları gibi çeşitli proje görünümlerinde görüntülenemeyeceğini unutmayın.
           </p>
           <p>
-          Bu tür bir projenin, projeye kasıtlı olarak eklenmemiş gözlemler için istatistikler 
-          göstermesine rağmen, sorumluların bu gözlemler için özel veya gizlenmiş 
-          koordinatlar görmelerine izin vermediğini veya gözlemcilerin proje şartlarını 
-          kabul ettiklerini varsaymadıklarını unutmayın. Bir proje sorumlusuysanız ve 
-          özel koordinatlara erişmeniz gerekiyorsa, katılımcılarınızın proje şartlarını 
-          kabul etmelerini isteyin veya düzenlenmiş proje kontrol listesine sayılan gözlemleri isteyin, 
-          katılımcılarınızın projeye katıldığından emin olun ve gözlemlerini normal bir projede 
-          olduğu gibi ekleyin.
+          Bu tür bir proje, projeye kasıtlı olarak eklenmemiş gözlemlerin istatistiklerini gösterse de, küratörlerin bu gözlemler için özel veya gizlenmiş koordinatları görmesine veya gözlemcilerin proje koşullarını kabul ettiğini varsaymasına izin vermez. Bir proje küratörüysen ve özel koordinatlara erişmen gerekiyorsa, katılımcılarının proje şartlarını kabul etmesini istiyorsan veya gözlemlerin küratörlü proje kontrol listesine sayılmasını istiyorsan, katılımcılarının projeye katıldığından ve gözlemlerini normal bir projede olduğu gibi eklediklerinden emin ol.
           </p>
         click_here_to_convert_this_project: |
           Bu projeyi bir Koleksiyon Projesine dönüştürmek için buraya tıkla.
         no_journal_blurb_html: |
           <p>
-          Proje yayınınız, proje üyeleri ile iletişim kurmak için bir araçtır. 
-          Bunu duyurular yapmak, öncelikler belirlemek veya projenizin bulguları 
-          hakkında konuşmak için kullanabilirsiniz.
+          Proje günlüğün, proje üyeleriyle iletişim kurmak için bir araçtır. Duyurular yapmak, öncelikleri belirlemek veya projenin bulguları hakkında konuşmak için kullanabilirsin.
           </p>
           <p>
-          Başlamak için, <a href="%{url}" class="readmore">bir gönderi oluşturun</a>
+          Başlamak için <a href="%{url}" class="readmore">bir gönderi oluştur</a>
           </p>
         curated_checklist_desc: |
-          Bu, düzenlenmiş kontrol listesi ve bu projeye açıkça eklenen gözlemlerden elde edilen sınıfların
-          sayısıdır, tüm gözlemler bu olayın yerinde ve zamanında kaydedilmemiştir.
+          Bu, etkinliğin yapıldığı konum ve zamanda kaydedilen tüm gözlemlerin değil, bu projeye açıkça eklenen gözlemlerden elde edilen sınıfların küratörlü kontrol listesi ve sayısıdır.
         make_sure_you_have_read_about_the_differences: |
           <a href="%{url}" target="_blank">Koleksiyon Projeleri hakkında blog gönderilerimizdeki</a>
           farklılıkları okuduğuna emin ol.
@@ -6718,7 +6610,7 @@ tr:
         this_project_has_not_defined_requirements: |
           Bu proje herhangi bir gözlem gereksinimi tanımlamamıştır. Projeler, gözlemleri görüntülemeye başlamak için bir ya da daha çok sınıf (örneğin kuşlar, kozalaklı ağaçlar), konum (örneğin Brezilya, Yellowstone), kullanıcı ve/ya da tarih seçmelidir.
       updates_desc: |
-        Bu proje hakkındaki güncellemeleri kontrol panelinizden ve günlük güncellemeler e-postasında alın.
+        Bu projeyle ilgili güncellemeleri kontrol panelinde ve günlük güncellemeler e-postasında al.
     search:
       index:
         no_taxa_options: "Birkaç seçeneğin var:"
@@ -6732,25 +6624,21 @@ tr:
       blocked:
         youve_been_blocked: Engellendin
         youve_been_blocked_desc: |
-          Bu kaynağın sahibi sizi engelledi; bu da onlarla iletişim kurmanızı önler. 
-          Bu sayfadaki birçok etkileşimli özellik çalışmaz.
-        youve_blocked: Bu Kişiyi Engellediniz
+          Bu kaynağın sahibi seni engelledi, bu da onlarla iletişim kurmanı engelliyor. Bu sayfadaki çoğu etkileşimli özellik çalışmayacaktır.
+        youve_blocked: Bu Kişiyi Engelledin
         youve_blocked_desc: |
-          Bu kaynağın sahibini engellediniz; bu da onlarla iletişim kurmanızı önler. 
-          Bu sayfadaki çoğu etkileşimli özellik çalışmaz.
+          Bu kaynağın sahibini engelledin, bu da onlarla iletişim kurmanı engelliyor. Bu sayfadaki çoğu etkileşimli özellik çalışmayacaktır.
       spam:
         message_for_owner_and_curators_html: |
-          Bu kayıt gereksiz olarak işaretlendi ve artık herkese açık değil. Oluşturduğunuz için
-          veya bir site sorumlusu olduğunuz için bunu görebilirsiniz. Bunun bir hata olduğunu 
-          düşünüyorsanız, lütfen <a href="mailto:%{email}">bizimle iletişime geçin</a>.
+          Bu kayıt gereksiz olarak işaretlendi ve artık herkese açık değil. Oluşturduğun için veya bir site küratörü olduğun için bunu görebilirsin. Bunun bir hata olduğunu düşünüyorsan, lütfen <a href="mailto:%{email}">bizimle iletişime geç</a>.
         this_has_been_flagged_as_spam: Bu bir gereksiz ileti olarak işaretlendi
       not_found:
         sorry_that_doesnt_exist: Üzgünüm, bu mevcut değil!
         even_our_dedicated_search_mole_couldnt: Özel arama casusumuz bile hiçbir şey bulamadı!
     stats:
       index:
-        active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum, veya gönderi oluşturuldu
-        android_desc_html: <a href="%{url}">iNaturalist Android uygulması</a> üzerinden oluşturuldu
+        active_desc: Önceki 30 gün içerisinde bir tanımlama, gözlem, yorum veya gönderi oluşturuldu
+        android_desc_html: <a href="%{url}">iNaturalist Android uygulaması</a> üzerinden oluşturuldu
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
         identifiers_desc: Bugün başkasının gözlemine bir tanımlama eklendi
@@ -6768,7 +6656,7 @@ tr:
         obs_id_d_desc: Önceki 7 gün içerisinde oluşturulmuş ve bir tanımlamaya sahip (gözlemcinin olabilir)
         observations_1_week_moving_window: Gözlemler (1 haftalık hareketli pencere)
         observers_desc: Bugüne ilişkin bir gözlem eklendi
-        other_desc_html: <a href="%{url}">geliştiriciler tarafından yapılmış</a> diğer uygulamalar üzerinden oluşturuldu
+        other_desc_html: <a href="%{url}">Geliştiriciler tarafından yapılmış</a> diğer uygulamalar üzerinden oluşturuldu
         recent_desc: Önceki 7 günde kaydoldu
         recent_w_0_obs: Son h/ 0 gözl
         recent_w_0_obs_desc: Önceki 7 gün içinde kaydoldu ve 0 gözl ekledi
@@ -6780,15 +6668,9 @@ tr:
         TTID: TTID
         TTID_desc: Başkasından bir tanımlama alma zamanı
         TTID_note: |
-          Bu istatistikler, bir hafta önce oluşturulmuş gözlemler için yapılır; bu, bir 
-          haftadan uzun bir süre sonra gözlemlere eklenen tanımları kaçıracağı 
-          anlamına gelir, ve bu nedenle bugünden tekrar hesaplarsanız, istatistiklerin 
-          olduklarından daha düşük görünmesini sağlarsınız, ancak yine de topluluğun 
-          1 hafta içinde belirleme hızının ne kadar hızlı olduğu konusunda iyi bir 
-          ölçü sağlamalıdır.
+          Bu istatistikler bir hafta önce oluşturulan gözlemler için yapılmıştır, bu da gözlemlere bir haftadan daha uzun bir süre sonra eklenen tanımlamaları kaçıracağı anlamına gelir ve bu nedenle istatistikleri şu anda tekrar hesapladığından daha düşük gösterir ancak yine de topluluğun 1 haftalık pencereler içinde tanımlamada ne kadar hızlı olduğuna dair iyi bir ölçü sağlamalıdır. Bu istatistiklerin yalnızca fotoğraflı gözlemler için olduğunu unutma.
         website_desc_html: |
-          <a href="https://www.inaturalist.org">iNaturalist</a> veya 
-          <a href="%{url}">iNaturalist Ağı</a> internet siteleri üzerinden oluşturuldu
+          <a href="https://www.inaturalist.org">iNaturalist</a> veya <a href="%{url}">iNaturalist Ağı</a> internet siteleri üzerinden oluşturuldu
       year:
         compare_desc: |
           Bu yılın geçen yıllara oranla nasıl? Üç yıllık kullanım ve sonrasında yıllık aktivite parametrelerini karşılaştırmaya başlarız. Yeşil çizgi bu yılı gösterir, beyaz yatay çizgi geçen yılı gösterir, gri arka plan alanı ise en düşük ve en yüksek yılları gösterirken aynı zamanda tüm yılların ortalamasını gösterir. İstatistikler sıfır sayımlı olan yılları içermez.
@@ -6828,17 +6710,9 @@ tr:
         #a description of what that value represents
         low_too_small: "Az: %{low_value}(%{low_desc}), gösterilemeyecek kadar az"
         new_species_desc: |
-          Bu yıl %{site_name}'de ilk kez gözlemlenen türler.
-          <a href="%{url}">%{y} türünün</a> %{x}'i gösteriliyor.
+          Bu yıl %{site_name}'te ilk kez gözlemlenen türler. <a href="%{url}">%{y} türünün</a> %{x}'i gösteriliyor.
         new_species_desc_html: |
-          Bu yıl ilk kez eklenen türler.
-          Bu ay eklenen yeni türlerin bazılarını görüntülemek için bir ay seçin.
-          Ayrıca, toplam tür birikimini görebilir veya yeni gözlenen diğer türleri görmek için 
-          kaydırma butonunu zamanda geriye hareket ettirebilirsiniz. Bu grafik, %{site_name} 'e 
-          yüklendikleri aya kadar doğrulanabilir gözlemlerden türleri gösterir (gözlemlendikleri ayı değil).
-          Daha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Memeliler 
-          olarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>boz ayı</i> olan bir gözlemi
-          <i>Canis lupus</i> olarak sayacaktır.
+          Bu yıl ilk kez eklenen türler. Bir aya tıklayarak o ay eklenen yeni türlerden bazılarını görüntüleyebilirsin. Ayrıca toplam tür birikimini görüntüleyebilir veya yeni gözlemlenen diğer türleri görmek için kaydırıcıyı zamanda geriye doğru hareket ettirebilirsin. Bu grafik doğrulanabilir gözlemlerden elde edilen türleri %{site_name}'e yüklendikleri aya göre göstermektedir (gözlemlendikleri aya göre değil). Daha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Mammalia olarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>arctos</i> olan gözlem sadece <i>Canis lupus</i> olarak sayılır.
         new_species_per_year: Yeni Türler / Yıl
         new_species_per_year_by_date_added: Eklenme tarihine göre
         new_species_per_year_by_date_observed: Gözlem tarihine göre
@@ -6899,14 +6773,9 @@ tr:
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
-          Daha yüksek seviyeli bir sınıf için koruma statüsü eklemek, 
-          bu sınıftaki tüm türlerin gözlemlerini etkiler. Lütfen sınıflar
-          için statüsü olmayan türler içeren statüler eklemeyin, çünkü bu, türlerin 
-          gözlemlenmesi için koordinatları yanlış bir şekilde gizler.
+          Daha yüksek seviyedeki bir sınıf için koruma durumu eklemek, bu sınıftaki tüm türlerin gözlemlerini etkiler. Lütfen durumu olmayan türleri içeren sınıflar için statü eklemeyin çünkü bu türlerin gözlemleri için koordinatları yanlış bir şekilde belirsizleştirecektir.
         complete_desc_html: |
-          Bir "eksiksiz" sınıf, gözlemlenmiş olsun veya olmasın, iNaturalist'in sınıf
-          işleme politikalarına uygun, belirli bir sırada bilinen <em>tüm</em> soyundan gelen sınıfları içerir. 
-          Şu anda yalnızca site yöneticileri sınıfları tam olarak beyan edebilir.
+          Bir "eksiksiz" sınıf, gözlemlenmiş olsun veya olmasın, iNaturalist'in sınıf işleme politikalarına uygun, belirli bir sırada bilinen <em>tüm</em> alt soydan gelen sınıfları içerir. Şu anda yalnızca site yöneticileri sınıfları tam olarak beyan edebilir.
         complete_rank_desc_html: |
           Bu sınıfın tamamlanma derecesi, örn. eğer bu familya bütün cinsini 
           içeriyorsa, ama bütün türünü içermiyorsa, bu "cins" olarak ayarlanacaktır. 
@@ -6930,27 +6799,11 @@ tr:
         about_establishment_desc: |
           "Yerleşim tipleri" bir türün şu anda bulunduğu yere nasıl geldiğini açıklar. Yabancı, insan faaliyeti nedeniyle geldiği anlamına gelirken, yerli insan yardımı olmadan geldiği anlamına gelir. Yöreye özgü türler yalnızca belirli bir yerde görülür ve başka hiçbir yerde görülmez.
         about_taxon_curators_desc: |
-          Bu insanlar sınıflandırma ağacının bu sınıfı içeren kısmını yönetir. 
-          Değişiklik yapmak istiyorsanız, lütfen bu sınıfı işaretleyin 
-          veya bu kişilerden biriyle iletişim kurun.
+          Bu kişiler sınıflandırma ağacının bu sınıfı içeren kısmını yönetmektedir. Değişiklik yapmak istiyorsan, lütfen bu sınıfı işaretle veya bu kişilerden biriyle iletişime geç.
         charts_help_seasonality: |
-          Bu çizelge, aya göre gruplandırılmış bu sınıfın gözlem sayısını 
-          göstermektedir. Bunların gözlemlerin sayısı olduğunu unutmayın, 
-          bu yüzden hem organizmanın ne zaman gözlemlenebileceğinden, hem de insanların 
-          onları gözlemlemek için uğraştıkları zamandan etkilenirler. Bu yüzden bir kuş Mayıs ayında 
-          çok aktif görünebilir, ancak bu Mayıs ayında kuş gözlemine başlayan daha fazla insanın 
-          bu türleri daha sonraki aylarda görmezden gelme eğiliminde olması nedeniyle de olabilir.
-          Benzer şekilde, Haziran ayında Ocak ayına göre daha fazla yusufçuk görüyorsanız, 
-          bunun nedeni muhtemelen yusufçukların Haziran ayında daha aktif oldukları için değilde, 
-          kuzey yarımküredeki gözlemcilere göre güney yarımkürede daha fazla gözlemleyen insanın olmasıdır,
-          bu yüzden çizelgeleri değerlendirirken haritayı kontrol edin. "Doğrulanabilir" ve "Araştırma Sınıfı" 
-          gözlemlerinin sayısı arasında düşük sayıda gözlem ve/veya büyük tutarsızlıklar olduğunda 
-          bu çizelgelere kuşku duymak her zaman iyi bir fikirdir.
+          Bu grafik, bu sınıfın aylara göre gruplandırılmış gözlem sayısını göstermektedir. Bunların gözlem sayıları olduğunu, dolayısıyla hem organizmanın ne zaman gözlemlenebileceğinden hem de insanların onları ne zaman gözlemleme zahmetine girdiğinden etkilendiğini unutma. Dolayısıyla, bir kuş mayıs ayında çok aktif görünebilir ancak bunun nedeni mayıs ayında kuş gözlemi yapan daha çok insanın daha sonraki aylarda bu türü görmezden gelme eğiliminde olması da olabilir. Benzer şekilde, haziran ayında ocak ayına göre daha çok yusufçuk görüyorsan, bu muhtemelen kuzey yarımkürede güney yarımküreye göre daha çok gözlemci olmasından kaynaklanmaktadır, yusufçukların haziran ayında daha aktif olmasından değil, bu yüzden bu tabloları değerlendirirken haritayı kontrol edin. Düşük sayıda gözlem ve/veya "Doğrulanabilir" ve "Araştırma Sınıfı" gözlem sayıları arasında büyük farklılıklar olduğunda bu çizelgelere şüpheyle yaklaşmak her zaman iyi bir fikirdir.
         charts_help_history: |
-          Bu çizelge, son on yıl boyunca bu sınıfın gözlem sayısını göstermektedir. Yine, 
-          gözlemleyen kişi sayısı tarafından önyargılıdır, ancak gözlemlerde olağandışı ani artışlar 
-          gösterecektir ve artan sayıda gözlemciye rağmen düz veya azalan görünüyorsa, 
-          bu bollukta bir değişiklik önerebilir.
+          Bu grafik, son on yılda bu sınıfın aylara göre gözlem sayısını göstermektedir. Yine, gözlem yapan kişi sayısına göre yanlıdır ancak gözlemlerdeki olağandışı artışları gösterecektir ve artan gözlemci sayısına rağmen sabit veya azalıyor gibi görünüyorsa, bu toplamda bir değişiklik olduğunu gösterebilir.
         charts_help_other: |
           Ayrıca gözlem açıklamaları için mevsimsellik grafikleri de gösteriyoruz. Açıklamalar, kontrollü bir terimler sözlüğü kullanarak gözlemlere meta veri eklemenin bir yoludur, örn. bir gözlemin çiçek açan ya da meyve veren bir bitkiyi tasvir edip etmediği gibi.
         charts_help_relative_observations: |
@@ -6981,36 +6834,29 @@ tr:
           "Sex=Male": Erkek
           unannotated: Açıklama Yok
         max_photos_desc: |
-          Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırmanız gerekecek.
+          Bir sınıf yalnızca %{max} fotoğrafa sahip olabilir. Daha fazla eklemek için mevcut fotoğrafları kaldırman gerekecek.
         no_trending_desc: Geçen ayda bu sınıf altında hiçbir şey gözlemlenmedi
         photo_chooser_modal_desc: |
           Fotoğrafları buraya soldan sürükleyin veya yeniden düzenlemek için fotoğrafları buraya sürükleyin.
         photo_chooser_modal_explanation: |
-          Sınıf sayfasının bu sınıf ve soyundan gelenlerin fotoğraflarını 
-          göstereceğini unutmayın. Bu sınıf için seçilen fotoğraflar ilk önce 
-          gösterilecek. İlk fotoğraf, site genelinde kullanılan varsayılan resim olacaktır.
+          Sınıf sayfasının bu sınıfın ve onun alt soyundan gelenlerin fotoğraflarını göstereceğini unutma. Ancak bu sınıf için seçilen fotoğraflar ilk olarak gösterilecektir. İlk fotoğraf site genelinde kullanılan varsayılan resim olacaktır.
         rare_desc: En az gözlemlenen tehdit altındaki sınıflar
-        rare_in_place_desc_html: <a href="%{url}">%{place}</a>'da en az gözlemlenen tehdit altındaki sınıflar
+        rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki sınıflar
         site_curators_disabled_wikipedia_html: |
-          Site sorumluları <a href="%{url}">Vikipedi'den bu içeriği</a> göstermeyi geçici 
-          olarak devre dışı bıraktılar. Sayfayı Vikipedi'de bu sınıfa uygun hale getirmek 
-          için düzenleyerek veya bu sınıfı site sorumlularının dikkatine sunmak için 
-          işaretleyerek yardımcı olabilirsiniz.
+          Site küratörleri <a href="%{url}">bu içeriği Vikipedi'den</a> göstermeyi geçici olarak devre dışı bıraktı. Vikipedi'deki sayfayı bu sınıf için uygun hale getirecek şekilde düzenleyerek veya bu sınıfı site küratörlerinin dikkatine sunmak için işaretleyerek yardımcı olabilirsin.
         trending_desc: Geçen ayda en çok gözlemlenen sınıflar
-        trending_in_place_desc_html: <a href="%{url}">%{place}</a>'da geçen ay en çok gözlemlenen sınıflar
+        trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen sınıflar
         wanted_desc: Bu sınıfta yer alan henüz gözlemlenmemiş türler.
     taxon_changes:
       move_children_desc: |
-        Sınıf girişinin cins veya daha büyük olan çocukları çıkışa taşınacaktır; 
-        türler, alt türler, çeşitler vb., yeni cins veya tür ismi ile eşdeğerde değiştirilecektir.
+        Girdi sınıfının cins veya daha büyük olan çocukları çıktıya taşınacaktır; türler, alttürler, varyeteler vb. yeni cins veya tür adıyla eşdeğerleriyle değiştirilecektir.
       form:
         move_children_desc_html: |
           Bu kutunun işaretlenmesi, bu değişiklik yapıldığında Yer Değiştirmeler ve Birleştirmeler için girdi sınıfının alt soyunu çıktı sınıfına taşıyacaktır. Bu değişiklik bir cinse ya da daha alt düzeye uygulanırsa, ima edilen ad değişikliğine sahip tüm alt soy için Sınıf Yer Değiştirme oluşturacaktır. Örneğin, Canidae familyasını Dogidae ile değiştirirsen, bu <i>Canis</i> cinsinin üst soyunu Canidae'den Dogidae'ye değiştirir. <i>Canis</i> cinsini <i>Dogis</i> cinsiyle değiştirirsen, <i>Canis lupus</i>'u <i>Dogis lupus</i> ve <i>Canis lupus</i> ssp. <i>lupus</i>'u <i>Dogis lupus</i> ssp. <i>lupus</i> olarak değiştirmek için Sınıf Yer Değiştirme oluşturacak ve uygulayacaktır. Bu oldukça karışıklığa neden olabilir, bu yüzden dikkatli kullanın.
     taxon_links:
       form:
         name_with_rank_desc: |
-          Sınıfın aşamalı ismi. Türlerin altındaki sınıflandırma aşamaları 
-          için, sıralama iki terimliden sonra eklenir.
+          Sıralamaya sahip sınıfın adı. İnfraspesifik sıralar için rütbe ikili terimden sonra eklenir.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -7043,27 +6889,21 @@ tr:
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
         about_html: |
-          Sınıfların birçok ortak adı olabilir. Küresel olarak bir varsayılan ortak adı destekliyoruz, 
-          buradan bir listeyi listenin en üstüne sürükleyerek değiştirebilirsiniz. Ayrıca, adı düzenleyerek 
-          ve bir yer ekleyerek varsayılan adları farklı yerlerde de belirtebilirsiniz, ancak lütfen bunu, yalnızca 
-          farklı yerlerde bağdaşmayan isimler olduğunda yapın.
+          Sınıfların birçok ortak adı olabilir. Küresel olarak bir varsayılan ortak adı destekliyoruz, bu adı burada listenin en üstüne sürükleyerek değiştirebilirsin. Ayrıca adı düzenleyip bir yer ekleyerek farklı yerlerde varsayılan adlar belirleyebilirsin ancak lütfen bunu yalnızca farklı yerlerde çakışan adlar olduğunda yap.
     users:
       dashboard:
         taxon_change_desc: |
-          Sınıf değişiklikleri, %{site_name} 'in sınıflandırmasında yapılan 
-          değişiklikleri temsil eder. %{site_name} çoğu zaman bu değişiklikler olduğunda 
-          içeriğinizi otomatik olarak güncel tutar (vazgeçmediyseniz), ancak verilerinizin 
-          ne zaman ve nasıl değiştiğini size bildirmek istiyoruz.
-        your_content_will_be_updated: Bu sınıflar ile ilgili içeriğiniz otomatik olarak güncellenecektir.
-        you_may_want_to_update: Bu sınıflar ile ilgili güncellemek isteyebileceğiniz bazı içerikleriniz var.
-        cannot_update_your_content: "%{site_name}, bu değişiklik için içeriğinizi otomatik olarak güncelleyemiyor."
+          Sınıf değişiklikleri %{site_name}'in sınıflandırmasındaki değişiklikleri temsil eder. Çoğu zaman %{site_name}, bu değişiklikler gerçekleştiğinde içeriğini otomatik olarak güncel tutacaktır (devre dışı bırakmadığın sürece) ancak yine de verilerinin ne zaman ve nasıl değiştiğini sana bildirmek istiyoruz.
+        your_content_will_be_updated: Bu sınıflar ile ilgili içeriğin otomatik olarak güncellenecektir.
+        you_may_want_to_update: Bu sınıflar ile ilgili güncellemek isteyebileceğin bazı içeriklerin var.
+        cannot_update_your_content: "%{site_name}, bu değişiklik için içeriğini otomatik olarak güncelleyemiyor."
         new_project_admin_html: |
           Bu proje için neden şimdi yönetici olduğunu mu merak ediyorsun? Önceki sahibi ya seni yeni yönetici olarak atadı ya da hesabını sildi ve %{site_name} seni proje yürütücüsü ya da site küratörü olduğun için atadı. Proje yöneticisi olmak istemiyorsan, lütfen <a href="mailto:%{help_email}">%{help_email}</a> ile iletişime geç.
         curators_can_see: |
-          Sadece bir hatırlatma, proje sorumluları bu projeye eklediğiniz gözlemlerin özel ve gizlenmiş koordinatlarını görebilir.
+          Sadece bir hatırlatma, proje küratörleri bu projeye eklediğin gözlemlerin özel ve gizlenmiş koordinatlarını görebilirler.
       delete:
         by_deleting_your_account_you_will_remove: |
-          Hesabınızı silerek kaldıracaksınız
+          Hesabını silerek şunları kaldırmış olursun:
         caching: |
           Hesabınızı, içeriğinizin bir kısmını silmeye çalıştığınız ancak hâlâ bir haritada yada internette başka bir yerde görebildiğiniz için siliyorsanız, harita verilerinin kayıtlar silindikten sonra bile bir güne kadar önbelleğe alınabileceğini ve bu platformdaki içeriğin silinmesinin diğer sitelerde ve platformlarda (GBIF gibi) bulunan kopyalar üzerinde herhangi bir etkisi olmayabileceğini unutmayın.
         x_observations_html:
