@@ -21,10 +21,10 @@ he:
     many: '%{count} מועדפים'
     other: '%{count} מועדפים'
   x_flags_resolved_html:
-    one: "דגל <span class='count'>%{count}</span> ניפתר"
-    two: "<span class='count'>%{count}</span> דגלים ניפתרו"
-    many: "<span class='count'>%{count}</span> דגלים ניפתרו"
-    other: "<span class='count'>%{count}</span> דגלים ניפתרו"
+    one: "סימון אחד נפתר"
+    two: "<span class='count'>%{count}</span> סימונים נפתרו"
+    many: "<span class='count'>%{count}</span> סימונים נפתרו"
+    other: "<span class='count'>%{count}</span> סימונים נפתרו"
   x_identifications:
     one: 'זיהוי אחד'
     two: '%{count} זיהויים'
@@ -58,20 +58,20 @@ he:
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
-    one: "%{count} טקסונים שניצפו לראשונה"
+    one: "תצפית בכורה אחת"
     #Count of number of taxa that represent the first addition to a life list
-    two: "%{count} טקסונים שניצפו לראשונה"
+    two: "%{count} תצפיות בכורה"
     #Count of number of taxa that represent the first addition to a life list
-    many: "%{count} טקסונים שניצפו לראשונה"
+    many: "%{count} תצפיות בכורה"
     #Count of number of taxa that represent the first addition to a life list
-    other: "%{count} טקסונים שניצפו לראשונה"
+    other: "%{count} תצפיות בכורה"
   x_journal_posts_html:
-    one: 'פוסט <span class="count">%{count}</span>'
+    one: 'פוסט אחד'
     two: '<span class="count">%{count}</span> פוסטים'
     many: '<span class="count">%{count}</span> פוסטים'
     other: '<span class="count">%{count}</span> פוסטים'
   x_matching_taxa:
-    one: 'טקסון תואם %{count}'
+    one: 'טקסון תואם אחד'
     two: '%{count} טקסונים תואמים'
     many: '%{count} טקסונים תואמים'
     other: '%{count} טקסונים תואמים'
@@ -93,10 +93,10 @@ he:
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
-    one: "זיהוי שגוי %{count} ב %{rank} הזה"
-    two: "%{count} זיהויים שגויים ב %{rank} הזה"
-    many: "%{count} זיהויים שגויים ב %{rank} הזה"
-    other: "%{count} זיהויים שגויים ב %{rank} הזה"
+    one: "זיהוי שגוי %{count} ב%{rank} הזה"
+    two: "%{count} זיהויים שגויים ב%{rank} הזה"
+    many: "%{count} זיהויים שגויים ב%{rank} הזה"
+    other: "%{count} זיהויים שגויים ב%{rank} הזה"
   x_observations:
     one: "תצפית %{count}"
     two: "%{count} תצפיות"
@@ -118,10 +118,10 @@ he:
     many: "<a href='%{url}'>%{count} תצפיות</a>"
     other: "<a href='%{url}'>%{count} תצפיות</a>"
   x_observations_reviewed_html:
-    one: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
-    two: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
-    many: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
-    other: "<span class='count'>%{count}</span> תצפיות שעברו בדיקה"
+    one: "תצפית אחת עברה בדיקה"
+    two: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
+    many: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
+    other: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
   x_observers_html:
     one: 'מתצפת.ת <span class="count">%{count}</span>'
     two: '<span class="count">%{count}</span> מתצפתות.ים'
@@ -179,40 +179,40 @@ he:
     many: "%{count} טקסונים"
     other: "%{count} טקסונים"
   x_taxa_observed_html:
-    one: "טקסון <span class='count'>%{count}</span> ניצפה"
-    two: "<span class='count'>%{count}</span> טקסונים ניצפו"
-    many: "<span class='count'>%{count}</span> טקסונים ניצפו"
-    other: "<span class='count'>%{count}</span> טקסונים ניצפו"
+    one: "טקסון <span class='count'>%{count}</span> נצפה"
+    two: "<span class='count'>%{count}</span> טקסונים נצפו"
+    many: "<span class='count'>%{count}</span> טקסונים נצפו"
+    other: "<span class='count'>%{count}</span> טקסונים נצפו"
   x_research_grade_observations_html:
-    one: "תצפית בדרגת מחקר <span class='count'>%{count}</span>"
+    one: "תצפית אחת בדרגת מחקר"
     two: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
     many: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
     other: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר"
   x_research_grade_observations_to_species_html:
-    one: "תצפית <span class='count'>%{count}</span> באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
-    two: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
-    many: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
-    other: "<span class='count'>%{count}</span> תצפיות באיכות מחקר זוהו כמינים או נמוך יותר בעץ הטקסונומי"
+    one: "תצפית אחת בדרגת מחקר זוהתה לרמה של מין או נמוך יותר"
+    two: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
+    many: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
+    other: "<span class='count'>%{count}</span> תצפיות בדרגת מחקר זוהו לרמת המין או נמוך יותר"
   x_sounds:
     one: "קול אחד"
     two: "%{count} קולות"
     many: "%{count} קולות"
     other: "%{count} קולות"
   x_taxa_curated_html:
-    one: "<span class='count'>%{count}</span> טקסון טופל ע\"י אוצר"
-    two: "<span class='count'>%{count}</span> טקסונים טופלים ע\"י אוצר"
-    many: "<span class='count'>%{count}</span> טקסונים טופלים ע\"י אוצר"
-    other: "<span class='count'>%{count}</span> טקסונים טופלים ע\"י אוצר"
+    one: "טקסון אחד טופל"
+    two: "<span class='count'>%{count}</span> טקסונים טופלו"
+    many: "<span class='count'>%{count}</span> טקסונים טופלו"
+    other: "<span class='count'>%{count}</span> טקסונים טופלו"
   x_taxa_matching_current_filters:
-    one: "טקסון %{count} תואם להגדרות הסינון"
-    two: "%{count} טקסונים תואמים להגדרות הסינון"
-    many: "%{count} טקסונים תואמים להגדרות הסינון"
-    other: "%{count} טקסונים תואמים להגדרות הסינון"
+    one: "טקסון אחד תואם את הגדרות הסינון"
+    two: "%{count} טקסונים תואמים את הגדרות הסינון"
+    many: "%{count} טקסונים תואמים את הגדרות הסינון"
+    other: "%{count} טקסונים תואמים את הגדרות הסינון"
   x_taxon_changes_added_html:
-    one: "בוצע שינוי <span class='count'>%{count}</span> בטקסון"
-    two: "<span class='count'>%{count}</span> שינויים טקסונומיים בוצעו"
-    many: "<span class='count'>%{count}</span> שינויים טקסונומיים בוצעו"
-    other: "<span class='count'>%{count}</span> שינויים טקסונומיים בוצעו"
+    one: "שינוי טקסון אחד נוסף"
+    two: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
+    many: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
+    other: "<span class='count'>%{count}</span> שינויי טקסון נוספו"
   _100_day_trends: מגמות 100 ימים
   _percent_ID_d: "אחוז מזוהה"
   a_community_for_naturalist: קהילה של אוהבי טבע
@@ -420,7 +420,7 @@ he:
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
   add_sex_female_annotation: 'הוספת תווית "זוויג: נקבה"'
   add_sex_male_annotation: 'הוספת תווית "זוויג: זכר"'
-  add_sex_cannot_be_determined_annotation: 'הוסף תווית "זוויד: לא ניתן לקביעה"'
+  add_sex_cannot_be_determined_annotation: 'הוספת תווית "מין: לא ניתן לקביעה"'
   add_some_now: הוספה עכשיו
   add_tag: הוספת תגית
   add_tags: הוספת תגיות
@@ -444,9 +444,9 @@ he:
   added: נוסף
   added!: נוסף!
   added_as_a_part_of_a_taxon_change_html: |
-    נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">שינוי טקסונומי</a>
+    נוסף במסגרת <a target="%{target}" class="%{class}" href="%{url}">שינוי טקסון</a>
   added_as_a_part_of_a_taxon_merge_html: |
-    נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">איחוד טקסונים</a>
+    נוסף במסגרת <a target="%{target}" class="%{class}" href="%{url}">איחוד טקסונים</a>
   added_as_a_part_of_a_taxon_split_html: |
     נוסף בגלל <a target="%{target}" class="%{class}" href="%{url}">איחוד טקסונים</a>
   added_as_a_part_of_a_taxon_swap_html: |
@@ -503,7 +503,7 @@ he:
     subgenus: כל תתי-הסוגים הוספו לבסיס הנתונים
     section: כל החלקים הוספו לבסיס הנתונים
     subsection: כל תתי-החלקים הוספו לבסיס הנתונים
-    complex: כל הקומפלקסים הוספו לבסיס הנתונים
+    complex: כל הקומפלקסים נוספו לבסיס הנתונים
     species: כל המינים הוספו לבסיס הנתונים
     hybrid: כל בני הכילאיים הוספו לבסיס הנתנוים
     subspecies: כל תתי-המינים נוספו לבסיס הנתונים
@@ -553,7 +553,7 @@ he:
       many: "%{count} יונקים"
       other: "%{count} יונקים"
     x_actinopterygii:
-      one: "%{count} מקריני סנפיר"
+      one: "מקרין סנפיר אחד"
       two: "%{count} מקריני סנפיר"
       many: "%{count} מקריני סנפיר"
       other: "%{count} מקריני סנפיר"
@@ -727,7 +727,7 @@ he:
   are_you_sure_want_delete_taxon_descendant_taxa_observations: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנו דטה טקסוני מקושר עבורו ותצפיות.
   are_you_sure_want_delete_taxon_identifications: |
-    האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימים זיהויום עבורו.
+    האם ברצונך למחוק טקסון זה? קיימים זיהויים עבורו.
   are_you_sure_want_delete_taxon_identifications_observations: |
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? ישנם זיהויים, ותצפיות עבורו.
   are_you_sure_want_delete_taxon_listed_taxa: |
@@ -861,7 +861,7 @@ he:
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "עריכת קבוצת טקסונים %{x}"
   batch_operations: מספר פעולות
-  be_the_first_to_fave_this_observation: תהיו הראשון להעדיף תצפית זו!
+  be_the_first_to_fave_this_observation: אפשר להיות הראשונ.ה להעדיף תצפית זו!
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     מכיוון שלהערכתנו שינויי זה יגרום ליותר מ-10 חילוקי דעות לא מכוונים, <strong>המלצתנו היא שתאשר.י שינוי טקסון עם %{old_parent}, למשל פיצול %{new_parent} מ%{old_parent}</strong>.
@@ -1069,7 +1069,7 @@ he:
   commit: אישור הגשה
   #Adjective describing a taxon change that has been committed
   committed: בוצע
-  committed_by_user_on_date_html: הופעל על־ידי %{user} בתאריך %{date}
+  committed_by_user_on_date_html: אושר על ידי %{user} בתאריך %{date}
   #Label for date the taxon change was committed
   committed_on: הועלה ב %{date}
   committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון מאושרים
@@ -1087,7 +1087,7 @@ he:
   community_id_at_species_level_or_lower: רמת זיהוי קהילתי של מינים או רמה נמוכה יותר
   community_id_is_precise: הטקסון הקהילתי הוא מדויק
   community_moderation_settings: הגדרות בקרת הקהילה
-  community_supported_id: טקסון שנתמך על־ידי הקהילה
+  community_supported_id: טקסון שנתמך על־ידי הקהילה?
   compare: השוואה
   compare_with: השוואה עם
   comparing: השוואה
@@ -1142,16 +1142,16 @@ he:
   connect_to_flickr_again_to_authorize_write_permissions: יש להתחבר פעם נוספת לפליקר על מנת לאפשר הרשאת כתיבה
   connecting_to_facebook: "מתחבר לפייסבוק..."
   connecting_your_inat_account_to_accounts_other_sites: "חיבור חשבון %{site_name} לחשבונות באתרים אחרים יאפשר לכם להתחבר ל%{site_name} בעזרת פרטי המשתמש של אתרים אלו."
-  cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת קפיאת תוכן
+  cannot_be_changed_during_a_content_freeze: לא ניתן לשינוי בעת הקפאת תוכן
   conservation_status: סטטוס שימור
   conservation_status_created: סטטוס שימור נוצר
   conservation_status_deleted: סטטוס שימור נמחק
   conservation_status_updated: סטטוס שימור עודכן
   conservation_status_descriptions:
-    status: קוד ססטוס. אם יש קוז מקוצר כמו E או CR יש להשתמש בו, אבל אם אין, נא לתת שם המלא, לדוגמה, "בסכנת הכחדה".
+    status: קוד ססטוס. אם קיים קוד מקוצר כמו E או CR יש להשתמש בו, אבל אם אין, נא לתת שם המלא, לדוגמה, "בסכנת הכחדה".
     description: תיאור קצר מדוע מין זה הוסף לרשימה.
     authority: |
-      אירגון אשר קבע ססטוס זה. אנא בדקו ברשימת האירגונים לפני הוספת אירגון חדש. ניתן להשאיר ריק אם תרצו להיסמן כמקבע הססטוס בעצמכם.
+      הארגון שקבע את הססטוס. נא להיעזר בהשלמה האוטומטית לבחור סמכות קיימת לפני הוספת ארגון חדש. ניתן לדלג על שלב זה אם *את.ה* רוצה להיות רשומ.ה בתור הסמכות.
     place: מיקום באשר סטטוס זה הינו מוגבל
     url: URL לדף המתאר סטטוס זה
     geoprivacy: |
@@ -1232,11 +1232,11 @@ he:
     alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
     dead: היצור מת או מראה שימנים של מוות מיידי
     flower_budding: רואים ניצני פרחים אך סגורים
-    flowering: פרחים נראים, פתוחים, ועוד מחוברים לצמח
+    flowering: פרחים נראים לעין, פתוחים, ועוד מחוברים לצמח
     fruiting: פירות נראים ועוד מחוברים לצמח
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
     teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
-    cannot_be_determined: לא ניתן לדעת מתצפית זו
+    cannot_be_determined: לא ניתן לקבוע מהראיות שסופקו
     feather: נוצה אחת או יותר אינן מחוברות לגוף הפרט
     organism: אורגניזם שלם או חלק ממנו
     scat: חומר גללי (לא כולל צנפות)
@@ -1489,7 +1489,7 @@ he:
     nextText: הבא
     range: טווח זמנים
   date_range: טווח תאריכים
-  date_specified: תאריך צוין
+  date_specified: תאריך ציון
   date_time: תאריך/שעה
   #Express a date range. d1 and d2 could be any expression of dates, so better
   #to use the most flexible form possible here, e.g. not something like "d1 to
@@ -1513,7 +1513,7 @@ he:
   default_sound_license: רשיון ברירת המחדל של הקול
   default_time_zone_desc: |
     זהו אזור הזמן ברירת המחדל. אזור הזמן הסופי ייבחר לפי מיקום המתצפת.ת בזמן השמירה.
-  defaults_to_your_name_or_username: ברירת מחדל לשם או שםמשתמש שלך
+  defaults_to_your_name_or_username: ברירות מחדל עבור השם או שם המשתמש שלך
   defines_a_taxon_framework_for: מגדיר מערכת יחסים טקסונומית עבור %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: מגדיר מסגרת טקסון עבור %{taxon} הנובעת מהמקור %{source}
   definitions: הגדרות
@@ -1734,7 +1734,7 @@ he:
     נערך על ידי %{name}, חלק מזכויות היוצרים שמורות (%{license})
   editing: עריכה
   editing_announcement: עריכת הודעה
-  editing_custom_project_fields_for: עורך שדות פרויקט מותאמים אישית
+  editing_custom_project_fields_for: עורך שדות פרויקט מותאמים אישית עבור
   editing_observation_field: עריכת שדה תצפיות
   editing_observation_id: "עריכת תצפית %{obs_id}"
   editing_observations:
@@ -1798,7 +1798,7 @@ he:
     naturalised: מין מגויר
   establishment_means: דרכי התבססות
   establishment_means_describes_how: |
-    דרכי התבוססות מתאר איך טקסון מסוים הגיע למקום מוגדר. צפו בDarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">כדי לקבל מידע נוסף</a>.
+    "דרכי התבססות" מתאר איך טקסון מסוים הגיע להתבסס באזור. צפו ב-DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">כדי לקבל מידע נוסף</a>.
   establishment_means_descriptions:
     native: שעברו אבולוציה באזור זה או שהגיעו לא באמצעות האדם
     endemic: מקומי ושאינו מופיע במקומות אחרים
@@ -1926,20 +1926,20 @@ he:
   flag_comment_description: ניתן להוסיף תגובה אופציונאלית לסימון זה שמסבירה עוד מדוע הוספת אותו ומספקת קישורים למידע תומך.
   flag_for_check_list_title_html: |
     סימון לרשימת מינים: %{title}
-  flag_for_comment_id_html: דגל עבור <a href="%{url}">תגובה %{id}</a>
+  flag_for_comment_id_html: סימון עבור <a href="%{url}">תגובה %{id}</a>
   flag_for_comment_id_deleted: סימון עבור תגובה %{id} (נמחקה)
   flag_for_curation: סמנ.י לאוצרות
   flag_for_guide_title_html: |
     סימון למגדיר: %{title}
-  flag_for_identification_id_html: דגל עבור <a href="%{url}">זיהוי %{id}</a>
+  flag_for_identification_id_html: סימון עבור <a href="%{url}">זיהוי %{id}</a>
   flag_for_life_list_title_html: |
     סימון לרשימת חיים: %{title}
   flag_for_list_title_html: |
     סימון לרשימה: %{title}
-  flag_for_message_id_html: דגל עבור <a href="%{url}">מסרון %{id}</a>
+  flag_for_message_id_html: סימון עבור <a href="%{url}">הודעה %{id}</a>
   flag_for_observation_title_html: |
     סימון לתצפית: %{title}
-  flag_for_photo_id_html: דגל עבור <a href="%{url}">תמונה %{id}</a>
+  flag_for_photo_id_html: סימון עבור <a href="%{url}">תמונה %{id}</a>
   flag_for_place_title_html: |
     סימון עבור מקום: %{title}
   flag_for_post_title_html: |
@@ -1947,7 +1947,7 @@ he:
   flag_for_project_title_html: |
     סימון לפרוייקט: %{title}
   flag_for_guide_section_id_html: סימון עבור <a href="%{url}">פרק במדריך%{id}</a>
-  flag_for_sound_id_html: דגל עבור <a href="%{url}">צליל %{id}</a>
+  flag_for_sound_id_html: סימון עבור <a href="%{url}">קול %{id}</a>
   flag_for_taxon_title_html: |
     סימון לטקסון: %{title}
   flag_for_user_title_html: |
@@ -1956,10 +1956,10 @@ he:
   flag_marked_as_resolved_html: '<span class="meta">סימון סומן כ</span> <strong>נפתר.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: אובייקט
-  flag_reason: "&ldquo;אני מסמן את %{record} בדגל כי"
+  flag_reason: "&ldquo;אני מסמנ.מ את %{record} זה כי"
   flag_resolution: פתרון
   flag_saved: סימון נשמר
-  flag_saved_thanks_html: הדגל שמור. תודה! <a href="%{url}" class="readmore">צפייה בדגל</a>
+  flag_saved_thanks_html: הסימון נשמר. תודה! <a href="%{url}" class="readmore">צפייה בסימון</a>
   flag_this_observation: סימון תצפית
   flag_this_photo: סמן תמונה זו
   flag_this_place: סמן מקום זה
@@ -1973,7 +1973,7 @@ he:
   flagger: מסמנ.ת
   flags: סימונים
   flags_with_count: סימונים (%{count})
-  flags_explanation: "%{site_name} מסמנים בדגל תוכן אשר מצריך תשומת לב מאוצרים או מאנשי צוות."
+  flags_explanation: "משתמשות ומשתמשי %{site_name} מסמנות ומסמנים תוכן הדורש תשומת לב מצוות האתר."
   flags_for_x_html: סימונים עבור %{x}
   flags_on_users_content: "סימונים על התוכן של %{user}"
   flickr_account_information: מידע אודות חשבון ה Flickr שלך
@@ -2190,7 +2190,7 @@ he:
   ids: "זיהויים"
   ids_made_for_others: זיהויים בשביל א.נשים אחרים
   if_for_some_reason_a_user_doesnt_agree: |
-    אם משום סיבה את/ה לא מסכימ/ה עם טקסון הקהילה, ניתן לדחות אותו, כלומר שזיהוי שלך יופיע לקשרים עם תצפיות אחרות, לרשימות-חיים, וכו'. זאת גם אומרת שתצפית זאת תוכל להסיג דרגת מחקר רק אם הזיהוי שלך וטקסון הקהילה זהים.
+    אם מסיבה כלשהי אינך מסכימ.ה עם הטקסון הקהילתי, ניתן לדחות אותו, כלומר שהזיהוי שלך ישמש לקישורים עם תצפיות אחרות, לעדכון רשימות חיים, וכו'. זה גם אומר שהתצפית שלך תוכל להשיג דרגת מחקר רק כאשר הקהילה תסכים עמך.
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_moves_html: |
@@ -2205,7 +2205,7 @@ he:
   if_you_have_any_trouble_with_the_site_check_out: 'במידה ויש לך שאלות, נא לעיין <a href="%{help_url}">באזור העזרה</a> שלנו או להעלות הודעה <a href="%{feedback_url}">לקבוצת הפידבק</a> שלנו.'
   if_your_project_is: במידה והפרוייקט מתמקד באזור ספציפי, יש להגדיר את הקוארדינטות באמצעות הקלקה על המפה או על ידי הזנתן.
   ignore_and_continue: התעלם והמשך
-  ignore_times: התעלם מזמנים
+  ignore_times: להתעלם מזמנים
   image_must_be_exactly: התמונה חייבת להיות ברוחב של 950 פיקסלים ובגובה של 400 פיקסלים לכל היותר
   image_size_control: בקרת גודל תמונה
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
@@ -2286,7 +2286,7 @@ he:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
   is_this_offensive_html: 'האם זה <a href="/help#inappropriate">בתלי הולם</a>, ספאם או פוגעני?'
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
-  it_can_now_be_used_for_research: מעכשיו ניתן לשימוש במחקר והכללה שאתרים אחרים
+  it_can_now_be_used_for_research: מעכשיו היא יכולה לשמש מחקרים ולהיות מוצגת באתרים אחרים
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: כתב נטוי
   item_flagged_notice_html: |
@@ -2596,7 +2596,7 @@ he:
     logo: סמליל
     white_bg_gif: GIF רקע לבן
     transparent_png: PNG שקוף
-    white_text_transparent_png: טקסט לבן PNG שקוף
+    white_text_transparent_png: PNG טקסט לבן שקוף
     none: אין
   long: קו אורך
   longitude: קו אורך
@@ -2613,7 +2613,7 @@ he:
   #Header for main content section of the project detail page when editing custom project data.
   main_content: תוכן ראשי
   #Stub text for the main content section when editing custom project data
-  main_content_description: תוכן המרכזי יהיה כאן
+  main_content_description: התוכן המרכזי יהיה כאן
   make_a_new_place: יצירת מקום חדש
   make_a_taxon_swap_instead?: לעשות החלפת טקסון במקום?
   make_curator: להפוך לאוצר.ת
@@ -2672,15 +2672,15 @@ he:
   membership_model: מודל חברות
   mentioned_you_in_noun_html: "%{user} הזכיר אותך ב%{noun}"
   mentioned_you_in_noun_by_html: "%{user} הזכיר.ה אותך ב%{noun} של %{by}"
-  mentioned_you_in_noun_by_user_html: "%{user} הזכיר אותך ב%{noun} של %{by}"
+  mentioned_you_in_noun_by_user_html: "%{user} הזכיר.ה אותך ב%{noun} של %{by}"
   mentioned_you_in_noun_by_you_html: "%{user} הזכיר.ה אותך ב%{noun} על ידך"
   mentioned_you_in_a_x_on_noun_html: "%{user} הזכיר אותך ב%{x} על %{noun}"
   mentioned_you_in_an_x_on_noun_html: "%{user} הזכיר אותך ב%{x} על %{noun}"
   mentioned_you_in_a_x_on_noun_by_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
-  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} הזכיר.ה אותך ב%{x} על %{noun} של %{by}"
   mentioned_you_in_a_x_on_noun_by_you_html: "%{user} הזכיר.ה אותך ב%{x} על %{noun} שלך"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
-  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} הזכיר אותך ב%{x} על %{noun} של %{by}"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} הזכיר.ה אותך ב%{x} על %{noun} של %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} הזכיר.ה אותך ב%{x} על %{noun} שלך"
   merge: מיזוג
   merge_it_with_another_place: מיזוג עם מקום נוסף
@@ -3168,7 +3168,7 @@ he:
   observations_specifying_this_field: תצפיות המפרטות שדה זה
   observations_specifying_this_field_with_value: תצפיות המפרטות שדה זה ב"%{value}"
   observations_text_search_warning: |
-    חיפושים של טקסט (מילים) יוצרים תוצאות מוזרות כשמצורפים עם פילטרים נוספים. אם את/ה מעוניין/ת לחפש מין מסוים, אנא השתמש/י בפילטר הטקסון.
+    חיפושי טקסט עשויים להניב תוצאות מוזרות כשהם בשילוב עם מסננים נוספים. אם את.ה רוצה למצוא תצפיות של מין מסוים, נא להשתמש במסנן הטקסון.
   observations_this_year_vs_last_year: תצפיות משנה זו בהשוואה לשנה הקודמת
   observations_total: סך כל תצפיות
   observations_w: תצפיות עם
@@ -3189,7 +3189,7 @@ he:
   observer_prefers_addition_to_projects_joined: |
     המתצפת.ת מרשה לא.נשים להוסיף את תצפיותיהן.ם רק לפרויקטים שהצטרפו אליהם.
   observer_short: מתצפת.ת
-  occurence_status_describes_how: 'ססטוס הימצאות מתאר את שכיחות טקסון מסיום באיזור מסוים. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">לצפייה בפרטים בDarwinCore''''.</a>'
+  occurence_status_describes_how: 'ססטוס הימצאות מתאר כמה טקסון הוא נפוץ או נדיר באזור מסוים. <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">למידע נוסף על טרמינולוגיה</a> יש לעיין ב-DarwinCore.'
   occurrence_status: סטטוס הופעה
   occurrence_status_descriptions:
     absent: לא מופיע בשטח זה
@@ -3198,7 +3198,7 @@ he:
     irregular: נוכחות בלתי-צפויה, כולל מהגרים; יכול להיות נפוץ בשנים מסוימות ונעדר בשנים אחרות
     present: מופיע באזור זה
     uncommon: מופיע באופן קבוע אך במספרים קטנים.יש צורך בחיפוש מדוקדק של בית הגידול
-  occurrence_status_establishment_means: סטטוס הימצאות, דרך התבוססות
+  occurrence_status_establishment_means: סטטוס הימצאות, דרך התבססות
   occurrence_status_levels:
     present: נמצא
     common: שכיח
@@ -3268,7 +3268,7 @@ he:
   only_show_taxa_fom_this_list: "הצגת נתונים מטקסונים אלה בלבד"
   only_showing_taxa_from: מציג רק טקסונים מרשימה זו
   only_staff_can_edit_large_places: רק צוות האתר יכול לערוך מקומות גדולים
-  only_staff_can_edit_standard_places: רק אנשי צוות יכולים לשנות מקומות סטנדרתיות
+  only_staff_can_edit_standard_places: רק צוות האתר יכול לערוך מקומות בהירככיה הסטנדרטית
   only_the_owner_of_this_list_can_do_that: רק בעלי הרשימה יכולים לעשות את זה. אל תהיו רעים.
   only_the_project_admin_can_delete_this_project: רק אדמינ.ית הפרויקט יכול.ה למחוק את הפרויקט הזה.
   only_view_nearby_suggestions: צפייה בהצעות מהסביבה בלבד
@@ -3306,12 +3306,11 @@ he:
   other_taxa_commonly_misidentified_as_this_complex: טקסונים אחרים המוגדרים בטעות כקומפלקס זה
   other_taxa_commonly_misidentified_as_this_complex_in_place_html: טקסונים אחרים אשר מזוהים בטעות כקומפלקס זה ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genus: טקסונים אחרים המוגדרים בטעות כמין זה
-  other_taxa_commonly_misidentified_as_this_genus_in_place_html: טקסונים אחרים אשר נזהו בטעות כסוג זה ב<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: טקסונים אחרים המזוהים בטעות כסוג זה לעתים קרובות ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_genushybrid: טקסונים אחרים המוגדרים בטעות כהיבריד זה ברמת סוג
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: טקסונים אחרים המוגדרים בטעות כהיבריד זה ברמת סוג ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: טקסונים אחרים המוגדרים בטעות כבן-כלאיים זה
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: טקסונים אחרים אשר מזוהים בטעות כהיבריד זה ב<a href="%{url}">%{place}</a>
-  other_taxa_commonly_misidentified_as_this_rank: טקסונים אחרים המוגדרים בטעות כ%{rank} לעתים קרובים
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: טקסונים אחרים אשר נזהו בטעות כ%{rank} זו ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: טקסונים אחרים המוגדרים בטעות כסקציה זו
   other_taxa_commonly_misidentified_as_this_section_in_place_html: טקסונים אחרים אשר מזוהים בטעות כסקציה זו ב<a href="%{url}">%{place}</a>
@@ -3346,7 +3345,7 @@ he:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: <a href="%{observation_url}">תצפית</a> נופסה
+    observation: הוסיפ.ה <a href="%{observation_url}">תצפית</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -3627,7 +3626,7 @@ he:
     clipperton_island: האי קליפרטון
     cocos_islands: איי קוקוס
     colombia: קולומביה
-    commonwealth_of_the_northern_mariana_islands: קומונוולט של איי מריאנה הצפוניים
+    commonwealth_of_the_northern_mariana_islands: איחוד איי מריאנה הצפוניים
     comoros: קומורוס
     cook_islands: איי קוק
     costa_rica: קוסטה ריקה
@@ -3872,9 +3871,9 @@ he:
   popular: פופולרי
   position: מיקום
   #Post is a noun
-  post_from_journal_by_parent_html: פוסט מיומן <a href="%{url}"> של %{parent}</a>
+  post_from_journal_by_parent_html: פוסט מתוך <a href="%{url}">יומן של %{parent}</a>
   #Post is a noun
-  post_from_your_journal_html: פוסט <a href="%{url}">מיומן שלך</a>
+  post_from_your_journal_html: פוסט <a href="%{url}">מהיומן שלך</a>
   post_published: רשומה פורסמה!
   posted_by: פורסם על-ידי
   posted_on: פורסם ב
@@ -3909,7 +3908,7 @@ he:
   profile: פרופיל
   profile_picture: תמונת פרופיל
   profile_visibility_desc: |
-    כדי למנוע הפצת ספאם ב%{site_name}, פרופילים של משתמשים חדשים מוסתרים עד שיש להם כמה תצפיות בדרגת מחקר.
+    במטרה למנוע הפצת ספאם ב%{site_name}, פרופילים של יוזרים חדשים מוסתרים מהציבור עד שהם צוברים תצפיות מרובות בדרגת מחקר.
   project: פרויקט
   project_admins:
     one: אדמינ.ית פרויקט
@@ -4156,7 +4155,7 @@ he:
   real_time_discussions: דיונים בזמן אמת
   reason: סיבה
   reason_you_are_flagging_this_item: הסיבה שבגללה פריט זה סומן
-  recaptcha_verification_failed: reCAPTCHA verification failed
+  recaptcha_verification_failed: אימות reCAPTCHA נכשל
   receive_email_notifications: קבל.י התראות דוא"ל
   receive_email_notifications_description: "במידה ותכבי את זה, לא תקבלי יותר דוא\"ל מ-%{site_name} בנוגע להתראות."
   receive_project_journal_notifications?: לקבל התראות של יומן הפרויקט?
@@ -4514,7 +4513,7 @@ he:
   some_of_those_photos_couldnt_be_saved: "לא ניתן היה לשמור חלק מהתמונות: %{error}"
   some_other_reason: סיבה אחרת שביכולתך להסביר להלן.
   duplicate_observation_flag_warning: |
-    במקרה של תצפית כפולה, נא לבקש מהמתצפת לתקן את הכיפול, במקום לסמן בדגל. לא ביכולת האוצרים למחוק תצפיות.
+    במקרה של תצפיות כפולות, נא לבקש מהמתצפת.ת להתייחס לסוגיה במקום הוספת סימון, כי אין ביכולת אוצרות ואוצרי האתר להסיר תצפיות.
   some_rights_reserved: זכויות יוצרים מסוימות שמורות
   something: משהו
   something_: משהו
@@ -4566,21 +4565,21 @@ he:
     new_zeland_organisms_register: New Zealand Organisms Register
     nzbrn_birds: NZBRN Birds
     nzbrn_fungi: NZBRN Fungi
-    nzbrn_herpetofauna: NZBRN Herpetofauna
-    nzbrn_invertebrates: NZBRN Invertebrates
-    nzbrn_mammals: NZBRN Mammals
-    nzbrn_plants: NZBRN Plants
+    nzbrn_herpetofauna: NZBRN הרפטולוגיה
+    nzbrn_invertebrates: NZBRN חסרי-חוליות
+    nzbrn_mammals: NZBRN יונקים
+    nzbrn_plants: NZBRN צמחים
     nzbrn_other: NZBRN Other
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012 Annual Checklist'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: 2013 Annual Checklist'
   source_eg:
-    title: 'e.g. Snakes: The Evolution of Mystery in Nature'
+    title: 'למשל Snakes: The Evolution of Mystery in Nature'
     in_text: 'לדוגמה: גרין, 2000'
     url: לדוגמא 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'לדוגמא Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: URL המקור
   source_of_coordinates: 'מקור הקואורדינטות ומדד הדיוק, נקבע אוטומטית.'
-  sourced_to: מן מקור
+  sourced_to: מקור
   sources: מקורות
   sources_youve_added: מקורות שהוספת
   sources_and_credits: מקורות וקרדיטים
@@ -4597,7 +4596,7 @@ he:
   species_search: חיפוש מינים
   species_taxon_name: שם מין / טקסון
   species_unknown: מין לא ידוע
-  specify_the_reason_youre_flagging: כתב/י מה הסיבה שבגללה פריט זה סומן
+  specify_the_reason_youre_flagging: נא לפרט מדוע את.ה מסמנ.ת את פריט זה
   #Abbreviation for "source"
   src: מקור
   standard: סטנדרטי
@@ -4606,7 +4605,7 @@ he:
   start_a_project: פתיחת פרויקט
   start_date_time: תאריך / שעת התחלה
   start_one: ליצור חדש
-  start_one_now: התחל עכשיו!
+  start_one_now: להתחיל אחד עכשיו!
   start_typing_field_name: התחילו להקליד שם של שדה...
   start_typing_place_name: התחילו להקליד שם של מקום...
   start_typing_taxon_name: התחילו להקליד שם של טקסון...
@@ -4712,10 +4711,10 @@ he:
     many: "%{taxon} היא %{rank} של דו-חיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של דו-חיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_aves_with_x_observations:
-    one: "%{taxon} הוא %{rank} של ציפורים בעלת תצפית 1"
-    two: "%{taxon} הוא %{rank} של ציפורים בעלת %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של ציפורים בעלת %{count} תצפיות"
-    other: "%{taxon} הוא %{rank} של ציפורים בעלת %{count} תצפיות"
+    one: "%{taxon} הוא %{rank} של ציפורים עם תצפית אחת"
+    two: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
+    many: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
+    other: "%{taxon} הוא %{rank} של ציפורים עם %{count} תצפיות"
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: "%{taxon} היא %{rank} של יונקים ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של יונקים ובה %{count} תצפיות"
@@ -4727,10 +4726,10 @@ he:
     many: "%{taxon} היא %{rank} של זוחלים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של זוחלים ובה %{count} תצפיות"
   taxon_is_a_rank_of_plantae_with_x_observations:
-    one: "%{taxon} הוא %{rank} של צמחים בעלת תצפית 1"
-    two: "%{taxon} הוא %{rank} של צמחים בעלת %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של צמחים בעלת %{count} תצפיות"
-    other: "%{taxon} הוא %{rank} של צמחים בעלת %{count} תצפיות"
+    one: "%{taxon} הוא %{rank} של צמחים עם תצפית אחת"
+    two: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
+    many: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
+    other: "%{taxon} הוא %{rank} של צמחים עם %{count} תצפיות"
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
     one: "%{taxon} היא %{rank} של מקריני סנפיר ובה תצפית אחת"
     two: "%{taxon} היא %{rank} של מקריני סנפיר ובה %{count} תצפיות"
@@ -4752,10 +4751,10 @@ he:
     many: "%{taxon} היא %{rank} של עכבישיים ובה %{count} תצפיות"
     other: "%{taxon} היא %{rank} של עכבישיים ובה %{count} תצפיות"
   taxon_is_a_rank_of_fungi_with_x_observations:
-    one: "%{taxon} הוא %{rank} של פטריות בעלת תצפית 1"
-    two: "%{taxon} הוא %{rank} של פטריות בעלת %{count} תצפיות"
-    many: "%{taxon} הוא %{rank} של פטריות בעלת %{count} תצפיות"
-    other: "%{taxon} הוא %{rank} של פטריות בעלת %{count} תצפיות"
+    one: "%{taxon} הוא %{rank} של פטריות עם תצפית אחת"
+    two: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
+    many: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
+    other: "%{taxon} הוא %{rank} של פטריות עם %{count} תצפיות"
   taxon_is_a_rank_of_protozoa_with_x_observations:
     one: "%{taxon} הוא %{rank} של פרוטוזואות עם תצפית אחת"
     two: "%{taxon} הוא %{rank} של פרוטוזואות עם %{count} תצפיות"
@@ -4900,7 +4899,7 @@ he:
   the_admin_is_the_person_who: |
     מי שיצר.ה את הפרויקט מוגדר.ת האדמינ.ית. היכולות שלהן.ם זהות לאלו של מנהלות.ים ואוצרות.ים, כולל היכולת למחוק את הפרויקט.
   the_below_items_are_needed_to_achieve: |
-    דברים הבאים דרושים לקבל <span className="bold">דרגת מחקר:</span>
+    הדברים הבאים עוד דרושים כדי לקבל <span className="bold">דרגת מחקר:</span>
   the_community_id_requires_at_least_two_identifications: הזיהוי הקהילתי דורש לפחות שני זיהויים.
   the_community_must_feel_that: |
     הקהילה צריכה להרגיש שהטקסון הקהילתי הוא הכי טוב שהוא יכול להיות בהתבסס על הראיות
@@ -5179,11 +5178,11 @@ he:
   type: סוגים
   type_authority: סוג רשות...
   type_one_name_per_line: יש להזין שם אחד בשורה
-  type_place_name: הקלד שם של המקום
-  type_source_name: הקלד שם מקור
+  type_place_name: נא להקליד שם של המקום
+  type_source_name: נא להקליד שם מקור
   type_source_title: "יש להקליד שם מקור"
   type_species_name: "נא להקליד שם של מין"
-  type_taxon_name: "הקלד שם הטקסון"
+  type_taxon_name: "נא להקליד את שם הטקסון"
   uicn_red_list_status: "סטטוס הרשימה האדומה של IUCN:"
   umbrella_projects: פרויקטי מטריה
   unable_to_save_comment: לצערנו ההודעה לא נשמרה.
@@ -5193,7 +5192,7 @@ he:
   unhide_content: ביטול הסתרת תוכן
   unhide_desc: |
     ביטול ההסתרה יגלה את תוכן זה בפני כולן.ם. אוצרות ואוצרים עדיין יוכלו לבחור להסתיר אותו שוב בעתיד.
-  unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של מקור זה
+  unique_identifier_of_this_taxon: מזהה ייחודי של טקסון זה במסד הנתונים של המקור
   unique_observers: מתצפתים יחודיים
   unknown: לא ידוע
   unknown_error: שגיאה לא ידועה
@@ -5454,7 +5453,7 @@ he:
   view_more_unreviewed: "הצגת תצפיות נוספות שטרם נסקרו"
   view_observation: צפייה בתצפית
   view_observations: צפייה בתצפיות
-  view_observation_flags: צפייה בדגלים עבור תצפית זו
+  view_observation_flags: צפייה בסימונים עבור תצפית זו
   view_observations_by_everyone: צפייה בתצפיות של כולן.ם
   view_observations_by_these_users: עיון בתצפיות של משתמשים אלו
   view_observations_of_this_taxon_by: תצפיות של טקסון זה על ידי
@@ -5501,7 +5500,7 @@ he:
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
   we_didnt_find_any_photos: לא מצאנו תמונות עם מונחי החיפוש שנתת
-  we_had_a_problem_flagging_that_item: "היתה תקלה בסימון דגל עבור זה:\n%{flag_error}"
+  we_had_a_problem_flagging_that_item: "נתקלנו בבעיה בסימון עבור פרט זה: %{flag_error}"
   we_had_trouble_saving_comment: "התקשינו לשמור את ההודעה הזאת:"
   we_have_no_conservation_status_for_this_taxon: אין לנו סטטוס שימור לטקסון זה
   we_have_no_establishment_data_for_this_taxon: "איו לנו מידע על דרך ההתבוססות של טקסון זה"
@@ -5582,7 +5581,7 @@ he:
   x_deleted: "%{x} נמחק"
   x_does_not_exist: "\"%{x}\" אינו קיים"
   x_flagged: "%{x} מסומן"
-  x_flagged_as_flag: "%{x} מסומן בדגל %{flag}"
+  x_flagged_as_flag: "%{x} סומן בתור %{flag}"
   x_journal: "היומן של %{user}"
   x_journal_archives_for_y: "היומן של %{user} • ארכיונים עבור"
   x_journal_middot: "היומן של %{user} •"
@@ -5612,7 +5611,7 @@ he:
   x_project_stats: "הסטטיסטיקות של %{project}"
   x_sent_you_a_new_message_on_y_html: "%{x} שלח לך הועדה על %{y}"
   x_site_is_a_social_network_for_naturalist: |
-    %{site} הוא רשת חברתי לאוהדי טבע! דווח על תצפיות של צמחים ובעלי חיים, שתף אותן עם חברים וחוקרים, ולמדו על עולם הטבע.
+    %{site} הוא רשת חברתית לחובבות וחובבי טבע! דווחו על תצפיות של צמחים ובעלי חיים, שתפו אותן עם החבר'ה ועם חוקרות.ים, ולמדו על עולם הטבע.
   x_wrote_a_new_post_html: "פוסט חדש של %{x}"
   x_wrote_y_new_posts_html: "%{y} פוסטים חדשים של %{y}"
   year: שנה
@@ -5627,7 +5626,7 @@ he:
   #threatened taxa
   yes_but_only_for_threatened: |-
     כן, אבל רק עבור התצפיות שלי שהן של טקסונים בסיכון, כאשר לא הגדרתי את פרטיות המיקום
-  yes_find_them!: "כן, מצא אותם!"
+  yes_find_them!: "כן, למצוא אותם!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "כן, עבור כל התצפיות שלי"
@@ -5676,7 +5675,7 @@ he:
     הנך מגדיר.ה את הפרויקט לצבור את כל התצפיות העונות על הכללים הבאים: %{rules} האם ברצונך להמשיך?
   you_are_submitting_obs_with_no_date_or_no_location: |
     הנכם שולחים תצפיות ללא תאריכים או מיקומים. יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.
-  you_are_subscribed_to_comments_on_this_flag: הינך מנוי לתגובות על דגל זה.
+  you_are_subscribed_to_comments_on_this_flag: הנך מנוי.ה לתגובות על דגל זה.
   you_are_subscribed_to_comments_on_this_post: הנך מנוי.ה לתגובות על פוסט זה.
   you_are_subscribed_to_comments_on_this_taxon_stage: הינך מנוי.ה לתגובות על הכנת/הפעלת טקסון זו.
   you_are_subscribed_to_comments_on_this_taxon_swap: הינך מנוי.ה לתגובות על החלפת טקסון זו.
@@ -5702,7 +5701,7 @@ he:
   you_cant_leave_a_project_you_created: לא ניתן לעזור פרוייק שיצרת.
   you_cant_merge_standard_places: אין באפשרותך לאחד מקומות סטנדרטיים
   you_cant_rotate_photos_hostde_outside: "לא ניתן לסובב תמונות שמתארחות מחוץ ל%{site_name}."
-  you_cannot_delete_taxa_involved_in_taxon_changes: לא ניתן למחוק טקסון המעורב בשינויים טקסונומיים או אשר כוללים טקסונים מעורבים בשינויים טקסונומיים
+  you_cannot_delete_taxa_involved_in_taxon_changes: לא ניתן למחוק טקסונים המעורבים בשינויי טקסון או אשר כוללים טקסונים המעורבים בשינויי טקסון
   you_curate_a_project_that_contains_this_observation: הנך אוצר.ת פרויקט המכיל את תצפית זו
   you_curate_a_project_that_contains_this_observation_desc: |
     ניתן לראות קואורדינטות מוסתרות כאשר הנך אוצר.ת פרויקט המכיל תצפיות ובעל.ת התצפית בחר.ה לשתף קואורדינטות עם אוצרות ואוצרי הפרויקט.
@@ -5791,7 +5790,7 @@ he:
     content_freeze:
       content_freeze: הקפאת תוכן
       during_this_time: |
-        בעת קפיאת תוכן, סוגים מסוימים של תוכן לא ניתנים ליצירה, שינוי או מחיקה.
+        בעת הקפאת תוכן, סוגים מסוימים של תוכן לא ניתנים ליצירה, שינוי או מחיקה.
       this_functionality_will_return: |
         שימושיות זו תחזור ברגע שהקפאת התוכן תסתיים.
       we_expect_this_functionality_will_return_by_date: |
@@ -5846,7 +5845,7 @@ he:
     flags:
       show:
         flaggable_content_desc: |
-          תוכן הדגל הוא חומר המקורי אשר מסומן עליו הדגל ברגע שבו הדגל יוצר. רק אומרים ואנשי צוות יכולים לראות תוכן זה. מסרונים פרטיים יכולים להיראות אך ורק על ידי אנשי צוות.
+          התוכן הניתן לסימון הוא תכונת הטקסט העיקרי של האובייקט שסומן בזמן יצירת הסימון. רק אוצרות.ים והצוות יכולים לראות תוכן זה. רק הצוות יכול לראות את זה עבור הודעות.
         flags_that_should_not_be_resolved_desc_html: |
           נא לפתור סימוני <code>ספאם</code> ו<code>הפרת זכויות יוצרים</code> רק במידה והתוכן אינו ספאם או הפרת זכויות יוצרים, בהתאמה.
     guides:
@@ -5913,7 +5912,7 @@ he:
           שימו לב: לא לכל המקומות יש רשימות עם טקסונים. אם נתקלת בקושי במציאת מקום עם טקסונים, יש לנסות לבחור אזורים גדולים יותר עם גבולות פוליטיים, כמו ארצות, מדינות או מחוזות.
         replace_existing_eol_desc: יש למחוק תוכן קיים לפני ייבוא מ-EOL
         place_choose_taxon_note: |
-          אם תרצה לסנן את החיפוש שלך, בחר טקסון, לדוגמה: "צמחים"
+          אם ברצונך לצמצם את החיפוש שלך, יש לבחור טקסון לסינון, לדוגמה: "צמחים"
       eolupdate_notice: |
         תודה על הסבלנות, ייבוט תוכן מ-EOL יכול לקחת דקה או שתיים.
       show:
@@ -5936,7 +5935,7 @@ he:
         grid: |
           גלריית תמונות בודדות, ללא תיאורים
         journal: |
-          דף מחולק, מידע על המין בצד שמאל, איזור בצד ימין לכתבות. מידע על המין יהיה מקוצר.
+          דף מחולק, מידע על המין בצד שמאל, אזור בצד ימין להערות. מידע על המין ייחתך כדי להיכנס בעמוד.
         book: |
           מדריך מלא כולל כל התמונות ותיאורים, משתרע על עמודים מרובים.
       pdf_generation_notice: |
@@ -6023,7 +6022,7 @@ he:
           יש לשים לב שניתן לבחור רק מקומות שיש להם גבולות.
       show:
         project_list_desc: |
-          טקסונים אשר הוספו ידנית על ידי מנהלי הפרויקט וטקסונים אשר הוספו לפרויקט על ידי תצפיות מתאימות בדרגת מחקר יופיעו ברשימות הפרויקט.
+          טקסונים אשר נוספו ידנית על ידי אוצרות או אוצרי הפרויקט וטקסונים המיוצגים על ידי תצפיות בדרגת מחקר ונוספו לפרויקט הינם רשומים ברשימות הפרויקט.
     messages:
       from: מ
       to: אל
@@ -6152,7 +6151,7 @@ he:
           עמודות לזיהוי הנוכחי על ידי %{user}
         limit_alert: הייצוא שלך יהיה גדול מדי. יש לשנות את המסננים שלך עד שיהיו פחות מ-200,000 תצפיות.
         query_placeholder: "בחירת פרמטרים לשאילתה, כמו כן ניתן להדביק URL של תצפיות"
-        taxon_extras_help_html: "הערה: עמודות אלו יאטו את ייצור הייצוא שלך"
+        taxon_extras_help_html: "לידיעתך: עמודות אלו יאטו את ייצור הייצוא שלך"
         geo_help_html: |
           השדות ישוב, מחוז, מדינה, ארץ מבוססים על קואורדינטות. רמות אדמיניסטרטיביות מקבילות ישמשו לתצפיות איפה שסוגי המקומות הללו לא תקפים.
           השדות פרטי_* ייכללו רק בשימוש במסנן משתמש.ת ואת.ה המשתמש.ת, או בשימוש במסנן פרויקט ואת.ה אוצר.ת הפרויקט.
@@ -6285,7 +6284,7 @@ he:
         disagreement_count_desc: "מספר הטקסונים המזוהים שאינם חולקים הורה משותף"
         identification_count_desc: 'מספר הזיהויים עבור טקסון מסוים'
         flagged_photos_desc_html: |
-          חלק מתמונות אלה סומנו בדגל בגלל תוכן לא מתאים או כי הן הועלו בנגד לחוק. לפרטים אנא צפו ב%{links}
+          חלק מתמונות אלה סומנו בגלל תוכן בלתי הולם או עקב הפרת זכויות יוצרים. לפרטים נוספים: %{links}
         join_project_desc_html: |
           הצטרפות לפרויקט תתן לאוצרות ולאוצרי הפרויקט יכולת לראות את הקואורדינטות המוסתרות של תצפית זו ושל כל תצפית אחרת בפרויקט, וגם מציינת את הסכמתך <a href="%{url}" target="_blank">לתנאי</a> הפרויקט.
         quality_assessment_help2_html: |
@@ -6460,7 +6459,7 @@ he:
         we_would_like_to_remove: |
           בכוונתנו להסיר כל קישור לתמונות שבורות בעתיד הקרוב, אבל אין ברצוננו לזרוק כל דבר שיכול לעבור תיקון. יתכן כי חלק מהתמונות הללו עוד קיימות במארח החיצוני שלהן וניתן לתקן אותן. יתכן כי חלק מהתמונות הועלו באמצעות קישור חשבון ה-<a href='%{account_url}'>%{site_name}</a> שלך לחשבון אירוח תמונות אחר, ופג תוקפו של חיבור זה והוא צריך רענון.
         you_can_attempt_repair: |
-          את/ה יכול/ה לנסות לתקן את התמונות. בקר את דף התמונה, והקליקו ב"%{repair_link_text}". אם את/ה יודע/ת שהתמונה זו לא קיימת, את/ה יכול/ה למחוק אותה.
+          ביכולתך לנסות לתקן את התמונות באמצעות ביקור בעמוד התמונה, וקליק על הקישור "%{repair_link_text}". אם את.ה יודע.ת שהתמונה כבר לא קיימת, באפשרותך לבחור למחוק אותה.
         please_address: |
           נא להתייחס לסוגיות אלו <b>ב-30 הימים הקרובים</b>. לאחר 30 ימים נתחיל למחוק תמונות שבורות ב- iNaturalist. כל התצפיות שלך יישארו. הן יוערכו מחדש לאחר מחיקת התמונות, ויתכן כי יהיו תצפיות בדרגת מחקר שיהפכו לדרגת "חסר" אם לא יהיו להן תמונות יותר.
         we_included_links: |
@@ -6507,9 +6506,9 @@ he:
           20 = מחוז
           30 = עיר
       new:
-        check_list_note: "לדעתך: אין שימוש בצ'קליסטים למקומות גדולים מאוד."
+        check_list_note: "לידיעתך: רשימות מינים יושבתו אוטומטית עבור מקומות גדולים מאוד."
         coordinates_desc: יש צורך להגדיר קואורדינטות במידה ולא הוגדר גבול או שהועלה קובץ KML.
-        map_instruction: השתמש/י בכלי הפוליגון כדי לצייר את גבולות המיקום.
+        map_instruction: השתמש.י בכלי הפוליגון כדי לצייר את גבולות המיקום.
     posts:
       formatting_none_help: "לא הוכנס HTML, משתמש רק בתגים שאת.ה מכניס.ה."
       formatting_simple_help: "קישור אוטומטי של קישורי URL והכנסת מעברי שורה."
@@ -6667,11 +6666,11 @@ he:
         no_need_to_rely_on_manual_addition: |
           אין צורך בהוספה ידנית של תצפיות
         note_these_users_will_be_able_to_edit: |
-          הערה: משתמשים אלו יוכלו לערוך את <strong>כל</strong> פרטי הפרויקטים, כולל הוספה והסרה של מנהלי פרויקט.
+          לידיעתך: משתמשים אלו יוכלו לערוך את <strong>כל</strong> פרטי הפרויקטים, כולל הוספה והסרה של מנהלי פרויקט.
         note_you_can_delete_the_time: |
-          (הערה: באפשרותך למחוק את אזור הזמן וזמנים מדויקים אם ברצונך לכלול ימים שלמים.)
+          (לידיעתך: באפשרותך למחוק את אזור הזמן וזמנים מדויקים אם ברצונך לכלול ימים שלמים.)
         note_about_unselected_filters: |
-          הערה: במידה ולא בחרת טקסונים, מקומות, או משתמשות.ים, כולם ייכללו כברירת מחדל.
+          לידיעתך: במידה ולא בחרת טקסונים, מקומות, או משתמשות.ים, כולם ייכללו כברירת מחדל.
         only_display_member_observations: |
           הצג רק תצפיות מחברות וחברי הפרויקט (א.נשים שהצטרפו לפרויקט)
         optionally_filter_media: ניתן לסנן עבור תצפיות עם תמונות, קולות או גם וגם.
@@ -6706,7 +6705,7 @@ he:
         unique_url_for_outreach: כתובת URL ייחודית להפצה
         use_this_for_a_time_limited_event: |
           יש להשתמש במסנן זה בשביל אירוע מוגבל בזמן, כגון ביו-בליץ, או פרויקט עונתי. יש לבחור תאריך בודד, טווח תאריכים, או חודשים בשנה (לא תלות בשנה) בהם התצפית חייבת להיות. אם טווח תאריכים, יש לוודא שסימנת את הזמנים ואזורי הזמן הנכונים, או למחוק את הטקסט של השעה/אזור הזמן כדי לכלול את כל התצפיות שנעשו לכל אורך אותו היום. אפשר להשאיר את תאריך ההתחלה או תאריך הסיום ריקים אם ברצונך להגביל את הפרויקט באמצעות תאריך אחד בלבד.
-        users_can_follow_your_project: משתמשות.ים יכולות.ים להצטרף לפרויקט כדי להתעדכן מיומן הפרויקט
+        users_can_follow_your_project: יוזרים יכולים לעקוב אחר הפרויקט שלך כדי להתעדכן מפוסטים ביומן הפרויקט
         use_this_link_to_create_html: |
           יש להשתמש ב<a href="%{url}">קישור זה</a> כדי ליצור פרויקט בסיסי במקום.
         visual_comparison_of_data_among: השוואת נתונים חזותית בין תתי הפרויקטים תחת פרויקט המטריה
@@ -6722,8 +6721,8 @@ he:
           name_is_required: דרוש שם פרויקט
           name_less_than_100_characters: שם הפרוייקט חייב להיות עם פחות מ 100 תווים
           name_already_taken: קיים כבר פרוייקט בשם זה
-          cannot_have_more_than_x_project_rules: אי אפשר שיהיה מעל %{x} חוקים לפרויקט
-          summary_is_required: חובה בסיכום לפרויקט
+          cannot_have_more_than_x_project_rules: אינו יכול להכיל מעל %{x} כללי פרויקט
+          summary_is_required: דרוש טקסט סיכום פרויקט
       project_location_privacy_notice_html: |
         <p>
         נא לשים לב שאוצרות ואוצרי הפרויקט יוכלו לראות את כל המיקומים הפרטיים או המוסתרים של התצפיות שלך אלא אם תשלול את ההרשאה, והם יוכלו להוסיף כל תצפית שלך לפרויקט זה אלא אם <a href="/users/edit">תבצע.י שינוי להגדרות שלך</a>. באפשרותך גם להעניק או לשלול גישה לתצפיות הפרויקט לפי כל מקרה לגופו.
@@ -6755,10 +6754,11 @@ he:
           יש ללחוץ כאן כדי להמיר פרויקט זה לפרויקט אוסף.
         no_journal_blurb_html: |
           <p>
-          יומן הפרויקט הוא כלי המאפשר אותך לשוחח עם חברי הפרויקט. את/ה יכול/ה להשתמש בו לטובת עידכונים, להגדיר עדיפויות, או לשתף מציאות או חדשות הרלוונטים לפרויקט.
+          יומן הפרויקט שלך הוא כלי לתקשורת עם חברות וחברי הפרויקט. באפשרותך להשתמש בו לטובת עדכונים, להגדיר עדיפויות, או לדבר על ממצאי הפרויקט שלך.
           </p>
           <p>
-          כדי להתחיל, <a href="%{url}" class="readmore">כתב פוסט חדש</a></p>
+          כדי להתחיל, <a href="%{url}" class="readmore">יש ליצור פוסט חדש</a>
+          </p>
         curated_checklist_desc: |
           זוהי רשימת המינים וספירת הטקסונים האצורות מתצפיות שנוספות בפירוש לפרויקט זה, לא כל התצפיות שתועדו במקום ובזמן של אירוע זה.
         make_sure_you_have_read_about_the_differences: |
@@ -7017,7 +7017,7 @@ he:
           שינויי טקסון מהווים שינויים לטקסונומיה של %{site_name}. רוב הזמן %{site_name} יעדכן את התוכן שלך באופן אוטומטי בעת שינויים אלו (אלא אם בחרת להימנע), אך עדיין רצינו להודיע לך כאשר וכיצד הנתונים שלך משתנים.
         your_content_will_be_updated: התוכן שלך הקשור לטקסונים אלו יעודכן אוטומטית.
         you_may_want_to_update: יש לך תוכן הקשור לטקסונים אלה שאולי ברצונך לעדכן.
-        cannot_update_your_content: "%{site_name} לא יכול לעדכן אוטומטי את התוכן שלך בקשר לשינוי זה"
+        cannot_update_your_content: "%{site_name} לא יכול לעדכן את התוכן שלך באופן אוטומטי עבור שינוי זה"
         new_project_admin_html: |
           תוהה מדוע נהיית אדמינ.ית של הפרויקט? או שהבעלים הקודמים מינו אותך לאדמינ.ית החדש.ה, או שהם מחקו את חשבונם ו%{site_name} מינה אותך כי את.ה כבר מנהל.ת פרויקט או אוצר.ת באתר. במידה ואין ברצונך להיות אדמינ.ית הפרויקט, נא ליצור קשר עם <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: |
@@ -7060,7 +7060,7 @@ he:
           many: <strong class="count">%{count} תגובות</strong> שהוספת
           other: <strong class="count">%{count} תגובות</strong> שהוספת
         furthermore_cannot_undo_html: |
-          ומה עוד, <strong>לא ניתן לבטל פעילות הזאת.</strong> אם תשנה את דעתך, לא ניתן יהיה לקבל את התוכן שלך בחזרה.
+          נוסף על כך, <strong>פעולה זו הינה בלתי-הפיכה.</strong> אם דעתך תשתנה, לא יהיה ניתן לקבל את התוכן שלך בחזרה.
         settings_and_mute_html: |
           אם אתר זה מייצר יותר מדי התראות, יש לשקול <a href="/users/edit">לערוך את ההגדרות שלך</a> כדי להיפטר מהתראות מסוימות או להפסיק לקבל דוא"ל מעמנו. אם יש לך קושי עם אדם מסוים באתר, יש לשקול <a href="/users/edit">השתקה שלו</a> במקום מחיקת החשבון שלך.
         still_want_to_delete_html: |
@@ -7197,24 +7197,24 @@ he:
           נשלח לך מייל כאשר חשבון ילדך מופעל
       new:
         child_name_private: שם הילד.ה (פרטי)
-        create_a_minor_account: הרשמה לחשבון קטין
+        create_a_minor_account: הרשמה לחשבון קטינ.ה
         create_minor_account: יצירת חשבון לקטינ.ה
         parent_name_private: שם של הורה או אפוטרופוס (פרטי)
         parent_email: כתובת מייל של הורה או אפוטרופוס (פרטי)
-        inaturalist_minor_account_signup: יצירת חשבון קטין באיי-נטורליסט
+        inaturalist_minor_account_signup: יצירת חשבון iNaturalist עבור קטינ.ה
         parent_information_private: מידע של ההורה (פרטי)
-        step1_title: ייצור חשבון בשביל ילדך
+        step1_title: יצירת חשבון בשביל הילד.ה שלך
         step1_desc: |
-          כדי לציית לחוקי הפרטיות, אנו חייבים אישור של הורה או אפוטרופוס כדי לייצר חשבון למי שמתחת לגיל 13. אם ברצונך לאשר הצטרפותו של ילדך, עליך לשתף איתנו מידע על זהותך.
-        step2_title: אשרו את זהותך עם כרטיס אשראי
+          על מנת לפעול על פי חוקי הפרטיות, נדרש אישור של הורה או אפוטרופוס כדי ליצור חשבון עבור ילד.ה מתחת לגיל 13. אם ברצונך שהילד.ה שלך ישתמשו ב-iNaturalist, נא לספק מידע מזהה ופרטי קשר שלך.
+        step2_title: יש לאשר את זהותך עם כרטיס אשראי
         step2_desc: |
           כדי לוודא כי אתה באמת בוגר, אנו מבקשים ממך תרומה סמלי של 5 שקלים, דרך כרטיס האשראי שלך. זאת דרך הכי פשוטה שמצאנו שמאפשר אותנו לזהות כי אתה בוגר וגם לציית לחוקי הפרטיות. אנא תבדוק כי השתמשת באותו כתובת מייל בכל שלב.
         step3_title: יש להמתין עד לקבלת מייל האישור
         step3_desc: |
-          לאחר שנזהה את מייל ההורה כאותו מייל אשר משומש לטובת התרומה, נשלח להורה הוראות להפעלת חשבון הילד. זה עלול לקחת עד 24 שעות.
+          לאחר שנוודא שכתובת הדוא"ל בתרומה תואמת את הכתובת שהכנסת בתור "כתובת דוא"ל הורה", נפעיל את חשבון הילד.ה ונשלח מייל להורה עם הוראות התחברות. זה עשוי לקחת עד 24 שעות.
         step3_donor_title: החשבון של הילד.ה שלך הופעל
         step3_donor_desc: |
-          כי את/ה תורם לאיי-נטורליסט, יכולנו לבדוק את זהותך עם תרומה הקיימת.
+          מכיוון שאת.ה תורמ.ת של iNaturalist, הצלחנו לאמת את זהותך באמצעות תרומתך הקיימת.
     welcome:
       index:
         connect_with_nature: התחברו לטבע
@@ -7421,15 +7421,15 @@ he:
       invalid: שגוי
       less_than: חייב להיות פחות מ־%{count}
       less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-      new_project_owner_must_be_a_manager: בעל חדש חייב להיות מנהל
+      new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
       not_a_number: הוא לא מספר
       not_an_integer: חייב להיות מספר שלם
       odd: חייב להיות אי־זוגי
-      only_project_owner_can_change_project_owner: רק לבעלת הפרויקט מותר לשנות בעלות הפרויקט
+      only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
       record_invalid: 'אימות נכשל: %{errors}'
       requires_privilege_speech: |
-        צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-      requires_privilege_organizer: צריך לפחות 50 תצפיות הניתנות לאימות כדי לעשות את זה
+        צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+      requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
       taken: כבר תפוס
       too_long:
         one: ארוך מדי (מקסימום תו אחד)
@@ -7449,10 +7449,10 @@ he:
     template:
       body: 'היו בעיות עם השדות הבאים:'
       header:
-        one: "טעות %{count} ב%{model} זה מנעה את שמירתו"
-        two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-        many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-        other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
+        one: "טעות אחת מנעה את שמירת %{model} זה"
+        two: '%{count} טעויות מנעו את שמירת %{model} זה'
+        many: '%{count} טעויות מנעו את שמירת %{model} זה'
+        other: '%{count} טעויות מנעו את שמירת %{model} זה'
   helpers:
     defaults:
       title: "זוהי כותרת"
@@ -7553,17 +7553,17 @@ he:
         invalid: שגוי
         less_than: חייב להיות פחות מ־%{count}
         less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-        new_project_owner_must_be_a_manager: בעל חדש חייב להיות מנהל
+        new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: אינו מספר
         not_an_integer: חייב להיות מספר שלם
         odd: חייב להיות אי־זוגי
-        only_project_owner_can_change_project_owner: רק לבעלת הפרויקט מותר לשנות בעלות הפרויקט
+        only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
         record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-        requires_privilege_organizer: צריך לפחות 50 תצפיות הניתנות לאימות כדי לעשות את זה
+        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זהצריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+        requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
         taken: כבר תפוס
         too_long:
-          one: ארוך מדי (המקסימום הוא תו %{count})
+          one: ארוך מדי (המקסימום הוא תו אחד)
           two: ארוך מדי (מקסימום %{count} תווים)
           many: ארוך מדי (המקסימום הוא %{count} תוים)
           other: ארוך מדי (המקסימום הוא %{count} תוים)
@@ -7589,7 +7589,7 @@ he:
       #Information authored by site admins shown to users at various places
       #on the web site, mostly on the dashboard
       Announcement: הודעה
-      AssessmentSection: סעיף אומדן
+      AssessmentSection: סעיף הערכה
       Atlas: אטלס
       BlockedUser: משתמש חסום
       CompleteSet: סט שלם
@@ -7641,7 +7641,7 @@ he:
         source_url: URL המקור
         published_at: פרסום
       listed_taxon:
-        occurrence_status_level: סטטוס הופעה
+        occurrence_status_level: רמת סטטוס מופע
         establishment_means: דרכי התבססות
       message:
         subject: נושא
@@ -7687,16 +7687,16 @@ he:
         title: כותרת
         project_icon: סמל הפרוייקט
         project_type: סוג פרוייקט
-        preferred_count_by: מעדיף מיספור מ-
-        prefers_count_from_list: מעדיף מיספור מרשימה
+        preferred_count_by: ספירה מועדפת לפי
+        prefers_count_from_list: מעדיפ.ה מספור מתוך רשימה
         description: תיאור
         end_time: זמן סיום
-        event_url: URL רישום לאירוע
+        event_url: URL הרשמה לאירוע
         terms: תנאים
         map_type: סוג מפה
         zoom_level: רמת זום
         preferred_membership_model: מודל חברות מועדף
-        preferred_submission_model: מודל גישה מעודף
+        preferred_submission_model: מודל הגשה מעודף
         prefers_place_boundary_visible: הצגת גבולות מקום על המפה
         tracking_codes: קוד מעקב
         source_url: URL המקור
@@ -7791,7 +7791,7 @@ he:
         time_zone: אזור זמן
         search_place_id: חיפוש מקום
         place_id: מקום
-        preferred_observation_fields_by: אפשר שדות מ-
+        preferred_observation_fields_by: לאפשר שדות תצפית מ-
     errors:
       format: '%{attribute} %{message}'
       messages:
@@ -7808,37 +7808,37 @@ he:
         invalid: שגוי
         less_than: חייב להיות פחות מ־%{count}
         less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-        new_project_owner_must_be_a_manager: בעל חדש חייב להיות מנהל
+        new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: הוא לא מספר
         not_an_integer: חייב להיות מספר שלם וחיובי
         odd: חייב להיות אי־זוגי
-        only_project_owner_can_change_project_owner: רק לבעלת הפרויקט מותר לשנות בעלות הפרויקט
+        only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
         record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-        requires_privilege_organizer: צריך לפחות 50 תצפיות הניתנות לאימות כדי לעשות את זה
+        requires_privilege_speech: צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+        requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
         taken: כבר תפוס
         too_long:
-          one: ארוך מדי (המקסימום הוא תו %{count})
+          one: ארוך מדי (המקסימום הוא תו אחד)
           two: ארוך מדי (מקסימום %{count} תווים)
           many: ארוך מדי (מקסימום %{count} תווים)
           other: ארוך מדי (מקסימום %{count} תווים)
         too_short:
-          one: קצר מדי (מינימום תו %{count})
-          two: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
+          one: קצר מדי (יש מינימום של תו אחד)
+          two: קצר מדי (המינימום הוא %{count} תווים)
+          many: קצר מדי (המינימום הוא %{count} תווים)
+          other: קצר מדי (המינימום הוא %{count} תווים)
         wrong_length:
           one: באורך לא נכון (צריך להיות תו %{count})
           two: באורך לא נכון (צרים להיות %{count} תווים)
           many: באורך לא נכון (צרים להיות %{count} תווים)
           other: באורך לא נכון (צרים להיות %{count} תווים)
       template:
-        body: 'היו בעיות עם השדות הבאים:'
+        body: 'אירעו בעיות עם השדות הבאים:'
         header:
-          one: טעות %{count} ב%{model} זה מנעה את שמירתו
-          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
+          one: טעות אחת מנעה את שמירת %{model} זה
+          two: '%{count} טעויות מנעו את שמירת %{model} זה'
+          many: '%{count} טעויות מנעו את שמירת %{model} זה'
+          other: '%{count} טעויות מנעו את שמירת %{model} זה'
       models:
         application:
           attributes:
@@ -7860,7 +7860,7 @@ he:
               not_about_duplicate: |
                 לא יכול להיות על העתקים של תצפיות או תמונות; רק המתצפת.ת יכול.ה להסיר העתקים, על כן נא לפנות ישירות עם תגובה למתצפת.ת על סוגיות אלו.
             user_id:
-              already_flagged: "תוכן זה כבר סומן בדגל"
+              already_flagged: "תוכן זה כבר סומן"
         guide:
           attributes:
             published_at:
@@ -7895,14 +7895,14 @@ he:
         observation_field_value:
           attributes:
             value:
-              dna_only_atcg: "לDNA חייב לכול רק אותיות A T C G"
+              dna_only_atcg: "עבור DNA יכול להכיל את האותיות A, T, C או G בלבד"
               date_format: |
                 חייב להיות בפורמט YYYY-MM-DD לשדה תאריך ("%{observation_field_name}" בתצפית שלך של "%{observation_species_guess}")
               time_format: |
-                חייב להיות בפורמט HH:MM לשדה זמן ("%{observation_field_name}" בתצפית שלך של "%{observation_species_guess}")
+                חייב להיות בפורמט HH:MM עבור שדה זמן ("%{observation_field_name}" בתצפית שלך של "%{observation_species_guess}")
             observation_id:
-              user_does_not_accept_fields_from_others: משתמש לא מקבל שדות מאחרים
-              user_only_accepts_fields_from_site_curators: משתמש זה מקבל שדות רק על ידי אוצרים
+              user_does_not_accept_fields_from_others: היוזר אינו מקבל שדות מאחרים
+              user_only_accepts_fields_from_site_curators: היוזר מקבל שדות מאוצרות.ים בלבד
         observations_export_flow_task:
           attributes:
             base:
@@ -7980,23 +7980,23 @@ he:
         taxon_name:
           attributes:
             lexicon:
-              should_not_contain_commas_or_slashes: ללא "," או "/"
+              should_not_contain_commas_or_slashes: ללא פסיקים או לוכסנים
               should_match_english_translation: |
                 צריך להיות באנגלית, אבל כרגע מתאים לתרגום של %{suggested_locale} של "%{suggested}". יש להשתמש ב"%{suggested}" אם זו הייתה כוונתך וזה יתורגם בצפייה באתר בשפה זו.
               should_be_in_english: צריך להיות באנגלית
             name:
               already_exists: כבר קיים עבור טקסון זה בלקסיקון זה
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
-                אסור שיהיה תואם לשם מדעי באותו לקסיקון
+                לא יכול להיות זהה לשם מדעי של מין עבור לקסיקון זה
               must_match_the_taxon_if_valid: |
                 יש צורך לקלוע לשם הטקסונומי, במידה וזהו שם מדעי
               bad_format: |
-                מותר רק אותיות לועזיות, - , × , ורווחים. אנא שים לב כי טקסונים משוערים וזנים לא מותרים
+                יכול להכיל רק תווים לטיניים, מקפים רווחים ו-×. לידיעתך טקסונים משוערים וזנים אינם תקינים
         taxon_photo:
           attributes:
             taxon:
               too_many_photos: |
-                אסור שתהיו מעל %{max} תמונות
+                לא יכולה להכיל מעל %{max} תמונות
         taxon_range:
           attributes:
             iucn_relationship:
@@ -8010,7 +8010,7 @@ he:
                 חייב להתחיל באות, ללא מרווחים, ולהכיל אותיות, ספרות, מקפים וקווים תחתונים בלבד
             email:
               must_look_like_an_email_address: חייב להראות כמו כתובת אימייל
-              domain_is_not_supported: תחום אינו נתמך
+              domain_is_not_supported: הדומיין אינו נתמך
         user_block:
           attributes:
             base:
@@ -8029,12 +8029,12 @@ he:
       login: |
         לגשת למידע הרלוונטי לכניסה אל שירותים חיצוניים, כמו כתובת מייל, שם משתמש, שם, ואייקון המשויכים לחשבון שלך כאן.
       account_delete: |
-        למחוק את החשבון שלך.
+        למחוק את חשבונך בשמך.
     errors:
       messages:
         #Common error messages
         invalid_request: 'לבקשה חסרה פרמטר נדרש, או שהיא כוללת ערך שלא נתמך, או שהיא פגומה בדרך אחרת.'
-        invalid_redirect_uri: 'הredirect uri הוא לא חוקי.'
+        invalid_redirect_uri: 'ה-redirect URI אינו תקין.'
         unauthorized_client: 'הלקוח אינו מורשה לבצע את בקשה זו בשיטה זו.'
         access_denied: 'הבעלים של המשאב או שרת ההרשאה דחו את הבקשה.'
         invalid_scope: 'ההיקף המבוקש אינו תקין, אינו ידוע או הינו פגום.'
@@ -8055,17 +8055,17 @@ he:
       applications:
         create:
           #Application as in a software application
-          notice: 'יישום נוצר.'
+          notice: 'האפליקציה נוצרה.'
         destroy:
           #Application as in a software application
-          notice: 'היישום נמחק.'
+          notice: 'האפליקציה נמחקה.'
         update:
           #Application as in a software application
           notice: 'היישום עודכן.'
       authorized_applications:
         destroy:
           #Application as in a software application
-          notice: 'היישום בוטל.'
+          notice: 'האפליקציה נשללה.'
   i18n:
     inflections:
       "@vow_or_con":
