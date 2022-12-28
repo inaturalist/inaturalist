@@ -759,6 +759,8 @@ hu:
   clear_search: Keresés törlése
   close: Bezárás
   code: Kód
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Hozzájárulók
   colors: Színek
   columns: Oszlopok
   combine: Összerendezés
@@ -3335,6 +3337,7 @@ hu:
   saving_num_of_count_observations:
     one: Megfigyelések mentése...
     other: '%{count}/%{num} megfigyelés mentése...'
+  scale_colon: "Skála:"
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Tudományos név
   search: Keresés
@@ -4117,6 +4120,8 @@ hu:
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yes_reject_it: Igen, elutasítom
   yesterday: Tegnap
+  yir_code_contributors_desc_html: |
+    Közel minden <a href="%{url}">szoftverünk</a> nyílt forráskódú, vagyis bárki hozzájárulhat, aki tudja a módját. A következők járultak hozzá a szoftverhez idén, köszönjük nekik:
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Többmilliós közösség. Reflektorfényben a biodiverzitás. Globális együttműködés.
   #"You" is singular
@@ -4129,6 +4134,8 @@ hu:
     A magasszintű biodiverzitási adatok ilyen méretű és sebességű generálása és megosztása egyre növekvő költségekkel jár
   yir_millions_of_people_used_inaturalist: |
     Idén emberek milliói használták az iNaturalist-ot és a Seek-et a természettel való kapcsolattartáshoz
+  yir_monthly_supporters_random_selection: |
+    Itt egy véletlenszerű válogatás az iNat közösségéből, akik havonta támogatják a programotot.
   yir_thank_your_for_being_generous: |
     Köszönettel tartozunk a ránk fordídott idődért, figyelmedért, szakértelmedért és támogatásodért. Az iNaturalist a California Academy of Science és a National Geographic Society közös, nonprofit kezdeményezése. A program működését támogatási alapok és adományok segítik, beleértve a felhasználói tábor töredékétől érkező adományokat. Külön hálával tartozunk a havi támogatóinknak, akik rendszeres felajánlásaikkal segítik a munkánkat hosszabb távon.
   yir_your_gift_sustains: |
