@@ -46,7 +46,7 @@ const IdCategroryPieChart = ( { project } ) => {
         ]}
         legendColumns={ 1 }
         legendColumnWidth={ 120 }
-        margin={ { top: 0, bottom: 120, left: 0, right: 0 } }
+        margin={ { top: 0, bottom: 130, left: 0, right: 0 } }
         donutWidth={ 20 }
       />
     </div>

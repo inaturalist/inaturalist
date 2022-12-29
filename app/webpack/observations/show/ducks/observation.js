@@ -115,6 +115,7 @@ const FIELDS = {
   created_at: true,
   description: true,
   faves: {
+    id: true,
     user: USER_FIELDS
   },
   flags: {

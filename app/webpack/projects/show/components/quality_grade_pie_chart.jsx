@@ -52,7 +52,7 @@ const QualityGradePieChart = ( { project } ) => {
           } );
           return `<strong>${d.data.fullLabel}</strong>: ${value} (${percent}%)`;
         }}
-        margin={ { top: 0, bottom: 120, left: 0, right: 0 } }
+        margin={ { top: 0, bottom: 130, left: 0, right: 0 } }
         donutWidth={ 20 }
         onClick={ d => {
           const url = `/observations?project_id=${project.id}&quality_grade=${d.data.enLabel}&verifiable=any`;
