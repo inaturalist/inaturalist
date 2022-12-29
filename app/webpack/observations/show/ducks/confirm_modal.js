@@ -26,7 +26,12 @@ export function handleAPIError( e, message, options = { } ) {
       const handleErrorJson = body => {
         // these errors come from Rails and have their own usable error messages
         let railsErrors;
-        if ( body && body.error && body.error.original && body.error.original.errors ) {
+        if ( body && body.errors && _.isArray( body.errors ) && _.isObject( body.errors[0] )
+          && body.errors[0].from === "externalAPI" && body.errors[0].message ) {
+          // apiv2 passes on errors from rails in an object, e.g.:
+          //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+          railsErrors = JSON.parse( body.errors[0].message ).errors;
+        } else if ( body && body.error && body.error.original && body.error.original.errors ) {
           // sometimes it's an array
           railsErrors = body.error.original.errors;
         } else if ( body && body.error && body.error.original && body.error.original.error ) {
