@@ -15,7 +15,7 @@ Doorkeeper.configure do
       raise INat::Auth::BadUsernamePasswordError unless user.valid_password?( params[:password] )
       raise INat::Auth::SuspendedError if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
-      raise INat::Auth::UnconfirmedError if !user.confirmed? && !user.confirmation_sent_at.blank?
+      raise INat::Auth::UnconfirmedError if !user.confirmed? && !user.active_for_authentication?
       user
     elsif defined?( warden )
       warden.authenticate!(auth_options)
