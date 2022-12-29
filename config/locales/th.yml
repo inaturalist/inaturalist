@@ -283,8 +283,8 @@ th:
   added_as_a_part_of_a_taxon_swap_html: |
     เพิ่มในส่วนของ
     <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกสลับ</a>
-  added_by: ถูกเพิ่มโดย
-  added_by_user_on_date_html: "ถูกเพิ่มโดย %{user} เมื่อ %{date}"
+  added_by: เพิ่มโดย
+  added_by_user_on_date_html: "เพิ่มโดย %{user} เมื่อ %{date}"
   added_on_datetime: "เพิ่มเมื่อ %{datetime}"
   added_to_favorites_html: |
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
@@ -1615,6 +1615,10 @@ th:
   observer_prefers_addition_to_projects_joined: |
     ผู้สังเกตอนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการที่เข้าร่วมเท่านั้น
   observer_short: ผู้สังเกต
+  occurrence_status: สถานะการปรากฏ
+  occurrence_status_descriptions:
+    absent: ไม่พบในพื้นที่
+    common: พบบ่อย
   of_this_taxon: ของหน่วยฯ นี้
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
   only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
@@ -2555,6 +2559,7 @@ th:
   you_joined_this_project: คุณเข้าร่วมโครงการนี้แล้ว!
   you_must_select_at_least_one_taxon: คุณต้องเลือกอย่างน้อยหนึ่งหน่วยอนุกรมวิธาน
   you_need_to_select_some_observations_first: คุณต้องเลือกการสังเกตบางอันก่อน
+  you_sure_delete_identification?: แน่ใจหรือไม่ที่จะลบการจำแนกนี้?
   you_sure_delete_project?: แน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   you_sure_remove_taxon_from?: "แน่ใจหรือไม่ว่าต้องการลบหน่วยอนุกรมวิธานนี้ออกจาก %{list}?"
   your_content: เนื้อหาของคุณ
@@ -2904,6 +2909,7 @@ th:
         #The person who resolved the flag
         resolver_id: ผู้แก้ปัญหา
       listed_taxon:
+        occurrence_status_level: ระดับสถานะการปรากฏ
         establishment_means: การเข้ามาตั้งถิ่นฐาน
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
