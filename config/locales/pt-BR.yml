@@ -863,6 +863,8 @@ pt-BR:
   change_group: Grupo de Mudanças
   change_icon: Alterar ícone
   change_password: Alterar senha
+  #Message shown after you change your email address
+  change_to_email_requested_html: Alteração para <strong>%{email}</strong> solicitada. Verifique o seu e-mail para confirmar a alteração.
   change_types:
     activated_soon: será ativado logo
     change_types: Mudar os Tipos
@@ -954,6 +956,8 @@ pt-BR:
   click_the_map: "<strong>Clique no mapa</strong> para adicionar uma localização."
   close: Fechar
   code: Código
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Contribuidores de código
   colors: Cores
   columns: Colunas
   combine: Fundir
@@ -1043,6 +1047,10 @@ pt-BR:
   confirm_new_password: Confirme Nova Senha
   confirm_now: Confirme agora
   confirm_your_info: Confirme sua informação
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: E-mail de confirmação enviado em %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmado em %{date}
   confirming_ids: Confirmações de identificações
   confirming_ids_description: Se você desativar isso, você não será mais notificado sobre IDs que concordam com as suas.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1487,6 +1495,10 @@ pt-BR:
   deviation: Desvio
   devise:
     confirmations:
+      confirmed: |
+        Seu endereço de correio eletrônico foi confirmado com sucesso. Agora você pode se registrar
+        aqui no site ou nos aplicativos móveis iNaturalista, ou Seek.
+      send_instructions: "Em minutos você receberá uma mensagem com instruções sobre como confirmar seu endereço de correio eletrônico."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1496,6 +1508,9 @@ pt-BR:
       unauthenticated: 'Você precisa fazer login ou se cadastrar antes de continuar.'
       invalid: 'E-mail ou senha inválidos.'
       invalid_token: 'Token de autenticação inválido.'
+      unconfirmed: |
+        Por favor, verifique o seu correio eletrônico e clique no link da mensagem recebida
+        para confirmar sua conta.
       user:
         suspended: Sua conta foi suspensa
     sessions:
@@ -1513,13 +1528,33 @@ pt-BR:
     registrations:
       destroyed: 'Tchau! Sua conta foi cancelada com sucesso. Esperamos vê-lo novamente em breve.'
       signed_up: 'Bem-vindo! Você se registrou com sucesso.'
+      signed_up_but_inactive: "Você se inscreveu com sucesso. No entanto, não fizemos o seu login porque sua conta ainda não está ativada."
+      signed_up_but_locked: "Você se inscreveu com sucesso. No entanto, não fizemos o seu ‘login’ porque sua conta está bloqueada."
+      signed_up_but_unconfirmed: "Uma mensagem com um link de confirmação foi enviada para o seu correio eletrônico. Acesse o link para ativar sua conta."
       updated: 'Você atualizou sua conta com sucesso.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Instruções de confirmação
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Alteração de endereço eletrônico solicitada
       reset_password_instructions:
         subject: 'Instruções de redefinição de senha'
+  devise_confirmation_instructions_please_click: |
+    Por favor, clique no link abaixo para verificar o seu endereço de correio eletrônico.
+  devise_confirmation_instructions_resend_instructions: |
+    Você deve possuir um correio eletrônico ativo para usar o iNaturalist. Quando você criou uma conta, deve ter recebido uma mensagem de confirmação com um link para clicar e confirmar que o seu endereço eletrônico funciona. Se você não o fez,
+    você pode solicitar outro correio eletrônico de confirmação aqui.
+  devise_confirmation_instructions_send_confirmation_email: Enviar mensagem de confirmação
+  devise_email_changed_you_requested: Você solicitou uma alteração de %{old_email} para %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Você receberá uma mensageml no novo endereço para confirmar a alteração, mas nós
+    queremos notificá-lo no seu endereço antigo caso outra pessoa tenha
+    acesso à sua conta e esteja tentando alterá-lo sem que você saiba. Se
+    não alterou intencionalmente seu endereço eletronico, envie esta
+    mensagem para help@inaturalist.org imediatamente para que possamos investigar.
   devise_reset_password_instructions_hello_email: Olá %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se você não solicitou isso, ignore este e-mail.
@@ -1673,10 +1708,16 @@ pt-BR:
     <a href="%{url}">e solicite outro e-mail de confirmação </a>.</strong> Se seu provedor de e-mail bloqueou a mensagem de confirmação, isso poderia indicar a ele que voce deseja receber nossas mensagens.
   email_conf_banner_check_your_spam_folder_html: <strong>Verifique sua pasta de spam</strong>
   email_conf_banner_contact_us_html: Ainda não funcionou? Envie-nos uma mensagem para %{email} solicitando ajuda.
+  email_conf_banner_please_click: |
+    Por favor, clique no link apresentado nessa mensagem para confirmar o seu endereço eletrônico.
   email_conf_banner_search_for_emails_html: <strong>Procure por e-mails de <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Enviamos um e-mail de confirmação no dia %{date}. Caso não tenha recebido, aqui vão algumas sugestões sobre como proceder:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Por favor, confirme o seu endereço eletrônico %{link_end_tag}</strong>.
+    Todos os usuários devem confirmar seu endereço eletrônico até %{date}. Depois dessa
+    data, qualquer pessoa que não tenha confirmado seu endereço eletronico não poderá fazer o login a menos que redefinam sua senha. Para confirmar o seu endereço eletrônico, use suas configurações de conta %{link_start_tag}%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, todos os direitos reservados"
   email_notifications: Notificações por e-mail
   embed: 'Incorporar'
@@ -2119,6 +2160,11 @@ pt-BR:
   ids_made_for_others: Identificações feitas por outros
   if_for_some_reason_a_user_doesnt_agree: |
     Se por alguma razão você não concordar com o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Se o desbaste de um progenitor resultar em mais de 10 desacordos não intencionais, você deve dividir o pai depois de trocar o filho para substituir os IDs existentes de
+    o pai <strong>(B)</strong> com IDs que não discordam.
   if_matches_come_from_a_comprehensive_list: Se os resultados combinam a partir de uma lista abrangente uma barra verde aparecerá aqui.
   if_this_is_a_scientific_name: Se este é um nome científico, é aceito atualmente?
   if_this_link_will_apply_to_descendant: Se este vínculo se aplica a táxons descendentes, você pode utilizar modelos de marcação para completar o nome do táxon na URL
@@ -3936,6 +3982,18 @@ pt-BR:
   proposed_taxa_that_support_the_community_id: Taxa proposto que suporta a identificação feita pela comunidade
   protozoans: protozoários
   provider_authorizations: Autorizações dos Provedores
+  provider_without_email_error_apple: |
+    A Apple não forneceu um endereço de endereço eletrônico para essa conta, isso é
+    necessário. Por favor, crie uma conta neste site em vez de entrar
+    via Apple.
+  provider_without_email_error_flickr: |
+    O Flickr não forneceu um endereço de correio eletrônico para essa conta, isso é
+    necessário. Por favor, crie uma conta neste site em vez de entrar
+    via Flickr.
+  provider_without_email_error_generic: |
+    Esse serviço não forneceu um endereço de correio eletrônico para essa conta, isso é
+    necessário. Por favor, crie uma conta neste site em vez de acessar
+    via terceiros.
   public_domain: Domínio Público
   publish: Publicar
   purple: roxo
@@ -4196,6 +4254,10 @@ pt-BR:
   research_grade_tooltip_html: 'Observações "Nível de Pesquisa" possuem mídia, localização, uma data e consenso da comunidade sobre uma identificação precisa (geralmente ao nível de espécie). <a href="https://www.inaturalist.org/pages/help#quality">Saiba mais sobre os níveis de qualidade</a>'
   research_grade_observations_have: '"Categoria Pesquisa" observação devem incluir data, foto, coordenadas, e uma ID aprovada pela comunidade. Clique para visualizar a avaliação da qualidade dos dados.'
   research_grade_qualification: Qualificação à Nível de Pesquisa
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Reenviar e Sair
+  resend_confirmation_email: Reenviar mensagem de confirmação
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Resetar
@@ -4326,6 +4388,10 @@ pt-BR:
   selected_taxon: Táxon selecionado
   select_this_taxon: Selecione Este Táxon
   send: enviar
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Enviar e Sair
+  send_confirmation_email: Enviar mensagem de confirmação
   send_me_reset_password_instructions: Receber instruções para alterar senha
   sending: Enviando...
   #Label for messages you've sent
@@ -5052,6 +5118,8 @@ pt-BR:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_istanbul: Horário da Turquia
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Hora Da Europa Oriental
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_lisbon: Horário da Europa Ocidental
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_london: Horário da Europa Ocidental
@@ -5059,6 +5127,20 @@ pt-BR:
   time_zone_europe_madrid: Horário da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_moscow: Horário de Moscou
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Hora Da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Hora da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Hora da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Hora Da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_apia: Hora de Samoa
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: Hora da Nova Zelândia
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hora do Havaí-Aleutas
   #As in the title of a book or a blog post
   title: título
   title_and_description: "Titulo e Descrição"
@@ -5077,6 +5159,9 @@ pt-BR:
   top_identifiers_of_taxon: Principais Identificadores de %{taxon}
   top_observer_caps: MAIOR OBSERVADOR
   top_observers: Principais Observadores
+  tos_privacy_guidelines_label: |
+    Eu concordo com os <a href="/terms" target="_blank">Termos de Serviço</a> e com a
+    <a href="/privacy" target="_blank">Política de Privacidade</a>, e eu revisei as <a href="/pages/community+guidelines" target="_blank">Diretrizes da Comunidade</a>.
   total: Total
   totals: Totais
   total_ids_on_input_taxon: "IDs totais do táxon de entrada:"
@@ -5280,6 +5365,11 @@ pt-BR:
   username_or_user_id: Nome de usuário ou sua ID
   users: Usuários
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a> a %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Após reenviar a mensagem de confirmação, você será desconectado e
+    não conseguirá entrar em sua conta até que você clique no link
+    da mensagem, então <strong>tenha certeza de que você digitou seu endereço eletrônico
+    corretamente.</strong>
   users_edit_send_confirmation_prompt_with_grace_html: |
     <p>
     Por favor certifique-se de que seu endereço de e-mail está correto. Este é o endereço de e-mail para o qual enviaremos o pedido de confirmação:
@@ -5540,6 +5630,10 @@ pt-BR:
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
+  yir_code_contributors_desc_html: |
+    Nossa codificação de <a href="%{url}"></a> é quase toda aberta, o que significa
+    qualquer um pode contribuir se souber como. Aqui estão as pessoas que
+    codificaram voluntariamente este ano. Obrigado, programadores!
   yir_donate_banner_inaturalist_in_year: "INATURALIST EM %{year}:"
   yir_donate_banner_reaching_millions: Alcançando milhões. Iluminando a biodiversidade. Colaboração global.
   #"You" is singular
@@ -5555,6 +5649,8 @@ pt-BR:
     e velocidade sem precedentes, tem custos crescentes
   yir_millions_of_people_used_inaturalist: |
     Milhões de pessoas usaram o iNaturalist e o Seek do iNaturalist este ano para se conectar com a natureza
+  yir_monthly_supporters_random_selection: |
+    Aqui está uma seleção aleatória de membros da heróica comunidade do iNat que doam todos os meses.
   yir_thank_your_for_being_generous: |
     Obrigado por ser generoso com seu tempo, atenção, competência e
     doações! iNaturalist é uma iniciativa conjunta sem fins lucrativos da
@@ -5628,6 +5724,7 @@ pt-BR:
   you_dont_have_permission_to_edit_those_photos: Você não tem permissão para editar estas fotos.
   you_faved_this: Adicionado como favorito!
   you_have_left_x_project: "Você saiu do projeto %{project}"
+  you_have_not_confirmed_your_email_address: Você não confirmou seu endereço eletrônico!
   you_havent_linked_your_inaturalist_google_account: "Você ainda não vinculou suas contas de %{site_name} e do Google"
   you_joined_this_project: Você está participando deste projeto!
   you_must_be_a_member_of_this_project_to_do_that: Você deve ser um membro deste projeto para fazer isto
@@ -6204,6 +6301,65 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help2_html: |
+          <p>
+          A avaliação da qualidade da informação é um sumário da precisão da observação. Todas as observações iniciam com grau <strong>"casual"</strong>, e vai a <strong>"precisa de identificação"</strong> quando
+          </p>
+
+          <ul>
+          <li>a observação <strong>tem uma data</strong></li>
+          <li>a observação <strong>é georeferenciada</strong> (i.e. tem coordenadas geográficas)</li>
+          <li>a observação <strong>tem fotos ou sons</strong></li>
+          <li>a observação <strong>não é de um humano</strong></li>
+          </ul>
+          <p>
+          Observações se tornam <strong>"nível de pesquisa"</strong> quando
+          </p>
+          <ul>
+          <li>
+          a comunidade %{site_name} <strong>concorda com a identificação pelo menos da espécie
+          </strong>, isto é, quando mais que 2/3 dos identificadores concordam com um
+          taxon (se a comunidade concordou que não é ´possível melhorar o Taxon da Comunidade, o nível sobe para identificação nível sub-familia ou mais baixa)
+          </li>
+          </ul>
+          <p>
+          Observações se tornam <strong>"casual"</strong> se as condições acima não forem mais atendidas ou a comunidade concorda que 
+          </p>
+          <ul>
+          <li>
+          <strong>local com inconformidade</strong> (por exemplo, macacos no oceano,
+          hipopótamos em edificios comerciais, etc.)
+          </li>
+          <li>
+          o <strong>organismo não é selvagem ou natural</strong> (por exemplo é cativo, ou cultivado, ou são seres alienígenas inteligentes)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidencia de um organismo </strong>, por exemplo imagens de água, rochas, paisagens que não incluem o organismo, etc.
+          </li>
+          <li>
+          a observação <strong>não apresenta evidencia recente (por volta de 100 anos) de um organismo</strong> (por exemplo fósseis. Rastros, excrementos e folhas mortas são aceitáveis)
+          </li>
+          <li>
+          a observação não mais precisa de uma identificação <em>e</em> a identificação da comunidade é acima de familia
+          </li>
+          <li>
+          o observador discordou da identificação da comunidade e o taxon 
+          da identificação da comunidade não está na linha do taxon da 
+          identificação do observador
+          </li>
+          </ul>
+          <p>
+          E para complicar ainda mais, existem situações em que o sistema decide:
+          </p>
+          <ul>
+          <li>
+          O sistema considerará que a observação não é selvagem ou natural
+          se houver pelo menos 10 outras observações do mesmo gênero ou inferior em
+          um local correspondente a um condado, estado ou ao país em que 
+          foi feita a observação e 80% ou mais dessas observações
+          foram marcados como não selvagens ou naturais.
+          </li>
+          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
