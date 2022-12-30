@@ -453,6 +453,8 @@ mr:
     जर तुम्हाला अपलोड केलेल्या मजकुरास <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Attribution-NonCommercial license</a> हा परवाना लागू करायचा असेल तर पुढील बॉक्समध्ये खूण करा. याचा अर्थ इतर कोणीही परवानगी मागितल्याशिवाय तोपर्यंत तुमचे फोटो आणि/किंवा निरीक्षणांची प्रत काढू शकतो आणि पुनर्वापर करू शकतो, जोपर्यंत तुम्हाला त्याचे श्रेय दिले जाते आणि कामांचा व्यावसायिक वापर होत नाही. तुम्ही वेगळा परवाना निवडू शकता किंवा नंतर परवाना काढून टाकू शकता, परंतु आपली माहिती इतर संशोधकांसोबत सामायिक करण्यासाठी हा सर्वोत्तम परवाना आहे.
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: कोड योगदानकर्ते
   #Notice when a comment has been hidden by moderators
   comment_hidden: टिपण्णी लपविलेली
   #Notice when a comment has been unhidden by moderators
@@ -532,6 +534,20 @@ mr:
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
   email: ई-मेल
+  email_conf_banner_email_delivered_click_link: |
+    पुष्टीकरण ईमेल पाठवली आहे. कृपया ईमेलमधील लिंकवर क्लिक करा.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>तुमच्या संपर्कांच्या सूचीमध्ये <code>%{email}</code> जोडा आणि
+    <a href="%{url}">दुसऱ्या पुष्टीकरण ईमेलची विनंती करा</a>.</strong> जर तुमच्या ईमेल
+    प्रदात्याने पुष्टीकरण ईमेल अवरोधित केले असेल, तर कदाचित हे त्यांना पटवून देईल की तुम्हाला खरोखरच आमच्याकडून ईमेल हवा आहे.
+  email_conf_banner_check_your_spam_folder_html: <strong>तुमचे स्पॅम फोल्डर तपासा</strong>
+  email_conf_banner_contact_us_html: अद्याप काम करत नाही? आम्हाला %{email} वर ईमेल करा जेणेकरून आम्ही तुम्हाला मदत करू शकू.
+  email_conf_banner_please_click: |
+    तुमच्या ईमेल पत्त्याची पुष्टी करण्यासाठी कृपया तुमच्या ईमेलवर प्राप्त झालेल्या लिंकवर क्लिक करा.
+  email_conf_banner_search_for_emails_html: <strong>कडून आलेले ईमेल शोधा<code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     इनपुट वर्गापैकी कोणती निरीक्षणे आऊटपुट वर्गात बदलली जातील आणि कोणती विभक्त झाल्यानंतर सामाईक पूर्वजापर्यंत सीमित केली जातील याचा अंदाज लावा. या संगणनास थोडा वेळ लागू शकतो. निरीक्षणांसाठीचे दुवे २०० च्या उपसंचांमध्ये विभागले आहेत.
@@ -672,6 +688,10 @@ mr:
     must_be_wild: वन्य असणे गरजेचे
   satellite: उपग्रह प्रतिमा
   search: शोधा
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: पाठवा आणि साइन आउट करा
+  send_confirmation_email: पुष्टीकरण ईमेल पाठवा
   share_caps: शेअर करा
   sign_out: साइन आउट करा
   sign_up: साइन अप करा
@@ -819,6 +839,39 @@ mr:
   user_trusts_this_project_for_taxon: |
     वापरकर्ता केवळ धोक्यात असलेल्या वर्गांसाठी अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास ठेवतो.
   username: वापरकर्ता नाव
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    कृपया तुमचा ईमेल पत्ता बरोबर असल्याची खात्री करा. आम्ही पुष्टीकरणासाठीची ईमेल लिंक पाठवण्यासाठीचा ईमेल पत्ता हा आहे:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    तुम्हाला ईमेल न मिळाल्यास, येथे काही सूचना आहेत:
+    </p>
+    <ul>
+    <li><p>तुमचे स्पॅम फोल्डर तपासा</p></li>
+    <li><p>तुमच्या इनबॉक्समधून आमचे ईमेल काढून टाकण्यासाठी तुम्ही तयार केलेले कोणतेही फिल्टर तपासा</p></li>
+    </ul>
+    <p>
+    तुम्हाला तरीही पुष्टीकरण ईमेल प्राप्त होत नसल्यास, कृपया आमच्याशी येथे संपर्क साधा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    त्यामुळे आम्ही तुम्हाला मदत करू शकतो.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>तुम्ही साइन आउट करत आहात</h3>
+    <p>
+    तुम्ही पुष्टीकरण ईमेल पाठवल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्ही ईमेलमधील लिंक वर क्लिक करेपर्यंत तुमच्या खात्यात लॉग इन करू शकणार नाही, त्यामुळे <strong class="bg-warning">तुम्ही तुमचा ईमेल पत्ता अचूक प्रविष्ट केला आहे याची नीट खात्री करा
+    .</strong>
+    </p>
+    <p>
+    हा ईमेल पत्ता आहे ज्यावर आम्ही पुष्टीकरण पाठवू:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>तुम्ही सर्व ईमेलचे सदस्यत्व रद्द केले असल्यास...</h4>
+    <p>
+    तुम्ही आमच्याकडून <em>सर्व</em> ईमेलचे सदस्यत्व रद्द केले असल्यास, आम्ही तुम्हाला पुष्टीकरण ईमेलपाठवू शकत नाही. पुन्हा-सदस्यत्व घेण्यासाठी, तुम्हाला आमच्याकडून याआधी आलेले ईमेल शोधणे आवश्यक आहे, त्यातील सदस्यता रद्द करा ह्या दुव्यावर क्लिक करा आणि पुन्हा ईमेल प्राप्त करण्यासाठीचा पर्याय निवडा. आपण हे करू शकत नसल्यास, कृपया
+    ईमेल करा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> आपण येथे प्रविष्ट केलेला ईमेल पत्यावरून ज्यायोगे आम्ही आपल्याला मदत करू शकू.
+    </p>
   #@vow_or_con should work with %{site}
   users_site_year_in_review: "%{user} चे %{year} %{site} पुनरावलोकनाचे वर्ष"
   view_all_caps: सर्व पहा
@@ -838,6 +891,12 @@ mr:
   year_in_review2: "वार्षिक पुनरावलोकन %{year}"
   yes_license_my_childs_observations: होय, माझ्या पाल्याची छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
   yes_license_my_observations_so_scientists_can_use: होय, माझी छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
+  yir_code_contributors_desc_html: |
+    आमचे <a href="%{url}">सॉफ्टवेअर</a> जवळजवळ पूर्णपणे मुक्त-स्रोत आहे, याचा अर्थ
+    योग्य माहिती असल्यास कोणीही आपले योगदान देऊ शकते. येथे आहेत ते लोक
+    ज्यांनी ह्या वर्षी स्वयंसेवक म्हणून कोडिंगमध्ये योगदान दिले. धन्यवाद, कोडर्स!
+  yir_monthly_supporters_random_selection: |
+    येथे iNat च्या प्रेरणादायी समुदाय सदस्यांची एक अहेतुपूर्वक निवडलेली यादी आहे जे दरमहा देणगी देतात.
   your_observations: माझी निरीक्षणे
   your_recent_projects: माझे अलीकडील प्रकल्प
   views:

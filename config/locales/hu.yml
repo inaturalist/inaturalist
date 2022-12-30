@@ -759,6 +759,8 @@ hu:
   clear_search: Keresés törlése
   close: Bezárás
   code: Kód
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Hozzájárulók
   colors: Színek
   columns: Oszlopok
   combine: Összerendezés
@@ -2054,6 +2056,8 @@ hu:
   month: Hónap
   #title for section describing people who donate to iNat every month
   monthly_supporters: Havi támogatók
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Havi rendszerességű támogató</a>%{date} óta
   months: Hónapok
   more: Továbbiak
   #Button to show more observations
@@ -2431,10 +2435,10 @@ hu:
   only_an_admin_can_remove_project_users: Csak adminok távolíthatnak el projektfelhasználókat
   only_files_with_10000_rows_at_a_time: Kérjük, hogy legfeljebb tízezer sorból álló fájlt tölts fel
   only_receive_updates_about_this_taxon: Csak erről a taxonról kapj értesítést
-  only_show_active_taxa: Mutasd csak az aktív taxonokat
-  only_show_events_that_last_less_than_2_weeks: Csak a 2 hétnél rövidebb eseményeket mutasd
-  only_show_for_species_subspecies_varieties_etc: Csak a fajt, alfajt, változatot, stb. mutasd
-  only_show_taxa_fom_this_list: "Csak e lista taxonjait mutasd"
+  only_show_active_taxa: Csak aktív taxonok megjelenítése
+  only_show_events_that_last_less_than_2_weeks: Csak 2 hétnél rövidebb események megjelenítése
+  only_show_for_species_subspecies_varieties_etc: Csak faj, alfaj, változat, stb. megjelenítése
+  only_show_taxa_fom_this_list: "Csak e lista taxonjainak megjelenítése"
   only_showing_taxa_from: csak e lista taxonjait mutatja
   only_staff_can_edit_large_places: Csak a honlap személyzete módosíthat nagyon nagy helyeket.
   only_staff_can_edit_standard_places: Csak a honlap személyzete módosíthat helyeket a standard rangsorból.
@@ -3335,6 +3339,7 @@ hu:
   saving_num_of_count_observations:
     one: Megfigyelések mentése...
     other: '%{count}/%{num} megfigyelés mentése...'
+  scale_colon: "Skála:"
   #E.g. "Homo sapiens" instead of "human"
   scientific_name: Tudományos név
   search: Keresés
@@ -3397,7 +3402,7 @@ hu:
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Kumulatív megjelenítése
   show_taxa_from_place: "%{place}-i taxonok megjelenítése"
-  show_uncountable_species: Mutasd a megszámlálhatatlan fajokat
+  show_uncountable_species: Megszámlálhatatlan fajok megjelenítése
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Mutatva az első %{x}
@@ -3605,6 +3610,7 @@ hu:
   that_photo_doesnt_exist: Az a fotó nem létezik.
   that_observation_doesnt_have_any_photos: "Annak a megfigyelésnek nincs egy fotója sem."
   that_observation_hasnt_been_added_this_project: A megfigyelést nem adtuk hozzá ehhez a projekthez.
+  that_was_the_last_observation_matching_the_current_filters: A megadott szűrési feltételekkel ez volt az utolsó megfigyelés.
   the_below_items_are_needed_to_achieve: |
     A következőkre van szükség a <span className="bold">Tudományos szint</span> eléréséhez:
   the_community_id_requires_at_least_two_identifications: A közösségi meghatározáshoz legalább két felhasználó meghatározása szükséges.
@@ -3830,6 +3836,7 @@ hu:
   update_existing_observations_with_new_license: Alkalmazd ezt a licencet az összes már létező megfigyelésekre
   update_existing_photos_with_new_license: Alkalmazd ezt a licencet az összes, már létező képre
   update_existing_sounds_with_new_license: Alkalmazd ezt a licencet az összes, már létező hangra
+  update_observations: Megfigyelések módosítása
   update_past: "Régebbi %{type} tartalmak frissítése"
   update_photos: Képek frissítése
   update_search: Keresés frissítése
@@ -3972,7 +3979,7 @@ hu:
     other: "Mind (%{count})"
   view_all_observations: Minden megfigyelés megtekintése
   view_all_photocount_photos: "%{photo_count} fotó megtekintése"
-  view_check_list_page: Mutasd a lista lapját
+  view_check_list_page: Lista megjelenítése
   view_details: Részletek
   view_dynamic_lifelist_: DINAMUKUS ÉLETFA MEGTEKINTÉSE
   view_field_options: Mező beállítások
@@ -4049,7 +4056,7 @@ hu:
   #Most of the time were_pretty_sure_this_is_in_the_genus will be used
   #instead. @gender should work here. %{rank} is usually genus or a
   #higher-level rank like family
-  were_pretty_sure_this_is_in_the_rank: 'Nagy bizonyossággal e %{rank} tagja:'
+  were_pretty_sure_this_is_in_the_rank: Nagy bizonyossággal e %{rank} tagja
   were_sorry_but_your_bulk_import_of_filename_has_failed: "Sajnáljuk, de %{filename} tömeges importálása sikertelen."
   what: Mi
   what_did_you_see: Mit láttál?
@@ -4116,6 +4123,8 @@ hu:
   yes_license_my_observations_so_scientists_can_use: Engedélyezem, hogy a megfigyeléseimet, a képeket és a hangokat a tudósok felhasználják (ajánlott).
   yes_reject_it: Igen, elutasítom
   yesterday: Tegnap
+  yir_code_contributors_desc_html: |
+    Közel minden <a href="%{url}">szoftverünk</a> nyílt forráskódú, vagyis bárki hozzájárulhat, aki tudja a módját. A következők járultak hozzá a szoftverhez idén, köszönjük nekik:
   yir_donate_banner_inaturalist_in_year: "INATURALIST %{year}:"
   yir_donate_banner_reaching_millions: Többmilliós közösség. Reflektorfényben a biodiverzitás. Globális együttműködés.
   #"You" is singular
@@ -4128,6 +4137,8 @@ hu:
     A magasszintű biodiverzitási adatok ilyen méretű és sebességű generálása és megosztása egyre növekvő költségekkel jár
   yir_millions_of_people_used_inaturalist: |
     Idén emberek milliói használták az iNaturalist-ot és a Seek-et a természettel való kapcsolattartáshoz
+  yir_monthly_supporters_random_selection: |
+    Itt egy véletlenszerű válogatás az iNat közösségéből, akik havonta támogatják a programotot.
   yir_thank_your_for_being_generous: |
     Köszönettel tartozunk a ránk fordídott idődért, figyelmedért, szakértelmedért és támogatásodért. Az iNaturalist a California Academy of Science és a National Geographic Society közös, nonprofit kezdeményezése. A program működését támogatási alapok és adományok segítik, beleértve a felhasználói tábor töredékétől érkező adományokat. Külön hálával tartozunk a havi támogatóinknak, akik rendszeres felajánlásaikkal segítik a munkánkat hosszabb távon.
   yir_your_gift_sustains: |
@@ -4235,6 +4246,8 @@ hu:
       unobserved_species: Nem megfigyelt fajok
       all_species: Minden faj
       all_unobserved_species: Minden nem megfigyelt faj
+      observations_at_this_taxon: Pontosan e taxon megfigyelései
+      observations_within_this_taxon: E taxon alatti megfigyelések
       all_observations: Minden megfigyelés
       total_observations: Minden megfigyelés
       filter_by: 'Szűrés:'
@@ -5095,7 +5108,7 @@ hu:
         terms: Feltételek
         map_type: Térkép típusa
         zoom_level: Nagyítás mértéke
-        prefers_place_boundary_visible: Mutasd a hely határait a térképen
+        prefers_place_boundary_visible: A hely határainak megjelenítése a térképen
         source_url: Forrás URL
       project_observation:
         user_id: Beküldő

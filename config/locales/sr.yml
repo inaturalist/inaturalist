@@ -136,6 +136,7 @@ sr:
     one: "<span class='count'>%{count}</span> promena taksona dodata"
     few: "<span class='count'>%{count}</span> promene taksona dodate"
     other: "<span class='count'>%{count}</span> promena taksona dodato"
+  _100_day_trends: Stodnevni pregled
   _percent_ID_d: "% Identifikovano"
   a_community_for_naturalist: Zajednica prirodnjaka
   a_member_of_taxon_html: "pripadnik taksona %{taxon}"
@@ -1665,12 +1666,16 @@ sr:
   message_from_user_at_time: Od %{user} u %{time}
   message_from_user_on_date: Od %{user} %{date}
   messages: Poruke
+  messages_new_correspondent_it_looks_like: |
+    Izgleda da nisi komunicirao/la sa ovim korisnikom do sad, imaj u vidu sledeće:
+  messages_new_correspondent_specimens: |
+    Budi pažljiv/a ako neko od tebe traži primerke ili skrivene podatke. Pokušaj da utvrdiš identitet osobe koja zahteva tako nešto a ako traži primerke, pitaj da li ima odgovarajuću dozvolu za to.
   messages_new_correspondent_personal: |
     Ne deli svoje privatne podatke sa ljudima kojima ne veruješ.
   messages_new_correspondent_actions_html: |
     Ako misliš da ova osoba krši naše <a href="%{tos_url}"
     target="_blank">Uslove korišćenja</a> ili se ne ponaša u skladu sa<a
-    href="%{guidelines_url}" target="_blank">Smernicama zajednice</a>, molimo te da prijaviš ovu poruku ispod.
+    href="%{guidelines_url}" target="_blank"> Smernicama zajednice</a>, molimo te da prijaviš ovu poruku ispod.
   misidentifications: Pogrešne identifikacije
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
@@ -3459,9 +3464,9 @@ sr:
   user_added_a_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
   user_added_a_x_to_noun_by_you_html: "%{user} je dodao/la %{x} na tvoju %{noun}"
   user_added_a_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
-  user_added_an_identification_html: "%{user} je dodao identifikaciju"
+  user_added_an_identification_html: "%{user} je dodao/la identifikaciju"
   user_added_an_observation_html: "%{user} je dodao/la opservaciju"
-  user_added_an_x: "%{user} je dodao %{x}"
+  user_added_an_x: "%{user} je dodao/la %{x}"
   user_added_an_x_to_noun_by_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
   user_added_an_x_to_noun_by_user_html: "%{user} je dodao/la %{x} na %{noun} korisnika/ce %{by}"
   user_added_an_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
@@ -3473,7 +3478,7 @@ sr:
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} je dodao u favorite %{noun} od %{owner}"
-  user_faved_this_observation: "%{user} je doda opservaciju u favorite"
+  user_faved_this_observation: "%{user} je dodao/la opservaciju u favorite"
   user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
   user_helped_x_people_with_y_ids_html: "%{user} je pomogao <strong>%{x} ljudi</strong> sa<strong>%{y} ID-jeva</strong>"

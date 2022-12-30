@@ -283,8 +283,8 @@ th:
   added_as_a_part_of_a_taxon_swap_html: |
     เพิ่มในส่วนของ
     <a target="%{target}" class="%{class}" href="%{url}">อันดับขั้นที่ถูกสลับ</a>
-  added_by: ถูกเพิ่มโดย
-  added_by_user_on_date_html: "ถูกเพิ่มโดย %{user} เมื่อ %{date}"
+  added_by: เพิ่มโดย
+  added_by_user_on_date_html: "เพิ่มโดย %{user} เมื่อ %{date}"
   added_on_datetime: "เพิ่มเมื่อ %{datetime}"
   added_to_favorites_html: |
     เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
@@ -509,15 +509,18 @@ th:
   are_you_sure_you_want_to_delete_this_assessment?: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
   are_you_sure_you_want_to_delete_this_photo?: คุณแน่ใจหรือไม่ว่าต้องการนำรูปภาพนี้ออก?
   are_you_sure_you_want_to_delete_this_post: คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?
-  are_you_sure_you_want_to_delete_this_taxon_change: คุณแน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนอันดับอนุกรมวิธานนี้?
+  are_you_sure_you_want_to_delete_this_taxon_change: แน่ใจหรือไม่ว่าต้องการลบการเปลี่ยนหน่วยอนุกรมวิธานนี้?
   are_you_sure_you_want_to_remove_all_tags: แน่ใจหรือไม่ว่าจะนำแท็กทั้งหมดออก
   are_you_sure_you_want_to_remove_curator: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากการเป็นผู้ดูแล?
+  are_you_sure_you_want_to_remove_from_project: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากโครงการนี้
+  are_you_sure_you_want_to_remove_manager: แน่ใจหรือไม่ว่าต้องการลบ %{user} ออกจากการเป็นผู้จัดการ?
+  are_you_sure_you_want_to_remove_these_x_taxa?: "แน่ใจหรือไม่ว่าต้องการลบ %{x} หน่วยอนุกรมวิธานนี้"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
-    คุณแน่ใจหรือไม่ว่าต้องการนำการสังเกตนี้ออกจาก %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "คุณแน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการ %{place}?"
+    แน่ใจหรือไม่ว่าต้องการลบการสังเกตนี้ออกจาก %{project}?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "แน่ใจหรือไม่ว่าต้องการนำหน่วยอนุกรมวิธานนี้ออกจากรายการตรวจสอบของ %{place}?"
   associated_observations: การสังเกตที่เกี่ยวข้อง
-  you_sure_delete_list: คุณแน่ใจคุณต้องการลบรายการนี้หรือไม่?
-  you_sure_delete_taxon_from_list?: "คุณแน่ใจหรือไม่ว่าต้องการนำ %{taxon} ออกจากรายการ?"
+  you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
+  you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
   asc: จากเก่าไปใหม่
   assessment: การประเมินผล
   #Noun form, as in a property of something. Generally used to describe the
@@ -920,6 +923,7 @@ th:
   edit_photos: แก้ไขรูปภาพ
   edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
   edit_project: แก้ไขโครงการ
+  edit_remove: แก้ไข/ลบ
   edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon: แก้ไขหน่วยอนุกรมวิธาน
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
@@ -1528,6 +1532,7 @@ th:
   no_misidentifications_yet: ยังไม่มีการจำแนกผิด
   no_new_messages: ยังไม่มีข้อความใหม่
   no_observations: ไม่มีการสังเกต
+  no_observations_submitted: "ไม่มีการสังเกตที่ถูกส่ง"
   no_observations_yet: ยังไม่มีการสังเกต
   no_photo: ไม่มีรูปถ่าย
   no_photos: ไม่มีรูปถ่าย
@@ -1578,6 +1583,7 @@ th:
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
+  observation_removed_from_the_project: "การสังเกตถูกลบออกจากโครงการ \"%{project}\""
   observation_requirements: ข้อกำหนดการสังเกต
   observation_without_media: การสังเกตที่ไม่มีสื่อ
   observations: การสังเกต
@@ -1593,6 +1599,7 @@ th:
   observations_of_relatives: การสังเกตของหน่วยอนุกรมวิธานเดียวกัน
   observations_of_taxon: "การสังเกตของ %{taxon_name}"
   observations_per_month: การสังเกต / เดือน
+  observations_removed_from_the_project: "การสังเกตถูกลบออกจากโครงการ \"%{project}\""
   observations_saved: บันทึกการสังเกตแล้ว!
   observations_this_year_vs_last_year: การสังเกตในปีนี้กับปีที่แล้ว
   observations_total: การสังเกตทั้งหมด
@@ -1608,8 +1615,13 @@ th:
   observer_prefers_addition_to_projects_joined: |
     ผู้สังเกตอนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการที่เข้าร่วมเท่านั้น
   observer_short: ผู้สังเกต
+  occurrence_status: สถานะการปรากฏ
+  occurrence_status_descriptions:
+    absent: ไม่พบในพื้นที่
+    common: พบบ่อย
   of_this_taxon: ของหน่วยฯ นี้
   only_administrators_may_access_that_page: แอดมินเท่านั้นที่เข้าถึงหน้านั้นได้
+  only_an_admin_can_remove_project_users: แอดมินเท่านั้นที่ลบผู้ใช้โครงการได้
   only_show_active_taxa: แสดงเฉพาะหน่วยอนุกรมวิธานที่ยังใช้งาน
   only_show_for_species_subspecies_varieties_etc: แสดงเฉพาะชนิด ชนิดย่อย พันธุ์ ฯลฯ
   only_showing_taxa_from: แสดงหน่วยอนุกรมวิธานจากรายการนี้เท่านั้น
@@ -1967,10 +1979,29 @@ th:
   relationships_user_settings: ความสัมพันธ์
   relationship_html: "ความสัมพันธ์: %{link}"
   remove: ลบออก
+  remove_all_tags: ลบแท็กทั้งหมด
+  remove_comma_separated_tags: "ลบแท็กที่คั่นด้วยจุลภาค"
   remove_conservation_status: นำสถานะการอนุรักษ์ออก
+  remove_from: ลบออกจาก
+  remove_curator: ลบผู้ดูแล
+  remove_curator_status: ลบสถานะผู้ดูแล
+  remove_from_guide: ลบออกจากคู่มือ
+  remove_from_list: ลบออกจากรายการ
+  remove_from_project: ลบออกจากโครงการ
+  remove_this_section: ลบออกจากส่วนนี้
+  remove_manager: ลบผู้จัดการ
+  remove_observations:
+    other: ลบ %{count} การสังเกต?
+  remove_photo: ลบรูป
+  remove_place: ลบสถานที่
+  remove_range: ลบช่วง
   remove_relationship: ลบความสัมพันธ์
   remove_relationship_caps: ลบความสัมพันธ์
   remove_relationship_question: ลบความสัมพันธ์?
+  remove_selected: ลบสิ่งที่เลือก
+  remove_tags: ลบแท็ก
+  removed: ลบออกแล้ว
+  removed_project_user: ผู้ใช้โครงการที่ถูกลบ
   research: งานวิจัย
   research_: งานวิจัย
   research_grade: ระดับงานวิจัย
@@ -2131,6 +2162,8 @@ th:
   #can buy merchandise. Please try to keep translations as short as possible
   store: ร้านค้า
   store_caps: ร้านค้า
+  submit_observations:
+    other: ส่ง 1 การสังเกต
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
@@ -2181,6 +2214,7 @@ th:
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: แผนที่การกระจายของบัญชีแดง IUCN สำหรับหน่วยอนุกรมวิธานนี้ไม่เหมาะสม
   taxon_range_guidelines_learn_more_about_taxon_ranges: เรียนรู้เพิ่มเติมเกี่ยวกับช่วงหน่วยอนุกรมวิธาน
   taxon_ranks: ลำดับอนุกรมวิธาน
+  taxon_removed_from_list: หน่วยอนุกรมวิธานที่ลบออกจากรายการ
   taxon_scheme: แบบแผนหน่วยอนุกรมวิธาน
   taxon_schemes: "แบบแผนหน่วยอนุกรมวิธาน"
   taxon_search: การค้นหาหน่วยอนุกรมวิธาน
@@ -2383,6 +2417,9 @@ th:
   uploader:
     tooltips:
       combine: รวมการสังเกตที่ถูกเลือก
+      remove: ลบการสังเกตที่เลือก
+      remove_observation: ลบการสังเกต
+      remove_photo: ลบรูป
       select_all: เลือกการสังเกตทั้งหมด
   uploading_num_of_count_photos:
     other: กำลังอัปโหลด %{num} จาก %{count} รูป...
@@ -2522,7 +2559,9 @@ th:
   you_joined_this_project: คุณเข้าร่วมโครงการนี้แล้ว!
   you_must_select_at_least_one_taxon: คุณต้องเลือกอย่างน้อยหนึ่งหน่วยอนุกรมวิธาน
   you_need_to_select_some_observations_first: คุณต้องเลือกการสังเกตบางอันก่อน
-  you_sure_delete_project?: คุณแน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
+  you_sure_delete_identification?: แน่ใจหรือไม่ที่จะลบการจำแนกนี้?
+  you_sure_delete_project?: แน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
+  you_sure_remove_taxon_from?: "แน่ใจหรือไม่ว่าต้องการลบหน่วยอนุกรมวิธานนี้ออกจาก %{list}?"
   your_content: เนื้อหาของคุณ
   your_default: ค่าเริ่มต้นของคุณ
   your_favorites: รายการโปรดของคุณ
@@ -2612,6 +2651,52 @@ th:
           การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
+        quality_assessment_help2_html: |
+          <p>
+          การประเมินคุณภาพข้อมูลคือการสรุปความถูกต้องของการสังเกต ทุกการสังเกตจะเริ่มด้วยระดับ <strong>"ไม่เป็นทางการ"</strong> และจะกลายเป็น <strong>"รอจำแนกชนิด"</strong> เมื่อ
+          </p>
+
+          <ul>
+          <li>การสังเกต <strong>มีการระบุวันที่สังเกต</strong></li>
+          <li>การสังเกต <strong>มีการระบุตำแหน่ง</strong> (มีพิกัดละติจูด/ลองจิจูด)</li>
+          <li>การสังเกต <strong>มีรูปถ่ายหรือเสียง</strong></li>
+          <li>การสังเกต <strong>ไม่ใช่มนุษย์</strong></li>
+          </ul>
+          <p>
+          การสังเกตจะกลายเป็น <strong>"ระดับงานวิจัย"</strong> เมื่อ
+          </p>
+          <ul>
+          <li>
+          <strong>ชุมชน %{site_name} เห็นพ้องกันที่ระดับชนิดหรือต่ำกว่า</strong> เมื่อมีผู้จำแนกเกิน 2/3 ของทั้งหมดเห็นด้วยกับหน่วยอนุกรมวิธานเดียวกัน (ถ้าชุมชนโหวตว่าหน่วยฯ ที่เห็นพ้องกันไม่สามารถจำแนกย่อยลงได้อีก หน่วยฯ ก็จะย้อนกลับไปเป็นระดับวงศ์ย่อยหรือต่ำกว่า)
+          </li>
+          </ul>
+          <p>
+          <strong>ตำแหน่งไม่ถูกต้อง</strong> (เช่น พบลิงกลางมหาสมุทร พบฮิปโปในอาคารสำนักงาน ฯลฯ)
+          </li>
+          <li>
+          <strong>สิ่งมีชีวิตไม่พบตามธรรมชาติ</strong> (เช่น ถูกจับมาหรือเพาะปลูกโดยมนุษย์หรือสิ่งมีชีวิตทรงภูมิปัญญาจากนอกโลก)
+          </li>
+          <li>
+          การสังเกต <strong>ไม่มีหลักฐานของสิ่งมีชีวิต</strong> เช่น รูปแหล่งน้ำ ก้อนหิน ภูมิทัศน์ที่ไม่พบสิ่งมีชีวิตปรากฏอยู่
+          </li>
+          <li>
+          การสังเกต <strong>ไม่มีหลักฐานที่ไม่เก่าเกินไป (ไม่เกิน ~100 ปี)</strong> (เช่น ซากดึกดำบรรพ์ แต่จะยอมรับได้ถ้าเป็นรอยตามทาง มูลสัตว์ หรือใบไม้แห้ง)
+          </li>
+          <li>
+          การสังเกตไม่ต้องการการจำแนกแล้ว <em>และ</em> หน่วยฯ ที่ชุมชนเห็นพ้องกันอยู่สูงกว่าระดับวงศ์
+          </li>
+          <li>
+          ผู้สังเกตไม่ต้องการการจำแนกโดยชุมชน และหน่วยฯ ที่ชุมชนเห็นพ้องกันก็ไม่ใช่บรรพบุรุษหรือลูกหลานของหน่วยฯ ที่ผู้สังเกตจำแนกเอง
+          </li>
+          </ul>
+          <p>
+          ถ้าคุณภาพการสังเกตยากแก่การประเมิน ก็จะแก้ปัญหาด้วยการให้ระบบเป็นผู้โหวต: 
+          </p>
+          <ul>
+          <li>
+          ระบบจะโหวตว่าการสังเกตนี้ไม่พบตามธรรมชาติถ้ามีการสังเกตอื่น ๆ ในระดับสกุลหรือต่ำกว่าอย่างน้อย 10 การสังเกตที่พบในเขตการปกครอง รัฐ หรือเขตการปกครองที่เทียบเท่าประเทศที่เล็กที่สุด ซึ่งมีการสังเกตนี้อยู่ด้วย และการสังเกตเหล่านั้นอย่างน้อย 80% ถูกทำเครื่องหมายว่าไม่พบตามธรรมชาติ
+          </li>
+          </ul>
     emailer:
       collection_project_changed_for_trusting_member:
         #Followed by the project icon and a link to the project
@@ -2826,7 +2911,9 @@ th:
     select:
       prompt: โปรดเลือก
     submit:
+      create: สร้าง %{model}
       submit: บันทึก %{model}
+      update: อัปเดต %{model}
   number:
     human:
       decimal_units:
@@ -2868,6 +2955,7 @@ th:
         #The person who resolved the flag
         resolver_id: ผู้แก้ปัญหา
       listed_taxon:
+        occurrence_status_level: ระดับสถานะการปรากฏ
         establishment_means: การเข้ามาตั้งถิ่นฐาน
       moderator_action:
         #The reason a moderator action was taken, e.g. an explanation for why
@@ -2882,6 +2970,8 @@ th:
         project_icon: ไอคอนโครงการ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
+      project_observation:
+        user_id: ผู้ส่ง
       source:
         title: หัวข้อ
       taxon:
