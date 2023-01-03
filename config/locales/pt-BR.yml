@@ -4001,6 +4001,10 @@ pt-BR:
     Esse serviço não forneceu um endereço de correio eletrônico para essa conta, isso é
     necessário. Por favor, crie uma conta neste site em vez de acessar
     via terceiros.
+  provider_without_email_error_google_oauth2: |
+    O Google não forneceu um endereço eletrônico para essa conta, isso é
+    necessário. Por favor, crie uma conta neste site em vez de fazer “login”
+    via Google.
   public_domain: Domínio Público
   publish: Publicar
   purple: roxo
@@ -5141,6 +5145,8 @@ pt-BR:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_rome: Hora da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Hora Da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: Hora Da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_apia: Hora de Samoa
@@ -5967,6 +5973,8 @@ pt-BR:
           Complete o guia incluindo todas as fotos e descrições, abrangendo várias páginas.
       pdf_generation_notice: |
         Por favor seja paciente, gerar arquivos PDF grandes pode levar um ou dois minutos.
+      tags_help_html: |
+        Marcações desempenham a função de categorias para espécie de um guia, apenas espécies diferentes devem receber marcações diferentes. Aqui você pode inserir diferentes marcações em listas separadas por vírgulas, exemplo <code>pequeno, peludo</code>. Para adicionar categorias nomeadas, utilize marcações como <code>NOME DA CATEGORIA=CATEGORIA</code>, exemplo <code>COR=AMARELO</code>.
       sorts:
         default: Ordem do Guia
         alphaname: Alfabeticamente por nome científico
