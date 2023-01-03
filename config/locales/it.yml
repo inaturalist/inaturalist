@@ -5814,6 +5814,8 @@ it:
           Guida completa includendo poto e descrizioni, organizzata su più pagine.
       pdf_generation_notice: |
         Per favore, sii paziente; la creazione di lungo PDF può durare uno o due minuti.
+      tags_help_html: |
+        Le etichette sono come le categorie per le specie nella tua guida, a parte il fatto che più specie possono avere la stessa categoria. Inserisci qui le etichette sotto forma di lista separata da virgola, e.g., <code>piccolo, peloso</code>. Per aggiungere categorie con nome, usa etichette di questo tipo: <code>nome_categoria=valore</code>, e.g., <code>colore=giallo</code>.
       sorts:
         default: Ordinamento della guida
         alphaname: Alfabetico per nome scientifico
