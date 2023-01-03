@@ -7,13 +7,11 @@
   I18n.t = function ( key, params ) {
     var opts = params || {};
     if (
+      // Needs to be a default value to return on
       opts.defaultValue
-      && I18n.locale.toString( ).indexOf( "en" ) !== 0
-      && (
-        originalImplementation( key, opts )
-        // eslint-disable-next-line prefer-object-spread
-        === originalImplementation( key, Object.assign( {}, opts, { locale: "en" } ) )
-      )
+      // If a locale was explicitly requested, don't bother with this
+      && !opts.locale
+      && !I18n.translations[I18n.locale][key]
     ) {
       return opts.defaultValue;
     }
