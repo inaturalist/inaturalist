@@ -1044,6 +1044,8 @@ he:
   click_the_map: "<strong>יש ללחוץ על המפה</strong> כדי להוסיף מיקום."
   close: סגירה
   code: קוד
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: תורמות ותורמי קוד
   colors: צבעים
   columns: עמודות
   combine: קיבוץ
@@ -1763,6 +1765,8 @@ he:
     <strong>להוסיף את <code>%{email}</code> לרשימת אנשי הקשר שלך <a href="%{url}">ולבקש עוד מייל אישור</a>.</strong> במידה וספק הדוא"ל שלך חסם את דוא"ל האישור, זה עשוי לשכנע אותו שאת.ה בעצם רוצה לקבל דוא"ל מעמנו.
   email_conf_banner_check_your_spam_folder_html: <strong>יש לבדוק בתיקיית הספאם שלך</strong>
   email_conf_banner_contact_us_html: עדיין לא עובד? יש ליצור עמנו קשר בכתובת %{email} בשביל שנוכל לעזור לך.
+  email_conf_banner_please_click: |
+    נא ללחוץ על הקישור בדוא"ל שלך לאישור כתובת הדוא"ל שלך.
   email_conf_banner_search_for_emails_html: <strong>חיפוש אימיילים מ-<code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -3311,6 +3315,7 @@ he:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: טקסונים אחרים המוגדרים בטעות כהיבריד זה ברמת סוג ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: טקסונים אחרים המוגדרים בטעות כבן-כלאיים זה
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: טקסונים אחרים אשר מזוהים בטעות כהיבריד זה ב<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: טקסונים אחרים המוגדרים בטעות כ%{rank} לעתים קרובים
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: טקסונים אחרים אשר נזהו בטעות כ%{rank} זו ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: טקסונים אחרים המוגדרים בטעות כסקציה זו
   other_taxa_commonly_misidentified_as_this_section_in_place_html: טקסונים אחרים אשר מזוהים בטעות כסקציה זו ב<a href="%{url}">%{place}</a>
@@ -5636,6 +5641,8 @@ he:
   yes_reject_it: כן, לדחות אותו
   yes_show_this_in_the_box: כן, להציג זאת בריבוע הגדול בראש עמוד הטקסונים
   yesterday: אתמול
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">התוכנה</a> שלנו היא רובה ככולה קוד פתוח, מה שאומר שכל אחת ואחד יכולים לתרום אם יודעים איך. הנה הא.נשים שנידבו קוד השנה. תודה מתכנתות ומתכנתים!
   yir_donate_banner_inaturalist_in_year: "INATURALIST בשנת %{year}"
   yir_donate_banner_reaching_millions: מגיעים למיליוני א.נשים. מאירים את חשיבות המגוון הביולוגי. שיתוף פעולה חוצה גבולות.
   #"You" is singular
@@ -5650,6 +5657,8 @@ he:
     יצירה ושיתוף של נתונים על מגוון עצום של מינים, בקנה מידה ובקצב חסר תקדים, מביאים עמם עלויות הולכות ועולות.
   yir_millions_of_people_used_inaturalist: |
     מיליוני א.נשים השתמשו ב-iNaturalist וב-Seek של iNaturalist השנה כדי להתחבר לטבע
+  yir_monthly_supporters_random_selection: |
+    הנה דגימה אקראית מתוך קהילת הגיבורות והגיבורים של iNaturalist אשר תומכות ותומכים מדי חודש.
   yir_thank_your_for_being_generous: |
     תודה על נדיבות לבך ועל שנתת מזמנך, תשומת לבך, מומחיותך וכספך! iNaturalist הוא מיזם ללא מטרות רווח של אקדמיית קליפורניה למדעים ונשיונל ג'אוגרפיק. המיזם נשען ברובו על מענקים ותרומות, כולל תרומות ישירות של חלק קטן מהמשתמשים. אנו מודות ומודים במיוחד לתומכים ולתומכות החודשיים שתרומתם.ן החוזרת עוזרת לנו לתכנן את עתידנו.
   yir_your_gift_sustains: |
@@ -5940,6 +5949,8 @@ he:
           מדריך מלא כולל כל התמונות ותיאורים, משתרע על עמודים מרובים.
       pdf_generation_notice: |
         תודה על הסבלנות, ייצור קובצי PDF גדולים יכול לקחת דקה או שתיים.
+      tags_help_html: |
+        תגים הם כמו קטגוריות עבור המינים במדריך שלך, רק שמינים מרובים יכולים לחלוק את אותו התג. יש להכניס תגים כאן כרשימה המופרדת באמצעות פסיקים, למשל <code>קטן, פרוותי</code>. להוספת קטגוריות בעלות שם, יש להשתמש בתגים כגון <code>שם_קטגוריה=ערך_קטגוריה</code>, למשל <code>צבע=צהוב</code>.
       sorts:
         default: סדר המדריך
         alphaname: שמות המינים בסדר אלף-ביתי
