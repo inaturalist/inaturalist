@@ -5959,12 +5959,6 @@ fr:
           Le guide complet inclut toutes les photos et descriptions, s’étendant sur plusieurs pages.
       pdf_generation_notice: |
         Veuillez patienter, la génération de gros PDF peut prendre une ou deux minutes.
-      tags_help_html: |
-        Les étiquettes sont comme des catégories pour les espèces dans votre guide, sauf que
-        plusieurs espèces peuvent avoir la même étiquette. Saisissez ici les étiquettes sous la forme
-        de liste séparée par des virgules, par ex. <code>petit, à fourrure</code>. Pour ajouter des catégories
-        fixées, utilisez des étiquettes comme <code>nom_catégorie=valeur_catégorie</code>,
-        par ex. <code>couleur=jaune</code>.
       sorts:
         default: Ordre du guide
         alphaname: Alphabétique, par nom scientifique
@@ -7290,7 +7284,6 @@ fr:
           "Plant Phenology=Flower Budding": Bourgeonnement floral
           "Plant Phenology=Flowering": Floraison
           "Plant Phenology=Fruiting": Fructification
-          "Plant Phenology=No Evidence": Aucun signe
           "Life Stage=Adult": Adulte
           "Life Stage=Egg": Œuf
           "Life Stage=Larva": Larve
