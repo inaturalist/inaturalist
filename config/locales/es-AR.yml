@@ -5144,6 +5144,12 @@ es-AR:
           Guía completa que incluye todas las fotos y descripciones y abarca varias páginas.
       pdf_generation_notice: |
         Por favor sea paciente, lo que genera grandes archivos PDF puede tomar un minuto o dos.
+      tags_help_html: |
+        Las etiquetas son como las categorías para la especie en tu guía,
+        excepto cuando múltiples especies pueden tener la misma etiqueta. Introduce etiquetas como una lista separada por comas aquí, por
+        ejemplo, <code>pequeño, peludo</code>. Para agregar categorías con
+        nombre, utiliza etiquetas como <code>NOMBRE=valor</code>,
+        por ejemplo, <code>color=amarillo</code>.
       sorts:
         default: Guía orden
         alphaname: Alfabéticamente por nombre científico
