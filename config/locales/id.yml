@@ -5755,6 +5755,8 @@ id:
           Panduan lengkap termasuk semua foto dan deskripsi, yang mencakup beberapa halaman.
       pdf_generation_notice: |
         Harap bersabar, menghasilkan PDF besar dapat memerlukan satu atau dua menit.
+      tags_help_html: |
+        Label mirip seperti kategori spesies dalam panduan Anda, tetapi beberapa spesies dapat memiliki label yang sama. Masukkan label dalam daftar yang dipisahkan dengan koma di sini, contohnya <code>kecil, berbulu</code>. Untuk menambahkan kategori bernama, pakai label, seperti <code>nama_kategori=nilai_kategori</code>, contohnya <code>warna=kuning</code>.
       sorts:
         default: Urutan panduan
         alphaname: Berdasarkan abjad dengan nama ilmiah
