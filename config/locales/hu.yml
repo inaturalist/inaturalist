@@ -1525,6 +1525,7 @@ hu:
   guide_was_successfully_updated: Az útmutató sikeresen frissítve.
   guidelines: Irányelvek
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
+  has_one_or_more_faves: Legalább egyvalaki kedvencelte
   has_photo: Van fénykép
   has_photos: Fényképpel
   has_photo_and_sound: Van fénykép és hang
@@ -2500,6 +2501,7 @@ hu:
   paste: Beilleszt
   people: Emberek
   people_following_user: "%{user} követői"
+  people_user_follows: "%{user} által követett felhasználók"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
@@ -3350,6 +3352,8 @@ hu:
   search_list: Keresés a listában
   #Second person imperative, e.g. placeholder in a search field for searching reasons something was flagged
   search_reasons: Okok keresése
+  search_results_for: 'Találatok erre:'
+  search_results_for_query: 'Találatok erre: %{query}'
   search_species: Fajok keresése
   search_species_: Fajok keresése...
   search_your_photos: Kényképeid keresése
@@ -3968,7 +3972,7 @@ hu:
   values: Értékek
   verifiable_observations_by_observation_date: Megerősíthető megfigyelések a megfigyelés dátuma szerint
   view: Megtekintés
-  view_all: Összes megtekintése
+  view_all: Összes
   view_all_caps: MIND MEGTEKINTÉSE
   view_all_fields: Minden mező megtekintése
   view_all_flags: Minden bejelentés megtekintése
@@ -4027,7 +4031,7 @@ hu:
   view_your_observations: Megfigyeléseid megtekintése
   view_your_personal_year_in_review: "Tovább a %{year}. évi egyéni visszatekintődhöz"
   view_your_personal_year_in_review_caps: "TOVÁBB A %{year}. ÉVI EGYÉNI VISSZATEKINTŐDHÖZ"
-  view_yours: Sajátok megtekintése
+  view_yours: Sajátok
   view_all_of_your_observations_from_x: "Megfigyeléseid megtekintése innen: %{x}"
   video_tutorials: Videó bemutatók
   visually_similar: Kinézetre hasonló
