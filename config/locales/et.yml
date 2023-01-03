@@ -1007,6 +1007,8 @@ et:
   confirm_new_password: Kinnita uus salasõna
   confirm_now: Konnita kohe
   confirm_your_info: Kinnita oma info
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Kinnituskiri saadetud kuupäeval %{datetime}
   confirming_ids: Kinnitavad määratlused
   confirming_ids_description: Kui sa lülitad selle välja, ei saa sa enam teateid määratluste kohta, mis kattuvad sinu omaga.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1406,6 +1408,8 @@ et:
       unauthenticated: 'Pead jätkamiseks sisse logima või endale konto looma.'
       invalid: 'Vigane e-posti aadress või salasõna.'
       invalid_token: 'Väär autentimiskood.'
+      unconfirmed: |
+        Palun kontrolli oma e-posti ja vajuta oma konto kinnitamiseks saadud kirjas olevale lingile.
       user:
         suspended: Sinu konto on deaktiveeritud
     sessions:
@@ -1423,6 +1427,7 @@ et:
     registrations:
       destroyed: 'Nägemist! Sinu konto sulgemine õnnestus. Loodame sind peagi uuesti näha.'
       signed_up: 'Tere tulemast! Sinu kasutajakonto loomine õnnestus.'
+      signed_up_but_unconfirmed: "Kinnituslingiga sõnum on saadetud sinu e-posti aadressile. Palun vajuta lingile, et oma kontot aktiveerida."
       updated: 'Sinu kasutajakonto värskendamine oli edukas.'
     mailer:
       confirmation_instructions:
@@ -1430,6 +1435,10 @@ et:
         subject: Kinnitamisjuhised
       reset_password_instructions:
         subject: 'Salasõna lähtestamise juhised'
+  devise_confirmation_instructions_if_you_did_not: |
+    Kui sina ei loonud endale lehe %{site_name} kasutajat, siis palun ära reageeri sellele kirjale.
+  devise_confirmation_instructions_please_click: |
+    Palun vajuta allolevale lingile, et oma e-posti aadressit kinnitada:
   devise_reset_password_instructions_hello_email: Tere, %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Kui sa seda ei taotlenud, siis ära pane seda e-kirja tähele.
@@ -1503,6 +1512,7 @@ et:
   drawings: Joonistused
   duplicate_verb: Kopeeri
   each_place_displays_all_species_inat_knows: "Igal koha lehel on äratoodud kõik liigid, mida %{site_name} teab seal leiduvat, kaasarvatud info nende arvukuse ja kaitsestaatuse kohta ning liigi esmavaatluse teinud isiku nimi meie andmebaasis. Liike saab filtreerida taksonoomilise grupi, värvi, kaitsestaatuse järgi või neid leida lihtsalt otsingu abil."
+  earliest_added: Varem lisatud
   edit: Muuda
   edit_a_batch_of_observations: Muuda vaatluste komplekti
   edit_account_settings_and_profile: "Muuda konto sätteid &amp; profiili"
@@ -1575,6 +1585,9 @@ et:
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
     Saatsime kuupäeval %{date} sulle kinnituskirja. Kui sa seda kätte ei saanud, siis siin on sulle mõned soovitused:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Palun kinnita oma e-posti aadress%{link_end_tag}</strong>.
+    Kõik kasutajad peavad oma e-posti aadressi kinnitama kuupäevaks %{date}. Peale seda kuupäeva ei saa aadressi mitte kinnitanud kasutajad enne sisse logida, kui uuendavad oma salasõna. E-posti aadressi kinnitamiseks külasta oma %{link_start_tag}konto sätteid%{link_end_tag}.
   email_copyright: "&copy; %{x}, kõik õigused kaitstud"
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
@@ -1938,6 +1951,7 @@ et:
   in_place_x: kohas %{place}
   #As in a reason to flag something
   inappropriate: Ebasobiv
+  inaturalist_network: iNaturalisti võrgustik
   inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   #Label for messages you've received
   inbox: Saabunud kirjad
@@ -1958,6 +1972,7 @@ et:
   inat_account_action: "%{site_name} &#58; Konto &#58; %{action_name}"
   inat_believes_this_is_a_complete_listing: "%{site_name} usub, et tegemist on selle koha täielikut taksonite nimekirjaga."
   inat_user_profile: "%{site_name}: kasutaja %{user} profiil"
+  inaturalist_activity_notifications: "Lehe %{site_name} teavitused"
   inaturalist_places: "%{site_name} kohad"
   info: Teave
   input_taxon: Sisendtakson
@@ -2630,6 +2645,7 @@ et:
   note_you_can_modify_the_height_attribute: "NB: Saad kõrgust muuta, et see vastaks sinu kodulehel kasutada olevale ruumile."
   notifications: Teavitused
   notify_me_of_mentions: Anna mulle mainimistest teada (s.t. @kasutajatunnus)
+  notify_me_of_mentions_description: "Kui sa lülitad selle välja, ei saa sa enam teateid selle kohta, kui keegi sind lehel %{site_name} mainib."
   number_of_observations: Vaatluste arv
   number_selected: "# valitud"
   obs: Vaatlus
@@ -2740,9 +2756,11 @@ et:
   of_places: kohad
   of_this_taxon: Selle taksoni
   offensive_inappropriate: Solvav / ebasobiv
+  off_caps: "EI"
   official_blog: Ametlik blogi
   offline_access_enabled: Offline-ligipääs lubatud
   old_observation_form: Vana vaatlusvorm (mittekasutatav)
+  on_caps: "JAH"
   on_day: "kuupäeval"
   onboarding:
     observe_panel_title: Alustame mõne vaatluse lisamisega
@@ -3413,6 +3431,7 @@ et:
   reason: Põhjus
   reason_you_are_flagging_this_item: Märkuse lisamise põhjus.
   recaptcha_verification_failed: reCaptcha kontroll ebaõnnestus
+  receive_email_notifications_description: "Kui sa lülitad selle välja, ei saa sa enam e-kirju lehelt %{site_name} teavitustega."
   receive_project_journal_notifications?: Saa teavitusi projekti päevikukannetest?
   receive_updates_from_this_project: Saa uudiseid selle projekti kohta
   recent: Viimased
@@ -3425,6 +3444,7 @@ et:
   recent_atom_observations_by: "Viimased vaatlused kasutajalt %{login} (Atom)"
   recent_observations_by: "Viimased vaatlused kasutajalt %{login}"
   recently_active: Hiljuti aktiivne
+  recently_added: Hiljuti lisatud
   recently_created: Hiljuti loodud
   recently_finished: Hiljuti lõppenud
   recently_observed: Hiljuti vaadeldud
@@ -3566,6 +3586,8 @@ et:
   scale_colon: "Skaala:"
   schemes: Skeemid
   schemes_including: Skeemid, mis sisaldavad
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: Teaduslik nimi
   search: Otsi
   search_all_fields: otsi kõiki välju
   search_by_name_or_email: Otsi nime või e-post järgi
@@ -4486,8 +4508,22 @@ et:
   yesterday: Eile
   yir_code_contributors_desc_html: |
     Meie <a href="%{url}">tarkvara</a> on pea täielikult vabavaraline, mis tähendab, et kõik inimesed saavad annetada meile koodi, kui seda oskavad. Siin on loetletud tänavu vabatahtlikult koodi annetanud isikud. Aitäht teile, programmeerijad!
+  yir_donate_banner_inaturalist_in_year: "INATURALIST AASTAL %{year}:"
+  yir_donate_banner_reaching_millions: Miljonid kasutajad. Loodusliku mitmekesisuse eestseisja. Üleilmne koostöö.
+  #"You" is singular
+  yir_donate_banner_inaturalist_thrives: iNaturalist toimib tänu sinusarnastele inimestele!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist vajab sinu tuge
+  yir_generating_and_sharing: |
+    Oluliste elurikkuste andmete kogumine ja jagamine on sellises pretsedentitus koguses ja meie pakutaval kiirusel üha kulukam
+  yir_millions_of_people_used_inaturalist: |
+    Milionid inimesed kasutasid looduses sellel aastal iNaturalisti ja meie Seek rakendust
   yir_monthly_supporters_random_selection: |
     Siin on juhuslik valik kangelaslikke iNati kogukonna liikmeid, kes meile igakuiselt annetavad.
+  yir_thank_your_for_being_generous: |
+    Täname, et oled lahkelt jaganud oma aega, tähelepanu, ekspertiisi ja annetusi. iNaturalist on California Teaduste Akadeemia ja National Geographic Society mittetulunduslik ühisprojekt. Programm sõltub paljudest stipendiumitest ja annetustest, millede hulgas olulist rolli mängib ka meie kogukonna ülitillukese osa vabatahtlik panus. Oleme eriti tänulikud oma igakuistele toetajatele, sest just nende pidev heatahtlikus lubab meil oma tulevikku planeerida.
+  yir_your_gift_sustains: |
+    Sinu panus aitab elus hoida üleilmset programmi, mille mõju nii üksikisikutele kui keskkonnale on tohutu
   you: sina
   you_: Sina
   you_appear_offline_try_again: |
@@ -4531,6 +4567,7 @@ et:
   you_dont_have_permission_to_edit_those_photos: Sul ei ole nende fotode muutmiseks luba.
   you_faved_this: Määrasid lemmikuks!
   you_have_left_x_project: "Lahkusid projektist %{project}"
+  you_have_not_confirmed_your_email_address: Sa ei ole enda e-posti aadressit kinnitanud!
   you_havent_linked_your_inaturalist_google_account: "Sa ei ole oma lehe %{site_name} kontot ja Google kontot veel ühendanud"
   you_joined_this_project: Ühinesid projektiga!
   you_must_be_a_member_of_this_project_to_do_that: Pead selleks olema antud projekti liige
@@ -4718,6 +4755,8 @@ et:
           Täielik juhend kõigi piltide ja kirjeldustega, mis katab mitu lehekülge.
       pdf_generation_notice: |
         Ole kannatlik, suurte PDF failide loomine võib võtta paar minutit.
+      tags_help_html: |
+        Märksõnad on nagu sinu juhendi liikide kategooriad, kuid mitu liiki saab kasutada sama märksõna. Lisa märksõnad komaga eraldatud nimekirjadena, nt <code>väike, karvane</code>. Lisamaks nimelisi kategooriaid, kasuta märksõnu nagu <code>kategooria_nimi=kategooria_väärtus</code>, nt <code>värvus=kollane</code>.
       sorts:
         default: Juhendi järjestus
         alphaname: Tähestikuline teadusliku nimetuse järgi
@@ -4780,7 +4819,17 @@ et:
       captive_help_html: |
         Oli see organism <strong>kasvatatud</strong> või <strong>vangistatud</strong>? Näiteks <strong>aias, loomaaias, akvaariumis</strong> või mõnes muus kohas, kus lihtsalt <strong>inimesed soovisid, et see seal oleks</strong>? Kõik eluslooduse vaatlused on teretulnud, kuid me sooviksime teada, kui miski ei ole metsik või on elukohaga kohandunud.
       compare:
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Kuupäevaväli
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Vahemik
         total_taxa: Taksoneid kokku
+        #Count of how many taxa are present in an observation search
+        x_total:
+          #Count of how many taxa are present in an observation search
+          one: "Kokku %{count}"
+          #Count of how many taxa are present in an observation search
+          other: "Kokku %{count}"
       export:
         choose_columns_desc: Vali eksporditavad tulbad
         ident_by_user_desc_html: |
@@ -5248,6 +5297,15 @@ et:
         website_desc_html: |
           Loodud <a href="https://www.inaturalist.org">iNaturalist</a> või <a href="%{url}">iNaturalist võrgustiku</a> leheküljel
       year:
+        compare_desc: |
+          Kuidas see aasta oli võrdluses eelmiste aastatega? Kui oled olnud kasutaja vähemalt kolm aastat, saame hakata võrdlema erinevate aastate aktiivsust. Roheline joon näitab käesolevat aastat, valge vertikaalne joon näitab eelmist aastat, hallid taustad näitavad madalaima ja kõrgeima aktiivsusega aastaid ning kõigi aastate keskmist. Statistikas ei sisaldu null aktiivsusega aastad.
+        compare_site_desc: |
+          Kuidas see aasta oli võrdluses eelmiste aastatega? Roheline joon näitab käesolevat aastat, valge vertikaalne joon näitab eelmist aastat, hallid taustad näitavad madalaima ja kõrgeima aktiivsusega aastaid ning kõigi aastate keskmist.
+        compared_to_previous_years: Võrreldes eelmiste aastatega
+        donate_title: "Eriline tänu kõigile meie toetajatele"
+        inaturalist_network: iNaturalisti võrgustik
+        inaturalist_network_desc: |
+          Vaata aastakokkuvõtet teiste iNaturalisti võrgustiku liikmete kohta.
         include_usa: Kaasa USA
         growth_by_country_desc_html: |
           Kus kasv toimub? See kaart ja graafik proovivad kasvu näidata riikide kaupa, mis tegelikult on keeruline, sest riigiti võib kasv olla väga erinev. Oleme vaikimisi otsustanud Ameerika Ühendriike mitte näidata ja kasutame logaritmilist skaalat, et rõhutada riikide erinevusi. Kui riik on musta värvi, siis tähendab see, et selle panus jäi alla protsendi, seal ei toimunud sellel aastal kasvu või seal polnud see aasta rohkem vaatluseid kui eelmisel (liigu hiirega riigile, et näha täpsemaid andmeid). <strong>"% kogukasvust"</strong> tähistab seda, kui suur osa kogu maailma kasvust tuli mingist riigist. Kui näiteks 2018. aastal toimus kokku 20 vaatlust ja 2017. aastal 10 ning 2018. aasta vaatlustest 5 toimus Beninis, siis Benini osa kogukasvust on 50%. <strong>"% kasv"</strong> tähistab tänavust vaatluste arvu riigis protsendina eelmise aasta tolle riigi vaatlustest. Kui näiteks Laoses oli eelmine aasta 10 vaatlust aga see aasta 20, siis oleks kasv 100%-i ning kui eelmine aasta oli 0 ja see aasta 1, siis oleks kasvuprotsent lõpmatu.
@@ -5260,12 +5318,31 @@ et:
           Selle aasta jooksul esimest korda lisatud liigid. Vajuta mõnele kuule, et näha siis lisatud liike. Võid vaadata ka kogu liikide kasvutrendi või liigutada ajavalikud minevikku, et näha teisi äsja vaadeldud liike. Selles graafikus sisalduvad ainult tõendatavad vaatlused vastavalt lehele %{site_name} üles laadimise kuule (mitte vaatlemise kuule). Siin ei sisaldu kõrgema või madalama leveli taksonid, mis tähendab, et vaatlus määratlusega imetajad ei lähe arvesse ning <i>Canis lupus</i> alamliigi
           <i>arctos</i> vaatlus võrdub <i>Canis lupus</i> omaga.
         new_species_per_year: Uusi liike aastas
+        new_species_per_year_by_date_added: Lisamiskuupäeva järgi
         obs_in_year: Vaatluseid aastal %{year}
         percent_growth_in_year: "% kasv aastal %{year}"
         percent_of_total_growth: "% kogukasvust"
+        publications_desc_short_html: |
+          Vajuta õiekujulistele graafikutele, et näha rohkem infot selle kohta, mida numbrid ja värvid tähistavad. Mõjususe andmete ja graafikutega on aidanud <a href="https://www.altmetric.com">Altmetric</a>. Info andmete kasutamise kohta pärineb meie sõprade lehelt <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
+        observations_per_year: Vaatluseid aastas
+        observations_per_year_by_date_added: Lisamiskuupäeva järgi
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Aktiivsed vaatlusperioodid
+        observation_streaks_desc2: |
+          Aktiivne vaatlusperiood tähistab vähemalt viie päeva pikkust ajavahemikku, kui kasutaja väljas käis ja iga päev uusi kontrollitavaid vaatluseid tegi. Siin näitame me pikimaid sellel aastal alanud vaatlusperioode või sellist perioodi, mis ikka veel antud statistika loomise ajal kestis (üksikkasutajate puhul näitame ka käesoleval aastal lõppenud perioode).
+        species_per_year: Liike aastas
+        species_per_year_by_date_added: Lisamiskuupäeva järgi
+        stats_generated_datetime: Statistika on genereeritud kuupäeval %{datetime}
         stats_generation_schedule: Statistika võetakse kokku igal detsembrikuu pühapäeval ja esimesel jaanuaril
         sunburst_desc_html: |
           Vaadeldud taksonid on seatud mitmetasemelisse sektordiagrammi. Hierarhia alguspunkt on keskel alates sektoriga "Elu" ning lõppeb välisperimeetril olevate liikidega. Iga kaare suurus on võrdväärne tolle taksoni vaatluste arvuga ning värvid vastavad enam vähem meie "ikoonilistele" taksoni värvidele (taimed on rogelised, putukad kollased, ülejäänud loomad enamasti sinised, jne). Kui näed palju rohelist, tähendab see, et oled vaadelnud palju taimi. <strong>Vajuta mõnele kaarele, et paigutada seda keskele</strong> ning selle alamkategooriaid ümber selle või <strong>vajuta keskpunktile, et hierarhias kõrgemale liikuda</strong>.
+        translators_title: Tõlkijad
+        translators_desc: |
+          Kas sa teadsid, et iNaturalistis on kasutusel %{x_languages} ning selle eest tuleb tänada %{x_people}, kelledest mõned isegi ei kasuta iNati? Siin on kõik need imelised tõlkijad, kes on käesoleva aasta jooksul tõlkeid lisanud koos tõlgitud sõnade arvuga nii %{website_link_tag}kodulehele%{link_tag_end}, %{iphone_link_tag}iPhone'i%{link_tag_end} ja %{android_link_tag}Androidi%{link_tag_end} rakendusele kui%{seek_link_tag}Seeki%{link_tag_end} jaoks. Infot kõigi inimeste kohta, kes on tõlkimisega aidanud ning seda ka varasemate aastate ja Translatwiki-ga seotud isikute kohta, saab vaadata meie %{view_all_web_link_tag}kodulehe%{link_tag_end} ja %{view_all_mobile_link_tag}mobiilirakenduse%{link_tag_end} koodivaramutest.
+        translators_desc_for_site: |
+          Kas sa teadsid, et %{site_name} on pea täielikult tõlgitud %{x_people} poolt? Siin on kõik need imelised tõlkijad, kes on käesoleva aasta jooksul tõlkeid lisanud koos tõlgitud sõnade arvuga nii %{website_link_tag}kodulehele%{link_tag_end}, iNaturalisti %{iphone_link_tag}iPhone'i%{link_tag_end} ja %{android_link_tag}Androidi%{link_tag_end} rakendusele kui%{seek_link_tag}Seeki%{link_tag_end} jaoks. Infot kõigi inimeste kohta, kes on tõlkimisega aidanud ning seda ka varasemate aastate ja Translatwiki-ga seotud isikute kohta, saab vaadata meie %{view_all_web_link_tag}kodulehe%{link_tag_end} ja %{view_all_mobile_link_tag}mobiilirakenduse%{link_tag_end} koodivaramutest.
+        translators_prompt: |
+          Kui soovid ka ise tõlkimisega aidata, %{link_tag}loe selle kohta siit%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5391,9 +5468,27 @@ et:
         name_place_help_html: |
           Eelista selles kohas kasutatavaid rahvapäraseid nimesid.
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Kommentaarid
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: Määratlused
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Mainimised
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Sõnumid
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: Projekti päevikukanded
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: Kui mõni projekt su vaatluse lisab
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: Kui projekti kuraator muutub
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Taksonoomilised muutused
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_user_observations: Jälgitavate inimeste vaatlused
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_or_place_observations: Vaatlused kohtadest, mida jälgin
         place_preference_changed_notice_html: |
           Koha eelistus muudetud. Kui muudad meelt, saad alati muuta <a href='/users/edit'>oma sätteid</a>.
         project_addition_preferences:
