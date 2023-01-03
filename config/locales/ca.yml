@@ -1009,6 +1009,10 @@ ca:
   confirm_new_password: Confirmeu la contrasenya nova
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Correu electrònic de confirmació enviat el %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmat el %{date}
   confirming_ids: Confirmació d'Identificació
   confirming_ids_description: Si ho desactiveu no sereu informats quan algú fa una identificació que correspon amb la vostra.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1433,6 +1437,9 @@ ca:
   deviation: Desviació
   devise:
     confirmations:
+      confirmed: |
+        La seva adreça de correu electrònic a estat correctament confirmada. Ara podeu accedir des d'aquí al lloc web, o a les Apps per a mòbil iNaturalist o Seek.
+      send_instructions: "Rebreu un correu electrònic amb instruccions per confirmar la vostra adreça de correu electrònic en pocs minuts."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1442,6 +1449,8 @@ ca:
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
       invalid: 'Correu electrònic o contrasenya incorrectes'
       invalid_token: 'Autenticació no vàlida'
+      unconfirmed: |
+        Si us plau, comproveu el vostre correu electrònic i premeu sobre l'enllaç del correu electrònic que heu rebut per confirmar el vostre compte.
       user:
         suspended: El vostre compte s'ha suspès
     sessions:
@@ -1459,11 +1468,18 @@ ca:
     registrations:
       destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
+      signed_up_but_inactive: "Heu iniciat la sessió amb èxit. Però, no heu pogut obrir la sessió perquè el vostre compte encara no està activat."
+      signed_up_but_locked: "Us heu registrat amb èxit. Però, no heu pogut iniciar la sessió perquè el vostre compte està bloquejat."
+      signed_up_but_unconfirmed: "S'ha enviat un missatge amb un enllaç de confirmació a la vostra adreça de correu electrònic. Si us plau, seguiu l'enllaç per activar el vostre compte."
       updated: 'Heu actualitzat el vostre compte amb èxit.'
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Instruccions de confirmació
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Canvi de correu electrònic sol·licitat
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
   devise_reset_password_instructions_hello_email: Hola %{email}
@@ -5670,6 +5686,10 @@ ca:
           Guia completa incloent-hi totes les fotos i descripcions, incorpora diverses pàgines.
       pdf_generation_notice: |
         Si us plau tingueu paciència, generar arxius PDF grans pot necessitar un o dos minuts.
+      tags_help_html: |
+        Les etiquetes són com les categories per a les espècies de la guia, excepte que diverses espècies poden tenir la mateixa etiqueta.
+        Introduir etiquetes com una llista separada per comes aquí, per exemple, <code>petit,pelut</code>. Per afegir categories amb nom, utilitza etiquetes com <code>NOM=valor</code>,
+        per exemple, <code>color=groc</code>.
       sorts:
         default: Ordre de la Guia
         alphaname: En ordre alfabètic pel nom científic
