@@ -228,6 +228,12 @@ sv:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Noggr (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Noggr. över
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Noggr. under
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Noggr. under eller okänd
   account: Konto
   account_creation: Att skapa konto
   account_settings: Kontoinställningar
@@ -3040,6 +3046,8 @@ sv:
   not_findig_what_you_want: Hittar du inte det du vill?
   not_finding_place_you_want?: Hittar du inte den fyndplats du vill?
   not_found: Hittades inte
+  #Filter for observations not in a particular place
+  not_in_place: Inte från plats
   not_linked_facebook: "Ditt %{site_name}-konto är inte kopplat till ditt Facebook-konto"
   not_linked_flickr: "Ditt %{site_name}-konto är inte kopplat till ditt Flickr-konto"
   not_on_this_list: Inte på denna lista.
@@ -3129,6 +3137,14 @@ sv:
   observation_curation: Fyndförvaltning
   observation_date: Datum
   observation_date?: Datum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Grundläggande
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon utökad
   observation_field: Fyndfält
   observation_field_details: Fyndfältsdetaljer
   observation_field_type_text: Text
@@ -5625,6 +5641,8 @@ sv:
     Commons Erkännande Dela Lika-licens 3.0</a>. Delar av innehållet kan ha
     utelämnats jämfört med originalet, men inget har ändrats eller lagts till.
   with: med
+  #Filter for observations not in a particular taxon
+  without_taxon: Ej i taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Dra tillbaka
@@ -7097,6 +7115,7 @@ sv:
           "Plant Phenology=Flower Budding": Blomknopp
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
+          "Plant Phenology=No Evidence of Flowering": Inga tecken på blomning
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Ägg
           "Life Stage=Larva": Larv
