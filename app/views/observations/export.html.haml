@@ -79,7 +79,7 @@
           - {:basic => Observation::BASIC_COLUMNS, :geo => Observation::GEO_COLUMNS, :taxon => Observation::TAXON_COLUMNS, :taxon_extras => Observation::EXTRA_TAXON_COLUMNS}.each do |ctype,columns|
             .column.span-24
               %h4
-                =t ctype
+                =t "observation_export_column_type_#{ctype}", default: "MISSING TRANSLATION FOR #{ctype}"
                 %span.small.meta.ui
                   = surround '(',')' do
                     = link_to_function t(:all), "$('##{ctype}_columns :checkbox').prop('checked', true)"
@@ -149,7 +149,7 @@
   .column.span-12.stacked
     .column.span-6
       .clear.centered.inline.buttonrow
-        %strong.inter=t :check_back_later
+        %strong.inter=t :check_back_soon
       .meta=t 'views.observations.export.check_back'
     - unless current_user.email.blank?
       .column.span-6.last

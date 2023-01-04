@@ -306,6 +306,12 @@ en:
   # positional_accuracy attribute of an observation, which is really more like
   # positional uncertainty
   acc: 'Acc (m)'
+  # Filter for observations with positional accuracy above a certain value
+  acc_above: Acc. above
+  # Filter for observations with positional accuracy below a certain value
+  acc_below: Acc. below
+  # Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Acc. below or unknown
   account: Account
   account_creation: Account Creation
   account_settings: Account Settings
@@ -3240,6 +3246,8 @@ en:
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
   not_found: Not found
+  # Filter for observations not in a particular place
+  not_in_place: Not in place
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
@@ -3332,6 +3340,14 @@ en:
   observation_curation: Observation Curation
   observation_date: Date
   observation_date?: Date?
+  # Basic observation export fields
+  observation_export_column_type_basic: Basic
+  # Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  # Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  # Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon Extras
   observation_field: Observation field
   observation_field_details: Observation field details
   observation_field_type_text: Text
@@ -5993,6 +6009,8 @@ en:
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
   with: with
+  # Filter for observations not in a particular taxon
+  without_taxon: Not in taxon
   # Label for a button to withdraw an identification, i.e. to deactivate it
   # without deleting it
   withdraw: Withdraw
