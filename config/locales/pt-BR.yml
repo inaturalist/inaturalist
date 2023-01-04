@@ -1542,6 +1542,8 @@ pt-BR:
         subject: Alteração de endereço eletrônico solicitada
       reset_password_instructions:
         subject: 'Instruções de redefinição de senha'
+  devise_confirmation_instructions_if_you_did_not: |
+    Se você não se inscreveu na conta %{site_name}, por favor ignore esta mensagem.
   devise_confirmation_instructions_please_click: |
     Por favor, clique no link abaixo para verificar o seu endereço de correio eletrônico.
   devise_confirmation_instructions_resend_instructions: |
@@ -2160,6 +2162,11 @@ pt-BR:
   ids_made_for_others: Identificações feitas por outros
   if_for_some_reason_a_user_doesnt_agree: |
     Se por alguma razão você não concordar com o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Se o desbaste de um progenitor resultar em mais de 10 desacordos não intencionais, você deve dividir o pai depois de mover o filho para substituir os IDs existentes de
+    o pai <strong>(B)</strong> com IDs que não discordam.
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_swaps_html: |
@@ -3994,6 +4001,10 @@ pt-BR:
     Esse serviço não forneceu um endereço de correio eletrônico para essa conta, isso é
     necessário. Por favor, crie uma conta neste site em vez de acessar
     via terceiros.
+  provider_without_email_error_google_oauth2: |
+    O Google não forneceu um endereço eletrônico para essa conta, isso é
+    necessário. Por favor, crie uma conta neste site em vez de fazer “login”
+    via Google.
   public_domain: Domínio Público
   publish: Publicar
   purple: roxo
@@ -5133,6 +5144,8 @@ pt-BR:
   time_zone_europe_prague: Hora da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_rome: Hora da Europa Central
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Hora Da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_europe_zagreb: Hora Da Europa Central
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -7077,7 +7090,6 @@ pt-BR:
           "Plant Phenology=Flower Budding": Brotamentos de Flores
           "Plant Phenology=Flowering": Floração
           "Plant Phenology=Fruiting": Frutificação
-          "Plant Phenology=No Evidence": Sem Evidências
           "Life Stage=Adult": Adulto
           "Life Stage=Egg": Ovo
           "Life Stage=Larva": Larva

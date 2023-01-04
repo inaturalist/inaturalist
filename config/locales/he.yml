@@ -51,7 +51,7 @@ he:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> מזהות.ים'
   x_languages:
-    one: "%{count} שפה"
+    one: "שפה %{count}"
     two: "%{count} שפות"
     many: "%{count} שפות"
     other: "%{count} שפות"
@@ -1044,6 +1044,8 @@ he:
   click_the_map: "<strong>יש ללחוץ על המפה</strong> כדי להוסיף מיקום."
   close: סגירה
   code: קוד
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: תורמות ותורמי קוד
   colors: צבעים
   columns: עמודות
   combine: קיבוץ
@@ -1763,6 +1765,8 @@ he:
     <strong>להוסיף את <code>%{email}</code> לרשימת אנשי הקשר שלך <a href="%{url}">ולבקש עוד מייל אישור</a>.</strong> במידה וספק הדוא"ל שלך חסם את דוא"ל האישור, זה עשוי לשכנע אותו שאת.ה בעצם רוצה לקבל דוא"ל מעמנו.
   email_conf_banner_check_your_spam_folder_html: <strong>יש לבדוק בתיקיית הספאם שלך</strong>
   email_conf_banner_contact_us_html: עדיין לא עובד? יש ליצור עמנו קשר בכתובת %{email} בשביל שנוכל לעזור לך.
+  email_conf_banner_please_click: |
+    נא ללחוץ על הקישור בדוא"ל שלך לאישור כתובת הדוא"ל שלך.
   email_conf_banner_search_for_emails_html: <strong>חיפוש אימיילים מ-<code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -3311,6 +3315,7 @@ he:
   other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: טקסונים אחרים המוגדרים בטעות כהיבריד זה ברמת סוג ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_hybrid: טקסונים אחרים המוגדרים בטעות כבן-כלאיים זה
   other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: טקסונים אחרים אשר מזוהים בטעות כהיבריד זה ב<a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: טקסונים אחרים המוגדרים בטעות כ%{rank} לעתים קרובים
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: טקסונים אחרים אשר נזהו בטעות כ%{rank} זו ב<a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_section: טקסונים אחרים המוגדרים בטעות כסקציה זו
   other_taxa_commonly_misidentified_as_this_section_in_place_html: טקסונים אחרים אשר מזוהים בטעות כסקציה זו ב<a href="%{url}">%{place}</a>
@@ -5636,6 +5641,8 @@ he:
   yes_reject_it: כן, לדחות אותו
   yes_show_this_in_the_box: כן, להציג זאת בריבוע הגדול בראש עמוד הטקסונים
   yesterday: אתמול
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">התוכנה</a> שלנו היא רובה ככולה קוד פתוח, מה שאומר שכל אחת ואחד יכולים לתרום אם יודעים איך. הנה הא.נשים שנידבו קוד השנה. תודה מתכנתות ומתכנתים!
   yir_donate_banner_inaturalist_in_year: "INATURALIST בשנת %{year}"
   yir_donate_banner_reaching_millions: מגיעים למיליוני א.נשים. מאירים את חשיבות המגוון הביולוגי. שיתוף פעולה חוצה גבולות.
   #"You" is singular
@@ -5650,6 +5657,8 @@ he:
     יצירה ושיתוף של נתונים על מגוון עצום של מינים, בקנה מידה ובקצב חסר תקדים, מביאים עמם עלויות הולכות ועולות.
   yir_millions_of_people_used_inaturalist: |
     מיליוני א.נשים השתמשו ב-iNaturalist וב-Seek של iNaturalist השנה כדי להתחבר לטבע
+  yir_monthly_supporters_random_selection: |
+    הנה דגימה אקראית מתוך קהילת הגיבורות והגיבורים של iNaturalist אשר תומכות ותומכים מדי חודש.
   yir_thank_your_for_being_generous: |
     תודה על נדיבות לבך ועל שנתת מזמנך, תשומת לבך, מומחיותך וכספך! iNaturalist הוא מיזם ללא מטרות רווח של אקדמיית קליפורניה למדעים ונשיונל ג'אוגרפיק. המיזם נשען ברובו על מענקים ותרומות, כולל תרומות ישירות של חלק קטן מהמשתמשים. אנו מודות ומודים במיוחד לתומכים ולתומכות החודשיים שתרומתם.ן החוזרת עוזרת לנו לתכנן את עתידנו.
   yir_your_gift_sustains: |
@@ -6390,49 +6399,49 @@ he:
         subject: הילד.ה שלך רוצה להשתמש ב-iNaturalist.
         content_html: |
           <p>
-          הילד/ה שלך משתמש/ת באפלקציה <strong>Seek by iNaturalist</strong> ורוצה לשתף מידע עם הפלטפורמה למדע אזרחי iNaturalist. משום ששיתוף בפלטפורמה מגלה מידע אישי לציבור הכללי, אסור לילדים מתחת לגיל 13 להשתמש בiNaturalist ללא הסכמתם של אחד מן ההורים.
+          הילד.ה שלך משתמש.ת באפלקציה החינוכית <strong>Seek by iNaturalist</strong> ורוצה לשתף מידע עם הפלטפורמה למדע אזרחי iNaturalist. משום ששיתוף בפלטפורמה מגלה מידע אישי לציבור הכללי, אסור לילדים מתחת לגיל 13 להשתמש בiNaturalist ללא אישור הורה.
           </p>
           <p>
-          אפשר להשתמש ב<strong>Seek by iNaturalist</strong> בלי ליצור חשבון, ושום מידע אישי נאסף בפלטפורמה זו, אבל ילדך לא ת/יוכל לתרום תצפיות לiNaturalist. iNaturalist היא רשת חברתית למיגע אזרחי בה משתמשים שותפים תצפיות וזיהויים של בעלי חיים כדי ללמד אחד את השני וכדי ליצור מידע על בעלי חיים בשביל שימוש על ידי מדענים.
+          אפשר להשתמש ב<strong>Seek by iNaturalist</strong> בלי ליצור חשבון, ושום מידע אישי לא ייאסף בפלטפורמה זו, אבל הילד.ה שלך לא יוכלו לתרום תצפיות לiNaturalist. iNaturalist היא רשת חברתית למדע אזרחי בה משתמשות.ים משתפות.ים תצפיות וזיהויים של יצורים חיים כדי ללמד זה את זו על הטבע וכדי לייצר מידע על המגוון הביולוגי לטובת המדע.
           </p>
           <p>
-          אם ברצונך להסכים בהצטרפות ילדך בiNaturalist, אנא לעשות את דברים הבאים:
+          אם ברצונך להסכים לשימוש הילד.ה שלך ב-iNaturalist, עליך לעשות את דברים הבאים:
           </p>
           <ol>
           <li>
           <p>
-          ליצור חשבון בשביל הילד/ה דרך קישור הבא:
+          ליצור חשבון בשביל הילד.ה שלך דרך קישור הבא:
           <a href="%{registration_url}">%{registration_url}</a>
           </p>
           </li>
           <li>
           <p>
-          אחר כך, נבקש ממך לתרום לiNaturalist תרומה סמלית של $1.00 עם כרטיס אשראי כדי להראות כי את/ה בוגר. נא לוודא כי השתמשת באותה כתובת מייל בה השתמשת בשדה "כתובת מייל הורה" בעת יצירת החשבון של ילדך.
+          אחר כך, נבקש ממך לתרום ל-iNaturalist תרומה סמלית של $1.00 עם כרטיס אשראי כדי להראות כי את.ה מבוגר.ת. נא לוודא כי השתמשת באותה כתובת מייל בה השתמשת בשדה "כתובת מייל הורה" בעת יצירת החשבון של הילד.ה שלך.
           </p>
           </li>
           <li>
           <p>
-          כשנקבל את התרומה, נשלח אלייך מייל שמודיע לך אשר חבשונו/ה של ילדך מופעל. גם ניתן להשתמש בחשבון זה באפלקציית Seek.
+          כשנקבל את התרומה, נשלח אלייך מייל נוסף המודיע לך שהחשבון של הילד.ה שלך מופעל, ושניתן להשתמש בשם המשתמש ובסיסמה של iNaturalist שיצרת כדי להיכנס לאפלקציית Seek של הילד.ה שלך.
           </p>
           </li>
           </ol>
           <p>
-          מידע האישי הבאים נאספים על ידי iNaturalist:
+          המידע האישי הבא נאסף על ידי iNaturalist:
           </p>
           <ol>
           <li>
           <p>
-          <strong>כתובת מייל (פרטי):</strong> לכל חשבון iNaturalist משויכת כתובת מייל, שלא משותף עם ציבור הרחב.
+          <strong>כתובת מייל (פרטי):</strong> לכל חשבון iNaturalist משויכת כתובת מייל, שאינה משותפת עם ציבור הרחב.
           </p>
           </li>
           <li>
           <p>
-          <strong>שם משתמש (ציבורי, חובה):</strong> לכל חשבון iNaturalist יש שם משתמש ומספר דיהוי אשר גלויים. אין חובה ששם המשתמש יזדהה עם או שיהיה דומה לשם האמיתי של המשתמש. ניתן יהיה לקבל הודעות פרטיות וגם לפנות על המשתמש דרך תגובות ציבוריות.
+          <strong>שם משתמש (ציבורי, חובה):</strong> לכל חשבון iNaturalist יש שם משתמש ומספר זיהוי גלויים. שם המשתמש לא חייב להיות דומה לשם האמיתי של המשתמש.ת, אבל הוא יכול לשמש לתקשורת עם היוזר דרך תגובות גלויות והודעות פרטיות ישירות.
           </p>
           </li>
           <li>
           <p>
-          <strong>IP address (פרטי, חובה):</strong> iNaturalist אוסף אבל שומר בפרטיות את IP address של המשתמש. ניתן לקבל מידע אישי מן הIP address כמו מיקום (ברמת עיר מסוימת).
+          <strong>IP address (פרטי, חובה):</strong> iNaturalist אוסף אבל שומר בפרטיות את כתובת ה-IP של המשתמש.ת. ניתן לקבל מידע אישי מכתובת ה-IP כמו מיקום (ברמת דיוק של עיר).
           </p>
           </li>
           <li>
@@ -6442,12 +6451,12 @@ he:
           </li>
           <li>
           <p>
-          <strong>מיקום תצפיות (פרטח או ציבורי, חובה):</strong> תצפיות בiNaturalist כוללות מידע על מיקום התצפית. ניתן לבחור עם מידע על המיקום יהיה פרטי או ציבורי, אך בדרך כלל הוא ציבורי.
+          <strong>מיקום תצפיות (פרטח או ציבורי, חובה):</strong> תצפיות בiNaturalist כוללות מידע על מיקום התצפית. ניתן לבחור אם מידע על המיקום יהיה פרטי או ציבורי, אך בדרך כלל הוא ציבורי כברירת מחדל.
           </p>
           </li>
           </ol>
           <p>
-          iNaturalist גם מאפשר למשתמשים לשתף תמונות ותגובות ציבוריות, והודעות פרטיות, אשר משויכים לחשבון. ייתכן שיהיה מידע אישי בתוך תמונות, תגובות, או הודעות אלה.
+          iNaturalist גם מאפשר למשתמשות.ים לשתף תמונות ותגובות ציבוריות והודעות פרטיות, אשר משויכות לחשבון שלהן.ם. ייתכן שהתוכן הזה המיוצר על ידי המשתמשות.ים יכיל מידע אישי בתוך התמונות, התגובות או ההודעות.
           </p>
           <p>
           למדו עוד בקשר לתנאי הפרטיות של iNaturalist <a href="%{privacy_policy_url}">כאן</a>.
@@ -6945,7 +6954,6 @@ he:
           "Plant Phenology=Flower Budding": ניצן פרחים
           "Plant Phenology=Flowering": פורח
           "Plant Phenology=Fruiting": עם פירות
-          "Plant Phenology=No Evidence": אין ראיה
           "Life Stage=Adult": בוגר
           "Life Stage=Egg": ביצה
           "Life Stage=Larva": זחל
