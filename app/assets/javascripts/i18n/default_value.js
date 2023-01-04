@@ -12,7 +12,7 @@
     // There's probably a smarter way of dealing with nested keys...
     for ( var i = 0; i < keyParts.length; i += 1 ) {
       base = base || I18n.translations[I18n.locale];
-      const candidate = base[keyParts[i]];
+      var candidate = base[keyParts[i]];
       if ( !candidate ) {
         // Missing translation
         break;
