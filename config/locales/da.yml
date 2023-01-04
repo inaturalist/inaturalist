@@ -217,6 +217,12 @@ da:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Nøj. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Nøjagtig over
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Nøjagtighed under
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Nøjagtig under eller ukendt
   account: Konto
   account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
@@ -3009,6 +3015,8 @@ da:
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
   not_finding_place_you_want?: Kan du ikke finde det sted du ønsker?
   not_found: Ikke fundet
+  #Filter for observations not in a particular place
+  not_in_place: Ikke på stedet
   not_linked_facebook: "Din %{site_name} konto er ikke tilknyttet til din Facebook-konto"
   not_linked_flickr: "Din %{site_name} konto er ikke tilknyttet til din Flickr-konto"
   not_on_this_list: Ikke på denne liste.
@@ -3098,6 +3106,14 @@ da:
   observation_curation: Observation kuration
   observation_date: Dato
   observation_date?: Dato?
+  #Basic observation export fields
+  observation_export_column_type_basic: Basis
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Takson
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Takson, ekstra
   observation_field: Observationsfelt
   observation_field_details: Observationsfelt detaljer
   observation_field_type_text: Tekst
@@ -5634,6 +5650,8 @@ da:
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
   with: med
+  #Filter for observations not in a particular taxon
+  without_taxon: Ikke i takson
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Træk tilbage
@@ -7357,6 +7375,7 @@ da:
           "Plant Phenology=Flower Budding": Blomsterknopbærende
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
+          "Plant Phenology=No Evidence of Flowering": Blomstring kan ikke påvises
           "Life Stage=Adult": Voksen
           "Life Stage=Egg": Æg
           "Life Stage=Larva": Larve
