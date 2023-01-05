@@ -214,9 +214,6 @@ body > div > .popover {
     @import "bootstrap-10";
   }
   @import 'bootstrap-inat';
-  [dir="rtl"] & {
-    @import "rtl-bootstrap";
-  }
 }
 
 .bootstrap .popover {
