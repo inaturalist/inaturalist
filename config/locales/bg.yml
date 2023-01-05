@@ -670,6 +670,8 @@ bg:
   change_group: Група от промени
   change_icon: Промени иконата
   change_password: Промени паролата
+  #Message shown after you change your email address
+  change_to_email_requested_html: Поискана е промяна към <strong>%{email}</strong>. Проверете пощата си на този адрес за да потвърдите промяната.
   change_types:
     change_types: Типове промени
     split: Разделяне
@@ -787,6 +789,8 @@ bg:
   confirm_new_password: Потвърдете новата парола
   confirm_now: Потвърди сега
   confirm_your_info: Потвърдете данните си
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Потвърдително писмо изпратено на %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Потвърден на %{date}
   confirming_ids: Потвърждаващи разпознавания
@@ -1076,11 +1080,17 @@ bg:
   details: Подробно
   deviation: Отклонение
   devise:
+    confirmations:
+      confirmed: |
+        Вашият имейл адрес беше потвърден успешно. Сега можете да влезете тук, на уебсайта, или чрез мобилните приложения iNaturalist или Seek.
+      send_instructions: "Ще получите имейл с инструкции за потвърждение на имейл адреса си до няколко минути."
     failure:
       already_authenticated: 'Вече сте влезли.'
       unauthenticated: 'Трябва да влезете или да се регистрирате, преди да продължите.'
       invalid: 'Невалиден имейл или парола.'
       invalid_token: 'Не валиден код за удостоверение.'
+      unconfirmed: |
+        Моля, проверете имейла си и щракнете на препратката в полученото писмото за да потвърдите акаунта си.
       user:
         suspended: Вашият акаунт е запориран
     sessions:
@@ -1098,6 +1108,8 @@ bg:
     registrations:
       destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
       signed_up: 'Добре дошли! Регистрацията е успешна.'
+      signed_up_but_inactive: "Регистрирахте се успешно. Въпреки това, не можахте да влезете, тъй като акаунтът ви все още не е активиран."
+      signed_up_but_locked: "Регистрирахте се успешно. Въпреки това, не можахте да влезете, тъй като акаунтът ви е заключен."
       signed_up_but_unconfirmed: "Писмо с препратка за потвърждение беше изпратена на Вашия имейл адрес. Моля щракнете на препратката за да активирате акаунта си."
       updated: 'Успешно обновихте акаунта си.'
     mailer:
@@ -1251,6 +1263,9 @@ bg:
     Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
   establishment_means_descriptions:
     introduced: пренесен в региона чрез човешка дейност (умишлено, търговия и т.н.)
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Пресметни кои разпознавания на входния таксон ще бъдат заменени от разпознавания на изходния таксон и кои ще преминат към общ надтаксон, щом разделянето се приложи. Изчисляването може да отнеме известно време. Препратките към наблюдения са съкратени до подмножества от 200.
   event_in_progress: Активно събитие
   everyone: всички
   everyone_: Всички
@@ -2908,6 +2923,7 @@ bg:
   places_warning_the_future: |
     Така или иначе, ще трябва да ограничим създаването на места в бъдеще, имайки предвид скоростта на разрастване на iNat.
   plants: растения
+  play_first_sound: Възпроизведи първия звук
   please_confirm_your_inat_username: "Моля потвърдете Вашето потребителско име на %{site_name}"
   please_fix_your_csv_and_try_again: Моля поправете Вашия CSV и опитайте отново.
   please_hold_on_while_the_file: Моля изчакайте докато файлът се генерира. Може да отнеме няколко минути ако имате много наблюдения.
@@ -4402,6 +4418,8 @@ bg:
       show:
         allow_curator_coordinate_access_desc_html: |
           Разрешете на кураторите на проекта да виждат скритите координати на това наблюдение.
+        ancestor_disagreements_desc2: |
+          Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
         data_quality_assessment_desc_html: |
@@ -5274,6 +5292,21 @@ bg:
         lexicon: Лексика
         name: Название
         position: Позиция
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Име на сайта
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Кратко име
+        #Taxon this link is associated with
+        taxon: Таксон
+        #Place this link is associated with
+        place: Място
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Показвай за подтаксони
       user:
         email: Електронна поща
         login: Потребителско име
