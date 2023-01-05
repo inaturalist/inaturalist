@@ -43,7 +43,4 @@ body .bootstrap {
     @import "bootstrap-10";
   }
   @import 'bootstrap-inat';
-  [dir="rtl"] & {
-    @import "rtl-bootstrap";
-  }
 }
