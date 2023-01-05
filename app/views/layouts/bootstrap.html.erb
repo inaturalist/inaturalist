@@ -19,6 +19,7 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>
