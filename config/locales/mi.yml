@@ -693,6 +693,8 @@ mi:
   observation_brief_taxon_from_place_by_user: "%{taxon} ki %{place} nā %{user}"
   observation_date: Rā
   observation_date?: Rā?
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Rōpū
   observation_field_type_time: Wā
   observation_field_type_datetime: Rā/Wā
   observation_field_type_taxon: Rōpū
@@ -1320,6 +1322,7 @@ mi:
           research: Kua pūruatia
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
+          "Plant Phenology=No Evidence of Flowering": E kore ngā putiputi
           "Sex=Female": Uwha
           "Sex=Male": Tourawhi
     users:
