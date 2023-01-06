@@ -1231,8 +1231,18 @@ bg:
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
   email_description: Вашият имейл не се споделя с други потребители на iNaturalist
+  email_conf_banner_email_delivered_click_link: |
+    Потвърдителният имейл е изпратен. Моля щракнете препратката в имейла.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Добавете<code>%{email}</code> във Вашия списък с контакти и <a href="%{url}">поискайте нов потвърдителен имейл</a>.</strong> Ако имейл сървърът Ви е блокирал потвърдителното писмо, това може да ги убеди, че наистина искате това писмо от нас.
+  email_conf_banner_check_your_spam_folder_html: <strong>Проверете папката си за спам</strong>
+  email_conf_banner_contact_us_html: Все още не работи? Изпратете ни имейл на %{email} за да Ви помогнем.
   email_conf_banner_please_click: |
     Моля, щракнете върху препратката във Вашия имейл, за да потвърдите адреса на имейла.
+  email_conf_banner_search_for_emails_html: <strong>Потърсете за писма от <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Изпратихме Ви потвърдителен имейл на %{date}. Ако не сте го получили, ето няколко неща които можете да направите:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Моля, потвърдете имейл адреса си%{link_end_tag}</strong>. Всички потребители трябва да потвърдят адреса си до %{date}. След това, тези които не са потвърдили адреса си няма да могат да влязат, освен ако не нулират паролата си. За да потвърдите Вашия имейл адрес отидете във вашите %{link_start_tag}настройки на акаунта%{link_end_tag}.
   email_copyright: "Авторско право &copy; %{x}, всички права запазени"
