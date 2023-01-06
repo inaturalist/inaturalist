@@ -186,6 +186,12 @@ hu:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Pontosság (méter)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Pontosságon felül
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Pontosságon alul
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Pontosságon alul, vagy ismeretlen
   account: Fiók
   account_creation: Fiók létrehozás
   account_settings: Fiók beállításai
@@ -2256,6 +2262,8 @@ hu:
   not_confident_top_suggestions: Nincs kellő bizonyosságú javaslatunk, de a legjobb tippjeink
   not_finding_place_you_want?: Nem találod a keresett helyet?
   not_found: Nincs találat
+  #Filter for observations not in a particular place
+  not_in_place: Ezen kívül esik
   not_recorded: Nincs adat
   not_resolved: Nincs megoldva
   note: Megjegyzés
@@ -2330,6 +2338,14 @@ hu:
   observation_curation: Megfigyelés gondozása
   observation_date: Dátum
   observation_date?: Dátum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Egyszerű
+  #Geographic observation export fields
+  observation_export_column_type_geo: Lokáció
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxonextrák
   observation_field: Adatmező
   observation_field_details: Adatmező részletei
   observation_field_type_text: Szöveg
@@ -4104,6 +4120,8 @@ hu:
   widget_for: 'Modul:'
   wikipedia_attribution_cc_by_sa_3: |
     Forrás: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: E taxonon kívül
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Visszavonás
