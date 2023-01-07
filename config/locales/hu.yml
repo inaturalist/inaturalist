@@ -2012,6 +2012,16 @@ hu:
   message_from_user_at_time: '%{user}-tól ekkor: %{time}'
   message_from_user_on_date: '%{user}-tól ekkor: %{date}'
   messages: Üzenetek
+  messages_new_correspondent_it_looks_like: |
+    Úgy tűnik, hogy ezzel a felhasználóval ez az első levélváltásod, ezért kérjük, hogy legyél tekintettel az alábbiakra:
+  messages_new_correspondent_specimens: |
+    Légy óvatos a rejtett adatokra és élőlényegyedekre vonatkozó kérésekkel kapcsolatban. Bizonyosodj meg a felhasználó pontos kiléte felől, és bátran kérd, hogy mutassa meg az engedélyét.
+  messages_new_correspondent_personal: |
+    Ne közölj személyes információt magadról azokkal, akikben nem bízol.
+  messages_new_correspondent_actions_html: |
+    Ha gyanítod, hogy ez a felhasználó sérti a <a href="%{tos_url}"
+    target="_blank">A felhasználási feltételeket</a> vagy a <a
+    href="%{guidelines_url}" target="_blank">Közösségi irányelveket</a>, kérjük jelentsd az üzenetet alább.
   misidentifications: Téves azonosítás
   misleading_or_illegal_content_html: |
     Félrevezető vagy illegális tartalom, rasszista vagy kiközösítő megnyilvánulás, stb. További információ a <a href="/help#inappropriate">Gyakran Ismételt Kérdések</a> között.
@@ -3055,7 +3065,7 @@ hu:
     one: Projekt admin
     other: Projekt adminok
   project_coordinate_access_warning: |
-    A koordinátákhoz való hozzáférés fontos a tudósok számára, de ezt kihasználhatják az orrvadászok. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában mielőtt megbíznál ebben a projektben.
+    A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában, mielőtt megbíznál ebben a projektben.
   project_created_on: 'hozta létre ezt a projektet ekkor: %{date}'
   project_curators: A projekt kurátorai
   project_group_label: Csoport
@@ -4151,6 +4161,11 @@ hu:
   year_on_site: "%{site}: %{year} áttekintése"
   yellow: sárga
   'yes': "Igen"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    Igen, de csak a veszélyezetett taxonokban szerepelő megfigyeléseimhez, akkor viszont nem, ha a helyadatokat külön levédem.
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "Igen, bármely megfigyelésemre"
