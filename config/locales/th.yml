@@ -9,7 +9,7 @@ th:
   x_faves:
     other: '%{count} ชอบ'
   x_flags_resolved_html:
-    other: "<span class='count'>%{count}</span> flag resolved แก้ปัญหารายงานแล้ว"
+    other: "แก้ปัญหาการรายงาน <span class='count'>%{count}</span> ครั้ง"
   x_identifications:
     other: '%{count} การจำแนก'
   x_identifications_html:
@@ -29,9 +29,9 @@ th:
   x_journal_posts_html:
     other: '<span class="count">%{count}</span> โพสต์บทความ'
   x_matching_taxa:
-    other: '%{count} ลำดับอนุกรมวิธานที่ตรงกัน'
+    other: '%{count} หน่วยอนุกรมวิธานที่ตรงกัน'
   x_matching_taxa_html:
-    other: '<span class="count">%{count}</span> ลำดับอนุกรมวิธานที่ตรงกัน'
+    other: '<span class="count">%{count}</span> หน่วยอนุกรมวิธานที่ตรงกัน'
   x_misidentifications_of_this_species:
     other: "ชนิดนี้มีการจำแนกผิด %{count} ครั้ง"
   x_misidentifications_of_species_in_this_genus:
@@ -81,10 +81,12 @@ th:
     other: "<span class='count'>%{count}</span> การสังเกตระดับงานวิจัยที่ได้รับจำแนกตั้งแต่ระดับชนิดลงไป"
   x_sounds:
     other: "%{count} เสียง"
+  x_taxa_curated_html:
+    other: "จัดการ<span class='count'>%{count}</span> หน่วยอนุกรมวิธาน"
   x_taxa_matching_current_filters:
-    other: "%{count} ลำดับอนุกรมวิธานที่ตรงกับตัวกรองปัจจุบัน"
+    other: "%{count} หน่วยอนุกรมวิธานที่ตรงกับตัวกรองปัจจุบัน"
   x_taxon_changes_added_html:
-    other: "<span class='count'>%{count}</span> ลำดับอนุกรมวิธานที่เปลี่ยนแปลงแล้ว"
+    other: "เปลี่ยนแปลง <span class='count'>%{count}</span> หน่วยฯ"
   _100_day_trends: แนวโน้มใน 100 วัน
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ชุมชนสำหรับนักธรรมชาติวิทยา
@@ -521,7 +523,7 @@ th:
   associated_observations: การสังเกตที่เกี่ยวข้อง
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
   you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
-  asc: จากเก่าไปใหม่
+  asc: น้อยไปมาก
   assessment: การประเมินผล
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -883,7 +885,7 @@ th:
   deleting: กำลังลบ...
   deleting_verb: กำลังลบ
   deny: ปฏิเสธ
-  desc: จากใหม่ไปเก่า
+  desc: มากไปน้อย
   descending: มากไปน้อย
   description: คำอธิบาย
   description_from: คำอธิบายจาก
@@ -1072,6 +1074,7 @@ th:
   geoprivacy_is_obscured: พิกัดถูกปิดบังไว้
   geoprivacy_is_obscured_desc: ผู้สังเกตปิดบังพิกัดไว้
   geoprivacy_is_private: การเปิดเผยพิกัดเป็นส่วนตัว
+  get_started: เริ่มกันเลย
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
   #Prompt to donate money once
   give_now_caps: บริจาคเลย
@@ -1200,6 +1203,13 @@ th:
   leaderboard: กระดานจัดอันดับ
   leaderboard_for_x: "กระดานจัดอันดับสำหรับ %{x}"
   leaderboards: กระดานจัดอันดับ
+  leaderboard_most:
+    species_in_month_year: จำนวนชนิดสูงสุดใน%{month_year}
+    species_in_year: จำนวนชนิดสูงสุดใน %{year}
+    observations_in_month_year: จำนวนการสังเกตสูงสุดใน%{month_year}
+    observations_in_year: จำนวนการสังเกตสูงสุดใน %{year}
+    identifications_in_month_year: จำนวนการจำแนกสูงสุดใน%{month_year}
+    identifications_in_year: จำนวนการจำแนกสูงสุดใน %{year}
   leading: เข้าใกล้คำตอบ
   learn_more: เรียน​รู้​เพิ่ม​เติม
   learn_more_raquo: "เรียนรู้เพิ่มเติม &raquo;"
@@ -1598,6 +1608,7 @@ th:
   observations_from_this_project: การสังเกตจากโครงการนี้
   observations_in_this_project_must: การสังเกตในโครงการต้องเป็นไปตามเกณฑ์ต่อไปนี้
   observations_map: การสังเกต / แผนที่
+  observations_observed_this_month: หมายถึงการสังเกตที่ <em>พบเจอ</em> ในเดือนนี้ ไม่ใช่การสังเกตที่เพิ่มในเดือนนี้ ออกไปสำรวจกันเถอะ!
   observations_of_relatives: การสังเกตของหน่วยอนุกรมวิธานเดียวกัน
   observations_of_taxon: "การสังเกตของ %{taxon_name}"
   observations_per_month: การสังเกต / เดือน
@@ -2257,6 +2268,7 @@ th:
   third_person_possessive_singular: "%{noun}ของ%{object_phrase}"
   this_bioblitz_beings_in: Bioblitz นี้จะเริ่มในอีก
   this_is_your_observation: นี่คือการสังเกตของคุณ
+  this_is_your_observation_desc: คุณมองเห็นพิกัดได้เนื่องจากเป็นเจ้าของการสังเกตนี้
   this_list_only_accepts_taxa_that_are_species: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่เป็นชนิดเท่านั้น
   this_list_only_accepts_taxa_that_are_species_or_lower: รายการนี้ยอมรับหน่วยอนุกรมวิธานที่ระดับชนิดหรือต่ำกว่าเท่านั้น
   this_observation: การสังเกตนี้
@@ -2444,6 +2456,7 @@ th:
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
   user_trusts_you_with_their_private_coordinates_desc: |
     ผู้สังเกตไว้วางใจคุณในการเปิดเผยพิกัดการสังเกตของเขาทั้งหมด
+  username_or_user_id: ชื่อผู้ใช้ หรือ ID ผู้ใช้
   users: ผู้ใช้งาน
   users_journal: "วารสารของ %{user}"
   users_lists: "รายการของ %{user}"
@@ -2516,14 +2529,14 @@ th:
   what_did_you_see?: คุณเห็น<em>อะไร</em>?
   whats_this?: นี่คืออะไร?
   when_did_you_see_it?: คุณเห็นเมื่อไหร่?
-  why_you_can_see_the_coordinates: เหตุผลที่คุณมองเห็นพิกัดได้
+  why_you_can_see_the_coordinates: คุณมองเห็นพิกัดได้เพราะว่า
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
-  who_can_see_the_coordinates: ใครเห็นพิกัดได้บ้าง?
+  who_can_see_the_coordinates: ใครมองเห็นพิกัดได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับความไว้วางใจจากผู้สังเกตในการเปิดเผยพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
-  why_the_coordinates_are_obscured: เหตุผลที่พิกัดมีความคลุมเครือ
+  why_the_coordinates_are_obscured: เหตุผลที่พิกัดคลุมเครือ
   with_annotation: พร้อมหมายเหตุนี้
   without_annotation: ไม่รวมหมายเหตุนี้
   widget: วิดเจ็ต
