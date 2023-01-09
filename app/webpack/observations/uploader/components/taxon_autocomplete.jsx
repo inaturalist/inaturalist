@@ -446,8 +446,11 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
-      if ( config.testingVision ) {
-        baseParams.geomodel = true;
+      const viewerIsAdmin = config.currentUser && config.currentUser.roles
+        && config.currentUser.roles.indexOf( "admin" ) >= 0;
+      if ( viewerIsAdmin && config.visionThreshold ) {
+        baseParams.threshold = config.visionThreshold;
+        baseParams.threshold_type = config.visionThresholdType;
       }
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
