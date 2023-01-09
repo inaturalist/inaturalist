@@ -38,6 +38,10 @@ class PlacesController < ApplicationController
 
   QUOTA = 3
 
+  # Place names that cause some problem when we show associated Wikipedia
+  # content
+  PROBLEM_WIKIPEDIA_NAMES = ["tamborine"].freeze
+
   caches_page :geometry
   caches_action :cached_guide,
     expires_in: 1.hour,
@@ -564,6 +568,17 @@ class PlacesController < ApplicationController
         render json: { data: @data }
       end
     end
+  end
+
+  def wikipedia
+    if PROBLEM_WIKIPEDIA_NAMES.include?( params[:id].to_s.downcase )
+      respond_to do | format |
+        format.html { head :no_content }
+      end
+      return
+    end
+
+    super
   end
 
   private
