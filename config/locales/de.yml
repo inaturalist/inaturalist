@@ -219,6 +219,12 @@ de:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Genauigk.(m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Genauigk. über
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Genauigk. unter
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Genauigk. unbek. oder unter
   account: Benutzerkonto
   account_creation: Benutzerkontenerstellung
   account_settings: Kontoeinstellungen
@@ -2859,6 +2865,8 @@ de:
   not_findig_what_you_want: Nicht gefunden, was du suchst?
   not_finding_place_you_want?: Das gewünschte Gebiet nicht gefunden?
   not_found: Nicht gefunden
+  #Filter for observations not in a particular place
+  not_in_place: ohne Gebiet
   not_linked_facebook: "Dein %{site_name}-Benutzerkonto ist nicht mit deinem Facebook-Benutzerkonto verknüpft"
   not_linked_flickr: "Dein %{site_name}-Benutzerkonto ist nicht mit deinem Flickr-Benutzerkonto verknüpft"
   not_on_this_list: Nicht auf dieser Liste.
@@ -2950,6 +2958,14 @@ de:
   observation_curation: Beobachtungskuration
   observation_date: Datum
   observation_date?: Datum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Einfach
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon-Extras
   observation_field: Beobachtungsfeld
   observation_field_details: Details zum Beobachtungsfeld
   observation_field_type_text: Text
@@ -5401,6 +5417,8 @@ de:
   wikipedia_attribution_cc_by_sa_3_html: |
     In diesem Artikel wird Material aus dem Wikipedia-Artikel <a href="%{url}">"%{title}"</a> verwendet, der unter <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-Share-Alike License 3.0</a> veröffentlicht wird. Der Inhalt wurde möglicherweise aus dem Original ausgelassen, es wurden jedoch keine Änderungen oder Ergänzungen vorgenommen.
   with: mit
+  #Filter for observations not in a particular taxon
+  without_taxon: Ohne Taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Zurücknehmen
@@ -6848,6 +6866,7 @@ de:
           "Plant Phenology=Flower Budding": Knospend
           "Plant Phenology=Flowering": blühend
           "Plant Phenology=Fruiting": Fruchttragend
+          "Plant Phenology=No Evidence of Flowering": Nicht blühend
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve

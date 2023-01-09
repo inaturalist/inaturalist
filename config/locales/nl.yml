@@ -232,6 +232,12 @@ nl:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Prec. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Acc. hoger
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Acc. lager
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Acc. lager of onbekend
   account: Account
   account_creation: Account aangemaakt
   account_settings: Accountinstellingen
@@ -3015,6 +3021,8 @@ nl:
   not_findig_what_you_want: Niet gevonden wat je zoekt?
   not_finding_place_you_want?: Niet de plek gevonden die je zoekt?
   not_found: Niet gevonden
+  #Filter for observations not in a particular place
+  not_in_place: Niet op deze plek
   not_linked_facebook: "Uw %{site_name}-account is niet aan uw Facebookaccount gekoppeld"
   not_linked_flickr: "Uw %{site_name}-account is niet aan uw Flickr-account gekoppeld"
   not_on_this_list: Niet op deze lijst
@@ -3106,6 +3114,14 @@ nl:
   observation_curation: Waarneming Beoordelen
   observation_date: Datum
   observation_date?: Datum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Basis
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon Extras
   observation_field: Waarnemingsveld
   observation_field_details: waarnemingsveld details
   observation_field_type_text: Tekst
@@ -5608,6 +5624,8 @@ nl:
     Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
   with: met
+  #Filter for observations not in a particular taxon
+  without_taxon: Niet in taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Intrekken
@@ -7113,6 +7131,7 @@ nl:
           "Plant Phenology=Flower Budding": Bloemknoppen
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
+          "Plant Phenology=No Evidence of Flowering": Geen bewijs voor bloei
           "Life Stage=Adult": Volwassen
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve

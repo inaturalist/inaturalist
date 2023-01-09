@@ -211,6 +211,12 @@ es-MX:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Precisión (metros)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Precisión arriba de
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Precisión abajo de
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Precisión debajo de o desconocida
   account: Cuenta
   account_creation: Creación de cuentas
   account_settings: Configuración de la cuenta
@@ -2980,6 +2986,8 @@ es-MX:
   not_findig_what_you_want: '¿No encuentras lo que buscas?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
+  #Filter for observations not in a particular place
+  not_in_place: No está en este lugar
   not_linked_facebook: "Tu cuenta de %{site_name} no se ha enlazado a tu cuenta de Facebook &#59;"
   not_linked_flickr: "Tu cuenta de  %{site_name} no se ha enlazado a tu cuenta de Flickr &#59;"
   not_on_this_list: No está en esta lista.
@@ -3069,6 +3077,14 @@ es-MX:
   observation_curation: Curación de observación
   observation_date: Fecha
   observation_date?: '¿Fecha?'
+  #Basic observation export fields
+  observation_export_column_type_basic: Básico
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxón
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extra-taxón
   observation_field: Campo de observación
   observation_field_details: Detalles del campo de observación
   observation_field_type_text: Texto
@@ -5520,6 +5536,8 @@ es-MX:
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
   with: Con
+  #Filter for observations not in a particular taxon
+  without_taxon: No en el taxón
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Retirar
@@ -7048,6 +7066,7 @@ es-MX:
           "Plant Phenology=Flower Budding": Con Yemas Florales
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
+          "Plant Phenology=No Evidence of Flowering": Sin evidencia de floración
           "Life Stage=Adult": Adulto
           "Life Stage=Egg": Huevo(s)
           "Life Stage=Larva": Larva(s) u oruga(s)

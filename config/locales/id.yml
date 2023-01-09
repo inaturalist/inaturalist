@@ -191,6 +191,12 @@ id:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Aku (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Akurasi di atas
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Akurasi di bawah
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Akurasi di bawah atau tidak diketahui
   account: Akun
   account_creation: Pembentukan Akun
   account_settings: Pengaturan Akun
@@ -2900,6 +2906,8 @@ id:
   not_findig_what_you_want: Tidak menemukan apa yang Anda inginkan?
   not_finding_place_you_want?: Tidak menemukan tempat yang Anda inginkan?
   not_found: Tidak ditemukan
+  #Filter for observations not in a particular place
+  not_in_place: Tidak pada tempatnya
   not_linked_facebook: "Akun %{site_name} Anda tidak terhubung dengan akun Facebook Anda"
   not_linked_flickr: "Akun %{site_name} Anda tidak terhubung dengan akun Flickr Anda"
   not_on_this_list: Tidak ada di daftar ini.
@@ -2989,6 +2997,14 @@ id:
   observation_curation: Kurasi Pengamatan
   observation_date: Tanggal
   observation_date?: Tanggal?
+  #Basic observation export fields
+  observation_export_column_type_basic: Dasar
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Takson
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Tambahan untuk Takson
   observation_field: Bidang Pengamatan
   observation_field_details: Detail bidang pengamatan
   observation_field_type_text: Teks
@@ -5385,6 +5401,8 @@ id:
     Artikel ini menggunakan materi dari artikel Wikipedia <a href="%{url}">"%{title}"</a>, yang diluncurkan di bawah <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Atribusi-BerbagiSerupa Lisensi 3.0</a>. Konten mungkin sudah dihilangkan dari aslinya, tetapi tidak ada konten yang diubah atau ditambahkan.
   with: dengan
+  #Filter for observations not in a particular taxon
+  without_taxon: Tidak berada di dalam takson
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Mundur
@@ -6751,6 +6769,7 @@ id:
           "Plant Phenology=Flower Budding": Bunga Berkuncup
           "Plant Phenology=Flowering": Berbunga
           "Plant Phenology=Fruiting": Berbuah
+          "Plant Phenology=No Evidence of Flowering": Tidak Ada Indikasi Berbunga
           "Life Stage=Adult": Dewasa
           "Life Stage=Egg": Telur
           "Life Stage=Larva": Larva
