@@ -1239,6 +1239,7 @@ hu:
   drawings: Rajzok
   duplicate_verb: Másolás
   duration_value: "Hossz: %{duration} perc"
+  each_place_displays_all_species_inat_knows: "A regionális oldalak megjelenítik az %{site_name} által az adott helyről feltöltött fajokat, beleértve a számosságukat, a veszélyeztetettségi státuszt, és az %{site_name} oldalon az adott fajt az adott területen először megfigyelő felhasználót. A fajok szűrhetők taxonomia, szín, veszélyeztetettségi státusz alapján, valamint kereshetők hagyományos módon."
   earliest_added: Legkorábban hozzáadott
   edit: Módosítás
   #Title of the moderation note editor
@@ -3013,10 +3014,18 @@ hu:
     zimbabwe: Zimbabwe
   places_of_interest: Érdekes helyek
   places_merged_successfully: A helyek sikeresen összevonva!
+  places_warning_export_complex_boundary_html: |
+    Ha egy komplex határvonalon belülről szeretnél megfigyeléseket exportálni, azokat <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">ajánlatos inkább a GBIF-ről letölteni</a>, ahol tetszőleges határvonalakat rajzolhatsz. Ezen kívül az iNaturalist-ról a meglévő helyek vagy megadott határvonalak közé eső megfigyeléseket letöltés után tovább szűrheted.
+  places_warning_look_for_existing_html: |
+    A duplikációk elkerülése érdekében nézz szét a <a href="/search?source[]=places">meglévő helyek között</a>. Minden kontinenshez és országhoz létezik már hely.
   places_warning_please_keep_in_mind: |
     Vedd figyelembe a következő korlátozásokat:
+  places_warning_new_places_are_slow_html: |
+    Az új hozzáadott helyek nagyon nagy mértékben hozzájárulnak az iNatralist lassulásához, ezért <strong>csak nagyon indokolt esetben hozz létre új helyet</strong>. A néhány ezer megfigyeléssel rendelkező kisebb helyek elfogadhatóak, azonban a sok megfigyeléssel rendelkező nagyobb helyek hozzáadásával minden felhasználó számára érhezető módon lelassul a rendszer. Alternatívák:
   places_warning_quota: |
     Csak három helyet hozhatsz létre egy nap.
+  places_warning_the_future: |
+    Az iNaturalist jelenlegi növekedési rátáját szemlélve a jövőben további korlátozások lesznek indokoltak.
   plants: növények
   play_first_sound: Az első hang lejátszása
   please_allow_a_few_weeks_for_external_sites: Kérünk adj pár hetet a külső honlapoknak e megfigyelés változtatásainak szinkronizálásához #Request that a known child ask their parents for permission to use this service
@@ -4053,6 +4062,7 @@ hu:
   view_on: 'Megtekintés itt:'
   view_on_flickr: Megtekintés Flickr-en
   view_original: "Eredeti megtekintése"
+  view_photos_ranges_observations_more: "Megtekinthetők többek között a fényképek, a különféle fajok elterjedése és az %{site_name} megfigyelései. Több forrásból állítottuk össze ezeket az összefoglaló oldalakat oldalakat az adott helyen előfprduló fajokról."
   view_place: Helyek megtekintése
   view_post: Bejegyzés megtekintése
   view_projects_from_place: "Projektek innen: %{place}"
@@ -4586,6 +4596,8 @@ hu:
           Egy ideje nem mutatsz aktivitást %{site_name} felületén, ezért felfüggesztettük az értesítéseket. Ahhoz, hogy újra értesítéseket kapjál,
           <a href="%{login_url}">jelentkezz be újra</a> a fiókodba.
     places:
+      kml_field_desc: |
+        A hely határvonalának KML-fájlja. Ezeket Google Térképpel, Google Földdel és a legtöbb GIS-alkalmazással létre lehet hozni. Legalább egy poligont tartalmaznia kell, 1 MB-nál kevesebbet kell foglalnia (gondnokoknál ez a határ 5 MB), és Texasnál kisebbnek kell lennie.
       new:
         check_list_note: "Megjegyzés: nagyon nagy helyeknél a listák automatikusan le lesznek tiltva."
         coordinates_desc: Meg kell adnod a koordinátákat, ha nem rajzolsz körvonalat vagy nem töltesz fel KML-t.
