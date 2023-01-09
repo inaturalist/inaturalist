@@ -269,6 +269,8 @@ namespace :inaturalist do
       "date.formats.month_day_year",
       "date_added",
       "date_format.month",
+      "date_observed",
+      "date_observed_",
       "date_picker",
       "date_updated",
       "default_",
