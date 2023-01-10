@@ -227,6 +227,12 @@ tr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Doğruluk (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Doğruluk yüksek
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Doğruluk düşük
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Doğruluk düşük ya da bilinmiyor
   account: Hesap
   account_creation: Hesap Oluşturma
   account_settings: Hesap Ayarları
@@ -2915,6 +2921,8 @@ tr:
   not_findig_what_you_want: İstediğini bulamıyor musun?
   not_finding_place_you_want?: İstediğin konumu bulamıyor musun?
   not_found: Bulunamadı
+  #Filter for observations not in a particular place
+  not_in_place: Konumlandırılmamış
   not_linked_facebook: "%{site_name} hesabın, Facebook hesabına bağlı değil"
   not_linked_flickr: "%{site_name} hesabın, Flickr hesabına bağlı değil"
   not_on_this_list: Bu listede değil.
@@ -3004,6 +3012,14 @@ tr:
   observation_curation: Gözlem Düzenleme
   observation_date: Tarih
   observation_date?: Tarih ne?
+  #Basic observation export fields
+  observation_export_column_type_basic: Temel
+  #Geographic observation export fields
+  observation_export_column_type_geo: Coğrafi
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Sınıf
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Sınıf Ekstraları
   observation_field: Gözlem alanı
   observation_field_details: Gözlem alanı detayları
   observation_field_type_text: Metin
@@ -5393,6 +5409,8 @@ tr:
   wikipedia_attribution_cc_by_sa_3_html: |
     Burada, <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Atıf-Aynı Lisansla Paylaş Lisansı 3.0</a> kullanılarak yayınlanan <a href="%{url}">%{title}</a> Vikipedi makalesinde kullanılan öğeler kullanılmıştır.
   with: ile
+  #Filter for observations not in a particular taxon
+  without_taxon: Sınıflandırılmamış
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Geri Al
@@ -6820,6 +6838,7 @@ tr:
           "Plant Phenology=Flower Budding": Tomurcuklu Çiçek
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
+          "Plant Phenology=No Evidence of Flowering": Çiçeklenme Belirtisi Yok
           "Life Stage=Adult": Yetişkin
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
