@@ -74,7 +74,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get -qq update
+        sudo apt-get -qq update --fix-missing
         sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev gdal-bin proj-bin proj-data libgeos-dev libgeos++-dev libproj-dev ffmpeg
         gem install bundler
         bundle install --jobs 4 --retry 3
