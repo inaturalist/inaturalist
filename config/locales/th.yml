@@ -156,7 +156,7 @@ th:
   #Status of a taxon that is available for use on iNat
   active_taxon_status: ใช้งาน
   active_users: ผู้ใช้ที่ยังมีความเคลื่อนไหว
-  activity: กิจกรรมที่เกิดขึ้น
+  activity: กิจกรรม
   adapted_by_name_from_a_work_by_original: "เปลี่ยนแปลงโดย %{name} จากต้นทางของ %{original}"
   add: เพิ่ม
   add_a_batch_of_observations: เพิ่มหลายการสังเกต
@@ -1623,10 +1623,6 @@ th:
   observed_by: สังเกตโดย
   observer: ผู้สังเกต
   observers: ผู้สังเกต
-  observer_prefers_no_project_addition: |
-    ผู้สังเกตไม่อนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการ
-  observer_prefers_addition_to_projects_joined: |
-    ผู้สังเกตอนุญาตให้ผู้อื่นเพิ่มการสังเกตเข้าโครงการที่เข้าร่วมเท่านั้น
   observer_short: ผู้สังเกต
   occurrence_status: สถานะการปรากฏ
   occurrence_status_descriptions:
@@ -2250,7 +2246,7 @@ th:
   that_project_doesnt_exist: "ไม่มีโครงการนั้น"
   the_below_items_are_needed_to_achieve: |
     การสังเกตจะเป็น<span className="bold">ระดับงานวิจัย</span>ได้ต้องมีคุณสมบัติต่อไปนี้:
-  the_community_id_requires_at_least_two_identifications: จะต้องมีการจำแนกโดยชุมชนอย่างน้อยสองคน
+  the_community_id_requires_at_least_two_identifications: จะต้องมีผู้ช่วยจำแนกอย่างน้อยสองคน
   the_community_must_feel_that: |
     ชุมชนต้องรู้สึกว่าหน่วยอนุกรมวิธานที่เห็นพ้องกันเป็นคำตอบที่ดีที่สุดเมื่ออิงจากหลักฐานที่มี
   the_species_listed_below_were_not_found_in_the_site_database: |
