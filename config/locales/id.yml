@@ -2013,6 +2013,11 @@ id:
   home: Halaman Utama
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Setelan Jam:"
+  however_not_licensed: |
+    Akan tetapi, ia tidak memiliki lisensi untuk digunakan kembali
+    dan tidak akan dibagikan dengan repositori data yang menghormati pilihan lisensi.
+  however_not_licensed_action_html: |
+    Anda bisa mengubah pilihan lisensi Anda di <a class="linky" href="/users/edit#content">pengaturan akun</a>.
   however_there_were_some_issues: "Namun, ada beberapa masalah: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -3075,6 +3080,10 @@ id:
   observed_on: Diamati pada
   observer: Pengamat
   observers: Pengamat
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Pengamat hanya mengizinkan orang lain untuk menambahkan pengamatan mereka ke proyek-proyek tradisional di mana mereka telah bergabung.
+  observer_prefers_no_traditional_project_addition: |
+    Pengamat tidak memperbolehkan orang lain menambahkan pengamatan mereka ke proyek-proyek tradisional.
   observer_short: Pengamat
   occurence_status_describes_how: 'Status keberadaan menjelaskan seberapa umum atau langka suatu takson berada di dalam suatu area. Lihat DarwinCore untuk <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">lebih banyak informasi tentang terminologinya</a>.'
   occurrence_status: Status keberadaan
