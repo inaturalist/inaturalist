@@ -2079,6 +2079,8 @@ fr:
   home: Accueil
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
+  however_not_licensed_action_html: |
+    Vous pouvez modifier vos préférences de licence dans <a class="linky" href="/users/edit#content">les paramètres de votre compte</a>.
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -3147,6 +3149,10 @@ fr:
   observed_on: Observé le
   observer: Observateur
   observers: Observateurs
+  observer_prefers_addition_to_traditional_projects_joined: |
+    La personne qui a publié cette observation n'autorise son ajout par d'autres personnes qu'aux projets traditionnels auxquels elle participe.
+  observer_prefers_no_traditional_project_addition: |
+    La personne qui a publié cette observation ne permet pas à d'autres personnes d'ajouter ses observations à des projets traditionnels.
   observer_short: Obs.
   occurence_status_describes_how: 'L''état du peuplement décrit le degré de rareté d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour obtenir plus d’information sur la terminologie</a>.'
   occurrence_status: État de la présence
