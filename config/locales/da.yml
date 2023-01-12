@@ -2113,6 +2113,9 @@ da:
   home: Hjem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
+  however_not_licensed_action_html: |
+    Man kan ændre sine licensindstillinger i 
+    <a class="linky" href="/users/edit#content">kontoindstillingerne</a>.
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -3192,6 +3195,10 @@ da:
   observed_on: Observeret den
   observer: Observatør
   observers: Observatører
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observatør tillader kun andre at føje deres observationer til projekter, hvori de deltager.
+  observer_prefers_no_traditional_project_addition: |
+    Observatør tillader ikke andre at føje deres observationer til traditionelle projekter.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomst status beskriver, hvor almindelig eller sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> flere oplysninger om terminologi </a>.'
   occurrence_status: Forekomst status
