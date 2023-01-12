@@ -2138,6 +2138,11 @@ sv:
   home: Hem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timmar att justera:"
+  however_not_licensed: |
+    Det är dock inte licensierat för återanvändning och kommer inte att delas med datalagringsplatser som respekterar licensval.
+  however_not_licensed_action_html: |
+    Du kan ändra dina licensval i dina
+    <a class="linky" href="/users/edit#content">kontoinställningar</a>.
   however_there_were_some_issues: "Det uppstod dock några problem: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -3214,6 +3219,10 @@ sv:
   observed_on: Observerad den
   observer: Observatör
   observers: Observatörer
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observatören tillåter bara andra att lägga till hens fynd till traditionella projekt som de har gått med i.
+  observer_prefers_no_traditional_project_addition: |
+    Observatören tillåter inte att andra adderar hens fynd till traditionella projekt.
   observer_short: Observatör
   occurence_status_describes_how: 'Förekomststatus anger hur vanlig eller sällsynt ett taxon är i ett givet område. Se DarwinCore för <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mer information om terminologi</a>.'
   occurrence_status: Förekomststatus
