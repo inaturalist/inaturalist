@@ -109,6 +109,7 @@ class Comment < ApplicationRecord
   end
 
   def flagged_with(flag, options)
+    parent&.touch
     evaluate_new_flag_for_spam(flag)
     index_parent
   end
