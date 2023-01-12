@@ -140,6 +140,39 @@ th {
   inset-inline-end: 15px;
 }
 
+.radio label,
+.checkbox label {
+  padding-inline-start: 20px;
+}
+
+.radio-inline,
+.checkbox-inline {
+  padding-inline-start: 20px;
+}
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+  margin-inline-start: 10px;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  position: absolute;
+  margin-top: 4px \9;
+  margin-inline-start: -20px;
+}
+
+.form-inline .radio input[type="radio"],
+.form-inline .checkbox input[type="checkbox"] {
+  position: relative;
+  margin-inline-start: 0;
+}
+
+.form-group input[type="checkbox"] {
+  margin-inline-end: 5px;
+}
+
 .dropdown-menu {
   inset-inline-start: 0;
   float: inline-start;
@@ -537,4 +570,7 @@ button.list-group-item {
 .pull-left {
   float: inline-start !important;
 }
+}
+#bodywrapper {
+  direction: rtl;
 }

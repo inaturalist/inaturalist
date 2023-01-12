@@ -19,7 +19,7 @@
   .about-observation {
     position: absolute;
     bottom: 0;
-    inset-inline-end: 0;
+    inset-inline-start: 0;
     width: 100%;
     padding: 20px 30px;
     display: flex;
@@ -74,7 +74,7 @@
     background-color: #f8f8f8;
     color: #666;
     border-radius: 7px;
-    padding-inline-end: 41.3px;
+    padding-inline-start: 41.3px;
     font-size: 15px;
     font-weight: 100;
   }
@@ -84,7 +84,7 @@
   .form-group.text-field:before {
     position: absolute; 
     top: 8px;
-    inset-inline-end: 13px;
+    inset-inline-start: 13px;
     font: normal normal normal 14px/1 FontAwesome;
     color: $inat-green;
     font-size: 18px;
