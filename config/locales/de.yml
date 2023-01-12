@@ -1983,6 +1983,12 @@ de:
   home: Dashboard
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "anzupassende Stunden:"
+  however_not_licensed: |
+    Es ist jedoch nicht für die Wiederverwendung freigegeben und wird nicht mit solchen Datenbanken
+    geteilt, die Lizenzentscheidungen respektieren.
+  however_not_licensed_action_html: |
+    Du kannst deine Lizenzeinstellungen in deinen
+    <a class="linky" href="/users/edit#content">Kontoeinstellungen ändern</a>.
   however_there_were_some_issues: "Allerdings gab es ein paar Probleme: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: kein Veto ('%{taxon}' traue ich mir als Bestimmung zu)
   icon: Symbol
@@ -2132,7 +2138,7 @@ de:
   join_the_largest_group_of_naturalists_in_the_world: Werde Teil der Gemeinschaft von Naturbeobachtern auf der ganzen Welt!
   join_this_project: Diesem Projekt beitreten
   'joined!': Beigetreten!
-  joined_projects: Beigetretene Projekte
+  joined_projects: 'Mitglied in diesen Projekten:'
   joined_with_date: "Mitglied seit: %{date}"
   journal: Journal
   journal_archives_for: Journal-Archiv für
@@ -3036,6 +3042,10 @@ de:
   observed_on: Gesehen am
   observer: beob. von
   observers: Beobachter
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Beobachter erlaubt es anderen Personen, eigene Beobachtungen nur zu beigetretenen traditionellen Projekten hinzuzufügen.
+  observer_prefers_no_traditional_project_addition: |
+    Beobachter erlaubt es anderen Personen nicht, eigene Beobachtungen zu traditionellen Projekten hinzuzufügen.
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
@@ -5170,7 +5180,7 @@ de:
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
   user_has_opted_out_of_community_id: Benutzer hat sich gegen die Teilnahme am Community-Taxon entschieden
-  user_hasnt_joined_any_projects: "%{user} ist keinem Projekt beigetreten"
+  user_hasnt_joined_any_projects: "%{user} ist keinen Projekten beigetreten"
   user_helped_x_people_with_y_ids_html: "%{user} hat <strong>%{x} Personen</strong> mit <strong>%{y} IDs</strong> geholfen"
   user_invite_observation_to_project: '%{user} möchte diese Beobachtung "%{observation}" für das Projekt %{project} einladen.'
   user_invited_you_to_join_html: "%{user} hat dich zum Beitritt eingeladen"
@@ -5595,7 +5605,7 @@ de:
   you_sure_remove_taxon_from?: "Bist du sicher, dass du dieses Taxon von %{list} entfernen möchtest?"
   you_unlinked_your_provider_account: "Du hast die Verknüpfung zu deinem %{provider}-Konto rückgängig gemacht"
   youll_need_to_link: Dazu musst du
-  youve_joined_the_x_project: "Du bist dem %{project_invitation} Projekt beigetreten und deine Beobachtung wurde hinzugefügt"
+  youve_joined_the_x_project: "Du bist dem %{project_invitation}-Projekt beigetreten und deine Beobachtung wurde hinzugefügt"
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
   your_account_has_been_verified: "Dein %{site_name} Konto wurde verifiziert! Bitte melde dich an, um fortzufahren."
   your_activation_code_was_missing: "Dein Aktivierungscode fehlte. Bitte folge der URL aus deiner E-Mail."
@@ -7085,7 +7095,7 @@ de:
           <a href='/users/edit'>deine Einstellungen bearbeiten</a>.
         project_addition_preferences:
           any: alle
-          joined: Projekte, denen du beigetreten bist
+          joined: Projekte, bei denen du Mitglied bist
           none: "Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen."
         prefers_community_taxa_desc: |
           %{site_name} berücksichtigt deine IDs zu deinen Beobachtungen und ebenso, welche Bestimmungen andere Benutzer zu deinen Beobachtungen abgeben. Die Identifikation, die wir mit Datenpartnern teilen, ist die Community-Identifikation (der gemeinsame Nenner aus allen IDs), aber wenn du nicht der Meinung bist, dass die Meinung der Community jemals deine eigene überstimmen sollte, kannst du hier dagegen entscheiden. Die Leute werden immer noch in der Lage sein, Bestimmungen hinzuzufügen, aber die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet, dass deine Beobachtungen nicht "Forschungsqualität" erhalten, es sei denn, du stimmst der Mehrheit zu.
