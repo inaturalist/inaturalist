@@ -1577,6 +1577,11 @@ hu:
   home: Kezdőlap
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Óraeltérés:"
+  however_not_licensed: |
+    Viszont, nincs az újrafelhasználást engedélyező licenc hozzá és nem lesz megosztva olyan adatbázisokkal, amelyek tiszteletben tartják a licencelő választását.
+  however_not_licensed_action_html: |
+    Megváltoztathatod a licenc beállításaidat a
+    <a class="linky" href="/users/edit#content">fiókod beállításainál</a>.
   i_dont_know_but_i_am_sure_this_is_taxon: Nem tudom, de bizonyosan %{taxon} taxon tagja
   icon: Ikon
   icon_size: Ikonméret
@@ -1703,7 +1708,7 @@ hu:
   journal_posts: Bejegyzések
   jpg_png_or_gif: "JPG, PNG vagy GIF"
   jump_to_letter: Ugrás a betűre
-  just_added!: Most adták hozzá!
+  just_added!: Hozzáadva!
   keep_editing: Szerkesztés folytatása
   keyboard_shortcuts: Gyorsbillentyűk
   kml: KML
@@ -2418,6 +2423,10 @@ hu:
   observed_on: 'Megfigyelve:'
   observer: Megfigyelő
   observers: Megfigyelők
+  observer_prefers_addition_to_traditional_projects_joined: |
+    A megfigyelő csak azoknak engedélyezi a megfigyeléseiket hozzáadását hagyományos projektekhez, akik csatlakoztak azokhoz.
+  observer_prefers_no_traditional_project_addition: |
+    A megfigyelő nem engedélyezi másoknak, hogy megfigyeléseiket hozzáadják a hagyományos projektekhez.
   observer_short: Megfigyelő
   occurence_status_describes_how: 'Az előfordulási státusz azt írja le, hogy milyen gyakran vagy ritkán fordul elő egy bizonyos taxon egy megadott területen. Nézd meg a DarwinCore-t <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">a terminológiával kapcsolatos információkért</a>.'
   occurrence_status: Előfordulási státusz
