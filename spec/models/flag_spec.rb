@@ -62,7 +62,7 @@ describe Flag, "creation" do
       end
     end
 
-    [Post, Comment, Identification].each do | model |
+    [Post, Comment].each do | model |
       context "on #{model.to_s.downcase.pluralize}" do
         let( :flaggable ) { build_stubbed :"#{model.name.underscore}", body: "some bad stuff" }
 
@@ -70,6 +70,41 @@ describe Flag, "creation" do
           expect( subject.flaggable_content ).to eq flaggable.body
         end
       end
+    end
+  end
+end
+
+describe "actual creation" do
+  let( :observation ) { create :observation }
+  def expect_observation_to_be_updated_by
+    updated_at = observation.updated_at
+    yield
+    observation.reload
+    expect( observation.updated_at ).to be > updated_at
+  end
+  describe "on observations" do
+    it "should touch the observation" do
+      expect_observation_to_be_updated_by { create :flag, flaggable: observation }
+    end
+  end
+  describe "on comments" do
+    it "should touch the observation" do
+      comment = create :comment, parent: observation
+      expect_observation_to_be_updated_by do
+        create :flag, flaggable: comment
+      end
+    end
+  end
+  describe "on identifications" do
+    let( :identification ) { create :identification, observation: observation }
+    it "should touch the observation" do
+      expect_observation_to_be_updated_by do
+        create :flag, flaggable: identification
+      end
+    end
+    it "should set the flaggable content to the body" do
+      flag = create :flag, flaggable: identification
+      expect( flag.flaggable_content ).to eq identification.body
     end
   end
 end
