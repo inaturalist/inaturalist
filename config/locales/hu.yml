@@ -1577,8 +1577,13 @@ hu:
   home: Kezdőlap
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Óraeltérés:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Viszont, nincs az újrafelhasználást engedélyező licenc hozzá és nem lesz megosztva olyan adatbázisokkal, amelyek tiszteletben tartják a licencelő választását.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Megváltoztathatod a licenc beállításaidat a
     <a class="linky" href="/users/edit#content">fiókod beállításainál</a>.
