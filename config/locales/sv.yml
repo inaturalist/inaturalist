@@ -2138,8 +2138,13 @@ sv:
   home: Hem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timmar att justera:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Det är dock inte licensierat för återanvändning och kommer inte att delas med datalagringsplatser som respekterar licensval.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Du kan ändra dina licensval i dina
     <a class="linky" href="/users/edit#content">kontoinställningar</a>.
