@@ -2013,9 +2013,14 @@ id:
   home: Halaman Utama
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Setelan Jam:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Akan tetapi, ia tidak memiliki lisensi untuk digunakan kembali
     dan tidak akan dibagikan dengan repositori data yang menghormati pilihan lisensi.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Anda bisa mengubah pilihan lisensi Anda di <a class="linky" href="/users/edit#content">pengaturan akun</a>.
   however_there_were_some_issues: "Namun, ada beberapa masalah: %{issues}"
