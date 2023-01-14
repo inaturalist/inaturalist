@@ -1983,9 +1983,14 @@ de:
   home: Dashboard
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "anzupassende Stunden:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Es ist jedoch nicht für die Wiederverwendung freigegeben und wird nicht mit solchen Datenbanken
     geteilt, die Lizenzentscheidungen respektieren.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Du kannst deine Lizenzeinstellungen in deinen
     <a class="linky" href="/users/edit#content">Kontoeinstellungen ändern</a>.
