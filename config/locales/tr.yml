@@ -2037,8 +2037,13 @@ tr:
   home: Ana Sayfa
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Ayarlanacak Saat:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Ancak, yeniden kullanım için lisanslı değildir ve lisans seçeneklerine uyan veri havuzları ile paylaşılmayacaktır.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Lisans tercihlerini <a class="linky" href="/users/edit#content">hesap ayarlarından</a> değiştirebilirsin.
   however_there_were_some_issues: "Ancak, bazı sorunlar vardı: %{issues}"
