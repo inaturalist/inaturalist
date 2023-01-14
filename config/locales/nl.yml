@@ -2114,8 +2114,13 @@ nl:
   home: Startpagina
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Uren om aan te passen:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Het is echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Jij kan jouw licentievoorkeuren wijzigen in je <a class="linky" href="/users/edit#content">accountinstellingen</a>.
   however_there_were_some_issues: "Er waren echter wat problemen: %{issues}"
