@@ -2081,9 +2081,14 @@ es-MX:
   home: Inicio
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Horas para ajustar:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Sin embargo, no tiene licencia para ser reutilizado y no será compartido con los
     repositorios de datos que respeten las selecciones de licencia.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Puede cambiar tus preferencias de licencia en la configuración de tu
     <a class="linky" href="/users/edit#content">cuenta</a>.
