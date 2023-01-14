@@ -2113,8 +2113,13 @@ da:
   home: Hjem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Den er dog ikke licenseret til genbrug og deles derfor ikke med datadepoter, som respekterer licensvalg.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Man kan ændre sine licensindstillinger i 
     <a class="linky" href="/users/edit#content">kontoindstillingerne</a>.
