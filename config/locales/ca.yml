@@ -297,6 +297,9 @@ ca:
   add_observations: Afegiu observacions
   add_observations_by_checking_off: Afegiu observacions seleccionant espècies d'una llista.
   add_observations_project: Afegiu observacions a aquest projecte
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Afegir</span> <span>Observacions</span>"
   #Prompt to add a new journal post
   add_one: Afegiu-ne un!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -673,6 +676,10 @@ ca:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
   attribution: Reconeixement
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, pujat per %{user}"
   authority_list:
     iucn_red_list: Llista vermella d'UICN
     natureserve: NatureServe
@@ -925,6 +932,8 @@ ca:
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
   close: Tanca
   code: Codi HTML
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Col·laboradors de codi
   colors: Colors
   columns: Columnes
   combine: Combinar
@@ -1482,6 +1491,8 @@ ca:
         subject: Canvi de correu electrònic sol·licitat
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
+  devise_confirmation_instructions_please_click: |
+    Feu clic a l'enllaç següent per confirmar la vostra adreça de correu electrònic:
   devise_reset_password_instructions_hello_email: Hola %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
