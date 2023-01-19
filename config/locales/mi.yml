@@ -77,7 +77,9 @@ mi:
   add_from_your_observations: Tāpiritia mai i āu mauhanga
   add_id: Tāpiri tautuhi
   add_new_place: Tāpiri tētahi wāhi hōu
+  add_obs_from_a_list: Tapiritia ngā mauhanga i tētahi tūtira
   add_observations: Tāpiri ngā mauhanga
+  add_observations_project: Tapiritia ngā mauhanga ki te kohinga nei
   add_place: Tāpiri wāhi
   add_tag: Tāpiri te tūtohu
   add_tags: Tāpiri ngā tūtohu
@@ -354,6 +356,9 @@ mi:
   date_is_accurate: He tika te rā
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
+  date_picker:
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Panuku
   date_time: Rā/Wā
   date_updated: Rā whakahou
   day: Rā
@@ -663,6 +668,13 @@ mi:
   new_password: Kupuhipa hōu
   new_project: Kohinga hōu
   new_users: Kaiwhakamahi hōu
+  next: Panuku
+  next_date_short: Panuku
+  next_observation: Mauhanga panuku
+  next_page_short: Panuku
+  next_photo: Whakaahua panuku
+  next_post_short: Panuku
+  next_taxon_short: Panuku
   'no': 'Kāo'
   no_but_it_is_a_member_of_taxon: "Kāo, engari he huānga i %{taxon}"
   no_comments_yet: E kore ngā kōrero anō
@@ -1532,6 +1544,8 @@ mi:
       "@vow_or_con":
         vow: oropuare
         con: orokati
+  will_paginate:
+    next_label: "Panuku &#8594;"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z ki A
