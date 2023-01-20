@@ -218,6 +218,12 @@ fi:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Tarkkuus (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Tarkkuus yli
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Tarkkuus alle
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Tarkkuus alle tai tuntematon
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
   account_settings: Tiliasetukset
@@ -894,6 +900,8 @@ fi:
   click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
   close: Sulje
   code: Koodi
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Koodiavustajat
   colors: Värit
   columns: Sarakkeet
   combine: Yhdistä
@@ -2765,6 +2773,8 @@ fi:
   not_findig_what_you_want: Et löydä mitä haluat?
   not_finding_place_you_want?: Etkö löydä haluamaasi paikkaa?
   not_found: Ei löydy
+  #Filter for observations not in a particular place
+  not_in_place: Ei käytössä
   not_linked_facebook: "%{site_name}-tilisi ei ole linkitetty Facebook-tiliisi."
   not_linked_flickr: "%{site_name}-tilisi ei ole linkitetty Flickr-tiliisi."
   not_on_this_list: Ei tässä luettelossa.
@@ -2843,6 +2853,14 @@ fi:
   observation_curation: Havaintokuratointi
   observation_date: Päivämäärä
   observation_date?: Päivämäärä?
+  #Basic observation export fields
+  observation_export_column_type_basic: Perus
+  #Geographic observation export fields
+  observation_export_column_type_geo: Paikkatieto
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taksoni
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taksonin lisätiedot
   observation_field: Havaintokenttä
   observation_field_details: Havaintokentän tiedot
   observation_field_type_text: Teksti
@@ -4909,6 +4927,8 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: Ei taksonissa
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Peruuta
@@ -4969,6 +4989,12 @@ fi:
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">Ohjelmistomme</a> on lähes kokonaan avointa lähdekoodia, mikä tarkoittaa, että
+    kuka tahansa, joka osaa, voi osallistua sen kehittämiseen. Tässä ovat ihmiset, jotka vapaaehtoisesti koodasivat 
+    tänä vuonna. Kiitos, kehittäjät!
+  yir_monthly_supporters_random_selection: |
+    Tässä on satunnainen valikoima iNatin sankarillisia yhteisön jäseniä, jotka lahjoittavat joka kuukausi.
   you: sinä
   you_: Sinä
   you_appear_offline_try_again: |
