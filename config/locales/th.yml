@@ -524,6 +524,7 @@ th:
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
   you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
   asc: น้อยไปมาก
+  ascending: น้อยไปมาก
   assessment: การประเมินผล
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -772,6 +773,11 @@ th:
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: เฉพาะการสังเกตที่เปิดเผยพิกัดเท่านั้น
   copy: คัดลอก
   copy_and_paste_this_into_your_own_html: คัดลอกและวางรหัสนี้ใน HTML ของคุณ
   copyright:
@@ -1832,6 +1838,7 @@ th:
   quality_grade_: ระดับคุณภาพ
   quality_grade_colon: "ระดับคุณภาพ"
   radius_value: "รัศมี (เมตร): %{radius}"
+  random: สุ่ม
   rank: ลำดับขั้น
   rank_position: อันดับ
   ranks:
@@ -2557,6 +2564,8 @@ th:
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
   yir_millions_of_people_used_inaturalist: |
     ผู้คนนับล้านใช้ iNaturalist และ Seek by iNaturalist ในปีนี้เพื่อเชื่อมโยงกับธรรมชาติ
+  yir_monthly_supporters_random_selection: |
+    นี่คือตัวอย่างของสมาชิกผู้มีอุปการะคุณที่บริจาคให้ iNat ทุกเดือน
   you: คุณ
   you_: คุณ
   you_are_submitting_obs_with_no_date_or_no_location: |
