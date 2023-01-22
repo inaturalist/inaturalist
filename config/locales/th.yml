@@ -1576,6 +1576,8 @@ th:
   number_of_observers: "จำนวนผู้สังเกต"
   obscured: คลุมเครือ
   obscured_or_private: คลุมเครือหรือส่วนตัว
+  obscured_description: |
+    พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: การสังเกตโดย %{user}
@@ -2441,6 +2443,7 @@ th:
   uploading_num_of_count_photos:
     other: กำลังอัปโหลด %{num} จาก %{count} รูป...
   usage_stats: สถิติการใช้งาน
+  user: ผู้ใช้งาน
   user1_and_user2_faved_this_observation: "%{user1} และ %{user2} ชอบการสังเกตนี้"
   user1_user2_and_x_others_faved_this_observation: "%{user1} %{user2} และ %{x_others} ชอบการสังเกตนี้"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
