@@ -1,11 +1,11 @@
 # Example of a local database setup.
 login: &login
-  host: localhost
+  host: <%= ENV["DB_HOST"] || "localhost" %>
+  username: <%= ENV["DB_USER"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
   encoding: utf8
   adapter: postgis
   template: template_postgis
-  username: inaturalist
-  password: inaturalist
 
 development:
   <<: *login
@@ -15,6 +15,3 @@ test:
   <<: *login
   database: inaturalist_test
 
-production:
-  <<: *login
-  database: inaturalist_production
