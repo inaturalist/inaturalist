@@ -48,7 +48,7 @@ module INatAPIService
   def self.get_json( path, params = {}, options = {} )
     options[:retries] ||= 3
     options[:timeout] ||= INatAPIService::TIMEOUT
-    options[:retry_delay] ||= 0.1
+    options[:retry_delay] ||= Rails.env.test? ? 0 : 0.1
     endpoint = options[:endpoint] || INatAPIService::ENDPOINT
     url = endpoint + path
     headers = {}

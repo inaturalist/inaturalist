@@ -68,6 +68,10 @@ RSpec.configure do | config |
     puts
   end
 
+  config.before( :suite ) do
+    DatabaseCleaner.clean_with( :truncation, { except: %w(spatial_ref_sys) } )
+  end
+
   config.before( :each ) do
     DatabaseCleaner.start
     Delayed::Job.delete_all
@@ -81,7 +85,7 @@ RSpec.configure do | config |
   end
 
   config.before( :all ) do
-    DatabaseCleaner.clean_with( :truncation, { except: %w(spatial_ref_sys) } )
+    DatabaseCleaner.clean_with( :deletion, { except: %w(spatial_ref_sys) } )
     [PlaceGeometry, Observation, TaxonRange].each do | klass |
       begin
         Rails.logger.debug "[DEBUG] dropping enforce_srid_geom on place_geometries"
@@ -228,9 +232,11 @@ end
 def enable_elastic_indexing( *args )
   classes = [args].flatten
   classes.each do | klass |
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
-      klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
-    end
+    klass.__elasticsearch__.client.delete_by_query(
+      index: klass.index_name,
+      body: { query: { match_all: {} } },
+      conflicts: "proceed"
+    )
     klass.send :after_save, :elastic_index!
     klass.send :after_destroy, :elastic_delete!
     klass.send :after_touch, :elastic_index!
@@ -245,9 +251,11 @@ def disable_elastic_indexing( *args )
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!
     klass.send :skip_callback, :touch, :after, :elastic_index!
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
-      klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
-    end
+    klass.__elasticsearch__.client.delete_by_query(
+      index: klass.index_name,
+      body: { query: { match_all: {} } },
+      conflicts: "proceed"
+    )
   end
 end
 
