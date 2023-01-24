@@ -1,8 +1,8 @@
 # Example of a local database setup.
 login: &login
   host: <%= ENV["DB_HOST"] || "localhost" %>
-  username: <%= ENV["DB_USER"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  username: <%= ENV["DB_USER"] || "inaturalist" %>
+  password: <%= ENV["DB_PASSWORD"] || "inaturalist" %>
   encoding: utf8
   adapter: postgis
   template: template_postgis

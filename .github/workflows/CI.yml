@@ -83,8 +83,9 @@ jobs:
     - name: Before script
       run: ci/scripts/before_script.sh
       env:
-        DB_USER: inaturalist
-        DB_PASSWORD: inaturalist
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
         RAILS_ENV: test
         TRAVIS: true
         CI: true
@@ -92,8 +93,9 @@ jobs:
     - name: Run specs
       run: bundle exec rspec ${{ matrix.spec_pattern }}
       env:
-        DB_USER: inaturalist
-        DB_PASSWORD: inaturalist
+        PGHOST: 0.0.0.0
+        PGUSER: postgres
+        PGPASSWORD: postgres
         RAILS_ENV: test
         TRAVIS: true
         TRAVIS_CI: true
