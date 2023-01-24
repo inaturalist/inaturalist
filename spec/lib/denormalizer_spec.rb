@@ -14,9 +14,9 @@ describe 'Denormalizer' do
     expect { |b|
       Denormalizer::each_taxon_batch_with_index(2, &b)
     }.to yield_successive_args(
-      [ [ Taxon.find(1), Taxon.find(2) ], 1, 3 ],
-      [ [ Taxon.find(3), Taxon.find(4) ], 2, 3 ],
-      [ [ Taxon.find(5), Taxon.find(6) ], 3, 3 ]
+      [ [ Taxon.first, Taxon.offset(1).first ], 1, 3 ],
+      [ [ Taxon.offset(2).first, Taxon.offset(3).first ], 2, 3 ],
+      [ [ Taxon.offset(4).first, Taxon.offset(5).first ], 3, 3 ]
     )
   end
 
