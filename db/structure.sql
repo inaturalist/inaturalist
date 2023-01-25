@@ -4605,7 +4605,7 @@ CREATE TABLE public.taxon_name_preferences (
     "position" smallint,
     user_id integer NOT NULL,
     place_id integer,
-    lexicon character varying NOT NULL,
+    lexicon character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );

@@ -5,7 +5,7 @@ class CreateTaxonNamePreferences < ActiveRecord::Migration[6.1]
       t.integer :position, limit: 2
       t.integer :user_id, index: true, null: false
       t.integer :place_id
-      t.string :lexicon, null: false
+      t.string :lexicon
       t.timestamps
     end
   end
