@@ -62,7 +62,7 @@ class SplitTaxon extends React.Component {
       title = taxon.name;
       if ( taxon.rank && taxon.rank_level > 10 ) {
         title = I18n.t( "rank_sciname", {
-          rank: I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ),
+          rank: I18n.t( `ranks.${taxon.rank.toLowerCase( )}` ),
           name: taxon.name
         } );
       }
@@ -248,7 +248,7 @@ class SplitTaxon extends React.Component {
         >
           { !noRank && (
             <span className="rank">
-              { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
+              { I18n.t( `ranks.${taxon.rank.toLowerCase( )}` ) }
             </span>
           ) }
           { !noRank && "\u00A0" }

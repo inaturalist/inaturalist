@@ -73,6 +73,11 @@ class YearStatistic < ApplicationRecord
           donors: donors( year, options )
         }
       end
+      json[:pull_requests] = github_pull_requests( year )
+      if year >= 2022
+        json[:budget] ||= {}
+        json[:budget][:monthly_supporters] = monthly_supporters( year, options )
+      end
     end
     year_statistic.update( data: json )
     year_statistic.generate_shareable_image
@@ -1619,6 +1624,23 @@ class YearStatistic < ApplicationRecord
     end
   end
 
+  def self.monthly_supporters( _year, _options = {} )
+    users = User.limit( 30 ).
+      where( "donorbox_plan_type = 'monthly'" ).
+      where( "donorbox_plan_status = 'active'" ).
+      where( "donorbox_plan_started_at IS NOT NULL" ).
+      joins( :stored_preferences ).
+      where( "preferences.name = 'monthly_supporter_badge' AND preferences.value = 't'" ).
+      order( Arel.sql( "RANDOM()" ) )
+    users.reject( &:suspended? ).map do | user |
+      {
+        login: user.login,
+        name: user.name,
+        icon_url: FakeView.image_url( user.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      }
+    end
+  end
+
   # Maximum distance in meters between obs created by a single user for each
   # month of the year. Calculates pairwise comparisons between all obs made by
   # the user in that month so it's pretty slow.
@@ -1746,6 +1768,47 @@ class YearStatistic < ApplicationRecord
     return "UTC" unless ( tz = ActiveSupport::TimeZone[options[:user].time_zone] )
 
     tz.tzinfo.name
+  end
+
+  def self.github_pull_requests( year )
+    year_pulls = []
+    repos = %w(
+      inaturalist
+      iNaturalistAndroid
+      iNaturalistAPI
+      INaturalistIOS
+      inaturalistjs
+      iNaturalistReactNative
+    )
+    repos.each do | repo |
+      page = 1
+      loop do
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100"
+        puts "Getting #{url}"
+        pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
+          JSON.parse( RestClient.get( url ) )
+        end
+        page_pulls = ( pulls || [] ).select do | pull |
+          pull["merged_at"] &&
+            !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
+            # For some reason the MEMBER and COLLABOTOR filters don't always
+            # filter out everyone on staff...
+            !%w(dependabot[bot] meru20 carrieseltzer).include?( pull["user"]["login"] ) &&
+            Date.parse( pull["merged_at"] ).year == year
+        end
+        if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
+          break
+        end
+
+        year_pulls += page_pulls
+        page += 1
+      end
+    end
+    year_pulls.map do | pull |
+      new_pull = pull.slice( "title", "merged_at", "html_url" )
+      new_pull["user"] = pull["user"].slice( "login", "avatar_url", "html_url" )
+      new_pull
+    end
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

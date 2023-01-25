@@ -1030,6 +1030,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def resend_confirmation
+    current_user.send_confirmation_instructions
+    respond_to do | format |
+      format.json do
+        if current_user.valid?
+          head :no_content
+        else
+          render json: { errors: current_user.errors }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
 protected
 
   def add_friend

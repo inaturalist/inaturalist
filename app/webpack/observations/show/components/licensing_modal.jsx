@@ -82,6 +82,7 @@ class LicensingModal extends Component {
                   </div>
                   { I18n.t( "cc_0_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/publicdomain/zero/1.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -108,6 +109,7 @@ class LicensingModal extends Component {
                   </div>
                   { I18n.t( "cc_by_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by/4.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -136,6 +138,7 @@ class LicensingModal extends Component {
                   </div>
                   { I18n.t( "cc_by_nc_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by-nc/4.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -159,6 +162,7 @@ class LicensingModal extends Component {
                 <div className="info">
                   { I18n.t( "cc_by_sa_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by-sa/4.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -184,6 +188,7 @@ class LicensingModal extends Component {
                 <div className="info">
                   { I18n.t( "cc_by_nd_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by-nd/4.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -207,6 +212,7 @@ class LicensingModal extends Component {
                 <div className="info">
                   { I18n.t( "cc_by_nc_sa_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
                   >{ I18n.t( "view_license" ) }</a>
@@ -232,6 +238,7 @@ class LicensingModal extends Component {
                 <div className="info">
                   { I18n.t( "cc_by_nc_nd_description" ) } <a
                     className="readmore"
+                    rel="noopener nofollow"
                     target="_blank"
                     href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
                   >{ I18n.t( "view_license" ) }</a>

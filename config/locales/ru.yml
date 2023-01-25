@@ -1,15 +1,15 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} изменение"
-    few: "%{count} изменения"
-    many: "%{count} изменений"
+    one: "%{count} Изменение"
+    few: "%{count} Изменения"
+    many: "%{count} Изменений"
     other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} комментариев'
+    other: '%{count} Комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span>комментарий'
     few: '<span class="count">%{count}</span>комментария'
@@ -194,10 +194,10 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} звук"
-    few: "%{count} звука"
-    many: "%{count} звуков"
-    other: "%{count} звуков"
+    one: "%{count} Звук"
+    few: "%{count} Звука"
+    many: "%{count} Звуков"
+    other: "%{count} Звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -222,7 +222,7 @@ ru:
   a_member_of_taxon_html: "член %{taxon}"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
-  a_to_z: "A - Z"
+  a_to_z: "<![CDATA[А — Я]]>"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -243,7 +243,7 @@ ru:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
-  about: Подробно
+  about: Подробнее
   about_charts: О Диаграммах
   about_community_taxa: О таксонах сообщества
   about_complete_taxa: О полных таксонах
@@ -382,12 +382,14 @@ ru:
   add_observations: Добавить наблюдения
   add_observations_by_checking_off: Добавить наблюдения, отмечая виды в списке.
   add_observations_project: Добавить наблюдения к этому проекту
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Добавить</span> <span>Наблюдения</span>"
   #Prompt to add a new journal post
   add_one: Добавьте его!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Добавьте его сейчас
-  add_photos: Добавить фото
   add_place: Добавить место
   add_alive_or_dead_alive_annotation: 'Добавить значение "Живой или мёртвый: живой"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Добавить значение "Живой или мёртвый: нельзя определить"'
@@ -792,6 +794,10 @@ ru:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Авторство
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, загрузил %{user}"
   authority_list:
     iucn_red_list: Красный список МСОП
     natureserve: NatureServe
@@ -958,6 +964,8 @@ ru:
   change_group: Группа изменений
   change_icon: Сменить иконку
   change_password: Изменить пароль
+  #Message shown after you change your email address
+  change_to_email_requested_html: Поступил запрос на изменение <strong>%{email}</strong>. Проверьте этот адрес электронной почты, чтобы подтвердить изменение.
   change_types:
     activated_soon: вскоре будет активирована
     change_types: Изменить типы
@@ -1046,6 +1054,8 @@ ru:
   click_the_map: "<strong>Кликните на карте</strong> чтобы добавить местоположение."
   close: Закрыть
   code: Код
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Люди, которые внесли свой вклад в разработку программного обеспечения с открытым исходным кодом iNat
   colors: Цвета
   columns: Столбцы
   combine: Объединить
@@ -1130,14 +1140,16 @@ ru:
   confirm_new_password: Подтвердить новый пароль
   confirm_now: Подтвердить сейчас
   confirm_your_info: Подтвердите вашу информацию
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Письмо с подтверждением отправлено %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Подтверждено %{date}
   confirming_ids: Подтверждение ID
   confirming_ids_description: Если вы отключите эту настройку, вы не будете получать уведомления об идентификациях, подтверждающих вашу идентификацию.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Подключиться
   connect_to_provider: "Подключиться к %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Связанные учётные записи
   connected_accounts_description: Подключенные учетные записи - это ваши учетные записи других приложений или веб-сайтов, к которым вы разрешили iNaturalist-доступ от вашего имени для поддержки входа в систему, импорта фотографий или других функций.
   connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
@@ -1309,7 +1321,6 @@ ru:
   created_by: Создано 
   created_by_user_on_date: Создано %{user} %{date}
   created_on: Создано в
-  creating_your_account: "Создаётся ваша учётная запись..."
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, если не указано иное."
   critically_endangered: На грани исчезновения
@@ -1561,6 +1572,10 @@ ru:
   deviation: Отклонение
   devise:
     confirmations:
+      confirmed: |
+        Ваш адрес электронной почты успешно подтвержден. Теперь вы можете войти
+        здесь на сайте или в мобильных приложениях iNaturalist или Seek.
+      send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению адреса электронной почты."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1570,31 +1585,54 @@ ru:
       unauthenticated: 'Прежде чем продолжать, вам нужно войти в систему или зарегистрироваться'
       invalid: 'Неверный email или пароль'
       invalid_token: 'Неверный маркер аутентификации.'
+      unconfirmed: |
+        Пожалуйста, проверьте свою электронную почту и нажмите на ссылку в письме, которое вы получили для подтверждения учетной записи.
       user:
         suspended: Ваш аккаунт был приостановлен
     sessions:
       signed_in: 'Вход успешно выполнен'
       signed_out: 'Вы вышли из системы.'
     passwords:
-      send_instructions: 'В течение нескольких минут Вы получите письмо с инструкциями по восстановлению пароля.'
+      send_instructions: |
+        В течение нескольких минут Вы получите письмо с инструкциями по восстановлению пароля.
       updated: 'Ваш пароль был успешно изменен. Вы вошли в систему.'
       updated_not_active: 'Ваш пароль был успешно изменен.'
-      send_paranoid_instructions: "Если ваш адрес email есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля."
-      no_token: "Эта страница доступна только при переходе с адреса электронной почты для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что Вы используете полную URL-ссылку."
+      send_paranoid_instructions: |
+        Если ваш адрес email есть в системе, то в течение нескольких минут вы получите письмо с инструкциями по восстановлению пароля.
+      no_token: |
+        Эта страница доступна только при переходе с адреса электронной почты для сброса пароля. Если Вы перешли по ссылке из письма, пожалуйста, убедитесь, что Вы используете полную URL-ссылку.
     registrations:
-      signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
-      updated: 'Вы успешно обновили свою учётную запись.'
       destroyed: 'До свидания! Ваша учётная запись была успешно удалёна, но мы надеемся увидеть вас снова.'
+      signed_up: 'Добро пожаловать! Вы успешно зарегистрировались.'
+      signed_up_but_inactive: "Вы успешно зарегистрировались. Однако вы не можете войти в систему до тех пор, пока вы не активировали свою учетную запись."
+      signed_up_but_locked: "Ваша регистрация успешно завершена. Однако вы не может войти в систему потому, что ваша учетная запись заблокирована."
+      signed_up_but_unconfirmed: "Письмо со ссылкой для подтверждения было отправлено на ваш адрес электронной почты. Пожалуйста, перейдите по ссылке, чтобы активировать учетную запись."
+      updated: 'Вы успешно обновили свою учётную запись.'
     mailer:
       confirmation_instructions:
-        subject: 'Инструкции по подтверждению'
+        #Subject of an email sent to confirm your account
+        subject: Инструкции по подтверждению
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Поступил запрос на изменение адреса электронной почты
       reset_password_instructions:
         subject: 'Инструкции по восстановлению пароля'
+  devise_confirmation_instructions_if_you_did_not: |
+    Если вы не регистрировали учетную запись %{site_name}, пожалуйста, проигнорируйте это письмо.
+  devise_confirmation_instructions_please_click: |
+    Пожалуйста, перейдите по ссылке ниже, чтобы подтвердить свой адрес электронной почты:
+  devise_confirmation_instructions_resend_instructions: |
+    У вас должен быть работающий адрес электронной почты, чтобы использовать iNaturalist. Когда вы регистрировали учетную запись, вы должны были получить электронное письмо для подтверждения адреса электронной почты и ссылкой, по которой нужно перейти для подтверждения, что ваш адрес электронной почты работает, но если вы этого не сделали, вы можете отправить себе другое электронное письмо с подтверждением здесь.
+  devise_confirmation_instructions_send_confirmation_email: Отправить письмо с подтверждением
+  devise_email_changed_you_requested: Вы запросили изменение %{old_email} на %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Вы получите электронное письмо на новый адрес для подтверждения изменения, но мы хотели уведомить вас по вашему старому адресу на случай, если кто-то другой имеет доступ к вашей учетной записи и пытается изменить ее без вашего ведома. Если вы сознательно не меняли свой адрес электронной почты, пожалуйста, немедленно перешлите это письмо по адресу help@inaturalist.org, чтобы мы могли провести расследование.
   devise_reset_password_instructions_hello_email: Здравствуйте, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Если вы не посылали этот запрос, проигнорируйте это письмо.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Кто-то запросил ссылку на изменение пароля. Вы можете сделать это по приведённой ниже ссылке.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будет изменён, пока Вы не перейдете по указанной ссылке и не укажете новый пароль.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1739,6 +1777,22 @@ ru:
   email: Адрес электронной почты
   email_description: Ваш адрес электронной почты не будет доступен другим пользователям iNaturalist
   email_address_for_comments_and_other_feedback: Email адрес для комментариев и обратной связи
+  email_conf_banner_email_delivered_click_link: |
+    Письмо с подтверждением доставлено. Пожалуйста, нажмите на ссылку в письме.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Добавьте <code>%{email}</code> в ваш список контактов и
+    <a href="%{url}">вновь запросите письмо с подтверждением</a>.</strong> Если ваш провайдер электронной почты заблокировал электронное письмо с подтверждением, это может убедить его в том, что вы действительно хотите получить электронное письмо от нас.
+  email_conf_banner_check_your_spam_folder_html: <strong>Проверьте папку Спам</strong>
+  email_conf_banner_contact_us_html: Все еще не получается? Отправьте нам письмо по адресу %{email}, чтобы мы могли вам помочь.
+  email_conf_banner_please_click: |
+    Пожалуйста, перейдите по ссылке в этом письме, чтобы подтвердить Ваш адрес электронной почты.
+  email_conf_banner_search_for_emails_html: <strong>Поиск писем от <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Мы отправили вам письмо с подтверждением %{date}. Если вы его не получили, вот что вы можете сделать:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Пожалуйста, подтвердите свой адрес электронной почты%{link_end_tag}</strong>.
+    Все пользователи должны подтвердить свой адрес электронной почты до %{date}. После этой даты любой, кто не подтвердил свой адрес электронной почты, не сможет войти в систему, пока не сбросит свой пароль. Чтобы подтвердить свой адрес электронной почты, перейдите в %{link_start_tag}настройки своей учетной записи%{link_end_tag}.
   email_copyright: "Авторские права &copy; %{x}, все права защищены"
   email_notifications: E-mail уведомления
   embed: 'Вставить на страницу'
@@ -1772,8 +1826,9 @@ ru:
     native: эволюционировал в этом регионе или занесён неантропогенным способом
     endemic: местный и больше нигде не встречается
     introduced: Занесен в регион антропогенным способом
-  estimate_which_input: |
-    Оцените, какие идентификации входных таксонов будут заменены и на какие выходные таксоны, а какие будут укрупнены до общего предка после завершения разделения. На расчет может уйти некоторое время. Ссылки на наблюдения усекаются до подмножеств из 200.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Оценить, какие идентификации входных таксонов будут заменены идентификациями выходных таксонов, а какие будут укрупнены до общего предка после завершения разделения. На расчет может уйти некоторое время. Ссылки на наблюдения сокращаются до подмножеств из 200.
   event_in_progress: Событие в ходе выполнения
   event_stats: Статистика События
   event_url: URL события
@@ -1836,6 +1891,8 @@ ru:
   feedback: Обратная связь
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Лента (feeds)'
+  #Button to show fewer places
+  fewer__context_places: Меньше
   failed: Не удалось
   field_note: |
     <strong>Внимание:</strong> Если вы хотите создать поле, проверьте, не создал ли его кто-то другой, чтобы избежать дублирования.
@@ -2195,6 +2252,8 @@ ru:
   improving: Улучшение
   in_n: "в %{n}"
   in_place_x: в %{place}
+  #As in a reason to flag something
+  inappropriate: Неприемлемо
   inaturalist_network: Сеть iNaturalist
   inaturalist_network_affiliation: Принадлежность к сети iNaturalist
   #Label for messages you've received
@@ -2422,6 +2481,8 @@ ru:
     waray_waray: варайский
     visayan: Бисайский
   less: Меньше
+  #Button show less text
+  less__context_text: Меньше
   licensed_site_photos: "Лицензированные фото %{site_name}"
   license: Лицензия
   licensing: Лицензирование
@@ -2558,7 +2619,6 @@ ru:
   log_scale_label: Логарифмическая
   #Status message shown while logging in
   logging_in: Вход...
-  login_slash_username: Логин / имя пользователя
   logo:
     logo: Логотип
     white_bg_gif: GIF на белом фоне
@@ -2735,6 +2795,14 @@ ru:
     <a href="%{url}">Ежемесячный спонсор</a> с %{date}
   months: Месяцы
   more: Ещё
+  #Button to show more observations
+  more__context_observations_caps: ЕЩЕ
+  #Button to show more places
+  more__context_places: Ещё
+  #Button to show more text
+  more__context_text: Ещё
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ЕЩЕ
   more_caps: ЕЩЕ
   more_about_sharing: Подробнее о структуре
   more_fields: Больше полей
@@ -3140,10 +3208,6 @@ ru:
   observed_on: Дата
   observer: Наблюдатель
   observers: Наблюдатели
-  observer_prefers_no_project_addition: |
-    Наблюдатель не позволяет другим людям добавлять свои наблюдения в проекты.
-  observer_prefers_addition_to_projects_joined: |
-    Наблюдатель позволяет другим людям добавлять свои наблюдения только в те проекты, к которым они присоединились.
   observer_short: Наблюдатель
   occurence_status_describes_how: 'Статус присутствия указывает, насколько часто или редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для получения большей информации о терминологии</a>.'
   occurrence_status: Статус присутствия
@@ -3233,6 +3297,7 @@ ru:
   open_description: "Любой может видеть координаты, если только таксон не находится под угрозой исчезновения."
   open_street_map: OpenStreetMap
   optional: необязательный
+  options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3818,6 +3883,7 @@ ru:
   places_warning_the_future: |
     Как бы то ни было, нам придется ограничить условия, при которых люди могут добавлять места в будущем, учитывая текущие темпы роста iNat.
   plants: растения
+  play_first_sound: Воспроизвести первый звук
   please_add_a_citation_for_this_change: Пожалуйста, добавьте ссылку на это изменение.
   please_allow_a_few_weeks_for_external_sites: Пожалуйста, подождите несколько недель, чтобы внешние сайты синхронизировали изменения с этим наблюдением #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Пожалуйста, получите разрешение у своих родителей
@@ -3934,6 +4000,14 @@ ru:
   proposed_taxa_that_support_the_community_id: Предлагаемые таксоны поддерживают идентификацию сообщества
   protozoans: простейшие
   provider_authorizations: Авторизация провайдера
+  provider_without_email_error_apple: |
+    Apple не указывает адрес электронной почты для этой учетной записи, что является обязательным. Пожалуйста, создайте учетную запись на этом сайте вместо того, чтобы регистрироваться через Apple.
+  provider_without_email_error_flickr: |
+    Flickr не указывает адрес электронной почты для этой учетной записи, что является обязательным. Пожалуйста, создайте учетную запись на этом сайте вместо того, чтобы регистрироваться через Flickr.
+  provider_without_email_error_generic: |
+    Данный сервис не указывает адрес электронной почты для этой учетной записи, что является обязательным. Пожалуйста, создайте учетную запись на этом сайте вместо того, чтобы регистрироваться через сторонние организации.
+  provider_without_email_error_google_oauth2: |
+    Google не указывает адрес электронной почты для этой учетной записи, что является обязательным. Пожалуйста, создайте учетную запись на этом сайте вместо того, чтобы регистрироваться через Google.
   public_domain: Публичный домен
   publish: Опубликовать
   purple: пурпурный
@@ -4210,6 +4284,10 @@ ru:
   research_grade_tooltip_html: 'Наблюдения "Исследовательского уровня" содержат медиа, местоположение и дату, и имеется консенсус сообщества по поводу точной идентификации (обычно на уровне вида).<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
   research_grade_observations_have: 'Наблюдения "Исследовательского уровня" содержат дату, фото, координаты и поддерживаемую сообществом идентификацию. Нажмите, чтобы увидеть оценку качества данных.'
   research_grade_qualification: Качество исследовательского уровня
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Отправить повторно и выйти
+  resend_confirmation_email: Отправить ещё одно письмо с подтверждением
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Сброс
   reset_filters_short: Сбросить
@@ -4328,11 +4406,12 @@ ru:
   select: Выбрать
   select_all: Выбрать все
   select_at_least_one: Выберите хотя бы одно
-  select_one_or_more_photos: 'Выберите одно или несколько фото'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Не выбирать
   select_observations_to_edit: Выберите наблюдения для редактирования...
   select_one_of_friends_albums: Выберите один из альбомов ваших %{friend}
   select_one_of_your_albums: Выберите один из ваших альбомов
+  select_one_or_more_photos: 'Выберите одно или несколько фото'
   select_options: Выберите
   select_photos_from_your_photo_stream: |
     Выберите фото на внешних фотохостингах, которые вы хотите преобразовать в наблюдения %{site_name}. Мы заполним дату, время и местоположение из метаданных фото и попытаемся найти видовые названия в тегах.
@@ -4341,6 +4420,10 @@ ru:
   selected_taxon: Выбранный таксон
   select_this_taxon: Выберите этот Таксон
   send: Отправить
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Отправить повторно и выйти
+  send_confirmation_email: Отправить письмо с подтверждением
   send_me_reset_password_instructions: Отправьте мне инструкции по сбросу пароля
   sending: Отправка…
   #Label for messages you've sent
@@ -5203,6 +5286,7 @@ ru:
   upload_new_photo: Загрузить новое фото
   upload_photo: Загрузить фото
   upload_range: Диапазон загрузки
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Загружено
   uploader:
     errors:
@@ -5233,6 +5317,7 @@ ru:
     Используйте <span class='ac-placeholder'>"%{name}"</span> в качестве заполнителя
   use_this_form_to_create_a_new: |
     Используйте эту форму для создания нового проекта таксономического изменения, описывающего предлагаемые разделение, слияние или замену на активные таксоны, которые впоследствии будут реализованы.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Используйте это, если URL-адрес должен иметь род и вид, разделенные определенным образом. Если таксон - это не вид или подвид, всё между [GENUS] и [SPECIES] будет заменено на наименование таксона, так что используйте с осторожностью.
   use_unique_file_names_for_separate_uploads: Используйте уникальные имена файлов для отдельных загрузок
@@ -5313,6 +5398,41 @@ ru:
   username_or_user_id: Имя пользователя или его идентификатор
   users: Пользователи
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    После того как вы повторно отправите электронное письмо с подтверждением, вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong>убедитесь, что вы ввели свой адрес электронной почты правильно.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Убедитесь пожалуйста, что ваш адрес электронной почты правильный. Мы посылали письмо с подтверждением на адрес:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Если вы не получили письмо, проделайте следующее:
+    </p>
+    <ul>
+    <li><p>Проверьте папку Спам</p></li>
+    <li><p>Проверьте правила фильтрации, удаляющие письма из папки входящих</p></li>
+    </ul>
+    <p>
+    Если по-прежнему вы нне получили письмо с подтверждением, пожалуйста, свяжитесь с нами по адресу
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    чтобы мы могли вам помочь.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Вы собираетесь выйти из системы</h3>
+
+    <p>
+    После отправки электронного письма с подтверждением вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong class="bg-warning">убедитесь, что вы
+    правильно ввели свой адрес электронной почты.</strong>
+    </p>
+    <p>
+    Вот адрес электронной почты, на который мы отправим подтверждение:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Если вы отписались от всех электронных писем...</h4>
+    <p>
+    Если вы отписались от <em>всех</em> электронных писем от нас, мы не сможем отправить вам электронное письмо с подтверждением. Для повторной подписки вам нужно найти предыдущее электронное письмо от нас, нажать на ссылку для отказа от подписки и выбрать опцию повторного получения электронного письма. Если вы не можете этого сделать, пожалуйста, напишите по электронной почте
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> using используя адрес электронной почты, который вы ввели здесь, с тем, чтобы мы могли вам помочь.
+    </p>
   users_favorites: "Фавориты %{user}"
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
@@ -5496,7 +5616,10 @@ ru:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
   with: с
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Отозвать
+  #Loading status while an identification is being withdrawn
   withdrawing: Отзыв...
   with_errors: С ошибками
   worldwide: По всему миру
@@ -5562,6 +5685,8 @@ ru:
   yes_reject_it: Да, отклоните это
   yes_show_this_in_the_box: Да, покажите это в большом прямоугольнике наверху /таксона
   yesterday: Вчера
+  yir_code_contributors_desc_html: |
+    Наше <a href="%{url}">программное обеспечение</a> - почти всё с открытым исходным кодом, что означает, что любой может внести свой вклад, если он знает как. Вот люди, которые добровольно предложили код в этом году. Спасибо вам, программисты!
   yir_donate_banner_inaturalist_in_year: "INATURALIST В %{year}:"
   yir_donate_banner_reaching_millions: Достижение миллионов. Освещение биоразнообразия. Глобальное сотрудничество.
   #"You" is singular
@@ -5576,6 +5701,8 @@ ru:
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
   yir_millions_of_people_used_inaturalist: |
     В этом году миллионы людей использовали iNaturalist и Seek by iNaturalist чтобы приобщиться к природе.
+  yir_monthly_supporters_random_selection: |
+    Вот случайная выборка членов героического сообщества iNat, которые делают пожертвования каждый месяц.
   yir_thank_your_for_being_generous: |
     Спасибо за ваше время, внимание, знания и пожертвования! iNaturalist - это некоммерческая совместная инициатива Калифорнийской академии наук и Национального географического общества. Программа опирается на многочисленные гранты и пожертвования, в том числе благотворительные взносы от менее чем крошечной части сообщества. Мы особенно благодарны ежемесячным спонсорам, чьи постоянные взносы помогают нам строить планы на будущее.
   yir_your_gift_sustains: |
@@ -5641,6 +5768,7 @@ ru:
   you_dont_have_permission_to_edit_those_photos: У вас нет прав редактировать эти фото.
   you_faved_this: Вы добавили это к фаворитам!
   you_have_left_x_project: "Вы покинули %{project}"
+  you_have_not_confirmed_your_email_address: Вы не подтвердили свой адрес электронной почты!
   you_havent_linked_your_inaturalist_google_account: "Вы ещё не связали свою учётную запись %{site_name} с вашим аккаунтом Google"
   you_joined_this_project: Вы присоединились к этому проекту!
   you_must_be_a_member_of_this_project_to_do_that: Для того, чтобы сделать это, вы должны быть участником этого проекта
@@ -6202,7 +6330,8 @@ ru:
       show:
         allow_curator_coordinate_access_desc_html: |
           Позволить кураторам проекта видеть скрытые координаты этого наблюдения
-        ancestor_disagreements_desc: "# идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (т.е. \"я думаю, что этот род, но не согласен, что этот вид\")"
+        ancestor_disagreements_desc2: |
+          Число идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (например, "я думаю, что он относится к этому роду, но не согласен, что этот вид")
         community_taxon_desc_html: |
           <p class="ui">
           Таксон сообщества (или идентификация сообществом) представляет собой тот таксон, который, по мнению сообщества %{site_name}, изображен в наблюдении. Если вам интересно, как выбирается таксон сообщества, посмотрите указанные ниже примечания к алгоритму, однако в общем случае мы стараемся <strong>выбрать таксон, с которым согласны более чем 2/3 идентифицирующих</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд несогласующихся таксонов (например, вы думаете, что это kingsnake, а я думаю, что это rattlesnake, в таком случае iNat выбирает подотряд Serpentes (Змеи), который содержит всех змей). Алгоритм также немного поддерживает инакомыслие, потому что мы обнаружили, что инакомыслящие часто правы.
@@ -6821,12 +6950,6 @@ ru:
         one_time: Однократно
         percent_growth_in_year: "% роста в %{year}"
         percent_of_total_growth: "% от общего роста"
-        publications_desc_html: |
-          Нажмите на диаграмму цветов, чтобы получить больше информации о значении чисел
-          и цвета. Влияющие данные и диаграммы любезно предоставлены
-          <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из <a href="https://www.gbif.org/">Глобального информационного центра по биоразнообразию</a>.
-          <br/>
-          <a href="%{url}">Просмотр всех %{numStudies} исследований</a>
         publications_desc_short_html: |
           Нажмите на цветовую диаграмму, чтобы получить больше информации о значении чисел
           и цвета. Влияющие данные и диаграммы любезно предоставлены
@@ -6939,7 +7062,6 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
-          "Plant Phenology=No Evidence": Нет доказательств
           "Life Stage=Adult": Взрослый
           "Life Stage=Egg": Яйцо
           "Life Stage=Larva": Личинка
@@ -7587,6 +7709,9 @@ ru:
           other: '%{count} ошибок препятствуют сохранению этой %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Объявления
       AssessmentSection: Раздел оценки
       Atlas: Атлас
       BlockedUser: Заблокированный пользователь
@@ -7606,6 +7731,12 @@ ru:
       OauthApplication: Приложение
       TaxonLink: Ссылка на таксон
     attributes:
+      announcement:
+        created_at: Создано
+        updated_at: Обновлено
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID сайта
       assessment:
         description: Описание
       assessment_section:
@@ -7623,7 +7754,11 @@ ru:
         geoprivacy: Приватность местоположения
         iucn: Эквивалент МСОП
       flag:
+        #The reason the item was flagged
         reason: Причина
+        #The person who resolved the flag
+        resolver_id: Кто разрешил проблему
+        #The kind of flag that was made
         flag: Флаг
       guide:
         source_url: URL источника
@@ -7756,6 +7891,21 @@ ru:
         position: Расположение
         source_url: URL источника
         source_identifier: Идентификатор источника
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Название сайта
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Краткое название сайта
+        #Taxon this link is associated with
+        taxon: Таксон
+        #Place this link is associated with
+        place: Место
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Показать таксоны-потомки
       user:
         email: Электронная почта
         login: Имя пользователя

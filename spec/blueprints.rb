@@ -551,6 +551,9 @@ User.blueprint do
   created_at { 5.days.ago.to_s(:db) }
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
+  confirmed_at { 5.days.ago.to_s(:db) }
+  confirmation_sent_at { 5.days.ago.to_s(:db) }
+  confirmation_token { Faker::Alphanumeric.alphanumeric }
 end
 
 UserBlock.blueprint do

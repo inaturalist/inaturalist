@@ -303,12 +303,14 @@ fi:
   add_observations: Tallenna havaintoja
   add_observations_by_checking_off: Tallenna havaintoja ruksaamalla lajeja luettelosta.
   add_observations_project: Tallenna havaintoja tähän projektiin
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Lisää</span> <span>Havainnot</span>"
   #Prompt to add a new journal post
   add_one: Lisää yksi!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Lisää yksi nyt
-  add_photos: Lisää valokuvia
   add_place: Lisää paikka
   add_alive_or_dead_alive_annotation: 'Lisää "elävä tai kuollut: elävä" -merkintä'
   add_alive_or_dead_cannot_be_determined_annotation: 'Lisää "elävä tai kuollut: ei voida määrittää" -merkintä'
@@ -671,6 +673,10 @@ fi:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Määrite
   attribution: Nimeäminen
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, lähettänyt %{user}"
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
     natureserve: NatureServe
@@ -724,6 +730,8 @@ fi:
   batch_edit_taxa_for_x_html: "Massamuokkaa taksoneita kohteelle %{x}"
   batch_operations: Erätoiminnot
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
+  become_a_donor_caps: Ryhdy lahjoittajaksi
+  become_a_donor_today_caps: Ryhdy lahjoittajaksi tänään
   before_importing_photos: ennen kuvien tuontia
   bg_color: Taustaväri
   bio: Kuvaus
@@ -806,6 +814,8 @@ fi:
   change_group: Vaihda ryhmä
   change_icon: Vaihda profiilikuva
   change_password: Vaihda salasana
+  #Message shown after you change your email address
+  change_to_email_requested_html: Pyyntö vaihtaa sähköpostiosoitteeksi <strong>%{email}</strong> vastaanotettu. Tarkista sähköpostisi ja vahvista muutos.
   change_types:
     activated_soon: aktivoituu pian
     change_types: Vaihda tyyppejä
@@ -959,14 +969,16 @@ fi:
   confirm_new_password: Vahvista uusi salasana
   confirm_now: Vahvista nyt
   confirm_your_info: Vahvista tietosi
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Vahvistussähköposti lähetetty osoitteeseen %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Vahvistettu %{date}
   confirming_ids: Tunnistusten vahvistus
   confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Yhdistä
   connect_to_provider: "Yhdistä palveluun %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Yhdistetyt tilit
   connected_accounts_titlecase: Yhdistetyt käyttäjätilit
   connecting_flickr: "Otetaan yhteyttä Flickr'iin..."
   connect_to_flickr_again_to_authorize_write_permissions: Yhdistä uudelleen Flickriin hyväksyäksesi kirjoitusoikeudet
@@ -1120,7 +1132,6 @@ fi:
   created_by: Luonut
   created_by_user_on_date: Lisännyt %{user} %{date}
   created_on: Luotu
-  creating_your_account: "Käyttäjätunnustasi luodaan..."
   creative_commons_flickr_tagged: Merkinnät lisätty Creative Commons Flickr-valokuviin
   creative_commons_unless_otherwise_noted: "Creative Commons, ellei toisin mainita."
   critically_endangered: Äärimmäisen uhanalainen
@@ -1380,6 +1391,10 @@ fi:
   deviation: Poikkeama
   devise:
     confirmations:
+      confirmed: |
+        Sähköpostiosoitteesi on vahvistettu onnistuneesti. Voit nyt kirjautua
+        tänne sivustolle tai iNaturalist- tai Seek-mobiilisovelluksiin.
+      send_instructions: "Saat hetken kuluttua sähköpostiisi ohjeet tunnuksen vahvistamiseen."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1389,31 +1404,60 @@ fi:
       unauthenticated: 'Sinun pitää kirjautua sisään tai rekisteröityä ennen kuin voit jatkaa.'
       invalid: 'Väärä sähköposti tai salasana.'
       invalid_token: 'Todennuskoodi ei kelpaa.'
+      unconfirmed: |
+        Ole hyvä ja tarkista sähköpostisi ja klikkaa vastaanottamasi sähköpostin linkkiä
+        vahvistaaksesi tilisi.
       user:
         suspended: Käyttäjätunnuksesi on suljettu
     sessions:
       signed_in: 'Sisäänkirjautuminen onnistui.'
       signed_out: 'Uloskirjautuminen onnistui.'
     passwords:
-      send_instructions: 'Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.'
+      send_instructions: |
+        Saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.
       updated: 'Salasanasi on nyt vaihdettu. Olet kirjautuneena sisälle.'
       updated_not_active: 'Salasanasi on vaihdettu onnistuneesti.'
-      send_paranoid_instructions: "Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen."
-      no_token: "Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä."
+      send_paranoid_instructions: |
+        Jos sähköpostiosoitteesi on tietokannassamme, saat hetken kuluttua sähköpostiisi ohjeet salasanan nollaukseen.
+      no_token: |
+        Et pääse tälle sivulle, ellet käytä sähköpostiisi lähtettyä salasanan vaihtamiseen liittyvää linkkiä. Mikäli käytit sähköpostissa olevaa linkkiä, varmista, että käytät täysin samaa URL-osoitetta, joka näkyy lähetetyssä viestissä.
     registrations:
-      signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
-      updated: 'Päivitit tilisi onnistuneesti.'
       destroyed: 'Näkemiin! Tunnuksesi on nyt suljettu. Toivottavasti näemme sinut vielä uudelleen.'
+      signed_up: 'Rekisteröityminen onnistui, tervetuloa!'
+      signed_up_but_inactive: "Olet rekisteröitynyt palveluun onnistuneesti. Emme kuitenkaan voineet kirjata sinua sisään, koska tilisi ei ole vielä aktivoitu."
+      signed_up_but_locked: "Rekisteröintisi onnistui. Emme kuitenkaan voineet kirjata sinua sisään koska tunnuksesi on lukittu."
+      signed_up_but_unconfirmed: "Vahvistusohjeet on lähetetty sähköpostiosoitteeseesi. Avaathan sähköpostissa olevan linkin vahvistaaksesi tunnuksen."
+      updated: 'Päivitit tilisi onnistuneesti.'
     mailer:
       confirmation_instructions:
-        subject: 'Vahvistusohjeet'
+        #Subject of an email sent to confirm your account
+        subject: Vahvista sähköpostiosoitteesi
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Sähköpostin vaihto pyydetty
       reset_password_instructions:
         subject: 'Ohjeet salasanan nollaukseen'
+  devise_confirmation_instructions_if_you_did_not: |
+    Jos et ole rekisteröitynyt @vow_or_con{vow:an|a} %{site_name} tilille, jätä tämä sähköposti huomiotta.
+  devise_confirmation_instructions_please_click: |
+    Ole hyvä ja klikkaa alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
+  devise_confirmation_instructions_resend_instructions: |
+    Sinulla on oltava toimiva sähköpostiosoite iNaturalistia varten. Kun olet rekisteröitynyt
+    tilille, sinun olisi pitänyt saada vahvistussähköposti, jonka linkkiä klikkaamalla vahvistat, että sähköpostiosoitteesi toimii, mutta jos et saanut viestiä, voit lähettää itsellesi toisen vahvistusviestin tästä.
+  devise_confirmation_instructions_send_confirmation_email: Lähetä vahvistusviesti
+  devise_email_changed_you_requested: Pyysit vaihtoa osoitteesta %{old_email} osoitteeseen %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Saat sähköpostin uuteen osoitteeseen ja voit vahvistaa vaihdon, mutta me
+    halusimme ilmoittaa sinulle vanhaan osoitteeseesi siltä varalta, että jollakulla muulla on
+    pääsy tiliisi ja yrittää muuttaa osoitetta tietämättäsi. Jos
+    et tarkoituksellisesti muuttanut sähköpostiosoitettasi, lähetä tämä
+    sähköposti osoitteeseen help@inaturalist.org välittömästi, jotta voimme tutkia asian.
   devise_reset_password_instructions_hello_email: Hei %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jos et ole pyytänyt tätä, jätä tämä sähköposti huomiotta.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Joku on pyytänyt linkkiä käyttäjätilisi salasanan vaihtamiseen. Voit vaihtaa salasanan alla olevan linkin avulla.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Salasanasi ei muutu, ennen kuin klikkaat yllä olevaa linkkiä ja luot uuden.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1543,6 +1587,25 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  email_conf_banner_email_delivered_click_link: |
+    Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Lisää <code>%{email}</code> yhteystietoluetteloosi ja
+    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostiosoitteesi
+    tarjoaja on estänyt vahvistusviestin, tämä saattaa vakuuttaa heidät, että
+    haluat meiltä sähköpostia.
+  email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
+  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email} , jotta voimme auttaa sinua.
+  email_conf_banner_please_click: |
+    Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
+  email_conf_banner_search_for_emails_html: <strong>Etsi sähköposteja osoitteesta <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Toimitimme sinulle vahvistusviestin %{date}. Jos et
+    saanut sitä, tässä on joitain asioita, joita voit tehdä:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
+    Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, kaikki oikeudet pidätetään"
   email_notifications: Sähköposti-ilmoitukset
   embed: 'Upota'
@@ -1572,6 +1635,10 @@ fi:
   establishment_means: Lajin alkuperä
   establishment_means_describes_how: |
     Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Arvioi, mitkä lähtötaksonin tunnistukset korvataan kohdetaksonin tunnistuksilla
+    ja mitkä kootaan yhteen yhteiseen esitaksoniin sen jälkeen, kun jako on tehty. Tämä voi kestää hetken. Havaintolinkit katkaistaan 200 kappaleen alaryhmiin.
   event_in_progress: Tapahtuma käynnissä
   event_stats: Tapahtuman tilastot
   event_url: Tapahtuman URL
@@ -1631,6 +1698,8 @@ fi:
   feedback: Palaute
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Syötteet'
+  #Button to show fewer places
+  fewer__context_places: Vähemmän
   failed: Epäonnistui
   field_note: |
     <strong>Huom:</strong> 
@@ -1941,6 +2010,8 @@ fi:
   improving: Parannus
   in_n: "paikassa %{n}"
   in_place_x: paikassa %{place}
+  #As in a reason to flag something
+  inappropriate: Sopimaton
   inaturalist_network: iNaturalist-verkosto
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
@@ -2166,6 +2237,8 @@ fi:
     waray_waray: Waray-waray
     visayan: Visaya
   less: Vähemmän
+  #Button show less text
+  less__context_text: Vähemmän
   licensed_site_photos: "Lisensoidut %{site_name}-kuvat"
   license: Lisenssi
   licensing: Lisensointi
@@ -2229,6 +2302,7 @@ fi:
     de: saksa
     el: kreikka
     en: englanti
+    en-GB: Englanti (UK)
     eo: esperanto
     es: espanja
     es-AR: espanja (Argentiina)
@@ -2294,7 +2368,6 @@ fi:
   log_scale_label: Loki
   #Status message shown while logging in
   logging_in: Kirjaudutaan sisään...
-  login_slash_username: Kirjautumis / käyttäjänimi
   logo:
     logo: Logo
     white_bg_gif: valkoinen BG GIF
@@ -2470,6 +2543,14 @@ fi:
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
   months: Kuukaudet
   more: Lisää
+  #Button to show more observations
+  more__context_observations_caps: LISÄÄ
+  #Button to show more places
+  more__context_places: Lisää
+  #Button to show more text
+  more__context_text: Lisää
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: LISÄÄ
   more_caps: LISÄÄ
   more_fields: Lisää kenttiä
   more_filters: Lisää suodattimia
@@ -2823,11 +2904,6 @@ fi:
   observed_on: Havaittu
   observer: Havainnoi
   observers: Havainnoijaa
-  observer_prefers_no_project_addition: |
-    Havainnoija ei salli muiden ihmisten lisätä havaintojaan projekteihin.
-  observer_prefers_addition_to_projects_joined: |
-    Havainnoija sallii muiden ihmisten lisätä havaintojaan vain projekteihin, joihin hän
-    on liittynyt.
   observer_short: Havainnoija
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
@@ -2906,6 +2982,7 @@ fi:
   open_description: "Jokainen voi nähdä koordinaatit, ellei taksoni ole uhanalainen."
   open_street_map: OpenStreetMap
   optional: valinnainen
+  options: Valinnat
   or: tai
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3448,6 +3525,7 @@ fi:
   places_warning_the_future: |
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
+  play_first_sound: Toista ensimmäinen ääni
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Pyydä vanhemmiltasi lupaa
@@ -3549,6 +3627,17 @@ fi:
   projects_user_admins: Projektit joita %{user} hallinnoi
   projects_you_admin: Projektit joita hallinoit
   protozoans: Alkueläimet
+  provider_without_email_error_apple: |
+    Apple ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Applen kautta.
+  provider_without_email_error_flickr: |
+    Flickr ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Flickr kautta.
+  provider_without_email_error_generic: |
+    Tämä palvelu ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut sisään kolmannen osapuolen kautta.
+  provider_without_email_error_google_oauth2: |
+    Google ei toimittanut kyseiselle tilille sähköpostiosoitetta, joka on pakollinen. Ole hyvä ja luo tili tällä sivustolla sen sijaan, että kirjaudut
+    sisään Googlen kautta.
   public_domain: Tekijänoikeudeton
   publish: Julkaise
   purple: purppura
@@ -3791,6 +3880,10 @@ fi:
   research_grade_tooltip_html: '"Tutkimusaste"-havainnoissa on media, sijainti, päivämäärä ja yhteisötunnistus (yleensä lajitasolla). <a href="https://www.inaturalist.org/pages/help#quality">Lue lisää laatuluokista</a>'
   research_grade_observations_have: '"Tutkimustason" havainnoilla on päivämäärä, valokuva tai äänite, koordinaatit ja yhteisön tukema tunnistus. Klikkaa nähdäksesi havainnon laatuarvion.'
   research_grade_qualification: Tutkimustason perusteet
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Lähetä uudelleen ja kirjaudu ulos
+  resend_confirmation_email: Lähetä vahvistusviesti uudelleen
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Palauta
   reset_filters_short: Palauta
@@ -3894,23 +3987,28 @@ fi:
   second_person_possessive_singular: "Sinun %{noun}"
   see_something_wrong_with_taxon: Onko tässä taksonissa jotain vikaa? Ilmoita asiasta kuraattoreille.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
-  seek: Etsi
+  seek: Seek
   seen_nearby: Nähty lähistöllä
   seen_one: Nähnyt yhden?
   select: Valitse
   select_all: Valitse kaikki
   select_at_least_one: Valitse ainakin yksi
-  select_one_or_more_photos: 'Valitse yksi tai useampia kuvia'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Poista valinnat
   select_observations_to_edit: Valitse muokattavat havainnot...
   select_one_of_friends_albums: Valitse yksi käyttäjän %{friend} albumeista
   select_one_of_your_albums: Valitse yksi albumeistasi
+  select_one_or_more_photos: 'Valitse yksi tai useampia kuvia'
   select_options: Valitse
   selected: valittu
   selected_photos: Valitut kuvat
   selected_taxon: Valitut taksonit
   select_this_taxon: Valitse tämä taksoni
   send: lähetä
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Lähetä ja kirjaudu ulos
+  send_confirmation_email: Lähetä vahvistusviesti
   send_me_reset_password_instructions: Lähetä minulle salasanan nollausohjeet
   sending: Lähetetään...
   #Label for messages you've sent
@@ -3961,7 +4059,7 @@ fi:
   simple: Yksinkertainen
   single_observation: Yksittäinen havainto
   #@vow_or_con should work with %{site}
-  site_year_in_review: "%{site}n %{year} vuosikatsaus"
+  site_year_in_review: "%{site} - %{year} vuosikatsaus"
   sizes: Koot
   skip_to_next_page: "Siirry seuraavalle sivulle"
   small: pieni
@@ -4537,6 +4635,7 @@ fi:
   upload_a_csv_file: Lataa CSV-tiedosto
   upload_new_photo: Lataa uusi kuva
   upload_photo: Tallenna kuva
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Tallentanut
   uploader:
     errors:
@@ -4618,6 +4717,41 @@ fi:
   username_or_user_id: Käyttäjänimi tai käyttäjätunniste
   users: Käyttäjät
   users_contributions_to_project_html: Käyttäjän <a href="%{url}">%{login}</a> muokkaukset projektiin %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Kun olet lähettänyt vahvistusviestin uudelleen, olet kirjautunut ulos, etkä voi
+    kirjautua tilillesi ennen kuin klikkaat linkkiä
+    vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
+    oikein.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Tarkista, että sähköpostiosoitteesi on oikea. Lähetämme vahvistusviestin tähän osoitteeseen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Jos et saanut viestiä, tässä muutama vinkki:
+    </p>
+    <ul>
+    <li><p>Tarkista roskapostikansiosi</p></li>
+    <li><p>Tarkista, oletko luonut filttereitä, josta estävät viestin kulkeutumisen postilaatikkoosi</p></li>
+    </ul>
+    <p>
+    Jos et edelleenkään saa vahvistusviestiä, ota yhteyttä osoitteeseen
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, jotta voimme auttaa sinua.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Olet kirjautumassa ulos</h3>
+    <p>
+    Kun lähetät vahvistusviestin, sinut kirjataan ulos, etkä voi kirjautua tunnuksellasi ennen kuin klikkaat viestin linkkiä, joten <strong class="bg-warning">ole ehdottoman varma, että olet kirjoittanut sähköpostiosoitteesi oikein.</strong>
+    </p>
+    <p>
+    Lähetämme vahvistusviestin tähän sähköpostiosoitteeseen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Jos olet perunut kaikki sähköpostit...</h4>
+    <p>
+    Jos olet perunut kaikki <em>all</em> lähettämämme sähköpostit, emme voi lähettää sinulle vahvistusviestiä. Tilataksesi viestit uudelleeen, sinun täytyy etsiä viimeisin lähettämämme sähköposti ja klikata unsubscribe-linkkiä ja valita, että haluat vastaanottaa viestejä. Jos et voi tehdä tätä, lähetä sähköpostia osoitteeseen
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> samasta osoitteesta kuin, minkä olet syöttänyt tähän, niin autamme sinua.
+    </p>
   users_highlights_and_stats_from_year_on_site: "Käyttäjän %{user} kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   users_id: "Käyttäjän %{user} tunniste"
   users_identifications: "Käyttäjän %{user} tunnistukset"
@@ -4775,7 +4909,10 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Peruuta
+  #Loading status while an identification is being withdrawn
   withdrawing: Peruuttaa...
   with_errors: Virheiden kera
   worldwide: Maailmanlaajuinen
@@ -4880,6 +5017,7 @@ fi:
     Sinulla ei ole oikeuksia muokata tätä taksonia. Ole hyvä ja ota yhtyettä taksonin kuraattoriin tai liputa taksoni pyytääksesi muutoksia.
   you_faved_this: Merkitsit tämän suosikiksi!
   you_have_left_x_project: "Olet lähtenyt projektista %{project}"
+  you_have_not_confirmed_your_email_address: Et ole vahvistanut sähköpostiosoitettasi!
   you_havent_linked_your_inaturalist_google_account: "Et ole vielä linkittänyt %{site_name}-tiliäsi ja Google-tiliäsi"
   you_joined_this_project: Liityit tähän projektiin!
   you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin jäsen tehdäksesi tuon
@@ -5250,6 +5388,9 @@ fi:
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
+        ancestor_disagreements_desc2: |
+          Niiden tunnistettujen taksonien lukumäärä, jotka kuuluvat taksonin esi-isiin, mutta
+          ovat eri mieltä taksonin kanssa (i. . "Mielestäni se on suvussa, mutta olen eri mieltä se on, että tämä laji")
         community_taxon_desc_html: |
           <p class="ui">
           Yhteisötunnistettu taksoni on %{site_name} yhteisön mielipide siitä, mikä taksoni havainnossa on kuvattu. 
@@ -5755,6 +5896,8 @@ fi:
         observations_per_year: Havainnot / vuosi
         observations_per_year_by_date_added: Lisäyspäivämäärän mukaan
         observations_per_year_by_date_observed: Havainnointipäivämäärän mukaan
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: Havaintoputket
         observation_streaks_color_desc: |
           Väri kuvastaa päivien lukumäärää logaritmisella asteikolla:
         observation_streaks_desc2: |
@@ -5768,6 +5911,7 @@ fi:
         species_per_year: Lajit / vuosi
         species_per_year_by_date_added: Lisäyspäivämäärän mukaan
         species_per_year_by_date_observed: Havainnointipäivämäärän mukaan
+        stats_generated_datetime: Tilastot luotu %{datetime}
         stats_generation_schedule: Tilastot tuotetaan joka sunnuntai joulukuussa ja 1. tammikuuta
         sunburst_desc_html: |
           Havaitut lajit sunburst-kaaviona. Kaavion keskellä on kaikki elämä, ja ulkokehällä lajit. Jokaisen kaaren koko on suhteessa havaintomäärään tästä taksonista. Värit vastaavat taksonien värejä (vihreä kasveille, punainen hyönteisille, sininen useimmille muille eläimille jne.). <strong>Klikkaa kaarta asettaaksesi tämä taksoni kaavion keskustaksi</strong>, tai <strong>klikkaa keskustaa siirtyäksesi hierarkiassa ylöspäin</strong>.
@@ -5814,6 +5958,7 @@ fi:
           "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
+          "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -6304,6 +6449,9 @@ fi:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ilmoitus
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
       BlockedUser: Estetty Käyttäjä
@@ -6320,6 +6468,12 @@ fi:
       ModeratorNote: Valvojien muistiinpanot
       TaxonLink: Taksonilinkki
     attributes:
+      announcement:
+        created_at: Luotu
+        updated_at: Päivitetty
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Sivuston tunniste
       assessment:
         description: Kuvaus
       assessment_section:
@@ -6337,7 +6491,11 @@ fi:
         geoprivacy: Sijainnin tietosuoja
         iucn: IUCN vastine
       flag:
+        #The reason the item was flagged
         reason: Syy
+        #The person who resolved the flag
+        resolver_id: Ratkaise
+        #The kind of flag that was made
         flag: Lippu
       guide:
         source_url: Lähteen URL-osoite
@@ -6415,6 +6573,21 @@ fi:
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
+      taxon_link:
+        url: URL-osoite
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Sivuston otsikko
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Lyhyt otsikko
+        #Taxon this link is associated with
+        taxon: Taksoni
+        #Place this link is associated with
+        place: Paikka
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Näytä jälkeläistaksonit
       user:
         email: Sähköposti
         login: Käyttäjänimi
@@ -6465,6 +6638,13 @@ fi:
             redirect_uri:
               invalid_uri: "pitää olla kelvollinen URL"
               relative_uri: "oltava absoluuttinen URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: on poistettuja kommentteja
         flag:
           attributes:
             user_id:

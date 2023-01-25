@@ -249,12 +249,14 @@ ja:
   add_observations: 観察記録を追加
   add_observations_by_checking_off: リストから削除した種に観察記録を追加
   add_observations_project: このプロジェクトに観測記録を追加
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>観察記録</span>を<span>追加</span>"
   #Prompt to add a new journal post
   add_one: 1件、追加しよう！
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 今すぐ追加
-  add_photos: 写真を追加
   add_place: 場所を追加
   add_alive_or_dead_alive_annotation: '"生死：生きている"の注釈を追加する'
   add_alive_or_dead_cannot_be_determined_annotation: '"生死：判別できない"の注釈を追加する'
@@ -603,6 +605,10 @@ ja:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 属性
   attribution: 帰属
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, %{user} によって投稿されました"
   authority_list:
     iucn_red_list: IUCNレッドリスト
     cites: ワシントン条約（CITES）
@@ -822,6 +828,8 @@ ja:
   click_the_map: "場所を追加するには、<strong>マップをクリック</strong>"
   close: 閉じる
   code: コード
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: コード提供者
   colors: 色
   columns: 列
   combine: 統合
@@ -901,8 +909,6 @@ ja:
   #connecting to Flickr
   connect: 接続
   connect_to_provider: "%{provider}に接続"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 関連づけられたアカウント
   connected_accounts_description: 関連づけられたアカウントは、サインイン、写真のインポート、その他の機能をサポートするためにiNaturalistにアクセスを許可した他のアプリやウェブサイトのアカウントです。
   connected_accounts_titlecase: 関連づけられたアカウント
   connecting_flickr: "Flickrに接続中..."
@@ -1001,7 +1007,7 @@ ja:
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
-    no_evidence_of_flowering: メディアは生殖構造の証拠を提供しません
+    no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
     teneral: 羽化したばかりで、まだ成熟していない成体
     cannot_be_determined: 提供された証拠から判断することはできません
     feather: 生物の本体から分離した羽毛
@@ -1065,7 +1071,6 @@ ja:
   created_by: 作成者：
   created_by_user_on_date: 作成者:%{user}さん 作成日:%{date}
   created_on: '作成日:'
-  creating_your_account: "アカウントを作成しています..."
   creative_commons_flickr_tagged: Flickrにタグ付けされたクリエイティブ・コモンズの写真があります
   creative_commons_unless_otherwise_noted: "特に明記されていない限り、クリエイティブ・コモンズです。"
   critically_endangered: 絶滅危惧IA類
@@ -1315,25 +1320,30 @@ ja:
       signed_in: '正常にログインしました。'
       signed_out: '正常にログアウトしました。'
     passwords:
-      send_instructions: '数分以内にパスワードをリセットする方法の説明を含むメールが届きます。'
+      send_instructions: |
+        数分以内にパスワードをリセットする方法の説明を含むメールが届きます。
       updated: 'パスワードは正常に変更されました。既にログイン済みです。'
       updated_not_active: 'パスワードは安全に変更されました！'
-      send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。"
-      no_token: "パスワード再発行のメール以外からこのページにアクセスすることはできません。 \nパスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。"
+      send_paranoid_instructions: |
+        メールアドレスが登録済みの場合、パスワード再設定用のメールが数分以内に送信されます。
+      no_token: |
+        パスワード再発行のメール以外からこのページにアクセスすることはできません。 
+        パスワード再発行のメールからアクセスしたのにもかかわらずこのメッセージが表示される場合は、アクセスしたURLが間違っていないか確認してください。
     registrations:
+      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
       signed_up: 'ようこそ！正常に登録完了しました。'
       updated: 'アカウントを正常に更新しました。'
-      destroyed: "さようなら！あなたのアカウントは正常にキャンセルされました。\nまた近々のご利用をお待ちしています。"
     mailer:
       confirmation_instructions:
-        subject: 'メールアドレス確認の説明'
+        #Subject of an email sent to confirm your account
+        subject: メールアドレス確認の説明
       reset_password_instructions:
         subject: 'パスワードの再設定について'
   devise_reset_password_instructions_hello_email: '%{email}さん、こんにちは！'
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     なお、本メールにお心当たりがない場合は、本メールを無視してくださるようお願いいたします。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    誰かがあなたのパスワードを変更するためのリンクを要求しました。以下のリンクからこれを行うことができます。
   devise_reset_password_instructions_your_password_wont_change_until: |
     あなたのパスワードは上記のリンクにアクセスして新しいパスワードを作成するまでは変更されません。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1470,6 +1480,19 @@ ja:
   email: 電子メール
   email_description: メールアドレスは、iNaturalistの他のユーザーには共有されません。
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
+  email_conf_banner_email_delivered_click_link: |
+    確認メールが配信されました。メールに記載されているリンクをクリックしてください。
+  email_conf_banner_add_to_contacts_html: |
+    <strong>連絡先リストに<code>%{email}</code>を追加し、<a href="%{url}">確認メールを要求してください</a>。</strong> メールプロバイダーが確認メールをブロックした場合、あなたが実際に私たちからのメールを望んでいることを納得させられるかもしれません。
+  email_conf_banner_check_your_spam_folder_html: <strong>迷惑メールフォルダを確認してください</strong>
+  email_conf_banner_contact_us_html: まだうまくいきませんか？ %{email} までお問い合わせください。
+  email_conf_banner_please_click: |
+    メールアドレスを確認するには、メール内のリンクをクリックしてください。
+  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code>からのメールを検索</strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    %{date}に確認メールを送信しました。
+    受信していない場合は、以下の手順で確認できます。
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
@@ -1503,9 +1526,6 @@ ja:
     native: この地域で進化または非人為的に到達（例：海流によって流され分布域を広げる）
     endemic: 他には生息しない固有種
     introduced: 人為的な外来種
-  estimate_which_input: |
-    分類群分割はほどんどの場合使用すべきではありません。分類群分割が行われると、どの分類群がどの出力分類群に置き換えられ、以前のIDを自動的に変更する分類群の共通祖先を決定するための計算を行います。
-    これには時間がかかる場合があります。観察記録へのリンクは200のサブセットに切り捨てられます。
   event_in_progress: 進行中のイベント
   event_stats: イベントの統計情報
   event_url: イベントURL
@@ -1594,7 +1614,7 @@ ja:
   find_unsuitable_observations: 不適切な観察記録を検索
   find_your_current_location: 現在地を取得
   finished: 完了
-  finished_with_page: このページで終了しました
+  finished_with_page: ページを見終わりました
   first_confirmed_inat_observation: "%{site_name}で初めて確認された観察記録"
   first_connect_your_provider_account_to_your_site: "まず、%{provider}のアカウントを%{site_name}と接続しましょう。"
   first_inat_observation: "初めての%{site_name}観察記録"
@@ -1855,13 +1875,15 @@ ja:
   improving: 改善
   in_n: "%{n}に"
   in_place_x: '%{place} で'
+  #As in a reason to flag something
+  inappropriate: 不適切
   inaturalist_network: iNaturalistネットワーク
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   #Label for messages you've received
   inbox: 受信箱
   include_places: 場所を含む
   include_projects: プロジェクトを含む
-  include_suggestions_not_seen_nearby: 近くで見られない候補を含める
+  include_suggestions_not_seen_nearby: 近隣で観察されていない候補を含める
   include_taxa: 分類群を含む
   include_users: ユーザーを含む
   including: 次を含む：
@@ -2180,7 +2202,6 @@ ja:
   log_scale_label: ログ
   #Status message shown while logging in
   logging_in: ログインしています...
-  login_slash_username: ログイン / ユーザー名
   logo:
     logo: ロゴ
     white_bg_gif: 白背景色GIF
@@ -2325,6 +2346,14 @@ ja:
     <a href="%{url}">マンスリーサポーター</a>: %{date} から
   months: 月
   more: その他
+  #Button to show more observations
+  more__context_observations_caps: もっと見る
+  #Button to show more places
+  more__context_places: もっと表示
+  #Button to show more text
+  more__context_text: 詳細
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: もっと見る
   more_caps: もっと見る
   more_about_sharing: 共有についての詳細
   more_fields: 追加フィールド
@@ -2643,10 +2672,6 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
-  observer_prefers_no_project_addition: |
-    他の人によって観察記録をプロジェクトへ追加することを許可していません。
-  observer_prefers_addition_to_projects_joined: |
-    観察者が参加しているプロジェクトにのみ、他の人によって観察記録を追加されることを許可しています。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -2673,7 +2698,7 @@ ja:
   ok: "OK"
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
-    observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近くに観察されている生き物を見ましょう...
+    observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近隣で観察されている生き物を見てみましょう...
     observe_panel_body_p1_global: 何を投稿すればいいのかわからない？観察されている生き物を見ましょう...
     observe_panel_body_p2: 外に出て、生き物の個体を観察します。野生のものを選び、鮮明で画面一杯の写真を撮ります。既に野生生物の写真がある場合は、<a href="%{new_observation_path}">今すぐ投稿しましょう</a>。また、モバイルアプリ%{site_name} を使用して観察を記録することもできます。
     observe_panel_body_p3: 同定を公開すると、コミュニティによる更新をこのページにコメントや同定の形で表示します。これからどんな発見をするか楽しみです！
@@ -2717,13 +2742,14 @@ ja:
   only_staff_can_edit_standard_places: 標準階層内の場所を編集できるのはサイトスタッフのみです。
   only_the_owner_of_this_list_can_do_that: リストの作成者でなければできません。いたずらしてはいけません。
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
-  only_view_nearby_suggestions: 近くで見られた候補のみ表示
+  only_view_nearby_suggestions: 近隣で観察された候補のみ表示
   only_you: 自分のみ
   open: 公開
   open_: オープン
   open_description: "分類群の位置情報は、絶滅の恐れがある場合を除き一般公開されます"
   open_street_map: OpenStreetMap
   optional: 任意
+  options: オプション
   or: または
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3234,6 +3260,7 @@ ja:
   places_warning_please_keep_in_mind: |
     以下の説明をご確認ください:
   plants: 植物
+  play_first_sound: 最初の音声を再生する
   please_add_a_citation_for_this_change: この変更の参考文献を記入してください
   please_allow_a_few_weeks_for_external_sites: 外部サイトがこの観察記録の変更を同期するのに数週間かかります。 #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: お父さんやお母さんに使っていいか、聞いてみましょう！
@@ -3614,11 +3641,12 @@ ja:
   select: 選択
   select_all: すべて選択
   select_at_least_one: 少なくとも1つを選択
-  select_one_or_more_photos: '1枚以上の写真を選択'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: すべて選択解除
   select_observations_to_edit: 編集する観察記録を選択...
   select_one_of_friends_albums: '%{friend} のアルバムからいずれかを選択'
   select_one_of_your_albums: アルバムの1つを選択
+  select_one_or_more_photos: '1枚以上の写真を選択'
   select_options: 選択
   select_photos_from_your_photo_stream: |
     外部の写真共有サイトから写真を選択すると、%{site_name} の観察記録に変換されます。写真のメタデータから日付、時刻、場所を補完し、タグから種名を検索します。
@@ -3627,6 +3655,10 @@ ja:
   selected_taxon: 選択された分類群
   select_this_taxon: この分類群を選択
   send: 送信
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: 送信してサインアウト
+  send_confirmation_email: 確認のメールを送信
   send_me_reset_password_instructions: パスワードリセットメールを送信してください
   sending: 送信中...
   #Label for messages you've sent
@@ -3674,6 +3706,8 @@ ja:
   #Journal post formatting option
   simple: 簡易
   single_observation: 単一観察記録
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site} での %{year} 年を振り返る"
   sizes: サイズ
   skip_to_next_page: "次のページへスキップ"
   small: 小
@@ -4273,6 +4307,7 @@ ja:
   upload: アップロード
   upload_a_csv_file: CSVファイルをアップロード
   upload_new_photo: 写真をアップロード
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: アップロードしたユーザー：
   uploader:
     errors:
@@ -4347,6 +4382,21 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
+  users_edit_send_confirmation_prompt_html: |
+    <h3>サインアウトしようとしています</h3>
+    <p>
+    確認メールを送信した後、サインアウトされ、アカウントにログインできなくなります。
+    そのため、<strong class="bg-warning">メールアドレスが正しく入力されていることを必ずご確認ください。</strong>
+    </p>
+    <p>
+    こちらが確認メールをお送りするメールアドレスです。
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>すべてのメールの配信を停止している場合...</h4>
+    <p>
+    当社からの<em>すべての</em>メールの配信を停止されている場合、確認メールを送信することができません。再登録するには、当社からの過去のメールを見つけ、登録解除のリンクをクリックし、メール受信を再開することを選択する必要があります。これができない場合は、このページで入力されたEメールアドレスを使用して次のアドレスまでご連絡ください。お手伝いさせていただきます。
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 
+    </p>
   users_favorites: "%{user}のお気に入り観察記録"
   users_highlights_and_stats_from_year_on_site: "%{user}さんの%{year} における%{site} のハイライトと統計"
   users_id: "%{user}さんのID"
@@ -4376,6 +4426,10 @@ ja:
   view_flags_for_x_html: "%{x}のフラグを表示"
   view_full_observation: 観察記録の全体表示
   view_full_size_photo: フルサイズの写真を表示
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} での %{year} 年を振り返る'
+  view_site_year_in_review_caps: '%{site} での %{year} 年を振り返る'
   view_journal: 日記を表示
   view_leaderboard_from_last_month: 先月の達人ランキングを表示
   view_leaderboard_from_last_year: 昨年の達人ランキングを表示
@@ -4412,6 +4466,8 @@ ja:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>ダッシュボードを表示</a> してさらにアップデートを見る"
   view_your_inbox: 受信箱を表示
   view_your_observations: あなたの観察記録を表示
+  view_your_personal_year_in_review: "個人的な %{year} 年を振り返る"
+  view_your_personal_year_in_review_caps: "個人的な %{year} 年を振り返る"
   view_yours: 自分のを表示
   view_all_of_your_observations_from_x: "%{x}から自分のすべての観察記録を表示"
   video_tutorials: 動画チュートリアル
@@ -4481,7 +4537,10 @@ ja:
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: 撤回
+  #Loading status while an identification is being withdrawn
   withdrawing: 撤回中...
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
@@ -4501,6 +4560,8 @@ ja:
   x_wrote_a_new_post_html: "%{x}が新しい投稿をしました"
   x_wrote_y_new_posts_html: "%{x}が%{y}個の新しい投稿をしました"
   year: 年
+  year_in_review: "%{year} 年を振り返る"
+  year_in_review2: "%{year} 年を振り返る"
   year_month: 年/月
   yellow: 黄
   'yes': "はい"
@@ -4516,6 +4577,11 @@ ja:
   yes_i_want_to_join: はい、参加したい
   yes_license_my_observations_so_scientists_can_use: 観察データを科学研究用に提供することに同意します。（推奨）
   yesterday: 昨日
+  yir_code_contributors_desc_html: |
+    私たちの <a href="%{url}">ソフトウェア</a> は、ほぼすべてオープンソースです。
+    つまり、やり方さえわかれば誰でも貢献できるのです。
+    今年、ボランティアでコードを書いてくださった方々を紹介します。
+    コーダーの皆様、ありがとうございました。
   #"You" is singular
   yir_donate_banner_all_thanks: すべて皆様のおかげです！
   #"You" is singular
@@ -4528,6 +4594,8 @@ ja:
     iNat上での生物多様性データの作成と共有は、かつてないほど大規模かつ高速に行われるようになり、そのコストは増大しています。
   yir_millions_of_people_used_inaturalist: |
     今年、数百万人もの人々がiNaturalistとSeek by iNaturalistを使い自然とつながりました。
+  yir_monthly_supporters_random_selection: |
+    ここでは、毎月寄付をしてくださるiNatのヒーロー的なコミュニティメンバーをランダムにご紹介します。
   you: あなた
   you_appear_offline_try_again: |
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
@@ -4734,13 +4802,15 @@ ja:
         positioning_device: 座標測定機器
       identify:
         review_all_tooltip: "ページ内のすべての観察記録を確認済みにする"
+        you_reviewed_message: "条件に一致する %{total} 件の観察記録の中で、このページに表示された %{pageTotal} 件のうち %{reviewed} 件を確認しました。"
         unreview_all_tooltip: "ページ内のすべての観察記録を未確認にする"
         too_many_results_desc: |
           観察記録が10000件を超える（ページ数×1ページあたりの検索結果数）場合は表示できません。フィルターを適用して検索結果を減らすか、確認済みの観察記録をマークして、ページ番号の代わりに「もっと表示」ボタンを使用してください。
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
-        ancestor_disagreements_desc: "提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることは同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)"
+        ancestor_disagreements_desc2: |
+          提案された分類群に対して、その分類群を含む上位分類群であることは認めるが、その分類群であることには同意しない場合 (例：私はこの属ではあると思うが、その種類であるとは思わない)
         community_taxon_desc_html: |
           <p class="ui">
           コミュニティ分類群（もしくはコミュニティ同定）とは、特定の観察記録において%{site_name}コミュニティが考えている分類群を表しています。もしコミュニティ分類群がどのように決定されるのか関心がある場合は、下記のアルゴリズムを参照してください。一般的には<strong>同定の提案者の 2/3 を超える同意がある分類群</strong>がコミュニティ分類群となります。場合によっては、異なる分類群を複数含む、より上位の分類群がコミュニティ分類群になります（例：あなたがキングヘビだと予想し、私がガラガラヘビだと考えている場合、 iNat ではすべてのヘビ類を含むヘビ亜目をコミュニティ分類群とする）。また、このアルゴリズムは反対派が正しい場合が多いことがわかっているため、反対派をやや優先する傾向にあります。
@@ -4939,9 +5009,23 @@ ja:
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a>または<a href="%{url}">iNaturalist Network</a>を介して作成
       year:
+        compare_desc: |
+          今年は前年と比べてどうでしたか？3年以上の使用実績があれば、年間の活動指標を比較することができます。緑色の棒は今年、白い縦棒は昨年、灰色の背景部分は最低と最高の年、そして全年の平均を表しています。統計には、カウントがゼロの年は含まれていません。
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
+        compared_to_previous_years: 前年との比較
+        growth_title: 成長
+        new_species_desc_html: |
+          今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: 連続観測
+        observation_streaks_color_desc: |
+          色は対数スケールで日数を表しています。
+        observation_streaks_desc2: |
+          連続観測とは、誰かが毎日外に出て、検証可能な新しい観測を記録した、少なくとも5日間の期間のことを言います。ここでは、今年始まった、あるいはこの統計が作成された時点で進行中である最長連続観測を表示しています（個々のユーザーについては、今年終了した連続観測も含めています）。
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
+        sunburst_desc_html: |
+          観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
     taxa:
       show:
         about_names_desc: |
@@ -5273,6 +5357,10 @@ ja:
         header:
           other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
+    models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: お知らせ
     attributes:
       assessment:
         description: 説明
@@ -5286,7 +5374,11 @@ ja:
         geoprivacy: 位置情報プライバシー
         iucn: IUCN相当
       flag:
+        #The reason the item was flagged
         reason: 理由
+        #The person who resolved the flag
+        resolver_id: 解決者
+        #The kind of flag that was made
         flag: フラグ
       guide:
         source_url: ソースURL
@@ -5339,6 +5431,21 @@ ja:
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: サイト名
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: 短いタイトル
+        #Taxon this link is associated with
+        taxon: 分類群
+        #Place this link is associated with
+        place: 場所
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: 子孫分類群を表示
       user:
         locale: 地域
         time_zone: タイムゾーン

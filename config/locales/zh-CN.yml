@@ -277,7 +277,6 @@ zh-CN:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 现在添加一个
-  add_photos: 添加照片
   add_place: 添加地点
   add_alive_or_dead_alive_annotation: '添加注释 "活体或死亡:活体"'
   add_alive_or_dead_cannot_be_determined_annotation: '添加注释 "活体或死亡: 不确定"'
@@ -928,8 +927,6 @@ zh-CN:
   #connecting to Flickr
   connect: 绑定
   connect_to_provider: "连接至 %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 已连接账户
   connected_accounts_titlecase: 已关联的账号
   connecting_flickr: "正在连接至Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: 再次连接到Flickr以授权写入权限
@@ -1084,7 +1081,6 @@ zh-CN:
   created_by: 创建由
   created_by_user_on_date: 由%{user}于%{date}创建
   created_on: 创建于
-  creating_your_account: "创建您的账户……"
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
   creative_commons_unless_otherwise_noted: "知识共享，除非另有声明。"
   critically_endangered: 极度濒危
@@ -1292,25 +1288,29 @@ zh-CN:
       signed_in: '登录成功。'
       signed_out: '已成功登出。'
     passwords:
-      send_instructions: '您将很快收到一封关于如何重设密码的电子邮件说明。'
+      send_instructions: |
+        您将很快收到一封关于如何重设密码的电子邮件说明。
       updated: '您已成功修改密码，现在您已成功登录。'
       updated_not_active: '您已成功修改密码。'
-      send_paranoid_instructions: "如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。"
-      no_token: "您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。"
+      send_paranoid_instructions: |
+        如果您的电子邮件地址存在于我们的数据库中，您将在几分钟内收到一封包含密码恢复链接的电子邮件地址。
+      no_token: |
+        您必须通过密码重置邮件才能访问此页面。如果确实是通过密码重置邮件访问，请确保您使用的是邮件中提供的完整URL。
     registrations:
+      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
-      destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
     mailer:
       confirmation_instructions:
-        subject: '确认说明'
+        #Subject of an email sent to confirm your account
+        subject: 确认说明
       reset_password_instructions:
         subject: '重设密码的说明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您没有提出这个请求，请忽略这个电子邮件。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    有人要求更改您的密码，您可以通过以下链接完成操作。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您访问上面的链接并创建一个新链接之前，您的密码不会更改。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -2176,7 +2176,6 @@ zh-CN:
   log_scale_label: 日志
   #Status message shown while logging in
   logging_in: 登陆中……
-  login_slash_username: 登录 / 用户名
   logo:
     logo: 标志
     white_bg_gif: 白色BG GIF
@@ -2698,10 +2697,6 @@ zh-CN:
   observed_on: 观察于
   observer: 观察者
   observers: 观察者
-  observer_prefers_no_project_addition: |
-    观察者不允许其他人把其观察记录添加到项目中。
-  observer_prefers_addition_to_projects_joined: |
-    观察者只允许别人将他们的观察添加到他们已经加入的项目中。
   observer_short: 观察者
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
@@ -3786,11 +3781,12 @@ zh-CN:
   select: 选择
   select_all: 全选
   select_at_least_one: 选择至少一个
-  select_one_or_more_photos: '请选择一个或多个照片'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 均不选择
   select_observations_to_edit: 选择观察编辑...
   select_one_of_friends_albums: 选择%{friend}的专辑之一
   select_one_of_your_albums: 选择您的专辑之一
+  select_one_or_more_photos: '请选择一个或多个照片'
   select_options: 选择选项
   select_photos_from_your_photo_stream: |
     从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。
@@ -4356,6 +4352,7 @@ zh-CN:
   upload_new_photo: 上传新照片
   upload_photo: 上传照片
   upload_range: 上传范围
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 上传者
   uploader:
     errors:
@@ -4382,6 +4379,7 @@ zh-CN:
     使用<span class='ac-placeholder'>"%{name}"</span>作为一个占位符
   use_this_form_to_create_a_new: |
     使用此表单以创建一个新的草稿分类学更改，它正在描述一次在稍后委托某人在活跃的分类中进行拆分、合并或交换的提议。
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     如果需要在URL中以特定方式分隔属和种，请使用此选项。如果分类单元不是属和种，那么[GENUS]和[SPECIES]之间的内容将被分类单元名称替换，因此请谨慎使用。
   use_unique_file_names_for_separate_uploads: 为各自上传使用唯一的文件名
@@ -4401,7 +4399,7 @@ zh-CN:
   user_added_a_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
   user_added_a_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
   user_added_an_identification_html: "%{user}添加了一个鉴定"
-  user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
+  user_added_an_observation_field_html: '%{user}为%{owner}的观察的“%{field_name}”域添加了一个值'
   user_added_an_observation_field_value_html: "%{user}添加了一个观察字段值"
   user_added_an_observation_html: "%{user}添加了一个观察"
   user_added_an_x: "%{user} 添加了一个 %{x}"
@@ -4596,7 +4594,10 @@ zh-CN:
   wikipedia_attribution_cc_by_sa_3_html: |
     此文章使用源自维基百科条目<a href="%{url}">"%{title}"</a>中的内容，该基于<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">创用 CC 姓名标示协议-相同方式分享 3.0 未本地化</a>授权条款所释出。该内容可能已从原始内容中去除，但还未有更改或扩充的內容。
   with: 带
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: 放弃
+  #Loading status while an identification is being withdrawn
   withdrawing: 正在放弃...
   with_errors: 带错误
   worldwide: 世界各地
@@ -5097,7 +5098,6 @@ zh-CN:
       show:
         allow_curator_coordinate_access_desc_html: |
           允许项目馆长查看此观察的私人坐标。
-        ancestor_disagreements_desc: "在分类单元的祖先中确定的分类群的编号，它在使用该分类单元进行第一次识别后创建的"
         community_taxon_desc_html: |
           <p class="ui">
           社区分类单元（或社区标识）表示%{site_name}社区认为在观察中描述的分类单元。如果您对我们如何选择社区分类感兴趣，请参阅下面算法的注释，但一般情况下，我们会尝试<strong>选择超过2/3标识符的分类</strong>。有时这意味着选择一个包含许多不同意类群的更高级别的分类单元（例如，你认为它是一个kingsnake，我认为它是响尾蛇，所以iNat选择能够包含所有蛇的亚目Serpentes）。该算法也略微支持异议，因为我们发现反对者通常是正确的。
@@ -6015,7 +6015,9 @@ zh-CN:
         geoprivacy: 位置隐私
         iucn: IUCN等价物
       flag:
+        #The reason the item was flagged
         reason: 原因
+        #The kind of flag that was made
         flag: 标记
       guide:
         source_url: 来源URL

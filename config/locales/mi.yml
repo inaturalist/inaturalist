@@ -46,6 +46,7 @@ mi:
   #should work here
   about_place: "Mō te %{place}"
   about_places: Mō ngā wāhi
+  about_the_network: Mo te tūhononga
   about_this_map: Mō te mahere tēnei
   about_this_project: Mō te kohinga tēnei
   about_trusting_projects_options_any: Āu mauhanga katoa i roto i kohinga tēnei
@@ -77,7 +78,6 @@ mi:
   add_id: Tāpiri tautuhi
   add_new_place: Tāpiri tētahi wāhi hōu
   add_observations: Tāpiri ngā mauhanga
-  add_photos: Tāpiri ngā whakaahua
   add_place: Tāpiri wāhi
   add_tag: Tāpiri te tūtohu
   add_tags: Tāpiri ngā tūtohu
@@ -145,6 +145,7 @@ mi:
       other: "%{count} pepeke"
   all_taxa_: Ngā rōpū katoa
   all_updates: Ngā whakahou katoa
+  allowed_values: Uara tika
   already_have_an_account_log_in_html: Kua hangaia tō pūkete anō? <strong>Takiuru mai.</strong>
   amphibians: ika oneone
   and: me
@@ -249,6 +250,8 @@ mi:
   confirm: Whakaū
   confirm_new_password: Whakaū i te kupuhipa hōu
   confirm_now: Whakaū ināianei
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: I whakamanahia i %{date}
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hono
@@ -267,8 +270,13 @@ mi:
     any_alive_or_dead: Katoa
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Katoa
+    sex: Taihema taketake
     male: Tourawhi
     female: Uwha
+    adult: Pakeke
+    pupa: Tūngoungou
+    larva: Pūhouhou
+    alive_or_dead: Ora, mate rānei
     alive: Ora
     dead: Mate
     #As in the feather on a bird
@@ -314,6 +322,7 @@ mi:
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
   curators: Kairauhī
   dashboard: Paemana
+  date_added: Rā tapiritia
   date_created: Rā waihanga
   date_format:
     date_long:
@@ -363,6 +372,12 @@ mi:
   desc: Heke
   descending: Whakaheke
   details: Taipitopito
+  devise:
+    mailer:
+      confirmation_instructions:
+        #Subject of an email sent to confirm your account
+        subject: Whakamanahia tāku wāhitau īmēra
+  devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   disagree_: Whakahē
   #Label for a button to disconnect your iNat account from another account,
@@ -379,6 +394,7 @@ mi:
   donate_again_caps: TAKOHATIA ANŌ
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
+  download_caps: TIKIAKE
   draft: hukihuki
   draft_: Hukihuki
   draft_saved: Kua tiakina te hukihuki!
@@ -623,12 +639,15 @@ mi:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    time_hours: "h:mm a"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Marama
   months: Marama
   more: Anō
+  more_caps: ANŌ
   more_info: Mōhiohio anō
   more_info_title: Mōhiohio anō
   more_observations: Tonuhia ngā mauhanga
@@ -681,6 +700,8 @@ mi:
   observation_brief_taxon_from_place_by_user: "%{taxon} ki %{place} nā %{user}"
   observation_date: Rā
   observation_date?: Rā?
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Rōpū
   observation_field_type_time: Wā
   observation_field_type_datetime: Rā/Wā
   observation_field_type_taxon: Rōpū
@@ -891,6 +912,7 @@ mi:
     zambia: Tāmipia
     zimbabwe: Timuwawe
   plants: tipu
+  play_first_sound: Pureingia te oro tuatahi
   #Title to a section warning a user to exercise caution
   please_be_careful!: Kia tūpato!
   press: Arapāho
@@ -1026,6 +1048,10 @@ mi:
   remember_me: Maumahara ki ahau
   reptiles: ngārara
   research_grade: Kua pūruatia
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Tukuna anō me takiputa
+  resend_confirmation_email: Tukuna anō te īmera whakamana
   restore: Whakaoratia
   reviewed: I arotaketia
   satellite: amiorangi
@@ -1047,8 +1073,13 @@ mi:
   second_person_possessive_singular: "Tō %{noun}"
   select: Tīpako
   select_all: Tīpakohia te katoa
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Tīpako kore
   send: tuku
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Tukuna me takiputa
+  send_confirmation_email: Tukuna te īmera whakamana
   sending: E tuku ana...
   show_more: Hurahia tonuhia
   sign_in: Takiuru
@@ -1176,8 +1207,11 @@ mi:
   users_lists: "Tūtira ō %{user}"
   users_profile: "Kīwhaiaro tō %{user}"
   users_projects: "Kohinga ā %{user}"
+  value: Uara
+  values: Uara
   view: Tirohia
   view_all: Tirohia katoa
+  view_all_caps: TIROHIA KATOA
   view_all_flags: Tirohia ngā kara katoa
   view_all_members: Tirohia ngā huānga katoa
   view_all_observations: Tirohia ngā mauhanga katoa
@@ -1213,7 +1247,10 @@ mi:
   whats_this?: He aha tēnei?
   when_did_you_see_it?: Inahea?
   white: mā
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Maunuhia
+  #Loading status while an identification is being withdrawn
   withdrawing: E maunu ana...
   x_blog: "Rangitaki tō a %{x}"
   x_journal: "Rangitaki tō a %{user}"
@@ -1229,6 +1266,7 @@ mi:
   yesterday: Inanahi
   you: koe
   you_: Koe
+  you_have_not_confirmed_your_email_address: Kāore koe i whakamanahia tāku wāhitau īmēra!
   your_email_address: Tōu īmēra
   your_identification: Tāu tautuhi
   your_observations: Āu mauhanga
@@ -1258,12 +1296,18 @@ mi:
       dropdowns:
         sort: Kōmaka
         name: Ingoa
+        date_added_newest: Rā tapiritia, hou ki te tawhito
+        date_added_oldest: Rā tapitiria, tawhito ki te hou
     messages:
       from: Mai i
       to: Ki
     observations:
       compare:
         about_missing_taxa: Mō rōpū ngaro
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Huapae
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Poutū
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
         user_login: Ingoa rorohiko o te kaimātaki
@@ -1280,8 +1324,11 @@ mi:
     stats:
       year:
         new_species_per_year: Momo hōu/Tau
+        new_species_per_year_by_date_added: Nā rā tapiritia
         observations_per_year: Mauhanga/Tau
+        observations_per_year_by_date_added: Nā rā tapiritia
         species_per_year: Momo/Tau
+        species_per_year_by_date_added: Nā rā tapiritia
         translators_title: Kaiwhakareo
     taxa:
       show:
@@ -1289,6 +1336,10 @@ mi:
           research: Kua pūruatia
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
+          "Plant Phenology=No Evidence of Flowering": E kore ngā putiputi
+          "Life Stage=Adult": Pakeke
+          "Life Stage=Larva": Pūhouhou
+          "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha
           "Sex=Male": Tourawhi
     users:
@@ -1437,10 +1488,13 @@ mi:
       conservation_status:
         place_id: Wāhi
       flag:
+        #The kind of flag that was made
         flag: Kara
       observation:
         description: Kupu tīpoka
         observed_on: rā mātakitia
+      observation_field_value:
+        value: 'Uara'
       observations_export_flow_task:
         #Date/time the task finished processing
         finished_at: Ka mutu
@@ -1459,6 +1513,11 @@ mi:
         name: Ingoa
       taxon_name:
         name: Ingoa
+      taxon_link:
+        #Taxon this link is associated with
+        taxon: Rōpū
+        #Place this link is associated with
+        place: Wāhi
       user:
         email: Īmēra
         login: Ingoa rorohiko

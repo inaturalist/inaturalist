@@ -91,7 +91,11 @@ class ObservationsGrid extends React.Component {
               } );
             }}
           >
-            { I18n.t( "more_caps", { defaultValue: I18n.t( "more" ) } ) }
+            { I18n.t( "more__context_observations_caps", {
+              defaultValue: I18n.t( "more_caps", {
+                defaultValue: I18n.t( "more" )
+              } )
+            } ) }
           </button>
         ) }
       </div>

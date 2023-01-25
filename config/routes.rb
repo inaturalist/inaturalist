@@ -130,6 +130,7 @@ Rails.application.routes.draw do
   get "/" => "welcome#index"
   get "/home" => "users#dashboard", :as => :home
   get "/home.:format" => "users#dashboard", :as => :formatted_home
+  get "/home" => "users#dashboard", as: :user_root
 
   get "/users/edit" => "users#edit", :as => "generic_edit_user"
   begin
@@ -192,6 +193,7 @@ Rails.application.routes.draw do
       get :recent
       get :delete
       post :parental_consent
+      post :resend_confirmation
     end
     member do
       put :join_test
@@ -605,10 +607,8 @@ Rails.application.routes.draw do
       get :cnc2016
       get :cnc2017
       get :cnc2017_stats
-      # rubocop:disable Naming/VariableNumber
       get :canada_150
       get :parks_canada_2017
-      # rubocop:enable Naming/VariableNumber
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -724,6 +724,8 @@ Rails.application.routes.draw do
       get :locales
     end
   end
+
+  resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 

@@ -86,9 +86,8 @@ const InteractionsTab = ( { interactions } ) => {
           <p>
             Most organisms interact with other organisms in some way or
             another, and how they do so usually defines how they fit into an
-            ecosystem. These intereactions come to us
-            from
-            <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
+            ecosystem. These interactions come to us
+            from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
             a database and webservice that combines
             interaction data from numerous sources, including iNaturalist.
             You can actually contribute to this database by adding the

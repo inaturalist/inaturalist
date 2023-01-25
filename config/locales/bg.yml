@@ -188,6 +188,12 @@ bg:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точност (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точност над
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точност под
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точност под или неопределена
   account: Акаунт
   account_creation: Създаване на акаунт
   account_settings: Настройки на акаунта
@@ -268,12 +274,14 @@ bg:
   add_obs_from_a_list: Добавете наблюдения от списък
   add_observations: Добавяне на наблюдения
   add_observations_project: Добави наблюдения към проекта
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Добави</span> <span>наблюдения</span>"
   #Prompt to add a new journal post
   add_one: Добави!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Добавете такава
-  add_photos: Добавяне на снимки
   add_place: Добави място
   add_alive_or_dead_alive_annotation: 'Добави анотация „Жив или мъртъв: Жив“'
   add_alive_or_dead_cannot_be_determined_annotation: 'Добави анотация „Жив или мъртъв: Неопределим“'
@@ -550,6 +558,10 @@ bg:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Атрибут
   attribution: Признание
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, качено от %{user}"
   authority_list:
     iucn_red_list: Червен списък на IUCN
     natureserve: NatureServe
@@ -658,6 +670,8 @@ bg:
   change_group: Група от промени
   change_icon: Промени иконата
   change_password: Промени паролата
+  #Message shown after you change your email address
+  change_to_email_requested_html: Поискана е промяна към <strong>%{email}</strong>. Проверете пощата си на този адрес за да потвърдите промяната.
   change_types:
     change_types: Типове промени
     split: Разделяне
@@ -720,6 +734,8 @@ bg:
   clear_filters: Изчисти филтрите
   close: Затваряне
   code: Код
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Сътрудници програмисти
   colors: Цветове
   columns: Колони
   combine: Обедини
@@ -773,14 +789,16 @@ bg:
   confirm_new_password: Потвърдете новата парола
   confirm_now: Потвърди сега
   confirm_your_info: Потвърдете данните си
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Потвърдително писмо изпратено на %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Потвърден на %{date}
   confirming_ids: Потвърждаващи разпознавания
   confirming_ids_description: Ако изключите това, повече няма да получавате известия за разпознавания потвърждаващи Вашето.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Свържи
   connect_to_provider: "Свържи с %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Свързани акаунти
   connected_accounts_description: Свързаните акаунти са Ваши акаунти от други приложения или сайтове, на които сте разрешили достъп до iNaturalist от Ваше име за да могат да извършват функции като влизане, импортиране на снимки и др.
   connected_accounts_titlecase: Свързани акаунти
   connecting_flickr: "Свързване с Flickr..."
@@ -921,7 +939,6 @@ bg:
   created_by: Създадено от
   created_by_user_on_date: Създадено от %{user} на %{date}
   created_on: Създадено на
-  creating_your_account: "Създаване на акаунт..."
   critically_endangered: Критично застрашен
   csv: CSV
   csv_file: CSV файл
@@ -1063,36 +1080,63 @@ bg:
   details: Подробно
   deviation: Отклонение
   devise:
+    confirmations:
+      confirmed: |
+        Вашият имейл адрес беше потвърден успешно. Сега можете да влезете тук, на уебсайта, или чрез мобилните приложения iNaturalist или Seek.
+      send_instructions: "Ще получите имейл с инструкции за потвърждение на имейл адреса си до няколко минути."
     failure:
       already_authenticated: 'Вече сте влезли.'
       unauthenticated: 'Трябва да влезете или да се регистрирате, преди да продължите.'
       invalid: 'Невалиден имейл или парола.'
       invalid_token: 'Не валиден код за удостоверение.'
+      unconfirmed: |
+        Моля, проверете имейла си и щракнете на препратката в полученото писмото за да потвърдите акаунта си.
       user:
         suspended: Вашият акаунт е запориран
     sessions:
       signed_in: 'Влязохте успешно.'
       signed_out: 'Излязохте успешно.'
     passwords:
-      send_instructions: 'До няколко минути ще получите имейл с инструкции как да възстановите паролата си.'
+      send_instructions: |
+        До няколко минути ще получите имейл с инструкции как да възстановите паролата си.
       updated: 'Вашата парола беше променена успешно. Вече сте влезли.'
       updated_not_active: 'Вашата парола беше променена успешно.'
-      send_paranoid_instructions: "Ако Вашият имейл адрес фигурира в нашата база данни – до няколко минути, на него ще получите препратка за възстановяване на паролата."
-      no_token: "Тази страница е достъпна само когато идвате от имейл за възстановяване на паролата. Ако действително идвате от такъв имейл – уверете се, че сте използвали пълния уебадрес, който сте получили."
+      send_paranoid_instructions: |
+        Ако Вашият имейл адрес фигурира в нашата база данни – до няколко минути, на него ще получите препратка за възстановяване на паролата.
+      no_token: |
+        Тази страница е достъпна само когато идвате от имейл за възстановяване на паролата. Ако действително идвате от такъв имейл – уверете се, че сте използвали пълния уебадрес, който сте получили.
     registrations:
-      signed_up: 'Добре дошли! Регистрацията е успешна.'
-      updated: 'Успешно обновихте акаунта си.'
       destroyed: 'Довиждане! Акаунтът Ви беше успешно заличен. Надяваме се да Ви видим пак скоро.'
+      signed_up: 'Добре дошли! Регистрацията е успешна.'
+      signed_up_but_inactive: "Регистрирахте се успешно. Въпреки това, не можахте да влезете, тъй като акаунтът ви все още не е активиран."
+      signed_up_but_locked: "Регистрирахте се успешно. Въпреки това, не можахте да влезете, тъй като акаунтът ви е заключен."
+      signed_up_but_unconfirmed: "Писмо с препратка за потвърждение беше изпратена на Вашия имейл адрес. Моля щракнете на препратката за да активирате акаунта си."
+      updated: 'Успешно обновихте акаунта си.'
     mailer:
       confirmation_instructions:
-        subject: 'Инструкции за потвърждение'
+        #Subject of an email sent to confirm your account
+        subject: Инструкции за потвърждение
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Поискана промяна на имейл
       reset_password_instructions:
         subject: 'Инструкции за възстановяване на паролата'
+  devise_confirmation_instructions_if_you_did_not: |
+    Ако не сте опитвали да създадете акаунт на %{site_name}, моля игнорирайте този имейл.
+  devise_confirmation_instructions_please_click: |
+    Моля, щракнете препратката по-долу за да потвърдите имейл адреса си:
+  devise_confirmation_instructions_resend_instructions: |
+    Трябва да имате работещ имейл адрес за да използвате iNaturalist. Когато сте създали акаунт, трябва да сте получили писмо за потвърждение с препратка, която да щракнете, за да потвърдите, че имате работещ имейл. Ако не сте получили такова, можете да изпратите ново потвърдително писмо от тук.
+  devise_confirmation_instructions_send_confirmation_email: Изпращане на писмо за потвърждение
+  devise_email_changed_you_requested: Пожелахте промяна от %{old_email} на %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Ще получите имейл на новия адрес за да потвърдите промяната, но искаме да Ви уведомим на стария адрес в случай, че някой друг има достъп до акаунта Ви и се опитва да го промени без Вашето знание. Ако не сте променили имейл адреса си съзнателно, моля веднага препратете това писмо до help@inaturalist.org за да проучим какво става.
   devise_reset_password_instructions_hello_email: Привет, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Някой е поискал препратка за промяна на паролата Ви. Можете да я промените чрез препратката по-долу.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ако не сте го поискали Вие – моля, игнорирайте този имейл.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Някой е поискал препратка за промяна на паролата Ви. Можете да я промените чрез препратката по-долу.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Паролата Ви няма да бъде променена, докато не отворите горната препратка и не създадете нова парола.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1187,6 +1231,20 @@ bg:
   eligible_for_research_grade: Годно за „Изследователско качество“
   email: Електронна поща
   email_description: Вашият имейл не се споделя с други потребители на iNaturalist
+  email_conf_banner_email_delivered_click_link: |
+    Потвърдителният имейл е изпратен. Моля щракнете препратката в имейла.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Добавете<code>%{email}</code> във Вашия списък с контакти и <a href="%{url}">поискайте нов потвърдителен имейл</a>.</strong> Ако имейл сървърът Ви е блокирал потвърдителното писмо, това може да ги убеди, че наистина искате това писмо от нас.
+  email_conf_banner_check_your_spam_folder_html: <strong>Проверете папката си за спам</strong>
+  email_conf_banner_contact_us_html: Все още не работи? Изпратете ни имейл на %{email} за да Ви помогнем.
+  email_conf_banner_please_click: |
+    Моля, щракнете върху препратката във Вашия имейл, за да потвърдите адреса на имейла.
+  email_conf_banner_search_for_emails_html: <strong>Потърсете за писма от <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Изпратихме Ви потвърдителен имейл на %{date}. Ако не сте го получили, ето няколко неща които можете да направите:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Моля, потвърдете имейл адреса си%{link_end_tag}</strong>. Всички потребители трябва да потвърдят адреса си до %{date}. След това, тези които не са потвърдили адреса си няма да могат да влязат, освен ако не нулират паролата си. За да потвърдите Вашия имейл адрес отидете във вашите %{link_start_tag}настройки на акаунта%{link_end_tag}.
   email_copyright: "Авторско право &copy; %{x}, всички права запазени"
   email_notifications: Известия по имейл
   embed_place_widget: Вмъкни приставка за място
@@ -1215,6 +1273,9 @@ bg:
     Начинът на заселване описва как видът се е установил на даденото място. Вижте DarwinCore за повече <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">информация относно терминологията</a>.
   establishment_means_descriptions:
     introduced: пренесен в региона чрез човешка дейност (умишлено, търговия и т.н.)
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Пресметни кои разпознавания на входния таксон ще бъдат заменени от разпознавания на изходния таксон и кои ще преминат към общ надтаксон, щом разделянето се приложи. Изчисляването може да отнеме известно време. Препратките към наблюдения са съкратени до подмножества от 200.
   event_in_progress: Активно събитие
   everyone: всички
   everyone_: Всички
@@ -1256,6 +1317,8 @@ bg:
   favorites: "Любими"
   featured: Препоръчани
   feedback: Обратна връзка
+  #Button to show fewer places
+  fewer__context_places: По-малко
   field_note: |
     <strong>Забележка:</strong> Ако искате да създадете поле, проверете дали някой друг не го е създал вече за да се избегне дублирането.
   fields: полета
@@ -1500,6 +1563,8 @@ bg:
   importing: "Импортиране..."
   in_n: "във %{n}"
   in_place_x: във %{place}
+  #As in a reason to flag something
+  inappropriate: Неуместно
   inaturalist_network: Мрежа на iNaturalist
   inaturalist_network_affiliation: Членство в Мрежата на iNaturalist
   #Label for messages you've received
@@ -1690,6 +1755,8 @@ bg:
     ukrainian: украински
     waray_waray: варайски
   less: По-малко
+  #Button show less text
+  less__context_text: По-малко
   licensed_site_photos: "Лицензирани снимки от %{site_name}"
   license: Лиценз
   licensing: Лицензиране
@@ -1805,7 +1872,6 @@ bg:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Излизане от %{site_name}?"
   log_scale_label: Лог.
-  login_slash_username: Вход / потребителско име
   logo:
     logo: Лого
     white_bg_gif: GIF с бял фон
@@ -1945,6 +2011,14 @@ bg:
     <a href="%{url}">Ежемесечен поддръжник</a> от %{date}
   months: Месеци
   more: Още
+  #Button to show more observations
+  more__context_observations_caps: ОЩЕ
+  #Button to show more places
+  more__context_places: Още
+  #Button to show more text
+  more__context_text: Още
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ОЩЕ
   more_caps: ОЩЕ
   more_fields: Още полета
   more_filters: Още филтри
@@ -2112,6 +2186,8 @@ bg:
   not_confident: Не сме достатъчно уверени за да препоръчаме нещо.
   not_evaluated: неоценен
   not_finding_place_you_want?: Не намирате нужното място?
+  #Filter for observations not in a particular place
+  not_in_place: Не е в място
   not_linked_facebook: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Фейсбук"
   not_linked_flickr: "Вашият акаунт на %{site_name} не е свързан с акаунта Ви на Flickr"
   not_resolved: Няма решение
@@ -2190,6 +2266,14 @@ bg:
   observation_curation: Куриране на наблюдения
   observation_date: Дата
   observation_date?: Дата?
+  #Basic observation export fields
+  observation_export_column_type_basic: Основно
+  #Geographic observation export fields
+  observation_export_column_type_geo: Гео
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Таксон
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Таксон, допълн.
   observation_field: Поле за наблюдения
   observation_field_details: Подробно за това поле за наблюдения
   observation_field_type_text: Текст
@@ -2243,7 +2327,7 @@ bg:
   observations_this_year_vs_last_year: Наблюдения от тази година в сравнение с миналата
   observations_total: Общо наблюдения
   observations_w: Наблюдения със
-  observations_w_field: наблюдения с поле
+  observations_w_field: Наблюдения с полето
   observations_was_successfully_updated: Наблюденията бяха обновени.
   observations_widget: Widget за наблюдения
   observations_with_this_field: Наблюдения с това поле
@@ -2255,10 +2339,6 @@ bg:
   observed_on: Наблюдавано на
   observer: Наблюдател
   observers: Наблюдатели
-  observer_prefers_no_project_addition: |
-    Наблюдателят не позволява други хора да добавят наблюденията му към проекти.
-  observer_prefers_addition_to_projects_joined: |
-    Наблюдателят позволява наблюденията му да се добавят от други хора единствено към проекти, в които членува.
   observer_short: Налюдател
   occurrence_status_establishment_means: срещаемост, начин на заселване
   of_places: места
@@ -2318,6 +2398,7 @@ bg:
   open_: Открито
   open_description: "Всеки може да види координатите освен когато таксонът е застрашен."
   optional: незадължително
+  options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -2848,6 +2929,7 @@ bg:
   places_warning_the_future: |
     Така или иначе, ще трябва да ограничим създаването на места в бъдеще, имайки предвид скоростта на разрастване на iNat.
   plants: растения
+  play_first_sound: Възпроизведи първия звук
   please_confirm_your_inat_username: "Моля потвърдете Вашето потребителско име на %{site_name}"
   please_fix_your_csv_and_try_again: Моля поправете Вашия CSV и опитайте отново.
   please_hold_on_while_the_file: Моля изчакайте докато файлът се генерира. Може да отнеме няколко минути ако имате много наблюдения.
@@ -2932,6 +3014,14 @@ bg:
   projects_user_admins: Проекти, които %{user} администрира
   projects_you_admin: Проекти които администрирате
   protozoans: първаци
+  provider_without_email_error_apple: |
+    Apple не предостави имейл адрес за този акаунт, а това е необходимо. Моля, създайте акаунт на този сайт вместо да влизате през Apple.
+  provider_without_email_error_flickr: |
+    Flickr не предостави имейл адрес за този акаунт, а това е необходимо. Моля, създайте акаунт на този сайт вместо да влизате през Flickr.
+  provider_without_email_error_generic: |
+    Тази услуга не предостави имейл адрес за този акаунт, а това е необходимо. Моля, създайте акаунт на този сайт вместо да влизате чрез външни услуги.
+  provider_without_email_error_google_oauth2: |
+    Гугъл не предостави имейл адрес за този акаунт, а това е необходимо. Моля, създайте акаунт на този сайт вместо да влизате през Гугъл.
   public_domain: Обществено достояние
   publish: Публикувай
   purple: лилаво
@@ -3122,6 +3212,10 @@ bg:
   research_grade_short_html: "И<span class='full'>зследователско </span>К<span class='full'>ачество</span>"
   research_grade_observations_have: 'Наблюденията от "Изследователско качество" имат дата, снимка, координати и ID потвърдено от общността. Щракнете за да видите оценката на качеството на данните.'
   research_grade_qualification: Годност за Изследователско качество
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Изпрати наново и излез
+  resend_confirmation_email: Изпрати ново писмо за потвърждение
   reset_filters_short: Нулирай
   reset_brightness: Възстанови яркостта
   reset_search_filters: Нулирай филтрите за търсене
@@ -3219,16 +3313,21 @@ bg:
   select: Избери
   select_all: Избери всички
   select_at_least_one: Изберете поне едно
-  select_one_or_more_photos: 'Изберете една или повече снимки'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Празен избор
   select_observations_to_edit: Изберете наблюдения за редактиране...
   select_one_of_your_albums: Изберете някой от албумите си
+  select_one_or_more_photos: 'Изберете една или повече снимки'
   select_options: Избери опция
   select_photos_from_your_photo_stream: |
     Изберете снимки от външни сайтове за споделяне на снимки, за да ги направите наблюдения в %{site_name}. Ще попълним дата, час и място от метаданните на снимката и ще опитаме да открием вида сред етикетите (таговете) на снимката.
   selected: избрано
   selected_photos: Избрани снимки
   send: Изпрати
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Изпрати и излез
+  send_confirmation_email: Изпращане на писмо за потвърждение
   send_me_reset_password_instructions: Изпрати ми инструкции за възстановяване на паролата
   sending: Изпращане...
   #Label for messages you've sent
@@ -3770,6 +3869,7 @@ bg:
     Качете CSV файл с данни за наблюдения. Ако данните Ви са в електронна таблица или база данни, това вероятно е най-добрия начин.
   upload_new_photo: Качи нова снимка
   upload_photo: Качи снимка
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Качено от
   uploader:
     errors:
@@ -3849,6 +3949,30 @@ bg:
   username_or_user_id: Потребителско име или идентификатор
   users: Потребители
   users_contributions_to_project_html: Приноси на <a href="%{url}">%{login}</a> към %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    След като изпратите ново потвърдително писмо, ще излезете от системата и няма да можете да влезете докато не щракнете препратката в писмото. Затова се <strong>уверете със сигурност, че сте въвели имейл адреса си правилно.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Моля, уверете се, че Вашият имейл адрес е правилен. Ще изпратим писмото за потвърждение на следния адрес:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Ако не получите писмото, ето няколко съвета:
+    </p>
+    <ul>
+    <li><p>Проверете папката за спам</p></li>
+    <li><p>Проверете дали сте създали филтри, които биха могли да премахнат писмото от пощенската Ви кутия</p></li>
+    </ul>
+    <p>
+    Ако все още не откривате писмото за потвърждение, моля, свържете се с нас на<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Всеки момент ще излезете от системата</h3>
+    <p>След като писмото за потвърждение се изпрати, ще излезете и няма да можете да влезете в акаунта си, докато не щракнете препратката в писмото, така че <strong class="bg-warning">уверете се със сигурност, че сте въвели правилния имейл адрес.</strong></p>
+    <p>Ето адреса на който ще изпратим писмото за потвърждение:</p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Ако сте се отписали от всички писма...</h4>
+    <p>Ако сте се отписали от <em>всички</em> писма от нас, не можем да Ви изпратим писмо за потвърждение. За да се запишете отново, трябва да намерите предишно писмо от нас, да щракнете на препратката за отписване и да включите обратно получаването на писма. Ако не можете да направите това, моля изпратете имейл на <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> използвайки адреса, който сте въвели тук, за да можем да ви помогнем.</p>
   users_id: "ID на %{user}"
   users_profile: "Профила на %{user}"
   #@vow_or_con should work with %{site}
@@ -3982,7 +4106,12 @@ bg:
   widget_for: Приставка за
   wikipedia_attribution_cc_by_sa_3: |
     Източник: Уикипедия, „%{title}“, %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: Не е в таксон
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Оттегли
+  #Loading status while an identification is being withdrawn
   withdrawing: Оттегляне...
   with_errors: С грешки
   worldwide: Цял свят
@@ -4026,6 +4155,8 @@ bg:
   yes_license_my_childs_observations: Да, лицензирай снимките, звуците и наблюденията на детето ми, така че учените да могат да използват данните (препоръчително).
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците и наблюденията ми, така че учените да могат да използват данните ми (препоръчително).
   yesterday: Вчера
+  yir_code_contributors_desc_html: |
+    Нашият <a href="%{url}">софтуер</a> е почти изцяло с отворен код, което означава, че всеки може да допринесе, ако знае как. Ето хората, които са допринесли с код тази година. Благодарим Ви, програмисти!
   yir_donate_banner_inaturalist_in_year: "INATURALIST ПРЕЗ %{year}:"
   yir_donate_banner_reaching_millions: Достигаме милиони. Разкриваме биоразнообразието. Глобално сътрудничество.
   #"You" is singular
@@ -4040,6 +4171,8 @@ bg:
     Генерирането и споделянето на ценните данни за биоразнообразието, с тези несравними мащаби и скорост, е свързано с растящи разходи
   yir_millions_of_people_used_inaturalist: |
     Тази година милиони хора използваха iNaturalist, както и Seek от iNaturalist, за да се сближат с природата
+  yir_monthly_supporters_random_selection: |
+    Ето случайна извадка от героичните членове на общността на iNat, които даряват ежемесечно.
   yir_thank_your_for_being_generous: |
     Благодарим Ви, че отделяте от своето време, внимание, знания и средства! iNaturalist е некомерсиална съвместна инициатива на Калифорнийската академия на науките и Националното географско дружество. Платформата разчита на множество субсидии и дарения, включително на благотворителни дарения на съвсем малка част от участниците. Особено благодарни сме на Ежемесечните поддръжници, чиито редовни дарения ни помагат да планираме бъдещото развитие.
   yir_your_gift_sustains: |
@@ -4072,6 +4205,7 @@ bg:
   you_dont_have_permission_to_edit_those_photos: Нямате права за редактиране на тези снимки.
   you_faved_this: Вие харесахте това!
   you_have_left_x_project: "Напуснахте %{project}"
+  you_have_not_confirmed_your_email_address: Не сте потвърдили имейл адреса си!
   you_havent_linked_your_inaturalist_google_account: "Все още не сте свързали Вашия акаунт на %{site_name} с акаунта си на Google"
   you_joined_this_project: Вие се включихте в проекта!
   you_must_be_a_member_of_this_project_to_do_that: Трябва да членувате в проекта за да направите това
@@ -4290,6 +4424,8 @@ bg:
       show:
         allow_curator_coordinate_access_desc_html: |
           Разрешете на кураторите на проекта да виждат скритите координати на това наблюдение.
+        ancestor_disagreements_desc2: |
+          Брой разпознати таксони, които са сред надтаксоните на таксона, но не са съгласни с таксона (например „Мисля, че е от този род, но не и този вид“)
         curator_coordinate_access_disabled_desc_html: |
           Този проект не приема наблюдения, чиито координати не са видими за кураторите на проекта. Ако не искате да споделяте координатите на това наблюдение с кураторите на проекта, трябва да премахнете наблюдението от проекта.
         data_quality_assessment_desc_html: |
@@ -4645,6 +4781,7 @@ bg:
           "Plant Phenology=Budding": Напъпване
           "Plant Phenology=Flower Budding": Напъпване на цветове
           "Plant Phenology=Fruiting": Плодообразуване
+          "Plant Phenology=No Evidence of Flowering": Няма свидетелства за цъфтене
           unannotated: Без анотация
         max_photos_desc: |
           Един таксон може да има най-много %{max} снимки. За да добавите нови снимки, трябва да премахнете някои от старите.
@@ -5070,11 +5207,20 @@ bg:
         body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Известие
       Atlas: Атлас
       BlockedUser: Блокиран потребител
       #Noun
       Flag: Маркер
     attributes:
+      announcement:
+        created_at: Създадено на
+        updated_at: Обновено на
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID на сайтове
       assessment:
         description: Описание
       assessment_section:
@@ -5088,7 +5234,10 @@ bg:
         geoprivacy: Геоповерителност
         iucn: Съответствие по IUCN
       flag:
+        #The reason the item was flagged
         reason: Причина
+        #The person who resolved the flag
+        resolver_id: Решител
       guide:
         source_url: Уебадрес на източника
         published_at: Публикация
@@ -5149,6 +5298,21 @@ bg:
         lexicon: Лексика
         name: Название
         position: Позиция
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Име на сайта
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Кратко име
+        #Taxon this link is associated with
+        taxon: Таксон
+        #Place this link is associated with
+        place: Място
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Показвай за подтаксони
       user:
         email: Електронна поща
         login: Потребителско име

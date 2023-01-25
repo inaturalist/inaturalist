@@ -47,4 +47,27 @@ describe ApplicationHelper do
       expect( hyperlink_mentions( txt ) ).to eq txt
     end
   end
+
+  describe "formatted_user_text" do
+    describe "attribute filtering" do
+      it "removes target" do
+        formatted = formatted_user_text( '<a target="_blank" href="https://www.inaturalist.org">foo</a>' )
+        expect( formatted ).not_to include "target"
+        expect( formatted ).not_to include "_blank"
+      end
+    end
+    describe "rel insertion" do
+      let( :parsed_formatted_link ) do
+        txt = '<a target="_blank" href="https://www.inaturalist.org">foo</a>'
+        formatted = formatted_user_text( txt )
+        Nokogiri::HTML( formatted ).at( "a" )
+      end
+      it "adds noopener" do
+        expect( parsed_formatted_link[:rel] ).to include "noopener"
+      end
+      it "adds nofollow" do
+        expect( parsed_formatted_link[:rel] ).to include "nofollow"
+      end
+    end
+  end
 end

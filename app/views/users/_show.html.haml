@@ -110,7 +110,7 @@
           .alert.alert-warning
             =t :profile_visibility_desc, site_name: @site.name
         - if @user.known_non_spammer? || is_curator? || is_me?( @user )
-          - description = formatted_user_text( @user.description, tags: ActionView::Base.sanitized_allowed_tags.to_a + %w(table thead tbody th tr td), attributes: %w(href rel target) )
+          - description = formatted_user_text( @user.description, tags: ActionView::Base.sanitized_allowed_tags.to_a + %w(table thead tbody th tr td), attributes: %w(href rel) )
           %p.lead
             = stripped_first_paragraph_of_text( description, "\n\n" )
           = remaining_paragraphs_of_text( description, "\n\n" )

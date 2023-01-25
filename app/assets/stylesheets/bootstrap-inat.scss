@@ -109,13 +109,6 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
   font-weight: normal;
   text-align: left;
 }
-.observations.mini .user,
-.observations.mini .observed_on,
-.observations.mini .created_at,
-.observations.mini .tags,
-.observations.mini .place {
-  padding-left: 95px;
-}
 .observations.mini .icon{top:3px;}
 .observationcontrols label {display:inline-block;}
 .item_user {float: left;margin-right: 10px;}
@@ -234,14 +227,22 @@ input[type="color"]:focus,
 
 .fa-spin { transform: none; }
 
-.form-inline button,
-.form-inline .form-group {
-  margin-left: 5px;
+.form-inline {
+  button,
+  .form-group {
+    margin-left: 5px;
+  }
+
+  button:first-child,
+  .form-group:first-child {
+    margin-left: 0;
+  }
+
+  .field {
+    margin-bottom: 0;
+  }
 }
-.form-inline button:first-child,
-.form-inline .form-group:first-child {
-  margin-left: 0;
-}
+
 .form-group input[type="checkbox"] {
   margin-right: 5px;
 }

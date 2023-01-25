@@ -102,6 +102,9 @@ eu:
     eguneratutako izen zientifikoak eta abar).
   a_flag_for_x: "marka bat: %{x}"
   a_member_of_taxon_html: "honetako kide bat: %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A-Z"
   #Used as a noun phrase in sentences like "kueda added a comment to *an
   #observation*". %{resource} could be any of the following:
   #* assessment_section
@@ -155,6 +158,10 @@ eu:
   action: Ekintza
   actions: Ekintzak
   active: Aktiboa
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktiboa
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktiboa
   active_users: Erabiltzaile aktiboak
   activity: Jarduera
   adapted_by_name_from_a_work_by_original: "%{name}(e)k onartua %{original}(r)en lan batean oinarritua"
@@ -218,7 +225,6 @@ eu:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Gehitu bat orain
-  add_photos: Argazkiak gehitu
   add_place: Lekua gehitu
   add_alive_or_dead_alive_annotation: 'Gehitu "Bizirik edo Hilda: Bizirik" iruzkina'
   add_alive_or_dead_cannot_be_determined_annotation: 'Gehitu "Bizirik edo Hilda: Ezin da zehaztu" iruzkina'
@@ -722,8 +728,6 @@ eu:
   confirm_now: Orain baieztatu
   confirm_your_info: Zure informazioa baieztatu
   connect_to_provider: "Hona konektatu: %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Lotutako kontuak
   connecting_flickr: "Flickr-era konektatzen..."
   connecting_to_facebook: "Facebook-era konektatzen..."
   connecting_your_inat_account_to_accounts_other_sites: "Zure %{site_name} kontua beste leku batzuetako kontuekin konektatzeak %{site_name} gunera horietako datuak erabilita sartzeko aukera emango dizu."
@@ -814,7 +818,6 @@ eu:
   created_by: 'Honek sortua:'
   created_by_user_on_date: '%{user}(e)k sortua %{date}(e)an'
   created_on: 'Egun honetan sortua:'
-  creating_your_account: "Zure kontua sortzen..."
   creative_commons_flickr_tagged: Flickr-en etiketatutako Creative Commons-eko argazkiak
   creative_commons_unless_otherwise_noted: "Creative Commons besterik ez bada zehazten."
   critically_endangered: Arrisku larrian
@@ -1358,7 +1361,6 @@ eu:
   location_is_exact: kokapena zehatza da
   locked_taxa_will_not_allow_new: Blokeatutako taxonek ez dute taxon ondorengo gehiago gehitzen utziko. Esate baterako, zuk Amphibia blokeatu baduzu eta norbait <i>Lithobates catesbeianus</i> kanpoko hornitzaile batetatik inportatzen saiatu bada, taxon berria sortuko da, baina ezin izango da anfibio gisa sailkatu. Hori gertatzen bada, berriki gehitutako taxonak markatu egin behar lirateke, administrari batek berrikusi ditzan. Dagoeneko ondorengo guztiak ditugula uste dugun taxonekin soilik aplikatu behar litzateke hau. Administrari batek hau berridatzi dezake taxonak aldatuta eta identifikadore nagusiak zuzenean sartuta, baina horren ordez, saiatu taxon berriak dagoeneko existitzen direnekin konbinatzen.
   log_in: Saioa hasi
-  login_slash_username: Erregistroa / erabiltzaile-izena
   logo:
     logo: Logotipoa
     white_bg_gif: Atzealde zuria GIF irudiarekin
@@ -1978,8 +1980,9 @@ eu:
   seen_one: Bat ikusi duzu?
   select: Hautatu
   select_all: Hautatu dena
-  select_one_or_more_photos: 'Argazki bat edo gehiago hautatu'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Bat ere ez hautatu
+  select_one_or_more_photos: 'Argazki bat edo gehiago hautatu'
   select_photos_from_your_photo_stream: |
     Kanpoko web batetik argazkiak hautatu hemen behaketa bilakatzeko: %{site_name}. Gure taldeak argazkiko metadatuen data, ordua eta kokapena osatuko ditu eta etiketetan espezieen izenak bilatzen saiatuko gara.
   selected: hautatua(k)
@@ -2282,6 +2285,7 @@ eu:
   url_of_this_taxon_on_the_source_website: Espezie edo talde honen esteka iturriko web orrian
   use_this_form_to_create_a_new: |
     Erabili modu hori zirriborroan aldaketa taxonomikoa sortzeko; bereizteko den, batzeko den edo taldearen edo espeziearen aldaketa den zehaztuta, ondoren gordetzeko.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Erabili hau URLak generoak eta espezieak modu berezian banatuta baldin baditu. Taxona espezie edo infraespezie bat ez baldin bada, [GENEROA] eta [ESPEZIEA] arteko guztia taxonaren izenarekin ordezkatuko denez, neurrian erabili. <br/><br/> <strong>Adibidea.</strong><br/>
   user: Erabiltzailea
@@ -2739,7 +2743,9 @@ eu:
         description: Deskribapena
         iucn: IUCN Baliokidea
       flag:
+        #The reason the item was flagged
         reason: Arrazoia
+        #The kind of flag that was made
         flag: Marka
       guide:
         source_url: Jatorrizko URL

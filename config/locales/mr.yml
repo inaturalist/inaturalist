@@ -271,12 +271,14 @@ mr:
   add_observations: निरीक्षणे जोडा
   add_observations_by_checking_off: सूचीमधून प्रजाती वगळून निरीक्षणे जोडा.
   add_observations_project: या प्रकल्पामध्ये निरीक्षणे जोडा
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>जोडा</span> <span>निरीक्षणे</span>"
   #Prompt to add a new journal post
   add_one: एक जोडा!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: आता एक जोडा
-  add_photos: फोटोज जोडा
   add_place: ठिकाण जोडा
   add_alive_or_dead_alive_annotation: 'जोडा "जिवंत किंवा मृत: जिवंत" टीप'
   add_alive_or_dead_cannot_be_determined_annotation: 'जोडा "जिवंत किंवा मृत: निश्चित केले जाऊ शकत नाही" टीप'
@@ -439,6 +441,10 @@ mr:
   are_you_sure_delete_conservation_status: |
     तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
   are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, ने अपलोड केले %{user}"
   birthday: जन्मतारीख
   calendar: दिनदर्शिका
   #Plural noun, as in changes to a taxon record over time
@@ -447,6 +453,8 @@ mr:
     जर तुम्हाला अपलोड केलेल्या मजकुरास <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Attribution-NonCommercial license</a> हा परवाना लागू करायचा असेल तर पुढील बॉक्समध्ये खूण करा. याचा अर्थ इतर कोणीही परवानगी मागितल्याशिवाय तोपर्यंत तुमचे फोटो आणि/किंवा निरीक्षणांची प्रत काढू शकतो आणि पुनर्वापर करू शकतो, जोपर्यंत तुम्हाला त्याचे श्रेय दिले जाते आणि कामांचा व्यावसायिक वापर होत नाही. तुम्ही वेगळा परवाना निवडू शकता किंवा नंतर परवाना काढून टाकू शकता, परंतु आपली माहिती इतर संशोधकांसोबत सामायिक करण्यासाठी हा सर्वोत्तम परवाना आहे.
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: कोड योगदानकर्ते
   #Notice when a comment has been hidden by moderators
   comment_hidden: टिपण्णी लपविलेली
   #Notice when a comment has been unhidden by moderators
@@ -516,6 +524,7 @@ mr:
         जर आपला ईमेल पत्ता आमच्या डेटाबेसमध्ये उपलब्ध असेल, तर आपल्याला काही मिनिटांतच आपल्या ईमेल पत्त्याची पुष्टी कशी करावी यासंबंधीच्या सूचनांसह एक ईमेल प्राप्त होईल.
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
+  download_caps: डाउनलोड करा
   #Button label for drawing a circular boundary for an observation search
   draw_circular_boundary: वर्तुळाकार सीमारेषा रेखाटा
   #Button label for drawing a rectangular boundary for an observation search
@@ -525,8 +534,27 @@ mr:
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
   email: ई-मेल
+  email_conf_banner_email_delivered_click_link: |
+    पुष्टीकरण ईमेल पाठवली आहे. कृपया ईमेलमधील लिंकवर क्लिक करा.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>तुमच्या संपर्कांच्या सूचीमध्ये <code>%{email}</code> जोडा आणि
+    <a href="%{url}">दुसऱ्या पुष्टीकरण ईमेलची विनंती करा</a>.</strong> जर तुमच्या ईमेल
+    प्रदात्याने पुष्टीकरण ईमेल अवरोधित केले असेल, तर कदाचित हे त्यांना पटवून देईल की तुम्हाला खरोखरच आमच्याकडून ईमेल हवा आहे.
+  email_conf_banner_check_your_spam_folder_html: <strong>तुमचे स्पॅम फोल्डर तपासा</strong>
+  email_conf_banner_contact_us_html: अद्याप काम करत नाही? आम्हाला %{email} वर ईमेल करा जेणेकरून आम्ही तुम्हाला मदत करू शकू.
+  email_conf_banner_please_click: |
+    तुमच्या ईमेल पत्त्याची पुष्टी करण्यासाठी कृपया तुमच्या ईमेलवर प्राप्त झालेल्या लिंकवर क्लिक करा.
+  email_conf_banner_search_for_emails_html: <strong>कडून आलेले ईमेल शोधा<code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    आम्ही आपल्याला %{date} रोजी पुष्टीकरण ईमेल पाठवले. आपल्याला जर ते मिळाले नसेल, तर आपण पुढील गोष्टी करू शकता:
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    इनपुट वर्गापैकी कोणती निरीक्षणे आऊटपुट वर्गात बदलली जातील आणि कोणती विभक्त झाल्यानंतर सामाईक पूर्वजापर्यंत सीमित केली जातील याचा अंदाज लावा. या संगणनास थोडा वेळ लागू शकतो. निरीक्षणांसाठीचे दुवे २०० च्या उपसंचांमध्ये विभागले आहेत.
   explore: सर्वेक्षण
   favorites: "आवडते"
+  #Button to show fewer places
+  fewer__context_places: कमी
   find_a_post: पोस्ट शोधा
   find_posts_for: "याठिकाणी पोस्ट शोधा %{journal_name}"
   forum: मंच
@@ -539,6 +567,9 @@ mr:
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: ओळख मजकूर लपविलेला नाही
   identifications: ओळखलेली निरीक्षणे
+  inaturalist_global_year_in_review: "iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन"
+  #As in a reason to flag something
+  inappropriate: अयोग्य
   #Status of a complete set that is not available for general use on iNat, e.g.
   #a draft
   inactive_complete_set_status: निष्क्रिय
@@ -557,6 +588,8 @@ mr:
     persian: पर्शियन
     serbian: सर्बियन
     swahili: स्वाहिली
+  #Button show less text
+  less__context_text: कमी
   list: यादी
   lists: याद्या
   locales:
@@ -571,7 +604,18 @@ mr:
   managing_projects: प्रकल्प व्यवस्थापन
   map: नकाशा
   meet: भेटा
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: मासिक समर्थक
   more: अधिक
+  #Button to show more observations
+  more__context_observations_caps: अधिक
+  #Button to show more places
+  more__context_places: अधिक
+  #Button to show more text
+  more__context_text: अधिक
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: अधिक
+  more_caps: अधिक
   new_conservation_status: नवीन संवर्धन स्थिती
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "वेळेत सुधारणा"
@@ -579,6 +623,7 @@ mr:
   offset_time_verb: वेळेत सुधारणा
   one_or_more_input_taxa_have_more_than_1000_alt: |
     एक किंवा अधिक अंतर्भूत वर्ग १००० पेक्षा जास्त निरीक्षणांशी संबंधित आहेत, म्हणून निश्चिती प्रक्रियेसाठी काहीसा वेळ लागू शकतो. तुम्हाला खात्री आहे की हा वर्ग बदलला जाणे आवश्यक आहे? लक्षात ठेवा की वर्गातील बदल हे पूर्ववत केले जाऊ शकत नाहीत.
+  options: पर्याय
   or: किंवा
   password: परवलीचा शब्द (पासवर्ड)
   password_confirmation: 'पासवर्ड पुष्टी'
@@ -628,6 +673,7 @@ mr:
   places: ठिकाणे
   places_warning_please_keep_in_mind: |
     कृपया खालील निर्बंध लक्षात ठेवा:
+  play_first_sound: पहिला आवाज प्ले करा
   privacy: गोपनीयता
   profile: प्रोफाइल
   projects: प्रकल्प
@@ -642,9 +688,17 @@ mr:
     must_be_wild: वन्य असणे गरजेचे
   satellite: उपग्रह प्रतिमा
   search: शोधा
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: पाठवा आणि साइन आउट करा
+  send_confirmation_email: पुष्टीकरण ईमेल पाठवा
+  share_caps: शेअर करा
   sign_out: साइन आउट करा
   sign_up: साइन अप करा
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site} चे %{year} पुनरावलोकनाचे वर्ष"
   site_stats: साइट आकडेवारी
+  store_caps: स्टोअर
   suspend_user_html: निलंबित %{user}
   taxa_show_obs_photo_search_tip: |
     टीप: तुम्हाला विशिष्ट निरीक्षणातून फोटो निवडायचा असल्यास शोध क्षेत्रात निरीक्षणाचा अनुक्रमांक भरा.
@@ -785,21 +839,80 @@ mr:
   user_trusts_this_project_for_taxon: |
     वापरकर्ता केवळ धोक्यात असलेल्या वर्गांसाठी अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास ठेवतो.
   username: वापरकर्ता नाव
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    कृपया तुमचा ईमेल पत्ता बरोबर असल्याची खात्री करा. आम्ही पुष्टीकरणासाठीची ईमेल लिंक पाठवण्यासाठीचा ईमेल पत्ता हा आहे:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    तुम्हाला ईमेल न मिळाल्यास, येथे काही सूचना आहेत:
+    </p>
+    <ul>
+    <li><p>तुमचे स्पॅम फोल्डर तपासा</p></li>
+    <li><p>तुमच्या इनबॉक्समधून आमचे ईमेल काढून टाकण्यासाठी तुम्ही तयार केलेले कोणतेही फिल्टर तपासा</p></li>
+    </ul>
+    <p>
+    तुम्हाला तरीही पुष्टीकरण ईमेल प्राप्त होत नसल्यास, कृपया आमच्याशी येथे संपर्क साधा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    त्यामुळे आम्ही तुम्हाला मदत करू शकतो.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>तुम्ही साइन आउट करत आहात</h3>
+    <p>
+    तुम्ही पुष्टीकरण ईमेल पाठवल्यानंतर, तुम्हाला साइन आउट केले जाईल आणि तुम्ही ईमेलमधील लिंक वर क्लिक करेपर्यंत तुमच्या खात्यात लॉग इन करू शकणार नाही, त्यामुळे <strong class="bg-warning">तुम्ही तुमचा ईमेल पत्ता अचूक प्रविष्ट केला आहे याची नीट खात्री करा
+    .</strong>
+    </p>
+    <p>
+    हा ईमेल पत्ता आहे ज्यावर आम्ही पुष्टीकरण पाठवू:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>तुम्ही सर्व ईमेलचे सदस्यत्व रद्द केले असल्यास...</h4>
+    <p>
+    तुम्ही आमच्याकडून <em>सर्व</em> ईमेलचे सदस्यत्व रद्द केले असल्यास, आम्ही तुम्हाला पुष्टीकरण ईमेलपाठवू शकत नाही. पुन्हा-सदस्यत्व घेण्यासाठी, तुम्हाला आमच्याकडून याआधी आलेले ईमेल शोधणे आवश्यक आहे, त्यातील सदस्यता रद्द करा ह्या दुव्यावर क्लिक करा आणि पुन्हा ईमेल प्राप्त करण्यासाठीचा पर्याय निवडा. आपण हे करू शकत नसल्यास, कृपया
+    ईमेल करा
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> आपण येथे प्रविष्ट केलेला ईमेल पत्यावरून ज्यायोगे आम्ही आपल्याला मदत करू शकू.
+    </p>
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user} चे %{year} %{site} पुनरावलोकनाचे वर्ष"
+  view_all_caps: सर्व पहा
   view_all_fields: सर्व जागा पहा
+  view_inaturalist_global_year_in_review: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
+  view_inaturalist_global_year_in_review_caps: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} चे %{year} पुनरावलोकनाचे वर्ष पहा'
+  view_site_year_in_review_caps: '%{site} चे %{year} पुनरावलोकनाचे वर्ष पहा'
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
+  view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
+  view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
   video_tutorials: माहितीपर व्हिडीओ
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
+  year_in_review2: "वार्षिक पुनरावलोकन %{year}"
   yes_license_my_childs_observations: होय, माझ्या पाल्याची छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
   yes_license_my_observations_so_scientists_can_use: होय, माझी छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
+  yir_code_contributors_desc_html: |
+    आमचे <a href="%{url}">सॉफ्टवेअर</a> जवळजवळ पूर्णपणे मुक्त-स्रोत आहे, याचा अर्थ
+    योग्य माहिती असल्यास कोणीही आपले योगदान देऊ शकते. येथे आहेत ते लोक
+    ज्यांनी ह्या वर्षी स्वयंसेवक म्हणून कोडिंगमध्ये योगदान दिले. धन्यवाद, कोडर्स!
+  yir_monthly_supporters_random_selection: |
+    येथे iNat च्या प्रेरणादायी समुदाय सदस्यांची एक अहेतुपूर्वक निवडलेली यादी आहे जे दरमहा देणगी देतात.
   your_observations: माझी निरीक्षणे
   your_recent_projects: माझे अलीकडील प्रकल्प
   views:
+    donate:
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist_caps: iNaturalist चे मासिक सहाय्यक व्हा
+        thank_you_for_being_a_monthly_supporter: मासिक सहाय्यक असल्याबद्दल धन्यवाद!
+        thank_you_for_being_a_monthly_supporter_caps: मासिक सहाय्यक असल्याबद्दल धन्यवाद!
     observations:
       field_descriptions:
         user_name: |
           निरीक्षकाचे नाव, सामान्यत: साइटवर श्रेय देण्यासाठी वापरले जाते.
           हे एक ऐच्छिक क्षेत्र आहे आणि ते टोपणनाव असू शकते.
+      show:
+        ancestor_disagreements_desc2: |
+          टॅक्सनच्या पूर्वजांपैकी ओळखलेल्या टॅक्साची संख्या, परंतु वर्गीकरणाशी असहमत (म्हणजे "मला वाटते की ते वंशात आहे पण हीच ती प्रजाती आहे ह्याच्याशी मी असहमत आहे")
     stats:
       year:
         compare_desc: |
@@ -900,7 +1013,20 @@ mr:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: जाहीर निवेदन
     attributes:
+      announcement:
+        created_at: येथे तयार केले
+        updated_at: येथे अद्यतनित केले
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: वेबसाईट संकेतांक
+      flag:
+        #The person who resolved the flag
+        resolver_id: निराकरण करणारा
       place_taxon_name:
         position: स्थान
       taxon_name:
@@ -908,6 +1034,21 @@ mr:
         lexicon: शब्दकोश
         name: नाव
         position: स्थान
+      taxon_link:
+        url: यूआरएल
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: साईट शीर्षक
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: संक्षिप्त शीर्षक
+        #Taxon this link is associated with
+        taxon: वर्ग
+        #Place this link is associated with
+        place: स्थान
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: वंशज टॅक्सासाठी दाखवा
     errors:
       models:
         comment:

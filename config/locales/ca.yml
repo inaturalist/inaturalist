@@ -302,7 +302,6 @@ ca:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Afegir-ne un ara
-  add_photos: Afegiu fotos
   add_place: Afegiu un lloc
   add_alive_or_dead_alive_annotation: 'Afegir anotació "Viu o Mort: Viu"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Afegir anotació "Viu o Mort: No s''ha determinat"'
@@ -1010,14 +1009,16 @@ ca:
   confirm_new_password: Confirmeu la contrasenya nova
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Correu electrònic de confirmació enviat el %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmat el %{date}
   confirming_ids: Confirmació d'Identificació
   confirming_ids_description: Si ho desactiveu no sereu informats quan algú fa una identificació que correspon amb la vostra.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connectar
   connect_to_provider: "Connecteu-vos a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Comptes vinculats
   connected_accounts_description: Els comptes connectats són els comptes d'altres Apps o llocs Web a les quals heu autoritzat a accedir a iNaturalist per facilitar l'inici de la vostra sessió, la importació de fotografies o altres funcions.
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
@@ -1186,7 +1187,6 @@ ca:
   created_by: Creat per
   created_by_user_on_date: Creat per %{user} el %{date}
   created_on: Creat el
-  creating_your_account: "Creant el vostre compte..."
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, llevat que s'indiqui el contrari."
   critically_endangered: En perill crític
@@ -1437,6 +1437,9 @@ ca:
   deviation: Desviació
   devise:
     confirmations:
+      confirmed: |
+        La seva adreça de correu electrònic a estat correctament confirmada. Ara podeu accedir des d'aquí al lloc web, o a les Apps per a mòbil iNaturalist o Seek.
+      send_instructions: "Rebreu un correu electrònic amb instruccions per confirmar la vostra adreça de correu electrònic en pocs minuts."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1446,31 +1449,44 @@ ca:
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
       invalid: 'Correu electrònic o contrasenya incorrectes'
       invalid_token: 'Autenticació no vàlida'
+      unconfirmed: |
+        Si us plau, comproveu el vostre correu electrònic i premeu sobre l'enllaç del correu electrònic que heu rebut per confirmar el vostre compte.
       user:
         suspended: El vostre compte s'ha suspès
     sessions:
       signed_in: 'Sessió iniciada correctament.'
       signed_out: 'Sessió finalitzada correctament.'
     passwords:
-      send_instructions: 'Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.'
+      send_instructions: |
+        Rebreu un correu electrònic amb instruccions sobre com restablir la vostra contrasenya en pocs minuts.
       updated: 'La contrasenya ha canviat correctament. Ara ja esteu registrat.'
       updated_not_active: 'La vostra contrasenya s''ha modificat correctament.'
-      send_paranoid_instructions: "Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts."
-      no_token: "No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada."
+      send_paranoid_instructions: |
+        Si la vostra adreça de correu electrònic existeix a la nostra base de dades, rebreu un enllaç de recuperació de la contrasenya a la vostra adreça de correu electrònic en pocs minuts.
+      no_token: |
+        No podeu accedir a aquesta pàgina sense provenir d'un correu electrònic de restabliment de la contrasenya. Si hi heu accedit des d'un correu electrònic de restabliment de la contrasenya, assegureu-vos que heu utilitzat l'URL completa proporcionada.
     registrations:
-      signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
-      updated: 'Heu actualitzat el vostre compte amb èxit.'
       destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
+      signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
+      signed_up_but_inactive: "Heu iniciat la sessió amb èxit. Però, no heu pogut obrir la sessió perquè el vostre compte encara no està activat."
+      signed_up_but_locked: "Us heu registrat amb èxit. Però, no heu pogut iniciar la sessió perquè el vostre compte està bloquejat."
+      signed_up_but_unconfirmed: "S'ha enviat un missatge amb un enllaç de confirmació a la vostra adreça de correu electrònic. Si us plau, seguiu l'enllaç per activar el vostre compte."
+      updated: 'Heu actualitzat el vostre compte amb èxit.'
     mailer:
       confirmation_instructions:
-        subject: 'Instruccions de confirmació'
+        #Subject of an email sent to confirm your account
+        subject: Instruccions de confirmació
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Canvi de correu electrònic sol·licitat
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
   devise_reset_password_instructions_hello_email: Hola %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Algú ha demanat un enllaç per canviar la vostra contrasenya. Ho podeu fer a través de l'enllaç següent.
   devise_reset_password_instructions_your_password_wont_change_until: |
     La vostra contrasenya no canviarà fins que accediu a l'enllaç de dalt i en creeu una de nova.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1645,8 +1661,6 @@ ca:
     native: desenvolupat en aquesta regió o arribà per mitjans no antropogènics
     endemic: nadiu i no succeeix a enlloc més
     introduced: va arribar a la regió per mitjans antropogènics
-  estimate_which_input: |
-    Estimar quins indicadors de tàxons d'entrada seran substituïts per quins tàxons de sortida i quins seran afegits a un avantpassat comú quan la divisió s'hagi finalitzat. Això pot requerir un temps per calcular-ho. Els enllaços a les observacions es divideixen en subconjunts de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -2425,7 +2439,6 @@ ca:
   log_scale_label: Registre
   #Status message shown while logging in
   logging_in: Iniciant sessió...
-  login_slash_username: Entrada/nom d'usuari
   logo:
     logo: Logotip
     white_bg_gif: Imatge GIF amb fons blanc
@@ -3012,10 +3025,6 @@ ca:
   observed_on: Observat el
   observer: Observador
   observers: Observadors
-  observer_prefers_no_project_addition: |
-    L'observador no permet altres persones a afegir les seves observacions a projectes.
-  observer_prefers_addition_to_projects_joined: |
-    L'observador només permet altres persones a afegir les seves observacions a projectes als quals s'ha unit.
   observer_short: Obs.
   occurence_status_describes_how: 'L''estat d''ocurrència indica el grau de presència o raresa d''un tàxon en una àrea determinada. Aneu a DarwinCore <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus"> per tenir més informació sobre terminologia </a>.'
   occurrence_status: Estat d'ocurrència
@@ -4172,11 +4181,12 @@ ca:
   select: Selecciona
   select_all: Selecciona-ho tot
   select_at_least_one: Seleccioneu com a mínim un
-  select_one_or_more_photos: 'Seleccioneu una o més fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: No en seleccioneu cap
   select_observations_to_edit: Seleccioneu observacions per a editar...
   select_one_of_friends_albums: Seleccioneu un dels àlbums de %{friend}
   select_one_of_your_albums: Seleccioneu un dels vostres àlbums
+  select_one_or_more_photos: 'Seleccioneu una o més fotos'
   select_options: Seleccioneu opcions
   select_photos_from_your_photo_stream: |
     Seleccioneu fotos de llocs de compartició de fotografies per convertir-les en observacions a %{site_name}. El nostre equip completarà la data, hora i ubicació de les metadades de la foto i intentarem buscar els noms de les espècies a les etiquetes.
@@ -5008,6 +5018,7 @@ ca:
   upload_new_photo: Carrega una nova foto
   upload_photo: Pugeu Foto
   upload_range: Carregar distribució
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Pujat per
   uploader:
     errors:
@@ -5036,6 +5047,7 @@ ca:
     Utilitza <span class="ac-placeholder">"%{name}"</span> com a marcador del lloc
   use_this_form_to_create_a_new: |
     Utilitzeu aquesta forma per crear un canvi taxonòmic en l'esborrany, especificant si és per separar, ajuntar o és un canvi en el grup o espècie, perquè després es desi.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilitzeu-lo si l’URL té els gèneres i les espècies separats de manera diferent. Si el tàxon no és una espècie o infraespècie, tot el que estigui entre [GÈNERE] i [ESPÈCIE] es reemplaçarà pel nom del tàxon, així que feu-lo servir moderadament.
   use_unique_file_names_for_separate_uploads: Utilitza noms únics d'arxius per a separar les pujades
@@ -5293,7 +5305,10 @@ ca:
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
   with: amb
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Retirar
+  #Loading status while an identification is being withdrawn
   withdrawing: Retirant...
   with_errors: Amb errors
   worldwide: Mundial
@@ -5669,7 +5684,7 @@ ca:
         Si us plau tingueu paciència, generar arxius PDF grans pot necessitar un o dos minuts.
       tags_help_html: |
         Les etiquetes són com les categories per a les espècies de la guia, excepte que diverses espècies poden tenir la mateixa etiqueta.
-        Introduir etiquetes com una llista separada per comes aquí, per exemple, <code>petit,pelut</code>. Per afegir categories amb nom, utilitza etiquetes com <code>NOM=valor</code>, 
+        Introduir etiquetes com una llista separada per comes aquí, per exemple, <code>petit,pelut</code>. Per afegir categories amb nom, utilitza etiquetes com <code>NOM=valor</code>,
         per exemple, <code>color=groc</code>.
       sorts:
         default: Ordre de la Guia
@@ -5975,7 +5990,6 @@ ca:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permet als supervisors del projecte veure les coordenades ocultes d'aquesta observació.
-        ancestor_disagreements_desc: "# dels tàxons identificats es troben entre els avantpassats d'un tàxon, però en desacord amb el tàxon (p.e. creieu que són d'aquest però esteu en desacord amb aquesta espècie)"
         community_taxon_desc_html: |
           <p class="ui">
           El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
@@ -6588,10 +6602,6 @@ ca:
         one_time: Una única vegada
         percent_growth_in_year: "% creixement l'any %{year}"
         percent_of_total_growth: "% de creixement total"
-        publications_desc_html: |
-          Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">Veure tots els %{numStudies} estudis</a>
         publications_desc_short_html: |
           Prem a la gràfica de pètals per obtenir més informació sobre el significat dels números i els colors. Les gràfiques i dades d'impacte són ofertes per <a href="https://www.altmetric.com">Altmetric</a>. La informació sobre l'ús de les dades ofertes pel amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
         observations_per_year: Observacions/Any
@@ -6677,7 +6687,6 @@ ca:
           "Plant Phenology=Flower Budding": Gemmes florals
           "Plant Phenology=Flowering": Florint
           "Plant Phenology=Fruiting": Fructificant
-          "Plant Phenology=No Evidence": Sense evidències
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Ou
           "Life Stage=Larva": Larva
@@ -7286,7 +7295,9 @@ ca:
         geoprivacy: Geo-privacitat
         iucn: Equivalent a la UICN
       flag:
+        #The reason the item was flagged
         reason: Raó
+        #The kind of flag that was made
         flag: Marca
       guide:
         source_url: URL d'origen
