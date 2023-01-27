@@ -2131,9 +2131,9 @@ de:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Kursiver Text
   item_flagged_notice_html: |
-    Dies ist als Spam gemeldet worden und ist nicht mehr
-    öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
-    <a href="%{manage_flags_path}">Meldungen verwalten</a>
+    Die Beobachtung ist nicht mehr
+    öffentlich sichtbar. Du kannst sie sehen, weil du der Ersteller oder ein Kurator bist. Wenn du meinst, dass es sich um einen Fehler handelt, bitte <a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
+    <b><a href="%{manage_flags_path}">Meldungen verwalten</a></b>
   jobs: Aufgaben
   join: Beitreten
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
@@ -6692,7 +6692,7 @@ de:
           sichtbar. Du kannst es sehen, weil du es erstellt hast, oder weil du sind ein 
           Kurator bist. Wenn du glaubst, dass dies ein Fehler ist, 
           <a href="mailto:%{email}">kontaktiere uns bitte</a>.
-        this_has_been_flagged_as_spam: Dies wurde als Spam gemeldet
+        this_has_been_flagged_as_spam: Wurde als Spam gemeldet
       not_found:
         sorry_that_doesnt_exist: Sorry, die Seite gibt es nicht!
         even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Suchmaulwurf" konnte nichts finden!
