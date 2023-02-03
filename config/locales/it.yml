@@ -212,6 +212,12 @@ it:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Acc (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Accuratezza superiore
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Accuratezza inferiore
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Accuratezza inferiore o sconosciuta
   account: Account
   account_creation: Creazione Utenza
   account_settings: Impostazioni del profilo
@@ -2041,6 +2047,15 @@ it:
   home: Home
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Ore da regolare:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Tuttavia, non è sotto licenza per il riutilizzo e non sarà condivisa con le repository di dati che rispettano le scelte di licenza.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Puoi modificare le preferenze della tua licenza nelle tue <a class="linky" href="/users/edit#content">impostazioni del profilo</a>.
   however_there_were_some_issues: "Tuttavia, ci sono stati alcuni problemi: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2513,6 +2528,8 @@ it:
   lookup: Cerca
   low: Inferiore
   lowest_rank: Il rango più basso
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Rendi amministratore
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenuto principale
@@ -2933,6 +2950,8 @@ it:
   not_findig_what_you_want: Non trovi quello che vuoi?
   not_finding_place_you_want?: Non trovi il luogo che cerchi?
   not_found: Non trovato
+  #Filter for observations not in a particular place
+  not_in_place: Non in luogo
   not_linked_facebook: "La tua utenza %{site_name} non è attualmente collegata col tuo account Facebook"
   not_linked_flickr: "La tua utenza %{site_name} non è collegato al tuo account Flickr"
   not_on_this_list: Non sulla lista.
@@ -3024,6 +3043,14 @@ it:
   observation_curation: Curatela delle osservazioni
   observation_date: Data
   observation_date?: Data?
+  #Basic observation export fields
+  observation_export_column_type_basic: Di base
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extra del taxon
   observation_field: Campo dell'osservazione
   observation_field_details: Dettagli del campo dell'osservazione
   observation_field_type_text: Testo
@@ -3093,6 +3120,10 @@ it:
   observed_on: Osservata il
   observer: Utente
   observers: Osservatori
+  observer_prefers_addition_to_traditional_projects_joined: |
+    L'osservatore consente soltanto ad altre persone di aggiungere le proprie osservazioni ai progetti tradizionali cui aderiscono.
+  observer_prefers_no_traditional_project_addition: |
+    L'osservatore non consente ad altre persone di aggiungere le proprie osservazioni ai progetti tradizionali.
   observer_short: Utente
   occurence_status_describes_how: 'Lo stato di distribuzione descrive se il taxon è raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per più informazioni sulla terminologia</a>.'
   occurrence_status: Stato della distribuzione
@@ -5437,6 +5468,8 @@ it:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
     Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
   with: con
+  #Filter for observations not in a particular taxon
+  without_taxon: Non nel taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Ritira
@@ -6984,6 +7017,10 @@ it:
           </p>
         licensing_desc_html: |
           Attribuendo una licenza ai tuoi contenuti darai a chiunque il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. In più, %{site_name} include i tuoi contenuti con licenza Creative Commons in archivi regolarmente aggiornati da selezionate organizzazioni partner interessate ai nostri dati. Per esempio noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        monthly_supporter_desc_html: |
+          I Sostenitori Mensili di iNaturalist effettuano contributi mensili automatici ricevuti dall'Accedemia di Scienze della California (Stati Uniti IRS EIN 94-1156258), per supportare l'operazione senza scopi di lucro dei siti di iNaturalist e della Rete di iNaturalist.
+          <a href="%{url}">Clicca qui per diventare un Sostenitore Mensile</a>.
+          Una volta confermato il tuo supporto, potrai spuntare questa casella per mostrare questo stato sul tuo profilo. Nota che gli indirizzi email su Donorbox e iNaturalist devono corrispondere esattamente, affinché possiamo confermare che tu sia un Sostenitore Mensile. Se differiscono, modifica l'una affinché corrisponda all'altra.
         muting_desc_html: |
           <p>
           Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
