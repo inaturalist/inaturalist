@@ -16,13 +16,13 @@ pt-BR:
     one: "<span class='count'>%{count}</span> sinalização resolvida"
     other: "<span class='count'>%{count}</span> sinalizações resolvidas"
   x_identifications:
-    one: '1 identificação'
+    one: '%{count} identificação'
     other: '%{count} identificações'
   x_identifications_html:
-    one: '<span class="count">1</span> identificação'
+    one: '<span class="count">%{count}</span> identificação'
     other: '<span class="count">%{count}</span> identificações'
   x_identifications_:
-    one: '1 identificação'
+    one: '%{count} Identificação'
     other: '%{count} Identificações'
   #Number of people who have added identifications
   x_identifiers_html:
