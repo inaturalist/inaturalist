@@ -2629,6 +2629,8 @@ sv:
   lookup: Sök
   low: Låg
   lowest_rank: Lägsta rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gör admin
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Huvudinnehåll
@@ -7282,6 +7284,11 @@ sv:
           inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
+        monthly_supporter_desc_html: |
+          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS EIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
+          <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
+          När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
+          Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.
         muting_desc_html: |
           <p>
           Att tysta någon hindrar dig från att få meddelanden om saker de gör, inklusive kommentera dina fynd, skicka meddelanden till dig, nämna dig etc. Att tysta någon hjälper dig att ignorera denne utan att hindra dem från att göra något.
