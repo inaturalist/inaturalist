@@ -515,7 +515,6 @@ es-MX:
   analyze_clashes: Analizar desacuerdos no intencionados
   analyze_ids: Analizar IDs
   ancestor_taxon: Taxón ancestro
-  and: "y"
   and_other_taxa: "&amp; otros taxa"
   android: Android
   animals: Animales
@@ -813,7 +812,6 @@ es-MX:
   browse_species_that_occur_near_this_observation: Busca especies que ocurran cerca de esta observación.
   built_with_site_guides_html: "Construido con las <a href='%{url}'>%{site_name} Guías</a>"
   bulk_import_of_filename_is_complete: "La importanción en grupo de %{filename} está completada"
-  by: Por
   by_everyone: De todos
   by_user: "por %{user}"
   by_you: Por ti
@@ -2604,7 +2602,6 @@ es-MX:
       every_publicly_visible_observation: Todas las observaciones públicas creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
-      gbif_network_description: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility (GBIF)
       observations: Observaciones
       place_boundary: Límites del lugar
       checklist_places: Lista de lugares
@@ -3839,8 +3836,6 @@ es-MX:
   places_warning_export_complex_boundary_html: |
     Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considera
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
-  places_warning_look_for_existing_html: |
-    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
   places_warning_please_keep_in_mind: |
     Ten en cuenta las siguientes restricciones:
   places_warning_projects_can_have_multiple_places: |
@@ -6545,8 +6540,6 @@ es-MX:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
-      kml_field_desc: |
-        KML de la frontera del lugar. Puedes hacer uno utilizando Google Maps, Google Earth o la mayoría de las aplicaciones de SIG. Debes tener al menos un polígono de menos de 1 MB (5 MB para los curadores de sitio).
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
