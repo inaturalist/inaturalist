@@ -520,7 +520,6 @@ da:
   analyze_clashes: Analysér Utilsigtede Uenigheder
   analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
-  and: og
   and_other_taxa: "&amp;Andre taksa"
   android: Android
   animals: Dyr
@@ -823,7 +822,6 @@ da:
   browse_species_that_occur_near_this_observation: Gennemse arter, der forekommer nær denne observation.
   built_with_site_guides_html: "Bygget med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import af %{filename} er udført"
-  by: af
   by_everyone: Af alle
   by_user: "af %{user}"
   by_you: Af dig
@@ -2631,7 +2629,6 @@ da:
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
-      gbif_network_description: Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility
       observations: Observationer
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
@@ -3873,10 +3870,6 @@ da:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
     hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
     eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
-  places_warning_look_for_existing_html: |
-    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
-    kontinenter og lande, samt to administrative niveauer under
-    land.
   places_warning_please_keep_in_mind: |
     Hold flg. begrænsninger for øje:
   places_warning_projects_can_have_multiple_places: |
@@ -6757,10 +6750,6 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
-      kml_field_desc: |
-        KML af stedets omrids. Du kan lave et ved hjælp af Google Maps, Google
-        Earth eller de fleste GIS-applikationer. Skal have mindst en polygon og være
-        under 1 MB (5 MB til side kuratorer).
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
