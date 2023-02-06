@@ -6540,6 +6540,8 @@ es-MX:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
+      kml_field_desc2: |
+        KML de la frontera del lugar. Puedes hacer uno utilizando Google Maps, Google Earth o la mayoría de las aplicaciones de SIG. Debes tener al menos un polígono de menos de 1 MB (5 MB para los curadores de sitio).
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
