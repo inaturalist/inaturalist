@@ -2487,6 +2487,10 @@ nl:
     taxonomic: taxonomisch
     photo: foto
   list_was_successfully_created: De lijst werd succesvol aangemaakt.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} en %{three}"
+  list_with_two_items: "%{one} en %{two}"
   listed_taxa: Taxa opgenomen in de lijst
   listed_taxon: taxon in de lijst
   listed_taxon_updated: taxon in de lijst bijgewerkt
@@ -2637,6 +2641,7 @@ nl:
       every_publicly_visible_observation: Alle publiekelijk zichtbare waarnemingen gemaakt in het iNaturalist netwerk
       featured_observations: Aanbevolen waarnemingen
       gbif_network: GBIF netwerk
+      gbif_network_description2: Gegevens van musea en andere aanbieders van verspreidingsgegevens geleverd door de Global Biodiversity Information Facility
       observations: Waarnemingen
       place_boundary: Plaats grens
       checklist_places: Checklist plaatsen
@@ -2655,6 +2660,9 @@ nl:
   maximum_positional_accuracy_including_unknown: |
     Maximale locatienauwkeurigheid inclusief waarnemingen zonder locatienauwkeurigheid
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: en
   media_type: Mediatype
   medium: medium
   meet: Ontmoeten
@@ -3882,6 +3890,9 @@ nl:
     Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
     waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
+  places_warning_look_for_existing2_html: |
+    Zoek naar <a href="/search?source[]=places">bestaande plaatsen</a> om ervoor te zorgen dat je
+    geen kopie maakt. We hebben al plaatsen voor alle continenten en landen en veel andere politieke grenzen.
   places_warning_please_keep_in_mind: |
     Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
@@ -5375,6 +5386,7 @@ nl:
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} heeft %{noun} door %{owner} als favoriet opgeslagen"
+  user_faved_a_noun_by_you: "%{user} heeft %{noun} van jou als favoriet opgeslagen"
   user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
