@@ -523,7 +523,6 @@ de:
   analyze_clashes: Unbeabsichtigte ID-Widersprüche analysieren
   analyze_ids: IDs analysieren
   ancestor_taxon: Höheres Taxon
-  and: und
   and_other_taxa: "&amp; Andere Taxa"
   android: Android
   animals: Tiere
@@ -778,7 +777,6 @@ de:
   browse_species_that_occur_near_this_observation: Nach Arten suchen, die in der Nähe dieser Beobachtung vorkommen.
   built_with_site_guides_html: "Erstellt mit <a href='%{url}'>%{site_name}-Guides</a>"
   bulk_import_of_filename_is_complete: "Massenimport von %{filename} ist abgeschlossen"
-  by: durch
   by_everyone: Von allen
   by_user: "von %{user}"
   by_you: Von dir
@@ -2485,7 +2483,6 @@ de:
       every_publicly_visible_observation: Jede öffentlich sichtbare Beobachtung im iNaturalist-Netzwerk
       featured_observations: Ausgewählte Beobachtungen
       gbif_network: GBIF Netzwerk
-      gbif_network_description: Einträge von Museen und anderen Datenbanken, die von der Global Biodiversity Information Facility zur Verfügung gestellt werden.
       observations: Beobachtungen
       place_boundary: Gebietsgrenzen
       checklist_places: Gebiete mit Checklisten
@@ -3720,9 +3717,6 @@ de:
     wo du beliebige Grenzen ziehen kannst, oder exportiere sie aus iNat mit
     existierenden Orten oder einer Begrenzungsbox und filtere die Daten erneut nach dem 
     Herunterladen.
-  places_warning_look_for_existing_html: |
-    Suche nach bereits <a href="/search?source[]=places">existierenden Gebieten</a> um sicherzustellen, dass kein Duplikat erstellet wird. Für alle Kontinente und Staaten gibt es bereits entsprechende Gebiete, ebenso jeweils zwei Verwaltungsebenen unterhalb der
-    Staatsebene.
   places_warning_please_keep_in_mind: |
     Bitte beachte die folgenden Einschränkungen:
   places_warning_projects_can_have_multiple_places: |
@@ -6363,8 +6357,6 @@ de:
           belasse Copyright-Meldungen als ungelöst, falls dieses Foto
           das Urheberrecht verletzt.
     places:
-      kml_field_desc: |
-        KML der Gebietsgrenze. Du kannst sie mit Google Maps, Google Earth oder den meisten GIS-Anwendungen erstellen. Muss mindestens ein Polygon enthalten und kleiner als 1 MB (5 MB für Webseitenkuratoren) sein und eine Fläche kleiner als die des US-Staates Texas haben.
       edit:
         complex_boundary_note_html: |
           Diese Grenze ist etwas zu komplex, um sie im Web zu bearbeiten. Du kannst jedoch <a href="%{url}">die KML herunterladen</a>, in der GIS-Anwendung deiner Wahl bearbeiten und die bearbeitete KML direkt hochladen.
