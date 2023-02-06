@@ -2398,6 +2398,10 @@ tr:
     taxonomic: sınıflandırmasal
     photo: fotoğraf
   list_was_successfully_created: Liste başarıyla oluşturuldu.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ve %{three}"
+  list_with_two_items: "%{one} ve %{two}"
   listed_taxa: Listelenen Sınıflar
   listed_taxon: Listelenen sınıf
   listed_taxon_updated: Listelenen sınıf güncellendi
@@ -2548,6 +2552,7 @@ tr:
       every_publicly_visible_observation: iNaturalist ağında oluşturulan herkese açık her bir gözlem
       featured_observations: Öne çıkan gözlemler
       gbif_network: GBIF ağı
+      gbif_network_description2: Müzelerden ve Küresel Biyoçeşitlilik Danışma Tesisi tarafından gelen diğer veri sağlayıcılardan alınan kayıtlar.
       observations: Gözlemler
       place_boundary: Konum sınırı
       checklist_places: Kontrol listesi konumları
@@ -2566,6 +2571,9 @@ tr:
   maximum_positional_accuracy_including_unknown: |
     Konumsal doğruluğu olmayan gözlemler dahil azami konumsal doğruluk
   media: Medya
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ve
   media_type: Medya Türü
   medium: orta
   meet: Tanış
@@ -3752,6 +3760,8 @@ tr:
   places_merged_successfully: Konumlar başarıyla birleştirildi!
   places_warning_export_complex_boundary_html: |
     Karmaşık bir sınırdan gözlemleri dışa aktarmaya çalışıyorsan, bunları keyfi sınırlar çizebileceğin <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF'ten indirmeyi</a> veya mevcut konumları ya da bir sınırlayıcı kutuyu kullanarak iNat'ten dışa aktarmayı ve ardından indirdikten sonra verileri tekrar filtrelemeyi düşün.
+  places_warning_look_for_existing2_html: |
+    Mükerrer bir yer oluşturmadığından emin olmak için <a href="/search?source[]=places">mevcut konumlara</a> bak. Tüm kıtalar, ülkeler ve diğer birçok siyasi sınır için zaten konumlarımız var.
   places_warning_please_keep_in_mind: |
     Lütfen aşağıdaki kısıtlamaları göz önünde bulundurun:
   places_warning_projects_can_have_multiple_places: |
@@ -5172,6 +5182,7 @@ tr:
   user_disagrees_with_previous_finer_identifications: "%{user} karar verilmiş tanımda hemfikir değil"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}i favori yaptı"
+  user_faved_a_noun_by_you: "%{user}, %{noun}ini favorilerine ekledi."
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz değil olarak işaretlendi"
   user_flagged_as_a_spammer_html: "%{user} gereksiz içerikçi olarak işaretlendi"
