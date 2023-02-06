@@ -535,7 +535,6 @@ nl:
   analyze_clashes: Onbedoelde meningsverschillen analyseren
   analyze_ids: ID's analyseren
   ancestor_taxon: Voorouder-taxon
-  and: en
   and_other_taxa: "&amp; Andere Taxa"
   android: Android
   animals: Dieren
@@ -832,7 +831,6 @@ nl:
   browse_species_that_occur_near_this_observation: Soorten bekijken in de buurt van deze waarneming
   built_with_site_guides_html: "Gebouwd met <a href='%{url}'>%{site_name}-gidsen</a>"
   bulk_import_of_filename_is_complete: "Bulk import van %{filename} is klaar"
-  by: door
   by_everyone: Door iedereen
   by_user: "Door %{user}"
   by_you: Door jou
@@ -2639,7 +2637,6 @@ nl:
       every_publicly_visible_observation: Alle publiekelijk zichtbare waarnemingen gemaakt in het iNaturalist netwerk
       featured_observations: Aanbevolen waarnemingen
       gbif_network: GBIF netwerk
-      gbif_network_description: Records van musea en andere aanbieders van verspreidingsgegevens verspreid door de Global Biodiversity Informatics Facility
       observations: Waarnemingen
       place_boundary: Plaats grens
       checklist_places: Checklist plaatsen
@@ -3885,10 +3882,6 @@ nl:
     Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
     waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
-  places_warning_look_for_existing_html: |
-    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
-    een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
-    land.
   places_warning_please_keep_in_mind: |
     Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
@@ -6598,10 +6591,6 @@ nl:
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 
           Laat meldingen over schending van auteursrechten alsjeblieft als onopgelost staan als deze foto auteursrechten schendt.
     places:
-      kml_field_desc: |
-        KML van de gebiedsgrens. Je kunt er eentje maken met behulp van Google Maps, Google
-        Earth of met de meeste GIS-applicaties. Moet ten minste één polygoon hebben van 
-        minder dan 1 MB (5 MB voor sitecuratoren) en moet een oppervlakte hebben die kleiner is dan ongeveer twee keer Duitsland.
       edit:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
