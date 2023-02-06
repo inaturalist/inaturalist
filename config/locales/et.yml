@@ -507,7 +507,6 @@ et:
   analyze_clashes: Analüüsi tahtmatuid erimeelsusi
   analyze_ids: Analüüsi määratlusi
   ancestor_taxon: Ülemtakson
-  and: ja
   and_other_taxa: "&amp; Muud taksonid"
   android: Android
   animals: Loomad
@@ -789,7 +788,6 @@ et:
   browse_species_that_occur_near_this_observation: Sirvi selle vaatluse lähedal paiknevaid liike.
   built_with_site_guides_html: "Ehitatud <a href='%{url}'>%{site_name} juhenditega</a>"
   bulk_import_of_filename_is_complete: "Faili %{filename} massimport on lõppenud"
-  by: kasutaja
   by_everyone: Kõikidelt
   by_user: "Kasutaja %{user} poolt"
   by_you: Sinu poolt
@@ -2335,7 +2333,6 @@ et:
       every_publicly_visible_observation: Kõik avalikult nähtavad iNaturalist võrgustikus tehtud vaatlused
       featured_observations: Esiletõstetud vaatlused
       gbif_network: GBIF-võrk
-      gbif_network_description: Muuseumitest ja teistest leidumisinfo jagajatest pärit andmed, mida haldab Global Biodiversity Informatics Facility.
       observations: Vaatlused
       place_boundary: Koha piir
       checklist_places: Kontrollnimekirja kohad
@@ -5016,8 +5013,6 @@ et:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun jäta autoriõiguste rikkumise märkused alles, kui see foto neid tõepoolest rikub.
     places:
-      kml_field_desc: |
-        Koha piirjoone KML. Seda saab teha Google Maps, Google Earth või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab olema väiksem kui USA Texase osariigil.
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
