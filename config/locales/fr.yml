@@ -212,6 +212,12 @@ fr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Préc. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Précisions supérieure à
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Précision inférieure à
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Précision absente ou inférieure à
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
@@ -2078,6 +2084,10 @@ fr:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
   #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Cependant, sa licence n'autorise pas la réutilisation et elle ne sera pas transmise aux référentiels de données qui respectent les choix de licence.
+  #Message displayed on an observation detail page when the observation is
   #not licensed and the page is being viewed by the person who made the
   #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
@@ -2445,6 +2455,7 @@ fr:
     taxonomic: taxinomique
     photo: photo
   list_was_successfully_created: La liste a bien été créée.
+  list_with_two_items: "%{one} et %{two}"
   listed_taxa: Taxons listés
   listed_taxon: Taxon listé
   listed_taxon_updated: Taxon listé à jour
@@ -2595,6 +2606,7 @@ fr:
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
       featured_observations: Notre sélection
       gbif_network: Réseau SMIB
+      gbif_network_description2: Enregistrements provenant de musées et autres fournisseurs d'occurences distribués par le Système mondial d’information sur la biodiversité
       observations: Observations
       place_boundary: Limites géographiques du lieu
       checklist_places: Check-list de lieux
@@ -2613,6 +2625,9 @@ fr:
   maximum_positional_accuracy_including_unknown: |
     Précision maximale de localisation incluant les observations sans précision de la localisation
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: et
   media_type: Type de média
   medium: moyen
   meet: Rencontrer
@@ -2984,6 +2999,8 @@ fr:
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
   not_finding_place_you_want?: Vous n’avez pas trouvé le lieu que vous vouliez ?
   not_found: Non trouvé
+  #Filter for observations not in a particular place
+  not_in_place: Pas dans le lieu
   not_linked_facebook: "Votre compte %{site_name} n’est pas lié à votre compte Facebook"
   not_linked_flickr: "Votre compte %{site_name} n’est pas lié à votre compte Flickr"
   not_on_this_list: Pas dans cette liste.
@@ -3075,6 +3092,14 @@ fr:
   observation_curation: Organisation d’observations
   observation_date: Date
   observation_date?: Date ?
+  #Basic observation export fields
+  observation_export_column_type_basic: Paramètres de base
+  #Geographic observation export fields
+  observation_export_column_type_geo: Géo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon, autres
   observation_field: Champ de l’observation
   observation_field_details: Détails du champ de l’observation
   observation_field_type_text: Texte
@@ -5516,6 +5541,8 @@ fr:
     Commons Attribution-Share-Alike License 3.0</a>. Son contenu peut avoir été
     supprimé dans l’original, mais aucun contenu n’a été modifié ou complété.
   with: avec
+  #Filter for observations not in a particular taxon
+  without_taxon: Pas dans le taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Retirer
@@ -6651,6 +6678,8 @@ fr:
           laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
           viole les droits d’auteur.
     places:
+      kml_field_desc2: |
+        Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une surface plus petite que l’état du Texas (États-Unis).
       edit:
         complex_boundary_note_html: |
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
