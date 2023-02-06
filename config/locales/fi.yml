@@ -517,7 +517,6 @@ fi:
   already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
   ancestor_taxon: Ylempi taksoni
-  and: ja
   and_other_taxa: "&amp; muut taksonit"
   android: Android
   animals: Eläimet
@@ -773,7 +772,6 @@ fi:
   browse_species_that_occur_near_this_observation: Selaa lajeja, jotka esiintyvät tämän havainnon lähellä.
   built_with_site_guides_html: "Rakennettu <a href='%{url}'>%{site_name} oppailla</a>"
   bulk_import_of_filename_is_complete: "Tiedoston %{filename} massasiirto on valmis"
-  by: käyttäjältä
   by_everyone: Kaikkien
   by_user: "käyttäjältä %{user}"
   by_you: Sinun
@@ -2427,7 +2425,6 @@ fi:
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka on luotu iNaturalist-verkossa
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
-      gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
       observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
@@ -5576,8 +5573,6 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
-      kml_field_desc: |
-        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
       edit:
         complex_boundary_note_html: |
           Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
