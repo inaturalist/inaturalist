@@ -618,7 +618,6 @@ he:
   analyze_clashes: ניתוח חילוקי דעות לא מכוונים
   analyze_ids: ניתוח זיהויים
   ancestor_taxon: טקסון אבא
-  and: וגם
   and_other_taxa: "&amp; טקסונים אחרים"
   android: אנדרואיד
   animals: בעלי־חיים
@@ -905,7 +904,6 @@ he:
   browse_species_that_occur_near_this_observation: חיפוש מינים ליד תצפית זו.
   built_with_site_guides_html: "נבנה באמצעות <a href='%{url}'>מדריכי %{site_name}</a>"
   bulk_import_of_filename_is_complete: "הייבוא של %{filename} הושלם"
-  by: על־ידי
   by_everyone: על־ידי כולם
   by_user: "על־ידי %{user}"
   by_you: על־ידך
@@ -2645,7 +2643,6 @@ he:
       every_publicly_visible_observation: כל תצפית גלויה שנוצרה ברשת iNaturalist
       featured_observations: תצפיות נבחרות
       gbif_network: רשת GBIF
-      gbif_network_description: רישומים ממוזאונים וספקי תיעודים אחרים מופצים על ידי מתקן המידע העולמי למגוון הביולוגי (GBIF)
       observations: תצפיות
       place_boundary: גבול מקום
       checklist_places: מיקומי רשימת מינים
@@ -3840,8 +3837,6 @@ he:
   places_merged_successfully: המקומות אוחדו בהצלחה!
   places_warning_export_complex_boundary_html: |
     אם את.ה מנסה לייצא תצפיות מגבול מורכב, שווה לשקול <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">להוריד אותן מ-GBIF במקום</a>, שם אפשר לצייר גבולות שרירותיים, או לייצא אותן מ-iNaturalist באמצעות מקומות קיימים או תיבה תוחמת ואז לסנן את הנתונים שוב לאחר ההורדה.
-  places_warning_look_for_existing_html: |
-    יש לחפש <a href="/search?source[]=places">מקומות קיימים</a> כדי לוודא שאינך יוצר.ת שכפול. כבר יש לנו מקומות עבור על היבשות והמדינות, וכן לשתי רמות אדמיניסטרטיביות מתחת למדינה.
   places_warning_please_keep_in_mind: |
     נא לזכור את המגבלות הבאות:
   places_warning_projects_can_have_multiple_places: |
@@ -6499,8 +6494,6 @@ he:
         view_original_html: |
           באפשרותך לצפות במקור ב<a href="%{url}">%{url}</a>. נא להשאיר סימונים של הפרת זכויות יוצרים כלא פתורים במידה ותמונה זו אכן מפרה זכויות יוצרים.
     places:
-      kml_field_desc: |
-        KML של גבול המקום. ביכולתך ליצור כזה באמצעות גוגל מפות, גוגל ארת', או רוב אפליקציות GIS. חייב להכיל לפחות פוליגון אחד הקטן מ-1 מגה-בייט (5 עבור אוצרות ואוצרי האתר) ובעל שטח קטן ממדינת טקסס.
       edit:
         complex_boundary_note_html: |
           גבול זה מעט מורכב מדי כדי לערוך באינטרנט. אולם, באפשרותך <a href="%{url}">להוריד את ה-KML</a>, לערוך אותו בתוכנת GIS לבחירתך, ולהעלות את ה-KML הערוך שלך ישירות.
