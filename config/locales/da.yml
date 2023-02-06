@@ -2479,6 +2479,10 @@ da:
     taxonomic: taksonomisk
     photo: foto
   list_was_successfully_created: Listen blev oprettet.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} og %{three}"
+  list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
@@ -2629,6 +2633,7 @@ da:
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
+      gbif_network_description2: Optegnelser fra muséer og andre hændelsesudbydere distribueret af Global Biodiversity Information Facility
       observations: Observationer
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
@@ -2647,6 +2652,9 @@ da:
   maximum_positional_accuracy_including_unknown: |
     Maksimal placeringsnøjagtighed, herunder observationer uden placeringsnøjagtighed
   media: Medier
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: og
   media_type: Medietype
   medium: mellem
   meet: Mød
@@ -3870,6 +3878,9 @@ da:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
     hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
     eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
+  places_warning_look_for_existing2_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at der ikke oprettes en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt mange andre politiske grænser.
   places_warning_please_keep_in_mind: |
     Hold flg. begrænsninger for øje:
   places_warning_projects_can_have_multiple_places: |
@@ -5397,6 +5408,7 @@ da:
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_a_noun_by_you: "%{user} gjorde %{noun} fra dig til sin favorit"
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
@@ -7565,6 +7577,11 @@ da:
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
           der kompilerer og distribuerer information om biodiversitet fra hele verden.
+        monthly_supporter_desc_html: |
+          iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
+          States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
+          <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: E-mailadresserne brugt på Donorbox og iNaturalist skal være identiske, for at vi kan bekræfte, at du er en Monthly Supporter. Er de forskellige, så skift én af dem, så begge de er ens.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
