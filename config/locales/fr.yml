@@ -514,7 +514,6 @@ fr:
   analyze_clashes: Analyser les désaccords involontaires
   analyze_ids: Analyser les Id
   ancestor_taxon: Taxon parent
-  and: et
   and_other_taxa: "&amp; Autres taxons"
   android: Android
   animals: Animaux
@@ -803,7 +802,6 @@ fr:
   browse_species_that_occur_near_this_observation: Explorer les espèces présentes à proximité de cette observation.
   built_with_site_guides_html: "Construit avec les <a href='%{url}'>guides d’%{site_name}</a>"
   bulk_import_of_filename_is_complete: "L’import en masse de %{filename} est terminée"
-  by: par
   by_everyone: Par tout le monde
   by_user: "Par %{user}"
   by_you: Par vous
@@ -2597,7 +2595,6 @@ fr:
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
       featured_observations: Notre sélection
       gbif_network: Réseau SMIB
-      gbif_network_description: Enregistrements de musées et autres fournisseurs de présences distribués par le Système mondial d’informations sur la biodiversité
       observations: Observations
       place_boundary: Limites géographiques du lieu
       checklist_places: Check-list de lieux
@@ -3819,10 +3816,6 @@ fr:
     où vous pouvez dessiner des limites arbitraires, ou bien de les télécharger depuis iNat 
     en utilisant des lieux existants ou une rectangle géographique puis filtrez 
     les données à nouveau une fois que vous les avez téléchargées.
-  places_warning_look_for_existing_html: |
-    Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
-    que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
-    continents et pays, et deux niveaux administratifs inférieurs au pays.
   places_warning_please_keep_in_mind: |
     Veuillez garder à l'esprit les restrictions suivantes :
   places_warning_projects_can_have_multiple_places: |
@@ -6658,8 +6651,6 @@ fr:
           laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
           viole les droits d’auteur.
     places:
-      kml_field_desc: |
-        Fichier KML des limites géographiques du lieu. Vous pouvez le créer un en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone et être inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une suface plus petite que l’état du Texas.
       edit:
         complex_boundary_note_html: |
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
