@@ -1860,6 +1860,10 @@ hu:
     taxonomic: rendszertani
     photo: fénykép
   list_was_successfully_created: Lista sikeresen létrehozva.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} és %{three}"
+  list_with_two_items: "%{one} és %{two}"
   listed_taxon_updated: A listázott taxon frissítve
   lists: Listák
   lists_by_login:
@@ -1980,6 +1984,7 @@ hu:
       all_observations: Minden megfigyelés
       every_publicly_visible_observation: Minden nyilvánosan látható megfigyelés az iNaturalist hálózatáról
       featured_observations: Kiemelt megfigyelések
+      gbif_network_description2: A múzeumoktól és egyéb szervezetektől származó adatok elosztója a Globális Biodiverzitás Információs Megállapodás program (Global Biodiversity Information Facility)
       observations: Megfigyelések
       place_boundary: Hely határai
       checklist_places: Lista helyei
@@ -1993,6 +1998,9 @@ hu:
   maximum_positional_accuracy_including_unknown: |
     A pozíció maximális pontossága, beleértve a pontossági adatokkal nem rendelkező megfigyeléseket is
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: és
   media_type: Médiatípus
   medium: közepes
   meet: Ismerkedés
@@ -2612,6 +2620,19 @@ hu:
   pi_consent_child_label: |
     Beleegyezem, hogy az iNaturalist korlátozott személyes információkat tároljon és dolgozzon fel gyermekemről a gyermekem fiókja kezelése érdekében.
   data_transfer_consent_desc_title: A személyes információ átadásával kapcsolatos jóváhagyásról
+  data_transfer_consent_desc_html: |
+    <p>
+    Egyes adatvédelmi jogszabályok, például az Európai Unió Általános adatvédelmi rendelete (GDPR), kifejezett hozzájárulást írnak elő a személyes adatoknak a saját joghatóságukból más, olyan joghatóságokba való továbbításához, ahol ezen adatok jogi védelme nem tekinthető megfelelőnek. Az Európai Unió <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>-tól kezdve az Egyesült Államokat már nem tekinti olyan joghatóságnak, amely megfelelő jogi védelmet biztosít a személyes adatok számára, különösen azért, mert az Egyesült Államok kormánya megfigyelheti az Egyesült Államokba érkező adatokat. Lehetséges, hogy más joghatóságok is hasonlóan vélekednek.
+    </p>
+    <p>
+    Az iNaturalist használata személyes adatok, például az email címed tárolását igényli. Az iNaturalist összes adatát az Egyesült Államokban tároljuk, és nem lehetünk biztosak abban, hogy Te milyen joghatóságban tartózkodsz, amikor az iNaturalistot használod, ezért az adatvédelmi törvényeknek, például a GDPR-nak való megfelelés érdekében el kell ismerned, hogy megértetted és elfogadod ezt a kockázatot, és beleegyezel abba, hogy személyes adataidat az iNaturalist amerikai szervereire továbbítsa.
+    </p>
+    <p>
+    Ha többet szeretnél megtudni arról, hogy milyen adatokat gyűjtünk és hogyan használjuk fel azokat, kérjük, olvasd el az <a href='%{privacy_url}' target='_blank'>Adatvédelmi szabályzatunkat</a> és a <a href='%{terms_url}' target='_blank'>Felhasználási feltételeinket</a>.
+    </p>
+    <p>
+    Nincs lehetőség iNaturalist-regisztrációra személyes adatok tárolása nélkül, így a hozzájárulás visszavonásának egyetlen módja a fiók törlése.
+    </p>
   data_transfer_consent_label: |
     Engedélyezem a megadott személyes adataim átvitelét az Amerikai Egyesült Államokba
   data_transfer_consent_child_label: |
@@ -3033,6 +3054,8 @@ hu:
   places_merged_successfully: A helyek sikeresen összevonva!
   places_warning_export_complex_boundary_html: |
     Ha egy komplex határvonalon belülről szeretnél megfigyeléseket exportálni, azokat <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">ajánlatos inkább a GBIF-ről letölteni</a>, ahol tetszőleges határvonalakat rajzolhatsz. Ezen kívül az iNaturalist-ról a meglévő helyek vagy megadott határvonalak közé eső megfigyeléseket letöltés után tovább szűrheted.
+  places_warning_look_for_existing2_html: |
+    A duplikációk elkerülése érdekében nézz szét a <a href="/search?source[]=places">meglévő helyek között</a>. Minden kontinenshez, országhoz és sok más politikai területi egységhez létezik már hely.
   places_warning_please_keep_in_mind: |
     Vedd figyelembe a következő korlátozásokat:
   places_warning_new_places_are_slow_html: |
@@ -3643,6 +3666,8 @@ hu:
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_name: Taxon neve
   taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a>, megfigyelő:
   taxon_observed_by_user: "%{taxon} megfigyelve %{user} által"
   taxon_photos_updated: Taxonfotó frissítve!
   taxon_range_for_taxon_html: '%{taxon} taxonintervalluma'
@@ -3972,6 +3997,7 @@ hu:
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{noun}: %{user} kedvelte"
+  user_faved_a_noun_by_you: "%{noun} tőled: %{user} kedvelte"
   user_faved_this_observation: "%{user} kedvelte ezt a megfigyelést"
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
   user_has_opted_out_of_community_id: A megfigyelő kikapcsolta a közösségi a közösségi taxont.
@@ -4179,6 +4205,7 @@ hu:
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} emberből %{x} egyetért (2/3 fölött), hogy ez"
   x_project_journal: "%{project} project %{name}"
   x_sent_you_a_new_message_on_y_html: "%{x} új üzenetet küldött ekkor: %{y}: "
+  x_wrote_a_new_post_html: "%{x}: új bejegyzés"
   year: Év
   year_in_review: "%{year} áttekintése"
   year_in_review2: "%{year}. évi visszatekintő"
