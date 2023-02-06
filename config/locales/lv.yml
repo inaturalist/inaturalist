@@ -579,7 +579,6 @@ lv:
   analyze_clashes: Analizēt netīšu ID nesaderību
   analyze_ids: Analizēt ID
   ancestor_taxon: Priekšteču taksons
-  and: un
   and_other_taxa: "&amp; Citi taksoni"
   android: Android
   animals: Dzīvnieki
@@ -860,7 +859,6 @@ lv:
   browse_species_that_occur_near_this_observation: Apskatīt sugas, kas atrodamas šī novērojuma tuvumā.
   built_with_site_guides_html: "Radīts, izmantojot <a href='%{url}'>%{site_name} padomus</a>"
   bulk_import_of_filename_is_complete: "%{filename} lielapjoma importēšana ir pabeigta"
-  by: 'autors:'
   by_everyone: Visi
   by_user: "Autors: %{user}"
   by_you: tavi
@@ -2529,7 +2527,6 @@ lv:
       every_publicly_visible_observation: Visi publiski pieejamie novērojumi, kas izveidoti iNaturalist tīklā.
       featured_observations: Ieteiktie novērojumi
       gbif_network: GBIF tīkls
-      gbif_network_description: Muzeju un citu avotu arhīvi, kurus izplatījusi Globālās bioloģiskās daudzveidības informācijas sistēma (GBIF).
       observations: Novērojumi
       place_boundary: Vietas robeža
       checklist_places: Vietu kontrollapa
@@ -3680,8 +3677,6 @@ lv:
   places_merged_successfully: Vietu apvienošana izdevās veiksmīgi.
   places_warning_export_complex_boundary_html: |
     Ja mēģini eksportēt novērojumus no apgabala ar sarežģītām robežām, tā vietā apsver iespēju <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">lejupielādēt tos no GBIF</a>, kur robežas iespējams brīvi uzzīmēt. Vēl iespējams tās eksportēt no iNat, izmantojot jau pieejamās vietas vai rakstzīmju lauku, un tad filtrēt datus vēlreiz, kad tie būs lejupielādēti.
-  places_warning_look_for_existing_html: |
-    Pārbaudi <a href="/search?source[]=places">jau pievienotās vietas</a>, lai pārliecinātos, ka neveido dublikātu. Mūsu sistēmā jau ir vietas no visiem kontinentiem un valstīm, kā arī vietas, kas tiek klasificētas kā divus administratīvos līmeņus zemākas par valsti.
   places_warning_projects_can_have_multiple_places: |
     Ja vēlies izveidot vietu, lai norādītu projekta robežas, neaizmirsti, ka projektiem var pievienot vairākas vietas reizē. Piemēram, ja vēlies izveidot projektu Jaunzēlandē un Austrālijā, projekta prasībās vari pievienot abas valstis kopā, nevis veidot vēl vienu jaunu.
   places_warning_new_places_are_slow_html: |
@@ -6158,9 +6153,6 @@ lv:
         view_original_html: |
           Oriģinālu iespējams apskatīt šeit: <a href="%{url}">%{url}</a> Ja fotogrāfija nepārkāpj autortiesības, lūdzu, atstāj autortiesību pārkāpumu karodziņu ziņojumos norādītās problēmas neatrisinātas.
     places:
-      kml_field_desc: |
-        Vietas robežu KML. To iespējams izveidot, izmantojot Google Maps, Google
-        Earth un lielāko daļu citu GIS lietotņu. KML jāsatur vismaz viens poligons, kas nav lielāks par 1MB (5 MB pārziņiem) un tas nedrīkst pārsniegt, ASV štata, Teksasas izmēru.
       edit:
         complex_boundary_note_html: |
           Robežas ir pārāk sarežģītas rediģēšanai pārlūkā. Tā vietā iespējams <a href="%{url}">lejupielādēt KML</a> un rediģēt to kādā no tevis izvēlētām GIS lietotnēm, un tad to augšupielādēt.
