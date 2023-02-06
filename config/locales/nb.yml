@@ -488,7 +488,6 @@ nb:
   analyze_clashes: Analyser utilsiktede uenigheter
   analyze_ids: Analyser ID-er
   ancestor_taxon: Ane-takson
-  and: og
   and_other_taxa: "&amp; Andre taxa"
   android: Android
   animals: Dyr
@@ -726,7 +725,6 @@ nb:
   browse_species_that_occur_near_this_observation: Bla gjennom arter som forekommer i nærheten av denne observasjonen.
   built_with_site_guides_html: "Laget med <a href='%{url}'>%{site_name}-guider</a>"
   bulk_import_of_filename_is_complete: "Masseimport av %{filename} er fullført"
-  by: av
   by_everyone: Av alle
   by_user: "Av %{user}"
   by_you: Av deg
@@ -2175,7 +2173,6 @@ nb:
       every_publicly_visible_observation: Alle offentlig synlige observasjoner opprettet i iNaturalist-nettverket
       featured_observations: Utvalgte observasjoner
       gbif_network: GBIF-nettverk
-      gbif_network_description: Registreringer fra museer og andere leverandører av forekomster, distribuert av Global Biodiversity Informatics Facility
       observations: Observasjoner
       place_boundary: Stedsavgrensning
       checklist_places: Steder på sjekklisten
@@ -5363,8 +5360,6 @@ nb:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vennligst ikke marker markeringer om brudd av opphavsrett som løst hvis dette bildet er brudd på opphavsrett.
     places:
-      kml_field_desc: |
-        KML av stedets grense. Du kan lage en meg Google Maps, Google Earth, eller de fleste GIS-verktøy. Må ha minst ett polygon, være under 1 MB (5 MB for sidekuratorer), og ha en overflate som er mindre enn den amerikanske staten Texas.
       edit:
         complex_boundary_note_html: |
           Denne grensen er litt for kompleks til online redigering. Du kan imidlertid <a href="%{url}">laste ned KML-en</a>, redigere den i et valgfritt GIS-program, og laste opp din redigerte KML direkte.
