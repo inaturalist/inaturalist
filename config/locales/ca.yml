@@ -512,7 +512,6 @@ ca:
   analyze_clashes: Analitza els desacords no intencionats
   analyze_ids: Analiza IDs
   ancestor_taxon: Tàxon Ancestral
-  and: i
   and_other_taxa: "&amp; altres tàxons"
   android: Android
   animals: Animals
@@ -802,7 +801,6 @@ ca:
   browse_species_that_occur_near_this_observation: Veure espècies que es trobin prop d'aquesta observació.
   built_with_site_guides_html: "Fet amb les <a href=\"%{url}\">Guies %{site_name}</a>"
   bulk_import_of_filename_is_complete: "La importació massiva de %{filename} s'ha completat"
-  by: per
   by_everyone: De tothom
   by_user: "per %{user}"
   by_you: Pròpies
@@ -2550,7 +2548,6 @@ ca:
       every_publicly_visible_observation: Cada observació visible públicament creada a la xarxa iNaturalist
       featured_observations: Observacions destacades
       gbif_network: Xarxa GBIF
-      gbif_network_description: Registres de museus i altres proveïdors de dades distribuïdes per la Global Biodiversity Informatics Facility
       observations: Observacions
       place_boundary: Límit del lloc
       checklist_places: Llista de comprovació de llocs
@@ -3761,8 +3758,6 @@ ca:
   places_merged_successfully: Els llocs s'han combinat satisfactòriament!
   places_warning_export_complex_boundary_html: |
     Si esteu intentant exportar observacions d'un territori amb una forma complexa, proveu <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">baixar-les des de GBIF</a> , des d'on podreu dibuixar límits arbitraris, o exportar-les des d'iNat utilitzant llocs existents o dibuixant una caixa i filtrant després les dades de nou una vegada les heu descarregat.
-  places_warning_look_for_existing_html: |
-    Busqueu <a href="/search?source[]=places">llocs existents</a> per estar segurs que no esteu creant un duplicat. Ja hem definit llocs per a tots els continents i països, així com dos nivells administratius per sota del de país.
   places_warning_please_keep_in_mind: |
     Tingueu en compte les següents restriccions:
   places_warning_projects_can_have_multiple_places: |
@@ -6357,8 +6352,6 @@ ca:
         view_original_html: |
           Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau no marqueu les caselles sobre violació dels drets d'autor si aquesta foto no els viola.
     places:
-      kml_field_desc: |
-        KML dels límits del lloc. Podeu fer-ho amb Google Maps, Google, Google Earth o moltes altres aplicacions SIG. Ha de tractar-se, almenys, d'un polígon de menys d'1 MB (5 MB pels supervisors del lloc), i una superfície inferior a la de l'Estat americà de Texas.
       edit:
         complex_boundary_note_html: |
           Aquest límit és massa complicat per editar-ho al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>, editar-ho en una aplicació SIG i pujar el KML editat directament.
