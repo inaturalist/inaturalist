@@ -2379,6 +2379,10 @@ id:
     taxonomic: taksonomik
     photo: foto
   list_was_successfully_created: Daftar berhasil dibuat.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, dan %{three}"
+  list_with_two_items: "%{one} dan %{two}"
   listed_taxa: Daftar Taksa
   listed_taxon: Takson terdaftar
   listed_taxon_updated: Takson terdaftar diperbarui
@@ -2529,6 +2533,7 @@ id:
       every_publicly_visible_observation: Setiap pengamatan publik yang dibuat di dalam jaringan iNaturalist
       featured_observations: Pengamatan terpilih
       gbif_network: Jaringan GBIF
+      gbif_network_description2: Catatan dari museum dan penyedia keberadaan lainnya didistribusikan oleh Fasilitas Informasi Keanekaragaman Hayati Global
       observations: Pengamatan
       place_boundary: Batas tempat
       checklist_places: Tempat daftar centang
@@ -2547,6 +2552,9 @@ id:
   maximum_positional_accuracy_including_unknown: |
     Akurasi posisi maksimum yang memasukkan juga pengamatan-pengamatan tanpa akurasi posisi
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: dan
   media_type: Jenis Media
   medium: menengah
   meet: Temui
@@ -3760,6 +3768,8 @@ id:
   places_merged_successfully: Tempat sukses digabungkan!
   places_warning_export_complex_boundary_html: |
     Jika Anda sedang mencoba untuk mengekspor pengamatan dari batasan yang kompleks, pikirkan kembali untuk <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">mengunduhnya saja dari GBIF</a>, di mana Anda dapat menggambar batasan semau Anda, atau mengekspornya dari iNat menggunakan tempat yang sudah ada, lalu menyaring datanya lagi ketika Anda sudah mengunduhnya.
+  places_warning_look_for_existing2_html: |
+    Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, serta berbagai perbatasan politik.
   places_warning_please_keep_in_mind: |
     Harap perhatikan larangan-larangan berikut:
   places_warning_projects_can_have_multiple_places: |
@@ -5160,6 +5170,7 @@ id:
   user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} menjadikan favorit %{noun} oleh %{owner}"
+  user_faved_a_noun_by_you: "%{user} menjadikan %{noun} oleh Anda sebagai favorit"
   user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
   user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
   user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
