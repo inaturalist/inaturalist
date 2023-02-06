@@ -527,7 +527,6 @@ tr:
   analyze_clashes: İstenmeyen Anlaşmazlıkları Analiz Et
   analyze_ids: Tanımlama Analizi
   ancestor_taxon: Ata Sınıfı
-  and: ve
   and_other_taxa: "&amp; Diğer Sınıflar"
   android: Android
   animals: Hayvanlar
@@ -811,7 +810,6 @@ tr:
   browse_species_that_occur_near_this_observation: Bu gözlemin yakınında oluşan türlere göz at.
   built_with_site_guides_html: "<a href='%{url}'>%{site_name} İlkeleri</a> ile oluşturuldu"
   bulk_import_of_filename_is_complete: "%{filename} dosyasının toplu içe aktarması tamamlandı"
-  by: tarafından
   by_everyone: Herkes tarafından
   by_user: "%{user} tarafından"
   by_you: Senin tarafından
@@ -2550,7 +2548,6 @@ tr:
       every_publicly_visible_observation: iNaturalist ağında oluşturulan herkese açık her bir gözlem
       featured_observations: Öne çıkan gözlemler
       gbif_network: GBIF ağı
-      gbif_network_description: Küresel Biyoçeşitlilik Bilişim Tesisi tarafından dağıtılan müzelerden ve diğer oluşum sağlayıcılardan gelen kayıtlar
       observations: Gözlemler
       place_boundary: Konum sınırı
       checklist_places: Kontrol listesi konumları
@@ -3755,8 +3752,6 @@ tr:
   places_merged_successfully: Konumlar başarıyla birleştirildi!
   places_warning_export_complex_boundary_html: |
     Karmaşık bir sınırdan gözlemleri dışa aktarmaya çalışıyorsan, bunları keyfi sınırlar çizebileceğin <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF'ten indirmeyi</a> veya mevcut konumları ya da bir sınırlayıcı kutuyu kullanarak iNat'ten dışa aktarmayı ve ardından indirdikten sonra verileri tekrar filtrelemeyi düşün.
-  places_warning_look_for_existing_html: |
-    Kopya oluşturmadığından emin olmak için <a href="/search?source[]=places">mevcut konumlara</a> bak. Tüm kıtalar ve ülkelerin yanı sıra ülkenin altındaki iki idari düzey için zaten konumlarımız var.
   places_warning_please_keep_in_mind: |
     Lütfen aşağıdaki kısıtlamaları göz önünde bulundurun:
   places_warning_projects_can_have_multiple_places: |
@@ -6362,8 +6357,6 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
-      kml_field_desc: |
-        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsiniz. En az bir poligonun 1 MB'ın altında olması (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olması gerekir.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
