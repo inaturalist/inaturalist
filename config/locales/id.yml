@@ -476,7 +476,6 @@ id:
   analyze_clashes: Analisis Pertentangan Yang Tidak Disengaja
   analyze_ids: Analisis ID
   ancestor_taxon: Takson Induk
-  and: dan
   and_other_taxa: "&amp; Taksa Lainnya"
   android: Android
   animals: Binatang
@@ -758,7 +757,6 @@ id:
   browse_species_that_occur_near_this_observation: Telusuri spesies yang dekat dengan lokasi observasi ini.
   built_with_site_guides_html: "Dibangun dengan <a href='%{url}'>Panduan %{site_name}</a>"
   bulk_import_of_filename_is_complete: "Impor massal dari %{filename} selesai"
-  by: oleh
   by_everyone: Oleh semua orang
   by_user: "Oleh %{user}"
   by_you: Oleh anda
@@ -2531,7 +2529,6 @@ id:
       every_publicly_visible_observation: Setiap pengamatan publik yang dibuat di dalam jaringan iNaturalist
       featured_observations: Pengamatan terpilih
       gbif_network: Jaringan GBIF
-      gbif_network_description: Catatan dari museum dan penyedia keberadaan lainnya didistribusikan oleh Fasilitas Informatika Keanekaragaman Hayati Global
       observations: Pengamatan
       place_boundary: Batas tempat
       checklist_places: Tempat daftar centang
@@ -3763,8 +3760,6 @@ id:
   places_merged_successfully: Tempat sukses digabungkan!
   places_warning_export_complex_boundary_html: |
     Jika Anda sedang mencoba untuk mengekspor pengamatan dari batasan yang kompleks, pikirkan kembali untuk <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">mengunduhnya saja dari GBIF</a>, di mana Anda dapat menggambar batasan semau Anda, atau mengekspornya dari iNat menggunakan tempat yang sudah ada, lalu menyaring datanya lagi ketika Anda sudah mengunduhnya.
-  places_warning_look_for_existing_html: |
-    Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, hingga dua tingkat administratif di bawah negara.
   places_warning_please_keep_in_mind: |
     Harap perhatikan larangan-larangan berikut:
   places_warning_projects_can_have_multiple_places: |
@@ -6324,8 +6319,6 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
-      kml_field_desc: |
-        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu poligon dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
