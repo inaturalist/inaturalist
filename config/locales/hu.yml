@@ -413,7 +413,6 @@ hu:
   amphibians: kétéltűek
   analyze_ids: Azonosítások elemzése
   ancestor_taxon: Előd taxon
-  and: és
   and_other_taxa: "&amp; Más taxonok"
   android: Android
   animals: Állatok
@@ -663,7 +662,6 @@ hu:
   browse_projects: Böngészés a projektek között
   browse_species_that_occur_near_this_observation: Fajok keresése közel e megfigyeléshez
   bulk_import_of_filename_is_complete: "%{filename} csoportos betöltése kész"
-  by: '-'
   by_everyone: Mindenki által
   by_user: "%{user} által"
   by_you: Tőled
@@ -3035,8 +3033,6 @@ hu:
   places_merged_successfully: A helyek sikeresen összevonva!
   places_warning_export_complex_boundary_html: |
     Ha egy komplex határvonalon belülről szeretnél megfigyeléseket exportálni, azokat <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">ajánlatos inkább a GBIF-ről letölteni</a>, ahol tetszőleges határvonalakat rajzolhatsz. Ezen kívül az iNaturalist-ról a meglévő helyek vagy megadott határvonalak közé eső megfigyeléseket letöltés után tovább szűrheted.
-  places_warning_look_for_existing_html: |
-    A duplikációk elkerülése érdekében nézz szét a <a href="/search?source[]=places">meglévő helyek között</a>. Minden kontinenshez és országhoz létezik már hely.
   places_warning_please_keep_in_mind: |
     Vedd figyelembe a következő korlátozásokat:
   places_warning_new_places_are_slow_html: |
@@ -4615,8 +4611,6 @@ hu:
           Egy ideje nem mutatsz aktivitást %{site_name} felületén, ezért felfüggesztettük az értesítéseket. Ahhoz, hogy újra értesítéseket kapjál,
           <a href="%{login_url}">jelentkezz be újra</a> a fiókodba.
     places:
-      kml_field_desc: |
-        A hely határvonalának KML-fájlja. Ezeket Google Térképpel, Google Földdel és a legtöbb GIS-alkalmazással létre lehet hozni. Legalább egy poligont tartalmaznia kell, 1 MB-nál kevesebbet kell foglalnia (gondnokoknál ez a határ 5 MB), és Texasnál kisebbnek kell lennie.
       new:
         check_list_note: "Megjegyzés: nagyon nagy helyeknél a listák automatikusan le lesznek tiltva."
         coordinates_desc: Meg kell adnod a koordinátákat, ha nem rajzolsz körvonalat vagy nem töltesz fel KML-t.
