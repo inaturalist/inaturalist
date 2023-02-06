@@ -511,7 +511,6 @@ pt-BR:
   analyze_clashes: Analisar desacordos não intencionais
   analyze_ids: Analisar IDs
   ancestor_taxon: Táxon ancestral
-  and: e
   and_other_taxa: "&amp; Outros Táxons"
   android: Android
   animals: Animais
@@ -815,7 +814,6 @@ pt-BR:
   browse_species_that_occur_near_this_observation: Procure espécies que ocorrem próximas desta observação.
   built_with_site_guides_html: "Construído com <a href='%{url}'>%{site_name} Guias</a>"
   bulk_import_of_filename_is_complete: "Importação em massa de %{filename} está completa"
-  by: por
   by_everyone: Por todos
   by_user: "Por %{user}"
   by_you: Por você
@@ -2615,7 +2613,6 @@ pt-BR:
       every_publicly_visible_observation: Toda observação criada publicamente visível na rede iNaturalist
       featured_observations: Observações em destaque
       gbif_network: Rede de GBIF
-      gbif_network_description: Registros dos museus e de outras ocorrências dos provedores distribuídos pela Instalação Informática de Biodiversidade Global
       observations: Observações
       place_boundary: Colocar limite
       checklist_places: Checklist de lugares
@@ -3841,11 +3838,6 @@ pt-BR:
   places_warning_export_complex_boundary_html: |
     Se você está tentando exportar observações de uma área complexa, considere
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">transferi-los do GBIF em vez disso</a>, onde você pode desenhar limites arbitrários, ou exportá-los do iNat usando lugares existentes ou uma caixa delimitadora e, em seguida, filtrar os dados novamente depois que baixá-lo.
-  places_warning_look_for_existing_html: |
-    Procure por <a href="/search?source[]=places">lugares existentes</a> para garantir
-    que você não está criando uma duplicata. Já temos lugares para todos os
-    continentes e países, bem como dois níveis administrativos abaixo de
-    país.
   places_warning_please_keep_in_mind: |
     Tenha em mente as seguintes restrições:
   places_warning_projects_can_have_multiple_places: |
@@ -6536,11 +6528,6 @@ pt-BR:
         view_original_html: |
           Você pode visualizar o original em <a href="%{url}">%{url}</a>. Por favor deixe alertas de infração de direitos autorais como não resolvido se esta foto estar de fato infringindo direitos.
     places:
-      kml_field_desc: |
-        KML do limite do local. Você pode fazer um usando Google Maps, Google
-        Terra ou a maioria dos aplicativos GIS. Deve ter pelo menos um polígono
-        menos de 1 MB (5 MB para curadores do site), e tem uma área menor do que o
-        Estado dos EUA no Texas.
       edit:
         complex_boundary_note_html: |
           Estes limites de fronteira são um pouco complexos para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download do KML</a>, e editar elas no aplicativo GIS que você escolher, depois fazer o upload do seu KML editado diretamente.
