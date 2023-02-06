@@ -623,7 +623,6 @@ ru:
   analyze_clashes: Анализ непредусмотренных разногласий
   analyze_ids: Анализ идентификаций
   ancestor_taxon: Таксон-предок
-  and: и
   and_other_taxa: "&amp; Другие Таксоны"
   android: Android
   animals: Животные
@@ -916,7 +915,6 @@ ru:
   browse_species_that_occur_near_this_observation: Просмотр видов, которые встречаются рядом с местом этого наблюдения.
   built_with_site_guides_html: "Создан с помощью<a href='%{url}'>%{site_name} Руководств</a>"
   bulk_import_of_filename_is_complete: "Групповой импорт %{filename} завершён"
-  by: _
   by_everyone: Любые
   by_user: "%{user}"
   by_you: Ваши
@@ -2668,7 +2666,6 @@ ru:
       every_publicly_visible_observation: Каждое публично видимое наблюдение, созданное в сети iNaturalist
       featured_observations: Рекомендуемые наблюдения
       gbif_network: сеть GBIF
-      gbif_network_description: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
       observations: Наблюдения
       place_boundary: Границы места
       checklist_places: Места с контрольными списками
@@ -3868,8 +3865,6 @@ ru:
   places_warning_export_complex_boundary_html: |
     Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
     где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
-  places_warning_look_for_existing_html: |
-    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
   places_warning_please_keep_in_mind: |
     Пожалуйста, помните о следующих ограничениях:
   places_warning_projects_can_have_multiple_places: |
@@ -6566,9 +6561,6 @@ ru:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.
     places:
-      kml_field_desc: |
-        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google
-        Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
       edit:
         complex_boundary_note_html: |
           Эта граница слишком сложна для редактирования в Интернете. Однако вы можете <a href="%{url}">загрузить KML</a>, отредактировать его в приложении GIS по вашему выбору и загрузить свой отредактированный KML напрямую.
