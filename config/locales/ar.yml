@@ -232,7 +232,6 @@ ar:
   already_have_an_account_log_in_html: لديك حساب بالفعل؟ <strong>قم بتسجيل الدخول.</strong>
   amphibians: برمائيات
   ancestor_taxon: سلف الأصنوفة
-  and: و
   and_other_taxa: "&amp; أصناف أخرى"
   android: أندرويد
   animals: حيوانات
@@ -392,7 +391,6 @@ ar:
   browse_species_that_occur_near_this_observation: تصفح الأنواع التي تحدث بالقرب من هذه الملاحظة.
   built_with_site_guides_html: "تم إنشاؤها باستخدام أدلة <a href='%{url}'>%{site_name}</a>"
   bulk_import_of_filename_is_complete: "اكتمل الاستيراد المجمع لـ%{filename}"
-  by: بواسطة
   by_everyone: بواسطة الجميع
   by_user: "حسب %{user}"
   by_you: بواسطتك
@@ -1526,7 +1524,6 @@ ar:
       every_publicly_visible_observation: كل ملاحظة مرئية بشكل عام تم إنشاؤها في شبكة إيناتوراليست
       featured_observations: ملاحظات مميزة
       gbif_network: شبكة المرفق العالمي لمعلومات التنوع البيولوجي GBIF
-      gbif_network_description: سجلات من المتاحف وموفري الحوادث الآخرين موزعة من قبل المرفق العالمي لمعلومات التنوع البيولوجي
       observations: الملاحظات
       place_boundary: ضع حدودا
       checklist_places: قائمة تحقق الأماكن
@@ -4361,11 +4358,6 @@ ar:
           ترك علامات انتهاك حقوق الطبع والنشر كلم يتم حلها إذا كانت هذه الصورة 
           تنتهك حقوق الطبع والنشر
     places:
-      kml_field_desc: |
-        KML حدود المكان، يمكنك إنشاء حساب باستخدام خرائط جوجل أو جوجل
-        إيرث أو معظم تطبيقات نظم المعلومات الجغرافية، يجب أن يحتوي على مضلع واحد على الأقل ويكون
-        أقل من 1 ميغابايت (5 ميغابايت لأمناء الموقع)، ولديه منطقة أصغر من
-        ولاية تكساس الأمريكية.
       edit:
         complex_boundary_note_html: |
           هذه الحدود معقدة بعض الشيء لتعديلها على الويب، ومع ذلك، يمكنك <a href="%{url}"> تنزيل ملف KML</a> وتعديله في تطبيق GIS الذي تختاره و
