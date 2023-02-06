@@ -1808,6 +1808,11 @@ ja:
   home: ホーム
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "調整する時間:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    <a class="linky" href="/users/edit#content">アカウント設定</a> からライセンス設定を変更することができます。
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
   icon: アイコン
