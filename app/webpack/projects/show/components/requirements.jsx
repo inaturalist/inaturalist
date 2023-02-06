@@ -96,7 +96,7 @@ const Requirements = ( {
     media.push( I18n.t( "sounds.sounds" ) );
   }
   const mediaRules = _.isEmpty( media ) ? I18n.t( "any_media" )
-    : media.join( ` ${I18n.t( "and" )} ` );
+    : media.join( ` ${I18n.t( "media_and" )} ` );
   let dateRules = I18n.t( "any_date" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = true;
