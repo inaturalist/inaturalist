@@ -476,7 +476,6 @@ id:
   analyze_clashes: Analisis Pertentangan Yang Tidak Disengaja
   analyze_ids: Analisis ID
   ancestor_taxon: Takson Induk
-  and: dan
   and_other_taxa: "&amp; Taksa Lainnya"
   android: Android
   animals: Binatang
@@ -758,7 +757,6 @@ id:
   browse_species_that_occur_near_this_observation: Telusuri spesies yang dekat dengan lokasi observasi ini.
   built_with_site_guides_html: "Dibangun dengan <a href='%{url}'>Panduan %{site_name}</a>"
   bulk_import_of_filename_is_complete: "Impor massal dari %{filename} selesai"
-  by: oleh
   by_everyone: Oleh semua orang
   by_user: "Oleh %{user}"
   by_you: Oleh anda
@@ -2013,9 +2011,14 @@ id:
   home: Halaman Utama
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Setelan Jam:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Akan tetapi, ia tidak memiliki lisensi untuk digunakan kembali
     dan tidak akan dibagikan dengan repositori data yang menghormati pilihan lisensi.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Anda bisa mengubah pilihan lisensi Anda di <a class="linky" href="/users/edit#content">pengaturan akun</a>.
   however_there_were_some_issues: "Namun, ada beberapa masalah: %{issues}"
@@ -2376,6 +2379,10 @@ id:
     taxonomic: taksonomik
     photo: foto
   list_was_successfully_created: Daftar berhasil dibuat.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, dan %{three}"
+  list_with_two_items: "%{one} dan %{two}"
   listed_taxa: Daftar Taksa
   listed_taxon: Takson terdaftar
   listed_taxon_updated: Takson terdaftar diperbarui
@@ -2492,6 +2499,8 @@ id:
   lookup: Cari
   low: Rendah
   lowest_rank: TIngkat Terendah
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Jadikan pengelola
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Konten utama
@@ -2524,7 +2533,7 @@ id:
       every_publicly_visible_observation: Setiap pengamatan publik yang dibuat di dalam jaringan iNaturalist
       featured_observations: Pengamatan terpilih
       gbif_network: Jaringan GBIF
-      gbif_network_description: Catatan dari museum dan penyedia keberadaan lainnya didistribusikan oleh Fasilitas Informatika Keanekaragaman Hayati Global
+      gbif_network_description2: Catatan dari museum dan penyedia keberadaan lainnya didistribusikan oleh Fasilitas Informasi Keanekaragaman Hayati Global
       observations: Pengamatan
       place_boundary: Batas tempat
       checklist_places: Tempat daftar centang
@@ -2543,6 +2552,9 @@ id:
   maximum_positional_accuracy_including_unknown: |
     Akurasi posisi maksimum yang memasukkan juga pengamatan-pengamatan tanpa akurasi posisi
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: dan
   media_type: Jenis Media
   medium: menengah
   meet: Temui
@@ -3756,8 +3768,8 @@ id:
   places_merged_successfully: Tempat sukses digabungkan!
   places_warning_export_complex_boundary_html: |
     Jika Anda sedang mencoba untuk mengekspor pengamatan dari batasan yang kompleks, pikirkan kembali untuk <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">mengunduhnya saja dari GBIF</a>, di mana Anda dapat menggambar batasan semau Anda, atau mengekspornya dari iNat menggunakan tempat yang sudah ada, lalu menyaring datanya lagi ketika Anda sudah mengunduhnya.
-  places_warning_look_for_existing_html: |
-    Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, hingga dua tingkat administratif di bawah negara.
+  places_warning_look_for_existing2_html: |
+    Carilah dulu <a href="/search?source[]=places">tempat yang ada</a> untuk memastikan Anda tidak membuat tempat duplikat. Kami sudah memiliki tempat untuk semua benua dan negara, serta berbagai perbatasan politik.
   places_warning_please_keep_in_mind: |
     Harap perhatikan larangan-larangan berikut:
   places_warning_projects_can_have_multiple_places: |
@@ -5158,6 +5170,7 @@ id:
   user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} menjadikan favorit %{noun} oleh %{owner}"
+  user_faved_a_noun_by_you: "%{user} menjadikan %{noun} oleh Anda sebagai favorit"
   user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
   user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
   user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
@@ -6317,8 +6330,6 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
-      kml_field_desc: |
-        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau sebagian besar aplikasi GIS. Harus memiliki setidaknya satu poligon dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
@@ -6910,10 +6921,6 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
-        monthly_supporter_desc_html: |
-          Pendukung Bulanan iNaturalist mengirimkan kontribusi bulanan otomatis yang diterima oleh California Academy of Sciences (United States IRS EIN 94-1156258) untuk mendukung operasi nirlaba iNaturalist dan situs Jaringan iNaturalist.
-          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
-          Saat kami telah mengonfirmasi dukungan Anda, Anda dapat mencentang kotak ini untuk menampilkan status ini di profil Anda. Catatan: Anda harus menggunakan alamat email yang sama di Donorbox dan di iNaturalist supaya bisa kami konfirmasi bahwa Anda telah menjadi Pendukung Bulanan.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.

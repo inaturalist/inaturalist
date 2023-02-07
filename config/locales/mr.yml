@@ -186,6 +186,12 @@ mr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'अचूकता (मी)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: अचूकता च्यावर
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: अचूकता च्याखाली
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: अचूकता च्याखाली किंवा अज्ञात
   account: खाते
   account_creation: खातेनिर्मिती
   account_settings: खाते सेटिंग्स
@@ -563,6 +569,16 @@ mr:
   help: मदत
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "समायोजित करण्याचे तासः"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    तथापि, ते पुनर्वापरासाठी परवानाकृत नाही आणि परवाना निवडींचा आदर करणाऱ्या संग्रहांशी डेटासहित सामायिक केले जाणार नाही.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    तुम्ही तुमची परवाना प्राधान्ये बदलू शकता
+    <a class="linky" href="/users/edit#content">खाते सेटिंग्ज</a>.
   identify: ओळखा
   #Notice when the text content of an identification has been unhidden by moderators
   identification_text_hidden: ओळख मजकूर लपविलेला नाही
@@ -601,8 +617,16 @@ mr:
   log_in: लॉग इन करा
   #Status message shown while logging in
   logging_in: तुमचे खाते उघडत आहे
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: मॅक्रोस्ट्रॅट
   managing_projects: प्रकल्प व्यवस्थापन
   map: नकाशा
+  maps:
+    overlays:
+      gbif_network_description2: संग्रहालतील नोंदी आणि इतर घटना प्रदात्यांकडून जागतिक जैवविविधता माहिती सुविधेद्वारे वितरित
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: आणि
   meet: भेटा
   #title for section describing people who donate to iNat every month
   monthly_supporters: मासिक समर्थक
@@ -617,6 +641,20 @@ mr:
   more__context_translators_caps: अधिक
   more_caps: अधिक
   new_conservation_status: नवीन संवर्धन स्थिती
+  #Filter for observations not in a particular place
+  not_in_place: याठिकाणी नाही
+  #Basic observation export fields
+  observation_export_column_type_basic: सामान्य
+  #Geographic observation export fields
+  observation_export_column_type_geo: भौगोलिक
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: टॅक्सन
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: टॅक्सन व्यतिरिक्त
+  observer_prefers_addition_to_traditional_projects_joined: |
+    निरीक्षक इतर लोकांना त्याची निरीक्षणे फक्त अशा पारंपारिक प्रकल्पांमध्ये जोडण्याची परवानगी देतो ज्याचा तो स्वतः सदस्य आहे.
+  observer_prefers_no_traditional_project_addition: |
+    निरीक्षक इतर लोकांना त्याची निरीक्षणे पारंपारिक प्रकल्पांमध्ये जोडण्यास परवानगी देत नाही.
   #Header label for hiding or unhiding the time shifter in the Uploader
   offset_time: "वेळेत सुधारणा"
   #Button label to offset the date/time of observations by a set number of hours
@@ -671,6 +709,8 @@ mr:
   data_transfer_consent_child_label: |
     माझ्या मुलाची वैयक्तिक माहिती युनायटेड स्टेट्स ऑफ अमेरिका कडे हस्तांतरित करण्याची परवानगी देण्यास मी संमती देतो
   places: ठिकाणे
+  places_warning_look_for_existing2_html: |
+    तुम्ही डुप्लिकेट स्थान तयार करत नाही आहात ना याची खात्री करण्यासाठी <a href="/search?source[]=places">विद्यमान ठिकाणे</a> शोधा. आमच्याकडे आधीपासूनच सर्व खंड, देश आणि इतर अनेक राजकीय सीमा इत्यादी स्थाने उपलब्ध आहेत.
   places_warning_please_keep_in_mind: |
     कृपया खालील निर्बंध लक्षात ठेवा:
   play_first_sound: पहिला आवाज प्ले करा
@@ -833,6 +873,7 @@ mr:
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
   upload: अपलोड करा
+  user_faved_a_noun_by_you: "%{user} ने तुमचे %{noun} आवडते म्हणून अधोरेखित केले."
   user_trusts_this_project_for_none: वापरकर्त्याचा गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास नाही.
   user_trusts_this_project_for_any: |
     कोणत्याही कारणास्तव अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत वापरकर्ता या प्रकल्पावर विश्वास ठेवतो.
@@ -888,6 +929,8 @@ mr:
   video_tutorials: माहितीपर व्हिडीओ
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
+  #Filter for observations not in a particular taxon
+  without_taxon: टॅक्सन मध्ये नसलेले
   year_in_review2: "वार्षिक पुनरावलोकन %{year}"
   yes_license_my_childs_observations: होय, माझ्या पाल्याची छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
   yes_license_my_observations_so_scientists_can_use: होय, माझी छायाचित्रे, ध्वनी आणि निरीक्षणे परवानाधिकृत करा ज्यायोगे इतर शास्त्रज्ञ ह्या माहितीचा वापर करू शकतील (शिफारस केलेले).
@@ -936,6 +979,7 @@ mr:
     taxa:
       show:
         frequency:
+          "Plant Phenology=No Evidence of Flowering": फुलल्याचा पुरावा नाही
           "Life Stage=Egg": अंडे
           "Life Stage=Larva": अळी
           "Life Stage=Pupa": कोष

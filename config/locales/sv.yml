@@ -531,7 +531,6 @@ sv:
   analyze_clashes: Undersök oavsiktlig oenighet
   analyze_ids: Analysera ID:n
   ancestor_taxon: Överliggande taxon
-  and: och
   and_other_taxa: "&amp;Andra taxa"
   android: Android
   animals: Djur
@@ -839,7 +838,6 @@ sv:
   browse_species_that_occur_near_this_observation: Bläddra bland arter som förekommer i närheten av detta fynd.
   built_with_site_guides_html: "Byggt med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulkimport av %{filename} är klar"
-  by: av
   by_everyone: Av alla
   by_user: "Av %{user}"
   by_you: Av dig
@@ -2138,8 +2136,13 @@ sv:
   home: Hem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timmar att justera:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Det är dock inte licensierat för återanvändning och kommer inte att delas med datalagringsplatser som respekterar licensval.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Du kan ändra dina licensval i dina
     <a class="linky" href="/users/edit#content">kontoinställningar</a>.
@@ -2508,6 +2511,10 @@ sv:
     taxonomic: taxonomisk
     photo: bild
   list_was_successfully_created: Lyckades skapa lista.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} och %{three}"
+  list_with_two_items: "%{one} och %{two}"
   listed_taxa: Listade taxa
   listed_taxon: Listat taxon
   listed_taxon_updated: Listat taxon uppdaterat
@@ -2624,6 +2631,8 @@ sv:
   lookup: Sök
   low: Låg
   lowest_rank: Lägsta rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gör admin
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Huvudinnehåll
@@ -2656,7 +2665,7 @@ sv:
       every_publicly_visible_observation: Varje publikt synligt fynd skapat i iNaturalist-nätverket
       featured_observations: Utvalda fynd
       gbif_network: GBIF-nätverket
-      gbif_network_description: Uppgifter från museer och andra leverantörer av förekomster som tillhandahålls av Global Biodiversity Informatics Facility
+      gbif_network_description2: Uppgifter från museer och andra leverantörer av observationer tillhandahålls av Global Biodiversity Information Facility
       observations: Fynd
       place_boundary: Gräns för fyndplats
       checklist_places: Checklistefyndplatser
@@ -2675,6 +2684,9 @@ sv:
   maximum_positional_accuracy_including_unknown: |
     Maximal positionsnoggrannhet inklusive fynd utan positionsnoggrannhet
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ' och'
   media_type: Mediatyp
   medium: medium
   meet: Träffa
@@ -3908,8 +3920,8 @@ sv:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">att ladda ner dem från GBIF istället</a>,
     där du kan dra godtyckliga gränser, eller exportera dem från iNat utifrån befintliga fyndplatser eller en polygon och sedan filtrera datat när du väl har
     hämtat det.
-  places_warning_look_for_existing_html: |
-    Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, samt två administrativa nivåer under land.
+  places_warning_look_for_existing2_html: |
+    Leta efter <a href="/search?source[]=places">befintliga fyndplatser</a> för att se till att du inte skapar en dubblett. Vi har redan fyndplatser för alla kontinenter och länder, och många andra politiska gränser.
   places_warning_please_keep_in_mind: |
     Tänk på följande begränsningar:
   places_warning_projects_can_have_multiple_places: |
@@ -5381,6 +5393,7 @@ sv:
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
+  user_faved_a_noun_by_you: "%{user} favoritmarkerad %{noun} av dig"
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
@@ -6629,7 +6642,7 @@ sv:
           Du kan se originalet på <a href="%{url}">%{url}</a>.
           Låt flaggor för upphovsrättsintrång förbli olösta om denna bild gör intrång på upphovsrätten.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML för fyndplatsgränsen. Du kan göra en med hjälp av Google Maps, Google Earth eller de flesta GIS-program. Måste ha minst en polygon, vara under 1 MB (5 MB för webbplatsens förvaltare) och till ytan vara mindre än delstaten Texas.
       edit:
         complex_boundary_note_html: |
@@ -7278,7 +7291,7 @@ sv:
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
         monthly_supporter_desc_html: |
-          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS FIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
+          iNaturalists månatliga bidragsgivare ger automatiska månatliga bidrag som går till California Academy of Sciences (United States IRS EIN 94-1156258) som stöd till icke-vinstdrivande drift av iNaturalist och iNaturalist-nätverkets webbplatser.
           <a href="%{url}">Klicka här för att bli Månatlig bidragsgivare</a>.
           När vi har bekräftat ditt stöd kommer du att kunna markera denna ruta för att visa denna status på din profil.
           Obs: du måste använda exakt samma e-postadress på Donorbox som du gör på iNaturalist för att vi ska kunna bekräfta att du har blivit månatlig bidragsgivare.

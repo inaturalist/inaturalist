@@ -401,7 +401,6 @@ th:
   alphabetical_order: เรียงตามลำดับอักษร
   already_have_an_account_log_in_html: มีบัญชีผู้ใช้แล้ว? <strong>ล็อก อิน</strong>
   amphibians: สัตว์สะเทินน้ำสะเทินบก
-  and: และ
   android: แอนดรอยด์
   animals: สัตว์
   annotation: หมายเหตุ
@@ -524,6 +523,7 @@ th:
   you_sure_delete_list: แน่ใจหรือไม่ว่าต้องการลบรายการนี้?
   you_sure_delete_taxon_from_list?: "แน่ใจหรือไม่ว่าต้องการลบ %{taxon} ออกจากรายการ?"
   asc: น้อยไปมาก
+  ascending: น้อยไปมาก
   assessment: การประเมินผล
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
@@ -546,6 +546,7 @@ th:
   back_to_all_species: กลับไปที่ชนิดทั้งหมด
   back_to_editing_observation: กลับไปแก้ไขการสังเกต
   back_to_friends: กลับไปที่เพื่อน
+  back_to_flags_html: "&laquo; กลับไปที่รายงาน"
   back_to_lists: "กลับไปที่รายการ %{name}"
   back_to_observation: กลับไปที่การสังเกต
   back_to_observation_fields: กลับไปที่ข้อมูลเสริมการสังเกต
@@ -589,7 +590,6 @@ th:
   browse_people: เรียกดูผู้คน
   browse_projects: เรียกดูโครงการ
   browse_species_that_occur_near_this_observation: ค้นดูชนิดที่พบใกล้กับการสังเกตนี้
-  by: โดย
   by_everyone: โดยทุกคน
   by_user: "โดย %{user}"
   by_you: โดยคุณ
@@ -772,6 +772,11 @@ th:
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
+  #A filter option that only shows observations for which the viewer has
+  #permission to see the "true" or "hidden" coordinates for observations in a
+  #particular project, i.e. anythign unobscured as well as anything obscured
+  #that the viewer has permission to see
+  coords_viewable_for_proj_label: เฉพาะการสังเกตที่เปิดเผยพิกัดเท่านั้น
   copy: คัดลอก
   copy_and_paste_this_into_your_own_html: คัดลอกและวางรหัสนี้ใน HTML ของคุณ
   copyright:
@@ -1014,12 +1019,14 @@ th:
   flag_as_spammer: รายงานว่าเป็นสแปม
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
   #Label for the date/time when a flag was created
-  flag_created: รายงานที่สร้าง
+  flag_created: สร้างรายงานเมื่อ
   flag_for_check_list_title_html: |
     รายงานรายการตรวจสอบ: %{title}
   flag_for_curation: รายงานอนุกรมวิธาน
   flag_for_life_list_title_html: |
     รายงานรายการสิ่งมีชีวิต: %{title}
+  flag_for_taxon_title_html: |
+    รายงานหน่วยอนุกรมวิธาน: %{title}
   flag_for_user_title_html: |
     รายงานผู้ใช้งาน: %{title}
   flag_it!: รายงานเลย!
@@ -1563,6 +1570,7 @@ th:
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
   not_recorded: ไม่ได้บันทึก
+  not_resolved: ไม่แก้ไข
   not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
   notes: คำอธิบาย
   number_of_observations: จำนวนการสังเกต
@@ -1570,6 +1578,8 @@ th:
   number_of_observers: "จำนวนผู้สังเกต"
   obscured: คลุมเครือ
   obscured_or_private: คลุมเครือหรือส่วนตัว
+  obscured_description: |
+    พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: การสังเกตโดย %{user}
@@ -1832,6 +1842,7 @@ th:
   quality_grade_: ระดับคุณภาพ
   quality_grade_colon: "ระดับคุณภาพ"
   radius_value: "รัศมี (เมตร): %{radius}"
+  random: สุ่ม
   rank: ลำดับขั้น
   rank_position: อันดับ
   ranks:
@@ -1973,6 +1984,7 @@ th:
   recent_observations_by: "การสังเกตล่าสุดโดย %{login}"
   recently_active: เคลื่อนไหวล่าสุด
   recently_created: สร้างขึ้นล่าสุด
+  recently_resolved: เพิ่งแก้ไข
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
   reject?: ปฏิเสธ?
@@ -2019,6 +2031,7 @@ th:
   research_grade_qualification: คุณสมบัติระดับงานวิจัย
   reset_brightness: คืนค่าความสว่าง
   reset_search_filters: ตั้งค่าตัวกรองใหม่
+  resolved: แก้ไขแล้ว
   resolved_by: แก้ไขโดย
   resolved_by_user_on_date_html: แก้ไขโดย %{user} เมื่อ %{date}
   restore: คืนค่า
@@ -2434,6 +2447,7 @@ th:
   uploading_num_of_count_photos:
     other: กำลังอัปโหลด %{num} จาก %{count} รูป...
   usage_stats: สถิติการใช้งาน
+  user: ผู้ใช้งาน
   user1_and_user2_faved_this_observation: "%{user1} และ %{user2} ชอบการสังเกตนี้"
   user1_user2_and_x_others_faved_this_observation: "%{user1} %{user2} และ %{x_others} ชอบการสังเกตนี้"
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
@@ -2462,7 +2476,7 @@ th:
   verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
   view: ดู
   view_all: ดูทั้งหมด
-  view_all_flags: ดูการรายงานทั้งหมด
+  view_all_flags: ดูรายงานทั้งหมด
   view_all_members: ดูสมาชิกทุกคน
   view_all_observations: ดูการสังเกตทั้งหมด
   view_check_list_page: ดูหน้ารายการตรวจสอบ
@@ -2557,6 +2571,8 @@ th:
   yir_donate_banner_inaturalist_in_year: "INATURALIST ในปี %{year}"
   yir_millions_of_people_used_inaturalist: |
     ผู้คนนับล้านใช้ iNaturalist และ Seek by iNaturalist ในปีนี้เพื่อเชื่อมโยงกับธรรมชาติ
+  yir_monthly_supporters_random_selection: |
+    นี่คือตัวอย่างของสมาชิกผู้มีอุปการะคุณที่บริจาคให้ iNat ทุกเดือน
   you: คุณ
   you_: คุณ
   you_are_submitting_obs_with_no_date_or_no_location: |
@@ -2573,6 +2589,7 @@ th:
   you_sure_delete_identification?: แน่ใจหรือไม่ที่จะลบการจำแนกนี้?
   you_sure_delete_project?: แน่ใจหรือไม่ว่าต้องการลบโครงการนี้?
   you_sure_remove_taxon_from?: "แน่ใจหรือไม่ว่าต้องการลบหน่วยอนุกรมวิธานนี้ออกจาก %{list}?"
+  your_comment_was_saved: บันทึกเนื้อหาของคุณแล้ว
   your_content: เนื้อหาของคุณ
   your_default: ค่าเริ่มต้นของคุณ
   your_favorites: รายการโปรดของคุณ
@@ -2732,10 +2749,15 @@ th:
           ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
           ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
+        custom_banner_icon_and_project_description: สามารถเปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายโครงการ
+        data_visualizations: มองเห็นภาพรวมของข้อมูล
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
-        multiple_project_administrators: แอดมินโครงการหลายคน
+        leaderboards_among_individuals: มีกระดานจัดอันดับ<strong>ผู้ใช้งาน</strong>แต่ละคน
+        multiple_project_administrators: แต่ละโครงการมีแอดมินหลายคนได้
+        no_need_to_rely_on_manual_addition: |
+          การสังเกตจะถูกเพิ่มเข้าโครงการโดยอัตโนมัติ
         note_about_unselected_filters: |
           หมายเหตุ: ถ้าไม่เลือกหน่วยอนุกรมวิธาน สถานที่ หรือผู้ใช้งานใด ๆ จะถือว่าเลือกหน่วยฯ สถานที่ และผู้ใช้งานทั้งหมด
         only_display_member_observations: |
@@ -2745,6 +2767,10 @@ th:
         project_details: รายละเอียดโครงการ
         project_icon: ไอคอนโครงการ (PNG, JPG, หรือ GIF)
         project_name: ชื่อโครงการ
+        unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
+        users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
+        we_have_redesigned_projects: |
+          โครงการจะช่วยรวบรวมทุกการสังเกตตามเงื่อนไขที่คุณกำหนด ได้แก่ สถานที่ หน่วยอนุกรมวิธาน ผู้ใช้งาน คุณภาพข้อมูล และวันที่ โดยสามารถเลือกสร้างโครงการ 2 ประเภทหลัก ได้แก่ โครงการสะสมชนิด และโครงการครอบคลุม ซึ่งมีลักษณะการใช้งานดังนี้:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
         you_can_learn_more_html: |
           เรียนรู้เพิ่มเติมเกี่ยวกับการจัดการโครงการได้<a href="https://www.inaturalist.org/pages/managing-projects">ที่นี่</a> หรืออ่านประวัติการเปลี่ยนแปลงโครงการได้ที่<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">บล็อกของเรา</a>
