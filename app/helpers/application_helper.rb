@@ -3,12 +3,12 @@
 # require 'recaptcha'
 module ApplicationHelper
   include Ambidextrous
-  
+
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
   end
-  
+
   def windowed_pagination_links(pagingEnum, options)
     link_to_current_page = options[:link_to_current_page]
     always_show_anchors = options[:always_show_anchors]
@@ -17,7 +17,7 @@ module ApplicationHelper
     current_page = pagingEnum.page
     html = ''
 
-    #Calculate the window start and end pages 
+    #Calculate the window start and end pages
     padding = padding < 0 ? 0 : padding
     first = pagingEnum.page_exists?(current_page  - padding) ? current_page - padding : 1
     last = pagingEnum.page_exists?(current_page + padding) ? current_page + padding : pagingEnum.last_page
@@ -34,7 +34,7 @@ module ApplicationHelper
     html << yield(pagingEnum.last_page) if always_show_anchors and not last == pagingEnum.last_page
     html
   end
-  
+
   def compact_date( date, options = {} )
     obscured = options[:obscured]
     return 'the past' if date.nil?
@@ -52,13 +52,13 @@ module ApplicationHelper
       I18n.l( date, format: :month_year )
     elsif date == today
       time ? I18n.l( time, format: :compact ) : t(:today)
-    elsif date.year == Date.today.year 
+    elsif date.year == Date.today.year
       I18n.l( date.to_date, format: :compact )
-    else 
+    else
       I18n.l( date, format: :month_day_year )
-    end 
+    end
   end
-  
+
   def friend_button(user, potential_friend, html_options = {})
     existing_relat = user.friendships.where( friend_id: potential_friend.id ).first
     if existing_relat && existing_relat.trust?
@@ -120,15 +120,15 @@ module ApplicationHelper
         )
       )
     end
-    content_tag :span, (friend_link + unfriend_link).html_safe
+    (friend_link + unfriend_link).html_safe
   end
-  
+
   def char_wrap(text, len)
     return text if text.size < len
     "#{text[0..len-1]}<br/>#{char_wrap(text[len..-1], len)}".html_safe
   end
-  
-  # Generate an id for an object for us in views, e.g. an observation with id 
+
+  # Generate an id for an object for us in views, e.g. an observation with id
   # 4 would be "observation-4"
   def id_for(obj)
     "#{obj.class.name.underscore}-#{obj.id}"
@@ -141,11 +141,11 @@ module ApplicationHelper
       options[:current_user] && (user.try(:id) == options[:current_user].id)
     end
   end
-  
+
   def is_not_me?(user = @selected_user)
     !is_me?(user)
   end
-  
+
   def is_admin?
     respond_to?(:user_signed_in?) && logged_in? && respond_to?(:current_user) && current_user.is_admin?
   end
@@ -157,12 +157,12 @@ module ApplicationHelper
   def is_curator?
     logged_in? && current_user.is_curator?
   end
-  
+
   def curator_of?(project)
    return false unless logged_in?
    current_user.project_users.where(:project_id => project).where("role IN ('manager', 'curator')").exists?
   end
-  
+
   def member_of?(project)
    return false unless logged_in?
    current_user.project_users.where(project_id: project.id).first
@@ -195,7 +195,7 @@ module ApplicationHelper
     hidden = content_tag(:div, capture(&block), :style => open ? nil : "display:none", :class => "togglebox")
     content_tag :div, link + hidden
   end
-  
+
   def link_to_toggle_menu(link_text, options = {}, &block)
     menu_id = options[:menu_id]
     menu_id ||= options[:id].parameterize if options[:id]
@@ -236,7 +236,7 @@ module ApplicationHelper
     link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
     dialog + link
   end
-  
+
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
@@ -250,7 +250,7 @@ module ApplicationHelper
     end
     url_for( new_params )
   end
-  
+
   def hidden_fields_for_params(options = {})
     new_params = request.query_parameters.clone
     if without = options.delete(:without)
@@ -258,9 +258,9 @@ module ApplicationHelper
       without.map!(&:to_s)
       new_params.reject! {|k,v| without.include?(k) }
     end
-    
+
     new_params.merge!(options) unless options.empty?
-    
+
     html = ""
     new_params.each do |key, value|
       if value.is_a?(Array)
@@ -273,7 +273,7 @@ module ApplicationHelper
     end
     html.html_safe
   end
-  
+
   def modal_image(photo, options = {})
     size = options[:size]
     img_url ||= photo.best_url(size)
@@ -283,36 +283,36 @@ module ApplicationHelper
       image_tag(img_url,
         :title => photo.attribution,
         :id => "photo_#{photo.id}",
-        :class => "image #{size}") + 
+        :class => "image #{size}") +
       image_tag('silk/magnifier.png', :class => 'zoom_icon'),
       photo.native_page_url,
       link_options
     )
   end
-  
+
   def stripped_first_paragraph_of_text(text,split = nil)
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
     sanitize( text, tags: %w(a b strong i em), attributes: %w(href rel target) ).html_safe
   end
-  
+
   def remaining_paragraphs_of_text(text,split)
     return text if text.blank?
     paragraphs = text.split(split)
     text = paragraphs[1..paragraphs.length].join(split)
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
-  
+
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
     text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
-    
+
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
-    
+
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
       text = text.gsub(/<\\?p>/, "\n\n")
@@ -380,7 +380,7 @@ module ApplicationHelper
   def title_by_user( text )
     h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
-  
+
   def markdown( text )
     @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML,
       tables: true,
@@ -390,7 +390,7 @@ module ApplicationHelper
     )
     @markdown.render( text )
   end
-  
+
   def render_in_format(format, *args)
     old_formats = formats
     self.formats = [format]
@@ -398,14 +398,14 @@ module ApplicationHelper
     self.formats = old_formats
     html
   end
-  
+
   def in_format(format)
     old_formats = formats
     self.formats = [format]
     yield
     self.formats = old_formats
   end
-  
+
   def taxonomic_taxon_list(taxa, options = {}, &block)
     taxa.each do |taxon, children|
       concat "<li class='#{options[:class]}'>".html_safe
@@ -418,7 +418,7 @@ module ApplicationHelper
       concat "</li>".html_safe
     end
   end
-  
+
   def user_image(user, options = {})
     user ||= User.new
     size = options.delete(:size)
@@ -433,14 +433,14 @@ module ApplicationHelper
   def user_seen_announcement?(announcement)
     session[announcement.session_key]
   end
-  
+
   def observation_image(observation, options = {})
     style = options[:style]
     url = observation_image_url(observation, options)
     url ||= iconic_taxon_image_url(observation.iconic_taxon_id)
     image_tag(url, options.merge(:style => style))
   end
-  
+
   def image_and_content(image, options = {}, &block)
     image_size = options.delete(:image_size) || 48
     content = capture(&block)
@@ -450,7 +450,7 @@ module ApplicationHelper
     options[:style] += "min-height: #{image_size}px;" unless options[:square] == false
     content_tag(:div, image_wrapper + content, options)
   end
-  
+
   # remove unecessary whitespace btwn divs
   def compact(*args, &block)
     content = args[0] if args[0].is_a?(String)
@@ -464,7 +464,7 @@ module ApplicationHelper
     end
     block_given? ? concat(content.html_safe) : content.html_safe
   end
-  
+
   def one_line_observation(o, options = {})
     skip = (options.delete(:skip) || []).map(&:to_sym)
     txt = ""
@@ -496,16 +496,16 @@ module ApplicationHelper
     end
     txt
   end
-  
+
   def html_attributize(txt)
     return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
   end
-  
+
   def separator
     content_tag :div, image_tag(image_url('logo-eee-15px.png')), :class => "column-separator"
   end
-  
+
   def serial_id
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
@@ -546,20 +546,20 @@ module ApplicationHelper
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
     return truncated.to_s.html_safe if ellipsize
 
-    morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
+    morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()",
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(morelink, 'UTF-8'))
     wrapper = content_tag(:div, truncated.to_s.html_safe, :class => "truncated")
-    
-    lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()", 
+
+    lesslink = link_to_function(less, "$(this).parents('.untruncated').hide().prev('.truncated').show()",
       :class => "nobr ui")
     untruncated = Nokogiri::HTML::DocumentFragment.parse(text)
     last_node = untruncated.children.last || untruncated
     last_node = last_node.parent if last_node.name == "a" || last_node.is_a?(Nokogiri::XML::Text)
     last_node.add_child(Nokogiri::HTML::DocumentFragment.parse(lesslink, 'UTF-8'))
-    untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated", 
+    untruncated = content_tag(:div, untruncated.to_s.html_safe, :class => "untruncated",
       :style => "display: none")
     wrapper + untruncated
   rescue RuntimeError => e
@@ -567,7 +567,7 @@ module ApplicationHelper
     Logstasher.write_exception(e, request: request, session: session)
     text.html_safe
   end
-  
+
   def native_url_for_photo(photo)
     return photo.native_page_url unless photo.native_page_url.blank?
     case photo.class.name
@@ -587,7 +587,7 @@ module ApplicationHelper
       return "http://www.flickr.com/images/buddyicon.gif"
     end
   end
-  
+
   def helptip_for(id, options = {}, &block)
     tip_id = "#{id}_tip"
     html = content_tag(:span, '', :class => "#{options[:class]} #{tip_id}_target helptip", :rel => "##{tip_id}")
@@ -616,7 +616,7 @@ module ApplicationHelper
     html += content_tag(:div, capture(&block), id: tip_id, style: "display:none")
     html
   end
-  
+
   def month_graph(counts, options = {})
     return '' if counts.blank?
     max = options[:max] || counts.values.max
@@ -639,11 +639,11 @@ module ApplicationHelper
     end
     content_tag(:div, html.html_safe, :class => 'monthgraph graph')
   end
-  
+
   def catch_and_release(&block)
     concat capture(&block) if block_given?
   end
-  
+
   def citation_for(record)
     return t(:unknown) if record.blank?
     if record.is_a?(Source)
@@ -659,7 +659,7 @@ module ApplicationHelper
   rescue ActionView::MissingTemplate
     record.to_s.gsub(/[\<\>]*/, '')
   end
-  
+
   def link_to_taxon(taxon, options = {})
     iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon.iconic_taxon_id]
     iconic_taxon_name = iconic_taxon.try(:name) || 'Unknown'
@@ -706,13 +706,13 @@ module ApplicationHelper
       super
     end
   end
-  
+
   def loading(content = nil, options = {})
     content ||= I18n.t( "loading" )
     options[:class] = "#{options[:class]} loading status"
     content_tag :span, (block_given? ? capture(&block) : content), options
   end
-  
+
   def setup_map_tag_attrs(options = {})
     map_tag_attrs = {
       "latitude" => options[:latitude],
@@ -911,7 +911,7 @@ module ApplicationHelper
     }.merge(options)
     url_for(url_for_options)
   end
-  
+
   def rights(record, options = {})
     options[:separator] ||= "<br/>"
     s = if record.is_a? Observation
@@ -990,7 +990,7 @@ module ApplicationHelper
     end
     s
   end
-  
+
   def url_for_license(code)
     return nil if code.blank?
     if info = Photo::LICENSE_INFO.detect{|k,v| v[:code] == code}.try(:last)
@@ -1005,7 +1005,7 @@ module ApplicationHelper
   def license_name( license )
     Shared::LicenseModule.license_name_for_code( license )
   end
-  
+
   def update_image_for(update, options = {})
     resource = update.resource
     resource = update.resource.flaggable if update.resource_type == "Flag"
@@ -1043,7 +1043,7 @@ module ApplicationHelper
       image_tag( image_url( "logo-cccccc-20px.png" ), options )
     end
   end
-  
+
   def bootstrapTargetID
      return rand(36**8).to_s(36)
   end
@@ -1138,7 +1138,7 @@ module ApplicationHelper
         end
       else
         if options[:count].to_i == 1
-          t(:user_added_an_observation_html, 
+          t(:user_added_an_observation_html,
             :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
         else
           t(:user_added_x_observations_html,
@@ -1186,11 +1186,11 @@ module ApplicationHelper
         t(:user_invited_you_to_join_project, :user => notifier_user_link, :project => link_to(resource.project.title, project_url(resource.project))).html_safe
       end
     when "Place"
-      t(:new_observations_from_place_html, 
+      t(:new_observations_from_place_html,
         :place => options[:skip_links] ? resource.display_name : link_to(resource.display_name, url_for_resource_with_host(resource)))
     when "Taxon"
-      name = render( 
-        :partial => "shared/taxon", 
+      name = render(
+        :partial => "shared/taxon",
         :object => resource,
         :locals => {
           :link_url => (options[:skip_links] == true ? nil : url_for_resource_with_host(resource))
@@ -1232,8 +1232,8 @@ module ApplicationHelper
           stuff: commas_and( resource.input_taxa.compact.map(&:name) )
         )
       else
-        t(:subject_affecting_stuff_html, 
-          :subject => t(resource.class.name.underscore), 
+        t(:subject_affecting_stuff_html,
+          :subject => t(resource.class.name.underscore),
           :stuff => commas_and(resource.input_taxa.compact.map(&:name)))
       end
     else
@@ -1283,7 +1283,7 @@ module ApplicationHelper
     key += '_html'
     t(key, **opts)
   end
-  
+
   def url_for_resource_with_host(resource)
     polymorphic_url(resource)
   end
@@ -1304,8 +1304,8 @@ module ApplicationHelper
   def observation_field_value_for(ofv)
     if ofv.observation_field.datatype == ObservationField::TAXON
       if taxon = Taxon.find_by_id(ofv.value)
-        content_tag(:span, "&nbsp;".html_safe, 
-            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") + 
+        content_tag(:span, "&nbsp;".html_safe,
+            :class => "iconic_taxon_sprite #{taxon.iconic_taxon_name.to_s.downcase} selected") +
           render("shared/taxon", :taxon => taxon, :link_url => taxon)
       else
         "unknown"
@@ -1313,7 +1313,7 @@ module ApplicationHelper
     elsif ofv.observation_field.datatype == ObservationField::DNA
       css_class = "dna"
       css_class += case ofv.observation_field.name
-      when /(coi|cox1)/i then " bold-coi" 
+      when /(coi|cox1)/i then " bold-coi"
       when /its/i then " bold-its"
       when /rbcl|matk/i then " bold-matk"
       else ""
@@ -1371,10 +1371,10 @@ module ApplicationHelper
     tip += " #{t(:in)} #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
     tip += ":</strong> #{listed_taxon.establishment_means_description}"
     blob_attrs = {
-      :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}", 
-      "data-tip" => tip, 
-      "data-tip-position-at" => "bottom center", 
-      "data-tip-style-classes" => "#{tip_class} ui-tooltip-shadow", 
+      :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}",
+      "data-tip" => tip,
+      "data-tip-position-at" => "bottom center",
+      "data-tip-style-classes" => "#{tip_class} ui-tooltip-shadow",
       :title => listed_taxon.establishment_means.capitalize
     }
     content_tag :div, blob_attrs do
@@ -1494,7 +1494,7 @@ module ApplicationHelper
     options[:audience] ||= []
     test_enabled = params[:test] && params[:test] == test.to_s
     user_authorized = true
-    user_authorized = current_user.try(:is_admin?) if options[:audience].include?(:admins) 
+    user_authorized = current_user.try(:is_admin?) if options[:audience].include?(:admins)
     user_authoried = current_user.try(:is_curator?) if options[:audience].include?(:curators)
     user_authoried = logged_in? if options[:audience].include?(:users)
     if test_enabled && user_authorized
@@ -1548,11 +1548,11 @@ module ApplicationHelper
     truncate(
       strip_tags(
         text.gsub(/\s+/m, ' ')
-      ).strip, 
+      ).strip,
       length: 1000
     ).strip
   end
-  
+
   def branding_statement
     I18n.t(
       :member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html,
@@ -1586,7 +1586,7 @@ module ApplicationHelper
     end
     default
   end
-  
+
   def current_url(new_params)
    url_for params.merge(new_params)
   end

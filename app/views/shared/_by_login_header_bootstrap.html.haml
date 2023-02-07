@@ -17,6 +17,9 @@
             %span.glyphicon.glyphicon-envelope
             =t :message
         = friend_button current_user, @selected_user, {:id => 'follow_button'}
+        = link_to mute_user_path(id: @selected_user, method: :post), class: 'btn btn-primary btn-xs' do
+          .fa.fa-microphone-slash
+          = t(:mute_user, user: @selected_user.login)
     -else
       = title
       = after_title
