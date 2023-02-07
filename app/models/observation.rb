@@ -2210,7 +2210,7 @@ class Observation < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      Observation.where(id: id).update_all(uri: FakeView.observation_url(id))
+      Observation.where( id: id ).update_all( uri: UrlHelper.observation_url( id ) )
     end
     true
   end
@@ -2872,8 +2872,9 @@ class Observation < ApplicationRecord
 
   def create_deleted_observation
     DeletedObservation.create(
-      :observation_id => id,
-      :user_id => user_id
+      observation_id: id,
+      user_id: user_id,
+      observation_created_at: created_at
     )
     true
   end

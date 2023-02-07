@@ -22,7 +22,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ErrorBoundary from "../../../shared/components/error_boundary";
-import { formattedDateTimeInTimeZone } from "../../../shared/util";
+import { formattedDateTimeInTimeZone, translateWithConsistentCase } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
 import FavesContainer from "../containers/faves_container";
@@ -391,6 +391,7 @@ class ObservationModal extends React.Component {
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
+      { keys: ["SPACE"], label: I18n.t( "play_first_sound" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
       { keys: ["SHIFT", "&larr;"], label: I18n.t( "previous_tab" ) },
@@ -662,7 +663,10 @@ class ObservationModal extends React.Component {
                   >
                     {
                       tabTitles[tabName]
-                      || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } )
+                      || translateWithConsistentCase(
+                        _.snakeCase( tabName ),
+                        { case: "upper", defaultValue: tabName }
+                      )
                     }
                   </button>
                 </li>
@@ -742,21 +746,21 @@ class ObservationModal extends React.Component {
                             { observation.application && observation.application.name && (
                               <li>
                                 <a href={observation.application.url}>
-                                  { officialAppIds.includes( observation.application.id ) ? (
-                                    <img
-                                      className="app-thumbnail"
-                                      src={observation.application.icon}
-                                      alt={observation.application.name}
-                                    />
-                                  ) : <i className="fa fa-cloud-upload bullet-icon" />
-                                  }
+                                  { officialAppIds.includes( observation.application.id )
+                                    ? (
+                                      <img
+                                        className="app-thumbnail"
+                                        src={observation.application.icon}
+                                        alt={observation.application.name}
+                                      />
+                                    )
+                                    : <i className="fa fa-cloud-upload bullet-icon" /> }
                                   <span className="name">
                                     { observation.application.name }
                                   </span>
                                 </a>
                               </li>
-                            )
-                            }
+                            ) }
                             { blind ? null : (
                               <li className="view-follow">
                                 <a
@@ -768,12 +772,14 @@ class ObservationModal extends React.Component {
                                   <i className="icon-link-external bullet-icon" />
                                   { I18n.t( "view" ) }
                                 </a>
-                                { observation.user && observation.user.id === currentUser.id ? null : (
-                                  <div style={{ display: "inline-block" }}>
-                                    <span className="separator">&bull;</span>
-                                    <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
-                                  </div>
-                                ) }
+                                { observation.user && observation.user.id === currentUser.id
+                                  ? null
+                                  : (
+                                    <div style={{ display: "inline-block" }}>
+                                      <span className="separator">&bull;</span>
+                                      <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
+                                    </div>
+                                  ) }
                               </li>
                             ) }
                           </ul>
@@ -878,11 +884,16 @@ ObservationModal.propTypes = {
   increaseBrightness: PropTypes.func,
   keyboardShortcutsShown: PropTypes.bool,
   loadingDiscussionItem: PropTypes.bool,
+  mapZoomLevel: PropTypes.number,
+  mapZoomLevelLocked: PropTypes.bool,
   observation: PropTypes.object,
+  officialAppIds: PropTypes.array,
   onClose: PropTypes.func.isRequired,
+  onMapZoomChanged: PropTypes.func,
   resetBrightness: PropTypes.func,
   reviewedByCurrentUser: PropTypes.bool,
   setImagesCurrentIndex: PropTypes.func,
+  setMapZoomLevelLocked: PropTypes.func,
   showNextObservation: PropTypes.func,
   showPrevObservation: PropTypes.func,
   tab: PropTypes.string,
@@ -893,10 +904,6 @@ ObservationModal.propTypes = {
   toggleReviewed: PropTypes.func,
   updateCurrentUser: PropTypes.func,
   visible: PropTypes.bool,
-  mapZoomLevel: PropTypes.number,
-  onMapZoomChanged: PropTypes.func,
-  mapZoomLevelLocked: PropTypes.bool,
-  setMapZoomLevelLocked: PropTypes.func
 };
 
 ObservationModal.defaultProps = {

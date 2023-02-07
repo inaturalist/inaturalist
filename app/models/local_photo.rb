@@ -292,11 +292,22 @@ class LocalPhoto < Photo
   end
 
   def attribution
-    if user.blank? || [user.name, user.login].include?(native_realname)
-      super
-    else
-      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    if user.blank? || [user.name, user.login].include?( native_realname )
+      # If this was imported from Flickr or Wikipedia and there's either no user
+      # we might attribute the photo to OR there is a user but they seem to be
+      # the person who the third party says took the photo, just do normal attribution
+      return super
     end
+
+    # Otherwise, note that the user uploaded it, as opposed to specifying that
+    # they took it
+    uploader_name = attribution_name
+    I18n.t(
+      :attribution_uploaded_by_user,
+      attribution: super,
+      user: uploader_name,
+      vow_or_con: uploader_name[0].downcase
+    )
   end
 
   def source_title

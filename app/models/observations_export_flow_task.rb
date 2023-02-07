@@ -12,7 +12,7 @@ class ObservationsExportFlowTask < FlowTask
   class ObservationsExportDeleted < ObservationsExportError; end
 
   before_save do |record|
-    record.redirect_url = FakeView.export_observations_path
+    record.redirect_url = UrlHelper.export_observations_path
   end
 
   def must_have_query

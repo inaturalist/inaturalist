@@ -79,8 +79,7 @@
       
       <% if @project.users_can_add? && (!@project.invite_only? || @project_user) && (!@project.bioblitz? || @project.event_started?) -%>
         <%= link_to new_observation_path(:project_id => @project.id), :id => 'addbutton', :rel => "nofollow" do %>
-          <small><%= t(:add) %></small>
-          <big><%= t(:observations) %></big>
+          <%=t :add_observations_split_html %>
         <% end -%>
       <% end -%>
       

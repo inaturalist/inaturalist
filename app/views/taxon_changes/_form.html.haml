@@ -64,7 +64,7 @@
           = hidden_field_tag :current_id, params[:id]
         = link_to t( :analyze_ids ), "#", class: "analyze_ids_button", data: { taxon_change_id: taxon_change }
         - helptip_for "analyze" do
-          = t :estimate_which_input
+          = t :estimate_which_input2
         = image_tag "spinner.gif", class: "spinner"
         .analysis
           = t( :total_ids_on_input_taxon )
@@ -136,7 +136,7 @@
           = link_to t( :create_a_new_taxon ), new_taxon_url, target: "_blank"
   .column.span-24#move-children
     %fieldset
-      %legend=t :more
+      %legend=t :options
       = f.check_box :move_children,
         label_after: true,
         label: t( :move_input_children_to_output? ),

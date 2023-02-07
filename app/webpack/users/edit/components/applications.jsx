@@ -85,7 +85,7 @@ const Applications = ( { showModal, apps, providerApps } ) => {
     );
 
     const connectForm = (
-      <form action={AUTH_PROVIDER_URLS[name]} method="post" target="_blank">
+      <form action={AUTH_PROVIDER_URLS[name]} method="post" target="_blank" rel="nofollow noopener">
         <input
           type="hidden"
           name="authenticity_token"

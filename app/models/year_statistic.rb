@@ -73,6 +73,11 @@ class YearStatistic < ApplicationRecord
           donors: donors( year, options )
         }
       end
+      json[:pull_requests] = github_pull_requests( year )
+      if year >= 2022
+        json[:budget] ||= {}
+        json[:budget][:monthly_supporters] = monthly_supporters( year, options )
+      end
     end
     year_statistic.update( data: json )
     year_statistic.generate_shareable_image
@@ -85,7 +90,11 @@ class YearStatistic < ApplicationRecord
     # fail, they don't take down everything else. They're also pretty boring
     # as of 2021 since it's basically just a lot of people on year+ long
     # streaks. Yet another thing I never should have built...
-    if year <= 2021 || !options[:site].blank?
+
+    # 2022 update: we decided to just not do streaks on global or site YIR
+    # anymore b/c it's too much of a support headache and encourages
+    # competetive behavior
+    if year <= 2021
       json[:observations][:streaks] = streaks( year, options )
       year_statistic.update( data: json )
     end
@@ -489,11 +498,16 @@ class YearStatistic < ApplicationRecord
   end
 
   def generate_shareable_image
-    if year >= 2020
-      generate_shareable_image_no_obs
-    else
-      generate_shareable_image_obs_grid
+    timeout = 10.seconds
+    Timeout.timeout timeout do
+      if year >= 2020
+        generate_shareable_image_no_obs
+      else
+        generate_shareable_image_obs_grid
+      end
     end
+  rescue Timeout::Error
+    Rails.logger.error "Failed to generate shareable image for YearStatistic #{id} in #{timeout}s"
   end
 
   def generate_shareable_image_obs_grid
@@ -634,6 +648,15 @@ class YearStatistic < ApplicationRecord
     save!
   end
 
+  # ImageMagick's SVG parser is... sensitive, so this filters out things it doesn't like
+  def clean_svg_for_imagemagick( svg_path )
+    tmp_path = "#{svg_path}.tmp"
+    run_cmd <<~BASH
+      cat #{svg_path} | sed 's/id="Path"// > #{tmp_path}
+    BASH
+    run_cmd "mv #{tmp_path} #{svg_path}"
+  end
+
   def generate_shareable_image_no_obs( options = {} )
     debug = options.delete( :debug )
     work_path = File.join( Dir.tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
@@ -652,6 +675,7 @@ class YearStatistic < ApplicationRecord
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
     run_cmd "curl -f -s -o #{icon_path} \"#{icon_url}\""
+    clean_svg_for_imagemagick( icon_path ) if icon_ext.downcase == "svg"
 
     # Resize icon to a 500x500 square
     square_icon_path = File.join( work_path, "square_icon.png" )
@@ -719,13 +743,14 @@ class YearStatistic < ApplicationRecord
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
     run_cmd "curl -f -s -o #{wordmark_path} #{wordmark_url}"
+    clean_svg_for_imagemagick( wordmark_path ) if wordmark_ext.downcase == "svg"
     wordmark_composite_bg_path = File.join( work_path, "wordmark-composite-bg.png" )
     run_cmd "convert -size 500x562 xc:transparent -type TrueColorAlpha #{wordmark_composite_bg_path}"
     wordmark_resized_path = File.join( work_path, "wordmark-resized.png" )
     density = 1024
     begin
       run_cmd <<~BASH
-        convert -resize x65 -background none +antialias -density #{density} \
+        convert -resize 384x65 -background none +antialias -density #{density} \
           #{wordmark_path} #{wordmark_resized_path}
       BASH
     rescue RuntimeError => e
@@ -760,21 +785,16 @@ class YearStatistic < ApplicationRecord
     else
       ""
     end
-    title = if user
+    locale = if user
       user_site = user.site || Site.default
-      locale = user.locale.presence || user_site.locale.presence || I18n.locale
-      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
-      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
+      user.locale.presence || user_site.locale.presence || I18n.locale
     elsif site
-      locale = site.locale.presence || I18n.locale
-      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      site.locale.presence || I18n.locale
     else
       default_site = Site.default
-      locale = default_site.locale.presence || I18n.locale
-      site_name = default_site.site_name_short.presence || default_site.name
-      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+      default_site.locale.presence || I18n.locale
     end
+    title = I18n.t( :year_in_review, year: year, locale: locale )
     title = title.mb_chars.upcase
     obs_count = if ( qg_counts = data.dig( "observations", "quality_grade_counts" ) )
       qg_counts["research"].to_i + qg_counts["needs_id"].to_i
@@ -1064,6 +1084,7 @@ class YearStatistic < ApplicationRecord
   end
 
   def self.publications( year, _options )
+    # TODO: replace this with https://www.gbif.org/developer/literature
     gbif_endpont = "https://www.gbif.org/api/resource/search"
     gbif_params = {
       contentType: "literature",
@@ -1074,9 +1095,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    response = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
     new_results = []
-    data["results"].each do | result |
+    response["results"].each do | result |
       if ( doi = result["identifiers"] && result["identifiers"]["doi"] )
         url = "https://api.altmetric.com/v1/doi/#{doi}"
         begin
@@ -1088,7 +1109,7 @@ class YearStatistic < ApplicationRecord
         sleep( 1 )
       end
       result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
-      new_results << result.slice(
+      new_result = result.slice(
         "title",
         "authors",
         "year",
@@ -1100,10 +1121,16 @@ class YearStatistic < ApplicationRecord
         "_gbifDOIs",
         "altmetric_score"
       )
+      if new_result["authors"].size == 1 && new_result["authors"][0]["lastName"] =~ /doesn't match/
+        new_result["authors"] = []
+      end
+      new_results << new_result
     end
-    data["results"] = new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5]
-    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
-    data
+    {
+      results: new_results.sort_by {| r | r["altmetric_score"].to_f * -1 }[0..5],
+      url: "https://www.gbif.org/resource/search?#{gbif_params.to_query}",
+      count: response["count"]
+    }
   end
 
   def self.observations_histogram_by_created_month( options = {} )
@@ -1597,6 +1624,23 @@ class YearStatistic < ApplicationRecord
     end
   end
 
+  def self.monthly_supporters( _year, _options = {} )
+    users = User.limit( 30 ).
+      where( "donorbox_plan_type = 'monthly'" ).
+      where( "donorbox_plan_status = 'active'" ).
+      where( "donorbox_plan_started_at IS NOT NULL" ).
+      joins( :stored_preferences ).
+      where( "preferences.name = 'monthly_supporter_badge' AND preferences.value = 't'" ).
+      order( Arel.sql( "RANDOM()" ) )
+    users.reject( &:suspended? ).map do | user |
+      {
+        login: user.login,
+        name: user.name,
+        icon_url: FakeView.image_url( user.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      }
+    end
+  end
+
   # Maximum distance in meters between obs created by a single user for each
   # month of the year. Calculates pairwise comparisons between all obs made by
   # the user in that month so it's pretty slow.
@@ -1724,6 +1768,47 @@ class YearStatistic < ApplicationRecord
     return "UTC" unless ( tz = ActiveSupport::TimeZone[options[:user].time_zone] )
 
     tz.tzinfo.name
+  end
+
+  def self.github_pull_requests( year )
+    year_pulls = []
+    repos = %w(
+      inaturalist
+      iNaturalistAndroid
+      iNaturalistAPI
+      INaturalistIOS
+      inaturalistjs
+      iNaturalistReactNative
+    )
+    repos.each do | repo |
+      page = 1
+      loop do
+        url = "https://api.github.com/repos/inaturalist/#{repo}/pulls?state=closed&page=#{page}&per_page=100"
+        puts "Getting #{url}"
+        pulls = try_and_try_again( [RestClient::Forbidden, RestClient::TooManyRequests] ) do
+          JSON.parse( RestClient.get( url ) )
+        end
+        page_pulls = ( pulls || [] ).select do | pull |
+          pull["merged_at"] &&
+            !%w(MEMBER COLLABORATOR).include?( pull["author_association"] ) &&
+            # For some reason the MEMBER and COLLABOTOR filters don't always
+            # filter out everyone on staff...
+            !%w(dependabot[bot] meru20 carrieseltzer).include?( pull["user"]["login"] ) &&
+            Date.parse( pull["merged_at"] ).year == year
+        end
+        if pulls.blank? || Date.parse( pulls.last["merged_at"] ).year < year
+          break
+        end
+
+        year_pulls += page_pulls
+        page += 1
+      end
+    end
+    year_pulls.map do | pull |
+      new_pull = pull.slice( "title", "merged_at", "html_url" )
+      new_pull["user"] = pull["user"].slice( "login", "avatar_url", "html_url" )
+      new_pull
+    end
   end
 
   def self.run_cmd( cmd, options = { timeout: 60 } )

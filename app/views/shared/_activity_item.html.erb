@@ -28,6 +28,13 @@
   else
     dom_id( item, "activity" )
   end
+  unless defined? parent_comments_disabled
+    parent_comments_disabled = if item.respond_to?( :parent )
+      item&.parent&.respond_to?(:prefers_no_comments?) && item&.parent.prefers_no_comments?
+    else
+      false
+    end
+  end
 -%>
 <div id="<%= id_attr  %>" class="<%= html_class %>">
   <div class="item_user column">

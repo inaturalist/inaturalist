@@ -186,6 +186,7 @@
 
 /* Mini */
 
+
 .observations.mini .observation {
   position: relative;
   margin-bottom: 5px;
@@ -267,6 +268,121 @@
   margin-inline-start: 4px;
 }
 .observations.mini .photos img { width: 75px; }
+
+.observations.mini {
+  $icon-gutter: 30px;
+  $label-width: 70px;
+  $label-margin: 10px;
+
+  .observation {
+    position: relative;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    padding: 5px 0;
+  }
+
+  .observed_on,
+  .created_at,
+  .species_guess,
+  .tags,
+  .place,
+  .user,
+  .actions,
+  .curator_ident {
+    padding-left: $icon-gutter;
+  }
+
+  .icon {
+    position: absolute;
+    top: 8px;
+    left: 5px;
+
+    img {
+      max-width: 20px;
+    }
+  }
+
+  .observation[data-iconic-taxon-name="Aves"] .icon,
+  .observation[data-iconic-taxon-name="Mammalia"] .icon,
+  .observation[data-iconic-taxon-name="Mollusca"] .icon,
+  .observation[data-iconic-taxon-name="Arachnida"] .icon {
+    top: 5px;
+    left: 3px;
+  }
+  .observation[data-iconic-taxon-name="Fungi"] .icon {
+    top: 5px;
+    left:5px;
+  }
+
+  .photos {
+    float: right;
+    margin-left: 4px;
+
+    &.attribute {
+      max-width:80px;
+    }
+
+    img {
+      width: 75px;
+    }
+
+    .photolist .photo.nophoto {
+      border: 1px dashed #eee;
+      line-height: 1;
+      padding: 0.5em;
+    }
+  }
+
+  .user,
+  .observed_on,
+  .created_at,
+  .tags,
+  .place {
+    font-size: 100%;
+    position: relative;
+    padding-left: $icon-gutter + $label-width + $label-margin;
+  }
+
+  .user .label,
+  .observed_on .label,
+  .created_at .label,
+  .place .label,
+  .tags .label,
+  .curator_ident .label {
+    display: block;
+    width: $label-width;
+    position: absolute;
+    left: $icon-gutter;
+    color: #888;
+    font-style: italic;
+    font-size: 100%;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .curator_ident .label {
+    display: inline;
+    width: auto;
+    position: static;
+    font-weight: bold;
+  }
+
+  .details .label {
+    display:none;
+  }
+
+  .curator_ident .label:after {
+    content: ': ';
+  }
+
+  .species_guess {
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+}
+
+
 .observations.table .photos img { width: 75px; }
 
 /* Compact Mini */

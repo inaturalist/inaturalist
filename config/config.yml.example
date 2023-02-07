@@ -154,13 +154,14 @@ base: &base
     #             identifier: seek
     #             key: 4321
 
-    # # Sendgrid-specific options if using sendgrid.com to send email
-    # sendgrid:
-    #     # Unsubscribe groups configured on Sendgrid
-    #     asm_group_ids:
-    #         # The unsubscribe group used as a default for all emails sent from
-    #         # the web app
-    #         default: 1234
+    # Sendgrid-specific options if using sendgrid.com to send email
+    sendgrid:
+        api_key: some-api-key
+        # Unsubscribe groups configured on Sendgrid
+        asm_group_ids:
+            # The unsubscribe group used as a default for all emails sent from
+            # the web app
+            default: 1234
 
 development:
     <<: *base

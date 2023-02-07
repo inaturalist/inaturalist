@@ -88,7 +88,7 @@ class TaxonSwap < TaxonChange
       new_taxon_name.creator = nil
       new_taxon_name.updater = nil
       if new_taxon_name.source_url.blank?
-        new_taxon_name.source_url = FakeView.edit_taxon_name_url( taxon_name )
+        new_taxon_name.source_url = UrlHelper.edit_taxon_name_url( taxon_name )
       end
       if new_taxon_name.source_identifier.blank?
         new_taxon_name.source_identifier = taxon_name.id

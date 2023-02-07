@@ -16,6 +16,7 @@ import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking
 import CreativeCommonsLicensingModalContainer from "../containers/cc_licensing_modal_container";
 import DropdownMenuMobile from "./dropdown_menu_mobile";
 import DeleteRelationshipModalContainer from "../containers/delete_relationship_modal_container";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
 
 class App extends Component {
   constructor( ) {
@@ -102,6 +103,7 @@ class App extends Component {
         <ThirdPartyTrackingModalContainer />
         <CreativeCommonsLicensingModalContainer />
         <DeleteRelationshipModalContainer />
+        <ConfirmModalContainer />
         <AlertModalContainer />
       </div>
     );

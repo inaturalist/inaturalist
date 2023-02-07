@@ -50,7 +50,7 @@ class DonateController < ApplicationController
         utm_source: utm_source,
         utm_medium: "web",
         redirect: true
-      }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" } )
+      }.merge( request.query_parameters.reject {| k, _v | k.to_s == "inat_site_id" }.symbolize_keys )
     end
   end
 end

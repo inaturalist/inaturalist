@@ -414,12 +414,14 @@ cs:
   add_observations: Vložit pozorování
   add_observations_by_checking_off: Přidat pozorování odškrtnutím druhu v seznamu.
   add_observations_project: Vložit poorování do tohoto projektu
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Přidat</span> <span>pozorování</span>"
   #Prompt to add a new journal post
   add_one: Vložit jedno pozorování!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Přidat nyní
-  add_photos: Vložit fotku
   add_place: Přidat místo
   add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
@@ -822,6 +824,10 @@ cs:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Vlastnost
   attribution: Uvedení autora
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, nahrál %{user}"
   authority_list:
     iucn_red_list: Červený seznam IUCN
     natureserve: NatureServe
@@ -981,6 +987,8 @@ cs:
   change_group: Změna skupiny
   change_icon: Změna ikony
   change_password: Změna hesla
+  #Message shown after you change your email address
+  change_to_email_requested_html: Požadovaná změna na <strong>%{email}</strong>. Zkontrolujte svůj e-mail na této adrese a potvrďte změnu.
   change_types:
     activated_soon: aktivováno brzy
     change_types: Typy změn
@@ -1148,14 +1156,16 @@ cs:
   confirm_new_password: Potvrzení nového hesla
   confirm_now: potvrďte nyní
   confirm_your_info: Potvrďte vaše informace
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Potvrzeno dne %{date}
   confirming_ids: Potvrzování ID
   confirming_ids_description: Pokud toto vypnete, již nebudete upozorňováni na ID, která s vámi souhlasí.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Připojit
   connect_to_provider: "Připojit se k %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Připojené účty
   connected_accounts_description: Připojené účty jsou vaše účty z jiných aplikací nebo webových stránek, ke kterým jste povolili iNaturalist přístup vaším jménem, za účelem přihlášení, importu fotek nebo jiných funkcí.
   connected_accounts_titlecase: Připojené účty
   connecting_flickr: "Připojování k Flickru..."
@@ -1328,7 +1338,6 @@ cs:
   created_by: Vytvořeno
   created_by_user_on_date: Vytvořeno uživatelem %{user} dne %{date}
   created_on: Vytvořeno dne
-  creating_your_account: "Zakládám váš účet..."
   creative_commons_flickr_tagged: Označeny fotky Creative Commons na Flickru
   creative_commons_unless_otherwise_noted: "Creative Commons, pokud není uvedeno jinak."
   critically_endangered: kriticky ohrožený
@@ -1595,6 +1604,10 @@ cs:
   deviation: Odchylka
   devise:
     confirmations:
+      confirmed: |
+        Vaše e-mailová adresa byla úspěšně potvrzena. Nyní se můžete přihlásit
+        zde na webové stránce nebo v mobilních aplikacích iNaturalist.
+      send_instructions: "Za několik minut obdržíte e-mail s pokyny, jak potvrdit vaši e-mailovou adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1604,31 +1617,55 @@ cs:
       unauthenticated: 'Pro pokračování se musíte přihlásit nebo zaregistrovat.'
       invalid: 'Neplatný e-mail nebo heslo.'
       invalid_token: 'Neplatný ověřovací token.'
+      unconfirmed: |
+        Zkontrolujte prosím svůj e-mail a klikněte na odkaz v e-mailu, který jste obdrželi
+        pro potvrzení vašeho účtu.
       user:
         suspended: Váš účet byl pozastaven
     sessions:
       signed_in: 'Přihlášení proběhlo úspěšně.'
       signed_out: 'Odhlášení proběhlo úspěšně.'
     passwords:
-      send_instructions: 'Během několika minut obdržíte e-mail s pokyny pro obnovení hesla.'
+      send_instructions: |
+        Během několika minut obdržíte e-mail s pokyny pro obnovení hesla.
       updated: 'Vaše heslo bylo úspěšně změněno. Nyní jste přihlášeni.'
       updated_not_active: 'Vaše heslo bylo úspěšně změněno.'
-      send_paranoid_instructions: "Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla."
-      no_token: "Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL."
+      send_paranoid_instructions: |
+        Pokud vaše e-mailová adresa existuje v naší databázi, obdržíte během pár minut odkaz pro obnovení hesla.
+      no_token: |
+        Tuto stránku nemůžete navštívit, pokud nepřicházíte přes odkaz pro obnovení hesla, který vám byl zaslán na e-mail. Pokud z něj přicházíte, ujistěte se, že jste použili celou adresu URL.
     registrations:
-      signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
-      updated: 'Účet byl úspěšně aktualizován.'
       destroyed: 'Na shledanou! Váš účet byl úspěšně zrušen. Doufáme, že vás brzy znovu uvidíme.'
+      signed_up: 'Vítejte! Vaše registrace proběhla úspěšně.'
+      signed_up_but_inactive: "Úspěšně jste se zaregistrovali. Nicméně, nemohli jsme vás přihlásit, protože Váš účet ještě není aktivován."
+      signed_up_but_locked: "Úspěšně jste se zaregistrovali. Nicméně, nemohli jsme vás přihlásit, protože Váš účet je uzamčen."
+      signed_up_but_unconfirmed: "Zpráva s potvrzovacím odkazem byla odeslána na vaši e-mailovou adresu. Pro aktivaci účtu prosím postupujte podle odkazu."
+      updated: 'Účet byl úspěšně aktualizován.'
     mailer:
       confirmation_instructions:
-        subject: 'Pokyny k potvrzení'
+        #Subject of an email sent to confirm your account
+        subject: Pokyny k potvrzení
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Požadována změna e-mailu
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
+  devise_confirmation_instructions_if_you_did_not: |
+    Pokud jste se nepřihlásili k účtu @vow_or_con{vow:an|a} %{site_name} , prosím ignorujte tento e-mail.
+  devise_confirmation_instructions_please_click: |
+    Klikněte prosím na odkaz níže pro potvrzení vaší e-mailové adresy:
+  devise_confirmation_instructions_resend_instructions: |
+    Abyste mohli iNaturalist používat, musíte mít funkční e-mailovou adresu. Při registraci účtu jste měli obdržet potvrzovací e-mail s odkazem, na který je třeba kliknout a potvrdit, že vaše e-mailová adresa funguje, ale pokud jste tak neučinili, můžete si poslat další potvrzovací e-mail zde.
+  devise_confirmation_instructions_send_confirmation_email: Odeslat ověřovací e-mail
+  devise_email_changed_you_requested: Požádali jste o změnu z %{old_email} na %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Na novou adresu vám přijde e-mail s potvrzením změny, ale chtěli jsme vás upozornit i na vaši starou adresu pro případ, že by někdo jiný měl přístup k vašemu účtu a snažil se ho změnit, aniž byste o tom věděli. Pokud jste e-mailovou adresu nezměnili úmyslně, přepošlete prosím tento e-mail neprodleně na adresu help@inaturalist.org, abychom mohli případ prošetřit.
   devise_reset_password_instructions_hello_email: Dobrý den %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Pokud jste o změnu hesla nežádali, prosím ignorujte tento e-mail.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Někdo požádal o odkaz na změnu vašeho hesla. Můžete to udělat prostřednictvím odkazu níže.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Vaše heslo nebude změněno, pokud se nepřihlásíte na následující odkaz a nevytvoříte si nové heslo.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1676,6 +1713,7 @@ cs:
   #add the file as, for example, a new photo in the Uploader
   drop_it: Pusťte zde
   download: Stáhnout
+  download_caps: STÁHNOUT
   download_bulk_import_template_html: |
     <a href="%{url}">Stáhnout šablonu</a> pro použití při <a href="/observations/import?project_id=%{project_id}#csv_import">hromadném nahrávání</a>
   download_csv: Stáhnout CSV
@@ -1771,6 +1809,23 @@ cs:
   email: E-mail
   email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
+  email_conf_banner_email_delivered_click_link: |
+    Potvrzovací e-mail byl doručen. Klikněte prosím na odkaz v e-mailu.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Přidejte <code>%{email}</code> do seznamu kontaktů a
+    <a href="%{url}">požádat o další potvrzovací e-mail</a>.</strong> Pokud váš e-mail
+    poskytovatel zablokoval potvrzovací e-mail, mohlo by to přesvědčit o tom, že
+    od nás skutečně chcete e-mail.
+  email_conf_banner_check_your_spam_folder_html: <strong>Zkontrolujte složku se spamem</strong>
+  email_conf_banner_contact_us_html: Stále nefunguje? Napište nám e-mail na %{email} , abychom Vám mohli pomoci.
+  email_conf_banner_search_for_emails_html: <strong>Hledat e-maily od <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Dne %{date}jsme Vám zaslali potvrzovací e-mail. Pokud jste ho neobdržel/a
+    , zde jsou některé věci, které můžete udělat:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Prosím, potvrďte svou e-mailovou adresu%{link_end_tag}</strong>.
+    Všichni uživatelé musí potvrdit svou e-mailovou adresu do %{date}. Po tomto datu se každý, kdo nepotvrdí svou e-mailovou adresu, nebude moci přihlásit, pokud si neobnoví heslo. Chcete-li potvrdit svou e-mailovou adresu, přejděte do %{link_start_tag}nastavení účtu%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
@@ -1804,8 +1859,6 @@ cs:
     native: vyvinutý v této oblasti nebo přijatý neantropogenními prostředky
     endemic: původní a nikde jinde se neobjevuje
     introduced: do regionu přišel prostřednictvím antropogenního působení
-  estimate_which_input: |
-    Odhadněte, které vstupní taxony budou nahrazeny kterými výstupními taxony a které budou po dokončení rozdělení zestručněny na společného předka. Výpočet může chvíli trvat. Odkazy na pozorování jsou zkráceny na podmnožiny 200.
   event_in_progress: Událost probíhá
   event_stats: Statistiky události
   event_url: URL události
@@ -1868,6 +1921,8 @@ cs:
   feedback: Zpětná vazba
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Kanály'
+  #Button to show fewer places
+  fewer__context_places: Méně
   failed: Chyba
   field_note: |
     <strong>Poznámka:</strong> Pokud chcete vytvořit pole, podívejte se, jestli už ho nevytvořil někdo jiný, aby nedocházelo k duplicitě.
@@ -1892,8 +1947,10 @@ cs:
   filters: Filtry
   find: Najít
   find_a_guide: Najít průvodce
+  find_a_post: Najít příspěvek
   find_a_place: Najít místo
   find_guides: Najít průvodce
+  find_posts_for: "Najít příspěvky pro: %{journal_name}"
   find_new_place_to_explore: Najít nové místo k objevování!
   find_observations: Najít pozorování
   find_photos: Najít fotky
@@ -2222,6 +2279,8 @@ cs:
   improving: Zlepšování
   in_n: "v %{n}"
   in_place_x: v %{place}
+  #As in a reason to flag something
+  inappropriate: Nevhodné
   inaturalist_network: Síť iNaturalist
   inaturalist_network_affiliation: Příslušnost k síti iNaturalist
   #Label for messages you've received
@@ -2448,6 +2507,8 @@ cs:
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Méně
+  #Button show less text
+  less__context_text: Méně
   licensed_site_photos: "Fotky s licencí %{site_name}"
   license: Licence
   licensing: Licence
@@ -2518,6 +2579,7 @@ cs:
     de: německy
     el: řecky
     en: anglicky
+    en-GB: anglicky (Spojené království)
     eo: esperanto
     es: španělsky
     es-AR: španělsky (Argentina)
@@ -2583,7 +2645,6 @@ cs:
   log_scale_label: Protokol
   #Status message shown while logging in
   logging_in: Přihlašování...
-  login_slash_username: Prihlášení / uživatelské jméno
   logo:
     logo: Logo
     white_bg_gif: GIF s bílým pozadím
@@ -2763,10 +2824,21 @@ cs:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Měsíc
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: Měsíční podporovatelé
   monthly_supporter_since_date_html: |
     <a href="%{url}">Měsíční podporovatel</a> od %{date}
   months: Měsíce
   more: Další
+  #Button to show more observations
+  more__context_observations_caps: VÍCE
+  #Button to show more places
+  more__context_places: Více
+  #Button to show more text
+  more__context_text: Více
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: VÍCE
+  more_caps: VÍCE
   more_about_sharing: Další informace o sdílení
   more_fields: Další pole
   more_filters: Další filtry
@@ -3177,10 +3249,6 @@ cs:
   observed_on: Pozorováno dne
   observer: Pozorovatel
   observers: Pozorovatelé
-  observer_prefers_no_project_addition: |
-    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do projektů.
-  observer_prefers_addition_to_projects_joined: |
-    Pozorovatel umožňuje ostatním lidem přidávat svá pozorování pouze do projektů, ke kterým se připojil.
   observer_short: Pozorovatel
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
@@ -3272,6 +3340,7 @@ cs:
   open_description: "Souřadnice uvidí všichni, pokud není taxon ohrožený."
   open_street_map: OpenStreetMap
   optional: nepovinné
+  options: Možnosti
   or: nebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3864,6 +3933,7 @@ cs:
   places_warning_the_future: |
     Možná se Vás to netýká, ale vzhledem k současné míře růstu iNat budeme muset omezit podmínky, za nichž lidé mohou přidávat nová místa.
   plants: rostliny
+  play_first_sound: Přehrát první zvuk
   please_add_a_citation_for_this_change: Přidejte prosím citaci pro tuto změnu.
   please_allow_a_few_weeks_for_external_sites: Počkejte prosím pár týdnů, než se změny z tohoto pozorování sesynchronizují s externími stránkami #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Požádejte prosím své rodiče o souhlas
@@ -3984,6 +4054,18 @@ cs:
   proposed_taxa_that_support_the_community_id: Navrhované taxony, které souhlasí s ID komunity
   protozoans: prvoci
   provider_authorizations: Autorizace poskytovatele
+  provider_without_email_error_apple: |
+    Společnost Apple neposkytla e-mailovou adresu pro tento účet, což je
+    požadováno. Prosím, vytvořte účet na této stránce místo přihlášení
+    přes Apple.
+  provider_without_email_error_flickr: |
+    Flickr neposkytl e-mailovou adresu pro tento účet, což je
+    vyžadováno. Prosím, vytvořte účet na této stránce místo přihlášení
+    přes Flickr.
+  provider_without_email_error_generic: |
+    Tato služba neposkytla e-mailovou adresu pro tento účet, která je vyžadována. Místo přihlašování prostřednictvím třetích stran si prosím vytvořte účet na těchto stránkách.
+  provider_without_email_error_google_oauth2: |
+    Společnost Google neuvedla e-mailovou adresu tohoto účtu, která je vyžadována. Místo přihlašování přes Google si prosím vytvořte účet na těchto stránkách.
   public_domain: Veřejná doména
   publish: Publikovat
   purple: purpurový
@@ -4260,6 +4342,10 @@ cs:
   research_grade_tooltip_html: 'Pozorování „výzkumného stupně“ mají média, umístění, datum a konsensus komunity o přesné identifikaci (obvykle na úrovni druhu). <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
   research_grade_observations_have: 'Pozorování „výzkumného stupně“ mají datum, fotku, souřadnice a identifikaci odsouhlasenou komunitou. Klikněte pro podrobnosti o hodnocení kvality údajů.'
   research_grade_qualification: Vymezení výzkumného stupně
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Znovu odeslat a odhlásit
+  resend_confirmation_email: Znovu poslat ověřovací e-mail
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetovat
   reset_filters_short: Resetovat
@@ -4379,11 +4465,12 @@ cs:
   select: Vybrat
   select_all: Vybrat vše
   select_at_least_one: Vybrat alespoň jeden
-  select_one_or_more_photos: 'Vybrat jednu nebo více fotek'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nevybrat žádný
   select_observations_to_edit: Vyberte pozorování k editaci...
   select_one_of_friends_albums: Vyberte jedno %{friend} z alb
   select_one_of_your_albums: Vyberte jedno z vašich alb
+  select_one_or_more_photos: 'Vybrat jednu nebo více fotek'
   select_options: Vybrat možnosti
   select_photos_from_your_photo_stream: |
     Vyberte fotky z externích stránek sdílejících fotky, které se převedou na pozorování %{site_name}. My doplníme datum, čas a místo z metadat fotky a zkusíme vyhledat název druhu podle tagů.
@@ -4392,6 +4479,10 @@ cs:
   selected_taxon: Vybraný taxon
   select_this_taxon: Vybrat tento taxon
   send: odeslat
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Odeslat a odhlásit
+  send_confirmation_email: Odeslat ověřovací e-mail
   send_me_reset_password_instructions: Odešlete mi pokyny k obnovení hesla
   sending: Odesílá se…
   #Label for messages you've sent
@@ -4401,6 +4492,7 @@ cs:
   set_license: Nastavit licenci
   settings: Nastavení
   share: Sdílet
+  share_caps: SDÍLET
   share_colon: "Sdílet:"
   short_code_for_this_place: Zkratka pro toto místo, např. USA pro Spojené státy
   short_or_abbreviated_title_for_display: Krátký nebo zkrácený název pro zobrazení v omezených sekcích. Max. 10 znaků.
@@ -4627,6 +4719,7 @@ cs:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: OBCHOD
+  store_caps: OBCHOD
   studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
@@ -5263,6 +5356,7 @@ cs:
   upload_new_photo: Nahrát novou fotografii
   upload_photo: Nahrát fotografii
   upload_range: Nahrát rozsah
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Nahráno uživatelem
   uploader:
     errors:
@@ -5293,6 +5387,7 @@ cs:
     Použít <span class='ac-placeholder'>"%{name}"</span> jako placeholder
   use_this_form_to_create_a_new: |
     Použijte tento formulář k vytvoření nového konceptu taxonomické změny s popisem navrhovaného rozdělení, sloučení nebo záměny aktivních taxonů, ke které má později dojít.
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Toto použijte, pokud URL vyžaduje oddělení rodu a druhu určitým způsobem. Pokud taxon není druh nebo infradruh, všechno mezi [RODEM] a [DRUHEM] bude nahrazeno názvem taxonu, takže tuto možnost používejte střídmě.
   use_unique_file_names_for_separate_uploads: Pro jednotlivá nahrání použijte jedinečné názvy souborů
@@ -5359,6 +5454,11 @@ cs:
     %{user} pozoroval %{date} v %{place}
   user_suggested_an_id: "Uživatel %{user} navrhl ID"
   user_trusts_this_project_for_none: Uživatel nevěří tomuto projektu se skrytými souřadnicemi.
+  user_trusts_this_project_for_any: |
+    Uživatel důvěřuje tomuto projektu se skrytými souřadnicemi, které byly skryté z jakéhokoliv důvodu.
+  user_trusts_this_project_for_taxon: |
+    Uživatel důvěřuje pouze tomu projektu se skrytými souřadnicemi, které byly skryty
+    kvůli ohroženým taxonům.
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
@@ -5369,6 +5469,48 @@ cs:
   username_or_user_id: Uživatelské jméno nebo uživatelské ID
   users: Uživatelé
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Po opětovném odeslání ověřovacího e-mailu budete odhlášeni a nebudete se moci přihlásit ke svému účtu, dokud nekliknete na odkaz v e-mailu, takže <strong>se naprosto ujistěte, že jste svou e-mailovou adresu zadali správně.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Ujistěte se, že je vaše e-mailová adresa správná. Zde je naše e-mailová adresa
+    zašle potvrzení na adresu:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Pokud e-mail neobdržíte, zde je několik tipů:
+    </p>
+    <ul>
+    <li><p>Zkontrolujte složku se spamem</p></li>
+    <li><p>Zkontrolujte, zda nemáte vytvořené filtry, které by mohly odstranit naše e-maily z vaší doručené pošty</p></li>
+    </ul>
+    <p>
+    Pokud stále neobdržíte potvrzovací e-mail, kontaktujte nás na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    takže vám můžeme pomoci.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Chystáte se odhlásit</h3>
+    <p>
+    Po odeslání potvrzovacího e-mailu budete odhlášeni a nebudete se moci 
+    přihlásit ke svému účtu, dokud nekliknete na odkaz
+    v e-mailu, takže se<strong class="bg-warning">ujistěte, že jste
+    zadali správně svou e-mailovou adresu.</strong>
+    </p>
+    <p>
+    Zde je e-mailová adresa, na kterou zašleme potvrzení:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Pokud jste se odhlásili z odběru všech e-mailů...</h4>
+    <p>
+    Pokud jste se odhlásili z odběru <em>všech</em> e-mailů od nás, nemůžeme vám odeslat
+    potvrzovací e-mail. Chcete-li se znovu přihlásit k odběru, musíte najít předchozí
+    poslaný e-mail, klepnout na odkaz pro odhlášení odběru a v dalším mailu zvolit možnost 
+    Přihlásit k odběru. Pokud to nemůžete udělat, pošlete prosím
+    e-mail na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 
+    z e-mailové adresy, kterou jste zde zadali, abychom vám mohli pomoci.
+    </p>
   users_favorites: "Oblíbené uživatele %{user}"
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
@@ -5378,7 +5520,6 @@ cs:
   users_lists: "Seznamy uživatele %{user}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
-  users_year_on_site: "Rok uživatele %{user} na %{site} %{year}"
   valid_options_are: Platné možnosti jsou
   value: Hodnota
   values: Hodnoty
@@ -5386,9 +5527,16 @@ cs:
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
   view: Zobrazit
   view_all: Zobrazit vše
+  view_all_caps: ZOBRAZIT VŠE
   view_all_fields: Zobrazit všechna pole
   view_all_flags: Zobrazit všechny praporky
   view_all_members: Zobrazit všechny členy
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Zobrazit (všechen) %{count}"
+    few: "Zobrazit všechny %{count}"
+    many: "Zobrazit všech %{count}"
+    other: "Zobrazit všech %{count}"
   view_all_observations: Zobrazit všechna pozorování
   view_all_photocount_photos: "Zobrazit všech %{photo_count} fotek"
   view_assessment: Zobrazit hodnocení
@@ -5442,12 +5590,10 @@ cs:
   view_taxononomy_details_for_taxon: "Zobrazit podrobnosti taxonomie pro %{taxon}"
   view_user_observations: "Zobrazit pozorování uživatele %{user}"
   view_x: "Zobrazit %{x}"
-  view_year_stats_for_site: "Zobrazit statistiku za rok %{year} pro %{site}"
   view_your_dashboard: Zobrazit vaši nástěnku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobrazit váš přehled nejlepších</a> a aktualizace"
   view_your_inbox: Zobrazit vaši příchozí poštu
   view_your_observations: Zobrazit vaše pozorování
-  view_your_year_stats: "Zobrazit vaši statistiku za rok %{year}"
   view_yours: Zobrazit váš
   view_all_of_your_observations_from_x: "Zobrazit všechna vaše pozorování z %{x}"
   video_tutorials: Video návody
@@ -5539,7 +5685,10 @@ cs:
     Commons Uveďte autora-Sdílej-Podobně 3.</a>Obsah byl možná
     vynechán v originálu, ale žádný obsah nebyl změněn ani rozšířen.
   with: s
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Odstranit
+  #Loading status while an identification is being withdrawn
   withdrawing: Odstoupení...
   with_errors: S chybami
   worldwide: Celosvětové
@@ -5685,6 +5834,7 @@ cs:
   you_dont_have_permission_to_edit_those_photos: Nemáte povolení editovat tyto fotky.
   you_faved_this: Toto jste označili jako oblíbené!
   you_have_left_x_project: "Odešli jste z projektu %{project}"
+  you_have_not_confirmed_your_email_address: Nepotvrdili jste svou e-mailovou adresu!
   you_havent_linked_your_inaturalist_google_account: "Zatím jste si nepropojili účet na %{site_name} s účtem na Googlu"
   you_joined_this_project: Připojili jste se k tomuto projektu!
   you_must_be_a_member_of_this_project_to_do_that: Abyste mohli udělat tento krok, musíte být členem tohoto projektu
@@ -5804,6 +5954,7 @@ cs:
       post_donate_social_media_text: Podporuji iNaturalist protože...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: STAŇTE SE MĚSÍČNÍM PODPOROVATELEM INATURALIST
         desc_html: |
           <p class="lead">
           <strong>iNaturalist je jednou z největších světových komunit věnovaných
@@ -5824,6 +5975,8 @@ cs:
           Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
           se sídlem ve Spojených státech amerických.
           </p>
+        thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
+        thank_you_for_being_a_monthly_supporter_caps: DĚKUJEME ŽE JSTE SE STAL MĚSÍČNÍM PODPO|RO|VATELEM
     flags:
       show:
         flaggable_content_desc: |
@@ -6237,6 +6390,9 @@ cs:
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
         user_id: Jedinečný identifikátor pro pozorovatele
         user_login: Uživatelské jméno pozorovatele
+        user_name: |
+          Jméno pozorovatele, obvykle používané pro přiřazení na místě.
+          Toto je nepovinné pole a může být vyplněno pseudonymem.
         created_at: Datum a čas, kdy bylo pozorování vytvořeno
         updated_at: Datum a čas, kdy bylo pozorování naposledy aktualizováno
         quality_grade: Stupeň kvality tohoto pozorování. Podívejte se do sekce Nápověda, kde najdete podrobnosti o tom, co to znamená
@@ -6279,7 +6435,6 @@ cs:
       show:
         allow_curator_coordinate_access_desc_html: |
           Umožnit kurátorům projektu zobrazit soukromé souřadnice tohoto pozorování.
-        ancestor_disagreements_desc: "# identifikovaných taxonů patří do následných taxonů, ale byly vytvořeny po první identifikaci s použitím tohoto taxonu"
         community_taxon_desc_html: |
           <p class="ui">
           Komunitní taxon (nebo komunitní identifikace) představuje to, jaký taxon je podle komunity %{site_name} zobrazen v pozorování. Pokud vás zajímá, jak komunitní taxon volíme, podívejte se na poznámky k algoritmu níže, ale obecně se snažíme <strong>vybírat taxony, s nimiž souhlasí více než 2/3
@@ -6949,13 +7104,6 @@ cs:
         one_time: Jednorázově
         percent_growth_in_year: "% Růst v %{year}"
         percent_of_total_growth: "% z celkového růstu"
-        publications_desc_html: |
-          Klikněte na grafy květin pro více informací o tom, co znamenají čísla
-          a barvy. Dopad data a grafy laskavost <a href="https://www.altmetric.com">Altmetric</a>. Informace
-          o využití dat laskavostí našich přátel na
-          <a href="https://www.gbif.org/">Globální informační facilita pro biologickou rozmanitost</a>.
-          <br/>
-          <a href="%{url}">Zobrazit všechny %{numStudies} studia</a>
         publications_desc_short_html: |
           Kliknutím na grafy květin získáte další informace o tom, co čísla
           a barvy znamenají. Údaje a grafy se svolením
@@ -6981,6 +7129,7 @@ cs:
         species_per_year_by_date_added: Dle data přidání
         species_per_year_by_date_observed: Dle data pozorování
         stats_generated_datetime: Statistiky generované na %{datetime}
+        stats_generation_schedule: Statistiky budou generovány každou neděli v prosinci a 1. ledna
         store_prompt: |
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
           Obchod!
@@ -7065,7 +7214,6 @@ cs:
           "Plant Phenology=Flower Budding": Květinové pučení
           "Plant Phenology=Flowering": Kvetoucí
           "Plant Phenology=Fruiting": Plození
-          "Plant Phenology=No Evidence": Bez důkazu
           "Life Stage=Adult": Dospělec
           "Life Stage=Egg": Vejce
           "Life Stage=Larva": Larva
@@ -7764,6 +7912,9 @@ cs:
           other: '%{count} chyb zabránilo %{model} v uložení'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Oznámení
       AssessmentSection: Části hodnocení
       Atlas: Atlas
       BlockedUser: Blokovaný uživatel
@@ -7783,6 +7934,12 @@ cs:
       OauthApplication: Žádost
       TaxonLink: Odkazy taxonu
     attributes:
+      announcement:
+        created_at: Vytvořeno
+        updated_at: Aktualizováno
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID webu
       assessment:
         description: Popis
       assessment_section:
@@ -7800,7 +7957,11 @@ cs:
         geoprivacy: Soukromí zeměpisné polohy
         iucn: Ekvivalent IUCN
       flag:
+        #The reason the item was flagged
         reason: Důvod
+        #The person who resolved the flag
+        resolver_id: Řešitel
+        #The kind of flag that was made
         flag: Vlajka
       guide:
         source_url: URL zdroje
@@ -7933,6 +8094,18 @@ cs:
         position: Pozice
         source_url: URL zdroje
         source_identifier: Identifikátor zdroje
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Název webu
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Krátký název
+        #Taxon this link is associated with
+        taxon: Taxon
+        #Place this link is associated with
+        place: Místo
       user:
         email: E-mail
         login: Uživatelské jméno
@@ -7997,6 +8170,13 @@ cs:
               has_query_parameter: "nemůže obsahovat parametr dotazu."
               invalid_uri: "musí být platný identifikátor URI."
               relative_uri: "musí být absolutní URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: má zakázané komentáře
         flag:
           attributes:
             flag:

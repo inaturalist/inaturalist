@@ -58,5 +58,6 @@ module Shared::FiltersModule
     end
     @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
     @site ||= Site.default
+    @site
   end
 end

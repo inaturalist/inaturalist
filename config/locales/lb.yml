@@ -199,7 +199,6 @@ lb:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Elo eng derbäisetzen
-  add_photos: Fotoen derbäisetzen
   add_place: Plaz derbäisetzen
   add_alive_or_dead_alive_annotation: 'D''Annotatioun "Lieweg oder Dout: Lieweg" bäisetzen'
   add_alive_or_dead_cannot_be_determined_annotation: 'D''Annotatioun "Lieweg oder Dout: kann net bestemmt gin" bäisetzen'
@@ -654,7 +653,6 @@ lb:
   created_by: Kreéiert vum
   created_by_user_on_date: Ugeluecht vum %{user} de(n) %{date}
   created_on: Kreéiert den
-  creating_your_account: "Äre Benotzerkont gëtt ugeluecht..."
   csv: CSV
   csv_file: CSV Fichier
   cumulative_ids: "Kumulativ IDs: %{count} vun %{total}"
@@ -1190,7 +1188,6 @@ lb:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Umeldung leeft...
-  login_slash_username: Aloggen / Benotzernumm
   logo:
     logo: Logo
     transparent_png: transparente PNG
@@ -2142,6 +2139,7 @@ lb:
   upload: Eroplueden
   upload_a_csv_file: CSV-Fichier eroplueden
   upload_photo: Foto eroplueden
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Eropgeluede vum
   uploader:
     tooltips:
@@ -2195,10 +2193,8 @@ lb:
   view_sample: Beispill weisen
   view_stats: Statistike weisen
   view_x: "%{x} weisen"
-  view_year_stats_for_site: "Weis %{year} Statistike fir %{site}"
   view_your_dashboard: Ären Dashboard kucken
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Kuckt Ären Dashboard</a> fir mei Updates"
-  view_your_year_stats: "Weist Är %{year} Statistiken"
   view_yours: Är weisen
   video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
@@ -2248,7 +2244,10 @@ lb:
   with_annotation: Mat Annotatiounen
   without_annotation: Ouni Annotatiounen
   with: mat
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: Zréckzéien
+  #Loading status while an identification is being withdrawn
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
   worldwide: Weltwäit
@@ -2457,7 +2456,6 @@ lb:
           "Alive or Dead=Dead": Dout
           "Plant Phenology=Flowering": Bléiend
           "Plant Phenology=Fruiting": Kritt Friichten
-          "Plant Phenology=No Evidence": Keng Evidenz
           "Life Stage=Adult": Erwuessen
           "Life Stage=Egg": Ee
           "Life Stage=Larva": Larve
@@ -2718,6 +2716,7 @@ lb:
         place_id: Plaz
         url: URL
       flag:
+        #The reason the item was flagged
         reason: Grond
       message:
         subject: Sujet

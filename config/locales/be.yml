@@ -322,6 +322,8 @@ be:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Вы можаце выбраць, з падзяліцца схаванымі каардынатамі
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Пра непрадбачанныя рознагалоссі
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -417,7 +419,6 @@ be:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Дадаць зараз
-  add_photos: Дадаць фота
   add_place: Дадаць месца
   add_alive_or_dead_alive_annotation: 'Дадаць значэнне "Жывы ці мёртвы: жывы"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Дадаць значэнне "Жывы ці мёртвы: не магчыма вызначыць"'
@@ -645,6 +646,10 @@ be:
   alphabetical_order: Па алфавіце
   already_have_an_account_log_in_html: Ужо ёсць уліковы запіс? <strong>Увайсці.</strong>
   amphibians: земнаводныя
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Аналізваць непрадбачанныя рознагалоссі
   analyze_ids: Аналіз вызначэнняў
   ancestor_taxon: Бацькоўскі таксон
   and: і
@@ -1130,8 +1135,6 @@ be:
   #connecting to Flickr
   connect: Падлучыць
   connect_to_provider: "Падлучыць да %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Падлучаныя ўліковы запісы
   connected_accounts_description: Падлучаныя ўліковыя запісы - гэта вашыя ўліковыя запісы з іншых праграм або вэб-сайтаў, да якіх вы дазволілі iNaturalist доступ ад вашага імя для падтрымкі ўваходу, імпарту фатаграфій або іншых функцый.
   connected_accounts_titlecase: Падлучаныя Ўліковы запісы
   connecting_flickr: "Далучэнне да Flickr... "
@@ -1304,7 +1307,6 @@ be:
   created_by: Створана
   created_by_user_on_date: Створана %{user} %{date}
   created_on: Дата стварэння
-  creating_your_account: "Стварэнне ўліковага запісу..."
   creative_commons_flickr_tagged: Фота з Flickr пад ліцэнзіяй Creative Commons
   creative_commons_unless_otherwise_noted: "Creative Commons, калі іншае не пазначана."
   critically_endangered: На мяжы знікнення
@@ -1578,25 +1580,30 @@ be:
       signed_in: 'Уваход паспешна выкананы'
       signed_out: 'Выхад паспешна выкананы'
     passwords:
-      send_instructions: 'Вы атрымаеце ліст з інструкцыямі аб тым, як скінуць пароль, праз некалькіх хвілін.'
+      send_instructions: |
+        Вы атрымаеце ліст з інструкцыямі аб тым, як скінуць пароль, праз некалькіх хвілін.
       updated: 'Ваш пароль быў паспяхова зменены. Вы ўвайшлі ў сістэмы.'
       updated_not_active: 'Ваш пароль быў паспяхова зменены.'
-      send_paranoid_instructions: "Калі ваш адрас электроннай пошты існуе ў нашай базе дадзеных, вы атрымаеце спасылку на свой адрас электроннай пошты за некалькі\nхвілін."
-      no_token: "Вы можаце перайсці на гэтую старонку толькі па спасылцы з электронна ліста для змены паролю. Калі вы сапраўды пераходзіце з электроннага ліста для змены паролю, пераканайцеся, што вы выкарыстоўваеце поўны URL-адрас."
+      send_paranoid_instructions: |
+        Калі ваш адрас электроннай пошты існуе ў нашай базе дадзеных, вы атрымаеце спасылку на свой адрас электроннай пошты за некалькі
+        хвілін.
+      no_token: |
+        Вы можаце перайсці на гэтую старонку толькі па спасылцы з электронна ліста для змены паролю. Калі вы сапраўды пераходзіце з электроннага ліста для змены паролю, пераканайцеся, што вы выкарыстоўваеце поўны URL-адрас.
     registrations:
+      destroyed: 'Да пабачэння. Ваш уліковы запіс быў паспяхова выдалены. Мы спадзяемся хутка пабачыць вас зноў.'
       signed_up: 'Сардэчна запрашаем! Вы паспяхова зарэгістраваліся.'
       updated: 'Вы паспяхова аднавілі свой уліковы запіс.'
-      destroyed: 'Да пабачэння. Ваш уліковы запіс быў паспяхова выдалены. Мы спадзяемся хутка пабачыць вас зноў.'
     mailer:
       confirmation_instructions:
-        subject: 'Інструцыі па пацвярджэнню'
+        #Subject of an email sent to confirm your account
+        subject: Інструцыі па пацвярджэнню
       reset_password_instructions:
         subject: 'Інструкцыі па скіду паролю'
   devise_reset_password_instructions_hello_email: Прывітанне, %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Нехта запытаў спасылку каб змяніць ваш пароль. Вы можаце зрабіць гэта праз спасылку ніжэй.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Калі вы не рабілі гэты запыт, вы можаце праігнараваць гэты ліст.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Нехта запытаў спасылку каб змяніць ваш пароль. Вы можаце зрабіць гэта праз спасылку ніжэй.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Ваш пароль не будзе зменены, да той пары, калі вы не скарыстаецеся спасылкай вышэй, каб стварыць новы.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1662,6 +1669,10 @@ be:
   draft_saved: Чарнавiк захаваны!
   drafts: Чарнавікі
   drag_and_drop_some_photos_or_sounds: Перацягніце сюды якія-небудзь фота ці гукі
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Намаляваць межы ў выглядзе круга
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Намаляваць межы ў выглядзе простакутніка
   drawings: Малюнкі
   duplicate_verb: Дубляваць
   duration_value: "Працягласць: %{duration} хвілін"
@@ -1770,8 +1781,6 @@ be:
     native: эвалюцыянаваў у гэтым рэгіёне або быў занесены неантрапагенным шляхам
     endemic: мясцовы і больш нідзе не сустракаецца
     introduced: патрапіў ў рэгіён антрапагенным шляхам
-  estimate_which_input: |
-    Ацаніце, якія ідэнтыфікатары ўваходных таксонаў будуць замененыя на якія выходныя таксоны, а якія будуць убуйняцца да агульнага продка пасля завяршэння падзелу. Разлік можа заняць некаторы час. Спасылкі на назіранні ўсечаны на падмноства з 200.
   event_in_progress: Падзея зараз выконваецца
   event_stats: Статыстыка падзеі
   event_url: URL падзеі
@@ -2533,7 +2542,6 @@ be:
   log_scale_label: Log
   #Status message shown while logging in
   logging_in: Уваход...
-  login_slash_username: Логін / імя карыстальніка
   logo:
     logo: Лагатып
     white_bg_gif: GIF на белым фоне
@@ -2890,6 +2898,7 @@ be:
   no_more_taxa_to_load: Больш няма таксонаў для загрузкі!
   no_more_results_found: Больш нічога не знойдзена
   no_new_messages: Няма новых паведамленьняў
+  no_new_parent_specified: Новы продак не заданы
   no_observations: Няма назіранняў
   no_observations_from_this_place_yet: Назіранняў з гэтага месца пакуль няма.
   no_observations_matching_those_ids: Няма назіранняў, адпаведных гэтым вызначэнням.
@@ -3106,10 +3115,6 @@ be:
   observed_on: Назіранне зроблена
   observer: Назіральнік
   observers: Назіральнікі
-  observer_prefers_no_project_addition: |
-    Назіральнік не дазваляе іншым людзям дадаваць свае назіранні ў праекты.
-  observer_prefers_addition_to_projects_joined: |
-    Назіральнік дазваляе іншым людзям дадаваць свае назіранні толькі ў праекты, да якіх яны далучыліся.
   observer_short: Назіральнік
   occurence_status_describes_how: 'Статус наяўнасці паказвае, наколькі у дадзенай вобласці таксон звычайны або рэдкі. Глядзіце ў DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">дадатковую інфармацыю пра тэрміналогію</a>.'
   occurrence_status: Статус наяўнасці
@@ -4042,8 +4047,8 @@ be:
   select: Выбраць
   select_all: Выбраць усё
   select_at_least_one: Выбраць хаця б адно
-  select_one_or_more_photos: 'Выбраць адно або некалькі фота'
   select_observations_to_edit: Выбраць назіранні для рэдагавання...
+  select_one_or_more_photos: 'Выбраць адно або некалькі фота'
   sending: Адпраўка...
   show_off_your_recent_observations: Пакажыце вашыя апошнія назіранні ў сваім блоге або на сваім сайце!
   show_relative_proportions_of_all_observations: Пакажыце адносныя прапорцыі ўсіх назіранняў
@@ -4090,7 +4095,8 @@ be:
   stats: Статыстыка
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
-  store: КРАМА
+  store: Крама
+  store_caps: КРАМА
   suggest_an_identification: Прапанаваць вызначэнне
   suggestions: Прапановы
   supporting: Падтрымка
@@ -4483,6 +4489,7 @@ be:
         description: Апісанне
         url: URL
       flag:
+        #The reason the item was flagged
         reason: Прычына
       observation:
         description: Нататкі

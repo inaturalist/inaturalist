@@ -306,6 +306,12 @@ en:
   # positional_accuracy attribute of an observation, which is really more like
   # positional uncertainty
   acc: 'Acc (m)'
+  # Filter for observations with positional accuracy above a certain value
+  acc_above: Acc. above
+  # Filter for observations with positional accuracy below a certain value
+  acc_below: Acc. below
+  # Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Acc. below or unknown
   account: Account
   account_creation: Account Creation
   account_settings: Account Settings
@@ -393,12 +399,14 @@ en:
   add_observations: Add Observations
   add_observations_by_checking_off: Add observations by checking off species from a list.
   add_observations_project: Add Observations to This Project
+  # Used for buttons to add observations where the words "Add"
+  # and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Add</span> <span>Observations</span>"
   # Prompt to add a new journal post
   add_one: Add One!
   # Prompt to add add a default photo to a taxon when one doesn't exist, so here
   # "one" refers to a photo
   add_one_now: Add One Now
-  add_photos: Add Photos
   add_place: Add Place
   add_alive_or_dead_alive_annotation: 'Add "Alive or Dead: Alive" annotation'
   add_alive_or_dead_cannot_be_determined_annotation: 'Add "Alive or Dead: Cannot Be Determined" annotation'
@@ -789,6 +797,10 @@ en:
   # name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Attribute
   attribution: Attribution
+  # Shows photo attribution along with who uploaded the photo. %
+  # {attribution} will be one of the copyright.* keys, like
+  # copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, uploaded by %{user}"
   authority_list:
     iucn_red_list: IUCN Red List
     natureserve: NatureServe
@@ -965,6 +977,10 @@ en:
   change_group: Change group
   change_icon: Change icon
   change_password: Change Password
+  # Message shown after you change your email address
+  change_to_email_requested_html:
+    Change to <strong>%{email}</strong> requested. Check your email at that
+    address to confirm the change.
   change_types:
     activated_soon: activated soon
     change_types: Change types
@@ -1066,6 +1082,8 @@ en:
   click_the_map: "<strong>Click the map</strong> to add a location."
   close: Close
   code: Code
+  # People who have contributed code to iNat open-source software projects
+  code_contributors: Code Contributors
   colors: Colors
   columns: Columns
   combine: Combine
@@ -1159,14 +1177,16 @@ en:
   confirm_new_password: Confirm New Password
   confirm_now: Confirm now
   confirm_your_info: Confirm your info
+  # date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Confirmation email sent at %{datetime}
+  # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
   connect: Connect
   connect_to_provider: "Connect to %{provider}"
-  # Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Connected accounts
   connected_accounts_description: Connected accounts are your accounts from other apps or websites that you have allowed iNaturalist access to on your behalf to support sign in, photo import, or other functionality.
   connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
@@ -1350,7 +1370,6 @@ en:
   created_by: Created by
   created_by_user_on_date: Created by %{user} on %{date}
   created_on: Created on
-  creating_your_account: "Creating your account..."
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
   creative_commons_unless_otherwise_noted: "Creative Commons unless otherwise noted."
   critically_endangered: Critically Endangered
@@ -1648,42 +1667,81 @@ en:
   deviation: Deviation
   devise:
     confirmations:
+      confirmed: |
+        Your email address has been successfully confirmed. You can now log
+        in here on the website or in the iNaturalist or Seek mobile apps.
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
       # Message a user sees when they try to manually trigger email
       # confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
-        If your email address exists in our database, you will receive an email
+        If your email address exists in our database, you should receive an email
         with instructions for how to confirm your email address in a few
         minutes.
     failure:
       already_authenticated: 'You are already signed in.'
       unauthenticated: 'You need to sign in or sign up before continuing.'
-      invalid: 'Invalid email or password.'
+      invalid: 'Invalid email, username, or password.'
       invalid_token: 'Invalid authentication token.'
+      unconfirmed: |
+        Please check your email and click the link in the email you received
+        to confirm your account.
       user:
         suspended: Your account has been suspended
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
     passwords:
-      send_instructions: 'You will receive an email with instructions about how to reset your password in a few minutes.'
+      send_instructions: |
+        In a few minutes, you should receive an email with instructions
+        about how to reset your password.
       updated: 'Your password was changed successfully. You are now signed in.'
       updated_not_active: 'Your password was changed successfully.'
-      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
-      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_paranoid_instructions: |
+        If your email address exists in our database, you should receive a
+        password recovery link at your email address in a few minutes.
+      no_token: |
+        You can't access this page without arriving from a password reset email.
+        If you did arrive from a password reset email, please make sure you used
+        the full URL provided.
     registrations:
-      signed_up: 'Welcome! You have signed up successfully.'
-      updated: 'You updated your account successfully.'
       destroyed: 'Bye! Your account was successfully cancelled. We hope to see you again soon.'
+      signed_up: 'Welcome! You have signed up successfully.'
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      updated: 'You updated your account successfully.'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        # Subject of an email sent to confirm your account
+        subject: Confirm your email address
+      email_changed:
+        # Subject of an email sent when you try to change the email address
+        # associated with your account
+        subject: Email change requested
       reset_password_instructions:
         subject: 'Reset password instructions'
+  devise_confirmation_instructions_if_you_did_not: |
+    If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
+  devise_confirmation_instructions_please_click: |
+    Please click the link below to confirm your email address:
+  devise_confirmation_instructions_resend_instructions: |
+    You must have a working email address to use iNaturalist. When you signed
+    up for an account, you should have received a confirmation email with a
+    link to click to confirm that your email address works, but if you didn't
+    you can send yourself another confirmation email here.
+  devise_confirmation_instructions_send_confirmation_email: Send confirmation email
+  devise_email_changed_you_requested: You requested a change from %{old_email} to %{new_email}.
+  devise_email_changed_you_will_receive: |
+    You will receive an email at the new address to confirm the change, but we
+    wanted to notify you at your old address just in case someone else has
+    access to your account and is trying to change it without you knowing. If
+    you did not intentionally change your email address, please forward this
+    email to help@inaturalist.org immediately so we can investigate.
   devise_reset_password_instructions_hello_email: Hello %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     If you didn't request this, please ignore this email.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Someone has requested a link to change your password. You can do this through the link below.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Your password won't change until you access the link above and create a new one.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1734,6 +1792,7 @@ en:
   # add the file as, for example, a new photo in the Uploader
   drop_it: Drop it
   download: Download
+  download_caps: DOWNLOAD
   download_bulk_import_template_html: |
     <a href="%{url}">Download template</a> for use in the
     <a href="/observations/import?project_id=%{project_id}#csv_import">bulk uploader</a>
@@ -1828,6 +1887,28 @@ en:
   email: Email
   email_description: Your email is not shared with other users on iNaturalist
   email_address_for_comments_and_other_feedback: Email address for comments and other feedback
+  email_conf_banner_email_delivered_click_link: |
+    Confirmation email delivered. Please click the link in the email.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Add <code>%{email}</code> to your list of contacts and
+    <a href="%{url}">request another confirmation email</a>.</strong> If your email
+    provider blocked the confirmation email, this might convince them that
+    you actually want email from us.
+  email_conf_banner_check_your_spam_folder_html: <strong>Check your spam folder</strong>
+  email_conf_banner_contact_us_html: Still not working? Email us at %{email} so we can help you out.
+  email_conf_banner_please_click: |
+    Please click the link in your email to confirm your email address.
+  email_conf_banner_search_for_emails_html: <strong>Search for emails from <code>%{email}</code></strong>
+  # %{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    We delivered a confirmation email to you on %{date}. If you did not
+    receive it, here are some things you can do:
+  email_confirmation_banner_html: |
+    <strong>%{link_start_tag}Please confirm your email address%{link_end_tag}</strong>.
+    All users must confirm their email address by %{date}. After that
+    date anyone who has not confirmed their email address will be unable to
+    sign in unless they reset their password. To confirm your email address,
+    go to your %{link_start_tag}account settings%{link_end_tag}.
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: Email Notifications
   embed: 'Embed'
@@ -1862,9 +1943,12 @@ en:
     native: evolved in this region or arrived by non-anthropogenic means
     endemic: native and occurs nowhere else
     introduced: arrived in the region via anthropogenic means
-  estimate_which_input: |
-    Estimate which input taxon ids will be replaced with which output taxa and which will be coarsened to a common ancestor once the split is comitted. This may take
-    a moment to calculate. Links to observations are truncated to subsets of 200.
+  # Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Estimate which identifications of the input taxon will be replaced by
+    identifications of the output taxa and which will be coarsened to a
+    common ancestor once the split is comitted. This may take a moment to
+    calculate. Links to observations are truncated to subsets of 200.
   event_in_progress: Event in progress
   event_stats: Event Stats
   event_url: Event URL
@@ -1933,6 +2017,8 @@ en:
   feedback: Feedback
   # Plural noun, as in Atom and RSS feeds
   feeds: 'Feeds'
+  # Button to show fewer places
+  fewer__context_places: Fewer
   failed: Failed
   field_note: |
     <strong>Note:</strong> If you'd like to create a field, check to see if
@@ -2225,6 +2311,17 @@ en:
   home: Home
   # Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hours to Adjust:"
+  # Message displayed on an observation detail page when the observation is
+  # not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    However, it is not licensed for re-use and will not be shared with data
+    repositories that respect license choices.
+  # Message displayed on an observation detail page when the observation is
+  # not licensed and the page is being viewed by the person who made the
+  # observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    You can change your license preferences in your
+    <a class="linky" href="/users/edit#content">account settings</a>.
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2273,6 +2370,7 @@ en:
   # Notification when an identification has been withdrawn
   identification_withdrawn: Identification withdrawn.
   identifications: Identifications
+  inaturalist_global_year_in_review: "iNaturalist's Global %{year} Year in Review"
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2331,6 +2429,8 @@ en:
   improving: Improving
   in_n: "in %{n}"
   in_place_x: in %{place}
+  # As in a reason to flag something
+  inappropriate: Inappropriate
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
@@ -2562,6 +2662,8 @@ en:
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Less
+  # Button show less text
+  less__context_text: Less
   licensed_site_photos: "Licensed %{site_name} photos"
   license: License
   licensing: Licensing
@@ -2699,7 +2801,6 @@ en:
   log_scale_label: Log
   # Status message shown while logging in
   logging_in: Logging in...
-  login_slash_username: Login / username
   logo:
     logo: Logo
     white_bg_gif: white BG GIF
@@ -2870,7 +2971,7 @@ en:
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "MMM D, YYYY · LT z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "MMMM D h:mma z"
+    datetime_with_zone_no_year: "MMMM D, h:mma z"
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     # Note that this should display an offset and not a time zone code, so
     # please use Z and not z
@@ -2886,10 +2987,21 @@ en:
     # See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "MMM 'YY"
   month: Month
+  # title for section describing people who donate to iNat every month
+  monthly_supporters: Monthly Supporters
   monthly_supporter_since_date_html: |
     <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
   more: More
+  # Button to show more observations
+  more__context_observations_caps: MORE
+  # Button to show more places
+  more__context_places: More
+  # Button to show more text
+  more__context_text: More
+  # Button to show more translators, as in people who added translations
+  more__context_translators_caps: MORE
+  more_caps: MORE
   more_about_sharing: More About Sharing
   more_fields: More Fields
   more_filters: More Filters
@@ -3145,6 +3257,8 @@ en:
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
   not_found: Not found
+  # Filter for observations not in a particular place
+  not_in_place: Not in place
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
@@ -3237,6 +3351,14 @@ en:
   observation_curation: Observation Curation
   observation_date: Date
   observation_date?: Date?
+  # Basic observation export fields
+  observation_export_column_type_basic: Basic
+  # Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  # Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  # Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon Extras
   observation_field: Observation field
   observation_field_details: Observation field details
   observation_field_type_text: Text
@@ -3321,11 +3443,12 @@ en:
   observed_on: Observed on
   observer: Observer
   observers: Observers
-  observer_prefers_no_project_addition: |
-    Observer does not allow other people to add their observations to projects.
-  observer_prefers_addition_to_projects_joined: |
-    Observer only allows other people to add their observations to projects they
-    have joined.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observer only allows other people to add their observations to traditional
+    projects they have joined.
+  observer_prefers_no_traditional_project_addition: |
+    Observer does not allow other people to add their observations to
+    traditional projects.
   observer_short: Observer
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
@@ -3420,6 +3543,7 @@ en:
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
   open_street_map: OpenStreetMap
   optional: optional
+  options: Options
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
   # sign in fields OR sign in with Facebook
@@ -4051,6 +4175,7 @@ en:
     For what it's worth, we will have to restrict the conditions under which
     people can add places in the future given iNat's current rate of growth.
   plants: plants
+  play_first_sound: Play First Sound
   please_add_a_citation_for_this_change: Please add a citation for this change.
   please_allow_a_few_weeks_for_external_sites:
     Please allow a few weeks for external sites to sync changes from this observation
@@ -4177,6 +4302,26 @@ en:
   proposed_taxa_that_support_the_community_id: Proposed taxa that support the Community ID
   protozoans: protozoans
   provider_authorizations: Provider Authorizations
+  provider_without_email_error_apple: |
+    Apple did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Apple.
+  provider_without_email_error_flickr: |
+    Facebook did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Facebook.
+  provider_without_email_error_flickr: |
+    Flickr did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Flickr.
+  provider_without_email_error_generic: |
+    That service did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via third parties.
+  provider_without_email_error_google_oauth2: |
+    Google did not provide an email address for that account, which is
+    required. Please create a account on this site instead of signing
+    in via Google.
   public_domain: Public Domain
   publish: Publish
   purple: purple
@@ -4437,6 +4582,10 @@ en:
   research_grade_tooltip_html: '"Research Grade" observations have media, location, a date, and a community consensus on a precise identification (usually at species-level). <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
+  resend_and_sign_out: Re-send and Sign Out
+  resend_confirmation_email: Re-send confirmation email
   # Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reset
   reset_filters_short: Reset
@@ -4554,7 +4703,7 @@ en:
   select: Select
   select_all: Select All
   select_at_least_one: Select At Least One
-  select_one_or_more_photos: Select One Or More Photos
+  # select_one_or_more_photos: Select One Or More Photos
   select_none: Select None
   select_observations_to_edit: Select Observations to Edit...
   select_one_of_friends_albums: Select One of %{friend}'s Albums
@@ -4570,6 +4719,10 @@ en:
   selected_taxon: Selected Taxon
   select_this_taxon: Select This Taxon
   send: send
+  # Label for a button that re-sends the account confirmation email and signs
+  # you out until you do
+  send_and_sign_out: Send and Sign Out
+  send_confirmation_email: Send confirmation email
   send_me_reset_password_instructions: Send me reset password instructions
   sending: Sending...
   # Label for messages you've sent
@@ -4579,6 +4732,7 @@ en:
   set_license: Set license
   settings: Settings
   share: Share
+  share_caps: SHARE
   share_colon: "Share:"
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -4623,6 +4777,8 @@ en:
   # Journal post formatting option
   simple: Simple
   single_observation: Single observation
+  # @vow_or_con should work with %{site}
+  site_year_in_review: "%{site}'s %{year} Year in Review"
   sizes: Sizes
   skip_to_next_page: "Skip to next page"
   small: small
@@ -4875,7 +5031,8 @@ en:
   stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
   # As in a place to purchase things. We use it as a link to a place where you
   # can buy merchandise. Please try to keep translations as short as possible
-  store: STORE
+  store: Store
+  store_caps: STORE
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
@@ -5515,6 +5672,7 @@ en:
   upload_new_photo: Upload new photo
   upload_photo: Upload Photo
   upload_range: Upload Range
+  # Label that notes who uploaded some content, not in a sentence
   uploaded_by: Uploaded by
   uploader:
     errors:
@@ -5546,6 +5704,7 @@ en:
   use_this_form_to_create_a_new: |
     Use this form to create a new draft taxonomic change describing a proposed
     split, merge or swap on active taxa to be later committed.
+  # Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Use this if the URL needs to have the genus and species separated in a
     particular way. If the taxon is not a species or infraspecies, everything
@@ -5631,6 +5790,51 @@ en:
   username_or_user_id: Username or User ID
   users: Users
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    After you resend the confirmation email, you will be signed out and you
+    will not be able to sign in to your account until you click the link in
+    the email, so <strong>make absolutely sure you have entered your email address
+    correctly.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+      Please ensure your email address is correct. Here's the email address we
+      will send the confirmation to:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+      If you do not receive the email, here are some tips:
+    </p>
+    <ul>
+      <li><p>Check your spam folder</p></li>
+      <li><p>Check for any filters you made that might remove our emails from your inbox</p></li>
+    </ul>
+    <p>
+      If you are still not receiving the confirmation email, please contact us at
+      <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+      so we can assist you.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>You are about to sign out</h3>
+    <p>
+      After you send the confirmation email, you will be signed out and you
+      will not be able to log in to your account until you click the link in
+      the email, so <strong class="bg-warning">make absolutely sure you have
+      entered your email address correctly.</strong>
+    </p>
+    <p>
+      Here's the email address we will send the confirmation to:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>If you unsubscribed from all emails...</h4>
+    <p>
+      If you have unsubscribed from <em>all</em> email from us, we cannot send
+      you a confirmation email. To re-subscribe, you need to find a previous
+      email from us, click the unsubscribe link, and choose to opt back
+      in to receiving email. If you cannot do this, please
+      email
+      <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> using
+      the email address you've entered here so we can assist you.
+    </p>
   users_favorites: "%{user}'s Favorites"
   users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
@@ -5640,7 +5844,8 @@ en:
   users_lists: "%{user}'s Lists"
   users_profile: "%{user}'s Profile"
   users_projects: "%{user}'s Projects"
-  users_year_on_site: "%{user}'s Year On %{site} %{year}"
+  # @vow_or_con should work with %{site}
+  users_site_year_in_review: "%{user}'s %{year} %{site} Year in Review"
   valid_options_are: Valid options are
   value: Value
   values: Values
@@ -5648,6 +5853,7 @@ en:
   verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View All
+  view_all_caps: VIEW ALL
   view_all_fields: View All Fields
   view_all_flags: View All Flags
   view_all_members: View All Members
@@ -5671,6 +5877,12 @@ en:
   view_flags_for_x_html: "View Flags for %{x}"
   view_full_observation: View Full Observation
   view_full_size_photo: View full-size photo
+  view_inaturalist_global_year_in_review: View iNaturalist's Global %{year} Year in Review
+  view_inaturalist_global_year_in_review_caps: VIEW INATURALIST'S GLOBAL %{year} YEAR IN REVIEW
+  # Text in link to view Year in Review for a specific site. %{site} should
+  # support @vow_or_con
+  view_site_year_in_review: View %{site} %{year} Year in Review
+  view_site_year_in_review_caps: VIEW %{site} %{year} YEAR IN REVIEW
   view_journal: View Journal
   view_leaderboard_from_last_month: View leaderboard from last month
   view_leaderboard_from_last_year: View leaderboard from last year
@@ -5711,12 +5923,12 @@ en:
   view_taxononomy_details_for_taxon: "View taxonomy details for %{taxon}"
   view_user_observations: "View %{user}'s observations"
   view_x: "View %{x}"
-  view_year_stats_for_site: "View %{year} Stats For %{site}"
   view_your_dashboard: View your dashboard
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>View your dashboard</a> for more updates"
   view_your_inbox: View your inbox
   view_your_observations: View your observations
-  view_your_year_stats: "View Your %{year} Stats"
+  view_your_personal_year_in_review: "View your Personal %{year} Year in Review"
+  view_your_personal_year_in_review_caps: "VIEW YOUR PERSONAL %{year} YEAR IN REVIEW"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   video_tutorials: Video Tutorials
@@ -5809,7 +6021,12 @@ en:
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
   with: with
+  # Filter for observations not in a particular taxon
+  without_taxon: Not in taxon
+  # Label for a button to withdraw an identification, i.e. to deactivate it
+  # without deleting it
   withdraw: Withdraw
+  # Loading status while an identification is being withdrawn
   withdrawing: Withdrawing...
   with_errors: With errors
   worldwide: Worldwide
@@ -5856,6 +6073,7 @@ en:
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
   year_in_review: "Year In Review %{year}"
+  year_in_review2: "Year in Review %{year}"
   year_month: year/month
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow
@@ -5876,6 +6094,10 @@ en:
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
+  yir_code_contributors_desc_html: |
+    Our <a href="%{url}">software</a> is nearly all open-source, which means
+    anyone can contribute if they know how. Here are the people who
+    volunteered code this year. Thank you, coders!
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Reaching millions. Illuminating biodiversity. Global collaboration.
   # "You" is singular
@@ -5892,6 +6114,8 @@ en:
   yir_millions_of_people_used_inaturalist: |
     Millions of people used iNaturalist and Seek by iNaturalist this year to
     connect with nature
+  yir_monthly_supporters_random_selection: |
+    Here is a random selection of iNat's heroic community members who donate every month.
   yir_thank_your_for_being_generous: |
     Thank you for being generous with your time, attention, expertise, and
     donations! iNaturalist is a not-for-profit joint initiative of the
@@ -5976,6 +6200,7 @@ en:
   you_dont_have_permission_to_edit_those_photos: You don't have permission to edit those photos.
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
+  you_have_not_confirmed_your_email_address: You have not confirmed your email address!
   you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
   you_joined_this_project: You joined this project!
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
@@ -6110,6 +6335,7 @@ en:
       post_donate_social_media_text: I support iNaturalist because...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
+        become_a_monthly_supporter_of_inaturalist_caps: BECOME A MONTHLY SUPPORTER OF INATURALIST
         desc_html: |
           <p class="lead">
             <strong>iNaturalist is one of the world's largest communities dedicated to
@@ -6135,6 +6361,8 @@ en:
             the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
             organization based in the United States of America.
           </p>
+        thank_you_for_being_a_monthly_supporter: Thank you for being a Monthly Supporter!
+        thank_you_for_being_a_monthly_supporter_caps: THANK YOU FOR BEING A MONTHLY SUPPORTER!
     flags:
       show:
         flaggable_content_desc: |
@@ -6282,7 +6510,7 @@ en:
         Please be patient, generating large PDFs can take a minute or two.
       tags_help_html: |
         Tags are like categories for the species in your guide, except
-        mulitple species can have the same tag. Enter tags as a comma-
+        multiple species can have the same tag. Enter tags as a comma-
         separated list here, e.g. <code>small, furry</code>. To add named
         categories, use tags like <code>category_name=category_value</code>,
         e.g. <code>color=yellow</code>.
@@ -6703,7 +6931,10 @@ en:
       show:
         allow_curator_coordinate_access_desc_html: |
           Allow project curators to view the hidden coordinates for this observation.
-        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but disagree with the taxon (ie \"I think its in the genus but I disagree its that species\")"
+        ancestor_disagreements_desc2: |
+          Number of identified taxa that are among a taxon's ancestors, but
+          disagree with the taxon (i.e. "I think it is in the genus but I
+          disagree it is that species")
         community_taxon_desc_html: |
           <p class="ui">
             The community taxon (or community identification) represents
@@ -7652,14 +7883,6 @@ en:
         one_time: One-time
         percent_growth_in_year: "% Growth in %{year}"
         percent_of_total_growth: "% of Total Growth"
-        publications_desc_html: |
-          Click the flower charts for more information about what the numbers
-          and colors mean. Impact data and charts courtesy of
-          <a href="https://www.altmetric.com">Altmetric</a>. Information
-          about data usage courtesy of our friends at the
-          <a href="https://www.gbif.org/">Global Biodiversity Information Facility</a>.
-          <br/>
-          <a href="%{url}">View all %{numStudies} studies</a>
         publications_desc_short_html: |
           Click the flower charts for more information about what the numbers
           and colors mean. Impact data and charts courtesy of
@@ -7685,6 +7908,7 @@ en:
         species_per_year_by_date_added: By date added
         species_per_year_by_date_observed: By date observed
         stats_generated_datetime: Stats generated on %{datetime}
+        stats_generation_schedule: Stats will be generated every Sunday in December and on January 1st
         store_prompt: |
           Want to show your iNat pride everywhere you go? Check out the iNat
           Store!
@@ -7848,7 +8072,7 @@ en:
           "Plant Phenology=Flower Budding": Flower Budding
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
-          "Plant Phenology=No Evidence": No Evidence
+          "Plant Phenology=No Evidence of Flowering": No Evidence of Flowering
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larva
@@ -8106,9 +8330,9 @@ en:
           iNaturalist and iNaturalist Network sites.
           <a href="%{url}">Click here to become a Monthly Supporter</a>.
           When we have confirmed your support you will be able to check this
-          box to display this status on your profile. Note: you will need to use
-          exactly the same email address on Donorbox as you do on iNaturalist
-          for us to confirm that you've become a Monthly Supporter.
+          box to display this status on your profile. Note: the email addresses
+          on Donorbox and iNaturalist must match exactly for us to confirm that
+          you are a Monthly Supporter. If they differ, change one to match the other.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -8628,6 +8852,9 @@ en:
       <<: *errors
   activerecord:
     models:
+      # Information authored by site admins shown to users at various places
+      # on the web site, mostly on the dashboard
+      Announcement: Announcement
       AssessmentSection: Assessment Section
       Atlas: Atlas
       BlockedUser: Blocked User
@@ -8647,6 +8874,12 @@ en:
       OauthApplication: Application
       TaxonLink: Taxon Link
     attributes:
+      announcement:
+        created_at: Created at
+        updated_at: Updated at
+        # Numerical IDs of the iNaturalist Network partner sites the
+        # announcement should be shown on
+        site_ids: Site IDs
       assessment:
         description: Description
       assessment_section:
@@ -8664,7 +8897,11 @@ en:
         geoprivacy: Geoprivacy
         iucn: IUCN Equivalent
       flag:
+        # The reason the item was flagged
         reason: Reason
+        # The person who resolved the flag
+        resolver_id: Resolver
+        # The kind of flag that was made
         flag: Flag
       guide:
         source_url: Source URL
@@ -8800,6 +9037,21 @@ en:
         position: Position
         source_url: Source URL
         source_identifier: Source identifier
+      taxon_link:
+        url: URL
+        # Name of the web site being linked to bey a taxon link, e.g. Global
+        # Biodiversity Information Facility
+        site_title: Site title
+        # Short or abbreviated title for the web site being linked to bey a
+        # taxon link, e.g. GBIF
+        short_title: Short title
+        # Taxon this link is associated with
+        taxon: Taxon
+        # Place this link is associated with
+        place: Place
+        # Controls whether the taxon link is visible for descendants of this
+        # taxon
+        show_for_descendent_taxa: Show for descendant taxa
       user:
         email: Email
         login: Username

@@ -476,7 +476,7 @@ class TaxonChange < ApplicationRecord
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
           source: source,
-          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}",
+          description: "Automatically generated change from #{UrlHelper.taxon_change_url( self )}",
           move_children: true
         )
         tc.add_input_taxon( child )

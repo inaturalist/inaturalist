@@ -164,6 +164,8 @@ zh-TW:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     您可以選擇分享隱藏的座標給：
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: 關於無意中的意見分歧
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -253,12 +255,14 @@ zh-TW:
   add_observations: 新增多個觀察紀錄。
   add_observations_by_checking_off: 從生物名錄中挑選物種以新增觀察紀錄。
   add_observations_project: 新增多個觀察紀錄到本專案
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>新增</span><span>觀察紀錄</span>"
   #Prompt to add a new journal post
   add_one: 新增一項!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: 現在新增一個
-  add_photos: 新增相片
   add_place: 加入地點
   add_alive_or_dead_alive_annotation: '新增註解「活體或死亡：活體」'
   add_alive_or_dead_cannot_be_determined_annotation: '新增註解「活體或死亡：無法判斷」'
@@ -439,6 +443,10 @@ zh-TW:
   alphabetical_order: 依字母排序
   already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: 分析無意中的意見分歧
   analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
   and: 和
@@ -482,6 +490,9 @@ zh-TW:
   #Label for an option to show/include content by any user
   any_user: 任一
   anyone: 任何人
+  app_owner_application_explanation_required: |
+    您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: 應用程式
@@ -492,6 +503,8 @@ zh-TW:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: 申請
+  apply_to_be_an_app_owner: 套用以成為 App 擁有者
+  apply_to_create_applications_title: 套用以建立應用程式
   apply_to_selected: 套用至已選
   apply_captive_cultivated: "套用圈養/栽培"
   apply_fields: 套用欄位
@@ -505,6 +518,8 @@ zh-TW:
   are_you_really_sure_want_delete_this_user: 您真的、真的確定要刪除此用戶和其所有內容嗎？
   are_you_sure?: 您確定嗎？
   are_you_sure_no_undo: 您確定嗎？這將無法恢復。
+  are_you_sure_delete_conservation_status: |
+    您確定您想要刪除此保育等級？這個動作也許會更動此分類群以及其中所屬分類群的座標模糊狀態。
   are_you_sure_delete_post: 您確定要刪除此發表內容？
   are_you_sure_delete_taxon_move_associates: "您確定您要刪除%{taxonname}（%{taxonid}）並移動所有相關項目嗎？"
   are_you_sure_delete_this_place: 您確定要刪除此地點？
@@ -595,11 +610,18 @@ zh-TW:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 屬性
   attribution: 姓名標示
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "由 %{user} 所上傳的 %{attribution}"
   authority_list:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
     natureserve: NatureServe
     cites: 引用
   authorize: 授權
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: 以 PKCE 授權
   authorize_permissions_from_provider: "來自於%{provider}的授權許可"
   automatic_short: 自動
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
@@ -820,6 +842,10 @@ zh-TW:
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 評論
   comment_deleted: 評論已刪除
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: 隱藏內容
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: 取消隱藏內容
   comments: 評論
   comments_by_me: 由我做出的評論
   comments_have_been_disabled: 已停用評論
@@ -875,6 +901,7 @@ zh-TW:
     目前的電腦視覺模型不認得此分類群，所以它會列在「附近可見」的自動建議中，
     而不會顯示「視覺上相似」的標籤。當納入每個模型的需求改變時，一般來說納入的依據是觀察紀錄的數量，所以若要增加此分類群包含在下次模型訓練時的機會，請針對此分類群多多新增或鑑定觀察紀錄。
   concept_status: 概念狀態
+  confidential: 保密的
   configure: 設置
   configure_a_widget_to_show: 設定小工具來在您的網站，或部落格上顯示出 %{site_name} 的觀察。您可能會需要於您的 HTML 裡 <code>&lt;head&gt;</code> 元素來包含內嵌式 CSS。請隨意重新編寫 CSS 吧。
   confirm: 確認
@@ -888,8 +915,6 @@ zh-TW:
   #connecting to Flickr
   connect: 連接
   connect_to_provider: "連接至%{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 已連接帳號
   connected_accounts_description: 連結的帳號是您允許透過其他 app 或網站的帳號來代表您登入、匯入照片或使用其他功能。
   connected_accounts_titlecase: 已連接帳號
   connecting_flickr: "連接至 Flickr..."
@@ -898,6 +923,9 @@ zh-TW:
   connecting_your_inat_account_to_accounts_other_sites: "連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至 %{site_name}。"
   cannot_be_changed_during_a_content_freeze: 在內容凍結狀態時無法更動
   conservation_status: 保育狀態
+  conservation_status_created: 保育等級已建立
+  conservation_status_deleted: 保育等級已刪除
+  conservation_status_updated: 保育等級已更新
   conservation_status_descriptions:
     status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
@@ -1054,7 +1082,6 @@ zh-TW:
   created_by: 建立由
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
   created_on: 創立於
-  creating_your_account: "建立您的帳號中…"
   creative_commons_flickr_tagged: 創用 CC 的 Flickr 照片已標記
   creative_commons_unless_otherwise_noted: "創用 CC，除非另有聲明。"
   critically_endangered: 極度瀕危
@@ -1179,6 +1206,8 @@ zh-TW:
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
+  #Label for a custom boundary for an observation search
+  custom_boundary: 自訂邊界
   custom_project_fields: 自訂專案欄位
   custom_project_was_successfully_created: 自訂專案建立成功。
   custom_project_was_successfully_updated: 自訂專案更新成功。
@@ -1252,6 +1281,7 @@ zh-TW:
   default: 預設
   #Default option
   default_: 預設
+  default_display_time_zone: 預設顯示時區
   default_invite_comment: "很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}"
   default_observation_license: 預設觀察許可協議
   default_photo_license: 預設照片許可權
@@ -1259,6 +1289,8 @@ zh-TW:
   default_search_place_description: |
     這將會是您在探索和鑑定中預設的搜尋地點。
   default_sound_license: 預設聲音許可權
+  default_time_zone_desc: |
+    這是預設的時區。最後的時區將根據儲存觀察紀錄的地點來設定。
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
   defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: 根據來源 %{source} 來定義 %{taxon} 的分類群框架
@@ -1315,25 +1347,29 @@ zh-TW:
       signed_in: '已成功登入。'
       signed_out: '已成功登出。'
     passwords:
-      send_instructions: '在幾分鐘內，您將收到一封電子郵件說明有關如何重置您的密碼。'
+      send_instructions: |
+        在幾分鐘內，您將收到一封電子郵件說明有關如何重置您的密碼。
       updated: '您的密碼已變更成功，現在已登入。'
       updated_not_active: '您的密碼已成功變更。'
-      send_paranoid_instructions: "如果您的 email 存在我們的資料庫中，您會在幾分鐘內在您 email 中收到回復密碼的網址。"
-      no_token: "若您不是從密碼重設的 email 中點選連結，您無法存取此頁面。如果您是來自密碼重設的 email，請確保您使用所提供的完整網址。"
+      send_paranoid_instructions: |
+        如果您的 email 存在我們的資料庫中，您會在幾分鐘內在您 email 中收到回復密碼的網址。
+      no_token: |
+        若您不是從密碼重設的 email 中點選連結，您無法存取此頁面。如果您是來自密碼重設的 email，請確保您使用所提供的完整網址。
     registrations:
+      destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
       signed_up: '歡迎！您已成功註冊。'
       updated: '您已成功更新您的帳戶。'
-      destroyed: '再會！您的帳號已成功取消。我們希望很快能再與您相會。'
     mailer:
       confirmation_instructions:
-        subject: '帳號確認說明'
+        #Subject of an email sent to confirm your account
+        subject: 帳號確認說明
       reset_password_instructions:
         subject: '重設密碼的說明'
   devise_reset_password_instructions_hello_email: 您好 %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    有人要求更改您的密碼，您可以透過下面的連結來更改密碼。
   devise_reset_password_instructions_if_you_didnt_request_this: |
     如果您沒有要求重設密碼，請忽略這封 email。
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    有人要求更改您的密碼，您可以透過下面的連結來更改密碼。
   devise_reset_password_instructions_your_password_wont_change_until: |
     在您點擊上面網址和建立一個新密碼之前，您的密碼不會更動。
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -1381,6 +1417,7 @@ zh-TW:
   #add the file as, for example, a new photo in the Uploader
   drop_it: 放開
   download: 下載
+  download_caps: 下載
   download_bulk_import_template_html: |
     <a href="%{url}">下載模板</a>來用於
     <a href="/observations/import#csv_import">大量上傳</a>
@@ -1399,6 +1436,10 @@ zh-TW:
   draft_saved: 草稿已儲存！
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: 描繪圓形邊界
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: 描繪矩形邊界
   drawings: 圖形
   duplicate_verb: 重複
   duration_value: "持續時間：%{duration} 分"
@@ -1438,6 +1479,8 @@ zh-TW:
   edit_taxon_link: 編輯分類群連結
   edit_taxon_range: 編輯分類群範圍
   edit_the_observation: 編輯觀察
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    當您建立此分類群後，編輯並新增它的保育等級
   edit_your_account_and_profile_html: "編輯您的帳號和個人檔案"
   edit_your_default_settings: "編輯您的預設設定"
   edit_your_global_project_settings: 編輯您的全域專案設定
@@ -1501,8 +1544,6 @@ zh-TW:
     native: 在此地區演化出來，或是透過非人為方式到達
     endemic: 原生物種，並且沒有出現在其它地方
     introduced: 藉由人為活動而抵達此區域
-  estimate_which_input: |
-    估計哪些輸入的分類群 ID 會被哪些輸出的分類群給替換掉，一旦拆分提交完成後，會被簡化為共同的祖先。這可能會需要一點時間來計算。觀察的連結會被截斷成 200 個子集。
   event_in_progress: 進行中的活動
   event_stats: 活動統計資料
   event_url: 活動 URL
@@ -1565,6 +1606,8 @@ zh-TW:
   feedback: 意見回饋
   #Plural noun, as in Atom and RSS feeds
   feeds: '訊息來源'
+  #Button to show fewer places
+  fewer__context_places: 較少的
   failed: 已失敗
   field_note: |
     <strong>備註：</strong>如果您想要創建一項欄位，請先檢察是否已被其他人建立以避免重複。
@@ -1589,8 +1632,10 @@ zh-TW:
   filters: 篩選
   find: 尋找
   find_a_guide: 尋找一個指南
+  find_a_post: 尋找貼文
   find_a_place: 尋找一個地點
   find_guides: 尋找指南
+  find_posts_for: "以 %{journal_name} 來尋找貼文"
   find_new_place_to_explore: 尋找一個新地點來探索！
   find_observations: 尋找觀察
   find_photos: 尋找照片
@@ -1614,6 +1659,7 @@ zh-TW:
   flag_as_non_spammer: 標記為非濫發垃圾訊息者
   #Label for the date/time when a flag was created
   flag_created: 標記已建立
+  flag_deleted: 標記已刪除
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
@@ -2245,7 +2291,6 @@ zh-TW:
   log_scale_label: 對數
   #Status message shown while logging in
   logging_in: 登入中...
-  login_slash_username: 登入 / 用戶名稱
   logo:
     logo: 標誌
     white_bg_gif: 白色背景 GIF
@@ -2393,7 +2438,7 @@ zh-TW:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY/MM/DD · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "M 月 D 日 h:mma z"
+    datetime_with_zone_no_year: "MM/DD h:mma z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
@@ -2808,10 +2853,6 @@ zh-TW:
   observed_on: 觀察在
   observer: 觀察者
   observers: 觀察者
-  observer_prefers_no_project_addition: |
-    觀察者不允許其他人把他們的觀察紀錄加入到專案中。
-  observer_prefers_addition_to_projects_joined: |
-    觀察者只允許在他們已加入專案時，讓其他人加入他們的觀察紀錄到專案中
   observer_short: 觀察者
   occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
@@ -3847,6 +3888,8 @@ zh-TW:
     must_be_observed_in_place: 需在地點裡觀察
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
+    must_be_verifiable: 必須是可證實的
+    must_be_wild: 必須是野生的
   running_total: 運行總計
   said: 說
   satellite: 衛星
@@ -3918,11 +3961,12 @@ zh-TW:
   select: 選擇
   select_all: 選擇全部
   select_at_least_one: 選擇至少一個
-  select_one_or_more_photos: '選擇一張或更多照片'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 都不選擇
   select_observations_to_edit: 選擇觀察來編輯...
   select_one_of_friends_albums: 選擇一個 %{friend} 的相簿
   select_one_of_your_albums: 選擇一個您的相簿
+  select_one_or_more_photos: '選擇一張或更多照片'
   select_options: 選擇選項
   select_photos_from_your_photo_stream: |
     選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
@@ -4176,6 +4220,7 @@ zh-TW:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 商店
+  store_caps: 商店
   studies_that_used_inaturalist_data_in_year: 在 %{year} 使用到 iNaturalist 資料的研究
   stuff_just_added: "您剛添加的東西..."
   subject_resolved_noun_html: "%{subject}解決了%{noun}"
@@ -4628,6 +4673,7 @@ zh-TW:
   upload_new_photo: 上傳新照片
   upload_photo: 上傳照片
   upload_range: 上傳範圍
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: 上傳由
   uploader:
     errors:
@@ -4654,6 +4700,7 @@ zh-TW:
     使用<span class='ac-placeholder'>"%{name}"</span>為位置標誌符
   use_this_form_to_create_a_new: |
     使用此表單來創建一個新的分類更改草稿，來描述出稍後提交在所提議之有效物種分類群上作拆分、合併，或兌換的內容。
+  #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     使用此當 URL 需要以特定方式來將屬和物種作區分。若物種分類不是物種或次物種，任何在[屬]與[物種]之間內容會以物種分類名稱所替代，因此請謹慎使用。
   use_unique_file_names_for_separate_uploads: 使用唯一檔案名稱來各自上傳
@@ -4734,7 +4781,6 @@ zh-TW:
   users_lists: "%{user} 的名錄"
   users_profile: "%{user}的個人檔案"
   users_projects: "%{user} 的專案"
-  users_year_on_site: "%{user} 在 %{site} 上的 %{year} 一年"
   valid_options_are: 有效選項為
   value: 值
   values: 值
@@ -4797,12 +4843,10 @@ zh-TW:
   view_taxononomy_details_for_taxon: "檢視%{taxon}的分類詳情"
   view_user_observations: "檢視 %{user} 的觀察"
   view_x: "檢視 %{x}"
-  view_year_stats_for_site: "檢視 %{site} 在 %{year} 的統計內容"
   view_your_dashboard: 查看您的控制面板
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>檢視您的控制面板</a>來獲得更多更新"
   view_your_inbox: 檢視您的收件匣
   view_your_observations: 檢視您的觀察
-  view_your_year_stats: "檢視您的 %{year} 統計內容"
   view_yours: 檢視您自己的
   view_all_of_your_observations_from_x: "檢視您所有來自於%{x}的觀察"
   video_tutorials: 影片教學
@@ -4889,7 +4933,10 @@ zh-TW:
   wikipedia_attribution_cc_by_sa_3_html: |
     此篇來自於維基百科條目<a href="%{url}">"%{title}"</a>裡的內容，該基於<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">創用 CC 姓名標示協議-相同方式分享 3.0 未本地化</a>授權條款所釋出。內容可能已從原始內容裡去除，但未有已更改或擴充的內容。
   with: 帶
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
   withdraw: 撤回
+  #Loading status while an identification is being withdrawn
   withdrawing: 正在撤回...
   with_errors: 帶有錯誤
   worldwide: 全世界
@@ -5006,6 +5053,7 @@ zh-TW:
   you_dont_have_permission_to_edit_those_photos: 您沒有權限編輯這些照片。
   you_faved_this: 您已加為最愛！
   you_have_left_x_project: "您已離開 %{project}"
+  you_have_not_confirmed_your_email_address: 您尚未認證您的電子信箱！
   you_havent_linked_your_inaturalist_google_account: "您尚未連結您的 %{site_name} 帳號和您的 Google 帳號"
   you_joined_this_project: 您加入了此專案！
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
@@ -5120,6 +5168,7 @@ zh-TW:
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
+        become_a_monthly_supporter_of_inaturalist_caps: 成為 iNaturalist 的每月贊助者
         desc_html: |
           <p class="lead">
           <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
@@ -5133,6 +5182,7 @@ zh-TW:
           <p class="text-muted">
           iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
           </p>
+        thank_you_for_being_a_monthly_supporter: 感謝您成為每月贊助者！
     flags:
       show:
         flaggable_content_desc: |
@@ -5541,7 +5591,6 @@ zh-TW:
       show:
         allow_curator_coordinate_access_desc_html: |
           允許專案策展人來檢視此觀察的隱藏座標。
-        ancestor_disagreements_desc: "# 已鑑定物種分類群來自於某一物種分類的祖先，但不同意分類（例如：我同意它歸在這個屬；但不同意它的物種）"
         community_taxon_desc_html: |
           <p class="ui">
           社群分類群（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。若您對於我們如何挑選社群分類群方面有興趣，請查看下方演算法的備註，而通常我們是採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到包含有不一致物種分類的較高層級分類群（例如：您認為對象應是王蛇，但我認為是響尾蛇，因此 iNat 最後會挑選包含所有蛇類的亞目）。演算法在意見分歧時有著好處，因為我們發現在過往情況下異議者通常會是對的。
@@ -6139,13 +6188,6 @@ zh-TW:
         one_time: 一次性捐款
         percent_growth_in_year: "在%{year}的成長比例(%)"
         percent_of_total_growth: "總成長比例(%)"
-        publications_desc_html: |
-          點選花型圖來了解更多關於數字和顏色的意義。
-          <a href="https://www.altmetric.com">Altmetric</a>上具影響力的資料和圖表。
-          有關我們的朋友於<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>
-          上數據使用的資訊。
-          <br/>
-          <a href="%{url}">檢視全部的 %{numStudies} 份研究</a>
         publications_desc_short_html: |
           點選花型圖來了解更多關於數字和顏色的意義。
           <a href="https://www.altmetric.com">Altmetric</a>上具影響力的資料和圖表。
@@ -6244,7 +6286,6 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
-          "Plant Phenology=No Evidence": 沒有證據
           "Life Stage=Adult": 成體
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲
@@ -6827,7 +6868,9 @@ zh-TW:
         geoprivacy: 位置隱私
         iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄
       flag:
+        #The reason the item was flagged
         reason: 原因
+        #The kind of flag that was made
         flag: 標記
       guide:
         source_url: 來源 URL

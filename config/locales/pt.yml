@@ -277,7 +277,6 @@ pt:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Adicionar Um(a) Agora
-  add_photos: Adicionar fotografias
   add_place: Adicionar lugar
   add_alive_or_dead_alive_annotation: 'Adicionar anotação "Vivo ou Morto: Vivo"'
   add_alive_or_dead_cannot_be_determined_annotation: 'Adicionar anotação "Vivo ou Morto: Não Pode ser Determinado"'
@@ -876,8 +875,6 @@ pt:
   #connecting to Flickr
   connect: Conectar
   connect_to_provider: "Ligar a %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Contas vinculadas
   connected_accounts_description: Contas conectadas são as suas contas de outras aplicações ou sites aos quais você permitiu o acesso iNaturalist em seu nome para suportar fazer login, importar fotos ou outras funcionalidades.
   connected_accounts_titlecase: Contas Conectadas
   connecting_flickr: "Ligando ao Flickr..."
@@ -999,7 +996,6 @@ pt:
   created_by: Criado por
   created_by_user_on_date: Adicionado por %{user} em %{date}
   created_on: 'Criado em:'
-  creating_your_account: "A criar a sua conta..."
   creative_commons_flickr_tagged: Fotos Creative Commons do Flickr marcadas
   creative_commons_unless_otherwise_noted: "Creative Commons salvo indicação em contrário."
   critically_endangered: criticamente em perigo de extinção
@@ -1898,7 +1894,6 @@ pt:
   log_scale_label: Logarítmica
   #Status message shown while logging in
   logging_in: A iniciar sessão...
-  login_slash_username: Iniciar sessão / nome de utilizador
   logo:
     logo: Logótipo
     white_bg_gif: imagem GIF com fundo branco
@@ -2312,10 +2307,6 @@ pt:
   observed_on: Observado em
   observer: Observador
   observers: Observadores
-  observer_prefers_no_project_addition: |
-    Observador não permite que outras pessoas adicionem as suas observações a projetos.
-  observer_prefers_addition_to_projects_joined: |
-    Observador só permite que outras pessoas adicionem as suas observações aos projetos a que aderiu.
   observer_short: Observador
   occurence_status_describes_how: 'O estado de ocorrência descreve o quão comum ou raro é um taxón numa determinada área. Ver DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mais informação sobre terminologia</a>.'
   occurrence_status: Estado da ocorrência
@@ -2971,11 +2962,12 @@ pt:
   select: Selecionar
   select_all: Selecionar tudo
   select_at_least_one: Selecionar pelo menos um
-  select_one_or_more_photos: 'Selecione uma ou mais fotos'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Não selecionar nenhuma
   select_observations_to_edit: Selecionar as observações para editar...
   select_one_of_friends_albums: Selecionar um dos álbuns de %{friend}
   select_one_of_your_albums: Selecionar um dos seus álbuns
+  select_one_or_more_photos: 'Selecione uma ou mais fotos'
   select_options: Selecionar opções
   select_photos_from_your_photo_stream: |
     Selecione fotos a partir de um site externo de partilha de fotos para converter em observações do %{site_name}. Nós preenchemos a data, a hora e a localização a partir dos metadados da foto, e tentamos procurar os nomes das espécies a partir das etiquetas.
@@ -3274,6 +3266,7 @@ pt:
   upload: Carregar
   upload_a_csv_file_with_observation: |
     Carregar um ficheiro CSV com dados observados. Se tem os seus dados numa folha de cálculo ou numa base de dados, provavelmente é a sua melhor opção.
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Carregado por
   uploader:
     tooltips:
@@ -3511,7 +3504,6 @@ pt:
           seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
         frequency:
-          "Plant Phenology=No Evidence": Sem Evidências
           "Life Stage=Adult": Adulto
           "Life Stage=Egg": Ovo
           "Life Stage=Larva": Larva
@@ -3758,7 +3750,9 @@ pt:
         geoprivacy: Geoprivacidade
         iucn: Equivalente UICN
       flag:
+        #The reason the item was flagged
         reason: Motivo
+        #The kind of flag that was made
         flag: Sinalizar
       guide:
         source_url: Fonte URL

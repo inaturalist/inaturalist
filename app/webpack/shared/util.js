@@ -195,6 +195,20 @@ const shortFormattedNumber = d => {
   return d;
 };
 
+function translateWithConsistentCase( key, options = {} ) {
+  const lowerRequested = options.case !== "upper";
+  delete options.case;
+  const translation = I18n.t( key, options );
+  const en = I18n.t( key, { ...options, locale: "en" } );
+  const defaultIsLower = ( en === en.toLowerCase( ) );
+  const lowerRequestedAndDefaultIsLower = lowerRequested && defaultIsLower;
+  const upperRequestedAndDefaultIsUpper = !lowerRequested && !defaultIsLower;
+  if ( lowerRequestedAndDefaultIsLower || upperRequestedAndDefaultIsUpper ) {
+    return translation;
+  }
+  return I18n.t( `${key}_`, options );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -239,16 +253,17 @@ const COLORS = {
 };
 
 export {
+  addImplicitDisagreementsToActivity,
+  COLORS,
   fetch,
-  updateSession,
-  objectToComparable,
-  resizeUpload,
+  formattedDateTimeInTimeZone,
+  inatreact,
   isBlank,
   numberWithCommas,
-  addImplicitDisagreementsToActivity,
-  formattedDateTimeInTimeZone,
-  COLORS,
-  inatreact,
+  objectToComparable,
+  resizeUpload,
+  shortFormattedNumber,
   stripTags,
-  shortFormattedNumber
+  translateWithConsistentCase,
+  updateSession
 };
