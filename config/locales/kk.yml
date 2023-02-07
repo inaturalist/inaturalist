@@ -1,19 +1,29 @@
 kk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} өзгеріс"
+    other: "%{count} өзгеріс"
+  x_comments:
+    one: '%{count} пікір'
+    other: '%{count} пікір'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> пікір'
+    other: '<span class="count">%{count}</span> пікір'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Сарапшы'
+    one: '<span class="count">%{count}</span> сарапшы'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Сарапшылар'
+    other: '<span class="count">%{count}</span> сарапшы'
   x_observations_html:
     one: "<span class='count'>%{count}</span> бақылау"
-    other: "<span class='count'>%{count}</span> бақылаулар"
+    other: "<span class='count'>%{count}</span> бақылау"
   x_observers_html:
-    one: '<span class="count">%{count}</span> Бақылаушы'
-    other: '<span class="count">%{count}</span> Бақылаушылар'
+    one: '<span class="count">%{count}</span> бақылаушы'
+    other: '<span class="count">%{count}</span> бақылаушы'
   x_species_html:
     one: "<span class='count'>%{count}</span> түр"
-    other: "<span class='count'>%{count}</span> түрлер"
+    other: "<span class='count'>%{count}</span> түр"
   about_licenses: Лицензиялар туралы
   account_settings: Аккаунт баптаулары
   add_observations: Бақылау қосу
@@ -69,7 +79,7 @@ kk:
   pi_consent_label: |
     Мен iNaturalist компаниясына аккаунтымды басқару үшін мен туралы шектеулі жеке ақпаратты сақтауға және өңдеуге рұқсат беремін
   pi_consent_child_label: |
-    Мен iNaturalist компаниясына баламның аккаунтын басқару үшін балам туралы шектеулі жеке ақпарат түрлерін сақтауға және өңдеуге рұқсат беремін.
+    Мен iNaturalist компаниясына баламның аккаунтын басқару үшін балам туралы шектеулі жеке ақпарат түрлерін сақтауға және өңдеуге рұқсат беремін
   data_transfer_consent_desc_title: Жеке ақпаратты беруге келісім туралы
   data_transfer_consent_desc_html: |
     <p>
@@ -85,7 +95,7 @@ kk:
     Жеке ақпаратты сақтамай iNaturalist аккаунтына ие болу мүмкін емес, сондықтан бұл келісімнен бас тартудың жалғыз жолы - аккаунтыңызды жою.
     </p>
   data_transfer_consent_label: |
-    Мен жеке ақпаратымның Америка Құрама Штаттарына берілуіне рұқсат беремін.
+    Мен жеке ақпаратымның Америка Құрама Штаттарына берілуіне рұқсат беремін
   data_transfer_consent_child_label: |
     Мен баламның жеке ақпаратын Америка Құрама Штаттарына жіберуге рұқсат беремін
   places: Орындар
