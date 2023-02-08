@@ -265,6 +265,7 @@ class User < ApplicationRecord
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
+  after_update :revoke_authorizations_after_password_change
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -1279,6 +1280,11 @@ class User < ApplicationRecord
     )
       Emailer.welcome( self ).deliver_now
     end
+  end
+
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
   end
 
   def recent_notifications(options={})

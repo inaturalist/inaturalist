@@ -76,6 +76,9 @@ class ChangePassword extends Component {
             <button className="btn btn-primary" type="button" onClick={this.handleSubmit}>
               {I18n.t( "change_password" )}
             </button>
+            <div className="text-muted help-text">
+              { I18n.t( "changing_your_password_description" ) }
+            </div>
           </form>
         </div>
       </div>

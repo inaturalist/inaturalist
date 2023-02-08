@@ -1018,6 +1018,8 @@ en:
   # disagreements are identifications that disagree with other identifications on the same observation
   changing_the_ancestry_to_that_parent: Changing the ancestry to that parent may result in unintended disagreements. Please analyze them first, which may take a while.
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
+  changing_your_password_description: Changing your password will log you out of all active
+    iNaturalist sessions across your devices
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
@@ -1708,6 +1710,7 @@ en:
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       updated: 'You updated your account successfully.'
+      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     mailer:
       confirmation_instructions:
         # Subject of an email sent to confirm your account

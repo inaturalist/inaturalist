@@ -53,7 +53,15 @@
           </div>
         </div>
       <% end %>
-
+      <% if flash[:success] && !@flash_js %>
+        <div class="bootstrap">
+          <div class="container upstacked">
+            <div class="alert alert-success upstacked">
+              <%= flash[:success].html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <% if flash[:error] && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
