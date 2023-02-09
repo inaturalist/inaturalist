@@ -297,6 +297,12 @@ ru:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точность (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точность выше
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точность ниже
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точность ниже или не известна
   account: Учётная запись
   account_creation: Создание учётной записи
   account_settings: Настройки учётной записи
@@ -623,7 +629,6 @@ ru:
   analyze_clashes: Анализ непредусмотренных разногласий
   analyze_ids: Анализ идентификаций
   ancestor_taxon: Таксон-предок
-  and: и
   and_other_taxa: "&amp; Другие Таксоны"
   android: Android
   animals: Животные
@@ -916,7 +921,6 @@ ru:
   browse_species_that_occur_near_this_observation: Просмотр видов, которые встречаются рядом с местом этого наблюдения.
   built_with_site_guides_html: "Создан с помощью<a href='%{url}'>%{site_name} Руководств</a>"
   bulk_import_of_filename_is_complete: "Групповой импорт %{filename} завершён"
-  by: _
   by_everyone: Любые
   by_user: "%{user}"
   by_you: Ваши
@@ -2163,6 +2167,16 @@ ru:
   home: Главная
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Часы регулировки:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Однако, он не лицензирован для повторного использования и не будет передаваться с данными репозиториев, которые соблюдают условия выбора лицензии.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Вы можете изменить ваши настройки лицензии в
+    <a class="linky" href="/users/edit#content">настройках учетной записи</a>.
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2520,6 +2534,10 @@ ru:
     taxonomic: таксономический
     photo: фото
   list_was_successfully_created: Список был успешно создан.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, и %{three}"
+  list_with_two_items: "%{one} и %{two}"
   listed_taxa: Перечисленные таксоны
   listed_taxon: Перечисленный таксон
   listed_taxon_updated: Перечисленные таксоны обновлены
@@ -2636,6 +2654,8 @@ ru:
   lookup: Поиск
   low: Низший
   lowest_rank: Низший ранг
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Сделать администратором
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Основной контент
@@ -2668,7 +2688,7 @@ ru:
       every_publicly_visible_observation: Каждое публично видимое наблюдение, созданное в сети iNaturalist
       featured_observations: Рекомендуемые наблюдения
       gbif_network: сеть GBIF
-      gbif_network_description: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
+      gbif_network_description2: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
       observations: Наблюдения
       place_boundary: Границы места
       checklist_places: Места с контрольными списками
@@ -2688,6 +2708,9 @@ ru:
   maximum_positional_accuracy_including_unknown: |
     Максимальная точность местоположени, включая наблюдения с неточным местоположением
   media: Медиафайл
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: и
   media_type: Тип медиафайла
   medium: средний
   meet: Встретить
@@ -3050,6 +3073,8 @@ ru:
   not_findig_what_you_want: Не нашли то, что искали?
   not_finding_place_you_want?: Не нашли место, которое искали?
   not_found: Не найдено
+  #Filter for observations not in a particular place
+  not_in_place: Не в данном месте
   not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
@@ -3139,6 +3164,14 @@ ru:
   observation_curation: Курирование наблюдений
   observation_date: Дата
   observation_date?: Дата?
+  #Basic observation export fields
+  observation_export_column_type_basic: Основное
+  #Geographic observation export fields
+  observation_export_column_type_geo: Гео
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Таксон
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Таксон, дополнительно
   observation_field: Поле наблюдения
   observation_field_details: Детали поля наблюдения
   observation_field_type_text: Текст
@@ -3208,6 +3241,10 @@ ru:
   observed_on: Дата
   observer: Наблюдатель
   observers: Наблюдатели
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Наблюдатель позволяет другим пользователям добавлять свои наблюдения только к традиционным проектам, к которым они присоединились.
+  observer_prefers_no_traditional_project_addition: |
+    Наблюдатель не позволяет другим пользователям добавлять свои наблюдения к традиционным проектам.
   observer_short: Наблюдатель
   occurence_status_describes_how: 'Статус присутствия указывает, насколько часто или редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для получения большей информации о терминологии</a>.'
   occurrence_status: Статус присутствия
@@ -3868,8 +3905,8 @@ ru:
   places_warning_export_complex_boundary_html: |
     Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
     где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
-  places_warning_look_for_existing_html: |
-    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_look_for_existing2_html: |
+    Поищите <a href="/search?source[]=places">существующие места</a> , чтобы убедиться, что вы не создаёте дубликаты. У нас уже есть места для всех континентов и стран, а также многих других политических границ.
   places_warning_please_keep_in_mind: |
     Пожалуйста, помните о следующих ограничениях:
   places_warning_projects_can_have_multiple_places: |
@@ -5362,6 +5399,7 @@ ru:
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} добавил к фаворитам %{noun} от %{owner}"
+  user_faved_a_noun_by_you: "%{user} добавил к фаворитам ваш %{noun}"
   user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
   user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
@@ -5616,6 +5654,8 @@ ru:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
   with: с
+  #Filter for observations not in a particular taxon
+  without_taxon: Не относящееся к таксону
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Отозвать
@@ -6566,9 +6606,8 @@ ru:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.
     places:
-      kml_field_desc: |
-        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google
-        Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
+      kml_field_desc2: |
+        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
       edit:
         complex_boundary_note_html: |
           Эта граница слишком сложна для редактирования в Интернете. Однако вы можете <a href="%{url}">загрузить KML</a>, отредактировать его в приложении GIS по вашему выбору и загрузить свой отредактированный KML напрямую.
@@ -7062,6 +7101,7 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
+          "Plant Phenology=No Evidence of Flowering": Нет доказательств цветения
           "Life Stage=Adult": Взрослый
           "Life Stage=Egg": Яйцо
           "Life Stage=Larva": Личинка
@@ -7218,10 +7258,6 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
-        monthly_supporter_desc_html: |
-          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
-          <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
-          Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.
         muting_desc_html: |
           <p>
           Игнорирование кого-либо предотвращает получение вами уведомления о том, что они делают, в том числе о комментировании ваших наблюдений, отправке вам сообщения, упоминании вас и т.д. Эта опция помогает, не мешая при этом ему что-либо делать.

@@ -443,7 +443,6 @@ ja:
   amphibians: 両生類
   analyze_ids: 分析ID
   ancestor_taxon: 祖先の分類群
-  and: そして
   and_other_taxa: "&amp; その他の分類群"
   android: Android
   animals: 動物
@@ -700,7 +699,6 @@ ja:
   browse_species_that_occur_near_this_observation: この観察記録近隣の種を表示
   built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
-  by: '投稿者:'
   by_everyone: 全てのユーザー
   by_user: "%{user}さんによる"
   by_you: あなた
@@ -1810,6 +1808,11 @@ ja:
   home: ホーム
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "調整する時間:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    <a class="linky" href="/users/edit#content">アカウント設定</a> からライセンス設定を変更することができます。
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
   icon: アイコン
@@ -2250,7 +2253,6 @@ ja:
       every_publicly_visible_observation: iNaturalistネットワーク上のすべての公開中観察記録
       featured_observations: 注目の観察記録
       gbif_network: GBIFネットワーク
-      gbif_network_description: GBIFが公開している博物館やその他の生物記録プロバイダーからの記録
       observations: 観察記録
       place_boundary: 場所範囲
       checklist_places: チェックリスト場所
@@ -5088,8 +5090,6 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
-        monthly_supporter_desc_html: |
-          iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。

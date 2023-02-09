@@ -738,7 +738,7 @@ module ApplicationHelper
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
-      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description"),
+      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description2"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
@@ -1104,16 +1104,21 @@ module ApplicationHelper
       return s.html_safe
     end
 
-    if notifier.is_a?(ActsAsVotable::Vote)
+    if notifier.is_a?( ActsAsVotable::Vote )
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
-        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
-        gender: class_name_key
-      ).html_safe
-      s = t(:user_faved_a_noun_by_owner, 
-        user: notifier_user.login, 
-        noun: noun, 
-        owner: you_or_login(update.resource_owner, :capitalize_it => false))
+        vow_or_con: t( class_name_key, default: class_name_key )[0].downcase,
+        gender: class_name_key ).html_safe
+      s = if logged_in? && current_user == update.resource_owner
+        t( :user_faved_a_noun_by_you,
+          user: notifier_user.login,
+          noun: noun )
+      else
+        t( :user_faved_a_noun_by_owner,
+          user: notifier_user.login,
+          noun: noun,
+          owner: update.resource_owner.login )
+      end
       return s.html_safe
     end
 
@@ -1282,13 +1287,18 @@ module ApplicationHelper
   def url_for_resource_with_host(resource)
     polymorphic_url(resource)
   end
-  
-  def commas_and(list, options = {})
+
+  def commas_and( list, options = {} )
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(" #{t :and} ").html_safe if list.size == 2
-    options[:separator] ||= ","
-    options[:and] ||= t(:and)
-    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
+
+    list_with_n_items = I18n.t( "list_with_n_items", one: "-ONE-", two: "-TWO-", three: "-THREE-" )
+    list_with_two_items = I18n.t( "list_with_two_items", one: "-ONE-", two: "-TWO-" )
+    options[:separator] ||= list_with_n_items[/-ONE-(.*)-TWO-/, 1]
+    options[:final_separator] ||= list_with_n_items[/-TWO-(.*)-THREE-/, 1]
+    options[:two_item_separator] ||= list_with_two_items[/-ONE-(.*)-TWO-/, 1]
+    return list.join( options[:final_separator] ).html_safe if list.size == 2
+
+    "#{list[0..-2].join( options[:separator] )}#{options[:final_separator]}#{list.last}".html_safe
   end
 
   def observation_field_value_for(ofv)

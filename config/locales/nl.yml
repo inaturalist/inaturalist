@@ -535,7 +535,6 @@ nl:
   analyze_clashes: Onbedoelde meningsverschillen analyseren
   analyze_ids: ID's analyseren
   ancestor_taxon: Voorouder-taxon
-  and: en
   and_other_taxa: "&amp; Andere Taxa"
   android: Android
   animals: Dieren
@@ -832,7 +831,6 @@ nl:
   browse_species_that_occur_near_this_observation: Soorten bekijken in de buurt van deze waarneming
   built_with_site_guides_html: "Gebouwd met <a href='%{url}'>%{site_name}-gidsen</a>"
   bulk_import_of_filename_is_complete: "Bulk import van %{filename} is klaar"
-  by: door
   by_everyone: Door iedereen
   by_user: "Door %{user}"
   by_you: Door jou
@@ -2114,8 +2112,13 @@ nl:
   home: Startpagina
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Uren om aan te passen:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Het is echter geen licentie voor hergebruik en zal niet worden gedeeld met datarepositories die de licentiekeuzes respecteren.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Jij kan jouw licentievoorkeuren wijzigen in je <a class="linky" href="/users/edit#content">accountinstellingen</a>.
   however_there_were_some_issues: "Er waren echter wat problemen: %{issues}"
@@ -2484,6 +2487,10 @@ nl:
     taxonomic: taxonomisch
     photo: foto
   list_was_successfully_created: De lijst werd succesvol aangemaakt.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} en %{three}"
+  list_with_two_items: "%{one} en %{two}"
   listed_taxa: Taxa opgenomen in de lijst
   listed_taxon: taxon in de lijst
   listed_taxon_updated: taxon in de lijst bijgewerkt
@@ -2600,6 +2607,8 @@ nl:
   lookup: Opzoeken
   low: Laag
   lowest_rank: Laagste rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Maak admin
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Belangrijkste inhoud
@@ -2632,7 +2641,7 @@ nl:
       every_publicly_visible_observation: Alle publiekelijk zichtbare waarnemingen gemaakt in het iNaturalist netwerk
       featured_observations: Aanbevolen waarnemingen
       gbif_network: GBIF netwerk
-      gbif_network_description: Records van musea en andere aanbieders van verspreidingsgegevens verspreid door de Global Biodiversity Informatics Facility
+      gbif_network_description2: Gegevens van musea en andere aanbieders van verspreidingsgegevens geleverd door de Global Biodiversity Information Facility
       observations: Waarnemingen
       place_boundary: Plaats grens
       checklist_places: Checklist plaatsen
@@ -2651,6 +2660,9 @@ nl:
   maximum_positional_accuracy_including_unknown: |
     Maximale locatienauwkeurigheid inclusief waarnemingen zonder locatienauwkeurigheid
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: en
   media_type: Mediatype
   medium: medium
   meet: Ontmoeten
@@ -3208,6 +3220,11 @@ nl:
   observed_on: Waargenomen op
   observer: Waarnemer
   observers: Waarnemers
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Waarnemer staat alleen toe dat andere mensen hun waarnemingen toevoegen aan traditionele projecten waar zij aan deelnemen.
+  observer_prefers_no_traditional_project_addition: |
+    Waarnemer staat niet toe dat andere mensen hun waarnemingen toevoegen aan
+    traditionele projecten.
   observer_short: Waarnemer
   occurence_status_describes_how: 'Een voorkomststatus beschrijft hoe algemeen of zeldzaam een taxon is in een bepaald gebied. Zie DarwinCore voor <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">meer informatie over terminologie</a>.'
   occurrence_status: Statuscodes voorkomen
@@ -3873,10 +3890,9 @@ nl:
     Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
     waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
-  places_warning_look_for_existing_html: |
-    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om te voorkomen dat je
-    een kopie maakt. Er zijn al gebieden voor alle continenten en landen evenals twee administratieve niveaus onder
-    land.
+  places_warning_look_for_existing2_html: |
+    Zoek naar <a href="/search?source[]=places">bestaande plaatsen</a> om ervoor te zorgen dat je
+    geen kopie maakt. We hebben al plaatsen voor alle continenten en landen en veel andere politieke grenzen.
   places_warning_please_keep_in_mind: |
     Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
@@ -5370,6 +5386,7 @@ nl:
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} heeft %{noun} door %{owner} als favoriet opgeslagen"
+  user_faved_a_noun_by_you: "%{user} heeft %{noun} van jou als favoriet opgeslagen"
   user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
@@ -6586,10 +6603,6 @@ nl:
           Je kunt het origineel bekijken op <a href="%{url}">%{url}</a>. 
           Laat meldingen over schending van auteursrechten alsjeblieft als onopgelost staan als deze foto auteursrechten schendt.
     places:
-      kml_field_desc: |
-        KML van de gebiedsgrens. Je kunt er eentje maken met behulp van Google Maps, Google
-        Earth of met de meeste GIS-applicaties. Moet ten minste één polygoon hebben van 
-        minder dan 1 MB (5 MB voor sitecuratoren) en moet een oppervlakte hebben die kleiner is dan ongeveer twee keer Duitsland.
       edit:
         complex_boundary_note_html: |
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt wel
@@ -7291,8 +7304,7 @@ nl:
           Maandelijkse supporters van iNaturalist doneren maandelijks aan de 'California Academy of Sciences' (United States IRS EIN 94-1156258) ter ondersteuning van het not-for-profit-beheer van iNaturalist en iNaturalist-netwerksites.
           <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
           Als je steun door ons is bevestigd kun je deze checkbox aanvinken
-          zodat deze status in je profiel wordt weergegeven. Je moet wel
-          exact hetzelfde e-mailadres gebruiken op Donorbox als op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent geworden.
+          zodat deze status in je profiel wordt weergegeven. Let op: het e-mailadres op Donorbox moet exact gelijk zijn aan die op iNaturalist zodat we kunnen bevestigen dat je maandelijkse supporter bent. Als ze verschillend zijn, verander er dan één zodat ze gelijk zijn.
         muting_desc_html: |
           <p>
              Als je iemand dempt, krijg je geen meldingen meer over dingen die ze doen, inclusief als ze op je waarnemingen reageren, berichten naar je sturen, je naam noemen, etc. Dempen helpt je iemand te negeren zonder dat je beperkt wat ze kunnen doen.

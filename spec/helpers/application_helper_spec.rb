@@ -70,4 +70,22 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe "commas_and" do
+    describe "default" do
+      it "should use commas as separators" do
+        expect( commas_and( %w(foo bar baz) ) ).to include( "foo, bar" )
+      end
+      it "should use and before the last item" do
+        expect( commas_and( %w(foo bar baz) ) ).to include( "and baz" )
+      end
+    end
+    # describe "in Hebrew" do
+    #   it "should work" do
+    #     I18n.with_locale( :es ) do
+    #       expect( commas_and( %w(foo bar baz) ) ).to eq( "foo, bar y baz" )
+    #     end
+    #   end
+    # end
+  end
 end

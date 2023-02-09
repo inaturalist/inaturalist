@@ -609,7 +609,6 @@ pl:
   amphibians: płazy
   analyze_ids: Analizuj oznaczenia
   ancestor_taxon: Takson przodek
-  and: i
   and_other_taxa: "&amp; Inne taksony"
   android: Android
   animals: Zwierzęta
@@ -834,7 +833,6 @@ pl:
   browse_projects: Przeglądaj projekty
   browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące w pobliżu tej obserwacji.
   bulk_import_of_filename_is_complete: "Zbiorczy import %{filename} zakończony"
-  by: przez
   by_everyone: Przez wszystkich
   by_user: "Użytkownika %{user}"
   by_you: Przez Ciebie
@@ -2532,6 +2530,8 @@ pl:
   observations_can_only_have_n_photos: Obserwacje mogą mieć tylko %{limit} zdjęć
   observation_date: Data
   observation_date?: Data?
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Takson
   observation_field: Pole obserwacji
   observation_field_details: Szczegóły pola obserwacji
   observation_field_type_text: Tekst

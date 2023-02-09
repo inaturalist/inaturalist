@@ -412,7 +412,7 @@ namespace :inaturalist do
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
     all_keys += ControlledTerm.attributes.map{|a|
-      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.parameterize.underscore}_annotation" }
     }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
