@@ -102,9 +102,7 @@ class ProjectObservationsController < ApplicationController
   def project_observation_params_for_create
     params.require(:project_observation).permit(
       :observation_id,
-      :project_id,
-      :preferred_curator_coordinate_access,
-      :prefers_curator_coordinate_access
+      :project_id
     )
   end
 

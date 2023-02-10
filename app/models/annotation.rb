@@ -11,7 +11,7 @@ class Annotation < ApplicationRecord
 
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
-  belongs_to :resource, polymorphic: true
+  belongs_to_with_uuid :resource, polymorphic: true
   belongs_to :user
   belongs_to :observation_field_value
 
@@ -34,6 +34,10 @@ class Annotation < ApplicationRecord
   after_commit :touch_resource, on: [:create, :destroy]
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
+
+  def to_s
+    "<Annotation #{id} user_id: #{user_id} resource_type: #{resource_type} resource_id: #{resource_id}>"
+  end
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)

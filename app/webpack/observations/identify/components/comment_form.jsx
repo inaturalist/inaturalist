@@ -8,7 +8,6 @@ import TextEditor from "../../../shared/components/text_editor";
 // https://github.com/erikras/redux-form if this approach ends up getting
 // complicated.
 
-
 class CommentForm extends React.Component {
   shouldComponentUpdate( nextProps ) {
     const {
@@ -25,7 +24,13 @@ class CommentForm extends React.Component {
 
   render( ) {
     const {
-      observation, onSubmitComment, className, content, key, updateEditorContent
+      config,
+      observation,
+      onSubmitComment,
+      className,
+      content,
+      key,
+      updateEditorContent
     } = this.props;
     return (
       <form
@@ -35,7 +40,7 @@ class CommentForm extends React.Component {
           e.preventDefault();
           onSubmitComment( {
             parent_type: "Observation",
-            parent_id: observation.id,
+            parent_id: config.testingApiV2 ? observation.uuid : observation.id,
             body: content
           } );
         }}
@@ -65,6 +70,7 @@ class CommentForm extends React.Component {
 }
 
 CommentForm.propTypes = {
+  config: PropTypes.object,
   observation: PropTypes.object,
   onSubmitComment: PropTypes.func.isRequired,
   className: PropTypes.string,

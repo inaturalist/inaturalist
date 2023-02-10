@@ -23,8 +23,8 @@ class Project < ApplicationRecord
         indexes :role, type: "keyword", index: false
         indexes :user_id, type: "integer", index: false
       end
-      indexes :ancestor_place_ids, type: "integer"
-      indexes :associated_place_ids, type: "integer"
+      indexes :ancestor_place_ids, type: "keyword"
+      indexes :associated_place_ids, type: "keyword"
       indexes :banner_color, type: "keyword", index: false
       indexes :created_at, type: "date"
       indexes :description, analyzer: "ascii_snowball_analyzer"
@@ -45,12 +45,14 @@ class Project < ApplicationRecord
       indexes :hide_title, type: "boolean", index: false
       indexes :icon, type: "keyword", index: false
       indexes :icon_file_name, type: "keyword", index: false
-      indexes :id, type: "integer"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :last_post_at, type: "date"
       indexes :location, type: "geo_point"
       indexes :observations_count, type: "integer"
-      indexes :place_id, type: "integer"
-      indexes :place_ids, type: "integer"
+      indexes :place_id, type: "keyword"
+      indexes :place_ids, type: "keyword"
       indexes :project_observation_fields do
         indexes :id, type: "integer"
         indexes :observation_field do
@@ -86,38 +88,40 @@ class Project < ApplicationRecord
       end
       indexes :observation_requirements_updated_at, type: "date", index: false
       indexes :search_parameter_fields do
-        indexes :d1, type: "date", format: "dateOptionalTime"
-        indexes :d2, type: "date", format: "dateOptionalTime"
+        indexes :d1, type: "date", format: "date_optional_time"
+        indexes :d2, type: "date", format: "date_optional_time"
         indexes :d2_date, type: "date", format: "yyyy-MM-dd"
         indexes :introduced, type: "boolean"
         indexes :month, type: "byte"
         indexes :native, type: "boolean"
-        indexes :not_in_place, type: "integer"
-        indexes :not_user_id, type: "integer"
-        indexes :observed_on, type: "date", format: "dateOptionalTime"
+        indexes :not_in_place, type: "keyword"
+        indexes :not_user_id, type: "keyword"
+        indexes :observed_on, type: "date", format: "date_optional_time"
         indexes :photos, type: "boolean"
-        indexes :place_id, type: "integer"
-        indexes :project_id, type: "integer"
+        indexes :place_id, type: "keyword"
+        indexes :project_id, type: "keyword"
         indexes :quality_grade, type: "keyword"
         indexes :sounds, type: "boolean"
-        indexes :taxon_id, type: "integer"
-        indexes :term_id, type: "integer"
-        indexes :term_value_id, type: "integer"
-        indexes :user_id, type: "integer"
-        indexes :without_taxon_id, type: "integer"
+        indexes :taxon_id, type: "keyword"
+        indexes :term_id, type: "keyword"
+        indexes :term_value_id, type: "keyword"
+        indexes :user_id, type: "keyword"
+        indexes :without_taxon_id, type: "keyword"
       end
       indexes :search_parameters, type: :nested do
         indexes :field, type: "keyword"
         indexes :value, type: "text"
         indexes :value_bool, type: "boolean"
-        indexes :value_date, type: "date", format: "dateOptionalTime"
+        indexes :value_date, type: "date", format: "date_optional_time"
         indexes :value_keyword, type: "keyword"
         indexes :value_number, type: "long"
       end
       indexes :site_features, type: :nested do
         indexes :featured_at, type: "date"
         indexes :noteworthy, type: "boolean"
-        indexes :site_id, type: "short"
+        indexes :site_id, type: "short" do
+          indexes :keyword, type: "keyword"
+        end
         indexes :updated_at, type: "date"
       end
       indexes :slug, analyzer: "keyword_analyzer"
@@ -129,10 +133,10 @@ class Project < ApplicationRecord
         search_analyzer: "standard_analyzer"
       indexes :title_exact, type: "keyword"
       indexes :universal_search_rank, type: "integer"
-      indexes :umbrella_project_ids, type: "integer"
+      indexes :umbrella_project_ids, type: "keyword"
       indexes :updated_at, type: "date"
-      indexes :user_id, type: "integer"
-      indexes :user_ids, type: "integer"
+      indexes :user_id, type: "keyword"
+      indexes :user_ids, type: "keyword"
     end
   end
 

@@ -75,7 +75,6 @@ module Ratatosk
       if @name_providers.blank?
         @name_providers = [
           NameProviders::ColNameProvider.new,
-          NameProviders::EolNameProvider.new,
           NameProviders::UBioNameProvider.new,
           NameProviders::NZORNameProvider.new
         ]

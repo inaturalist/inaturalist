@@ -19,7 +19,7 @@
   -%>
   <% if @representative_photo -%>
     <%-
-      og_description += " &mdash; Photo: #{@representative_photo.attribution}"
+      og_description += " - Photo: #{@representative_photo.attribution}"
       @shareable_image_url = @representative_photo.medium_url
     -%>
     <meta property="og:image" content="<%= @shareable_image_url %>"/> 

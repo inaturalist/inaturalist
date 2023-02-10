@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"
   acts_as_votable
-  has_moderator_actions
+  has_moderator_actions %w(hide unhide)
   SUBSCRIBABLE = false
 
   # Uncomment to require speech privilege to make comments on anything other
@@ -109,6 +109,7 @@ class Comment < ApplicationRecord
   end
 
   def flagged_with(flag, options)
+    parent&.touch
     evaluate_new_flag_for_spam(flag)
     index_parent
   end

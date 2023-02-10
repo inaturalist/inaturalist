@@ -59,7 +59,7 @@ class AssessmentsController < ApplicationController
     end
 
     respond_to do |format|
-    if @assessment.update_attributes(params[:assessment])
+    if @assessment.update(params[:assessment])
         format.html { redirect_to(@assessment, :notice => t(:assessment_was_successfully_updated)) }
       else
         format.html { render :action => "edit" }

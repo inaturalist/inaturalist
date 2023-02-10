@@ -5,6 +5,7 @@ const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
   mode: "none",
+  target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
     // list out the various bundles we need to make for different apps
@@ -28,18 +29,30 @@ const config = {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
     // for inclusion in the asset pipeline, make app/assets/javascripts/[name]-bundle.js
     filename: "[name]-webpack.js",
-    path: path.resolve( __dirname, "../assets/javascripts" )
+    path: path.resolve( __dirname, "../app/assets/javascripts" )
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".jsx"],
+    fallback: {
+      querystring: require.resolve( "querystring-es3" ),
+      punycode: require.resolve( "punycode" )
+    }
   },
   module: {
     rules: [
       // run everything through babel
       {
-        test: /\.jsx?$/,
+        test: /\.c?jsx?$/,
         loader: "babel-loader",
-        query: { presets: ["@babel/preset-env", "@babel/preset-react"] }
+        resolve: {
+          fullySpecified: false
+        },
+        options: {
+          presets: [
+            "@babel/preset-env",
+            "@babel/preset-react"
+          ]
+        }
       }
     ]
   },

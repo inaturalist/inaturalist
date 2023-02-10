@@ -20,6 +20,7 @@ const obsFields = {
 };
 
 const Content = ( {
+  config,
   profile,
   handleInputChange,
   handleCustomDropdownSelect,
@@ -216,6 +217,7 @@ const Content = ( {
           </select>
           <label htmlFor="user_place_id">{I18n.t( "views.users.edit.name_place_help_html" )}</label>
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
             initialPlaceID={profile.place_id}
             bootstrapClear
@@ -228,11 +230,9 @@ const Content = ( {
           <CheckboxRowContainer
             name="prefers_community_taxa"
             label={I18n.t( "accept_community_identifications" )}
-            description={(
-              <p className="text-muted">
-                {I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )}
-              </p>
-            )}
+            description={
+              I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )
+            }
           />
           <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
           <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
@@ -254,6 +254,7 @@ const Content = ( {
 };
 
 Content.propTypes = {
+  config: PropTypes.object,
   profile: PropTypes.object,
   handleInputChange: PropTypes.func,
   handleCustomDropdownSelect: PropTypes.func,

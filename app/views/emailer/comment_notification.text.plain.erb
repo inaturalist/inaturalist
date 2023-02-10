@@ -1,7 +1,0 @@
-<%=t :user_commented_on, :user=> @commenter.login , :title=> @comment.parent.class.to_s.underscore.humanize.downcase, :time => "\"#{@comment.parent.to_plain_s(:no_user => true)}\"" if @comment.parent.respond_to?(:to_plain_s) %>,
-
-"<%= strip_tags(@comment.body.chomp) %>"
-
-<%= t(:view_the, :action =>  @comment.parent.class.to_s.underscore.humanize.downcase, :link=> @parent_url) %>
-
-<%= render :partial => 'footer' %>

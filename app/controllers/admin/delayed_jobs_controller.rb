@@ -1,4 +1,3 @@
-require_relative "../../models/delayed_job" if Rails.env.development?
 class Admin::DelayedJobsController < ApplicationController
 
   before_action :authenticate_user!

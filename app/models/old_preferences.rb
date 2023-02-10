@@ -60,7 +60,7 @@ class OldPreferences
     ALLOWED[preference] && ALLOWED[preference].include?(val)
   end
   
-  def update_attributes(attrs = {})
+  def update(attrs = {})
     attrs.each do |key, value|
       # HACK: this will totally screw up preferences that actually should be 
       # 1 or 0.  Ugh

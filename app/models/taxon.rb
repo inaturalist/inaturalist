@@ -33,8 +33,26 @@ class Taxon < ApplicationRecord
     self.uuid = uuid.downcase
     true
   end
+  audited except: [
+    :creator_id,
+    :delta,
+    :listed_taxa_count,
+    :observations_count,
+    :updater_id,
+    :uuid,
+    :version
+  ]
+  has_associated_audits
   acts_as_flaggable
   has_ancestry orphan_strategy: :adopt
+
+  revert_changes_for ancestry: :blank,
+    complete_rank: :blank,
+    name_provider: :blank,
+    source_identifier: :blank,
+    source_url: :blank,
+    wikipedia_summary: :blank,
+    wikipedia_title: :blank
 
   has_many :taxon_names, dependent: :destroy
   has_many :taxon_changes
@@ -76,7 +94,6 @@ class Taxon < ApplicationRecord
   belongs_to :iconic_taxon, class_name: "Taxon", foreign_key: "iconic_taxon_id"
   belongs_to :creator, class_name: "User"
   has_updater
-  belongs_to :conservation_status_source, class_name: "Source"
   belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, dependent: :destroy
@@ -88,9 +105,7 @@ class Taxon < ApplicationRecord
   has_many :taxon_curators, inverse_of: :taxon
   has_one :simplified_tree_milestone_taxon, dependent: :destroy
 
-  accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
-  accepts_nested_attributes_for :conservation_statuses, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :taxon_photos, allow_destroy: true
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
@@ -365,8 +380,8 @@ class Taxon < ApplicationRecord
     [status_name, const_get( "IUCN_#{status_name.upcase}" )]
   end.to_h
   IUCN_STATUS_NAMES.each do | status_name |
-    define_method( "iucn_#{status_name}?" ) do
-      conservation_status == self.class.const_get( "IUCN_#{status_name.upcase}" )
+    define_method( "#{status_name}?" ) do
+      global_conservation_status&.iucn == self.class.const_get( "IUCN_#{status_name.upcase}" )
     end
   end
   IUCN_CODE_VALUES = IUCN_STATUS_VALUES.transform_keys do | name |
@@ -405,6 +420,7 @@ class Taxon < ApplicationRecord
     "larva",
     "lichen",
     "lizard",
+    "orange",
     "pinecone",
     "pupa",
     "pupae",
@@ -555,7 +571,7 @@ class Taxon < ApplicationRecord
 
     Identification.delay(
       priority: INTEGRITY_PRIORITY,
-      queue: "slow",
+      queue: "throttled",
       unique_hash: { "Identification::reindex_for_taxon": id }
     ).reindex_for_taxon( id )
   end
@@ -583,15 +599,12 @@ class Taxon < ApplicationRecord
     Identification.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id } ).
       update_disagreement_identifications_for_taxon( id )
-    annotation_taxon_ids_to_reassess = [ancestry_was.to_s.split( "/" ).map( &:to_i ), id].flatten.compact.sort
-    annotation_taxon_ids_to_reassess.each do | taxon_id |
-      next if Taxon::LIFE && taxon_id == Taxon::LIFE.id
-
-      Annotation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
-        run_at: 3.days.from_now,
-        unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [taxon_id] } ).
-        reassess_annotations_for_taxon_ids( [taxon_id] )
-    end
+    Annotation.delay(
+      priority: INTEGRITY_PRIORITY,
+      queue: "slow",
+      run_at: 3.days.from_now,
+      unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [id] }
+    ).reassess_annotations_for_taxon_ids( [id] )
     unless taxon_framework_relationship_id.blank?
       reasess_taxon_framework_relationship_after_move
     end
@@ -658,7 +671,7 @@ class Taxon < ApplicationRecord
     end
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
-    taxon_framework_relationship.update_attributes( attrs )
+    taxon_framework_relationship.update( attrs )
   end
 
   def complete_species_count
@@ -736,13 +749,6 @@ class Taxon < ApplicationRecord
   def set_wikipedia_summary_later
     delay( priority: OPTIONAL_PRIORITY ).set_wikipedia_summary if saved_change_to_wikipedia_title?
     true
-  end
-
-  def self.set_conservation_status( id )
-    return unless ( t = Taxon.find_by_id( id ) )
-
-    s = t.conservation_statuses.where( "place_id IS NULL" ).pluck( :iucn ).max
-    Taxon.where( id: t ).update_all( conservation_status: s )
   end
 
   def capitalize_name
@@ -897,7 +903,7 @@ class Taxon < ApplicationRecord
       if parent&.can_be_grafted_to && rank_level && parent&.rank_level && parent.rank_level > rank_level && [
         GENUS, SPECIES
       ].include?( parent.rank )
-        update_attributes( parent: parent )
+        update( parent: parent )
       end
     end
     raise e unless grafted?
@@ -930,7 +936,7 @@ class Taxon < ApplicationRecord
   end
 
   def move_to_child_of( taxon )
-    update_attributes( parent: taxon )
+    update( parent: taxon )
   end
 
   def default_name( options = {} )
@@ -1268,7 +1274,7 @@ class Taxon < ApplicationRecord
     return unless ( tf = tfr.taxon_framework ) && upstream_taxon_framework != tf
 
     tfr.destroy
-    update_attributes( taxon_framework_relationship_id: nil )
+    update( taxon_framework_relationship_id: nil )
   end
 
   def upstream_taxon_framework
@@ -1390,21 +1396,6 @@ class Taxon < ApplicationRecord
     true
   end
 
-  def update_unique_name( _options = {} )
-    reload # there's a chance taxon names have been created since load
-    return true unless default_name
-
-    [default_name.name, name].uniq.each do | candidate |
-      candidate = candidate.gsub( %r{[.'?!\\/]}, "" ).downcase
-      break if unique_name == candidate
-
-      next if Taxon.exists?( unique_name: candidate )
-
-      Taxon.where( id: id ).update_all( unique_name: candidate )
-      break
-    end
-  end
-
   def wikipedia_summary( options = {} )
     return unless auto_description?
 
@@ -1436,7 +1427,7 @@ class Taxon < ApplicationRecord
 
   def set_wikipedia_summary( options = {} )
     unless auto_description?
-      update_attributes( wikipedia_summary: false )
+      update( wikipedia_summary: false )
       taxon_descriptions.destroy_all
       return
     end
@@ -1462,7 +1453,7 @@ class Taxon < ApplicationRecord
     end
     td = taxon_descriptions.where( locale: locale ).first
     td ||= taxon_descriptions.build( locale: locale )
-    td&.update_attributes(
+    td&.update(
       title: details[:title],
       body: details[:summary],
       provider_taxon_id: details[:id],
@@ -1564,7 +1555,7 @@ class Taxon < ApplicationRecord
       reject_tst_name = reject_tst.taxon_name
       taxon_name = taxon_names.where( lexicon: TaxonName::SCIENTIFIC_NAMES, name: reject_tst_name.name ).first
       if taxon_name
-        reject_tst.update_attributes( taxon_name_id: taxon_name.id )
+        reject_tst.update( taxon_name_id: taxon_name.id )
       end
       next if reject_tst.valid?
 
@@ -1578,7 +1569,7 @@ class Taxon < ApplicationRecord
     reject_taxon_names.each do | taxon_name |
       taxon_name.reload
       if taxon_name.is_scientific_names? && taxon_name.is_valid?
-        taxon_name.update_attributes( is_valid: false )
+        taxon_name.update( is_valid: false )
       end
       next if taxon_name.valid?
 
@@ -1596,7 +1587,7 @@ class Taxon < ApplicationRecord
 
     reject.reload
     Rails.logger.info "[INFO] Merged #{reject} into #{self}"
-    reject.destroy
+    reject.destroy if reject.persisted? # not sure why it wouldn't be...
   end
 
   def to_tags
@@ -1657,15 +1648,19 @@ class Taxon < ApplicationRecord
     Taxon.descendant_conditions( self )
   end
 
+  def global_conservation_status
+    conservation_statuses.select {| cs | cs.place_id.blank? }.sort_by {| cs | cs.iucn.to_i }.last
+  end
+
   # TODO: make this work for different conservation status sources
   def conservation_status_name
-    return nil if conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
-    IUCN_STATUSES[conservation_status]
+    IUCN_STATUSES[global_conservation_status.iucn]
   end
 
   def conservation_status_code
-    return nil if conservation_status.blank?
+    return nil if global_conservation_status.blank?
 
     IUCN_STATUS_CODES[conservation_status_name]
   end
@@ -1701,8 +1696,6 @@ class Taxon < ApplicationRecord
   end
 
   def globally_threatened?
-    return conservation_status >= IUCN_NEAR_THREATENED unless conservation_status.blank?
-
     if association( :conservation_statuses ).loaded?
       conservation_statuses.detect {| cs | cs.place_id.blank? && cs.iucn >= IUCN_NEAR_THREATENED }
     else
@@ -2134,7 +2127,10 @@ class Taxon < ApplicationRecord
     last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
     return [] if last_committed_split.blank?
 
-    last_committed_split.output_taxa.map do | t |
+    last_committed_split.output_taxa.reject do |t|
+      # skip inactive output taxa when same as the source taxon to prevent an infinite loop
+      t.id == id && !t.is_active?
+    end.map do | t |
       t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     end.flatten.uniq
   end
@@ -2163,6 +2159,92 @@ class Taxon < ApplicationRecord
 
   def flagged_with( _flag, _options = {} )
     elastic_index!
+  end
+
+  def clash_analysis( new_parent_id )
+    if INatAPIService.get( "/identifications", { current: true, exact_taxon_id: id, per_page: 0 } ).total_results.zero?
+      return []
+    end
+
+    new_parent = Taxon.where( id: new_parent_id ).first
+    child_ids = [id]
+    old_parent_ancestor_ids = parent.self_and_ancestor_ids
+    new_parent_ancestor_ids = new_parent.self_and_ancestor_ids
+    narrowed_parents = old_parent_ancestor_ids.reject {| tid | new_parent_ancestor_ids.include? tid }
+    detect_clashes( narrowed_parents, child_ids )
+  end
+
+  def detect_clashes( narrowed_parents, child_ids )
+    results = []
+    narrowed_parents.each do | parent_id |
+      result = {
+        parent_id: parent_id,
+        id_count: 0,
+        percent: 100,
+        num_clashes: 0,
+        sample: nil
+      }
+      params = { current: true, exact_taxon_id: parent_id }
+      params[:per_page] = 0
+      id_count = INatAPIService.get( "/identifications", params ).total_results
+      if id_count.positive?
+        if id_count > 200
+          params[:per_page] = 200
+          id_obs = []
+          ceil = [( id_count / 200 ), 5].min
+          ( 1..ceil ).each do | p |
+            params[:page] = p
+            id_obs << INatAPIService.get( "/identifications", params ).results.map {| r | r["observation"]["id"] }.uniq
+          end
+          id_obs = id_obs.flatten.uniq
+        else
+          params[:per_page] = id_count
+          id_obs = INatAPIService.get( "/identifications", params ).results.map {| r | r["observation"]["id"] }.uniq
+        end
+        params = { id: id_obs[0..499] }
+        obs = INatAPIService.get( "/observations", params ).results
+        id_taxa = []
+        obs.each do | o |
+          id_taxa << o["identifications"].select {| a | a["current"] == true }.map {| i | i["taxon"]["id"] }
+        end
+        id_taxa = id_taxa.flatten
+        id_taxon_array = []
+        obs.each do | o |
+          id_taxon_array << o["identifications"].select {| a | a["current"] == true }.
+            map {| i | { id: i["taxon"]["id"], ancestor_ids: i["taxon"]["ancestor_ids"] } }
+        end
+        id_taxon_array = id_taxon_array.flatten.uniq
+        id_taxon_hash = id_taxon_array.map {| a | [a[:id], a[:ancestor_ids]] }.to_h
+        child_desc_ids = id_taxon_hash.
+          select {| taxon, ancestors | ( child_ids.include? taxon ) || ( child_ids & ancestors ).count.positive? }.keys
+        if child_desc_ids.count.positive?
+          freq = id_taxa.group_by( &:itself ).transform_values!( &:size ).sort_by {| _k, v | v }.reverse.to_h
+          sampled_ids = freq[parent_id]
+          clash_frac = child_desc_ids.map {| a | ( freq[a].nil? ? 0 : freq[a] ) }.sum / freq[parent_id].to_f
+          sample = []
+          obs.each do | o |
+            next unless o["identifications"].
+              select {| i | i["current"] == true && ( child_desc_ids.include? i["taxon"]["id"] ) }.any?
+
+            sample << o
+          end
+          sample = sample.map {| r | r["id"] }
+          result[:num_clashes] = ( id_count * clash_frac ).round
+          result[:sample] = sample
+        else
+          sampled_ids = []
+          obs.each do | o |
+            sampled_ids << o["identifications"].select {| a | a["current"] == true && a["taxon_id"] == parent_id }.count
+          end
+          sampled_ids = sampled_ids.sum
+        end
+        result[:id_count] = id_count
+        percent = id_count > sampled_ids && id_count > 200 ? ( sampled_ids / id_count.to_f * 100 ).round : 100
+        result[:percent] = percent
+      end
+      results << result
+    end
+    results
   end
 
   # Static ##################################################################
@@ -2483,12 +2565,13 @@ class Taxon < ApplicationRecord
     scope.select( :id ).find_in_batches do | batch |
       taxon_ids = []
       batch.each do | t |
-        Taxon.where( id: t.id ).update_all( observations_count:
-          Observation.elastic_search(
-            filters: [{ term: { "taxon.ancestor_ids" => t.id } }],
+        Taxon.where( id: t.id ).update_all(
+          observations_count: Observation.elastic_search(
+            filters: [{ term: { "taxon.ancestor_ids.keyword" => t.id } }],
             size: 0,
             track_total_hits: true
-          ).total_entries )
+          ).total_entries
+        )
         taxon_ids << t.id
       end
       Taxon.elastic_index!( ids: taxon_ids )

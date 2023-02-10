@@ -30,7 +30,6 @@ sq:
   a_flag_for_x: "një shënim për %{x}"
   a_member_of_taxon_html: "një anëtar i %{taxon}"
   about: Për
-  about_blocking: Për bllokimin
   about_charts: Për grafikët
   about_community_taxa: Për taxa komunitetin
   about_complete_taxa: Për taxan e plotë
@@ -41,12 +40,9 @@ sq:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: Për mënyrat e vendosjes
   about_licenses: Për licencat
-  about_muting: Për fikjen
   #Header for a section describing taxon names
   about_names: Për emrat
   about_places: Për vendet
-  about_the_cc_licenses: Për licencat e Creative Commons
-  about_these_licenses: Për këto licenca
   about_this_bioblitz: Për këtë bioblitz
   about_this_map: Rreth kësaj harte
   about_this_project: Rreth këtij Projekti
@@ -61,12 +57,12 @@ sq:
   accuracy_meters: Saktësia (metra)
   accuracy_of_the_coordinates: |
     Saktësia e koordinatave në metra. Ju mund ta redaktoni këtë duke klikuar lidhjen "redakto" lart ose duke klikuar në shenjën e hartës duke zvarritur dorën. Mundohuni ta bëni rrethin mjaftueshem të madh që të  jeni i sigurt se keni qenë diku brenda tij.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Veprim
   actions: Veprimet
   active: Aktiv
   active_users: Përdoruesit aktiv
   activity: Aktiviteti
-  activity_settings: Cilësimet e aktivitetit
   adapted_by_name_from_a_work_by_original: "Përshtatur sipas %{name} nga një punë prej %{original}"
   add: Shto
   add_a_batch_of_observations: Shto një seri vëzhgimesh
@@ -122,7 +118,6 @@ sq:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Shto një tani
-  add_photos: Shto fotografi
   add_place: Shtoni vendin
   add_plant_phenology_budding_annotation: 'Shto shënimin "Fenologjia e Bimëve: Nxjerrja e sytheve"'
   add_plant_phenology_flowering_annotation: 'Shto shënimin "Fenologjia e Bimëve: Lulëzimi"'
@@ -272,8 +267,6 @@ sq:
   all_taxa_in_this_guide: Të gjitha taxat në këtë udhëzues
   all_taxonomic_groups: "&laquo; Të gjitha grupet taksonomike"
   all_updates: Të gjitha përditësimet
-  all_your_observations_will_default_this_time_zone: Të gjitha vëzhgimet tuaja do të renditen automatikisht në këtë zonë nëse nuk ju nuk e përcaktoni ndryshe.
-  all_your_observations_will_default_to_this_time_zone: Të gjitha vëzhgimet tuaja do të renditen automatikisht në këtë zonë nëse nuk ju nuk e përcaktoni ndryshe.
   allow_curator_access: Lejo qasjen e kuratorit
   allow_project_curators_to_view_your_private_coordinates: Lejo që kuratorët e projektit të shohin koordinatat tuaja private
   allowed_establish_means_values: Lejohet krijimi i vlerave të mjeteve
@@ -283,7 +276,6 @@ sq:
   alphabetical: Alfabetike
   alphabetical_order: Sipas rendit alfabetik
   amphibians: amfibet
-  and: dhe
   and_other_taxa: "&amp; Taksa të Tjera"
   animals: Kafshët
   annotations: Shënime
@@ -398,19 +390,16 @@ sq:
   batch_edit_taxa_for_x_html: "Taksat për redaktimin e grupimit për %{x}"
   batch_operations: Operacionet e grupimit
   be_the_first_to_fave_this_observation: Bëhu i pari që ta pëlqesh këtë vëzhgim!
-  because_of: për arsye se
   before_importing_photos: para importimit të fotografive
   bg_color: Ngjyra e sfondit
   birds: zogjtë
   black: e zezë
-  block_user: Blloko përdoruesin
   block_removed: Blloku u hoq
   blocked_users: Përdoruesit e bllokuar
   blog_widget: Vegla e blogut
   blue: kaltër
   blue_butterfly_etc: "kaltër, flutur, etj."
   body: Trupi i mesazhit
-  bounding_box: Kutia e kufizimit
   breadcrumbs: Thërrime buke
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -428,7 +417,6 @@ sq:
   browse_species_that_occur_near_this_observation: Shfleto speciet që ndodhen afër këtij vëzhgimi.
   built_with_site_guides_html: "Ndërtuar me <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Importimi i sasisë së %{filename} është përfunduar"
-  by: nga
   by_everyone: Nga të gjithë
   by_user: "nga %{user}"
   by_you: Nga ju
@@ -513,7 +501,6 @@ sq:
   check_list_for_individual_taxa_that: 'Kontrolloni listat për taxa individuale që jetojnë këtu, psh. "Zogjtë e %{place}".'
   check_lists_must_belong_to_a_place: |
     Listat kontrolluese kanë vend të caktuar. Për të krijuar një listë të re kontrolluese, gjeni listën shabllon të një vendi dhe klikoni në vegzën ‘Krijo listë të re kontrolluese’.
-  check_list_of_species_occuring_in: Kontrollo listën e specieve që shfaqen në
   check_list_place: "%{place} Lista kontrolluese"
   check_list_updated: Lista kontrolluese është përditësuar!
   check_lists_for: "Listat kontrolluese të tjerëve për %{place}"
@@ -549,6 +536,7 @@ sq:
     Lista e kodeve gjurmuese të ndara me presje. Shtoni këto nëse doni të shtoni një kod gjurmues kur u dërgoni njerëzve formën e re të vëzhgimit, p.sh. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Ju mund ta përdorni këtë për të gjurmuar pjesëmarrjen nga burime të ndryshme. Këto kode mund të aksesohen kur shkarkoni vëzhgimet e projektit si CSV.
   comma_separated_please: Të ndara me pikëpresje, ju lutem
+  #Noun, used to label a comment or a comment field in a form
   comment: koment
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Koment
@@ -594,8 +582,6 @@ sq:
   confirm_now: Konfirmo tani
   confirm_your_info: Konfirmo informacionin tënd
   connect_to_provider: "Lidhu me %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Llogaritë e lidhura
   connecting_flickr: "Duke u lidhur me Flickr..."
   connecting_to_facebook: "Duke u lidhur me Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Lidhja e llogarisë tuaj %{site_name} me llogaritë në faqe tjera do t'u mundësojë të qaseni në %{site_name} duke shfrytëzuar kredencialet tuaja nga këto faqe."
@@ -672,7 +658,6 @@ sq:
   created_by: Krijuar nga
   created_by_user_on_date: Krijuar nga %{user} me %{date}
   created_on: Krijuar me
-  creating_your_account: "Krijimi i llogarisë suaj ..."
   creative_commons_flickr_tagged: Fotot Kreative te Përgjithshme te Flickr te Shenjuara
   creative_commons_unless_otherwise_noted: "Të zakonshmet e krijuara nese nuk jane shenuar ndryshe."
   critically_endangered: rrezikuar në mënyrë kritike
@@ -800,7 +785,6 @@ sq:
   doesnt_have_default_photo: ende nuk ka një foto të paracaktuar.
   doh_something_went_wrong: D'oh, diçka shkoi keq.
   done: U krye
-  dont_send_me_email: "Mos më dërgoni asnjë email!"
   dont_use_double_quotes: Mos përdorni citate të dyfishta askund
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -870,7 +854,6 @@ sq:
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
   email_address_for_comments_and_other_feedback: Postë eletronike për komentet dhe reagimet tjera
   email_copyright: "Të drejtat e autorit &copy;%{x} të gjitha të drejtat e rezervuara"
-  email_settings: Cilësimet e Email
   embed: 'E ndërfutur'
   embed_place_widget: Fut vendin e widget
   embed_this_assessment: Ndërfut këtë vlerësim
@@ -901,7 +884,6 @@ sq:
   event_stats: Statistikat e ngjarjes
   event_url: URL e ngjarjes
   events_only: Vetëm ngjarjet
-  every_species_seen_by: Çdo specie e parë nga
   everyone: gjithkush
   everyone_: Gjithkush
   everyone_journal_posts: Të gjitha postimet e ditarit
@@ -991,7 +973,6 @@ sq:
   flag_saved: Shenjimi u ruajt.
   flag_this_observation: Shenjo këtë vëzhgim
   flag_this_photo: shenjo këtë foto
-  flagged: e shenjuar
   flagged_: E shenjuar
   flagged_for_curation: Etiketuar për përzgjedhje
   flagged_thing_explanation: "Përdoruesit e kanë shenjuar këtë %{thing} sepse"
@@ -1107,10 +1088,13 @@ sq:
   identify_title: "Identifiko"
   identification: identifikim
   identification_by_user: identifikim nga %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Indentifikimi u fshi.
   identification_saved: "Indentifikimi u ruajt!"
+  #Notification when an identification has been updated
   identification_updated: Identifikimi i përditësua!
   identification_user_short: Identifiko përdoruesin
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikimi u tërhoq.
   identifications: Identifikimet
   identifiers: Identifikuesit
@@ -1281,9 +1265,6 @@ sq:
   life: Jeta
   life_list: "%{user}lista Jetësore"
   link: Vegëza
-  link_or_unlink_your_facebook_account: Lidh ose çlidh llogarinë tuaj në Facebook
-  link_or_unlink_your_flickr_account: Lidh ose çlidh llogarinë tuaj në Flickr
-  link_or_unlink_your_google_account: Lidh ose çlidh llogarinë tuaj në Google
   link_your_facebook_account: Lidh llogarinë tuaj në Facebook
   link_your_flickr_account: Lidh llogarinë tuaj në Flickr
   link_your_google_account: Lidh llogarinë tuaj në Google
@@ -1327,7 +1308,6 @@ sq:
   loading_tags: "Duke ngarkuar etiketimet..."
   loading_taxa_from_your: "Duke ngarkuar taxa nga observimet tuaja"
   loading_wikipedia_description: "Duke u ngarkuar përshkirmi i Wikipedia-s"
-  locale_description: Vendndodhja përcakton preferencat e gjuhës dhe preferencat e formatimit te datës.
   locales_: Vendndodhje
   locales:
     ar: Arabisht
@@ -1367,7 +1347,6 @@ sq:
   location_specified: lokacioni është i specifikuar
   locked_taxa_will_not_allow_new: Klasat e kyçura nuk lejojnë shtimin e klasave të reja. Pra, nëse kyçni Amphibia dhe dikush përpiqet të importojë <i>Rana catesbeiana</i> nga një ofrues i jashtëm, krijohet një klasë e re por nuk klasifikohet si amfibe. Në këtë rast, klasa e re që shtohet duhet të shenjohet për vëmendje të mëtejshme nga ana e kuratorit. Në fakt, kjo duhet përdorur vetëm për klasa pasardhësit e të cilave mendojmë se i kemi të gjithë. Kuratori mund ta tejkalojë këtë duke ndryshuar klasat dhe duke vënë direkt identifikatin prindëror, por mundësisht sugjerohet bashkimi i klasave të reja me ato ekzistuese në vend të krijimit të klasave të tjera.
   log_in: Hyr
-  login_slash_username: Hyr / Emri i përdoruesit
   logo:
     white_bg_gif: Prapavijë e bardhë GIF
     transparent_png: E tejdukshme PNG
@@ -1409,7 +1388,6 @@ sq:
       every_publicly_visible_observation: Çdo vëzhgim publik dhe i dukshëm i krijuar në rrjetin e iNaturalist
       featured_observations: Vëzhgimet e paraqitura
       gbif_network: Rjeti i GBIF
-      gbif_network_description: Të dhëna nga muzetë dhe ofrues të tjerë të të dhënave të shpërndara nga Enti i Informatikës për Biodiversitetin në Botë (EIBB)
       observations: Vëzhgime
       place_boundary: Kufijtë e vendit
       checklist_places: Vendet e listës kontrolluese
@@ -1490,7 +1468,6 @@ sq:
   must_be_less_than_x_MB: "Duhet të jetë më pak se %{x}MB"
   must_have_observation_field: "Domosdo të ketë fushë të vëzhgimit %{operand} të plotësuar"
   must_have_x: "Duhet të ketë %{x}"
-  mute_user: Hesht përdoruesin
   mute_removed: Heshtja u hoq
   muted_users: Përdoruesi u hesht
   n_ago: "%{n} para"
@@ -1651,9 +1628,6 @@ sq:
   notes: Shënime
   note_you_can_modify_the_height_attribute: "Shënim: Mund ta ndryshoni tiparin 'lartësi' që ti përshtatet hapësirës së lirë në web-faqen tuaj"
   notify_me_of_mentions: Më njofto për etiketimet (psh. @EmriPërdorues)
-  notify_me_about_redundant_identifications: Më njofto në lidhje me konfirmimin e identifikimeve
-  notify_me_about_redundant_identifications_desc: |
-    Pranoni lajmërime rreth identifikimeve që përputhen me tuajat. Nëse nuk e zgjidhni këtë opsion, do të pranoni vetëm lajmërimet rreth identifikimeve të taxa që nuk përputhen fiks me taxon e identifikuar prej jush.
   number_of_observations: Numri i vëzhgimeve
   number_selected: "#i zgjedhur"
   obs: Vëzh
@@ -1779,7 +1753,6 @@ sq:
   only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit e projekteve
   only_curators_can_add_edit_scientific_names: Vetëm përgjegjësit/kuratorët mund të shtojnë/redaktojnë emrat shkencorë.
   only_curators_can_access_that_page: Vetëm përgjegjësit/kuratorët mund t'i qasen kësaj faqeje.
-  only_letters_numbers: "Vetëm shkronja dhe numra, pa zbrazëtira, patjetër të fillojë me shkronjë"
   only_one_coordinate_system_per_file: |
     Vetëm një sistem koordinativ mund të përdoret për skedë, përndryshe diskutim ose shfaqje e pasktë do të paraqitet
   only_project_curators_can_do_that: Vetëm përgjegjësit/kuratorët e projektit mund ta bëjnë atë.
@@ -1796,10 +1769,8 @@ sq:
   open_: Hape
   open_description: "Çdokush mund ti shohë koordinatat përveç nëse taxon-i është i rrezikuar."
   optional: zgjedhore
-  optional_columns_note_for_any: "Kolonat opsionale (shënim: Për t'u përdorur cilado nga kolonat në vëzhgim, duhet që të gjitha të jenë prezente)"
   or: ose
   or_choose_high_level_taxa: "...ose zgjidh nga ndonjë taxa e nivelit më të lartë"
-  or_if_you_dont_want_email: "Apo, ne qofte se nuk deshironi mesazhet..."
   orange: Portokalli
   order: Rendit
   order_by: Rendit sipas
@@ -1857,7 +1828,6 @@ sq:
   photo_browser: Kërkuesi i fotove
   photo_by_id_attribution: "Foto %{id}, %{attribution}"
   photo_deleted: Fotografia u fshi
-  photo_hosting_accounts: Llogaritë e vendosjes së fotografive
   photo_licensing: Liçencimi i fotove
   photo_type: Lloji i fotos
   photo_urls_repaired: URL-ja e fotos u riparua
@@ -2045,7 +2015,7 @@ sq:
   places_merged_successfully: Vendet u bashkuan me sukses!
   plants: bimët
   please_add_a_citation_for_this_change: Ju lutem shtoni citat për këtë ndryshim.
-  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Ju lutem prisni ca javë derisa faqet e jashtme të sinkonizojnë ndryshimet nga ky vëzhgim #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Ju lutem plotësoni pjesën në vazhdim që ta shtoni këtë vëzhgim te projekti:
   please_confirm_your_inat_username: "Ju lutem konfirmoni emrin e përdoruesit për %{site_name}"
@@ -2125,8 +2095,8 @@ sq:
   projects_description: |
     Projektet ua mundësojnë t'i bashkoni vëzhgimet tuaja me njerëz tjerë në %{site_name}.
     Po që se jeni duke nisur një përpjekje shkencore qytetare apo mbani regjistër të zogjve në lagjen tuaj, Projektet janë mënyra e duhur.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projektet nga %{place}"
-  projects_in_x: "Projektet në %{x}"
   projects_you_admin: Projektet që ju administroni
   proposed_taxa_that_contradict_the_community_id: Taksonomitë e propozuara që bien në kundërshtim me ID-në e Komunitetit
   proposed_taxa_that_support_the_community_id: Taksonomitë e propozuara të cilat mbështesin ID-në e Komunitetit
@@ -2183,7 +2153,6 @@ sq:
   reason: Arsyeja
   reason_you_are_flagging_this_item: Arsyeja pse e etiketoni këtë artikull.
   recaptcha_verification_failed: verifikimi re-Captcha dështoi
-  receive_email_notifications_when_people_leave_you: Prano njoftimet përmes emailit rreth
   receive_updates_from_this_project: Prano përditësimet nga ky projekt
   recent: Të fundit
   recent_evidence_of_organism: Dëshmitë e fundit të një organizmi
@@ -2270,7 +2239,7 @@ sq:
     must_be_georeferenced: patjetër të ketë referencë gjeografike
     must_be_identified: Patjetër të identifikohet
     must_be_on_list: patjetër të jetë në listë
-    must_be_observed_in_place: Patjetër të jetë vëzhguar në Vend
+    must_be_observed_in_place: Patjetër të jetë vëzhguar në vend
     must_be_in: E detyrueshme të jetë në taxon
   said: thënë
   satellite: satelit
@@ -2320,6 +2289,11 @@ sq:
   search_your_photos: Kërko në fotot tuaja
   searching: "Duke kërkuar..."
   seasonality: Sezonaliteti
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} juaj"
   see_something_wrong_with_taxon: Sheh diçka të gabuar me këtë takson? Informo kuratorët.
   seen_nearby: E parë në afërsi
@@ -2327,11 +2301,12 @@ sq:
   select: Zgjidh
   select_all: Përzgjidh të gjitha
   select_at_least_one: Zgjidhe të paktën një
-  select_one_or_more_photos: 'Përzgjedhni një apo më shumë foto'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Mos zgjidh asnjë
   select_observations_to_edit: Zgjidh një vëzhgim për të redaktuar...
   select_one_of_friends_albums: Zgjidh një nga albumet e %{friend}
   select_one_of_your_albums: Zgjidh një nga albumet tuaja
+  select_one_or_more_photos: 'Përzgjedhni një apo më shumë foto'
   select_options: Opsionet e zgjedhjes
   select_photos_from_your_photo_stream: |
     Zgjidh foto nga faqe që postojnë fotografi për ti konvertuar në %{site_name} vëzhgime. ne do t'i plotësojmë datën, kohën dhe lokacionin nga të dhënat e fotografisë dhe do të mundohemi të kërkojmë për emrin e species nga etiketimet.
@@ -2353,14 +2328,12 @@ sq:
   short_or_abbreviated_title_for_display: titull i shkurtë apo i shkurtuar për afishim nëpër vende me hapësira të limituara. Maksimumi 10 karaktere.
   show: Shfaq
   show_active_and_inactive_taxa: Shfaq taxa-t aktive dhe joaktive
-  show_common_names: Shfaq emrat e zakonshëm
   show_keyboard_shortcuts: Shfaq shkurtesat e tastierës
   show_less: Shih më pak
   show_more: Shih më shumë
   show_off_your_recent_observations: Shfaq vëzhigmet e fundit në blogun tuaj apo webfaqe!
   show_only: Shih vetëm
   show_relative_proportions_of_all_observations: Shfaq proprocionet relative të të gjitha vëzhgimeve
-  show_scientific_name_first: Shfaq së pari emrat shkencor
   show_taxa_from_both: (Shfaq taxa-t nga të dy listat)
   show_taxa_from_everywhere: "Shfaq taxa-t nga gjithandej"
   show_taxa_from_place: "Shfaq taxa-t nga %{place}"
@@ -2553,7 +2526,6 @@ sq:
   welcome_to_inat: "Mirë se vini në %{site_name}"
   welcome_to_x_project: "Mirë se vini në %{project}"
   worldwide: Në mbarë botën
-  you_retain_full_copyright: "Juve ju ngelen të gjitha të drejtat me përjashtim të atyre të drejtave të lëshaura për %{site_name} në Kushtet e Shërbimit"
   your_comment_was_saved: Përmbajtja juaj u ruajt
   your_content: Përmbajtja Juaj
   your_observations: Vëzhgimet tuaja
@@ -2694,7 +2666,9 @@ sq:
         geoprivacy: Privatësia e Gjeografike
         iucn: Ekuivalent i IUCN
       flag:
+        #The reason the item was flagged
         reason: Arsyeja
+        #The kind of flag that was made
         flag: Flamur
       guide:
         source_url: Burimi URL
@@ -2744,16 +2718,16 @@ sq:
         in_text: Ne tekst
         citation: Citim
       taxon:
-        name: Emri
-        rank: Renditja
-        parent_id: ID amë
-        locked: I bllokuar
-        auto_photos: Foto automatike
         auto_description: Përshrkim automatik
-        wikipedia_title: Titulli i Wikipedia
-        wikipedia_summary: Përmbledhje e Wikipedia
+        auto_photos: Foto automatike
+        locked: I bllokuar
+        name: Emri
+        parent_id: ID amë
+        rank: Renditja
         source_identifier: Identifikuesi i burimit
         source_url: Burimi URL
+        wikipedia_summary: Përmbledhje e Wikipedia
+        wikipedia_title: Titulli i Wikipedia
       taxon_name:
         name_provider: Ofruesi i emrit
         source_url: Burimi URL
@@ -2763,8 +2737,8 @@ sq:
         login: Emri i përdoruesit
         name: Emër
         locale: Vendndodhje
-        time_zone: Zona kohore
-        search_place_id: Kërko vendin
+        time_zone: Zona Kohore
+        search_place_id: Kërko Vendin
         place_id: Vend
         preferred_observation_fields_by: Lejo fusha vëzhgimi nga
     errors:

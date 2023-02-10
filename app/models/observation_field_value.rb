@@ -2,7 +2,7 @@ class ObservationFieldValue < ApplicationRecord
 
   blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
   
-  belongs_to :observation, :inverse_of => :observation_field_values
+  belongs_to_with_uuid :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
   has_updater
@@ -149,9 +149,13 @@ class ObservationFieldValue < ApplicationRecord
   end
   
   def validate_observation_field_allowed_values
+    return true unless observation_field
+
     return true if observation_field.allowed_values.blank?
+
     return true unless observation_field.datatype === ObservationField::TEXT
-    values = observation_field.allowed_values.split('|').map(&:downcase)
+
+    values = observation_field.allowed_values.split( "|" ).map( &:downcase )
     unless values.include?(value.to_s.downcase)
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
@@ -327,7 +331,7 @@ class ObservationFieldValue < ApplicationRecord
     scope.find_each do |ofv|
       next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
       next if !taxon_change.automatable_for_output?( output_taxon.id )
-      ofv.update_attributes( value: output_taxon.id )
+      ofv.update( value: output_taxon.id )
       obs_ids << ofv.observation_id
     end
     Observation.elastic_index!( ids: obs_ids.to_a )

@@ -68,7 +68,7 @@ describe ListsController do
   describe "spam" do
     let(:spammer_content) {
       l = List.make!
-      l.user.update_attributes(spammer: true)
+      l.user.update(spammer: true)
       l
     }
     let(:flagged_content) {

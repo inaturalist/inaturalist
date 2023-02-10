@@ -8,7 +8,7 @@ describe ObservationsController, type: :controller do
   let(:curator) { make_curator }
   let(:spammer_content) {
     o = Observation.make!
-    o.user.update_attributes(spammer: true)
+    o.user.update(spammer: true)
     o
   }
   let(:flagged_content) {

@@ -30,7 +30,7 @@ describe ListedTaxaController, "create" do
     it "should allow force_trickle_down_establishment_means for curators" do
       curator = make_curator
       sign_in( curator )
-      child_listed_taxon.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      child_listed_taxon.update( establishment_means: ListedTaxon::INTRODUCED )
       post :create, format: :json, params: { listed_taxon: {
         taxon_id: taxon.id,
         list_id: parent.check_list.id,
@@ -41,7 +41,7 @@ describe ListedTaxaController, "create" do
       expect( child_listed_taxon.establishment_means ).to eq ListedTaxon::NATIVE
     end
     it "should not allow force_trickle_down_establishment_means for non-curators" do
-      child_listed_taxon.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      child_listed_taxon.update( establishment_means: ListedTaxon::INTRODUCED )
       post :create, format: :json, params: { listed_taxon: {
         taxon_id: taxon.id,
         list_id: parent.check_list.id,
@@ -66,7 +66,7 @@ describe ListedTaxaController, "update" do
     it "should allow force_trickle_down_establishment_means for curators" do
       curator = make_curator
       sign_in( curator )
-      child_listed_taxon.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      child_listed_taxon.update( establishment_means: ListedTaxon::INTRODUCED )
       put :update, format: :json, params: { id: parent_listed_taxon.id, listed_taxon: {
         establishment_means: ListedTaxon::NATIVE,
         force_trickle_down_establishment_means: true
@@ -75,7 +75,7 @@ describe ListedTaxaController, "update" do
       expect( child_listed_taxon.establishment_means ).to eq ListedTaxon::NATIVE
     end
     it "should not allow force_trickle_down_establishment_means for non-curators" do
-      child_listed_taxon.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      child_listed_taxon.update( establishment_means: ListedTaxon::INTRODUCED )
       put :update, format: :json, params: { id: parent_listed_taxon.id, listed_taxon: {
         establishment_means: ListedTaxon::NATIVE,
         force_trickle_down_establishment_means: true

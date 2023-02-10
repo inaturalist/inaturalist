@@ -34,7 +34,7 @@ end
 describe GuideSection, "updating" do
   let(:guide_section) { GuideSection.make! }
   it "should result in a modified record" do
-    guide_section.update_attributes(:description => "#{guide_section.description} foo")
+    guide_section.update(:description => "#{guide_section.description} foo")
     expect(guide_section).to be_modified
   end
 end

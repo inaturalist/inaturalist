@@ -77,7 +77,7 @@ class SitesController < ApplicationController
     @record = Site.find(params[:id])
 
     respond_to do |format|
-      if @record.update_attributes(params[:site])
+      if @record.update(params[:site])
         if Site.default && @record.id == Site.default.id
           Site.default( refresh: true )
         end
@@ -160,6 +160,6 @@ class SitesController < ApplicationController
   def export_path_for_site( site )
     Dir.glob(
       File.join( File.dirname( site.export_path ), "*-#{site.id}.zip" )
-    ).first
+    ).sort_by { | path | File.mtime( path ) }.last
   end
 end

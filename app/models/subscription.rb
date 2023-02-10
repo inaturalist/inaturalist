@@ -16,9 +16,6 @@ class Subscription < ApplicationRecord
   cattr_accessor :subscribable_classes
   @@subscribable_classes ||= []
 
-  scope :with_unsuspended_users, -> {
-    joins(:user).where(users: { subscriptions_suspended_at: nil }) }
-
   def to_s
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
   end
@@ -53,8 +50,7 @@ class Subscription < ApplicationRecord
 
   def clear_caches
     ctrl = ActionController::Base.new
-    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: true )
-    ctrl.send :expire_action, FakeView.home_url( user_id: user_id, ssl: false )
+    ctrl.send( :expire_action, UrlHelper.home_url( user_id: user_id, ssl: true ) )
+    ctrl.send( :expire_action, UrlHelper.home_url( user_id: user_id, ssl: false ) )
   end
-
 end

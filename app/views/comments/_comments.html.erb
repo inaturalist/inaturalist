@@ -1,5 +1,6 @@
 <%- 
   parent ||= comments
+  parent_comments_disabled ||= parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments?
   hide_form ||= false
   hide_form = true if current_user && current_user.blocked_by?( parent.try(:user) )
   remote ||= nil 
@@ -12,7 +13,7 @@
     end
   end
 -%>
-<% if parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments? && comments.blank? %>
+<% if parent_comments_disabled && comments.blank? %>
 <%# Just don't show anything if there's nothing to show %>
 <% else %>
   <%= content_tag header_tag do %>
@@ -20,10 +21,12 @@
   <% end -%>
   <% for comment in comments.sort {|a,b| a.created_at <=> b.created_at } %>
     <div class="<%= cycle('odd', 'even') %>">
-      <%= render :partial => 'shared/activity_item', :object => comment %>
+      <%= render partial: 'shared/activity_item',
+                 object: comment,
+                 locals: { parent_comments_disabled: parent_comments_disabled } %>
     </div>
   <%- end -%>
-  <% if parent && parent.respond_to?(:prefers_no_comments?) && parent.prefers_no_comments? %>
+  <% if parent_comments_disabled %>
     <div class="text-muted noresults"><%=t :comments_have_been_disabled %></div>
   <% elsif comments.empty? %>
     <div class="text-muted noresults"><%=t :no_comments_yet %></div>

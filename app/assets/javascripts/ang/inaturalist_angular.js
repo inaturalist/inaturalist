@@ -9,7 +9,7 @@ function( $http, $rootScope, $filter ) {
     if( options.cache !== true ) { options.cache = false; }
     var config = {
       cache: options.cache,
-      timeout: 20000 // 20 second timeout
+      timeout: 60000 // 60 second timeout
     };
     var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
     if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
@@ -25,6 +25,22 @@ function( $http, $rootScope, $filter ) {
         return response;
       }, function( errorResponse ) {
         // Handle error case
+        if ( errorResponse && errorResponse.data && errorResponse.data.error ) {
+          if ( errorResponse.data.error.match( /window is too large/ ) ) {
+            alert( I18n.t( "result_window_too_large_error" ).replace( /\s+/g, " " ) );
+          } else {
+            alert( errorResponse.data.error );
+          }
+        } else if ( errorResponse && errorResponse.status && errorResponse.status > 0 ) {
+          alert( I18n.t( "doh_something_went_wrong" ) );
+        } else {
+          // Unfortunately Firefox will fire the error callback when a promise
+          // gets cancelled, say due to a page reload, so we should not show
+          // an error here or people will see it when they reload the page or
+          // navigate to a different page while a request is in flight. Even
+          // more unfortunately, Firefox does exactly the same thing when the
+          // connection fails, e.g. the API is down.
+        }
       }
     );
   };

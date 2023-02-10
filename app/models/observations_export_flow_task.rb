@@ -12,7 +12,7 @@ class ObservationsExportFlowTask < FlowTask
   class ObservationsExportDeleted < ObservationsExportError; end
 
   before_save do |record|
-    record.redirect_url = FakeView.export_observations_path
+    record.redirect_url = UrlHelper.export_observations_path
   end
 
   def must_have_query
@@ -45,11 +45,16 @@ class ObservationsExportFlowTask < FlowTask
     unless persisted?
       raise ObservationsExportNotSaved.new( "Export must be saved before being run" )
     end
-    update_attributes(finished_at: nil, error: nil, exception: nil)
+    update(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
     outputs.reload
     query = inputs.first.extra[:query]
     format = options[:format]
+    # if using makara, release stuck primary connections as
+    # the following queries can and should be run against replicas
+    if ActiveRecord::Base.connection.respond_to?(:enable_context_refresh)
+      Makara::Context.release_all
+    end
     archive_path = case format
     when 'json'
       json_archive
@@ -57,10 +62,12 @@ class ObservationsExportFlowTask < FlowTask
       csv_archive
     end
     logger.info "ObservationsExportFlowTask #{id}: Created archive at #{archive_path}" if @debug
-    open(archive_path) do |f|
+    File.open( archive_path ) do |f|
       self.outputs.create!(:file => f)
     end
     logger.info "ObservationsExportFlowTask #{id}: Created outputs" if @debug
+    # The user may have requested an email confirmation after this run started
+    reload
     if options[:email]
       Emailer.observations_export_notification(self).deliver_now
       logger.info "ObservationsExportFlowTask #{id}: Emailed user #{user_id}" if @debug
@@ -69,9 +76,13 @@ class ObservationsExportFlowTask < FlowTask
   rescue Exception => e
     exception_string = [ e.class, e.message ].join(" :: ")
     logger.error "ObservationsExportFlowTask #{id}: Error: #{exception_string}" if @debug
-    update_attributes(finished_at: Time.now,
+    update(
+      finished_at: Time.now,
       error: "Error",
-      exception: [ exception_string, e.backtrace ].join("\n"))
+      exception: [ exception_string, e.backtrace ].join("\n")
+    )
+    # The user may have requested an email confirmation after this run started
+    reload
     if options[:email]
       Emailer.observations_export_failed_notification(self).deliver_now
       logger.error "ObservationsExportFlowTask #{id}: Emailed user #{user_id} about error" if @debug
@@ -88,7 +99,7 @@ class ObservationsExportFlowTask < FlowTask
       includes[1][:identifications] = [:stored_preferences, :user]
     end
     includes << { observation_field_values: :observation_field }
-    includes << { photos: :user } if export_columns.detect{ |c| c == "image_url" }
+    includes << { photos: [:user, :flags, :file_prefix, :file_extension] } if export_columns.detect{ |c| c == "image_url" }
     includes << :sounds if export_columns.detect{ |c| c == "sound_url" }
     includes << :quality_metrics if export_columns.detect{ |c| c == "captive_cultivated" }
     includes
@@ -133,7 +144,7 @@ class ObservationsExportFlowTask < FlowTask
     site = user.site || Site.default
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     search_params = params.merge( viewer: user, authenticate: user )
-    open(json_path, "w") do |f|
+    File.open( json_path, "w" ) do |f|
       f << "["
       first = true
       for_each_observation( search_params ) do |observation|
@@ -204,22 +215,7 @@ class ObservationsExportFlowTask < FlowTask
     exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
     ofv_columns = exp_columns.select{|c| c.index("field:")}
     ident_columns = exp_columns.select{|c| c.index("ident_by_" )}
-    exp_columns = (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns + ident_columns
-    viewer_curates_project = if projects = params[:projects]
-      if projects.size == 1
-        project = Project.find(projects[0]) rescue nil
-        project.curated_by?(user) if project
-      end
-    end
-    viewer_is_owner = if user_id = params[:user_id]
-      if filter_user = User.find_by_id(user_id) || User.find_by_login(user_id)
-        filter_user === user
-      end
-    end
-    unless viewer_curates_project || viewer_is_owner
-      exp_columns = exp_columns.select{|c| c !~ /^private_/}
-    end
-    exp_columns
+    (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns + ident_columns
   end
 
   def enqueue_options

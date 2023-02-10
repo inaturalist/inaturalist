@@ -107,9 +107,8 @@ class ResultsMap extends Component {
   }
 
   render( ) {
-    let className = "slide row-fluid map-slide";
     return (
-      <div className={ className }>
+      <div className="slide row-fluid map-slide">
         <div className="left map-stats">
           <div className="container-fluid">
             <div className="row-fluid">
@@ -118,7 +117,7 @@ class ResultsMap extends Component {
                   { Util.numberWithCommas( this.props.overallStats.observations ) }
                 </a>
               </div>
-              <div className="stat">Observations</div>
+              <div className="stat">{ I18n.t( "observations" ) }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
@@ -126,7 +125,7 @@ class ResultsMap extends Component {
                   { Util.numberWithCommas( this.props.overallStats.species ) }
                 </a>
               </div>
-              <div className="stat">Species</div>
+              <div className="stat">{ I18n.t( "species" ) }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
@@ -134,7 +133,7 @@ class ResultsMap extends Component {
                   { Util.numberWithCommas( this.props.overallStats.identifiers ) }
                 </a>
               </div>
-              <div className="stat">Identifiers</div>
+              <div className="stat">{ I18n.t( "identifiers" ) }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
@@ -142,12 +141,11 @@ class ResultsMap extends Component {
                   { Util.numberWithCommas( this.props.overallStats.observers ) }
                 </a>
               </div>
-              <div className="stat">Observers</div>
+              <div className="stat">{ I18n.t( "observers" ) }</div>
             </div>
           </div>
         </div>
-        <div className="right">
-        </div>
+        <div className="right" />
       </div>
     );
   }

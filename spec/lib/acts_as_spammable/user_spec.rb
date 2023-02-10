@@ -48,7 +48,7 @@ describe User, "spam" do
     3.times{ Flag.make!(flaggable: Observation.make!(user: u), flag: Flag::SPAM) }
     u.reload
     expect(u.spam_count).to be 3
-    Flag.last.update_attributes(resolved: true, resolver: u)
+    Flag.last.update(resolved: true, resolver: u)
     u.reload
     expect(u.content_flagged_as_spam.count).to be 2
   end

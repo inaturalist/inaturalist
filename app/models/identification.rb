@@ -6,7 +6,7 @@ class Identification < ApplicationRecord
                     automated: false
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
-  has_moderator_actions
+  has_moderator_actions %w(hide unhide)
   belongs_to_with_uuid :observation
   belongs_to :user
   belongs_to_with_uuid :taxon
@@ -260,7 +260,7 @@ class Identification < ApplicationRecord
     observation.set_taxon_geoprivacy
     observation.skip_identification_indexing = true
     observation.skip_indexing = true
-    observation.update_attributes(attrs)
+    observation.update(attrs)
     true
   end
   
@@ -291,7 +291,7 @@ class Identification < ApplicationRecord
     observation.identifications.reload
     observation.set_community_taxon
     attrs[:community_taxon] = observation.community_taxon
-    observation.update_attributes(attrs)
+    observation.update(attrs)
     true
   end
   
@@ -316,7 +316,8 @@ class Identification < ApplicationRecord
     Identification.
       delay(
         priority: INTEGRITY_PRIORITY,
-        unique_hash: { "Identification::run_update_curator_identification": id }
+        unique_hash: { "Identification::run_update_curator_identification": id },
+        run_at: 1.minute.from_now
       ).
       run_update_curator_identification( id )
     true
@@ -329,8 +330,10 @@ class Identification < ApplicationRecord
     return true if user.destroyed?
     return true if bulk_delete
     if self.user_id != self.observation.user_id
-      User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
-        update_identifications_counter_cache(user_id)
+      User.delay(
+        unique_hash: { "User::update_identifications_counter_cache": user_id },
+        run_at: 5.minutes.from_now
+      ).update_identifications_counter_cache(user_id)
     end
     true
   end
@@ -367,7 +370,7 @@ class Identification < ApplicationRecord
     return true if skip_observation || bulk_delete
     ObservationReview.where(observation_id: observation_id, user_id: user_id).
       first_or_create.
-      update_attributes( reviewed: true, updated_at: Time.now )
+      update( reviewed: true, updated_at: Time.now )
     true
   end
 
@@ -377,12 +380,13 @@ class Identification < ApplicationRecord
     true
   end
 
-  def flagged_with(flag, options)
-    evaluate_new_flag_for_spam(flag)
+  def flagged_with( flag, _options )
+    evaluate_new_flag_for_spam( flag )
     elastic_index!
-    if observation
-      observation.elastic_index!
-    end
+    return unless observation
+
+    observation.touch
+    observation.elastic_index!
   end
 
   # /Callbacks ##############################################################
@@ -484,7 +488,8 @@ class Identification < ApplicationRecord
   def update_categories
     return true if bulk_delete
     if skip_observation
-      Identification.delay.update_categories_for_observation( observation_id )
+      Identification.delay( run_at: 5.seconds.from_now ).
+        update_categories_for_observation( observation_id )
     else
       # update_categories_for_observation will reindex all the observation's
       # identifications, so we both do not need to re-index this individual
@@ -534,7 +539,7 @@ class Identification < ApplicationRecord
     return if current_ident.blank?
     obs.project_observations.each do |po|
       if current_ident.user.project_users.exists?(["project_id = ? AND role IN (?)", po.project_id, [ProjectUser::MANAGER, ProjectUser::CURATOR]])
-        po.update_attributes(:curator_identification_id => current_ident.id)
+        po.update(:curator_identification_id => current_ident.id)
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ po.project_id, obs.user_id ] }
@@ -564,12 +569,12 @@ class Identification < ApplicationRecord
         # that project observation has other identifications that belong to users who are curators use those
         po.observation.identifications.current.each do |other_ident|
           if other_curator_ident = other_ident.user.project_users.exists?(other_curator_conditions)
-            po.update_attributes(:curator_identification_id => other_ident.id)
+            po.update(:curator_identification_id => other_ident.id)
             break
           end
         end
 
-        po.update_attributes(:curator_identification_id => nil) unless other_curator_ident
+        po.update(:curator_identification_id => nil) unless other_curator_ident
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ po.project_id, obs.user_id ] }
@@ -601,7 +606,7 @@ class Identification < ApplicationRecord
     ident_ids = []
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
-      next if !taxon_change.automatable_for_output?( output_taxon.id )
+      next unless taxon_change.automatable_for_output?( output_taxon.id )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
         taxon: output_taxon, 
@@ -622,17 +627,17 @@ class Identification < ApplicationRecord
       ident_ids << ident.id
       yield( new_ident ) if block_given?
     end
-    Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+    Identification.current.where( "disagreement AND previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
       ident.skip_observation = true
       if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
-        ident.update_attributes(
+        ident.update(
           skip_set_previous_observation_taxon: true,
           previous_observation_taxon: taxon_change.output_taxon,
           skip_indexing: true
         )
         observation_ids << ident.observation_id
       elsif taxon_change.is_a?( TaxonSplit )
-        ident.update_attributes( disagreement: false, skip_indexing: true )
+        ident.update( disagreement: false, skip_indexing: true )
         observation_ids << ident.observation_id
       end
       ident_ids << ident.id
@@ -662,9 +667,10 @@ class Identification < ApplicationRecord
     # a previous attempt hit an error and stopped before indexing some records
     observation_ids += Identification.connection.execute(
       "SELECT DISTINCT observation_id FROM identifications WHERE taxon_change_id = #{taxon_change.id}"
-    ).select {|r| r["observation_id"].to_i }
+    ).map {|r| r["observation_id"].to_i }
     observation_ids.uniq!
     ident_ids.uniq!
+    
     Identification.elastic_index!( ids: ident_ids )
     Observation.elastic_index!( ids: observation_ids )
   end
@@ -673,7 +679,7 @@ class Identification < ApplicationRecord
     return unless taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
     block = Proc.new{ |ident|
       if ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
-        ident.update_attributes( disagreement: false )
+        ident.update( disagreement: false )
       end
     }
     batch_size = 200
@@ -684,7 +690,7 @@ class Identification < ApplicationRecord
         ident_response = Identification.elastic_search(
           size: batch_size,
           filters: [
-            { term: { "taxon.ancestor_ids": taxon.id } },
+            { term: { "taxon.ancestor_ids.keyword": taxon.id } },
             { term: { disagreement: true } },
             { range: { id: { gt: batch_start_id } } }
           ],
@@ -707,23 +713,25 @@ class Identification < ApplicationRecord
   end
 
   def self.reindex_for_taxon( taxon_id )
-    page = 1
     ident_ids = []
+    last_id = 0
     while true
       r = Identification.elastic_search(
         source: {
           includes: ["id"],
         },
         filters: [
-          { terms: { "taxon.ancestor_ids" => [taxon_id] } }
+          { range: { id: { gt: last_id } } },
+          { terms: { "taxon.ancestor_ids.keyword" => [taxon_id] } }
         ],
-        track_total_hits: true
-      ).page( page ).per_page( 1000 )
+        track_total_hits: true,
+        sort: { id: :asc }
+      ).per_page( 1000 )
       break unless r.response && r.response.hits && r.response.hits.hits
       new_ident_ids = r.response.hits.hits.map(&:_id)
       break if new_ident_ids.blank?
+      last_id = new_ident_ids.last
       ident_ids += new_ident_ids
-      page += 1
     end
     Identification.elastic_index!( ids: ident_ids )
   end
@@ -755,7 +763,7 @@ class Identification < ApplicationRecord
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       idents = Identification.where( id: to_merge_ids )
       if reject_ident = idents.detect{|i| i.send(reflection.foreign_key) == reject.id }
-        reject_ident.update_attributes( current: false )
+        reject_ident.update( current: false )
       end
     end
   end

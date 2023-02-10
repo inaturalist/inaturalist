@@ -166,7 +166,7 @@ describe Place, "updating" do
     expect(
       Project.elastic_paginate( where: { place_ids: [ old_parent.id ] } )
     ).to include project
-    place.update_attributes( parent: new_parent )
+    place.update( parent: new_parent )
     Delayed::Worker.new.work_off
     expect(
       Project.elastic_paginate( where: { place_ids: [ new_parent.id ] } )

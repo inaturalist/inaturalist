@@ -21,21 +21,30 @@ class Observation < ApplicationRecord
   after_create :update_observations_places
   after_update :update_observations_places
   
-  notifies_subscribers_of :public_places, :notification => "new_observations", 
-    :on => :create,
-    :queue_if => lambda {|observation|
+  notifies_subscribers_of :public_places,
+    notification: "new_observations",
+    on: :create,
+    queue_if: lambda {|observation|
       observation.georeferenced? && !observation.bulk_import
     },
-    :if => lambda {|observation, place, subscription|
+    if: lambda {|observation, place, subscription|
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
       return true if observation.taxon_id == subscription.taxon_id
       observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+    },
+    before_notify: lambda{|observation|
+      Observation.preload_associations( observation, [ :taxon, {
+        observations_places: {
+          place: :update_subscriptions_with_unsuspended_users
+        }
+      }] )
     }
-  notifies_subscribers_of :taxon_and_ancestors, :notification => "new_observations", 
-    :queue_if => lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
-    :if => lambda {|observation, taxon, subscription|
+  notifies_subscribers_of :taxon_and_ancestors,
+    notification: "new_observations",
+    queue_if: lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
+    if: lambda {|observation, taxon, subscription|
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
@@ -171,6 +180,7 @@ class Observation < ApplicationRecord
     "positioning_device",
     "user_id", 
     "user_login",
+    "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
@@ -191,6 +201,7 @@ class Observation < ApplicationRecord
     "time_zone",
     "user_id", 
     "user_login",
+    "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
@@ -377,9 +388,14 @@ class Observation < ApplicationRecord
     :message => "should be a number"
   validates_presence_of :geo_x, :if => proc {|o| o.geo_y.present? }
   validates_presence_of :geo_y, :if => proc {|o| o.geo_x.present? }
+  validate do
+    if observed_on && ( new_record? || observed_on_changed? ) && observed_on < 130.years.ago
+      errors.add( :observed_on, :must_be_within_130_years )
+    end
+  end
   
-  before_validation :munge_observed_on_with_chronic,
-                    :set_time_zone,
+  before_validation :set_time_zone,
+                    :munge_observed_on_with_chronic,
                     :set_time_in_time_zone,
                     :set_coordinates,
                     :nilify_positional_accuracy_if_zero
@@ -405,17 +421,17 @@ class Observation < ApplicationRecord
 
   before_update :set_quality_grade
 
-  after_save :refresh_check_lists,
-             :update_default_license,
-             :update_all_licenses,
-             :update_taxon_counter_caches,
-             :update_quality_metrics,
-             :update_public_positional_accuracy,
-             :update_mappable,
-             :set_captive,
-             :set_taxon_photo,
-             :create_observation_review,
-             :reassess_annotations
+  after_save :refresh_check_lists
+  after_save :update_default_license
+  after_save :update_all_licenses
+  after_save :update_taxon_counter_caches
+  after_save :update_quality_metrics
+  after_save :update_public_positional_accuracy
+  after_save :update_mappable
+  after_save :set_captive
+  after_save :set_taxon_photo
+  after_save :create_observation_review
+  after_save :reassess_annotations
   after_create :set_uri
   after_commit :update_user_counter_caches_after_create, on: :create
   after_commit :update_user_counter_caches_after_destroy, on: :destroy
@@ -574,7 +590,7 @@ class Observation < ApplicationRecord
   
   # Find observations by user
   scope :by, lambda {|user|
-    if user.is_a?(User) || user.to_i > 0
+    if user.is_a?( User ) || user.to_i > 0
       where("observations.user_id = ?", user)
     else
       joins(:user).where("users.login = ?", user)
@@ -691,8 +707,8 @@ class Observation < ApplicationRecord
   }
 
   scope :between_dates, lambda{|d1, d2|
-    t1 = (Time.parse(URI.unescape(d1.to_s)) rescue Time.now)
-    t2 = (Time.parse(URI.unescape(d2.to_s)) rescue Time.now)
+    t1 = (Time.parse(CGI.unescape(d1.to_s)) rescue Time.now)
+    t2 = (Time.parse(CGI.unescape(d2.to_s)) rescue Time.now)
     if d1.to_s.index(':')
       where("time_observed_at BETWEEN ? AND ? OR (time_observed_at IS NULL AND observed_on BETWEEN ? AND ?)", t1, t2, t1.to_date, t2.to_date)
     else
@@ -834,7 +850,7 @@ class Observation < ApplicationRecord
     if key != "something"
       key = "observation_brief_#{key}"
     end
-    I18n.t( key, i18n_vars.merge( default: I18n.t( :something ) ) )
+    I18n.t( key, **i18n_vars.merge( default: I18n.t( :something ) ) )
   end
   
   def time_observed_at_utc
@@ -949,7 +965,6 @@ class Observation < ApplicationRecord
       ECT
       GST
       IST
-      PST
     )
     
     if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
@@ -1006,7 +1021,7 @@ class Observation < ApplicationRecord
       puts "matched tz_colon_offset_pattern (Adelaide): #{offset}, parsed_time_zone: #{parsed_time_zone}" if debug
     end
     
-    if parsed_time_zone && observed_on_string_changed?
+    if parsed_time_zone && observed_on_string_changed? && !georeferenced?
       self.time_zone = parsed_time_zone.name
       begin
         if (
@@ -1042,6 +1057,14 @@ class Observation < ApplicationRecord
       date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
       date_string.gsub!( / 12:/, " 00:" )
     end
+
+    # Translate am/pm into English for parsing. This is a pretty conservative
+    # solution to a complicated problem. Assumes AM/PM is at the end of the
+    # string and preceeded by a space, or in the middle but followed by a space
+    date_string.sub!( /\s#{I18n.t( "time.am" )}$/i, " AM" )
+    date_string.sub!( /\s#{I18n.t( "time.am" )}\s/i, " AM " )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}$/i, " PM" )
+    date_string.sub!( /\s#{I18n.t( "time.pm" )}\s/i, " PM " )
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -1158,7 +1181,7 @@ class Observation < ApplicationRecord
         end
       elsif taxon.blank? && owners_ident && owners_ident.current?
         if identifications.where( user_id: user_id ).count > 1
-          owners_ident.update_attributes( current: false, skip_observation: true )
+          owners_ident.update( current: false, skip_observation: true )
         else
           owners_ident.skip_observation = true
           owners_ident.destroy
@@ -1256,9 +1279,25 @@ class Observation < ApplicationRecord
   end
   
   #
-  # Set the time_zone of this observation if not already set
+  # Set the time_zone of this observation if coordinates changes or zone not already set
   #
   def set_time_zone
+    # Make sure blank is always nil
+    self.time_zone = nil if time_zone.blank?
+    # If there are coordinates, use them to set the time zone, and reject
+    # changes to the time zone if the coordinates have not changed
+    if georeferenced?
+      if coordinates_changed?
+        lat = ( latitude_changed? || private_latitude.blank? ) ? latitude : private_latitude
+        lng = ( longitude_changed? || private_longitude.blank? ) ? longitude : private_longitude
+        self.time_zone = TimeZoneGeometry.time_zone_from_lat_lng( lat, lng ).try(:name)
+        self.zic_time_zone = ActiveSupport::TimeZone::MAPPING[time_zone] unless time_zone.blank?
+      elsif time_zone_changed?
+        self.time_zone = time_zone_was
+        self.zic_time_zone = zic_time_zone_was
+      end
+    end
+    # Try to assign a reasonable default time zone
     if time_zone.blank?
       self.time_zone = nil
       self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -1266,16 +1305,23 @@ class Observation < ApplicationRecord
       self.time_zone ||= 'UTC'
     end
     if !time_zone.blank? && !ActiveSupport::TimeZone::MAPPING[time_zone] && ActiveSupport::TimeZone[time_zone]
-      # self.time_zone = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
       # We've got a zic time zone
-      # ztz = ActiveSupport::TimeZone[time_zone]
+      self.zic_time_zone = time_zone
       self.time_zone = if rails_tz = ActiveSupport::TimeZone::MAPPING.invert[time_zone]
         rails_tz
-      else
-        # Now we're in trouble, b/c the client specified a valid IANA time zone
-        # that TZInfo knows about, but it's one the Rails chooses to ignore and
-        # doesn't provide any mapping for so... we have to map it
+      elsif ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+        # Now we're in trouble, b/c the client specified a valid IANA time
+        # zone that TZInfo knows about, but it's one Rails chooses to ignore
+        # and doesn't provide any mapping for so... we have to map it
         ActiveSupport::TimeZone::INAT_MAPPING[time_zone]
+      elsif time_zone =~ /^Etc\//
+        # If we don't have custom mapping and there's no fancy Rails wrapper
+        # and it's one of these weird oceanic Etc zones, use that as the
+        # time_zone. Rails can use that to cast times into other zones, even
+        # if it doesn't recognize it as its own zone
+        time_zone
+      else
+        ActiveSupport::TimeZone[time_zone].name
       end
     end
     self.time_zone ||= user.time_zone if user && !user.time_zone.blank?
@@ -1948,7 +1994,8 @@ class Observation < ApplicationRecord
         place_guess: o.place_guess,
         private_place_guess: o.private_place_guess,
         taxon_geoprivacy: o.taxon_geoprivacy,
-        public_positional_accuracy: o.calculate_public_positional_accuracy
+        public_positional_accuracy: o.calculate_public_positional_accuracy,
+        mappable: o.calculate_mappable
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id), wait_for_index_refresh: true )
@@ -2163,14 +2210,14 @@ class Observation < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      Observation.where(id: id).update_all(uri: FakeView.observation_url(id))
+      Observation.where( id: id ).update_all( uri: UrlHelper.observation_url( id ) )
     end
     true
   end
   
   def update_default_license
     return true unless make_license_default.yesish?
-    user.update_attribute(:preferred_observation_license, license)
+    user.update_attribute( :preferred_observation_license, license )
     true
   end
   
@@ -2182,7 +2229,10 @@ class Observation < ApplicationRecord
   end
 
   def update_taxon_counter_caches
-    return true unless destroyed? || saved_change_to_taxon_id?
+    unless destroyed? || saved_change_to_taxon_id? || transaction_include_any_action?( [:create] )
+      return true
+    end
+
     taxon_ids = [taxon_id_before_last_save, taxon_id].compact.uniq
     unless taxon_ids.blank?
       taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
@@ -2263,7 +2313,7 @@ class Observation < ApplicationRecord
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true )
+      qm.update( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2276,16 +2326,16 @@ class Observation < ApplicationRecord
     true
   end
   
-  def update_attributes(attributes)
-    # hack around a weird android bug
-    attributes.delete(:iconic_taxon_name)
+  # def update(attributes)
+  #   # hack around a weird android bug
+  #   attributes.delete(:iconic_taxon_name)
     
-    # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-    #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-    #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-    # end
-    super(attributes)
-  end
+  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
+  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
+  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
+  #   # end
+  #   super(attributes)
+  # end
   
   def license_name
     return nil if license.blank?
@@ -2337,6 +2387,10 @@ class Observation < ApplicationRecord
   
   def user_login
     user.login
+  end
+
+  def user_name
+    user.name
   end
   
   def update_stats(options = {})
@@ -2565,7 +2619,11 @@ class Observation < ApplicationRecord
         29625, # City Nature Challenge 2019
         40364  # City Nature Challenge 2020
       ].map {|umbrella_project_id|
-        if umbrella = Project.find_by_id( umbrella_project_id )
+        if umbrella = Project.includes( {
+          project_observation_rules: {
+            operand: :project_observation_rules
+          }
+        } ).find_by_id( umbrella_project_id )
           umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
             por.operand.project_observation_rules.
               select{|sub_por| sub_por.operator == "observed_in_place?" }.
@@ -2790,7 +2848,7 @@ class Observation < ApplicationRecord
     unless options[:skip_identifications]
       identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
         c = idents.sort_by(&:id).last
-        c.update_attributes(:current => true)
+        c.update(:current => true)
       end
     end
     save!
@@ -2798,7 +2856,7 @@ class Observation < ApplicationRecord
 
   def create_observation_review
     return true unless taxon
-    return true unless taxon_id_before_last_save.blank?
+    return true unless taxon_id_before_last_save.blank? || transaction_include_any_action?( [:create] )
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
@@ -2814,8 +2872,9 @@ class Observation < ApplicationRecord
 
   def create_deleted_observation
     DeletedObservation.create(
-      :observation_id => id,
-      :user_id => user_id
+      observation_id: id,
+      user_id: user_id,
+      observation_created_at: created_at
     )
     true
   end
@@ -3029,7 +3088,7 @@ class Observation < ApplicationRecord
       scope = scope.where(id: filter_ids)
     end
     options[:batch_size] = 100
-    scope.select(:id).find_in_batches(options) do |batch|
+    scope.select(:id).find_in_batches(**options) do |batch|
       ids = batch.map(&:id)
       Observation.transaction do
         connection.execute("DELETE FROM observations_places
@@ -3173,22 +3232,22 @@ class Observation < ApplicationRecord
       ].include?( p.admin_level )
     end
     return false unless place
-    buckets = Observation.elastic_search(
-      filters: [
-        { term: { "taxon.ancestor_ids": target_taxon.id } },
-        { term: { place_ids: place.id } },
-      ],
-      # earliest_sort_field: "id",
+    base_filters = [
+      { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
+      { term: { "place_ids.keyword": place.id } },
+    ]
+    count_captive = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: true } }],
       size: 0,
-      aggregate: {
-        captive: {
-          terms: { field: "captive", size: 15 }
-        }
-      }
-    ).results.response.response.aggregations.captive.buckets
-    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
-    total = captive_stats.values.sum
-    ratio = captive_stats[1].to_f / total
+      track_total_hits: true
+    ).results.total_entries
+    count_wild = Observation.elastic_search(
+      filters: base_filters + [{ term: { captive: false } }],
+      size: 0,
+      track_total_hits: true
+    ).results.total_entries
+    total = count_captive + count_wild
+    ratio = count_captive.to_f / total
     # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
   end

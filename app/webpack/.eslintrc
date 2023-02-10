@@ -1,6 +1,12 @@
 {
   // I want to use babel-eslint for parsing!
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
   "extends": "airbnb",
   "env": {
     // I write for browser
@@ -18,7 +24,8 @@
     google: true,
     iNaturalist: true,
     SITE: true,
-    iNatModels: true
+    iNatModels: true,
+    OFFICIAL_APP_IDS: true
   },
   // To give you an idea how to override rule options:
   // "rules": {
@@ -42,11 +49,13 @@
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
     "react/forbid-prop-types": 0,
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/require-default-props": 0,
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/media-has-caption": "off",
     "react/no-find-dom-node": 0,
-    "react/destructuring-assignment": 0
+    "react/destructuring-assignment": 0,
+    "default-param-last": 0
   }
 }

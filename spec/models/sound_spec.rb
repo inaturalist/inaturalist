@@ -37,7 +37,7 @@ describe Sound do
 
     it "should nilify if not a license" do
       s = Sound.make!(:license => Sound.license_number_for_code(Observation::CC_BY))
-      s.update_attributes(:license => "on")
+      s.update(:license => "on")
       s.reload
       expect(s.license).to eq Sound::COPYRIGHT
     end

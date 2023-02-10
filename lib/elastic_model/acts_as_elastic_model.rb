@@ -31,7 +31,9 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+        try_and_try_again( [
+          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.search(ElasticModel.search_hash(options))
           rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
@@ -50,6 +52,14 @@ module ActsAsElasticModel
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
         result_to_will_paginate_collection(result, options)
+      end
+
+      def elastic_get( id, options = { } )
+        begin
+          __elasticsearch__.client.get( index: index_name, id: id )
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => a
+          nil
+        end
       end
 
       # standard way to bulk index instances. Called without options it will
@@ -119,7 +129,7 @@ module ActsAsElasticModel
         wait_for_index_refresh = options.delete(:wait_for_index_refresh)
         batch_sleep = options.delete(:sleep)
         batches_indexed = 0
-        scope.find_in_batches(options) do |batch|
+        scope.find_in_batches(**options) do |batch|
           if batch_sleep && batches_indexed > 0
             # sleep only if more than one batch is being indexed
             sleep batch_sleep.to_i
@@ -259,7 +269,9 @@ module ActsAsElasticModel
             refresh: options[:wait_for_index_refresh] ? "wait_for" : false
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
-            where(id: batch).update_all(last_indexed_at: Time.now)
+            ActiveRecord::Base.connection.without_sticking do
+              where(id: batch).update_all(last_indexed_at: Time.now)
+            end
           end
           GC.start
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e

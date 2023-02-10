@@ -223,7 +223,7 @@ describe PlacesController do
         headers: { "Content-Type" => "application/json" }
       )
       get :search, params: { q: place.name }
-      expect( response.content_type ).to eq "text/html"
+      expect( response.content_type ).to include "text/html"
     end
   end
 
@@ -253,20 +253,20 @@ describe PlacesController do
       expect(keeper.place_type).to eq reject_place_type
     end
     it "should be impossible if the keeper is a standard place" do
-      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
+      keeper.update( admin_level: Place::STATE_LEVEL )
       post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).not_to be_blank
     end
     it "should be impossible if the reject is a standard place" do
-      reject.update_attributes( admin_level: Place::STATE_LEVEL )
+      reject.update( admin_level: Place::STATE_LEVEL )
       post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).not_to be_blank
     end
     it "should be possible if the keeper is a standard place and the user is on staff" do
       sign_in make_admin
-      keeper.update_attributes( admin_level: Place::STATE_LEVEL )
+      keeper.update( admin_level: Place::STATE_LEVEL )
       post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).to be_blank
@@ -324,7 +324,7 @@ def test_place_kml(size = :default)
   </Document>
 </kml>
   XML
-  open( path, "w" ) do |f|
+  File.open( path, "w" ) do |f|
     f << kml
   end
   Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )

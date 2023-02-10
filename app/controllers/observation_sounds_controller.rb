@@ -75,7 +75,7 @@ class ObservationSoundsController < ApplicationController
 
     @observation_sound.sound.file = params[:file] if params[:file]
     respond_to do |format|
-      if @observation_sound.update_attributes(params[:observation_sound])
+      if @observation_sound.update(params[:observation_sound])
           @observation_sound.observation.elastic_index!
         format.json { render :json => @observation_sound.to_json(:include => [:sound]) }
       else

@@ -1,5 +1,6 @@
 :ruby
   truncate_length ||= nil
+  hard_truncate_length ||= nil
   @parent ||= post.parent
   post_url = flexible_post_path(post)
 .post{:id => "post-#{post.id}"}
@@ -10,10 +11,15 @@
         = surround '(', ')' do
           =t :trip
   .body.clear
-    - if truncate_length
-      = truncate_with_more formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE)), length: truncate_length
+    - text = formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
+    - if hard_truncate_length
+      = truncate_with_more text, length: hard_truncate_length, ellipsize: true
+      %p
+        = link_to t(:view_post), post_url, class: "readmore"
+    - elsif truncate_length
+      = truncate_with_more text, length: truncate_length
     - else
-      = formatted_user_text(post.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))
+      = text
   .meta
     = t(:posted_on)
     - if post.published_at

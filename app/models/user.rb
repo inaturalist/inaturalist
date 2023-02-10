@@ -2,6 +2,8 @@ class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
   # include ActsAsUUIDable
+  include HasJournal
+
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -12,6 +14,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [ :description ],
                     comment_type: "signup"
+  has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -19,11 +22,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :suspendable,
          :recoverable, :rememberable, :confirmable, :validatable, 
          :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  handle_asynchronously :send_devise_notification
-  
-  # set user.skip_email_validation = true if you want to, um, skip email validation before creating+saving
-  attr_accessor :skip_email_validation
-  attr_accessor :skip_registration_email
+  # handle_asynchronously :send_devise_notification
   
   # licensing extras
   attr_accessor   :make_observation_licenses_same
@@ -32,6 +31,7 @@ class User < ApplicationRecord
 
   attr_accessor :html
   attr_accessor :pi_consent
+  attr_accessor :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -127,6 +127,7 @@ class User < ApplicationRecord
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
+  has_many :email_suppressions, dependent: :delete_all
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -156,7 +157,6 @@ class User < ApplicationRecord
   has_many :photos, :dependent => :destroy
   has_many :sounds, dependent: :destroy
   has_many :posts #, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent, :dependent => :destroy
   has_many :trips, -> { where("posts.type = 'Trip'") }, :class_name => "Post", :foreign_key => "user_id"
   has_many :taxon_links, :dependent => :nullify
   has_many :comments, :dependent => :destroy
@@ -248,11 +248,13 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
   before_save :remove_email_from_name
   before_save :set_pi_consent_at
+  before_save :set_data_transfer_consent_at
   before_save :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -262,12 +264,12 @@ class User < ApplicationRecord
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_observations_taxa_if_pref_changed
-  after_update :update_photo_properties
+  after_update :send_welcome_email
   after_create :set_uri
-  after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
   after_destroy :reindex_faved_observations_after_destroy_later
+  after_destroy :create_deleted_user
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -296,9 +298,9 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern, on: :create
-  validate :validate_email_domain_exists, on: :create
-  
+  validate :validate_email_pattern
+  validate :validate_email_domain_exists
+
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
     order("? ?", sort_by, sort_dir)
@@ -308,6 +310,7 @@ class User < ApplicationRecord
   scope :active, -> { where("suspended_at IS NULL") }
 
   def validate_email_pattern
+    return unless new_record? || email_changed?
     return if CONFIG.banned_emails.blank?
     return if self.email.blank?
     failed = false
@@ -325,8 +328,11 @@ class User < ApplicationRecord
   # this approach is probably going to have some false positives... but probably
   # not many
   def validate_email_domain_exists
+    return unless new_record? || email_changed?
     return true if Rails.env.test? && CONFIG.user_email_domain_exists_validation != :enabled
-    return true if self.email.blank?
+    return true if email.blank?
+    return true unless email.include?( "@" )
+
     domain = email.split( "@" )[1].strip
     dns_response = begin
       r = nil
@@ -354,14 +360,6 @@ class User < ApplicationRecord
     end
     true
   end
-
-  # only validate_presence_of email if user hasn't auth'd via a 3rd-party provider
-  # you can also force skipping email validation by setting u.skip_email_validation=true before you save
-  # (this option is necessary because the User is created before the associated ProviderAuthorization)
-  # This is not a normal validation b/c email validation happens in Devise, which looks for this method
-  def email_required?
-    !(skip_email_validation || provider_authorizations.count > 0)
-  end
   
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
@@ -386,18 +384,39 @@ class User < ApplicationRecord
     !suspended?
   end
 
+  def child?
+    !birthday.blank? && birthday > 13.years.ago
+  end
+
+  def child_without_permission?
+    child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+  end
+
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+  EMAIL_CONFIRMATION_REQUIREMENT_DATE = Date.parse( "2023-07-01" )
+
   # This is a dangerous override in that it doesn't call super, thereby
   # ignoring the results of all the devise modules like confirmable. We do
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
+    return false if suspended?
+
+    return false if child_without_permission?
+
+    # Temporary state to allow existing users to sign in. Probably redundant
+    # with the next grandparent exception
+    return true if confirmation_sent_at.blank?
+
+    # Temporary state to allow existing users to sign in
+    return true if created_at < EMAIL_CONFIRMATION_RELEASE_DATE
+
+    super
   end
 
   def download_remote_icon
-    io = open(URI.parse(self.icon_url))
     Timeout::timeout(10) do
-      self.icon = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.icon = URI( self.icon_url )
     end
     true
   rescue => e # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
@@ -416,6 +435,11 @@ class User < ApplicationRecord
     return true if login.blank?
     self.login = login.strip
     true
+  end
+
+  # Confirmation should be sent to the child *after* the parent has been verified
+  def skip_confirmation_if_child
+    skip_confirmation! if child?
   end
   
   def allow_some_licenses
@@ -495,6 +519,10 @@ class User < ApplicationRecord
   # TODO: named_scope / roles plugin
   def is_curator?
     has_role?(:curator)
+  end
+
+  def is_app_owner?
+    has_role?( Role::APP_OWNER )
   end
   
   def is_admin?
@@ -642,6 +670,20 @@ class User < ApplicationRecord
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    # Conditions should match index_votes_on_unique_obs_fave
+    reject.votes
+          .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )
+          .where(
+            keeper_votes: {
+              voter_type: self.class.polymorphic_name,
+              voter_id: id,
+              vote_scope: nil
+            },
+            votable_type: Observation.polymorphic_name,
+            vote_scope: nil
+          )
+          .destroy_all
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
@@ -687,7 +729,7 @@ class User < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
@@ -720,7 +762,23 @@ class User < ApplicationRecord
     self.longitude = longitude
     self.lat_lon_acc_admin_level = lat_lon_acc_admin_level
   end
-  
+
+  def email_suppressed_in_group?( suppressed_groups )
+    unless suppressed_groups.is_a?( Array )
+      suppressed_groups = [suppressed_groups]
+    end
+    unsuppressed_groups = [
+      EmailSuppression::ACCOUNT_EMAILS,
+      EmailSuppression::DONATION_EMAILS,
+      EmailSuppression::NEWS_EMAILS,
+      EmailSuppression::TRANSACTIONAL_EMAILS
+    ].reject {| i | ( suppressed_groups.include? i ) }
+    return true if EmailSuppression.where( "email = ? AND suppression_type NOT IN (?)",
+      email, unsuppressed_groups ).first
+
+    false
+  end
+
   def get_lat_lon_from_ip_if_last_ip_changed
     return true if last_ip.nil?
     if last_ip_changed? || latitude.nil?
@@ -789,8 +847,6 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
-    u.skip_email_validation = true
-    u.skip_confirmation!
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -800,9 +856,9 @@ class User < ApplicationRecord
     unless user_saved
       suggestion = User.suggest_login(u.login)
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update_attributes(:login => suggestion)
+      u.update(:login => suggestion)
     end
-    u.add_provider_auth(auth_info)
+    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
     u
   end
 
@@ -986,6 +1042,10 @@ class User < ApplicationRecord
     if user = User.find_by_id( user_id )
       puts "Destroying user (this could take a while)"
       user.sane_destroy
+    end
+
+    if ( deleted_user = DeletedUser.where( user_id: user_id ).first ) && !deleted_user.email.blank?
+      EmailSuppression.where( email: deleted_user.email ).delete_all
     end
 
     puts "Updating flags created by user..."
@@ -1202,19 +1262,23 @@ class User < ApplicationRecord
     true
   end
 
-  def update_photo_properties
-    changes = {}
-    changes[:native_username] = login if saved_change_to_login?
-    changes[:native_realname] = name if saved_change_to_name?
-    unless changes.blank?
-      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
+  def send_welcome_email
+    if (
+      saved_change_to_confirmed_at? &&
+      confirmed? &&
+      # This might happen if an existing user successfully resets their
+      # password, i.e. they don't send themselves a confirmation email b/c
+      # they can't sign in, but they can request the reset password email,
+      # and successfully clicking that link also confirms the email address
+      !confirmation_sent_at.blank? &&
+      # This is for existing users who explicitly request a confirmation
+      # email, which sets confirmation_sent_at. This is imperfect, but it
+      # should prevent most actual users from receiving the welcome email
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
+    )
+      Emailer.welcome( self ).deliver_now
     end
-    true
-  end
-
-  def update_photos_with_changes( changes )
-    return if changes.blank?
-    photos.update_all( changes )
   end
 
   def recent_notifications(options={})
@@ -1227,18 +1291,12 @@ class User < ApplicationRecord
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
-    options[:filters] << { term: { subscriber_ids: id } }
-    ops = {
-      filters: options[:filters],
-      inverse_filters: options[:inverse_filters],
-      per_page: options[:per_page],
-      sort: { id: :desc }
-    }
+    options[:filters] << { term: { "subscriber_ids.keyword": id } }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
-      sort: { id: :desc })
+      sort: { created_at: :desc })
   end
 
   def blocked_by?( user )
@@ -1288,7 +1346,7 @@ class User < ApplicationRecord
     return unless user = User.find_by_id(user_id)
     new_fields_result = Observation.elastic_search(
       filters: [
-        { term: { non_owner_identifier_user_ids: user_id } }
+        { term: { "non_owner_identifier_user_ids.keyword": user_id } }
       ],
       size: 0,
       track_total_hits: true
@@ -1303,7 +1361,7 @@ class User < ApplicationRecord
     result = Observation.elastic_search(
       filters: [
         { bool: { must: [
-          { term: { "user.id": user_id } },
+          { term: { "user.id.keyword": user_id } },
         ] } }
       ],
       size: 0,
@@ -1360,6 +1418,16 @@ class User < ApplicationRecord
     Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
+  def moderated_with( moderator_action )
+    if moderator_action.action == ModeratorAction::SUSPEND && !is_admin?
+      self.suspended_by_user = moderator_action.user
+      suspend!
+    elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.suspended_by_user = nil
+      unsuspend!
+    end
+  end
+
   def personal_lists
     lists.not_flagged_as_spam.
       where("type = 'List' OR type IS NULL")
@@ -1384,13 +1452,24 @@ class User < ApplicationRecord
 
   def set_pi_consent_at
     if pi_consent
-      self.pi_consent_at = Time.now
+      self.pi_consent_at ||= Time.now
+    end
+    true
+  end
+
+  def set_data_transfer_consent_at
+    if data_transfer_consent
+      self.data_transfer_consent_at ||= Time.now
     end
     true
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
+  end
+
+  def monthly_donor?
+    donor? && donorbox_plan_status == "active" && donorbox_plan_type == "monthly"
   end
 
   def display_donor_since
@@ -1409,8 +1488,8 @@ class User < ApplicationRecord
     taxon_counts = Observation.elastic_search(
       size: 0,
       filters: [
-        { term: { "user.id": id } },
-        { terms: { "taxon.ancestor_ids": taxa_plus_ancestor_ids } },
+        { term: { "user.id.keyword": id } },
+        { terms: { "taxon.ancestor_ids.keyword": taxa_plus_ancestor_ids } },
         { range: { "observed_on_details.date": { lt: date.to_s } } }
       ],
       aggregate: {
@@ -1444,7 +1523,7 @@ class User < ApplicationRecord
       user = u
     end
     LocalPhoto.where( user_id: user.id ).
-      select( :id, :license, :original_url, :user_id, :file_prefix_id, :file_extension_id ).
+      select( :id, :license, :user_id, :file_prefix_id, :file_extension_id ).
       includes( :user, :file_prefix, :file_extension, :flags ).find_each do |photo|
       if photo.photo_bucket_should_be_changed?
         LocalPhoto.delay(
@@ -1464,20 +1543,21 @@ class User < ApplicationRecord
     spammers = []
     num_checks = {}
     User.order( "id desc" ).limit( limit ).
-        where( "spammer is null " ).
-        where( "created_at < ? ", 12.hours.ago ). # half day grace period
-        where( "description is not null and description != '' and description ilike '%http%'" ).
-        where( "observations_count = 0 and identifications_count = 0" ).
-        pluck(:id).
-        in_groups_of( 10 ) do |ids|
+      where( "spammer is null " ).
+      where( "created_at < ? ", 12.hours.ago ). # half day grace period
+      where( "description is not null and description != '' and description ilike '%http%'" ).
+      where( "observations_count = 0 and identifications_count = 0" ).
+      pluck( :id ).
+      in_groups_of( 10 ) do | ids |
       puts
       puts "BATCH #{ids[0]}"
       puts
-      3.times do |i|
+      3.times do | i |
         batch = User.where( "id IN (?)", ids )
         puts "Try #{i}"
-        batch.each do |u|
+        batch.each do | u |
           next if spammers.include?( u.login )
+
           num_checks[u.login] ||= 0
           puts "#{u}, checked #{num_checks[u.login]} times already"
           num_checks[u.login] += 1
@@ -1498,11 +1578,12 @@ class User < ApplicationRecord
 
   def self.ip_address_is_often_suspended( ip )
     return false if ip.blank?
+
     count_suspended = User.where( last_ip: ip ).where( "suspended_at IS NOT NULL" ).count
     count_active = User.where( last_ip: ip ).where( "suspended_at IS NULL" ).count
     total = count_suspended + count_active
     return false if total < 3
-    return count_suspended.to_f / ( count_suspended + count_active ).to_f >= 0.9
-  end
 
+    count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
 end

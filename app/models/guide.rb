@@ -124,6 +124,11 @@ class Guide < ApplicationRecord
     guide_users.detect {| gu | gu.user_id == user_id }
   end
 
+  def self.set_taxon( guide_id )
+    return unless guide = Guide.find_by_id( guide_id )
+    guide.set_taxon
+  end
+
   def set_taxon
     ancestry_counts = Taxon.joins( :guide_taxa ).where( "guide_taxa.guide_id = ?", id ).group( :ancestry ).count
     ancestries = ancestry_counts.map {| a, _c | a.to_s.split( "/" ) }.sort_by( &:size ).compact
@@ -172,7 +177,7 @@ class Guide < ApplicationRecord
       if downloadable?
         generate_ngz_later
       else
-        update_attributes( ngz: nil )
+        update( ngz: nil )
       end
     end
     true
@@ -373,7 +378,7 @@ class Guide < ApplicationRecord
   def generate_ngz( options = {} )
     zip_path = to_ngz( options )
     File.open( zip_path ) do | f |
-      unless update_attributes( ngz: f )
+      unless update( ngz: f )
         Rails.logger.error "[ERROR #{Time.now}] Failed to save NGZ attachment " \
           "for guide #{id}: #{errors.full_messages.to_sentence}"
       end

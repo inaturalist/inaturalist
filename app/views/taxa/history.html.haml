@@ -1,0 +1,60 @@
+= content_for :title do
+  = strip_tags( @title = t( :bold_label_colon_value_html, label: t(:history), value: @record.name ) )
+= content_for :extracss do
+  = stylesheet_link_tag "taxa/history"
+.row
+  #pageheader.col-xs-12
+    %span.breadcrumbs
+      = link_to t(:back), @record, class: "back crumb"
+    %h2
+      = @title
+.row
+  .col-xs-12
+    - if @auditable_type || @auditable_id || @user_id || @audit_action
+      =t :label_colon, label: t( :filters )
+      - if @auditable_type
+        .badge
+          =t :bold_label_colon_value_html, label: t( :content_type ), value: @auditable_type
+          = link_to url_for_params( without: :auditable_type ), style: "color: white" do
+            &times;
+      - if @auditable_id
+        .badge
+          =t :bold_label_colon_value_html, label: t( :id ), value: @auditable_id
+          = link_to url_for_params( without: :auditable_id ), style: "color: white" do
+            &times;
+      - if @user_id
+        .badge
+          =t :bold_label_colon_value_html, label: t( :id ), value: @user_id
+          = link_to url_for_params( without: :user_id ), style: "color: white" do
+            &times;
+      - if @audit_action
+        .badge
+          =t :bold_label_colon_value_html, label: t( :id ), value: @audit_action
+          = link_to url_for_params( without: :audit_action ), style: "color: white" do
+            &times;
+      = link_to t(:clear_filters), url_for, class: "btn btn-link btn-xs"
+    %table.table.history
+      %thead
+        %tr
+          %th=t :date_
+          %th=t :action
+          %th=t :record_noun
+          %th=t :user
+          %th=t :changes
+      %tbody
+        - if @show_all
+          =render partial: "audit_table_row", collection: @audits
+        - else
+          - for date, count in @audit_days
+            - if @date == date
+              = render partial: "audit_table_row", collection: @audits
+            - else
+              %tr
+                %td.nobr.date
+                  %strong= link_to l( date, format: :short_with_year ), url_for( year: date.year, month: date.month, day: date.day ), class: "date"
+                %td.nobr{ colspan: 4 }
+                  %strong= link_to t( :x_changes, count: count ), url_for( year: date.year, month: date.month, day: date.day )
+    - if @audits.blank?
+      .text-center.stacked=t :no_results_found
+    .alert.alert-info.upstacked
+      %p=t :taxon_history_notice

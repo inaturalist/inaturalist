@@ -25,7 +25,7 @@ describe TaxonChangesController, "commit_records" do
   end
   elastic_models( Observation, Identification )
 
-  it "should work for multuple records" do
+  it "should work for multiple records" do
     observations = []
     3.times do
       observations << Observation.make!(user: u, taxon: tc.input_taxon)
@@ -33,7 +33,7 @@ describe TaxonChangesController, "commit_records" do
     put :commit_records, params: {
       taxon_change_id: tc.id,
       taxon_id: tc.output_taxon.id,
-      type: 'observations',
+      type: "observations",
       record_ids: observations.map(&:id)
     }
     observations.each do |o|
@@ -56,6 +56,25 @@ describe TaxonChangesController, "commit_records" do
     identifications.each do |record|
       record.reload
       expect( record.observation.identifications.by(u).last.taxon ).to eq tc.output_taxon
+    end
+  end
+
+  it "should not update identifications on your own observations" do
+    identifications = []
+    3.times do
+      # identifications << Identification.make!(user: u, taxon: tc.input_taxon)
+      obs = create( :observation, user: u )
+      identifications << create( :identification, observation: obs, user: u, taxon: tc.input_taxon )
+    end
+    put :commit_records, params: {
+      taxon_change_id: tc.id,
+      taxon_id: tc.output_taxon.id,
+      type: 'identifications',
+      record_ids: identifications.map(&:id)
+    }
+    identifications.each do |record|
+      record.reload
+      expect( record.observation.identifications.by(u).last.taxon ).not_to eq tc.output_taxon
     end
   end
 end

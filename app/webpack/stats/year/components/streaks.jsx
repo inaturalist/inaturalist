@@ -6,7 +6,9 @@ import {
   scaleLinear,
   min as d3min,
   max as d3max,
+  timeMonth,
   timeFormatLocale,
+  timeYear,
   interpolateWarm
 } from "d3";
 import moment from "moment";
@@ -36,7 +38,12 @@ const Streaks = ( {
   const scale = scaleTime( )
     .domain( dates )
     .range( [0, 1.0] );
-  const ticks = scale.ticks( ( ( year - startYear + 1 ) * 12 ) );
+  let ticks = scale.ticks( timeMonth.every( 1 ) );
+  let dateFormat = ticks.length > 12 ? "MMM 'YY" : "MMM";
+  if ( ticks.length > 24 ) {
+    ticks = scale.ticks( timeYear.every( 1 ) );
+    dateFormat = "YYYY";
+  }
   const days = data.map( d => d.days );
   const dayScale = scaleLog( )
     .domain( [d3min( days ), d3max( days )] )
@@ -92,7 +99,7 @@ const Streaks = ( {
                     width: `${tickWidth * 100}%`
                   }}
                 >
-                  { moment( tick ).format( multiYear ? "MMM 'YY" : "MMM" ) }
+                  { moment( tick ).format( dateFormat ) }
                 </div>
               );
             } ) }

@@ -5,7 +5,8 @@ import moment from "moment";
 // single YYYY-MM-DD date as a string. endYear is the last year it should fill
 // gaps for. fillGap should be a function that accepts date (date of the gap)
 // and prev (previous item in data by date)
-const histogramWithoutGaps = ( data, options = {}, fillGap ) => {
+function histogramWithoutGaps( data, opts, fillGap ) {
+  const options = opts || {};
   if ( data.length === 0 ) return data;
   const sorted = _.sortBy( data, i => i.date );
   const minDate = sorted[0].date;
@@ -40,8 +41,16 @@ const histogramWithoutGaps = ( data, options = {}, fillGap ) => {
     date = moment( date ).add( 1, interval );
   }
   return newData;
-};
+}
+
+function isTouchDevice() {
+  // https://gist.github.com/59naga/ed6714519284d36792ba
+  return navigator.userAgent.match(
+    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
+  ) !== null;
+}
 
 export {
-  histogramWithoutGaps
+  histogramWithoutGaps,
+  isTouchDevice
 };

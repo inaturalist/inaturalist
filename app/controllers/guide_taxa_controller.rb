@@ -88,7 +88,7 @@ class GuideTaxaController < ApplicationController
   # PUT /guide_taxa/1.json
   def update
     respond_to do |format|
-      if @guide_taxon.update_attributes(params[:guide_taxon])
+      if @guide_taxon.update(params[:guide_taxon])
         format.html { redirect_to @guide_taxon, notice: 'Guide taxon was successfully updated.' }
         format.json { render :json => @guide_taxon.as_json(:root => true, :methods => [:html]) }
       else

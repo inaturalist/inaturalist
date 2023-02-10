@@ -164,6 +164,10 @@
             method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
             class: "btn btn-block btn-success"
         = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
+        - if @display_user.is_app_owner?
+          = link_to t(:remove_app_owner_status), remove_role_path(@display_user, :role => Role::APP_OWNER), :method => :delete, class: "btn btn-block btn-warning"
+        - else
+          = link_to t(:make_app_owner), add_role_path(@display_user, :role => Role::APP_OWNER), :method => :post, class: "btn btn-block btn-success"
         .dropdown.btn-block#site-admins
           .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
             = t :make_site_admin

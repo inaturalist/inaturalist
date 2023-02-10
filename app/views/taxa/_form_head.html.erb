@@ -9,7 +9,6 @@
                            "taxon_browser" %>
 
 <script type="text/javascript" charset="utf-8">
-var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_authorities.to_json.html_safe %>
   $(document).ready(function() {
     $('#parent_name').simpleTaxonSelector({
       taxonIDField: $('#taxon_parent_id')
@@ -39,21 +38,6 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
       }
     });
 
-    $('#conservation_statuses .conservation_status').conservationStatus()
-    $('#conservation_statuses').bind('cocoon:before-remove', function(e, item) {
-      $(this).data('remove-timeout', 1000)
-      item.slideUp()
-    })
-    $('#conservation_statuses').bind('cocoon:after-insert', function(e, item) {
-      $(item).css('display', 'none')
-      $(item).slideDown(function() {
-        $(item).conservationStatus()
-      })
-    });
-    $("#conservation_statuses a.add_fields").
-      data("association-insertion-method", 'before').
-      data("association-insertion-node", 'this');
-
     $('#taxon_photos').sortable({
       items: "> .taxon_photo",
       cursor: "move",
@@ -73,17 +57,40 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
         $('.field.complete_rank_field').hide( );
       }
     });
+
+    $( document ).on( "change", "#taxon_parent_id", function( ) {
+      var raw_old_ancestors = $( "#taxon-ancestor-id" ).val( )
+      var old_ancestors = raw_old_ancestors == null ? [] : raw_old_ancestors.split( "/" );
+      var old_parent = old_ancestors[old_ancestors.length - 1];
+      var new_parent = $( "#taxon_parent_id" ).val( );
+      if( $.isNumeric( new_parent ) && $.isNumeric( old_parent ) ){
+        $.ajax( {
+          type: "get",
+          dataType: "json",
+          url: "/taxa/" + new_parent,
+          success: function( s ) {
+            var ancestry_string = s.ancestry;
+            if( ancestry_string == null ){
+              var ancestry = [];
+            }else{
+              var ancestry = ancestry_string.split( "/" );
+            }
+            ancestry.push(new_parent)
+            if( ancestry.indexOf( old_parent ) == -1 ){
+              $( '.potential_clashes' ).show();
+              $( '#dialog' ).jqm( { ajax: 'clashes?context=taxon&new_parent_id=' + new_parent , trigger: 'a.potential_clashes_link' } );
+            }else{
+              $( '.potential_clashes' ).hide();
+            }
+          },
+          error: function( e ) {
+            $( '.potential_clashes' ).hide();
+          }
+        } );
+      }
+    } );
   });
 
-  $.fn.conservationStatus = function() {
-    this.each(function() {
-      $('.place_id_field input', this).chooser({
-        collectionUrl: '/places/autocomplete.json',
-        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
-      })
-    })
-  }
-  
   function handleTaxonClick(e, taxon) {
     $.fn.simpleTaxonSelector.selectTaxon($('.simpleTaxonSelector:first'), taxon);
     $('#taxonchooser').jqmHide();

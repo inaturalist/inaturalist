@@ -3,6 +3,7 @@
   = I18n.t :identify_title
 - content_for :extrajs do
   :javascript
+    var OFFICIAL_APP_IDS = #{ [OauthApplication.inaturalist_android_app&.id, OauthApplication.inaturalist_iphone_app&.id, OauthApplication.seek_app&.id].compact.to_json };
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
     if ( typeof( CURRENT_USER ) !== undefined ) {

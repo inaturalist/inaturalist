@@ -25,20 +25,20 @@ describe CheckList do
     cl = CheckList.make!( taxon: t )
     expect( cl.rules.detect{|r| r.operator == "in_taxon?"}.operand ).to eq( t )
     t2 = Taxon.make!
-    cl.update_attributes( taxon: t2 )
+    cl.update( taxon: t2 )
     cl.reload
     expect( cl.rules.detect{|r| r.operator == "in_taxon?"}.operand ).to eq( cl.taxon )
   end
 
   it "should remove the old is_taxon? rule if taxon_id changed" do
     r = @check_list.rules.first
-    @check_list.update_attributes( taxon: Taxon.make! )
+    @check_list.update( taxon: Taxon.make! )
     expect( ListRule.find_by_id( r.id ) ).to be_blank
   end
 
   it "should remove the old is_taxon? rule if the taxon_id was removed" do
     r = @check_list.rules.first
-    @check_list.update_attributes( taxon: nil )
+    @check_list.update( taxon: nil )
     expect( ListRule.find_by_id( r.id ) ).to be_blank
     @check_list.reload
     expect( @check_list.rules ).to be_blank
@@ -250,7 +250,7 @@ describe CheckList, "refresh_with_observation" do
     lt = other_place.listed_taxa.find_by_taxon_id( @taxon.id )
     expect( lt.last_observation_id ).to be( o.id )
     
-    o.update_attributes( latitude: @place.latitude, longitude: @place.longitude )
+    o.update( latitude: @place.latitude, longitude: @place.longitude )
     without_delay { CheckList.refresh_with_observation( o ) }
     lt = @check_list.listed_taxa.find_by_taxon_id( @taxon.id )
     expect( lt.last_observation_id ).to be( o.id )
@@ -271,7 +271,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt.first_observation_id ).not_to be( o.id )
     expect( lt.observations_count ).to be( 3 )
     
-    o.update_attributes( latitude: -1, longitude: -1 )
+    o.update( latitude: -1, longitude: -1 )
     without_delay do
       CheckList.refresh_with_observation(o, :latitude_was => @place.latitude, 
         :longitude_was => @place.longitude)
@@ -295,7 +295,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt.observations_count ).to eq 3
     
     o2 = Observation.find( o2.id )
-    o2.update_attributes( taxon: Taxon.make!, editing_user_id: o2.user_id )
+    o2.update( taxon: Taxon.make!, editing_user_id: o2.user_id )
     without_delay { CheckList.refresh_with_observation( o2, :taxon_id_was => @taxon.id ) }
     lt = @check_list.listed_taxa.find_by_taxon_id( @taxon.id )
     expect( lt ).not_to be_blank
@@ -308,7 +308,7 @@ describe CheckList, "refresh_with_observation" do
     o = make_research_grade_observation( latitude: p.latitude, longitude: p.longitude )
     CheckList.refresh_with_observation( o )
     expect( p.check_list.taxon_ids ).to include( o.taxon_id )
-    o.update_attributes( geoprivacy: Observation::OBSCURED )
+    o.update( geoprivacy: Observation::OBSCURED )
     CheckList.refresh_with_observation( o, :latitude_was => p.latitude, :longitude_was => p.longitude )
     p.reload
     expect( p.check_list.taxon_ids ).to include( o.taxon_id )

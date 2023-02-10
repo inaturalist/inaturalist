@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class Site < ApplicationRecord
+  include HasJournal
+
   has_many :observations, inverse_of: :site
   has_many :users, inverse_of: :site
   has_many :site_admins, inverse_of: :site
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_and_belongs_to_many :announcements
 
@@ -267,6 +268,7 @@ class Site < ApplicationRecord
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
+  preference :jobs_url, :string, default: "/pages/jobs"
   preference :twitter_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string
@@ -358,8 +360,9 @@ class Site < ApplicationRecord
       return cached
     end
 
-    site = Site.includes( :stored_preferences ).first
-    return unless site
+    unless site = Site.includes( :stored_preferences ).first
+      site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
+    end
 
     Rails.cache.fetch( "sites_default" ) do
       site
@@ -513,5 +516,40 @@ class Site < ApplicationRecord
       "export_site_data",
       "#{SiteDataExporter.basename_for_site( self )}.zip"
     ) )
+  end
+
+  def login_featured_observations
+    Rails.cache.fetch( "Site::#{id}::login_featured_observations", expires_in: 1.hour ) do
+      es_query = {
+        has: ["photos"],
+        per_page: 100,
+        order_by: "votes",
+        order: "desc",
+        place_id: try(:place_id).blank? ? nil : place_id,
+        projects: ["log-in-photos"]
+      }
+      observations = Observation.elastic_query( es_query ).to_a
+      if observations.blank?
+        es_query.delete(:projects)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      if observations.blank?
+        es_query.delete(:place_id)
+        observations = Observation.elastic_query( es_query ).to_a
+      end
+      Observation.preload_associations( observations, [:user, {
+        observations_places: :place,
+        observation_photos: {
+          photo: [:flags, :file_prefix, :file_extension]
+        },
+        taxon: :taxon_names,
+      }] )
+      if es_query[:projects].blank?
+        observations = observations.select do |o|
+          photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+        end
+      end
+      observations
+    end
   end
 end

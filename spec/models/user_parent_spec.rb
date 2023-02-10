@@ -24,6 +24,7 @@ describe UserParent do
           password_confirmation: "foofoo"
         )
       )
+      expect( up ).not_to be_donor
       Delayed::Worker.new.work_off
       expect( Devise.mailer.deliveries.size ).to eq deliveries
     end
@@ -45,7 +46,7 @@ describe UserParent do
     it "should allow the donorbox_donor_id to be set even if a non-parent user exists with the same email address" do
       up = UserParent.make!
       u = User.make!( email: up.email )
-      up.update_attributes( donorbox_donor_id: 1 )
+      up.update( donorbox_donor_id: 1 )
       expect( up ).to be_valid
     end
   end
@@ -59,7 +60,7 @@ describe UserParent do
     it "should deliver an email when set on update" do
       up = UserParent.make!
       deliveries = ActionMailer::Base.deliveries.size
-      up.update_attributes( donorbox_donor_id: 1 )
+      up.update( donorbox_donor_id: 1 )
       expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
     end
     it "should deliver an email when set on create" do

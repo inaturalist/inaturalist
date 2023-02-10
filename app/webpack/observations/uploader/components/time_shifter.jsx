@@ -1,10 +1,10 @@
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
-import moment from "moment-timezone";
+import moment from "moment";
 import _ from "lodash";
 
 import SelectionBasedComponent from "./selection_based_component";
-import { DATETIME_WITH_TIMEZONE, DATETIME_WITH_TIMEZONE_OFFSET } from "../models/util";
+import { parsableDatetimeFormat } from "../models/util";
 
 class TimeShifter extends SelectionBasedComponent {
   constructor( props, context ) {
@@ -32,11 +32,7 @@ class TimeShifter extends SelectionBasedComponent {
     let dateString = "";
 
     // using same datetime formats as date_time_field_wrapper.js
-    if ( card.time_zone ) {
-      dateString = newDate.tz( card.time_zone ).format( DATETIME_WITH_TIMEZONE );
-    } else {
-      dateString = moment.parseZone( newDate ).format( inputFormat );
-    }
+    dateString = newDate.format( inputFormat || parsableDatetimeFormat( ) );
 
     updateObsCard( card, {
       date: dateString,
@@ -69,7 +65,6 @@ class TimeShifter extends SelectionBasedComponent {
       if ( date === null ) { return; }
 
       const newDate = moment( new Date( date ) )
-        .tz( card.time_zone )
         .subtract( hours, "hours" )
         .subtract( minutes, "minutes" );
 
@@ -151,10 +146,6 @@ TimeShifter.propTypes = {
   ] ),
   selectedObsCards: PropTypes.object,
   updateObsCard: PropTypes.func
-};
-
-TimeShifter.defaultProps = {
-  inputFormat: DATETIME_WITH_TIMEZONE_OFFSET
 };
 
 export default TimeShifter;

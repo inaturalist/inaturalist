@@ -65,7 +65,7 @@ module DarwinCore
         if !native_page_url.blank?
           native_page_url
         else
-          FakeView.observation_url( observation )
+          FakeView.photo_url( self )
         end
       end
 

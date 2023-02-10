@@ -297,7 +297,7 @@ describe ListedTaxon do
       Delayed::Worker.new.work_off
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.taxon.introduced ).to be false
-      lt.update_attributes( establishment_means: ListedTaxon::INTRODUCED )
+      lt.update( establishment_means: ListedTaxon::INTRODUCED )
       Delayed::Worker.new.work_off
       es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( es_o.taxon.introduced ).to be true
@@ -439,59 +439,59 @@ describe ListedTaxon do
     let(:child_listed_taxon) { child.check_list.add_taxon(taxon) }
     it "should bubble up for native" do
       expect(parent_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE)
       parent_listed_taxon.reload
       expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
     end
 
     it "should bubble up for endemic" do
       expect(parent_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::ENDEMIC)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::ENDEMIC)
       parent_listed_taxon.reload
       expect(parent_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
     end
 
     it "should not trickle down for native" do
       expect(child_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to be_blank
     end
 
     it "should trickle down for introduced" do
       expect(child_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq(place_listed_taxon.establishment_means)
     end
 
     it "should not bubble up for introduced" do
       expect(parent_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
       parent_listed_taxon.reload
       expect(parent_listed_taxon.establishment_means).to be_blank
     end
 
     it "should not alter previous settings" do
-      parent_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      parent_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE)
       parent_listed_taxon.reload
       expect(parent_listed_taxon.establishment_means).to eq(ListedTaxon::INTRODUCED)
     end
 
     it "should not alter est means of other taxa" do
       new_parent_listed_taxon = parent.check_list.add_taxon(Taxon.make!)
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE)
       new_parent_listed_taxon.reload
       expect(new_parent_listed_taxon.establishment_means).to be_blank
     end
 
     it "trickle down should be forceable" do
       expect(child_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE)
       place_listed_taxon.trickle_down_establishment_means(:force => true)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
@@ -499,10 +499,10 @@ describe ListedTaxon do
 
     it "trickle down should be forceable based on force_trickle_down_establishment_means" do
       expect(child_listed_taxon.establishment_means).to be_blank
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::NATIVE, :force_trickle_down_establishment_means => true)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::NATIVE, :force_trickle_down_establishment_means => true)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq ListedTaxon::NATIVE
     end
@@ -511,7 +511,7 @@ describe ListedTaxon do
       sibling_place = make_place_with_geom(:parent => parent)
       sibling_lt = sibling_place.check_list.add_taxon(taxon, :establishment_means => ListedTaxon::NATIVE)
       expect(sibling_lt.establishment_means).to eq ListedTaxon::NATIVE
-      place_listed_taxon.update_attributes(:establishment_means => ListedTaxon::INTRODUCED)
+      place_listed_taxon.update(:establishment_means => ListedTaxon::INTRODUCED)
       place_listed_taxon.trickle_down_establishment_means(:force => true)
       child_listed_taxon.reload
       expect(child_listed_taxon.establishment_means).to eq ListedTaxon::INTRODUCED
@@ -535,7 +535,7 @@ describe ListedTaxon do
     it "should not be queued if there's an existing job" do
       lt = ListedTaxon.make!(:list => @check_list)
       expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
-      lt.update_attributes(:establishment_means => ListedTaxon::NATIVE)
+      lt.update(:establishment_means => ListedTaxon::NATIVE)
       expect(Delayed::Job.where("handler LIKE '%ListedTaxon%update_cache_columns_for%\n- #{lt.id}\n'").count).to eq(1)
     end
   end
@@ -550,14 +550,26 @@ describe ListedTaxon do
     end
     it "should be queued" do
       lt = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").exists?).to be true
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
     end
 
     it "should not be queued if existing job" do
       lt = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
       lt2 = ListedTaxon.make!(:list => @check_list)
-      expect(Delayed::Job.where("handler LIKE '%CheckList\n%id: ''#{@check_list.id}''\n%sync_with_parent%'").count).to eq(1)
+      expect(
+        Delayed::Job.all.map( &:handler_yaml ).select do |j|
+          j.object.is_a?( CheckList ) && j.object.id == @check_list.id && j.method_name == :sync_with_parent
+        end.length
+      ).to eq( 1 )
     end
   end
 
@@ -573,7 +585,7 @@ describe ListedTaxon do
     end
 
     it "should not be a primary listing" do
-      @listed_taxon.update_attributes(:primary_listing => true)
+      @listed_taxon.update(:primary_listing => true)
       expect(@listed_taxon).not_to be_primary_listing
     end
   end

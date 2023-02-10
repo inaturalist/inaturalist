@@ -8,7 +8,7 @@ on:
 
 jobs:
   pre_build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: fkirc/skip-duplicate-actions@master
         with:
@@ -17,13 +17,13 @@ jobs:
 
   build:
     needs: pre_build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     services:
       postgres:
         image: postgis/postgis:12-2.5
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: inaturalist
+          POSTGRES_PASSWORD: inaturalist
           POSTGRES_DB: inaturalist_test
         ports:
           - 5432:5432
@@ -47,9 +47,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Use Ruby
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.6
+        ruby-version: '3.0'
+        bundler-cache: false
 
     - name: Configure sysctl limits
       run: |
@@ -61,7 +62,7 @@ jobs:
     - name: Runs Elasticsearch
       uses: miyataka/elastic-github-actions/elasticsearch@feature/plugin_support
       with:
-        stack-version: 7.6.0
+        stack-version: 7.17.1
         plugins: analysis-kuromoji
 
     - name: Ensure elasticsearch is reachable
@@ -69,6 +70,7 @@ jobs:
         curl --verbose --show-error http://localhost:9200
 
     - run: npm install
+    - run: npm run webpack
 
     - name: Install dependencies
       run: |
@@ -103,7 +105,7 @@ jobs:
     name: Notify Slack
     needs: build
     if: ${{ success() || failure() }}
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: iRoachie/slack-github-actions@v2.0.1
         if: env.SLACK_WEBHOOK_URL != null

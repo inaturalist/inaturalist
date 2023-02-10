@@ -12,7 +12,7 @@ class ControlledTermLabelsController < ApplicationController
 
   def update
     label = ControlledTermLabel.find(params[:id])
-    label.update_attributes(params[:controlled_term_label])
+    label.update(params[:controlled_term_label])
     redirect_to label.controlled_term ?
       edit_controlled_term_path(label.controlled_term) : :controlled_terms
   end

@@ -30,7 +30,14 @@ class Assessment extends React.Component {
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const { open } = this.state;
-    const InnerWrapper = innerWrapper || <div />;
+    const InnerWrapper = innerWrapper || ( props => (
+      <div>
+        {
+          // eslint-disable-next-line react/prop-types
+          props.children
+        }
+      </div>
+    ) );
     return (
       <Grid>
         <div className="QualityMetrics collapsible-section">
@@ -66,7 +73,7 @@ class Assessment extends React.Component {
                   <div
                     className="contents"
                     dangerouslySetInnerHTML={{
-                      __html: I18n.t( "views.observations.show.quality_assessment_help_html", {
+                      __html: I18n.t( "views.observations.show.quality_assessment_help2_html", {
                         site_name: SITE.short_name
                       } )
                     }}
@@ -102,7 +109,7 @@ class Assessment extends React.Component {
 
 Assessment.propTypes = {
   config: PropTypes.object,
-  innerWrapper: PropTypes.element,
+  innerWrapper: PropTypes.func,
   observation: PropTypes.object,
   updateSession: PropTypes.func
 };

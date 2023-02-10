@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe ProjectsController, "spam" do
   let(:spammer_content) {
     p = Project.make!
-    p.user.update_attributes(spammer: true)
+    p.user.update(spammer: true)
     p
   }
   let(:flagged_content) {
@@ -85,7 +85,7 @@ describe ProjectsController, "search" do
 
   describe "for site with a place" do
     let(:place) { make_place_with_geom }
-    before { Site.default.update_attributes(place_id: place.id) }
+    before { Site.default.update(place_id: place.id) }
 
     it "should filter by place" do
       with_place = Project.make!(place: place)
@@ -153,7 +153,7 @@ describe ProjectsController, "update" do
     expect( project.title ).to eq "the new title"
   end
   it "allows bioblitz project to turn on aggregation" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update(place: make_place_with_geom)
     expect( project ).to be_aggregation_allowed
     expect( project ).not_to be_prefers_aggregation
     put :update, params: { id: project.id, project: { prefers_aggregation: true } }
@@ -168,7 +168,7 @@ describe ProjectsController, "update" do
     expect( project ).to be_prefers_aggregation
   end
   it "should not allow a non-curator to turn on observation aggregation" do
-    project.update_attributes(place: make_place_with_geom)
+    project.update(place: make_place_with_geom)
     expect( project ).to be_aggregation_allowed
     expect( project ).not_to be_prefers_aggregation
     put :update, params: { id: project.id, project: { prefers_aggregation: true } }
@@ -176,7 +176,7 @@ describe ProjectsController, "update" do
     expect( project ).not_to be_prefers_aggregation
   end
   it "should not allow a non-curator to turn off observation aggregation" do
-    project.update_attributes(place: make_place_with_geom, prefers_aggregation: true)
+    project.update(place: make_place_with_geom, prefers_aggregation: true)
     expect( project ).to be_aggregation_allowed
     expect( project ).to be_prefers_aggregation
     put :update, params: { id: project.id, project: {prefers_aggregation: false} }

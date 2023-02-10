@@ -3,7 +3,6 @@
 
 <%- end -%>
 <%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "leaflet.fullscreen/Control.FullScreen.css" %>
   <style type="text/css" media="screen">
     #places {
       min-height: 100px;
@@ -100,10 +99,7 @@
       <p class="ui"><%=t :places_warning_new_places_are_slow_html %></p>
       <ul>
         <li>
-          <p class="ui"><%=t :places_warning_quota %></p>
-        </li>
-        <li>
-          <p class="ui"><%=t :places_warning_look_for_existing_html %></p>
+          <p class="ui"><%=t :places_warning_look_for_existing2_html %></p>
         </li>
         <li>
           <p class="ui"><%=t :places_warning_projects_can_have_multiple_places %></p>
@@ -112,17 +108,24 @@
           <p class="ui"><%=t :places_warning_export_complex_boundary_html %></p>
         </li>
       </ul>
+      <p class="ui">
+        <%=t :places_warning_please_keep_in_mind %>
+      </p>
+      <ul>
+        <li>
+          <p class="ui"><%=t :places_warning_quota %></p>
+        </li>
+      </ul>
       <p class="ui"><%=t :places_warning_the_future %></p>
     </div>
   </div>
   <div class="last column span-24">
-    <h3><%= t(:give_it_some_detail) %></h3>
     <%= form_for @place, :builder => DefaultFormBuilder, :html => {:multipart => true} do |f| %>
       <%= f.text_field :name, :class => 'text', :required => true %>
-      <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px", label: t(:parent_) %>
+      <%= f.text_field :parent_id, :placeholder => t(:type_place_name), :style => "width: 300px", label: t(:parent) %>
       <%= f.hidden_field :latitude %>
       <%= f.hidden_field :longitude %>
-      <%= f.form_field :kml, :label => t(:kml), required: true, :description => t('views.places.kml_field_desc') do %>
+      <%= f.form_field :kml, :label => t(:kml), required: true, :description => t('views.places.kml_field_desc2') do %>
         <%= file_field_tag :file, :accept => "application/vnd.google-earth.kml+xml" %>
       <% end -%>
       <%= f.select :place_type, Place::PLACE_TYPE_CODES.map{|type, code| [t("place_geo.geo_planet_place_types.#{type.gsub(" ", "_")}"), code]}.sort,

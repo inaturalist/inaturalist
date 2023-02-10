@@ -9,9 +9,9 @@ class User < ApplicationRecord
       indexes :activity_count, type: "integer"
       indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
-      indexes :id, type: "integer"
-      # This will require rebuilding the index ~~kueda 2030-03-24
-      # indexes :uuid, type: "keyword"
+      indexes :id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :identifications_count, type: "integer"
       indexes :journal_posts_count, type: "integer"
       indexes :login, analyzer: "ascii_snowball_analyzer"
@@ -25,10 +25,13 @@ class User < ApplicationRecord
       indexes :species_count, type: "integer"
       indexes :orcid, type: "keyword"
       indexes :roles, type: "keyword"
-      indexes :site_id, type: "short"
+      indexes :site_id, type: "short" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :spam, type: "boolean"
       indexes :suspended, type: "boolean"
       indexes :universal_search_rank, type: "integer"
+      indexes :uuid, type: "keyword"
     end
   end
 

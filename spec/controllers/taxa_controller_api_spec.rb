@@ -62,7 +62,7 @@ shared_examples_for "a TaxaController without authentication" do
       without_delay do
         p.check_list.add_taxon( taxon_in_place )
       end
-      Site.default.update_attributes( place_id: p.id )
+      Site.default.update( place_id: p.id )
       get :search, format: :json, params: { q: "disco" }
       json = JSON.parse( response.body )
       expect( json.detect {| t | t["id"] == taxon_not_in_place.id } ).to be_blank
@@ -73,7 +73,7 @@ shared_examples_for "a TaxaController without authentication" do
       taxon_not_in_place = Taxon.make!( name: "nonsense" )
       taxon2_not_in_place = Taxon.make!( name: "nonsense" )
       p = make_place_with_geom
-      Site.default.update_attributes( place_id: p.id )
+      Site.default.update( place_id: p.id )
       get :search, format: :json, params: { q: "nonsense" }
       json = JSON.parse( response.body )
       expect( json.detect {| t | t["id"] == taxon_not_in_place.id } ).not_to be_blank
@@ -235,7 +235,7 @@ shared_examples_for "a TaxaController with authentication" do
       TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
       tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
       ptn = PlaceTaxonName.make!( taxon_name: tn_place )
-      user.update_attributes( place_id: ptn.place_id )
+      user.update( place_id: ptn.place_id )
       get :show, format: :json, params: { id: t.id }
       json = JSON.parse( response.body )
       expect( json["common_name"]["name"] ).to eq tn_place.name

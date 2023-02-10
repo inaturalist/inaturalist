@@ -198,11 +198,11 @@ class TaxonChange < ApplicationRecord
       return
     end
     unless is_a?( TaxonSplit ) && is_branching?
-      input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+      input_taxa.each {|t| t.update!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     end
     output_taxa.each do |t|
       next if is_a?( TaxonSplit ) && t.id == input_taxon.id && input_taxon.is_active
-      t.update_attributes!(
+      t.update!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
         skip_taxon_framework_checks: true
@@ -253,7 +253,7 @@ class TaxonChange < ApplicationRecord
         end
         Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, records: auto_updatable_records )
+          update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
         end
         if !batch_users_to_notify.empty?
           action_attrs = {
@@ -290,7 +290,7 @@ class TaxonChange < ApplicationRecord
     #   loop do
     #     results = Identification.elastic_paginate(
     #       filters: [
-    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { terms: { "taxon.ancestor_ids.keyword" => input_taxon_ids } },
     #         { term: { current: true } }
     #       ],
     #       page: page,
@@ -338,7 +338,7 @@ class TaxonChange < ApplicationRecord
     end
     proc = Proc.new do |record|
       if taxon = options[:taxon] || output_taxon_for_record( record )
-        record.update_attributes( taxon: taxon )
+        record.update( taxon: taxon )
       end
       yield(record) if block_given?
     end
@@ -388,12 +388,12 @@ class TaxonChange < ApplicationRecord
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
     input_taxa.each do |input_taxon|
-      input_taxon.update_attributes( is_active: true ) unless debug
+      input_taxon.update( is_active: true ) unless debug
     end
     if options[:deactivate_output_taxa]
       output_taxa.each do |output_taxon|
         unless input_taxa.include? output_taxon
-          output_taxon.update_attributes( is_active: false ) unless debug
+          output_taxon.update( is_active: false ) unless debug
         end
       end
     end
@@ -405,10 +405,20 @@ class TaxonChange < ApplicationRecord
     output_taxa.size == 1
   end
 
+  def taxon_change_commit_records_unique_hash
+    { "TaxonSwap::commit_records": id }
+  end
+
   def commit_records_later
     return true unless saved_change_to_committed_on? && committed?
-    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
+    delay( priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: taxon_change_commit_records_unique_hash ).
+      commit_records
     true
+  end
+
+  def commit_records_job
+    Delayed::Job.where( unique_hash: taxon_change_commit_records_unique_hash.to_s ).first
   end
 
   def editable_by?(u)
@@ -466,7 +476,7 @@ class TaxonChange < ApplicationRecord
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
           source: source,
-          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}",
+          description: "Automatically generated change from #{UrlHelper.taxon_change_url( self )}",
           move_children: true
         )
         tc.add_input_taxon( child )
@@ -487,7 +497,7 @@ class TaxonChange < ApplicationRecord
             skip_locks: true
           )
           output_child.save!
-          output_child.update_attributes( parent: output_taxon, skip_locks: true )
+          output_child.update( parent: output_taxon, skip_locks: true )
         end
         tc.add_output_taxon( output_child )
         tc.save!

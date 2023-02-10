@@ -37,6 +37,9 @@ Layout/SpaceAroundBlockParameters:
 Layout/SpaceInsideParens:
   EnforcedStyle: space
 
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: false
+
 Metrics/AbcSize:
   Enabled: false
 
@@ -59,6 +62,9 @@ Metrics/PerceivedComplexity:
   Enabled: false
 
 Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/VariableNumber:
   Enabled: false
 
 Style/Documentation:

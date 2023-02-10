@@ -233,7 +233,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       end
     end
     
-    if @taxon_framework_relationship.update_attributes( local_params )
+    if @taxon_framework_relationship.update( local_params )
       if taxa_attributes
         taxa_attributes.values.each do |row|
           if taxon = Taxon.where( id: row["id"] ).first

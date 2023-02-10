@@ -8,7 +8,6 @@ sk:
   a_flag_for_x: "značka pre %{x}"
   a_member_of_taxon_html: "člen %{taxon}"
   about: O projekte
-  about_blocking: O blokovaní
   about_charts: O grafoch
   about_community_taxa: O komunitných taxónoch
   about_complete_taxa: O kompletných taxónoch
@@ -19,12 +18,9 @@ sk:
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
   about_establishment_means: O spôsobu vzniku
   about_licenses: O licenciách
-  about_muting: O ztlmení
   #Header for a section describing taxon names
   about_names: O názvoch
   about_places: O miestach
-  about_the_cc_licenses: O licenciách Creative Commons
-  about_these_licenses: O týchto licenciách
   about_this_bioblitz: O tomto bioblitze.
   about_this_map: O tejto mape
   about_this_project: O tomto projekte
@@ -40,12 +36,12 @@ sk:
   accuracy_meters: Presnosť (v metroch)
   accuracy_of_the_coordinates: |
     Presnosť súradníc v metroch. Môžete editovať kliknutím na odkaz "editovať" vyššie alebo kliknutím na označenie mapy a pretiahnutím. Pokúste sa vytvoriť dostatočne veľký kruh, aby ste si boli istí, že ste boli vnútri.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Akcia
   actions: Akcie
   active: Aktívny
   active_users: Aktívni užívatelia
   activity: Aktivita
-  activity_settings: Nastavenia aktivity
   adapted_by_name_from_a_work_by_original: "Upravil/a %{name}, prevzaté z práce %{original}"
   add: Vložiť
   add_a_batch_of_observations: Vložiť súbor pozorovaní
@@ -103,7 +99,6 @@ sk:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: Pridať teraz
-  add_photos: Vložiť fotky
   add_place: Pridať miesto
   add_plant_phenology_budding_annotation: 'Pridať anotáciu „Fenológia rastliny: pučenie“'
   add_plant_phenology_flowering_annotation: 'Pridať anotáciu „Fenológia rastliny: kvitnutie“'
@@ -219,8 +214,6 @@ sk:
   all_taxa_in_this_guide: Všetky taxóny v tomto sprievodcovi
   all_taxonomic_groups: "&laquo; Všetky taxonomické skupiny"
   all_updates: Všetky aktualizácie
-  all_your_observations_will_default_this_time_zone: Všetky vaše pozorovania budú mať toto časové pásmo, ak nezadáte iné.
-  all_your_observations_will_default_to_this_time_zone: Všetky vaše pozorovania budú mať toto časové pásmo, ak nezadáte iné.
   allow_curator_access: Povoliť prístup kurátorovi
   allow_project_curators_to_view_your_private_coordinates: Povoliť kurátorom projektu náhľad vašich súkromných súradníc
   allowed_establish_means_values: Povolené hodnoty spôsobu vzniku
@@ -232,7 +225,6 @@ sk:
   alphabetical_order: Abecedné poradie
   already_have_an_account_log_in_html: Už máte účet? <strong>Prihláste sa.</strong>
   amphibians: obojživelníci
-  and: a
   and_other_taxa: "&amp; Ďalšie taxóny"
   android: Android
   animals: Zvieratá
@@ -359,20 +351,17 @@ sk:
   batch_edit_taxa_for_x_html: "Hromadná editácia taxónov pre %{x}"
   batch_operations: Hromadné operácie
   be_the_first_to_fave_this_observation: Buďte prvý, komu sa toto pozorovanie páči!
-  because_of: pretože
   before_importing_photos: pred importovaním fotiek
   bg_color: Farba pozadia
   birds: vtáky
   birthday: Narodeniny
   black: čierna
-  block_user: Zablokovať používateľa
   block_removed: Zablokovanie zrušené
   blocked_users: Blokovaní používatelia
   blog_widget: Zásuvný modul pre blog
   blue: modrá
   blue_butterfly_etc: "modrý, motýľ atď."
   body: Telo
-  bounding_box: Ohraničenie
   breadcrumbs: Strúhanka
   #This is a description of the "head" property of Custom Project Fields, i.e.
   #the customizable content that will replace top section of the project detail
@@ -390,7 +379,6 @@ sk:
   browse_species_that_occur_near_this_observation: Prehliadať druhy, ktoré sa vyskytují v blízkosti tohto pozorovania.
   built_with_site_guides_html: "Vytvorené s <a href='%{url}'>%{site_name} sprievodcami</a>"
   bulk_import_of_filename_is_complete: "Hromadný import %{filename} bol dokončený"
-  by: od
   by_everyone: Všetkými
   by_user: "užívateľ %{user}"
   by_you: Vami
@@ -477,7 +465,6 @@ sk:
   check_list_for_individual_taxa_that: 'V zoznamoch hľadajte jednotlivé taxóny, ktoré tu žijú, napr. "Vtáky v %{place}".'
   check_lists_must_belong_to_a_place: |
     Zoznamy musia byť spojené s miestom. Ak chcete vytvoriť nový zoznam, choďte do základného zoznamu daného miesta a kliknite na odkaz "Vytvoriť nový zoznam".
-  check_list_of_species_occuring_in: Zoznam druhov vyskytujúcich sa v
   check_list_place: "Zoznam pre %{place}"
   check_list_updated: Zoznam bol aktualizovaný!
   check_lists_for: "Ďalšie zoznamy pre %{place}"
@@ -511,6 +498,7 @@ sk:
   columns: Stĺpce
   combine: Spojiť
   comma_separated_please: Oddeľte čiarkami, prosím
+  #Noun, used to label a comment or a comment field in a form
   comment: komentár
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: Komentár
@@ -556,8 +544,6 @@ sk:
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
   connect_to_provider: "Pripojiť sa k %{provider}"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: Pripojené účty
   connecting_flickr: "Pripájanie k Flickr..."
   connecting_to_facebook: "Pripájanie k Facebooku..."
   conservation_status: Stav ochrany
@@ -641,7 +627,6 @@ sk:
   created_by: Vytvorené
   created_by_user_on_date: Vytvorené užívateľom %{user} dňa %{date}
   created_on: Vytvorená dňa
-  creating_your_account: "Vytváram váš účet..."
   creative_commons_flickr_tagged: Označené fotky Creative Commons na Flickr
   creative_commons_unless_otherwise_noted: "Creative Commons, ak nie je uvedené inak."
   critically_endangered: kriticky ohrozený
@@ -777,7 +762,6 @@ sk:
   doh_something_went_wrong_error: "Och, niečo sa pokazilo: %{error}"
   done: Hotovo
   dont_have_an_account_sign_up_html: Nemáte účet? <strong>Zaregistrujte sa.</strong>
-  dont_send_me_email: "Neposielejte mi žiadne e-maily."
   dont_use_double_quotes: Nikde inde nepoužívajte dvojité úvodzovky
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -852,7 +836,6 @@ sk:
   email: Email
   email_address_for_comments_and_other_feedback: E-mailové adresy pre komentáre a inú spätnú väzbu.
   email_copyright: "Autorské práva &copy; %{x}, všetky práva vyhradené"
-  email_settings: Nastavenia emailu
   embed: 'Vložiť'
   embed_place_widget: Vložiť widget miesta
   embed_this_assessment: Vložiť toto hodnotenie
@@ -882,7 +865,6 @@ sk:
   event_stats: Štatistiky udalosti
   event_url: URL udalosti
   events_only: Iba udalosti
-  every_species_seen_by: Každý druh videný
   everyone: každý
   everyone_: Každý
   everyone_journal_posts: Príspevky všetkých do deníku
@@ -974,7 +956,6 @@ sk:
   flag_saved_thanks_html: Značka uložená. Vďaka! <a href="%{url}" class="readmore">Pozri značku</a>
   flag_this_observation: Označiť toto pozorovanie
   flag_this_photo: Označ túto fotku
-  flagged: označené
   flagged_: Označené
   flagged_for_curation: Označené pre správu
   flagged_taxon: Označený taxón
@@ -1110,10 +1091,13 @@ sk:
   identify_title: "Identifikovať"
   identification: identifikáciu
   identification_by_user: Identifikácia užívateľa %{user}
+  #Notification when an identification has been deleted
   identification_deleted: Identifikácia zmazaná.
   identification_saved: "Identifikácia uložená!"
+  #Notification when an identification has been updated
   identification_updated: Identifikácia aktualizovaná!
   identification_user_short: Ident. užívateľa
+  #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikácia odstránená.
   identifications: Identifikácie
   computer_vision_suggestion: Návrh počítačového videnia
@@ -1295,9 +1279,6 @@ sk:
   life_list: "Zoznam života užívateľa %{user}"
   linear_scale_label: Lineárny
   link: Odkaz
-  link_or_unlink_your_facebook_account: Pripojiť alebo zrušiť pripojenie vášho facebookového účtu
-  link_or_unlink_your_flickr_account: Pripojiť alebo zrušiť pripojenie vášho účtu na Flickr
-  link_or_unlink_your_google_account: Prihlásiť alebo zrušiť pripojenie účtu na Google
   link_your_facebook_account: Pripojiť váš účet na Facebooku
   link_your_flickr_account: Pripojiť účet Flickr
   link_your_google_account: Pripojiť účet Google
@@ -1340,7 +1321,6 @@ sk:
   loading_tags: "Nahrávanie tagov..."
   loading_taxa_from_your: "Nahrávanie taxónov z vašich pozorovaní..."
   loading_wikipedia_description: "Nahrávam opisu z Wikipédie..."
-  locale_description: Umiestnenie nastavuje predvoľby jazyka a formátovanie dátumu.
   locales_: Národné prostredie
   locales:
     ar: Arabčina
@@ -1388,7 +1368,6 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
-  login_slash_username: Prihlásenie / užívateľské meno
   logo:
     white_bg_gif: GIF s bielym pozadím
     transparent_png: transparentný PNG
@@ -1434,7 +1413,6 @@ sk:
       every_publicly_visible_observation: Každé verejne viditeľné pozorovanie vytvorené v sieti iNaturalist
       featured_observations: Odporúčané pozorovania
       gbif_network: GBIF sieť
-      gbif_network_description: Záznamy z múzeí a iných poskytovateľov výskytu, ktoré distribuuje Global Biodiversity Informatics Facility
       observations: Pozorovania
       place_boundary: Umiestniť hranicu
       checklist_places: Zoznam miest
@@ -1519,7 +1497,6 @@ sk:
   must_be_less_than_x_MB: "Musí byť menej ako %{x} MB"
   must_have_observation_field: "pole pozorovania '%{operand}' musí byť vyplnené"
   must_have_x: "musí mať %{x}"
-  mute_user: Stlmiť užívateľa
   mute_removed: Stlmenie zrušené
   muted_users: Stlmení používatelia
   n_ago: "pred %{n}"
@@ -1681,7 +1658,6 @@ sk:
   notes: Poznámky
   note_you_can_modify_the_height_attribute: "Poznámka: Môžete upraviť vlastnosť „výška“, aby sa vošla do určeného priestoru na vašej webovej stránke."
   notify_me_of_mentions: Informovať ma o zmienkach (napr. @užívateľské meno)
-  notify_me_about_redundant_identifications: Informovať ma o potvrdení identifikácií
   number_of_observations: Počet pozorovaní
   number_of_observers_value: "Počet pozorovateľov: %{number}"
   number_of_observers: "Počet pozorovateľov"
@@ -1793,7 +1769,6 @@ sk:
   only_an_admin_can_remove_project_users: Užívateľa projektu môže odobrať iba admin
   only_curators_can_add_edit_scientific_names: Vedecké názvy môžu pridávať/editovať iba kurátori.
   only_curators_can_access_that_page: K tejto stránke majú prístup iba kurátori.
-  only_letters_numbers: "Iba písmena a číslice, bez medzier, musí začínať písmenom"
   only_one_coordinate_system_per_file: |
     Pre jeden súbor možno použiť iba jeden systém súradníc, inak môže dôjsť k nesprávnej konverzii alebo zobrazeniu.
   only_project_curators_can_do_that: Tento krok môžu vykonať len kurátori projektu.
@@ -1878,7 +1853,6 @@ sk:
   photo_credits: Foto kredity
   photo_deleted: Fotka zmazaná
   photo_destroyed_because_it_was_deleted_from: "Fotka bola zničená, pretože bola zmazána z externej stránky alebo %{site_name} už nemá povolenie na jej zobrazenie"
-  photo_hosting_accounts: Účty s uloženými fotkami
   photo_licensing: Licencia k fotke
   photo_type: Typ fotky
   photo_urls_repaired: URL fotky opravené
@@ -2228,7 +2202,7 @@ sk:
   places_merged_successfully: Miesta boli úspešne zlúčené!
   plants: rastliny
   please_add_a_citation_for_this_change: Pridajte prosím citáciu pre túto zmenu.
-  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami #Title to a section warning a user to exercise caution
+  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa zmeny z tohto pozorovania synchronizujú s externými stránkami #Request that a known child ask their parents for permission to use this service
   please_complete_the_following_to_add_project: |
     Ak chcete pridať toto pozorovanie k projektu, vyplňte prosím nasledujúce:
   please_confirm_your_inat_username: "Potvrďte prosím svoje používateľské meno pre %{site_name}"
@@ -2301,8 +2275,8 @@ sk:
   project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
   project_x_was_delete: "%{project} bol zmazaný (počkajte prosím pár minút, než bude odstránený z webovej stránky)"
   projects: Projekty
+  #@vow_or_con should work on %{place}
   projects_from_place: "Projekty z %{place}"
-  projects_in_x: "Projekty v %{x}"
   projects_you_admin: Projekty, ktoré spravujete
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia od ID komunity
   protozoans: prvoky
@@ -2369,7 +2343,6 @@ sk:
   reason: Dôvod
   reason_you_are_flagging_this_item: Dôvod, prečo označujete túto položku.
   recaptcha_verification_failed: overenie reCaptcha sa nepodarilo
-  receive_email_notifications_when_people_leave_you: Dostávať emailové oznámenia o
   receive_updates_from_this_project: Prijímať aktualizácie z tohto projektu.
   recent: Nedávne
   recent_evidence_of_organism: Nedávne dôkazy o organizme
@@ -2447,7 +2420,6 @@ sk:
   required: povinné
   required_: Povinné
   required_field: Povinné pole
-  required_columns_in_order: Povinné stĺpce v poradí
   research: výskum
   research_: Výskum
   research_grade: Výskumný stupeň
@@ -2525,6 +2497,11 @@ sk:
   search_your_photos: Prehľadať vaše fotky
   searching: "Hľadám..."
   seasonality: Sezónnosť
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
   second_person_possessive_singular: "Vaše %{noun}"
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to vedieť kurátorom.
   seen_nearby: Videné blízko
@@ -2532,11 +2509,12 @@ sk:
   select: Vybrať
   select_all: Vybrať všetko
   select_at_least_one: Vybrať aspoň jeden
-  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Nevybrať žiadny
   select_observations_to_edit: Vyberte pozorovanie na úpravu...
   select_one_of_friends_albums: Vyberte jeden z albumov užívateľa %{friend}
   select_one_of_your_albums: Vyberte jeden z vašich albumov
+  select_one_or_more_photos: 'Vybrať jednu alebo viac fotiek'
   select_options: Vybrať možnosti
   selected: vybrané
   selected_photos: Vybrané fotky
@@ -2555,7 +2533,6 @@ sk:
   share_colon: "Zdieľať:"
   show: Zobraziť
   show_active_and_inactive_taxa: Zobraziť aktívne a neaktívne taxóny
-  show_common_names: Zobraziť bežné mená
   show_hidden_content: Zobraziť skrytý obsah
   show_keyboard_shortcuts: Zobraziť klávesové skratky
   show_less: Zobraziť menej
@@ -2565,7 +2542,6 @@ sk:
   show_relative_proportions_of_all_observations: Zobraziť príbuzné časti všetkých pozorovaní
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobraziť doteraz celkom
-  show_scientific_name_first: Zobraziť najprv vedecké mená
   show_taxa_from_both: (zobraziť taxóny z obidvoch zoznamov)
   show_taxa_from_everywhere: "Zobraziť taxóny zo všetkých miest"
   show_taxa_from_place: "Zobraziť taxóny z %{place}"
@@ -2791,7 +2767,6 @@ sk:
   taxonomy_details_info: 'Stránka Taxonomy Details (Podrobnosti o taxonómii) používa rámce taxónu, ktoré pomáhajú opísať, čo máme na mysli pod pojmom taxón. <a href="/pages/taxon_frameworks"> Ďalšie informácie </a>.'
   taxonomy_settings: Nastavenie Taxonómie
   teachers_guide: Príručka pre učiteľa
-  tell_everyone_a_little_about_you: Povedzte ostatným niečo málo o sebe
   tell_the_world_a_little_about_yourself: Povedzte nám niečo o sobe
   tell_us_why: Povedzte nám prečo...
   terms: Podmienky
@@ -2897,13 +2872,11 @@ sk:
   user_added_an_x_to_noun_html: "Používateľ %{user} pridal %{x} k %{noun}"
   user_added_x_observations_html: "Užívateľ %{user} pridal %{x} pozorovaní"
   user_commented: "%{user} komentoval"
-  user_commented_on: "Užívateľ %{user} komentoval váš %{title} %{time}"
   user_disagrees_this_is_taxon: "Užívateľ %{user} nesúhlasí s tým, že toto je %{taxon}"
   user_flagged_as_a_spammer_html: "%{user} označený ako spamer"
   user_invite_observation_to_project: 'Užívateľ %{user} by rád pripojil vaše pozorovanie „%{observation}“ k projektu %{project}.'
   user_invited_you_to_join_project: "Užívateľ %{user} vás pozval, aby ste sa pripojili k projektu %{project}"
   user_suggested_an_id: "%{user} navrhol ID"
-  user_thinks_yours_is: "%{user} %{noun} vaše pozorovanie %{observation} je"
   username: Používateľské meno
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
@@ -2940,13 +2913,11 @@ sk:
   view_taxon_changes: Zobraziť zmeny taxónu
   view_taxon_page: Zobraziť stránku taxónu
   view_taxon_page_for_this_x: "Zobraziť stránku taxónu pre tento %{x}"
-  view_the_observation: Zobraziť pozorovania
   view_x: "Zobraziť %{x}"
   view_your_dashboard: Zobraziť vašu nástenku
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobraziť vašu nástenku</a> a aktualizácie"
   view_your_inbox: Zobraziť vaše prijaté správy
   view_your_observations: Zobraziť vaše pozorovania.
-  view_your_year_stats: "Zobraziť vašu štatistiku za rok %{year}"
   view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: "Zobraziť všetky vaše pozorovania z %{x}"
   we_had_a_problem_flagging_that_item: "Máme problém s označením tejto položky:%{flag_error}"
@@ -2992,7 +2963,7 @@ sk:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Viac o %{application}
     observations:
@@ -3036,12 +3007,6 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
-    users:
-      edit:
-        common_names_desc: |
-          Zobraziť bežné mená. Zakážete, ak chcete zobraziť len vedecké názvy.
-          Upozorňujeme, že môžete zmeniť, ktoré bežné názvy sa zobrazujú zmenou
-          lokálneho nastavenia a nastavenia miesta.
     welcome:
       index:
         connect_with_nature: Spojte sa s prírodou

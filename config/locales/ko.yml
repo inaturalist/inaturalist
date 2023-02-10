@@ -75,7 +75,6 @@ ko:
   a_flag_for_x: "%{x}을 위한 플래그"
   a_member_of_taxon_html: "%{taxon}에 속함"
   about: 소개
-  about_blocking: 차단에 대하여
   about_charts: 차트에 대하여
   about_community_taxa: 공동체 분류군에 대하여
   about_complete_taxa: 완전한 분류군에 대하여
@@ -89,8 +88,6 @@ ko:
   #Header for a section describing taxon names
   about_names: 이름에 대하여
   about_places: 장소에 대하여
-  about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대하여
-  about_these_licenses: 이 라이선스들에 대하여
   about_this_bioblitz: 이 바이오블리츠에 대하여
   about_this_map: 이 지도에 대하여
   about_this_project: 이 프로젝트에 대하여
@@ -110,7 +107,6 @@ ko:
   active: 활성
   active_users: 활동적인 사용자
   activity: 활동
-  activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: "%{original}의 연구를 바탕으로 %{name}님이 적용함"
   add: 추가
   add_a_batch_of_observations: 관찰을 여러 개 추가하기
@@ -118,6 +114,8 @@ ko:
   add_a_comment: 댓글 추가
   add_a_field: 필드 추가
   add_a_flag: 플래그 달기
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: 링크 추가
   add_a_name: 이름 추가하기
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   add_a_single_observation: 관찰 하나를 추가합니다.
@@ -160,7 +158,6 @@ ko:
   add_observations_project: 이 프로젝트에 관찰 추가하기
   #Prompt to add a new journal post
   add_one: 하나 추가하기!
-  add_photos: 사진 추가하기
   add_place: 장소 추가하기
   add_alive_or_dead_alive_annotation: '생존 여부: 살아있음'
   add_alive_or_dead_cannot_be_determined_annotation: '생존 여부: 확인할 수 없음'
@@ -281,8 +278,6 @@ ko:
   all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
   all_taxonomic_groups: "&laquo; 모든 분류학적 그룹"
   all_updates: 모든 업데이트
-  all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
-  all_your_observations_will_default_to_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로 맞춰집니다.
   allow_curator_access: 큐레이터 엑세스 허용
   allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼 수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
@@ -295,7 +290,6 @@ ko:
   already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
   ancestor_taxon: 조상 분류군
-  and: 그리고
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
   animals: 동물
@@ -420,14 +414,12 @@ ko:
   birds: 조류
   birthday: 생일
   black: 검정
-  block_user: 사용자 차단
   block_removed: 차단 제거됨
   blocked_users: 차단된 사용자
   blog_widget: 블로그 위젯
   blue: 파랑
   blue_butterfly_etc: "파랑, 나비 등."
   body: 본문
-  bounding_box: 경계 상자
   breadcrumbs: 빵 부스러기
   brief_caption: 간결한 캡션
   brown: 갈색
@@ -511,7 +503,6 @@ ko:
   check_list_for_individual_taxa_that: '이 장소에 사는 각 분류군 체크리스트 (예: %{place}에 사는 새)'
   check_lists_must_belong_to_a_place: |
     체크리스트는 장소를 지정해야 합니다. 새로운 체크리스트를 만들기 위해 기본 체크스트에 들어가서 '새로운 체크리스트' 링크를 선택하세요.
-  check_list_of_species_occuring_in: 여기서 서식하는 종의 체크리스트
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
@@ -543,6 +534,7 @@ ko:
   columns: 열
   combine: 병합
   comma_separated_please: 쉼표로 분리해주세요
+  #Noun, used to label a comment or a comment field in a form
   comment: 댓글
   #Verb, generally a label on a button that allows the user to add a comment
   comment_: 댓글
@@ -575,8 +567,6 @@ ko:
   confirm_now: 지금 확인
   confirm_your_info: 정보 확인
   connect_to_provider: "%{provider}에 연결"
-  #Accounts on third-party services and platforms, e.g. Flickr or ORCID
-  connected_accounts: 연결된 계정
   connecting_flickr: "플리커에 연결 중..."
   connecting_to_facebook: "페이스북에 연결 중..."
   connecting_your_inat_account_to_accounts_other_sites: " %{site_name} 계정을 다른 계정에 연결하면 %{site_name}에 다른 계정의 정보로 로그인할 수 있습니다."
@@ -656,7 +646,6 @@ ko:
   created_by: '작성자:'
   created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
   created_on: '작성일:'
-  creating_your_account: "계정 만드는 중..."
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
   creative_commons_unless_otherwise_noted: "별도의 언급이 없으면 크리에이티브 커먼즈입니다."
   critically_endangered: 절멸 위급(CR)
@@ -791,7 +780,6 @@ ko:
   donate: 기부하기
   done: 완료
   dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
-  dont_send_me_email: "메일 수신 거부"
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
@@ -853,7 +841,6 @@ ko:
   email: 이메일
   email_address_for_comments_and_other_feedback: 댓글과 다른 피드백을 위한 이메일 주소
   email_copyright: "저작권 &copy; %{x}, 모든 권리 보유"
-  email_settings: 이메일 설정
   embed: '내장'
   embed_place_widget: 장소 위젯 내장
   embed_this_assessment: 이 평가 내장
@@ -881,7 +868,6 @@ ko:
   event_stats: 이벤트 통계
   event_url: 이벤트 URL
   events_only: 이벤트만
-  every_species_seen_by: 관측된 모든 종들
   everyone: 모두
   everyone_: 모두
   everyone_journal_posts: 모든 사람의 일지 포스트
@@ -970,7 +956,6 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flag_this_sound: 이 소리 플래그
-  flagged: 플래그함
   flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: "사용자들이 이 %{thing}을(를) 플래그한 이유는"
   flagger: 플래그한 사용자
@@ -1077,8 +1062,10 @@ ko:
   identify: 동정하기
   identify_title: "동정하기"
   identification: 동정
+  #Notification when an identification has been deleted
   identification_deleted: 동정 삭제됨
   identification_saved: "동정 저장됨"
+  #Notification when an identification has been updated
   identification_updated: 동정 업데이트됨
   identifications: 동정
   identifiers: 동정한 사용자들
@@ -1213,9 +1200,6 @@ ko:
   life: 생명
   life_list: "%{user}의 생물 목록"
   link: 링크
-  link_or_unlink_your_facebook_account: 페이스북 계정과 링크하거나 링크 취소하기
-  link_or_unlink_your_flickr_account: Flickr 계정과 링크하거나 링크 취소하기
-  link_or_unlink_your_google_account: 구글 계정과 링크하거나 링크 취소하기
   link_your_facebook_account: 페이스북 계정 연결하기
   link_your_flickr_account: Flickr 계정과 링크하기
   link_your_google_account: 구글 계정과 링크하기
@@ -1246,7 +1230,6 @@ ko:
   loading_tags: "태그를 불러오는 중..."
   loading_taxa_from_your: "당신의 관찰에서 분류군 불러오는 중..."
   loading_wikipedia_description: "위키백과 설정 불러오는 중..."
-  locale_description: 사용할 언어를 선택하세요
   locales:
     ar: 아랍어
     bg: 불가리아어
@@ -1283,7 +1266,6 @@ ko:
   location_is_private: 위치가 비공개이다
   log_in: 로그인
   log_scale_label: 로그
-  login_slash_username: 로그인 / 사용자 이름
   logo:
     logo: 로고
     white_bg_gif: 흰색 배경 GIF
@@ -1380,7 +1362,6 @@ ko:
   most_observed_introduced_species: 가장 많이 관찰된 도입종
   most_observed_threatened_species: 가장 많이 관찰된 위기종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
-  mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
   muted_users: 알림에서 제외된 사용자
   n_ago: "%{n}전"
@@ -1522,9 +1503,6 @@ ko:
   note: 메모
   notes: 참고
   notify_me_of_mentions: '내 아이디 언급 시 알림 (예: @아이디)'
-  notify_me_about_redundant_identifications: 동정 확인에 대해 알림
-  notify_me_about_redundant_identifications_desc: |
-    나의 동정과 일치하는 동정에 대해서 알림 수신하기. 이 설정을 제외하면 당신의 동정과 일치하지 않는 동정에 대해서만 알림을 밭게 됩니다.
   number_of_observations: 관찰 수
   number_selected: "# 선택됨"
   obs: 관찰
@@ -1580,7 +1558,6 @@ ko:
       <li><strong>분류군, 프로젝트, 장소:</strong> 팔로우한 분류군, 장소에 대한 새로운 관찰이 표시됩니다. 프로젝트에 가입할 경우 프로젝트 일지에 대한 알림도 표시됩니다. </li>
       <li><strong>관여한 토론:</strong> 다른 사람의 관찰에 댓글 및 동정을 추가하면 자동적으로 그 관찰에 팔로우됩니다. '알림 관리' 항목을 통해 알림 수신 여부를 수정할 수 있습니다.</li>
       </ul>
-  only_letters_numbers: "문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다"
   only_show_active_taxa: 활성 분류군만 보기
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
   only_show_for_species_subspecies_varieties_etc: 종, 아종, 변종 만 보기
@@ -2102,10 +2079,11 @@ ko:
   select: 선택
   select_all: 모두 선택
   select_at_least_one: 적어도 하나를 선택하십시오
-  select_one_or_more_photos: '하나 이상의 사진 선택하기'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: 선택 없음
   select_observations_to_edit: 편집할 관찰 선택하기...
   select_one_of_your_albums: 내 앨범 중 하나를 선택하십시오
+  select_one_or_more_photos: '하나 이상의 사진 선택하기'
   select_options: 옵션 선택
   selected: 삭제됨
   selected_photos: 선택된 사진들
@@ -2125,7 +2103,6 @@ ko:
   show_more: 더 보기
   show_off_your_recent_observations: 당신의 최근 관찰을 당신의 블로그나 웹사이트에 공유해보세요!
   show_relative_proportions_of_all_observations: 모든 관찰의 상대적인 비율 보기
-  show_scientific_name_first: 학명을 우선 표시
   show_total_counts: 월별 관찰 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
   showing_x_of_y_listings: "%{y}개 목록 중 %{x}개 표시"
@@ -2180,13 +2157,12 @@ ko:
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: 스토어
+  store_caps: 스토어
   submitted: 업로드 날짜
   subscribe_to_a_taxon: 분류군 알림 받기
   subscribe_to_a_place: 장소 알림 받기
   subscribe_to_observations_in_a_taxon: '특정 분류군에 대한 모든 관찰에 대한 알림을 받기 (예시: ''메뚜기과'', ''흰나비속'')'
   subscribe_to_observations_in_a_place: '특정 장소에 대한 모든 관찰에 대한 알림을 받기 (예시: ''과천시'', ''경기도'')'
-  subscribe_to_places_to: |
-    장소에 대한 알림을 설정해서 그 장소의 새로운 관찰에 대한 알림을 받아보세요. 팔로우하는 사용자들과 댓글 또한 알림 설정을 통하여 관리되기 때문에, 알림을 설정한 항목을 확인하거나 알림을 취소하고 싶을 때는 아래의 '알림 관리' 항목을 클릭하세요. 또한, iNaturalist의 대부분 항목에 대한 알림을 취소할 수 있습니다.
   subscriptions: 알림 받기
   suggest_an_identification: 동정하기
   suggestions: 제안
@@ -2207,7 +2183,6 @@ ko:
   taxonomic_order: 분류 체계
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
-  terms_service: 서비스 약관
   text: 텍스트
   thanks!: 감사합니다!
   the_following_observations_could: "%{link}에 관찰을 추가하지 못했습니다."
@@ -2291,7 +2266,6 @@ ko:
   value: 값
   view_all: 모두 보기
   view_all_members: 모든 회원 보기
-  view_all_n: "모든 %{n}개 보기"
   view_all_observations: 모든 관찰 보기
   view_check_list_page: 체크리스트 문서 보기
   view_contributions: 기여 보기
@@ -2420,10 +2394,10 @@ ko:
     oauth:
       authorizations:
         new:
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           this_application_will_be_able_to_colon: "이 애플리케이션은 다음을 할 수 있습니다:"
-          #Application is a third-party app or service the user has authorized to
+          #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: '%{application} 추가 정보'
     observations:
@@ -2444,12 +2418,6 @@ ko:
     emailer:
       photos_missing:
         subject: 일부 사진에 수정이 필요합니다
-    places:
-      kml_field_desc: |
-        장소 경계의 KML입니다. Google Maps, Google Earth,
-        대부분의 GIS 애플리케이션을 사용하여 만들 수 있습니다.
-        적어도 1 MB 미만(사이트 큐레이터의 경우 5 MB)의 다각형이
-        하나라도 있어야 하며 면적은 미국 텍사스 주보다 작아야 합니다.
     projects:
       project_type: 프로젝트 유형
       confirm_leave:
@@ -2536,9 +2504,6 @@ ko:
         project_addition_preferences:
           joined: 내가 가입한 프로젝트
           none: "없음, 프로젝트에 관찰만 추가할 수 있습니다"
-        scientific_name_first_desc: |
-          일반명 앞에 학명을 표시합니다.
-        thanks_for_supporting_us!: 지원해 주셔서 감사합니다!
       recent:
         about_recent_users: 정보
     user_parents:
@@ -2723,8 +2688,8 @@ ko:
         start_time: 시작 시간
         last_aggregated_at: 마지막으로 묶인 관찰
       taxon:
-        wikipedia_title: 위키백과 제목
         wikipedia_summary: 위키백과 요약
+        wikipedia_title: 위키백과 제목
       user:
         email: 이메일
         login: 사용자 이름

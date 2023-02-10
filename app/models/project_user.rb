@@ -160,7 +160,7 @@ class ProjectUser < ApplicationRecord
   end
 
   def index_project
-    project.elastic_index! if project
+    project.elastic_index! if project && !project.skip_indexing
   end
 
   def as_indexed_json

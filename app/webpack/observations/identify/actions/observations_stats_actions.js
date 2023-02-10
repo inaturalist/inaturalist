@@ -26,22 +26,17 @@ function fetchObservationsStats( force = false ) {
     ) ) {
       return;
     }
-    const apiParams = Object.assign(
-      {
-        viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
-        ttl: -1
-      },
-      paramsForSearch( s.searchParams.params ),
-      {
-        order: "",
-        order_by: ""
-      }
-    );
-    const reviewedParams = Object.assign( {}, apiParams, {
+    const apiParams = {
+      viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
+      ttl: -1,
+      ...paramsForSearch( s.searchParams.params )
+    };
+    const reviewedParams = {
+      ...apiParams,
       reviewed: true,
       page: 1,
       per_page: 0
-    } );
+    };
     dispatch( updateObservationsStats( {
       status: "loading"
     } ) );
@@ -52,11 +47,11 @@ function fetchObservationsStats( force = false ) {
           status: "loaded"
         } ) );
       } );
-    const anyReviewedParams = Object.assign( {}, apiParams, {
-      reviewed: "any",
+    const anyReviewedParams = {
+      ...apiParams,
       page: 1,
       per_page: 0
-    } );
+    };
     iNaturalistJS.observations.search( anyReviewedParams )
       .then( response => {
         dispatch( updateObservationsStats( {

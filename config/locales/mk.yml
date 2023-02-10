@@ -5,6 +5,9 @@ mk:
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
+  x_languages:
+    one: "%{count} јазик"
+    other: "%{count} јазици"
   x_matching_taxa:
     one: '1 совпаднат таксон'
     other: '%{count} совпаднати таксони'
@@ -58,14 +61,11 @@ mk:
   a_flag_for_x: "обележувач за %{x}"
   a_member_of_taxon_html: "член на %{taxon}"
   about: За
-  about_blocking: За блокирањето
   about_community_taxa: За таксоните од заедницата
   about_licenses: За лиценците
   #Header for a section describing taxon names
   about_names: За имињата
   about_places: За местата
-  about_the_cc_licenses: За лиценците на Криејтив комонс
-  about_these_licenses: За овие лиценци
   about_this_map: За картава
   about_this_project: За проектов
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -80,12 +80,16 @@ mk:
   accuracy_meters: Уточнетост (метри)
   accuracy_of_the_coordinates: |
     Уточнетост на координатите во метри. Можете да го измените ова на „уреди“ погоре или стискајќи на бележникот на картата и повлекувајќи ги рачките. Потрудете се кружницата да биде доволно голема за да бидете сигурни дека сте некаде во неа.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Дејство
   actions: Дејства
   active: Активен
+  #Status of a complete set that is available for use
+  active_complete_set_status: Активен
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Активен
   active_users: Активни корисници
   activity: Активност
-  activity_settings: Поставки за активноста
   add: Додај
   add_a_batch_of_observations: Додај збир набљудувања
   add_a_batch_of_taxa: Додај збир таксони
@@ -122,7 +126,6 @@ mk:
   add_new_source: "Додај нов извор..."
   add_new_taxon_name: Додај ново таксонско име
   add_observations: Додај набљудувања
-  add_photos: Додај слики
   #As in a Taxon Framework Relationship
   add_relationship: 'Додај однос'
   #As in a Guide Section
@@ -234,7 +237,6 @@ mk:
   alphabetical: Азбучно
   alphabetical_order: Азбучен ред
   amphibians: водоземци
-  and: и
   and_other_taxa: "други таксони"
   android: Андроид
   animals: Животни
@@ -316,7 +318,6 @@ mk:
   browse_projects: Прелистај по проекти
   browse_species_that_occur_near_this_observation: Прелистај по сите видови што се јавуваат во близина на ова набљудување.
   built_with_site_guides_html: "Изработено со водичи од <a href='%{url}'>%{site_name}</a>"
-  by: од
   by_everyone: Од сите
   by_user: "од %{user}"
   by_you: Ваши
@@ -468,7 +469,6 @@ mk:
   details: Подробно
   did_you_mean: 'Дали мислевте на'
   disconnect_provider: "Отстрани ја врската со %{provider}"
-  dont_send_me_email: "Не ми испраќај пошта"
   download: Преземи
   download_csv: Преземи CSV
   download_kml: Преземи KML
@@ -503,7 +503,6 @@ mk:
     managed: контролиран
     native: домороден
     naturalised: одомаќинет
-  every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
   exact_rank: Точен ранг
@@ -546,7 +545,6 @@ mk:
   flag_saved: Обележувачот е зачуван
   flag_this_observation: Обележи го набљудувањево
   flag_this_photo: Обележи ја сликава
-  flagged: обележано
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   follow_user: "Следи го/ја %{user}"
@@ -562,6 +560,7 @@ mk:
   Genus: Род
   geoprivacy: Геоприватност
   georeferenced: Геоозначено?
+  getting_started_guide: Напатствие како да започнете
   grid: Решетка
   grid_tooltip: Дај решетест поглед
   group: Група
@@ -581,8 +580,10 @@ mk:
   home: Почетна
   icon_size: Големина на иконата
   iconic_taxon: Иконски таксон
+  #Notification when an identification has been deleted
   identification_deleted: Препознавањето е избришано.
   identification_saved: "Препознавањето е зачувано!"
+  #Notification when an identification has been updated
   identification_updated: Препознавањето е подновено!
   identifications: Препознавања
   identotron: Идентотрон
@@ -688,7 +689,6 @@ mk:
   loading_tags: "Ги вчитувам ознаките..."
   loading_taxa_from_your: "Ги вчитувам таксоните од вашите набљудувања..."
   loading_wikipedia_description: "Го вчитувам описот од Википедија..."
-  locale_description: Во локалот се задава претпочитаниот јазик и датумски формат.
   locales:
     ca: каталонски
     en: англиски
@@ -701,7 +701,6 @@ mk:
   location: Местоположба
   location_is_exact: местоположбата е докрај уточнета
   log_in: Најава
-  login_slash_username: Најава/ корисничко име
   logo:
     logo: Лого
     white_bg_gif: GIF со бела заднина
@@ -1055,8 +1054,8 @@ mk:
   projects: Проекти
   projects_description: |
     Проектите се начин да вашите набљудувања со другите на %{site_name}. Тие се корисни било да сте заинтересирани да почнете граѓански научен проект, или пак само да водите евиденција за птиците во месниот парк заедно со некое птичарско здружение.
+  #@vow_or_con should work on %{place}
   projects_from_place: "Проекти од %{place}"
-  projects_in_x: "Проекти во %{x}"
   projects_you_admin: Проекти што ги раководите
   protozoans: праживотни
   public_domain: Јавна сопственост
@@ -1145,8 +1144,9 @@ mk:
   searching: "Пребарувам..."
   select: Избери
   select_all: Избери сè
-  select_one_or_more_photos: 'Изерете една или повеќе слики'
+  #select_one_or_more_photos: Select One Or More Photos
   select_none: Ниедно
+  select_one_or_more_photos: 'Изерете една или повеќе слики'
   send: испрати
   sending: Испраќам...
   set_license: Задај лиценца
@@ -1250,7 +1250,6 @@ mk:
   taxon_map:
     data_url: Податочен URL
     overlays: Облоги
-  tell_everyone_a_little_about_you: Кажете им на останатите нешто за себе
   terms: Услови
   terms_and_rules_html: "Услови и правила"
   terms_service: Услови на употреба
@@ -1297,12 +1296,10 @@ mk:
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
   user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
-  user_commented_on: "%{user} искоментира на вашето %{title} %{time}"
   users_profile: "Профилот на %{user}"
   view: Погл.
   view_all: Погл. сите
   view_all_members: Погл. сите членови
-  view_all_n: "Погл. сите %{n}"
   view_all_observations: Погл. сите набљудувања
   view_all_photocount_photos: "Погл. сите %{photo_count} слики"
   view_assessment: Погл. оценка
@@ -1658,6 +1655,7 @@ mk:
         geoprivacy: Геоприватност
         iucn: Истоветник во МСЗП
       flag:
+        #The reason the item was flagged
         reason: Причина
       guide:
         source_url: Изворен URL
@@ -1689,14 +1687,14 @@ mk:
         in_text: Во текстот
         citation: Наведување
       taxon:
+        auto_description: Авто. опис
+        auto_photos: Авто. слики
         name: Име
         rank: Ранг
-        auto_photos: Авто. слики
-        auto_description: Авто. опис
-        wikipedia_title: Наслов на Википедија
-        wikipedia_summary: Преглед од Википедија
         source_identifier: Назнака на изворот
         source_url: Изворен URL
+        wikipedia_summary: Преглед од Википедија
+        wikipedia_title: Наслов на Википедија
       taxon_name:
         name_provider: Добавувач на името
         source_url: Изворен URL

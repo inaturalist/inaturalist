@@ -40,7 +40,7 @@ describe UpdateAction do
       def test_preference( preference, &block )
         emailer_spy = spy( Emailer )
         stub_const( "Emailer", emailer_spy )
-        user.update_attributes( "prefers_#{preference}" => false )
+        user.update( "prefers_#{preference}" => false )
         yield( user )
         Delayed::Worker.new.work_off
         UpdateAction.email_updates_to_user( user, 10.minutes.ago, Time.now )

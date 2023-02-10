@@ -4,8 +4,32 @@ import { Row, Col } from "react-bootstrap";
 import moment from "moment-timezone";
 
 class EventCountdown extends Component {
+  constructor( props ) {
+    super( props );
+    this.state = { refresh: Math.random( ) };
+  }
+
+  componentDidMount( ) {
+    const { startTimeObject, setAttributes } = this.props;
+    let timeDiff;
+    const now = moment( );
+    if ( startTimeObject ) {
+      timeDiff = startTimeObject.diff( now );
+    }
+    setInterval( ( ) => {
+      if ( timeDiff <= 0 ) {
+        // trigger a refresh of the overview component now that
+        // the event has started
+        setAttributes( { started: true } );
+      } else {
+        // trigger a refresh of this component by updating some property
+        this.setState( { refresh: Math.random( ) } );
+      }
+    }, 200 );
+  }
+
   render( ) {
-    const { startTimeObject, setAttributes, setSelectedTab } = this.props;
+    const { startTimeObject, setSelectedTab } = this.props;
     let durationToEvent;
     let timeDiff;
     const now = moment( );
@@ -19,19 +43,6 @@ class EventCountdown extends Component {
     const hours = durationToEvent.hours( );
     const minutes = durationToEvent.minutes( );
     const seconds = durationToEvent.seconds( );
-    setTimeout( ( ) => {
-      if ( !this.isMounted ) {
-        return;
-      }
-      if ( timeDiff <= 0 ) {
-        // trigger a refresh of the overview component now that
-        // the event has started
-        setAttributes( { started: true } );
-      } else {
-        // trigger a refresh of this component by updating some property
-        this.setState( { refresh: Math.random( ) } );
-      }
-    }, 200 );
     return (
       <div className="EventCountdown">
         <div className="section-intro">

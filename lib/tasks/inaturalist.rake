@@ -48,15 +48,18 @@ namespace :inaturalist do
 
   desc "Delete expired updates"
   task :delete_expired_updates => :environment do
-    min_id = UpdateAction.minimum(:id)
+    earliest_id = CONFIG.update_action_rollover_id || 1
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).where(["created_at < ?", 3.months.ago]).minimum( :id )
+    return unless min_id
     # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = UpdateAction.where(["created_at < ?", 3.months.ago]).
-      where("id < #{ min_id + 1000000 }").maximum(:id)
-    UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
+    last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
+      where("id >= #{min_id} AND id < #{ min_id + 2000000 }").maximum( :id )
+    return unless last_id_to_delete
+    UpdateAction.delete_and_purge("id >= #{ min_id } AND id <= #{ last_id_to_delete }")
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { lte: last_id_to_delete } } } })
+        body: { query: { range: { id: { gte: min_id, lte: last_id_to_delete } } } })
     end
 
     # # suspend subscriptions of users with no viewed updates
@@ -138,7 +141,7 @@ namespace :inaturalist do
         pp sounds
         begin
           client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
-          s.update_attributes(removed_from_s3: true)
+          s.update(removed_from_s3: true)
         rescue
           fails += 1
           break if fails >= 5
@@ -229,7 +232,7 @@ namespace :inaturalist do
       next unless f =~ /\.(rb|erb|haml)$/
       # Ignore an existing translations file
       # next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n\.)?t[\(\s]*([\:"'])([A-z_\.\d\?\!]+)/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }
@@ -266,6 +269,8 @@ namespace :inaturalist do
       "date.formats.month_day_year",
       "date_added",
       "date_format.month",
+      "date_observed",
+      "date_observed_",
       "date_picker",
       "date_updated",
       "default_",
@@ -281,6 +286,7 @@ namespace :inaturalist do
       "green",
       "grey",
       "imperiled",
+      "inappropriate",
       "input_taxon",
       "insect_life_stage",
       "insects",
@@ -406,7 +412,7 @@ namespace :inaturalist do
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
     all_keys += ControlledTerm.attributes.map{|a|
-      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.parameterize.underscore}_annotation" }
     }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
@@ -418,7 +424,7 @@ namespace :inaturalist do
       next if f =~ /\-webpack.js$/
       # Ignore an existing translations file
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/(I18n|shared|inatreact).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
@@ -432,7 +438,7 @@ namespace :inaturalist do
       next unless File.file?( f )
       next if f =~ /\.(gif|png|php)$/
       next if paths_to_ignore.include?( f )
-      contents = IO.read( f )
+      contents = File.open( f ).read
       results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
       # TODO make this work for I18n.l, I18n.localize, I18n.translate
       unless results.empty?

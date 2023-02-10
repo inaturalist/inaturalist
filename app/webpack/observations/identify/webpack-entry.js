@@ -1,5 +1,6 @@
 import "@babel/polyfill";
 import moment from "moment";
+import inatjs from "inaturalistjs";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -21,24 +22,24 @@ import AppContainer from "./containers/app_container";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
-const relativeTime = Object.assign(
-  {},
-  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
-  shortRelativeTime
-);
+const relativeTime = {
+  ...I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  ...shortRelativeTime
+};
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale(), { relativeTime } );
 
 const store = createStore(
   rootReducer,
-  compose(
-    applyMiddleware(
-      thunkMiddleware
-    ),
+  compose( ..._.compact( [
+    applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.devToolsExtension ? window.devToolsExtension() : applyMiddleware()
-  )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ] ) )
 );
+
+const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+  || window.location.search.match( /test=apiv2/ );
 
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
@@ -56,8 +57,30 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
   // this is the default place for all obs API requests
   store.dispatch( updateDefaultParams( {
-    place_id: PREFERRED_SEARCH_PLACE.id
+    place_id: testingApiV2 ? PREFERRED_SEARCH_PLACE.uuid : PREFERRED_SEARCH_PLACE.id
   } ) );
+}
+
+if ( OFFICIAL_APP_IDS !== undefined && OFFICIAL_APP_IDS !== null ) {
+  // set apps that will display icons in the observation modal
+  store.dispatch( setConfig( {
+    officialAppIds: OFFICIAL_APP_IDS
+  } ) );
+}
+
+if ( testingApiV2 ) {
+  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+  const defaultApiUrl = element && element.getAttribute( "content" );
+  if ( defaultApiUrl ) {
+    store.dispatch( setConfig( {
+      testingApiV2: true
+    } ) );
+    // For some reason this seems to set it everywhere...
+    inatjs.setConfig( {
+      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+    } );
+  }
 }
 
 setupKeyboardShortcuts( store.dispatch );
@@ -100,7 +123,6 @@ function observeStore( storeToObserve, select, onChange ) {
 observeStore( store, s => s.searchParams.params, ( ) => {
   store.dispatch( fetchObservations( ) );
 } );
-
 
 render(
   <Provider store={store}>

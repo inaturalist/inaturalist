@@ -395,7 +395,7 @@ export function submitProject( ) {
         prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
           ? "" : project.rule_d2.trim( ),
         prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
-          ? "" : project.rule_month,
+          || project.rule_month === _.range( 1, 13 ).join( "," ) ? "" : project.rule_month,
         prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
         prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced,
         prefers_rule_members_only: _.isEmpty( project.rule_members_only ) ? "" : project.rule_members_only,

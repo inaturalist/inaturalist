@@ -37,9 +37,8 @@ class NewZealandOrganismsRegister
   #
   def request(method, args = {})
     params = args
-    url    = NAME_SEARCH_ENDPOINT + "?format=xml&" + 
-             params.map {|k,v| "#{k}=#{v}"}.join('&')
-    uri    = URI.encode(url.gsub("'", '*'))
+    url = NAME_SEARCH_ENDPOINT + "?format=xml&" +  URI.encode_www_form( params )
+    uri = URI.parse( url )
     response = nil
     begin
       timed_out = Timeout::timeout(@timeout) do

@@ -120,7 +120,7 @@ describe Guide do
 
     it "should generate when downloadable changed to true" do
       expect(g.ngz.url).to be_blank
-      g.update_attributes(:downloadable => true)
+      g.update(:downloadable => true)
       Delayed::Worker.new(:quiet => true).work_off
       g.reload
       expect(g.ngz.url).not_to be_blank
@@ -129,48 +129,51 @@ describe Guide do
     it "job should not trigger if no relevant attributes changed" do
       g
       Delayed::Job.delete_all
-      g.update_attributes :zoom_level => 5
+      g.update :zoom_level => 5
       Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 0
-      expect(Delayed::Job.count).to eq 0
+      expect(
+        Delayed::Job.where( "handler NOT LIKE '%invalidate_cloudfront_cache_for%'").count
+      ).to eq 0
     end
 
     it "should be removed when downloadable changed to false" do
       expect(g.ngz.url).to be_blank
-      g.update_attributes(:downloadable => true)
+      g.update(:downloadable => true)
       Delayed::Worker.new(:quiet => true).work_off
       g.reload
       expect(g.ngz.url).not_to be_blank
-      g.update_attributes(:downloadable => false)
+      g.update(:downloadable => false)
       expect(g.ngz.url).to be_blank
     end
 
     it "job should only queue once" do
       g
       Delayed::Job.delete_all
-      g.update_attributes(:downloadable => true)
-      g.update_attributes(:downloadable => false)
-      g.update_attributes(:downloadable => true)
-      Delayed::Job.all.each {|j| puts j.handler} if Delayed::Job.count > 1
-      expect(Delayed::Job.count).to eq 1
+      g.update(:downloadable => true)
+      g.update(:downloadable => false)
+      g.update(:downloadable => true)
+      expect(
+        Delayed::Job.where( "handler NOT LIKE '%invalidate_cloudfront_cache_for%'").count
+      ).to eq 1
     end
   end
 
   describe "publication" do
     it "should not be allowed for guides with less than 3 taxa" do
       g = Guide.make!
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).not_to be_blank
 
       2.times do
         GuideTaxon.make!(:guide => g)
       end
       g.reload
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).not_to be_blank
 
       GuideTaxon.make!(:guide => g)
       g.reload
-      g.update_attributes(:published_at => Time.now)
+      g.update(:published_at => Time.now)
       expect(g.errors[:published_at]).to be_blank
       expect(g).to be_valid
     end

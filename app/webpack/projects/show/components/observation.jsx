@@ -7,7 +7,7 @@ import UserImage from "../../../shared/components/user_image";
 
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 if ( shortRelativeTime ) {
-  moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
+  moment.updateLocale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
 
 const Observation = ( {

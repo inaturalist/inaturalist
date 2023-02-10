@@ -11,8 +11,10 @@
         = link_to t(:back_to_x, :noun => @taxon.name), @taxon, :class => "back crumb"
     %h2= @title
     %p= t 'views.taxon_names.taxon.about_html'
+    %button#global-btn.btn.btn-sm.btn-primary.btn-submit.pull-right.hidden{ disabled: true, data: { target: "names-global" } }
+      Save Changes
     %h3=t :global_names
-    %ul.plain.names
+    %ul#names-global.plain.names
       - @taxon_names.each_with_index do |tn,i|
         %li
           = form_for tn, :remote => true, :html => {:class => "inline unstacked", "data-type" => "json"} do |f|
@@ -28,14 +30,18 @@
 
   - @names_by_place.each do |place, place_taxon_names|
     .col-md-12
-      %h3= link_to place_name_and_type(place), place
-      %ul.plain.names
+      %h3
+        %button#global-btn.btn.btn-sm.btn-primary.btn-submit.pull-right.hidden{ disabled: true, data: { target: "names-#{place.uuid}" } }
+          Save Changes
+        = link_to place_name_and_type(place), place
+      %ul.plain.names{ id: "names-#{place.uuid}" }
         - place_taxon_names.each do |ptn|
           %li
             = form_for ptn.taxon_name, :remote => true, :html => {:class => "inline unstacked", "data-type" => "json"} do |f|
               = f.fields_for :place_taxon_names, ptn do |ptn_form|
                 = ptn_form.text_field :position, :class => "sortable-position"
-            = ptn.taxon_name.name
+            %span{ :class => "taxon_name #{ptn.taxon_name.lexicon.to_s.split.join( "_" )}#{" invalid" unless ptn.taxon_name.is_valid?}" }
+              = ptn.taxon_name.name
             - if logged_in? && (!ptn.taxon_name.is_scientific? || current_user.is_curator?)
               = link_to t(:edit), edit_taxon_name_path(ptn.taxon_name), :class => 'small description'
             .badge.pull-right=t :default

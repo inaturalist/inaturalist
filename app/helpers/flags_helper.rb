@@ -11,15 +11,14 @@ module FlagsHelper
     end
   end
 
-  def flag_content( flag )
+  def flag_content( flag, options = {} )
     flaggable = flag.flaggable
     flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
-
     capture do
       if flaggable
         concat link_to_if( flaggable.respond_to?( :to_plain_s ), flaggable.to_plain_s, flaggable )
-        concat flaggable_edit( flaggable )
-        concat flaggable_with_body( flaggable )
+        concat flaggable_edit( flaggable ) unless options[:no_edit]
+        concat flaggable_with_body( flaggable ) unless options[:no_body]
         concat flaggable_user( flaggable )
       else
         concat t "deleted_#{flag.flaggable_type}"
@@ -108,12 +107,12 @@ module FlagsHelper
   end
 
   def flaggable_with_body( flaggable )
-    return "" unless (
-      !flaggable.is_a?( Message ) && flaggable.respond_to?( :body )
-    ) || flaggable.respond_to?( :description )
+    return "" if flaggable.is_a?( Message )
 
-    content_tag :blockquote, truncate_with_more( formatted_user_text( flaggable.try_methods( :body, :description ) ),
-      length: 200 )
+    txt = flaggable.try_methods( :body, :description )
+    return "" if txt.blank?
+
+    content_tag :blockquote, truncate_with_more( formatted_user_text( txt ), length: 200 )
   end
 
   private

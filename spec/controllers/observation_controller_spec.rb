@@ -169,11 +169,11 @@ describe ObservationsController do
       o = Observation.make!
       sign_in o.user
       expect( o.photos.size ).to eq 0
-      fixture_file_upload( "observations.csv", "text/csv" )
+      fixture_file_upload( "../observations.csv", "text/csv" )
       put :update, params: { id: o.id, observation: { description: "+2 photos" }, local_photos: {
         o.id.to_s => [
-          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" ),
-          fixture_file_upload( "files/cuthona_abronia-tagged.jpg", "image/jpeg" )
+          fixture_file_upload( "cuthona_abronia-tagged.jpg", "image/jpeg" ),
+          fixture_file_upload( "cuthona_abronia-tagged.jpg", "image/jpeg" )
         ]
       } }
       o.reload
@@ -330,7 +330,7 @@ describe ObservationsController do
         expect( @project ).to be_curated_by @user
       end
       it "should include private coordinates for observations with geoprivacy" do
-        @observation.update_attributes(
+        @observation.update(
           geoprivacy: Observation::PRIVATE,
           latitude: 1.2345,
           longitude: 1.2345
@@ -350,7 +350,7 @@ describe ObservationsController do
       end
 
       it "should include private coordinates for observations of threatened taxa" do
-        @observation.update_attributes(
+        @observation.update(
           latitude: 1.2345,
           longitude: 1.2345,
           taxon: make_threatened_taxon,
@@ -407,7 +407,7 @@ describe ObservationsController do
 
     it "should have private coordinates for curators" do
       po = make_project_observation
-      po.observation.update_attributes( latitude: 9.8765, longitude: 4.321, geoprivacy: Observation::PRIVATE )
+      po.observation.update( latitude: 9.8765, longitude: 4.321, geoprivacy: Observation::PRIVATE )
       p = po.project
       expect( p.user ).not_to be po.observation.user
       sign_in p.user
@@ -554,7 +554,7 @@ end
 describe ObservationsController, "spam" do
   let( :spammer_content ) do
     o = Observation.make!
-    o.user.update_attributes( spammer: true )
+    o.user.update( spammer: true )
     o
   end
   let( :flagged_content ) do
@@ -599,11 +599,11 @@ describe ObservationsController, "new_bulk_csv" do
   end
   it "should not allow you to enqueue the same file twice" do
     Delayed::Job.delete_all
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
     sleep( 2 )
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( Delayed::Job.count ).to eq 1
   end
 
@@ -626,7 +626,7 @@ describe ObservationsController, "new_bulk_csv" do
     post :new_bulk_csv, params: { upload: { datafile: Rack::Test::UploadedFile.new( work_path, "text/csv" ) } }
     expect( response ).to be_redirect
     expect( Delayed::Job.count ).to eq 1
-    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "observations.csv", "text/csv" ) } }
+    post :new_bulk_csv, params: { upload: { datafile: fixture_file_upload( "../observations.csv", "text/csv" ) } }
     expect( Delayed::Job.count ).to eq 2
   end
 
@@ -656,7 +656,7 @@ describe ObservationsController, "new_bulk_csv" do
 
   it "should create observations with custom coordinate systems" do
     # rubocop:disable Layout/LineLength
-    Site.default.update_attributes( coordinate_systems_json: '{
+    Site.default.update( coordinate_systems_json: '{
       "nztm2000": {
         "label": "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
         "proj4": "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"

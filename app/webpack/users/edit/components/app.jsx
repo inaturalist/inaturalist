@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import AlertModalContainer from "../../../shared/containers/alert_modal_container";
 import Menu from "./menu";
 import AccountContainer from "../containers/account_container";
 import ContentContainer from "../containers/content_container";
@@ -15,6 +16,7 @@ import ThirdPartyTrackingModalContainer from "../containers/third_party_tracking
 import CreativeCommonsLicensingModalContainer from "../containers/cc_licensing_modal_container";
 import DropdownMenuMobile from "./dropdown_menu_mobile";
 import DeleteRelationshipModalContainer from "../containers/delete_relationship_modal_container";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
 
 class App extends Component {
   constructor( ) {
@@ -101,6 +103,8 @@ class App extends Component {
         <ThirdPartyTrackingModalContainer />
         <CreativeCommonsLicensingModalContainer />
         <DeleteRelationshipModalContainer />
+        <ConfirmModalContainer />
+        <AlertModalContainer />
       </div>
     );
   }

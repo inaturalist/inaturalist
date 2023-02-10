@@ -1,16 +1,11 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import _ from "lodash";
-import {
-  withGoogleMap,
-  GoogleMap,
-  Circle,
-  Marker,
-  OverlayView
-} from "react-google-maps";
-import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 import util from "../models/util";
 import { objectToComparable } from "../../../shared/util";
+import PhotoMarkerOverlayView from "./photo_marker_overlay_view";
+import GooglePlacesSearchBox from "./google_places_search_box";
 
 let lastCenterChange = new Date().getTime();
 
@@ -27,7 +22,6 @@ const markerSVG = {
   anchor: typeof ( google ) !== "undefined" && new google.maps.Point( 625, 0 )
 };
 
-// https://github.com/tomchentw/react-google-maps/issues/220#issuecomment-319269122
 class LocationChooserMap extends React.Component {
   // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
   static distanceInMeters( lat1, lon1, lat2, lon2 ) {
@@ -54,15 +48,52 @@ class LocationChooserMap extends React.Component {
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
     this.moveCircle = this.moveCircle.bind( this );
+    // This holds references to all the overlays on the map that need to get
+    // removed when props change
+    this.overlays = [];
   }
 
   componentDidMount( ) {
-    const { center } = this.props;
-    if ( this.map && !center ) {
-      setTimeout( this.fitCircles, 10 );
-    }
-    if ( this.map ) {
-      iNaturalist.log( { "map-placement": "observations-upload-location-chooser" } );
+    const {
+      center,
+      config,
+      center: existingCenter,
+      fitCurrentCircle,
+      show,
+      updateCurrentUser,
+      updateState,
+      zoom
+    } = this.props;
+    const domNode = ReactDOM.findDOMNode( this );
+    const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
+      ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
+      zoom: zoom || 1,
+      center: existingCenter || { lat: 30, lng: 15 },
+      fullscreenControl: true,
+      mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )
+    } );
+    this.map = map;
+    google.maps.event.addListener( map, "click", this.handleMapClick );
+    google.maps.event.addListener( map, "maptypeid_changed", ( ) => {
+      updateCurrentUser( { preferred_observations_search_map_type: this.map.getMapTypeId( ) } );
+    } );
+    google.maps.event.addListener( map, "bounds_changed", ( ) => {
+      const c = map.getCenter( );
+      updateState( {
+        locationChooser: {
+          center: { lat: c.lat(), lng: c.lng() },
+          bounds: map.getBounds( ),
+          zoom: map.getZoom( )
+        }
+      } );
+    } );
+    this.overlaysFromProps( );
+    if ( map && !center ) {
+      if ( !center ) {
+        setTimeout( this.fitCircles, 10 );
+      } else if ( show && fitCurrentCircle ) {
+        setTimeout( this.fitCurrentCircle, 10 );
+      }
     }
   }
 
@@ -77,35 +108,289 @@ class LocationChooserMap extends React.Component {
       "bounds"
     ];
     const { obsCards } = this.props;
-    const comparable = objectToComparable(
-      Object.assign( {}, _.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ), {
-        obsCards: _.keys( obsCards )
-      } )
-    );
-    const nextComparable = objectToComparable(
-      Object.assign( {}, _.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ), {
-        obsCards: _.keys( obsCards )
-      } )
-    );
+    const comparable = objectToComparable( {
+      ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( obsCards )
+    } );
+    const nextComparable = objectToComparable( {
+      ..._.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( nextProps.obsCards )
+    } );
     return comparable !== nextComparable;
   }
 
   componentDidUpdate( prevProps ) {
+    const { fitCurrentCircle } = this.props;
+    this.overlaysFromProps( prevProps );
+    if ( fitCurrentCircle ) {
+      setTimeout( this.fitCurrentCircle, 10 );
+    }
+  }
+
+  handleMapClick( event ) {
+    const { latLng } = event;
+    const zoom = this.map.getZoom( );
+    const radius = Math.round( ( 1 / ( 2 ** zoom ) ) * 2000000 );
+    this.moveCircle( latLng, radius, { geocode: true } );
+  }
+
+  handlePlacesChanged( input, places ) {
+    const { updateState } = this.props;
+    let searchQuery;
+    let lat;
+    let lng;
+    let searchedForCoord = false;
+    if ( input ) {
+      searchQuery = input.value;
+      const searchCoord = searchQuery.split( "," ).map( piece => parseFloat( piece, 16 ) );
+      if (
+        searchCoord[0] !== 0
+        && searchCoord[0] > -90
+        && searchCoord[0] < 90
+        && searchCoord[1] !== 0
+        && searchCoord[1] > -180
+        && searchCoord[1] < 180
+      ) {
+        lat = searchCoord[0];
+        lng = searchCoord[1];
+        searchedForCoord = true;
+      }
+    }
+    let notes;
+    let radius;
+    let viewport;
+    if ( places.length > 0 ) {
+      const { geometry } = places[0];
+      ( { viewport } = geometry );
+      lat = lat || geometry.location.lat( );
+      lng = lng || geometry.location.lng( );
+      // Set the locality notes using political entity names and omitting
+      // street-level information
+      const storeStreetAddress = false; // disabling until we figure out what we really want
+      if (
+        storeStreetAddress
+        && places[0].address_components
+        && places[0].address_components.length > 0
+      ) {
+        const goodTypes = ["political", "neighborhood"];
+        const goodComponents = _.filter(
+          places[0].address_components,
+          p => _.intersection( p.types, goodTypes ).length > 0
+        );
+        notes = goodComponents
+          .map( p => ( p.short_name || p.long_name ) )
+          .join( ", " );
+        if ( places[0].name && !places[0].name.match( /^\d+/ ) ) {
+          notes = `${places[0].name}, ${notes}`;
+        }
+      } else {
+        notes = places[0].formatted_address;
+      }
+    }
+    if ( typeof ( google ) !== "undefined" ) {
+      if ( viewport && !searchedForCoord ) {
+        // radius is the largest distance from geom center to one of the bounds corners
+        radius = _.max( [
+          LocationChooserMap.distanceInMeters(
+            lat,
+            lng,
+            viewport.getCenter().lat(),
+            viewport.getCenter().lng()
+          ),
+          LocationChooserMap.distanceInMeters(
+            lat,
+            lng,
+            viewport.getNorthEast().lat(),
+            viewport.getNorthEast().lng()
+          )
+        ] );
+        this.map.fitBounds( viewport );
+      } else {
+        if ( !searchedForCoord ) {
+          notes = searchQuery || notes;
+        }
+        this.map.fitBounds(
+          new google.maps.LatLngBounds(
+            new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
+            new google.maps.LatLng( lat + 0.001, lng + 0.001 )
+          )
+        );
+      }
+    }
+    let { manualPlaceGuess, notes: existingNotes } = this.props;
+    if ( manualPlaceGuess && notes ) {
+      notes = existingNotes;
+    } else {
+      manualPlaceGuess = false;
+    }
+    updateState( {
+      locationChooser: {
+        lat: lat ? lat.toString( ) : undefined,
+        lng: lng ? lng.toString( ) : undefined,
+        center: this.map.getCenter( ),
+        bounds: this.map.getBounds( ),
+        radius,
+        notes,
+        manualPlaceGuess
+      }
+    } );
+  }
+
+  // Remove existing overlays and repopulate them based on the props
+  overlaysFromProps( prevProps = {} ) {
     const {
+      lat,
+      lng,
+      obsCard: currentCard,
+      obsCards,
+      radius,
       show,
       center,
       fitCurrentCircle
     } = this.props;
-    if ( show && !prevProps.show ) {
-      if ( !center ) {
-        setTimeout( this.fitCircles, 10 );
-      }
-    } else if (
-      show
-      && fitCurrentCircle
-      && objectToComparable( center ) !== objectToComparable( prevProps.center )
+
+    // Determine if we should re-render the overlays
+    const comparableKeys = [
+      "show",
+      "lat",
+      "lng",
+      "radius"
+    ];
+    const comparable = objectToComparable( {
+      ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( obsCards )
+    } );
+    const prevComparable = objectToComparable( {
+      ..._.filter( prevProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
+      obsCards: _.keys( prevProps.obsCards )
+    } );
+    if ( comparable === prevComparable ) {
+      return;
+    }
+
+    let newCenter;
+    const latNum = Number( lat );
+    const lngNum = Number( lng );
+    if (
+      lat
+      && lng
+      && !_.isNaN( latNum )
+      && !_.isNaN( lngNum )
+      && _.inRange( latNum, -89.999, 90 )
+      && _.inRange( lngNum, -179.999, 180 )
     ) {
-      setTimeout( this.fitCurrentCircle, 10 );
+      newCenter = { lat: latNum, lng: lngNum };
+    }
+
+    // Delete existing overlays
+    while ( this.overlays.length > 0 ) {
+      const overlay = this.overlays.pop( );
+      overlay.setMap( null );
+    }
+
+    // Add new circles
+    if ( this.map && newCenter ) {
+      this.circle = new google.maps.Circle( {
+        map: this.map,
+        center: newCenter,
+        radius: Number( radius ),
+        strokeColor: "#DF0101",
+        strokeOpacity: 0.8,
+        fillColor: "#DF0101",
+        fillOpacity: 0.35,
+        editable: true,
+        draggable: true
+      } );
+      google.maps.event.addListener( this.circle, "click", this.handleMapClick );
+      google.maps.event.addListener( this.circle, "radius_changed", this.radiusChanged );
+      google.maps.event.addListener( this.circle, "center_changed", this.centerChanged );
+      this.overlays.push( this.circle );
+    }
+
+    // Add new markers for obs cards
+    _.each( obsCards, card => {
+      if ( card.latitude && !( currentCard && currentCard.id === card.id ) ) {
+        const cardImage = $( `[data-id=${card.id}] .carousel-inner img:first` );
+        if ( cardImage.length > 0 ) {
+          const overlay = new PhotoMarkerOverlayView(
+            cardImage[0].src,
+            { lat: card.latitude, lng: card.longitude }
+          );
+          overlay.setMap( this.map );
+          this.overlays.push( overlay );
+        } else {
+          const marker = new google.maps.Marker( {
+            map: this.map,
+            position: { lat: card.latitude, lng: card.longitude },
+            icon: { ...markerSVG, fillColor: "#333" }
+          } );
+          this.overlays.push( marker );
+        }
+      }
+    } );
+
+    // Add a new marker for the current obs
+    if ( this.map && newCenter && !radius ) {
+      const marker = new google.maps.Marker( {
+        map: this.map,
+        position: newCenter,
+        icon: { ...markerSVG, fillColor: "#DF0101", scale: 0.03 }
+      } );
+      this.overlays.push( marker );
+    }
+  }
+
+  radiusChanged( ) {
+    if ( this.circle ) {
+      this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ) );
+    }
+  }
+
+  centerChanged( ) {
+    const time = new Date().getTime();
+    if ( time - lastCenterChange > 900 ) {
+      const goTime = time;
+      lastCenterChange = goTime;
+      setTimeout( () => {
+        if ( goTime === lastCenterChange && this.circle ) {
+          this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ), { geocode: true } );
+        }
+      }, 1000 );
+    }
+  }
+
+  reverseGeocode( lat, lng ) {
+    const {
+      manualPlaceGuess,
+      notes,
+      updateState
+    } = this.props;
+    if ( manualPlaceGuess && notes ) { return; }
+    util.reverseGeocode( lat, lng ).then( location => {
+      if ( location ) {
+        updateState( {
+          locationChooser: {
+            notes: location,
+            manualPlaceGuess: false
+          }
+        } );
+      }
+    } );
+  }
+
+  moveCircle( center, radius, options = { } ) {
+    const { updateState } = this.props;
+    updateState( {
+      locationChooser: {
+        lat: center.lat( ),
+        lng: center.lng( ),
+        center: this.map.getCenter( ),
+        bounds: this.map.getBounds( ),
+        radius
+      }
+    } );
+    if ( options.geocode ) {
+      this.reverseGeocode( center.lat( ), center.lng( ) );
     }
   }
 
@@ -156,314 +441,16 @@ class LocationChooserMap extends React.Component {
     updateState( { locationChooser: { fitCurrentCircle: false } } );
   }
 
-  handleMapClick( event ) {
-    const { latLng } = event;
-    const zoom = this.map.getZoom( );
-    const radius = Math.round( ( 1 / ( 2 ** zoom ) ) * 2000000 );
-    this.moveCircle( latLng, radius, { geocode: true } );
-  }
-
-  moveCircle( center, radius, options = { } ) {
-    const { updateState } = this.props;
-    updateState( {
-      locationChooser: {
-        lat: center.lat( ),
-        lng: center.lng( ),
-        center: this.map.getCenter( ),
-        bounds: this.map.getBounds( ),
-        radius
-      }
-    } );
-    if ( options.geocode ) {
-      this.reverseGeocode( center.lat( ), center.lng( ) );
-    }
-  }
-
-  radiusChanged( ) {
-    if ( this.circle ) {
-      this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ) );
-    }
-  }
-
-  centerChanged( ) {
-    const time = new Date().getTime();
-    if ( time - lastCenterChange > 900 ) {
-      const goTime = time;
-      lastCenterChange = goTime;
-      setTimeout( () => {
-        if ( goTime === lastCenterChange ) {
-          this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ), { geocode: true } );
-        }
-      }, 1000 );
-    }
-  }
-
-  reverseGeocode( lat, lng ) {
-    const {
-      manualPlaceGuess,
-      notes,
-      updateState
-    } = this.props;
-    if ( manualPlaceGuess && notes ) { return; }
-    util.reverseGeocode( lat, lng ).then( location => {
-      if ( location ) {
-        updateState( {
-          locationChooser: {
-            notes: location,
-            manualPlaceGuess: false
-          }
-        } );
-      }
-    } );
-  }
-
-  handlePlacesChanged( ) {
-    const places = this.searchbox.getPlaces();
-    const { updateState } = this.props;
-    let searchQuery;
-    let lat;
-    let lng;
-    let searchedForCoord = false;
-    if ( this.searchboxInput ) {
-      searchQuery = this.searchboxInput.value;
-      const searchCoord = searchQuery.split( "," ).map( piece => parseFloat( piece, 16 ) );
-      if (
-        searchCoord[0] !== 0
-        && searchCoord[0] > -90
-        && searchCoord[0] < 90
-        && searchCoord[1] !== 0
-        && searchCoord[1] > -180
-        && searchCoord[1] < 180
-      ) {
-        lat = searchCoord[0];
-        lng = searchCoord[1];
-        searchedForCoord = true;
-      }
-    }
-    let notes;
-    let radius;
-    let viewport;
-    if ( places.length > 0 ) {
-      const { geometry } = places[0];
-      ( { viewport } = geometry );
-      lat = lat || geometry.location.lat( );
-      lng = lng || geometry.location.lng( );
-      // Set the locality notes using political entity names and omitting
-      // street-level information
-      const storeStreetAddress = false; // disabling until we figure out what we really want
-      if (
-        storeStreetAddress
-        && places[0].address_components
-        && places[0].address_components.length > 0
-      ) {
-        const goodTypes = ["political", "neighborhood"];
-        const goodComponents = _.filter( places[0].address_components,
-          p => _.intersection( p.types, goodTypes ).length > 0 );
-        notes = goodComponents
-          .map( p => ( p.short_name || p.long_name ) )
-          .join( ", " );
-        if ( places[0].name && !places[0].name.match( /^\d+/ ) ) {
-          notes = `${places[0].name}, ${notes}`;
-        }
-      } else {
-        notes = places[0].formatted_address;
-      }
-    }
-    if ( typeof ( google ) !== "undefined" ) {
-      if ( viewport && !searchedForCoord ) {
-        // radius is the largest distance from geom center to one of the bounds corners
-        radius = _.max( [
-          LocationChooserMap.distanceInMeters( lat, lng,
-            viewport.getCenter().lat(), viewport.getCenter().lng() ),
-          LocationChooserMap.distanceInMeters( lat, lng,
-            viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
-        ] );
-        this.map.fitBounds( viewport );
-      } else {
-        if ( !searchedForCoord ) {
-          notes = searchQuery || notes;
-        }
-        this.map.fitBounds(
-          new google.maps.LatLngBounds(
-            new google.maps.LatLng( lat - 0.001, lng - 0.001 ),
-            new google.maps.LatLng( lat + 0.001, lng + 0.001 )
-          )
-        );
-      }
-    }
-    let { manualPlaceGuess, notes: existingNotes } = this.props;
-    if ( manualPlaceGuess && notes ) {
-      notes = existingNotes;
-    } else {
-      manualPlaceGuess = false;
-    }
-    updateState( {
-      locationChooser: {
-        lat: lat ? lat.toString( ) : undefined,
-        lng: lng ? lng.toString( ) : undefined,
-        center: this.map.getCenter( ),
-        bounds: this.map.getBounds( ),
-        radius,
-        notes,
-        manualPlaceGuess
-      }
-    } );
-  }
-
   render( ) {
-    // const props = this.props;
-    const {
-      lat,
-      lng,
-      radius,
-      obsCard,
-      obsCards,
-      zoom,
-      bounds,
-      center: existingCenter,
-      updateState,
-      config,
-      updateCurrentUser
-    } = this.props;
-    let center;
-    const circles = [];
-    const markers = [];
-    const overlays = [];
-    const latNum = Number( lat );
-    const lngNum = Number( lng );
-    if (
-      lat
-      && lng
-      && !_.isNaN( latNum )
-      && !_.isNaN( lngNum )
-      && _.inRange( latNum, -89.999, 90 )
-      && _.inRange( lngNum, -179.999, 180 )
-    ) {
-      center = { lat: latNum, lng: lngNum };
-    }
-    _.each( obsCards, c => {
-      if ( c.latitude && !( obsCard && obsCard.id === c.id ) ) {
-        const cardImage = $( `[data-id=${c.id}] .carousel-inner img:first` );
-        if ( cardImage.length > 0 ) {
-          overlays.push(
-            <OverlayView
-              key={`overlay${c.id}`}
-              position={{ lat: c.latitude, lng: c.longitude }}
-              mapPaneName={OverlayView.OVERLAY_LAYER}
-            >
-              <div className="photo-marker">
-                <img src={cardImage[0].src} alt="" />
-              </div>
-            </OverlayView>
-          );
-        } else {
-          markers.push(
-            <Marker
-              key={`marker${c.id}`}
-              position={{ lat: c.latitude, lng: c.longitude }}
-              icon={Object.assign( { }, markerSVG, {
-                fillColor: "#333"
-              } )}
-            />
-          );
-        }
-      }
-    } );
-    if ( center ) {
-      circles.push(
-        <Circle
-          key="circle"
-          ref={ref => { this.circle = ref; }}
-          center={center}
-          radius={Number( radius )}
-          onClick={this.handleMapClick}
-          onRadiusChanged={this.radiusChanged}
-          onCenterChanged={this.centerChanged}
-          options={{
-            strokeColor: "#DF0101",
-            strokeOpacity: 0.8,
-            fillColor: "#DF0101",
-            fillOpacity: 0.35
-          }}
-          editable
-          draggable
-        />
-      );
-      if ( !radius ) {
-        markers.push(
-          <Marker
-            key="marker"
-            position={{ lat: center.lat, lng: center.lng }}
-            icon={Object.assign( { }, markerSVG, {
-              fillColor: "#DF0101",
-              scale: 0.03
-            } )}
-          />
-        );
-      }
-    }
+    const { bounds } = this.props;
     return (
-      <GoogleMap
-        ref={ref => { this.map = ref; }}
-        defaultZoom={zoom || 1}
-        defaultCenter={existingCenter || { lat: 30, lng: 15 }}
-        defaultTilt={0}
-        defaultMapTypeId={iNaturalist.Map.preferredMapTypeId( config.currentUser )}
-        onClick={this.handleMapClick}
-        onMapTypeIdChanged={( ) => {
-          updateCurrentUser( { preferred_observations_search_map_type: this.map.getMapTypeId( ) } );
-        }}
-        onBoundsChanged={( ) => {
-          const c = this.map.getCenter( );
-          updateState( {
-            locationChooser: {
-              center: { lat: c.lat(), lng: c.lng() },
-              bounds: this.map.getBounds( ),
-              zoom: this.map.getZoom( )
-            }
-          } );
-        }}
-        options={{
-          streetViewControl: false,
-          fullscreenControl: true,
-          rotateControl: false,
-          gestureHandling: "greedy",
-          controlSize: 26
-        }}
-      >
-        {/*
-        */}
-        <SearchBox
-          ref={ref => { this.searchbox = ref; }}
+      <div className="LocationChooserMap map">
+        <div className="map-inner" />
+        <GooglePlacesSearchBox
           bounds={bounds}
           onPlacesChanged={this.handlePlacesChanged}
-          controlPosition={typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT}
-        >
-          <input
-            ref={ref => { this.searchboxInput = ref; }}
-            type="text"
-            placeholder={I18n.t( "search_for_a_location" )}
-            style={{
-              border: "1px solid transparent",
-              borderRadius: "2px",
-              boxShadow: "0 0px 5px rgba(0, 0, 0, 0.3)",
-              boxSizing: "border-box",
-              MozBoxSizing: "border-box",
-              fontSize: "14px",
-              lineHeight: "14px",
-              height: "26px",
-              marginTop: "6px",
-              outline: "none",
-              padding: "0 12px",
-              textOverflow: "ellipses",
-              width: "250px"
-            }}
-          />
-        </SearchBox>
-        { markers }
-        { circles }
-        { overlays }
-      </GoogleMap>
+        />
+      </div>
     );
   }
 }
@@ -491,6 +478,4 @@ LocationChooserMap.defaultProps = {
   config: {}
 };
 
-// withGoogleMap is a HOC from react-google-maps. It requires that this
-// component have the props containerElement and mapElement
-export default withGoogleMap( LocationChooserMap );
+export default LocationChooserMap;

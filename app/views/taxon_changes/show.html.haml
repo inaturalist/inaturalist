@@ -7,12 +7,15 @@
     when "TaxonDrop" then t( :taxon_change_title_taxon_drop, id: @taxon_change.id )
     when "TaxonStage" then t( :taxon_change_title_taxon_stage, id: @taxon_change.id )
     end
+    if @taxon_change.is_a?( TaxonSwap )
+      @input_ancestry = @taxon_change.input_taxa[0].ancestry
+      @output_ancestry = @taxon_change.output_taxon.ancestry
+      @output_taxon_id = @taxon_change.output_taxon.id
+    end
   = title
   = "(#{@taxon_change.committed_on.blank? ? t( :draft_ ) : t( :committed_on, date: l( @taxon_change.committed_on ) )})"
 - content_for(:extracss) do
   = stylesheet_link_tag "taxon_changes"
-  :css
-    iframe { border: 0; }
 - content_for :extrajs do
   = javascript_include_tag "taxon_changes/show"
 .container
@@ -50,17 +53,27 @@
               %li
                 = link_to user_image( tc.user ), person_path( tc.user.login )
                 = link_to_user( tc.user )
+      - if @taxon_change.committed_on.present? && @job.present?
+        .alert.alert-warning
+          =t :taxon_change_commit_may_still_be_processing 
       #pageheader
         .breadcrumbs
           %strong= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb'
   .row
     .col-xs-12
       = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
+      - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSwap )
+        .potential_clashes.alert.alert-warning
+          = t( :committing_this_swap_may_result )
+          = link_to t( :analyze_clashes ), taxa_clashes_path( id: @taxon_change.input_taxa[0].id ), |
+            class: "potential_clashes_link btn btn-default", |
+            data: { input_ancestry: @input_ancestry, output_ancestry: @output_ancestry, output_taxon_id: @output_taxon_id }, |
+            "data-remote" => "false", "data-target" => "#clashes_modal", "data-toggle" => "modal"
       - if logged_in? && current_user.is_curator? && @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         #id_analysis
-        =link_to t( :analyze_ids), "#", :class => "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
+        =link_to t( :analyze_ids ), "#", class: "analyze_ids_button", :data => { taxon_change_id: @taxon_change.id }
         - helptip_for "analyze" do
-          = t :estimate_which_input
+          = t :estimate_which_input2
         = image_tag "spinner.gif", :class => "spinner"
         .analysis
           =t( :total_ids_on_input_taxon )
@@ -82,3 +95,33 @@
         - if logged_in?
           .upstacked
             = render "subscriptions/subscription", resource: @taxon_change
+
+
+#clashes_modal.modal.modal-wide.fade{"aria-hidden" => "true", "aria-labelledby" => "clashes_modal_label", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ "aria-label" => "Close", "data-dismiss" => "modal", type: "button" }
+          %span{ "aria-hidden" => "true" } ×
+        %h4#clashes_modal_label.modal-title= t( :analyze_clashes )
+      .modal-body
+        .unintended-disagreements-content
+          = image_tag "spinner.gif", :id => "spinner", :class => "center"
+        .row.about-unintended-disagreements
+          %hr
+          .col-xs-12
+            %h5=t :about_unintended_disagreements
+          .col-xs-2
+            %b=t( :taxon_swap ).capitalize
+            %embed{ src: image_path( "clashes-modal-fig-1-swaps.svg" ) }
+          .col-xs-3
+            = t( :clashes_occur_for_swaps_html )
+          .col-xs-2
+            %b=t( :identification_ )
+            %embed{ src: image_path("clashes-modal-fig-2.svg" ) }
+            =t( :id_two_of_taxon_swap_html )
+          .col-xs-3
+            = t( :if_narrowing_a_parent_for_swaps_html )
+          .col-xs-2
+            %b=t( :taxon_split ).capitalize
+            %embed{ src: image_path( "clashes-modal-fig-3.svg" ) }

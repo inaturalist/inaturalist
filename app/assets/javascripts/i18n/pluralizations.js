@@ -25,7 +25,7 @@
     var n = normalizeCount( count, locale ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if ( mod10 === 1 && mod100 !== 11 ) {
       return ["one"];
     }
@@ -47,7 +47,7 @@
 
   function westSlavic( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if ( n === 1 ) return ["one"];
     if ( n >= 2 && n <= 4 && isWhole ) return ["few"];
     return ["other"];
@@ -55,8 +55,26 @@
 
   function oneUptoTwoOther( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     return n && n >= 0 && n < 2 && isWhole ? ["one"] : ["other"];
+  }
+
+  function oneFewOther( count, locale ) {
+    var n = normalizeCount( count, locale ) || 0;
+    var frac = ( n % 1 );
+
+    if ( frac > 0 ) {
+      n = parseInt( frac.toString( ).split( "." )[1], 2 );
+    }
+
+    var mod10 = n % 10;
+    var mod100 = n % 100;
+
+    if ( mod10 === 1 && mod100 !== 11 ) return ["one"];
+    if ( [2, 3, 4].indexOf( mod10 ) >= 0 && ![12, 13, 14].indexOf( mod100 ) >= 0 ) {
+      return ["few"];
+    }
+    return ["other"];
   }
 
   function other( ) {
@@ -108,6 +126,7 @@
   };
   I18n.pluralization.cs = function ( count ) { return westSlavic( count, "cs" ); };
   I18n.pluralization.fr = function ( count ) { return oneUptoTwoOther( count, "fr" ); };
+  I18n.pluralization.hr = function ( count ) { return oneFewOther( count, "hr" ); };
   I18n.pluralization.id = other;
   I18n.pluralization.ja = other;
   I18n.pluralization.ko = other;
@@ -115,7 +134,7 @@
     var n = normalizeCount( count, "lt" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if (
       mod10 === 1
       && !( mod100 >= 11 && mod100 <= 19 )
@@ -133,9 +152,10 @@
     }
     return ["other"];
   };
+  I18n.pluralization.mi = other;
   I18n.pluralization.mk = function ( count ) {
     var n = normalizeCount( count, "mk" ) || 0;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if (
       n % 10 === 1
       && n !== 11
@@ -145,11 +165,12 @@
     }
     return ["other"];
   };
+  I18n.pluralization.ms = other;
   I18n.pluralization.pl = function ( count ) {
     var n = normalizeCount( count, "pl" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if ( n === 1 ) {
       return ["one"];
     }
@@ -171,7 +192,7 @@
   I18n.pluralization.ro = function ( count ) {
     var n = normalizeCount( count, "ro" ) || 0;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 2 ) === n;
     if ( n === 1 ) {
       return ["one"];
     }
@@ -185,7 +206,10 @@
   };
   I18n.pluralization.ru = function ( count ) { return eastSlavic( count, "ru" ); };
   I18n.pluralization.sk = function ( count ) { return westSlavic( count, "sk" ); };
+  I18n.pluralization.sr = function ( count ) { return oneFewOther( count, "sr" ); };
+  I18n.pluralization.th = other;
   I18n.pluralization.uk = function ( count ) { return eastSlavic( count, "uk" ); };
+  I18n.pluralization.vi = other;
   I18n.pluralization.zh = other;
   I18n.pluralization["zh-CN"] = other;
   I18n.pluralization["zh-HK"] = other;

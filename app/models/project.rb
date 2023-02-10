@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
 
   include ActsAsElasticModel
+  include HasJournal
 
   belongs_to :user
   belongs_to :place, inverse_of: :projects
@@ -17,7 +18,6 @@ class Project < ApplicationRecord
   has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
   has_many :observation_fields, through: :project_observation_fields
   has_many :posts, as: :parent, dependent: :destroy
-  has_many :journal_posts, class_name: "Post", as: :parent
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
@@ -277,16 +277,21 @@ class Project < ApplicationRecord
     return true unless cover.queued_for_write[:original]
     dimensions = Paperclip::Geometry.from_file(cover.queued_for_write[:original].path)
     if dimensions.width != 950 || dimensions.height > 400
-      errors.add(I18n.t(:cover), I18n.t(:image_must_be_exactly))
+      errors.add( :cover, I18n.t( :image_must_be_exactly ) )
     end
   end
   
   def add_owner_as_project_user(options = {})
     return true unless saved_change_to_user_id? || options[:force]
-    if pu = project_users.where(user_id: user_id).first
-      pu.update_attributes(role: ProjectUser::MANAGER)
+    existing_project_user = project_users.where(user_id: user_id).first
+    if existing_project_user
+      existing_project_user.update( role: ProjectUser::MANAGER )
     else
-      self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
+      self.project_users.create!(
+        user: user,
+        role: ProjectUser::MANAGER,
+        skip_updates: true
+      )
     end
     true
   end
@@ -365,27 +370,40 @@ class Project < ApplicationRecord
   end
 
   def set_observation_requirements_updated_at( options = {} )
+    # If this is a new record, we want to enable coordinate access immediately
+    # if trust was enabled, so we backdate
+    # observation_requirements_updated_at
     if new_record?
-      # puts "set_observation_requirements_updated_at: new project, backdating"
       self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
       return true
     end
     old_params = Project.find(id).collection_search_parameters
     new_params = collection_search_parameters
-    pu_scope = project_users.joins(:stored_preferences).where(
+    trusting_project_users = project_users.joins(:stored_preferences).where(
       "preferences.name = 'curator_coordinate_access_for' AND preferences.value IN (?)",
       [
         ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON,
         ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_ANY
       ]
     )
-    if old_params == new_params && !prefers_user_trust_changed? && !options[:force]
-      # puts "set_observation_requirements_updated_at: no change"
-    elsif pu_scope.exists?
-      # puts "set_observation_requirements_updated_at: trusting users exist, setting stamp to now"
+    changed_from_trad_to_collection = project_type_changed? &&
+      changes[:project_type].first.blank? &&
+      %w(collection umbrella).include?( changes[:project_type].last )
+    if (
+      old_params == new_params &&
+      !prefers_user_trust_changed? &&
+      !options[:force] &&
+      !changed_from_trad_to_collection
+    )
+      Rails.logger.debug "set_observation_requirements_updated_at: no change"
+    elsif trusting_project_users.exists?
+      Rails.logger.debug "set_observation_requirements_updated_at: trusting users exist, setting observation_requirements_updated_at to now"
       self.observation_requirements_updated_at = Time.now
+    elsif changed_from_trad_to_collection
+      Rails.logger.debug "set_observation_requirements_updated_at: trad proj changing to a new-style project and there are no trusting users, backdating observation_requirements_updated_at"
+      self.observation_requirements_updated_at = ProjectUser::CURATOR_COORDINATE_ACCESS_WAIT_PERIOD.ago
     else
-      # puts "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
+      Rails.logger.debug "set_observation_requirements_updated_at: requirements changed but no trusting users, no change"
     end
   end
 
@@ -526,12 +544,12 @@ class Project < ApplicationRecord
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
           if rule_value.strip.match( / / )
-            rule_value = Time.parse( rule_value )
+            rule_value = Time.parse( rule_value ) rescue nil
           else
-            rule_value = Date.parse( rule_value )
+            rule_value = Date.parse( rule_value ) rescue nil
             if rule == "rule_d2"
               # when d2 is a date w/o a time, we want to capture that in its own field
-              params[ "d2_date" ] = rule_value
+              params[ "d2_date" ] = rule_value unless rule_value.nil?
             end
           end
         elsif rule_value.is_a?( String )
@@ -539,7 +557,7 @@ class Project < ApplicationRecord
           rule_value = rule_value.split( "," ).map( &:strip )
           rule_value.map!( &:to_i ) if is_int
         end
-        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value
+        params[ rule.sub( "rule_", "" ).to_sym ] = rule_value unless rule_value.nil?
       end
     end
     without_taxon_ids = without_taxon_ids.compact.uniq
@@ -663,7 +681,6 @@ class Project < ApplicationRecord
     CSV.open(path, 'w') do |csv|
       csv << columns
       Observation.search_in_batches( projects: id ) do |batch|
-        puts "[#{Time.now}] batch starting with #{batch.first.id}"
         Observation.preload_associations( batch, [:project_observations] )
         project_observations = batch.map {|o| o.project_observations.select{|po|
           po.project_id == id
@@ -752,7 +769,7 @@ class Project < ApplicationRecord
       where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
       project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
-      po.update_attributes(curator_identification: curator_ident)
+      po.update(curator_identification: curator_ident)
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
           [ project_id, po.observation.user_id ] }
@@ -790,7 +807,7 @@ class Project < ApplicationRecord
       Observation.prepare_batch_for_index( batch.map( &:observation ) )
       batch.each do |po|
         curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-        po.update_attributes(curator_identification: curator_ident)
+        po.update(curator_identification: curator_ident)
         ProjectUser.delay(priority: INTEGRITY_PRIORITY,
           unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
             [ project_id, po.observation.user_id ] }
@@ -814,14 +831,14 @@ class Project < ApplicationRecord
       return unless response
       response.total_results
     end
-    project.update_attributes(observed_taxa_count: observed_taxa_count)
+    project.update(observed_taxa_count: observed_taxa_count)
   end
   
   def self.revoke_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)
     proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
-      po.update_attributes(prefers_curator_coordinate_access: false)
+      po.update(prefers_curator_coordinate_access: false)
     end
   end
 
@@ -942,8 +959,8 @@ class Project < ApplicationRecord
         # matching the node.js iNaturalistAPI filters/aggregations for obs counts
         result = Observation.elastic_search(
           filters: [
-            { term: { project_ids: self.id } },
-            { terms: { "user.id": uids } }
+            { term: { "project_ids.keyword": self.id } },
+            { terms: { "user.id.keyword": uids } }
           ],
           size: 0,
           aggregate: {
@@ -968,10 +985,10 @@ class Project < ApplicationRecord
       user_ids.in_groups_of(500, false) do |uids|
         # matching the node.js iNaturalistAPI filters/aggregations for species counts
         filters = [
-          { term: { project_ids: self.id } },
+          { term: { "project_ids.keyword": self.id } },
           { range: { "taxon.rank_level": { lte: Taxon::SPECIES_LEVEL } } },
           { range: { "taxon.rank_level": { gte: Taxon::SUBSPECIES_LEVEL } } },
-          { terms: { "user.id": uids } }
+          { terms: { "user.id.keyword": uids } }
         ]
         result = Observation.elastic_search(
           filters: filters,
@@ -1034,7 +1051,7 @@ class Project < ApplicationRecord
       Observation.elastic_index!(ids: batch_metadata[:obs_ids_added])
     end
     update_counts
-    update_attributes(last_aggregated_at: Time.now)
+    update(last_aggregated_at: Time.now)
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
 
@@ -1069,20 +1086,19 @@ class Project < ApplicationRecord
   end
 
   def add_admins
-    new = new_record?
+    is_new = new_record?
     yield
     return if admin_attributes.blank?
     admin_attributes.each do |k, admin_attr|
       next unless admin_attr["user_id"]
       new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
-      if new
-        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update_attributes( role: new_role )
+      if is_new
+        project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
-        project_users.find_by( user_id: admin_attr["user_id"] )&.update_attributes( role: new_role )     
+        project_users.find_by( user_id: admin_attr["user_id"] )&.update( role: new_role )
       end
     end
     project_users.reload
-    elastic_index!
   end
 
   def destroy_project_rules
@@ -1115,7 +1131,7 @@ class Project < ApplicationRecord
       priority: INTEGRITY_PRIORITY,
       unique_hash: unique_hash
     ).notify_trusting_members_about_changes( id )
-    job.update_attributes( run_at: 1.hour.from_now )
+    job.update( run_at: 1.hour.from_now )
   end
 
   def notify_trusting_members_about_changes_if_rules_changed

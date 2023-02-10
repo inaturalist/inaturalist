@@ -1,26 +1,30 @@
 = content_for :title do
-  = @title = "3rd Party #{@site.site_name_short} Applications"
-%header.page-header
-  = link_to 'New Application', new_oauth_application_path, :class => "right button"
-  %h2= @title
-%table.zebra-striped
-  %thead
-    %tr
-      %th Name
-      %th Callback url
-      %th Owner
-      %th Confidential
-      %th
-      %th
-  %tbody
-    - @applications.each do |application|
-      %tr{:id => "application_#{application.id}"}
-        %td= link_to application.name, oauth_application_path(application)
-        %td= application.redirect_uri
-        %td= link_to_user(application.owner) if application.owner
-        %td= application.confidential
-        %td= link_to 'Edit', edit_oauth_application_path(application) if is_admin? || is_me?(application.owner)
-        %td
-          - if is_admin? || is_me?(application.owner)
-            = link_to 'Destroy', oauth_application_path(application), :data => { :confirm => 'Are you sure?' }, :method => :delete
-= will_paginate @applications
+  = @title = t(:applications)
+.container
+  %header.page-header
+    - if current_user.is_app_owner?
+      = link_to t(:new_application), new_oauth_application_path, :class => "right button"
+    - else
+      = link_to t(:apply_to_be_an_app_owner), app_owner_application_path, :class => "right button"
+    %h2= @title
+  %table.table.table-striped
+    %thead
+      %tr
+        %th=t(:name)
+        %th=t(:callback_url)
+        %th=t(:owner)
+        %th=t(:confidential)
+        %th
+        %th
+    %tbody
+      - @applications.each do |application|
+        %tr{:id => "application_#{application.id}"}
+          %td= link_to application.name, oauth_application_path(application)
+          %td= application.redirect_uri
+          %td= link_to_user(application.owner) if application.owner
+          %td= application.confidential
+          %td= link_to t(:edit), edit_oauth_application_path(application) if is_admin? || is_me?(application.owner)
+          %td
+            - if is_admin? || is_me?(application.owner)
+              = link_to t(:destroy), oauth_application_path(application), :data => { :confirm => t(:are_you_sure?) }, :method => :delete
+  = will_paginate @applications

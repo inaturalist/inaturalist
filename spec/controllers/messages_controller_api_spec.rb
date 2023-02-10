@@ -158,7 +158,7 @@ shared_examples_for "a MessagesController" do
     end
     it "should search messages by sender login" do
       login = "arcturus"
-      to_user.update_attributes( login: login )
+      to_user.update( login: login )
       message = make_message( user: user, from_user: to_user, to_user: user )
       get :index, format: :json, params: { q: login }
       json = JSON.parse( response.body )
@@ -166,7 +166,7 @@ shared_examples_for "a MessagesController" do
     end
     it "should search messages by sender name" do
       name = "arcturus"
-      to_user.update_attributes( name: name )
+      to_user.update( name: name )
       message = make_message( user: user, from_user: to_user, to_user: user )
       get :index, format: :json, params: { q: name }
       json = JSON.parse( response.body )

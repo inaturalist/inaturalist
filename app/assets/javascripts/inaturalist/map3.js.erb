@@ -413,25 +413,32 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
+  zoom: 1,
+  mapTypeId: google.maps.MapTypeId.TERRAIN,
+  streetViewControl: false,
+  rotateControl: false,
+  backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
+  clickableIcons: false,
+  gestureHandling: "greedy",
+  controlSize: 26,
+  scaleControl: true,
+  tilt: 0
+};
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
   var placement = options.placement;
   delete options.placement;
-  options = $.extend({}, {
-    div: 'map',
-    center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
-    zoom: 1,
-    mapTypeId: google.maps.MapTypeId.TERRAIN,
-    streetViewControl: false,
-    rotateControl: false,
-    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
-    clickableIcons: false,
-    gestureHandling: "greedy",
-    controlSize: 26,
-    scaleControl: true,
-    tilt: 0
-  }, options);
+  options = $.extend(
+    {
+      div: "map",
+      center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
+    },
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
+    options
+  );
   
   var map;
   iNaturalist.log( { "map-placement": placement || "unknown" } );

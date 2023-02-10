@@ -105,6 +105,9 @@ Rails.application.routes.draw do
       authorized_applications: "oauth_authorized_applications",
       tokens: "oauth_tokens"
   end
+  get "oauth/app_owner_application" => "oauth_applications#app_owner_application", :as => :app_owner_application
+  post "oauth/create_app_owner_application" => "oauth_applications#create_app_owner_application",
+    as: :create_app_owner_application
 
   wiki_root "/pages"
   get "/pages" => "wiki_pages#all", as: "wiki_all"
@@ -126,6 +129,7 @@ Rails.application.routes.draw do
   get "/" => "welcome#index"
   get "/home" => "users#dashboard", :as => :home
   get "/home.:format" => "users#dashboard", :as => :formatted_home
+  get "/home" => "users#dashboard", as: :user_root
 
   get "/users/edit" => "users#edit", :as => "generic_edit_user"
   begin
@@ -146,7 +150,7 @@ Rails.application.routes.draw do
     get "users/new", to: redirect( "signup" ), as: "new_user"
     # This *should* be a redirect, but that is messing with the way we're doing
     # get "/forgot_password", to: redirect( "/users/password/new" ), as: "forgot_password"
-    get "/forgot_password", to: "devise/passwords#new", as: "forgot_password"
+    get "/forgot_password", to: "users/passwords#new", as: "forgot_password"
     put "users/update_session", to: "users#update_session"
   end
 
@@ -188,6 +192,7 @@ Rails.application.routes.draw do
       get :recent
       get :delete
       post :parental_consent
+      post :resend_confirmation
     end
     member do
       put :join_test
@@ -207,7 +212,7 @@ Rails.application.routes.draw do
       get :moderation
     end
   end
-  resources :relationships, controller: :relationships, only: [:index, :update, :destroy]
+  resources :relationships, controller: :relationships, only: [:index, :create, :update, :destroy]
   get "/users/:id/suspend" => "users#suspend", :as => :suspend_user, :constraints => { id: /\d+/ }
   get "/users/:id/unsuspend" => "users#unsuspend", :as => :unsuspend_user, :constraints => { id: /\d+/ }
   post "users/:id/add_role" => "users#add_role", :as => :add_role, :constraints => { id: /\d+/ }
@@ -256,13 +261,9 @@ Rails.application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
-      get :accumulation
-      get :phylogram
       get :export
       get :map
       get :identify
-      get :moimport
-      post :moimport
       get :torquemap
       get :compare
     end
@@ -428,6 +429,7 @@ Rails.application.routes.draw do
     resources :flags
     resources :taxon_names, controller: :taxon_names, shallow: true
     resources :taxon_scheme_taxa, controller: :taxon_scheme_taxa, shallow: true
+    resources :conservation_statuses, controller: :conservation_statuses, shallow: true
     get "description" => "taxa#describe", on: :member, as: :describe
     member do
       post "update_photos", as: "update_photos_for"
@@ -442,6 +444,7 @@ Rails.application.routes.draw do
       get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
+      get "history"
     end
     collection do
       get "synonyms"
@@ -459,6 +462,7 @@ Rails.application.routes.draw do
   get "taxa/:id/children.:format" => "taxa#children", :as => :formatted_taxon_children
   get "taxa/:id/photos" => "taxa#photos", as: :photos_of_taxon
   put "taxa/:id/update_colors" => "taxa#update_colors", :as => :update_taxon_colors
+  get "taxa/:id/clashes" => "taxa#clashes", :as => :taxa_clashes
   get "taxa/flickr_tagger" => "taxa#flickr_tagger", :as => :flickr_tagger
   get "taxa/flickr_tagger.:format" => "taxa#flickr_tagger", :as => :formatted_flickr_tagger
   post "taxa/tag_flickr_photos"
@@ -486,13 +490,14 @@ Rails.application.routes.draw do
   get "journal/:login/archives/:year/:month" => "posts#archives", :as => :journal_archives_by_month,
     :constraints => { month: /\d{1,2}/, year: /\d{1,4}/, login: simplified_login_regex }
   get "journal/:login/:id/edit" => "posts#edit", :as => :edit_journal_post
-  resources :posts, except: [:index], constraints: { id: id_param_pattern } do
+  resources :posts, constraints: { id: id_param_pattern } do
     resources :flags
     collection do
       get :for_project_user
       get :for_user
     end
   end
+  get "/posts/search", to: "posts#search"
   resources :posts,
     as: "journal_posts",
     path: "/journal/:login",
@@ -557,7 +562,6 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
-      get :stop_query
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as
@@ -598,10 +602,8 @@ Rails.application.routes.draw do
       get :cnc2016
       get :cnc2017
       get :cnc2017_stats
-      # rubocop:disable Naming/VariableNumber
       get :canada_150
       get :parks_canada_2017
-      # rubocop:enable Naming/VariableNumber
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -672,7 +674,8 @@ Rails.application.routes.draw do
   resources :taxon_swaps, controller: :taxon_changes
   resources :taxon_drops, controller: :taxon_changes
   resources :taxon_stages, controller: :taxon_changes
-  resources :conservation_statuses, only: [:autocomplete]
+
+  resources :conservation_statuses, only: [:create, :destroy]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
     collection do
@@ -709,6 +712,15 @@ Rails.application.routes.draw do
   get "translate" => "translations#index", :as => :translate_list
   post "translate/translate" => "translations#translate", :as => :translate
   get "translate/reload" => "translations#reload", :as => :translate_reload
+
+  resource :translations do
+    collection do
+      get :index
+      get :locales
+    end
+  end
+
+  resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 

@@ -158,7 +158,7 @@
             </div>
             <% if @life_list_firsts.size > 5 -%>
               <div class="buttonrow smallbuttons">
-                <%= link_to_function t(:view_all_n, :n => @life_list_firsts.size), 
+                <%= link_to_function t(:view_all_number, count: @life_list_firsts.size),
                   "$('#life_list_first_dialog').dialog({modal: true, width: 'auto', title: 'Life List Firsts'})",
                   :class => "small inline glaucous button" %>
               </div>
@@ -200,7 +200,6 @@
   <div class="quiet box">
     <%=t :calendars_only_show_x_observations_at_time, :x => @observations.per_page %>.
     <%= link_to t(:view_all_observations), observations_path( user_id: @selected_user.login, on: @date ) %>
-    <%=t :from %> <%= @date %>.
   </div>
 <% end -%>
 

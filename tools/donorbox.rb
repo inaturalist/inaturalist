@@ -62,7 +62,7 @@ loop do
     if ( user = User.find_by_email( donor["email"] ) )
       puts "\tDonor: #{user.donor?}" if opts.debug
       unless user.donor?
-        if opts.dry || user.update_attributes( donorbox_donor_id: donor["id"] )
+        if opts.dry || user.update( donorbox_donor_id: donor["id"] )
           puts "\tMarked #{user} as a donor"
           new_verified_users += 1
         else
@@ -86,7 +86,7 @@ loop do
     next if user_parent.donor?
 
     begin
-      if opts.dry || user_parent.update_attributes( donorbox_donor_id: donor["id"] )
+      if opts.dry || user_parent.update( donorbox_donor_id: donor["id"] )
         puts "\tMarked #{user_parent} as a donor"
         new_verified_user_parents += 1
       else

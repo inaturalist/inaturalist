@@ -465,7 +465,7 @@ describe ProjectObservation, "observed_in_place_bounding_box?" do
   it "should work" do
     setup_project_and_user
     place = make_place_with_geom(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
-    @observation.update_attributes(:latitude => 0.5, :longitude => 0.5)
+    @observation.update(:latitude => 0.5, :longitude => 0.5)
     project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     expect(project_observation).to be_observed_in_bounding_box_of(place)
   end
@@ -479,14 +479,14 @@ describe ProjectObservation, "observed_in_place" do
     
     project_observation = make_project_observation
     observation = project_observation.observation
-    observation.update_attributes(:latitude => 37.8732, :longitude => -122.263)
+    observation.update(:latitude => 37.8732, :longitude => -122.263)
     project_observation.reload
 
     expect(project_observation).to be_observed_in_place(place)
-    observation.update_attributes(:latitude => 37, :longitude => -122)
+    observation.update(:latitude => 37, :longitude => -122)
     project_observation.reload
     expect(project_observation).not_to be_observed_in_place(place)
-    observation.update_attributes(:private_latitude => 37.8732, :private_longitude => -122.263)
+    observation.update(:private_latitude => 37.8732, :private_longitude => -122.263)
     observation.save
     project_observation.reload
     expect(project_observation).to be_observed_in_place(place)
@@ -497,7 +497,7 @@ describe ProjectObservation, "wild?" do
   let(:p) { Project.make! }
   it "should be false if observation captive_cultivated" do
     po = make_project_observation
-    po.observation.update_attributes(:captive_flag => true)
+    po.observation.update(:captive_flag => true)
     po.reload
     expect(po).not_to be_wild
   end
@@ -511,7 +511,7 @@ describe ProjectObservation, "captive?" do
   let(:p) { Project.make! }
   it "should be true if observation captive_cultivated" do
     po = make_project_observation
-    po.observation.update_attributes(:captive_flag => true)
+    po.observation.update(:captive_flag => true)
     po.reload
     expect(po).to be_captive
   end
@@ -597,12 +597,12 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
   describe "when project observation allows curator coordinate access" do
     let(:pu) { ProjectUser.make!(project: p) }
     it "should be true when submitted by the observer" do
-      po_by_observer.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_observer.update( prefers_curator_coordinate_access: true )
       expect( po_by_observer ).to be_valid
       expect( po_by_observer ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by no one" do
-      po_by_no_one.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_no_one.update( prefers_curator_coordinate_access: true )
       unless po_by_no_one.valid?
         puts "po_by_no_one.errors: #{po_by_no_one.errors.full_messages.to_sentence}"
       end
@@ -610,12 +610,12 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_no_one ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a project curator" do
-      po_by_curator.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_curator.update( prefers_curator_coordinate_access: true )
       expect( po_by_curator ).to be_valid
       expect( po_by_curator ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a non-curator" do
-      po_by_non_curator.update_attributes( prefers_curator_coordinate_access: true )
+      po_by_non_curator.update( prefers_curator_coordinate_access: true )
       expect( po_by_non_curator ).to be_valid
       expect( po_by_non_curator ).to be_coordinates_shareable_by_project_curators
     end

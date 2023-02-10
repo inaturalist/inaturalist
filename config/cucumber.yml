@@ -1,5 +1,5 @@
 <%
-rerun = File.file?('rerun.txt') ? IO.read('rerun.txt') : ""
+rerun = File.file?('rerun.txt') ? File.open('rerun.txt').read : ""
 rerun_opts = rerun.to_s.strip.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} features" : "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun}"
 std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
 %>

@@ -465,3 +465,22 @@ select.dropdown {
     }
   }
 }
+
+.settings-item {
+  .alert {
+    padding: 5px 10px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    .alert-link {
+      position: relative;
+      top: -1px;
+    }
+  }
+}
+
+.AlertModal.modal {
+  .modal-dialog {
+    width: 100%;
+    max-width: 60%;
+  }
+}

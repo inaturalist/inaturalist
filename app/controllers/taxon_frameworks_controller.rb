@@ -47,7 +47,7 @@ class TaxonFrameworksController < ApplicationController
       return
     end
     pars = taxon_framework_params[:updater_id] = current_user.id
-    if @taxon_framework.update_attributes(pars)
+    if @taxon_framework.update(pars)
       redirect_to taxonomy_details_for_taxon_path( @taxon_framework.taxon )
     else
       @rank_levels = prepare_rank_levels

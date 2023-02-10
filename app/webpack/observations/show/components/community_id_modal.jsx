@@ -205,7 +205,7 @@ class CommunityIDModal extends Component {
             <dt>{ I18n.t( "views.observations.community_id.disagreement_count" ) }</dt>
             <dd>{ I18n.t( "views.observations.show.disagreement_count_desc" ) }</dd>
             <dt>{ I18n.t( "views.observations.community_id.ancestor_disagreements" ) }</dt>
-            <dd>{ I18n.t( "views.observations.show.ancestor_disagreements_desc" ) }</dd>
+            <dd>{ I18n.t( "views.observations.show.ancestor_disagreements_desc2" ) }</dd>
             <dt>{ I18n.t( "views.observations.community_id.score" ) }</dt>
             <dd>{ I18n.t( "views.observations.show.score_desc" ) }</dd>
           </dl>

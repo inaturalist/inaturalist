@@ -79,11 +79,11 @@ end
 
 def get_xml(url)
   puts "getting #{url}" if OPTS[:debug]
-  Nokogiri::XML(open(url))
+  Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
 rescue Timeout::Error => e
   puts "  Timeout requesting #{url}, trying again..."
   begin
-    Nokogiri::XML(open(url))
+    Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
   rescue Timeout::Error => e
     puts "  Timeout requesting #{url}"
     nil
@@ -125,7 +125,7 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
       :url => url
     }
     if existing
-      if existing.update_attributes(attrs)
+      if existing.update(attrs)
         puts "\tUpdated #{existing} (#{name})"
       else
         puts "\tFAILED to update #{existing}: #{existing.errors.full_messages.to_sentence} (#{name})"
@@ -146,7 +146,6 @@ def work_on_uid(uid, options = {})
   doc = options[:doc]
   unless doc
     uid_url = "https://services.natureserve.org/idd/rest/ns/v1.1/globalSpecies/comprehensive?uid=#{uid}&NSAccessKeyId=#{KEY}"
-    # doc = Nokogiri::XML(open(uid_url))
     doc = get_xml(uid_url)
   end
   unless doc

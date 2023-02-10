@@ -13,6 +13,27 @@ module MakeHelpers
     ) )
   end
 
+  def make_controlled_term_with_label( label, options = { } )
+    controlled_term = ControlledTerm.make!( {
+      active: true,
+      is_value: false
+    }.merge( options ) )
+    controlled_term.labels << ControlledTermLabel.make!(
+      label: label,
+      controlled_term: controlled_term
+    )
+    controlled_term
+  end
+
+  def make_controlled_value_with_label( label, controlled_attribute )
+    controlled_term = make_controlled_term_with_label( label, is_value: true )
+    ControlledTermValue.make!(
+      controlled_attribute: controlled_attribute,
+      controlled_value: controlled_term
+    )
+    controlled_term
+  end
+
   def make_annotation!( options = {} )
     make_annotation( options.merge( create: true ) )
   end
@@ -179,7 +200,7 @@ module MakeHelpers
   def make_published_guide(options = {})
     g = Guide.make!(options)
     3.times { GuideTaxon.make!(:guide => g) }
-    g.update_attributes(:published_at => Time.now)
+    g.update(:published_at => Time.now)
     g
   end
 
@@ -251,7 +272,7 @@ module MakeHelpers
       return instance_variable_get( "@#{varname}" )
     end
     instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
-    instance_variable_get( "@#{varname}" ).update_attributes!( parent: parent )
+    instance_variable_get( "@#{varname}" ).update!( parent: parent )
     if common_name
       instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
         name: common_name, 
@@ -279,7 +300,7 @@ module MakeHelpers
   def make_observation_photo( options = { } )
     options[:observation] ||= Observation.make!
     options[:photo] ||= LocalPhoto.make!
-    options[:photo].update_attributes( user: options[:observation].user )
+    options[:photo].update( user: options[:observation].user )
     ObservationPhoto.make!( options )
   end
 end

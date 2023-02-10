@@ -13,7 +13,7 @@ import {
   showPrevObservation,
   updateCurrentObservation,
   fetchDataForTab,
-  submitIdentificationWithConfirmation
+  chooseSuggestedTaxon
 } from "../actions";
 import {
   increaseBrightness,
@@ -45,7 +45,7 @@ function mapStateToProps( state ) {
     }
   } );
 
-  return Object.assign( {}, {
+  return {
     images,
     blind: state.config.blind,
     brightnesses: currentObsBrightnessKeys,
@@ -54,8 +54,12 @@ function mapStateToProps( state ) {
     mapZoomLevel: state.config.mapZoomLevel,
     mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
       ? false
-      : state.config.mapZoomLevelLocked
-  }, state.currentObservation );
+      : state.config.mapZoomLevelLocked,
+    officialAppIds: state.config.officialAppIds === undefined
+      ? []
+      : state.config.officialAppIds,
+    ...state.currentObservation
+  };
 }
 
 function mapDispatchToProps( dispatch ) {
@@ -97,17 +101,9 @@ function mapDispatchToProps( dispatch ) {
     toggleKeyboardShortcuts: keyboardShortcutsShown => {
       dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
     },
-    chooseSuggestedTaxon: ( taxon, options = {} ) => {
-      const ident = {
-        observation_id: options.observation.id,
-        taxon_id: taxon.id,
-        vision: options.vision
-      };
-      dispatch( updateCurrentObservation( { tab: "info" } ) );
-      dispatch( submitIdentificationWithConfirmation( ident, {
-        confirmationText: options.confirmationText
-      } ) );
-    },
+    chooseSuggestedTaxon: ( taxon, options = {} ) => dispatch(
+      chooseSuggestedTaxon( taxon, options )
+    ),
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
     onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),

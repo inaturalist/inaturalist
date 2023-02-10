@@ -87,6 +87,15 @@ $tip-opacity: 1;
   }
 }
 
+@mixin green-links {
+  a {
+    color: $inat-green;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten( $inat-green, 10% );
+  }
+}
+
 #bodywrapper:after {
   height: 0px;
 }
@@ -216,13 +225,16 @@ $tip-opacity: 1;
       opacity: 0.5;
     }
 
+    p.text-muted {
+      @include green-links;
+    }
+
     .btn-bordered,
     select {
       background-color: $background-color;
       color: white;
       border: 2px solid darken( $inat-green, 10% );
       border-radius: 100px;
-      text-transform: uppercase;
       font-weight: 100;
       i {
         margin-right: 5px;
@@ -360,8 +372,11 @@ $tip-opacity: 1;
       margin: 50px auto;
     }
 
-    .updated-at {
-      margin-top: 50px
+    .updated-at, .update-schedule {
+      margin-top: 50px;
+    }
+    .updated-at + .update-schedule {
+      margin-top: 0px;
     }
 
     #view-stats-buttons {
@@ -502,7 +517,7 @@ $tip-opacity: 1;
         width: 100%;
         position: absolute;
         text-align: center;
-        top: 120px;
+        top: 115px;
         text-transform: uppercase;
         font-weight: 100;
         color: $gray;
@@ -518,6 +533,11 @@ $tip-opacity: 1;
         position: relative;
       }
     }
+  }
+
+  .leaflet-safari .leaflet-tile-container {
+    width: auto !important;
+    height: auto !important;
   }
 
   .TorqueMap {
@@ -702,12 +722,6 @@ $tip-opacity: 1;
   }
 
   .Publications {
-    a {
-      color: $inat-green;
-    }
-    a:hover, a:active, a:focus {
-      color: lighten( $inat-green, 10% );
-    }
     .publication {
       display: flex;
       flex-direction: column;
@@ -794,7 +808,18 @@ $tip-opacity: 1;
       }
     }
     .CountryGrowth {
+      .map {
+        position: relative;
+        .btn {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          min-width: 200px;
+          margin-left: -100px;
+        }
+      }
       .chart svg {
+        width: 100%;
         height: 500px;
         min-height: 500px;
       }
@@ -810,10 +835,12 @@ $tip-opacity: 1;
         stroke-width: 0;
       }
       .bars {
-        height: 500px;
-        overflow-x: visible;
-        overflow-y: scroll;
         select { width: 100%; }
+        @media (min-width: 501px) {
+          height: 500px;
+          overflow-x: visible;
+          overflow-y: scroll;
+        }
       }
       .bar {
         border: 0 transparent;
@@ -1114,13 +1141,7 @@ $tip-opacity: 1;
         margin-bottom: 0;
       }
     }
-    p {
-      a,
-      a:hover {
-        color: $inat-green;
-      }
-    }
-    .btn {
+    .btn-donate {
       font-weight: bold !important;
     }
     .Donors .chart svg {
@@ -1160,7 +1181,7 @@ $tip-opacity: 1;
       margin-bottom: 20px;
     }
 
-    .DonateContent2021 {
+    .donate-content {
       .flex-row {
         align-items: center;
 
@@ -1516,6 +1537,11 @@ $tip-opacity: 1;
 
 
   .btn {
+    &.btn-primary {
+      white-space: normal;
+      word-break: break-word;
+    }
+
     &.btn-donate {
       background-color: white;
       border-color: white;
@@ -1533,6 +1559,71 @@ $tip-opacity: 1;
         background-color: hsl(0, 0, 99%);
         border-color: hsl(0, 0, 99%);
         color: $inat-green;
+      }
+    }
+  }
+
+  .btn-link-underline {
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: $inat-green;
+  }
+
+  #app {
+    .CodeContributors {
+      p {
+        margin-bottom: 20px;
+      }
+
+      li {
+        @include green-links;
+      }
+
+      .UserImage {
+        width: 64px;
+        height: 64px;
+        border-width: 3px;
+      }
+      .flex-row > :last-child {
+        width: 100%;
+      }
+      h4 {
+        font-size: 14px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  #app {
+    .MonthlySupporters {
+      $monthly-supporter-dim: 80px;
+      margin-bottom: 20px;
+      .supporters {
+        @include green-links;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .monthly-supporter {
+        text-align: center;
+        width: $monthly-supporter-dim;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+      .UserImage {
+        width: $monthly-supporter-dim;
+        height: $monthly-supporter-dim;
+        margin-bottom: 10px;
+      }
+      .userlink {
+        display: block;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
   }

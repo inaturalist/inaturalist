@@ -24,15 +24,17 @@ class ProjectObservationRule < Rule
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
   def operand_present
-    if OPERAND_OPERATORS.include?(operator)
-      if operand.blank? || !operand.is_a?(Object.const_get(OPERAND_OPERATORS_CLASSES[operator]))
-        errors[:base] << "Must select a " + 
-          OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase + 
-          " for that rule."
-      end
-    end
+    return unless OPERAND_OPERATORS.include?( operator )
+    return unless operand.blank? || !operand.is_a?( Object.const_get( OPERAND_OPERATORS_CLASSES[operator] ) )
+
+    msg = <<~MSG
+      Must select a
+      #{OPERAND_OPERATORS_CLASSES[operator].underscore.humanize.downcase}
+      for that rule.
+    MSG
+    errors.add( :base, msg )
   end
-  
+
   def clear_operand
     return true if OPERAND_OPERATORS.include?(operator)
     self.operand = nil
@@ -76,9 +78,9 @@ class ProjectObservationRule < Rule
 
   def touch_projects
     if ruler && ruler.is_a?( Project )
-      ruler.touch
+      ruler.touch unless ruler.saved_change_to_id?
       if operand && operand.is_a?( Project )
-        operand.touch
+        operand.touch unless operand.saved_change_to_id?
       end
     end
   end

@@ -33,6 +33,11 @@ num_plans = 0
 num_updated_users = 0
 num_invalid_users = 0
 active_user_ids = []
+changes = {}
+
+puts
+puts "## Retrieving data from donorbox..."
+puts
 loop do
   url = "https://donorbox.org/api/v1/plans?page=#{page}&per_page=#{per_page}"
   puts url if opts.debug
@@ -65,6 +70,7 @@ loop do
       # If the user has an existing monthly plan and this *isn't* a monthly
       # plan, just ignore it. We want to record all donors, but it's most
       # important to record when a user is a monthly donor or not
+      puts "\tUser already has a monthly plan and this plan isn't monthly. Skipping..." if opts.debug
       next
     end
     if active_user_ids.include?( user.id )
@@ -72,6 +78,7 @@ loop do
       # active monthly plan, ignore all other plans. They might be cancelled,
       # and we don't want to register the user as having a cancelled plan on our
       # end
+      puts "\tAlready encountered an active plan for this user. Skipping..." if opts.debug
       next
     end
 
@@ -82,24 +89,56 @@ loop do
     user.donorbox_plan_started_at = begin
       Date.parse( plan["started_at"] )
     rescue StandardError
-      nil
+      puts "\tFailed to parse donorbox_plan_started_at from #{plan['started_at']}"
     end
-    next unless user.changed?
 
-    # If status changed to cancelled, remove the monthly supporter badge
-    if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
-      user.prefers_monthly_supporter_badge = false
+    # If we've already encountered a plan, we only want to replace it if this
+    # plan is active
+    puts "\tExisting change queued: #{changes[user.id]}" if opts.debug
+    puts "\tPlan status: #{plan['status']}" if opts.debug
+    unless !changes[user.id] || plan["status"] == "active"
+      next
     end
-    user_updated = opts.dry || user.save
-    if user_updated
-      puts "\tUpdated #{user}: #{user.changes}"
-      num_updated_users += 1
-    else
-      puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}"
-      num_invalid_users += 1
+
+    changes[user.id] = {
+      donorbox_donor_id: user.donorbox_donor_id,
+      donorbox_plan_type: user.donorbox_plan_type,
+      donorbox_plan_status: user.donorbox_plan_status,
+      donorbox_plan_started_at: user.donorbox_plan_started_at
+    }
+    if opts.debug
+      puts "\tAdded/replaced changes for #{user}: #{changes[user.id]}"
     end
   end
   page += 1
+end
+
+puts
+puts "## Applying changes to #{changes.size} users..."
+puts
+changes.each do | user_id, updates |
+  unless ( user = User.find_by_id( user_id ) )
+    puts "User #{user_id} no longer exists"
+    next
+  end
+  puts user if opts.debug
+  puts "\tAssigning changes: #{updates}" if opts.debug
+  user.assign_attributes( updates )
+  # If status changed to cancelled, remove the monthly supporter badge
+  if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
+    user.prefers_monthly_supporter_badge = false
+  end
+  user_updated = opts.dry || user.save
+  applied_changes = opts.dry ? user.changes : user.saved_changes
+  if applied_changes.blank?
+    puts "\tNo changes to apply"
+  elsif user_updated
+    puts "\tUpdated #{user}: #{applied_changes}"
+    num_updated_users += 1
+  else
+    puts "\tFailed to update user: #{user.errors.full_messages.to_sentence}"
+    num_invalid_users += 1
+  end
 end
 puts
 puts "#{num_plans} donors, #{num_updated_users} users udpated, " \

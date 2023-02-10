@@ -111,22 +111,22 @@ describe Comment do
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
 
-      c.update_attributes(body: "hey @#{ u1.login }")
+      c.update(body: "hey @#{ u1.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
 
-      c.update_attributes(body: "hey @#{ u2.login }")
+      c.update(body: "hey @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
 
-      c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }")
+      c.update(body: "hey @#{ u1.login }, @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
 
-      c.update_attributes(body: "hey")
+      c.update(body: "hey")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
       expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false

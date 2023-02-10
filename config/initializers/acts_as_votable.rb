@@ -1,4 +1,3 @@
-require 'has_subscribers'
 module ActsAsVotable
 
   class Vote

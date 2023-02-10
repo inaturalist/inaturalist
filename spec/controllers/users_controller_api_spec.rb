@@ -42,7 +42,7 @@ shared_examples_for "a signed in UsersController" do
     end
     describe "observation license preference" do
       it "should update past observations if requested" do
-        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        user.update( preferred_observation_license: Observation::CC_BY )
         o = Observation.make!( user: user )
         expect( o.license ).to eq Observation::CC_BY
         put :update, format: :json, params: {
@@ -52,7 +52,7 @@ shared_examples_for "a signed in UsersController" do
         expect( o.license ).to eq Observation::CC0
       end
       it "should update re-index past observations" do
-        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        user.update( preferred_observation_license: Observation::CC_BY )
         o = Observation.make!( user: user )
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
         expect( es_response.license_code ).to eq Observation::CC_BY.downcase
@@ -67,7 +67,7 @@ shared_examples_for "a signed in UsersController" do
     end
     describe "photo license preference" do
       it "should update past observations if requested" do
-        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        user.update( preferred_photo_license: Observation::CC_BY )
         p = LocalPhoto.make!( user: user )
         expect( p.license_code ).to eq Observation::CC_BY
         put :update, format: :json, params: { id: user.id, user: {
@@ -79,7 +79,7 @@ shared_examples_for "a signed in UsersController" do
       end
       # Honestly not sure why this passes
       it "should update re-index past observations" do
-        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        user.update( preferred_photo_license: Observation::CC_BY )
         o = make_research_grade_observation( user: user )
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
         expect( es_response.photo_licenses ).to include Observation::CC_BY.downcase
@@ -119,6 +119,38 @@ shared_examples_for "a signed in UsersController" do
         expect( user.followees ).not_to include friendship.friend
         friendship.reload
         expect( friendship ).not_to be_following
+      end
+    end
+
+    describe "pi_consent" do
+      it "set to true should change pi_consent_at" do
+        expect( user.pi_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: true } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( pi_consent: true )
+        expect( user.pi_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { pi_consent: false } }
+        user.reload
+        expect( user.pi_consent_at ).not_to be_blank
+      end
+    end
+
+    describe "data_transfer_consent" do
+      it "set to true should change data_transfer_consentat" do
+        expect( user.data_transfer_consent_at ).to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: true } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
+      end
+      it "set to not true should not change anything" do
+        user.update( data_transfer_consent: true )
+        expect( user.data_transfer_consent_at ).not_to be_blank
+        put :update, format: :json, params: { id: user.id, user: { data_transfer_consent: false } }
+        user.reload
+        expect( user.data_transfer_consent_at ).not_to be_blank
       end
     end
   end

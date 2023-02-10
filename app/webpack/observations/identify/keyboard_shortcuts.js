@@ -9,6 +9,7 @@ import {
   toggleCaptive,
   toggleReviewed,
   toggleFave,
+  togglePlayFirstSound,
   addAnnotationFromKeyboard,
   zoomCurrentPhoto,
   showPrevPhoto,
@@ -17,7 +18,7 @@ import {
   showNextTab,
   toggleKeyboardShortcuts
 } from "./actions";
-import { increaseBrightness, decreaseBrightness} from "./ducks/brightnesses";
+import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
   bind( shortcut, ( ) => {
@@ -159,6 +160,11 @@ const annotationShortcuts = [
     shortcut: "e m",
     term: "Evidence of Presence",
     value: "Molt"
+  },
+  {
+    shortcut: "e g",
+    term: "Evidence of Presence",
+    value: "Gall"
   }
 ];
 
@@ -179,6 +185,7 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "z", zoomCurrentPhoto, dispatch );
+  bindShortcut( "space", togglePlayFirstSound, dispatch, { eventType: "keydown" } );
   bindShortcut( "f", toggleFave, dispatch );
   bindShortcut( ["command+left", "alt+left"], showPrevPhoto, dispatch );
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );

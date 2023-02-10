@@ -44,7 +44,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   #Add a kml to this new amphibian taxon_range
   range_path = "/home/inaturalist/#{file_name}"
   begin
-    f = open(range_path, 'r')
+    f = File.open( range_path, "r" )
     new_range.range = f
     new_range.save
     f.close
@@ -61,7 +61,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
     puts "\tRunning #{cmd}"
     begin
       system cmd
-      open(tmp_path) do |f|
+      File.open( tmp_path ) do |f|
         if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
           new_range.geom = geojsongeom.features.first.geometry
           if !new_range.geom.is_a?(MultiPolygon)
@@ -145,9 +145,9 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   footer = '</Placemark></kml>'
   kml1 = header+final_range.geom.as_kml+footer
   range_path = "/home/inaturalist/taxon_range_#{final_range.id}.kml"
-  File.open(range_path, 'w') {|f| f.write(kml1) }
+  File.open( range_path, "w" ) {|f| f.write(kml1) }
   begin
-    f = open(range_path, 'r')
+    f = File.open( range_path, "r" )
     final_range.range = f
     final_range.save
     f.close

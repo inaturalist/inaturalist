@@ -36,7 +36,7 @@ class SourcesController < ApplicationController
   end
   
   def update
-    @source.update_attributes(params[:source])
+    @source.update(params[:source])
     respond_to do |format|
       format.html do
         if @source.valid?

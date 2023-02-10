@@ -1,0 +1,8 @@
+#post_search
+  = form_tag posts_search_path, method: :get, class: "form-search form-inline" do
+    .input-group
+      = text_field_tag :q, params[:q], placeholder: t(:find_a_post), class: "form-control"
+      = hidden_field_tag 'post[parent_type]', parent_type
+      = hidden_field_tag 'post[parent_id]', parent_id
+      .input-group-btn
+        = submit_tag t(:search), class: "btn btn-primary"

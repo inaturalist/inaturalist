@@ -3,6 +3,19 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe TaxaController do
+  describe "new" do
+    render_views
+    it "should work for a curator" do
+      sign_in create( :user, :as_curator )
+      get :new
+      expect( response ).to be_successful
+    end
+    it "should not work for a non-curator" do
+      sign_in create( :user )
+      get :new
+      expect( response ).to be_redirect
+    end
+  end
   describe "show" do
     render_views
     let( :taxon ) { Taxon.make! }
@@ -228,104 +241,23 @@ describe TaxaController do
       end
     end
 
-    describe "conservation statuses" do
-      let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
-      let( :user ) { make_curator }
-      before do
-        sign_in user
-      end
-      it "should allow addition" do
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            Time.now.to_i.to_s => {
-              status: "EN"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
+    describe "with audits" do
+      let( :current_user ) { make_curator }
+      let( :taxon ) { create :taxon, rank: Taxon::SPECIES }
+      before { sign_in( current_user ) }
+      it "should create an audit belonging to the current_user" do
+        put :update, params: { id: taxon.id, taxon: { rank: "genus" } }
         taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 1
+        expect( taxon.audits.last.user ).to eq current_user
       end
-      it "should allow deletion" do
-        cs = ConservationStatus.make!( taxon: taxon )
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            cs.id => {
-              id: cs.id,
-              _destroy: 1
-            }
-          }
-        } }
-        expect( response ).to be_redirect
+      it "should create an audit with a user_id that survives user deletion" do
+        put :update, params: { id: taxon.id, taxon: { rank: "genus" } }
         taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 0
-      end
-      it "should assign the current user ID as the user_id for new statuses" do
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            Time.now.to_i.to_s => {
-              status: "EN"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.first.user_id ).to eq user.id
-      end
-      it "should not assign the current user ID as the user_id for existing statuses" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => cs.authority
-            },
-            Time.now.to_i.to_s => {
-              "status" => "EN",
-              "authority" => "bar"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        taxon.reload
-        expect( taxon.conservation_statuses.size ).to eq 2
-        cs.reload
-        expect( cs.user_id ).to be_blank
-      end
-      it "should assign the current user ID as the updater_id for existing statuses" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => "new authority"
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        cs.reload
-        expect( cs.updater ).to eq user
-      end
-      it "should not assign the current user ID as the updater_id for existing statuses if nothing changed" do
-        cs = ConservationStatus.make!( taxon: taxon, user: nil, authority: "foo" )
-        expect( cs.user_id ).to be_blank
-        put :update, params: { id: taxon.id, taxon: {
-          conservation_statuses_attributes: {
-            "0" => {
-              "id" => cs.id,
-              "status" => cs.status,
-              "authority" => cs.authority,
-              "geoprivacy" => cs.geoprivacy
-            }
-          }
-        } }
-        expect( response ).to be_redirect
-        cs.reload
-        expect( cs.updater ).not_to eq user
+        audit = taxon.audits.last
+        expect( taxon.audits.last.user ).to eq current_user
+        current_user.destroy
+        audit.reload
+        expect( audit.user_id ).to be > 0
       end
     end
   end
@@ -377,7 +309,7 @@ describe TaxaController do
     end
 
     it "should return photos from Research Grade obs even if there are multiple synonymous taxa" do
-      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
+      o.taxon.update( rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
       t2 = Taxon.make!( name: o.taxon.name, rank: Taxon::SPECIES, parent: Taxon.make!( rank: Taxon::GENUS ) )
       o2 = make_research_grade_observation( taxon: t2 )
       Delayed::Worker.new.work_off

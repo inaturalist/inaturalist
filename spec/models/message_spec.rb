@@ -74,7 +74,7 @@ describe Message do
       expect( m.to_user_copy ).to be_blank
     end
     it "should not make a copy for the recipient if the sender is a spammer" do
-      sender.update_attributes( spammer: true )
+      sender.update( spammer: true )
       m = Message.make( user: sender, from_user: sender )
       expect( m ).not_to be_valid
     end

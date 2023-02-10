@@ -82,8 +82,8 @@ h2{line-height:1;margin:0;float:left;}
   text-decoration: none;
 }
 #addbutton:hover {background-color: #f82714;}
-#addbutton small {font-size:12pt;}
-#addbutton big {display:block;margin-top:3px;}
+#addbutton :first-child {font-size:12pt;}
+#addbutton :last-child {display:block;margin-top:3px;}
 #addbutton:after {
   content:"";
   bottom:-20px;

@@ -1,42 +1,45 @@
-= link_to "&laquo; Back to applications".html_safe, oauth_applications_path, :class => "crumb"
-%h2= @application.name
-.column.span-8
-  = image_tag @application.image.url(:medium), :style => "max-width:310px;"
-.column.span-16.last
-  .stacked
-    - if @application.description.blank?
-      %p.meta.nocontent This application has no description
-    = formatted_user_text @application.description
-    - unless @application.url.blank?
+.container
+  .row
+    = link_to t( :back_to_applications ).html_safe, oauth_applications_path, class: "crumb"
+    %h2= @application.name
+  .row
+    .col-sm-6
+      = image_tag @application.image.url( :medium ), class: "img-responsive center-block"
+    .col-sm-6
       .stacked
-        = link_to "Website", @application.url, :class => "readmore"
-    .meta
-      =t :created_by, gender: 'application'
-      = link_to_user @application.owner
-      %span.when
-        %abbr.date.timeago{:title => @application.created_at.iso8601}
-          =t :n_ago, :n => time_ago_in_words(@application.created_at)
-  - if (is_admin? || is_me?(@application.owner))
-    .ui.notice.box
-      %h4 Callback url:
-      %p
-        %code#callback_url= @application.redirect_uri
-      %h4 Application Id:
-      %p
-        %code#application_id= @application.uid
-      %h4 Secret:
-      %p
-        %code#secret= @application.secret
-      %h4 Confidential:
-      %p
-        %code#confidential= @application.confidential
-      %h4 Link to authorization code:
-      %p= link_to 'Authorize', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code' )
-      - if !@application.confidential
-        %p
-          = link_to 'Authorize with PKCE', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code', :code_challenge_method => 'plain', :code_challenge => 'some_terrible_challenge' )
-          %span (Use <code>some_terrible_challenge</code> as the <code>code_verifier</code>) Note: this is a basic example. In real code, you MUST use <code>code_challenge_method=S256</code> and correctly hash the <code>code_challenge</code>.
-      %h3 Actions
-      .inline.buttonrow
-        = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
-        = link_to 'Remove', oauth_application_path(@application), :method => :delete, :data => { :confirm => "Are you sure?" }, :class => "inline button"
+        - if @application.description.blank?
+          %p.meta.nocontent This application has no description
+        = formatted_user_text @application.description
+        - unless @application.url.blank?
+          .stacked
+            = link_to t( :website ), @application.url, class: "readmore"
+        .meta
+          =t :created_by, gender: "application"
+          = link_to_user @application.owner
+          %span.when
+            %abbr.date.timeago{title: @application.created_at.iso8601}
+              =t :n_ago, n: time_ago_in_words( @application.created_at )
+      - if ( is_admin? || is_me?( @application.owner ) )
+        .ui.notice.box
+          %h4=t "activerecord.attributes.oauth_application.callback_url"
+          %p
+            %code#callback_url= @application.redirect_uri
+          %h4=t "activerecord.attributes.oauth_application.uid"
+          %p
+            %code#application_id= @application.uid
+          %h4=t "activerecord.attributes.oauth_application.secret"
+          %p
+            %code#secret= @application.secret
+          %h4=t "activerecord.attributes.oauth_application.confidential"
+          %p
+            %code#confidential= @application.confidential
+          %h4=t( :link_to_authorization_code )
+          %p= link_to t( :authorize ), oauth_authorization_path( client_id: @application.uid, redirect_uri: @application.redirect_uri, response_type: "code" )
+          - if !@application.confidential
+            %p
+              = link_to t(:authorize_with_pkce), oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code', :code_challenge_method => 'plain', :code_challenge => 'some_terrible_challenge' )
+              %span=t :authorize_with_pkce_desc_html, code_challenge: "some_terrible_challenge", code_verifier_param: "code_verifier", code_challenge_method: "code_challenge_method=S256", code_challenge_param: "code_challenge"
+          %h3=t( :actions )
+          .inline.buttonrow
+            = link_to t( :edit ), edit_oauth_application_path( @application ), class: "inline button"
+            = link_to t( :remove ), oauth_application_path( @application ), method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-danger pull-right"

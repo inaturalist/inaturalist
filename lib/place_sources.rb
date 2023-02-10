@@ -187,19 +187,23 @@ module PlaceSources
   def self.new_place_from_census_shape(shape, options = {})
     options = options.clone
     data = shape.respond_to?(:data) ? shape.data : shape.attributes
-    name = options[:name] || data['NAME'] || data['NAME10'] || data['NAMELSAD']
+    name = options[:name] || data["NAME"] || data["NAME10"] || data["NAMELSAD"]
     options[:name] = name
+    state_code = FIPS_STATE_CODES[data["STATEFP"] || data["STATE"]]
     case options[:place_type_name]
     when 'State'
       options[:place_type] ||= Place::PLACE_TYPE_CODES['State']
       options[:admin_level] = Place::STATE_LEVEL
       options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
+      options[:code] = state_code
     when 'County'
-      state = FIPS_STATE_CODES[data['STATEFP'] || data['STATE']]
       options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
       options[:admin_level] = Place::COUNTY_LEVEL
       options[:code] ||= data['COUNTY']
-      options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[data['STATEFP'] || data['STATE']]).first
+      options[:parent] ||= Place.place_type('State').where(
+        code: state_code,
+        name: FIPS_STATES[data['STATEFP'] || data['STATE']]
+      ).first
     end
     
     # The county files often contain a lot of weird county-like stuff that we 

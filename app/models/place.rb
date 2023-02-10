@@ -474,12 +474,12 @@ class Place < ApplicationRecord
     other_attrs.merge!(:geom => geom, :place => self)
     begin
       if place_geometry
-        self.place_geometry.update_attributes(other_attrs)
+        self.place_geometry.update(other_attrs)
       else
         pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
-      update_attributes(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
+      update(points_from_geom(geom).merge(updating_bbox: true)) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
       if e.message =~ /TopologyException/
@@ -628,6 +628,11 @@ class Place < ApplicationRecord
             puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
             next
           end
+        rescue ArgumentError => e
+          raise e unless e.message =~ /Cannot transliterate/
+          # Pretend it's actually UTF
+          place.name.force_encoding( "UTF-8" )
+          retry
         rescue => e
           puts "[ERROR] \tError: #{e}"
           next
@@ -705,13 +710,13 @@ class Place < ApplicationRecord
     
     # Move the mergee's listed_taxa to the target's default check list
     mergee.check_lists.each do |cl|
-      cl.update_attributes( place: self )
+      cl.update( place: self )
       ListedTaxon.where( list_id: cl.id ).update_all( place_id: id )
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
     elsif mergee.check_list && mergee.check_list.listed_taxa.count > 0
-      mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
+      mergee.check_list.update( place_id: id, title: "MERGED #{mergee.check_list.title}")
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end
     
@@ -725,7 +730,7 @@ class Place < ApplicationRecord
       unless child.save
         # If there's a problem saving the child, orphan it. Otherwise it will
         # get deleted when the parent is deleted
-        child.update_attributes(:parent => nil)
+        child.update(:parent => nil)
       end
     end
 

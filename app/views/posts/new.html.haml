@@ -1,5 +1,5 @@
 - content_for(:title) do
-  =raw t( :x_journal_new_post, user: @parent_display_name )
+  =raw t( :x_journal_new_post, user: @parent.journal_display_name )
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
 - content_for(:extrajs) do

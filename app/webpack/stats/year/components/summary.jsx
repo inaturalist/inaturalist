@@ -14,7 +14,7 @@ const Summary = ( {
   site
 } ) => {
   const pieMargin = {
-    top: 0, bottom: 120, left: 0, right: 0
+    top: 0, bottom: 130, left: 0, right: 0
   };
   const donutWidth = 20;
   let baseObsUrl = `/observations?d1=${year}-01-01&d2=${year}-12-31`;

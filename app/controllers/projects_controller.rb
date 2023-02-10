@@ -36,6 +36,8 @@ class ProjectsController < ApplicationController
   before_action :filter_params, only: [ :update, :create ]
   before_action :site_required, only: [ :feature, :unfeature ]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   requires_privilege :organizer, only: [:new_traditional]
   
   ORDERS = %w(title created)
@@ -417,8 +419,14 @@ class ProjectsController < ApplicationController
       end
     end
     respond_to do |format|
+      # Project uses accepts_nested_attributes which saves associates after the main record,
+      # potentially trigging a lot of indexing for things like ProjectUsers. So skip indexing the
+      # project until the entire save/update process is done
+      @project.skip_indexing = true
+      saved_successfully = @project.update(params[:project])
       @project.wait_for_index_refresh = true
-      if @project.update_attributes(params[:project])
+      @project.elastic_index!
+      if saved_successfully
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
@@ -525,6 +533,7 @@ class ProjectsController < ApplicationController
         @admin = @project.user
         @curators = @project.project_users.curators.limit(500).includes(:user).map{|pu| pu.user}
         @managers = @project.project_users.managers.limit(500).includes(:user).map{|pu| pu.user}
+        render layout: "bootstrap"
       end
       format.json { render json: @project_users.as_json(:include => {user: User.default_json_options}) }
     end
@@ -1119,18 +1128,18 @@ class ProjectsController < ApplicationController
       redirect_to @project
       return
     end
-    @project.update_attributes( user: new_admin )
+    @project.update( user: new_admin )
     redirect_back_or_default @project
   end
 
   def feature
     feature = SiteFeaturedProject.where(site: @site, project: @project).
       first_or_create(user: @current_user)
-    feature.update_attributes( user: @current_user )
+    feature.update( user: @current_user )
     if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
-      feature.update_attributes( noteworthy: false )
+      feature.update( noteworthy: false )
     elsif !feature.noteworthy && params[:noteworthy].yesish?
-      feature.update_attributes( noteworthy: true )
+      feature.update( noteworthy: true )
     end
     render status: :ok, json: { }
   end

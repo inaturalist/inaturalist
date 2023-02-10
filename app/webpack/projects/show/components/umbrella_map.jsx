@@ -40,8 +40,7 @@ class UmbrellaMap extends Component {
   render( ) {
     const {
       project,
-      config,
-      updateCurrentUser
+      config
     } = this.props;
     const subprojectPlaceRules = _.compact( _.flattenDeep( _.map( project.projectRules, rule => (
       _.filter( rule.project.project_observation_rules, subRule => (
@@ -58,11 +57,10 @@ class UmbrellaMap extends Component {
             <TaxonMap
               placement="projects-show-umbrella"
               key={`umbrellamap${project.id}`}
-              observationLayers={[Object.assign( { captive: "any" }, project.search_params, { color: "iconic" } )]}
+              observationLayers={[{ captive: "any", ...project.search_params, color: "iconic" }]}
               showAccuracy
               enableShowAllLayer={false}
               clickable={false}
-              scrollwheel={false}
               overlayMenu={false}
               mapTypeControl
               mapTypeControlOptions={{

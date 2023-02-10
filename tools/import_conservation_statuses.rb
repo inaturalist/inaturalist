@@ -74,7 +74,7 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     puts "#{blank_column} cannot be blank, skipping..."
     next
   end
-  taxon = Taxon.find_by_id( row["taxon_id"] ) unless row["taxon_id"].blank?
+  taxon = row["taxon_id"].blank? ? nil : Taxon.find_by_id( row["taxon_id"] )
   taxon ||= Taxon.single_taxon_for_name( row["taxon_name"] )
   unless taxon
     puts "\tCouldn't find taxon for '#{row['taxon_name']}', skipping..."
@@ -93,16 +93,6 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
       skipped << identifier
       next
     end
-  end
-  existing = taxon.conservation_statuses.where(
-    place_id: place,
-    status: row["status"],
-    authority: row["authority"]
-  ).first
-  if existing
-    puts "\tStatus for this taxon in this place for this authority already exists, skipping..."
-    skipped << identifier
-    next
   end
   iucn = if place && row["iucn"].to_s.strip.parameterize.underscore == "regionally_extinct"
     Taxon::IUCN_STATUS_VALUES["extinct"]
@@ -149,7 +139,7 @@ CSV.foreach( csv_path, headers: HEADERS ) do | row |
     puts "\tCreated #{cs}"
     created << identifier
   else
-    puts "\tConservation status was not valid: #{cs.errors.full_messages.to_sentence}"
+    puts "\tConservation status #{cs} was not valid: #{cs.errors.full_messages.to_sentence}"
     skipped << identifier
   end
 end

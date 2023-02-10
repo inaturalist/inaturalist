@@ -3,24 +3,31 @@
   citation = data_object.at('bibliographicCitation')
   citations = []
   citations << citation.content if citation
-- if rights_holder = data_object.at('rightsHolder')
+- if ( rights_holder = data_object.at('rightsHolder') ) && !rights_holder.content.blank?
   - license = data_object.at('license')
   - source = data_object.at('source')
   - section_attribution = capture do
     &copy;
-    - if license && license.content =~ /creativecommons\.org/
+    - if license && license.content =~ /by-/
       = surround '', ',' do
         - if source
           = link_to rights_holder.content, source.content
         - else
           = rights_holder.content
-      = link_to "some rights reserved", license.content
+      = link_to t( "copyright.some_rights_reserved" ), license.content
     - else 
       - if source
         = link_to rights_holder.content, source.content
       - else
         = rights_holder.content
   - citations << section_attribution
+- elsif !citation && ( source = data_object.at( "source" ) )
+  - if ( provider = data_object.at_xpath( "agents/agent[role[text() = 'provider']]" ) )
+    - name_link = link_to( provider.at( "full-name" ).content, source.content )
+    - rights_link = nil
+    - if ( license = data_object.at( "license" ) ) && license.content =~ /by-/
+      - rights_link = link_to( t( "copyright.some_rights_reserved" ), license.content )
+    - citations << [name_link, rights_link].compact.join( ", " )
 .section.stacked
   %h3
     = subject

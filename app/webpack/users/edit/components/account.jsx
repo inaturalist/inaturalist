@@ -9,6 +9,7 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 /* global TIMEZONES */
 
 const Account = ( {
+  config,
   profile,
   handleCustomDropdownSelect,
   handleInputChange,
@@ -78,12 +79,6 @@ const Account = ( {
     <div className="row">
       <div className="col-md-5 col-sm-10">
         <h4>{I18n.t( "account" )}</h4>
-        <SettingsItem header={I18n.t( "place_geo.geo_planet_place_types.Time_Zone" )} htmlFor="user_time_zone">
-          <p className="text-muted">{I18n.t( "all_your_observations_will_default_this_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
-            {createTimeZoneList( )}
-          </select>
-        </SettingsItem>
         <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
           <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
           <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
@@ -93,6 +88,7 @@ const Account = ( {
         <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
           <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
           <PlaceAutocomplete
+            config={config}
             resetOnChange={false}
             initialPlaceID={profile.search_place_id}
             bootstrapClear
@@ -100,15 +96,43 @@ const Account = ( {
             afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
           />
         </SettingsItem>
+        <SettingsItem header={I18n.t( "activerecord.attributes.user.time_zone" )} htmlFor="user_time_zone">
+          <p className="text-muted">{I18n.t( "default_display_time_zone" )}</p>
+          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+            {createTimeZoneList( )}
+          </select>
+        </SettingsItem>
         <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
           <CheckboxRowContainer
             name="prefers_no_tracking"
             label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
+            description={(
+              <button
+                type="button"
+                className="btn btn-link btn-tracking btn-nostyle"
+                onClick={( ) => setModalState( { show: true } )}
+              >
+                <i className="fa fa-info-circle" />
+                {` ${I18n.t( "learn_more" )}`}
+              </button>
+            )}
           />
-          <button type="button" className="btn btn-link btn-tracking" onClick={( ) => setModalState( { show: true } )}>
-            <i className="fa fa-info-circle" />
-            {` ${I18n.t( "learn_about_third_party_tracking" )}`}
-          </button>
+          <CheckboxRowContainer
+            name="pi_consent"
+            label={I18n.t( "pi_consent_label" )}
+            modalDescription={I18n.t( "pi_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+            modalDescriptionTitle={I18n.t( "pi_consent_desc_title" )}
+            disabled={profile.pi_consent}
+            confirm={I18n.t( "revoke_privacy_consent_warning" )}
+          />
+          <CheckboxRowContainer
+            name="data_transfer_consent"
+            label={I18n.t( "data_transfer_consent_label" )}
+            modalDescription={I18n.t( "data_transfer_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+            modalDescriptionTitle={I18n.t( "data_transfer_consent_desc_title" )}
+            disabled={profile.data_transfer_consent}
+            confirm={I18n.t( "revoke_privacy_consent_warning" )}
+          />
         </SettingsItem>
         <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
           <p>
@@ -142,14 +166,14 @@ const Account = ( {
               />
             </SettingsItem>
           )
-          : <div className="nocontent"><div className="loading_spinner" /></div>
-        }
+          : <div className="nocontent"><div className="loading_spinner" /></div> }
       </div>
     </div>
   );
 };
 
 Account.propTypes = {
+  config: PropTypes.object,
   profile: PropTypes.object,
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,

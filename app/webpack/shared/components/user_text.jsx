@@ -51,9 +51,22 @@ const ALLOWED_TAGS = ( `
 ` ).split( /\s+/m ).filter( e => e !== "" );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
-  "href src width height alt cite title class name abbr value align target rel"
+  "href src width height alt cite title class name abbr value align rel"
   // + "xml:lang style controls preload"
 ).split( " " );
+/*
+  Some notes on attributes we don't want to allow:
+
+  * target: allowing users to specify target="_blank" allows attackers to
+    publish links on iNat to sites that manipulate the window / tab that
+    opened the link, so a person could click the link, land on the attacker's
+    website, and the attackers website uses window.opener.location to
+    navigate the opening tab to a page that looks like iNat but isn't, and
+    when the person returns to that tab they might be prompted to enter their
+    password, exposing it to the atacker. This can be mitigated by include
+    rel="noopener" in links, but I'm not seeing a great reason for users to
+    use the target attribute regardless.
+*/
 
 const ALLOWED_ATTRIBUTES = { a: ["href"] };
 ALLOWED_TAGS.filter( tag => tag !== "a" ).forEach( tag => { ALLOWED_ATTRIBUTES[tag] = ALLOWED_ATTRIBUTES_NAMES; } );
@@ -117,6 +130,22 @@ class UserText extends React.Component {
       html = text.trim( ).replace( /\n/gm, "<br />" );
     }
     html = sanitizeHtml( UserText.hyperlinkMentions( html ), config || CONFIG );
+    // Note: markdown-it has a linkifier option too, but it does not allow you
+    // to specify attributes like nofollow, so we're using linkifyjs, but we
+    // are ignoring URLs in the existing tags that might have them like <a> and
+    // <code>
+
+    // Note: we're linkify way up here before stripping tags or truncating
+    // because truncation without tag stripping will truncate in the middle of
+    // a URL. If we do that and *then* linkify urls, we end up with a bad link.
+    // This way we might waste some time stripping off tags we just added, but
+    // we ensure that if we're stripping tags nothing gets re-linkified, and if
+    // we're not URLs don't get truncated in the middle.
+    html = linkifyHtml( html, {
+      className: null,
+      attributes: { rel: "nofollow noopener" },
+      ignoreTags: ["a", "code", "pre"]
+    } );
     if ( stripTags ) {
       html = sanitizeHtml( html, { allowedTags: [], allowedAttributes: {} } );
     }
@@ -144,13 +173,17 @@ class UserText extends React.Component {
           }}
           className={`btn btn-nostyle linky ${truncate && truncate > 0 ? "more" : "collapse"}`}
         >
-          { more ? I18n.t( "less" ) : I18n.t( "more" ) }
+          {
+            more
+              ? I18n.t( "less__context_text", { defaultValue: I18n.t( "less" ) } )
+              : I18n.t( "more__context_text", { defaultValue: I18n.t( "more" ) } )
+          }
         </button>
       );
     }
     let htmlToDisplay = truncatedHtml || html;
     if ( !stripTags ) {
-      const sanitizedHtml = sanitizeHtml(
+      htmlToDisplay = sanitizeHtml(
         truncatedHtml || html,
         {
           allowedTags: ALLOWED_TAGS,
@@ -158,15 +191,6 @@ class UserText extends React.Component {
           exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
         }
       );
-      // Note: markdown-it has a linkifier option too, but it does not allow you
-      // to specify attributes link nofollow, so we're using linkifyjs, but we are
-      // ignoring URLs in the existing tags that might have them like a and code
-      const linkifiedHtml = linkifyHtml( sanitizedHtml, {
-        className: null,
-        attributes: { rel: "nofollow" },
-        ignoreTags: ["a", "code", "pre"]
-      } );
-      htmlToDisplay = linkifiedHtml;
     }
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );

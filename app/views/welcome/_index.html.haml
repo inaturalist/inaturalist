@@ -1,7 +1,7 @@
 - content_for :extracss do
   = stylesheet_link_tag "welcome"
 - content_for :extrajs do
-  - if @site && !@site.homepage_data.blank?
+  - if !@site&.homepage_data.blank?
     :javascript
       var HOMEPAGE_DATA = #{@site.homepage_data.html_safe};
   - else
@@ -212,7 +212,7 @@
   #who.homesection
     .row
       .col-xs-12
-        %h1=t 'views.welcome.index.who_uses_site_name', site_name: @site.name
+        %h1=t 'views.welcome.index.who_uses_site_name', site_name: @site&.name
         .container.container-fixed
           .row
             .col-xs-12

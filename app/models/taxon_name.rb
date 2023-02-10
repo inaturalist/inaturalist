@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class TaxonName < ApplicationRecord
+  audited except: [
+    :creator_id,
+    :parameterized_lexicon,
+    :taxon_id,
+    :updater_id
+  ], associated_with: :taxon
   belongs_to :taxon
   belongs_to :source
   belongs_to :creator, class_name: "User"
@@ -22,7 +28,7 @@ class TaxonName < ApplicationRecord
   validate :valid_scientific_name_must_match_taxon_name
   validate :english_lexicon_if_exists, if: proc {| tn | tn.lexicon && tn.lexicon_changed? }
   validate :parameterized_lexicon_present, if: proc {| tn | tn.lexicon.present? }
-  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/.freeze
+  SCIENTIFIC_NAME_FORMAT = /\A([A-z]|\s|-|×)+\z/
   validates :name,
     format: { with: SCIENTIFIC_NAME_FORMAT, message: :bad_format },
     if: proc {| tn |
@@ -34,13 +40,6 @@ class TaxonName < ApplicationRecord
   before_create {| name | name.position = name.taxon.taxon_names.size }
   before_save :set_is_valid
   after_create {| name | name.taxon.set_scientific_taxon_name }
-  after_save :update_unique_names
-  after_destroy do | name |
-    name&.taxon&.delay(
-      priority: OPTIONAL_PRIORITY,
-      unique_hash: { "Taxon::update_unique_name": name.taxon_id }
-    )&.update_unique_name
-  end
   after_save :index_taxon
   after_destroy :index_taxon
 
@@ -79,6 +78,7 @@ class TaxonName < ApplicationRecord
     ITALIAN: "Italian",
     JAPANESE: "Japanese",
     KANNADA: "Kannada",
+    KAZAKH: "Kazakh",
     KOREAN: "Korean",
     LATVIAN: "Latvian",
     LITHUANIAN: "Lithuanian",
@@ -90,15 +90,19 @@ class TaxonName < ApplicationRecord
     NORWEGIAN: "Norwegian",
     OCCITAN: "Occitan",
     PANGASINAN: "Pangasinan",
+    PERSIAN: "Persian",
     POLISH: "Polish",
     PORTUGUESE: "Portuguese",
     ROMANIAN: "Romanian",
     RUSSIAN: "Russian",
+    SANTALI: "Santali",
+    SERBIAN: "Serbian",
     SETSWANA: "Setswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
     SPANISH: "Spanish",
+    SWAHILI: "Swahili",
     SWEDISH: "Swedish",
     TAGALOG: "Tagalog",
     TAHITIAN: "Tahitian",
@@ -130,6 +134,7 @@ class TaxonName < ApplicationRecord
     "catalan" => "ca",
     "chinese_traditional" => "zh",
     "chinese_simplified" => "zh-CN",
+    "croatian" => "hr",
     "czech" => "cs",
     "danish" => "da",
     "dutch" => "nl",
@@ -150,6 +155,7 @@ class TaxonName < ApplicationRecord
     "italian" => "it",
     "japanese" => "ja",
     "kannada" => "kn",
+    "kazakh" => "kk",
     "korean" => "ko",
     "latvian" => "lv",
     "lithuanian" => "lt",
@@ -162,15 +168,19 @@ class TaxonName < ApplicationRecord
     "norwegian_bokmal" => "nb",
     "ojibwe" => "oj",
     "occitan" => "oc",
+    "persian" => "fa",
     "polish" => "pl",
     "portuguese" => "pt",
     "romanian" => "ro",
     "russian" => "ru",
+    "santali" => "sat",
     "scientific_names" => "sci",
+    "serbian" => "sr",
     "sinhala" => "si",
     "slovak" => "sk",
     "slovenian" => "sl",
     "spanish" => "es",
+    "swahili" => "sw",
     "swedish" => "sv",
     "thai" => "th",
     "turkish" => "tr",
@@ -220,7 +230,10 @@ class TaxonName < ApplicationRecord
   def self.normalize_lexicon( lexicon )
     return nil if lexicon.blank?
     return TaxonName::NORWEGIAN if lexicon == "norwegian_bokmal"
+    return TaxonName::PERSIAN if lexicon.to_s.downcase.strip == "farsi"
     return TaxonName::ROMANIAN if lexicon.to_s.downcase.strip == "rumanian"
+    return TaxonName::SWAHILI if lexicon.to_s.downcase.strip == "kiswahili"
+    return TaxonName::SWAHILI if lexicon.to_s =~ /^swahili/
     # Correct a common misspelling
     return TaxonName::UKRAINIAN if lexicon.to_s.downcase.strip == "ukranian"
 
@@ -231,16 +244,6 @@ class TaxonName < ApplicationRecord
     return true if lexicon.blank?
 
     self.lexicon = TaxonName.normalize_lexicon( lexicon )
-    true
-  end
-
-  def update_unique_names
-    return true unless saved_change_to_name?
-
-    non_unique_names = TaxonName.includes( :taxon ).where( name: name ).select( "DISTINCT ON (taxon_id) *" )
-    non_unique_names.each do | taxon_name |
-      taxon_name.taxon&.update_unique_name
-    end
     true
   end
 
@@ -439,7 +442,7 @@ class TaxonName < ApplicationRecord
         tn.is_valid? && tn.name == ext_name.taxon.name
       end
       if !ext_name.valid? && ext_name.errors[:name] && matching_tn_exists
-        ext_name.update_attributes( is_valid: false )
+        ext_name.update( is_valid: false )
       end
     end
     ext_names
@@ -504,10 +507,9 @@ class TaxonName < ApplicationRecord
     match = TaxonName.find_lexicons_by_translation( lexicon )
     return unless non_en_lexicons.include?( lexicon.downcase.strip )
 
-    errors.add( :lexicon, :should_match_english_translation, {
+    errors.add( :lexicon, :should_match_english_translation,
       suggested: I18n.with_locale( :en ) { I18n.t( "lexicons.#{match[:lexicons].key( lexicon.downcase.strip )}" ) },
-      suggested_locale: I18n.t( "locales.#{match[:locale]}" )
-    } )
+      suggested_locale: I18n.t( "locales.#{match[:locale]}" ) )
   end
 
   def parameterize_lexicon

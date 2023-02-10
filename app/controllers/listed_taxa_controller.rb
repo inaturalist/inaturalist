@@ -118,7 +118,7 @@ class ListedTaxaController < ApplicationController
     listed_taxon = params[:listed_taxon] || {}
 
     respond_to do |format|
-      @listed_taxon.update_attributes_and_primary(listed_taxon, current_user)
+      @listed_taxon.update_and_primary(listed_taxon, current_user)
       if @listed_taxon.valid?
         format.html do
           flash[:notice] = t(:listed_taxon_updated)

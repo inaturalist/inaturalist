@@ -9,6 +9,8 @@ class CheckListsController < ApplicationController
   before_action :lock_down_default_check_lists, :only => [:edit, :update, :destroy, :batch_edit]
   before_action :set_iconic_taxa, :only => [:show]
 
+  prepend_around_action :enable_replica, only: [:show]
+
   # Not supporting any of these just yet
   def index; redirect_to '/'; end
   
@@ -94,7 +96,7 @@ class CheckListsController < ApplicationController
   def update
     @check_list = @list
     update_list_rules
-    if @list.update_attributes(params[:check_list])
+    if @list.update(params[:check_list])
       flash[:notice] = t(:check_list_updated)
       return redirect_to @list
     else

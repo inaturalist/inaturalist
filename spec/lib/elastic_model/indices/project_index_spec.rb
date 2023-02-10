@@ -37,11 +37,11 @@ describe "Project Index" do
     let(:country) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
     let(:state) { make_place_with_geom( admin_level: Place::STATE_LEVEL, parent: country ) }
     it "should include the project's place_id" do
-      project.update_attributes( place: country )
+      project.update( place: country )
       expect( project.as_indexed_json[:associated_place_ids] ).to include country.id
     end
     it "should include the project place ancestors" do
-      project.update_attributes( place: state )
+      project.update( place: state )
       expect( project.as_indexed_json[:associated_place_ids] ).to include country.id
     end
     it "should include places from the project's rules" do
@@ -59,11 +59,11 @@ describe "Project Index" do
         u
       }
       it "should include a sub-project's place_id" do
-        project.update_attributes( place: country )
+        project.update( place: country )
         expect( umbrella.as_indexed_json[:associated_place_ids] ).to include country.id
       end
       it "should include a sub-project's place ancestors" do
-        project.update_attributes( place: state )
+        project.update( place: state )
         expect( umbrella.as_indexed_json[:associated_place_ids] ).to include country.id
       end
       it "should include places from a sub-project's rules" do

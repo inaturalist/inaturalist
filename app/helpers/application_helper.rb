@@ -243,7 +243,7 @@ module ApplicationHelper
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params( options = {} )
     new_params = request.POST.merge( request.GET ).merge( options )
-    if without = options.delete(:without)
+    if without = new_params.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
       new_params = new_params.reject {|k,v| without.include?(k) }
@@ -272,22 +272,6 @@ module ApplicationHelper
       end
     end
     html.html_safe
-  end
-  
-  # def link_to(*args)
-  #   if args.size >= 2 && args[1].is_a?(Taxon) && args[1].unique_name? && 
-  #       !(args[2] && args[2].is_a?(Hash) && args[2][:method])
-  #     return super(args.first, url_for_taxon(args[1]), *args[2..-1])
-  #   end
-  #   super
-  # end
-  
-  def url_for_taxon(taxon)
-    if taxon && taxon.unique_name?
-      url_for(:controller => 'taxa', :action => taxon.unique_name.split.join('_'))
-    else
-      url_for(taxon)
-    end
   end
   
   def modal_image(photo, options = {})
@@ -323,6 +307,7 @@ module ApplicationHelper
   def formatted_user_text(text, options = {})
     return text if text.blank?
 
+    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
     text = markdown( text ) unless options[:skip_simple_format]
     
     # make sure attributes are quoted correctly
@@ -335,15 +320,21 @@ module ApplicationHelper
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
-    text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
-    text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
+    text = text.scrub
     unless options[:skip_simple_format]
       text = simple_format_with_structure( text, sanitize: false )
     end
     # Ensure all tags are closed
-    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
-    text.gsub(/^<p><\/p>/, "").html_safe
+    parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
+    # Ensure all links have nofollow
+    parsed_text.css( "a" ).each do | node |
+      node[:rel] = "#{node[:rel]} nofollow noopener".strip
+    end
+    text = parsed_text.to_s
+    # Remove empty paragraphs
+    text = text.gsub( "<p></p>", "" )
+    text.html_safe
   end
 
   def formatted_error_sentence_for( record, attribute )
@@ -519,26 +510,42 @@ module ApplicationHelper
     @__serial_id = @__serial_id.to_i + 1
     @__serial_id
   end
-  
-  def image_url(source, options = {})
-    abs_path = source =~ /^\// ? source : asset_path( source ).to_s
+
+  def image_url( source, options = {} )
+    # Here FakeView is necessary again for situations where this gets called
+    # outside of a context with the normal URL and asset helpers
+    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
     unless abs_path =~ /\Ahttp/
-     abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
+      the_root_url = begin
+        root_url
+      rescue StandardError => e
+        # If this method gets called outside of the context of a controller, url
+        # helpers like root_url may not be available, so we might need to fall
+        # back to FakeView. Note that rescuing ActionView::Template::Error
+        # doesn't seem to work here.
+        raise e unless e.message =~ /root_url/
+
+        FakeView.root_url
+      end
+      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
     end
     abs_path
-  rescue Exception => e
-    nil
   end
-  
+
   def truncate_with_more(text, options = {})
     return text if text.blank?
     more = options.delete(:more) || " ...#{t(:more).downcase} &darr;".html_safe
     less = options.delete(:less) || " #{t(:less).downcase} &uarr;".html_safe
-    options[:omission] ||= ""
-    options[:separator] ||= " "
+    unless ellipsize = options.delete(:ellipsize)
+      options[:omission] ||= ""
+      options[:separator] ||= " "
+    end
     truncated = truncate(text, options.merge(escape: false))
     return truncated.html_safe if text == truncated
+
     truncated = Nokogiri::HTML::DocumentFragment.parse(truncated)
+    return truncated.to_s.html_safe if ellipsize
+
     morelink = link_to_function(more, "$(this).parents('.truncated').hide().next('.untruncated').show()", 
       :class => "nobr ui")
     last_node = truncated.children.last || truncated
@@ -731,7 +738,7 @@ module ApplicationHelper
       "all-layer-label" => I18n.t("maps.overlays.all_observations"),
       "all-layer-description" => I18n.t("maps.overlays.every_publicly_visible_observation"),
       "gbif-layer-label" => I18n.t("maps.overlays.gbif_network"),
-      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description"),
+      "gbif-layer-hover" => I18n.t("maps.overlays.gbif_network_description2"),
       "enable-show-all-layer" => options[:enable_show_all_layer] ? "true" : "false",
       "show-all-layer" => options[:show_all_layer].to_json,
       "featured-layer-label" => I18n.t("maps.overlays.featured_observations"),
@@ -1097,16 +1104,21 @@ module ApplicationHelper
       return s.html_safe
     end
 
-    if notifier.is_a?(ActsAsVotable::Vote)
+    if notifier.is_a?( ActsAsVotable::Vote )
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
-        vow_or_con: t(class_name_key, default: class_name_key)[0].downcase,
-        gender: class_name_key
-      ).html_safe
-      s = t(:user_faved_a_noun_by_owner, 
-        user: notifier_user.login, 
-        noun: noun, 
-        owner: you_or_login(update.resource_owner, :capitalize_it => false))
+        vow_or_con: t( class_name_key, default: class_name_key )[0].downcase,
+        gender: class_name_key ).html_safe
+      s = if logged_in? && current_user == update.resource_owner
+        t( :user_faved_a_noun_by_you,
+          user: notifier_user.login,
+          noun: noun )
+      else
+        t( :user_faved_a_noun_by_owner,
+          user: notifier_user.login,
+          noun: noun,
+          owner: update.resource_owner.login )
+      end
       return s.html_safe
     end
 
@@ -1269,19 +1281,24 @@ module ApplicationHelper
       end
     end
     key += '_html'
-    t(key, opts)
+    t(key, **opts)
   end
   
   def url_for_resource_with_host(resource)
     polymorphic_url(resource)
   end
-  
-  def commas_and(list, options = {})
+
+  def commas_and( list, options = {} )
     return list.first.to_s.html_safe if list.size == 1
-    return list.join(" #{t :and} ").html_safe if list.size == 2
-    options[:separator] ||= ","
-    options[:and] ||= t(:and)
-    "#{list[0..-2].join(', ')}#{options[:separator]} #{options[:and]} #{list.last}".html_safe
+
+    list_with_n_items = I18n.t( "list_with_n_items", one: "-ONE-", two: "-TWO-", three: "-THREE-" )
+    list_with_two_items = I18n.t( "list_with_two_items", one: "-ONE-", two: "-TWO-" )
+    options[:separator] ||= list_with_n_items[/-ONE-(.*)-TWO-/, 1]
+    options[:final_separator] ||= list_with_n_items[/-TWO-(.*)-THREE-/, 1]
+    options[:two_item_separator] ||= list_with_two_items[/-ONE-(.*)-TWO-/, 1]
+    return list.join( options[:final_separator] ).html_safe if list.size == 2
+
+    "#{list[0..-2].join( options[:separator] )}#{options[:final_separator]}#{list.last}".html_safe
   end
 
   def observation_field_value_for(ofv)
@@ -1375,7 +1392,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.46"
+    version = Rails.env.development? ? "weekly" : "3.48"
     params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
@@ -1439,7 +1456,7 @@ module ApplicationHelper
   end
 
   def post_parent_path( parent, options = {} )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_path( options.merge( project_id: parent_slug ) )
@@ -1451,7 +1468,7 @@ module ApplicationHelper
   end
 
   def post_archives_by_month_path( parent, year, month )
-    parent_slug = @parent_slug || parent.try_methods( :login, :slug )
+    parent_slug = @parent.journal_slug || parent.try_methods( :login, :slug )
     case parent.class.name
     when "Project"
       project_journal_archives_by_month_path( parent_slug, year, month )
@@ -1503,13 +1520,25 @@ module ApplicationHelper
     I18n.has_t?(*args)
   end
 
-  def hyperlink_mentions(text)
+  def hyperlink_mentions( text, for_markdown: false )
     linked_text = text.dup
+    before_mention_pattern = [
+      # Either it's at the start of the line, or...
+      "^|",
+      # It's not preceded by the end of a start tag (e.g. a link)
+      '(?<!">)',
+      # And it's not preceded by slash (e.g. a part of a URL)
+      "(?<!/)"
+    ].join
     # link the longer logins first, to prevent mistakes when
     # one username is a substring of another username
-    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+    linked_text.mentioned_users.sort_by {| u | u.login.length }.reverse.each do | u |
       # link `@login` when @ is preceded by a word break but isn't preceded by ">
-      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+      login_text = for_markdown ? u.login.gsub( "_", "\\_" ) : u.login
+      linked_text.gsub!(
+        /(#{before_mention_pattern})@#{u.login}/,
+        "\\1#{link_to( "@#{login_text}", person_by_login_url( u.login ) )}"
+      )
     end
     linked_text
   end
@@ -1599,7 +1628,38 @@ module ApplicationHelper
       end
       s.html_safe
     end
-    link_to( content, url_for_params( order_by: header, order: @order == "desc" ? "asc" : "desc" ), options )
+    link_to(
+      content,
+      url_for_params( {
+        order_by: header,
+        order: @order == "desc" ? "asc" : "desc"
+      }.merge( options[:url_options] || {} ) ),
+      options
+    )
+  end
+
+  # Workaround for our inconsistent i18n keys
+  def geoprivacy_with_consistent_case( geoprivacy )
+    if geoprivacy != "obscured"
+      t( "#{geoprivacy}_" )
+    else
+      t( :obscured )
+    end
+  end
+
+  # Another workaround for our inconsistent use of underscores in i18n keys
+  def translate_with_consistent_case( key, options = {} )
+    lower_requested = options.delete( :case ) != "upper"
+    translation = I18n.t( key, **options )
+    en = I18n.t( key, **options.merge( locale: "en" ) )
+    default_is_lower = en == en.downcase
+    lower_requested_and_default_is_lower = lower_requested && default_is_lower
+    upper_requested_and_default_is_upper = !lower_requested && !default_is_lower
+    if lower_requested_and_default_is_lower || upper_requested_and_default_is_upper
+      return translation
+    end
+
+    I18n.t( "#{key}_", **options )
   end
 
 end

@@ -37,7 +37,8 @@ class TaxaController < ApplicationController
   before_action :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :update_photos, :set_photos, :edit_colors,
     :update_colors, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details,
+    :history]
   before_action :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_action :limit_page_param_for_search, :only => [:index,
@@ -45,9 +46,10 @@ class TaxaController < ApplicationController
   before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
-  before_action :load_form_variables, :only => [:edit, :new]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
-  
+
+  prepend_around_action :enable_replica, only: [:describe, :links, :show]
+
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
@@ -146,7 +148,7 @@ class TaxaController < ApplicationController
   def show
     if params[:id]
       begin
-        @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
+        @taxon ||= Taxon.where(id: params[:id]).includes({ taxon_names: :place_taxon_names }).first
       rescue RangeError => e
         Logstasher.write_exception(e, request: request, session: session, user: current_user)
         nil
@@ -331,7 +333,7 @@ class TaxaController < ApplicationController
 
   def update
     return unless presave
-    if @taxon.update_attributes(params[:taxon])
+    if @taxon.update(params[:taxon])
       flash[:notice] = t(:taxon_was_successfully_updated)
       if locked_ancestor = @taxon.ancestors.is_locked.first
         flash[:notice] += " Heads up: you just added a descendant of a " + 
@@ -367,10 +369,34 @@ class TaxaController < ApplicationController
     flash[:notice] = t(:taxon_deleted)
     redirect_to :action => 'index'
   end
-  
 
 ## Custom actions ############################################################
-  
+
+  def clashes
+    @taxon = Taxon.where( id: params[:id] ).first
+    @context = params[:context]
+    new_parent_id = params[:new_parent_id]
+    unless new_parent_id
+      flash[:error] = t( :no_new_parent_specified )
+      redirect_back_or_default( @taxon )
+      return
+    end
+    @results = @taxon.clash_analysis( new_parent_id )
+    @results.each do | result |
+      result[:child] = @taxon.name
+      result[:old_parent] = Taxon.where( id: result[:parent_id] ).first.name
+      result[:new_parent] = Taxon.where( id: new_parent_id ).first.name
+    end
+    respond_to do | format |
+      format.html do
+        render partial: "clashes.html.haml", locals: { results: @results }
+      end
+      format.json do
+        render json: @results.to_json( methods: [:html] )
+      end
+    end
+  end
+
   # /taxa/browse?q=bird
   # /taxa/browse?q=bird&places=1,2
   # TODO: /taxa/browse?q=bird&places=usa-ca-berkeley,usa-ct-clinton
@@ -610,8 +636,12 @@ class TaxaController < ApplicationController
     Taxon.preload_associations(@taxa, [ { taxon_names: :place_taxon_names },
       :taxon_descriptions ] )
     @taxa.each do |t|
-      t.html = view_context.render_in_format(:html, :partial => "chooser.html.erb",
-        :object => t, :comname => t.common_name)
+      t.html = view_context.render_in_format(:html,
+        partial: "chooser",
+        handlers: [:erb],
+        formats: [:html],
+        object: t,
+        comname: t.common_name)
     end
     @taxa.uniq!
     respond_to do |format|
@@ -1166,6 +1196,43 @@ class TaxaController < ApplicationController
     end
   end
 
+  def history
+    @record = @taxon
+    audit_scope = Audited::Audit.where( auditable_type: "Taxon", auditable_id: @taxon.id ).or(
+      Audited::Audit.where( associated_type: "Taxon", associated_id: @taxon.id )
+    )
+    audited_types = %w(Taxon TaxonName PlaceTaxonName ConservationStatus)
+    if audited_types.include?( params[:auditable_type] ) && ( @auditable_type = params[:auditable_type] )
+      audit_scope = audit_scope.where( auditable_type: @auditable_type )
+    end
+    if (
+        params[:auditable_id].to_i > 0 &&
+        params[:auditable_id].to_s == params[:auditable_id].to_s &&
+        ( @auditable_id = params[:auditable_id] )
+    )
+      audit_scope = audit_scope.where( auditable_id: @auditable_id )
+    end
+    if ( @user_id = params[:user_id] )
+      audit_scope = audit_scope.where( user_id: @user_id )
+    end
+    if ( @audit_action = params[:audit_action] )
+      audit_scope = audit_scope.where( action: @audit_action )
+    end
+    @audit_days = audit_scope.group( "audits.created_at::date" ).count.sort_by(&:first).reverse
+    @date = params[:year] &&
+      params[:month] &&
+      params[:day] &&
+      ( Date.parse( "#{params[:year]}-#{params[:month]}-#{params[:day]}") rescue nil )
+    # At this point @audit_days is an array of arrays with the first elt of
+    # each being a date sorted in descending order, so &.first&.first should
+    # be the most recent date
+    @date ||= @audit_days&.first&.first
+    @show_all = @date && audit_scope.count < 500
+    @audits = audit_scope.order( "created_at desc" )
+    @audits = @audits.where( "created_at::date = ?", @date ) unless @show_all
+    render layout: "bootstrap-container"
+  end
+
   private
   def respond_to_merge_error(msg)
     respond_to do |format|
@@ -1406,15 +1473,32 @@ class TaxaController < ApplicationController
   def try_show
     name, format = params[:q].to_s.sanitize_encoding.split('_').join(' ').split('.')
     request.format = format if request.format.blank? && !format.blank?
-    name = name.to_s.downcase
+    # If this is not a show URL, the taxon should still be the first segment
+    name = name.to_s.downcase.split( "/" ).first
     @taxon = Taxon.single_taxon_for_name(name)
     
     # Redirect to a canonical form
     if @taxon
-      canonical = (@taxon.unique_name || @taxon.name).split.join('_')
+      # If this is not a show URL, try to redirect to a canonical version of that url
+      if params[:q].include?( "/" ) && request.get?
+        url_pieces = params[:q].split( "/" )
+        url_pieces.shift
+        new_path = "/taxa/#{@taxon.to_param}/#{url_pieces.join( "/" )}"
+        begin
+          recognized_route = Rails.application.routes.recognize_path( new_path )
+          if recognized_route && recognized_route[:action] != "try_show"
+            redirect_to new_path
+          else
+            render_404
+          end
+        rescue ActionController::RoutingError
+          render_404
+        end
+        return
+      end
+      canonical = @taxon.name.split.join( "_" )
       taxon_names ||= @taxon.taxon_names.limit(100)
-      acceptable_names = [@taxon.unique_name, @taxon.name].compact.map{|n| n.split.join('_')} + 
-        taxon_names.map{|tn| tn.name.split.join('_')}
+      acceptable_names = [canonical] + taxon_names.map{|tn| tn.name.split.join('_')}
       unless acceptable_names.include?(params[:q])
         sciname_candidates = [
           params[:action].to_s.sanitize_encoding.split.join('_').downcase, 
@@ -1433,11 +1517,11 @@ class TaxaController < ApplicationController
     # TODO: if multiple exact matches, render a disambig page with status 300 (Mulitple choices)
     unless @taxon
       return redirect_to :action => 'search', :q => name
-    else
-      params.delete(:q)
-      return_here
-      show
     end
+
+    params.delete(:q)
+    return_here
+    show
   end
   
 ## Protected / private actions ###############################################
@@ -1559,7 +1643,7 @@ class TaxaController < ApplicationController
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
       if external_taxon.created_at > start
-        external_taxon.update_attributes( creator: current_user )
+        external_taxon.update( creator: current_user )
       end
     end
 
@@ -1660,7 +1744,7 @@ class TaxaController < ApplicationController
     @genus_name, @species_name = taxon_name.name.split
     url = "http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{@genus_name}&where-species=#{@species_name}&src=eol"
     Rails.logger.info "[INFO #{Time.now}] AmphibiaWeb request: #{url}"
-    xml = Nokogiri::XML(open(url))
+    xml = Nokogiri::XML( Net::HTTP.get( URI( url ) ) )
     if xml.blank? || xml.at(:error)
       get_amphibiaweb(taxon_names)
     else
@@ -1676,17 +1760,6 @@ class TaxaController < ApplicationController
       return false
     end
   end
-  
-  def load_form_variables
-    @conservation_status_authorities = ConservationStatus.
-      group(:authority).
-      order( Arel.sql( "count(*) DESC" ) ).
-      limit( 500 ).
-      count.
-      map(&:first).compact.reject(&:blank?).map(&:strip)
-    @conservation_status_authorities += ConservationStatus::AUTHORITIES
-    @conservation_status_authorities = @conservation_status_authorities.uniq.sort
-  end
 
   def taxon_curator_required
     unless @taxon.editable_by?( current_user )
@@ -1699,4 +1772,5 @@ class TaxaController < ApplicationController
       return false
     end
   end
+
 end

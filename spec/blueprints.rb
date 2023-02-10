@@ -107,6 +107,7 @@ end
 
 Flag.blueprint do
   user { User.make! }
+  flaggable_user { User.make! }
   flaggable { Taxon.make! }
   flag { Faker::Name.name }
   resolved { false }
@@ -185,7 +186,6 @@ end
 
 LocalPhoto.blueprint do
   user { User.make }
-  native_page_url   { "http://localhost:3000/photos/1234" }
   file_content_type { "image/jpeg" }
   file_file_name    { "foo.jpg" }
   file_updated_at   { Time.now }
@@ -267,7 +267,6 @@ end
 
 Photo.blueprint do
   user { User.make }
-  native_photo_id { rand(1000) }
 end
 
 FlickrPhoto.blueprint do
@@ -283,6 +282,10 @@ end
 PicasaPhoto.blueprint do
   user { User.make! }
   native_photo_id { rand(1000) }
+end
+
+PhotoMetadata.blueprint do
+  photo { Photo.make! }
 end
 
 Place.blueprint do
@@ -377,8 +380,10 @@ SavedLocation.blueprint do
 end
 
 Site.blueprint do
+  domain = Faker::Internet.domain_name
   name { Faker::Name.name }
-  url { "http://#{Faker::Internet.domain_name}" }
+  domain { domain }
+  url { "http://#{domain}" }
 end
 
 SiteAdmin.blueprint do
@@ -542,6 +547,9 @@ User.blueprint do
   created_at { 5.days.ago.to_s(:db) }
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
+  confirmed_at { 5.days.ago.to_s(:db) }
+  confirmation_sent_at { 5.days.ago.to_s(:db) }
+  confirmation_token { Faker::Alphanumeric.alphanumeric }
 end
 
 UserBlock.blueprint do

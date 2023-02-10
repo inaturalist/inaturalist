@@ -765,3 +765,16 @@ a.icon_container,
     }
   }
 }
+
+#flags-table {
+  th, td {
+    padding: 2px;
+    vertical-align: top;
+  }
+  .reason {
+    width: 100%;
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

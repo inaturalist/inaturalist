@@ -1,0 +1,2409 @@
+hr:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} promjena"
+    few: "%{count} promjene"
+    other: "%{count} promjena"
+  x_comments:
+    one: '%{count} komentar'
+    few: '%{count} komentara'
+    other: '%{count} komentara'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> komentar'
+    few: '<span class="count">%{count}</span> komentara'
+    other: '<span class="count">%{count}</span> komentara'
+  x_faves:
+    one: '%{count} favorit'
+    few: '%{count} favorita'
+    other: '%{count} favorita'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> prijava riješena"
+    few: "<span class='count'>%{count}</span> prijava riješeno"
+    other: "<span class='count'>%{count}</span> prijava riješeno"
+  x_identifications:
+    one: '%{count} identifikacija'
+    few: '%{count} identifikacije'
+    other: '%{count} identifikacija'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identifikacija'
+    few: '<span class="count">%{count}</span> identifikacije'
+    other: '<span class="count">%{count}</span> identifikacija'
+  x_identifications_:
+    one: '%{count} Identifikacija'
+    few: '%{count} Identifikacije'
+    other: '%{count} Identifikacija'
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Identifikator'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> Identifikatora'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Identifikatora'
+  x_languages:
+    one: "%{count} jezik"
+    few: "%{count} jezika"
+    other: "%{count} jezika"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} prvo opažanje taksona"
+    #Count of number of taxa that represent the first addition to a life list
+    few: "%{count} prvih opažanja taksona"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} prvih opažanja taksona"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> objava u dnevniku'
+    few: '<span class="count">%{count}</span> objave u dnevniku'
+    other: '<span class="count">%{count}</span> objava u dnevniku'
+  x_matching_taxa:
+    one: '%{count} takson se poklapa'
+    few: '%{count} taksona se poklapaju'
+    other: '%{count} taksa se poklapa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> takson se poklapa'
+    few: '<span class="count">%{count}</span> taksona se poklapaju'
+    other: '<span class="count">%{count}</span> taksa se poklapa'
+  x_misidentifications_of_this_species:
+    one: "%{count} pogrešna identifikacija ove vrste"
+    few: "%{count} pogrešne identifikacije ove vrste"
+    other: "%{count} pogrešne identifikacije ove vrste"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} pogrešna identifikacija vrste u ovom rodu"
+    few: "%{count} pogrešne identifikacije vrste u ovom rodu"
+    other: "%{count} pogrešne identifikacije vrste u ovom rodu"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} pogrešna identifikacija vrste u ovom %{rank}"
+    few: "%{count} pogrešne identifikacije vrste u ovom %{rank}"
+    other: "%{count} pogrešne identifikacije vrste u ovom %{rank}"
+  x_observations:
+    one: "%{count} opažanje"
+    few: "%{count} opažanja"
+    other: "%{count} opažanja"
+  x_observations_:
+    one: "%{count} Opažanje"
+    few: "%{count} Opažanja"
+    other: "%{count} Opažanja"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> opažanje"
+    few: "<span class='count'>%{count}</span> opažanja"
+    other: "<span class='count'>%{count}</span> opažanja"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} opažanje</a>"
+    few: "<a href='%{url}'>%{count} opažanja</a>"
+    other: "<a href='%{url}'>%{count} opažanja</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> pregledano opažanje"
+    few: "<span class='count'>%{count}</span> pregledanih opažanja"
+    other: "<span class='count'>%{count}</span> pregledana opažanja"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Promatrač'
+    few: '<span class="count">%{count}</span> Promatrača'
+    other: '<span class="count">%{count}</span> Promatrača'
+  x_others:
+    one: "%{count} drugi"
+    few: "%{count} drugih"
+    other: "%{count} drugih"
+  x_people:
+    one: "%{count} osoba"
+    few: "%{count} osobe"
+    other: "%{count} osoba"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} ljudi</strong> pomoglo je %{user} sa <strong>%{y} identifikacijama</strong>"
+  x_photos:
+    one: "%{count} fotografija"
+    few: "%{count} fotografije"
+    other: "%{count} fotografija"
+  x_new_species:
+    one: "%{count} nova vrsta"
+    few: "%{count} nove vrste"
+    other: "%{count} novih vrsta"
+  x_new_users:
+    one: '%{count} novi korisnik'
+    few: '%{count} nova korisnika'
+    other: '%{count} novih korisnika'
+  x_species:
+    one: '%{count} vrsta'
+    few: '%{count} vrste'
+    other: '%{count} vrsta'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> vrsta"
+    few: "<span class='count'>%{count}</span> vrste"
+    other: "<span class='count'>%{count}</span> vrsta"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count} vrsta</a>"
+    few: "<a href='%{url}'>%{count} vrste</a>"
+    other: "<a href='%{url}'>%{count} vrsta</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} prijedlog filtriran prema:"
+    few: "%{count} prijedloga filtrirana prema:"
+    other: "%{count} prijedloga filtrirana prema:"
+  x_taxa:
+    one: "%{count} takson"
+    few: "%{count} taksona"
+    other: "%{count} taksona"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> zabilježeni takson"
+    few: "<span class='count'>%{count}</span> zabilježena taksona"
+    other: "<span class='count'>%{count}</span> zabilježena taksona"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> istraživački-ocijenjeno opažanje"
+    few: "<span class='count'>%{count}</span> istraživački-ocijenjena opažanja"
+    other: "<span class='count'>%{count}</span> istraživački-ocijenjenih opažanja"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> istraživački-ocijenjeno opažanje identificirano do razine vrste ili niže"
+    few: "<span class='count'>%{count}</span> istraživački-ocijenjena opažanja identificirana do razine vrste ili niže"
+    other: "<span class='count'>%{count}</span> istraživački-ocijenjenih opažanja identificirano do razine vrste ili niže"
+  x_sounds:
+    one: "%{count} zvučni zapis"
+    few: "%{count} zvučnih zapisa"
+    other: "%{count} zvučnih zapisa"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> takson kuriran"
+    few: "<span class='count'>%{count}</span> taksona kurirano"
+    other: "<span class='count'>%{count}</span> taksona kurirano"
+  x_taxa_matching_current_filters:
+    one: "%{count} takson se podudara s trenutnim filtrima"
+    few: "%{count} taksona se podudaraju s trenutnim filtrima"
+    other: "%{count} taksona se podudara s trenutnim filtrima"
+  _100_day_trends: Trendovi u zadnjih 100 dana
+  _percent_ID_d: "% ID-icirano"
+  a_community_for_naturalist: Zajednica za prirodoslovce
+  a_flag_for_x: "prijava za %{x}"
+  a_member_of_taxon_html: "član taksona: %{taxon}"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A do Ž"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "%{resource}"
+  about: Info
+  about_charts: O dijagramima
+  about_community_taxa: O Taksonu zajednice
+  about_licenses: O licencama
+  #Header for a section describing taxon names
+  about_names: O nazivima
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "O lokaciji: %{place}"
+  about_places: O mjestima
+  about_this_map: O ovoj karti
+  about_this_project: O ovom projektu
+  about_trusting_projects_options_any: Sva tvoja opažanja u ovom projektu
+  #Abbreviated form of "accuracy in meters", where "accuracy" is the
+  #positional_accuracy attribute of an observation, which is really more like
+  #positional uncertainty
+  acc: 'Prec. (m)'
+  account: Račun
+  account_creation: Stvaranje računa
+  account_settings: Postavke računa
+  accept_community_identifications: Prihvati identifikaciju zajednice
+  accuracy: Preciznost
+  accuracy_meters: Preciznost (metri)
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: Radnja
+  actions: Radnje
+  active: Aktivni
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktivan
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktivan
+  active_users: Aktivni korisnici
+  activity: Aktivnost
+  add: Dodaj
+  #Tool tip for a button that adds a bulleted list to a text area
+  add_a_bulleted_list: Dodaj popis s predznakom
+  add_a_comment: Dodaj komentar
+  add_a_field: Dodaj polje
+  add_a_flag: Dodaj prijavu
+  #Tool tip for a button that adds a link to a text area
+  add_a_link: Dodaj poveznicu
+  add_a_name: Dodaj naziv
+  add_a_note: Dodaj bilješku
+  add_annotations_for_x: Dodaj anotaciju za "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Dodaj anotaciju za "Spol"
+    life_stage: Dodaj anotaciju za "Životno razdoblje"
+    evidence_of_presence: Dodaj anotaciju za "Dokaz o prisutnosti"
+  add_another_photo: Dodaj još jednu fotografiju
+  add_comment: Dodaj komentar
+  add_description: "Dodaj %{description_name}"
+  add_link: Dodaj poveznicu
+  add_id: Dodaj ID
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: Dodaj kurzivni tekst
+  add_new_taxon_name: Dodaj novi naziv taksona
+  add_observations: Dodaj opažanja
+  #Prompt to add a new journal post
+  add_one: Dodaj jedan!
+  add_place: Dodaj mjesto
+  add_alive_or_dead_alive_annotation: 'Dodaj anotaciju "Živo ili uginulo: Živo"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Dodaj anotaciju "Živo ili uginulo: Ne može se odrediti"'
+  add_alive_or_dead_dead_annotation: 'Dodaj anotaciju "Živo ili uginulo: Uginulo"'
+  add_life_stage_adult_annotation: 'Dodaj anotaciju "Životno razdoblje: Odraslo"'
+  add_life_stage_nymph_annotation: 'Dodaj anotaciju "Životno razdoblje: Nimfa"'
+  add_life_stage_larva_annotation: 'Dodaj anotaciju "Životno razdoblje: Ličinka"'
+  add_life_stage_juvenile_annotation: 'Dodaj anotaciju "Životno razdoblje: Juvenilno"'
+  add_sex_female_annotation: 'Dodaj anotaciju "Spol: Ženka"'
+  add_sex_male_annotation: 'Dodaj anotaciju "Spol: Mužjak"'
+  add_sex_cannot_be_determined_annotation: 'Dodaj anotaciju "Spol: Ne može se odrediti"'
+  add_tag: Dodaj oznaku
+  add_tags: Dodaj oznake
+  add_taxa: Dodaj taksu
+  add_to_a_project: Dodaj u projekt
+  add_to_favorites: Dodaj u favorite
+  add_to_project: Dodaj u projekt
+  added: Dodano
+  added!: Dodano!
+  added_by: Dodao/la
+  added_by_user_on_date_html: "Korisnik %{user} je dodao na datum: %{date}"
+  added_on_datetime: "Dodano %{datetime}"
+  added_to_favorites_html: |
+    Dodano u <a href="%{url}">favorite</a>
+  adding: "Dodavanje..."
+  admin: Admin
+  admin_s: Admini
+  admin_only: Samo za admine
+  admin_tools: Alati za admine
+  agree_: Slažem se
+  agree?: Slažeš se?
+  agree_with_current_taxon: Složi se s trenutnim taksonom
+  agreeing: Slaganje...
+  #Noun, title of a popup alerting you to something
+  alert: Upozorenje
+  all: Sve
+  all_comments: Svi komentari
+  all_life: Sav život
+  all_names: Svi nazivi
+  all_observations: Sva opažanja
+  all_photos: Sve fotografije
+  all_places: "Sva mjesta"
+  all_projects: Svi projekti
+  all_rank_added_to_the_database:
+    variety: Svi varijeteti dodani su u bazu podataka
+  all_taxa:
+    amphibians: Vodozemci
+    animals: Životinje
+    arachnids: Paučnjaci
+    birds: Ptice
+    chromista: Kromisti
+    fungi: Gljive
+    fungi_including_lichens: Gljive uključujući lišajeve
+    insects: Kukci
+    mammals: Sisavci
+    mollusks: Mekušci
+    other_animals: Druge životinje
+    plants: Biljke
+    protozoans: Praživotinje
+    ray_finned_fishes: Zrakoperke
+    reptiles: Gmazovi
+    life: Život
+    x_plantae:
+      one: "%{count} biljka"
+      few: "%{count} biljke"
+      other: "%{count} biljki"
+    x_animalia:
+      one: "%{count} životinja"
+      few: "%{count} životinje"
+      other: "%{count} životinja"
+    x_mollusca:
+      one: "%{count} mekušac"
+      few: "%{count} mekušca"
+      other: "%{count} mekušaca"
+    x_reptilia:
+      one: "%{count} gmaz"
+      few: "%{count} gmaza"
+      other: "%{count} gmazova"
+    x_aves:
+      one: "%{count} ptica"
+      few: "%{count} ptice"
+      other: "%{count} ptica"
+    x_insecta:
+      one: "%{count} kukac"
+      few: "%{count} kukca"
+      other: "%{count} kukaca"
+    x_fungi:
+      one: "%{count} gljiva"
+      few: "%{count} gljive"
+      other: "%{count} gljiva"
+    x_chromista:
+      one: "%{count} kromist"
+      few: "%{count} kromista"
+      other: "%{count} kromista"
+  all_taxa_: Sva taksa
+  all_updates: Sve novosti
+  allowed_html: Dozvoljen HTML
+  already_have_an_account_log_in_html: Već ste registrirani? <strong>Prijavite se.</strong>
+  analyze_ids: Analiziraj identifikacije
+  animals: Životinje
+  annotations: Anotacije
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any: sve
+  #Label to for an option to show content with any value. Often used as a
+  #fallback when the more specific any_* keys aren't translated. If you're
+  #seeing this used incorrectly somewhere we should be using a more specific
+  #translation, please let us know.
+  any_: Sve
+  #Label for an option to show content with any annotation attribute
+  any_annotation_attribute: Sve
+  #Label for an option to show content with any annotation value
+  any_annotation_value: Sve
+  #Label for an option to show content from any date
+  any_date: Svi
+  #Label for an option to show content with any establishment means
+  any_establishment: Sve
+  #Label for an option to show content with any license
+  any_license: Sve
+  #Label for an option to show content with photos, sounds, or neither
+  any_media: Svi
+  #Label for an option to show content from any project
+  any_project: Svi
+  #Label for an option to show content with any quality grade
+  any_quality_grade: Sve
+  #Label for an option to show observation with any reviewed status, i.e. both
+  #reviewed and unreviewed
+  any_reviewed: Sve
+  #Label for an option to show/include content by any user
+  any_user: Svi
+  anyone: Bilo tko
+  #An app or service the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  application: Aplikacija
+  #Apps or services the user has authorized to access their iNat account, e.g.
+  #the iNaturalist Android app or Flickr
+  applications: Aplikacije
+  #Button label and section header when submitting a form to request to be a
+  #curator
+  apply_curator: Primijeni
+  arachnids: paučnjaci
+  are_you_sure_remove_photo: "Sigurno želiš obrisati ovu fotografiju?"
+  #Noun form, as in a property of something. Generally used to describe the
+  #name of an attribute available for annotation, e.g. "Life Stage"
+  attribute: Karakteristika
+  #Abbreviation of "average," i.e. the sum of all values divided by the numer
+  #of values, and not a synonym of "typical" or "normal"
+  avg: Prosj.
+  back_to_applications: "&laquo; Natrag na aplikacije"
+  back_to_all_species: Natrag na sve vrste
+  back_to_editing_observation: Natrag na uređivanje opažanja
+  back_to_friends: Natrag na prijatelje
+  back_to_flags_html: "&laquo; Natrag na prijave"
+  back_to_lists: "Natrag na %{name} popise"
+  back_to_observation: Natrag na opažanje
+  back_to_observation_fields: Natrag na dodatna polja opažanja
+  back_to_people: Natrag na ljude
+  back_to_places: Natrag na mjesta
+  back_to_possessive_user_profile: "Natrag na profil %{possuser}"
+  back_to_post: '&laquo; Natrag na objavu'
+  back_to_projects: Natrag na projekte
+  back_to_suggestions: Natrag na prijedloge
+  back_to_taxon: "Natrag na %{defaulttaxon}"
+  back_to_taxon_changes: "Natrag na izmjene taksona"
+  back_to_taxon_framework_for_x: "Natrag na okvir taksona za %{taxon_name}"
+  back_to_users_calendar: "Natrag na kalendar od %{user}"
+  back_to_users_lists: "Natrag na popise od %{user}"
+  back_to_viewing: "Natrag na pregled <i>%{taxon}</i>"
+  back_to_x: "Natrag na %{noun}"
+  back_to_x_assessment: "Natrag na procjene projekta %{project}"
+  back_to_x_history: "Natrag na povijest %{x}"
+  back_to_x_journal: "Natrag na dnevnik od %{user}"
+  back_to_x_blog: "Natrag na blog %{x}"
+  back_to_your_calendar: Natrag na tvoj kalendar
+  back_to_your_dashboard: Natrag na tvoju nadzornu ploču
+  back_to_your_lists: Natrag na tvoje popise
+  back_to_your_journal: Natrag na tvoj dnevnik
+  back_to_your_observations: Natrag na tvoja opažanja
+  back_to_your_profile: Natrag na profil
+  based_on_the_evidence_can_id_be_improved: |
+    Na temelju dokaza, može li se Takson zajednice ipak bolje potvrditi ili poboljšati?
+  be_the_first_to_fave_this_observation: Budi prvi koji će favorizirati ovo opažanje!
+  before_importing_photos: prije uvoza fotografija
+  birthday: Rođendan
+  blog_widget: Widget za blog
+  browse_observations: Pregledaj opažanja
+  browse_projects: Pregledaj projekte
+  browse_species_that_occur_near_this_observation: Pregledaj vrste koje se sreću u blizini ovog opažanja.
+  calendar: Kalendar
+  cancel: Poništi
+  casual: ležerno
+  casual_: Ležerno
+  casual_tooltip_html: '"Ležernim" opažanjima nedostaju fotografije, lokacija ili datum, ili jednostavno ne ispunjavaju zahtjeve ocjena kvalitete "istraživačke ocjene" ili "potrebne identifikacije" iz drugih razloga. <a href="https://www.inaturalist.org/pages/help#quality">Saznajte više o ocjenama kvalitete</a>'
+  categories: Kategorije
+  change_admin: Promijeni admina
+  #Plural noun, as in changes to a taxon record over time
+  changes: Izmjene
+  check_out_the_inat_store: Vidi iNaturalist trgovinu
+  check_this_box_if_html: |
+    Označite ovaj okvir ako želite primijeniti <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution - Nekomercijalnu licencu</a> za preneseni sadržaj. To znači da svatko može kopirati i ponovno koristiti vaše fotografije i/ili opažanja bez traženja dopuštenja sve dok vam odaju priznanje da ste vi autor te ne može koristiti radove u komercijalne svrhe. Licencu možete kasnije ukloniti ili ju zamijeniti nekom drugom, ali ovo je svakako najbolja opcija za dijeljenje sa znanstvenicima i istraživačima.
+  choose_a_field: Odaberi polje
+  choose_files: Odaberi datoteke
+  classification: Klasifikacija
+  clear_filters: Izbriši filtre
+  combine: Spoji
+  #Noun, used to label a comment or a comment field in a form
+  comment: komentar
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: Komentiraj
+  comment_deleted: Komentar izbrisan
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Komentar skriven
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Komentar ponovno vidljiv
+  comments: Komentari
+  comments_by_me: Moji komentari
+  comments_have_been_disabled: Komentari su onemogućeni
+  common_name: Zajednički naziv
+  community: Zajednica
+  community_guidelines: Smjernice zajednice
+  community_id_heading: Takson zajednice
+  community_id_at_species_or_lower?: Takson zajednice je na razini vrste ili niže?
+  community_id_at_species_level_or_lower: Takson zajednice je na razini vrste ili niže
+  community_id_is_precise: Takson zajednice je precizan
+  community_supported_id: Takson podržan od zajednice?
+  compare: Usporedi
+  compare_with: Usporedi sa
+  compiled_by_name: "Kompilacija: %{name}"
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model računalnog vida
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Takson uključen
+  #Status of a taxon that the Computer Vision Model cannot yet recognize
+  computer_vision_model_pending: U tijeku uključivanja
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Oboje
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Sve
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Sva
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Oboje
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Sve
+    sex: Spol
+    male: Mužjak
+    female: Ženka
+    life_stage: Životno razdoblje
+    adult: Odraslo
+    nymph: Nimfa
+    larva: Ličinka
+    egg: Jaje
+    juvenile: Juvenilno
+    alive_or_dead: Živo ili uginulo
+    alive: Živo
+    dead: Uginulo
+    cannot_be_determined: Ne može se odrediti
+    evidence_of_presence: Dokaz o prisutnosti
+    #As in the feather on a bird
+    feather: Perje
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organizam
+    #Fecal matter, not regurgitated matter
+    scat: Izmet
+    #Impression made by the organism on the ground or in snow, like a footprint
+    track: Trag
+    #Endoskeletal remains, like a deer bone
+    bone: Kosti
+  controlled_term_definitions:
+    cannot_be_determined: Ne može se odrediti na temelju priloženih dokaza
+    organism: Cijeli ili djelomični organizam
+  copyright:
+    some_rights_reserved: neka prava pridržana
+    some_rights_reserved_by: "(c) %{name}, neka prava pridržana (%{license_short})"
+  copyright_info: Informacije o autorskim pravima
+  copyright_info_and_more: Informacije o autorskim pravima i više
+  create_an_account: Stvorite račun
+  created_by: Kreirao korisnik
+  created_by_user_on_date: 'Kreirao %{user} na datum: %{date}'
+  creative_commons_unless_otherwise_noted: "Creative Commons osim ako nije drugačije navedeno."
+  cumulative_ids: "Kumulativna identifikacija: %{count} od %{total}"
+  curation: Kuracija
+  #Prompt for information when applying to be a curator
+  curator_application_explanation_required: |
+    Moraš objasniti zašto želiš postati kurator
+  daily_users: Dnevni korisnici
+  dashboard: Nadzorna ploča
+  data_quality_assessment: Procjena kvalitete podataka
+  date_: Datum
+  date_added: Datum dodavanja
+  date_authorized: Datum autorizacije
+  date_created: Datum stvaranja
+  date_format:
+    date_long:
+      january: '%{day}. siječnja %{year}.'
+      february: '%{day}. veljače %{year}.'
+      march: '%{day}. ožujka %{year}.'
+      april: '%{day}. travnja %{year}.'
+      may: '%{day}. svibnja %{year}.'
+      june: '%{day}. lipnja %{year}.'
+      july: '%{day}. srpnja %{year}.'
+      august: '%{day}. kolovoza %{year}.'
+      september: '%{day}. rujna %{year}.'
+      october: '%{day}. listopada %{year}.'
+      november: '%{day}. studenog %{year}.'
+      december: '%{day}. prosinca %{year}.'
+    month:
+      january: Siječanj
+      february: Veljača
+      march: Ožujak
+      april: Travanj
+      may: Svibanj
+      june: Lipanj
+      july: Srpanj
+      august: Kolovoz
+      september: Rujan
+      october: Listopad
+      november: Studeni
+      december: Prosinac
+  date_is_accurate: Datum je točan
+  date_joined: Datum pridruživanja
+  date_observed: Datum opažanja
+  date_observed_: Datum opažanja
+  date_observed_on: Datum opažanja na
+  date_range: Raspon datuma
+  date_specified: Datum je određen
+  date_time: Datum i vrijeme
+  date_updated: Datum ažuriranja
+  decrease_brightness: Smanji svjetlinu
+  delete: Izbriši
+  delete_all: Izbriši sve
+  delete_user: Izbriši korisnika
+  details: Detalji
+  devise:
+    registrations:
+      destroyed: 'Zbogom! Tvoj je račun uspješno otkazan. Nadamo se da ćemo te uskoro ponovno vidjeti.'
+      updated: 'Uspješno si ažurirao svoj račun.'
+  disable_comments: Onemogući komentare
+  disagree_: Ne slažem se
+  display_monthly_supporter_badge: Prikaži mjesečnu značku podrške na profilu
+  display_name: Naziv za prikaz
+  display_name_description: Ovo je ime koje će biti prikazano na tvojem profilu, uključujući i za atribuciju autorskih prava
+  documentation_for_developers_html: Dokumentacija za <a href="/pages/developers">developere</a>
+  #Button text to donate to iNaturalist. Please try to keep translations as
+  #short as possible
+  donate: DONIRAJ
+  donate_again_caps: DONIRAJ PONOVNO
+  donate_again_today_caps: DONIRAJ PONOVNO DANAS
+  done: Pošalji
+  download: Preuzmi
+  download_csv: Preuzmi CSV
+  download_csv_template: Preuzmi CSV predložak
+  download_kml: Preuzmi KML
+  drag_and_drop_some_photos_or_sounds: Povuci i ispusti neke fotografije ili zvučne snimke
+  duplicate_verb: Dupliciraj
+  edit: Uredi
+  edit_account_settings_and_profile: "Uredi postavke i profil"
+  edit_comment: Uredi svoj komentar
+  edit_license: Uredi licencu
+  edit_notes: Uredi bilješke
+  edit_observations: Uredi opažanja
+  edit_photos: Uredi slike
+  edit_place: Uredi mjesto
+  edit_project: Uredi projekt
+  edit_selected: Uredi odabrano
+  edit_source: Uredi izvor
+  edit_taxa: Uredi taksu
+  edit_taxon: Uredi takson
+  edit_taxon_framework: Uredi okvir taksona
+  edit_your_account_and_profile_html: "Uredi svoj račun i profil"
+  edited_by_name_html: "Uređivanje: %{name}"
+  edited_by_name_some_rights_reserved_html: |
+    Uredio %{name}, neka prava pridržana (%{license})
+  editing: Uređivanje
+  editing_announcement: Uređivanje obavijesti
+  eligible_for_research_grade: Kvalificirano za istraživačku ocjenu
+  email: E-pošta
+  email_copyright: "Autorska prava &copy; %{x}, sva prava pridržana."
+  establishment:
+    endemic: Endemičan
+    establishment: Dolazak
+    introduced: Uvedeno
+    invasive: Invazivan
+    managed: Upravljan
+    native: Autohtono
+    naturalised: Naturaliziran
+  establishment_means: Način dolaska
+  establishment_means_descriptions:
+    native: takson je evoluirao u ovoj regiji ili je u nju stigao prirodnim putem
+    endemic: autohtono i ne pojavljuje se nigdje drugdje
+    introduced: takson je u regiju stigao antropogenim putem
+  event_in_progress: Projekt u tijeku
+  exclusion_filters: Filtri isključivanja
+  explore: Istraži
+  evidence_of_organism: Dokaz o organizmu postoji
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: Broj favorita
+  Family: Porodica
+  favorite_taxa: Omiljena taksa
+  favorites: "Favoriti"
+  fill_out_your_profile: ispuni svoj profil
+  #The name of a computer file
+  filename: Naziv datoteke
+  filters: Filtri
+  find_a_post: Pronađi objavu
+  find_posts_for: "Pronađi objave za dnevnik: %{journal_name}"
+  first_observer: Prvi promatrač
+  flag_as_inappropriate: Prijavi kao neprikladno
+  flag_for_curation: Prijavi za kuraciju
+  flagged_for_curation: Prijavljeno za kuraciju
+  follow: Prati
+  follow_receive_updates_about_new_observations: Prati (budi obaviješten o novim opažanjima)
+  follow_user: "Prati %{user}"
+  followers: Pratitelji
+  following: Pratiš
+  following_x_people:
+    one: 'Prati 1 osobu'
+    few: 'Prati %{count} ljudi'
+    other: 'Prati %{count} ljudi'
+  forgot_your_password: Zaboravljena lozinka?
+  forum: Forum
+  forum_categories:
+    news_and_updates: Vijesti
+  Genus: Rod
+  get_started: Kreni
+  getting_started_guide: Početni vodič
+  global_names: Globalni nazivi
+  go: Kreni
+  go_back: Vrati se
+  going_to_your_observations: Idem na tvoja opažanja...
+  google: Google
+  got_it!: Kužim!
+  grid: Mreža
+  guides: Vodiči
+  has_id_supported_by_two_or_more: ID je podržan od barem dvoje ljudi
+  has_photos_or_sounds: Ima sliku ili zvuk
+  header_your_observations: Tvoja opažanja
+  header_your_favorites: Tvoji favoriti
+  header_your_profile: Tvoj profil
+  help: Pomoć
+  here_are_our_top_suggestions: Evo naših najboljih prijedloga
+  here_are_our_top_species_suggestions: Evo naših najboljih prijedloga za vrstu
+  history: Povijest
+  home: Naslovnica
+  id_withdrawn: Identifikacija povučena
+  identify: Identificiraj
+  identify_observations: "Identificiraj opažanja"
+  identify_observations_by_these_users: Identificiraj opažanja ovih korisnika
+  identify_title: "Identificiraj"
+  #Notification when an identification has been withdrawn
+  identification_withdrawn: Identifikacija povučena
+  identifications: Identifikacije
+  ids: "Identifikacije"
+  ids_made_for_others: Identificirao si za druge
+  import: Uvezi
+  import_all_photos_as_observations: Uvezi sve slike kao opažanja
+  import_as_an_observation: Uvezi kao opažanje
+  import_from_csv: Uvoz iz CSV
+  import_from_other_photo_sites: Uvezi s drugih stranica
+  import_observations: Uvezi opažanja
+  import_photos: Uvezi fotografije
+  import_ranges: Uvezi raspone
+  import_sections: Uvezi sekcije
+  import_tags_from_csv: Uvezi oznake iz CSV
+  importing: "Uvoz..."
+  improving: Napreduje
+  #Label for messages you've received
+  inbox: Pretinac
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Neaktivan
+  inappropriate_content: Neprikladan sadržaj?
+  inat_user_profile: "%{site_name}: profil korisnika %{user}"
+  inaturalist_activity_notifications: "%{site_name} obavijesti o aktivnostima"
+  inaturalist_is_a_joint_initiative: "%{site_name} je zajednička inicijativa Kalifornijske akademije znanosti i Društva National Geographic."
+  insect_life_stage: Životno razdoblje kukca
+  interactions: Interakcije
+  introduced: Uvedeno
+  introduced_in_place: "Uvedeno na mjesto: %{place}"
+  is_not_following_anyone: ne prati nikoga.
+  it_can_now_be_used_for_research: Sada može biti uključeno na drugim stranicama i koristiti se za istraživanja!
+  jobs: Karijera
+  join_the_largest_group_of_naturalists_in_the_world: Pridružite se najvećoj skupini prirodoslovaca na svijetu!
+  joined_with_date: "Datum registracije: %{date}"
+  journal: Dnevnik
+  journal_posts: Objave u dnevniku
+  keep_editing: Nastavi uređivati
+  kml_file_size_error: "KML mora imati manje od 1 MB veličine"
+  labels: Etikete
+  language_slash_locale: Jezik/lokalitet
+  language_slash_type: Jezik / Tip
+  last_active_with_date: "Zadnja aktivnost: %{date}"
+  last_confirmed_observation: Zadnje potvrđeno opažanje
+  last_observation: Zadnje opažanje
+  last_observation_caps: ZADNJE OPAŽANJE
+  leaderboard: Poredak
+  leaderboard_for_x: "Poredak za %{x}"
+  leaderboards: Poredci
+  leaderboard_most:
+    species_in_month_year: Najviše vrsta u %{month_year}
+    species_in_year: Najviše vrsta u %{year}
+  leading: Vodeći
+  learn: Saznaj
+  learn_more: Saznaj više
+  leave_a_comment: Napiši komentar
+  let_us_walk_you_through: Daj da te provedemo kroz glavne značajke naše stranice.
+  lexicons:
+    scientific_names: Znanstveni nazivi
+    afrikaans: Afrikaans
+    albanian: Albanski
+    arabic: Arapski
+    armenian: Armenski
+    belarusian: Bjeloruski
+    bengali: Bengalski
+    bulgarian: Bugarski
+    catalan: Katalonski
+    cebuano: Cebuanski
+    chinese_simplified: Kineski (pojednostavljeni)
+    chinese_traditional: Kineski (tradicionalni)
+    croatian: Hrvatski
+    czech: Češki
+    danish: Danski
+    dutch: Nizozemski
+    english: Engleski
+    estonian: Estonski
+    faroese: Farski
+    finnish: Finski
+    french: Francuski
+    galician: Galicijski
+    german: Njemački
+    greek: Grčki
+    hawaiian: Havajski
+    hebrew: Hebrejski
+    hungarian: Mađarski
+    icelandic: Islandski
+    indonesian: Indonezijski
+    italian: Talijanski
+    japanese: Japanski
+    korean: Korejski
+    latvian: Latvijski
+    lithuanian: Litavski
+    luxembourgish: Luksemburški
+    malay: Malajski
+    maltese: Malteški
+    maori: Maorski
+    mongolian: Mongolski
+    norwegian: Norveški
+    occitan: Okcitanski
+    persian: Perzijski
+    polish: Poljski
+    portuguese: Portugalski
+    romanian: Rumunjski
+    russian: Ruski
+    santali: Santali
+    serbian: Srpski
+    slovak: Slovački
+    slovenian: Slovenski
+    spanish: Španjolski
+    swahili: Svahili
+    swedish: Švedski
+    tagalog: Tagaloški
+    tahitian: Tahićanski
+    thai: Tajlandski
+    turkish: Turski
+    ukrainian: Ukrajinski
+  less: Manje
+  life: Život
+  list: Popis
+  list_updated: Popis ažuriran!
+  lists: Popisi
+  loading: "Učitavanje..."
+  loading_preview_and_code: Učitavanje pregleda i kôda...
+  locales:
+    hr: Hrvatski
+    sr: Srpski
+  locality_notes: Bilješke o lokalitetu
+  location: Lokacija
+  location_is_accurate: Lokacija je točna
+  location_is_exact: Lokacija je precizna
+  location_is_public: Lokacija je javna
+  location_is_obscured: Lokacija je skrivena
+  location_is_private: Lokacija je privatna
+  location_specified: Lokacija je određena
+  log_in: Prijavi se
+  #Status message shown while logging in
+  logging_in: Prijava...
+  look_up_name: "Pogledaj naziv"
+  make_admin: Postavi za admina
+  #Stub text for the main content section when editing custom project data
+  main_content_description: Glavni sadržaj ide tu
+  manage_names: Upravljaj nazivima
+  managing_projects: Upravljanje projektima
+  map: Karta
+  map_legend: Legenda karte
+  map_of_observations: Karta opažanja
+  maps:
+    overlays:
+      all_observations: Sva opažanja
+      featured_observations: Istaknuta opažanja
+      observations: Opažanja
+  mark_as_reviewed: Označi kao pregledano
+  mark_all_as_reviewed: Označi sve kao pregledano
+  mark_all_as_unreviewed: Označi sve kao nepregledano
+  media_type: Tipovi medija
+  meet: Upoznaj
+  member_of_the_inaturalist_network_html: |
+    Član/ica <a href="%{url}">iNaturalist mreže</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Član/ica %{partial_inat_network_tag_html}iNaturalist mreže</a>, 
+    zajedničke inicijative %{cas_tag_html} i %{nat_geo_tag_html}.
+  #As in members of a project
+  members: Članovi
+  message_from_user_at_time: Od %{user} u %{time}
+  message_from_user_on_date: 'Od %{user} na datum: %{date}'
+  messages: Poruke
+  momentjs:
+    shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1s"
+      #Short text representing 1 hour in the past
+      h: "1h"
+      #Short text representing 1 day in the past
+      d: "1d"
+      #Short text representing 1 month in the past
+      M: "mjesec dana"
+      #Short text representing %d months in the past
+      MM: "%d mjeseci"
+  month: Mjesec
+  months: Mjeseci
+  more: Više
+  more_fields: Dodatna polja
+  more_filters: Više filtra
+  more_from_x: Još od %{x}
+  more_import_options: Dodatne mogućnosti uvoza
+  more_info: Više informacija
+  more_info_title: Više informacija
+  more_observations: Više opažanja
+  more_photos: Više fotografija
+  most_comments_and_faves: Najviše komentara i favorita
+  most_observations: Najviše opažanja
+  most_species: Najviše vrsta
+  most_observed_species: Najčešće vrste
+  most_observed_introduced_species: Najčešće invazivne vrste
+  most_observed_threatened_species: Najčešće ugrožene vrste
+  must_be_less_than_x_MB: "Mora imati manje od %{x} MB"
+  name: Ime
+  name_entered: Upisani naziv
+  names: Nazivi
+  names_for_taxon_html: "Nazivi za %{taxon}"
+  native: autohtono
+  native_to_place: "Autohtona vrsta u mjestu: %{place}"
+  nearby_observations_: Opažanja u blizini
+  needs_id: potreban ID
+  needs_id_: Potreban ID
+  new_members: "Novi članovi"
+  new_message: Nova poruka
+  new_observations: Nova opažanja
+  new_updates_in_the_last_24_hours_from: "Novosti s %{site_name}a u zadnjih 24 sata"
+  new_users: Novi korisnici
+  'no': 'Ne'
+  no_but_it_is_a_member_of_taxon: "Ne, ali je član taksona: %{taxon}"
+  no_identifications_added:
+    user: "%{user} nema dodanih identifikacija na tuđa opažanja"
+  no_ids: "Broj identifikacija"
+  no_ids_have_been_suggested_yet: Za sada nema identifikacija
+  no_its_as_good_as_it_can_be: Ne, najbolje je što može biti
+  no_favorites_added:
+    current_user: Nemaš još niti jedan favorit.
+    user: "%{user} nema favorite."
+  no_journal_posts_yet: Još nema objava u dnevniku
+  no_members_yet: "Još nema članova."
+  no_messages_yet: Još nema poruka
+  no_new_messages: Nema novih poruka
+  no_observations_submitted: "Nema priloženih opažanja!"
+  no_project_to_admin_current_user: "Ne administriraš ni jedan projekt"
+  no_recent_activity: Nema nedavne aktivnosti
+  no_taxa: Nema taksa
+  no_taxa_listed: Nema taksa u popisu
+  no_taxa_selected: Ni jedan takson nije odabran!
+  no_users_found_with_those_filters: Nema korisnika s tim filtrima
+  normal: normalno
+  not_confident_top_suggestions: Nismo sigurni što je ovaj organizam, ali evo naših najboljih prijedloga
+  notes: Bilješke
+  observation: Opažanje
+  observation_: opažanje
+  observation_added_to_the_project: "Opažanje je dodano u projekt \"%{project}\""
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: Opažanje od %{user}
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: Opažanje &copy; %{user}
+  observations_by_user_on_date: "Opažanja od %{user} na datum: %{date}"
+  observations_by_you: "Tvoja opažanja"
+  observations_by_you_on_date: "Tvoja opažanja %{date}"
+  observation_curation: Kuracija opažanja
+  observation_date: Datum
+  observation_date?: Datum?
+  observation_field: Dodatno polje opažanja
+  observation_field_type_date: Datum
+  observation_field_type_datetime: Datum i vrijeme
+  observation_fields: Dodatna polja opažanja
+  #Help text to show what kind of values you can enter for the date an observation was observed
+  observation_observed_on_examples: |
+    npr. 2019-10-29 13:12:21
+  observations: Opažanja
+  observations_: opažanja
+  observations_added_by_x_html: "Opažanja od %{x}"
+  observations_annotated_with_annotation: "Opažanja pribilježena sa %{annotation}"
+  observations_by: Opažanja korisnika
+  observations_deleted: Opažanja izbrisana.
+  observations_in_this_project_must: Opažanja u ovom projektu moraju zadovoljiti sljedeće uvjete
+  observations_needing_curation: Opažanja kojima treba kuracija
+  observations_of_relatives: Opažanja taksonskih rođaka
+  observations_total: Ukupno opažanja
+  observations_without_media: Opažanja bez medija
+  observed: Zabilježeno
+  observed_by: Zabilježio/la
+  observed_on: Zabilježeno na
+  observer: Promatrač
+  observers: Promatrači
+  observer_short: Promatrač
+  occurrence_status_levels:
+    common: često
+    uncommon: neuobičajeno
+  onboarding:
+    observe_panel_title: Započnimo objavljivanjem nekih opažanja
+    follow_panel_title_local: Prati neke od obližnjih prirodoslovaca
+    follow_panel_title_global: Prati neke od aktivnih prirodoslovaca
+    youve_got_updates_panel_body_p2: |
+      <ul>
+      <li><strong>Tvoj sadržaj:</strong> Aktivnost na tvojim opažanjima kao što su komentari, identifikacije ili favoriti iz zajednice %{site_name}. Također ćeš primati ažuriranja kada netko doda tvoje opažanje u projekt ili ga označi dodatnim poljima.</li>
+      <li><strong>Ljudi:</strong> Nova opažanja ili objave u dnevniku od korisnika koje pratiš.</li>
+      <li><strong>Organizmi, projekti i mjesta:</strong> Nova opažanja određenih organizama ili mjesta na koja si pretplaćen/a. Također se možeš pridružiti novim projektima da dobiješ obavijest kada objave nešto novo u dnevniku projekta.</li>
+      <li><strong>Rasprave u kojima si sudjelovao/la:</strong> komentiranje ili dodavanje identifikacija tuđem sadržaju automatski te pretplaćuje na svaku novu aktivnost na tom sadržaju. Upotrijebi alat 'Upravljajte svojim pretplatama' kako bi prestao/la primati ažuriranja.</li>
+      </ul>
+  only_show_active_taxa: Prikaži samo aktivnu taksu
+  only_show_events_that_last_less_than_2_weeks: Samo prikaži događaje koji traju manje od 2 tjedna
+  only_show_taxa_fom_this_list: "Prikaži samo taksu s ovog popisa"
+  only_showing_taxa_from: prikazana je samo taksa s ovog popisa
+  or: ili
+  #Usually used to separate buttons or functional areas of the interface, e.g.
+  #sign in fields OR sign in with Facebook
+  or_all_caps: ILI
+  organism_is_wild: Organizam je divlji
+  organisms: Organizmi
+  other_names: Ostali nazivi
+  other_species_commonly_misidentified_as_this_species: Druge vrste koje se često pogrešno miješaju s ovom vrstom
+  other_species_commonly_misidentified_as_this_species_in_place_html: 'Druge vrste koje se često pogrešno miješaju s ovom vrstom na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovim kompleksom na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovim rodom na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovim hibridom na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovim %{rank}om na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_species: Druga taksa koja se često pogrešno miješa s ovom vrstom
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovom vrstom na lokaciji: <a href="%{url}">%{place}</a>'
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: 'Druga taksa koja se često pogrešno miješa s ovim podrodom na lokaciji: <a href="%{url}">%{place}</a>'
+  our_blog: Naš blog
+  overview: Pregled
+  password: Lozinka
+  password_confirmation: 'Potvrda lozinke'
+  people: Ljudi
+  people_following_user: "Ljudi koji prate %{user}"
+  people_user_follows: "Ljudi koje %{user} prati"
+  people_added:
+    #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+    #kueda
+    #added an observation
+    observation: dodaje <a href="%{observation_url}">opažanje</a>
+  photo_credits: Zasluge za fotografiju
+  #Displayed when photos have been "locked" for a taxon, which means that only staff can edit the default photos for that taxon
+  photos_locked: Slike su zaključane
+  photos_or_sounds: Fotografiju ili zvuk
+  photos_or_sounds?: Slika ili zvuk?
+  pi_consent_desc_title: O osobnim podacima
+  pi_consent_desc_html: |
+    <p>
+    Pohranjujemo osobne podatke poput korisničkih imena i adresa e-pošte
+    kako bi upravljali računima na ovoj stranici i kako bi se pridržavali zakona o privatnosti,
+    potrebno je da označite ovaj okvir kako biste naznačili da pristajete na ovu upotrebu
+    osobnih podataka. Da biste saznali više o tome koje informacije mi
+    prikupljati i kako ga koristimo, pogledajte naše
+    <a href='%{privacy_url}' target='_blank'>Pravila o privatnosti</a>
+    i naše <a href='%{terms_url}' target='_blank'>Uvjete korištenja</a>.
+    </p>
+    <p>
+    Ne postoji način da imate iNaturalist račun bez pohranjivanja osobnih podataka, 
+    stoga jedino možete opozvati ovu suglasnost brisanjem vašeg
+    računa.
+    </p>
+  pi_consent_label: |
+    Svoju suglasnost dajem iNaturalistu da pohranjuje i obrađuje moje osobne podatke ograničene vrste kako bih upravljao/la svojim računom.
+  pi_consent_child_label: |
+    Svoju suglasnost dajem iNaturalistu da pohranjuje i obrađuje osobne podatke ograničene vrste mojeg djeteta kako bih upravljao/la njihovim računom.
+  data_transfer_consent_desc_title: O suglasnosti za prijenos osobnih podataka
+  data_transfer_consent_desc_html: |
+    <p>
+    Neki zakoni o privatnosti podataka, poput općih podataka Europske unije
+    Uredba o zaštiti (GDPR), zahtijevaju izričitu suglasnost za prijenos
+    osobnih podataka iz svojih jurisdikcija u druge jurisdikcije
+    pri čemu se ova zaštita informacija ne razmatra adekvatnom. Od
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020. godine</a>,
+    Europska unija više ne smatra Sjedinjene Države nadležnom za pružanje odgovarajuće pravne zaštite osobnih
+    podataka, posebno zbog mogućnosti zlouporabe nadzornih podataka koji ulaze u SAD od strane američke vlade. 
+    Moguće da i druge nadležnosti imaju isti pristup i mišljenje.
+    </p>
+    <p>
+    Korištenje iNaturalista zahtijeva pohranu osobnih podataka poput
+    adrese vaše e-pošte, i svi podaci iNaturalista pohranjuju se u Sjedinjenim Državama te
+    ne možemo biti sigurni u kojoj ste pravnoj nadležnosti kada koristite
+    iNaturalist. Kako biste bili u skladu sa zakonima o privatnosti kao što je GDPR, vi
+    morate potvrditi da razumijete i prihvaćate ovaj rizik i pristanak
+    za prijenos vaših osobnih podataka na iNaturalistove poslužitelje u SAD-u.
+    </p>
+    <p>
+    Da biste saznali više o tome koje informacije prikupljamo i kako ih koristimo,
+    pogledajte naša
+    <a href='%{privacy_url}' target='_blank'>Pravila o privatnosti</a>
+    i naše <a href='%{terms_url}' target='_blank'>Uvjete korištenja</a>.
+    </p>
+    <p>
+    Ne postoji način da imate iNaturalist račun bez pohranjivanja osobnih podataka, stoga je jedini način da opozovete ovu suglasnost brisanje vašeg
+    računa.
+    </p>
+  data_transfer_consent_label: |
+    Pristajem na prijenos svojih osobnih podataka u Sjedinjene Američke Države
+  data_transfer_consent_child_label: |
+    Pristajem na prijenos osobnih podataka mog djeteta u Sjedinjene Američke Države
+  place_geo:
+    geo_planet_place_types:
+      Aggregate: Agregat
+      aggregate: agregat
+      Airport: Zračna luka
+      airport: zračna luka
+      Building: Zgrada
+      building: zgrada
+      Canton: Kanton
+      canton: kanton
+      City Building: Gradska zgrada
+      city building: gradska zgrada
+      Commune: Komuna
+      commune: komuna
+      Continent: Kontinent
+      continent: kontinent
+      Country: Država
+      country: država
+      County: Županija
+      county: županija
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      Delegation: Delegacija
+      #https://en.wikipedia.org/wiki/Delegations_of_Tunisia
+      delegation: delegacija
+      District: Okrug
+      district: okrug
+      Island: Otok
+      island: otok
+      Postal_Code: Poštanski broj
+      postal_code: poštanski broj
+      Province: Pokrajina
+      province: pokrajina
+      Region: Regija
+      region: regija
+      Republic: Republika
+      republic: republika
+      State: Savezna država
+      state: savezna država
+      Street: Ulica
+      street: ulica
+      Territory: Teritorij
+      territory: teritorij
+      Time_Zone: Vremenska zona
+      time_zone: vremenska zona
+      Town: Gradić
+      town: gradić
+      Undefined: Nedefinirano
+      undefined: nedefinirano
+      Unknown: Nepoznato
+      unknown: nepoznato
+      Zone: Zona
+      zone: zona
+  place_imported: Mjesto je uvezeno!
+  place_notes: Bilješke o mjestu
+  places: Mjesta
+  places_name:
+    afghanistan: Afganistan
+    africa: Afrika
+    aland: Alandski otoci
+    albania: Albanija
+    algeria: Alžir
+    american_samoa: Američka Samoa
+    andorra: Andora
+    angola: Angola
+    anguilla: Angvila
+    antarctica: Antarktika
+    antigua_and_barbuda: Antigva i Barbuda
+    argentina: Argentina
+    armenia: Armenija
+    aruba: Aruba
+    asia: Azija
+    australia: Australija
+    austria: Austrija
+    azerbaijan: Azerbajdžan
+    bahamas: Bahami
+    bahrain: Bahrein
+    bangladesh: Bangladeš
+    barbados: Barbados
+    belarus: Bjelorusija
+    belgium: Belgija
+    belize: Beliz
+    benin: Benin
+    bermuda: Bermudi
+    bhutan: Butan
+    bolivia: Bolivija
+    bosnia_and_herzegovina: Bosna i Hercegovina
+    botswana: Bocvana
+    brazil: Brazil
+    brunei: Brunej
+    bulgaria: Bugarska
+    burundi: Burundi
+    cambodia: Kambodža
+    cameroon: Kamerun
+    canada: Kanada
+    cayman_islands: Kajmanski otoci
+    central_african_republic: Srednjoafrička Republika
+    central_america: Srednja Amerika
+    chad: Čad
+    chile: Čile
+    china: Kina
+    croatia: Hrvatska
+    cuba: Kuba
+    cyprus: Cipar
+    czech_republic: Češka
+    democratic_republic_of_the_congo: Demokratska republika Kongo
+    denmark: Danska
+    djibouti: Džibuti
+    dominica: Dominika
+    dominican_republic: Dominikanska Republika
+    east_timor: Istočni Timor
+    ecuador: Ekvador
+    egypt: Egipat
+    equatorial_guinea: Ekvatorijalna Gvineja
+    eritrea: Eritreja
+    estonia: Estonija
+    ethiopia: Etiopija
+    europe: Europa
+    falkland_islands: Falklandski otoci
+    faroe_islands: Farski Otoci
+    fiji: Fidži
+    finland: Finska
+    france: Francuska
+    gabon: Gabon
+    gambia: Gambija
+    georgia: Gruzija
+    germany: Njemačka
+    ghana: Gana
+    gibraltar: Gibraltar
+    greece: Grčka
+    greenland: Grenland
+    grenada: Grenada
+    guadeloupe: Gvadalupa
+    guam: Guam
+    guatemala: Gvatemala
+    guinea: Gvineja
+    guinea_bissau: Gvineja Bisau
+    guyana: Gvajana
+    haiti: Haiti
+    honduras: Honduras
+    hong_kong: Hong Kong
+    hungary: Mađarska
+    iceland: Island
+    india: Indija
+    indonesia: Indonezija
+    iran: Iran
+    iraq: Irak
+    ireland: Irska
+    isle_of_man: Otok Man
+    israel: Izrael
+    italy: Italija
+    jamaica: Jamajka
+    japan: Japan
+    jordan: Jordan
+    kazakhstan: Kazahstan
+    kenya: Kenija
+    kiribati: Kiribati
+    korea: Koreja
+    kosovo: Kosovo
+    kuwait: Kuvajt
+    kyrgyzstan: Kirgistan
+    laos: Laos
+    latvia: Latvija
+    lebanon: Libanon
+    lesotho: Lesoto
+    liberia: Liberija
+    libya: Libija
+    liechtenstein: Lihtenštajn
+    lithuania: Litva
+    luxembourg: Luksemburg
+    macao: Makao
+    macedonia: Makedonija
+    madagascar: Madagaskar
+    malawi: Malavi
+    malaysia: Malezija
+    maldives: Maldivi
+    mali: Mali
+    malta: Malta
+    mongolia: Mongolija
+    norfolk_island: Otok Norfolk
+    north_africa: Sjeverna Afrika
+    north_america: Sjeverna Amerika
+    north_korea: Sjeverna Koreja
+    northern_cyprus: Sjeverni Cipar
+    norway: Norveška
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestine: Palestina
+    panama: Panama
+    papua_new_guinea: Papua Nova Gvineja
+    paraguay: Paragvaj
+    peru: Peru
+    philippines: Filipini
+    pitcairn_islands: Pitcairnovo Otočje
+    poland: Poljska
+    portugal: Portugal
+    puerto_rico: Portoriko
+    qatar: Katar
+    romania: Rumunjska
+    russia: Rusija
+    rwanda: Ruanda
+    saint_barthelemy: Sveti Bartolomej
+    saint_helena: Sveta Helena
+    saint_kitts_and_nevis: Sveti Kristofor i Nevis
+    saint_lucia: Sveta Lucija
+    saint_martin: Sveti Martin
+    saint_pierre_and_miquelon: Sveti Petar i Mikelon
+    saint_vincent_and_the_grenadines: Sveti Vincent i Grenadini
+    samoa: Samoa
+    san_marino: San Marino
+    sao_tome_and_principe: Sveti Toma i Princip
+    saudi_arabia: Saudijska Arabija
+    senegal: Senegal
+    serbia: Srbija
+    seychelles: Sejšeli
+    sierra_leone: Sijera Leone
+    singapore: Singapur
+    sint_maarten: Sveti Martin
+    slovakia: Slovačka
+    slovenia: Slovenija
+    somalia: Somalija
+    south_africa: Južnoafrička Republika
+    south_america: Južna Amerika
+    south_korea: Južna Koreja
+    south_sudan: Južni Sudan
+    spain: Španjolska
+    sri_lanka: Šri Lanka
+    sudan: Sudan
+    sweden: Švedska
+    switzerland: Švicarska
+    syria: Sirija
+    taiwan: Tajvan
+    tajikistan: Tadžikistan
+    tanzania: Tanzanija
+    thailand: Tajland
+    tunisia: Tunis
+    turkey: Turska
+    turkmenistan: Turkmenistan
+    uganda: Uganda
+    ukraine: Ukrajina
+    united_arab_emirates: Ujedinjeni Arapski Emirati
+    united_kingdom: Ujedinjeno Kraljevstvo
+    united_states: Sjedinjene Američke Države
+    uruguay: Urugvaj
+    uzbekistan: Uzbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatikan
+    venezuela: Venecuela
+    vietnam: Vijetnam
+    virgin_islands: Djevičanski Otoci
+    west_africa: Zapadna Afrika
+  places_of_interest: Mjesta interesa
+  powered_by_inaturalist_open_source_software_html: 'Omogućio je <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist softver otvorenog kôda</a>'
+  press: Tisak
+  preview: Pregled
+  previewing: "Pregledavanje..."
+  privacy: Privatnost
+  profile: Profil
+  profile_picture: Profilna slika
+  profile_visibility_desc: |
+    U pokušaju da spriječimo neželjeni sadržaj na %{site_name}u, korisnički profili
+    javno su vidljivi tek nakon što korisnik pridonese nekoliko istraživački-ocijenjenih opažanja.
+  project_admins:
+    one: Admin projekta
+    few: Admini projekta
+    other: Admini projekta
+  project_journal: Dnevnik projekta
+  project_members: "Članovi projekta %{project}"
+  project_members_only: Samo članovi projekta
+  project_membership_model_description: Je li tvoj projekt otvoren za sve ili samo za ljude koje pozoveš?
+  project_requirements: Zahtjevi projekta
+  projects: Projekti
+  #"admins" is equivalent to "administrates"
+  projects_user_admins: Projekti koje %{user} administrira
+  projects_you_admin: Projekti koje administriraš
+  quality_grade: Ocjena kvalitete
+  quality_grade_: Ocjena kvalitete
+  quality_grade_colon: "Ocjena kvalitete:"
+  rank: Rang
+  rank_position: Rang
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
+  ranks:
+    stateofmatter: Stanje materije
+    kingdom: Carstvo
+    x_kingdoms:
+      one: Carstvo
+      few: Carstva
+      other: Carstva
+    subkingdom: Podcarstvo
+    phylum: Koljeno
+    x_phyla:
+      one: Koljeno
+      few: Koljena
+      other: Koljena
+    subphylum: Podkoljeno
+    superclass: Nadrazred
+    class: Razred
+    x_classes:
+      one: Razred
+      few: Razreda
+      other: Razreda
+    subclass: Podrazred
+    infraclass: Infrarazred
+    superorder: Nadred
+    order: Red
+    x_orders:
+      one: Red
+      few: Reda
+      other: Redova
+    suborder: Podred
+    infraorder: Infrared
+    subterclass: Subterrazred
+    parvorder: Parvrod
+    zoosection: Zoosekcija
+    zoosubsection: Zoopodsekcija
+    superfamily: Natporodica
+    epifamily: Epiporodica
+    family: Porodica
+    x_families:
+      one: Porodica
+      few: Porodice
+      other: Porodica
+    subfamily: Potporodica
+    supertribe: Nadtribus
+    tribe: Tribus
+    subtribe: Podtribus
+    genus: Rod
+    x_genera:
+      one: Rod
+      few: Roda
+      other: Rodova
+    genushybrid: Hibridni rod
+    subgenus: Podrod
+    section: Sekcija
+    subsection: Podsekcija
+    complex: Kompleks
+    #Singular
+    species: Vrsta
+    x_species:
+      one: Vrsta
+      few: Vrste
+      other: Vrsta
+    hybrid: Hibrid
+    #Singular
+    subspecies: Podvrsta
+    variety: Varijetet
+    form: Forma
+    infrahybrid: Infrahibrid
+    leaves: Listovi
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: stanje materije
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
+  ranks_lowercase_kingdom: carstvo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
+  ranks_lowercase_subkingdom: podcarstvo
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
+  ranks_lowercase_phylum: koljeno
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
+  ranks_lowercase_subphylum: podkoljeno
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
+  ranks_lowercase_superclass: nadrazred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
+  ranks_lowercase_class: razred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subclass X"
+  ranks_lowercase_subclass: podrazred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraclass X"
+  ranks_lowercase_infraclass: infrarazred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
+  ranks_lowercase_superorder: nadred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
+  ranks_lowercase_order: red
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
+  ranks_lowercase_suborder: podred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
+  ranks_lowercase_infraorder: infrared
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
+  ranks_lowercase_subterclass: subterrazred
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
+  ranks_lowercase_parvorder: parvrod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zoosekcija
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoopodsekcija
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
+  ranks_lowercase_superfamily: natporodica
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
+  ranks_lowercase_epifamily: epiporodica
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: porodica
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: potporodica
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: nadtribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: tribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
+  ranks_lowercase_subtribe: podtribus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: rod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: hibridni rod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subgenus X"
+  ranks_lowercase_subgenus: podrod
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the section X"
+  ranks_lowercase_section: sekcija
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subsection X"
+  ranks_lowercase_subsection: podsekcija
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the complex X"
+  ranks_lowercase_complex: kompleks
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: vrsta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: hibrid
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: podvrsta
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
+  ranks_lowercase_variety: varijetet
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
+  ranks_lowercase_form: forma
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: infrahibrid
+  read_more: Pročitaj više
+  read_our_getting_started_guide: Pročitaj naš početni vodič
+  real_time_discussions: Diskusije u stvarnom vremenu
+  recent_evidence_of_organism: Dokaz o organizmu je relativno nedavan
+  recent_observations: Nedavna opažanja
+  recent_observations_: Nedavna opažanja
+  recently_observed: Nedavno zabilježeno
+  redo_search_in_map: Ponovi pretraživanje na karti
+  redo_search_in_map_area: Ponovi pretraživanje na području karte
+  relationships_user_settings: Odnosi
+  remove: Ukloni
+  remove_selected: Ukloni odabrano
+  required: obavezno
+  required_: Obavezno
+  required_field: obavezno polje
+  research: istraživanje
+  research_: Istraživanje
+  research_grade: Istraživačka ocjena
+  research_grade_qualification: Kvalifikacija istraživačke ocjene
+  reset_filters_short: Resetiraj
+  reset_search_filters: Resetiraj filtre pretraživanja
+  rg_observations: IO (RG) opažanja
+  rules_types:
+    must_be_observed_in_place: Mora biti zabilježeno na mjestu
+  satellite: satelit
+  save_all: Spremi sve
+  save_comment: Spremi komentar
+  save_observation: Spremi opažanje
+  saving_num_of_count_observations:
+    one: Spremanje opažanja...
+    few: Spremanje %{num} od %{count} opažanja...
+    other: Spremanje %{num} od %{count} opažanja...
+  search: Pretraživanje
+  search_for_a_location: Traži lokaciju
+  search_observations: "Traži opažanja"
+  search_species_: Traži vrste...
+  seasonality: Sezonalnost
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "Tvoj %{noun}"
+  select: Odaberi
+  select_all: Odaberi sve
+  select_at_least_one: Odaberi barem jedno
+  #select_one_or_more_photos: Select One Or More Photos
+  select_none: Bez odabira
+  select_one_or_more_photos: 'Odaberi jednu ili više slika'
+  selected: odabrano
+  selected_photos: Odabrane slike
+  selected_taxon: Odabrani takson
+  select_this_taxon: Odaberi ovaj takson
+  #Label for messages you've sent
+  sent: Poslano
+  show_less: Prikaži manje
+  show_more: Prikaži više
+  show_off_your_recent_observations: Pokaži svoja nedavna zapažanja na svojem blogu ili web stranici!
+  show_taxa_from_everywhere: "Prikaži taksu odasvud"
+  show_taxa_from_place: "Prikaži taksu iz mjesta: %{place}"
+  sign_in_with_google: Prijavi se s Googleom
+  sign_out: Odjavi se
+  sign_up: Registriraj se
+  similar_species: Slične vrste
+  similar_taxa: Slična taksa
+  site_stats: Statistike iNaturalista
+  some_observations_failed_to_be_added: Neka opažanja nisu dodana u projekt
+  some_rights_reserved: neka prava pridržana
+  sounds:
+    before_importing_sounds: prije uvoza zvučnih zapisa
+    import_from_sounds: Uvezi iz zvučnih zapisa
+    import_sounds: Uvezi zvučne zapise
+    no_photos_sounds: Nema slike ili zvuka
+  source: Izvor
+  source_: 'Izvor:'
+  source_wikipedia: "Izvor: Wikipedija"
+  source_list_: "Popis izvora"
+  source_list:
+    inaturalist: iNaturalist
+  source_url: URL izvora
+  sources: Izvori
+  #Plural
+  species: Vrste
+  species_name_cap: Naziv vrste
+  species_names: nazivi vrste
+  stats: Statistike
+  stop_editing: Prestani uređivati
+  stop_following_user: "Prestani pratiti %{user}"
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: Trgovina
+  store_caps: TRGOVINA
+  submit_observations:
+    one: Priloži %{count} opažanje
+    few: Priloži %{count} opažanja
+    other: Priloži %{count} opažanja
+  submitted: Priloženo
+  subscribe_to_a_taxon: Pretplati se na takson
+  subscribe_to_a_place: Pretplati se na mjesto
+  subscribe_to_places_help: |
+    Pretplate kontroliraju o čemu te obavještavamo i što vidiš na nadzornoj ploči.
+    Na primjer, možeš se pretplatiti na takson da bi pratio nova opažanja tog taksona. 
+    Automatski si pretplaćen na opažanja koja komentiraš ili identificiraš.
+  subscribe_to_this: Pretplati se na ovo
+  subscriptions: Pretplate
+  suggest_an_identification: Predloži identifikaciju
+  summary: Sažetak
+  take_me_facebook: Da, povedi me na Facebook!
+  taxa: Taksa
+  taxa_info: Informacije o taksama
+  taxa_needing_curation: Taksa koja treba kuraciju
+  taxa_observed: Zabilježena taksa
+  taxon_is_a_rank: "%{taxon} je %{rank}"
+  taxon_is_threatened_coordinates_hidden_desc: |
+    Jedan od taksona predloženih u identifikaciji ili jedan od taksona koji
+    sadrži bilo koji od tih taksona, je rijedak i/ili ugrožen, pa je
+    mjesto ovog opažanja skriveno.
+  taxonomy: Taksonomija
+  taxon_assessments_are: |
+    Procjene taksona su dokumenti koji procjenjuju trenutni status vrste, obično status zaštite.
+    Primjerice, regionalna zajednica za zaštitu može ih koristiti za organiziranje informacija i traženje povratnih informacija o statusu nekoliko ugroženih taksa u regiji.
+  taxon_changes: Izmjene taksona
+  taxon_name: Naziv taksona
+  taxon_scheme: Shema taksona
+  taxon_schemes: "Sheme taksona"
+  taxon_name_was_deleted: Naziv taksona je izbrisan.
+  taxon_name_was_successfully_updated: Naziv taksona je uspješno promijenjen.
+  taxonomic_changes: Izmjene taksonomije
+  taxonomy_details: Detalji taksonomije
+  taxonomy_details_for: Detalji taksonomije za
+  taxonomy_settings: Postavke taksonomije
+  teachers_guide: Vodič za učitelje
+  tell_us_why: Reci nam zašto...
+  terms_service: Uvjeti korištenja
+  terrain: teren
+  that_observation_hasnt_been_added_this_project: To opažanje nije dodano u projekt.
+  that_was_the_last_observation_matching_the_current_filters: To je bilo zadnje opažanje koje podudara s trenutnim filtrima
+  the_community_id_requires_at_least_two_identifications: ID zajednice zahtijeva barem dvije identifikacije.
+  the_following_photos_have_been_tagged: "Ove fotografije su označene:"
+  the_observation_was_already_added_to_that_project: Ovo opažanje već je dodano u taj projekt.
+  the_world: Svijet
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{noun} od %{object_phrase}"
+  this_observation_is_featured_on_x_sites:
+    one: Ovo opažanje je uključeno na %{count} stranici
+    few: Ovo opažanje je uključeno na %{count} stranice
+    other: Ovo opažanje je uključeno na %{count} stranica
+  this_observation_is_research_grade: Ovo opažanje je ocijenjeno istraživačkom ocijenom!
+  this_observation_was_created_using: "Ovo opažanje je stvoreno pomoću:"
+  time_ago: "Prije %{time}"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_algiers: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: Istočnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_berlin: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_brussels: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_copenhagen: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_helsinki: Istočnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: Tursko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_kiev: Istočnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_lisbon: Zapadnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_london: Zapadnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_madrid: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_moscow: Moskovsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_paris: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_prague: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_rome: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vienna: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_vilnius: Istočnoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_warsaw: Srednjoeuropsko vrijeme
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_zagreb: Srednjoeuropsko vrijeme
+  top_identifier_caps: TOP IDENTIFIKATOR
+  top_identifiers: Top identifikatori
+  top_identifiers_of_taxon: 'Top identifikatori taksona: %{taxon}'
+  top_observer_caps: TOP PROMATRAČ
+  top_observers: Top promatrači
+  tos_privacy_guidelines_label: |
+    Slažem se s <a href="/terms" target="_blank">Uvjetima korištenja</a> i
+    <a href="/privacy" target="_blank">Pravilima o privatnosti</a>. Pregledao sam
+    <a href="/pages/community+guidelines" target="_blank">Smjernice zajednice</a>.
+  total_members: Ukupno članova
+  total_observations: Ukupno opažanja
+  total_observations_caps: UKUPNO OPAŽANJA
+  total_species_observed_caps: UKUPNO VRSTA ZABILJEŽENO
+  two_thirds: 2/3
+  unable_to_save_comment: Nažalist nismo mogli spremiti komentar.
+  unclassified: Neklasificirano
+  unfollow: Prestani pratiti
+  unlink_your_google_account: Otkači svoj Google račun
+  updates_notification_email_subject: "%{prefix} Novosti %{date}"
+  #Undo the action of resolving a flag
+  unresolve: Vrati na neriješeno
+  unsubscribe: Otkaži pretplatu
+  unsubscribe_from_emails_like_this: Otkaži pretplatu s e-pošte poput ovoga
+  upload: Učitaj
+  uploader:
+    tooltips:
+      combine: Spoji odabrana opažanja
+      select_all: Odaberi sva opažanja
+  user: Korisnik
+  user_added_a_comment_html: "%{user} dodaje komentar"
+  user_added_a_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
+  user_added_an_identification_html: "%{user} dodaje identifikaciju"
+  user_added_an_observation_field_html: '%{user} dodaje vrijednost za "%{field_name}" na opažanje od %{owner}'
+  user_added_an_observation_field_value_html: "%{user} dodaje vrijednost u dodatno polje opažanja"
+  user_added_an_observation_html: "%{user} dodaje opažanje"
+  user_added_an_x_to_noun_by_you_html: "%{user} dodaje %{x} na %{noun} od tebe"
+  user_added_x_observations_html: "%{user} dodaje %{x} opažanja"
+  user_autocomplete_placeholder: marinolinic, sebcato, itd.
+  user_commented: "%{user} komentira"
+  user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
+  user_suggested_an_id: "%{user} predlaže identifikaciju"
+  username: Korisničko ime
+  users: Korisnici
+  users_favorites: "Favoriti korisnika %{user}"
+  users_profile: "Profil korisnika %{user}"
+  users_projects: "Projekti korisnika %{user}"
+  value: Vrijednost
+  values: Vrijednosti
+  view: Pogledaj
+  view_all: Pogledaj sve
+  view_all_fields: Pogledaj sva polja
+  view_all_flags: Pogledaj sve prijave
+  view_all_members: Vidi sve članove
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Pogledaj još %{count}"
+    few: "Pogledaj još %{count}"
+    other: "Pogledaj još %{count}"
+  view_all_observations: Pogledaj sva opažanja
+  view_all_photocount_photos: "Pogledaj preostali broj fotografija: %{photo_count}"
+  view_details: Prikaži detalje
+  view_full_observation: Pogledaj cjelovito opažanje
+  view_journal: Pogledaj dnevnik
+  view_lists: Pogledaj popise
+  view_more: Prikaži više
+  view_more_about_x: "Vidi više o %{x}"
+  view_more_observations_from_this_place: Vidi više opažanja na ovom mjestu
+  view_more_observations_near_x_place: "Vidi više opažanja blizu %{place} na <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_project: "Vidi više opažanja iz projekta %{project} na <nobr>%{site_name} &raquo;</nobr>"
+  view_more_observations_of_x_taxon: "Vidi više opažanja na %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
+  view_more_unreviewed: "Vidi više nepregledanog"
+  view_observation: Pogledaj opažanje
+  view_observations: Pogledaj opažanja
+  view_observation_flags: Pogledaj prijave za opažanje
+  view_observations_by_everyone: Pogledaj opažanja sviju
+  view_observations_by_these_users: Pogledaj opažanja ovih korisnika
+  view_observations_of_this_taxon_by: 'Pogledaj opažanja ovog taksona koje je zabilježio/la:'
+  view_photos_ranges_observations_more: "Pogledaj fotografije, geografske raspone vrsta, opažanja na %{site_name}u i više! Prikupili smo informacije iz mnogo različitih izvora i kombinirali ih za brzi sažetak svake vrste na svakoj lokaciji."
+  view_stats: Pogledaj statistike
+  view_taxon_changes: Pogledaj izmjene taksona
+  view_user_observations: "Pogledaj opažanja korisnika %{user}"
+  view_x: "Pogledaj %{x}"
+  view_your_observations: Pogledaj svoja opažanja
+  view_yours: Pogledaj svoje
+  video_tutorials: Video uputstva
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  wanted: Traženo
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: Prilično smo sigurni da je ovo u rodu
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: Prilično smo sigurni da je ovo u porodici
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: Prilično smo sigurni da je ovo u redu
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: Prilično smo sigurni da je ovo u potporodici
+  #Label for the most probable taxon in the automated suggestions when that taxon is a superfamily
+  were_pretty_sure_this_is_in_the_superfamily: Prilično smo sigurni da je ovo u natporodici
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
+  were_pretty_sure_this_is_in_the_rank: Prilično smo sigurni da je ovo %{rank}
+  whats_this?: Što je ovo?
+  wikipedia_attribution_cc_by_sa_3: |
+    Izvor: Wikipedija, "%{title}", %{url}, CC BY-SA 3.0
+  worldwide: Diljem svijeta
+  x_project_stats: "Statistike o %{project}"
+  x_sent_you_a_new_message_on_y_html: "Korisnik %{x} poslao ti je novu poruku na %{y}: "
+  'yes': "Da"
+  yes_find_them!: "Da, pronađi ih!"
+  yes_i_want_to_join: Da, želim se pridružiti
+  yes_license_my_childs_observations: Da, licenciraj fotografije, zvučne zapise i opažanja mojeg djeteta kako bi ih znanstvenici mogli koristiti (preporučeno).
+  yes_license_my_observations_so_scientists_can_use: Da, licenciraj moje fotografije, zvučne zapise i opažanja kako bi ih znanstvenici mogli koristiti (preporučeno).
+  yes_reject_it: Da, odbij to
+  yesterday: Jučer
+  you_are_now_following_x: "Sada pratiš %{friend_user}."
+  you_are_no_longer_following_x: "Više ne pratiš %{friend}."
+  you_arent_a_member_of_that_project: Nisi učlanjen/a u taj projekt.
+  you_arent_following_that_person: "Ne pratiš tu osobu."
+  you_faved_this: Ti si ovo favorizirao!
+  you_must_be_a_member_of_this_project_to_do_that: Moraš biti učlanjen/a za tu radnju
+  you_must_fill_out_the_required_fields: Moraš ispuniti obavezna polja
+  your_content: Tvoj sadržaj
+  your_favorites: Tvoji favoriti
+  your_home: Tvoja naslovnica
+  your_membership: Tvoje članstvo
+  your_name_was_saved: Tvoj naziv je spremljen.
+  your_observations: Tvoja opažanja
+  your_google_account: Tvoj Google račun
+  your_pinned_locations: Tvoje prikvačene lokacije
+  your_profile_was_successfully_updated: Tvoj profil je uspješno ažuriran!
+  your_recent_projects: Tvoji nedavni projekti
+  views:
+    views: 'Pregledi'
+    guides:
+      pdf_layouts:
+        journal: dnevnik
+    lifelists:
+      list_view: Popis
+      tree_view: Stablo
+      observed_species: Zabilježeno vrsta
+      observed_rank: Zabilježeno %{rank}
+      unobserved_species: Nezabilježene vrste
+      all_species: Sve vrste
+      all_unobserved_species: Sve nezabilježene vrste
+      all_observations: Sva opažanja
+      total_observations: Ukupno opažanja
+      all_observations_in_this_taxon: Sva opažanja u ovom taksonu
+      observations_of_exactly_this_taxon: Opažanja točno ovog taksona
+      dropdowns:
+        most_observed: Najčešće zabilježeno
+        least_observed: Najrjeđe zabilježeno
+        full_taxonomy: Potpuna taksonomija
+    messages:
+      from: Od
+      to: Za
+      subject_body: Predmet / tijelo
+      index:
+        show_messages_from_user: Prikaži poruke od korisnika %{user}
+        show_messages_to_user: Prikaži poruke poslane korisniku %{user}
+    oauth:
+      authorizations:
+        new:
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          more_about_application: Više o %{application}
+    observations:
+      community_id:
+        algorithm_summary: Sažetak algoritma
+      compare:
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Sveukupno
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Polje datuma
+        #Label for a visualization that compare multiple series of data in several charts displayed side by side
+        horizontal: Horizontalno
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Interval
+        total_taxa: Ukupno taksa
+        #Label for a visualization that compare multiple series of data in several charts stacked vertical
+        vertical: Vertikalno
+      field_descriptions:
+        positioning_method: Kako su se odredile koordinate
+      identify:
+        review_all_tooltip: "Označi sva opažanja na stranici kao pregledana"
+      import:
+        decimal_degrees_format: dd.dddd
+      show:
+        community_taxon_desc_html: |
+          <p class="ui">
+          Takson zajednice (ili Identifikacija zajednice) predstavlja
+          koji takson zajednica %{site_name}a odabere kao identifikaciju opažanja. 
+          Ako te zanima kako biramo
+          takson zajednice, pogledaj bilješke o algoritmu u nastavku, ali
+          uglavnom pokušavamo <strong>odabrati takson s kojim se više od 2/3
+          identifikatora slaže</strong>. Ponekad to znači
+          odabir taksona više razine koji sadrži niz
+          taksona koji se NE slažu (npr. ti misliš da je to poskok, a ja mislim
+          to je riđovka, pa iNat odabere rod Vipera koji
+          sadrži obje zmije). Algoritam također blago favorizira
+          neslaganja, jer smo otkrili da su neistomišljenici često u pravu.
+          </p>
+          <p class="ui">
+          Istraživački-ocijenjeno opažanje mora imati (između ostalog) Takson zajednice. 
+          Ako opažanje ima
+          samo jednu identifikaciju, neće imati taj Takson zajednice. Sva
+          opažanja s barem jednom identifikacijom također će imati barem 
+          jedan takson povezan sa sobom. Taj takson, takson opažanja, je takson koji koristimo kada
+          dijelimo podatke s partnerima. U većini
+          slučajeva će takson opažanja na kraju biti identificiran kao Takson zajednice, 
+          ali ponekad će se njih dvoje razlikovati, pogotovo prije nego je zajednica pronašla identifikaciju. 
+          Na primjer, ako misliš da je to samo zmija, a ja mislim da je poskok, takson opažanja bit će poskok, ali Takson zajednice će biti na
+          zmijama jer <i>nedostaju dvije identifikacije</i>. Ako se
+          iz nekog razloga ne slažeš s Taksonom zajednice, možeš ga
+          odbaciti na vlastitim opažanjima, što znači da takson opažanja 
+          nikada neće biti postavljen na Takson zajednice (nego na tvoju vlastitu identifikaciju).
+          To također znači da tvoja opažanja mogu dobiti istraživačku ocjenu samo kada se zajednica
+          slaže s <em>tobom</em>. Ako ti se ne sviđa cijela ideja oko
+          Taksona zajednice, možeš to u potpunosti isključiti putem
+          <a href="/users/edit" target="_blank">uređivanja svojih postavki</a>.
+          </p>
+          <p class="ui">
+          <strong>Algoritam:</strong> za sve identificirane taksone i taksone koje ih sadrže
+          (npr. rod <i>Homo</i> sadrži <i>Homo sapiens</i>), označuje svaki kao omjer između
+          broja 'sporazuma' - kumulativnih identifikacija za taj takson preko zbroja kumulativnih
+          identifikacija, 'neslaganja' - broja identifikacija koje su potpuno različite (tj. identifikacije taksona
+          koji ne sadrže takson koji se boduje) i 'nesuglasice predaka' - broj
+          konzervativnijih identifikacija koje se ne slažu s finijim (nižim) taksonom. Za identificirane taksone koji
+          imaju rezultat veći od 2/3 i najmanje 2 identifikacije, odabire najniže rangirani takson.
+          </p>
+        data_quality_assessment_desc_html: |
+          Procjena kvalitete podataka je ocjena kvalitete i točnosti pronalazaka. 
+          Znanstvenici mogu koristiti opažanja ocijenjena istraživačkom ocjenom za svoja istraživanja. 
+          Glasuj ispod:
+    projects:
+      edit:
+        admins_must_be_existing_members: Admini moraju biti postojeći članovi projekta
+        submission_models:
+          any: bilo tko
+      new:
+        delete_project: Izbriši projekt
+        duplicate_project: Dupliciraj projekt
+        multiple_project_administrators: Nekoliko administratora projekta
+        note_these_users_will_be_able_to_edit: |
+          Napomena: ovi će korisnici moći uređivati SVE detalje projekta, uključujući administratore.
+        project_details: Detalji o projektu
+        project_summary_help: |
+          Napiši sažeto objašnjenje tvojeg projekta. Oko prvih 200 znakova bit će odmah vidljivo na početnom zaslonu projekta, pa kreni s najboljim stvarima!
+        users_can_follow_your_project: Drugi korisnici ti mogu zapratiti projekt za vijesti putem objava u dnevniku
+        errors:
+          name_is_required: Ime projekta je obavezno
+          name_less_than_100_characters: Naslov projekta mora sadržavati manje od 100 znakova
+          summary_is_required: Sažetak projekta je obavezan
+    stats:
+      index:
+        observers_desc: Dodana opažanja na današnji dan
+      year:
+        observations_per_year: Opažanja po godini
+        observations_per_year_by_date_added: Po datumu dodavanja
+    taxa:
+      show:
+        about_names_desc: |
+          <p>
+          Većina kategorija organizama ima "zajedničke nazive" odnosno "uobičajena imena" u govornom jeziku. 
+          Ova imena su obično prepoznatljiva, laka za izgovor,
+          i ne mijenjaju se prečesto, ali mnogi organizmi imaju nekoliko različitih
+          imena na različitim mjestima, čak i na istom jeziku, što može učiniti 
+          komunikaciju o tim organizmima zbunjujućom.
+          Znanstvenici rješavaju ovaj problem koristeći jedan "znanstveni naziv"
+          za svaku kategoriju organizma koja je u skladu s pravilima
+          <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biološke nomenklature</a>,
+          ali ti nazivi se obično temelje na latinskom, ničijem jeziku
+          govora, pa za mnoge nisu tako pamtljiva kao uobičajena, "narodna" imena. 
+          Znanstvena imena također mogu odražavati položaj organizma u taksonomiji, 
+          tako da se mogu mijenjati kada znanstvenici više razviju
+          točne teorije o evolucijskim odnosima između
+          različitih organizama, opet smanjujući njihovu korisnost u
+          komunikaciji, čak i među ljudima koji znaju znanstvena imena.
+          </p>
+          <p>
+          Stara poslovica to sažima: "Uobičajena imena mijenjaju se od mjesta do mjesta, 
+          a znanstvena imena mijenjaju se s vremena na vrijeme."
+          </p>
+          <p>
+          Pokušavamo se pozabaviti ovim nedostacima pokazujući i uobičajena
+          i znanstvena imena gdje god je to moguće, te odabir uobičajenih imena
+          na temelju jezičnih i geografskih preferencija gledatelja.
+          </p>
+        frequency:
+          research: Istraživačka ocjena
+          verifiable: Provjerljivo
+          "Alive or Dead=Alive": Živo
+          "Alive or Dead=Dead": Uginulo
+          "Plant Phenology=Budding": Pupanje
+          "Plant Phenology=Flower Budding": Pupanje cvijeća
+          "Plant Phenology=Flowering": Cvjetanje
+          "Plant Phenology=Fruiting": Plodonošenje
+          "Life Stage=Adult": Odraslo
+          "Life Stage=Egg": Jaje
+          "Life Stage=Larva": Ličinka
+          "Life Stage=Juvenile": Juvenilno
+          "Life Stage=Nymph": Nimfa
+          "Life Stage=Pupa": Kukuljica
+          "Life Stage=Subimago": Subimago
+          "Sex=Cannot Be Determined": Ne može se odrediti
+          "Sex=Female": Ženka
+          "Sex=Male": Mužjak
+          unannotated: Bez anotacije
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: Komentari
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikacije
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: Spominjanja
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Poruke
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_journal_posts: Objave u dnevniku projekta
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_taxon_changes: Mijenjanje taksonomije
+        project_addition_preferences:
+          any: Svi
+        prefers_no_tracking_label_desc_we_use: |
+          Koristimo razne usluge trećih strana za praćenje stabilnosti i
+          dijagnosticiranja grešaka i problema u našem softveru. Ove treće strane
+          uključuju
+      recent:
+        about_recent_users: Info
+      show:
+        favorites_list_prompt_html: |
+          Želiš pokazati neke od svojih omiljenih taksa? %{link_start_tag}Napravi
+          popis%{link_end_tag} pod nazivom "Favoriti" i najnoviji dodaci
+          pojavit će se u ovom prostoru.
+    welcome:
+      index:
+        connect_with_nature: Poveži se s prirodom
+        explore_and_share: Istraži i podijeli svoja opažanja iz svijeta prirode.
+        observations_to_date: 'Opažanja do sad'
+        species_observed: 'Zabilježene vrste'
+        people_signed_up: 'registriranih korisnika'
+        how_it_works: Kako iNaturalist funkcionira
+        record_your_observations: Zabilježi svoja opažanja
+        share_with_fellow_naturalists: Podijeli s kolegama prirodoslovcima
+        discuss_your_findings: Diskutiraj o svojim nalazima
+        contribute_to_science: Doprinesi znanosti
+        science_desc_html: |
+          Svako opažanje može doprinijeti znanosti o našoj bioraznolikosti, od
+          od najrjeđeg leptira do najčešćeg dvorišnog korova. Dijelimo tvoja
+          otkrića sa skladištima znanstvenih podataka poput
+          <a href='http://gbif.org' target='_blank'>Globalnog informacijskog fonda za biološku raznolikost (GBIF)</a>
+          kako bi pomogli znanstvenicima pronaći i koristiti tvoja zapažanja. Sve što trebaš učiniti je
+          promatrati i podijeliti to s nama.
+        nature_at_your_fingertips: Priroda na dohvat ruke
+        keep_track: Vodi evidenciju
+        record_your_encounters: |
+          Bilježite svoje susrete s drugim organizmima i vodite popise života,
+          sve u spremamo u oblaku.
+        create_useful_data: Stvori korisne podatke
+        help_scientists: Pomozi znanstvenicima i upraviteljima resursa da razumiju kada i gdje se organizmi pojavljuju.
+        crowdsource_identifications: Identifikacije zajednice
+        connect_with_experts: Poveži se sa stručnjacima koji mogu identificirati organizme koje si zabilježio/la.
+        become_a_citizen_scientist: Postani znanstvenik-građanin
+        find_a_project: "Pronađi projekt sa zadatkom koji te zanima ili pokreni svoj vlastiti."
+        learn_about_nature: Nauči o prirodi
+        build_your_knowledge: Izgradi svoje znanje pomažući drugima i diskutiranjem s drugim prirodoslovcima.
+        run_a_bioblitz: Organiziraj Bioblitz
+        hold_an_event: Organiziraj događaj na kojem ljudi pokušavaju pronaći što više vrsta.
+        works_on_all_your_devices: Radi na svim tvojim uređajima
+        install_our_mobile_apps: |
+          Instaliraj našu mobilnu aplikaciju kako bi uvijek mogao promatrati i bilježiti, čak i bez mobilnih podataka ili Wi-Fija.
+        who_uses_site_name: "Tko koristi %{site_name}?"
+        what_are_you_waiting_for: Pa, što čekaš?
+        join_today: Pridruži se danas
+  date:
+    abbr_day_names:
+      - Ned
+      - Pon
+      - Uto
+      - Sri
+      - Čet
+      - Pet
+      - Sub
+    abbr_month_names:
+      - 
+      - sij.
+      - velj.
+      - ožu.
+      - trav.
+      - svi.
+      - lip.
+      - srp.
+      - kol.
+      - ruj.
+      - lis.
+      - stu.
+      - pro.
+    day_names:
+      - Nedjelja
+      - Ponedjeljak
+      - Utorak
+      - Srijeda
+      - Četvrtak
+      - Petak
+      - Subota
+    day_names_min:
+      1: Ne
+      2: Po
+      3: Ut
+      4: Sr
+      5: Če
+      6: Pe
+      7: Su
+    month_names:
+      - 
+      - Siječanj
+      - Veljača
+      - Ožujak
+      - Travanj
+      - May
+      - Lipanj
+      - Srpanj
+      - Kolovoz
+      - Rujan
+      - Listopad
+      - Studeni
+      - Prosinac
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: manje od %{count} minute
+        few: manje od %{count} minuta
+        other: manje od %{count} minuta
+      less_than_x_seconds:
+        one: manje od %{count} sekunde
+        few: manje od %{count} sekunde
+        other: manje od %{count} sekundi
+  errors:
+    messages:
+      blank: ne može ostati prazno
+      empty: ne može ostati prazno
+      invalid: nije ispravno
+      less_than: mora biti manje od %{count}
+      less_than_or_equal_to: mora biti manje ili jednako %{count}
+      not_a_number: nije broj
+      not_an_integer: mora biti cijeli broj
+      odd: mora biti neparan broj
+  helpers:
+    submit:
+      create: Stvori novi %{model}
+      submit: Spremi %{model}
+      update: Ažuriraj %{model}
+  number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: '.'
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Milijarda
+          million: Milijun
+          quadrillion: Kvadrilijun
+          thousand: Tisuću
+          trillion: Trilijun
+      format:
+        significant: true
+        strip_insignificant_zeros: true
+  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
+  activemodel:
+    errors:
+      messages:
+        blank: ne može ostati prazno
+        empty: ne može ostati prazno
+        even: mora biti paran broj
+        exclusion: je rezervirano
+        greater_than: mora biti veće od %{count}
+        less_than: mora biti manje od %{count}
+        less_than_or_equal_to: mora biti manje ili jednako %{count}
+  activerecord:
+    models:
+      #Text note left by a moderator about another user recording a response to
+      #a concern, like messaging someone about plagiarism, or documenting
+      #violations of the Community Guidelines for future reference
+      ModeratorNote: Napomena moderatora
+    attributes:
+      conservation_status:
+        status: Status
+        place_id: Mjesto
+        url: URL
+        geoprivacy: Geoprivatnost
+      guide:
+        source_url: URL izvora
+      listed_taxon:
+        establishment_means: Način dolaska
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Razlog
+      observation:
+        description: Bilješke
+      observation_field_value:
+        value: 'vrijednost'
+      observations_export_flow_task:
+        #Date/time the task was created, i.e. the date it was added to the processing queue
+        created_at: U redu čekanja
+      oauth_application:
+        #The URL the user will be redirected to after authorizing an app to
+        #access their iNaturalist account
+        callback_url: URL povratnog poziva
+        #Adjective, whether or not this application can keep its secret
+        #confidential, e.g. a native or desktop app as opposed to a web
+        #app.
+        confidential: Povjerljivo
+      project:
+        source_url: URL izvora
+      project_observation:
+        user_id: Podnositelj
+      taxon:
+        #Rank down to which all of this taxon's descendants have been added,
+        #e.g. if Homonidae has complete_rank set to genus, you would expect
+        #the genus Homo to be in the database, but not necessarily Homo
+        #sapiens
+        complete_rank: Cjeloviti takson
+        rank: Rang
+        rank_level: Razina ranga
+        source_id: ID izvora
+        source_url: URL izvora
+      taxon_name:
+        source_url: URL izvora
+      user:
+        login: Korisničko ime
+    errors:
+      messages:
+        equal_to: mora biti jednako %{count}
+        even: mora biti paran broj
+        exclusion: je rezervirano
+        invalid: nije ispravno
+        less_than: mora biti manje od %{count}
+        less_than_or_equal_to: mora biti manje ili jednako %{count}
+      models:
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: je onemogućio komentare
+        observation:
+          attributes:
+            observed_on:
+              #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
+              must_be_within_130_years: mora biti u zadnjih 130 godina
+        place_geometry:
+          attributes:
+            geom:
+              must_have_more_than_three_points: mora imati više od 3 točke
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: samoglasnik
+        con: suglasnik
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
+        m: muški rod
+        f: ženski rod
+        "n": srednji rod
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        application: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        assessment_section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        atlas: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        class: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        complex: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        epifamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        favorite: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        identification: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        journal: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        note: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        observation_field: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        place: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        project: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        species: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subtribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superclass: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superfamily: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        superorder: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_change: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_drop: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_link: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_merge: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_split: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_stage: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        taxon_swap: "@f"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@m"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@m"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  #Title of a section warning the user about something
+  warning_title: Upozorenje
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Ž do A

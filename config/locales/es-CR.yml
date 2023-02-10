@@ -7,6 +7,10 @@ es-CR:
   add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huella"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: hueso"'
   add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Se ocultó el comentario
+  #Notice when a comment has been unhidden by moderators
+  comment_unhidden: Se hizo visible el comentario
   controlled_term_labels:
     evidence_of_presence: Evidencia de Presencia
     #As in the feather on a bird
@@ -36,6 +40,8 @@ es-CR:
   flag_for_place_title_html: |
     Marca para Lugar: %{title}
   flag_this_place: Marcar este lugar
+  #Notice when the text content of an identification has been unhidden by moderators
+  identification_text_hidden: Se hizo visible el texto de identificación
   leaderboard_most:
     species_in_month_year: La mayoría de las especies en %{month_year}
     species_in_year: La mayoría de las especies en %{year}
@@ -47,6 +53,37 @@ es-CR:
   logging_in: Iniciando sesión ...
   no_species_on_this_list_for_owner: |
     Podés empezar a añadir especies a esta lista usando la herramienta "Añadir a tu lista" a la derecha.
+  play_first_sound: Reproducir primer sonido
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Enviar y cerrar sesión
+  send_confirmation_email: Enviar email de confirmación
+  suspend_user_html: Suspender a %{user}
+  suspend_user_reason_instructions_html: |
+    Explicá por qué suspendés esta cuenta y citá cualquier violación de las
+    Directrices de la comunidad (%{link_start_tag}Community Guidelines%{link_end_tag} ). Por favor abstenete de añadir opiniones personales.
+  unsuspend_user_html: Anular suspensión de %{user}
+  unsuspend_user_reason_instructions: |
+    Por favor, explicá por qué se anula la suspensión de este usuario.
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Estás a punto de cerrar sesión</h3>
+    <p>
+    Después de enviar el correo electrónico de confirmación, cerrarás la sesión y
+    no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
+    el correo electrónico, así que <strong class="bg-warning">asegúrate de que has introducido tu dirección de correo electrónico
+    correctamente.</strong>
+    </p>
+    <p>
+    Esta es la dirección de correo electrónico a la que enviaremos la confirmación:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si cancelas la suscripción de todos los correos electrónicos...</h4>
+    <p>
+    Si has cancelado <em>todos</em> los correos electrónicos de nosotros, no podemos enviar
+    tu correo de confirmación. Para volver a suscribirte, necesitas encontrar uno de nuestros correos electrónicos anteriores, hacer clic en el enlace de desinscribirse y elegir volver a inscribirse para recibir correo electrónico. Si no puede hacer esto, por favor enviá un correo electrónico a 
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> usando
+    la dirección de correo electrónico que has introducido aquí para que podamos ayudarte.
+    </p>
   date:
     abbr_month_names:
       - 
@@ -81,3 +118,18 @@ es-CR:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    attributes:
+      moderator_action:
+        #The reason a moderator action was taken, e.g. an explanation for why
+        #someone thought a comment should be hidden
+        reason: Razón
+    errors:
+      models:
+        moderator_action:
+          attributes:
+            action:
+              not_supported_for_this_kind_of_content: no se admite para este tipo de contenido
+            base:
+              only_staff_can_unhide: Sólo el personal puede hacer visible el contenido oculto
+              staff_cannot_be_suspended: No se puede suspender a miembros del personal

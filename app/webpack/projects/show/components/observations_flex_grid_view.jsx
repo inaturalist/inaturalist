@@ -28,7 +28,7 @@ const ObservationsFlexGridView = ( {
                   let width = itemDim;
                   const dims = o.photos.length > 0 && o.photos[0].dimensions( );
                   if ( dims ) {
-                    width = itemDim / dims.height * dims.width;
+                    width = ( itemDim / dims.height ) * dims.width;
                   } else {
                     width = itemDim;
                   }
@@ -41,16 +41,15 @@ const ObservationsFlexGridView = ( {
                       config={config}
                     />
                   );
-                } )
-               }
+                } ) }
               </div>
             </InfiniteScroll>
           </Col>
         </Row>
       </Grid>
       <ViewMoreFooter
-          showViewMoreLink={showViewMoreLink}
-          viewMoreUrl={viewMoreUrl}
+        showViewMoreLink={showViewMoreLink}
+        viewMoreUrl={viewMoreUrl}
       />
     </div>
   );

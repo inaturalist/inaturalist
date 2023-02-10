@@ -32,7 +32,10 @@ describe FlagsController do
       expect( response.status ).to eq 200
       taxon.reload
       expect( taxon.flags.first.comments.size ).to eq 0
-      expect( flash[:notice] ).to eq "Flag saved. Thanks! <a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> Unfortunately, we were unable to save the comment."
+      notice = "Flag saved. Thanks! " \
+        "<a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> " \
+        "Unfortunately, we were unable to save the comment."
+      expect( flash[:notice] ).to eq notice
     end
   end
 
@@ -100,7 +103,7 @@ describe FlagsController do
 
     it "does not allow the flag creator to destroy if resolved" do
       sign_in( user )
-      flag.update_attributes( resolved: true, resolver: make_curator )
+      flag.update( resolved: true, resolver: make_curator )
       post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).not_to be_blank
     end

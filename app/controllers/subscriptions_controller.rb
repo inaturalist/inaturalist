@@ -75,7 +75,7 @@ class SubscriptionsController < ApplicationController
   
   def update
     respond_to do |format|
-      if @subscription.update_attributes(params[:subscription])
+      if @subscription.update(params[:subscription])
         format.html do
           flash[:notice] = "Subscription updated."
           return redirect_back_or_default(@subscription.resource)

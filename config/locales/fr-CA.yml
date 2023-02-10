@@ -107,15 +107,11 @@ fr-CA:
   _100_day_trends: Tendances de 100 jours
   a_community_for_naturalist: Une communauté pour naturalistes
   about: À propos
-  about_blocking: À propos du blocage
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
-  about_muting: À propos du mode muet
   #Header for a section describing taxon names
   about_names: À propos des noms
   about_places: À propos des lieux
-  about_the_cc_licenses: À propos des licences Creative Commons
-  about_these_licenses: À propos de ces licences
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
@@ -137,12 +133,12 @@ fr-CA:
     marqueur de la carte et en le déplaçant au bon endroit. Assurez-vous que le
     cercle soit assez grand pour être certain que vous vous trouviez
     à l’intérieur.
+  #Noun, as in "Ken-ichi's action was not acceptable"
   action: Action
   actions: Actions
   active: Actif
   active_users: Utilisateurs actifs
   activity: Activité
-  activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: "Adapté à partir d'un travail de %{original} par %{name}"
   add: Ajouter
   add_a_batch_of_observations: Ajouter un groupe d’observations
@@ -178,7 +174,6 @@ fr-CA:
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: En ajouter une
-  add_photos: Ajouter des photos
   add_place: Ajouter un lieu
   add_alive_or_dead_alive_annotation: 'Ajouter l''annotation « Vivant ou Mort : Vivant »'
   add_alive_or_dead_cannot_be_determined_annotation: 'Ajouter l''annotation « Vivant ou Mort : Indéterminé »'
@@ -274,19 +269,23 @@ fr-CA:
     failure:
       invalid: 'Courriel ou mot de passe invalide.'
     passwords:
-      send_instructions: 'Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.'
-      send_paranoid_instructions: "Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes."
-      no_token: "Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie."
+      send_instructions: |
+        Vous recevrez un courriel contenant des instructions pour réinitialiser votre mot de passe dans quelques minutes.
+      send_paranoid_instructions: |
+        Si votre adresse courriel existe dans notre base de données, vous recevrez un lien de récupération de mot de passe dans quelques minutes.
+      no_token: |
+        Vous ne pouvez pas accéder à cette page sans venir d'un courriel de réinitialisation de mot de passe. Si vous venez effectivement d'un courriel de réinitialisation de mot de passe, veuillez vous assurer que vous avez utilisé l'URL complète fournie.
     mailer:
       confirmation_instructions:
-        subject: 'Instructions de confirmation'
+        #Subject of an email sent to confirm your account
+        subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
   devise_reset_password_instructions_hello_email: Bonjour %{email}
-  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
-    Quelqu'un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire à l’aide du lien ci-dessous.
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Quelqu'un a demandé un lien pour changer votre mot de passe. Vous pouvez le faire à l’aide du lien ci-dessous.
   devise_reset_password_instructions_your_password_wont_change_until: |
     Votre mot de passe ne sera pas modifié tant que vous n'aurez pas cliqué sur le lien ci-dessus pour en créer un nouveau.
   devise_unlock_instructions_your_account_has_been_locked: |
@@ -294,7 +293,6 @@ fr-CA:
   devise_unlock_instructions_click_the_link: |
     Cliquez sur le lien ci-dessous pour débloquer votre compte :
   devise_unlock_instructions_unlock: Déverrouiller votre compte
-  dont_send_me_email: "Ne m’envoyez pas de courriel!"
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
   drop_it: Le déposer
@@ -304,7 +302,6 @@ fr-CA:
   email: Courriel
   email_address_for_comments_and_other_feedback: Adresse courriel pour les commentaires
   email_copyright: "Copyright &copy; %{x}, tous droits réservés"
-  email_settings: Paramètres de courriel
   embed_widget_project: Intégrer un widget pour ce projet sur votre site Web
   forum_categories:
     bug_reports: Signalements de bogue
@@ -338,21 +335,11 @@ fr-CA:
   no_more_mail_from_site: "Vous ne voulez pas recevoir de courriel d’%{site_name}?  Modifiez vos paramètres de courriel à"
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l'attribut 'height' pour l’adapter à l'espace disponible sur votre page Web."
   official_blog: Blogue officiel
-  or_if_you_dont_want_email: "Ou si vous ne voulez juste pas de courriels..."
   our_blog: Notre blogue
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
-  pi_consent_desc_html: |
-    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
-    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
-    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
-    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
-    comment nous les utilisons, veuillez voir notre
-    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
-    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
-  receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel sur
   search_by_name_or_email: Rechercher par nom ou par courriel
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
@@ -385,6 +372,7 @@ fr-CA:
     Téléverser les données d'observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c'est la meilleure méthode à adopter.
   upload_photo: Téléverser la photo
   upload_range: Téléverser l'aire de répartition
+  #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Téléversé par
   uploader:
     errors:
@@ -805,37 +793,45 @@ fr-CA:
       edit:
         blocking_desc_html: |
           <p>
-          Bloquer quelqu'un l'empêche de vous envoyer des messages, de commenter vos  observations, d'identifier vos observations et d'interagir autrement avec vous sur %{site_name}. Cela supprime également ses observations de vos  résultats de recherche et supprime vos observations ses résultats de   recherche. Cependant, cela ne vous rend pas invisible pour lui. Il peut toujours trouver vos observations et regardez votre profil, il ne peut tout simplement pas  interagir avec vous.
+          Bloquer quelqu'un l'empêche de vous envoyer des
+          messages, de commenter vos  observations, d'identifier vos observations
+          et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+          ses observations de vos  résultats de recherche et supprime vos observations
+          ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+          pour lui. Il peut toujours   trouver vos observations et regardez votre
+          profil, il ne peut tout simplement pas  interagir avec vous.
           </p>
           <p>
-          Le blocage est pour des situations où vous ne pouvez simplement pas vous entendre avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen pour se cacher de personnes, pour empêcher les identifications de personnes dont vous ne partagez pas les opinions, ou de retirer votre identifiant de la communauté (il y en a un autre moyen de régler cela). Ainsi, le blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier vos observations, vous vous empêchez également d'identifier ses  observations.
+          Le blocage est pour des situations où vous ne pouvez simplement pas vous
+          entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+          pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+          pour se cacher de  personnes, pour empêcher les identifications de personnes
+          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+          de la communauté (il y en a un autre moyen de régler cela). Ainsi, le
+          blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+          avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+          vos  observations, vous vous empêchez également d'identifier ses  observations.
           </p>
           <p>
-          Vous ne pouvez bloquer que trois personnes. Nous pensons que c'est un nombre raisonnable qui accueille les personnes qui ont besoin de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez bloquer plus <a href="mailto:%{help_email}">contactez-nous</a>.
+          Vous ne pouvez bloquer que trois personnes. Nous pensons que
+          c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+          de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+          bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
           </p>
           <p>
           Si quelqu'un vous harcèle ou vous traque sur %{site_name},
-          <a href="mailto:%{help_email}">merci de nous le faire savoir</a>.
-          Si cela représente une violation de nos conditions d'utilisation ou représente autre comportement que nous considérons inapproprié pour notre site, nous
+          <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+          Si cela représente une violation de nos conditions d'utilisation ou représente
+          autre comportement que nous considérons inapproprié pour notre site, nous
           enquêterons.
           </p>
-        inaturalist_network_affiliation_desc_html: |2
-          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p> 
+        inaturalist_network_affiliation_desc_html: |
+          <p> Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de sites web localisés liés à la communauté mondiale de iNaturalist. Les sites du réseau sont pris en charge par les institutions locales qui ont signé un accord avec iNaturalist pour promouvoir l'utilisation locale et bénéficier de la biodiversité locale. Elles ont accès aux coordonnées réelles à partir de leur pays qui sont automatiquement cachées de la vue du public dans le but de protéger les espèces menacées. </p>
           <p> Votre nom d'utilisateur et votre mot de passe sont valides sur tous les sites qui font partie du réseau iNaturalist. Si vous choisissez de vous rattacher à un site du réseau, les institutions locales qui opèrent sur chaque site auront aussi accès à votre adresse courriel (seulement pour communiquer avec vous pour ce qui concerne les activités du site) et aux coordonnées réelles des observations qui sont masquées au public ou qui sont privées.</p>
           <p>
            Note: ne modifiez pas à titre d'essai votre affiliation si vous avez plus de 1000 observations.
           </p>
-        monthly_supporter_desc_html: |
-          Les parrains réguliers d’iNaturalist font des contributions mensualisées
-          automatiques qui sont reçues par l’Académie des sciences de Californie
-          (Code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les
-          opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
-          <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
-          Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
-          boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
-          exactement la même adresse courriel sur Donorbox que celle que vous
-          utilisez sur iNaturalist pour nous permettre de confirmer que vous êtes
-          un parrain mensualisé.
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: Commentaires
         #Checkbox label for user preference about what to receive in the daily email update

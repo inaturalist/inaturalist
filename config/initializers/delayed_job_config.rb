@@ -1,6 +1,8 @@
 require "dj_logstash_plugin"
+require "dj_makara_plugin"
 
 Delayed::Worker.plugins << DJLogstashPlugin
+Delayed::Worker.plugins << DJMakaraPlugin
 
 Delayed::Worker.default_queue_name = "default"
 Delayed::Worker.max_attempts = 10

@@ -21,65 +21,72 @@
   end
 - content_for( :extracss ) do
   :css
-    .padding {
-        padding: 5px;
+    .taxon_framework p {
+      padding: 5px;
     }
-.change_taxon.clear{"data-taxon-id" => "#{change_taxon.id}", :id => "change_taxon_#{change_taxon.id}"}
+    .actions > * {
+      margin-left: 5px;
+    }
+    .actions > :first-child {
+      margin-left: 0px;
+    }
+    .actions .label {
+      display: inline-block;
+      position: relative;
+      top: -2px;
+      padding-top: 0.4em;
+    }
+.change_taxon.clear{"data-taxon-id" => change_taxon.id, id: "change_taxon_#{change_taxon.id}"}
   = image_and_content taxon_image(change_taxon), :image_size => 75 do
     = link_to change_taxon, :class => "taxon #{change_taxon.rank}" do
       %span.sciname= change_taxon.name
       = change_taxon.id
-    .stacked
-      = link_to change_taxon.observations_count, observations_path( taxon_id: change_taxon.id, verifiable: "any", place_id: "any" ), :rel => "nofollow"
-      = t :obs
-      - unless change_taxon.conservation_status.blank?
-        %span.meta |
-        = change_taxon.conservation_status_code
+    .stacked.actions
+      = link_to observations_path( taxon_id: change_taxon.id, verifiable: "any", place_id: "any" ), rel: "nofollow" do
+        =t :x_observations_html, count: change_taxon.observations_count
+      - unless change_taxon.conservation_status_code.blank?
+        %span.blob.conservation_status{ class: change_taxon.conservation_status_name, title: t( change_taxon.conservation_status_name ) }= change_taxon.conservation_status_code
       - if taxon_range
-        %span.meta |
         = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')
       - if change_taxon.is_active?
-        |
         %span.active_taxon_status= t(:active_taxon_status)
       - else
-        |
         %span.inactive_taxon_status= t(:inactive_taxon_status)
       - if change_taxon.flagged?
-        |
         %span#flaggings_heads_up.description
           = succeed "." do
             = t :flagged_for_curation
-          \#{link_to t(:view_flags), taxon_flags_path(change_taxon), :class => 'readmore', :title => t(:see_something_wrong_with_taxon)}
+          = link_to t(:view_flags), taxon_flags_path(change_taxon), class: "readmore", title: t(:see_something_wrong_with_taxon)
       - else
         - if logged_in?
-          | #{link_to t(:flag_for_curation), new_taxon_flag_path(change_taxon), :id => "flag_this"}
+          = link_to new_taxon_flag_path(change_taxon), id: "flag_this", class: "nobr" do
+            .fa.fa-flag
+            = t(:flag)
       - if show_atlas_alert && taxon_change && taxon_change.is_a?( TaxonSplit )
-        |
         - if change_taxon.atlased?
-          = link_to t(:atlased), atlas_path( change_taxon.atlas ), {class: "text-success"}
+          = link_to t(:atlased), atlas_path( change_taxon.atlas ), class: "label label-success"
         - else
-          = link_to t(:not_atlased), ( change_taxon.atlas ? atlas_path( change_taxon.atlas ) : new_atlas_path( taxon_id: change_taxon.id) ), {class: "text-danger"}
-    .meta
-      .small
-        - if taxon_framework
+          = link_to t(:not_atlased), ( change_taxon.atlas ? atlas_path( change_taxon.atlas ) : new_atlas_path( taxon_id: change_taxon.id) ), class: "label label-danger"
+    - if taxon_framework
+      .meta.taxon_framework
+        .small
           = t( :covered_by_a_taxon_framework_html, 
-          link: link_to( t( :covered_by_a_taxon_framework_link, 
-          taxon_framework_rank: t( "ranks.#{ taxon_framework.taxon.rank }" ).capitalize,
-          taxon_framework_name: taxon_framework.taxon.name ),
-          taxonomy_details_for_taxon_path( taxon_framework.taxon ) ) )
+            link: link_to( t( :covered_by_a_taxon_framework_link,
+            taxon_framework_rank: t( "ranks.#{ taxon_framework.taxon.rank }" ),
+            taxon_framework_name: taxon_framework.taxon.name ),
+            taxonomy_details_for_taxon_path( taxon_framework.taxon ) ) )
           - if taxon_framework.source
             = t( :sourced_to )
             = link_to taxon_framework.source.title, taxon_framework.source.url
             %br
             - if taxon_framework_relationship.nil?
-              %p.bg-info.padding
-                = t( :relationship_html, link: link_to( t( :unknown ).capitalize, taxonomy_details_for_taxon_path( change_taxon ) ) )
+              %p.bg-info
+                = t( :relationship_html, link: link_to( t( :unknown ), taxonomy_details_for_taxon_path( change_taxon ) ) )
             - else
-              %p.padding{ :class => ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? 'bg-success' : 'bg-warning' ) }
+              %p{ :class => ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? 'bg-success' : 'bg-warning' ) }
                 = t( :relationship_html, 
-              link: link_to( ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? t( "relationships.#{taxon_framework_relationship.relationship}" ).capitalize : t( :deviation ).capitalize ),
-              taxonomy_details_for_taxon_path( change_taxon ) ) )
-            
+                  link: link_to( ( ( taxon_framework_relationship.relationship == "match" || taxon_framework_relationship.relationship == "alternate_position" ) ? t( "relationships.#{taxon_framework_relationship.relationship}" ) : t( :deviation ) ),
+                  taxonomy_details_for_taxon_path( change_taxon ) ) )
     - if show_change_links && taxon_change && @type
       .text-muted
         - input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"}

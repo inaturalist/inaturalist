@@ -30,7 +30,7 @@ while true do
   puts
   puts url
   puts
-  data = JSON.parse(open(url).read)
+  data = JSON.parse( Net::HTTP.get( URI( url ) ) )
   records = data['data']
   break if records.size == 0
   observation_ids = []

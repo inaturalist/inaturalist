@@ -1,9 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
+  include Users::CustomDeviseModule
+
   protect_from_forgery with: :exception, prepend: true
-
-  before_action :load_registration_form_data, only: [:new, :create]
-
-  layout "registrations"
 
   def create
     # attempt straight db auth first, then warden auth
@@ -13,7 +11,7 @@ class Users::SessionsController < Devise::SessionsController
     throw(:warden) unless resource
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)
-    resource.update_attributes( last_ip: Logstasher.ip_from_request_env( request.env ) )
+    resource.update( last_ip: Logstasher.ip_from_request_env( request.env ) )
     respond_to do |format|
       format.html do
         flash.delete(:notice)

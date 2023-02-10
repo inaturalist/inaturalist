@@ -24,28 +24,28 @@
             
             <div class="stacked">
               <%= link_to taxon.observations_count, observations_path(:taxon_id => taxon.id), :rel => "nofollow" %> Obs
-              <% unless taxon.conservation_status.blank? -%>
+              <% unless taxon.global_conservation_status.blank? -%>
                 <span class='meta'>|</span>
                 <%= taxon.conservation_status_code %>
               <% end -%>
               <% if taxon_range -%>
                 <span class='meta'>|</span>
-                <%= link_to 'Range', taxon_path(taxon, :anchor => 'taxon_range') %>
+                <%= link_to t(:range), taxon_path(taxon, :anchor => 'taxon_range') %>
               <% end -%>
               <% if taxon.is_active? -%>
-                | <span class='active'>Active</span>
+                | <span class="active"><%=t :active %></span>
               <% else %>
-                | <span class='inactive'>Inactive</span>
+                | <span class="inactive"><%=t :inactive %></span>
               <% end -%>
               <% if taxon.flagged? %>
                 | <span id="flaggings_heads_up" class="description">
-                Flagged for curation.
-                <%= link_to "View flags", taxon_flags_path(taxon), :class => 'readmore', 
-                  :title => "See something wrong with this taxon?  Let the curators know." %>
+                <%=t :flagged_for_curation %>
+                <%= link_to t(:view_flags), taxon_flags_path(taxon), :class => "readmore",
+                  :title => t(:see_something_wrong_with_taxon) %>
                 </span>
               <% else %>
                 <% if logged_in? %>
-                | <%= link_to "Flag for curation", new_taxon_flag_path(taxon), :id => "flag_this" %>
+                | <%= link_to t(:flag_for_curation), new_taxon_flag_path(taxon), :id => "flag_this" %>
                 <% end %>
               <% end %>
             </div>
@@ -53,12 +53,12 @@
             <div class="meta">
               <div class="small description">
                 <% unless schemes.blank? -%>
-                  <label>Schemes:</label>
+                  <label><%=t :schemes %></label>
                   <%= schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe %>
                 <% end -%>
                 
                 <% unless swaps.blank? -%>
-                  <label>Synonyms</label>
+                  <label><%=t :synonyms %></label>
                   <ul>
                     <% for swap in swaps %> 
                       <%- aka_taxon = swap.opposite_taxon_from(taxon) -%>
@@ -69,7 +69,7 @@
                             <%= aka_scheme.title %>
                           </div>
                         <% end %>
-                        <%= link_to "View change", taxon_change_path(swap) %>
+                        <%= link_to t(:view_taxon_change), taxon_change_path(swap) %>
                       </li>
                     <% end %>
                   </ul>

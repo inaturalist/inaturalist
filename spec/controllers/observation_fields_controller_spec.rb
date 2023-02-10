@@ -32,7 +32,7 @@ describe ObservationFieldsController do
     it "should keep requested fields from the keeper" do
       sign_in user
       desc = "a perfectly unique description"
-      of.update_attributes(description: desc)
+      of.update(description: desc)
       put :merge_field, params: { id: reject.id, with: of.id, keep_description: 'keeper' }
       of.reload
       expect(of.description).to eq desc
@@ -41,15 +41,15 @@ describe ObservationFieldsController do
     it "should keep requested fields from the reject" do
       sign_in user
       desc = "a perfectly unique description"
-      reject.update_attributes(description: desc)
+      reject.update(description: desc)
       put :merge_field, params: { id: reject.id, with: of.id, keep_description: 'reject' }
       of.reload
       expect(of.description).to eq desc
     end
 
     it "should allow merged allowed_values" do
-      of.update_attributes(allowed_values: 'a|b')
-      reject.update_attributes(allowed_values: 'c|d')
+      of.update(allowed_values: 'a|b')
+      reject.update(allowed_values: 'c|d')
       sign_in user
       put :merge_field, params: { id: reject.id, with: of.id, keep_allowed_values: ['keeeper', 'reject'] }
       expect(ObservationField.find_by_id(reject.id)).to be_blank

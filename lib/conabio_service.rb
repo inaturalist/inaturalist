@@ -21,7 +21,7 @@ class ConabioService
       client=Savon.client(wsdl: @wsdl)
       begin
         Timeout::timeout(@timeout) do
-          @response = client.call(:data_taxon, message: { scientific_name: URI.encode(q.gsub(' ', '_')), key: @key })
+          @response = client.call(:data_taxon, message: { scientific_name: CGI.escape(q.gsub(' ', '_')), key: @key })
         end
       rescue Timeout::Error
         raise Timeout::Error, "Conabio didn't respond within #{@timeout} seconds."

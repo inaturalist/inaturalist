@@ -1,8 +1,7 @@
 #encoding: utf-8
 class LocalPhoto < Photo
   include LogsDestruction
-  before_create :set_defaults
-  after_create :set_native_photo_id, :set_urls
+  after_create :set_urls
   after_update :change_photo_bucket_if_needed
   
   # only perform EXIF-based rotation on mobile app contributions
@@ -74,8 +73,8 @@ class LocalPhoto < Photo
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
-      url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
+      url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )
   end
 
@@ -199,14 +198,6 @@ class LocalPhoto < Photo
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
   
-  def set_defaults
-    if user
-      self.native_username ||= user.login
-      self.native_realname ||= user.name
-    end
-    true
-  end
-
   def file=(data)
     self.file.assign(data)
     # uploaded photos need metadata immediately in order to
@@ -218,11 +209,11 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata = self.metadata.to_h.clone || {}
+    extracted_metadata = metadata.to_h.clone || {}
     begin
       if ( file_path = ( path || file.queued_for_write[:original].path ) )
         exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
-        metadata.merge!( exif_data )
+        extracted_metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
@@ -235,18 +226,18 @@ class LocalPhoto < Photo
     rescue ExifMetadata::ExtractionError => e
       Rails.logger.error "[ERROR #{Time.now}] ExifMetadata failed to extract metadata: #{e}"
     end
-    metadata = metadata.force_utf8
+    extracted_metadata = extracted_metadata.force_utf8
     if dimensions = extract_dimensions( :original )
       self.width = dimensions[:width]
       self.height = dimensions[:height]
     end
-    self.metadata = metadata
+    self.photo_metadata ||= PhotoMetadata.new( photo: self )
+    self.photo_metadata.metadata = extracted_metadata
   end
 
   def set_urls
     return if new_record?
     updates = { }
-    updates[:native_page_url] = FakeView.photo_url(self) if native_page_url.blank?
     updates[:file_extension_id] = FileExtension.id_for_extension( self.parse_extension )
     updates[:file_prefix_id] = FilePrefix.id_for_prefix( self.parse_url_prefix )
     Photo.where( id: id ).update_all( updates )
@@ -289,9 +280,8 @@ class LocalPhoto < Photo
       raise Photo::MissingPhotoError.new( "We no longer have access to the original file" )
     end
 
-    io = open( URI.parse( url ) )
     Timeout::timeout(10) do
-      self.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+      self.file = URI( url )
     end
   end
 
@@ -302,17 +292,22 @@ class LocalPhoto < Photo
   end
 
   def attribution
-    if user.blank? || [user.name, user.login].include?(native_realname)
-      super
-    else
-      "#{super}, uploaded by #{user.try_methods(:name, :login)}"
+    if user.blank? || [user.name, user.login].include?( native_realname )
+      # If this was imported from Flickr or Wikipedia and there's either no user
+      # we might attribute the photo to OR there is a user but they seem to be
+      # the person who the third party says took the photo, just do normal attribution
+      return super
     end
-  end
-  
-  def set_native_photo_id
-    if subtype.blank?
-      update_attribute(:native_photo_id, id)
-    end
+
+    # Otherwise, note that the user uploaded it, as opposed to specifying that
+    # they took it
+    uploader_name = attribution_name
+    I18n.t(
+      :attribution_uploaded_by_user,
+      attribution: super,
+      user: uploader_name,
+      vow_or_con: uploader_name[0].downcase
+    )
   end
 
   def source_title
@@ -360,6 +355,10 @@ class LocalPhoto < Photo
       if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
         o.set_time_zone
         o.time_observed_at = capture_time
+        # Force the time to be in the time zone, b/c the value from EXIFR will
+        # be in the system time zone, regardless of what time zone info might
+        # be in the photo metadata. See
+        # https://github.com/MikeKovarik/exifr/issues/84#issuecomment-1004691190
         o.set_time_in_time_zone
         if o.time_observed_at
           o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
@@ -489,31 +488,6 @@ class LocalPhoto < Photo
       where( "id < ?", max_id ).
       find_each( batch_size: 100 ) do |lp|
       lp.prune_odp_duplicates( s3_client: s3_client )
-    end
-  end
-
-  def self.update_photo_prefix_and_extension_batch( min_id, max_id )
-    start_time = Time.now
-    counter = 0
-    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
-      Photo.transaction do
-        batch.each do |photo|
-          if counter % 1000 == 0
-            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
-          end
-          counter += 1
-          if photo.metadata
-            photo.width ||= photo.metadata.dig(:dimensions, :original, :width)
-            photo.height ||= photo.metadata.dig(:dimensions, :original, :height)
-          end
-          photo.update_columns(
-            width: photo.width,
-            height: photo.height,
-            file_extension_id: FileExtension.id_for_extension( photo.extension ),
-            file_prefix_id: FilePrefix.id_for_prefix( photo.url_prefix )
-          )
-        end
-      end
     end
   end
 

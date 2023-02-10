@@ -57,6 +57,8 @@ class FlowTasksController < ApplicationController
       opts = @flow_task.enqueue_options if @flow_task.respond_to?(:enqueue_options)
       opts ||= {}
       opts[:unique_hash] ||= {'FlowTask': @flow_task.id}
+      # set a small default delay in FlowTask processing to avoid effects of replication lag
+      opts[:run_at] ||= 5.seconds.from_now
       @job = Delayed::Job.enqueue(@flow_task, opts)
     end
     respond_to do |format|

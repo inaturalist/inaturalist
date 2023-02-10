@@ -69,7 +69,7 @@ describe Flag, "creation" do
 
     [Post, Comment, Identification].each do | model |
       context "on #{model.to_s.downcase.pluralize}" do
-        let( :flaggable ) { build_stubbed :"#{model.name.underscore}", body: "some bad stuff" }
+        let( :flaggable ) { create :"#{model.name.underscore}", body: "some bad stuff" }
 
         it "should set the flaggable content to the body" do
           expect( subject.flaggable_content ).to eq flaggable.body
@@ -136,6 +136,41 @@ describe Flag, "creation" do
   end
 end
 
+describe "actual creation" do
+  let( :observation ) { create :observation }
+  def expect_observation_to_be_updated_by
+    updated_at = observation.updated_at
+    yield
+    observation.reload
+    expect( observation.updated_at ).to be > updated_at
+  end
+  describe "on observations" do
+    it "should touch the observation" do
+      expect_observation_to_be_updated_by { create :flag, flaggable: observation }
+    end
+  end
+  describe "on comments" do
+    it "should touch the observation" do
+      comment = create :comment, parent: observation
+      expect_observation_to_be_updated_by do
+        create :flag, flaggable: comment
+      end
+    end
+  end
+  describe "on identifications" do
+    let( :identification ) { create :identification, observation: observation }
+    it "should touch the observation" do
+      expect_observation_to_be_updated_by do
+        create :flag, flaggable: identification
+      end
+    end
+    it "should set the flaggable content to the body" do
+      flag = create :flag, flaggable: identification
+      expect( flag.flaggable_content ).to eq identification.body
+    end
+  end
+end
+
 describe Flag, "update" do
   before { enable_has_subscribers }
   after { disable_has_subscribers }
@@ -146,7 +181,7 @@ describe Flag, "update" do
     u = make_curator
     expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
     without_delay do
-      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+      f.update( resolver: u, comment: "foo", resolved: true )
     end
     expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
   end
@@ -155,7 +190,7 @@ describe Flag, "update" do
     t = Taxon.make!
     f = Flag.make!( flaggable: t )
     u = make_curator
-    without_delay { f.update_attributes( resolver: u, comment: "foo", resolved: true ) }
+    without_delay { f.update( resolver: u, comment: "foo", resolved: true ) }
     expect( u.subscriptions.detect {| s | s.resource_type == "Flag" && s.resource_id == f.id } ).to_not be_blank
   end
 
@@ -164,7 +199,7 @@ describe Flag, "update" do
     f = Flag.make!( flaggable: o )
     expect( f ).to be_valid
     UserBlock.make!( user: o.user, blocked_user: f.user )
-    f.update_attributes( resolved: true, resolver: User.make! )
+    f.update( resolved: true, resolver: User.make! )
     expect( f ).to be_valid
     expect( f ).to be_resolved
   end
@@ -178,7 +213,7 @@ describe Flag, "destruction" do
     f = Flag.make!( flaggable: t )
     u = make_curator
     without_delay do
-      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+      f.update( resolver: u, comment: "foo", resolved: true )
     end
     f.reload
     f.destroy
@@ -190,7 +225,7 @@ describe Flag, "destruction" do
     f = Flag.make!( flaggable: c )
     u = make_curator
     without_delay do
-      f.update_attributes( resolver: u, comment: "foo", resolved: true )
+      f.update( resolver: u, comment: "foo", resolved: true )
     end
     f.reload
     expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true

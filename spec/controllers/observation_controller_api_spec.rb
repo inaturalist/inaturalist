@@ -400,7 +400,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not include photo metadata" do
-      p = LocalPhoto.make!( metadata: { foo: "bar" } )
+      p = LocalPhoto.make!( )
+      pm = PhotoMetadata.make!( photo: p, metadata: { foo: "bar" } )
       expect( p.metadata ).not_to be_blank
       o = Observation.make!( user: p.user, taxon: Taxon.make! )
       make_observation_photo( photo: p, observation: o )
@@ -439,7 +440,7 @@ shared_examples_for "an ObservationsController" do
       o = Observation.make!
       c = Comment.make!( parent: o )
       File.open( "#{File.dirname( __FILE__ )}/../fixtures/files/egg.jpg" ) do | f |
-        c.user.update_attributes( icon: f )
+        c.user.update( icon: f )
       end
       get :show, format: :json, params: { id: o.id }
       response_obs = JSON.parse( response.body )
@@ -458,7 +459,7 @@ shared_examples_for "an ObservationsController" do
       o = Observation.make!
       i = Identification.make!( observation: o )
       File.open( "#{File.dirname( __FILE__ )}/../fixtures/files/egg.jpg" ) do | f |
-        i.user.update_attributes( icon: f )
+        i.user.update( icon: f )
       end
       get :show, format: :json, params: { id: o.id }
       response_obs = JSON.parse( response.body )
@@ -696,7 +697,7 @@ shared_examples_for "an ObservationsController" do
       t2 = Taxon.make!
       t3 = Taxon.make!
       o = Observation.make!( taxon: t1, user: user )
-      o.update_attributes( taxon: t2, editing_user_id: o.user_id )
+      o.update( taxon: t2, editing_user_id: o.user_id )
       o.reload
       expect( o.identifications.count ).to eq 2
       put :update, format: :json, params: { id: o.id, observation: { taxon_id: t3.id } }
@@ -1012,6 +1013,21 @@ shared_examples_for "an ObservationsController" do
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
+
+    describe "time_zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should not change the time zone if the coordinates don't change" do
+        o.update( latitude: 20, longitude: 20 )
+        expect( o ).to be_georeferenced
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+        original_time_zone = expect( o.time_zone )
+        put :update, params: { id: o.id, format: :json, observation: { time_zone: "America/Los_Angeles" } }
+        o.reload
+        expect( o.zic_time_zone ).not_to eq "America/Los_Angeles"
+      end
+    end
   end
 
   describe "by_login" do
@@ -1106,7 +1122,7 @@ shared_examples_for "an ObservationsController" do
       TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
       tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
       ptn = PlaceTaxonName.make!( taxon_name: tn_place )
-      user.update_attributes( place_id: ptn.place_id )
+      user.update( place_id: ptn.place_id )
       o = Observation.make!( user: user, taxon: t )
       get :by_login, format: :json, params: { login: user.login, taxon_id: t.id }
       json = JSON.parse( response.body )
@@ -1166,6 +1182,26 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse( response.body )
       expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
       expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
+    end
+
+    it "should filter by single login in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: o1.user.login }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).to be_blank
+    end
+
+    it "should filter by multiple logins in user_id" do
+      o1 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o2 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      o3 = Observation.make!( observed_on_string: "2012-01-01 13:13" )
+      get :index, format: :json, params: { on: "2012-01-01", user_id: "#{o1.user.login},#{o2.user.login}" }
+      json = JSON.parse( response.body )
+      expect( json.detect {| obs | obs["id"] == o1.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o2.id } ).not_to be_blank
+      expect( json.detect {| obs | obs["id"] == o3.id } ).to be_blank
     end
 
     it "should filter by week of the year" do
@@ -1270,7 +1306,8 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not include photo metadata" do
-      p = LocalPhoto.make!( metadata: { foo: "bar" } )
+      p = LocalPhoto.make!( )
+      pm = PhotoMetadata.make!( photo: p, metadata: { foo: "bar" } )
       expect( p.metadata ).not_to be_blank
       o = Observation.make!( user: p.user, taxon: Taxon.make! )
       make_observation_photo( photo: p, observation: o )
@@ -1736,7 +1773,7 @@ shared_examples_for "an ObservationsController" do
       let( :site ) { Site.default( refresh: true ) }
       it "should filter by place" do
         p = make_place_with_geom
-        site.update_attributes( place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE )
+        site.update( place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE )
         o_inside = Observation.make!( latitude: p.latitude, longitude: p.longitude )
         o_outside = Observation.make!( latitude: -1 * p.latitude, longitude: -1 * p.longitude )
         get :index, format: :json
@@ -1745,7 +1782,7 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).not_to include o_outside.id
       end
       it "should filter by site_only_observations" do
-        site.update_attributes( preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE )
+        site.update( preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_SITE )
         o_inside = Observation.make!( site: site )
         o_outside = Observation.make!
         get :index, format: :json
@@ -1754,7 +1791,7 @@ shared_examples_for "an ObservationsController" do
         expect( ids ).not_to include o_outside.id
       end
       it "should filter by bounding box" do
-        site.update_attributes(
+        site.update(
           preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
           preferred_geo_swlat: 0,
           preferred_geo_swlng: 0,
@@ -1770,7 +1807,7 @@ shared_examples_for "an ObservationsController" do
       end
 
       it "should filter by bounding box if place_id set" do
-        site.update_attributes(
+        site.update(
           place: make_place_with_geom,
           preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_BOUNDING_BOX,
           preferred_geo_swlat: 10,
@@ -1919,7 +1956,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_has_subscribers
-      after_delayed_job_finishes do
+      after_delayed_job_finishes( ignore_run_at: true ) do
         @o = Observation.make!( user: user )
         @c = Comment.make!( parent: @o )
         @i = Identification.make!( observation: @o )
@@ -2054,7 +2091,7 @@ shared_examples_for "an ObservationsController" do
 
       it "should allow creation if observer prefers editng by curators" do
         u = o.user
-        u.update_attributes( preferred_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS )
+        u.update( preferred_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS )
         expect( u.preferred_observation_fields_by ).to eq User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
         o.reload
         put :update_fields, format: :json, params: { id: o.id, observation: {
@@ -2070,7 +2107,7 @@ shared_examples_for "an ObservationsController" do
         expect( o.observation_field_values.first.value ).to eq "foo"
       end
       it "should not allow creation if observer prefers editng by observer" do
-        o.user.update_attributes( preferred_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER )
+        o.user.update( preferred_observation_fields_by: User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER )
         expect( o.user.preferred_observation_fields_by ).to eq User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
         put :update_fields, format: :json, params: { id: o.id, observation: {
           observation_field_values_attributes: {
@@ -2133,7 +2170,7 @@ shared_examples_for "an ObservationsController for a remembered user" do
   before do
     # Forgery protection seems to be turned off by default, so we need to turn it on here
     ActionController::Base.allow_forgery_protection = true
-    user.update_attributes( remember_token: "foo", remember_created_at: Time.now )
+    user.update( remember_token: "foo", remember_created_at: Time.now )
   end
 
   after do

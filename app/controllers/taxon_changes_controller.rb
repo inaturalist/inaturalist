@@ -79,7 +79,9 @@ class TaxonChangesController < ApplicationController
   
   def show
     user_viewed_updates_for( @taxon_change ) if logged_in?
-    unless @taxon_change.committed?
+    if @taxon_change.committed?
+      @job = @taxon_change.commit_records_job
+    else
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
@@ -142,7 +144,7 @@ class TaxonChangesController < ApplicationController
       redirect_back_or_default(@taxon_change)
       return
     end
-    if @taxon_change.update_attributes(change_params)
+    if @taxon_change.update(change_params)
       flash[:notice] = 'Taxon Change was successfully updated.'
       redirect_to taxon_change_path(@taxon_change)
       return
@@ -205,13 +207,18 @@ class TaxonChangesController < ApplicationController
     end
     return unless load_user_content_info
     @counts = {}
-    input_taxon_ids = @taxon_change.input_taxa.map(&:id)
+    taxon_ids = if params[:for_taxa] == "output"
+      @taxon_change.output_taxa.map(&:id)
+    else
+      @taxon_change.input_taxa.map(&:id)
+    end
     @reflections.each do |reflection|
       @counts[reflection.name.to_s] = current_user.send(reflection.name).
-        where("#{reflection.table_name}.taxon_id IN (?)", input_taxon_ids).
+        where("#{reflection.table_name}.taxon_id IN (?)", taxon_ids).
         count
     end
-    @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.taxon_id IN (?)", input_taxon_ids).page(params[:page])
+    @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.taxon_id IN (?)", taxon_ids).page(params[:page])
+    render layout: "bootstrap"
   end
 
   def commit_records
@@ -422,7 +429,7 @@ class TaxonChangesController < ApplicationController
 
   def load_user_content_info
     @reflections = []
-    skip_reflections = %w(identifications update_subscriptions lists)
+    skip_reflections = %w(identifications update_subscriptions lists taxon_changes taxon_curators)
     has_many_reflections = User.reflections.select{|k,v| v.macro == :has_many}
     has_many_reflections.each do |k, reflection|
       next if skip_reflections.include?(k.to_s)

@@ -17,6 +17,9 @@
         - unless site.press_url.blank?
           %p
             %a{ href: site.press_url }=t :press
+        - unless site.jobs_url.blank?
+          %p
+            %a{ href: site.jobs_url }=t :jobs
         - unless site.blog_url.blank?
           %p
             %a{ href: site.blog_url }=t :our_blog
@@ -27,10 +30,10 @@
         %p
           %a{ href: site.privacy_url }=t :privacy
       %div{ class: t(:donate, default: "donate" ).size > 7 ? "col-xs-3 buttons-col" : "col-xs-3 buttons-col short-text" }
-        - if Site.default && @site && @site.id == Site.default.id
+        - if Site.default && @site && @site.id == Site.default&.id
           .one-line
             = link_to t(:donate), donate_path( utm_content: "footer-button", utm_campaign: "default", utm_medium: "web" ), class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:donate)
-            = link_to t(:store), "https://store.inaturalist.org", class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:store)
+            = link_to t(:store_caps, default: t( :store ) ), "https://store.inaturalist.org", class: "btn btn-inat btn-primary btn-block btn-donate", title: t(:store)
         .social-media
           - unless site.facebook_url.blank?
             = link_to site.facebook_url, :class => "social-media-link facebook", title: t(:facebook) do
@@ -64,8 +67,9 @@
             %span.caret
             %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
           %ul.dropdown-menu
-            - I18n.t( "locales", locale: :en ).keys.each do |locale|
+            - locales_sorted_by_localized_name = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", locale: _1, default: t( "locales.#{_1}" ) ).downcase }
+            - locales_sorted_by_localized_name.each do |locale|
               %li
-                = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
+                = link_to I18n.t( "locales.#{locale}", locale: locale, default: t( "locales.#{locale}" ) ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
             %li.divider{ role: "separator" }
             %li= link_to I18n.t( "help_translate!" ), "/pages/translate"

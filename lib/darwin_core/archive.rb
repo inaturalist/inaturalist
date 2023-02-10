@@ -19,11 +19,11 @@ module DarwinCore
       @opts[:core] ||= DarwinCore::Cores::OCCURRENCE
       @opts[:extensions] = [@opts[:extensions]].flatten.compact
       @opts[:metadata] ||= if @opts[:core] == DarwinCore::Cores::OCCURRENCE
-        File.join(Rails.root, "app", "views", "observations", "dwc.eml.erb")
+        File.join( "observations", "dwc" )
       else
-        File.join(Rails.root, "app", "views", "taxa", "dwc.eml.erb")
+        File.join( "taxa", "dwc" )
       end
-      @opts[:descriptor] ||= File.join(Rails.root, "app", "views", "observations", "dwc.descriptor.builder")
+      @opts[:descriptor] ||= File.join("observations", "dwc_descriptor")
       @opts[:quality] ||= @opts[:quality_grade] || "research"
       @opts[:photo_licenses] ||= ["CC0", "CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
       @opts[:media_licenses] = @opts[:photo_licenses].map(&:downcase)
@@ -32,12 +32,14 @@ module DarwinCore
       @opts[:private_coordinates] ||= false
       @opts[:taxon_private_coordinates] ||= false
       @opts[:photographed_taxa] ||= false
+      @opts[:processes] ||= 1
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
 
       # Make a unique dir to put our files
       @opts[:work_path] = Dir.mktmpdir
       FileUtils.mkdir_p @opts[:work_path], :mode => 0755
+      logger.debug "Using working directory: #{@opts[:work_path]}"
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
@@ -82,17 +84,16 @@ module DarwinCore
       end
       descriptor_path = make_descriptor
       logger.debug "Descriptor: #{descriptor_path}"
-      cache_taxonomy
       data_paths = make_data
       logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
       if @opts[:with_taxa]
         logger.info "Making taxa extension..."
-        paths += make_api_all_taxon_data
+        paths += [make_api_all_taxon_data]
       end
-      archive_path = make_archive(*paths)
+      archive_path = make_archive( *paths )
       logger.debug "Archive: #{archive_path}"
-      FileUtils.mv(archive_path, @opts[:path])
+      FileUtils.mv( archive_path, @opts[:path] )
       logger.info "Archive generated: #{@opts[:path]}"
       if @benchmarks
         logger.info %w(BENCHMARK TOTAL AVG).map{|h| h.ljust( 30 )}.join( " " )
@@ -100,28 +101,7 @@ module DarwinCore
           logger.info [key, times.sum.round(5), (times.sum.to_f / times.size).round(5)].map{|h| h.to_s.ljust( 30 )}.join( " " )
         end
       end
-      if @opts[:additional_with_taxa_path]
-        logger.info "Making taxa extension..."
-        paths << make_api_all_taxon_data
-        archive_path = make_archive(*paths)
-        logger.debug "Moving #{archive_path} to #{@opts[:additional_with_taxa_path]}"
-        FileUtils.mv(archive_path, @opts[:additional_with_taxa_path])
-
-        # Make a POST request to an endpoint indicating the archive with taxon data is updated
-        if @opts[:post_taxon_archive_to_url] && @opts[:post_taxon_archive_as_url]
-          options = {
-           body: {
-              name: "iNaturalist",
-              url: @opts[:post_taxon_archive_as_url]
-           }.to_json,
-           headers: {
-             "Content-Type" => "application/json"
-           }
-          }
-          logger.debug "Posting #{options[:body]} to #{@opts[:post_taxon_archive_to_url]}"
-          response = HTTParty.post( @opts[:post_taxon_archive_to_url], options )
-        end
-      end
+      upload_to_aws_s3
       @opts[:path]
     end
 
@@ -131,11 +111,12 @@ module DarwinCore
         metadata_observation_params[:created_d2] = Time.now
       end
       m = DarwinCore::Metadata.new( @opts.merge(
-        observations_params: metadata_observation_params
+        observations_params: metadata_observation_params,
+        template: @opts[:metadata]
       ) )
-      tmp_path = File.join(@opts[:work_path], "metadata.eml.xml")
-      open(tmp_path, 'w') do |f|
-        f << m.render(:file => @opts[:metadata])
+      tmp_path = File.join( @opts[:work_path], "metadata.eml.xml" )
+      File.open( tmp_path, "w" ) do | f |
+        f << m.render
       end
       tmp_path
     end
@@ -180,10 +161,18 @@ module DarwinCore
           end
         end
       end
-      d = DarwinCore::Descriptor.new(core: @opts[:core], extensions: extensions, ala: @opts[:ala])
-      tmp_path = File.join(@opts[:work_path], "meta.xml")
-      open(tmp_path, 'w') do |f|
-        f << d.render(:file => @opts[:descriptor])
+      d = DarwinCore::Descriptor.new(
+        template: @opts[:descriptor],
+        handlers: [:builder],
+        formats: [:xml],
+        core: @opts[:core],
+        extensions: extensions,
+        ala: @opts[:ala],
+        include_uuid: @opts[:include_uuid]
+      )
+      tmp_path = File.join( @opts[:work_path], "meta.xml" )
+      File.open( tmp_path , "w" ) do |f|
+        f << d.render
       end
       tmp_path
     end
@@ -206,13 +195,23 @@ module DarwinCore
           preloads += obs_based_extension_info[ext][:preloads]
           @extension_paths[ext] = obs_based_extension_info[ext][:path]
         end
-        observations_in_batches( observations_params, preloads, label: "obs_based_extensions" ) do |batch|
+        observation_ids_written = { }
+        process_observations(
+          observations_params,
+          preloads,
+          @opts.merge( {
+            label: "obs_based_extensions"
+          } )
+        ) do |batch|
+          batch = batch.filter{ |o| !observation_ids_written[o.id] }
           obs_based_extensions.each do |ext|
-            send( "write_#{ext}_data", batch, obs_based_extension_info[ext][:file] )
+            extension_file = CSV.open( @extension_paths[ext], "a" )
+            send( "write_#{ext}_data", batch, extension_file )
+            extension_file.close
           end
-        end
-        obs_based_extensions.each do |ext|
-          obs_based_extension_info[ext][:file].close
+          batch.each do |o|
+            observation_ids_written[o.id] = true
+          end
         end
       end
 
@@ -231,6 +230,8 @@ module DarwinCore
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
+      params[:d1] = @opts[:d1]
+      params[:d2] = @opts[:d2]
       params[:created_d1] = @opts[:created_d1]
       params[:created_d2] = @opts[:created_d2]
       if @opts[:photos].to_s == "true"
@@ -244,6 +245,23 @@ module DarwinCore
         params[:swlng] = @opts[:swlng]
         params[:nelat] = @opts[:nelat]
         params[:nelng] = @opts[:nelng]
+      end
+      if @opts[:with_annotations]
+        recognized_term_ids = DarwinCore::Occurrence::ANNOTATION_CONTROLLED_TERM_MAPPING.values.map do |l|
+          ControlledTerm.first_term_by_label( l )
+        end.compact.map( &:id )
+        params[:term_id] = recognized_term_ids.join( "," ) if recognized_term_ids.any?
+      elsif @opts[:with_controlled_terms]
+        term_ids = @opts[:with_controlled_terms].map do |term|
+          ControlledTerm.first_term_by_label( term.underscore.humanize )
+        end.compact.map( &:id )
+        params[:term_id] = term_ids.join( "," ) if term_ids.any?
+      end
+      if @opts[:with_controlled_values]
+        term_value_ids = @opts[:with_controlled_values].map do |term|
+          ControlledTerm.first_term_by_label( term.underscore.humanize )
+        end.compact.map( &:id )
+        params[:term_value_id] = term_value_ids.join( "," ) if term_value_ids.any?
       end
       params
     end
@@ -261,9 +279,12 @@ module DarwinCore
     end
 
     def make_occurrence_file
-      @occurrence_terms = DarwinCore::Occurrence::TERMS
+      @occurrence_terms = DarwinCore::Occurrence::TERMS.dup
       if @opts[:ala]
         @occurrence_terms += DarwinCore::Occurrence::ALA_EXTRA_TERMS
+      end
+      if @opts[:include_uuid]
+        @occurrence_terms += [DarwinCore::Occurrence::OTHER_CATALOGUE_NUMBERS_TERM]
       end
       headers = DarwinCore::Occurrence.term_names( @occurrence_terms )
       fname = "observations.csv"
@@ -271,22 +292,25 @@ module DarwinCore
 
       preloads = [
         :taxon,
-        { user: [:stored_preferences, :provider_authorizations] }, 
+        { user: [:stored_preferences, :provider_authorizations] },
         :quality_metrics, 
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },
-        { annotations: { controlled_value: [:labels], votes_for: {} } }
+        { annotations: { controlled_value: [:labels], votes_for: {} } },
+        { site: :place }
       ]
       if @opts[:community_taxon]
         preloads << :community_taxon
       end
       file = CSV.open( tmp_path, "w" )
       file << headers
-      { path: tmp_path, file: file, preloads: preloads }
+      file.close
+      { path: tmp_path, preloads: preloads }
     end
 
     def write_occurrence_data( observations, csv )
       @fake_view ||= FakeView.new
+      taxon_ranked_ancestors = DarwinCore::Archive.lookup_taxa_for_obs_batch( observations )
       observations.each do |observation|
         benchmark(:obs) do
           private_coordinates = if @opts[:private_coordinates]
@@ -294,12 +318,13 @@ module DarwinCore
           elsif @opts[:taxon_private_coordinates]
             [nil, Observation::OPEN].include?( observation.geoprivacy )
           end
-          observation = DarwinCore::Occurrence.adapt(observation, view: @fake_view,
+          observation = DarwinCore::Occurrence.adapt(observation,
+            view: @fake_view,
             private_coordinates: private_coordinates,
             community_taxon: @opts[:community_taxon]
           )
           if observation.dwc_taxon
-            observation.set_ranked_ancestors( generate_ranked_ancestors( observation.taxon.id ) )
+            observation.set_ranked_ancestors( taxon_ranked_ancestors[observation.dwc_taxon.id] )
           end
           row = @occurrence_terms.map do |field, uri, default, method|
             key = method || field
@@ -342,9 +367,15 @@ module DarwinCore
       CSV.open(tmp_path, 'w') do |csv|
         csv << headers
         if @taxa.blank?
-          scope.find_each do |t|
-            DarwinCore::Taxon.adapt(t)
-            csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+          scope.includes( :source ).find_in_batches( batch_size: 1000 ) do |batch|
+            taxon_ranked_ancestors = DarwinCore::Archive.lookup_taxa_ancestors(
+              batch.map( &:id ), batch.map( &:ancestry ).map{ |a| a.try( :split, "/" ) }.flatten.uniq.compact
+            )
+            batch.each do |t|
+              DarwinCore::Taxon.adapt(t)
+              t.set_ranked_ancestors( taxon_ranked_ancestors[t.id] )
+              csv << DarwinCore::Taxon::TERMS.map{|field, uri, default, method| t.send(method || field)}
+            end
           end
         else
           @taxa.each do |taxon|
@@ -410,13 +441,22 @@ module DarwinCore
       tmp_path = File.join(@opts[:work_path], fname)
       
       params = observations_params
-      preloads = [
-        { observation_photos: { photo: [:file_prefix, :file_extension, :user, :flags] } },
-        { observation_sounds: { sound: :user } }
+      preloads = [ {
+        observation_photos: {
+          photo: [
+            :file_prefix, :file_extension, :user, :flags, :photo_metadata
+          ] }
+        },
+        {
+          observation_sounds: {
+            sound: :user
+          }
+        }
       ]
       file = CSV.open( tmp_path, "w" )
       file << headers
-      { path: tmp_path, file: file, preloads: preloads }
+      file.close
+      { path: tmp_path, preloads: preloads }
     end
 
     def write_simple_multimedia_data( observations, csv )
@@ -464,7 +504,8 @@ module DarwinCore
       preloads = [ { observation_field_values: :observation_field } ]
       file = CSV.open( tmp_path, "w" )
       file << headers
-      { path: tmp_path, file: file, preloads: preloads }
+      file.close
+      { path: tmp_path, preloads: preloads }
     end
 
     def write_observation_fields_data( observations, csv )
@@ -485,7 +526,8 @@ module DarwinCore
       preloads = [ { project_observations: :project } ]
       file = CSV.open( tmp_path, "w" )
       file << headers
-      { path: tmp_path, file: file, preloads: preloads }
+      file.close
+      { path: tmp_path, preloads: preloads }
     end
 
     def write_project_observations_data( observations, csv )
@@ -506,7 +548,8 @@ module DarwinCore
       preloads = [ :user ]
       file = CSV.open( tmp_path, "w" )
       file << headers
-      { path: tmp_path, file: file, preloads: preloads }
+      file.close
+      { path: tmp_path, preloads: preloads }
     end
 
     def write_user_data( observations, csv )
@@ -575,11 +618,49 @@ module DarwinCore
       tmp_path
     end
 
-    def observations_in_batches(params, preloads, options = {}, &block)
-      batch_times = []
+    def self.partition_range( start_id, max_id, partitions = 1 )
+      partition_start_id = start_id
+      partition_ranges = []
+      (1..partitions).each do |i|
+        partition_end_id = ( max_id * i ) / partitions
+        partition_ranges << { start_id: partition_start_id, end_id: partition_end_id }
+        partition_start_id = partition_end_id + 1
+      end
+      partition_ranges
+    end
+
+    def process_observations( params, preloads, options = {}, &block )
       max_id = Observation.maximum( :id )
+      if options[:processes] > 1
+        # use the Parallel gem if more than one process was requested
+        range_partitions = DarwinCore::Archive.partition_range( 1, max_id, options[:processes] )
+        Parallel.each( range_partitions, in_processes: options[:processes] ) do |range|
+          observations_in_batches(
+            params,
+            preloads,
+            range[:start_id],
+            range[:end_id],
+            options,
+            &block
+          )
+        end
+      else
+        observations_in_batches(
+          params,
+          preloads,
+          1,
+          max_id,
+          options,
+          &block
+        )
+      end
+    end
+
+    def observations_in_batches( params, preloads, start_id, end_id, options = {} )
+      batch_times = []
       search_chunk_size = 200000
       chunk_start_id = 1
+      last_seen_observation_id = nil
       if !params[:created_d1] && !params[:created_d2]
         # no date limits provided. We want to set a default upper limit of roughly when
         # the archive started exporting. Don't add created_d2 to the ES query, which
@@ -590,11 +671,16 @@ module DarwinCore
       # initial loop splits queries into batches by setting the search param
       # `id_below`. This make queries with very large result sets faster overall
       # with little overhead for small queries.
-      while chunk_start_id <= max_id
+      chunk_start_id = start_id
+      while chunk_start_id <= end_id
         params[:min_id] = chunk_start_id
-        params[:max_id] = chunk_start_id + search_chunk_size - 1
-        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10, logger: logger ) do
-          Observation.search_in_batches( params, logger: logger ) do |batch|
+        params[:max_id] = [chunk_start_id + search_chunk_size - 1, end_id].min
+        try_and_try_again( [
+                  Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+                  Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
+          Observation.search_in_batches( params.merge(
+            per_page: 1000
+          ), logger: logger ) do |batch|
             avg_batch_time = if batch_times.size > 0
               (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
             else
@@ -614,8 +700,14 @@ module DarwinCore
               Observation.preload_associations(batch, preloads)
             end
             filtered_obs = batch.select do |observation|
-              ! ( @opts[:community_taxon] && observation.community_taxon.blank? ||
-                   max_observation_created && observation.created_at > max_observation_created )
+              ! ( ( @opts[:community_taxon] && observation.community_taxon.blank? ) ||
+                  ( max_observation_created && observation.created_at > max_observation_created ) ||
+                  ( last_seen_observation_id && observation.id <= last_seen_observation_id ) )
+            end
+            batch.uniq!
+            batch.sort!
+            if last_obs = filtered_obs.last
+              last_seen_observation_id = last_obs.id
             end
             yield filtered_obs
             batch_times << (Time.now - observations_start)
@@ -627,54 +719,76 @@ module DarwinCore
       end
     end
 
-    def make_archive(*args)
+    def make_archive( *args )
       fname = "dwca.zip"
-      tmp_path = File.join(@opts[:work_path], fname)
-      fnames = args.map{|f| File.basename(f)}
-      system "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join(' ')}"
+      tmp_path = File.join( @opts[:work_path], fname )
+      fnames = args.map {| f | File.basename( f ) }
+      cmd = "cd #{@opts[:work_path]} && zip -D #{tmp_path} #{fnames.join( ' ' )}"
+      logger.debug( "Running #{cmd}")
+      system cmd
       tmp_path
     end
 
-    def cache_taxonomy
-      @cached_taxa = { }
-      batch_size = 1000
-      batches = ::Taxon.maximum( :id ) / batch_size
-      ( 0..batches ).each do |batch_index|
-        self.lookup_taxon_ancestries(
-          ::Taxon
-            .where( "id > ?", batch_index * batch_size )
-            .where( "id <= ?", ( batch_index + 1 ) * batch_size )
-        )
-      end
+    # given an array of observations, return a hash containing name and ancestry
+    # information about the observations' taxa
+    def self.lookup_taxa_for_obs_batch( observations )
+      taxon_ids = observations.map{ |o| [o.taxon_id, o.community_taxon_id] }.flatten.uniq.compact
+      ancestor_taxon_ids = ::Taxon.where( id: taxon_ids ).pluck( :ancestry ).
+        map{ |a| a.try( :split, "/" ) }.flatten.uniq.compact
+      lookup_taxa_ancestors( taxon_ids, ancestor_taxon_ids )
     end
 
-    def lookup_taxon_ancestries( scope )
-      scope.pluck( :id, :name, :rank, :ancestry ).each do |row|
+    def self.lookup_taxa_ancestors( taxon_ids, ancestor_taxon_ids )
+      cached_taxa = { }
+      ::Taxon.where( id: ( taxon_ids + ancestor_taxon_ids ).uniq ).
+        pluck( :id, :name, :rank, :ancestry ).each do |row|
         ( taxon_id, name, rank, ancestry ) = row
         ancestor_ids = ancestry.blank? ? [] : ancestry.split( "/" ).map( &:to_i )
-        @cached_taxa[taxon_id] = {
+        cached_taxa[taxon_id] = {
           name: name,
           rank: rank,
           parent_id: ancestor_ids.last || 0,
           ancestor_ids: ancestor_ids
          }
       end
+      taxa_ranked_ancestors = Hash[taxon_ids.map do |taxon_id|
+        [taxon_id, generate_ranked_ancestors( taxon_id, cached_taxa )]
+      end]
+      return taxa_ranked_ancestors
     end
 
-    def generate_ranked_ancestors( taxon_id )
+    # given a taxon_id and cached taxon information from #lookup_taxa_for_obs_batch,
+    # return a hash of each rank and taxon name in the taxon's ancestry
+    def self.generate_ranked_ancestors( taxon_id, cached_taxa = { } )
       ranked_ancestors = { }
-      return ranked_ancestors unless @cached_taxa
-      taxon = @cached_taxa[taxon_id]
+      taxon = cached_taxa[taxon_id]
       return ranked_ancestors unless taxon
       taxon[:ancestor_ids].each do |ancestor_id|
-        if ancestor = @cached_taxa[ancestor_id]
+        if ancestor = cached_taxa[ancestor_id]
           # first instance of rank takes priority
-          ranked_ancestors[ancestor[:rank].to_sym] ||= ancestor
+          ranked_ancestors[( ancestor[:rank] + "_name" ).to_sym] ||= ancestor[:name]
         end
       end
       # include itself
-      ranked_ancestors[taxon[:rank].to_sym] ||= taxon
+      ranked_ancestors[( taxon[:rank] + "_name" ).to_sym] ||= taxon[:name]
       ranked_ancestors
+    end
+
+    def upload_to_aws_s3
+      return unless @opts[:aws_s3_path]
+      s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml" ) )
+      client = ::Aws::S3::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
+      )
+      resource = Aws::S3::Resource.new( client: client )
+      bucket = resource.bucket( CONFIG.s3_bucket )
+      object = bucket.object( @opts[:aws_s3_path] )
+      object.upload_file( @opts[:path], {
+        acl: "public-read",
+        content_encoding: "zip"
+      } )
     end
 
   end

@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
-import moment from "moment-timezone";
-import uuidv4 from "uuid/v4";
+import moment from "moment";
+import { v4 as uuidv4 } from "uuid";
 import actions from "../actions/actions";
 import util from "./util";
 
@@ -24,8 +24,6 @@ const ObsCard = class ObsCard {
       observation_field_values: [],
       projects: [],
       changedFields: { },
-      /* global TIMEZONE */
-      time_zone: TIMEZONE,
       uuid: uuidv4()
     };
     Object.assign( this, defaultAttrs, attrs );

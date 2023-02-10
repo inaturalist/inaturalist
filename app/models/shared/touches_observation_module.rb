@@ -8,6 +8,7 @@ module Shared::TouchesObservationModule
   def touch_observation
     return unless observation
     return if observation.bulk_delete
+    return if observation.id_previously_changed?
     if respond_to?(:wait_for_obs_index_refresh) && wait_for_obs_index_refresh
       observation.wait_for_index_refresh = true
     end

@@ -1,3 +1,4 @@
-= link_to "&laquo; Back to applications".html_safe, oauth_applications_path, :class => "crumb"
-%h2=t :edit_application
-= render 'form', :application => @application
+.container
+  = link_to t( :back_to_applications ).html_safe, oauth_applications_path, class: "crumb"
+  %h2=t( :edit_application )
+  = render "form", application: @application

@@ -2,6 +2,9 @@
 <%= t(:editing) %> <%= @taxon.name %>
 <% end %>
 
+<%= hidden_field_tag "taxon_ancestor_id", @taxon.ancestry, { :id => "taxon-ancestor-id" } %>
+<%= hidden_field_tag "taxon_id", @taxon.id, { :id => "taxon-id" } %>
+
 <%= render :partial => 'form_head' %>
 
 <div id="pageheader" class="last column span-24">

@@ -1,0 +1,180 @@
+kk:
+  #Number of people who have added identifications
+  x_identifiers_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> Сарапшы'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> Сарапшылар'
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> бақылау"
+    other: "<span class='count'>%{count}</span> бақылаулар"
+  x_observers_html:
+    one: '<span class="count">%{count}</span> Бақылаушы'
+    other: '<span class="count">%{count}</span> Бақылаушылар'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> түр"
+    other: "<span class='count'>%{count}</span> түрлер"
+  about_licenses: Лицензиялар туралы
+  account_settings: Аккаунт баптаулары
+  add_observations: Бақылау қосу
+  already_have_an_account_log_in_html: Аккаунтыңыз бар ма? <strong>Кіру.</strong>
+  birthday: Туған күні
+  calendar: Күнтізбе
+  check_this_box_if_html: |
+    Жүктеп салынған контентке <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Атриуция-Коммерциялық емес лицензиясын</a> қолданғыңыз келсе, осы құсбелгіні қойыңыз. Бұл кез келген адам сіздің фотосуреттеріңізді және/немесе бақылауларыңызды рұқсат сұрамай-ақ көшіріп, қайта пайдалана алады дегенді білдіреді, егер олар сіздің автор екеніңзді көрсетіп, туындыларды коммерциялық мақсатта пайдаланбаса. Басқа лицензияны таңдауға немесе лицензияны кейінірек жоюға болады, бірақ бұл зерттеушілермен бөлісуге арналған ең жақсы лицензия.
+  community: Қауымдастық
+  community_guidelines: Қауымдастық нұсқаулары
+  create_an_account: Аккаунт ашу
+  dashboard: Бақылау тақтасы
+  edit_observations: Бақылауларды өңдеу
+  email: Электрондық пошта
+  explore: Зерттеу
+  favorites: "Таңдаулылар"
+  forum: Форум
+  grid: Тор
+  guides: Нұсқаулықтар
+  help: Көмек
+  identify: Анықтау
+  identifications: Идентификациялар
+  inaturalist_is_a_joint_initiative: "%{site_name} California Academy of Sciences пен National Geographic Society бірлескен бастамасы."
+  join_the_largest_group_of_naturalists_in_the_world: Әлемдегі ең үлкен натуралистер тобына қосылыңыз!
+  journal: Журнал
+  journal_posts: Журнал жазбалары
+  labels: Белгілер
+  learn: Үйрену
+  learn_more: Толығырақ ақпарат
+  list: Тізім
+  lists: Тізімдер
+  log_in: Жүйеге кіру
+  managing_projects: Жобаларды басқару
+  map: Карта
+  meet: Танысу
+  more: Тағы
+  or: немесе
+  password: Құпия сөз
+  password_confirmation: 'Құпия сөзді растау'
+  people: Адамдар
+  pi_consent_desc_title: Жеке ақпарат
+  pi_consent_desc_html: |
+    <p>
+    Біз осы сайттағы аккаунттарды басқару және құпиялылық туралы заңдарды сақтау үшін пайдаланушы аттары мен электрондық пошта мекенжайлары сияқты жеке ақпаратты сақтаймыз, жеке ақпаратты осылай пайдалануға келісім беретініңізді көрсету үшін осы құсбелгіні қою керек. Біз қандай ақпаратты жинайтынымыз және оны қалай қолданатынымыз туралы көбірек білу үшін біздің
+    <a href='%{privacy_url}' target='_blank'>Құпиялылық саясаты</a>
+    мен <a href='%{terms_url}' target='_blank'>Пайдалану шарттарын</a> қараңыз.
+    </p>
+    <p>
+    Жеке ақпаратты сақтамай iNaturalist аккаунтына ие болу мүмкін емес, сондықтан бұл келісімнен бас тартудың жалғыз жолы - аккаунтыңызды жою.
+    </p>
+  pi_consent_label: |
+    Мен iNaturalist компаниясына аккаунтымды басқару үшін мен туралы шектеулі жеке ақпаратты сақтауға және өңдеуге рұқсат беремін
+  pi_consent_child_label: |
+    Мен iNaturalist компаниясына баламның аккаунтын басқару үшін балам туралы шектеулі жеке ақпарат түрлерін сақтауға және өңдеуге рұқсат беремін.
+  data_transfer_consent_desc_title: Жеке ақпаратты беруге келісім туралы
+  data_transfer_consent_desc_html: |
+    <p>
+    Еуропалық Одақтың Деректерді қорғаудың жалпы ережесі (GDPR) сияқты кейбір деректердің құпиялылығы туралы заңдар жеке ақпаратты өз юрисдикцияларынан осы ақпаратты заңмен қорғау жеткілікті деп саналмайтын басқа юрисдикцияларға тасымалдауға нақты келісімді талап етеді. <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> жылдан бастап Еуропалық Одақ Америка Құрама Штаттарын жеке ақпаратты тиісті құқықтық қорғауды қамтамасыз ететін юрисдикция ретінде қарастырмайды, әсіресе АҚШ үкіметінің АҚШ-қа кіру деректерін қадағалау мүмкіндігіне байланысты. Басқа юрисдикциялар да осындай пікірде болуы мүмкін. 
+    </p>
+    <p>
+    iNaturalist қолданбасын пайдалану электрондық пошта мекенжайыңыз сияқты жеке ақпаратты сақтауды талап етеді, барлық iNaturalist деректері Америка Құрама Штаттарында сақталады және iNaturalist қолданбасын пайдаланған кезде сіз қандай заңды юрисдикцияда екеніңізді білмейміз, сондықтан, GDPR сияқты, құпиялылық туралы заңдарды сақтау үшін, сіз осы тәуекелді түсінетіндігіңізді және қабылдайтыныңызды және жеке ақпаратыңызды АҚШ-тағы iNaturalist серверлеріне тасымалдауға келісуіңіз керек. 
+    </p>
+    <p>
+    Біз қандай ақпаратты жинайтынымыз және оны қалай қолданатынымыз туралы көбірек білу үшін біздің <a href='%{privacy_url}' target='_blank'>Құпиялық саясатын</a> және <a href='%{terms_url}' target='_blank'>Пайдалану шарттарын</a> қараңыз.
+    </p>
+    <p>
+    Жеке ақпаратты сақтамай iNaturalist аккаунтына ие болу мүмкін емес, сондықтан бұл келісімнен бас тартудың жалғыз жолы - аккаунтыңызды жою.
+    </p>
+  data_transfer_consent_label: |
+    Мен жеке ақпаратымның Америка Құрама Штаттарына берілуіне рұқсат беремін.
+  data_transfer_consent_child_label: |
+    Мен баламның жеке ақпаратын Америка Құрама Штаттарына жіберуге рұқсат беремін
+  places: Орындар
+  privacy: Құпиялылық
+  profile: Профиль
+  projects: Жобалар
+  satellite: жер серігі
+  search: Іздеу
+  sign_out: Шығу
+  sign_up: Тіркелу
+  site_stats: Сайт статистикасы
+  taxa_info: Таксондар туралы ақпарат
+  teachers_guide: Мұғалім нұсқаулығы
+  terrain: жер бедері
+  tos_privacy_guidelines_label: |
+    Мен <a href="/terms" target="_blank">Қызмет көрсету шарттарымен</a> және <a href="/privacy" target="_blank">Құпиялылық саясатымен</a> келісемін, және мен <a href="/pages/community+guidelines" target="_blank">Қауымдастық нұсқауларын</a> қарап шықтым.
+  upload: Жүктеу
+  username: Пайдаланушы аты
+  video_tutorials: Бейне оқулық
+  yes_license_my_childs_observations: Иә, ғалымдар деректерді пайдалана алуы үшін баламның фотосуреттерін, дыбыстарын және бақылауларын лицензиялаңыз (ұсынылады).
+  yes_license_my_observations_so_scientists_can_use: Иә, ғалымдар менің деректерімді пайдалана алатындай фотоларымды, дыбыстарды және бақылауларымды лицензиялаңыз (ұсынылады).
+  your_observations: Сіздің бақылауларыңыз
+  your_recent_projects: Сіздің соңғы жобаларыңыз
+  views:
+    welcome:
+      index:
+        connect_with_nature: Табиғатпен байланыс
+        explore_and_share: Табиғат әлемінен өз бақылауларыңызды зерттеп, бөлісіңіз.
+        observations_to_date: 'Осы күнге дейінгі бақылаулар'
+        species_observed: 'Бақыланған түрлер'
+        people_signed_up: 'адам тіркелді'
+        how_it_works: Бұл қалай жұмыс істейді
+        record_your_observations: Өз бақылауларыңызды жазыңыз
+        share_with_fellow_naturalists: Табиғат зерттеушілерімен бөлісіңіз
+        discuss_your_findings: Нәтижелеріңізді талқылаңыз
+        contribute_to_science: Ғылымға үлес қосыңыз
+        science_desc_html: |
+          Кез келген бақылау ең сирек кездесетін көбелектен бастап, ауладағы ең көп таралған арамшөпке дейін биоәртүрлілік ғылымына үлес қоса алады. Ғалымдарға деректеріңізді табуға және пайдалануға көмектесу үшін нәтижелеріңізді <a href='http://gbif.org' target='_blank'>Жаһандық биоалуантүрлілік ақпарат орталығы</a> сияқты ғылыми деректер репозиторийлерімен бөлісеміз. Бар болғаны бақыласаңыз болғаны.
+        nature_at_your_fingertips: Табиғат сіздің қолыңызда
+        keep_track: Бақылауды жалғастырыңыз
+        record_your_encounters: |
+          Басқа ағзалармен кездесулеріңізді жазып алыңыз және өмір тізімдерін бұлтта сақтаңыз.
+        create_useful_data: Пайдалы деректерді жасаңыз
+        help_scientists: Ғалымдар мен ресурстар менеджерлеріне ағзалардың қашан және қайда кездесетіндігін түсінуге көмектесіңіз.
+        crowdsource_identifications: Краудсорс идентификациялары
+        connect_with_experts: Сіз бақылайтын ағзаларды анықтай алатын мамандармен байланысыңыз.
+        become_a_citizen_scientist: Азаматтық ғалым болыңыз
+        find_a_project: "Сізді қызықтыратын миссиясы бар жобаны табыңыз немесе өз жобаңызды бастаңыз."
+        learn_about_nature: Табиғат туралы білім алыңыз
+        build_your_knowledge: Басқа натуралистермен сөйлесу және басқаларға көмектесу арқылы біліміңізді жетілдіріңіз.
+        run_a_bioblitz: Биоблицті орындаңыз
+        hold_an_event: Адамдар мүмкіндігінше көп түр табуға тырысатын іс-шара өткізіңіз.
+        works_on_all_your_devices: Барлық құрылғыларыңызда жұмыс істейді
+        install_our_mobile_apps: |
+          Мобильді қолданбаларды орнатыңыз, сонда сіз ұялы телефонды қабылдаусыз немесе Wi-Fi желісінсіз әрқашан бақылай аласыз.
+        who_uses_site_name: "%{site_name} кім пайдаланады?"
+        what_are_you_waiting_for: Сіз не күтіп тұрсыз?
+        join_today: Бүгін қосылыңыз
+  date:
+    abbr_month_names:
+      - 
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    month_names:
+      - 
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+  number:
+    human:
+      format:
+        significant: true
+        strip_insignificant_zeros: true

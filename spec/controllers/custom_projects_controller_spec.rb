@@ -11,7 +11,7 @@ describe CustomProjectsController, "new" do
   end
   
   it "should not allow access to non-managers" do
-    project.update_attributes( trusted: true )
+    project.update( trusted: true )
     u = User.make!
     sign_in u
     get :new,  params: { project_id: project.id }
@@ -19,7 +19,7 @@ describe CustomProjectsController, "new" do
   end
 
   it "should allow access by managers if project trusted" do
-    project.update_attributes( trusted: true)
+    project.update( trusted: true)
     pu = ProjectUser.make!( project: project, role: "manager" )
     sign_in pu.user
     get :new,  params: { project_id: project.id }

@@ -4,7 +4,7 @@ class FlagsController < ApplicationController
   before_action :set_model, except: [:update, :show, :destroy, :on]
   before_action :model_required, except: [:index, :update, :show, :on, :destroy]
   before_action :load_flag, only: [:show, :destroy, :update]
-  before_action :curator_or_owner_required, only: [:update]
+  before_action :check_update_permissions, only: [:update]
 
   PARTIALS = %w(dialog)
 
@@ -205,7 +205,7 @@ class FlagsController < ApplicationController
     end
     respond_to do |format|
       msg = begin
-        if @flag.update_attributes(params[:flag])
+        if @flag.update(params[:flag])
           t(:flag_saved)
         else
           t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
@@ -290,13 +290,14 @@ class FlagsController < ApplicationController
     end
   end
 
-  def curator_or_owner_required
-    unless logged_in? && @flag && (current_user.is_curator? || current_user.id == @flag.user.id)
-      flash[:error] = t(:you_dont_have_permission_to_do_that)
+  def check_update_permissions
+    unless logged_in? && @flag && ( current_user.is_curator? || current_user.id == @flag.user.id ) &&
+        ( current_user.id != @flag.flaggable_user_id || @flag.flaggable_type == "Taxon" )
+      flash[:error] = t( :you_dont_have_permission_to_do_that )
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else
-        redirect_back_or_default(root_url)
+        redirect_back_or_default( root_url )
       end
     end
   end

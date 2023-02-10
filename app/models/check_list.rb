@@ -142,8 +142,8 @@ class CheckList < List
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
     return nil unless lt && lt.taxon_id
-    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
-    filters << { term: { place_ids: lt.place.id } } if lt.place
+    filters = [ { term: { "taxon.ancestor_ids.keyword": lt.taxon_id } } ]
+    filters << { term: { "place_ids.keyword": lt.place.id } } if lt.place
     { filters: filters,
       earliest_sort_field: "id",
       range_filters: [ { term: { quality_grade: "research" } } ] }
@@ -216,7 +216,7 @@ class CheckList < List
       if listed_taxon.primary_listing
         ListedTaxon.update_cache_columns_for(listed_taxon)
       else
-        listed_taxon.primary_listed_taxon.update_attributes_on_related_listed_taxa
+        listed_taxon.primary_listed_taxon.update_on_related_listed_taxa
       end
       if !listed_taxon.valid?
         Rails.logger.debug "[DEBUG] #{listed_taxon} wasn't valid, so it's being " +
@@ -290,6 +290,9 @@ class CheckList < List
     return unless lt
     # save sets all observation associates, months stats, etc.
     lt.force_update_cache_columns = true
+    # these associations will get loaded during the model save callbacks. Forcing them to be
+    # loaded here, outside the save transaction, so the queries will be run on replica DBs
+    ListedTaxon.preload_associations( lt, [{ list: :rules }, :taxon, :place])
     unless lt.save
       Rails.logger.error "[ERROR #{Time.now}] Couldn't save #{lt}: #{lt.errors.full_messages.to_sentence}"
     end

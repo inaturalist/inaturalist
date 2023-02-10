@@ -54,7 +54,7 @@ describe AtlasesController do
 
     it "should create a listing if there's a comprehensive list for the place's parent" do
       parent_place = make_place_with_geom( admin_level: 0 )
-      place.update_attributes( parent: parent_place )
+      place.update( parent: parent_place )
       parent_place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       sign_in user
       post :alter_atlas_presence, format: :json, params: { id: atlas.id, taxon_id: taxon.id, place_id: place.id }

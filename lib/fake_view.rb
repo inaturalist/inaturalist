@@ -1,64 +1,75 @@
-# Sometimes it's just useful to have access to view helpers outside of views,
-# even if it makes you feel dirty.
-class FakeView < ActionView::Base
-  include ActionView::Helpers::TagHelper
-  include ActionView::Helpers::AssetTagHelper
-  include ActionView::Helpers::UrlHelper
-  # include ActionController::UrlWriter
+# frozen_string_literal: true
+
+#
+# Allows access to rendering, helpers, and URL helpers from anywhere. Works by
+# including URL helpers and delegating other methods to ApplicationController
+#
+class FakeView
   include Rails.application.routes.url_helpers
-  include ApplicationHelper
-  include PlacesHelper
-  include TaxaHelper
-  include GuidesHelper
-  include ObservationsHelper
-  include UsersHelper
 
-  @@default_url_options = {
-    host: Site.default ? Site.default.url.sub( "http://", '' ) : "http://localhost",
-    port: Site.default && URI.parse( Site.default.url ).port != 80 ? URI.parse( Site.default.url ).port : nil
-  }
-  
-  def method_missing(method, *args)
-    # hack around those pesky protected url methods
-    if method.to_s =~ /url$/ && respond_to?(method)
-      send(method, *args)
-    else
-      super
-    end
+  def initialize( options = {} )
+    super()
+    return unless options[:view_paths]
+
+    controller.view_paths += options[:view_paths]
   end
 
-  def initialize(options = {})
-    super
-    self.view_paths = [File.join(Rails.root, 'app/views'), options[:view_paths]].flatten.compact
-  end
-  
-  def self.method_missing(method, *args)
-    @@fake_view ||= self.new
-    @@fake_view.send(method, *args)
+  def default_url_options
+    @default_url_options ||= {
+      host: Site.default ? Site.default.url.sub( "http://", "" ) : "http://localhost",
+      port: Site.default && URI.parse( Site.default.url ).port != 80 ? URI.parse( Site.default.url ).port : nil,
+      protocol: URI.parse( Site.default.url ).scheme
+    }
   end
 
-  def self.default_url_options
-    @@default_url_options
+  def self.fake_instance
+    @fake_instance ||= new
   end
 
-  def config
-    fake_controller.config
+  def self.method_missing( method, *args )
+    fake_instance.send( method, *args )
   end
 
-  def fake_controller
-    @fake_controller ||= ApplicationController.new
+  def self.respond_to_missing?( method, include_private = false )
+    fake_instance.respond_to?( method, include_private )
   end
 
-  def params
-    {}
+  def controller
+    @controller ||= ApplicationController
+  end
+
+  def method_missing( method, *args )
+    controller.send( method, *args )
+  rescue NoMethodError
+    controller.helpers.send( method, *args )
+  end
+
+  def respond_to_missing?( method, include_private = false )
+    controller.send( :respond_to_missing?, method, include_private ) || controller.helpers.send( :respond_to_missing?, method, include_private )
   end
 
   # Overriding this so that assets we have chosen not to be used with a digest
   # don't actually use a digest
   def asset_path( source, options = {} )
-    if source !~/^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
+    if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
       return "/assets/#{source}"
     end
+
     super( source, options )
+  end
+
+  def place_geometry_kml_url( options = {} )
+    place = options[:place] || @place
+    return "" if place.blank?
+
+    place_geometry = options[:place_geometry]
+    place_geometry ||= place.place_geometry_without_geom if place.association( :place_geometry_without_geom ).loaded?
+    place_geometry ||= place.place_geometry if place.association( :place_geometry ).loaded?
+    place_geometry ||= PlaceGeometry.without_geom.where( place_id: place ).first
+    if place_geometry.blank?
+      "".html_safe
+    else
+      "#{place_geometry_url( place, format: "kml" )}?#{place_geometry.updated_at.to_i}".html_safe
+    end
   end
 end

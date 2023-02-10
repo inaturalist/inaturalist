@@ -7,9 +7,9 @@ import {
   loadingDiscussionItem,
   fetchObservationsStats,
   stopLoadingDiscussionItem,
-  showAlert,
   addIdentification
 } from "../actions";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
 
@@ -17,6 +17,7 @@ import { updateEditorContent } from "../../shared/ducks/text_editors";
 // <IdentificationFormContainer observation={foo} />
 function mapStateToProps( state, ownProps ) {
   return {
+    config: state.config,
     observation: ownProps.observation,
     currentUser: state.config.currentUser,
     blind: state.config.blind,
@@ -27,12 +28,13 @@ function mapStateToProps( state, ownProps ) {
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitIdentification: ( identification, options = {} ) => {
-      const ident = Object.assign( { }, identification, {
+      const ident = {
+        ...identification,
         observation: ownProps.observation
-      } );
+      };
       dispatch( loadingDiscussionItem( ident ) );
       const boundPostIdentification = disagreement => {
-        const params = Object.assign( { }, ident );
+        const params = { ...ident };
         if ( _.isNil( ident.disagreement ) ) {
           params.disagreement = disagreement || false;
         }

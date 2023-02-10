@@ -224,32 +224,7 @@ class ApplicationController < ActionController::Base
     @footless = true
     @no_footer_gap = true
     @responsive = true
-    es_query = {
-      has: ["photos"],
-      per_page: 100,
-      order_by: "votes",
-      order: "desc",
-      place_id: @site.try(:place_id).blank? ? nil : @site.place_id,
-      projects: ["log-in-photos"]
-    }
-    @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    if @observations.blank?
-      es_query.delete(:projects)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if @observations.blank?
-      es_query.delete(:place_id)
-      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
-    end
-    if es_query[:projects].blank?
-      ratio = params[:ratio].to_f
-      ratio = 1 if ratio <= 0
-      @observations = @observations.select do |o|
-        photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
-        r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
-        r < ratio
-      end
-    end
+    @observations = @site.login_featured_observations
   end
 
   def get_flickraw
@@ -313,6 +288,22 @@ class ApplicationController < ActionController::Base
         # with the response body
         Logstasher.write_unprocessable( request, response, session, current_user )
       end
+    end
+  end
+
+  #
+  # if Makara is configured with replica DBs, querying of replicas is currently
+  # disabled by default. Actions must use this in a `prepend_around_action` to
+  # have any queries run against the replicas. e.g.
+  #
+  #    prepend_around_action :enable_replica
+  #
+  def enable_replica
+    begin
+      ActiveRecord::Base.connection.enable_replica
+      yield
+    ensure
+      ActiveRecord::Base.connection.disable_replica
     end
   end
 
@@ -396,12 +387,15 @@ class ApplicationController < ActionController::Base
       class_name = class_name.to_s.underscore.camelcase
       klass = Object.const_get(class_name)
     end
+    record_id = params[options[:param]] || params[:id] || params["#{class_name}_id"]
     if klass.respond_to?(:find_by_uuid)
-      record = klass.find_by_uuid(params[:id] || params["#{class_name}_id"])
+      record = klass.find_by_uuid( record_id )
     end
-    record ||= klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
+    record ||= klass.find( record_id ) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
-    render_404 unless record
+    return render_404 unless record
+
+    record
   end
 
   def require_owner(options = {})
@@ -461,7 +455,7 @@ class ApplicationController < ActionController::Base
     
     update_params = update_params.to_h.reject{|k,v| v.blank?} if update_params
     if update_params.is_a?(Hash) && !update_params.empty?
-      # prefs.update_attributes(update_params)
+      # prefs.update(update_params)
       if logged_in?
         update_params.each do |k,v|
           new_value = if v == "true"
@@ -770,7 +764,9 @@ class ApplicationController < ActionController::Base
     return unless logged_in?
     updates = UpdateAction.where( resource: record )
     if options[:delay]
-      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      ActiveRecord::Base.connection.without_sticking do
+        UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+      end
     else
       UpdateAction.user_viewed_updates( updates, current_user.id )
     end

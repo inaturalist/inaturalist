@@ -5,15 +5,15 @@ require "spec_helper"
 describe LocalPhoto, "creation" do
   elastic_models( Observation )
   describe "creation" do
-    it "should set the native page url" do
+    it "should not set the native page url" do
       p = LocalPhoto.make!
-      expect( p.native_page_url ).not_to be_blank
+      expect( p.native_page_url ).to be_blank
     end
 
-    it "should set the native_realname" do
+    it "should not set the native_realname" do
       u = User.make!( name: "Hodor Hodor Hodor" )
       lp = LocalPhoto.make!( user: u )
-      expect( lp.native_realname ).to eq( u.name )
+      expect( lp.native_realname ).to be_blank
     end
 
     it "should set absolute image urls" do
@@ -26,15 +26,16 @@ describe LocalPhoto, "creation" do
       expect { LocalPhoto.make!( user: nil, subtype: "FlickrPhoto" ) }.to_not raise_error
     end
 
-    it "uses id as native_photo id unless it has a subtype" do
+    it "sets native_photo id unless it has a subtype" do
       lp = LocalPhoto.make!
-      expect( lp.native_photo_id ).to eq lp.id.to_s
+      expect( lp.native_photo_id ).to be_blank
       lp = LocalPhoto.make!( subtype: "FlickrPhoto", native_photo_id: "1234" )
       expect( lp.native_photo_id ).to eq "1234"
     end
 
     it "should not remove metadata" do
-      p = LocalPhoto.new( metadata: { test_attr: "test_val" } )
+      p = LocalPhoto.new( )
+      pm = PhotoMetadata.new( photo: p, metadata: { test_attr: "test_val" } )
       expect( p ).to receive( "file=" ).at_least( :once ).and_return( nil )
       p.file = { styles: { } }
       expect( p.metadata[:test_attr] ).to eq "test_val"
@@ -154,6 +155,41 @@ describe LocalPhoto, "to_observation" do
       expect( o.positional_accuracy ).not_to eq 0
       expect( o.positional_accuracy ).to be_nil
     end
+
+    describe "time zone" do
+      before(:all) { load_time_zone_geometries }
+      after(:all) { unload_time_zone_geometries }
+
+      it "should be set for a gecko in Malaysia" do
+        p = build :local_photo
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if observer time zone is Hawaii" do
+        p = build( :local_photo, user: create( :user, time_zone: "Hawaii" ) )
+        p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+        p.extract_metadata
+        o = p.to_observation
+        expect( o.user.time_zone ).to eq "Hawaii"
+        expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+        expect( o.time_observed_at_in_zone.hour ).to eq 22
+      end
+
+      it "should be set for a gecko in Malaysia if operating time zone is PST" do
+        Time.use_zone( "America/Los_Angeles" ) do
+          p = build :local_photo
+          p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "gecko-foot-malaysia.jpg" ) )
+          p.extract_metadata
+          o = p.to_observation
+          expect( o.zic_time_zone ).to eq "Asia/Kuala_Lumpur"
+          expect( o.time_observed_at_in_zone.hour ).to eq 22
+        end
+      end
+    end
   end
 
   context "PNG" do
@@ -189,11 +225,11 @@ describe LocalPhoto, "to_observation" do
       of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
         datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["sex=female"]
         }
-      }
+      })
       o = lp.to_observation
       expect( o.observation_field_values.detect { |ofv| ofv.observation_field_id == of.id }.value ).to eq "female"
     end
@@ -202,11 +238,11 @@ describe LocalPhoto, "to_observation" do
       of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
         datatype: ObservationField::TEXT )
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["sex=whatevs"]
         }
-      }
+      })
       o = lp.to_observation
       puts "o.errors: #{o.errors.full_messages.to_sentence}" unless o.valid?
       expect( o ).to be_valid
@@ -215,11 +251,11 @@ describe LocalPhoto, "to_observation" do
 
     it "should add arbitrary tags from keywords" do
       lp = LocalPhoto.make!
-      lp.metadata = {
+      pm = PhotoMetadata.new( photo: lp, metadata: {
         dc: {
           subject: ["tag1", "tag2"]
         }
-      }
+      })
       o = lp.to_observation
       expect( o.tag_list ).to include "tag1"
       expect( o.tag_list ).to include "tag2"
@@ -228,11 +264,11 @@ describe LocalPhoto, "to_observation" do
     it "should not import branded descriptions" do
       LocalPhoto::BRANDED_DESCRIPTIONS.each do | branded_description |
         lp = LocalPhoto.make!
-        lp.metadata = {
+        pm = PhotoMetadata.new( photo: lp, metadata: {
           dc: {
             description: branded_description
           }
-        }
+        })
         o = lp.to_observation
         expect( o.description ).to be_blank
       end
@@ -261,7 +297,7 @@ describe LocalPhoto, "flagging" do
     Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     f2 = Flag.make!( flaggable: lp, flag: Flag::SPAM )
     lp.reload
-    f2.update_attributes( resolved: true, resolver: User.make! )
+    f2.update( resolved: true, resolver: User.make! )
     lp.reload
     %w(original large medium small thumb square).each do | size |
       expect( lp.send( "#{size}_url" ) ).to be =~ /copyright/
@@ -298,14 +334,14 @@ describe LocalPhoto, "flagging" do
   #   it "should change the URLs back when resolved" do
   #     photo = flag.flaggable
   #     expect( photo.original_url ).to be =~ /copyright/
-  #     flag.update_attributes( resolved: true, resolver: User.make! )
+  #     flag.update( resolved: true, resolver: User.make! )
   #     photo.reload
   #     %w(original large medium small thumb square).each do |size|
   #       expect( lp.send( "#{size}_url" ) ).not_to be =~ /copyright/
   #     end
   #   end
   #   it "should revert quality grade" do
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload
@@ -313,7 +349,7 @@ describe LocalPhoto, "flagging" do
   #   end
   #   it "should not revert quality grade if there's another unresolved copyright flag" do
   #     other_flag = Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
-  #     flag.update_attributes( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
+  #     flag.update( resolved: true, resolved_at: Time.now, resolver: make_curator, comment: "foo" )
   #     Delayed::Worker.new.work_off
   #     expect( flag ).to be_resolved
   #     @obs.reload

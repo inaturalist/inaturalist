@@ -32,7 +32,7 @@ describe ObservationsExportFlowTask do
       o = Observation.make!
       ft = ObservationsExportFlowTask.make
       ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
-      ft.run( debug: true, logger: Logger.new( STDOUT ) )
+      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
       expect( ft.outputs ).to be_blank
       expect( ft.exception ).not_to be_blank
     end
@@ -107,6 +107,23 @@ describe ObservationsExportFlowTask do
       expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id } ).not_to be_blank
     end
 
+    it "should filter by not_in_place" do
+      u = User.make!
+      place = make_place_with_geom
+      o_in_place = Observation.make!( user: u, latitude: place.latitude, longitude: place.longitude )
+      o_not_in_place = Observation.make!( user: u, latitude: place.latitude + 10, longitude: place.longitude + 10 )
+      expect( u.observations.count ).to eq 2
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&not_in_place=#{place.id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      id_col_idx = csv[0].index( "id" )
+      expect( csv.detect {| row | row[id_col_idx].to_i == o_in_place.id } ).to be_blank
+      expect( csv.detect {| row | row[id_col_idx].to_i == o_not_in_place.id } ).not_to be_blank
+    end
+
     it "should allow JSON output" do
       o = Observation.make!
       ft = ObservationsExportFlowTask.make
@@ -118,7 +135,7 @@ describe ObservationsExportFlowTask do
       expect(output).not_to be_blank
       expect(output.file.path).to be =~ /json.zip$/
       expect {
-        JSON.parse(open(File.join(ft.work_path, "#{ft.basename}.json")).read)
+        JSON.parse( File.open( File.join( ft.work_path, "#{ft.basename}.json" ) ).read )
       }.not_to raise_error
     end
 
@@ -135,6 +152,28 @@ describe ObservationsExportFlowTask do
       expect(csv.size).to eq 2
       expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
       expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
+    end
+
+    describe "email notification" do
+      let(:o) { create :observation }
+      let(:ft) {
+        ft = build :observations_export_flow_task
+        ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
+        ft.save!
+        ft
+      }
+      it "should happen if requested" do
+        ft.update( options: { email: true } )
+        expect {
+          ft.run
+        }.to change( ActionMailer::Base.deliveries, :size ).by 1
+      end
+      it "should not happen if not requested" do
+        expect( ft.options[:email] ).to be_blank
+        expect {
+          ft.run
+        }.not_to change( ActionMailer::Base.deliveries, :size )
+      end
     end
   end
 
@@ -282,7 +321,7 @@ describe ObservationsExportFlowTask do
             }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
-        stub_request(:get, /\/v1\/observations\?.*per_page=1/).
+        stub_request(:get, /\/v1\/observations\?.*per_page=1[^0]/).
           to_return(
             status: 200,
             body: {
@@ -406,17 +445,45 @@ describe ObservationsExportFlowTask do
         expect( csv[1] ).not_to include o.private_latitude.to_s
       end
     end
-  end
 
-  describe "columns" do
-    it "should be configurable" do
-      o = Observation.make!(:taxon => Taxon.make!)
-      ft = ObservationsExportFlowTask.make(:options => {:columns => Observation::CSV_COLUMNS[0..0]})
-      ft.inputs.build(:extra => {:query => "taxon_id=#{o.taxon_id}"})
+    it "should include private coordinates if the observer trusts the exporter" do
+      o = make_private_observation( taxon: create( :taxon ) )
+      viewer = create :user
+      Friendship.make!( user: o.user, friend: viewer, trust: true )
+      expect( o ).to be_coordinates_viewable_by( viewer )
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
       ft.save!
       ft.run
       csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv[0].size).to eq 1
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
+    end
+  end
+
+  describe "columns" do
+    it "should be configurable such that just the first column is included" do
+      o = Observation.make!( taxon: Taxon.make! )
+      ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS[0..0] } )
+      ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv[0].size ).to eq 1
+    end
+
+    it "should be configurable such that all columns are included" do
+      o = Observation.make!( taxon: Taxon.make! )
+      ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS } )
+      ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv[0].size ).to eq Observation::CSV_COLUMNS.size
+      expect( csv[1].size ).to eq Observation::CSV_COLUMNS.size
+      Observation::CSV_COLUMNS.each do | column |
+        expect( csv[0] ).to include column
+      end
     end
 
     it "should never include anything but allowed columns" do
@@ -456,6 +523,20 @@ describe ObservationsExportFlowTask do
       expect( csv[0][1] ).to eq ident_column
       expect( csv[1][0].to_i ).to eq i.observation_id
       expect( csv[1][1] ).to eq i.taxon.name
+    end
+  end
+
+  describe "user_name column" do
+    it "should have a value if the observer set a name" do
+      o = create :observation, user: create( :user, name: "Balthazar" )
+      ft = ObservationsExportFlowTask.make( options: { columns: %w(user_name) } )
+      ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      user_name_index = csv[0].index( "user_name" )
+      expect( csv[1][user_name_index] ).not_to be_blank
+      expect( csv[1][user_name_index] ).to eq o.user.name
     end
   end
 end

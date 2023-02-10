@@ -1,6 +1,7 @@
 #encoding: utf-8
 class Photo < ApplicationRecord
   acts_as_flaggable
+  has_one :photo_metadata, autosave: true, dependent: :destroy
   belongs_to :user
   belongs_to :file_extension
   belongs_to :file_prefix
@@ -17,7 +18,6 @@ class Photo < ApplicationRecord
     :remote_small_url,
     :remote_square_url,
     :remote_thumb_url
-  serialize :metadata
 
   include Shared::LicenseModule
   # include ActsAsUUIDable
@@ -46,21 +46,16 @@ class Photo < ApplicationRecord
 
   def parse_extension
     return unless file.url( :original )
-    if CONFIG.usingS3 && matches = file.url( :original ).match(/original\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    # the local path is configured to be a little different: ...:id/:style/:basename.:extension
-    if !CONFIG.usingS3 && matches = file.url( :original ).match(/original\/[^\.]+\.([^?]*)(\?|$)/)
-      return matches[1]
-    end
-    nil
+
+    ext = File.extname( URI.parse( file.url( :original ) ).path ).sub( ".", "" )
+    ext.blank? ? nil : ext
   end
 
   def parse_url_prefix
     original =  file.url( :original )
     return unless original
     if original !~ /http/
-      original = FakeView.uri_join( FakeView.root_url, original ).to_s
+      original = FakeView.uri_join( UrlHelper.root_url, original ).to_s
     end
     if matches = original.match( /^(.*)\/#{id}\/original/ )
       return matches[1]
@@ -104,7 +99,7 @@ class Photo < ApplicationRecord
       return self.instance_variable_get("@remote_#{size}_url")
     end
     if processing?
-      return FakeView.uri_join( FakeView.root_url, LocalPhoto.new.file.url( size ) )
+      return FakeView.uri_join( UrlHelper.root_url, LocalPhoto.new.file.url( size ) )
     end
     "#{file_prefix.prefix}/#{id}/#{size}.#{file_extension.extension}"
   end
@@ -157,6 +152,24 @@ class Photo < ApplicationRecord
       end
     end
     return if photo_taxa.blank?
+    # If there are synonyms on the same branch, only keep the coarsest one
+    # (e.g. if a genus and subgenus have the same name, throw out the
+    # subgenus)
+    photo_taxa = photo_taxa.group_by(&:name).map do | name, name_taxa |
+      if name_taxa.size > 1
+        sorted_taxa = name_taxa.sort_by{|t| t.rank_level.to_i }
+        keepers = []
+        while sorted_taxa.size > 0
+          t = sorted_taxa.shift
+          unless sorted_taxa.detect {| st | t.ancestor_ids.include?( st.id ) }
+            keepers << t
+          end
+        end
+        keepers
+      else
+        name_taxa
+      end
+    end.flatten
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
     # if there are synonyms, don't decide
@@ -182,7 +195,7 @@ class Photo < ApplicationRecord
     nil
   end
   
-  def update_attributes(attributes)
+  def update(attributes)
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
       self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
       self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
@@ -309,6 +322,10 @@ class Photo < ApplicationRecord
       height: height,
       width: width
     }
+  end
+
+  def metadata
+    photo_metadata&.metadata
   end
 
   def self.repair_photos_for_user(user, type)
@@ -467,7 +484,7 @@ class Photo < ApplicationRecord
       :methods => [:license_code, :attribution, :square_url,
         :thumb_url, :small_url, :medium_url, :large_url],
       :except => [:file_processing, :file_file_size,
-        :file_content_type, :file_file_name, :mobile, :metadata, :user_id, 
+        :file_content_type, :file_file_name, :mobile, :metadata, :user_id,
         :native_realname, :native_photo_id]
     }
   end
@@ -489,6 +506,34 @@ class Photo < ApplicationRecord
       json["#{ size }_url"] = best_url(size)
     end
     json
+  end
+
+  def self.update_photo_native_columns_and_copy_metadata( min_id, max_id )
+    start_time = Time.now
+    counter = 0
+    Photo.where("id > ? AND id <= ?", min_id, max_id ).find_in_batches( batch_size: 100 ) do |batch|
+      Photo.transaction do
+        batch.each do |photo|
+          if counter % 1000 == 0
+            puts "#{counter}, ID: #{photo.id}, Time: #{(Time.now - start_time).round(2)}"
+          end
+          counter += 1
+          if photo.type == "LocalPhoto" && photo.subtype.blank? &&
+            ( !photo.native_photo_id.nil? || !photo.native_page_url.nil? ||
+              !photo.native_username.nil? || !photo.native_realname.nil? )
+            photo.update_columns(
+              native_photo_id: nil,
+              native_page_url: nil,
+              native_username: nil,
+              native_realname: nil
+            )
+          end
+          next if photo.metadata.blank?
+          PhotoMetadata.where( photo_id: photo.id ).first_or_create
+          PhotoMetadata.where( photo_id: photo.id ).update_all( metadata: photo.metadata )
+        end
+      end
+    end
   end
 
   private

@@ -212,24 +212,24 @@
                 %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: @site.email_help ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
             .list-group
               - for flag in @flags
-                - flaggable = flag.flaggable
-                - flaggable_class = flaggable.class
-                - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
                 = link_to flag, class: "list-group-item" do
-                  %span.pull-right
-                    %span.glyphicon.glyphicon-comment
-                    = flag.comments.size
-                  - if flag.user
-                    = flag.user.login
-                  - else
-                    = @site.site_name_short
-                  = t(:flagged)
-                  %strong
-                    = ( flaggable.respond_to?(:user) && flaggable.user ) ? "#{flaggable.user.login}'s" : t(:a)
-                    = flaggable_class.name.humanize.downcase
-                  = succeed ":" do
-                    = t :because_of
-                  = flag.flag
+                  %table#flags-table.table-condensed
+                    %tr
+                      %th=t :flagger
+                      %td
+                        - if flag.user
+                          = flag.user.login
+                        - else
+                          = @site.site_name_short
+                      %td.nobr{ rowspan: 3 }
+                        %span.glyphicon.glyphicon-comment
+                        = flag.comments.size
+                    %tr
+                      %th=t :content
+                      %td= flag_content( flag, no_edit: true, no_body: true )
+                    %tr
+                      %th=t :reason
+                      %td.reason= truncate( strip_tags( flag.flag ) )
             .panel-footer
               = link_to t(:view_all), flags_path, class: "btn btn-primary btn-sm"
         .panel.panel-default
@@ -250,7 +250,7 @@
         .panel.panel-default
           = link_to t(:recent_users), recent_users_path, class: "btn btn-primary btn-block btn-sm"
       %h3.page-header
-        = t :more
+        = t :more_info_title
       - unless current_user.prefers_hide_getting_started_onboarding
         #getting_started_panel.panel.panel-default
           .panel-heading

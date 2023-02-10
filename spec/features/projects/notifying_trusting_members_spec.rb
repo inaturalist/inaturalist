@@ -58,14 +58,14 @@ describe "notifying trusting members" do
     it "prefers_rule_introduced changes" do
       expect( project.prefers_rule_introduced ).to be_nil
       expect_deliveries_to_increment_when do
-        project.update_attributes( prefers_rule_introduced: true )
+        project.update( prefers_rule_introduced: true )
       end
     end
     it "when trust enabled" do
-      project.update_attributes( prefers_user_trust: false )
+      project.update( prefers_user_trust: false )
       project.reload
       expect_deliveries_to_increment_when do
-        project.update_attributes( prefers_user_trust: true )
+        project.update( prefers_user_trust: true )
       end
     end
   end
@@ -74,21 +74,21 @@ describe "notifying trusting members" do
   # oaks, suddenly they have access to that obs too
   it "should not email the member about a change to members-only" do
     expect do
-      project.update_attributes( preferred_rule_members_only: true )
+      project.update( preferred_rule_members_only: true )
     end.not_to change( ActionMailer::Base.deliveries, :size )
   end
   it "should not email members that don't trust the project" do
     pu = trusting_user
-    pu.update_attributes( prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE )
+    pu.update( prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE )
     expect( pu.prefers_curator_coordinate_access_for ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_NONE
     expect do
-      without_delay { project.update_attributes( prefers_rule_introduced: true ) }
+      without_delay { project.update( prefers_rule_introduced: true ) }
     end.not_to change( ActionMailer::Base.deliveries, :size )
   end
   it "should not email members that trust the project if trust is disabled" do
-    project.update_attributes( prefers_user_trust: false )
+    project.update( prefers_user_trust: false )
     expect do
-      without_delay { project.update_attributes( prefers_rule_introduced: true ) }
+      without_delay { project.update( prefers_rule_introduced: true ) }
     end.not_to change( ActionMailer::Base.deliveries, :size )
   end
   it "should queue a single job to email the trusting members after multiple changes" do
@@ -107,9 +107,9 @@ describe "notifying trusting members" do
     ).to eq 1
   end
   it "should not email members if trust has been disabled for the project" do
-    project.update_attributes( prefers_user_trust: false )
+    project.update( prefers_user_trust: false )
     expect do
-      project.update_attributes( prefers_rule_introduced: true )
+      project.update( prefers_rule_introduced: true )
     end.not_to change( ActionMailer::Base.deliveries, :size )
   end
 end

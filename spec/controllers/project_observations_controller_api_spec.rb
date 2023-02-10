@@ -84,7 +84,7 @@ shared_examples_for "a ProjectObservationsController" do
 
     it "should set the user_id" do
       o = Observation.make!
-      project_user.update_attributes(role: ProjectUser::CURATOR)
+      project_user.update(role: ProjectUser::CURATOR)
       post :create, format: :json, params: { project_observation: {observation_id: o.id, project_id: project.id} }
       po = o.project_observations.last
       expect( po.user_id ).to eq user.id
@@ -92,7 +92,7 @@ shared_examples_for "a ProjectObservationsController" do
 
     it "should not allow addition to invite-only projects if the observer wasn't invited" do
       o = Observation.make!
-      project_user.update_attributes(role: ProjectUser::CURATOR)
+      project_user.update(role: ProjectUser::CURATOR)
       p = Project.make!(preferred_membership_model: Project::MEMBERSHIP_INVITE_ONLY, user: user)
       post :create, format: :json, params: { project_observation: { observation_id: o.id, project_id: p.id } }
       expect( p.observations ).not_to include o
@@ -100,7 +100,7 @@ shared_examples_for "a ProjectObservationsController" do
 
     it "should allow addition to projects if the observer isn't a member" do
       o = Observation.make!
-      project_user.update_attributes(role: ProjectUser::CURATOR)
+      project_user.update(role: ProjectUser::CURATOR)
       expect(project.users.where(id: o.user_id)).to be_blank
       post :create, format: :json, params: { project_observation: { observation_id: o.id, project_id: project.id } }
       expect( project.observations ).to include o
@@ -110,7 +110,7 @@ shared_examples_for "a ProjectObservationsController" do
       let(:other_observation) { Observation.make! }
       it "should work for people other than the observer" do
         pu = ProjectUser.make!(project: project, user: other_observation.user)
-        project_user.update_attributes(role: ProjectUser::CURATOR)
+        project_user.update(role: ProjectUser::CURATOR)
         post :create, format: :json, params: {
           project_observation: { project_id: project.id, observation_id: other_observation.id }
         }
@@ -118,7 +118,7 @@ shared_examples_for "a ProjectObservationsController" do
         expect(other_observation.projects.to_a).to include project
       end
       it "should work for projects the observer hasn't joined" do
-        project_user.update_attributes(role: ProjectUser::CURATOR)
+        project_user.update(role: ProjectUser::CURATOR)
         post :create, format: :json, params: {
           project_observation: { project_id: project.id, observation_id: other_observation.id }
         }
@@ -126,8 +126,8 @@ shared_examples_for "a ProjectObservationsController" do
         expect(other_observation.projects.to_a).to include project
       end
       it "should not allow non-observers if the observer doesn't allow it" do
-        project_user.update_attributes(role: ProjectUser::CURATOR)
-        other_observation.user.update_attributes(preferred_project_addition_by: User::PROJECT_ADDITION_BY_NONE)
+        project_user.update(role: ProjectUser::CURATOR)
+        other_observation.user.update(preferred_project_addition_by: User::PROJECT_ADDITION_BY_NONE)
         post :create, format: :json, params: {
           project_observation: { project_id: project.id, observation_id: other_observation.id }
         }
@@ -135,8 +135,8 @@ shared_examples_for "a ProjectObservationsController" do
         expect(other_observation.projects.to_a).not_to include project
       end
       it "should not allow addition to projects the observer hasn't joined if the observer doesn't allow it" do
-        project_user.update_attributes(role: ProjectUser::CURATOR)
-        other_observation.user.update_attributes(preferred_project_addition_by: User::PROJECT_ADDITION_BY_JOINED)
+        project_user.update(role: ProjectUser::CURATOR)
+        other_observation.user.update(preferred_project_addition_by: User::PROJECT_ADDITION_BY_JOINED)
         post :create, format: :json, params: {
           project_observation: { project_id: project.id, observation_id: other_observation.id }
         }
@@ -185,7 +185,7 @@ shared_examples_for "a ProjectObservationsController" do
     end
     it "should work for a project curator" do
       po = ProjectObservation.make!(observation: observation, project: project, user: observation.user)
-      project_user.update_attributes(role: ProjectUser::CURATOR)
+      project_user.update(role: ProjectUser::CURATOR)
       delete :destroy, format: :json, params: { id: po.id }
       expect(ProjectObservation.find_by_id(po.id)).to be_blank
     end
