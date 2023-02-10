@@ -1018,8 +1018,6 @@ en:
   # disagreements are identifications that disagree with other identifications on the same observation
   changing_the_ancestry_to_that_parent: Changing the ancestry to that parent may result in unintended disagreements. Please analyze them first, which may take a while.
   changing_the_geoprivacy: 'Changing the geoprivacy alters how other people see the location of your observation.'
-  changing_your_password_description: Changing your password will log you out of all active
-    iNaturalist sessions across your devices
   check_above_for_errors: Check above for errors
   check_back_soon: Check back soon!
   check_here_to_autoload_description: Check here to auto-load the description from Wikipedia. You might want to uncheck it when a taxon's scientific name is also a non-scientific word or common mispelling, like "Parus".
@@ -3614,6 +3612,14 @@ en:
     invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
+  password_change_description: Changing your password will log you out of all active
+    iNaturalist sessions across your devices
+  password_change_logout_warning: After you change your password, you will be signed out and you
+    will need to sign in again with your new password.
+  password_change_observations_warning: You will also be signed out of the iNaturalist mobile apps
+    or any other apps or websites that post to iNaturalist on your behalf, so make sure you have
+    uploaded any pending observations before you do this. Any observations that are not uploaded
+    will be lost.
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   people: People

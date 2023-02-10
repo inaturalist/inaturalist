@@ -5,7 +5,7 @@ import moment from "moment";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
-import ChangePassword from "./change_password";
+import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
 
 const Profile = ( {
@@ -172,7 +172,7 @@ const Profile = ( {
           />
           { emailConfirmation }
         </SettingsItem>
-        <ChangePassword changePassword={changePassword} showError={showError} />
+        <ChangePasswordContainer showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
