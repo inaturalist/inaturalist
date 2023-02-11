@@ -140,7 +140,7 @@ module ObservationSearch
         api_params.delete(:observations_taxon_ids)
       end
       unless api_params[:taxon_ids].blank?
-        api_params[:taxon_id] += params[:taxon_ids].map{ |id| id.split(",") }.flatten.map(&:to_i)
+        api_params[:taxon_id] += params[:taxon_ids].map{ |id| id.to_s.split(",") }.flatten.map(&:to_i)
         api_params[:taxon_id].uniq!
         api_params.delete(:taxon_ids)
       end
