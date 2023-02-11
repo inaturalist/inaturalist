@@ -2372,6 +2372,7 @@ es-MX:
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
+    kazakh: Kazajo
     korean: Coreano
     latvian: Letón
     lithuanian: Lituano
@@ -2452,6 +2453,10 @@ es-MX:
     taxonomic: taxonomía
     photo: fotos
   list_was_successfully_created: La lista fue creada exitosamente.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, y %{three}"
+  list_with_two_items: "%{one} y %{two}"
   listed_taxa: lista de especies o grupos
   listed_taxon: Especie o grupo enlistado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
@@ -2503,6 +2508,7 @@ es-MX:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    kk: Kazajo
     kn: Canarés
     ko: Coreano
     lb: Luxemburgués
@@ -2602,6 +2608,7 @@ es-MX:
       every_publicly_visible_observation: Todas las observaciones públicas creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
+      gbif_network_description2: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility
       observations: Observaciones
       place_boundary: Límites del lugar
       checklist_places: Lista de lugares
@@ -2621,6 +2628,9 @@ es-MX:
   maximum_positional_accuracy_including_unknown: |
     Precisión máxima de posición, incluyendo observaciones sin precisión de posición
   media: Multimedia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: "y"
   media_type: Tipo de medios
   medium: mediana
   meet: Conoce
@@ -3836,6 +3846,9 @@ es-MX:
   places_warning_export_complex_boundary_html: |
     Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considera
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
+  places_warning_look_for_existing2_html: |
+    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que
+    no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, y muchos otros límites políticos.
   places_warning_please_keep_in_mind: |
     Ten en cuenta las siguientes restricciones:
   places_warning_projects_can_have_multiple_places: |
@@ -5290,6 +5303,7 @@ es-MX:
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} preferido %{noun} por %{owner}"
+  user_faved_a_noun_by_you: "%{user} ha marcado como favorito %{noun} por %{owner}"
   user_faved_this_observation: "%{user} añadió esta observación a sus favoritas"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
@@ -6541,7 +6555,10 @@ es-MX:
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
       kml_field_desc2: |
-        KML de la frontera del lugar. Puedes hacer uno utilizando Google Maps, Google Earth o la mayoría de las aplicaciones de SIG. Debes tener al menos un polígono de menos de 1 MB (5 MB para los curadores de sitio).
+        KML del límite de lugar. Puede crear uno usando Google Maps, Google
+        Earth o la mayoría de aplicaciones GIS. Debe tener al menos un polígono, ser
+        menos de 1 MB (5 MB para curadores del sitio), y tienen un área menor que el estado
+        de Estados Unidos de Texas (Aprox:695,662 km²).
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
