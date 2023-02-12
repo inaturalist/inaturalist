@@ -527,7 +527,6 @@ tr:
   analyze_clashes: İstenmeyen Anlaşmazlıkları Analiz Et
   analyze_ids: Tanımlama Analizi
   ancestor_taxon: Ata Sınıfı
-  and: ve
   and_other_taxa: "&amp; Diğer Sınıflar"
   android: Android
   animals: Hayvanlar
@@ -811,7 +810,6 @@ tr:
   browse_species_that_occur_near_this_observation: Bu gözlemin yakınında oluşan türlere göz at.
   built_with_site_guides_html: "<a href='%{url}'>%{site_name} İlkeleri</a> ile oluşturuldu"
   bulk_import_of_filename_is_complete: "%{filename} dosyasının toplu içe aktarması tamamlandı"
-  by: tarafından
   by_everyone: Herkes tarafından
   by_user: "%{user} tarafından"
   by_you: Senin tarafından
@@ -2037,8 +2035,13 @@ tr:
   home: Ana Sayfa
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Ayarlanacak Saat:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Ancak, yeniden kullanım için lisanslı değildir ve lisans seçeneklerine uyan veri havuzları ile paylaşılmayacaktır.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Lisans tercihlerini <a class="linky" href="/users/edit#content">hesap ayarlarından</a> değiştirebilirsin.
   however_there_were_some_issues: "Ancak, bazı sorunlar vardı: %{issues}"
@@ -2395,6 +2398,10 @@ tr:
     taxonomic: sınıflandırmasal
     photo: fotoğraf
   list_was_successfully_created: Liste başarıyla oluşturuldu.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ve %{three}"
+  list_with_two_items: "%{one} ve %{two}"
   listed_taxa: Listelenen Sınıflar
   listed_taxon: Listelenen sınıf
   listed_taxon_updated: Listelenen sınıf güncellendi
@@ -2511,6 +2518,8 @@ tr:
   lookup: Ara
   low: Düşük
   lowest_rank: En Düşük Sıra
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Yönetici yap
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Ana içerik
@@ -2543,7 +2552,7 @@ tr:
       every_publicly_visible_observation: iNaturalist ağında oluşturulan herkese açık her bir gözlem
       featured_observations: Öne çıkan gözlemler
       gbif_network: GBIF ağı
-      gbif_network_description: Küresel Biyoçeşitlilik Bilişim Tesisi tarafından dağıtılan müzelerden ve diğer oluşum sağlayıcılardan gelen kayıtlar
+      gbif_network_description2: Müzelerden ve Küresel Biyoçeşitlilik Danışma Tesisi tarafından gelen diğer veri sağlayıcılardan alınan kayıtlar.
       observations: Gözlemler
       place_boundary: Konum sınırı
       checklist_places: Kontrol listesi konumları
@@ -2562,6 +2571,9 @@ tr:
   maximum_positional_accuracy_including_unknown: |
     Konumsal doğruluğu olmayan gözlemler dahil azami konumsal doğruluk
   media: Medya
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ve
   media_type: Medya Türü
   medium: orta
   meet: Tanış
@@ -3748,8 +3760,8 @@ tr:
   places_merged_successfully: Konumlar başarıyla birleştirildi!
   places_warning_export_complex_boundary_html: |
     Karmaşık bir sınırdan gözlemleri dışa aktarmaya çalışıyorsan, bunları keyfi sınırlar çizebileceğin <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF'ten indirmeyi</a> veya mevcut konumları ya da bir sınırlayıcı kutuyu kullanarak iNat'ten dışa aktarmayı ve ardından indirdikten sonra verileri tekrar filtrelemeyi düşün.
-  places_warning_look_for_existing_html: |
-    Kopya oluşturmadığından emin olmak için <a href="/search?source[]=places">mevcut konumlara</a> bak. Tüm kıtalar ve ülkelerin yanı sıra ülkenin altındaki iki idari düzey için zaten konumlarımız var.
+  places_warning_look_for_existing2_html: |
+    Mükerrer bir yer oluşturmadığından emin olmak için <a href="/search?source[]=places">mevcut konumlara</a> bak. Tüm kıtalar, ülkeler ve diğer birçok siyasi sınır için zaten konumlarımız var.
   places_warning_please_keep_in_mind: |
     Lütfen aşağıdaki kısıtlamaları göz önünde bulundurun:
   places_warning_projects_can_have_multiple_places: |
@@ -5170,6 +5182,7 @@ tr:
   user_disagrees_with_previous_finer_identifications: "%{user} karar verilmiş tanımda hemfikir değil"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}i favori yaptı"
+  user_faved_a_noun_by_you: "%{user}, %{noun}ini favorilerine ekledi."
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz değil olarak işaretlendi"
   user_flagged_as_a_spammer_html: "%{user} gereksiz içerikçi olarak işaretlendi"
@@ -6355,8 +6368,6 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
-      kml_field_desc: |
-        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsiniz. En az bir poligonun 1 MB'ın altında olması (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olması gerekir.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
@@ -7016,13 +7027,9 @@ tr:
           Danışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından 
           derleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.
         monthly_supporter_desc_html: |
-          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin
-          kar amacı gütmeyen operasyonunu desteklemek için California Sciences Academy
-          (ABD IRS EIN 94-1156258) tarafından alınan aylık otomatik katkılarda bulunur.
-          <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>.
-          Desteğinizi onayladığımızda, bu durumu profilinizde görüntülemek için bu
-          kutuyu işaretleyebileceksiniz. Not: Aylık Destekçi olduğunuzu onaylamak için,
-          iNaturalist'te yaptığınız gibi Donorbox'ta aynı e-posta adresini kullanmanız gerekir.
+          iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Network sitelerinin kâr amacı gütmeyen işleyişini desteklemek için California Academy of Sciences (United States IRS EIN 94-1156258) tarafından alınan otomatik aylık katkılarda bulunurlar.
+          <a href="%{url}">Aylık Destekçi olmak için buraya tıkla</a>.
+          Desteğini onayladığımızda, bu durumu profilinde görüntülemek için bu kutuyu işaretleyebileceksin. Not: Aylık Destekçi olduğunu teyit edebilmemiz için Donorbox ve iNaturalist'teki e-posta adresleri tam olarak eşleşmelidir. Eğer farklı ise birini diğeriyle eşleşecek şekilde değiştirin.
         muting_desc_html: |
           <p>
           Birini sessize almak; gözlemlerine yorum yapması, sana mesaj atması, senden bahsetmesi gibi benzer durumlar hakkında bildirim almanı önler. Sessize almak, kişinin herhangi bir şey yapmasını engellemeden onu görmezden gelmene yardımcı olur.

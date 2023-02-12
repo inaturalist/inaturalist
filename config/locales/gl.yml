@@ -514,7 +514,6 @@ gl:
   analyze_clashes: Analizar Desacordos Involuntarios
   analyze_ids: Analizar IDs
   ancestor_taxon: Taxon Ancestral
-  and: E
   and_other_taxa: "&amp; Outros Taxóns"
   android: Android
   animals: Animais
@@ -770,7 +769,6 @@ gl:
   browse_species_that_occur_near_this_observation: Busca especies que ocorran preto desta observación.
   built_with_site_guides_html: "Construido coas Guías de <a href='%{url}'>%{site_name} </a>"
   bulk_import_of_filename_is_complete: "Completouse a importación masiva de %{filename}"
-  by: Por
   by_everyone: Por todos
   by_user: "por %{user}"
   by_you: propias
@@ -2316,7 +2314,6 @@ gl:
       every_publicly_visible_observation: Tódalas observacións visibles publicamente creadas na rede de iNaturalist
       featured_observations: Observacións destacadas
       gbif_network: Rede do GBIF
-      gbif_network_description: Rexistros de museos e outros provedores de presencias distribuídos pola Infraestructura Global de Informática da Biodiversidade (GBIF)
       observations: Observacións
       place_boundary: Límites do lugar
       checklist_places: Lugares da lista de verificación
@@ -3430,8 +3427,6 @@ gl:
   places_merged_successfully: '¡Os lugares combináronse satisfactoriamente!'
   places_warning_export_complex_boundary_html: |
     Se estás tentando exportar observacións dun territorio con fronteiras complexas, considera <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargalas dende GBIF</a>, onde podes debuxar fronteiras arbitrarias; ou exportalas dende iNat usando lugares existentes, ou unha caixa delimitada, e logo filtrar os dados unha descargadas.
-  places_warning_look_for_existing_html: |
-    Busca <a href="/search?source[]=places">lugares existentes</a>para asegurarte de que non estás creando un duplicado. Xa temos lugares para tódolos contientes e países, así como dous niveis administrativos inferiores a país.
   places_warning_projects_can_have_multiple_places: |
     Se estás tentando demarcar un lugar para limitar un proxecto, sabe que os proxectos poden ser compostos de varios lugares. Por exemplo, se queres compoñer un proxecto para Nova Zelanda e Australia, podes engadir requisitos para dous lugares en vez de crear un novo.
   places_warning_new_places_are_slow_html: |
@@ -5608,11 +5603,6 @@ gl:
         view_original_html: |
           Podes ver o orixinal en<a href="%{url}">%{url}</a>. Por favor, deixa as marcas por violación de dereitos de autor sen resolver se de feito esta foto viola os dereitos de autor.
     places:
-      kml_field_desc: |
-        KML do límite do lugar. Podes facer un empregando Google Maps, Google
-        Earth ou a maioría das aplicacións GIS. Debe ter polo menos un polígono de
-        menos de 1 MB (5 MB para conservadores do sitio), e ter un área menor do que o
-        Estado de Texas nos EEUU.
       edit:
         complex_boundary_note_html: |
           Este límite é demasiado complexo para editalo na web. Aínda así podes<a href="%{url}">descargar o KML</a>, editalo na aplicación GIS da túa escolla e cargar o teu KML editado directamente.
@@ -6189,10 +6179,6 @@ gl:
           </p>
         licensing_desc_html: |
           A Licenza do teu contido dalle a calquera o dereito legal de usalo sen pedir o teu consentemento, sempre que cumpra cós termos da licenza. Ademáis, %{site_name} inclúe o teu contido con licenza Creative Commons en arquivos que se actualizan regularmente producidos por selectas organizacións socias interesadas nos nosos dados. Por exemplo, incluímos rexistros Sen Dereitos De Autor (CC0), Atribución (CC BY), e Atribución-Non Comercial (CC BY-NC) no arquivo que xeramos para a <a href="http://www.gbif.org/"> Global Biodiversity Information Facility</a> (GBIF), unha organización internacional e intergubernamental que compila e distribúe información sobre a biodiversidade de todo o mundo.
-        monthly_supporter_desc_html: |
-          Os Patrocinadores Mensuais de iNaturalist fan contribucións automáticas que son recibidas pola Academia de Ciencias de California (EEUU IRS EIN 94-1156258) para apoiar a operación sen ánimo de lucro de iNaturalist e dos sitios da Rede iNaturalist.
-          <a href="%{url}">Preme aquí para ser un Patrocinador Mensual</a>.
-          Cando confirmemos o teu apoio, poderás marcar esta caixa para mostrar este estado no teu perfil. Nota: necesitarás empregar o mesmo enderezo de correo electrónico que usas en iNaturalist na Caixa de Doador para que poidamos confirmar que te fixeches Patrocinador Mensual.
         muting_desc_html: |
           <p>
           Acalar a alguén evita que recibas notificacións sobre cousas que ese alguén faga, incluíndo comentarios nas túas observacións, enviarte mensaxes, mencionarte, etc. Acalar axúdache a ignorar a alguén sen que se lle impida facer nada.

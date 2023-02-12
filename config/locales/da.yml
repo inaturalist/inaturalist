@@ -520,7 +520,6 @@ da:
   analyze_clashes: Analysér Utilsigtede Uenigheder
   analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
-  and: og
   and_other_taxa: "&amp;Andre taksa"
   android: Android
   animals: Dyr
@@ -823,7 +822,6 @@ da:
   browse_species_that_occur_near_this_observation: Gennemse arter, der forekommer nær denne observation.
   built_with_site_guides_html: "Bygget med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import af %{filename} er udført"
-  by: af
   by_everyone: Af alle
   by_user: "af %{user}"
   by_you: Af dig
@@ -2113,8 +2111,13 @@ da:
   home: Hjem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Den er dog ikke licenseret til genbrug og deles derfor ikke med datadepoter, som respekterer licensvalg.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Man kan ændre sine licensindstillinger i 
     <a class="linky" href="/users/edit#content">kontoindstillingerne</a>.
@@ -2476,6 +2479,10 @@ da:
     taxonomic: taksonomisk
     photo: foto
   list_was_successfully_created: Listen blev oprettet.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} og %{three}"
+  list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
@@ -2592,6 +2599,8 @@ da:
   lookup: Slå op
   low: lav
   lowest_rank: Laveste rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gør til administrator
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hovedindhold
@@ -2624,7 +2633,7 @@ da:
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
-      gbif_network_description: Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility
+      gbif_network_description2: Optegnelser fra muséer og andre hændelsesudbydere distribueret af Global Biodiversity Information Facility
       observations: Observationer
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
@@ -2643,6 +2652,9 @@ da:
   maximum_positional_accuracy_including_unknown: |
     Maksimal placeringsnøjagtighed, herunder observationer uden placeringsnøjagtighed
   media: Medier
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: og
   media_type: Medietype
   medium: mellem
   meet: Mød
@@ -3866,10 +3878,9 @@ da:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
     hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
     eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
-  places_warning_look_for_existing_html: |
-    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
-    kontinenter og lande, samt to administrative niveauer under
-    land.
+  places_warning_look_for_existing2_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at der ikke oprettes en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt mange andre politiske grænser.
   places_warning_please_keep_in_mind: |
     Hold flg. begrænsninger for øje:
   places_warning_projects_can_have_multiple_places: |
@@ -5397,6 +5408,7 @@ da:
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_a_noun_by_you: "%{user} gjorde %{noun} fra dig til sin favorit"
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
@@ -6750,10 +6762,6 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
-      kml_field_desc: |
-        KML af stedets omrids. Du kan lave et ved hjælp af Google Maps, Google
-        Earth eller de fleste GIS-applikationer. Skal have mindst en polygon og være
-        under 1 MB (5 MB til side kuratorer).
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
@@ -7573,7 +7581,7 @@ da:
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
           States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
           <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
-          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: E-mailadresserne brugt på Donorbox og iNaturalist skal være identiske, for at vi kan bekræfte, at du er en Monthly Supporter. Er de forskellige, så skift én af dem, så begge de er ens.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.

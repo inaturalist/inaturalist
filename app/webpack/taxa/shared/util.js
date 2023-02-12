@@ -92,11 +92,16 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
 };
 
 const commasAnd = items => {
+  const listWithNItems = I18n.t( "list_with_n_items", { one: "-ONE-", two: "-TWO-", three: "-THREE-" } );
+  const listWithTwoItems = I18n.t( "list_with_two_items", { one: "-ONE-", two: "-TWO-" } );
+  const separator = listWithNItems.match( /-ONE-(.*)-TWO-/ )[1];
+  const finalSeparator = listWithNItems.match( /-TWO-(.*)-THREE-/ )[1];
+  const twoItemSeparator = listWithTwoItems.match( /-ONE-(.*)-TWO-/ )[1];
   if ( items.length <= 2 ) {
-    return items.join( ` ${I18n.t( "and" )} ` );
+    return items.join( twoItemSeparator );
   }
   const last = items.pop( );
-  return `${items.join( ", " )}, ${I18n.t( "and" )} ${last}`;
+  return `${items.join( separator )}${finalSeparator}${last}`;
 };
 
 const windowStateForTaxon = taxon => {

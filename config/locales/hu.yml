@@ -10,7 +10,7 @@ hu:
     one: '<span class="count">%{count}</span> megjegyzés'
     other: '<span class="count">%{count}</span> megjegyzés'
   x_faves:
-    one: '%{count} kedvenc'
+    one: '%{count} kedvelve'
     other: '%{count} kedvenc'
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> bejelentés megoldva"
@@ -413,7 +413,6 @@ hu:
   amphibians: kétéltűek
   analyze_ids: Azonosítások elemzése
   ancestor_taxon: Előd taxon
-  and: és
   and_other_taxa: "&amp; Más taxonok"
   android: Android
   animals: Állatok
@@ -631,7 +630,7 @@ hu:
   #Where x is the title of a list of taxa
   batch_edit_taxa_for_x_html: "Taxonok köteges szerkesztése %{x} számára"
   batch_operations: Tömeges műveletek
-  be_the_first_to_fave_this_observation: Elsőként kedvencelheted ezt a megfigyelést...
+  be_the_first_to_fave_this_observation: Elsőként kedvelheted ezt a megfigyelést...
   become_a_donor_caps: TÁMOGATÁS
   become_a_donor_today_caps: TÁMOGATÁS
   before_importing_photos: mielőtt fotókat importálnál
@@ -663,7 +662,6 @@ hu:
   browse_projects: Böngészés a projektek között
   browse_species_that_occur_near_this_observation: Fajok keresése közel e megfigyeléshez
   bulk_import_of_filename_is_complete: "%{filename} csoportos betöltése kész"
-  by: '-'
   by_everyone: Mindenki által
   by_user: "%{user} által"
   by_you: Tőled
@@ -1534,7 +1532,7 @@ hu:
   guide_was_successfully_updated: Az útmutató sikeresen frissítve.
   guidelines: Irányelvek
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
-  has_one_or_more_faves: Legalább egyvalaki kedvencelte
+  has_one_or_more_faves: Legalább egyvalaki kedvelte
   has_photo: Van fénykép
   has_photos: Fényképpel
   has_photo_and_sound: Van fénykép és hang
@@ -1577,8 +1575,13 @@ hu:
   home: Kezdőlap
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Óraeltérés:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Viszont, nincs az újrafelhasználást engedélyező licenc hozzá és nem lesz megosztva olyan adatbázisokkal, amelyek tiszteletben tartják a licencelő választását.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Megváltoztathatod a licenc beállításaidat a
     <a class="linky" href="/users/edit#content">fiókod beállításainál</a>.
@@ -1754,7 +1757,7 @@ hu:
     identifications_in_month_year: Legtöbb meghatározás %{month_year} hónapban
     identifications_in_year: Legtöbb meghatározás %{year} évben
   leading: Vezető
-  learn: Tanulj
+  learn: Tanulás
   learn_about_the_species_live_in: 'Az itt élő fajok megismerése:'
   learn_more: További információ
   learn_more_raquo: "Bővebben"
@@ -1857,6 +1860,10 @@ hu:
     taxonomic: rendszertani
     photo: fénykép
   list_was_successfully_created: Lista sikeresen létrehozva.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} és %{three}"
+  list_with_two_items: "%{one} és %{two}"
   listed_taxon_updated: A listázott taxon frissítve
   lists: Listák
   lists_by_login:
@@ -1921,6 +1928,7 @@ hu:
     uk: Ukrán
     zh-CN: Kínai (egyszerűsített)
     zh-TW: Kínai (hagyományos)
+  localized_species_accounts: Fajok lokalizált megjelenítése
   location: Hely
   location_is_accurate: A hely pontos
   location_is_exact: a hely pontos
@@ -1952,6 +1960,8 @@ hu:
   lookup: Keresés
   low: Alsó
   lowest_rank: Legalacsonyabb rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Fő téma
   #Stub text for the main content section when editing custom project data
@@ -1974,6 +1984,7 @@ hu:
       all_observations: Minden megfigyelés
       every_publicly_visible_observation: Minden nyilvánosan látható megfigyelés az iNaturalist hálózatáról
       featured_observations: Kiemelt megfigyelések
+      gbif_network_description2: A múzeumoktól és egyéb szervezetektől származó adatok elosztója a Globális Biodiverzitás Információs Megállapodás program (Global Biodiversity Information Facility)
       observations: Megfigyelések
       place_boundary: Hely határai
       checklist_places: Lista helyei
@@ -1987,9 +1998,12 @@ hu:
   maximum_positional_accuracy_including_unknown: |
     A pozíció maximális pontossága, beleértve a pontossági adatokkal nem rendelkező megfigyeléseket is
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: és
   media_type: Médiatípus
   medium: közepes
-  meet: Ismerkedj
+  meet: Ismerkedés
   member_of_the_inaturalist_network_html: |
     Az <a href="%{url}">iNaturalist Network</a> tagja
   #As in members of a project
@@ -2164,6 +2178,7 @@ hu:
   needs_id: Meghatározásra vár
   needs_id_: Meghatározásra vár
   needs_id_expandable_html: "Azonosítás <span class='full'>kell</span>"
+  needs_id_tooltip_html: 'A meghatározásra váró megfigyelésekhez tartozik kép (esetleg hang), hely és dátum, de a közösség még nem jutott egyetértésre a meghatározással kapcsolatban. <a href="https://www.inaturalist.org/pages/help#quality">További információ a minőségi értékelésről</a>'
   needs_to_be_identified: Kell azonosítani
   new: Új
   new_and_noteworthy: Újdonságok
@@ -2288,6 +2303,7 @@ hu:
   notify_me_of_mentions: Értesítések említésekről (pl. @felhasználónév)
   notify_me_of_mentions_description: "Ha ezt kikapcsolod, nem fogsz értesítéseket kapni, ha valaki megemlít az %{site_name} oldalon."
   number_of_observations: Megfigyelések száma
+  number_selected: "# kiválasztva"
   obs: Megfigyelés
   obs_cid_d: Közösség által azonosított megfigyelés
   obs_id_d: Azonosított megfigyelés
@@ -2604,8 +2620,21 @@ hu:
   pi_consent_child_label: |
     Beleegyezem, hogy az iNaturalist korlátozott személyes információkat tároljon és dolgozzon fel gyermekemről a gyermekem fiókja kezelése érdekében.
   data_transfer_consent_desc_title: A személyes információ átadásával kapcsolatos jóváhagyásról
+  data_transfer_consent_desc_html: |
+    <p>
+    Egyes adatvédelmi jogszabályok, például az Európai Unió Általános adatvédelmi rendelete (GDPR), kifejezett hozzájárulást írnak elő a személyes adatoknak a saját joghatóságukból más, olyan joghatóságokba való továbbításához, ahol ezen adatok jogi védelme nem tekinthető megfelelőnek. Az Európai Unió <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>-tól kezdve az Egyesült Államokat már nem tekinti olyan joghatóságnak, amely megfelelő jogi védelmet biztosít a személyes adatok számára, különösen azért, mert az Egyesült Államok kormánya megfigyelheti az Egyesült Államokba érkező adatokat. Lehetséges, hogy más joghatóságok is hasonlóan vélekednek.
+    </p>
+    <p>
+    Az iNaturalist használata személyes adatok, például az email címed tárolását igényli. Az iNaturalist összes adatát az Egyesült Államokban tároljuk, és nem lehetünk biztosak abban, hogy Te milyen joghatóságban tartózkodsz, amikor az iNaturalistot használod, ezért az adatvédelmi törvényeknek, például a GDPR-nak való megfelelés érdekében el kell ismerned, hogy megértetted és elfogadod ezt a kockázatot, és beleegyezel abba, hogy személyes adataidat az iNaturalist amerikai szervereire továbbítsa.
+    </p>
+    <p>
+    Ha többet szeretnél megtudni arról, hogy milyen adatokat gyűjtünk és hogyan használjuk fel azokat, kérjük, olvasd el az <a href='%{privacy_url}' target='_blank'>Adatvédelmi szabályzatunkat</a> és a <a href='%{terms_url}' target='_blank'>Felhasználási feltételeinket</a>.
+    </p>
+    <p>
+    Nincs lehetőség iNaturalist-regisztrációra személyes adatok tárolása nélkül, így a hozzájárulás visszavonásának egyetlen módja a fiók törlése.
+    </p>
   data_transfer_consent_label: |
-    Engedélyezem, hogy személyes adataimat át lehessen vinni az Amerikai Egyesült Államokba
+    Engedélyezem a megadott személyes adataim átvitelét az Amerikai Egyesült Államokba
   data_transfer_consent_child_label: |
     Engedélyezem, hogy a gyermekem személyes adatait át lehessen vinni az Amerikai Egyesült Államokba
   pin_verb: Rögzítés
@@ -3025,8 +3054,8 @@ hu:
   places_merged_successfully: A helyek sikeresen összevonva!
   places_warning_export_complex_boundary_html: |
     Ha egy komplex határvonalon belülről szeretnél megfigyeléseket exportálni, azokat <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">ajánlatos inkább a GBIF-ről letölteni</a>, ahol tetszőleges határvonalakat rajzolhatsz. Ezen kívül az iNaturalist-ról a meglévő helyek vagy megadott határvonalak közé eső megfigyeléseket letöltés után tovább szűrheted.
-  places_warning_look_for_existing_html: |
-    A duplikációk elkerülése érdekében nézz szét a <a href="/search?source[]=places">meglévő helyek között</a>. Minden kontinenshez és országhoz létezik már hely.
+  places_warning_look_for_existing2_html: |
+    A duplikációk elkerülése érdekében nézz szét a <a href="/search?source[]=places">meglévő helyek között</a>. Minden kontinenshez, országhoz és sok más politikai területi egységhez létezik már hely.
   places_warning_please_keep_in_mind: |
     Vedd figyelembe a következő korlátozásokat:
   places_warning_new_places_are_slow_html: |
@@ -3637,6 +3666,8 @@ hu:
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_name: Taxon neve
   taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a>, megfigyelő:
   taxon_observed_by_user: "%{taxon} megfigyelve %{user} által"
   taxon_photos_updated: Taxonfotó frissítve!
   taxon_range_for_taxon_html: '%{taxon} taxonintervalluma'
@@ -3935,14 +3966,14 @@ hu:
   use_well_formed_csv: |
     Használj megfelelő formátummal rendelkező CSV-fájlt: vesszőt tartalmazó szövegnek két idézőjel között kell lennie. A legtöbb táblázatkezelő ennek megfelelően exportálja a CSV-fájlt.
   user: Felhasználó
-  user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvencelték ezt a megfigyelést"
-  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvencelték ezt a megfigyelést"
+  user1_and_user2_faved_this_observation: "%{user1} és %{user2} kedvelték ezt a megfigyelést"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2}, és %{x_others} kedvelték ezt a megfigyelést"
   user_added_a_comment_html: "%{user} hozzászólt"
-  user_added_a_fave_html: "%{user} kedvencelte"
+  user_added_a_fave_html: "%{user} kedvelte"
   user_added_a_flag_html: "%{user} bejelentést adott hozzá"
   user_added_a_x: "%{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
-  user_added_a_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  user_added_a_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_a_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_identification_html: "%{user} meghatározást javasolt"
@@ -3950,8 +3981,8 @@ hu:
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
   user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
-  user_added_an_x_to_noun_by_user_html: "%{noun} (%{by}): %{user} hozzáadott egy %{x}t"
+  user_added_an_x_to_noun_by_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_an_x_to_noun_by_user_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
   user_added_x_observations_html: "%{user} %{x} megfigyelést adott hozzá"
@@ -3965,8 +3996,9 @@ hu:
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} kedvencelte %{owner} %{noun}ét"
-  user_faved_this_observation: "%{user} kedvencelte ezt a megfigyelést"
+  user_faved_a_noun_by_owner: "%{noun}: %{user} kedvelte"
+  user_faved_a_noun_by_you: "%{noun} tőled: %{user} kedvelte"
+  user_faved_this_observation: "%{user} kedvelte ezt a megfigyelést"
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
   user_has_opted_out_of_community_id: A megfigyelő kikapcsolta a közösségi a közösségi taxont.
   user_hasnt_joined_any_projects: "%{user} még nem csatlakozott egy projekthez sem"
@@ -4173,6 +4205,7 @@ hu:
   x_of_y_people_over_two_thirds_agree_it_is: "%{y} emberből %{x} egyetért (2/3 fölött), hogy ez"
   x_project_journal: "%{project} project %{name}"
   x_sent_you_a_new_message_on_y_html: "%{x} új üzenetet küldött ekkor: %{y}: "
+  x_wrote_a_new_post_html: "%{x}: új bejegyzés"
   year: Év
   year_in_review: "%{year} áttekintése"
   year_in_review2: "%{year}. évi visszatekintő"
@@ -4605,8 +4638,6 @@ hu:
           Egy ideje nem mutatsz aktivitást %{site_name} felületén, ezért felfüggesztettük az értesítéseket. Ahhoz, hogy újra értesítéseket kapjál,
           <a href="%{login_url}">jelentkezz be újra</a> a fiókodba.
     places:
-      kml_field_desc: |
-        A hely határvonalának KML-fájlja. Ezeket Google Térképpel, Google Földdel és a legtöbb GIS-alkalmazással létre lehet hozni. Legalább egy poligont tartalmaznia kell, 1 MB-nál kevesebbet kell foglalnia (gondnokoknál ez a határ 5 MB), és Texasnál kisebbnek kell lennie.
       new:
         check_list_note: "Megjegyzés: nagyon nagy helyeknél a listák automatikusan le lesznek tiltva."
         coordinates_desc: Meg kell adnod a koordinátákat, ha nem rajzolsz körvonalat vagy nem töltesz fel KML-t.

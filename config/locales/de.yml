@@ -349,7 +349,7 @@ de:
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Angabe hinzufügen "Geschlecht: Weiblich" '
   add_sex_male_annotation: 'Angabe hinzufügen "Geschlecht: Männlich"'
-  add_sex_cannot_be_determined_annotation: 'Angabe hinzufügen: "Geschlecht: nicht bestimmbar"'
+  add_sex_cannot_be_determined_annotation: 'Angabe hinzufügen "Geschlecht: nicht bestimmbar"'
   add_some_now: Jetzt welche hinzufügen
   add_tag: Tag hinzufügen
   add_tags: Stichwörter hinzufügen
@@ -523,7 +523,6 @@ de:
   analyze_clashes: Unbeabsichtigte ID-Widersprüche analysieren
   analyze_ids: IDs analysieren
   ancestor_taxon: Höheres Taxon
-  and: und
   and_other_taxa: "&amp; Andere Taxa"
   android: Android
   animals: Tiere
@@ -566,6 +565,8 @@ de:
   anyone: Alle
   app_owner_application_explanation_required: |
     Du musst eine detailliertere Erklärung geben, was du bauen möchtest.
+  app_owner_application_inelligible: |
+    Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -778,7 +779,6 @@ de:
   browse_species_that_occur_near_this_observation: Nach Arten suchen, die in der Nähe dieser Beobachtung vorkommen.
   built_with_site_guides_html: "Erstellt mit <a href='%{url}'>%{site_name}-Guides</a>"
   bulk_import_of_filename_is_complete: "Massenimport von %{filename} ist abgeschlossen"
-  by: durch
   by_everyone: Von allen
   by_user: "von %{user}"
   by_you: Von dir
@@ -936,7 +936,7 @@ de:
   committed_by_user_on_date_html: Von %{user} am %{date} eingereicht
   #Label for date the taxon change was committed
   committed_on: Eingereicht am %{date}
-  committed_taxon_changes_cannot_be_deleted: Übertragene Taxon-Änderungen können nicht gelöscht werden
+  committed_taxon_changes_cannot_be_deleted: Veröffentlichte Taxon-Änderungen können nicht gelöscht werden
   #Status message while a taxon change is being committed
   committing: Übertragung …
   common_name: Allgemeingebräuchlicher Name
@@ -1011,6 +1011,9 @@ de:
   connecting_your_inat_account_to_accounts_other_sites: "Dein %{site_name}-Konto mit den Konten anderer Portale zu verknüpfen ermöglicht es Dir, Dich bei %{site_name} anzumelden, indem Du die Anmeldedaten dieser Portale nutzen."
   cannot_be_changed_during_a_content_freeze: Kann beim Einfrieren von Inhalten nicht geändert werden
   conservation_status: Schutzstatus
+  conservation_status_created: Schutzstatus erstellt
+  conservation_status_deleted: Schutzstatus gelöscht
+  conservation_status_updated: Schutzstatus aktualisiert
   conservation_status_descriptions:
     status: Statusschlüssel, Rang, o.ä. Falls es einen Kurzschlüssel wie E oder CR gibt, bitte diesen verwenden, falls nicht, bitte den vollständigen Status angeben, z.B. gefährdet oder vom Aussterben bedroht.
     description: Kurze Erklärung, warum dies aufgelistet wurde.
@@ -1574,6 +1577,7 @@ de:
   edit_body: Haupttext bearbeiten
   edit_comment: Deinen Kommentar bearbeiten
   edit_complete_set_for_taxon_in_place_html: "Vollständige Liste für %{taxon} in %{place} bearbeiten"
+  edit_conservation_status: Schutzstatus bearbeiten
   edit_custom_project_fields: Benutzerdefinierte Projektfelder bearbeiten
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
@@ -1885,7 +1889,7 @@ de:
     one: Pilz
     other: Pilze
   gbif: GBIF
-  gbif_occurrences: GBIF-Vorkommnisse
+  gbif_occurrences: GBIF-Meldungen
   generate_taxonomic_tags_for_flickr: Erstelle taxonomische Tags für deine Flickr-Bilder.
   generate_widget: Widget generieren
   generate_your_stats: Deine Statistiken erzeugen
@@ -1983,9 +1987,14 @@ de:
   home: Dashboard
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "anzupassende Stunden:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Es ist jedoch nicht für die Wiederverwendung freigegeben und wird nicht mit solchen Datenbanken
     geteilt, die Lizenzentscheidungen respektieren.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Du kannst deine Lizenzeinstellungen in deinen
     <a class="linky" href="/users/edit#content">Kontoeinstellungen ändern</a>.
@@ -2126,9 +2135,9 @@ de:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Kursiver Text
   item_flagged_notice_html: |
-    Dies ist als Spam gemeldet worden und ist nicht mehr
-    öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
-    <a href="%{manage_flags_path}">Meldungen verwalten</a>
+    Die Beobachtung ist nicht mehr
+    öffentlich sichtbar. Du kannst sie sehen, weil du der Ersteller oder ein Kurator bist. Wenn du meinst, dass es sich um einen Fehler handelt, bitte <a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
+    <b><a href="%{manage_flags_path}">Meldungen verwalten</a></b>
   jobs: Aufgaben
   join: Beitreten
   join_and_add_an_observation_to_project_html: Beitreten und eine Beobachtung zu %{project} hinzufügen
@@ -2331,6 +2340,10 @@ de:
     taxonomic: taxonomisch
     photo: Foto
   list_was_successfully_created: Die Liste wurde erfolgreich erstellt.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} und %{three}"
+  list_with_two_items: "%{one} und %{two}"
   listed_taxa: Gelistete Taxa
   listed_taxon: Gelistetes Taxon
   listed_taxon_updated: Gelistetes Taxon aktualisiert
@@ -2447,6 +2460,8 @@ de:
   lookup: Nachschlagen
   low: Untergrenze
   lowest_rank: Niedrigster Rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Zum Administrator machen
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hauptinhalt
@@ -2478,7 +2493,7 @@ de:
       every_publicly_visible_observation: Jede öffentlich sichtbare Beobachtung im iNaturalist-Netzwerk
       featured_observations: Ausgewählte Beobachtungen
       gbif_network: GBIF Netzwerk
-      gbif_network_description: Aufzeichnungen von Museen und anderen Providern von Ereignissen, die von der Global Biodiversity Informatics Facility verteilt werden.
+      gbif_network_description2: Datensätze von Museen sowie anderen Datenbanken, die von der Global Biodiversity Information Facility zur Verfügung gestellt werden.
       observations: Beobachtungen
       place_boundary: Gebietsgrenzen
       checklist_places: Gebiete mit Checklisten
@@ -2498,6 +2513,9 @@ de:
   maximum_positional_accuracy_including_unknown: |
     Maximale Genauigkeit der Position einschließlich Beobachtungen ohne Angaben
   media: Medien
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: und
   media_type: Medientyp
   medium: mittel
   meet: Treffen
@@ -3035,7 +3053,7 @@ de:
   observations_widget: Beobachtungen Widget
   observations_with_this_field: Beobachtungen mit diesem Feld
   observations_with_this_field_and_value: Beobachtungen mit diesem Feld und Wert
-  observations_without_media: Beobachtungen ohne Medien
+  observations_without_media: Ohne Foto/Audio
   observationcounts_refreshed: Beobachtungszahl aktualisiert
   observed: Beobachtet
   observed_by: Beobachtet von
@@ -3043,9 +3061,9 @@ de:
   observer: beob. von
   observers: Beobachter
   observer_prefers_addition_to_traditional_projects_joined: |
-    Beobachter erlaubt es anderen Personen, eigene Beobachtungen nur zu beigetretenen traditionellen Projekten hinzuzufügen.
+    Es ist anderen Personen nur gestattet, diese Beobachtungen zu solchen traditionellen Projekten hinzuzufügen, bei denen der Beobachter/die Beobachterin Mitglied ist.
   observer_prefers_no_traditional_project_addition: |
-    Beobachter erlaubt es anderen Personen nicht, eigene Beobachtungen zu traditionellen Projekten hinzuzufügen.
+    Es ist anderen Personen nicht erlaubt, diese Beobachtung zu traditionellen Projekten hinzuzufügen.
   observer_short: Beobachter
   occurence_status_describes_how: 'Der Status des Auftretens beschreibt die Häufigkeit oder Seltenheit eines Taxons in einem bestimmten Gebiet. Siehe DarwinCore für <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">weitere Informationen zur Terminologie</a>.'
   occurrence_status: Verbreitungs-Status
@@ -3713,9 +3731,8 @@ de:
     wo du beliebige Grenzen ziehen kannst, oder exportiere sie aus iNat mit
     existierenden Orten oder einer Begrenzungsbox und filtere die Daten erneut nach dem 
     Herunterladen.
-  places_warning_look_for_existing_html: |
-    Suche nach bereits <a href="/search?source[]=places">existierenden Gebieten</a> um sicherzustellen, dass kein Duplikat erstellet wird. Für alle Kontinente und Staaten gibt es bereits entsprechende Gebiete, ebenso jeweils zwei Verwaltungsebenen unterhalb der
-    Staatsebene.
+  places_warning_look_for_existing2_html: |
+    Überprüfe bereits <a href="/search?source[]=places">existierende Gebiete</a> um sicherzustellen, dass kein Duplikat erstellt wird. Für alle Kontinente und Staaten gibt es bereits entsprechende Gebiete, ebenso viele andere politische Gebiete.
   places_warning_please_keep_in_mind: |
     Bitte beachte die folgenden Einschränkungen:
   places_warning_projects_can_have_multiple_places: |
@@ -4656,7 +4673,7 @@ de:
   taxon_id: Taxon-ID
   taxon_ids: Taxon-IDs
   taxon_map:
-    gbif_occurrences: GBIF Vorkommnisse
+    gbif_occurrences: GBIF-Meldungen
     it_may_take_google_a_while_to: Es kann eine Weile dauern, dass Google diese Daten lädt - vorausgesetzt, es gibt überhaupt welche in GBIF.
     data_url: Daten-URL
     overlays: Ebenen
@@ -5176,6 +5193,7 @@ de:
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
+  user_faved_a_noun_by_you: "%{user} hat %{noun} von dir favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung als Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
@@ -6356,7 +6374,7 @@ de:
           belasse Copyright-Meldungen als ungelöst, falls dieses Foto
           das Urheberrecht verletzt.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML der Gebietsgrenze. Du kannst sie mit Google Maps, Google Earth oder den meisten GIS-Anwendungen erstellen. Muss mindestens ein Polygon enthalten und kleiner als 1 MB (5 MB für Webseitenkuratoren) sein und eine Fläche kleiner als die des US-Staates Texas haben.
       edit:
         complex_boundary_note_html: |
@@ -6687,7 +6705,7 @@ de:
           sichtbar. Du kannst es sehen, weil du es erstellt hast, oder weil du sind ein 
           Kurator bist. Wenn du glaubst, dass dies ein Fehler ist, 
           <a href="mailto:%{email}">kontaktiere uns bitte</a>.
-        this_has_been_flagged_as_spam: Dies wurde als Spam gemeldet
+        this_has_been_flagged_as_spam: Wurde als Spam gemeldet
       not_found:
         sorry_that_doesnt_exist: Sorry, die Seite gibt es nicht!
         even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Suchmaulwurf" konnte nichts finden!
@@ -7050,11 +7068,6 @@ de:
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
            (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
-        monthly_supporter_desc_html: |
-          Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, die von der California Academy of Sciences (United States IRS EIN 94-1156258) verwendet werden, um den gemeinnützigen Betrieb von iNaturalist und den Websites des iNaturalist-Netzwerks zu unterstützen.
-          <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
-          Sobald wir deine Zahlung bestätigt haben, kannst du dieses Feld ankreuzen, um diesen Status in deinem Profil anzuzeigen.
-          Hinweis: Damit wir dich als monatlichen Unterstützer bestätigen können, muss in der Donorbox exakt dieselbe Emailadresse verwenden wie in iNaturalist.
         muting_desc_html: |
           <p>
           Jemanden stummzuschalten unterbindet es, Benachrichtigungen über dessen Verhalten zu erhalten

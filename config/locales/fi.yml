@@ -218,6 +218,12 @@ fi:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Tarkkuus (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Tarkkuus yli
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Tarkkuus alle
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Tarkkuus alle tai tuntematon
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
   account_settings: Tiliasetukset
@@ -511,7 +517,6 @@ fi:
   already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
   ancestor_taxon: Ylempi taksoni
-  and: ja
   and_other_taxa: "&amp; muut taksonit"
   android: Android
   animals: Eläimet
@@ -767,7 +772,6 @@ fi:
   browse_species_that_occur_near_this_observation: Selaa lajeja, jotka esiintyvät tämän havainnon lähellä.
   built_with_site_guides_html: "Rakennettu <a href='%{url}'>%{site_name} oppailla</a>"
   bulk_import_of_filename_is_complete: "Tiedoston %{filename} massasiirto on valmis"
-  by: käyttäjältä
   by_everyone: Kaikkien
   by_user: "käyttäjältä %{user}"
   by_you: Sinun
@@ -894,6 +898,8 @@ fi:
   click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
   close: Sulje
   code: Koodi
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Koodiavustajat
   colors: Värit
   columns: Sarakkeet
   combine: Yhdistä
@@ -2269,6 +2275,10 @@ fi:
     taxonomic: taksonominen
     photo: valokuva
   list_was_successfully_created: Luettelo luotiin onnistuneesti.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ja %{three}"
+  list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
   listed_taxon_updated: Listattu taksoni päivitetty
@@ -2385,6 +2395,8 @@ fi:
   lookup: Hae
   low: Alhainen
   lowest_rank: Alhaisin arvo
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostat
   make_admin: Tee ylläpitäjä
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Pääsisältö
@@ -2417,7 +2429,7 @@ fi:
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka on luotu iNaturalist-verkossa
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
-      gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
+      gbif_network_description2: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
       observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
@@ -2433,6 +2445,9 @@ fi:
   matching_species_will_shown_up_here: Lajihavaintohaun tulokset näkyvät tässä. Kartalle piirtyy alue, jos paikkalla %{place} on lajista kirjattu havaintoja.
   maverick: Itsenäinen
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ja
   media_type: Mediatiedoston tyyppi
   medium: keskikokoinen
   meet: Tapaa
@@ -2765,6 +2780,8 @@ fi:
   not_findig_what_you_want: Et löydä mitä haluat?
   not_finding_place_you_want?: Etkö löydä haluamaasi paikkaa?
   not_found: Ei löydy
+  #Filter for observations not in a particular place
+  not_in_place: Ei käytössä
   not_linked_facebook: "%{site_name}-tilisi ei ole linkitetty Facebook-tiliisi."
   not_linked_flickr: "%{site_name}-tilisi ei ole linkitetty Flickr-tiliisi."
   not_on_this_list: Ei tässä luettelossa.
@@ -2843,6 +2860,14 @@ fi:
   observation_curation: Havaintokuratointi
   observation_date: Päivämäärä
   observation_date?: Päivämäärä?
+  #Basic observation export fields
+  observation_export_column_type_basic: Perus
+  #Geographic observation export fields
+  observation_export_column_type_geo: Paikkatieto
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taksoni
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taksonin lisätiedot
   observation_field: Havaintokenttä
   observation_field_details: Havaintokentän tiedot
   observation_field_type_text: Teksti
@@ -3518,6 +3543,10 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_look_for_existing2_html: |
+    Etsi <a href="/search?source[]=places">olemassa olevia paikkoja</a> varmistaaksesi, että
+    et luo kaksoiskappaletta. Meillä on jo paikat kaikkia
+    maanosia ja maita varten sekä monia muita hallinnollisia rajoja.
   places_warning_please_keep_in_mind: |
     Huomioi seuraavat rajoitukset:
   places_warning_quota: |
@@ -4689,6 +4718,7 @@ fi:
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
+  user_faved_a_noun_by_you: "Merkitsit %{user} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
@@ -4909,6 +4939,8 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: Ei taksonissa
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Peruuta
@@ -4969,6 +5001,12 @@ fi:
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">Ohjelmistomme</a> on lähes kokonaan avointa lähdekoodia, mikä tarkoittaa, että
+    kuka tahansa, joka osaa, voi osallistua sen kehittämiseen. Tässä ovat ihmiset, jotka vapaaehtoisesti koodasivat 
+    tänä vuonna. Kiitos, kehittäjät!
+  yir_monthly_supporters_random_selection: |
+    Tässä on satunnainen valikoima iNatin sankarillisia yhteisön jäseniä, jotka lahjoittavat joka kuukausi.
   you: sinä
   you_: Sinä
   you_appear_offline_try_again: |
@@ -5548,8 +5586,6 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
-      kml_field_desc: |
-        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
       edit:
         complex_boundary_note_html: |
           Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
@@ -6030,11 +6066,6 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
-        monthly_supporter_desc_html: |
-          iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
-          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
-          <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
-          Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.

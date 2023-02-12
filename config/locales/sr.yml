@@ -197,6 +197,12 @@ sr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Preciznost (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Preciznost preko
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Preciznost ispod
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Preciznost ispod ili nepoznata
   account: Nalog
   account_creation: Kreiranje naloga
   account_settings: Podešavanja naloga
@@ -456,7 +462,6 @@ sr:
   amphibians: vodozemci
   analyze_ids: Analiziraj ID-jeve
   ancestor_taxon: Takson predak
-  and: i
   and_other_taxa: "&amp; drugi taksoni"
   android: Android
   animals: Životinje
@@ -1784,6 +1789,7 @@ sr:
   new_announcement: Novo saopštenje
   new_application: Nova aplikacija
   new_assessment: Nova procena
+  new_comment_on_a_parent_by_user_link: Nov komentar na %{parent} korisnika %{user_link}
   new_guide: Novi vodič
   new_journal_post: Nova rubrika dnevnika
   new_list: Nova lista
@@ -2772,6 +2778,7 @@ sr:
   recently_created: Nedavno kreirano
   recently_finished: Nedavno završeno
   recently_observed: Nedavno zabeleženo
+  recently_resolved: Nedavno razrešeno
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Evidencija
   red: crvena
@@ -2785,6 +2792,8 @@ sr:
   relationships:
     match: poklapanje
     error: greška
+  relationships_user_settings: Odnosi
+  relationship_html: "Odnos: %{link}"
   remarks_optional: 'Beleške <span class="small description">(opcionalno)</span>'
   remember_me: Zapamti me
   remove: Ukloni
@@ -2792,6 +2801,7 @@ sr:
   remove_conservation_status: Ukloni status ugroženosti
   remove_from: Ukloni iz
   remove_curator: Ukloni kustosa
+  remove_curator_status: Ukloni status kustosa
   remove_from_featured: Ukloni iz istaknutih
   remove_from_guide: Ukloni iz vodiča
   remove_from_list: Ukloni sa liste
@@ -2828,6 +2838,7 @@ sr:
   research_grade_tooltip_html: 'Opservacije "Istraživački nivo" imaju medije, lokaciju, datum i slaganje zajednice oko identifikacije (obično na nivou vrste). <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   research_grade_observations_have: 'Opservacije "Istraživački nivo" imaju datum, fotografiju, koordinate i ID podržan od strane zajednice. Klikni da pogledaš procenu kvaliteta podataka.'
   research_grade_qualification: Zahtevi za istraživački nivo
+  resend_confirmation_email: Ponovo pošalji imejl za potvrdu
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
   reset_filters_short: Resetuj
@@ -2838,6 +2849,7 @@ sr:
   resolved: Rešeno
   resolved_by: Rešeno od strane
   resolved_by_user_on_date_html: Rešeno od strane %{user} %{date}
+  resolver_said_x_html: '<span class="meta">%{resolver} kaže,</span> "%{x}"'
   restart: Restartuj
   restore: Povrati
   restoring: Vraćanje...
@@ -2855,6 +2867,7 @@ sr:
   row_singular_or_plural: Red(ovi)
   rules_and_formatting: "Pravila & formatiranje"
   rules_for_adding_observations: Pravila za dodavanje opservacija
+  rules_for_becoming_a_member: Pravila za buduće članove
   rules_types:
     must_be_captive: mora biti u zatočeništvu / kultivisano
     must_be_identified: mora biti identifikovano
@@ -2925,6 +2938,8 @@ sr:
   select_at_least_one: Označi bar jedno
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_one_of_friends_albums: Označi jedan od %{friend} albuma
+  select_one_of_your_albums: Označi jedan od tvojih albuma
   select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
   select_options: Izaberi opciju
   selected: označeno
@@ -2932,6 +2947,9 @@ sr:
   selected_taxon: Izabran takson
   select_this_taxon: Izaberi takson
   send: pošalji
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Pošalji i izloguj me
   send_confirmation_email: Pošalji imejl za potvrdu
   send_me_reset_password_instructions: Pošalji mi uputstvo za resetovanje lozinke
   sending: Slanje...
@@ -2956,9 +2974,11 @@ sr:
   show_only: Prikaži samo
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
   show_taxa_from_place: "Prikaži taksoni iz %{place}"
+  show_uncountable_species: Prikaži nebrojive vrste
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Prikaži prvo %{x}
+  showing_taxa_from_everywhere: "Prikaži taksone od svuda"
   showing_taxa_from_place: "Prikaži taksone iz %{place}"
   showing_x_of_y: Prikazuje se %{x} od %{y}
   sign_in: Prijavi se
@@ -3023,6 +3043,7 @@ sr:
   source: Izvor
   source_: 'Izvor:'
   source_wikipedia: "Izvor: Vikipedija"
+  source_list_: "Lista izvora"
   source_list:
     catalogue_of_life: Katalog života
     inaturalist: iNaturalist
@@ -3038,6 +3059,7 @@ sr:
   source_url: Izvorni URL
   sources: Izvori
   sources_youve_added: Izvori koje si dodao/la
+  sources_and_credits: Izvori i zasluge
   spam: Neželjena pošta
   #Plural
   species: Vrste
@@ -3048,6 +3070,8 @@ sr:
   species_search: Pretraga vrsta
   species_taxon_name: Vrsta / Naziv taksona
   species_unknown: Vrsta nepoznata
+  #Abbreviation for "source"
+  src: Izvor
   standard: Standardni
   start: Od
   start_a_new_project: Započni novi projekat
@@ -3057,6 +3081,7 @@ sr:
   status: Status
   status_globally: '"%{status}" globalno'
   status_in_place: '"%{status}" u %{place}'
+  still_no_luck?: I dalje ništa?
   still_needs_id?: Zajednica može da potvrdi/unapredi ID?
   stop_editing: Prekini uređivanje
   stop_following_user: "Otprati %{user}"
