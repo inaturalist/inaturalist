@@ -315,8 +315,8 @@
   }
 
   .photos {
-    float: right;
-    margin-left: 4px;
+    float: inline-end;
+    margin-inline-start: 4px;
 
     &.attribute {
       max-width:80px;
