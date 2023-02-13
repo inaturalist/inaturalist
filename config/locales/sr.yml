@@ -3755,6 +3755,7 @@ sr:
   you_dont_have_permission_to_edit_those_photos: Nemaš dozvolu da izmeniš te fotografije.
   you_faved_this: Dodato u favorite!
   you_have_left_x_project: "Napustio si %{project}"
+  you_have_not_confirmed_your_email_address: Nisi potvrdio/la tvoju imejl adresu!
   you_havent_linked_your_inaturalist_google_account: "Nisi povezao/la tvoj %{site_name} nalog sa Google nalogom"
   you_joined_this_project: Pridružio si se ovom projektu!
   you_must_be_a_member_of_this_project_to_do_that: Moraš biti član ovog projekta da bi to uradio
@@ -4083,6 +4084,8 @@ sr:
           Šta želiš da uradiš sa opservacijama u ovom projektu?
         keep_observations_label: |
           Ostavi tvoje opservacije u ovom projektu
+        project_requires_curator_coordinate_access_desc: |
+          Ovaj projekat ne dozvoljava opservacije gde koordinate nisu vidljive kustosima projekta. Ako ne želiš da deliš koordinate tvojih opservacija sa kustostima ovog projekta, moraš ih ukloniti iz projekta.
         remove_observations_label: |
           Ukloni sve tvoje opservacije iz obog projekta
         revoke_observations_label: |
@@ -4785,6 +4788,9 @@ sr:
       announcement:
         created_at: Kreirano
         updated_at: Ažurirano
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID-jevi sajtova
       assessment:
         description: Opis
       assessment_section:
@@ -4824,6 +4830,8 @@ sr:
       observation_field_value:
         value: 'vrednost'
       observations_export_flow_task:
+        #Date/time the task began processing
+        started_at: Započeto
         #Date/time the task finished processing
         finished_at: Završeno
         #Inputs to an export task, e.g. the query and the columns

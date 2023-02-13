@@ -2399,6 +2399,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     kannada: Kannaresisk
+    kazakh: Kasakhisk
     korean: Koreansk
     latvian: Lettisk
     lithuanian: Litauisk
@@ -2534,6 +2535,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    kk: Kasakhisk
     kn: Kannaresisk
     ko: Koreansk
     lb: Luxembursk
@@ -6762,6 +6764,10 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
+      kml_field_desc2: |
+        KML af stedets afgrænsning. Man kan lave et vha. Google Maps, Google
+        Earth eller de fleste GIS-applikationer. Skal have mindst én polygon, være
+        under 1 MB (5 MB til sidekuratorer) samt med en udstrækning mindre end den amerikanske stat Texas.
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
