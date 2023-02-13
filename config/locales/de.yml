@@ -794,7 +794,7 @@ de:
   card: Karte
   casual: Hobbyqualität
   casual_: Hobbyqualität
-  casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
+  casual_tooltip_html: 'Den "Hobbyqualität"-Beobachtungen fehlen Medien, Koordinaten oder ein Datum oder erfüllen aus anderen Gründen nicht die Anforderungen der Stufen "Forschungsqualität" oder "benötigt ID". <a href="https://www.inaturalist.org/pages/help#quality">Hier gibt es weitere Infos zu den Qualitätsstufen</a>'
   categories: Kategorien
   cc_0_description: "Diese Lizenz gibt dein Werk frei, so dass andere dein Werk kopieren, modifizieren, verbreiten und \"ausführen\" können, auch für kommerzielle Zwecke, alles dies ohne dich um Erlaubnis oder Anerkennung zu bitten. Dies ist die entgegenkommendste der angebotenen Lizenzen. Empfohlen für die maximale Verbreitung und Nutzung von lizenziertem Material."
   cc_0_name: Kein Copyright (CC0)
@@ -944,9 +944,9 @@ de:
   community_curated: Von Benutzern erstellt
   community_guidelines: Community-Richtlinien
   community_id_heading: Community-Taxon
-  community_id_at_species_or_lower?: Community-Taxon bei Art oder genauer?
-  community_id_at_species_level_or_lower: Community-Taxon auf Art-Ebene oder darunter
-  community_id_is_precise: Das Community-Taxon ist korrekt
+  community_id_at_species_or_lower?: Community-Taxon auf Art-Niveau oder genauer?
+  community_id_at_species_level_or_lower: Community-Taxon auf Art-Niveau oder genauer
+  community_id_is_precise: Das Community-Taxon ist auf (Unter)Art-Niveau
   community_moderation_settings: Gemeinschaftsmoderations-Einstellungen
   community_supported_id: Gemeinschafts-unterstütztes Taxon?
   compare: Vergleichen
@@ -2722,7 +2722,7 @@ de:
   needs_id: benötigt ID
   needs_id_: benötigt ID
   needs_id_expandable_html: "<span class='full'>Benötigt</span> ID"
-  needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum, erfordern aber noch ein gemeinschaftliche Zustimmung zu einer genaue Bestimmung. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
+  needs_id_tooltip_html: '"Benötigt ID"-Beobachtungen enthalten Medien, Koordinaten und ein Datum; es bedarf aber einer gemeinschaftlichen Bestimmung auf (normalerweise) Artniveau, um "Forschungsqualität" zu erreichen. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   needs_to_be_identified: Muss bestimmt werden
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
@@ -3107,13 +3107,13 @@ de:
     follow_panel_title_local: Folge anderen Benutzern in der Umgebung
     follow_panel_title_global: Folge aktiven Benutzern
     follow_panel_body: Wenn Du diese Profile besuchst und auf "Folgen" klickst, wirst Du über deren Beobachtungen benachrichtigt
-    following_panel_title: Menschen, Taxa und Orte verfolgen
+    following_panel_title: Behalte Beobachtungen von bestimmten Nutzern, Taxa und Orten im Auge
     following_panel_body: |
-      Auf %{site_name} kannst du Personen folgen, um stets einen Überblick über deren veröffentlichte Beobachtungen zu behalten. Du kannst auch nur bestimmte Arten oder Orte abonnieren, um von neuen Beobachtungen dieser Arten oder von diesen Orten zu erfahren.
-    comments_panel_title: Neugierig welche Diskussionen auf %{site_name} stattfinden?
-    comments_panel_body: "<p>Auf %{site_name} dreht sich alles um das Teilen und Diskutieren von Beobachtungen von lebenden Organismen. Unten sind Diskussionen, die jetzt gerade stattfinden. (Hinweis: Du abonnierst automatisch alle Diskussionen, zu denen du Kommentare oder Bestimmungen beisteuerst. Diese Updates können im Abschnitt \"Abonnements\" rechts verwaltet werden</p>"
-    updates_by_you_panel_title: Mit diesem Tab lassen sich schnell Aktualisierungen nur zu Deinen Inhalten herausfiltern.
-    updates_by_you_panel_body: Merke, im Reiter "Alle Aktualisierungen" erhältst du nicht nur Updates zu deinen eigenen Inhalten, sondern auch zu den Inhalten von Personen, denen du folgst, und zu den Taxa oder Orten, die du über das Abonnementwerkzeug auf der rechten Seite abonniert hast.
+      Auf %{site_name} kannst du Personen folgen, um stets einen Überblick über deren aktuelle Beobachtungen zu behalten. Du kannst auch nur bestimmte Artengruppen oder Gebiete abonnieren, um Beobachtungen dieser Arten oder von diesen Orten im Blick zu haben.
+    comments_panel_title: Neugierig darauf, welche Diskussionen auf %{site_name} stattfinden?
+    comments_panel_body: "<p>Auf %{site_name} dreht sich alles um das Teilen und Diskutieren von Naturbeobachtungen. Hier findest du Diskussionen, die jetzt gerade stattfinden. (Hinweis: Alle Diskussionen, zu denen du selber Kommentare oder Bestimmungen beigesteuert hast, erhältst du automatisch in deinem Dashboard angezeigt)</p>"
+    updates_by_you_panel_title: Dies ist eine schnelle Möglichkeit, Aktualisierungen nur zu deinen Inhalten herausfiltern.
+    updates_by_you_panel_body: 'Beachte: unter "Alle Aktualisierungen" erhältst du nicht nur Updates zu deinen eigenen Inhalten, sondern auch zu den Inhalten von Personen, denen du folgst, und zu den Taxa oder Gebieten, die du über das Abonnementwerkzeug auf der rechten Seite abonniert hast.'
     youve_got_updates_panel_title: Es gibt Aktualisierungen für dich!
     youve_got_updates_panel_body_p1: Bleib auf dem Laufenden mit Updates zu den folgenden Punkten....
     youve_got_updates_panel_body_p2: |
@@ -4136,7 +4136,7 @@ de:
   research_: Forschung
   research_grade: Forschungsqualität
   research_grade_short_html: "F<span class='full'>orschungs</span>Q<span class='full'>ualität</span>"
-  research_grade_tooltip_html: '"Forschungsqualität"-Beobachtungen enthalten Medien, Koordinaten und ein Datum sowie eine gemeinschaftliche Übereinstimmung zu einer genauen Bestimmung (gewöhnlich auf Artniveau). <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
+  research_grade_tooltip_html: '"Forschungsqualität (FQ)"-Beobachtungen erfüllen die Anforderungen: <br>- Koordinaten <br>- Datum <br>-Medien (Foto/Audio) <br> und die Community stimmt der genauen Bestimmung (gewöhnlich auf Artniveau) zu. <a href="https://www.inaturalist.org/pages/help#quality">Erfahre mehr über Qualitätsstufen</a>'
   research_grade_observations_have: 'Beobachtungen mit <em>Forschungsqualität</em> enthalten ein Datum, Bild- oder Tonaufnahmen, Koordinaten und eine mehrheitliche Bestimmung (ID) durch die Community. Durch Anklicken wird die Bewertung der Datenqualität angezeigt.'
   research_grade_qualification: Forschungsqualität Qualifizierung
   #Label for a button that re-sends the account confirmation email and signs
@@ -4408,12 +4408,9 @@ de:
     Dein Benutzername und Passwort ist für alle Webseiten gültig, die Teil des iNaturalist-Netzwerks sind. Wenn du dich für eine Netzwerk-Webseite entscheidest, haben die lokalen Institutionen, die die jeweilige Webseite unterstützen, auch Zugriff auf deine E-Mail-Adresse (nur um mit dir über die Aktivitäten der Website zu kommunizieren) und Zugriff auf die wahren Koordinaten für Beobachtungen, die du als öffentlich verdeckt oder privat eingestellt hast.
   some_agree: einige stimmen zu
   some_observations_are_missing_media_or_identifications: |
-    Bei einigen Beobachtungen fehlt die Bestimmung oder Fotos/Audios.
+    Bei mindestens einer Beobachtung fehlt eine Bestimmung oder Medien (Foto/Audio).
   some_observations_are_missing_media_or_identifications_desc: |
-    Beobachtungen ohne Medien werden standardmäßig nicht in der Suche sichtbar sein, und
-    solche, die keine Bestimmung haben, können von Experten nicht gesehen werden, die nach
-    spezifischen Taxa suchen. Selbst eine sehr grobe Identifikation wie "Pflanzen" kann einem
-    Pflanzenexperten helfen, deine Beobachtung zu finden.
+    Beobachtungen ohne Medien oder ID erhalten 'Hobbyqualität' und werden standardmäßig aus Suchanfragen herausgefiltert. Bereits eine recht unspezifische Bestimmung wie "Pflanzen" oder "Insekten" kann einem Experten helfen, deine Beobachtung zu finden und bestimmen.
   some_observations_failed_to_be_added: Das Hinzufügen einiger Beobachtungen zum Projekt ist fehlgeschlagen
   some_observations_failed_to_save: Einige Beobachtungen konnten nicht gespeichert werden.
   some_of_those_photos_couldnt_be_saved: "Einige dieser Bilder konnten nicht gespeichert werden: %{error}"
@@ -4780,7 +4777,7 @@ de:
     Die folgenden Punkte werden benötigt, um <span className="bold">Forschungsqualität</span> zu erreichen:
   the_community_id_requires_at_least_two_identifications: Die Community-ID erfordert mindestens zwei Bestimmungen.
   the_community_must_feel_that: |
-    Die Community ist der Meinung, dass das aktuelle Community-Taxon das bestmöglich Erreichbare ist, anhand der bereitgestellten Dokumente (Fotos/Tonaufnahmen)
+    Die Mehrheit ist der Meinung, das aktuelle Community-Taxon (unterhalb Familien-Niveau) ist die genaueste Bestimmung, die anhand der bereitgestellten Dokumente (Fotos/Tonaufnahmen) möglich ist
   the_following_observations_could: "Die folgenden Beobachtungen konnten nicht zu %{link} hinzugefügt werden"
   the_following_photos_have_been_tagged: "Die folgenden Fotos wurden getaggt:"
   the_identotron_is_a_tool_to: |
@@ -4856,8 +4853,8 @@ de:
   this_list_only_accepts_taxa_that_are_species_or_lower: Diese Liste akzeptiert nur Taxa auf Artniveau oder darunter
   this_observation: Dieser Beobachtung
   this_observation_is_featured_on_x_sites:
-    one: Diese Beobachtung wird auf %{count} Webseiten gefeatured
-    other: Diese Beobachtung wird auf %{count} Webseiten gefeatured
+    one: Diese Beobachtung wird auf %{count} Webseite geteilt
+    other: Diese Beobachtung wird auf %{count} Webseiten geteilt
   this_observation_is_research_grade: Diese Beobachtung hat Forschungsqualität!
   this_observation_was_created_using: "Diese Beobachtung wurde erstellt mit:"
   this_photo_is_already_associated: Dieses Bild ist bereits mit einer deiner Beobachtungen verbunden.
@@ -5556,9 +5553,8 @@ de:
     Du stellst dieses Projekt so ein, dass alle Beobachtungen, die den folgenden Regeln entsprechen, zusammengeführt werden: %{rules}
     Wollen Sie fortfahren?
   you_are_submitting_obs_with_no_date_or_no_location: |
-    Du willst Beobachtungen ohne Datum oder Koordinaten hinzufügen. Beobachtungen
-    ohne diese Informationen sind oft unmöglich zu identifizieren und sind
-    standardmäßig in Suchanfragen nicht sichtbar.
+    Bei mindestens einer Beobachtung fehlen das Datum und/oder Koordinaten. Beobachtungen
+    ohne diese Angaben sind oft unmöglich zu identifizieren und werden standardmäßig aus Suchanfragen herausgefiltert.
   you_are_subscribed_to_comments_on_this_flag: Du hast Kommentare zu dieser Meldung abonniert.
   you_are_subscribed_to_comments_on_this_post: Du hast Kommentare zu diesem Beitrag abonniert.
   you_are_subscribed_to_comments_on_this_taxon_stage: Du hast Kommentare zu dieser Taxon-Vorbereitung abonniert.
@@ -5614,9 +5610,9 @@ de:
   you_need_to_select_some_observations_first: Du musst zuerst eine Beobachtung auswählen.
   you_retain_full_copyright: "Das volle Urheberrecht an deinen Inhalten verbleibt bei dir, abgesehen von den Rechten, die %{site_name} in unseren Allgemeinen Geschäftsbedingungen gewährt werden."
   you_retain_full_copyright_over_your_content: "Das volle Urheberrecht an deinen Inhalten verbleibt bei dir, abgesehen von den Rechten, die %{site_name} in unseren Allgemeinen Geschäftsbedingungen gewährt werden."
-  you_sure_delete_asset?: Bist Du dir sicher, dass Du diese Projektanhänge löschen willst?
+  you_sure_delete_asset?: Bist du sicher, dass du dieses Projekt-Asset löschen willst?
   you_sure_delete_check_list: "Bist du sicher, dass du diese Liste löschen möchtest? Andere Leute haben möglicherweise viel Arbeit in sie gesteckt..."
-  you_sure_delete_comment?: Sicher, dass Du diesen Kommentar löschen willst?
+  you_sure_delete_comment?: Sicher, dass du diesen Kommentar löschen willst?
   you_sure_delete_identification?: Möchtest du diese Bestimmung wirklich löschen?
   you_sure_delete_custom_field?: Bist du sicher, dass du diese benutzerdefinierten Felder löschen möchtest?
   you_sure_delete_flag?: Bist du sicher, dass du diese Meldung löschen willst?
@@ -6149,7 +6145,7 @@ de:
           Koordinaten deiner Beobachtungen nicht mit den Kuratoren dieses Projekts teilen möchtest
           musst du sie aus dem Projekt entfernen.
         data_quality_assessment_desc_html: |
-          Die Bewertung der Datenqualität ist eine Beurteilung der Genauigkeit einer Beobachtung. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Gib deine Beurteilung unten ab:
+          Die Bewertung der Datenqualität (<i>Data Quality Assessment</i>; DQA) erlaubt die Beurteilung einer Beobachtung anhand bestimmter Parameter. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Jeder kann zu einer Beurteilung beitragen.
         disagreement_count_desc: "Anzahl der identifizierten Taxa, die nicht zu den Vorfahren eines Taxons gehören"
         identification_count_desc: '# an Bestimmungen einer bestimmten Art'
         flagged_photos_desc_html: |
@@ -6161,11 +6157,11 @@ de:
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
         quality_assessment_help2_html: |
           <p>
-          Die Beurteilung der Datenqualität ist eine Zusammenfassung über die Genauigkeit einer Beobachtung. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
+          Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
           </p>
           <ul>
            <li> die Beobachtung <strong>ein Datum hat</strong></li>
-           <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. mit Lat/Lon-Koordinaten)</li>
+           <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. Lat/Lon-Koordinaten enthält)</li>
            <li>die Beobachtung <strong>Bilder oder Tonaufnahmen enthält</strong></li>
            <li>die Beobachtung <strong>nicht die ID 'Mensch' (Homo sapiens) hat</strong></li>
           </ul>
@@ -6174,7 +6170,7 @@ de:
           </p>
           <ul>
           <li>
-           die <strong>%{site_name}-Community der Bestimmung (ID) auf Artniveau (oder niedriger) zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben (bei einem Votum, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität).
+           die <strong>%{site_name}-Community der Bestimmung (ID) auf (Unter-)Artniveau zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
           </li>
           </ul>
           <p>
@@ -6194,14 +6190,14 @@ de:
            die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus aufweist</strong> (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
           </li>
           <li> 
-          die Beobachtung keine ID mehr benötigt <em>und</em> die Community-ID höher als Familienniveau ist
+          die Beobachtung keine genauere ID erlaubt <em>und</em> die Community-ID auf Familienniveau oder höher ist
           </li>
           <li>
-           der Beobachter aus der "Community-ID" ausgetreten ist und das von der Community bestimmte Taxon im Widerspruch zu dem vom Beobachter bestimmten Taxon ist
+           der Beobachter aus der "Community-ID" ausgetreten ist und die Community dem vom Beobachter bestimmten Taxon widerspricht
           </li>
           </ul>
           <p>
-          Und als ob das nicht schon kompliziert genug war, gibt es auch Situationen, in denen das System mitbestimmen darf:
+          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System mitbestimmen darf:
           </p>
           <ul>
           <li>
@@ -6594,7 +6590,7 @@ de:
         project_summary: Projektzusammenfassung
         project_summary_help: |
           Gib eine kurze Erläuterung deines Projekts an. Ungefähr die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite zu sehen sein, also schreibe das Wichtigste zu Beginn hin!
-        project_summary_placeholder: Entdecken und verfolgen Sie die Vögel des Golden Gate Park...
+        project_summary_placeholder: Entdecke und dokumentiere die Vögel des Golden Gate Parks...
         select_native_to_include: |
           Wähle "heimisch" aus, um nur Taxa einzubeziehen, die als "heimisch" in den
           Gebieten des jeweiligen Projekts markiert wurden. Wähle "eingeführt" aus, um nur Taxa einzubeziehen, die als "einfgeführt" im Gebiet des Projekts gekennzeichnet wurden.
