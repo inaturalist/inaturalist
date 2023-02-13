@@ -78,6 +78,7 @@ const ObservationsListView = ( {
                     } else {
                       displayPlace = I18n.t( "unknown" );
                     }
+                    const identificationsCount = _.size( _.filter( o.identifications, "current" ) );
                     return (
                       <tr className={index % 2 === 0 ? "even" : ""} key={`obs_list_row_${o.id}`}>
                         <td className="photo">
@@ -113,15 +114,15 @@ const ObservationsListView = ( {
                                   { I18n.t( "research_grade" ) }
                                 </span>
                               ) }
-                              { o.non_owner_ids.length > 0 && (
+                              { identificationsCount > 0 && (
                                 <span
                                   className="count identifications"
                                   title={
-                                    I18n.t( "x_identifications", { count: o.non_owner_ids.length } )
+                                    I18n.t( "x_identifications", { count: identificationsCount } )
                                   }
                                 >
                                   <i className="icon-identification" />
-                                  { o.non_owner_ids.length }
+                                  { identificationsCount }
                                 </span>
                               ) }
                               { o.comments.length > 0 && (

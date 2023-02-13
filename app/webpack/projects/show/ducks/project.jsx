@@ -44,6 +44,9 @@ const OBSERVATION_FIELDS = {
   place_guess: true,
   latitude: true,
   longitude: true,
+  identifications: {
+    current: true
+  },
   photos: {
     id: true,
     uuid: true,

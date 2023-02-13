@@ -202,7 +202,7 @@ Some notes:
     <% end %>
   </div>
   <div class="actions attribute">
-    <% if observation.comments_count > 0 || observation.num_identifications_by_others > 0 -%>
+    <% if observation.comments_count > 0 || observation.current_identifications_count > 0 -%>
       <ul class="counts">
         <% if observation.comments_count > 0 -%>
           <li class="comments_count">
@@ -212,12 +212,12 @@ Some notes:
             </a>
           </li>
         <% end -%>
-        <% if observation.num_identifications_by_others > 0 -%>
+        <% if observation.current_identifications_count > 0 -%>
           <li class="identifications_count">
             <a href="<%= obs_url %>">
-              <span class="count"><%= observation.num_identifications_by_others %></span>
-              <%= t(:id) if observation.num_identifications_by_others == 1 %>
-              <%= t(:ids) if observation.num_identifications_by_others != 1 %>
+              <span class="count"><%= observation.current_identifications_count %></span>
+              <%= t(:id) if observation.current_identifications_count == 1 %>
+              <%= t(:ids) if observation.current_identifications_count != 1 %>
             </a>
           </li>
         <% end -%>
