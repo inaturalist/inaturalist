@@ -606,7 +606,10 @@ mr:
     swahili: स्वाहिली
   #Button show less text
   less__context_text: कमी
-  list: यादी
+  list: सूची
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, आणि %{three}"
   lists: याद्या
   locales:
     en-GB: इंग्रजी (युके)
