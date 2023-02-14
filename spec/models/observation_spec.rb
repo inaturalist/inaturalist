@@ -3761,6 +3761,18 @@ describe Observation do
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @s1
       end
+      it "g1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @g1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
+      it "ss1 s2ss1 should set the taxon to g1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s2ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @g1
+      end
       it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
         @taxon_swap1 = TaxonSwap.make
         @taxon_swap1.add_input_taxon(@s3)
@@ -4566,8 +4578,8 @@ def setup_test_case_taxonomy
   #      g1     g2
   #     /  \
   #    s1  s2
-  #   /  \
-  # ss1  ss2
+  #   /  \   \
+  # ss1  ss2 s2ss1
 
   # Superfamily intentionally left unavailable. Since it has a blank ancestry,
   # it will not really behave as expected in most tests
@@ -4581,5 +4593,6 @@ def setup_test_case_taxonomy
   @s4 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesfour" )
   @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciesone" )
   @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciestwo" )
+  @s2ss1 = Taxon.make!( rank: "subspecies", parent: @s2, name: "Genusone speciestwo subspeciesone" )
   @o = Observation.make!
 end
