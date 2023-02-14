@@ -1806,6 +1806,7 @@ en:
   downstream_flagged_covered_taxa: Downstream flagged taxa
   draft: draft
   draft_: Draft
+  draft_by_user_html: Draft by %{user}
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
@@ -4207,7 +4208,9 @@ en:
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
-  posted_on: Posted on
+  posted_on_date_html: Posted on %{date}
+  # @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Posted on %{date} by %{user}
   posts: Posts
   potential_disagreement: Potential Disagreement
   powered_by: Powered by

@@ -21,17 +21,7 @@
     - else
       = text
   .meta
-    = t(:posted_on)
-    - if post.published_at
-      %span.date= l post.published_at, :format => :long
-    - else
-      %span= t(:draft)
-    = t(:by).downcase
-    - if post.user
-      = link_to user_image( post.user ), post.user
-      = link_to( post.user.login, observations_path( user_id: post.user.login ) )
-    - else
-      t(:deleted_user)
+    = render "posts/attribution", post: post
     - if post.observations.size > 0
       |
       =t :x_observations_html, count: post.observations.size
