@@ -502,6 +502,9 @@ inat-taxon.split-taxon .icon {display: none;}
   font-weight: bold;
   margin: 0 3px 0 2px;
 }
+#obs-container .observation .pull-right .date:before {
+  content: none;
+}
 #obs-container .observation { position: relative; }
 #obs .observation:hover {
   background-color: #EEF8DE;
