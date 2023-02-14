@@ -71,6 +71,10 @@ class Flag < ActiveRecord::Base
     "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
   end
 
+  def to_plain_s
+    "Flag #{id}"
+  end
+
   def flaggable_type_valid
     if Flag::TYPES.include?( flaggable_type )
       true
