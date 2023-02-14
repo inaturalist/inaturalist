@@ -2186,13 +2186,11 @@ class ObservationsController < ApplicationController
       @ident_user ||= User.find_by_login( search_params[:ident_user_id] )
     end
     @misc_hidden_parameters = %w(
-      day
       id
       ident_taxon_id
       identified
       term_id
       term_value_id
-      year
     )
     
     @filters_open = 

@@ -6330,6 +6330,8 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
+      kml_field_desc2: |
+        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau kebanyakan aplikasi GIS lainnya. Harus memiliki setidaknya satu poligon, di bawah 1 MB (5MB untuk kurator situs), dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.

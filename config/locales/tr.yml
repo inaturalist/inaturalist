@@ -2318,6 +2318,7 @@ tr:
     italian: İtalyanca
     japanese: Japonca
     kannada: Kannadaca
+    kazakh: Kazakça
     korean: Korece
     latvian: Letonca
     lithuanian: Litvanca
@@ -2453,6 +2454,7 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    kk: Kazakça
     kn: Kannadaca
     ko: Korece
     lb: Lüksemburgca
@@ -6368,6 +6370,8 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
+      kml_field_desc2: |
+        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir çokgene sahip olmalı, 1 MB'nin altında olmalı (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olmalıdır.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
