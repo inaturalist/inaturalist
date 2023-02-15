@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Flag < ActiveRecord::Base
+class Flag < ApplicationRecord
   # include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
@@ -19,6 +19,7 @@ class Flag < ActiveRecord::Base
   TYPES = %w(CheckList Comment Guide GuideSection Identification List Message Observation Photo Place Post Project Sound
              Taxon User).freeze
   belongs_to :flaggable, polymorphic: true
+  belongs_to :flaggable_parent, polymorphic: true
   belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id", inverse_of: :flags_as_flaggable_user
 
   has_subscribers to: {
@@ -46,6 +47,7 @@ class Flag < ActiveRecord::Base
   before_save :check_resolved
   before_create :set_flaggable_user_id
   before_create :set_flaggable_content
+  before_create :set_flaggable_parent
 
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
@@ -194,6 +196,23 @@ class Flag < ActiveRecord::Base
 
     self.flaggable_content = flaggable.try_methods( :body, :description )
     true
+  end
+
+  def set_flaggable_parent
+    return true unless flaggable
+
+    self.flaggable_parent = case flaggable_type
+    when "Comment", "Post" then flaggable.parent
+    when "Identification" then flaggable.observation
+    when "Photo"
+      if flaggable.observations.exists?
+        flaggable.observations.first
+      elsif flaggable.taxa.exists?
+        flaggable.taxa.first
+      elsif flaggable.guide_photos.exists?
+        flaggable.guide_photos.first.guide_taxon
+      end
+    end
   end
 
   def flaggable_content_viewable_by?( user )

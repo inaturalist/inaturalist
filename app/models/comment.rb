@@ -52,10 +52,6 @@ class Comment < ApplicationRecord
     "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
   end
 
-  def to_plain_s(options = {})
-    "Comment #{id}"
-  end
-
   def as_indexed_json
     return unless user
     {

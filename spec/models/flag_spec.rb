@@ -11,7 +11,12 @@ describe Flag, "creation" do
     subject { build :flag }
     it do
       is_expected.to validate_uniqueness_of( :user_id ).
-        scoped_to( :flaggable_id, :flaggable_type, :flag, :resolved_at ).
+        scoped_to(
+          :flaggable_id,
+          :flaggable_type,
+          :flag,
+          :resolved_at
+        ).
         on( :create ).
         with_message :already_flagged
     end
@@ -62,13 +67,70 @@ describe Flag, "creation" do
       end
     end
 
-    [Post, Comment].each do | model |
+    [Post, Comment, Identification].each do | model |
       context "on #{model.to_s.downcase.pluralize}" do
-        let( :flaggable ) { build_stubbed :"#{model.name.underscore}", body: "some bad stuff" }
+        let( :flaggable ) { create :"#{model.name.underscore}", body: "some bad stuff" }
 
         it "should set the flaggable content to the body" do
           expect( subject.flaggable_content ).to eq flaggable.body
         end
+      end
+    end
+
+    context "on comments" do
+      context "on observations" do
+        it "should set the flaggable parent to the observation" do
+          o = create( :observation )
+          flaggable = create( :comment, parent: o )
+          expect( create( :flag, flaggable: flaggable ).flaggable_parent ).to eq o
+        end
+      end
+      context "on posts" do
+        it "should set the flaggable parent to the post" do
+          post = create( :post )
+          flaggable = create( :comment, parent: post )
+          expect( create( :flag, flaggable: flaggable ).flaggable_parent ).to eq post
+        end
+      end
+    end
+
+    context "on identifications" do
+      it "should set the flaggable parent to the observation" do
+        flaggable = create( :identification )
+        expect( create( :flag, flaggable: flaggable ).flaggable_parent ).to eq flaggable.observation
+      end
+    end
+
+    context "on posts" do
+      context "belonging to users" do
+        it "should set the flaggable parent to the user" do
+          user = create( :user )
+          flaggable = create( :post, parent: user )
+          expect( create( :flag, flaggable: flaggable ).flaggable_parent ).to eq user
+        end
+      end
+      context "belonging to projects" do
+        it "should set the flaggable parent to the project" do
+          project = create( :user )
+          flaggable = create( :post, parent: project )
+          expect( create( :flag, flaggable: flaggable ).flaggable_parent ).to eq project
+        end
+      end
+    end
+
+    context "on photos" do
+      it "should set the flaggable parent to the observation if associated with one" do
+        op = create( :observation_photo )
+        expect( create( :flag, flaggable: op.photo ).flaggable_parent ).to eq op.observation
+      end
+      it "should set the flaggable parent to the taxon if associated with one" do
+        tp = create( :taxon_photo )
+        expect( create( :flag, flaggable: tp.photo ).flaggable_parent ).to eq tp.taxon
+      end
+      it "should set the flaggable parent to the observation if associated both obs and taxon" do
+        op = create( :observation_photo )
+        create( :taxon_photo, photo: op.photo )
+        expect( create( :flag, flaggable: op.photo ).flaggable_parent ).to eq op.observation
       end
     end
   end
