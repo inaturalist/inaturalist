@@ -1,0 +1,20 @@
+# Example of a local database setup.
+login: &login
+  host: <%= ENV.fetch("INAT_DB_HOST") { "pg" } %>
+  encoding: utf8
+  adapter: postgis
+  template: template_postgis
+  username: <%= ENV.fetch("INAT_DB_USER") { "inaturalist" } %>
+  password: <%= ENV.fetch("INAT_DB_PASS") { "inaturalist" } %>
+
+development:
+  <<: *login
+  database: <%= ENV.fetch("INAT_DB_NAME") { "inaturalist_development" } %>
+
+test:
+  <<: *login
+  database: inaturalist_test
+
+production:
+  <<: *login
+  database: inaturalist_production
