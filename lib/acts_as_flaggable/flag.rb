@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Flag < ActiveRecord::Base
+class Flag < ApplicationRecord
   # include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
@@ -69,10 +69,6 @@ class Flag < ActiveRecord::Base
 
   def to_s
     "<Flag #{id} user_id: #{user_id} flaggable_type: #{flaggable_type} flaggable_id: #{flaggable_id}>"
-  end
-
-  def to_plain_s
-    "Flag #{id}"
   end
 
   def flaggable_type_valid
