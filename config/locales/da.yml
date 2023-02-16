@@ -1632,9 +1632,13 @@ da:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Nedstrøms markeret dækket taksa
+  #Noun, as in a journal post that has not been published
   draft: kladde
+  #Noun, as in a journal post that has not been published
   draft_: Kladde
+  #Noun, as in a journal post that has not been published
   draft_saved: Kladde gemt!
+  #Noun, as in journal posts that has not been published
   drafts: Kladder
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
   #Button label for drawing a circular boundary for an observation search
@@ -2830,6 +2834,7 @@ da:
   must_have_quality_grades: "skal have kvalitetsgraduering: %{grades}"
   must_have_sounds: skal have lyde
   must_have_x: "skal have %{x}"
+  #Mute is a noun here
   mute_removed: Sluk fjernet
   muted_users: Slukkede brugere
   n_ago: "%{n} siden"
@@ -3923,7 +3928,6 @@ da:
   post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   posted_by: Indsendt af
-  posted_on: Indsendt den
   posts: Indlæg
   potential_disagreement: Potentiel uenighed
   powered_by: Drevet af
