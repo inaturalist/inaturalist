@@ -1572,9 +1572,13 @@ ca:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Tàxons coberts cap a vall marcats
+  #Noun, as in a journal post that has not been published
   draft: esborrany
+  #Noun, as in a journal post that has not been published
   draft_: Esborrany
+  #Noun, as in a journal post that has not been published
   draft_saved: Esborrany desat!
+  #Noun, as in journal posts that has not been published
   drafts: Esborranys
   drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
   #Button label for drawing a circular boundary for an observation search
@@ -2731,6 +2735,7 @@ ca:
   must_have_quality_grades: "ha de tenir el grau de qualitat: %{grades}"
   must_have_sounds: ha de tenir sons
   must_have_x: "ha de tenir %{x}"
+  #Mute is a noun here
   mute_removed: Emmudiment eliminat
   muted_users: Usuaris silenciats
   n_ago: "fa %{n}"
@@ -3793,7 +3798,6 @@ ca:
   post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   posted_by: Publicat per
-  posted_on: Introduït a
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
