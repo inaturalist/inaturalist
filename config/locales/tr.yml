@@ -305,7 +305,7 @@ tr:
   add_id: Tanımlama Ekle
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Eğik yazı ekle
-  add_muted_users: Sessize alınacak kullanıcı ekle
+  add_muted_users: Sessize alınacak kullanıcıları ekle
   add_new_lexicon: Yeni Sözlük Ekle
   add_new_photos_by_their_ids: Flickr Kimlikleriyle Yeni Fotoğraflar Ekle (Creative Commons olmalı!)
   add_new_place: Yeni Bir Konum Ekle
@@ -1493,6 +1493,7 @@ tr:
       signed_up_but_locked: "Başarılı bir şekilde kaydoldun. Ancak, hesabın kilitli olduğu için oturumunu açamadık."
       signed_up_but_unconfirmed: "E-posta adresine onay bağlantısı içeren bir ileti gönderildi. Hesabını etkinleştirmek için lütfen bağlantıyı takip et."
       updated: 'Hesabını başarıyla güncelledin.'
+      updated_but_not_signed_in: "Hesabın başarıyla güncellendi ancak şifren değiştirildiği için yeniden oturum açman gerekiyor."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1578,9 +1579,15 @@ tr:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alt soy işaretli sınıflar
+  #Noun, as in a journal post that has not been published
   draft: taslak
+  #Noun, as in a journal post that has not been published
   draft_: Taslak
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: '%{user} kullanıcısının taslağı'
+  #Noun, as in a journal post that has not been published
   draft_saved: Taslak kaydedildi!
+  #Noun, as in journal posts that has not been published
   drafts: Taslaklar
   drag_and_drop_some_photos_or_sounds: Bazı fotoğrafları ya da sesleri sürükleyip bırak
   #Button label for drawing a circular boundary for an observation search
@@ -2740,8 +2747,12 @@ tr:
   must_have_quality_grades: "minimum kalite derecesi: %{grades}"
   must_have_sounds: ses içermeli
   must_have_x: "%{x} olması gerekir"
-  mute_removed: Susturma kaldırıldı
-  muted_users: Susturulmuş Kullanıcılar
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Sessize al
+  #Mute is a noun here
+  mute_removed: Sessize alma kaldırıldı
+  muted_users: Sessize Alınmış Kullanıcılar
+  muting_description: Birini sessize almak, "@" ifadeleri, mesajlar ya da gözlemlerinle ilgili yorumlar ve tanımlamalar dahil olmak üzere onun herhangi bir etkinliğinden haberdar olmanı engeller.
   n_ago: "%{n} önce"
   n_people_agrees: "%{amount} kişi onaylıyor"
   n_people_disagrees: "%{amount} kişi onaylamıyor"
@@ -3259,6 +3270,9 @@ tr:
     invalid_email: Geçersiz e-posta formatı
   password: Şifre
   password_confirmation: 'Şifre doğrulama'
+  password_change_description: Şifreni değiştirdiğinde cihazlarınızdaki tüm etkin iNaturalist oturumlarından çıkarsın
+  password_change_logout_warning: Şifreni değiştirdikten sonra oturumun kapatılacak ve yeni şifrenle tekrar oturum açman gerekecektir.
+  password_change_observations_warning: Ayrıca iNaturalist mobil uygulamalarından ve senin adına iNaturalist'e gönderi yapan diğer uygulamalardan ya da web sitelerinden çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen tüm gözlemleri yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.
   paste: Yapıştır
   paste_in_a_bunch_of_names: Her satıra 1 tane olmak üzere bir grup isim yapıştır ve düğmeye bas!
   people: İnsanlar
@@ -3799,7 +3813,10 @@ tr:
   post_from_your_journal_html: <a href="%{url}">Günlüğünden</a> gönderi
   post_published: Gönderi yayınlandı!
   posted_by: Gönderen
-  posted_on: Gönderi tarihi
+  #Shows the date a journal post was published
+  posted_on_date_html: '%{date} tarihinde yayınlandı'
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: '%{user} tarafından %{date} tarihinde yayınlandı'
   posts: Gönderiler
   potential_disagreement: Potansiyel Anlaşmazlık
   powered_by: Destekleyen
@@ -5067,7 +5084,7 @@ tr:
   unfollow: Takibi bırak
   unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
-  unmute: Sesi aç
+  unmute: Sessizden Çıkart
   updates_notification_email_subject: "%{prefix} Yeni güncellemeler %{date}"
   updates_suspension_email_subject: "%{prefix} Aboneliklerin beklemede"
   updating: Güncelleniyor...
@@ -5202,7 +5219,7 @@ tr:
     <strong>%{user}</strong> artık %{project} için yürütücü
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> artık %{project} için küratör
-  user_muted: Kullanıcı susturuldu
+  user_muted: Kullanıcı sessize alındı
   user_observed_on_on_date_in_place: |
     %{user}, %{place} konumunda %{date} tarihinde bir tane gözlemledi
   user_suggested_an_id: "%{user} bir tanımlama önerdi"
