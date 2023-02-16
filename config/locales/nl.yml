@@ -1637,9 +1637,13 @@ nl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Onderliggende gedekte taxa
+  #Noun, as in a journal post that has not been published
   draft: concept
+  #Noun, as in a journal post that has not been published
   draft_: Concept
+  #Noun, as in a journal post that has not been published
   draft_saved: Kladversie bewaard!
+  #Noun, as in journal posts that has not been published
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
   #Button label for drawing a circular boundary for an observation search
@@ -2837,6 +2841,7 @@ nl:
   must_have_quality_grades: "moet kwaliteitsbeoordelingen bevatten: %{grades}"
   must_have_sounds: moet geluiden hebben
   must_have_x: "%{x} vereist"
+  #Mute is a noun here
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
   n_ago: "%{n} geleden"
@@ -3938,7 +3943,6 @@ nl:
   post_from_your_journal_html: Post vanuit <a href="%{url}">je dagboek</a>
   post_published: Bericht gepubliceerd!
   posted_by: Geplaatst door
-  posted_on: Geplaatst op
   posts: Berichten
   potential_disagreement: Potentiële meningsverschillen
   powered_by: Draait op
