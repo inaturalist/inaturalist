@@ -1746,9 +1746,13 @@ cs:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Označené taxony
+  #Noun, as in a journal post that has not been published
   draft: koncept
+  #Noun, as in a journal post that has not been published
   draft_: koncept
+  #Noun, as in a journal post that has not been published
   draft_saved: koncept uložen!
+  #Noun, as in journal posts that has not been published
   drafts: koncepty
   drag_and_drop_some_photos_or_sounds: Přetáhnout fotky nebo zvuky
   #Button label for drawing a circular boundary for an observation search
@@ -2937,6 +2941,7 @@ cs:
   must_have_quality_grades: "musí mít úroveň kvality: %{grades}"
   must_have_sounds: musí mít zvuky
   must_have_x: "musí mít %{x}"
+  #Mute is a noun here
   mute_removed: Ztlumení zrušeno
   muted_users: Ztlumení uživatelé
   n_ago: "před %{n}"
@@ -4023,7 +4028,6 @@ cs:
   post_from_your_journal_html: Příspěvek od <a href="%{url}">your journal</a>
   post_published: Příspěvek byl zveřejněn!
   posted_by: Autor příspěvku
-  posted_on: Příspěvek ze dne
   posts: Příspěvky
   potential_disagreement: Potenciální neshoda
   powered_by: Vytvořeno pomocí
