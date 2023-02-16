@@ -1583,9 +1583,13 @@ uk:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Таксони на нижчих рівнях, позначені прапорцем
+  #Noun, as in a journal post that has not been published
   draft: чернетка
+  #Noun, as in a journal post that has not been published
   draft_: Чернетка
+  #Noun, as in a journal post that has not been published
   draft_saved: Чернетку збережено!
+  #Noun, as in journal posts that has not been published
   drafts: Чернетки
   drag_and_drop_some_photos_or_sounds: Перетягніть сюди фотографії або звукозаписи
   drawings: Рисунки
@@ -2607,6 +2611,7 @@ uk:
   must_have_quality_grades: "повинні мати рівень якості: %{grades}"
   must_have_sounds: повинні мати звукозаписи
   must_have_x: "мусить мати %{x}"
+  #Mute is a noun here
   mute_removed: Ігнорування скасоване
   muted_users: Ігноровані користувачі
   n_ago: "%{n} тому"
@@ -3628,7 +3633,6 @@ uk:
   post_from_your_journal_html: Допис з <a href="%{url}">вашого журналу</a>
   post_published: Допис опубліковано!
   posted_by: Опубліковано
-  posted_on: Опубліковано у
   posts: Дописи
   potential_disagreement: Потенційна незгода
   powered_by: Працює на
