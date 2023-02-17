@@ -824,9 +824,13 @@ ar:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
+  #Noun, as in a journal post that has not been published
   draft: مسودة
+  #Noun, as in a journal post that has not been published
   draft_: مسودة
+  #Noun, as in a journal post that has not been published
   draft_saved: تم حفظ المسودة!
+  #Noun, as in journal posts that has not been published
   drafts: مسودات
   drag_and_drop_some_photos_or_sounds: سحب وإسقاط بعض الصور أو الأصوات
   drawings: رسومات
@@ -1616,6 +1620,7 @@ ar:
   must_be_less_than_x_MB: "يجب أن يكون أقل من %{x} ميغابايت"
   must_have_observation_field: "يجب أن يكون حقل الملاحظة '%{operand}' ممتلئا"
   must_have_x: "يجب أن يحتوي على %{x}"
+  #Mute is a noun here
   mute_removed: تمت إزالة كتم الصوت
   muted_users: المستخدمون الذين تم تجاهلهم
   n_ago: "قبل %{n}"
@@ -2461,7 +2466,6 @@ ar:
   post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
   post_published: تم نشر المشاركة!
   posted_by: نشرها
-  posted_on: نُشِر على
   posts: المشاركات
   potential_disagreement: احتمال الاختلاف
   powered_by: يشغله

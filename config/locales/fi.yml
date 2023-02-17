@@ -1434,6 +1434,7 @@ fi:
       signed_up_but_locked: "Rekisteröintisi onnistui. Emme kuitenkaan voineet kirjata sinua sisään koska tunnuksesi on lukittu."
       signed_up_but_unconfirmed: "Vahvistusohjeet on lähetetty sähköpostiosoitteeseesi. Avaathan sähköpostissa olevan linkin vahvistaaksesi tunnuksen."
       updated: 'Päivitit tilisi onnistuneesti.'
+      updated_but_not_signed_in: "Tilisi on päivitetty onnistuneesti, mutta salasanan vaihtamisen jälkeen sinun on kirjauduttava sisään uudelleen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1515,9 +1516,15 @@ fi:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alemmat liputetut taksonit
+  #Noun, as in a journal post that has not been published
   draft: luonnos
+  #Noun, as in a journal post that has not been published
   draft_: Luonnos
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Luonnos käyttäjältä %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Luonnos tallennettu!
+  #Noun, as in journal posts that has not been published
   drafts: Luonnokset
   drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
   #Button label for drawing a circular boundary for an observation search
@@ -2602,8 +2609,12 @@ fi:
   must_have_quality_grades: "täytyy olla laatuarvosana: %{grades}"
   must_have_sounds: täytyy olla ääniä
   must_have_x: "täytyy olla %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Mykistä
+  #Mute is a noun here
   mute_removed: Hiljennys poistettu
   muted_users: Hiljennetyt käyttäjät
+  muting_description: Jonkun mykistäminen estää sinua saamasta ilmoitusta heidän toiminnastaan, mukaan lukien "@" maininnat, viestit tai kommentit ja tunnisteet havaintoihisi.
   n_ago: "%{n} sitten"
   n_people_agrees: "%{amount} ihmistä samaa mieltä"
   n_people_disagrees: "%{amount} ihmistä ovat eri mieltä"
@@ -3063,6 +3074,9 @@ fi:
     invalid_email: Virhellinen sähköpostiosoite
   password: Salasana
   password_confirmation: 'Salasanan vahvistus'
+  password_change_description: Salasanan vaihtaminen kirjaa sinut ulos kaikista aktiivisista iNaturalist-istunnoista kaikissa laitteissasi
+  password_change_logout_warning: Kun olet vaihtanut salasanasi, sinut kirjataan ulos ja sinun täytyy kirjautua uudelleen uudella salasanallasi.
+  password_change_observations_warning: Sinut kirjautaan ulos myös iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki havainnot ennen kuin teet tämän. Kaikki lataamattoma havainnot menetetään.
   paste: Liitä
   paste_in_a_bunch_of_names: Liitä joukko nimiä, 1 riviä kohden ja paina nappia!
   people: Ihmiset
@@ -3574,7 +3588,10 @@ fi:
   position: Sijainti
   post_published: Viesti julkaistu
   posted_by: Lähettänyt
-  posted_on: Lähetetty
+  #Shows the date a journal post was published
+  posted_on_date_html: Julkaistu %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Julkaistu %{date} käyttäjältä %{user}
   posts: Viestit
   potential_disagreement: Mahdollinen erimielisyys
   powered_by: Palvelun mahdollistaa

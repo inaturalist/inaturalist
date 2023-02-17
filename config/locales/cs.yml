@@ -1661,6 +1661,7 @@ cs:
       signed_up_but_locked: "Úspěšně jste se zaregistrovali. Nicméně, nemohli jsme vás přihlásit, protože Váš účet je uzamčen."
       signed_up_but_unconfirmed: "Zpráva s potvrzovacím odkazem byla odeslána na vaši e-mailovou adresu. Pro aktivaci účtu prosím postupujte podle odkazu."
       updated: 'Účet byl úspěšně aktualizován.'
+      updated_but_not_signed_in: "Váš účet byl úspěšně aktualizován, ale od změny hesla se musíte znovu přihlásit."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1746,9 +1747,15 @@ cs:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Označené taxony
+  #Noun, as in a journal post that has not been published
   draft: koncept
+  #Noun, as in a journal post that has not been published
   draft_: koncept
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Návrh od %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: koncept uložen!
+  #Noun, as in journal posts that has not been published
   drafts: koncepty
   drag_and_drop_some_photos_or_sounds: Přetáhnout fotky nebo zvuky
   #Button label for drawing a circular boundary for an observation search
@@ -2518,6 +2525,7 @@ cs:
     italian: Italština
     japanese: Japonština
     kannada: Kannadština
+    kazakh: Kazachština
     korean: Korejština
     latvian: Lotyština
     lithuanian: Litevština
@@ -2598,6 +2606,10 @@ cs:
     taxonomic: taxonomický
     photo: fotka
   list_was_successfully_created: Seznam byl úspěšně vytvořen.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} a %{three}"
+  list_with_two_items: "%{one} a %{two}"
   listed_taxa: Taxony uvedené v seznamu
   listed_taxon: Taxon uvedený v seznamu
   listed_taxon_updated: Taxon uvedený v seznamu byl aktualizován
@@ -2649,6 +2661,7 @@ cs:
     id: indonésky
     it: italsky
     ja: japonsky
+    kk: Kazachština
     kn: kannadsky
     ko: korejsky
     lb: lucembursky
@@ -2714,6 +2727,8 @@ cs:
   lookup: Vyhledat
   low: nízká
   lowest_rank: Nejnižší hodnost
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Dělat admina
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hlavní obsah
@@ -2746,6 +2761,7 @@ cs:
       every_publicly_visible_observation: Každé veřejně viditelné pozorování vytvořené v síti iNaturalist
       featured_observations: Doporučené pozorování
       gbif_network: GBIF síť
+      gbif_network_description2: Záznamy z muzeí a jiných poskytovatelů výskytu, které distribuuje Globální informační společnost pro biologickou rozmanitost
       observations: Pozorování
       place_boundary: Umístit hranici
       checklist_places: Místa seznamů
@@ -2765,6 +2781,9 @@ cs:
   maximum_positional_accuracy_including_unknown: |
     Maximální přesnost polohy včetně pozorování bez polohové přesnosti
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: a
   media_type: Typ média
   medium: střední
   meet: setkat se
@@ -2937,8 +2956,12 @@ cs:
   must_have_quality_grades: "musí mít úroveň kvality: %{grades}"
   must_have_sounds: musí mít zvuky
   must_have_x: "musí mít %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Ztlumit
+  #Mute is a noun here
   mute_removed: Ztlumení zrušeno
   muted_users: Ztlumení uživatelé
+  muting_description: Ztlumení někoho vám brání být informováni o jakékoli jejich aktivitě, včetně "@", zpráv nebo komentářů a identifikací na vašich pozorováních.
   n_ago: "před %{n}"
   n_people_agrees: "%{amount} lidí souhlasí"
   n_people_disagrees: "%{amount} lidí nesouhlasí"
@@ -3469,6 +3492,9 @@ cs:
     invalid_email: Neplatný formát emailu
   password: Heslo
   password_confirmation: 'Potvrzení hesla'
+  password_change_description: Změna hesla vás odhlásí ze všech aktivních relací iNaturalist napříč vašimi zařízeními
+  password_change_logout_warning: Poté, co změníte své heslo, budete odhlášeni a budete se muset znovu přihlásit svým novým heslem.
+  password_change_observations_warning: Budete také odhlášeni z mobilních aplikací iNaturalist a jakýchkoli dalších aplikací nebo webových stránek, které váš jménem publikují iNaturalist tak se ujistěte, že jste nahráli veškerá čekající pozorování, než to uděláte. Všechna pozorování, která nejsou nahrána, budou ztracena.
   paste: Vložit
   paste_in_a_bunch_of_names: Vložte skupinu názvů, 1 na každý řádek, a zmáčkněte tlačítko!
   people: Lidé
@@ -3980,6 +4006,10 @@ cs:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">jejich stažení z GBIF</a>,
     kde můžete nakreslit libovolné hranice, nebo je exportujte z iNat pomocí
     existujících míst nebo ohraničujícího obdélníku a pak data znovu filtrujte po stažení.
+  places_warning_look_for_existing2_html: |
+    Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že
+    nevytváříte duplicitu. Již máme místa pro všechny
+    kontinenty a země a mnoho dalších politických hranic.
   places_warning_please_keep_in_mind: |
     Mějte prosím na paměti následující omezení:
   places_warning_projects_can_have_multiple_places: |
@@ -4023,7 +4053,10 @@ cs:
   post_from_your_journal_html: Příspěvek od <a href="%{url}">your journal</a>
   post_published: Příspěvek byl zveřejněn!
   posted_by: Autor příspěvku
-  posted_on: Příspěvek ze dne
+  #Shows the date a journal post was published
+  posted_on_date_html: Zveřejněno v %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Zveřejněno dne %{date} uživatelem %{user}
   posts: Příspěvky
   potential_disagreement: Potenciální neshoda
   powered_by: Vytvořeno pomocí
@@ -5502,6 +5535,7 @@ cs:
   user_disagrees_with_previous_finer_identifications: "%{user} nesouhlasí s předchozí identifikací"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Uživatel %{user} označený jako oblíbený %{noun} %{owner}"
+  user_faved_a_noun_by_you: "%{user} vás upřednostnil %{noun}"
   user_faved_this_observation: "Uživatel %{user} upřednostnil toto pozorování"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
   user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
@@ -6787,6 +6821,11 @@ cs:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
     places:
+      kml_field_desc2: |
+        KML hranice místa. Můžete jej vytvořit pomocí Google Maps, Google
+        Earth, nebo většiny GIS aplikací. Musí mít alespoň jeden polygon, být
+        nižší než 1 MB (5 MB pro kurátory webu), a mají menší plochu než
+        stát Texas.
       edit:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
@@ -7475,6 +7514,8 @@ cs:
         licensing_desc_html: |
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
+        monthly_supporter_desc_html: |
+          Měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které dostává Kalifornská akademie věd (IRS EIN 94-1156258 Spojených států) na podporu neziskového provozu stránek sítě iNaturalist a iNaturalist Network. <a href="%{url}">Kliknutím sem se stanete měsíčním podporovatelem</a>. Jakmile potvrdíme vaši podporu, budete moci zaškrtnutím tohoto políčka zobrazit tento stav ve vašem profilu. Poznámka: E-mailové adresy na Donorbox a iNaturalist se musí přesně shodovat, abychom mohli potvrdit, že jste měsíčním podporovatelem. Pokud se liší, změňte jeden, aby odpovídal druhému.
         muting_desc_html: |
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 

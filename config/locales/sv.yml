@@ -1555,6 +1555,7 @@ sv:
       signed_up_but_locked: "Du har registrerat dig. Vi kunde tyvärr inte logga in dig eftersom ditt konto är låst."
       signed_up_but_unconfirmed: "Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Följ länken för att aktivera ditt konto."
       updated: 'Ditt konto har uppdaterats.'
+      updated_but_not_signed_in: "Ditt konto har uppdaterats framgångsrikt, men eftersom ditt lösenord ändrades måste du logga in igen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1651,9 +1652,15 @@ sv:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Underliggande flaggade taxa
+  #Noun, as in a journal post that has not been published
   draft: utkast
+  #Noun, as in a journal post that has not been published
   draft_: Utkast
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Utkast av %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Utkast sparat!
+  #Noun, as in journal posts that has not been published
   drafts: Utkast
   drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
   #Button label for drawing a circular boundary for an observation search
@@ -2862,8 +2869,12 @@ sv:
   must_have_quality_grades: "måste vara av kvalitetsklass: %{grades}"
   must_have_sounds: måste ha ljud
   must_have_x: "måste ha %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Tysta
+  #Mute is a noun here
   mute_removed: Tystning borttagen
   muted_users: Tystade användare
+  muting_description: Att tysta någon hindrar dig från att bli aviserad om någon av deras aktiviteter, inklusive "@"-omnämnanden, meddelanden eller kommentarer och bestämningar av dina observationer.
   n_ago: "%{n} sedan"
   n_people_agrees: "%{amount} personer håller med"
   n_people_disagrees: "%{amount} personer är emot"
@@ -3387,6 +3398,9 @@ sv:
     invalid_email: Ogiltigt e-postformat
   password: Lösenord
   password_confirmation: 'Lösenordsbekräftelse'
+  password_change_description: Om du ändrar ditt lösenord loggas du ut från alla aktiva iNaturalist-sessioner på dina enheter
+  password_change_logout_warning: Efter att du bytt lösenord kommer du att loggas ut och du måste logga in igen med ditt nya lösenord.
+  password_change_observations_warning: Du kommer också att loggas ut från iNaturalist-mobilappar och andra appar eller webbplatser som publicerar på iNaturalist för din räkning, så se till att du har laddat upp eventuella väntande observationer innan du gör detta. Alla observationer som inte är uppladdade kommer att gå förlorade.
   paste: Klistra in
   paste_in_a_bunch_of_names: Klistra in ett gäng namn, 1 per rad, och tryck på knappen!
   people: Personer
@@ -3960,7 +3974,10 @@ sv:
   post_from_your_journal_html: Inlägg från <a href="%{url}">din dagbok</a>
   post_published: Inlägget publicerat!
   posted_by: Inlagt av
-  posted_on: Inlagt den
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicerat %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicerat %{date} av %{user}
   posts: Inlägg
   potential_disagreement: Möjlig oenighet
   powered_by: Drivs av

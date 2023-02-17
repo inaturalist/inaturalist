@@ -126,6 +126,7 @@ kn:
   _100_day_trends: 100 ದಿನದ ಜನಪ್ರಿಯತೆ
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಒಂದು ಸಮುದಾಯ
+  a_flag_for_x: "%{x} ಗಾಗಿ ಫ್ಲ್ಯಾಗ್"
   a_member_of_taxon_html: "%{taxon} ನ ಸದಸ್ಯ"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -268,6 +269,7 @@ kn:
   add_obs_from_a_link: "ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ : %{link}"
   add_obs_from_a_list: ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   add_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
+  add_observations_by_checking_off: ಪಟ್ಟಿಯಿಂದ ಜಾತಿಗಳನ್ನು ಬಿಟ್ಟುಬಿಡುವ ಮೂಲಕ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ.
   add_observations_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   #Used for buttons to add observations where the words "Add"
   #and "Observations" need to be styled differently
@@ -1296,9 +1298,13 @@ kn:
   download_csv: CSV ಡೌನ್‍ಲೋಡ್
   download_csv_template: CSV ಮಾದರಿಯನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ
   download_kml: KML ಡೌನ್‍ಲೋಡ್
+  #Noun, as in a journal post that has not been published
   draft: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_saved: ಕರಡುಪ್ರತಿ ಉಳಿಸಲಾಗಿದೆ!
+  #Noun, as in journal posts that has not been published
   drafts: ಕರಡುಪ್ರತಿಗಳು
   drag_and_drop_some_photos_or_sounds: ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅಥವಾ ಧ್ವನಿಗಳನ್ನು ಎಳೆಯಿರಿ & ಬಿಡಿ
   drawings: ರೇಖಾಚಿತ್ರಗಳು
@@ -1964,6 +1970,7 @@ kn:
     de: ಜರ್ಮನ್
     el: ಗ್ರೀಕ್
     en: ಇಂಗ್ಲಿಷ್
+    en-GB: ಇಂಗ್ಲಿಷ್ (ಯುಕೆ)
     eo: ಎಸ್ಪೆರಾಂಟೋ
     es: ಸ್ಪಾನಿಶ್
     es-AR: ಸ್ಪಾನಿಶ್ (ಅರ್ಜೆಂಟಿನಾ)
@@ -2234,6 +2241,7 @@ kn:
   must_have_quality_grades: "ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು :%{grades}"
   must_have_sounds: ಧ್ವನಿಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು
   must_have_x: "%{x} ಅನ್ನು ಹೊಂದಿರಲೇಬೇಕು"
+  #Mute is a noun here
   mute_removed: ಮೌನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   muted_users: ಮೌನ ಬಳಕೆದಾರರು
   n_ago: "%{n} ಹಿಂದೆ"
@@ -3182,7 +3190,6 @@ kn:
   post_from_your_journal_html: <a href="%{url}">ನಿಮ್ಮ ನಿಯತಕಾಲಿಕೆ</a> ಯಿಂದ ಪೋಸ್ಟ್
   post_published: ಪೋಸ್ಟ್ ಪ್ರಕಟಣೆಗೊಂಡಿದೆ!
   posted_by: ಇವರಿಂದ ಪೋಸ್ಟ್ ಆಗಿದೆ
-  posted_on: ರಂದು ಪೋಸ್ಟ್ ಆಗಿದೆ
   posts: ಪೋಸ್ಟ್ ಗಳು
   potential_disagreement: ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ
   powered_by: ಇವರಿಂದ ನಡೆಸಲ್ಪಡುತ್ತಿದೆ

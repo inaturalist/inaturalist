@@ -1470,6 +1470,7 @@ de:
       signed_up_but_locked: "Du hast dich erfolgreich angemeldet. Wir konnten dich jedoch nicht anmelden, da dein Account gesperrt ist."
       signed_up_but_unconfirmed: "Eine Nachricht mit dem Bestätigungslink wurde an deine E-Mail-Adresse gesendet. Bitte folgen dem Link, um dein Konto zu aktivieren."
       updated: 'Du hast dein Konto erfolgreich aktualisiert.'
+      updated_but_not_signed_in: "Dein Konto wurde erfolgreich aktualisiert, aber da dein Passwort geändert wurde, musst du dich erneut anmelden"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1552,9 +1553,15 @@ de:
   download_csv_template: CSV-Vorlage herunterladen
   download_kml: KML herunterladen
   downstream_deviations: Downstream-Abweichungen
+  #Noun, as in a journal post that has not been published
   draft: Entwurf
+  #Noun, as in a journal post that has not been published
   draft_: Entwurf
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Entwurf von %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Entwurf gespeichert!
+  #Noun, as in journal posts that has not been published
   drafts: Entwürfe
   drag_and_drop_some_photos_or_sounds: durch "Ziehen & Ablegen" Bilder oder Audio-Dateien hinzufügen
   #Button label for drawing a circular boundary for an observation search
@@ -2690,8 +2697,12 @@ de:
   must_have_quality_grades: "muss Qualitätsstufen besitzen: %{grades}"
   must_have_sounds: muss Audioaufnahmen enthalten
   must_have_x: "muss %{x} haben"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Stummschalten
+  #Mute is a noun here
   mute_removed: Sperre entfernt
   muted_users: Stummgestellte Benutzer
+  muting_description: Jemanden stummschalten bedeutet, über keinerlei Aktivitäten benachrichtigt zu werden, einschließlich "@"-Erwähnungen, Nachrichten oder Kommentare, sowie Bestimmungen zu deinen Beobachtungen.
   n_ago: "vor %{n}"
   n_people_agrees: "%{amount} der Personen stimmen zu"
   n_people_disagrees: "%{amount} Bestimmer sind anderer Meinung"
@@ -3211,6 +3222,9 @@ de:
     invalid_email: Ungültiges E-Mail-Format
   password: Passwort
   password_confirmation: 'Passwort bestätigen'
+  password_change_description: Durch die Änderung deines Passworts wirst du von allen aktiven iNaturalist-Verbindungen auf deinen Geräten abgemeldet
+  password_change_logout_warning: Nachdem du dein Passwort geändert hast, wirst du abgemeldet und musst dich erneut mit deinem neuen Passwort anmelden.
+  password_change_observations_warning: Du wirst auch von den mobilen Apps und anderen Apps oder Webseiten abgemeldet, mit denen du Beobachtungen an iNaturalist meldest, also überprüfe, dass alle ausstehenden Beobachtungen hochgeladen wurden, bevor du dein Passwort änderst. Alle nicht hochgeladenen Beobachtungen gehen verloren.
   paste: Einfügen
   paste_in_a_bunch_of_names: Trage mehrere Namen ein, einen pro Zeile, und klicke auf den Button!
   people: Personen
@@ -3774,7 +3788,10 @@ de:
   post_from_your_journal_html: Beitrag von <a href="%{url}">deinem Journal</a>
   post_published: Eintrag veröffentlicht!
   posted_by: Gepostet von
-  posted_on: Gepostet am
+  #Shows the date a journal post was published
+  posted_on_date_html: veröffentlicht am %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: veröffentlicht am %{date} von %{user}
   posts: Beiträge
   potential_disagreement: Besteht Einwand gegen die aktuelle Bestimmung?
   powered_by: Betrieben von

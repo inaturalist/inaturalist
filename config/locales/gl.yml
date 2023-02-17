@@ -1476,9 +1476,13 @@ gl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxons marcados no descenso
+  #Noun, as in a journal post that has not been published
   draft: '¡BORRADOR!'
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Gardado en borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra e solta algunhas fotos ou sons
   drawings: Deseños
@@ -2471,6 +2475,7 @@ gl:
   must_have_quality_grades: "debe ter graos de calidade: %{grades}"
   must_have_sounds: debe ter sons
   must_have_x: "debe ter %{x}"
+  #Mute is a noun here
   mute_removed: Silenciador retirado
   muted_users: Usuarios Acalados
   n_ago: "hai %{n}"
@@ -3458,7 +3463,6 @@ gl:
   post_from_your_journal_html: Publicación do <a href="%{url}">teu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
-  posted_on: Introducido o
   posts: Ingresos
   potential_disagreement: Desacordo Potencial
   powered_by: Desenvolvido por
