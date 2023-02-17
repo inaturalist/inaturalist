@@ -1541,6 +1541,7 @@ da:
       signed_up_but_locked: "Din konto er oprettet. Indlogning kan imidlertid ikke ske, da din konto er låst."
       signed_up_but_unconfirmed: "En besked med et bekræftelseslink er sendt til din e-mailadresse. Følg linket for at aktivere din konto."
       updated: 'Din kontoopdatering er nu gennemført.'
+      updated_but_not_signed_in: "Din konto er nu opdateret, men da adgangskoden er skiftet, skal du logge ind igen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1636,6 +1637,8 @@ da:
   draft: kladde
   #Noun, as in a journal post that has not been published
   draft_: Kladde
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Kladde fra %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Kladde gemt!
   #Noun, as in journal posts that has not been published
@@ -2834,9 +2837,12 @@ da:
   must_have_quality_grades: "skal have kvalitetsgraduering: %{grades}"
   must_have_sounds: skal have lyde
   must_have_x: "skal have %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Tavsgør
   #Mute is a noun here
   mute_removed: Sluk fjernet
   muted_users: Slukkede brugere
+  muting_description: Tavsgørelse af nogen undertrykker notifcering om vedkommendes aktiviteter, herunder "@"-omtale, beskeder eller kommentarer og identifikationer på dine observationer.
   n_ago: "%{n} siden"
   n_people_agrees: "%{amount} personer er enige"
   n_people_disagrees: "%{amount} personer er uenige"
@@ -3370,6 +3376,9 @@ da:
     invalid_email: Ugyldigt emailformat
   password: Adgangskode
   password_confirmation: 'Adgangskode bekræftelse'
+  password_change_description: Skiftes adgangskoden, logges du ud af alle dine aktive iNaturalist-sessioner på alle enheder
+  password_change_logout_warning: Når adgangskoden er skiftet, logges du ud og vil skulle logge ind igen med den nye adgangskode.
+  password_change_observations_warning: Du logges ligeledes ud af iNaturalist mobil-appen og alle andre apps eller websteder, som poster til iNaturalist på dine vegne, så sørg for at evt. afventende observationer uploades, før du gør dette, da alle ikke-uploadede observationer vil gå tabt.
   paste: Indsæt
   paste_in_a_bunch_of_names: Indsæt et bundt af navne, 1 per linje, og tryk på knappen!
   people: Personer
@@ -3928,6 +3937,10 @@ da:
   post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   posted_by: Indsendt af
+  #Shows the date a journal post was published
+  posted_on_date_html: Postet d. %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Postet d. %{date} af %{user}
   posts: Indlæg
   potential_disagreement: Potentiel uenighed
   powered_by: Drevet af
