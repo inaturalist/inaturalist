@@ -1612,6 +1612,7 @@ ru:
       signed_up_but_locked: "Ваша регистрация успешно завершена. Однако вы не может войти в систему потому, что ваша учетная запись заблокирована."
       signed_up_but_unconfirmed: "Письмо со ссылкой для подтверждения было отправлено на ваш адрес электронной почты. Пожалуйста, перейдите по ссылке, чтобы активировать учетную запись."
       updated: 'Вы успешно обновили свою учётную запись.'
+      updated_but_not_signed_in: "Ваш аккаунт успешно обновлён, но так как ваш пароль изменился, нужно войти снова."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1702,6 +1703,8 @@ ru:
   draft: черновик
   #Noun, as in a journal post that has not been published
   draft_: Черновик
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Черновик %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Черновик сохранен!
   #Noun, as in journal posts that has not been published
@@ -2458,6 +2461,7 @@ ru:
     italian: Итальянский
     japanese: Японский
     kannada: Каннада
+    kazakh: Казахский
     korean: Корейский
     latvian: Латышский
     lithuanian: Литовский
@@ -2593,6 +2597,7 @@ ru:
     id: индонезийский
     it: Итальянский
     ja: Японский
+    kk: Казахский
     kn: Каннада
     ko: Корейский
     lb: Люксембургский
@@ -2877,9 +2882,12 @@ ru:
   must_have_quality_grades: "должны иметь оценки качества: %{grades}"
   must_have_sounds: должны содержать аудио
   must_have_x: "должен иметь %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Игнорировать
   #Mute is a noun here
   mute_removed: Отмена игнорирования
   muted_users: Игнорируемые пользователи
+  muting_description: Игнорирование кого-либо запрещает вам получать уведомления о любой его деятельности, включая упоминания "@", сообщения или комментарии и идентификацию ваших наблюдений.
   n_ago: "%{n} назад"
   n_people_agrees: "%{amount} людей согласны"
   n_people_disagrees: "%{amount} людей несогласны"
@@ -3398,6 +3406,9 @@ ru:
     invalid_email: Неверный формат адреса электронной почты
   password: Пароль
   password_confirmation: 'Подтверждение пароля'
+  password_change_description: Изменение вашего пароля приведет к отключению всех ваших активных сессий iNaturalist на всех ваших устройствах
+  password_change_logout_warning: После смены пароля вы будете выведены из системы, и вам придется снова войти в систему с новым паролем.
+  password_change_observations_warning: Вы также будете выведены из мобильных приложений iNaturalist и любых других приложений или сайтов, которые размещают сообщения в iNaturalist от вашего имени, поэтому убедитесь, что вы завершили загрузку любые незавершенных наблюдений, прежде чем это произойдёт. Любые незагруженные наблюдения будут потеряны.
   paste: Вставить
   paste_in_a_bunch_of_names: Вставьте множество имён, по 1 на строку, и нажмите кнопку!
   people: Люди
@@ -3947,6 +3958,10 @@ ru:
   post_from_your_journal_html: Сообщение из <a href="%{url}">вашего журнала</a>
   post_published: Сообщение опубликовано!
   posted_by: Сообщение
+  #Shows the date a journal post was published
+  posted_on_date_html: Размещено %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Размещено %{date} пользователем %{user}
   posts: Сообщения
   potential_disagreement: Возможное несогласие
   powered_by: При поддержке
@@ -7262,6 +7277,16 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
+        monthly_supporter_desc_html: |
+          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы
+          которые получает Калифорнийская академия наук (United
+          States IRS EIN 94-1156258) для поддержки некоммерческой деятельности
+          iNaturalist и сети сайтов iNaturalist Network.
+          <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>.
+          Когда мы подтвердим вашу поддержку, вы сможете проверить наличие отметки в этом
+          поле (отображения этого статуса) в вашем профиле. Примечание: адреса электронной почты
+          на Donorbox и iNaturalist должны точно совпадать, чтобы мы могли подтвердить, что
+          вы являетесь ежемесячным спонсором. Если поля отличаются, измените одно так, чтобы оно соответствовало другому.
         muting_desc_html: |
           <p>
           Игнорирование кого-либо предотвращает получение вами уведомления о том, что они делают, в том числе о комментировании ваших наблюдений, отправке вам сообщения, упоминании вас и т.д. Эта опция помогает, не мешая при этом ему что-либо делать.
