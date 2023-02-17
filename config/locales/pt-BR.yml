@@ -1536,6 +1536,7 @@ pt-BR:
       signed_up_but_locked: "Você se inscreveu com sucesso. No entanto, não fizemos o seu ‘login’ porque sua conta está bloqueada."
       signed_up_but_unconfirmed: "Uma mensagem com um link de confirmação foi enviada para o seu correio eletrônico. Acesse o link para ativar sua conta."
       updated: 'Você atualizou sua conta com sucesso.'
+      updated_but_not_signed_in: "Sua conta foi atualizada com sucesso, mas, como sua senha foi alterada, você precisa fazer o login novamente."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1630,6 +1631,8 @@ pt-BR:
   draft: rascunho
   #Noun, as in a journal post that has not been published
   draft_: Rascunho
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Rascunho por %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Rascunho salvo!
   #Noun, as in journal posts that has not been published
@@ -2832,9 +2835,12 @@ pt-BR:
   must_have_quality_grades: "deve ter níveis de qualidade: %{grades}"
   must_have_sounds: deve ter sons
   must_have_x: "deve ter %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
   #Mute is a noun here
   mute_removed: Silenciador removido
   muted_users: Usuários silenciados
+  muting_description: Silenciar pessoas impede que você seja notificado sobre qualquer atividade delas, incluindo menções "@", mensagens ou comentários e identificações de suas observações.
   n_ago: "há %{n}"
   n_people_agrees: "%{amount} pessoas concordam"
   n_people_disagrees: "%{amount} pessoas discordam"
@@ -3357,6 +3363,9 @@ pt-BR:
     invalid_email: Formato de e-mail inválido
   password: Senha
   password_confirmation: 'Confirme sua senha'
+  password_change_description: Alterar sua senha irá encerrar todas as sessões ativas do iNaturalist nos seus dispositivos
+  password_change_logout_warning: Após alterar sua senha, você será desconectado e precisará entrar novamente com sua nova senha.
+  password_change_observations_warning: Você será desconectado também dos aplicativos móveis do iNaturalist e de qualquer outro aplicativo ou site que poste no iNaturalist em seu nome. Então, certifique-se de ter enviado quaisquer observações pendentes antes de prosseguir. Quaisquer observações iniciadas e ainda não enviadas serão perdidas.
   paste: Colar
   paste_in_a_bunch_of_names: Adicione um grupo de nomes, 1 por linha, a aperte o botão!
   people: Pessoas
@@ -3931,6 +3940,10 @@ pt-BR:
   post_from_your_journal_html: Publicação de <a href="%{url}">seu jornal</a>
   post_published: Publicado!
   posted_by: Publicado por
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicado em %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicado em %{date} por %{user}
   posts: Publicações
   potential_disagreement: Desacordo Potencial
   powered_by: Desenvolvido por
