@@ -1298,6 +1298,7 @@ zh-CN:
       destroyed: '再见 ！您的帐户已成功取消，我们希望能再次见到你。'
       signed_up: '欢迎！您已注册成功。'
       updated: '您已成功更新您的帐户。'
+      updated_but_not_signed_in: "帐号资料更新成功，由于您的密码已修改，请重新登录。"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1364,6 +1365,8 @@ zh-CN:
   draft: 草稿
   #Noun, as in a journal post that has not been published
   draft_: 草稿
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: '%{user} 的草稿'
   #Noun, as in a journal post that has not been published
   draft_saved: 草稿已保存！
   #Noun, as in journal posts that has not been published
@@ -1891,6 +1894,7 @@ zh-CN:
   item_flagged_notice_html: |
     这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
     <a href="%{manage_flags_path}">管理标签</a>
+  jobs: 工作机会
   join: 加入
   join_and_add_an_observation_to_project_html: 加入并添加观察到 %{project}
   join_project: 加入这个项目
@@ -2031,11 +2035,13 @@ zh-CN:
     romanian: 罗马尼亚语
     russian: 俄语
     santali: 桑塔利语
+    serbian: 塞尔维亚语
     setswana: 茨瓦纳语
     sinhala: 僧伽罗语
     slovak: 斯洛伐克语
     slovenian: 斯洛文尼亚语
     spanish: 西班牙语
+    swahili: 斯瓦希里语
     swedish: 瑞典语
     tagalog: 他加禄语
     tahitian: 塔希提语
@@ -2116,6 +2122,7 @@ zh-CN:
     de: 德语
     el: 希腊语
     en: 英语
+    en-GB: 英语（英国）
     eo: 世界语
     es: 西班牙语
     es-AR: 西班牙语(阿根廷)
@@ -2128,10 +2135,12 @@ zh-CN:
     fr-CA: 法语（加拿大）
     gl: 加利西亚语
     he: 希伯来语
+    hr: 克罗地亚语
     hu: 匈牙利语
     id: 印尼语
     it: 意大利语
     ja: 日语
+    kk: 哈萨克语
     kn: 卡纳达语
     ko: 韩语
     lb: 卢森堡语
@@ -2377,9 +2386,12 @@ zh-CN:
   must_have_quality_grades: "质量等级必须为: %{grades}"
   must_have_sounds: 必须有音频
   must_have_x: "必须有 %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: 屏蔽
   #Mute is a noun here
   mute_removed: 禁言已移除
   muted_users: 禁言用户
+  muting_description: 屏蔽某用户后，您将不再收到任何有关其活动的通知，包括 @，消息以及针对您观察的评论和鉴定。
   n_ago: "%{n}前"
   n_people_agrees: "%{amount} 个人同意"
   n_people_disagrees: "%{amount} 个人不同意"
@@ -2840,6 +2852,8 @@ zh-CN:
     invalid_email: 无效的电子邮件格式
   password: 密码
   password_confirmation: '密码确认'
+  password_change_description: 更改密码后，您的所有设备将从 iNaturalist 登出。
+  password_change_logout_warning: 更改密码后，您的账号将被登出，请用新的密码重新登陆。
   paste: 粘贴
   paste_in_a_bunch_of_names: 粘贴一系列名字，每行一个，然后点击按钮！
   people: 成员
@@ -4249,6 +4263,30 @@ zh-CN:
   threatened: 受到威胁
   time_: 时间
   time_ago: "%{time}前"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_bogota: 哥伦比亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: 中部时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: 太平洋时间（墨西哥）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: 山地时间（美国和加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: 危地马拉时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: 大西洋标准时间（加拿大）
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_la_paz: 玻利维亚时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_lima: 秘鲁时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: 中南半岛时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_amsterdam: 欧洲中部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_athens: 欧洲东部时间
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_europe_istanbul: 土耳其时间
   #As in the title of a book or a blog post
   title: 标题
   title_and_description: "标题和描述"
@@ -4421,6 +4459,7 @@ zh-CN:
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意先前更精确的识别"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user}喜欢了%{owner}的%{noun}"
+  user_faved_a_noun_by_you: "%{user} 喜欢了您的 %{noun}"
   user_faved_this_observation: "%{user} 收藏了此观察"
   user_flagged_as_a_non_spammer_html: "%{user} 被标记为非垃圾邮件发送者"
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
