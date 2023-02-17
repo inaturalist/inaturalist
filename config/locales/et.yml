@@ -2206,6 +2206,7 @@ et:
     italian: Itaalia
     japanese: Jaapani
     kannada: Kanada
+    kazakh: Kasahhi
     korean: Korea
     latvian: Läti
     lithuanian: Leedu
@@ -2286,6 +2287,10 @@ et:
     taxonomic: taksonoomiline
     photo: piltidega
   list_was_successfully_created: Nimekirja loomine õnnestus.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ja %{three}"
+  list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Loetletud taksonid
   listed_taxon: Loetletud takson
   listed_taxon_updated: Lotletud taksonit värskendati
@@ -2337,6 +2342,7 @@ et:
     id: Indoneesia
     it: Itaalia
     ja: Jaapani
+    kk: Kasahhi
     kn: Kannada
     ko: Korea
     lb: Luksemburgi
@@ -2399,6 +2405,8 @@ et:
   lookup: Leia
   low: Madal
   lowest_rank: Madalaim kategooria
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Muuda administraatoriks
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Peasisu
@@ -2429,6 +2437,7 @@ et:
       every_publicly_visible_observation: Kõik avalikult nähtavad iNaturalist võrgustikus tehtud vaatlused
       featured_observations: Esiletõstetud vaatlused
       gbif_network: GBIF-võrk
+      gbif_network_description2: Muuseumitest ja teistest leidumisinfo jagajatest pärit andmed, mida haldab Global Biodiversity Informatics Facility.
       observations: Vaatlused
       place_boundary: Koha piir
       checklist_places: Kontrollnimekirja kohad
@@ -2441,6 +2450,9 @@ et:
   matching_species_will_shown_up_here: Siia ilmuvad sobivad liigid. Kaardid näitavad piirkonda kui üks selle liigi isend on asunud kohas %{place}.
   maverick: Sõltumatu
   media: Failid
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ja
   media_type: Failitüüp
   medium: keskmine
   meet: Teretulemast
@@ -3339,6 +3351,8 @@ et:
     zambia: Sambia
   places_of_interest: Huviväärsused
   places_merged_successfully: Kohtade ühendamine õnnestus!
+  places_warning_look_for_existing2_html: |
+    Vaata esmalt <a href="/search?source[]=places">olemasolevaid kohti</a>, et veenduda, et saa mõnda neist ei korda. Meil on juba kõigi kontinentide ja riikidega seotud kohad ning ka paljude muude poliitiliste piirkondadega seotud paigad.
   places_warning_please_keep_in_mind: |
     Pea palun meeles järgnevaid piiranguid:
   plants: taimed
@@ -4357,6 +4371,7 @@ et:
   user_disagrees_with_previous_finer_identifications: "Kasutaja %{user} pole nõus varasema täpsema määratlusega"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
+  user_faved_a_noun_by_you: "Kasutaja %{user} märkis lemmikuks sinu %{noun}"
   user_faved_this_observation: "Kasutaja %{user} märkis selle vaatluse enda lemmikuks"
   user_flagged_as_a_non_spammer_html: "Kasutaja %{user} on märgitud mitte-rämpspostitajaks"
   user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"
@@ -5143,6 +5158,8 @@ et:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun jäta autoriõiguste rikkumise märkused alles, kui see foto neid tõepoolest rikub.
     places:
+      kml_field_desc2: |
+        Koha piirjoone KML. Seda saab teha Google Maps, Google Earth või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab olema väiksem kui USA Texase osariigil.
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
