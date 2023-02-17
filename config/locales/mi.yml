@@ -77,7 +77,9 @@ mi:
   add_from_your_observations: Tāpiritia mai i āu mauhanga
   add_id: Tāpiri tautuhi
   add_new_place: Tāpiri tētahi wāhi hōu
+  add_obs_from_a_list: Tapiritia ngā mauhanga i tētahi tūtira
   add_observations: Tāpiri ngā mauhanga
+  add_observations_project: Tapiritia ngā mauhanga ki te kohinga nei
   add_place: Tāpiri wāhi
   add_tag: Tāpiri te tūtohu
   add_tags: Tāpiri ngā tūtohu
@@ -145,9 +147,9 @@ mi:
       other: "%{count} pepeke"
   all_taxa_: Ngā rōpū katoa
   all_updates: Ngā whakahou katoa
+  allowed_values: Uara tika
   already_have_an_account_log_in_html: Kua hangaia tō pūkete anō? <strong>Takiuru mai.</strong>
   amphibians: ika oneone
-  and: me
   animals: Kīrehe
   annotation: Kupu tāpiri
   annotations: Kupu tāpiri
@@ -209,7 +211,6 @@ mi:
   browse_observations: Tirotiro ngā mauhanga
   browse_people: Tirotiro ngā tāngata
   browse_projects: Tirotiro ngā kohinga
-  by: nā
   by_everyone: Nā tātou
   by_user: "Nā %{user}"
   by_you: Nā koe
@@ -269,8 +270,13 @@ mi:
     any_alive_or_dead: Katoa
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Katoa
+    sex: Taihema taketake
     male: Tourawhi
     female: Uwha
+    adult: Pakeke
+    pupa: Tūngoungou
+    larva: Pūhouhou
+    alive_or_dead: Ora, mate rānei
     alive: Ora
     dead: Mate
     #As in the feather on a bird
@@ -316,6 +322,7 @@ mi:
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
   curators: Kairauhī
   dashboard: Paemana
+  date_added: Rā tapiritia
   date_created: Rā waihanga
   date_format:
     date_long:
@@ -347,6 +354,9 @@ mi:
   date_is_accurate: He tika te rā
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
+  date_picker:
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Panuku
   date_time: Rā/Wā
   date_updated: Rā whakahou
   day: Rā
@@ -656,6 +666,13 @@ mi:
   new_password: Kupuhipa hōu
   new_project: Kohinga hōu
   new_users: Kaiwhakamahi hōu
+  next: Panuku
+  next_date_short: Panuku
+  next_observation: Mauhanga panuku
+  next_page_short: Panuku
+  next_photo: Whakaahua panuku
+  next_post_short: Panuku
+  next_taxon_short: Panuku
   'no': 'Kāo'
   no_but_it_is_a_member_of_taxon: "Kāo, engari he huānga i %{taxon}"
   no_comments_yet: E kore ngā kōrero anō
@@ -693,6 +710,8 @@ mi:
   observation_brief_taxon_from_place_by_user: "%{taxon} ki %{place} nā %{user}"
   observation_date: Rā
   observation_date?: Rā?
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Rōpū
   observation_field_type_time: Wā
   observation_field_type_datetime: Rā/Wā
   observation_field_type_taxon: Rōpū
@@ -1198,6 +1217,8 @@ mi:
   users_lists: "Tūtira ō %{user}"
   users_profile: "Kīwhaiaro tō %{user}"
   users_projects: "Kohinga ā %{user}"
+  value: Uara
+  values: Uara
   view: Tirohia
   view_all: Tirohia katoa
   view_all_caps: TIROHIA KATOA
@@ -1285,6 +1306,8 @@ mi:
       dropdowns:
         sort: Kōmaka
         name: Ingoa
+        date_added_newest: Rā tapiritia, hou ki te tawhito
+        date_added_oldest: Rā tapitiria, tawhito ki te hou
     messages:
       from: Mai i
       to: Ki
@@ -1311,8 +1334,11 @@ mi:
     stats:
       year:
         new_species_per_year: Momo hōu/Tau
+        new_species_per_year_by_date_added: Nā rā tapiritia
         observations_per_year: Mauhanga/Tau
+        observations_per_year_by_date_added: Nā rā tapiritia
         species_per_year: Momo/Tau
+        species_per_year_by_date_added: Nā rā tapiritia
         translators_title: Kaiwhakareo
     taxa:
       show:
@@ -1320,6 +1346,10 @@ mi:
           research: Kua pūruatia
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
+          "Plant Phenology=No Evidence of Flowering": E kore ngā putiputi
+          "Life Stage=Adult": Pakeke
+          "Life Stage=Larva": Pūhouhou
+          "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha
           "Sex=Male": Tourawhi
     users:
@@ -1473,6 +1503,8 @@ mi:
       observation:
         description: Kupu tīpoka
         observed_on: rā mātakitia
+      observation_field_value:
+        value: 'Uara'
       observations_export_flow_task:
         #Date/time the task finished processing
         finished_at: Ka mutu
@@ -1510,6 +1542,8 @@ mi:
       "@vow_or_con":
         vow: oropuare
         con: orokati
+  will_paginate:
+    next_label: "Panuku &#8594;"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z ki A

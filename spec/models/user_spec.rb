@@ -976,6 +976,13 @@ describe User do
       f.reload
       expect( f.flaggable_user_id ).to eq keeper.id
     end
+
+    it "should merge favorited observations" do
+      o = Observation.make!
+      o.vote_by voter: keeper, vote: true
+      o.vote_by voter: reject, vote: true
+      expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+    end
   end
 
   describe "suggest_login" do

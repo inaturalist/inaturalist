@@ -170,6 +170,10 @@ zh-TW:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精確度 (公尺)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 在特定精確度數值以上
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 在特定精確度數值以下
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
@@ -449,7 +453,6 @@ zh-TW:
   analyze_clashes: 分析無意中的意見分歧
   analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
-  and: 和
   and_other_taxa: "&amp;其它物種分類"
   android: Android
   animals: 動物
@@ -492,6 +495,12 @@ zh-TW:
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_about_p2_html: |
+    自2022年起，我們以人工審核方式審核想要使用API用戶端的使用者，為了創建第三方應用程式，您必須先提交申請才能成為"app擁有者"，申請內容必須描述該app的功能以及您計畫如何使用它，在提交申請前請確認您的帳號註冊時間至少2個月以上並且在過去一個月內完成至少10筆<a href="/pages/help#identification"
+    target="_blank">改進中的鑑定</a>，我們可能會對您的申請內容提出後續問題，並保留以任何理由拒絕申請的權利。
+  app_owner_application_inelligible: |
+    在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
+  app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
   app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -630,6 +639,7 @@ zh-TW:
   #of values, and not a synonym of "typical" or "normal"
   avg: 平均
   back: 返回
+  back_to_applications: "返回應用程式"
   back_to_all_species: 返回至所有物種
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
@@ -669,6 +679,8 @@ zh-TW:
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
+  become_a_donor_caps: 成為捐款者
+  become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
   bg_color: 背景顏色
   bio: 個人簡介
@@ -704,7 +716,6 @@ zh-TW:
   browse_species_that_occur_near_this_observation: 瀏覽接近此觀察所出現的物種。
   built_with_site_guides_html: "建於 <a href='%{url}'>%{site_name} 指南</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的巨量匯入已完成"
-  by: 由
   by_everyone: 由任何人
   by_user: "由 %{user}"
   by_you: 由您
@@ -1693,7 +1704,7 @@ zh-TW:
   flag_marked_as_resolved_html: '<span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 項目
-  flag_reason: "&ldquo;我正標記此%{record}出自於"
+  flag_reason: "&ldquo;我正標記此%{record}，因為其變動原因為："
   flag_resolution: 解決
   flag_saved: 已儲存旗號標記。
   flag_saved_thanks_html: 標記已儲存，感謝！<a href="%{url}" class="readmore">檢視標記</a>
@@ -2339,7 +2350,6 @@ zh-TW:
       every_publicly_visible_observation: 任何在 iNaturalist 網路裡所創建的公開可見觀察
       featured_observations: 精選觀察
       gbif_network: GBIF 網路
-      gbif_network_description: 來自於博物館以及其它透由全球生物多樣性資訊機構（GBIF）所分派的事件提供方之記錄
       observations: 觀察
       place_boundary: 地點邊界
       checklist_places: 名錄地點
@@ -2853,10 +2863,6 @@ zh-TW:
   observed_on: 觀察在
   observer: 觀察者
   observers: 觀察者
-  observer_prefers_no_project_addition: |
-    觀察者不允許其他人把他們的觀察紀錄加入到專案中。
-  observer_prefers_addition_to_projects_joined: |
-    觀察者只允許在他們已加入專案時，讓其他人加入他們的觀察紀錄到專案中
   observer_short: 觀察者
   occurence_status_describes_how: '發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。'
   occurrence_status: 事件狀態
@@ -3479,8 +3485,6 @@ zh-TW:
   places_merged_successfully: 合併地點成功！
   places_warning_export_complex_boundary_html: |
     如果您嘗試要從一個複雜的區域邊界中匯出觀察紀錄，請考慮從<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF</a>來下載，在 GBIF 網站上您可以繪出任意的邊界，或是使用現有的地點或邊界框來篩選並下載資料。
-  places_warning_look_for_existing_html: |
-    搜尋<a href="/search?source[]=places">現有的地點</a>以確保您不會重複建立。我們已經建立了所有大陸和國家的地點，以及各國轄下的兩層行政區域邊界。
   places_warning_projects_can_have_multiple_places: |
     如果您試著要建立一個地點邊界給某專案使用的話，其實專案可以同時選擇多個地點。舉例來說，如果您想要建立一個專案給紐西蘭和澳洲使用，您可以在專案設定中加入這兩個地點而非建立一個包含兩個國家的地點。
   places_warning_new_places_are_slow_html: |
@@ -5778,8 +5782,6 @@ zh-TW:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
-      kml_field_desc: |
-        地點邊界的 KML。您可以使用在 Google 地圖、Google 地球，或多數的 GIS 應用程式。另外內容必須至少要有一個多邊形且小於 1 MB（網站策展人可使用到 5 MB），而且是要比美國德州還要小的地區。
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
@@ -6290,7 +6292,6 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
-          "Plant Phenology=No Evidence": 沒有證據
           "Life Stage=Adult": 成體
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲

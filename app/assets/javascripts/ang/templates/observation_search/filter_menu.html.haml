@@ -112,8 +112,8 @@
                 - value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
                 - default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
                 - key = default.parameterize.underscore
-                %option{ value: value }
-                  {{ shared.t( '#{ key }_', { defaultValue: shared.t( '#{ key }', { defaultValue: '#{default}' } ) } ) }}
+                %option{ value: value, data: { key: key } }
+                  {{ shared.t( '#{ key }_', { defaultValue: shared.t( '#{ key }' ) } ) }}
           .col-xs-6
             %select#params-order.form-control{ "ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': ( params.order !== defaultParams.order ) }" }
               - %w[asc desc].map do |order|

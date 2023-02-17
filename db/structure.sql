@@ -1139,7 +1139,8 @@ CREATE TABLE public.deleted_observations (
     user_id integer,
     observation_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    observation_created_at timestamp without time zone
 );
 
 
@@ -1449,7 +1450,9 @@ CREATE TABLE public.flags (
     resolved_at timestamp without time zone,
     flaggable_user_id integer,
     flaggable_content text,
-    uuid uuid DEFAULT public.uuid_generate_v4()
+    uuid uuid DEFAULT public.uuid_generate_v4(),
+    flaggable_parent_type character varying,
+    flaggable_parent_id bigint
 );
 
 
@@ -7712,6 +7715,13 @@ CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON public.flags USIN
 
 
 --
+-- Name: index_flags_on_flaggable_parent_type_and_flaggable_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_flags_on_flaggable_parent_type_and_flaggable_parent_id ON public.flags USING btree (flaggable_parent_type, flaggable_parent_id);
+
+
+--
 -- Name: index_flags_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10229,6 +10239,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20211001151300'),
 ('20211109220615'),
 ('20211216171216'),
+('20220105014844'),
 ('20220127195113'),
 ('20220209191328'),
 ('20220217224804'),
@@ -10240,6 +10251,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20220317205240'),
 ('20220317210522'),
 ('20220407173712'),
-('20221214192739');
+('20221214192739'),
+('20221219015021');
 
 

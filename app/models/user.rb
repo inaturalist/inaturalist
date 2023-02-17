@@ -670,6 +670,20 @@ class User < ApplicationRecord
   def merge(reject)
     raise "Can't merge a user with itself" if reject.id == id
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    # Conditions should match index_votes_on_unique_obs_fave
+    reject.votes
+          .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )
+          .where(
+            keeper_votes: {
+              voter_type: self.class.polymorphic_name,
+              voter_id: id,
+              vote_scope: nil
+            },
+            votable_type: Observation.polymorphic_name,
+            vote_scope: nil
+          )
+          .destroy_all
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )

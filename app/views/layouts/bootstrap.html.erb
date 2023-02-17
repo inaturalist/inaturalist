@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="<%= I18n.locale %>"
       lang="<%= I18n.locale %>"
+      <% if @rtl %>
+       dir = "rtl"
+      <% end %>
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
@@ -16,6 +19,7 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>

@@ -443,7 +443,6 @@ ja:
   amphibians: 両生類
   analyze_ids: 分析ID
   ancestor_taxon: 祖先の分類群
-  and: そして
   and_other_taxa: "&amp; その他の分類群"
   android: Android
   animals: 動物
@@ -700,7 +699,6 @@ ja:
   browse_species_that_occur_near_this_observation: この観察記録近隣の種を表示
   built_with_site_guides_html: "<a href='%{url}'>%{site_name}ガイド</a>で作成されました"
   bulk_import_of_filename_is_complete: "%{filename}の一括インポートが完了しました"
-  by: '投稿者:'
   by_everyone: 全てのユーザー
   by_user: "%{user}さんによる"
   by_you: あなた
@@ -828,6 +826,8 @@ ja:
   click_the_map: "場所を追加するには、<strong>マップをクリック</strong>"
   close: 閉じる
   code: コード
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: コード提供者
   colors: 色
   columns: 列
   combine: 統合
@@ -1480,6 +1480,17 @@ ja:
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
   email_conf_banner_email_delivered_click_link: |
     確認メールが配信されました。メールに記載されているリンクをクリックしてください。
+  email_conf_banner_add_to_contacts_html: |
+    <strong>連絡先リストに<code>%{email}</code>を追加し、<a href="%{url}">確認メールを要求してください</a>。</strong> メールプロバイダーが確認メールをブロックした場合、あなたが実際に私たちからのメールを望んでいることを納得させられるかもしれません。
+  email_conf_banner_check_your_spam_folder_html: <strong>迷惑メールフォルダを確認してください</strong>
+  email_conf_banner_contact_us_html: まだうまくいきませんか？ %{email} までお問い合わせください。
+  email_conf_banner_please_click: |
+    メールアドレスを確認するには、メール内のリンクをクリックしてください。
+  email_conf_banner_search_for_emails_html: <strong><code>%{email}</code>からのメールを検索</strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    %{date}に確認メールを送信しました。
+    受信していない場合は、以下の手順で確認できます。
   email_copyright: "Copyright &copy; %{x}, all rights reserved"
   email_notifications: メール通知
   embed: '埋め込む'
@@ -1601,7 +1612,7 @@ ja:
   find_unsuitable_observations: 不適切な観察記録を検索
   find_your_current_location: 現在地を取得
   finished: 完了
-  finished_with_page: このページで終了しました
+  finished_with_page: ページを見終わりました
   first_confirmed_inat_observation: "%{site_name}で初めて確認された観察記録"
   first_connect_your_provider_account_to_your_site: "まず、%{provider}のアカウントを%{site_name}と接続しましょう。"
   first_inat_observation: "初めての%{site_name}観察記録"
@@ -1797,6 +1808,11 @@ ja:
   home: ホーム
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "調整する時間:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    <a class="linky" href="/users/edit#content">アカウント設定</a> からライセンス設定を変更することができます。
   however_there_were_some_issues: "しかし、問題がありました：%{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: 私にはわかりません。しかし%{taxon} だと思います。
   icon: アイコン
@@ -2237,7 +2253,6 @@ ja:
       every_publicly_visible_observation: iNaturalistネットワーク上のすべての公開中観察記録
       featured_observations: 注目の観察記録
       gbif_network: GBIFネットワーク
-      gbif_network_description: GBIFが公開している博物館やその他の生物記録プロバイダーからの記録
       observations: 観察記録
       place_boundary: 場所範囲
       checklist_places: チェックリスト場所
@@ -2659,10 +2674,6 @@ ja:
   observed_on: 観測日時
   observer: 観察者
   observers: 観察者
-  observer_prefers_no_project_addition: |
-    他の人によって観察記録をプロジェクトへ追加することを許可していません。
-  observer_prefers_addition_to_projects_joined: |
-    観察者が参加しているプロジェクトにのみ、他の人によって観察記録を追加されることを許可しています。
   observer_short: 観察者
   occurence_status_describes_how: '分布状況とは、特定のエリアにおいてある分類群がどれだけ珍しいかを示すものです。それぞれの<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">用語の詳しい説明</a>をDarwinCoreでご覧いただけます（英語）'
   occurrence_status: 分布状況
@@ -3697,6 +3708,8 @@ ja:
   #Journal post formatting option
   simple: 簡易
   single_observation: 単一観察記録
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site} での %{year} 年を振り返る"
   sizes: サイズ
   skip_to_next_page: "次のページへスキップ"
   small: 小
@@ -4415,6 +4428,10 @@ ja:
   view_flags_for_x_html: "%{x}のフラグを表示"
   view_full_observation: 観察記録の全体表示
   view_full_size_photo: フルサイズの写真を表示
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: '%{site} での %{year} 年を振り返る'
+  view_site_year_in_review_caps: '%{site} での %{year} 年を振り返る'
   view_journal: 日記を表示
   view_leaderboard_from_last_month: 先月の達人ランキングを表示
   view_leaderboard_from_last_year: 昨年の達人ランキングを表示
@@ -4451,6 +4468,8 @@ ja:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>ダッシュボードを表示</a> してさらにアップデートを見る"
   view_your_inbox: 受信箱を表示
   view_your_observations: あなたの観察記録を表示
+  view_your_personal_year_in_review: "個人的な %{year} 年を振り返る"
+  view_your_personal_year_in_review_caps: "個人的な %{year} 年を振り返る"
   view_yours: 自分のを表示
   view_all_of_your_observations_from_x: "%{x}から自分のすべての観察記録を表示"
   video_tutorials: 動画チュートリアル
@@ -4543,6 +4562,8 @@ ja:
   x_wrote_a_new_post_html: "%{x}が新しい投稿をしました"
   x_wrote_y_new_posts_html: "%{x}が%{y}個の新しい投稿をしました"
   year: 年
+  year_in_review: "%{year} 年を振り返る"
+  year_in_review2: "%{year} 年を振り返る"
   year_month: 年/月
   yellow: 黄
   'yes': "はい"
@@ -4558,6 +4579,11 @@ ja:
   yes_i_want_to_join: はい、参加したい
   yes_license_my_observations_so_scientists_can_use: 観察データを科学研究用に提供することに同意します。（推奨）
   yesterday: 昨日
+  yir_code_contributors_desc_html: |
+    私たちの <a href="%{url}">ソフトウェア</a> は、ほぼすべてオープンソースです。
+    つまり、やり方さえわかれば誰でも貢献できるのです。
+    今年、ボランティアでコードを書いてくださった方々を紹介します。
+    コーダーの皆様、ありがとうございました。
   #"You" is singular
   yir_donate_banner_all_thanks: すべて皆様のおかげです！
   #"You" is singular
@@ -4570,6 +4596,8 @@ ja:
     iNat上での生物多様性データの作成と共有は、かつてないほど大規模かつ高速に行われるようになり、そのコストは増大しています。
   yir_millions_of_people_used_inaturalist: |
     今年、数百万人もの人々がiNaturalistとSeek by iNaturalistを使い自然とつながりました。
+  yir_monthly_supporters_random_selection: |
+    ここでは、毎月寄付をしてくださるiNatのヒーロー的なコミュニティメンバーをランダムにご紹介します。
   you: あなた
   you_appear_offline_try_again: |
     現在はオフラインのようです。インタネットに接続したらまたお試しください。
@@ -4776,6 +4804,7 @@ ja:
         positioning_device: 座標測定機器
       identify:
         review_all_tooltip: "ページ内のすべての観察記録を確認済みにする"
+        you_reviewed_message: "条件に一致する %{total} 件の観察記録の中で、このページに表示された %{pageTotal} 件のうち %{reviewed} 件を確認しました。"
         unreview_all_tooltip: "ページ内のすべての観察記録を未確認にする"
         too_many_results_desc: |
           観察記録が10000件を超える（ページ数×1ページあたりの検索結果数）場合は表示できません。フィルターを適用して検索結果を減らすか、確認済みの観察記録をマークして、ページ番号の代わりに「もっと表示」ボタンを使用してください。
@@ -4982,9 +5011,23 @@ ja:
         website_desc_html: |
           <a href="https://www.inaturalist.org">iNaturalist</a>または<a href="%{url}">iNaturalist Network</a>を介して作成
       year:
+        compare_desc: |
+          今年は前年と比べてどうでしたか？3年以上の使用実績があれば、年間の活動指標を比較することができます。緑色の棒は今年、白い縦棒は昨年、灰色の背景部分は最低と最高の年、そして全年の平均を表しています。統計には、カウントがゼロの年は含まれていません。
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
+        compared_to_previous_years: 前年との比較
+        growth_title: 成長
+        new_species_desc_html: |
+          今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
+        #Periods where someone consistently made observations, e.g. "a 10-day streak"
+        observation_streaks: 連続観測
+        observation_streaks_color_desc: |
+          色は対数スケールで日数を表しています。
+        observation_streaks_desc2: |
+          連続観測とは、誰かが毎日外に出て、検証可能な新しい観測を記録した、少なくとも5日間の期間のことを言います。ここでは、今年始まった、あるいはこの統計が作成された時点で進行中である最長連続観測を表示しています（個々のユーザーについては、今年終了した連続観測も含めています）。
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
+        sunburst_desc_html: |
+          観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
     taxa:
       show:
         about_names_desc: |
@@ -5047,8 +5090,6 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
-        monthly_supporter_desc_html: |
-          iNaturalistマンスリーサポーターは、カリフォルニア科学アカデミー（米国IRS EIN 94-1156258）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークの非営利サイトの運営をサポートします。マンスリーサポーターになるには<a href="%{url}">ここ</a>をクリックしてください。サポートが確認されたら、このボックスにチェックを入れて、あなたのプロフィールにマンスリーサポーターのステータスを表示することができます。注意：マンスリーサポーターになったことを確認するためには、DonorboxとiNaturalistで同じメールアドレスを使用する必要があります。
         muting_desc_html: |
           <p>
           誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントやメッセージ、言及その他に関する通知を受け取ることができなくなります。ミュートは相手の行動を防止することなく、相手を無視することができます。

@@ -64,7 +64,7 @@ class ObservationsController < ApplicationController
   check_spam only: [:create, :update], instance: :observation
   before_action :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
-  before_action :curator_required, :only => [:curation, :accumulation, :phylogram]
+  before_action :curator_required, :only => [:curation]
   before_action :load_photo_identities, :only => [:new, :new_batch, :show,
     :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
     :import_photos, :import_sounds, :new_from_list]
@@ -1805,43 +1805,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def moimport
-    @removal_date = MushroomObserverImportFlowTask::REMOVAL_DATE
-    return render_404 if Date.today >= @removal_date
-
-    if ( @api_key = params[:api_key]&.strip )
-      @mo_import_task = MushroomObserverImportFlowTask.new( user: current_user )
-      @mo_url_field = @mo_import_task.mo_url_observation_field
-      @mo_import_task.inputs.build( extra: { api_key: @api_key } )
-      begin
-        @mo_user_id = @mo_import_task.mo_user_id
-        @mo_user_name = @mo_import_task.mo_user_name
-        if @mo_user_id
-          begin
-            @results = @mo_import_task.get_results_xml[0..9].map do | r |
-              [r, @mo_import_task.observation_from_result( r, skip_images: true )]
-            end
-          rescue RestClient::BadGateway
-            @errors ||= []
-            @errors << "Failed to connect to Mushroom Observer"
-          rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
-            @errors ||= []
-            @errors << e.message
-          end
-        else
-          @errors ||= []
-          @errors << "No Mushroom Observer use associated with that API key"
-        end
-      rescue MushroomObserverImportFlowTask::MushroomObserverImportFlowTaskError => e
-        @errors ||= []
-        @errors << e.message
-      end
-    end
-    respond_to do | format |
-      format.html { render layout: "bootstrap" }
-    end
-  end
-
   def torquemap
     @params = params.except(:controller, :action)
     render layout: "bootstrap"
@@ -1928,82 +1891,6 @@ class ObservationsController < ApplicationController
     ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
   end
   public
-
-  def accumulation
-    params[:order_by] = "observed_on"
-    params[:order] = "asc"
-    search_params = Observation.get_search_params(params,
-      current_user: current_user)
-    set_up_instance_variables(search_params)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
-    scope = scope.joins(:taxon).
-      select("observations.id, observations.user_id, observations.created_at, observations.observed_on, observations.time_observed_at, observations.time_zone, taxa.ancestry, taxon_id").
-      where("time_observed_at IS NOT NULL")
-    rows = ActiveRecord::Base.connection.execute(scope.to_sql)
-    row = rows.first
-    @observations = rows.map do |row|
-      {
-        :id => row['id'].to_i,
-        :user_id => row['user_id'].to_i,
-        :created_at => DateTime.parse(row['created_at']),
-        :observed_on => row['observed_on'] ? Date.parse(row['observed_on']) : nil,
-        :time_observed_at => row['time_observed_at'] ? DateTime.parse(row['time_observed_at']).in_time_zone(row['time_zone']) : nil,
-        :offset_hours => DateTime.parse(row['time_observed_at']).in_time_zone(row['time_zone']).utc_offset / 60 / 60,
-        :ancestry => row['ancestry'],
-        :taxon_id => row['taxon_id'] ? row['taxon_id'].to_i : nil
-      }
-    end
-    respond_to do |format|
-      format.html do
-        @headless = true
-        render :layout => "bootstrap"
-      end
-      format.json do
-        render :json => {
-          :observations => @observations
-        }
-      end
-    end
-  end
-
-  def phylogram
-    params[:skip_order] = true
-    search_params = Observation.get_search_params(params,
-      current_user: current_user)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
-    ancestor_ids_sql = <<-SQL
-      SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-      FROM taxa
-        JOIN (
-          #{scope.to_sql}
-        ) AS observations ON observations.taxon_id = taxa.id
-    SQL
-    sql = <<-SQL
-      SELECT taxa.id, name, ancestry
-      FROM taxa
-        LEFT OUTER JOIN (
-          #{ancestor_ids_sql}
-        ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
-        JOIN (
-          #{scope.to_sql}
-        ) AS observations ON observations.taxon_id = taxa.id
-      WHERE ancestor_ids.ancestor_id IS NULL
-    SQL
-    @taxa = ActiveRecord::Base.connection.execute(sql)
-    respond_to do |format|
-      format.html do
-        @headless = true
-        render :layout => "bootstrap"
-      end
-      format.json do
-        render :json => {
-          :taxa => @taxa
-        }
-      end
-    end
-  end
 
   def viewed_updates
     user_viewed_updates
@@ -2299,13 +2186,11 @@ class ObservationsController < ApplicationController
       @ident_user ||= User.find_by_login( search_params[:ident_user_id] )
     end
     @misc_hidden_parameters = %w(
-      day
       id
       ident_taxon_id
       identified
       term_id
       term_value_id
-      year
     )
     
     @filters_open = 

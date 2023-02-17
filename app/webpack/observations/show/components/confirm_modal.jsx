@@ -80,6 +80,7 @@ class ConfirmModal extends Component {
         </span>
       );
     }
+    const confirmMessage = messageElt || message;
     return (
       <Modal
         show={show}
@@ -87,7 +88,13 @@ class ConfirmModal extends Component {
         onHide={this.close}
       >
         <Modal.Body>
-          <div className="text" dangerouslySetInnerHTML={{ __html: messageElt || message }} />
+          { _.isObject( confirmMessage ) ? (
+            <div className="text">
+              { confirmMessage }
+            </div>
+          ) : (
+            <div className="text" dangerouslySetInnerHTML={{ __html: confirmMessage }} />
+          ) }
         </Modal.Body>
         { !hideFooter && (
           <Modal.Footer>

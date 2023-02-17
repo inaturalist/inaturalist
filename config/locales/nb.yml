@@ -1,4 +1,8 @@
 nb:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} endring"
+    other: "%{count} endringer"
   x_comments:
     one: '%{count} kommentar'
     other: '%{count} kommentarer'
@@ -205,6 +209,12 @@ nb:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Nøy. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Nøyaktighet over
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Nøyaktighet under
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Nøyaktighet under eller ukjent
   account: Konto
   account_creation: Kontoopprettelse
   account_settings: Kontoinnstillinger
@@ -488,7 +498,6 @@ nb:
   analyze_clashes: Analyser utilsiktede uenigheter
   analyze_ids: Analyser ID-er
   ancestor_taxon: Ane-takson
-  and: og
   and_other_taxa: "&amp; Andre taxa"
   android: Android
   animals: Dyr
@@ -529,6 +538,8 @@ nb:
   #Label for an option to show/include content by any user
   any_user: Alle
   anyone: Alle
+  app_owner_application_explanation_required: |
+    Du må gi en nærmere forklaring av hva du vil lage.
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Applikasjon
@@ -726,7 +737,6 @@ nb:
   browse_species_that_occur_near_this_observation: Bla gjennom arter som forekommer i nærheten av denne observasjonen.
   built_with_site_guides_html: "Laget med <a href='%{url}'>%{site_name}-guider</a>"
   bulk_import_of_filename_is_complete: "Masseimport av %{filename} er fullført"
-  by: av
   by_everyone: Av alle
   by_user: "Av %{user}"
   by_you: Av deg
@@ -927,6 +937,8 @@ nb:
   confirm_new_password: Bekreft nytt passord
   confirm_now: Bekreft nå
   confirm_your_info: Bekreft din info
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Bekreftet den %{date}
   confirming_ids: Bekreftende ID'er
   confirming_ids_description: Hvis du skrur av dette vil du ikke lenger bli varslet om ID-er som er enige med deg.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1108,6 +1120,11 @@ nb:
   curator_application_what_curators_can_do: Hva kuratorer kan gjøre
   #Header
   curator_application_what_curators_cannot_do: Hva kuratorer ikke kan gjøre
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Slett innhold laget av andre.
   #Description of the fact that a curator cannot read other peoples' messages;
   #part of a list of things curators can do, so you might imagine it is
   #preceded with "Curators cannot..."
@@ -1118,11 +1135,16 @@ nb:
   #Header followed by a list
   curator_application_you_should_apply_if: |
     Du bør kun søke om å være en kurator dersom:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Du har lagt til identifikasjoner og/eller observasjoner i et par måneder
+    og har tenkt å fortsette.
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
   curator_identification: Kuratoridentifikasjon
   current_flags: Gjeldende markeringer
+  #Label for a custom boundary for an observation search
+  custom_boundary: Egendefinert grense
   custom_project_fields: Egendefinerte prosjektfelt
   custom_project_was_successfully_created: Prosjekttilpasninger lagt til
   custom_project_was_successfully_updated: Prosjekttilpasninger oppdatert
@@ -1995,12 +2017,17 @@ nb:
     portuguese: Portugisisk
     romanian: Rumensk
     russian: Russisk
+    serbian: Serbisk
+    slovak: Slovakisk
+    slovenian: Slovensk
     spanish: Spansk
+    swahili: Swahili
     swedish: Svensk
     tagalog: Tagalog
     tahitian: Tahitisk
     tokelauan: Tokelausk
     turkish: Tyrkisk
+    ukrainian: Ukrainsk
     waray_waray: Waray-Waray
   less: Mindre
   #Button show less text
@@ -2062,6 +2089,7 @@ nb:
   locales_: Lokalisering
   locales:
     ar: Arabisk
+    be: Hviterussisk
     bg: Bulgarsk
     br: Bretonsk
     ca: Katalansk
@@ -2070,9 +2098,11 @@ nb:
     de: Tysk
     el: Gresk
     en: Engelsk
+    en-GB: Engelsk (UK)
     eo: Esperanto
     es: Spansk
     es-AR: Spansk (Argentina)
+    es-CO: Spansk (Colombia)
     es-MX: Spansk (Mexico)
     et: Estisk
     eu: Baskisk
@@ -2081,6 +2111,8 @@ nb:
     fr-CA: Fransk (Canada)
     gl: Galisisk
     he: Hebraisk
+    hr: Kroatisk
+    hu: Ungarsk
     id: Indonesisk
     it: Italiensk
     ja: Japansk
@@ -2175,7 +2207,6 @@ nb:
       every_publicly_visible_observation: Alle offentlig synlige observasjoner opprettet i iNaturalist-nettverket
       featured_observations: Utvalgte observasjoner
       gbif_network: GBIF-nettverk
-      gbif_network_description: Registreringer fra museer og andere leverandører av forekomster, distribuert av Global Biodiversity Informatics Facility
       observations: Observasjoner
       place_boundary: Stedsavgrensning
       checklist_places: Steder på sjekklisten
@@ -2645,8 +2676,6 @@ nb:
   observed_on: Observert på
   observer: Observatør
   observers: Observatører
-  observer_prefers_no_project_addition: |
-    Observatør tillater ikke at sine observasjoner legges til i prosjekter av andre.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomststatus beskriver hvor vanlig eller sjeldent et takson er i et gitt område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mer informasjon om terminologien</a>.'
   occurrence_status: Forekomststatus
@@ -5365,8 +5394,6 @@ nb:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vennligst ikke marker markeringer om brudd av opphavsrett som løst hvis dette bildet er brudd på opphavsrett.
     places:
-      kml_field_desc: |
-        KML av stedets grense. Du kan lage en meg Google Maps, Google Earth, eller de fleste GIS-verktøy. Må ha minst ett polygon, være under 1 MB (5 MB for sidekuratorer), og ha en overflate som er mindre enn den amerikanske staten Texas.
       edit:
         complex_boundary_note_html: |
           Denne grensen er litt for kompleks til online redigering. Du kan imidlertid <a href="%{url}">laste ned KML-en</a>, redigere den i et valgfritt GIS-program, og laste opp din redigerte KML direkte.
@@ -5813,7 +5840,6 @@ nb:
           "Plant Phenology=Flower Budding": Blomsterknopper
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
-          "Plant Phenology=No Evidence": Ingen bevis
           "Life Stage=Adult": Voksen
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larve
@@ -5947,10 +5973,6 @@ nb:
           </p>
         licensing_desc_html: |
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
-        monthly_supporter_desc_html: |
-          Månedlige iNaturalist Supportere donerer automatisk hver måned til 'California Academy of Sciences' (United
-          States IRS EIN 94-1156258) for å støtte den not-for-profit driften av iNaturalist og iNaturalist nettverksider.
-          <a href="%{url}">Trykk her for å bli en Månedlig Supporter</a>. Når vi har bekreftet din støtte kan du krysse av denne boksen for å vise denne statusen på din profil. Merk: du må bruke den eksakt samme e-postadressen på Donorbox som på iNaturalist for at vi kan bekrefte at du har blitt en månedlig supporter.
         muting_desc_html: |
           <p>
           Å ignorere noen sørger for at du ikke får varslinger om ting de gjør, inkludert kommentarer på dine observasjoner, beskjeder til deg, å nevne deg, osv. Å ignorere noen hjelper deg med å overse noen uten å hindre dem fra å gjøre noe. 

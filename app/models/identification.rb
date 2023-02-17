@@ -380,12 +380,13 @@ class Identification < ApplicationRecord
     true
   end
 
-  def flagged_with(flag, options)
-    evaluate_new_flag_for_spam(flag)
+  def flagged_with( flag, _options )
+    evaluate_new_flag_for_spam( flag )
     elastic_index!
-    if observation
-      observation.elastic_index!
-    end
+    return unless observation
+
+    observation.touch
+    observation.elastic_index!
   end
 
   # /Callbacks ##############################################################

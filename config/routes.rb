@@ -261,13 +261,9 @@ Rails.application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
-      get :accumulation
-      get :phylogram
       get :export
       get :map
       get :identify
-      get :moimport
-      post :moimport
       get :torquemap
       get :compare
     end

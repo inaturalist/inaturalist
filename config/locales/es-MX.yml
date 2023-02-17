@@ -211,6 +211,12 @@ es-MX:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Precisión (metros)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Precisión arriba de
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Precisión abajo de
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Precisión debajo de o desconocida
   account: Cuenta
   account_creation: Creación de cuentas
   account_settings: Configuración de la cuenta
@@ -509,7 +515,6 @@ es-MX:
   analyze_clashes: Analizar desacuerdos no intencionados
   analyze_ids: Analizar IDs
   ancestor_taxon: Taxón ancestro
-  and: "y"
   and_other_taxa: "&amp; otros taxa"
   android: Android
   animals: Animales
@@ -807,7 +812,6 @@ es-MX:
   browse_species_that_occur_near_this_observation: Busca especies que ocurran cerca de esta observación.
   built_with_site_guides_html: "Construido con las <a href='%{url}'>%{site_name} Guías</a>"
   bulk_import_of_filename_is_complete: "La importanción en grupo de %{filename} está completada"
-  by: Por
   by_everyone: De todos
   by_user: "por %{user}"
   by_you: Por ti
@@ -954,6 +958,8 @@ es-MX:
   click_the_map: "<strong>Selecciona el mapa </strong>para añadir una localización."
   close: Cerrar
   code: Código HTML
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Colaboradores de código
   colors: Colores
   columns: Columnas
   combine: Combinar
@@ -1112,7 +1118,7 @@ es-MX:
     any_evidence_of_presence: Cualquiera
     sex: Sexo
     male: Masculino
-    female: Femenino
+    female: Hembra
     plant_phenology: Fenología de la planta
     budding: En germinación
     flower_budding: Yemas Florales
@@ -1694,6 +1700,8 @@ es-MX:
     <a href="%{url}">solicita otro correo electrónico de confirmación</a>.</strong> Si tu proveedor de correo electrónico bloqueó el correo electrónico de confirmación, esto podría convencerles de que realmente quieres que te enviemos un correo electrónico.
   email_conf_banner_check_your_spam_folder_html: <strong>Revisa tu carpeta de spam</strong>
   email_conf_banner_contact_us_html: '¿Aún no funciona? Escríbanos a %{email} para que podamos ayudarte.'
+  email_conf_banner_please_click: |
+    Por favor, haga click en el enlace de su correo electrónico para confirmar su dirección de correo electrónico.
   email_conf_banner_search_for_emails_html: <strong>Busca correos electrónicos de <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -2071,6 +2079,17 @@ es-MX:
   home: Inicio
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Horas para ajustar:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Sin embargo, no tiene licencia para ser reutilizado y no será compartido con los
+    repositorios de datos que respeten las selecciones de licencia.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Puede cambiar tus preferencias de licencia en la configuración de tu
+    <a class="linky" href="/users/edit#content">cuenta</a>.
   however_there_were_some_issues: "Sin embargo, hubo algunos problemas: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2353,6 +2372,7 @@ es-MX:
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
+    kazakh: Kazajo
     korean: Coreano
     latvian: Letón
     lithuanian: Lituano
@@ -2433,6 +2453,10 @@ es-MX:
     taxonomic: taxonomía
     photo: fotos
   list_was_successfully_created: La lista fue creada exitosamente.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, y %{three}"
+  list_with_two_items: "%{one} y %{two}"
   listed_taxa: lista de especies o grupos
   listed_taxon: Especie o grupo enlistado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
@@ -2484,6 +2508,7 @@ es-MX:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    kk: Kazajo
     kn: Canarés
     ko: Coreano
     lb: Luxemburgués
@@ -2549,6 +2574,8 @@ es-MX:
   lookup: Busca
   low: baja
   lowest_rank: Rango más bajo
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Hacer administrador
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenido principal
@@ -2581,7 +2608,7 @@ es-MX:
       every_publicly_visible_observation: Todas las observaciones públicas creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
-      gbif_network_description: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility (GBIF)
+      gbif_network_description2: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility
       observations: Observaciones
       place_boundary: Límites del lugar
       checklist_places: Lista de lugares
@@ -2601,6 +2628,9 @@ es-MX:
   maximum_positional_accuracy_including_unknown: |
     Precisión máxima de posición, incluyendo observaciones sin precisión de posición
   media: Multimedia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: "y"
   media_type: Tipo de medios
   medium: mediana
   meet: Conoce
@@ -2708,9 +2738,9 @@ es-MX:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    month_year: "MMMM AAAA"
+    month_year: "MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    month_year_short: "MMM 'AA"
+    month_year_short: "MMM 'YY"
   month: Mes
   #title for section describing people who donate to iNat every month
   monthly_supporters: Patrocinador mensual
@@ -2976,6 +3006,8 @@ es-MX:
   not_findig_what_you_want: '¿No encuentras lo que buscas?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
   not_found: No encontrado
+  #Filter for observations not in a particular place
+  not_in_place: No está en este lugar
   not_linked_facebook: "Tu cuenta de %{site_name} no se ha enlazado a tu cuenta de Facebook &#59;"
   not_linked_flickr: "Tu cuenta de  %{site_name} no se ha enlazado a tu cuenta de Flickr &#59;"
   not_on_this_list: No está en esta lista.
@@ -3065,6 +3097,14 @@ es-MX:
   observation_curation: Curación de observación
   observation_date: Fecha
   observation_date?: '¿Fecha?'
+  #Basic observation export fields
+  observation_export_column_type_basic: Básico
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxón
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extra-taxón
   observation_field: Campo de observación
   observation_field_details: Detalles del campo de observación
   observation_field_type_text: Texto
@@ -3135,11 +3175,12 @@ es-MX:
   observed_on: Observado en
   observer: Autor
   observers: Observadores
-  observer_prefers_no_project_addition: |
-    El observador no permite que otras personas añadan sus observaciones a los proyectos.
-  observer_prefers_addition_to_projects_joined: |
-    El observador sólo permite a otras personas añadir sus observaciones a proyectos a los que
-    se han unido.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    El observador solo permite a otras personas añadir sus observaciones a los proyectos
+    tradicionales a los que se han unido.
+  observer_prefers_no_traditional_project_addition: |
+    El observador no permite a otras personas añadir sus observaciones a
+    proyectos tradicionales.
   observer_short: Autor
   occurence_status_describes_how: 'El estatus de ocurrencia describe que tan común o raro es una especie o grupo en un área determinada. Ver el DarwinCore  <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">para información sobre terminología</a>.'
   occurrence_status: Estatus de ocurrencia
@@ -3805,8 +3846,9 @@ es-MX:
   places_warning_export_complex_boundary_html: |
     Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considera
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
-  places_warning_look_for_existing_html: |
-    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
+  places_warning_look_for_existing2_html: |
+    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que
+    no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, y muchos otros límites políticos.
   places_warning_please_keep_in_mind: |
     Ten en cuenta las siguientes restricciones:
   places_warning_projects_can_have_multiple_places: |
@@ -5516,6 +5558,8 @@ es-MX:
     <a href="%{url}">"%{title}"</a>, que se publica bajo el
     <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
   with: Con
+  #Filter for observations not in a particular taxon
+  without_taxon: No en el taxón
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Retirar
@@ -5580,6 +5624,10 @@ es-MX:
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Si, muestra esto en la caja  grande por arriba de /grupos (taxa)
   yesterday: Ayer
+  yir_code_contributors_desc_html: |
+    Nuestro <a href="%{url}">software</a> es casi todo código abierto, lo que significa
+    que cualquiera puede contribuir si sabe cómo. Aquí están las personas que
+    voluntariamente código este año. ¡Gracias, programadores!
   yir_donate_banner_inaturalist_in_year: "NATURALISTA EN %{year}:"
   yir_donate_banner_reaching_millions: Alcanzando millones. Illuminando la biodiversidad. Colaboración global.
   #"You" is singular
@@ -5596,6 +5644,8 @@ es-MX:
   yir_millions_of_people_used_inaturalist: |
     Millones de personas han usado iNaturalist y Seek por iNaturalist este año para
     conectar con la naturaleza
+  yir_monthly_supporters_random_selection: |
+    Aquí hay una selección aleatoria de miembros heroicos de la comunidad de iNat que donan cada mes.
   yir_thank_your_for_being_generous: |
     ¡Gracias por ser generoso con tu tiempo, atención, pericia y
     donaciones! iNaturalist es una iniciativa conjunta sin ánimo de lucro de la
@@ -6503,8 +6553,11 @@ es-MX:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
-      kml_field_desc: |
-        KML de la frontera del lugar. Puedes hacer uno utilizando Google Maps, Google Earth o la mayoría de las aplicaciones de SIG. Debes tener al menos un polígono de menos de 1 MB (5 MB para los curadores de sitio).
+      kml_field_desc2: |
+        KML del límite de lugar. Puede crear uno usando Google Maps, Google
+        Earth o la mayoría de aplicaciones GIS. Debe tener al menos un polígono, ser
+        menos de 1 MB (5 MB para curadores del sitio), y tienen un área menor que el estado
+        de Estados Unidos de Texas (Aprox:695,662 km²).
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
@@ -7038,7 +7091,7 @@ es-MX:
           "Plant Phenology=Flower Budding": Con Yemas Florales
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
-          "Plant Phenology=No Evidence": Sin evidencias
+          "Plant Phenology=No Evidence of Flowering": Sin evidencia de floración
           "Life Stage=Adult": Adulto
           "Life Stage=Egg": Huevo(s)
           "Life Stage=Larva": Larva(s) u oruga(s)

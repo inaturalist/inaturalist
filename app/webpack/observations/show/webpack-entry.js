@@ -93,11 +93,13 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
+const urlParams = new URLSearchParams( window.location.search );
+
 /* global INITIAL_OBSERVATION_ID */
 let obsId = INITIAL_OBSERVATION_ID;
 if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
+  || urlParams.get( "test" ) === "apiv2"
 ) {
   const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
@@ -115,9 +117,12 @@ if (
   }
 }
 
-if ( window.location.search.match( /test=vision/ ) ) {
+const threshold = Number( urlParams.get( "vision_threshold" ) );
+if ( threshold ) {
   store.dispatch( setConfig( {
-    testingVision: true
+    visionThreshold: threshold,
+    visionThresholdType: urlParams.get( "vision_threshold_type" ) === "percentage"
+      ? "percentage" : "absolute"
   } ) );
 }
 

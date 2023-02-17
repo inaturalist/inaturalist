@@ -6,14 +6,31 @@
   var originalImplementation = I18n.t;
   I18n.t = function ( key, params ) {
     var opts = params || {};
+    var keyParts = key.split( "." );
+    var translation;
+    var base;
+    // There's probably a smarter way of dealing with nested keys...
+    for ( var i = 0; i < keyParts.length; i += 1 ) {
+      base = base || I18n.translations[I18n.locale];
+      var candidate = base[keyParts[i]];
+      if ( !candidate ) {
+        // Missing translation
+        break;
+      }
+      if ( typeof candidate === "string" ) {
+        // translation found
+        translation = candidate;
+        break;
+      }
+      // nested key
+      base = candidate;
+    }
     if (
+      // Needs to be a default value to return on
       opts.defaultValue
-      && I18n.locale.toString( ).indexOf( "en" ) !== 0
-      && (
-        originalImplementation( key, opts )
-        // eslint-disable-next-line prefer-object-spread
-        === originalImplementation( key, Object.assign( {}, opts, { locale: "en" } ) )
-      )
+      // If a locale was explicitly requested, don't bother with this
+      && !opts.locale
+      && !translation
     ) {
       return opts.defaultValue;
     }

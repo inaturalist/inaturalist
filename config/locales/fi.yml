@@ -218,6 +218,12 @@ fi:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Tarkkuus (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Tarkkuus yli
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Tarkkuus alle
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Tarkkuus alle tai tuntematon
   account: Käyttäjätunnus
   account_creation: Tunnuksen luominen
   account_settings: Tiliasetukset
@@ -303,6 +309,9 @@ fi:
   add_observations: Tallenna havaintoja
   add_observations_by_checking_off: Tallenna havaintoja ruksaamalla lajeja luettelosta.
   add_observations_project: Tallenna havaintoja tähän projektiin
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Lisää</span> <span>Havainnot</span>"
   #Prompt to add a new journal post
   add_one: Lisää yksi!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -508,7 +517,6 @@ fi:
   already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
   ancestor_taxon: Ylempi taksoni
-  and: ja
   and_other_taxa: "&amp; muut taksonit"
   android: Android
   animals: Eläimet
@@ -670,6 +678,10 @@ fi:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Määrite
   attribution: Nimeäminen
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, lähettänyt %{user}"
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
     natureserve: NatureServe
@@ -760,7 +772,6 @@ fi:
   browse_species_that_occur_near_this_observation: Selaa lajeja, jotka esiintyvät tämän havainnon lähellä.
   built_with_site_guides_html: "Rakennettu <a href='%{url}'>%{site_name} oppailla</a>"
   bulk_import_of_filename_is_complete: "Tiedoston %{filename} massasiirto on valmis"
-  by: käyttäjältä
   by_everyone: Kaikkien
   by_user: "käyttäjältä %{user}"
   by_you: Sinun
@@ -887,6 +898,8 @@ fi:
   click_the_map: "<strong>Klikkaa karttaa</strong> lisätäksesi sijainnin."
   close: Sulje
   code: Koodi
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Koodiavustajat
   colors: Värit
   columns: Sarakkeet
   combine: Yhdistä
@@ -1580,6 +1593,22 @@ fi:
   email: Sähköposti
   email_description: Sähköpostiosoitettasi ei ole jaettu muiden iNaturalistin käyttäjien kanssa
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja muulle palautteelle
+  email_conf_banner_email_delivered_click_link: |
+    Vahvistussähköposti toimitettu. Ole hyvä ja klikkaa sähköpostin linkkiä.
+  email_conf_banner_add_to_contacts_html: |
+    <strong>Lisää <code>%{email}</code> yhteystietoluetteloosi ja
+    <a href="%{url}">pyydä vahvistussähköpostia uudelleen</a>.</strong> Jos sähköpostiosoitteesi
+    tarjoaja on estänyt vahvistusviestin, tämä saattaa vakuuttaa heidät, että
+    haluat meiltä sähköpostia.
+  email_conf_banner_check_your_spam_folder_html: <strong>Tarkista roskapostikansio</strong>
+  email_conf_banner_contact_us_html: Eikö toimi vieläkään? Lähetä meille sähköpostia osoitteeseen %{email} , jotta voimme auttaa sinua.
+  email_conf_banner_please_click: |
+    Ole hyvä ja klikkaa vahvistusviestissä olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
+  email_conf_banner_search_for_emails_html: <strong>Etsi sähköposteja osoitteesta <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Toimitimme sinulle vahvistusviestin %{date}. Jos et
+    saanut sitä, tässä on joitain asioita, joita voit tehdä:
   email_confirmation_banner_html: |
     <strong>%{link_start_tag}Vahvista sähköpostiosoitteesi%{link_end_tag}</strong>.
     Kaikkien käyttäjien pitää vahvistaa sähköpostiosoitteensa. Aikajara tälle on %{date}. Jos et vahvista osoitettasi. et voi kirjautua sisään iNaturalistiin muutoin kuin uudelleenasettamalla salasanasi. %{link_start_tag}Mene tiliasetuksiin vahvistaaksesi sähköpostiosoitteesi%{link_end_tag}.
@@ -1675,6 +1704,8 @@ fi:
   feedback: Palaute
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Syötteet'
+  #Button to show fewer places
+  fewer__context_places: Vähemmän
   failed: Epäonnistui
   field_note: |
     <strong>Huom:</strong> 
@@ -1985,6 +2016,8 @@ fi:
   improving: Parannus
   in_n: "paikassa %{n}"
   in_place_x: paikassa %{place}
+  #As in a reason to flag something
+  inappropriate: Sopimaton
   inaturalist_network: iNaturalist-verkosto
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
@@ -2169,6 +2202,7 @@ fi:
     italian: Italia
     japanese: Japani
     kannada: Kannada
+    kazakh: Kazakki
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
@@ -2210,6 +2244,8 @@ fi:
     waray_waray: Waray-waray
     visayan: Visaya
   less: Vähemmän
+  #Button show less text
+  less__context_text: Vähemmän
   licensed_site_photos: "Lisensoidut %{site_name}-kuvat"
   license: Lisenssi
   licensing: Lisensointi
@@ -2240,6 +2276,10 @@ fi:
     taxonomic: taksonominen
     photo: valokuva
   list_was_successfully_created: Luettelo luotiin onnistuneesti.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ja %{three}"
+  list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
   listed_taxon_updated: Listattu taksoni päivitetty
@@ -2291,6 +2331,7 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    kk: Kazakki
     kn: Kannada
     ko: korea
     lb: luxemburg
@@ -2356,6 +2397,8 @@ fi:
   lookup: Hae
   low: Alhainen
   lowest_rank: Alhaisin arvo
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostat
   make_admin: Tee ylläpitäjä
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Pääsisältö
@@ -2388,7 +2431,7 @@ fi:
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka on luotu iNaturalist-verkossa
       featured_observations: Suositut havainnot
       gbif_network: GBIF-verkosto
-      gbif_network_description: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
+      gbif_network_description2: Tietueet museoista ja muista Global Biodiversity Informatics Facilityn (GBIF) välittämistä esiintymistiedon tarjoajista
       observations: Havainnot
       place_boundary: Paikan rajat
       checklist_places: Lajiluetteloiden paikkoja
@@ -2404,6 +2447,9 @@ fi:
   matching_species_will_shown_up_here: Lajihavaintohaun tulokset näkyvät tässä. Kartalle piirtyy alue, jos paikkalla %{place} on lajista kirjattu havaintoja.
   maverick: Itsenäinen
   media: Media
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ja
   media_type: Mediatiedoston tyyppi
   medium: keskikokoinen
   meet: Tapaa
@@ -2514,6 +2560,14 @@ fi:
     <a href="%{url}">Kuukausittainen tukija</a> %{date} lähtien
   months: Kuukaudet
   more: Lisää
+  #Button to show more observations
+  more__context_observations_caps: LISÄÄ
+  #Button to show more places
+  more__context_places: Lisää
+  #Button to show more text
+  more__context_text: Lisää
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: LISÄÄ
   more_caps: LISÄÄ
   more_fields: Lisää kenttiä
   more_filters: Lisää suodattimia
@@ -2728,6 +2782,8 @@ fi:
   not_findig_what_you_want: Et löydä mitä haluat?
   not_finding_place_you_want?: Etkö löydä haluamaasi paikkaa?
   not_found: Ei löydy
+  #Filter for observations not in a particular place
+  not_in_place: Ei käytössä
   not_linked_facebook: "%{site_name}-tilisi ei ole linkitetty Facebook-tiliisi."
   not_linked_flickr: "%{site_name}-tilisi ei ole linkitetty Flickr-tiliisi."
   not_on_this_list: Ei tässä luettelossa.
@@ -2806,6 +2862,14 @@ fi:
   observation_curation: Havaintokuratointi
   observation_date: Päivämäärä
   observation_date?: Päivämäärä?
+  #Basic observation export fields
+  observation_export_column_type_basic: Perus
+  #Geographic observation export fields
+  observation_export_column_type_geo: Paikkatieto
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taksoni
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taksonin lisätiedot
   observation_field: Havaintokenttä
   observation_field_details: Havaintokentän tiedot
   observation_field_type_text: Teksti
@@ -2867,11 +2931,6 @@ fi:
   observed_on: Havaittu
   observer: Havainnoi
   observers: Havainnoijaa
-  observer_prefers_no_project_addition: |
-    Havainnoija ei salli muiden ihmisten lisätä havaintojaan projekteihin.
-  observer_prefers_addition_to_projects_joined: |
-    Havainnoija sallii muiden ihmisten lisätä havaintojaan vain projekteihin, joihin hän
-    on liittynyt.
   observer_short: Havainnoija
   occurrence_status: Esiintymisen tila
   occurrence_status_descriptions:
@@ -2950,6 +3009,7 @@ fi:
   open_description: "Jokainen voi nähdä koordinaatit, ellei taksoni ole uhanalainen."
   open_street_map: OpenStreetMap
   optional: valinnainen
+  options: Valinnat
   or: tai
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in fields OR sign in with Facebook
@@ -3485,6 +3545,10 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_look_for_existing2_html: |
+    Etsi <a href="/search?source[]=places">olemassa olevia paikkoja</a> varmistaaksesi, että
+    et luo kaksoiskappaletta. Meillä on jo paikat kaikkia
+    maanosia ja maita varten sekä monia muita hallinnollisia rajoja.
   places_warning_please_keep_in_mind: |
     Huomioi seuraavat rajoitukset:
   places_warning_quota: |
@@ -3492,6 +3556,7 @@ fi:
   places_warning_the_future: |
     Meidän täytyy rajoittaa paikkojen lisäämistä tulevaisuudesta, koska iNaturalistin käyttö kasvaa jatkuvasti.
   plants: kasvit
+  play_first_sound: Toista ensimmäinen ääni
   please_add_a_citation_for_this_change: Lisää viite muutokselle.
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille sivustoille synkronoida muutokset tästä havainnosta #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Pyydä vanhemmiltasi lupaa
@@ -4655,6 +4720,7 @@ fi:
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
+  user_faved_a_noun_by_you: "Merkitsit %{user} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
@@ -4688,6 +4754,22 @@ fi:
     kirjautua tilillesi ennen kuin klikkaat linkkiä
     vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
     oikein.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Tarkista, että sähköpostiosoitteesi on oikea. Lähetämme vahvistusviestin tähän osoitteeseen:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Jos et saanut viestiä, tässä muutama vinkki:
+    </p>
+    <ul>
+    <li><p>Tarkista roskapostikansiosi</p></li>
+    <li><p>Tarkista, oletko luonut filttereitä, josta estävät viestin kulkeutumisen postilaatikkoosi</p></li>
+    </ul>
+    <p>
+    Jos et edelleenkään saa vahvistusviestiä, ota yhteyttä osoitteeseen
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, jotta voimme auttaa sinua.
+    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Olet kirjautumassa ulos</h3>
     <p>
@@ -4859,6 +4941,8 @@ fi:
   widget_for: Pienoisohjelma
   wikipedia_attribution_cc_by_sa_3: |
     Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  #Filter for observations not in a particular taxon
+  without_taxon: Ei taksonissa
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Peruuta
@@ -4919,6 +5003,12 @@ fi:
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
+  yir_code_contributors_desc_html: |
+    <a href="%{url}">Ohjelmistomme</a> on lähes kokonaan avointa lähdekoodia, mikä tarkoittaa, että
+    kuka tahansa, joka osaa, voi osallistua sen kehittämiseen. Tässä ovat ihmiset, jotka vapaaehtoisesti koodasivat 
+    tänä vuonna. Kiitos, kehittäjät!
+  yir_monthly_supporters_random_selection: |
+    Tässä on satunnainen valikoima iNatin sankarillisia yhteisön jäseniä, jotka lahjoittavat joka kuukausi.
   you: sinä
   you_: Sinä
   you_appear_offline_try_again: |
@@ -5498,7 +5588,7 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
       edit:
         complex_boundary_note_html: |
@@ -5908,6 +5998,7 @@ fi:
           "Plant Phenology=Flower Budding": Kukka puhkeamassa
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
+          "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -5979,11 +6070,6 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
-        monthly_supporter_desc_html: |
-          iNaturalistin kuukausitukijat tekevät automaattisia kuukausilahjoituksia, joiden saajana on California Academy of Sciences (United
-          States IRS EIN 94-1156258) ja tarkoituksena tukea iNaturalistin ja sen verkoston epäkaupallista toimintaa.
-          <a href="%{url}">Ryhdy kuukausitukijaksi.</a>
-          Kun olemme vahvistaneet tukesi voit laittaa ruksin tähän ruutuun ja näyttää statuksesi profiilissasi. Huom: sinun täytyy käyttää samaa sähköpostiosoitettasi Donorboxssa ja iNaturalistissa, jotta voimme vahvistaa että olet kuukausitukija.
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
@@ -6442,6 +6528,8 @@ fi:
       flag:
         #The reason the item was flagged
         reason: Syy
+        #The person who resolved the flag
+        resolver_id: Ratkaise
         #The kind of flag that was made
         flag: Lippu
       guide:

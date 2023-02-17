@@ -217,6 +217,12 @@ da:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Nøj. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Nøjagtig over
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Nøjagtighed under
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Nøjagtig under eller ukendt
   account: Konto
   account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
@@ -514,7 +520,6 @@ da:
   analyze_clashes: Analysér Utilsigtede Uenigheder
   analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
-  and: og
   and_other_taxa: "&amp;Andre taksa"
   android: Android
   animals: Dyr
@@ -817,7 +822,6 @@ da:
   browse_species_that_occur_near_this_observation: Gennemse arter, der forekommer nær denne observation.
   built_with_site_guides_html: "Bygget med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import af %{filename} er udført"
-  by: af
   by_everyone: Af alle
   by_user: "af %{user}"
   by_you: Af dig
@@ -963,6 +967,8 @@ da:
   click_the_map: "<strong>Klik på kortet</strong> for at tilføje et sted."
   close: Luk
   code: Kode
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Kodebidragsydere
   colors: Farver
   columns: Kolonner
   combine: Kombinér
@@ -1715,6 +1721,8 @@ da:
     du rent faktisk ønsker e-mails fra os.
   email_conf_banner_check_your_spam_folder_html: <strong>Tjek spammappen</strong>
   email_conf_banner_contact_us_html: Fungerer stadig ikke? E-mail os via %{email} så vi kan hjælpe dig.
+  email_conf_banner_please_click: |
+    Klik på linket i e-mailen for at bekræfte din e-mailadresse.
   email_conf_banner_search_for_emails_html: <strong>Søg efter e-mails fra <code>%{email}</code></strong>
   #%{date} will be formatted with time.formats.long
   email_conf_banner_we_delivered_todos: |
@@ -2103,6 +2111,16 @@ da:
   home: Hjem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Den er dog ikke licenseret til genbrug og deles derfor ikke med datadepoter, som respekterer licensvalg.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Man kan ændre sine licensindstillinger i 
+    <a class="linky" href="/users/edit#content">kontoindstillingerne</a>.
   however_there_were_some_issues: "Der var dog nogle problemer:%{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2381,6 +2399,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     kannada: Kannaresisk
+    kazakh: Kasakhisk
     korean: Koreansk
     latvian: Lettisk
     lithuanian: Litauisk
@@ -2461,6 +2480,10 @@ da:
     taxonomic: taksonomisk
     photo: foto
   list_was_successfully_created: Listen blev oprettet.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} og %{three}"
+  list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
@@ -2512,6 +2535,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    kk: Kasakhisk
     kn: Kannaresisk
     ko: Koreansk
     lb: Luxembursk
@@ -2577,6 +2601,8 @@ da:
   lookup: Slå op
   low: lav
   lowest_rank: Laveste rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gør til administrator
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hovedindhold
@@ -2609,7 +2635,7 @@ da:
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
-      gbif_network_description: Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility
+      gbif_network_description2: Optegnelser fra muséer og andre hændelsesudbydere distribueret af Global Biodiversity Information Facility
       observations: Observationer
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
@@ -2628,6 +2654,9 @@ da:
   maximum_positional_accuracy_including_unknown: |
     Maksimal placeringsnøjagtighed, herunder observationer uden placeringsnøjagtighed
   media: Medier
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: og
   media_type: Medietype
   medium: mellem
   meet: Mød
@@ -3005,6 +3034,8 @@ da:
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
   not_finding_place_you_want?: Kan du ikke finde det sted du ønsker?
   not_found: Ikke fundet
+  #Filter for observations not in a particular place
+  not_in_place: Ikke på stedet
   not_linked_facebook: "Din %{site_name} konto er ikke tilknyttet til din Facebook-konto"
   not_linked_flickr: "Din %{site_name} konto er ikke tilknyttet til din Flickr-konto"
   not_on_this_list: Ikke på denne liste.
@@ -3094,6 +3125,14 @@ da:
   observation_curation: Observation kuration
   observation_date: Dato
   observation_date?: Dato?
+  #Basic observation export fields
+  observation_export_column_type_basic: Basis
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Takson
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Takson, ekstra
   observation_field: Observationsfelt
   observation_field_details: Observationsfelt detaljer
   observation_field_type_text: Tekst
@@ -3172,10 +3211,10 @@ da:
   observed_on: Observeret den
   observer: Observatør
   observers: Observatører
-  observer_prefers_no_project_addition: |
-    Observatør tillader ikke andre at føje deres observationer til projekter.
-  observer_prefers_addition_to_projects_joined: |
-    Observatør tillader kun andre at føje deres observationer til projekter, de har tilmeldt sig.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observatør tillader kun andre at føje deres observationer til projekter, hvori de deltager.
+  observer_prefers_no_traditional_project_addition: |
+    Observatør tillader ikke andre at føje deres observationer til traditionelle projekter.
   observer_short: Observatør
   occurence_status_describes_how: 'Forekomst status beskriver, hvor almindelig eller sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> flere oplysninger om terminologi </a>.'
   occurrence_status: Forekomst status
@@ -3841,10 +3880,9 @@ da:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
     hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
     eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
-  places_warning_look_for_existing_html: |
-    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
-    kontinenter og lande, samt to administrative niveauer under
-    land.
+  places_warning_look_for_existing2_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at der ikke oprettes en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt mange andre politiske grænser.
   places_warning_please_keep_in_mind: |
     Hold flg. begrænsninger for øje:
   places_warning_projects_can_have_multiple_places: |
@@ -5372,6 +5410,7 @@ da:
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_a_noun_by_you: "%{user} gjorde %{noun} fra dig til sin favorit"
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
@@ -5630,6 +5669,8 @@ da:
     Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
   with: med
+  #Filter for observations not in a particular taxon
+  without_taxon: Ikke i takson
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Træk tilbage
@@ -5694,6 +5735,9 @@ da:
   yes_reject_it: Ja, afvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boks øverst på/taksa
   yesterday: I går
+  yir_code_contributors_desc_html: |
+    Hovedparten af vores <a href="%{url}">software</a> er open-source baseret, så alle med den fornødne viden kan bidrage. Her er personerne, som
+    har doneret kode i år. Tak kodere!
   yir_donate_banner_inaturalist_in_year: "INATURALIST I %{year}:"
   yir_donate_banner_reaching_millions: Når ud til millioner. Belyser biodiversitet. Globalt samarbejde.
   #"You" is singular
@@ -5710,6 +5754,8 @@ da:
   yir_millions_of_people_used_inaturalist: |
     Millioner af personer brugte i år iNaturalist og Seek fra iNaturalist til
     komme i kontakt med naturen
+  yir_monthly_supporters_random_selection: |
+    Her er et tilfældigt udvalg af heroiske iNat-medlemmer, som donerer hver måned.
   yir_thank_your_for_being_generous: |
     Tak fordi du er generøs med din tid, opmærksomhed, ekspertise og
     donationer! iNaturalist er et non-profit fælles initiativ fra
@@ -6718,10 +6764,10 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
-      kml_field_desc: |
-        KML af stedets omrids. Du kan lave et ved hjælp af Google Maps, Google
-        Earth eller de fleste GIS-applikationer. Skal have mindst en polygon og være
-        under 1 MB (5 MB til side kuratorer).
+      kml_field_desc2: |
+        KML af stedets afgrænsning. Man kan lave et vha. Google Maps, Google
+        Earth eller de fleste GIS-applikationer. Skal have mindst én polygon, være
+        under 1 MB (5 MB til sidekuratorer) samt med en udstrækning mindre end den amerikanske stat Texas.
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
@@ -7348,7 +7394,7 @@ da:
           "Plant Phenology=Flower Budding": Blomsterknopbærende
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
-          "Plant Phenology=No Evidence": Intet bevis
+          "Plant Phenology=No Evidence of Flowering": Blomstring kan ikke påvises
           "Life Stage=Adult": Voksen
           "Life Stage=Egg": Æg
           "Life Stage=Larva": Larve
@@ -7541,7 +7587,7 @@ da:
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
           States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
           <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
-          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: E-mailadresserne brugt på Donorbox og iNaturalist skal være identiske, for at vi kan bekræfte, at du er en Monthly Supporter. Er de forskellige, så skift én af dem, så begge de er ens.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.

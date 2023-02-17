@@ -32,7 +32,10 @@ describe FlagsController do
       expect( response.status ).to eq 200
       taxon.reload
       expect( taxon.flags.first.comments.size ).to eq 0
-      expect( flash[:notice] ).to eq "Flag saved. Thanks! <a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> Unfortunately, we were unable to save the comment."
+      notice = "Flag saved. Thanks! " \
+        "<a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> " \
+        "Unfortunately, we were unable to save the comment."
+      expect( flash[:notice] ).to eq notice
     end
   end
 
@@ -123,6 +126,36 @@ describe FlagsController do
       sign_in( admin )
       post :destroy, params: { id: flag.id }
       expect( Flag.find_by_id( flag.id ) ).to be_blank
+    end
+  end
+
+  describe "show" do
+    let( :user ) { User.make! }
+    render_views
+    it "should work for a flag for a deleted comment on another flag" do
+      original_flag = create( :flag )
+      comment = create( :comment, parent: original_flag )
+      flag = create( :flag, flaggable: comment )
+      expect( flag.flaggable_parent ).to eq original_flag
+      comment.destroy
+      flag.reload
+      expect( flag.flaggable ).to be_blank
+      expect( flag.flaggable_parent ).to eq original_flag
+      sign_in user
+      expect { get( :show, params: { id: flag.id } ) }.not_to raise_error
+    end
+
+    it "should work for a flag for a deleted comment on a taxon swap" do
+      taxon_swap = make_taxon_swap
+      comment = create( :comment, parent: taxon_swap )
+      flag = create( :flag, flaggable: comment )
+      expect( flag.flaggable_parent ).to eq taxon_swap
+      comment.destroy
+      flag.reload
+      expect( flag.flaggable ).to be_blank
+      expect( flag.flaggable_parent ).to eq taxon_swap
+      sign_in user
+      expect { get( :show, params: { id: flag.id } ) }.not_to raise_error
     end
   end
 end

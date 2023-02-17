@@ -579,7 +579,6 @@ lv:
   analyze_clashes: Analizēt netīšu ID nesaderību
   analyze_ids: Analizēt ID
   ancestor_taxon: Priekšteču taksons
-  and: un
   and_other_taxa: "&amp; Citi taksoni"
   android: Android
   animals: Dzīvnieki
@@ -860,7 +859,6 @@ lv:
   browse_species_that_occur_near_this_observation: Apskatīt sugas, kas atrodamas šī novērojuma tuvumā.
   built_with_site_guides_html: "Radīts, izmantojot <a href='%{url}'>%{site_name} padomus</a>"
   bulk_import_of_filename_is_complete: "%{filename} lielapjoma importēšana ir pabeigta"
-  by: 'autors:'
   by_everyone: Visi
   by_user: "Autors: %{user}"
   by_you: tavi
@@ -2529,7 +2527,6 @@ lv:
       every_publicly_visible_observation: Visi publiski pieejamie novērojumi, kas izveidoti iNaturalist tīklā.
       featured_observations: Ieteiktie novērojumi
       gbif_network: GBIF tīkls
-      gbif_network_description: Muzeju un citu avotu arhīvi, kurus izplatījusi Globālās bioloģiskās daudzveidības informācijas sistēma (GBIF).
       observations: Novērojumi
       place_boundary: Vietas robeža
       checklist_places: Vietu kontrollapa
@@ -3060,10 +3057,6 @@ lv:
   observed_on: Novērots
   observer: Novērotājs
   observers: Novērotāji
-  observer_prefers_no_project_addition: |
-    Novērotājs nav devis atļauju savam projektam pievienot citu lietotāju novērojumus.
-  observer_prefers_addition_to_projects_joined: |
-    Novērotājs atļauj citiem pievienot savus novērojumus tikai projektiem, kuriem viņi seko.
   observer_short: Novērotājs
   occurence_status_describes_how: 'Sastopamības statuss apraksta to, cik bieži sastopams ir taksons kādā konkrētā vietā. Skatīt DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">, lai iegūtu vairāk informācijas par terminoloģiju</a>.'
   occurrence_status: Sastopamības statuss
@@ -3684,8 +3677,6 @@ lv:
   places_merged_successfully: Vietu apvienošana izdevās veiksmīgi.
   places_warning_export_complex_boundary_html: |
     Ja mēģini eksportēt novērojumus no apgabala ar sarežģītām robežām, tā vietā apsver iespēju <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">lejupielādēt tos no GBIF</a>, kur robežas iespējams brīvi uzzīmēt. Vēl iespējams tās eksportēt no iNat, izmantojot jau pieejamās vietas vai rakstzīmju lauku, un tad filtrēt datus vēlreiz, kad tie būs lejupielādēti.
-  places_warning_look_for_existing_html: |
-    Pārbaudi <a href="/search?source[]=places">jau pievienotās vietas</a>, lai pārliecinātos, ka neveido dublikātu. Mūsu sistēmā jau ir vietas no visiem kontinentiem un valstīm, kā arī vietas, kas tiek klasificētas kā divus administratīvos līmeņus zemākas par valsti.
   places_warning_projects_can_have_multiple_places: |
     Ja vēlies izveidot vietu, lai norādītu projekta robežas, neaizmirsti, ka projektiem var pievienot vairākas vietas reizē. Piemēram, ja vēlies izveidot projektu Jaunzēlandē un Austrālijā, projekta prasībās vari pievienot abas valstis kopā, nevis veidot vēl vienu jaunu.
   places_warning_new_places_are_slow_html: |
@@ -5674,7 +5665,7 @@ lv:
       pdf_generation_notice: |
         Lūdzu, esi pacietīgs, jo lielu PDF failu izveidošana var aizņemt kādu brīdi.
       tags_help_html: |
-        Tagi funkcionē kā kategorijas, pēc kurām tiek sadalītas tavos padomos iekļautās sugas. Jāņem gan vērā, ka vairākām sugām var būt viens un tas pats tags. Ievadi tagus saraksta formā, kurā katrs tags atdalīts ar komatu, piemēram <code>mazs, pūkains</code>. Lai pievienotu kategorijas ar nosaukumiem, izmanto tādus tagus kā <code>category_name=category_value</code> 
+        Tagi funkcionē kā kategorijas, pēc kurām tiek sadalītas tavos padomos iekļautās sugas. Jāņem gan vērā, ka vairākām sugām var būt viens un tas pats tags. Ievadi tagus saraksta formā, kurā katrs tags atdalīts ar komatu, piemēram <code>mazs, pūkains</code>. Lai pievienotu kategorijas ar nosaukumiem, izmanto tādus tagus kā <code>category_name=category_value</code>
         un <code>krāsa=dzeltena</code>.
       sorts:
         default: Padomu secība
@@ -6162,9 +6153,6 @@ lv:
         view_original_html: |
           Oriģinālu iespējams apskatīt šeit: <a href="%{url}">%{url}</a> Ja fotogrāfija nepārkāpj autortiesības, lūdzu, atstāj autortiesību pārkāpumu karodziņu ziņojumos norādītās problēmas neatrisinātas.
     places:
-      kml_field_desc: |
-        Vietas robežu KML. To iespējams izveidot, izmantojot Google Maps, Google
-        Earth un lielāko daļu citu GIS lietotņu. KML jāsatur vismaz viens poligons, kas nav lielāks par 1MB (5 MB pārziņiem) un tas nedrīkst pārsniegt, ASV štata, Teksasas izmēru.
       edit:
         complex_boundary_note_html: |
           Robežas ir pārāk sarežģītas rediģēšanai pārlūkā. Tā vietā iespējams <a href="%{url}">lejupielādēt KML</a> un rediģēt to kādā no tevis izvēlētām GIS lietotnēm, un tad to augšupielādēt.
@@ -6618,7 +6606,6 @@ lv:
           "Plant Phenology=Flower Budding": Ziedpumpuri
           "Plant Phenology=Flowering": Zied
           "Plant Phenology=Fruiting": Ar augļiem
-          "Plant Phenology=No Evidence": Nav pierādījumu
           "Life Stage=Adult": Pieaudzis
           "Life Stage=Egg": Ola
           "Life Stage=Larva": Cirmenis
@@ -6771,10 +6758,6 @@ lv:
           Licencē savu saturu, lai sniegtu lietotājiem tiesības to izmantot, nelūdzot tavu piekrišanu, bet ievērojot norādītos licences noteikumus. %{site_name} glabā tavu ar Creative Commons licencēto saturu partnerorganizācijām paredzētos arhīvos, kas tiek regulāri atjaunoti. Piemēram, ar No
           Copyright (CC0), Attribution (CC BY) un Attribution-NonCommercial
           (CC BY-NC) licencētais saturs tiek glabāts arhīvā, kas paredzēts <a href="http://www.gbif.org/">Globālajai bioloģiskās daudzveidības informācijas datubāzei</a> (GBIF). Tā ir starptautiska starpvaldību organizācija, kas apkopo un izplata bioloģiskās daudzveidības datus no visas pasaules.
-        monthly_supporter_desc_html: |
-          Lietotāji ar iNaturalist ikmēnēša atbalstītāja statusu katru mēnesi automātiski ziedo, lai atbalstītu California Academy of Sciences (United States IRS EIN 94-1156258) un iNaturalist un iNaturalist tīkla vietņu uzturēšanu, kas nenes peļņu.
-          <a href="%{url}">Lai kļūtu par ikmēneša atbalstītāju, nospied šeit</a>.
-          Kad būsim saņēmuši tavu ziedojumu, varēsi atzīmēt lodziņu, lai rādītu savā profilā ziedotāja statusu. Lai mēs varētu pārbaudīt to, ka esi kļuvis par ikmēneša atbalstītāju, tev jānorāda vienādu e-pasta adresi gan Donorbox, gan iNaturalist vietnē.
         muting_desc_html: |
           <p>
           Apklusinot kādu lietotāju, nesaņemsi paziņojumus par viņa darbībām, tai skaitā tavu novērojumu komentēšanu, sazināšanos ar tevi, tevis pieminēšanu utt. Apklusināšana sniedz iespēju kādu ignorēt, neierobežojot lietotāju veikt citas darbības.

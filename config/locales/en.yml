@@ -306,6 +306,12 @@ en:
   # positional_accuracy attribute of an observation, which is really more like
   # positional uncertainty
   acc: 'Acc (m)'
+  # Filter for observations with positional accuracy above a certain value
+  acc_above: Acc. above
+  # Filter for observations with positional accuracy below a certain value
+  acc_below: Acc. below
+  # Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Acc. below or unknown
   account: Account
   account_creation: Account Creation
   account_settings: Account Settings
@@ -606,7 +612,6 @@ en:
   analyze_clashes: Analyze Unintended Disagreements
   analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
-  and: and
   and_other_taxa: "&amp; Other Taxa"
   android: Android
   animals: Animals
@@ -923,7 +928,6 @@ en:
   browse_species_that_occur_near_this_observation: Browse species that occur near this observation.
   built_with_site_guides_html: "Built with <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulk import of %{filename} is complete"
-  by: by
   by_everyone: By everyone
   by_user: "By %{user}"
   by_you: By you
@@ -1076,6 +1080,8 @@ en:
   click_the_map: "<strong>Click the map</strong> to add a location."
   close: Close
   code: Code
+  # People who have contributed code to iNat open-source software projects
+  code_contributors: Code Contributors
   colors: Colors
   columns: Columns
   combine: Combine
@@ -1702,6 +1708,7 @@ en:
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       updated: 'You updated your account successfully.'
+      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     mailer:
       confirmation_instructions:
         # Subject of an email sent to confirm your account
@@ -1798,9 +1805,15 @@ en:
   # Label for a link to taxa that are descendants ("downstream") of the current
   # taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Downstream flagged taxa
+  # Noun, as in a journal post that has not been published
   draft: draft
+  # Noun, as in a journal post that has not been published
   draft_: Draft
+  # Attribution for a journal post that has not been published
+  draft_by_user_html: Draft by %{user}
+  # Noun, as in a journal post that has not been published
   draft_saved: Draft saved!
+  # Noun, as in journal posts that has not been published
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
   # Button label for drawing a circular boundary for an observation search
@@ -2303,6 +2316,17 @@ en:
   home: Home
   # Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hours to Adjust:"
+  # Message displayed on an observation detail page when the observation is
+  # not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    However, it is not licensed for re-use and will not be shared with data
+    repositories that respect license choices.
+  # Message displayed on an observation detail page when the observation is
+  # not licensed and the page is being viewed by the person who made the
+  # observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    You can change your license preferences in your
+    <a class="linky" href="/users/edit#content">account settings</a>.
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   # disagreements are identifications that disagree with other identifications on the same observation
   # thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2602,6 +2626,7 @@ en:
     italian: Italian
     japanese: Japanese
     kannada: Kannada
+    kazakh: Kazakh
     korean: Korean
     latvian: Latvian
     lithuanian: Lithuanian
@@ -2682,6 +2707,10 @@ en:
     taxonomic: taxonomic
     photo: photo
   list_was_successfully_created: List was successfully created.
+  # Template for a comma-separated list of items. We'll use this to generate
+  # lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, and %{three}"
+  list_with_two_items: "%{one} and %{two}"
   listed_taxa: Listed Taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
@@ -2734,6 +2763,7 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    kk: Kazakh
     kn: Kannada
     ko: Korean
     lb: Luxembourgish
@@ -2799,6 +2829,8 @@ en:
   lookup: Lookup
   low: Low
   lowest_rank: Lowest Rank
+  # Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Make admin
   # Header for main content section of the project detail page when editing custom project data.
   main_content: Main content
@@ -2831,7 +2863,7 @@ en:
       every_publicly_visible_observation: Every publicly visible observation created in the iNaturalist network
       featured_observations: Featured observations
       gbif_network: GBIF network
-      gbif_network_description: Records from museums and other occurrence providers distributed by the Global Biodiversity Informatics Facility
+      gbif_network_description2: Records from museums and other occurrence providers distributed by the Global Biodiversity Information Facility
       observations: Observations
       place_boundary: Place boundary
       checklist_places: Checklist places
@@ -2851,6 +2883,9 @@ en:
   maximum_positional_accuracy_including_unknown: |
     Maximum positional accuracy including observations without positional accuracy
   media: Media
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
+  media_and: and
   media_type: Media Type
   medium: medium
   meet: Meet
@@ -3030,8 +3065,13 @@ en:
   must_have_quality_grades: "must have quality grades: %{grades}"
   must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
+  # Imperative verb, label for a button that lets you mute another user
+  mute: Mute
+  # Mute is a noun here
   mute_removed: Mute removed
   muted_users: Muted Users
+  muting_description: Muting someone prevents you from being notified about any of their activity,
+    including "@" mentions, messages, or comments and identifications on your observations.
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -3238,6 +3278,8 @@ en:
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
   not_found: Not found
+  # Filter for observations not in a particular place
+  not_in_place: Not in place
   not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
@@ -3330,6 +3372,14 @@ en:
   observation_curation: Observation Curation
   observation_date: Date
   observation_date?: Date?
+  # Basic observation export fields
+  observation_export_column_type_basic: Basic
+  # Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  # Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  # Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon Extras
   observation_field: Observation field
   observation_field_details: Observation field details
   observation_field_type_text: Text
@@ -3414,11 +3464,12 @@ en:
   observed_on: Observed on
   observer: Observer
   observers: Observers
-  observer_prefers_no_project_addition: |
-    Observer does not allow other people to add their observations to projects.
-  observer_prefers_addition_to_projects_joined: |
-    Observer only allows other people to add their observations to projects they
-    have joined.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Observer only allows other people to add their observations to traditional
+    projects they have joined.
+  observer_prefers_no_traditional_project_addition: |
+    Observer does not allow other people to add their observations to
+    traditional projects.
   observer_short: Observer
   occurence_status_describes_how: Occurrence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
@@ -3572,6 +3623,14 @@ en:
     invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
+  password_change_description: Changing your password will log you out of all active
+    iNaturalist sessions across your devices
+  password_change_logout_warning: After you change your password, you will be signed out and you
+    will need to sign in again with your new password.
+  password_change_observations_warning: You will also be signed out of the iNaturalist mobile apps
+    and any other apps or websites that post to iNaturalist on your behalf, so make sure you have
+    uploaded any pending observations before you do this. Any observations that are not uploaded
+    will be lost.
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   people: People
@@ -4117,11 +4176,10 @@ en:
     where you can draw arbitrary boundaries, or export them from iNat using
     existing places or a bounding box and then filter the data again once you've
     downloaded it.
-  places_warning_look_for_existing_html: |
+  places_warning_look_for_existing2_html: |
     Look for <a href="/search?source[]=places">existing places</a> to make sure
     you're not creating a duplicate. We already have places for all the
-    continents and countries, as well as two administrative levels below
-    country.
+    continents and countries, and many other political boundaries.
   places_warning_please_keep_in_mind: |
     Please keep in mind the following restrictions:
   places_warning_projects_can_have_multiple_places: |
@@ -4169,7 +4227,10 @@ en:
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
-  posted_on: Posted on
+  # Shows the date a journal post was published
+  posted_on_date_html: Posted on %{date}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Posted on %{date} by %{user}
   posts: Posts
   potential_disagreement: Potential Disagreement
   powered_by: Powered by
@@ -5722,6 +5783,7 @@ en:
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_faved_a_noun_by_you: "%{user} faved %{noun} by you"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
@@ -5991,6 +6053,8 @@ en:
     Commons Attribution-Share-Alike License 3.0</a>. Content may have been
     omitted from the original, but no content has been changed or extended.
   with: with
+  # Filter for observations not in a particular taxon
+  without_taxon: Not in taxon
   # Label for a button to withdraw an identification, i.e. to deactivate it
   # without deleting it
   withdraw: Withdraw
@@ -6062,6 +6126,10 @@ en:
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
+  yir_code_contributors_desc_html: |
+    Our <a href="%{url}">software</a> is nearly all open-source, which means
+    anyone can contribute if they know how. Here are the people who
+    volunteered code this year. Thank you, coders!
   yir_donate_banner_inaturalist_in_year: "INATURALIST IN %{year}:"
   yir_donate_banner_reaching_millions: Reaching millions. Illuminating biodiversity. Global collaboration.
   # "You" is singular
@@ -6078,6 +6146,8 @@ en:
   yir_millions_of_people_used_inaturalist: |
     Millions of people used iNaturalist and Seek by iNaturalist this year to
     connect with nature
+  yir_monthly_supporters_random_selection: |
+    Here is a random selection of iNat's heroic community members who donate every month.
   yir_thank_your_for_being_generous: |
     Thank you for being generous with your time, attention, expertise, and
     donations! iNaturalist is a not-for-profit joint initiative of the
@@ -6472,7 +6542,7 @@ en:
         Please be patient, generating large PDFs can take a minute or two.
       tags_help_html: |
         Tags are like categories for the species in your guide, except
-        mulitple species can have the same tag. Enter tags as a comma-
+        multiple species can have the same tag. Enter tags as a comma-
         separated list here, e.g. <code>small, furry</code>. To add named
         categories, use tags like <code>category_name=category_value</code>,
         e.g. <code>color=yellow</code>.
@@ -7279,9 +7349,9 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon be
+        Earth, or most GIS applications. Must have at least one polygon, be
         under 1 MB (5 MB for site curators), and have an area smaller than the
         US state of Texas.
       edit:
@@ -8034,7 +8104,7 @@ en:
           "Plant Phenology=Flower Budding": Flower Budding
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
-          "Plant Phenology=No Evidence": No Evidence
+          "Plant Phenology=No Evidence of Flowering": No Evidence of Flowering
           "Life Stage=Adult": Adult
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larva
@@ -8292,9 +8362,9 @@ en:
           iNaturalist and iNaturalist Network sites.
           <a href="%{url}">Click here to become a Monthly Supporter</a>.
           When we have confirmed your support you will be able to check this
-          box to display this status on your profile. Note: you will need to use
-          exactly the same email address on Donorbox as you do on iNaturalist
-          for us to confirm that you've become a Monthly Supporter.
+          box to display this status on your profile. Note: the email addresses
+          on Donorbox and iNaturalist must match exactly for us to confirm that
+          you are a Monthly Supporter. If they differ, change one to match the other.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things

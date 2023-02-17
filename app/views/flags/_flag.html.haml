@@ -16,6 +16,10 @@
         %th=t :flag_object
         %td
           = link_to flaggable.respond_to?( :to_plain_s ) ? flaggable.to_plain_s : t( flag.flaggable_type ), flaggable
+          - if !flaggable && flag.flaggable_parent
+            %br
+            = surround "[", "]" do
+              =t :bold_label_colon_value_html, label: t(:parent), value: link_to( flag.flaggable_parent.to_plain_s, flag.flaggable_parent )
       %tr
         %th=t :reason
         %td= "\"#{flag.flag}\""

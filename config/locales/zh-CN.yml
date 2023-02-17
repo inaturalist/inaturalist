@@ -468,7 +468,6 @@ zh-CN:
   analyze_clashes: 分析非预期分歧
   analyze_ids: 过往记录分析
   ancestor_taxon: 祖先分类
-  and: 和
   and_other_taxa: "&amp; 其他分类"
   android: 安卓
   animals: 动物
@@ -725,7 +724,6 @@ zh-CN:
   browse_species_that_occur_near_this_observation: 浏览这条观察记录附近出现的物种
   built_with_site_guides_html: "使用指南<a href='%{url}'>%{site_name} 来打造</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的大量导入完成"
-  by: 由
   by_everyone: 由任何人
   by_user: "由 %{user}"
   by_you: 由您
@@ -2224,7 +2222,6 @@ zh-CN:
       every_publicly_visible_observation: 任何在iNaturalist网络中创建的公开可见的观察
       featured_observations: 特色观察
       gbif_network: GBIF网络
-      gbif_network_description: 来自博物馆及其他由Global Biodiversity Informatics Facility指派的发现提供方的记录
       observations: 观察
       place_boundary: 地区边界
       checklist_places: 检查表地点
@@ -2697,10 +2694,6 @@ zh-CN:
   observed_on: 观察于
   observer: 观察者
   observers: 观察者
-  observer_prefers_no_project_addition: |
-    观察者不允许其他人把其观察记录添加到项目中。
-  observer_prefers_addition_to_projects_joined: |
-    观察者只允许别人将他们的观察添加到他们已经加入的项目中。
   observer_short: 观察者
   occurence_status_describes_how: '发生状态描述了在指定地区中的分类有多么普遍或稀有。参见DarwinCore以获取<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">更多有关术语的信息</a>。'
   occurrence_status: 发生状态
@@ -5199,8 +5192,6 @@ zh-CN:
         view_original_html: |
           您可以在<a href="%{url}">％{url}</a>上查看原文。如果此照片侵犯了版权，请将版权侵权标记保留为未解决。
     places:
-      kml_field_desc: |
-        地点边界的KML。您可以使用Google地图、Google地球或大多数GIS应用程序制作。必须至少有一个1 MB以下（网站馆长则为5 MB）的多边形，并拥有比美国德克萨斯州更小的地区。
       edit:
         complex_boundary_note_html: |
           此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
