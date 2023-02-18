@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.production?
+unless Rails.env.development?
   puts "This script is for setting up a dev environment only."
   exit 0
 end
