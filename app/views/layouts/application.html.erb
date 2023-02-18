@@ -3,7 +3,9 @@
     xml:lang="<%= I18n.locale %>"
     lang="<%= I18n.locale %>"
     <% if @rtl %>
-     dir = "rtl"
+      dir="rtl"
+    <% else %>
+      dir="ltr"
     <% end %>
     xmlns:fb="http://www.facebook.com/2008/fbml"
     xmlns:og="http://ogp.me/ns#">

@@ -78,7 +78,7 @@ dd {
 
 @media (min-width: 768px) {
   .dl-horizontal dt {
-    float: inline-start;
+    float: right;
     text-align: end;
   }
   .dl-horizontal dd {
@@ -95,24 +95,24 @@ blockquote.pull-right {
 }
 
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
-  float: inline-start;
+  float: right;
 }
 
 @media (min-width: 768px) {
   .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
-    float: inline-start;
+    float: right;
   }
 }
 
 @media (min-width: 992px) {
   .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
-    float: inline-start;
+    float: right;
   }
 }
 
 @media (min-width: 1200px) {
   .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
-    float: inline-start;
+    float: right;
   }
 }
 
@@ -175,7 +175,7 @@ th {
 
 .dropdown-menu {
   inset-inline-start: 0;
-  float: inline-start;
+  float: right;
   text-align: start;
 }
 .dropdown-menu.pull-right {
@@ -210,7 +210,7 @@ th {
 
 .btn-group > .btn,
 .btn-group-vertical > .btn {
-  float: inline-start;
+  float: right;
 }
 
 .btn-group .btn + .btn,
@@ -225,7 +225,7 @@ th {
 .btn-toolbar .btn,
 .btn-toolbar .btn-group,
 .btn-toolbar .input-group {
-  float: inline-start;
+  float: right;
 }
 .btn-toolbar > .btn,
 .btn-toolbar > .btn-group,
@@ -238,7 +238,7 @@ th {
 }
 
 .btn-group > .btn-group {
-  float: inline-start;
+  float: right;
 }
 
 .btn .caret {
@@ -257,7 +257,7 @@ th {
 }
 
 .input-group .form-control {
-  float: inline-start;
+  float: right;
 }
 
 .input-group-addon:last-child {
@@ -282,7 +282,7 @@ th {
 }
 
 .nav-tabs > li {
-  float: inline-start;
+  float: right;
 }
 .nav-tabs > li > a {
   margin-inline-end: 2px;
@@ -297,7 +297,7 @@ th {
 }
 
 .nav-pills > li {
-  float: inline-start;
+  float: right;
 }
 
 .nav-pills > li + li {
@@ -318,12 +318,12 @@ th {
 
 @media (min-width: 768px) {
   .navbar-header {
-    float: inline-start;
+    float: right;
   }
 }
 
 .navbar-brand {
-  float: inline-start;
+  float: right;
 }
 
 @media (min-width: 768px) {
@@ -339,10 +339,10 @@ th {
 
 @media (min-width: 768px) {
   .navbar-nav {
-    float: inline-start;
+    float: right;
   }
   .navbar-nav > li {
-    float: inline-start;
+    float: right;
   }
 }
 
@@ -372,7 +372,7 @@ th {
 
 @media (min-width: 768px) {
   .navbar-text {
-    float: inline-start;
+    float: right;
   }
 }
 @media (min-width: 768px) {
@@ -394,7 +394,7 @@ th {
 
 .pagination > li > a,
 .pagination > li > span {
-  float: inline-start;
+  float: right;
   margin-inline-start: -1px;
 }
 .pagination > li:first-child > a,
@@ -412,7 +412,7 @@ th {
 }
 .pager .previous > a,
 .pager .previous > span {
-  float: inline-start;
+  float: right;
 }
 
 .pager .next > a,
@@ -421,7 +421,7 @@ th {
 }
 .pager .previous > a,
 .pager .previous > span {
-  float: inline-start;
+  float: right;
 }
 
 .list-group-item > .badge {
@@ -444,7 +444,7 @@ th {
 }
 
 .progress-bar {
-  float: inline-start;
+  float: right;
 }
 
 .media-right,
