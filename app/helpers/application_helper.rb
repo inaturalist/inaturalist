@@ -1105,6 +1105,12 @@ module ApplicationHelper
     end
 
     if notifier.is_a?( ActsAsVotable::Vote )
+      # TODO: At present the only kind of vote notification is for faving an
+      # observation and the only person that gets notified is the observer,
+      # so there's no need for all this complicated logic just to make a key
+      # that's impossible to translate. I'm putting this here as a reminder
+      # to use this approach once we have a few translations of this string
+      # return t( :user_faved_an_observation_by_you, user: notifier_user.login ).html_safe
       noun = t( :activity_snipped_resource_with_indefinite_article,
         resource: resource_link.html_safe,
         vow_or_con: t( class_name_key, default: class_name_key )[0].downcase,
