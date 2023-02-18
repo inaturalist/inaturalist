@@ -444,7 +444,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.currentSubview = PREFERRED_SUBVIEW;
     }
     // use the current user's id as the basis for the `reviewed` param
-    if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
+    if( initialParams.reviewed !== undefined && !initialParams.reviewed_by && CURRENT_USER ) {
       initialParams.viewer_id = CURRENT_USER.id;
     }
     // a taxon_name param was provided, and a match was found,
