@@ -292,6 +292,10 @@ pl:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Dokładność (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Dokładność powyżej
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Dokładność poniżej
   account: Konto
   account_creation: Utworzenie konta
   account_settings: Ustawienia konta
@@ -1346,6 +1350,7 @@ pl:
       signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto nie zostało jeszcze aktywowane."
       signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto jest zablokowane."
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
+      updated_but_not_signed_in: "Twoje konto zostało pomyślnie zaktualizowane, ale ponieważ Twoje hasło zostało zmienione, musisz zalogować się ponownie."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1407,6 +1412,8 @@ pl:
   draft: szkic
   #Noun, as in a journal post that has not been published
   draft_: Szkic
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Szkic użytkownika %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Szkic zapisany!
   #Noun, as in journal posts that has not been published
@@ -2064,6 +2071,10 @@ pl:
     taxonomic: taksonomiczny
     photo: zdjęcie
   list_was_successfully_created: Lista została utworzona.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} i %{three}"
+  list_with_two_items: "%{one} i %{two}"
   listed_taxa: Taksony znajdujące się na liście
   listed_taxon: Takson znajdujący się na liście
   listed_taxon_updated: Zaktualizowano takson znajdujący się na liście
@@ -2199,6 +2210,9 @@ pl:
   matching_species_will_shown_up_here: Tu pokażą się pasujące gatunki. Mapy pokażą zakres występowania, jeśli jest on zdefiniowany dla miejsca %{place}.
   maverick: Indywidualista
   media: Multimedia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: i
   media_type: Rodzaj multimediów
   medium: średni
   meet: Poznaj
@@ -2321,6 +2335,8 @@ pl:
   must_be_observed_before: musi być zaobserwowany przed %{operand}
   must_be_less_than_x_MB: "Musi mieć mniej niż %{x} MB"
   must_have_x: "musi mieć %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Wycisz
   #Mute is a noun here
   mute_removed: Wyciszenie usunięte
   muted_users: Wyciszeni Użytkownicy
@@ -2684,6 +2700,9 @@ pl:
     invalid_email: Niepoprawny format adresu e-mail
   password: Hasło
   password_confirmation: 'Potwierdzenie hasła'
+  password_change_description: Zmiana hasła wyloguje Cię ze wszystkich aktywnych sesji iNaturalist na Twoich urządzeniach
+  password_change_logout_warning: Po zmianie hasła zostaniesz wylogowany i będziesz musiał zalogować się ponownie przy użyciu nowego hasła.
+  password_change_observations_warning: Zostaniesz również wylogowany z aplikacji mobilnych iNaturalist i innych aplikacji lub stron internetowych, które publikują na iNaturalist w Twoim imieniu, więc upewnij się, że przesłałeś oczekujące obserwacje, zanim to zrobisz. Wszelkie obserwacje, które nie zostaną przesłane, zostaną utracone.
   paste: Wklej
   people: Ludzie
   people_following_user: "Osoby obserwujące %{user}"
@@ -3082,6 +3101,10 @@ pl:
   popular: Obs. popularne
   position: Pozycja
   post_published: Post opublikowany!
+  #Shows the date a journal post was published
+  posted_on_date_html: Dodano %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Dodany %{date} przez użytkownika %{user}
   posts: Posty
   potential_disagreement: Potencjalna niezgodność
   powered_by: Wsparcie dzięki
@@ -3901,6 +3924,7 @@ pl:
   user_disagrees_with_previous_finer_identifications: "%{user} nie zgadza się z poprzednimi dokładniejszymi oznaczeniami"
   #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
   user_faved_a_noun_by_owner: "%{user} dodał do ulubionych %{noun} przez %{owner}"
+  user_faved_an_observation_by_you: "Użytkownik %{user} dodał Twoją obserwację do ulubionych"
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
   user_hasnt_joined_any_projects: "%{user} nie dołączył do żadnego projektu"
