@@ -1544,6 +1544,7 @@ nl:
       signed_up_but_locked: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account is vergrendeld."
       signed_up_but_unconfirmed: "Een bericht met een bevestigingslink is verzonden naar jouw e-mailadres. Volg de link om je account te activeren."
       updated: 'Je hebt je account succesvol bijgewerkt.'
+      updated_but_not_signed_in: "Jouw account is met succes bijgewerkt maar omdat jouw wachtwoord is gewijzigd moet je opnieuw inloggen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -2848,6 +2849,7 @@ nl:
   #Mute is a noun here
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
+  muting_description: Het negeren van iemand voorkomt dat je meldingen krijgt over één van zijn activiteiten, inclusief "@"-vermeldingen, berichten of opmerkingen en determinaties van je waarnemingen.
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
   n_people_disagrees: "%{amount} personen zijn het oneens"
@@ -3388,6 +3390,8 @@ nl:
     invalid_email: Ongeldige e-mailopmaak.
   password: Wachtwoord
   password_confirmation: 'Bevestiging wachtwoord'
+  password_change_description: Als jij jouw wachtwoord wijzigt log je uit uit alle actieve iNaturalist sessies op je toestellen
+  password_change_logout_warning: Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord.
   password_change_observations_warning: Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in jouw naam naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet worden geüpload zullen verloren gaan.
   paste: Plakken
   paste_in_a_bunch_of_names: Plak een aantal namen, 1 per regel en druk op de knop!
@@ -7543,19 +7547,19 @@ nl:
       6: vr
       7: za
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -7728,21 +7732,21 @@ nl:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
