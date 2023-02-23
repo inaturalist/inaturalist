@@ -2803,17 +2803,17 @@ ru:
       #Short text representing %d years in the past
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_zone: "D.M.YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
+    datetime_with_zone_no_year: "D.M H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z"
+    datetime_with_offset: "D.M.YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "D MMMM, YYYY"
+    date_long: "D.M.YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long_without_year: "D MMMM"
+    date_long_without_year: "D.M"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -7484,17 +7484,17 @@ ru:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      long: '%B %d, %Y'
+      long: '%d.%m.%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%b %d'
+      short: '%d.%m'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      compact: "%b %e"
+      compact: "%e.%m"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short_with_year: '%b %d, %Y'
+      short_with_year: '%d.%m.%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      month_day_year: '%B %d, %Y'
+      month_day_year: '%d.%m.%Y'
     month_names:
       - 
       - Январь
@@ -7707,15 +7707,15 @@ ru:
     am: утра
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%d %b %Y %H:%M:%S %z'
+      default: '%d.%m.%Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      short: '%d %b %H:%M'
+      long: '%d.%m.%Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%d.%m %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      rfc: "%d. %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
