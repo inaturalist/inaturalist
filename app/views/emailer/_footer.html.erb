@@ -103,7 +103,7 @@
                         <p>
                           <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
                           <br/>
-                          <a href="<%= generic_edit_user_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
+                          <a href="<%= generic_edit_user_url(notifications: true) %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;color: #606060;font-weight: normal;text-decoration: underline;"><%= t(:update_subscription_preferences) %></a>
                           <br/>
                           <%-
                             # Sendgrid unsubscribe template tag
