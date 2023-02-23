@@ -1732,7 +1732,7 @@ ja:
   geoprivacy: 位置情報プライバシー
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 観察者は、座標を曖昧にすることを選択しました。
-  geoprivacy_is_private: 位置情報プライバシーはプライベート
+  geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
   geoprivacy_is_private_desc: 観察者は座標を隠すことを選択しました。
   georeferenced: 位置データありますか？
   get_started: 始めよう
@@ -2878,7 +2878,7 @@ ja:
   pin_verb: ピン
   pink: 桃
   pinned_locations_desc: |
-    後で使用できるように、座標、精度、地理的位置、および地域の注釈の設定を保存します。
+    後で使用できるように、座標、座標の精度、位置情報公開状況、および地域の名称の設定を保存する
   place: 場所
   placeholder: プレースホルダー
   place_autocomplete_placeholder: ザイオン国立公園、マイアミなど。
@@ -3904,7 +3904,6 @@ ja:
   taxa_to_include: 対象分類群
   taxon: 分類群
   taxon_autocomplete_placeholder: 鳥綱、オオカバマダラなど。
-  taxon_geoprivacy: 分類群の場所公開状況
   taxon_is_a_rank: "%{taxon} は %{rank} です"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     other: "%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位"
@@ -5215,15 +5214,15 @@ ja:
       6: 金
       7: 土
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y年%m月%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%B%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%B%d日'
     month_names:
       - 
@@ -5328,11 +5327,9 @@ ja:
   time:
     am: 午前
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y年%B%d日"
     pm: 午後
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository

@@ -2746,12 +2746,13 @@ th:
         trust_allow_members_to_trust: |-
           อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
       new:
+        can_be_included_in_multiple: รวมเข้าไปในโครงการครอบคลุมหลายโครงการได้
         check_the_box_to_include_member_observations: |
           ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
           ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
-        custom_banner_icon_and_project_description: สามารถเปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายโครงการ
-        data_visualizations: มองเห็นภาพรวมของข้อมูล
+        custom_banner_icon_and_project_description: เปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายได้
+        data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
@@ -2768,6 +2769,7 @@ th:
         project_details: รายละเอียดโครงการ
         project_icon: ไอคอนโครงการ (PNG, JPG, หรือ GIF)
         project_name: ชื่อโครงการ
+        start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
         we_have_redesigned_projects: |
@@ -2967,7 +2969,7 @@ th:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
