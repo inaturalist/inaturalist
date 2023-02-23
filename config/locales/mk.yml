@@ -1599,8 +1599,6 @@ mk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'во %I:%M %p %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      rfc: "%j %B %Y"
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%j %B %Y"
     pm: попладне
   #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
