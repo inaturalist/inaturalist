@@ -871,9 +871,16 @@ class Place < ApplicationRecord
   end
 
   def kml_url
-    FakeView.place_geometry_kml_url(:place => self)
+    geometry ||= place_geometry_without_geom if association( :place_geometry_without_geom ).loaded?
+    geometry ||= place_geometry if association( :place_geometry ).loaded?
+    geometry ||= PlaceGeometry.without_geom.where( place_id: id ).first
+    if geometry.blank?
+      "".html_safe
+    else
+      "#{UrlHelper.place_geometry_url( self, format: 'kml' )}?#{geometry.updated_at.to_i}".html_safe
+    end
   end
-  
+
   def self.guide_cache_key(id)
     "place_guide_#{id}"
   end

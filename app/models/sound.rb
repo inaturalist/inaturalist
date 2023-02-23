@@ -137,7 +137,7 @@ class Sound < ApplicationRecord
       attribution: attribution,
       native_sound_id: native_sound_id,
       secret_token: try(:secret_token),
-      file_url: is_a?( LocalSound ) ? FakeView.uri_join( Site.default.url, file.url ) : nil,
+      file_url: is_a?( LocalSound ) ? UrlHelper.uri_join( Site.default.url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
       play_local: is_a?( LocalSound ) && ( subtype.blank? || ( native_response && native_response["sharing"] == "private") ),
       subtype: subtype,
@@ -181,7 +181,7 @@ class Sound < ApplicationRecord
       #   styles = %w(original large medium small thumb square)
       #   updates = [styles.map{|s| "#{s}_url = ?"}.join(', ')]
       #   updates += styles.map do |s|
-      #     FakeView.image_url("copyright-infringement-#{s}.png").to_s
+      #     ApplicationController.helpers.image_url("copyright-infringement-#{s}.png").to_s
       #   end
       #   Photo.where(id: id).update_all(updates)
       # elsif %w(resolved destroyed).include?(options[:action])

@@ -116,7 +116,9 @@
                   {{ shared.t( '#{ key }_', { defaultValue: shared.t( '#{ key }' ) } ) }}
           .col-xs-6
             %select#params-order.form-control{ "ng-model" => "params.order", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': ( params.order !== defaultParams.order ) }" }
-              = FakeView.options_for_select(%w(asc desc).map{|o| ["{{ shared.t('#{o}') }}", o]}, @order)
+              - %w[asc desc].map do |order|
+                %option{ value: order }
+                  {{ shared.t( order ) }}
       #filters-right-col.col-xs-4
         %label.sectionlabel
           {{ shared.t( 'date_observed_' ) }}
@@ -139,7 +141,10 @@
             %input{type: 'radio', name: 'date-type', value: 'month', "ng-model" => "params.dateType"}
             %span.date-type.date-type-month
               {{ shared.t('months') }}
-              = FakeView.select_tag :month, FakeView.options_for_select((1..12).to_a.map{|n| ["{{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}", n]}, :selected => @observed_on_months), "ng-model" => "params.month", :class => "form-control input-sm", id: "filters-dates-month", multiple: "multiple", "ng-class" => "{ 'filter-changed': processedParams.month }"
+              %select#filters-dates-month.form-control.input-sm{name: "month", multiple: "multiple", "ng-model" => "params.month", "ng-class" => "{ 'filter-changed': processedParams.month }"}
+                - (1..12).to_a.map do |n|
+                  %option{ value: n }
+                    {{ shared.t('date_format.month.#{Date::MONTHNAMES[n].downcase}') }}
         #filters-observation-fields{ "ng-show" => "canShowObservationFields( )" }
           %label.sectionlabel
             {{ shared.t( "observation_fields" ) }}

@@ -367,17 +367,17 @@ class User < ApplicationRecord
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -426,7 +426,7 @@ class User < ApplicationRecord
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end

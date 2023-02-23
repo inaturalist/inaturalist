@@ -3,7 +3,7 @@
 # require 'recaptcha'
 module ApplicationHelper
   include Ambidextrous
-  
+
   def num2letterID(num)
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     alphabet[num,1]
@@ -512,24 +512,17 @@ module ApplicationHelper
   end
 
   def image_url( source, options = {} )
-    # Here FakeView is necessary again for situations where this gets called
-    # outside of a context with the normal URL and asset helpers
-    abs_path = source =~ %r{^/} ? source : FakeView.asset_path( source ).to_s
-    unless abs_path =~ /\Ahttp/
-      the_root_url = begin
-        root_url
-      rescue StandardError => e
-        # If this method gets called outside of the context of a controller, url
-        # helpers like root_url may not be available, so we might need to fall
-        # back to FakeView. Note that rescuing ActionView::Template::Error
-        # doesn't seem to work here.
-        raise e unless e.message =~ /root_url/
+    abs_path = source =~ %r{^/} ? source : whitelisted_asset_path( source, options ).to_s
+    return abs_path if abs_path =~ /\Ahttp/
 
-        FakeView.root_url
-      end
-      abs_path = uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
-    end
-    abs_path
+    the_root_url = defined?( root_url ) ? root_url : UrlHelper.root_url
+    uri_join( options[:base_url] || @site&.url || the_root_url, abs_path ).to_s
+  end
+
+  def whitelisted_asset_path(source, options)
+    return "/assets/#{source}" if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
+
+    asset_path( source, options )
   end
 
   def truncate_with_more(text, options = {})
