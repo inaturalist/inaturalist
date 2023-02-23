@@ -1921,6 +1921,9 @@ class Observation < ApplicationRecord
       if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
         # prob_taxon was subspecific but first
         prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      elsif prob_taxon.species
+        # when the subspecific prob_taxon was added later, use it's species ancestor
+        prob_taxon.species.id
       else
         # prob_taxon was subspecific and not first, using CID
         ct.id
