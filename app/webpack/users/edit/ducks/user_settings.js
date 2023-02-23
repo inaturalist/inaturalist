@@ -94,7 +94,13 @@ export async function handleSaveError( e ) {
     return {};
   }
   const body = await e.response.json( );
-  return body.error.original.errors;
+  if ( body && body.errors && _.isArray( body.errors ) && _.isObject( body.errors[0] )
+    && body.errors[0].from === "externalAPI" && body.errors[0].message ) {
+    // apiv2 passes on errors from rails in an object, e.g.:
+    //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+    return JSON.parse( body.errors[0].message ).errors;
+  }
+  return body.errors ? body.errors : body.error.original.errors;
 }
 
 export function saveUserSettings( ) {
@@ -250,9 +256,26 @@ export function removePhoto( ) {
 export function changePassword( input ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile.password = input.new_password;
-    profile.password_confirmation = input.confirm_new_password;
-    dispatch( setUserData( profile ) );
+    const params = {
+      id: profile.id,
+      user: {
+        password: input.new_password,
+        password_confirmation: input.confirm_new_password
+      }
+    };
+    // send an update request immediately to change the password. Use
+    // same_origin: true to ensure rails will update the users' session
+    // with the password change flash message
+    return inatjs.users.update( params, { same_origin: true } )
+      .then( ( ) => {
+        // redirect to the login page on success
+        window.location = "/login";
+      } )
+      .catch( e => handleSaveError( e ).then( errors => {
+        // catch errors such as validation errors so they can be displayed
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } ) );
   };
 }
 
