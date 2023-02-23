@@ -23,12 +23,24 @@ class ChangePassword extends Component {
 
   handleSubmit( e ) {
     const { input } = this.state;
-    const { changePassword } = this.props;
+    const { changePassword, showAlert } = this.props;
+    e.preventDefault( );
     if ( !( input.new_password && input.confirm_new_password ) ) {
       return;
     }
-    e.preventDefault( );
-    changePassword( input );
+    showAlert(
+      (
+        <div>
+          { I18n.t( "password_change_logout_warning" ) }
+        </div>
+      ), {
+        title: I18n.t( "are_you_sure?" ),
+        confirmText: I18n.t( "continue" ),
+        onConfirm: ( ) => {
+          changePassword( input );
+        }
+      }
+    );
   }
 
   render( ) {
@@ -89,6 +101,7 @@ class ChangePassword extends Component {
 
 ChangePassword.propTypes = {
   changePassword: PropTypes.func,
+  showAlert: PropTypes.func,
   showError: PropTypes.func
 };
 
