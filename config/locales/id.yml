@@ -2306,6 +2306,7 @@ id:
     italian: Italia
     japanese: Jepang
     kannada: Kannada
+    kazakh: Kazakh
     korean: Korea
     latvian: Latvia
     lithuanian: Lithuania
@@ -2441,6 +2442,7 @@ id:
     id: Indonesia
     it: Italia
     ja: Jepang
+    kk: Kazakh
     kn: Kannada
     ko: Korea
     lb: Luksemburg
@@ -5517,6 +5519,8 @@ id:
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
   yir_millions_of_people_used_inaturalist: |
     Jutaan orang menggunakan iNaturalist dan Seek oleh iNaturalist tahun ini untuk bisa terhubung dengan alam
+  yir_monthly_supporters_random_selection: |
+    Inilah beberapa pilihan acak berisi anggota-anggota komunitas iNat berjiwa pahlawan yang berdonasi setiap bulannya.
   yir_thank_your_for_being_generous: |
     Terima kasih karena telah berbaik hati memberikan waktu, perhatian, dan donasi kalian! iNaturalist merupakan inisiatif gabungan nonprofit dari California Academy of Sciences dan National Geographic Society. Program ini bergantung pada hibah-hibah dan donasi, termasuk hadiah-hadiah dari sebagian kecil dari komunitas. Kami sangat berterima kasih khususnya untuk Pendukung Bulanan karena pemberian tiap bulannya telah menolong kami untuk bisa membuat rencana untuk ke depannya.
   yir_your_gift_sustains: |
@@ -6941,6 +6945,16 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        monthly_supporter_desc_html: |
+          Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
+          yang diterima oleh California Academy of Sciences (United
+          States IRS EIN 94-1156258) untuk mendukung operasi nirlaba
+          iNaturalist dan situs-situs Jaringan iNaturalist.
+          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
+          Saat kami sudah mendapatkan dukungan Anda, Anda akan bisa mengecek kotak 
+          ini untuk menampilkan status ini di profil Anda. Catatan: alamat email Anda
+          di Donorbox dan iNaturalist harus sama supaya kita bisa mengonfirmasi bahwa
+          Anda adalah Pendukung Bulanan. Jika mereka berbeda, ubah salah satu supaya sama dengan yang lain.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
@@ -7309,8 +7323,6 @@ id:
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      rfc: "%d %B %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
