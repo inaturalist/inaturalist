@@ -570,7 +570,7 @@ class ActivityItem extends React.Component {
       <time
         className="time"
         dateTime={item.created_at}
-        title={moment( item.created_at ).format( "LLL" )}
+        title={moment( item.created_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
       >
         <a href={itemURL} target={linkTarget}>{relativeTime}</a>
       </time>

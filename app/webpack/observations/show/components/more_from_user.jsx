@@ -75,7 +75,7 @@ const MoreFromUser = ( {
               <span>
                 <span className="separator">·</span>
                 <a href={`/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any`}>
-                  { dateObserved.format( "MMMM D, YYYY" ) }
+                  { dateObserved.format( I18n.t( "momentjs.date_long" ) ) }
                 </a>
                 <span className="separator">·</span>
                 <a href={`/calendar/${userLogin}/${calendarDate}`}>

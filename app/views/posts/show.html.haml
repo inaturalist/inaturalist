@@ -52,7 +52,7 @@
           }                                                                                   |
       %h2
         - if @post.published_at
-          %span.meta.date= l @post.published_at, :format => :rfc
+          %span.meta.date= l @post.published_at
         = @post.title
       - if (@parent.is_a?(Project) && logged_in? && @display_project.editable_by?(current_user))
         #tools.buttonrow
