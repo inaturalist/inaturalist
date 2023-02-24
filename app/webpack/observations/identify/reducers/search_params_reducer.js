@@ -27,10 +27,10 @@ const normalizeParams = params => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     // remove blank params
-    if (
+    if ( !_.startsWith( k, "field:" ) && (
       v === null
       || v === undefined
-      || ( typeof ( v ) === "string" && v.length === 0 )
+      || ( typeof ( v ) === "string" && v.length === 0 ) )
     ) {
       return;
     }
