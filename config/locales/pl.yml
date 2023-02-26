@@ -1890,6 +1890,7 @@ pl:
   item_flagged_notice_html: |
     To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś tego autorem lub kuratorem strony. Jeśli uważasz, że to pomyłka, <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
+  jobs: Oferty pracy
   join: Dołączyć do
   join_and_add_an_observation_to_project_html: Dołącz i dodaj obserwację do %{project}
   join_project: Dołącz do tego projektu
@@ -3178,6 +3179,9 @@ pl:
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
   rank_position: Ranga
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{name}"
   ranks:
     kingdom: Królestwo
     x_kingdoms:
@@ -3437,6 +3441,12 @@ pl:
   search_your_photos: Przeszukaj swoje zdjęcia
   searching: "Szukanie..."
   seasonality: Sezonowość
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "Twój %{noun}"
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
   seen_nearby: Widziany w pobliżu
@@ -3732,6 +3742,12 @@ pl:
     To są elementy, które zostały zgłoszone. Komentarze, które są spamem powinny zostać usunięte, a użytkownicy, którzy go dodali - zawieszeni (idź do ich profilu i kliknij "Zawieś użytkownika", aby zapobiec ponownemu zalogowaniu). Pozostałe zgłoszone elementy powinny zostać usunięte tylko wtedy, gdy są jednoznacznie nielegalne, pełne nienawiści itd. Reakcją na nieuprzejmość, przekleństwa itp. powinien być grzeczny komentarz. Jednak gdy ktoś robi to wielokrotnie, zgłoś go do administratora strony lub %{email}
   these_observations_have_not_been_uploaded_yet: |
     Te obserwacje nie zostały jeszcze przesłane.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{noun} użytkownika %{object_phrase}"
   this: to
   this_is_your_observation: To jest Twoja obserwacja
   this_list_is_empty!: Ta lista jest pusta!
@@ -3944,7 +3960,7 @@ pl:
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> napisał,
   username: Nazwa użytkownika
   username_or_email: Nazwa użytkownika lub adres e-mail
-  username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
+  username_or_user_id: Nazwa użytkownika lub jego ID
   users: Użytkownicy
   users_edit_resend_confirmation_prompt_html: |
     Po ponownym wysłaniu e-maila z potwierdzeniem zostaniesz wylogowany i nie będzie mógł zalogować się na swoje konto, dopóki nie klikniesz linku w
@@ -4458,6 +4474,7 @@ pl:
         project_addition_preferences:
           any: Dowolna
           joined: Projekty do których dołączyłeś
+          none: "Żadne, tylko Ty możesz dodawać swoje obserwacje do projektów"
         prefers_no_tracking_label: Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich
         prefers_no_tracking_label_desc_we_use: |
           Używamy różnorodnych usług stron trzecich do monitorowania stabilności i
@@ -4496,7 +4513,8 @@ pl:
     welcome:
       index:
         connect_with_nature: Połącz się z naturą
-        species_observed: 'Zaobserwowane gatunki'
+        species_observed: 'zaobserwowane gatunki'
+        people_signed_up: 'zarejestrowanych użytkowników'
         how_it_works: Jak to działa
         record_your_observations: Obserwuj i notuj
         share_with_fellow_naturalists: Podziel się ze znajomymi
@@ -4788,8 +4806,15 @@ pl:
           other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ogłoszenie
+      BlockedUser: Zablokowany użytkownik
       #Noun
       Flag: Zgłoszenie
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Aplikacja
       TaxonLink: Link do taksonu
     attributes:
       assessment:
@@ -4875,6 +4900,7 @@ pl:
         locked: Zablokowany
         name: Nazwa
         rank: Kategoria
+        rank_level: Poziom rangi
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
@@ -5013,6 +5039,8 @@ pl:
               already_exists: już istnieje dla tego taksonu w tym leksykonie
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nie można dopasować nazwy naukowej gatunku dla tego leksykonu
+              must_match_the_taxon_if_valid: |
+                musi odpowiadać nazwie taksonu, jeśli jest to ważna nazwa naukowa
               bad_format: |
                 może zawierać wyłącznie podstawowe litery alfabetu łacińskiego, myślniki, spacje i symbol ×; zwróć uwagę, że domniemane taksony i odmiany uprawne nie są dozwolone
         taxon_photo:
