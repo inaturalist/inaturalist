@@ -624,6 +624,12 @@ sr:
   batch_edit_taxa_for_x_html: "Zbirno uređivanje za %{x}"
   batch_operations: Zbirne operacije
   be_the_first_to_fave_this_observation: Prvi/va dodaj ovu opservaciju u favorite!
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    <strong>Preporučujemo da se takođe izvrši promena taksona koja obuhavata %{old_parent}, kao što je odvajanje %{new_parent} od %{old_parent}</strong> jer procenjujemo da će promena imati za rezultat više od 10 nenamernih neslaganja.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    <strong>Verovatno nije potrebno izvršiti promenu taksona%{old_parent}</strong> jer procenjujemo da će promena imati za rezultat 10 ili manje nenamernih neslaganja.
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bg_color: BG boja
@@ -1005,6 +1011,7 @@ sr:
   devise_unlock_instructions_unlock: Otključaj profil
   disable: Onemogući
   disable_comments: Onemogući komentare
+  disable_comments_desc: Onemogući dodavanje komentara
   disagree_: Ne slažem se
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
@@ -3500,8 +3507,6 @@ sr:
   user_commented: "%{user} komentariše"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} je dodao u favorite %{noun} od %{owner}"
   user_faved_this_observation: "%{user} je dodao/la opservaciju u favorite"
   user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
@@ -4002,12 +4007,12 @@ sr:
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
         quality_assessment_help2_html: |
           <p>
-          Procena kvaliteta podataka je ocena ispravnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
+          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
           </p>
 
           <ul>
           <li>opservacija <strong>ima datum</strong></li>
-          <li>opservacija <strong>je georeferencirana</strong> (tj. GŠ/GD koordinate)</li>
+          <li>opservacija <strong>je georeferencirana</strong> (tj. ima GŠ/GD koordinate)</li>
           <li>opservacija <strong>ima fotografije ili zvukove</strong></li>
           <li>opservacija <strong>nije ljudske jedinke</strong></li>
           </ul>
@@ -4020,11 +4025,11 @@ sr:
           </li>
           </ul>
           <p>
-          Opservacije će automatski dobiti status <strong>"neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
+          Opservacije će automatski dobiti status <strong>"Neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
           </p>
           <ul>
           <li>
-          <strong>lokacije ne deluje tačna</strong> (npr. majmuni u sred okeana,
+          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
           nilski konji u poslovnim zgradama, itd.)
           </li>
           <li>
@@ -4040,7 +4045,7 @@ sr:
           opservaciji više nije potreban ID <em>i</em> ID zajednice je iznad nivoa porodice
           </li>
           <li>
-          posmatrač je isključio/la ID zajednice i takson ID-ja zajednice nije predak ni potomak povezanog taksona sa ID-jem posmatrača
+          posmatrač je isključio/la opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona povezanog sa ID-jem posmatrača
           </li>
           </ul>
           <p>
@@ -4048,7 +4053,7 @@ sr:
           </p>
           <ul>
           <li>
-          Sistem će automatski glasati da opservacija nije u divljini/naturalizovana ako ima bar 10 drugih opservacija tog roda ili niže u najmanjem okrugu, državi, ili zemlji mesta koje sadrži tu opservaciju i 80% ili više tih opservacija da su označene kao da nisu u divljini /naturalizovane.
+          Sistem će automatski pretpostaviti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem ekvivalentnom mestu u okrugu, državi ili zemlji koje sadrži tu opservaciju i 80% ili više takvih opservacija su označene da nisu u divljini/naturalizovane.
           </li>
           </ul>
     emailer:
@@ -4234,7 +4239,7 @@ sr:
         obs_cid_d_to_genus_desc: Kreirano u poslednjih nedelju dana i ima ID zajednice na nivou roda ili niže
         obs_desc: Kreirane u poslednjih 7 dana
         obs_id_d_desc: Kreirane u poslednjih 7 dana i imaju ID (može biti i posmatračev)
-        observations_1_week_moving_window: Opservacije (vremenski period od jedne nedelje)
+        observations_1_week_moving_window: Opservacije (za nedelju dana)
         other_desc_html: Kreirano pomoću drugih aplikacija <a href="%{url}">razvijenih od strane programera</a>
         recent_desc: Registrovani u prethodnih 7 dana
         recent_w_0_obs: Skorašnji bez opservacija
@@ -5026,6 +5031,13 @@ sr:
               cannot_be_blank: ne može biti prazno
               must_have_more_than_three_points: mora imati više od 3 poena
               polygon_with_fewer_than_four_points: ima poligon sa manje od 4 tačke
+        post:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: ne dozvoljava dodavanje komentara
         project_observation:
           attributes:
             base:

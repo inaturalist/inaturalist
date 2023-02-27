@@ -1825,7 +1825,7 @@ de:
   flag_for_user_title_html: |
     Meldung des Benutzers: %{title}
   flag_it!: Melden!
-  flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt.</strong><span class="meta">gekennzeichnet</span>.'
+  flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt </strong><span class="meta">gekennzeichnet</span>.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;I'm flagging this %{record} because"
@@ -1903,9 +1903,9 @@ de:
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
   geoprivacy: Geo-Privatsphäre
-  geoprivacy_is_obscured: Geo-Privatsphäre ist <i>verborgen</i>
+  geoprivacy_is_obscured: Geo-Privatsphäre ist verborgen
   geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
-  geoprivacy_is_private: Geo-Privatsphäre ist <i>privat</i>
+  geoprivacy_is_private: Geo-Privatsphäre ist privat
   geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Projekt erstellen
@@ -3176,7 +3176,7 @@ de:
   organism_is_wild: Organismus ist wild
   organisms: Organismen
   original: Orginal
-  originally_flagged_by: Ursprünglich gemeldet von
+  originally_flagged_by: Anfängliche Meldung von
   originally_imported_from_url_html: "Ursprünglich von <a href='%{url}'>%{url}</a> importiert"
   original_page_url_for_this_photo: "Ursprüngliche Seiten-URL für dieses Foto."
   original_rights_holder: Ursprünglicher Rechteinhaber
@@ -5181,7 +5181,7 @@ de:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} und %{x_others} haben diese Beobachtung zu ihren Favoriten hinzugefügt"
   user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
-  user_added_a_flag_html: "%{user} hat etwas gemeldet"
+  user_added_a_flag_html: "Meldung von %{user}"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
@@ -5207,9 +5207,6 @@ de:
   user_commented: "%{user} hat kommentiert"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
-  user_faved_a_noun_by_you: "%{user} hat %{noun} von dir favorisiert"
   user_faved_an_observation_by_you: "%{user} hat eine Beobachtung von dir favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung als Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"

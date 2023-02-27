@@ -296,6 +296,8 @@ pl:
   acc_above: Dokładność powyżej
   #Filter for observations with positional accuracy below a certain value
   acc_below: Dokładność poniżej
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Dokładność poniżej lub nieznana
   account: Konto
   account_creation: Utworzenie konta
   account_settings: Ustawienia konta
@@ -770,6 +772,7 @@ pl:
   #of values, and not a synonym of "typical" or "normal"
   avg: Śr.
   back: Wstecz
+  back_to_applications: "&laquo; Powrót do aplikacji"
   back_to_all_species: Wróć do wszystkich gatunków
   back_to_editing_observation: Wróć do edycji obserwacji
   back_to_friends: Wróć do znajomych
@@ -958,6 +961,8 @@ pl:
   click_the_map: "<strong>Kliknij mapę</strong>, aby dodać lokalizację."
   close: Zamknij
   code: Kod
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Współtwórcy kodu
   colors: Kolory
   columns: Kolumny
   combine: Połącz
@@ -1361,6 +1366,8 @@ pl:
         subject: Prośba o zmianę adresu e-mail
       reset_password_instructions:
         subject: 'Instrukcje resetowania hasła'
+  devise_confirmation_instructions_if_you_did_not: |
+    Jeśli nie rejestrowałeś konta na %{site_name}, zignoruj ten e-mail.
   devise_confirmation_instructions_please_click: |
     Kliknij poniższy link, aby potwierdzić swój adres e-mail:
   devise_confirmation_instructions_send_confirmation_email: Wyślij e-mail z potwierdzeniem
@@ -1578,7 +1585,7 @@ pl:
   fill_out_your_profile: uzupełnij swój profil
   #The name of a computer file
   filename: Nazwa pliku
-  filter: Filtr
+  filter: Filtruj
   filter_by_curator_identification: Filtruj po oznaczeniach kuratorów
   filter_by_place: Filtruj według lokalizacji
   filter_by_taxon: Filtruj po taksonach
@@ -1779,7 +1786,7 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
-  highest_rank: Najwyższa pozycja
+  highest_rank: Najwyższa ranga
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
   home: Strona główna
@@ -1890,6 +1897,7 @@ pl:
   item_flagged_notice_html: |
     To zostało zgłoszone jako spam i przestało być publicznie widoczne. Widzisz to, ponieważ jesteś tego autorem lub kuratorem strony. Jeśli uważasz, że to pomyłka, <a href="mailto:%{help_email}" class="contact">skontaktuj się z nami</a>.
     <a href="%{manage_flags_path}">Zarządzaj zgłoszeniami</a>
+  jobs: Oferty pracy
   join: Dołączyć do
   join_and_add_an_observation_to_project_html: Dołącz i dodaj obserwację do %{project}
   join_project: Dołącz do tego projektu
@@ -2174,7 +2182,9 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
-  lowest_rank: Najniższa kategoria
+  lowest_rank: Najniższa ranga
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Nadaj uprawnienia administratora
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Główna zawartość
@@ -2340,6 +2350,7 @@ pl:
   #Mute is a noun here
   mute_removed: Wyciszenie usunięte
   muted_users: Wyciszeni Użytkownicy
+  muting_description: Wyciszenie kogoś uniemożliwia Ci otrzymywanie powiadomień o jakiejkolwiek aktywności tej osoby, w tym o wzmiankach „@”, wiadomościach lub komentarzach czy oznaczeniach do Twoich obserwacji.
   n_ago: "%{n} temu"
   n_people_agrees: "%{amount} ludzi zgadza się"
   n_people_disagrees: "%{amount} ludzi nie zgadza się"
@@ -2551,6 +2562,10 @@ pl:
   observations_can_only_have_n_photos: Obserwacje mogą mieć tylko %{limit} zdjęć
   observation_date: Data
   observation_date?: Data?
+  #Basic observation export fields
+  observation_export_column_type_basic: Podstawowe
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
   #Taxon-related observation export fields
   observation_export_column_type_taxon: Takson
   observation_field: Pole obserwacji
@@ -3176,6 +3191,9 @@ pl:
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
   rank_position: Ranga
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{name}"
   ranks:
     kingdom: Królestwo
     x_kingdoms:
@@ -3435,6 +3453,12 @@ pl:
   search_your_photos: Przeszukaj swoje zdjęcia
   searching: "Szukanie..."
   seasonality: Sezonowość
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "Your
+  #Identifications", but we generally handle those with more specific
+  #translation keys like `your_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  second_person_possessive_singular: "Twój %{noun}"
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
   seen_nearby: Widziany w pobliżu
@@ -3470,6 +3494,7 @@ pl:
   show_less: Pokaż mniej
   show_more: Pokaż więcej
   show_off_your_recent_observations: Pokaż swoje ostatnie obserwacje na swoim blogu lub stronie internetowej!
+  show_only: Pokaż tylko
   sign_in: Zaloguj się
   sign_in_with_provider: "Zaloguj się za pomocą %{provider}"
   sign_in_with_google: Zaloguj się z Google
@@ -3488,6 +3513,7 @@ pl:
   #People who administrate a particular iNaturalist Network partner
   site_admins: Administratorzy strony
   site_stats: Statystyki strony
+  some_agree: niektórzy się zgadzają
   some_observations_failed_to_be_added: Nie udało się dodać niektórych Obserwacji do projektów
   some_of_those_photos_couldnt_be_saved: "Niektóre z tych zdjęć nie mogły zostać zapisane: %{error}"
   some_other_reason: Inny powód, który możesz wyjaśnić poniżej.
@@ -3730,6 +3756,12 @@ pl:
     To są elementy, które zostały zgłoszone. Komentarze, które są spamem powinny zostać usunięte, a użytkownicy, którzy go dodali - zawieszeni (idź do ich profilu i kliknij "Zawieś użytkownika", aby zapobiec ponownemu zalogowaniu). Pozostałe zgłoszone elementy powinny zostać usunięte tylko wtedy, gdy są jednoznacznie nielegalne, pełne nienawiści itd. Reakcją na nieuprzejmość, przekleństwa itp. powinien być grzeczny komentarz. Jednak gdy ktoś robi to wielokrotnie, zgłoś go do administratora strony lub %{email}
   these_observations_have_not_been_uploaded_yet: |
     Te obserwacje nie zostały jeszcze przesłane.
+  #This is a fallback translation for posessive phrases. It could be used on
+  #pages that show a user's content where the title might be "kueda's
+  #identifications", but we generally handle those with more specific
+  #translation keys like `users_identifications`. This is here in case we
+  #forget to add a translation key like that.
+  third_person_possessive_singular: "%{noun} użytkownika %{object_phrase}"
   this: to
   this_is_your_observation: To jest Twoja obserwacja
   this_list_is_empty!: Ta lista jest pusta!
@@ -3907,6 +3939,7 @@ pl:
   user_added_a_flag_html: "%{user} dodał zgłoszenie"
   user_added_a_x: "%{user} dodał %{x}"
   user_added_a_x_to_noun_by_html: "%{user} dodał %{x} do %{noun} przez %{by}"
+  user_added_a_x_to_noun_by_user_html: "Użytkownik %{user} dodał %{x} do %{noun} użytkownika %{by}"
   user_added_a_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
   user_added_an_identification_html: "%{user} dodał oznaczenie"
   user_added_an_observation_field_html: '%{user} dodał wartość dla "%{field_name}" do obserwacji przez %{owner}'
@@ -3922,8 +3955,6 @@ pl:
   user_commented: "%{user} skomentował"
   user_disagrees_this_is_taxon: "%{user} nie zgadza się, że jest to %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nie zgadza się z poprzednimi dokładniejszymi oznaczeniami"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} dodał do ulubionych %{noun} przez %{owner}"
   user_faved_an_observation_by_you: "Użytkownik %{user} dodał Twoją obserwację do ulubionych"
   user_faved_this_observation: "%{user} dodał tę obserwację do ulubionych"
   user_flagged_as_a_spammer_html: "%{user} zgłoszony jako spamer"
@@ -3942,7 +3973,7 @@ pl:
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> napisał,
   username: Nazwa użytkownika
   username_or_email: Nazwa użytkownika lub adres e-mail
-  username_or_user_id: Nazwa użytkownika lub identyfikator użytkownika
+  username_or_user_id: Nazwa użytkownika lub jego ID
   users: Użytkownicy
   users_edit_resend_confirmation_prompt_html: |
     Po ponownym wysłaniu e-maila z potwierdzeniem zostaniesz wylogowany i nie będzie mógł zalogować się na swoje konto, dopóki nie klikniesz linku w
@@ -4249,6 +4280,8 @@ pl:
         about_missing_taxa: O brakujących taksonach
       export:
         choose_columns_desc: Wybierz kolumny, które chcesz wyeksportować
+        date_range_help: "Minimalna i maksymalna data obserwacji w formacie RRRR-MM-DD, np. 2015-01-17"
+        created_on_help: "Data utworzenia obserwacji, nie samej obserwacji, np. 2015-01-17, 2015-01, 2015"
       field_descriptions:
         id: "Unikalny identyfikator obserwacji"
         observed_on: Znormalizowana data obserwacji
@@ -4456,6 +4489,7 @@ pl:
         project_addition_preferences:
           any: Dowolna
           joined: Projekty do których dołączyłeś
+          none: "Żadne, tylko Ty możesz dodawać swoje obserwacje do projektów"
         prefers_no_tracking_label: Nie zbieraj danych o stabilności i użytkowaniu z wykorzystaniem usług stron trzecich
         prefers_no_tracking_label_desc_we_use: |
           Używamy różnorodnych usług stron trzecich do monitorowania stabilności i
@@ -4494,7 +4528,8 @@ pl:
     welcome:
       index:
         connect_with_nature: Połącz się z naturą
-        species_observed: 'Zaobserwowane gatunki'
+        species_observed: 'zaobserwowane gatunki'
+        people_signed_up: 'zarejestrowanych użytkowników'
         how_it_works: Jak to działa
         record_your_observations: Obserwuj i notuj
         share_with_fellow_naturalists: Podziel się ze znajomymi
@@ -4786,8 +4821,15 @@ pl:
           other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Ogłoszenie
+      BlockedUser: Zablokowany użytkownik
       #Noun
       Flag: Zgłoszenie
+      #Software application that operates iNat on a user's behalf, e.g. the
+      #iNaturalist Android app or an app made by a third party
+      OauthApplication: Aplikacja
       TaxonLink: Link do taksonu
     attributes:
       assessment:
@@ -4873,6 +4915,7 @@ pl:
         locked: Zablokowany
         name: Nazwa
         rank: Kategoria
+        rank_level: Poziom rangi
         source_identifier: Identyfikator źródła
         source_url: Źródłowy adres URL
       taxon_name:
@@ -4923,6 +4966,11 @@ pl:
         odd: musi być liczbą nieparzystą
         only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
+        too_short:
+          one: jest za krótkie (minimum to %{count} znak)
+          few: jest za krótkie (minimum to %{count} znaki)
+          many: jest za krótkie (minimum to %{count} znaków)
+          other: jest za krótkie (minimum to %{count} znaku)
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
         header:
@@ -5011,6 +5059,8 @@ pl:
               already_exists: już istnieje dla tego taksonu w tym leksykonie
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 nie można dopasować nazwy naukowej gatunku dla tego leksykonu
+              must_match_the_taxon_if_valid: |
+                musi odpowiadać nazwie taksonu, jeśli jest to ważna nazwa naukowa
               bad_format: |
                 może zawierać wyłącznie podstawowe litery alfabetu łacińskiego, myślniki, spacje i symbol ×; zwróć uwagę, że domniemane taksony i odmiany uprawne nie są dozwolone
         taxon_photo:
