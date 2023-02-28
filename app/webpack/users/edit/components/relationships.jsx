@@ -157,29 +157,27 @@ const Relationships = ( {
           />
         </div>
       </div>
-      <div className="row">
-        <BlockedMutedUsersContainer
-          headerText={I18n.t( "blocked_users" )}
-          id="blocked_users"
-          placeholder={I18n.t( "add_blocked_users" )}
-          buttonText={I18n.t( "unblock" )}
-          htmlDescription={{
-            __html: I18n.t( "views.users.edit.blocking_desc_html", {
-              site_name: SITE.name,
-              help_email: SITE.help_email
-            } )
-          }}
-        />
-        <BlockedMutedUsersContainer
-          headerText={I18n.t( "muted_users" )}
-          id="muted_users"
-          placeholder={I18n.t( "add_muted_users" )}
-          buttonText={I18n.t( "unmute" )}
-          htmlDescription={{
-            __html: I18n.t( "views.users.edit.muting_desc_html" )
-          }}
-        />
-      </div>
+      <BlockedMutedUsersContainer
+        headerText={I18n.t( "muted_users" )}
+        id="muted_users"
+        placeholder={I18n.t( "add_muted_users" )}
+        buttonText={I18n.t( "unmute" )}
+        htmlDescription={{
+          __html: I18n.t( "views.users.edit.muting_desc_html" )
+        }}
+      />
+      <BlockedMutedUsersContainer
+        headerText={I18n.t( "blocked_users" )}
+        id="blocked_users"
+        placeholder={I18n.t( "add_blocked_users" )}
+        buttonText={I18n.t( "unblock" )}
+        htmlDescription={{
+          __html: I18n.t( "views.users.edit.blocking_desc_html", {
+            site_name: SITE.name,
+            help_email: SITE.help_email
+          } )
+        }}
+      />
     </div>
   );
 };

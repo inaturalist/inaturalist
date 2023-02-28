@@ -6,9 +6,10 @@ import inaturalistjs from "inaturalistjs";
 class UserAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, this.props, {
+    const opts = {
+      ...this.props,
       idEl: $( "input[name='user_id']", domNode )
-    } );
+    };
     $( "input[name='user_login']", domNode ).userAutocomplete( opts );
     this.fetchUser( );
   }
@@ -21,9 +22,16 @@ class UserAutocomplete extends React.Component {
   }
 
   fetchUser( ) {
-    const { initialUserID } = this.props;
+    const { initialUserID, config } = this.props;
+    const params = { };
+    if ( config.testingApiV2 ) {
+      params.fields = {
+        id: true,
+        login: true
+      };
+    }
     if ( initialUserID ) {
-      inaturalistjs.users.fetch( initialUserID ).then( r => {
+      inaturalistjs.users.fetch( initialUserID, params ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateUser( { user: r.results[0] } );
         }
@@ -32,14 +40,12 @@ class UserAutocomplete extends React.Component {
   }
 
   updateUser( options = { } ) {
-    const domNode = ReactDOM.findDOMNode( this );
     if ( options.user ) {
-      $( "input[name='user_login']", domNode )
-        .trigger( "assignSelection", Object.assign(
-          {},
-          options.user,
-          { title: options.user.login }
-        ) );
+      this.inputElement( )
+        .trigger( "assignSelection", {
+          ...options.user,
+          title: options.user.login
+        } );
     }
   }
 
@@ -64,7 +70,6 @@ class UserAutocomplete extends React.Component {
   }
 }
 
-
 UserAutocomplete.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   resetOnChange: PropTypes.bool,
@@ -83,7 +88,8 @@ UserAutocomplete.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
-  projectID: PropTypes.number
+  projectID: PropTypes.number,
+  config: PropTypes.object
 };
 
 export default UserAutocomplete;

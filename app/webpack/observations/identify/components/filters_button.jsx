@@ -499,6 +499,7 @@ class FiltersButton extends React.Component {
           <div className="input-group">
             <span className="input-group-addon icon-person" />
             <UserAutocomplete
+              config={config}
               resetOnChange={false}
               initialUserID={params.user_id}
               bootstrapClear
