@@ -57,6 +57,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def default_url_options
+    return @default_url_options if @default_url_options
+    site_uri = URI.parse( @site.url )
+    @default_url_options = {
+      protocol: site_uri.scheme,
+      host: site_uri.host,
+      port: site_uri.port
+    }
+  end
+
   # Store the URI of the current request in the session.
   #
   # We can return to this location by calling #redirect_back_or_default.
