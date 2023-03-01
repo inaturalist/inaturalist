@@ -5050,6 +5050,8 @@ en:
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
+  # Displayed to clarify the origin of a conservation status
+  status_applied_from_higher_level_taxon_html: "Status applied from a higher-level taxon: <a href='%{url}'>%{taxon}</a>"
   status_globally: '"%{status}" Globally'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Stay and try again

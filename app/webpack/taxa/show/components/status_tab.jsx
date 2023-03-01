@@ -11,7 +11,7 @@ import {
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
-const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
+const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -140,6 +140,17 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                       className="text-muted"
                       text={status.description}
                     />
+                  ) }
+                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxonId && (
+                      <div
+                          className="text-muted"
+                          dangerouslySetInnerHTML={{
+                            __html: I18n.t( "status_applied_from_higher_level_taxon_html", {
+                              url: `/taxa/${status.taxon_id}`,
+                              taxon: `${status.taxon_name}`
+                            } )
+                          }}
+                      />
                   ) }
                   { status.user && status.created_at && (
                     <div

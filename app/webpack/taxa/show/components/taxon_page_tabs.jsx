@@ -298,6 +298,7 @@ class TaxonPageTabs extends React.Component {
             id="status-tab"
           >
             <StatusTab
+              taxonId={taxon.id}
               statuses={taxon.conservationStatuses}
               listedTaxaCount={taxon.listed_taxa_count}
               listedTaxa={_.filter( taxon.listed_taxa, lt => lt.establishment_means )}
