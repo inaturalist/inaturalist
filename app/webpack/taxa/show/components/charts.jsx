@@ -621,5 +621,4 @@ Charts.defaultProps = {
   }
 };
 
-
 export default Charts;

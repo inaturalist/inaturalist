@@ -28,7 +28,7 @@ class TaxaSunburst extends React.Component {
     const radius = ( Math.min( width, height ) / 2 ) - 10;
     const x = d3.scaleLinear( ).range( [0, 2 * Math.PI] );
     const y = d3.scaleSqrt( ).range( [0, radius] );
-    const color = d3.scaleOrdinal( d3.schemeCategory20 );
+    const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const partition = d3.partition( );
 
     // This draws the d attribute for the visible arcs

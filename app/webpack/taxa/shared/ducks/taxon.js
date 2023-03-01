@@ -259,16 +259,18 @@ export function fetchTerms( options = { histograms: false } ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      if ( options.histograms ) {
+      if ( options.histograms && r.unannotated ) {
         _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          fieldValues[Number( controlledAttributeId )].push( {
-            count: data.count,
-            month_of_year: data.month_of_year,
-            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-            controlled_value: {
-              label: "No Annotation"
-            }
-          } );
+          if ( _.keys( fieldValues ).indexOf( Number( controlledAttributeId ) ) >= 0 ) {
+            fieldValues[Number( controlledAttributeId )].push( {
+              count: data.count,
+              month_of_year: data.month_of_year,
+              controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
+              controlled_value: {
+                label: "No Annotation"
+              }
+            } );
+          }
         } );
       }
       dispatch( {

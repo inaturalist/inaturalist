@@ -28,7 +28,7 @@ class PieChart extends React.Component {
     const height = svgHeight - margin.top - margin.bottom;
     const radius = Math.min( width, height ) / 2;
     const g = svg.append( "g" ).attr( "transform", `translate(${width / 2},${height / 2})` );
-    const color = d3.scaleOrdinal( d3.schemeCategory20 );
+    const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const colorForDatum = datum => ( datum.color || color( datum.label ) );
 
     const data = this.props.data;
