@@ -10,8 +10,15 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../shared/util";
 
-const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
+const StatusTab = ( {
+  listedTaxa,
+  listedTaxaCount,
+  statuses,
+  taxon
+} ) => {
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -98,6 +105,10 @@ const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
             } else if ( status.user ) {
               source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
             }
+            const statusTaxon = _.find(
+              taxon.ancestors,
+              ancestor => ancestor.id === status.taxon_id
+            );
             return (
               <tr
                 key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
@@ -114,19 +125,19 @@ const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { status.place
                         ? (
                           <a href={`/places/${status.place.id}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( status.place.display_name )}`,
-                              { defaultValue: status.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( status.place.display_name )}`,
+                              { defaultValue: status.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -141,16 +152,17 @@ const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
                       text={status.description}
                     />
                   ) }
-                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxonId && (
-                      <div
-                          className="text-muted"
-                          dangerouslySetInnerHTML={{
-                            __html: I18n.t( "status_applied_from_higher_level_taxon_html", {
-                              url: `/taxa/${status.taxon_id}`,
-                              taxon: `${status.taxon_name}`
-                            } )
-                          }}
-                      />
+                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
+                    <div
+                      className="text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "status_applied_from_higher_level_taxon_html", {
+                          taxon: ReactDOMServer.renderToString(
+                            <SplitTaxon taxon={statusTaxon} url={urlForTaxon( statusTaxon )} />
+                          )
+                        } )
+                      }}
+                    />
                   ) }
                   { status.user && status.created_at && (
                     <div
@@ -229,19 +241,19 @@ const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { lt.place
                         ? (
                           <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                              { defaultValue: lt.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( lt.place.name )}`,
+                              { defaultValue: lt.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -348,7 +360,8 @@ const StatusTab = ( { taxonId, statuses, listedTaxa, listedTaxaCount } ) => {
 StatusTab.propTypes = {
   statuses: PropTypes.array,
   listedTaxa: PropTypes.array,
-  listedTaxaCount: PropTypes.number
+  listedTaxaCount: PropTypes.number,
+  taxon: PropTypes.object
 };
 
 StatusTab.defaultProps = {
