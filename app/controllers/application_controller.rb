@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def default_url_options
     return @default_url_options if @default_url_options
-    site_uri = URI.parse( @site.url )
+    site_uri = URI.parse( ( @site || Site.default ).url )
     @default_url_options = {
       protocol: site_uri.scheme,
       host: site_uri.host,

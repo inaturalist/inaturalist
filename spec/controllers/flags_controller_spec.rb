@@ -33,7 +33,7 @@ describe FlagsController do
       taxon.reload
       expect( taxon.flags.first.comments.size ).to eq 0
       notice = "Flag saved. Thanks! " \
-        "<a href=\"http://test.host/flags/2\" class=\"readmore\">View flag</a> " \
+        "<a href=\"#{flag_url( taxon.flags.first )}\" class=\"readmore\">View flag</a> " \
         "Unfortunately, we were unable to save the comment."
       expect( flash[:notice] ).to eq notice
     end

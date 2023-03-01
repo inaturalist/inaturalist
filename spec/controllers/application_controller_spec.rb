@@ -90,6 +90,7 @@ describe ApplicationController do
       end
 
       it "redirects logged-out users to log in" do
+        controller.request.host = URI.parse( site.url ).host
         get :index, params: { inat_site_id: site.id }
         expect( response.response_code ).to eq 302
         expect( response ).to be_redirect
@@ -97,6 +98,7 @@ describe ApplicationController do
       end
 
       it "redirects basic users to log in" do
+        controller.request.host = URI.parse( site.url ).host
         sign_in( basic_user )
         get :index, params: { inat_site_id: site.id }
         expect( response.response_code ).to eq 302
