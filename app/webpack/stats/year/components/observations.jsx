@@ -113,7 +113,7 @@ const Observations = ( {
       <DateHistogram
         series={series}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
-        onClick={d => {
+        onClick={( _clickEvent, d ) => {
           let url = "/observations?verifiable=true";
           const md = moment( d.date );
           if ( d.seriesName === "month" ) {
@@ -148,7 +148,7 @@ const Observations = ( {
       <DateHistogram
         series={comparisonSeries}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
-        onClick={d => {
+        onClick={( _clickEvent, d ) => {
           let url = "/observations?verifiable=true";
           if ( d.seriesName === "last_year" ) {
             url += `&on=${d.date.getFullYear( ) - 1}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;

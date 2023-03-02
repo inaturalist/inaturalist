@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import * as d3 from "d3";
-import d3tip from "d3-tip";
+import { tip as d3tip } from "d3-v6-tip";
 import legend from "d3-svg-legend";
 
 class PieChart extends React.Component {
@@ -51,7 +51,7 @@ class PieChart extends React.Component {
         }
         return "n";
       } )
-      .html( d => {
+      .html( ( _event, d ) => {
         if ( this.props.labelForDatum ) {
           return this.props.labelForDatum( d );
         }
@@ -124,7 +124,7 @@ class PieChart extends React.Component {
   render( ) {
     return (
       <div className="PieChart">
-        <div className="chart"></div>
+        <div className="chart" />
       </div>
     );
   }

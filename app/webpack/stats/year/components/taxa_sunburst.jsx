@@ -80,7 +80,7 @@ class TaxaSunburst extends React.Component {
         .text( "Taxon" );
 
     // Setup interactivity
-    const click = d => {
+    const click = ( clickEvent, d ) => {
       if ( !d.children || d.children.length === 0 ) {
         return;
       }
@@ -130,7 +130,9 @@ class TaxaSunburst extends React.Component {
         id: taxonID,
         name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
         rank: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.rank : null,
-        preferred_common_name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.preferred_common_name : null,
+        preferred_common_name: taxaCounts[taxonID]
+          ? taxaCounts[taxonID].taxon.preferred_common_name
+          : null,
         iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null,
         count: taxaCounts[taxonID] ? taxaCounts[taxonID].count : 0
       };
@@ -193,7 +195,7 @@ class TaxaSunburst extends React.Component {
         .classed( "clickable", d => ( d.children && d.children.length > 0 ) )
         .classed( "sunburst-arc", true )
         .on( "click", click )
-        .on( "mouseover", d => {
+        .on( "mouseover", ( mouseoverEvent, d ) => {
           if ( labelForDatum ) {
             tooltip.html( labelForDatum( d ) );
           } else {
@@ -202,8 +204,8 @@ class TaxaSunburst extends React.Component {
           tooltip.style( "background-color", d3.color( colorForDatum( d ) ).darker( 2 ) );
           return tooltip.style( "visibility", "visible" );
         } )
-        .on( "mousemove", ( ) => {
-          const pos = d3.mouse( mountNode );
+        .on( "mousemove", mousemoveEvent => {
+          const pos = d3.pointer( mousemoveEvent, mountNode );
           return tooltip.style( "top", `${pos[1] - 10}px` )
             .style( "left", `${pos[0] + 10}px` );
         } )

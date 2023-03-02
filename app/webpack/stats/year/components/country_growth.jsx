@@ -234,10 +234,10 @@ class CountryGrowth extends React.Component {
       zoomToBounds( bounds );
     }
     svg.select( "rect" ).on( "click", reset );
-    function zoomed( ) {
+    function zoomed( zoomEvent ) {
       g.selectAll( "path" ).style( "stroke-width", "0px" );
-      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / d3.event.transform.k}px` );
-      g.attr( "transform", d3.event.transform );
+      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / zoomEvent.transform.k}px` );
+      g.attr( "transform", zoomEvent.transform );
     }
     function clicked( d ) {
       const current = svg.selectAll( `[id="${d.id}"]` );
