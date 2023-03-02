@@ -162,7 +162,7 @@ const Summary = ( {
               legendColumnWidth={100}
               margin={pieMargin}
               donutWidth={donutWidth}
-              onClick={currentUser?.id ? ( _clickEvent, d ) => {
+              onClick={currentUser && currentUser.id ? ( _clickEvent, d ) => {
                 let url = `/identifications?for=others&current=true&category=${d.data.category}&d1=${year}-01-01&d2=${year}-12-31`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
