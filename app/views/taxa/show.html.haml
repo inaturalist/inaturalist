@@ -13,7 +13,7 @@
     SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json.html_safe : "null" };
   = javascript_include_tag "taxa-show-webpack"
 - content_for :extracss do
-  = stylesheet_link_tag "c3", "taxa/show"
+  = stylesheet_link_tag "taxa/show"
 - content_for :extrahead do
   - if CONFIG.facebook && !CONFIG.facebook.namespace.blank?
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}
