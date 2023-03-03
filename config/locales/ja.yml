@@ -504,7 +504,7 @@ ja:
   apply_to_selected: 選択された項目に適応
   apply_captive_cultivated: "飼育/栽培として付ける"
   apply_fields: フィールドを適用する
-  apply_geoprivacy: 位置情報プライバシーを適用させる
+  apply_geoprivacy: この位置情報公開状況を適用する
   apply_darr: "適用 &darr;"
   apply_establishment_means_to_descendant_places: "定着状況を下級場所にも適用"
   apply_these_settings_to_all: この設定を以下の観測記録すべてに適用する
@@ -926,7 +926,7 @@ ja:
     place: このステータスが制限されている場所。
     url: 保全状況を明記するウェブページのURL
     geoprivacy: |
-      この分類群のデフォルトの場所公開状況。大陸、国、または県/州単位などで個別に追加されている場所公開状況は、より大きい場所を指定して追加されている場所公開状況または場所を指定せず（対象:世界）追加されている場所公開状況よりも優先されます。
+      この分類群のデフォルトの位置情報公開状況。大陸、国、または県/州単位などで個別に設定されている位置情報公開状況は、より大きい場所を指定して追加されている位置情報公開状況または場所を指定せず（対象:世界）追加されている位置情報公開状況よりも優先されます。
     iucn: |
       近似のIUCNレッドリストコード。これは実際のIUCNコードではなく、あなたが追加/編集したいステータスに最も近いIUCNレッドリストコードです。
   conservation_status_geoprivacy_desc: |
@@ -1124,7 +1124,7 @@ ja:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や場所公開度を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'キュレーターは、キュレーターガイドの <a href="/pages/curator+guide#policies" target="_blank">方針欄</a>に記載されている方針に従って、iNaturalistの分類群を編集することができます。つまり、iNaturalist上での分類群の追加、分割、統合、無効名化、削除などが可能です。 また、保全状況や位置情報公開状況を編集したり、任意のユーザーによって追加された和名（一般名）を編集および管理することもできます。'
   curator_application_what_curators_can_do_hide_comments_html: |
     <a
     href="/pages/community+guidelines" target="_blank">コミュニティガイドライン</a>.に違反しているコメントを隠すこと、上に違反しているユーザーを利用停止すること
@@ -1729,7 +1729,7 @@ ja:
   generate_your_stats: 統計を生成
   generating_mobile_archive: "モバイルアーカイブを作成中"
   Genus: 属
-  geoprivacy: 位置情報プライバシー
+  geoprivacy: 位置情報公開状況
   geoprivacy_is_obscured: 位置情報プライバシーは不明瞭
   geoprivacy_is_obscured_desc: 観察者は、座標を曖昧にすることを選択しました。
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
@@ -3904,6 +3904,7 @@ ja:
   taxa_to_include: 対象分類群
   taxon: 分類群
   taxon_autocomplete_placeholder: 鳥綱、オオカバマダラなど。
+  taxon_geoprivacy: 分類群の位置情報公開状況
   taxon_is_a_rank: "%{taxon} は %{rank} です"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     other: "%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位"
@@ -5370,7 +5371,7 @@ ja:
         status: 状態
         description: 説明
         place_id: 場所
-        geoprivacy: 位置情報プライバシー
+        geoprivacy: 位置情報公開状況
         iucn: IUCN相当
       flag:
         #The reason the item was flagged
