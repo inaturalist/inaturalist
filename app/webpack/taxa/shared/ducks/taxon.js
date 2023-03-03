@@ -259,13 +259,16 @@ export function fetchTerms( options = { histograms: false } ) {
         || f.controlled_attribute.taxon_ids.length === 0
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
+      // If there's data about how many observations do *not* have annotations
+      // of these relevant attributes, add "No Annotation" data
       if ( options.histograms && r.unannotated ) {
-        _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          if ( _.keys( fieldValues ).indexOf( Number( controlledAttributeId ) ) >= 0 ) {
-            fieldValues[Number( controlledAttributeId )].push( {
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
+        _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
+          if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
+            fieldValues[Number( unannotatedAttributeId )].push( {
               count: data.count,
               month_of_year: data.month_of_year,
-              controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
+              controlled_attribute: controlledAttributes[Number( unannotatedAttributeId )],
               controlled_value: {
                 label: "No Annotation"
               }
