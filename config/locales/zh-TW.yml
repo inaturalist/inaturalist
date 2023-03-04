@@ -6549,9 +6549,6 @@ zh-TW:
       index:
         connect_with_nature: 與自然連接
         explore_and_share: 探索並分享您來自於大自然的觀察。
-        observations_to_date: '個現有觀察'
-        species_observed: '個已觀察物種'
-        people_signed_up: '個註冊成員'
         how_it_works: 它是如何運作的
         record_your_observations: 記錄您的觀察
         share_with_fellow_naturalists: 與關注的自然觀察者分享
@@ -6690,42 +6687,6 @@ zh-TW:
       month: 月
       second: 秒
       year: 年
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: 必須被接受
-      blank: 不可留空
-      confirmation: 密碼不符
-      empty: 不能為空
-      equal_to: 必須等於 %{count}
-      even: 必須是偶數
-      exclusion: 已被保留
-      greater_than: 必須大於%{count}
-      greater_than_or_equal_to: 必須大於或等於 %{count}
-      inclusion: 未包含在名錄中
-      invalid: 是無效的
-      less_than: 必須小於%{count}
-      less_than_or_equal_to: 必須小於或等於 %{count}
-      new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-      not_a_number: 不是一個數字
-      not_an_integer: 必須是整數
-      odd: 必須是奇數
-      only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-      record_invalid: '驗證失敗: %{errors}'
-      requires_privilege_speech: |
-        必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-      requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-      taken: 已被使用
-      too_long:
-        other: 太長 (最多 %{count} 個字元)
-      too_short:
-        other: 太短 (最少 %{count} 個字元)
-      wrong_length:
-        other: 長度錯誤 (應為 %{count} 個字元)
-    template:
-      body: '以下欄位出現了問題：'
-      header:
-        other: '%{count} 個錯誤禁止了儲存此%{model}'
   helpers:
     defaults:
       title: "這是個標題"
@@ -6802,43 +6763,6 @@ zh-TW:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: 下午
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: 必須被接受
-        blank: 不可留空
-        confirmation: 密碼不符
-        empty: 不能為空
-        equal_to: 必須相同於%{count}
-        even: 必須是偶數
-        exclusion: 已被保留
-        greater_than: 必須大於%{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
-        inclusion: 未包含在名錄中
-        invalid: 是無效的
-        less_than: 必須小於%{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
-        new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-        not_a_number: 不是一個數字
-        not_an_integer: 必須為整數
-        odd: 必須是奇數
-        only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: '驗證失敗: %{errors}'
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-        requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-        taken: 已被使用
-        too_long:
-          other: 太長 (最多 %{count} 個字元)
-        too_short:
-          other: 太短 (最少 %{count} 個字元)
-        wrong_length:
-          other: 長度錯誤 (應為 %{count} 個字元)
-      template:
-        body: 以下欄位出現了問題：
-        header:
-          other: '%{count} 個錯誤禁止了儲存此%{model}'
   activerecord:
     models:
       AssessmentSection: 評估段落
@@ -6976,22 +6900,18 @@ zh-TW:
         blank: 不可留空
         confirmation: 密碼不符
         empty: 不能為空
-        equal_to: 必須等於 %{count}
         even: 必須是偶數
         exclusion: 已被保留
-        greater_than: 必須大於 %{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
         inclusion: 未包含在名錄中
         invalid: 是無效的
-        less_than: 必須小於 %{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
         new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
         not_a_number: 不是一個數字
         not_an_integer: 必須為整數
         odd: 必須是奇數
         only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: 驗證失敗：%{errors}
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+        record_invalid: '驗證失敗：%{errors}'
+        requires_privilege_speech: |
+          必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
         too_long:
@@ -7001,7 +6921,7 @@ zh-TW:
         wrong_length:
           other: 長度錯誤（應為 %{count} 個字元）
       template:
-        body: 以下欄位出現了問題：
+        body: '以下欄位出現了問題：'
         header:
           other: '%{count} 個錯誤禁止了儲存此%{model}'
       models:
