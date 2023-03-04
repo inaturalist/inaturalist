@@ -4528,8 +4528,6 @@ pl:
     welcome:
       index:
         connect_with_nature: Połącz się z naturą
-        species_observed: 'zaobserwowane gatunki'
-        people_signed_up: 'zarejestrowanych użytkowników'
         how_it_works: Jak to działa
         record_your_observations: Obserwuj i notuj
         share_with_fellow_naturalists: Podziel się ze znajomymi
@@ -4695,32 +4693,6 @@ pl:
       month: Miesiąc
       second: Sekundy
       year: Rok
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: musi zostać zaakceptowane
-      blank: nie może być puste
-      empty: nie może być puste
-      equal_to: musi być równe %{count}
-      even: musi być liczbą parzystą
-      exclusion: jest zarezerwowany
-      greater_than: musi być większe niż %{count}
-      greater_than_or_equal_to: musi być większe lub równe %{count}
-      inclusion: nie znajduje się na liście
-      invalid: jest nieprawidłowy
-      less_than: musi być mniejszy niż %{count}
-      less_than_or_equal_to: musi być mniejszy lub równy %{count}
-      not_a_number: nie jest liczbą
-      not_an_integer: musi być liczbą całkowitą
-      odd: musi być liczbą nieparzystą
-      record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
-    template:
-      body: 'Wystąpiły problemy z następującymi polami:'
-      header:
-        one: "%{count} błąd uniemożliwił zapisanie tego %{model}"
-        few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
-        many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
-        other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   helpers:
     defaults:
       title: "TO JEST TYTUŁ"
@@ -4800,25 +4772,6 @@ pl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: po południu
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: musi zostać zaakceptowane
-        less_than_or_equal_to: musi być mniejszy lub równy %{count}
-        new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
-        not_a_number: nie jest liczbą
-        not_an_integer: musi być liczbą całkowitą
-        odd: musi być liczbą nieparzystą
-        only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
-        record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
-      template:
-        header:
-          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
-          few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
-          many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
-          other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -4951,15 +4904,10 @@ pl:
       messages:
         blank: nie może być puste
         empty: nie może być pusta
-        equal_to: musi być równe %{count}
         even: musi być liczbą parzystą
         exclusion: jest zarezerwowany
-        greater_than: musi być większy niż %{count}
-        greater_than_or_equal_to: musi być większy lub równy %{count}
         inclusion: nie znajduje się na liście
         invalid: jest nieprawidłowy
-        less_than: musi być mniejszy niż %{count}
-        less_than_or_equal_to: musi być mniejszy lub równy %{count}
         new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
         not_a_number: nie jest liczbą
         not_an_integer: musi być liczbą całkowitą
@@ -4974,7 +4922,7 @@ pl:
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
         header:
-          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
+          one: "%{count} błąd uniemożliwił zapisanie tego %{model}"
           few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
           many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
           other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
