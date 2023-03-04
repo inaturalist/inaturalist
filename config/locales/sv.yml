@@ -7436,9 +7436,6 @@ sv:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina fynd från naturen.
-        observations_to_date: 'Fynd hittills'
-        species_observed: 'Observerade arter'
-        people_signed_up: 'Registrerade användare'
         how_it_works: Hur det fungerar
         record_your_observations: Spara dina fynd
         share_with_fellow_naturalists: Dela med andra naturforskare
@@ -7593,46 +7590,6 @@ sv:
       month: Månad
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: måste accepteras
-      blank: kan inte vara tomt
-      confirmation: stämde inte överens med lösenordet
-      empty: kan inte vara tomt
-      equal_to: måste vara lika med %{count}
-      even: måste vara jämnt
-      exclusion: är reserverad
-      greater_than: måste vara större än %{count}
-      greater_than_or_equal_to: måste vara större än eller lika med %{count}
-      inclusion: finns inte med i listan
-      invalid: är ogiltig
-      less_than: måste vara mindre än %{count}
-      less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-      not_a_number: är inte ett nummer
-      not_an_integer: måste vara ett heltal
-      odd: måste vara udda
-      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-      record_invalid: 'Validering misslyckades: %{errors}'
-      requires_privilege_speech: |
-        måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-      requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-      taken: är redan taget
-      too_long:
-        one: är för långt (maximalt %{count} tecken)
-        other: är för långt (maximalt %{count} tecken)
-      too_short:
-        one: är för kort (minimum %{count} tecken)
-        other: är för kort (minimum %{count} tecken)
-      wrong_length:
-        one: är av fel längd (borde vara %{count} tecken)
-        other: är av fel längd (borde vara %{count} tecken)
-    template:
-      body: 'Det uppstod problem med följande fält:'
-      header:
-        one: "%{count} fel hindrade denna %{model} från att sparas"
-        other: '%{count} fel hindrade denna %{model} från att sparas'
   helpers:
     defaults:
       title: "DETTA ÄR EN TITEL"
@@ -7710,47 +7667,6 @@ sv:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: em
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: måste accepteras
-        blank: kan inte vara tomt
-        confirmation: stämde inte överens med lösenordet
-        empty: kan inte vara tomt
-        equal_to: måste vara lika med %{count}
-        even: måste vara jämnt
-        exclusion: är reserverat
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
-        inclusion: finns inte med i listan
-        invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-        not_a_number: är inte ett nummer
-        not_an_integer: måste vara ett heltal
-        odd: måste vara udda
-        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-        record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-        requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-        taken: är redan taget
-        too_long:
-          one: är för långt (maximalt %{count} tecken)
-          other: är för långt (maximalt %{count} tecken)
-        too_short:
-          one: är för kort (minimum %{count} tecken)
-          other: är för kort (minimum %{count} tecken)
-        wrong_length:
-          one: är fel längd (ska vara %{count} tecken)
-          other: är fel längd (ska vara %{count} tecken)
-      template:
-        body: 'Det uppstod problem med följande fält:'
-        header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
-          other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7966,22 +7882,18 @@ sv:
         blank: kan inte vara tom
         confirmation: stämde inte överens med lösenordet
         empty: kan inte vara tom
-        equal_to: måste vara samma som %{count}
         even: måste vara jämn
         exclusion: är reserverad
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
         inclusion: ingår inte i listan
         invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
         new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
         only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
+        requires_privilege_speech: |
+          måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
         taken: är redan taget
         too_long:
@@ -7996,7 +7908,7 @@ sv:
       template:
         body: 'Det uppstod problem med följande fält:'
         header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
+          one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
         application:
