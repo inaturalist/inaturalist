@@ -2523,9 +2523,6 @@ ko:
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
-        observations_to_date: '개의 관찰이 게시됨'
-        species_observed: '종이 관찰됨'
-        people_signed_up: '명의 사람들이 가입함'
         how_it_works: 사용하는 법
         record_your_observations: 관찰을 기록하세요
         share_with_fellow_naturalists: 다른 사용자들과 공유해요
@@ -2631,26 +2628,6 @@ ko:
       month: 달
       second: 초
       year: 년
-  errors:
-    messages:
-      accepted: 동의해야 합니다
-      blank: 비워둘 수 없습니다
-      confirmation: 비밀번호와 일치하지 않습니다
-      empty: 비워둘 수 없습니다
-      equal_to: '%{count}와(과) 같아야 합니다'
-      even: 짝수여야 합니다
-      exclusion: 이미 존재합니다.
-      greater_than: '%{count}보다 커야 합니다'
-      greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
-      inclusion: 목록에 포함하지 않습니다
-      invalid: 잘못되었습니다
-      less_than: '%{count}보다 작아야 합니다'
-      less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
-      not_a_number: 숫자가 아닙니다
-      not_an_integer: 정수여야 합니다
-      odd: 홀수여야 합니다
-      record_invalid: '검증에 실패했습니다: %{errors}'
-      taken: 이미 쓰이고 있습니다.
   helpers:
     defaults:
       title: "이것은 제목입니다"
@@ -2665,11 +2642,6 @@ ko:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y년 %B %d일"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: 비밀번호와 일치하지 않습니다
   activerecord:
     models:
       TaxonLink: 분류 링크
@@ -2707,11 +2679,8 @@ ko:
         confirmation: 비밀번호와 일치하지 않습니다
         empty: 비워둘 수 없습니다
         even: 짝수여야 합니다
-        greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
         inclusion: 목록에 포함되어 있지 않습니다
         invalid: 잘못되었습니다
-        less_than: '%{count}보다 작아야 합니다'
-        less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
         not_a_number: 숫자가 아닙니다
         not_an_integer: 정수여야 합니다
         odd: 홀수여야 합니다
