@@ -7716,9 +7716,6 @@ fr:
       index:
         connect_with_nature: Connectez-vous Avec la Nature
         explore_and_share: Explorer et partager vos observations du monde naturel.
-        observations_to_date: 'Observations à ce jour'
-        species_observed: 'Espèces observées'
-        people_signed_up: 'Personnes se sont inscrites'
         how_it_works: Comment cela marche
         record_your_observations: Enregistrer vos observations
         share_with_fellow_naturalists: Partager avec d'autres naturalistes
@@ -7876,47 +7873,6 @@ fr:
       month: Mois
       second: Secondes
       year: Année
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: doit être accepté
-      blank: ne peut pas être vide
-      confirmation: ne correspond pas au mot de passe
-      empty: ne peut pas être vide
-      equal_to: doit être égal à %{count}
-      even: doit être pair
-      exclusion: est réservé
-      greater_than: doit être supérieur à %{count}
-      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
-      inclusion: n’est pas dans la liste
-      invalid: n’est pas valide
-      less_than: doit être inférieur à %{count}
-      less_than_or_equal_to: doit être inférieur ou égal à %{count}
-      new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
-      not_a_number: n’est pas un nombre
-      not_an_integer: doit être un nombre entier
-      odd: doit être impair
-      only_project_owner_can_change_project_owner: Seul le responsable du projet peut changer le responsable du projet
-      record_invalid: 'Échec de validation : %{errors}'
-      requires_privilege_speech: |
-        doit avoir trois observations vérifiables ou trois identifications
-        pour d’autres, pour pouvoir faire cela
-      requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
-      taken: a déjà été pris
-      too_long:
-        one: est trop long (le maximum est de 1 caractère)
-        other: est trop long (le maximum est de %{count} caractères)
-      too_short:
-        one: est trop court (le minimum est de 1 caractère)
-        other: est trop court (le minimum est de %{count} caractères)
-      wrong_length:
-        one: n’a pas la bonne longueur (devrait être de 1 caractère)
-        other: n’a pas la bonne longueur (devrait être de %{count} caractères)
-    template:
-      body: 'Il y a eu des problèmes avec les champs suivants :'
-      header:
-        one: "1 erreur a empêché ce %{model} d’être enregistré"
-        other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   helpers:
     defaults:
       title: "CECI EST UN TITRE"
@@ -7994,47 +7950,6 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: doit être accepté
-        blank: ne peut pas être vide
-        confirmation: ne correspond pas au mot de passe
-        empty: ne peut pas être vide
-        equal_to: doit être égal à %{count}
-        even: doit être pair
-        exclusion: est réservé
-        greater_than: doit être supérieur à %{count}
-        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
-        inclusion: n’est pas compris dans la liste
-        invalid: n’est pas valide
-        less_than: doit être inférieur à %{count}
-        less_than_or_equal_to: doit être inférieur ou égal à %{count}
-        new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
-        not_a_number: n’est pas un nombre
-        not_an_integer: doit être un entier
-        odd: doit être impair
-        only_project_owner_can_change_project_owner: Seul le responsable du projet peut modifier le responsable du projet
-        record_invalid: 'Échec de validation : %{errors}'
-        requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour d’autres, pour pouvoir faire cela"
-        requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
-        taken: a déjà été pris
-        too_long:
-          one: est trop long (le maximum est de 1 caractère)
-          other: est trop long (le maximum est de %{count} caractères)
-        too_short:
-          one: est trop court (le minimum est de 1 caractère)
-          other: est trop court (le minimum est de %{count} caractères)
-        wrong_length:
-          one: n’a pas la bonne longueur (devrait être de 1 caractère)
-          other: n’a pas la bonne longueur (devrait être de %{count} caractères)
-      template:
-        body: 'Il y a des problèmes avec les champs suivants :'
-        header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
-          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8250,22 +8165,19 @@ fr:
         blank: ne peut être vide
         confirmation: ne correspond pas au mot de passe
         empty: ne peut être vide
-        equal_to: doit être égal à %{count}
         even: doit être pair
         exclusion: est réservé
-        greater_than: doit être supérieur à %{count}
-        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
         inclusion: n’est pas compris dans la liste
         invalid: n’est pas valide
-        less_than: doit être inférieur à %{count}
-        less_than_or_equal_to: doit être inférieur ou égal à %{count}
         new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair
         only_project_owner_can_change_project_owner: Seul le responsable du projet peut modifier le responsable du projet
         record_invalid: 'Échec de la validation : %{errors}'
-        requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour que les autres puissent faire cela"
+        requires_privilege_speech: |
+          doit avoir trois observations vérifiables ou trois identifications
+          pour que les autres puissent faire cela
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
         taken: a déjà été pris
         too_long:
@@ -8280,7 +8192,7 @@ fr:
       template:
         body: 'Il y a des problèmes avec les champs suivants :'
         header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
+          one: "1 erreur a empêché ce %{model} d’être enregistré"
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
       models:
         application:
