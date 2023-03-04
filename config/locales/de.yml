@@ -7222,9 +7222,6 @@ de:
       index:
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
-        observations_to_date: 'Beobachtungen bisher'
-        species_observed: 'Arten beobachtet'
-        people_signed_up: 'Benutzer angemeldet'
         how_it_works: Wie es funktioniert
         record_your_observations: Beobachtungen machen
         share_with_fellow_naturalists: Mit anderen Naturfreunden teilen
@@ -7378,46 +7375,6 @@ de:
       month: Monat
       second: Sekunden
       year: Jahr
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: muss akzeptiert sein
-      blank: darf nicht leer sein
-      confirmation: stimmt nicht mit dem Passwort überein
-      empty: darf nicht leer sein
-      equal_to: muss gleich %{count} sein
-      even: muss gerade sein
-      exclusion: ist reserviert
-      greater_than: muss größer als %{count} sein
-      greater_than_or_equal_to: muss größer als oder gleich %{count} sein
-      inclusion: ist nicht in der Liste enthalten
-      invalid: ist ungültig
-      less_than: muss kleiner als %{count} sein
-      less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
-      new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
-      not_a_number: ist keine Zahl
-      not_an_integer: muss eine ganze Zahl sein
-      odd: muss ungerade sein
-      only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
-      record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
-      requires_privilege_speech: |
-        muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
-      requires_privilege_organizer: muss 50 verifizierbare Beobachtungen haben, um dies zu tun
-      taken: ist bereits vergeben
-      too_long:
-        one: ist zu lang (maximal %{count} Zeichen)
-        other: ist zu lang (maximal %{count} Zeichen)
-      too_short:
-        one: ist zu kurz (mindestens %{count} Zeichen)
-        other: ist zu kurz (mindestens %{count} Zeichen)
-      wrong_length:
-        one: hat die falsche Länge (sollte %{count} Zeichen lang sein)
-        other: ist die falsche Länge (sollte %{count} Zeichen sein)
-    template:
-      body: 'Es gab Probleme mit den folgenden Feldern:'
-      header:
-        one: "%{count} Fehler verhinderte das Speichern von %{model}"
-        other: '%{count} Fehler verhinderten das Speichern von %{model}'
   helpers:
     defaults:
       title: "DIES IST EIN TITEL"
@@ -7495,47 +7452,6 @@ de:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: PM
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: muss akzeptiert sein
-        blank: darf nicht leer sein
-        confirmation: stimmt nicht mit dem Passwort überein
-        empty: darf nicht leer sein
-        equal_to: muss gleich %{count} sein
-        even: muss gerade sein
-        exclusion: ist reserviert
-        greater_than: muss größer als %{count} sein
-        greater_than_or_equal_to: muss größer als oder gleich %{count} sein
-        inclusion: ist nicht in der Liste enthalten
-        invalid: ist ungültig
-        less_than: muss kleiner als %{count} sein
-        less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
-        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
-        not_a_number: ist keine Zahl
-        not_an_integer: muss eine Ganzzahl sein
-        odd: muss ungerade sein
-        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
-        record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
-        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
-        requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
-        taken: ist bereits vergeben
-        too_long:
-          one: ist zu lang (maximal 1 Zeichen)
-          other: ist zu lang (maximal %{count} Zeichen)
-        too_short:
-          one: ist zu kurz (Minimum ist 1 Zeichen)
-          other: ist zu kurz (mindestens %{count} Zeichen)
-        wrong_length:
-          one: ist die falsche Länge (sollte 1 Zeichen sein)
-          other: ist die falsche Länge (sollte %{count} Zeichen sein)
-      template:
-        body: 'Es gab Probleme mit den folgenden Feldern:'
-        header:
-          one: '%{count} Fehler verhinderte das Speichern von %{model}'
-          other: '%{count} Fehler verhinderten das Speichern von %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7723,22 +7639,18 @@ de:
         blank: darf nicht leer sein
         confirmation: stimmt nicht mit dem Passwort überein
         empty: darf nicht leer sein
-        equal_to: muss gleich %{count} sein
         even: muss gerade sein
         exclusion: ist reserviert
-        greater_than: muss größer als %{count} sein
-        greater_than_or_equal_to: muss größer als oder gleich %{count} sein
         inclusion: ist nicht in der Liste enthalten
         invalid: ist ungültig
-        less_than: muss kleiner als %{count} sein
-        less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
         new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
         odd: muss ungerade sein
         only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Validierung fehlgeschlagen: %{errors}'
-        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
+        requires_privilege_speech: |
+          muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
         taken: ist bereits vergeben
         too_long:
@@ -7753,7 +7665,7 @@ de:
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
         header:
-          one: '%{count} Fehler verhinderte das Speichern von %{model}'
+          one: "%{count} Fehler verhinderte das Speichern von %{model}"
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
         application:
