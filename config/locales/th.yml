@@ -2894,7 +2894,6 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
-        species_observed: 'ชนิดที่ถูกสังเกต'
         contribute_to_science: สนับสนุนวิทยาศาสตร์
         join_today: เข้าร่วมวันนี้
   date:
@@ -2961,9 +2960,6 @@ th:
       hour: ชั่วโมง
       minute: นาที
       second: วินาที
-  errors:
-    messages:
-      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   helpers:
     select:
       prompt: โปรดเลือก
@@ -2987,11 +2983,6 @@ th:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   activerecord:
     models:
       #Software application that operates iNat on a user's behalf, e.g. the
