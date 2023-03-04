@@ -7397,9 +7397,6 @@ es-MX:
       index:
         connect_with_nature: Conectate con la naturaleza
         explore_and_share: Explora y comparte tus observaciones del mundo natural.
-        observations_to_date: 'Observaciones hasta la fecha'
-        species_observed: 'Especies observadas'
-        people_signed_up: 'Personas registradas'
         how_it_works: Cómo funciona
         record_your_observations: Registra tus observaciones
         share_with_fellow_naturalists: Comparte con otros naturalistas
@@ -7556,47 +7553,6 @@ es-MX:
       month: Mes
       second: Segundos
       year: Año
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Debe ser aceptado
-      blank: No puede quedarse vacío
-      confirmation: No coincide con la confirmación
-      empty: No puede estar vacío
-      equal_to: Debe ser igual a %{count}
-      even: Debe ser par
-      exclusion: Está reservado
-      greater_than: Debe ser mayor que %{count}
-      greater_than_or_equal_to: Debe ser mayor o igual a %{count}
-      inclusion: No está incluido en esta lista
-      invalid: es inválido
-      less_than: Debe ser menor que %{count}
-      less_than_or_equal_to: Debe ser menor o igual a %{count}
-      new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
-      not_a_number: No es un número
-      not_an_integer: Debe ser un número entero
-      odd: Debe ser número impar
-      only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar su propietario
-      record_invalid: 'Falló la validación: %{errors}'
-      requires_privilege_speech: |
-        debe tener tres observaciones verificables o tres identificaciones
-        para que otros hagan eso
-      requires_privilege_organizer: debe tener 50 observaciones verificables para hacer eso
-      taken: Ya ha sido tomado
-      too_long:
-        one: Es demasiado largo (máximo es un carácter)
-        other: Es demasiado largo (máximo es %{count} caracteres)
-      too_short:
-        one: Es demasiado corto (mínimo es un carácter)
-        other: Es demasiado corto (mínimo es %{count} carácteres)
-      wrong_length:
-        one: La longitud está equivocada (debe ser un carácter)
-        other: La longitud está equivocada (deben ser %{count} caracteres)
-    template:
-      body: 'Hubo problemas con los siguientes campos:'
-      header:
-        one: "Un error no permitió que este %{model} se guardara"
-        other: '%{count} errores evitaron que este %{model} se guardara:'
   helpers:
     defaults:
       title: "ESTE ES UN TÍTULO"
@@ -7674,47 +7630,6 @@ es-MX:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: Debe ser aceptado
-        blank: No puede quedar vacío
-        confirmation: No coincide con la confirmación
-        empty: No puede estar vacío
-        equal_to: Debe ser igual a %{count}
-        even: Debe ser par
-        exclusion: Está reservado
-        greater_than: Debe ser mayor que %{count}
-        greater_than_or_equal_to: Debe ser mayor o igual a %{count}
-        inclusion: No está incluido en la lista
-        invalid: Es inválido
-        less_than: Debe ser menor que %{count}
-        less_than_or_equal_to: Debe ser menor que o igual a %{count}
-        new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
-        not_a_number: No es un número
-        not_an_integer: Debe ser un número entero
-        odd: Debe ser número impar
-        only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar su propietario
-        record_invalid: 'La validación falló: %{errors}'
-        requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
-        requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
-        taken: Ya ha sido utilizado
-        too_long:
-          one: Es demasiado largo (el máximo es un carácter}
-          other: Es demasiado largo (el máximo son %{count} caracteres)
-        too_short:
-          one: Es demasiado corto (el mínimo es 1 carácter)
-          other: es demasiado corto (el mínimo son %{count} carácteres)
-        wrong_length:
-          one: La longitud está equivocada (debe ser un carácter)
-          other: La longitud está equivocada (deben ser %{count} caracteres)
-      template:
-        body: 'Hubo problemas con los siguientes campos:'
-        header:
-          one: Un error no permitió que este %{model} se guardara
-          other: '% {count} errores no permitieron que este %{model} se guardara'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7930,22 +7845,19 @@ es-MX:
         blank: No puede quedarse vacío
         confirmation: No coincide con la confirmación
         empty: No puede quedarse vacío
-        equal_to: Debe ser igual a  %{count}
         even: Debe ser número impar
         exclusion: Está reservado
-        greater_than: Debe ser mayor que %{count}
-        greater_than_or_equal_to: Debe ser mayor o igual a %{count}
         inclusion: No está incluido en la lista
         invalid: Es inválido
-        less_than: Debe ser menor que %{count}
-        less_than_or_equal_to: Debe ser menor o igual a %{count}
         new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
         not_a_number: No es un número
         not_an_integer: Debe ser un número entero
         odd: Debe ser número impar
         only_project_owner_can_change_project_owner: Sólo el propietario del proyecto puede cambiar el propietario del proyecto
         record_invalid: 'Falló la validación: %{errors}'
-        requires_privilege_speech: "debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
+        requires_privilege_speech: |
+          debe tener tres observaciones verificables o tres identificaciones
+          para que otros hagan eso
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
         taken: Ya ha sido utilizado
         too_long:
@@ -7960,7 +7872,7 @@ es-MX:
       template:
         body: 'Hubo problemas con los siguientes campos:'
         header:
-          one: Un error no permitió que este %{model} se guardara
+          one: "Un error no permitió que este %{model} se guardara"
           other: '% {count} errores no permitieron que este %{model} se guardara'
       models:
         application:
