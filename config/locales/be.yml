@@ -4321,9 +4321,6 @@ be:
       index:
         connect_with_nature: Злучыцца з Прыродай
         explore_and_share: Даследуйце ды дзяліцеся сваімі назіраннямі жывой прыроды.
-        observations_to_date: 'Назіранні на гэты момант'
-        species_observed: 'Назіраемыя віды'
-        people_signed_up: 'Людзей зарэгістравана'
         how_it_works: Як гэта працуе
         record_your_observations: Запішыце свае назіранні
         share_with_fellow_naturalists: Падзяліцеся з калегамі-натуралістамі
@@ -4435,8 +4432,6 @@ be:
       month: Месяц
       second: Секунды
       year: Год
-  errors:
-    format: '%{attribute} %{message}'
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -4512,7 +4507,8 @@ be:
     errors:
       messages:
         empty: не можа быць пустым
-        requires_privilege_speech: для гэтага павінна быць тры правераныя назіранні альбо тры вызначэнні для іншых
+        requires_privilege_speech: |
+          для гэтага павінна быць тры правераныя назіранні альбо тры вызначэнні для іншых
         requires_privilege_organizer: для гэтага павінна быць 50 правераных назіранняў
         taken: гэта ўжо зроблена
       template:
