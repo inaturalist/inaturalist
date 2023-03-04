@@ -1374,8 +1374,6 @@ mi:
         step1_title: HANGAIA HE PŪKETE I TŌ TAMARIKI
     welcome:
       index:
-        species_observed: 'Momo i mātakitia'
-        people_signed_up: 'Tāngata i takiuru'
         how_it_works: Pehea te mahi
         record_your_observations: Tuhia āu whakamātaki
         contribute_to_science: Homai ki te pūtaiao
@@ -1469,9 +1467,6 @@ mi:
       month: Marama
       second: Hākona
       year: Tau
-  errors:
-    messages:
-      confirmation: Kāore i te ōrite te kupuhipa
   number:
     human:
       decimal_units:
@@ -1489,11 +1484,6 @@ mi:
       long: '%d %B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: Kāore i te ōrite te kupuhipa
   activerecord:
     models:
       #Noun
