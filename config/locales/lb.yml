@@ -2494,9 +2494,6 @@ lb:
       index:
         connect_with_nature: Mat der Natur verbannen
         explore_and_share: Entdeckt an deelt Är Observatiounen aus der Natur
-        observations_to_date: 'Observatioune bis elo'
-        species_observed: 'Aarten observéiert'
-        people_signed_up: 'Leit hu sech ageschriwwen'
         how_it_works: Wéi et geet
         record_your_observations: Enregistréiert Är Observatiounen
         share_with_fellow_naturalists: Mat aneren Naturalisten deelen
@@ -2610,22 +2607,6 @@ lb:
       month: Mount
       second: Sekonnen
       year: Joer
-  errors:
-    messages:
-      blank: däerf net eidel sinn
-      empty: däerf net eidel sinn
-      even: muss gerued sinn
-      exclusion: ass reservéiert
-      greater_than: muss méi grouss wéi %{count} sinn
-      invalid: ass net valabel
-      not_a_number: ass keng Zuel
-      not_an_integer: muss eng ganz Zuel sinn
-      odd: muss ongerued sinn
-      record_invalid: 'Validatioun feelgeschlo: %{errors}'
-      requires_privilege_speech: |
-        musst dräi iwwerpréifbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-      requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
-      taken: gouf scho geholl
   helpers:
     defaults:
       title: "DEST AS EEN TITEL"
@@ -2682,26 +2663,6 @@ lb:
   time:
     am: am
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: muss akzeptéiert ginn
-        blank: däerf net eidel sinn
-        empty: däerf net eidel sinn
-        even: muss gerued sinn
-        exclusion: ass reservéiert
-        greater_than: muss méi grouss wéi %{count} sinn
-        greater_than_or_equal_to: muss méi grouss oder gläich si wéi %{count}
-        inclusion: ass net an der Lëscht dran
-        invalid: ass net valabel
-        less_than: muss méi kleng wéi %{count} sinn
-        less_than_or_equal_to: muss méi kleng oder gläich si wéi %{count}
-        not_a_number: ass keng Zuel
-        not_an_integer: muss eng ganz Zuel sinn
-        odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
-        requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
   activerecord:
     models:
       Atlas: Atlas
@@ -2765,12 +2726,12 @@ lb:
         empty: däerf net eidel sinn
         even: muss gerued sinn
         exclusion: ass reservéiert
-        greater_than: muss méi grouss si wéi %{count}
         inclusion: ass net an der Lëscht dran
         invalid: ass net valabel
         not_a_number: ass keng Zuel
         odd: muss ongerued sinn
-        requires_privilege_speech: musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
+        requires_privilege_speech: |
+          musst dräi verifizéierbar Observatiounen oder dräi Bestëmmungen fir anerer hunn fir dat ze maachen
         requires_privilege_organizer: musst 50 iwwerpréifbar Observatiounen hunn fir dëst ze maachen
       models:
         moderator_action:
