@@ -2048,9 +2048,6 @@ kk:
       index:
         connect_with_nature: Табиғатпен байланыс
         explore_and_share: Табиғат әлемінен өз бақылауларыңызды зерттеп, бөлісіңіз.
-        observations_to_date: 'Осы күнге дейінгі бақылаулар'
-        species_observed: 'Бақыланған түрлер'
-        people_signed_up: 'адам тіркелді'
         how_it_works: Бұл қалай жұмыс істейді
         record_your_observations: Өз бақылауларыңызды жазыңыз
         share_with_fellow_naturalists: Табиғат зерттеушілерімен бөлісіңіз
@@ -2201,15 +2198,6 @@ kk:
       month: Ай
       second: Секундтар
       year: Жыл
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: қабылдануы керек
-      blank: бос қалуға болмайды
-      confirmation: құпия сөзге сәйкес келмеді
-      empty: бос болуы мүмкін емес
-      equal_to: '%{count} мәніне тең болуы керек'
-      requires_privilege_organizer: мұны істеу үшін 50 тексерілетін бақылау болуы керек
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
