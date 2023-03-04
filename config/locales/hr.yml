@@ -2050,9 +2050,6 @@ hr:
       index:
         connect_with_nature: Poveži se s prirodom
         explore_and_share: Istraži i podijeli svoja opažanja iz svijeta prirode.
-        observations_to_date: 'Opažanja do sad'
-        species_observed: 'Zabilježene vrste'
-        people_signed_up: 'registriranih korisnika'
         how_it_works: Kako iNaturalist funkcionira
         record_your_observations: Zabilježi svoja opažanja
         share_with_fellow_naturalists: Podijeli s kolegama prirodoslovcima
@@ -2149,16 +2146,6 @@ hr:
         one: manje od %{count} sekunde
         few: manje od %{count} sekunde
         other: manje od %{count} sekundi
-  errors:
-    messages:
-      blank: ne može ostati prazno
-      empty: ne može ostati prazno
-      invalid: nije ispravno
-      less_than: mora biti manje od %{count}
-      less_than_or_equal_to: mora biti manje ili jednako %{count}
-      not_a_number: nije broj
-      not_an_integer: mora biti cijeli broj
-      odd: mora biti neparan broj
   helpers:
     submit:
       create: Stvori novi %{model}
@@ -2190,17 +2177,6 @@ hr:
       format:
         significant: true
         strip_insignificant_zeros: true
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        blank: ne može ostati prazno
-        empty: ne može ostati prazno
-        even: mora biti paran broj
-        exclusion: je rezervirano
-        greater_than: mora biti veće od %{count}
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje ili jednako %{count}
   activerecord:
     models:
       #Text note left by a moderator about another user recording a response to
@@ -2256,12 +2232,9 @@ hr:
         login: Korisničko ime
     errors:
       messages:
-        equal_to: mora biti jednako %{count}
         even: mora biti paran broj
         exclusion: je rezervirano
         invalid: nije ispravno
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje ili jednako %{count}
       models:
         comment:
           attributes:
