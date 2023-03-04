@@ -200,8 +200,12 @@ class Place < ApplicationRecord
 
   # 66 is roughly the size of Texas
   MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
+  # 700,000 km2 is roughly the size of Texas or Somalia
+  MAX_PLACE_AREA_FOR_NON_STAFF_KM2 = 700_000
   # 6 is roughly the size of West Virginia
   MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE = 6.0
+  # 70,000 km2 is roughly the size of West Virginia or Croatia
+  MAX_PLACE_AREA_FOR_NON_STAFF_DURING_FREEZE_KM2 = 70_000
 
   MAX_PLACE_OBSERVATION_COUNT = 200000
   MAX_PLACE_OBSERVATION_COUNT_DURING_FREEZE = 10000
@@ -952,6 +956,13 @@ class Place < ApplicationRecord
     else
       display_name
     end
+  end
+
+  def area_km2
+    PlaceGeometry.
+      where( place_id: id ).
+      select( "id, ST_Area(geom::geography) / (1000 * 1000) AS area_km2" ).
+      first&.area_km2
   end
 
   def self.param_to_array(places)
