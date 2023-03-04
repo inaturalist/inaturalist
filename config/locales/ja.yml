@@ -1832,9 +1832,9 @@ ja:
   id_withdrawn: 同定の撤回
   ids_by_taxon: 分類群別ID
   identify: 同定する
-  identify_observations: "観察記録をID判定"
+  identify_observations: "観察記録を同定"
   identify_observations_by_these_users: ユーザーによる観察記録の同定
-  identify_title: "ID判定"
+  identify_title: "同定"
   identification: 同定
   identification_by_user: '%{user}さんの同定'
   #Notification when an identification has been deleted
@@ -1850,9 +1850,9 @@ ja:
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
-  identifiers: ID判定者
-  identotron: らくらくID判定
-  identotron_help: らくらくID判定ヘルプ
+  identifiers: 同定者
+  identotron: らくらく同定
+  identotron_help: らくらく同定ヘルプ
   ids: "ID"
   ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
@@ -5143,9 +5143,6 @@ ja:
       index:
         connect_with_nature: 自然とふれ合おう
         explore_and_share: 自然界からの観察記録を探索し、共有しましょう
-        observations_to_date: '件の観察記録（これまで）'
-        species_observed: '観察された種'
-        people_signed_up: '人が参加しています'
         how_it_works: ご利用方法
         record_your_observations: 観察した生き物を記録しよう
         share_with_fellow_naturalists: ナチュラリスト仲間と情報共有しよう
@@ -5271,32 +5268,6 @@ ja:
       month: か月
       second: 秒
       year: 年
-  errors:
-    messages:
-      blank: は空白にすることができません。
-      even: 偶数でなければなりません
-      exclusion: は保留中
-      greater_than: '%{count}より大きくなければなりません'
-      greater_than_or_equal_to: '%{count}以上でなければなりません'
-      inclusion: はリストに含まれていません
-      invalid: は無効
-      less_than: '%{count}より小さくなければなりません'
-      less_than_or_equal_to: '%{count}以下でなければなりません'
-      not_a_number: は数字ではありません
-      not_an_integer: 整数でなければならない
-      odd: 奇数でなければならない
-      record_invalid: '認証は失敗しました：%{errors}'
-      taken: 既に取得されています
-      too_long:
-        other: は長すぎます（最大は%{count}文字）
-      too_short:
-        other: は短すぎます（最小は%{count}文字）
-      wrong_length:
-        other: iの長さが間違いです (数字%{count}文字が正解)
-    template:
-      body: '次のフィールドに問題がありました：'
-      header:
-        other: '%{model}の保存を許可しなかったエラー%{count}件'
   helpers:
     select:
       prompt: 選択してください
@@ -5331,31 +5302,6 @@ ja:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y年%B%d日"
     pm: 午後
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        even: 偶数でなければなりません
-        exclusion: は保留中
-        greater_than: '%{count}より大きくなければなりません'
-        greater_than_or_equal_to: '%{count}以上でなければなりません'
-        inclusion: はリストに含まれていません
-        invalid: は無効
-        less_than: '%{count}より小さくなければなりません'
-        less_than_or_equal_to: '%{count}以下でなければなりません'
-        not_a_number: は数字ではありません
-        not_an_integer: 整数でなければならない
-        odd: 奇数でなければならない
-        record_invalid: 認証は失敗しました：%{errors}
-        taken: 既に取得されています
-        too_long:
-          other: は長すぎます（最大は%{count}文字）
-        too_short:
-          other: は短すぎます（最小は%{count}文字）
-      template:
-        body: 以下のフィールドに問題があります：
-        header:
-          other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5454,25 +5400,22 @@ ja:
         preferred_observation_fields_by: 観測フィールドを許可する人
     errors:
       messages:
-        equal_to: '%{count}に等しくしてください。'
         even: 偶数でなければなりません
-        greater_than: は%{count}より大きい値にしてください
-        greater_than_or_equal_to: '%{count}以上の値にしてください'
         inclusion: はリストに含まれていません
         invalid: は無効です
-        less_than: '%{count}未満でなければなりません'
-        less_than_or_equal_to: '%{count}以下でなければなりません'
         new_project_owner_must_be_a_manager: 新しいプロジェクトのオーナーは管理者である必要があります
         not_a_number: は数字ではありません
         not_an_integer: 整数で入力してください
         odd: 奇数にしてください
         only_project_owner_can_change_project_owner: プロジェクトのオーナーだけがプロジェクトのオーナーを変更できます
-        record_invalid: 認証は失敗しました：%{errors}
-        requires_privilege_speech: "3つの確認可能な観察記録、もしくは3つの同定\nが必要です"
+        record_invalid: '認証は失敗しました：%{errors}'
+        requires_privilege_speech: |
+          3つの確認可能な観察記録、もしくは3つの同定
+          が必要です
       template:
-        body: 次のフィールドに問題がありました：
+        body: '次のフィールドに問題がありました：'
         header:
-          other: この %{model} の保存を禁止する %{count} 件のエラーが発生しました。
+          other: 'この %{model} の保存を禁止する %{count} 件のエラーが発生しました。'
       models:
         application:
           attributes:
