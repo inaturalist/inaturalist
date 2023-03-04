@@ -7347,11 +7347,12 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc2: |
+      kml_field_desc3: |
         KML of the place boundary. You can make one using Google Maps, Google
         Earth, or most GIS applications. Must have at least one polygon, be
-        under 1 MB (5 MB for site curators), and have an area smaller than the
-        US state of Texas.
+        under 1 MB (5 MB for site curators), and have an area smaller than
+        ~700,000 square kilometers (roughly the size of Somalia or the US state of
+        Texas).
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can

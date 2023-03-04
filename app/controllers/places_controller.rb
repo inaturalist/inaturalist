@@ -258,19 +258,29 @@ class PlacesController < ApplicationController
     end
 
     if !current_user.is_admin? &&
-        ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
-        place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+        @place.area_km2 &&
+        @place.area_km2 > Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
       flash[:error] = t( :only_staff_can_edit_large_places )
       redirect_to place_path( @place )
       nil
     end
+
+    # Admins can edit anything
+    return if current_user.is_admin?
+
+    # Small places are ok to edit
+    return if @place.area_km2 && @place.area_km2 <= Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
+
+    # At this point, a non-staffer is trying to edit a large place
+    flash[:error] = t( :only_staff_can_edit_large_places )
+    redirect_to place_path( @place )
   end
 
   def update
     if @place.update( params[:place] )
       if !current_user.is_admin? &&
-          ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
-          place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+          @place.area_km2 &&
+          @place.area_km2 > Place::MAX_PLACE_AREA_FOR_NON_STAFF_KM2
         @place.add_custom_error( :place_geometry, :is_too_large_to_edit )
       elsif params[:file]
         assign_geometry_from_file
