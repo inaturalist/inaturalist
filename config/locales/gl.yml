@@ -6300,9 +6300,6 @@ gl:
       index:
         connect_with_nature: Conecta coa Natureza
         explore_and_share: Explora e comparte as túas observacións do mundo natural.
-        observations_to_date: 'Observacións ata a Data'
-        species_observed: 'Especies Observadas'
-        people_signed_up: 'Persoas Rexistradas'
         how_it_works: Como Funciona
         record_your_observations: Rexistra as túas observación
         share_with_fellow_naturalists: Comparte con outros naturalistas
@@ -6456,46 +6453,6 @@ gl:
       month: Mes
       second: Segundos
       year: Ano
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Débese aceptar
-      blank: non pode estar en branco
-      confirmation: non coincide coa confirmación
-      empty: non pode estar baleiro
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser maior que %{count}
-      greater_than_or_equal_to: debe ser maior que ou igual a %{count}
-      inclusion: non está incluído na lista
-      invalid: non é válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que ou igual a %{count}
-      new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-      not_a_number: non é un número
-      not_an_integer: debe ser un número enteiro
-      odd: debe ser impar
-      only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-      record_invalid: 'A validación fallou: %{errors}'
-      requires_privilege_speech: |
-        debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-      requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-      taken: xa está en uso
-      too_long:
-        one: é demasiado longo (o máximo é %{count} caracter)
-        other: é demasiado longo (o máximo son %{count} caracteres)
-      too_short:
-        one: é demasiado curto (o mínimo é %{count} caracter)
-        other: é demasiado curto (o mínimo son %{count} caracteres)
-      wrong_length:
-        one: ten a longura errada (debe ter %{count} caracter)
-        other: ten a longura errada (debe ter %{count} caracteres)
-    template:
-      body: 'Atopáronse problemas nos seguintes campos:'
-      header:
-        one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
-        other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
     defaults:
       title: "ISTO É UN TÍTULO"
@@ -6573,47 +6530,6 @@ gl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: Tarde
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: debe ser aceptado
-        blank: non se pode deixar en branco
-        confirmation: non coincide cá palabra chave
-        empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
-        even: debe ser par
-        exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
-        inclusion: non está incluído na lista
-        invalid: non é válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor ou igual a %{count}
-        new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-        not_a_number: non é un número
-        not_an_integer: debe ser un número enteiro
-        odd: debe ser impar
-        only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-        record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-        requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-        taken: xa está collido
-        too_long:
-          one: é demasiado longo (o máximo é %{count} caracter)
-          other: é demasiado longo (o máximo son %{count} caracteres)
-        too_short:
-          one: é demasiado curto (o mínimo é %{count} caracter)
-          other: é demasiado curto (o mínimo son %{count} caracteres)
-        wrong_length:
-          one: ten a longura errada (debe ter %{count} caracter)
-          other: ten a longura errada (debe ter %{count} caracteres)
-      template:
-        body: 'Houbo problemas cós seguintes campos:'
-        header:
-          one: '%{count} erro prohibíu este %{model} ser gardado.'
-          other: '%{count} erros prohibiron este %{model} ser gardado'
   activerecord:
     models:
       AssessmentSection: Sección de Avaliación
@@ -6751,22 +6667,18 @@ gl:
         blank: non se pode deixar en branco
         confirmation: non coincide cá palabra chave
         empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
         inclusion: non está incluído na lista
         invalid: non é válido
-        less_than: debe ser inferior a %{count}
-        less_than_or_equal_to: debe ser inferior ou igual a %{count}
         new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
         not_a_number: non é un número
         not_an_integer: debe ser un número enteiro
         odd: debe ser impar
         only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
         record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
+        requires_privilege_speech: |
+          debe ter tres observacións verificables ou tres identificacións para outros para facer iso
         requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
         taken: xa está en uso
         too_long:
@@ -6781,7 +6693,7 @@ gl:
       template:
         body: 'Atopáronse problemas nos seguintes campos:'
         header:
-          one: '%{count} erro prohibíu este %{model} ser gardado'
+          one: "%{count} erro prohibíu este %{model} ser gardado"
           other: '%{count} erros prohibiron este %{model} ser gardado'
       models:
         application:
