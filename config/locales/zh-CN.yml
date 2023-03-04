@@ -5769,9 +5769,6 @@ zh-CN:
       index:
         connect_with_nature: 连接自然
         explore_and_share: 探索并分享您对自然世界的观察。
-        observations_to_date: '观察至今'
-        species_observed: '观察的物种'
-        people_signed_up: '注册的人'
         how_it_works: 它是如何工作的
         record_your_observations: 记录您的观察
         share_with_fellow_naturalists: 与自然学家分享
@@ -5906,38 +5903,6 @@ zh-CN:
       month: 月
       second: 秒
       year: 年
-  errors:
-    messages:
-      accepted: 必须接受
-      blank: 不能为空
-      confirmation: 不匹配确认
-      empty: 不能为空
-      equal_to: 必须等于 %{count}
-      even: 必须是偶数
-      exclusion: 被保留
-      greater_than: 必须大于 %{count}
-      greater_than_or_equal_to: 必须大于等于 %{count}
-      inclusion: 未包括在列表中
-      invalid: 无效
-      less_than: 必须小于 %{count}
-      less_than_or_equal_to: 必须小于等于 %{count}
-      new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
-      not_a_number: 不是数字
-      not_an_integer: 必须是一个整数
-      odd: 必须是奇数
-      record_invalid: '验证失败：%{errors}'
-      requires_privilege_organizer: 要做到这一点，必须有50个可核查的观察记录
-      taken: 已被使用
-      too_long:
-        other: 太长了（最多 %{count} 个字符）
-      too_short:
-        other: 太短了（至少 %{count} 个字符）
-      wrong_length:
-        other: 长度错误（应为 %{count} 个字符）
-    template:
-      body: '以下字段存在问题：'
-      header:
-        other: '%{count} 个错误禁止了此 %{model} 的保存'
   helpers:
     defaults:
       title: "这是标题"
@@ -5990,38 +5955,6 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%I:%M %p"
     pm: 下午
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: 必须接受
-        blank: 不能为空
-        confirmation: 不匹配确认
-        empty: 不能为空
-        equal_to: 必须等于 %{count}
-        even: 必须是偶数
-        exclusion: 被保留
-        greater_than: 必须大于 %{count}
-        greater_than_or_equal_to: 必须大于等于 %{count}
-        inclusion: 未包括在列表中
-        invalid: 无效
-        less_than: 必须小于 %{count}
-        less_than_or_equal_to: 必须小于等于 %{count}
-        not_a_number: 不是数字
-        not_an_integer: 必须是整数
-        odd: 必须是奇数
-        record_invalid: 验证失败：%{errors}
-        taken: 已被使用
-        too_long:
-          other: 太长了（最多 %{count} 个字符）
-        too_short:
-          other: 太短了（至少 %{count} 个字符）
-        wrong_length:
-          other: 长度错误（应为 %{count} 个字符）
-      template:
-        body: 以下字段存在问题：
-        header:
-          other: '%{count} 个错误禁止了此 %{model} 的保存'
   activerecord:
     models:
       AssessmentSection: 评定章节
@@ -6144,19 +6077,16 @@ zh-CN:
         empty: 不能为空
         even: 必须是偶数
         exclusion: 已被保留
-        greater_than: 必须大于%{count}
-        greater_than_or_equal_to: 必须大于或等于%{count}
         inclusion: 未包含在列表中
         invalid: 是无效的
-        less_than: 必须小于%{count}
-        less_than_or_equal_to: 必须小于或等于 %{count}。
         new_project_owner_must_be_a_manager: 新项目所有者必须是管理员
         not_a_number: 不是数字
         not_an_integer: 必须是一个整数
         odd: 必须是奇数
         only_project_owner_can_change_project_owner: 只有项目所有者可以更改项目所有者
         record_invalid: '验证失败: %{errors}'
-        requires_privilege_speech: 必须有三次可验证的观察或三次替别人做出的身份验证才能做出
+        requires_privilege_speech: |
+          必须有三次可验证的观察或三次替别人做出的身份验证才能做出
         requires_privilege_organizer: 必须要有50个可验证观察才能做出
         taken: 已被使用
         too_long:
@@ -6166,7 +6096,7 @@ zh-CN:
         wrong_length:
           other: 长度错误（应为 %{count} 个字符）
       template:
-        body: 以下字段出现问题：
+        body: '以下字段出现问题：'
         header:
           other: '%{count} 个错误禁止了储存此%{model}'
       models:
