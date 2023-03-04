@@ -6878,9 +6878,6 @@ lv:
       index:
         connect_with_nature: Pietuvojies dabai
         explore_and_share: Izzini un dalies ar novērojumiem no dabas.
-        observations_to_date: 'Novērojumi līdz šim brīdim'
-        species_observed: 'Novērotās sugas'
-        people_signed_up: 'Reģistrējušies jauni lietotāji'
         how_it_works: Kā tas strādā?
         record_your_observations: Pievieno novērojumus
         share_with_fellow_naturalists: Dalies ar citiem dabas draugiem
@@ -7049,50 +7046,6 @@ lv:
       month: Mēnesis
       second: Sekundes
       year: Gads
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: jābūt apstiprinātām
-      blank: nevar būt tukšs
-      confirmation: nesakrīt ar paroli
-      empty: nevar būt tukšs
-      equal_to: jābūt vienādam ar %{count}
-      even: jābūt vienādam
-      exclusion: ir rezervēts
-      greater_than: jābūt vairāk par %{count}
-      greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-      inclusion: nav iekļauts sarakstā
-      invalid: ir nederīgs
-      less_than: jābūt mazāk par %{count}
-      less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-      new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-      not_a_number: nevar būt skaitlis
-      not_an_integer: jābūt veselam skaitlim
-      odd: jābūt nepāra
-      only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-      record_invalid: 'Validācija neizdevās: %{errors}'
-      requires_privilege_speech: |
-        lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-      requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-      taken: jau ir aizņemts
-      too_long:
-        zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-        other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-      too_short:
-        zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-        other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-      wrong_length:
-        zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-        one: nepareizs garums (jābūt %{count} rakstzīmei)
-        other: nepareizs garums (jābūt %{count} rakstzīmēm)
-    template:
-      body: 'Radās problēmas ar šiem laukiem:'
-      header:
-        zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-        one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
-        other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   helpers:
     defaults:
       title: "ŠIS IR VIRSRAKSTS"
@@ -7171,51 +7124,6 @@ lv:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: jābūt apstiprinātām
-        blank: nevar būt tukšs
-        confirmation: nesakrīt ar paroli
-        empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
-        even: jābūt vienādam
-        exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
-        inclusion: nav iekļauts sarakstā
-        invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
-        new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
-        not_a_number: nevar būt skaitlis
-        not_an_integer: jābūt veselam skaitlim
-        odd: jābūt nepāra
-        only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
-        record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
-        requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
-        taken: jau ir aizņemts
-        too_long:
-          zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-          one: pārsniedz garumu (ne vairāk par %{count} rakstzīmi)
-          other: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
-        too_short:
-          zero: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-          one: pārāk īss (ne mazāk par %{count} rakstzīmi)
-          other: pārāk īss (ne mazāk par %{count} rakstzīmēm)
-        wrong_length:
-          zero: nepareizs garums (jābūt %{count} rakstzīmēm)
-          one: nepareizs garums (jābūt %{count} rakstzīmei)
-          other: nepareizs garums (jābūt %{count} rakstzīmēm)
-      template:
-        body: 'Radās problēmas ar šiem laukiem:'
-        header:
-          zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
-          other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
   activerecord:
     models:
       AssessmentSection: Novērtējuma sadaļa
@@ -7405,22 +7313,18 @@ lv:
         blank: nevar būt tukšs
         confirmation: nesakrīt ar paroli
         empty: nevar būt tukšs
-        equal_to: jābūt vienādam ar %{count}
         even: jābūt vienādam
         exclusion: ir rezervēts
-        greater_than: jābūt vairāk par %{count}
-        greater_than_or_equal_to: jābūt vairāk vai vienādam ar %{count}
         inclusion: nav iekļauts sarakstā
         invalid: ir nederīgs
-        less_than: jābūt mazāk par %{count}
-        less_than_or_equal_to: jābūt mazākam vai vienādam ar %{count}
         new_project_owner_must_be_a_manager: Jaunajam projekta īpašniekam jābūt administratora statusam
         not_a_number: nevar būt skaitlis
         not_an_integer: jābūt veselam skaitlim
         odd: jābūt nepāra
         only_project_owner_can_change_project_owner: Tikai pats projekta īpašnieks var mainīt projekta īpašnieku
         record_invalid: 'Validācija neizdevās: %{errors}'
-        requires_privilege_speech: lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
+        requires_privilege_speech: |
+          lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
         taken: jau ir aizņemts
         too_long:
@@ -7439,7 +7343,7 @@ lv:
         body: 'Radās problēmas ar šiem laukiem:'
         header:
           zero: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
-          one: '%{count} kļūdas dēļ šis %{model} netika saglabāts'
+          one: "%{count} kļūdas dēļ šis %{model} netika saglabāts"
           other: '%{count} kļūdu dēļ šis %{model} netika saglabāts'
       models:
         application:
