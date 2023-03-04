@@ -6166,9 +6166,6 @@ el:
       index:
         connect_with_nature: Συνδέσου με τη Φύση
         explore_and_share: Εξερεύνησε και μοιράσου τις παρατηρήσεις σου από τον φυσικό κόσμο.
-        observations_to_date: 'Παρατηρήσεις μέχρι σήμερα'
-        species_observed: 'Παρατηρηθέντα Είδη'
-        people_signed_up: 'Άτομα που έχουν εγγραφεί'
         how_it_works: Πώς Λειτουργεί
         record_your_observations: Καταχωρίστε τις παρατηρήσεις σας
         share_with_fellow_naturalists: Μοιραστείτε με τους φίλους φυσιολάτρες
@@ -6324,46 +6321,6 @@ el:
       month: Μήνας
       second: δεύτερα
       year: Έτος
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Αποδεκτό
-      blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στον κωδικό
-      empty: δεν πρέπει να είναι άδειο
-      equal_to: πρέπει να είναι ίσο με %{count}
-      even: πρέπει να είναι άρτιος
-      exclusion: είναι δεσμευμένο
-      greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-      greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-      inclusion: δεν περιλαμβάνεται στη λίστα
-      invalid: είναι άκυρο
-      less_than: πρέπει να είναι λιγότερο από %{count}
-      less_than_or_equal_to: πρέπει να είναι λιγότερο ή ίσο με %{count}
-      new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-      not_a_number: δεν είναι αριθμός
-      not_an_integer: πρέπει να είναι ακέραιος αριθμός
-      odd: πρέπει να είναι περιττός
-      only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-      record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-      requires_privilege_speech: |
-        πρέπει να έχει τρεις επαληθευμένες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να μπορεί να το κάνει αυτό
-      requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-      taken: έχει ήδη καταληφθεί
-      too_long:
-        one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-      too_short:
-        one: είναι πολύ μικρό (ελάχ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μικρά (ελάχ.επιτρ. %{count} χαρακτήρες)
-      wrong_length:
-        one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-        other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-    template:
-      body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-      header:
-        one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του %{model}"
-        other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του %{model}'
   helpers:
     defaults:
       title: "ΑΥΤΟΣ ΕΙΝΑΙ ΕΝΑΣ ΤΙΤΛΟΣ"
@@ -6441,47 +6398,6 @@ el:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l: %M %p"
     pm: μμ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: πρέπει να είναι αποδεκτό
-        blank: δεν μπορεί να είναι κενό
-        confirmation: δεν αντιστοιχεί στον κωδικό
-        empty: δεν πρέπει να είναι άδειο
-        equal_to: πρέπει να είναι ίσο με %{count}
-        even: πρέπει να είναι άρτιος
-        exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-        inclusion: δεν περιλαμβάνεται στη λίστα
-        invalid: είναι άκυρο
-        less_than: πρέπει να είναι μικρότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
-        new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-        not_a_number: δεν είναι αριθμός
-        not_an_integer: πρέπει να είναι ακέραιος αριθμός
-        odd: πρέπει να είναι περιττός
-        only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-        record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να έχει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να το κάνει αυτό
-        requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-        taken: έχει ήδη καταληφθεί
-        too_long:
-          one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-          other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-        too_short:
-          one: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-          other: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-        wrong_length:
-          one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-          other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-      template:
-        body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-        header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
-          other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
   activerecord:
     models:
       AssessmentSection: Τομέας Αποτίμησης
@@ -6611,22 +6527,18 @@ el:
         blank: δεν μπορεί να είναι κενό
         confirmation: δεν αντιστοιχεί στον κωδικό πρόσβασης
         empty: δεν μπορεί να είναι κενό
-        equal_to: πρέπει να είναι ίσο με %{count}
         even: πρέπει να είναι άρτιος αριθμός
         exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
         inclusion: δεν περιλαμβάνεται στη λίστα
         invalid: είναι άκυρο
-        less_than: πρέπει να είναι λιγότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
         new_project_owner_must_be_a_manager: Ο νέος κάτοχος του πρότζεκτ πρέπει να είναι ένας διαχειριστής
         not_a_number: δεν είναι αριθμός
         not_an_integer: πρέπει να είναι ακέραιος αριθμός
         odd: πρέπει να είναι περιττός
         only_project_owner_can_change_project_owner: Μόνο ο κάτοχοςτου έργου μπορεί να αλλάξει τον κάτοχο του έργου
         record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
+        requires_privilege_speech: |
+          πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
         requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
         taken: έχει ήδη καταληφθεί
         too_long:
@@ -6641,7 +6553,7 @@ el:
       template:
         body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
         header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
+          one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του \"%{model}\""
           other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
       models:
         application:
