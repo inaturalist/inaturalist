@@ -4964,9 +4964,6 @@ hu:
       index:
         connect_with_nature: Kapcsolódj a természethez
         explore_and_share: Fedezd fel a természetet és oszd meg megfigyeléseidet!
-        observations_to_date: 'megfigyelés'
-        species_observed: 'Megfigyelt faj'
-        people_signed_up: 'regisztrált felhasználó'
         how_it_works: Hogyan működik?
         record_your_observations: Végezz megfigyeléseket
         share_with_fellow_naturalists: Oszd meg természettudósokkal
@@ -5075,34 +5072,6 @@ hu:
       month: Hónap
       second: Másodperc
       year: Év
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: el kell fogadni
-      blank: nem lehet üres
-      confirmation: nem egyezik a jelszó
-      empty: nem lehet üres
-      equal_to: egyenlőnek kell lennie %{count}-el
-      even: páros kell legyen
-      exclusion: foglalt
-      greater_than: nagyobb kell legyen, mint %{count}
-      greater_than_or_equal_to: nagyobbnak vagy egyenlőnek kell lennie mint %{count}
-      inclusion: nem szerepel a listán
-      invalid: érvénytelen
-      less_than: kisebbnek kell lennie mint %{count}
-      less_than_or_equal_to: kisebbnek vagy egyenlőnek kell lennie mint %{count}
-      new_project_owner_must_be_a_manager: A projekt tulajdonosának adminnak kell lennie
-      not_a_number: nem szám
-      not_an_integer: egész számnak kell lennie
-      odd: páratlan kell legyen
-      only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
-      record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
-      requires_privilege_speech: |
-        ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
-      requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
-      taken: már foglalt
-    template:
-      body: 'Problémák merültek fel az alábbi mezőkkel:'
   helpers:
     defaults:
       title: "EZ EGY CÍM"
@@ -5156,38 +5125,6 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y %B %d"
     pm: du.
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: el kell fogadni
-        blank: nem lehet üres
-        confirmation: nem egyezik a jelszó
-        empty: nem lehet üres
-        equal_to: pontosan %{count} kell legyen
-        even: páros kell legyen
-        exclusion: foglalt
-        greater_than: nagyobb kell legyen, mint %{count}
-        greater_than_or_equal_to: nagyobbnak vagy egyenlőnek kell lennie mint %{count}
-        inclusion: nem szerepel a listán
-        invalid: érvénytelen
-        less_than: kisebbnek kell lennie mint %{count}
-        less_than_or_equal_to: kisebbnek vagy egyenlőnek kell lennie mint %{count}
-        new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
-        not_a_number: nem szám
-        not_an_integer: egész számnak kell lennie
-        odd: páratlan kell legyen
-        only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
-        record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
-        requires_privilege_speech: ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
-        requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
-        taken: már foglalt
-      template:
-        body: 'Problémák merültek fel az alábbi mezőkkel:'
-        header:
-          one: '%{count} hiba miatt "%{model}" nem menthető el'
-          other: '%{count} hiba miatt %{model} nem menthető el'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5368,28 +5305,24 @@ hu:
         blank: nem lehet üres
         confirmation: nem egyezik a jelszó
         empty: nem lehet üres
-        equal_to: egyenlőnek kell lennie %{count}-el
         even: páros kell legyen
         exclusion: foglalt
-        greater_than: nagyobb kell legyen, mint %{count}
-        greater_than_or_equal_to: nagyobbnak vagy egyenlőnek kell lennie mint %{count}
         inclusion: nem szerepel a listán
         invalid: érvénytelen
-        less_than: kisebbnek kell lennie mint %{count}
-        less_than_or_equal_to: kisebbnek vagy egyenlőnek kell lennie mint %{count}
         new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
         not_a_number: nem szám
         not_an_integer: egész számnak kell lennie
         odd: páratlan kell legyen
         only_project_owner_can_change_project_owner: Csak a projekttulajdonos változtathajta meg a projekt tulajdonosát
         record_invalid: 'Az ellenőrzés nem sikerült: %{errors}'
-        requires_privilege_speech: ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
+        requires_privilege_speech: |
+          ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
         requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
         taken: már foglalt
       template:
         body: 'Problémák merültek fel az alábbi mezőkkel:'
         header:
-          one: '%{count} hiba miatt "%{model}" nem menthető el'
+          one: "%{count} hiba miatt \"%{model}\" nem menthető el"
           other: '%{count} hiba miatt %{model} nem menthető el'
       models:
         application:
