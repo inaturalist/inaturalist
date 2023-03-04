@@ -4904,9 +4904,6 @@ bg:
       index:
         connect_with_nature: Сближете се с Природата
         explore_and_share: Изследвай и споделяй своите наблюдения на природата.
-        observations_to_date: 'Наблюдения до момента'
-        species_observed: 'Наблюдавани видове'
-        people_signed_up: 'Регистрирани потребители'
         how_it_works: Как работи
         record_your_observations: Запиши своите наблюдения
         share_with_fellow_naturalists: Сподели с останалите
@@ -5057,41 +5054,6 @@ bg:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: трябва да бъде прието
-      blank: не може да е празно
-      confirmation: не съвпада с потвърждението
-      empty: не може да е празно
-      equal_to: трябва да е равно на %{count}
-      even: трябва да е четно
-      exclusion: е заето
-      greater_than: трябва да е повече от %{count}
-      greater_than_or_equal_to: трябва да е повече или равно на %{count}
-      inclusion: не фигурира в списъка
-      invalid: е невалидно
-      less_than: трябва да е по-малко от %{count}
-      less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-      new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-      not_a_number: не е число
-      not_an_integer: трябва да е цяло число
-      odd: трябва да е нечетно
-      record_invalid: 'Неуспешна проверка: %{errors}'
-      taken: вече е заето
-      too_long:
-        one: е прекалено дълго (макс. 1 символ)
-        other: е прекалено дълго (макс. %{count} символа)
-      too_short:
-        one: е прекалено кратко (мин. 1 символ)
-        other: е прекалено кратко (мин. %{count} символа)
-      wrong_length:
-        one: е с грешна дължина (трябва да е 1 символ)
-        other: е с грешна дължина (трябва да е %{count} символа)
-    template:
-      body: 'Имаше проблеми със следните полета:'
-      header:
-        one: "1 грешка попречи на запазването на %{model}"
-        other: '%{count} грешки попречиха на запазването на %{model}'
   helpers:
     defaults:
       title: "ТОВА Е ЗАГЛАВИЕ"
@@ -5169,31 +5131,6 @@ bg:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: следобед
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        blank: не може да е празно
-        confirmation: не съвпада с паролата
-        empty: не може да е празно
-        equal_to: трябва да е равно на %{count}
-        even: трябва да е четно
-        exclusion: е резервирано
-        greater_than: трябва да е повече от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        inclusion: не фигурира в списъка
-        invalid: е невалидно
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-        new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-        not_a_number: не е число
-        not_an_integer: трябва да е цяло число
-        odd: трябва да е нечетно
-        record_invalid: 'Неуспешна проверка: %{errors}'
-        taken: вече е заето
-      template:
-        body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5315,12 +5252,7 @@ bg:
       messages:
         blank: не може да е празно
         confirmation: несъответстваща парола
-        equal_to: трябва да е равно на %{count}
         even: трябва да е четно
-        greater_than: трябва да е по-голямо от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
         new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно
