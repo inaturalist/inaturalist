@@ -7214,9 +7214,6 @@ he:
       index:
         connect_with_nature: התחברו לטבע
         explore_and_share: גלו ושתפו את תצפיות הטבע שלכן.ם
-        observations_to_date: 'תצפיות עד היום'
-        species_observed: 'מינים שנצפו'
-        people_signed_up: 'א.נשים הצטרפו'
         how_it_works: איך זה עובד
         record_your_observations: תעדו את התצפיות שלכם.ן
         share_with_fellow_naturalists: שתפו עם הקהילה
@@ -7400,54 +7397,6 @@ he:
       month: חודש
       second: שניות
       year: שנה
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: חייב להתקבל
-      blank: לא ניתן להשאיר ריק
-      confirmation: לא תואם לססמה
-      empty: אינו יכול להיות ריק
-      equal_to: חייב להיות שווה ל־%{count}
-      even: חייב להיות זוגי
-      exclusion: שמור
-      greater_than: חייב להיות גדול מ־%{count}
-      greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-      inclusion: לא ברשימה
-      invalid: שגוי
-      less_than: חייב להיות פחות מ־%{count}
-      less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-      new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-      not_a_number: הוא לא מספר
-      not_an_integer: חייב להיות מספר שלם
-      odd: חייב להיות אי־זוגי
-      only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-      record_invalid: 'אימות נכשל: %{errors}'
-      requires_privilege_speech: |
-        צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-      requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-      taken: כבר תפוס
-      too_long:
-        one: ארוך מדי (מקסימום תו אחד)
-        two: ארוך מדי (מקסימום %{count} תווים)
-        many: ארוך מדי (מקסימום %{count} תווים)
-        other: ארוך מדי (מקסימום %{count} תווים)
-      too_short:
-        one: קצר מדי (מינימום תו אחד)
-        two: קצר מדי (מינימום %{count} תווים)
-        many: קצר מדי (מינימום %{count} תווים)
-        other: קצר מדי (מינימום %{count} תווים)
-      wrong_length:
-        one: באורך לא נכון (צריך להיות תו אחד)
-        two: באורך לא נכון (צריך להיות %{count} תווים)
-        many: באורך לא נכון (צריך להיות %{count} תווים)
-        other: באורך לא נכון (צריך להיות %{count} תווים)
-    template:
-      body: 'היו בעיות עם השדות הבאים:'
-      header:
-        one: "טעות אחת מנעה את שמירת %{model} זה"
-        two: '%{count} טעויות מנעו את שמירת %{model} זה'
-        many: '%{count} טעויות מנעו את שמירת %{model} זה'
-        other: '%{count} טעויות מנעו את שמירת %{model} זה'
   helpers:
     defaults:
       title: "זוהי כותרת"
@@ -7528,55 +7477,6 @@ he:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: אחה"צ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: חייב להתקבל
-        blank: לא ניתן להשאיר ריק
-        confirmation: לא תואם לססמה
-        empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
-        even: חייב להיות זוגי
-        exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-        inclusion: לא ברשימה
-        invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-        new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-        not_a_number: אינו מספר
-        not_an_integer: חייב להיות מספר שלם
-        odd: חייב להיות אי־זוגי
-        only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-        record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זהצריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-        requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-        taken: כבר תפוס
-        too_long:
-          one: ארוך מדי (המקסימום הוא תו אחד)
-          two: ארוך מדי (מקסימום %{count} תווים)
-          many: ארוך מדי (המקסימום הוא %{count} תוים)
-          other: ארוך מדי (המקסימום הוא %{count} תוים)
-        too_short:
-          one: קצר מדי (לפחוחת תו אחד)
-          two: קצר מדי (%{count} תווים לפחות)
-          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-        wrong_length:
-          one: באורך לא נכון (צריך להיות תו %{count})
-          two: באורך לא נכון (צרים להיות %{count} תווים)
-          many: באורך לא נכון (צרים להיות %{count} תווים)
-          other: באורך לא נכון (צרים להיות %{count} תווים)
-      template:
-        body: 'היו בעיות עם השדות הבאים:'
-        header:
-          one: טעות אחת ב%{model} זה מנעה את שמירתו
-          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7792,22 +7692,18 @@ he:
         blank: לא ניתן להשאיר ריק
         confirmation: לא תואם לססמה
         empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
         even: חייב להיות זוגי
         exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
         inclusion: לא ברשימה
         invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
         new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: הוא לא מספר
         not_an_integer: חייב להיות מספר שלם וחיובי
         odd: חייב להיות אי־זוגי
         only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
         record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+        requires_privilege_speech: |
+          צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
         requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
         taken: כבר תפוס
         too_long:
@@ -7828,7 +7724,7 @@ he:
       template:
         body: 'אירעו בעיות עם השדות הבאים:'
         header:
-          one: טעות אחת מנעה את שמירת %{model} זה
+          one: "טעות אחת מנעה את שמירת %{model} זה"
           two: '%{count} טעויות מנעו את שמירת %{model} זה'
           many: '%{count} טעויות מנעו את שמירת %{model} זה'
           other: '%{count} טעויות מנעו את שמירת %{model} זה'
