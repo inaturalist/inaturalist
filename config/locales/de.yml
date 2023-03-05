@@ -7222,6 +7222,15 @@ de:
       index:
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
+        observations_to_date:
+          one: "Beobachtung bisher"
+          other: "Beobachtungen bisher"
+        species_observed:
+          one: "Art beobachtet"
+          other: "Arten beobachtet"
+        people_signed_up:
+          one: "Person angemeldet"
+          other: "Personen angemeldet"
         how_it_works: Wie es funktioniert
         record_your_observations: Beobachtungen machen
         share_with_fellow_naturalists: Mit anderen Naturfreunden teilen
@@ -7639,10 +7648,25 @@ de:
         blank: darf nicht leer sein
         confirmation: stimmt nicht mit dem Passwort überein
         empty: darf nicht leer sein
+        equal_to:
+          one: muss gleich %{count} sein
+          other: muss gleich %{count} sein
         even: muss gerade sein
         exclusion: ist reserviert
+        greater_than:
+          one: muss größer als %{count} sein
+          other: muss größer als %{count} sein
+        greater_than_or_equal_to:
+          one: muss größer als oder gleich %{count} sein
+          other: muss größer als oder gleich %{count} sein
         inclusion: ist nicht in der Liste enthalten
         invalid: ist ungültig
+        less_than:
+          one: muss kleiner als %{count} sein
+          other: muss kleiner als %{count} sein
+        less_than_or_equal_to:
+          one: muss kleiner als oder gleich %{count} sein
+          other: muss kleiner als oder gleich %{count} sein
         new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
