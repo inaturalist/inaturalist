@@ -7758,6 +7758,15 @@ da:
       index:
         connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
+        observations_to_date:
+          one: "Observation til dato"
+          other: "Observationer til dato"
+        species_observed:
+          one: "Art observeret"
+          other: "Arter observeret"
+        people_signed_up:
+          one: "Person har tilmeldt sig"
+          other: "Personer har tilmeldt sig"
         how_it_works: Hvordan det fungerer
         record_your_observations: Registrér dine observationer
         share_with_fellow_naturalists: Del med ligesindede naturelskere
@@ -8207,10 +8216,25 @@ da:
         blank: må ikke være tom
         confirmation: matchede ikke adgangskoden
         empty: må ikke være tom
+        equal_to:
+          one: skal være lig med %{count}
+          other: skal være lig med %{count}
         even: skal være lige
         exclusion: er reserveret
+        greater_than:
+          one: skal være større end %{count}
+          other: skal være større end %{count}
+        greater_than_or_equal_to:
+          one: skal være større end eller lig med %{count}
+          other: skal være større end eller lig med %{count}
         inclusion: er ikke inkluderet på listen
         invalid: er ugyldig
+        less_than:
+          one: skal være mindre end %{count}
+          other: skal være mindre end %{count}
+        less_than_or_equal_to:
+          one: skal være mindre end eller lig med %{count}
+          other: skal være mindre end eller lig med %{count}
         new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et helt tal
