@@ -1629,7 +1629,7 @@ es-MX:
   #Button label for drawing a rectangular boundary for an observation search
   draw_rectangular_boundary: Dibuja límite rectangular
   drawings: Dibujos
-  duplicate_verb: Duplicado
+  duplicate_verb: Duplicar
   duration_value: "Duración: %{duration} minutos"
   each_place_displays_all_species_inat_knows: "Cada página de Lugares muestra todas las especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia, estado de conservación y quién observó esa especie por primera vez en ese lugar en %{site_name}. Puedes filtrar la especie por grupo taxonómico, color, estado de conservación o por búsqueda sencilla."
   earliest_added: Primeras adiciones
@@ -6768,7 +6768,7 @@ es-MX:
         display_project_name: Exhibe nombre del proyecto
         do_you_need_features_from_traditional: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
-        duplicate_project: Proyecto duplicado
+        duplicate_project: Duplicar Proyecto
         include_annotated_observations: |
           Incluye solo observaciones marcadas con un atributo particular (p.e, etapa de vida),
           o un atributo y valor en determinado (p.e. etapa de vida = adulto).
@@ -7397,6 +7397,15 @@ es-MX:
       index:
         connect_with_nature: Conectate con la naturaleza
         explore_and_share: Explora y comparte tus observaciones del mundo natural.
+        observations_to_date:
+          one: "Observación hasta la fecha"
+          other: "Observaciones hasta la fecha"
+        species_observed:
+          one: "Especie observada"
+          other: "Especies observadas"
+        people_signed_up:
+          one: "Persona registrada"
+          other: "Personas registradas"
         how_it_works: Cómo funciona
         record_your_observations: Registra tus observaciones
         share_with_fellow_naturalists: Comparte con otros naturalistas
@@ -7845,10 +7854,25 @@ es-MX:
         blank: No puede quedarse vacío
         confirmation: No coincide con la confirmación
         empty: No puede quedarse vacío
+        equal_to:
+          one: debe ser igual a %{count}
+          other: deben ser iguales a %{count}
         even: Debe ser número impar
         exclusion: Está reservado
+        greater_than:
+          one: debe ser mayor que %{count}
+          other: deben ser mayores que %{count}
+        greater_than_or_equal_to:
+          one: debe ser mayor o igual a %{count}
+          other: deben ser mayores o iguales a %{count}
         inclusion: No está incluido en la lista
         invalid: Es inválido
+        less_than:
+          one: debe ser menor que %{count}
+          other: deben ser menores que %{count}
+        less_than_or_equal_to:
+          one: debe ser menor o igual a %{count}
+          other: deben ser menores o iguales a %{count}
         new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
         not_a_number: No es un número
         not_an_integer: Debe ser un número entero
