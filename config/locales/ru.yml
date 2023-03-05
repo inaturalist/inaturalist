@@ -1,30 +1,9 @@
 ru:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} Изменение"
-    few: "%{count} Изменения"
-    many: "%{count} Изменений"
-    other: "%{count} изменений"
-  x_comments:
-    one: '%{count} комментарий'
-    few: '%{count} комментария'
-    many: '%{count} комментариев'
-    other: '%{count} Комментариев'
   x_comments_html:
-    one: '<span class="count">%{count}</span>комментарий'
-    few: '<span class="count">%{count}</span>комментария'
-    many: '<span class="count">%{count}</span>комментариев'
-    other: '<span class="count">%{count}</span>комментариев'
-  x_faves:
-    one: '%{count} фаворит'
-    few: '%{count} фаворита'
-    many: '%{count} фаворитов'
-    other: '%{count} фаворита'
-  x_flags_resolved_html:
-    one: "<span class='count'>%{count}</span> флаг разрешен"
-    few: "<span class='count'>%{count}</span> флага разрешено"
-    many: "<span class='count'>%{count}</span> флагов разрешены"
-    other: "<span class='count'>%{count}</span> флагов разрешены"
+    one: '<span class="count">%{count}</span> комментарий'
+    few: '<span class="count">%{count}</span> комментария'
+    many: '<span class="count">%{count}</span> комментариев'
+    other: '<span class="count">%{count}</span> комментариев'
   x_identifications:
     one: '%{count} идентификация'
     few: '%{count} идентификации'
@@ -173,46 +152,11 @@ ru:
     few: "%{count} предложения, отфильтрованных по:"
     many: "%{count} предложений, отфильтрованных по:"
     other: "%{count} предложений, отфильтрованных по:"
-  x_taxa:
-    one: "%{count} таксон"
-    few: "%{count} таксона"
-    many: "%{count} таксонов"
-    other: "%{count} таксонов"
-  x_taxa_observed_html:
-    one: "<span class='count'>%{count}</span> наблюдаемый таксон"
-    few: "<span class='count'>%{count}</span> наблюдаемых таксона"
-    many: "<span class='count'>%{count}</span> наблюдаемых таксонов"
-    other: "<span class='count'>%{count}</span> наблюдаемых таксонов"
-  x_research_grade_observations_html:
-    one: "<span class='count'>%{count}</span> наблюдение исследовательского уровня"
-    few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня"
-    many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня"
-    other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня"
-  x_research_grade_observations_to_species_html:
-    one: "<span class='count'>%{count}</span> наблюдение исследовательского уровня, идентифицированное до вида или ниже"
-    few: "<span class='count'>%{count}</span> наблюдения исследовательского уровня, идентифицированных до вида или ниже"
-    many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
-    other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} Звук"
-    few: "%{count} Звука"
-    many: "%{count} Звуков"
-    other: "%{count} Звуков"
-  x_taxa_curated_html:
-    one: "<span class='count'>%{count}</span> курируемый таксон"
-    few: "<span class='count'>%{count}</span> курируемых таксона"
-    many: "<span class='count'>%{count}</span> курируемых таксонов"
-    other: "<span class='count'>%{count}</span> курируемых таксонов"
-  x_taxa_matching_current_filters:
-    one: "%{count} таксон, удовлетворяющий текущим фильтрам"
-    few: "%{count} таксона, удовлетворяющих текущим фильтрам"
-    many: "%{count} таксонов, удовлетворяющих текущим фильтрам"
-    other: "%{count} таксонов, удовлетворяющих текущим фильтрам"
-  x_taxon_changes_added_html:
-    one: "<span class='count'>%{count}</span> добавленный таксон"
-    few: "<span class='count'>%{count}</span> добавленных таксона"
-    many: "<span class='count'>%{count}</span> добавленных таксонов"
-    other: "<span class='count'>%{count}</span> добавленных таксонов"
+    one: "%{count} звук"
+    few: "%{count} звука"
+    many: "%{count} звуков"
+    other: "%{count} звуков"
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: "% идентифицированных"
   a_community_for_naturalist: Сообщество натуралистов
