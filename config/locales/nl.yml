@@ -7467,6 +7467,12 @@ nl:
       index:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
+        observations_to_date:
+          one: "Waarneming tot"
+          other: "Waarnemingen tot"
+        species_observed:
+          one: "Waargenomen soort"
+          other: "Waargenomen soorten"
         how_it_works: Hoe het werkt
         record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
@@ -7916,10 +7922,25 @@ nl:
         blank: mag niet leeg blijven
         confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
+        equal_to:
+          one: moet gelijk zijn aan %{count}
+          other: moeten gelijk zijn aan %{count}
         even: moet even zijn
         exclusion: is voorbehouden
+        greater_than:
+          one: moet groter zijn dan %{count}
+          other: moet groter zijn dan %{count}
+        greater_than_or_equal_to:
+          one: moet groter dan of gelijk zijn aan %{count}
+          other: moet groter dan of gelijk zijn aan %{count}
         inclusion: is niet opgenomen in de lijst
         invalid: is ongeldig
+        less_than:
+          one: moet kleiner zijn dan %{count}
+          other: moet kleiner zijn dan %{count}
+        less_than_or_equal_to:
+          one: moet kleiner dan of gelijk zijn aan %{count}
+          other: moet kleiner dan of gelijk zijn aan %{count}
         new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
