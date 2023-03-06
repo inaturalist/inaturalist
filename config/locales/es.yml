@@ -5278,6 +5278,7 @@ es:
   user_commented: "%{user} comentó"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
+  user_faved_an_observation_by_you: "%{user} marcó como favorita una observación tuya"
   user_faved_this_observation: "%{user} añadió esta observación a sus favoritos"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
@@ -7745,6 +7746,12 @@ es:
         exclusion: está reservado
         inclusion: no está incluido en la lista
         invalid: no es válido
+        less_than:
+          one: debe ser menor que %{count}
+          other: debe ser menor que (%{count})
+        less_than_or_equal_to:
+          one: debe ser menor que o igual a %{count}
+          other: debe ser menor que o igual a (%{count})
         new_project_owner_must_be_a_manager: El nuevo propietario del proyecto debe ser un administrador
         not_a_number: no es un número
         not_an_integer: debe ser un número entero
