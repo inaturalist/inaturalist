@@ -2409,6 +2409,7 @@ pt-BR:
     italian: Italiano
     japanese: Japonês
     kannada: canarês
+    kazakh: Cazaque
     korean: Coreano
     latvian: Letão
     lithuanian: Lituano
@@ -2544,6 +2545,7 @@ pt-BR:
     id: Indonesio
     it: Italiano
     ja: Japonês
+    kk: Cazaque
     kn: Canarês
     ko: Coreano
     lb: Luxemburguês
@@ -4722,6 +4724,10 @@ pt-BR:
   stats: Estatísticas
   stats_for_this_year_have_not_been_generated: As estatísticas para este ano não foram geradas.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estado aplicado a partir de um taxon de nível superior:</strong> %{taxon}
   status_globally: '"%{status}" Globalmente'
   status_in_place: '"%{status}" em %{place}'
   stay_and_try_again: Fique e tente novamente
@@ -5398,6 +5404,7 @@ pt-BR:
   user_commented: "%{user} comentado"
   user_disagrees_this_is_taxon: "%{user} discorda que seja um(a) %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discorda de identificações anteriores mais precisas"
+  user_faved_an_observation_by_you: "%{user} favoritou uma observação sua"
   user_faved_this_observation: "%{user} favoritou esta observação"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como não difusor de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como difusor de spam"
@@ -6623,6 +6630,11 @@ pt-BR:
         view_original_html: |
           Você pode visualizar o original em <a href="%{url}">%{url}</a>. Por favor deixe alertas de infração de direitos autorais como não resolvido se esta foto estar de fato infringindo direitos.
     places:
+      kml_field_desc2: |
+        KML dos limites do local. Você pode fazer um usando Google Maps, Google
+        Earth ou a maioria dos aplicativos de SIG. Deve ter pelo menos um polígono, ser
+        menos de 1 MB (5 MB para curadores do site), e ter uma área menor do que o
+        estado de Texas nos EUA.
       edit:
         complex_boundary_note_html: |
           Estes limites de fronteira são um pouco complexos para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download do KML</a>, e editar elas no aplicativo GIS que você escolher, depois fazer o upload do seu KML editado diretamente.
@@ -7530,6 +7542,15 @@ pt-BR:
       index:
         connect_with_nature: Conecte-se com a Natureza
         explore_and_share: Explore sem limites e compartilhar suas observações do mundo natural.
+        observations_to_date:
+          one: "Observação até agora"
+          other: "Observações até agora"
+        species_observed:
+          one: "Espécie observada"
+          other: "Espécies observadas"
+        people_signed_up:
+          one: "Pessoa cadastrada"
+          other: "Pessoas cadastradas"
         how_it_works: Como funciona
         record_your_observations: Registre suas observações
         share_with_fellow_naturalists: Compartilhe com outros naturalistas
@@ -7977,10 +7998,25 @@ pt-BR:
         blank: não pode deixar em branco
         confirmation: não correspondeu a senha
         empty: não pode estar vazio
+        equal_to:
+          one: deve ser igual a %{count}
+          other: devem ser iguais a %{count}
         even: deve ser par
         exclusion: está reservado
+        greater_than:
+          one: deve ser maior que %{count}
+          other: devem ser maiores que %{count}
+        greater_than_or_equal_to:
+          one: deve ser maior ou igual a %{count}
+          other: devem ser maiores ou iguais a %{count}
         inclusion: não está inclusa na lista
         invalid: é inválido
+        less_than:
+          one: deve ser menor que %{count}
+          other: deve ser menores que %{count}
+        less_than_or_equal_to:
+          one: deve ser menor ou igual a %{count}
+          other: devem ser menores ou iguais a %{count}
         new_project_owner_must_be_a_manager: Novo proprietário do projeto precisa ser um administrador
         not_a_number: não é um número
         not_an_integer: deve ser um número inteiro
