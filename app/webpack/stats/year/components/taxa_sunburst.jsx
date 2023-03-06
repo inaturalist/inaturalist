@@ -241,11 +241,12 @@ class TaxaSunburst extends React.Component {
   }
 
   render( ) {
+    const { data } = this.props;
     return (
       <div className="TaxaSunburst">
         <h3>
           <a name="species-observed" href="#species-observed">
-            <span>{ I18n.t( "views.welcome.index.species_observed" ) }</span>
+            <span>{ I18n.t( "views.welcome.index.species_observed", { count: ( data && data.length ) || 0 } ) }</span>
           </a>
         </h3>
         <p
