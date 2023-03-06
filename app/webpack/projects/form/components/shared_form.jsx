@@ -121,7 +121,7 @@ class SharedForm extends React.Component {
                   }
                   _.each( acceptedFiles, file => {
                     try {
-                      file.preview ||= window.URL.createObjectURL( file );
+                      file.preview = file.preview || window.URL.createObjectURL( file );
                     } catch ( err ) {
                       // eslint-disable-next-line no-console
                       console.error( "Failed to generate preview for file", file, err );
@@ -191,7 +191,7 @@ class SharedForm extends React.Component {
                   }
                   _.each( acceptedFiles, file => {
                     try {
-                      file.preview ||= window.URL.createObjectURL( file );
+                      file.preview = file.preview || window.URL.createObjectURL( file );
                     } catch ( err ) {
                       // eslint-disable-next-line no-console
                       console.error( "Failed to generate preview for file", file, err );
