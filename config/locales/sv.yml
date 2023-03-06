@@ -811,6 +811,8 @@ sv:
   birds: fåglar
   birthday: Födelsedag
   black: svart
+  block: Blockera
+  blocking_description: Blockering förhindrar kommunikation mellan dig och en annan användare. Det är till för situationer där en annan användare kan äventyra din säkerhet, som stalking eller andra kränkande beteenden.
   block_removed: Blockering togs bort
   blocked_users: Blockerade användare
   blog_widget: Blogg-widget
@@ -4724,6 +4726,10 @@ sv:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte genererats.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status tagen från ett överliggande taxon:</strong> %{taxon}
   status_globally: '%{status} Globalt'
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
@@ -7436,6 +7442,15 @@ sv:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina fynd från naturen.
+        observations_to_date:
+          one: "Fynd hittills"
+          other: "Fynd hittills"
+        species_observed:
+          one: "Observerad art"
+          other: "Observerade arter"
+        people_signed_up:
+          one: "Registrerad användare"
+          other: "Registrerade användare"
         how_it_works: Hur det fungerar
         record_your_observations: Spara dina fynd
         share_with_fellow_naturalists: Dela med andra naturforskare
@@ -7882,10 +7897,25 @@ sv:
         blank: kan inte vara tom
         confirmation: stämde inte överens med lösenordet
         empty: kan inte vara tom
+        equal_to:
+          one: måste vara lika med %{count}
+          other: måste vara lika med %{count}
         even: måste vara jämn
         exclusion: är reserverad
+        greater_than:
+          one: måste vara fler än %{count}
+          other: måste vara fler än %{count}
+        greater_than_or_equal_to:
+          one: måste vara fler än eller lika med %{count}
+          other: måste vara fler än eller lika med %{count}
         inclusion: ingår inte i listan
         invalid: är ogiltig
+        less_than:
+          one: måste vara färre än %{count}
+          other: måste vara färre än %{count}
+        less_than_or_equal_to:
+          one: måste vara färre än eller lika med %{count}
+          other: måste vara färre än eller lika med %{count}
         new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
