@@ -3921,6 +3921,10 @@ et:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Selle aasta statistikat pole veel loodud.
   status: Staatus
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Staatus pärineb kõrgema tasandi taksonilt:</strong> %{taxon}
   stay_and_try_again: Proovi uuesti
   still_no_luck?: Pole õnne?
   still_needs_id?: Kogukond saab määratlust kinnitada/parandada?
