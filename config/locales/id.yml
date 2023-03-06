@@ -7072,6 +7072,12 @@ id:
       index:
         connect_with_nature: Terhubung dengan Alam
         explore_and_share: Jelajahi dan bagikan pengamatan Anda dari alam.
+        observations_to_date:
+          other: "Pengamatan Hingga Saat Ini"
+        species_observed:
+          other: "Spesies Yang Diamati"
+        people_signed_up:
+          other: "Orang Yang Mendaftar"
         how_it_works: Cara Kerja
         record_your_observations: Rekam pengamatan Anda
         share_with_fellow_naturalists: Berbagi dengan sesama naturalis
@@ -7501,10 +7507,20 @@ id:
         blank: tidak boleh kosong
         confirmation: tidak sesuai dengan kata sandi
         empty: tidak boleh kosong
+        equal_to:
+          other: harus sama dengan %{count}
         even: harus genap
         exclusion: telah dipesan
+        greater_than:
+          other: harus lebih besar dari %{count}
+        greater_than_or_equal_to:
+          other: harus lebih besar atau sama dengan %{count}
         inclusion: tidak termasuk di dalam daftar
         invalid: tidak valid
+        less_than:
+          other: harus kurang dari %{count}
+        less_than_or_equal_to:
+          other: harus kurang dari atau sama dengan %{count}
         new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
         not_a_number: bukan angka
         not_an_integer: harus bilangan bulat
