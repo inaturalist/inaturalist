@@ -688,6 +688,8 @@ lb:
       may: Mee
       june: Juni
       july: Juli
+      august: August
+      september: September
       october: Oktober
       november: November
       december: Dezember
@@ -1124,6 +1126,7 @@ lb:
   linked_flickr: "Äre(n) %{site_name}-Berotzerkont ass elo mat Ärem Benotzerkont verbonn."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: verlinkten Text
+  linkedin: LinkedIn
   list: Lëscht
   list_deleted: Lëscht geläscht.
   list_saved: Lëscht gespäichert.
@@ -1158,10 +1161,13 @@ lb:
     fi: Finnesch
     fr: Franséisch
     gl: Galizesch
+    he: Hebräesch
+    hr: Kroatesch
     hu: Ungaresch
     id: Indonesesch
     it: italienesch
     ja: Japanesch
+    kk: Kasachesch
     kn: Kannada
     ko: Koreanesch
     lb: Lëtzebuergesch
@@ -1171,13 +1177,16 @@ lb:
     mr: Marathi
     nl: Hollännesch
     pl: Polnesch
+    pt: Portugisesch
     pt-BR: Portugisesch (Brasilien)
     ru: Russesch
     sk: Slokwakesch
     sl: Slowenesch
     sq: Albanesch
+    sr: Serbesch
     sv: Schwedesch
     th: Thailännesch
+    tr: Tierkesch
     uk: Ukrainesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
@@ -1633,9 +1642,12 @@ lb:
   places: Plazen
   places_added_by_members_of_the_community: Plaz gouf vun engem Member vun der Communautéit bäigefüügt
   places_name:
+    afghanistan: Afghanistan
     africa: Afrika
     albania: Albanien
     algeria: Algerien
+    andorra: Andorra
+    angola: Angola
     antarctica: Antarktis
     antigua_and_barbuda: Antigua a Barbuda
     argentina: Argentinien
@@ -1643,26 +1655,46 @@ lb:
     asia: Asien
     australia: Australien
     austria: Éisträich
+    azerbaijan: Aserbaidjan
+    bangladesh: Bangladesch
     belarus: Wäissrussland
     belgium: Belsch
+    benin: Benin
+    bhutan: Bhutan
     bolivia: Bolivien
+    botswana: Botswana
     brazil: Brasilien
+    brunei: Brunei
     bulgaria: Bulgarien
+    burkina_faso: Burkina Faso
+    burundi: Burundi
     cambodia: Kambodscha
     cameroon: Kamerun
     canada: Kanada
+    cape_verde: Cap Vert
     central_african_republic: Zentralafrikanesch Republik
     central_america: Zentralamerika
     chad: Tschad
+    chile: Chile
+    china: China
     colombia: Kolumbien
     comoros: Komoren
+    costa_rica: Costa Rica
+    cote_d_ivoire: Côte d'Ivoire
     croatia: Kroatien
     cuba: Kuba
     cyprus: Zypern
+    czech_republic: Tschechesch Republik
+    democratic_republic_of_the_congo: Demokratesch Republik Kongo
     denmark: Dänemark
+    djibouti: Dschibuti
+    dominica: Dominica
     dominican_republic: Dominikanesch Republik
     east_timor: Ost-Timor
+    ecuador: Ecuador
     egypt: Egypten
+    el_salvador: El Salvador
+    eritrea: Eritrea
     estonia: Estland
     europe: Europa
     fiji: Fidschi
@@ -1688,34 +1720,68 @@ lb:
     jamaica: Jamaika
     jordan: Jordanien
     kenya: Kenia
+    kyrgyzstan: Kirgisistan
     laos: Laos
     latvia: Lettland
     lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libyen
+    liechtenstein: Liechtenstein
     lithuania: Litauen
     luxembourg: Lëtzebuerg
     macedonia: Mazedonien
     madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
     maldives: Maldiven
     mali: Mali
+    malta: Malta
+    marshall_islands: Marshallinselen
     mauritania: Mauretanien
+    mauritius: Mauritius
     mexico: Mexiko
     micronesia: Mikronesien
     moldova: Moldawien
+    monaco: Monaco
+    mongolia: Mongolei
+    montenegro: Montenegro
+    morocco: Marokko
+    mozambique: Mosambik
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Holland
     new_caledonia: Nei-Kaledonien
     new_zealand: Neiséiland
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
     niue: Niue
     north_africa: Nordafrika
     north_america: Nordamerika
+    north_korea: Nordkorea
     norway: Norwegen
     oman: Oman
+    pakistan: Pakistan
+    palau: Palau
     palestine: Palestina
+    panama: Panama
+    papua_new_guinea: Papua-Neuguinea
+    paraguay: Paraguay
     peru: Peru
     philippines: Philippinnen
     poland: Polen
+    portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Katar
     republic_of_congo: Republik Kongo
     romania: Rumänien
     russia: Russland
+    rwanda: Ruanda
+    samoa: Samoa
+    san_marino: San Marino
     saudi_arabia: Saudi Arabien
     serbia: Serbien
     seychelles: Seychellen
@@ -1782,6 +1848,9 @@ lb:
   quality_grade: Qualitéitsgrad
   quality_grade_: Qualitéitsgrad
   query: Ufro
+  radius: Radius (m)
+  radius_km: Radius (km)
+  radius_value: "Radius (m): %{radius}"
   random: Zoufall
   range: Beräich
   rank: Rang
