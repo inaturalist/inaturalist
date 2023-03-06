@@ -795,6 +795,8 @@ da:
   birds: fugle
   birthday: Fødselsdag
   black: sort
+  block: Blokering
+  blocking_description: Blokering forhindrer enhver kommunikation med en anden bruger i situationer, hvor vedkommende kan kompromittere din sikkerhed, såsom stalking eller anden krænkende adfærd.
   block_removed: Blokering fjernet
   blocked_users: Blokerede brugere
   blog_widget: Blog-widget
@@ -4717,6 +4719,10 @@ da:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status anvendt fra en højere niveau takson:</strong> %{taxon}
   status_globally: '"%{status}" Global'
   status_in_place: '"%{status}" i %{place}'
   stay_and_try_again: Bliv og prøv igen
