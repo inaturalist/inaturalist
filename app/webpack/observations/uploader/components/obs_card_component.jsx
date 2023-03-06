@@ -228,6 +228,7 @@ class ObsCardComponent extends Component {
           className={className}
           data-id={obsCard.id}
           disableClick
+          disablePreview
           onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
             // trying to protect against treating images dragged from the
             // same page from being treated as new files. Images dragged from
@@ -239,6 +240,18 @@ class ObsCardComponent extends Component {
               && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
               return;
             }
+            // there is a bug in Dropzone where it attempts to assign the file preview before
+            // this onDrop callback, and if the dragged item isn't previewable an error will
+            // be raised. Use `disablePreview` and assign the preview ourselves after
+            // validating the type of dropped item
+            _.each( acceptedFiles, file => {
+              try {
+                file.preview = file.preview || window.URL.createObjectURL( file );
+              } catch ( err ) {
+                // eslint-disable-next-line no-console
+                console.error( "Failed to generate preview for file", file, err );
+              }
+            } );
             onCardDrop( acceptedFiles, obsCard );
           }}
           onDragEnter={this.onDragEnter}
