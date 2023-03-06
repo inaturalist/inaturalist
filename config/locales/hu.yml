@@ -227,6 +227,7 @@ hu:
   add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     A név módosításához végezz el <a target="_blank" href="%{url}">taxoncserét</a>
+  add_an_assessment: Értékelés hozzáadása
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
   add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
@@ -234,6 +235,7 @@ hu:
   add_annotations_for_x: '%{x} megjelölés hozzáadása'
   add_annotations_for_controlled_attribute:
     sex: '"Nem" megjelölés hozzáadása'
+    plant_phenology: Jegyzet hozzáadása a "Fenológiai fázishoz"
     life_stage: '"Életszakasz" megjelölés hozzáadása'
     evidence_of_presence: '"Megjelenési bizonyíték" megjelölés hozzáadása'
   add_another_flag: Még egy bejelentés
@@ -246,6 +248,7 @@ hu:
   add_bold_text: Félkövér szöveg hozzáadása
   add_comment: Megjegyzés hozzáadása
   add_conservation_status: Természetvédelmi státusz hozzáadása
+  add_edit_flags: Jelölések szerkesztése
   add_editor: Szerkesztő hozzáadása
   add_description: "%{description_name} hozzáadása"
   add_from_your_observations: Hozzáadás a megfigyeléseidből
@@ -258,8 +261,10 @@ hu:
   add_new_lexicon: Új szókészlet hozzáadása
   add_new_place: Új hely hozzáadása
   add_new_rule: Új szabály hozzáadása
+  add_new_source: "Új forrás hozzáadása"
   add_new_taxon_name: Új taxonnév hozzáadása
   add_notes_about_this_taxon: Hozz létre megjegyzést e taxonról ezen a helyen, pl. hol és mikor található.
+  add_obs_from_a_link: "Megf. hozzáadása listából: %{link}"
   add_obs_from_a_list: Megfigy. hozzáadás listából
   add_observations: Megfigyelés hozzáadása
   add_observations_by_checking_off: Megfigyelés hozzáadása egy fajlista alapján
@@ -276,6 +281,11 @@ hu:
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
   add_alive_or_dead_cannot_be_determined_annotation: '"Élő vagy élettelen: Nem meghatározható" megjelölés hozzáadása'
   add_alive_or_dead_dead_annotation: '"Élő vagy élettelen: Élettelen" megjelölés hozzáadása'
+  add_plant_phenology_budding_annotation: '"Rügyező fenológiai fázis" hozzáadása'
+  add_plant_phenology_flower_budding_annotation: '"Bimbózó fenológiai fázis" hozzáadása'
+  add_plant_phenology_flowering_annotation: '"Virágzó fenológiai fázis" hozzáadása'
+  add_plant_phenology_fruiting_annotation: '"Termő fenológiai fázis" hozzáadása'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '"Virágzás bizonyítéka hiányzik fenológiai fázis" hozzáadása'
   add_life_stage_adult_annotation: '"Életszakasz: Felnőtt" megjelölés hozzáadása'
   add_life_stage_teneral_annotation: '"Életszakasz: Frissen kikelt" megjelölés hozzáadása'
   add_life_stage_subimago_annotation: '"Életszakasz: Szubimágó" megjelölés hozzáadása'
@@ -304,6 +314,7 @@ hu:
   add_tags: Címkék hozzáadása
   add_tags_to_selected_taxa: Címkék hozzáadása a kiválasztott taxonokhoz
   add_taxa: Taxonok hozzáadása
+  add_taxon_batch_to: "Taxonköteg hozzáadása ide %{list}"
   add_taxon_range: Taxonintervallum hozzáadás
   add_to_a_project: Hozzáadás projekthez
   add_to_calendar: Hozzáadás a Naptárhoz
@@ -328,6 +339,8 @@ hu:
   admin_s: Admin(ok)
   admin_only: Csak adminok
   admin_tools: Admin eszközök
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Kapcsolódó szervezetek
   agree_: Egyetért
   agree?: Egyetértek
   agree_with_current_taxon: Egyetért a jelenlegi taxonnal
@@ -401,8 +414,11 @@ hu:
       one: "%{count} egyéb állat"
       other: "%{count} egyéb állat"
   all_taxa_: Minden taxon
+  all_taxa_in_this_guide: Minden taxon ebből az útmutatóból
+  all_taxonomic_groups: "&laquo; Minden rendszertani csoport"
   all_updates: Minden frissítés
   allow_curator_access: Gondnoki hozzáférés engedélyezése
+  allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt gondozóinak, hogy láthassák rejtett koordinátáidat
   allowed_html: Engedélyezett HTML
   allowed_occurrence_status_values: Az előfordulási státusz megengedett értékei
   allowed_values: Megengedett értékek
@@ -458,6 +474,7 @@ hu:
   app_owner_application_about_p1a_html: |
     Az iNaturalist alkalmazások megengedik a hitelesített iNaturalist API használatát. Ez megengedi az API funkciók használatát mint például egy megfigyelés létrehozása vagy egy azonosítást. Általában asztali alkalmazások vagy mobil alkalmazások használják ezt amelyek megengedik a felhasználóinak hogy iNaturalist megfigyeléseket hozzanak létre. Az ilyen tartalmakhoz személyes beavatkozás vagy jóváhagyás szükséges. Kérünk olvasd el a <a href="/pages/community+guidelines"
     target="_blank">Közösségi irányelveket</a> melyben tiltottak a gép által generált megfigyelések, azonosítások és hozzászólások.
+  app_owner_application_success: Alkalmazás-tulajdonos jelentkezés beküldve
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Alkalmazás
@@ -468,6 +485,7 @@ hu:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Alkalmaz
+  apply_to_be_an_app_owner: Jelentkezz alkalmazás-tulajdonosnak
   apply_to_create_applications_title: Alkalmazd alkalmazás létrehozásához
   apply_to_selected: Alkalmazás a kijelöltekre
   apply_captive_cultivated: "Fogságban lévő / kultivált alkalmazás"
@@ -756,11 +774,13 @@ hu:
   choose_files: Válassz fájlokat
   choose_photos_for_this_taxon: Válassz fotókat ehhez a taxonhoz
   choose_photos_to_tag_from_photostream: Címkézéshez válassz fotókat
+  choose_rule: Válassz egy szabályt
   choose_tags: Címke választása
   choose_taxon: Taxon választása
   citation: Idézet
   classification: Osztályozás
   clear: eltávolítás
+  clear_filters: Szűrők törlése
   clear_search: Keresés törlése
   close: Bezárás
   code: Kód
@@ -829,6 +849,8 @@ hu:
   confirm: Megerősítés
   confirm_membership: Tagság megerősítése
   confirm_new_password: Új jelszó megerősítése
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: 'Megerősítve ekkor: %{date}'
   confirming_ids: Egyetértő meghatározások
   confirming_ids_description: Ha ezt kikapcsolod, nem fogsz értesítéseket kapni azokról a meghatározásokról, amelyek megegyeznek a tiéddel.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -959,8 +981,10 @@ hu:
   couldnt_change_your_password: "A jelszócsre sikertelen: %{e}"
   couldnt_find_that_taxon: Nem találtuk azt a taxont.
   create: Létrehozás
+  create_a_guide: Útmutató létrehozása
   create_a_new_field: Új mező létrehozása
   create_a_new_place: Új hely létrehozása
+  create_a_new_taxon: Új taxon létrehozása
   create_a_query: Lekérdezés létrehozása
   create_an_account: Fiók létrehozása
   create_an_atlas: Térkép készítése
@@ -1001,6 +1025,8 @@ hu:
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hogyan veszíti el egy kurátor a hatáskörét
+  #Message shown when a curator application has been succesfully submitted
+  curator_application_success: Gondozói jelentkezés beküldve
   #Header
   curator_application_what_curators_can_do: Mit tehetnek a gondnokok
   curator_application_what_curators_can_do_hide_comments_html: |
@@ -1020,9 +1046,15 @@ hu:
     Más emberek saját üzeneteinek az olvasása.
   #Title of a page where people apply to become a curator
   curator_application_title: Kurátori jelentkezés
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Csak akkor jelentkezhetsz gondozónak, ha:
+  curators_changed_for_x_html: "%{x} gondozói megváltoztak"
   curators: Gondnokok
+  current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
+  custom_project_fields: Saját projektmezők
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
   customize_location: Hely testreszabása
@@ -1105,6 +1137,7 @@ hu:
   default_sound_license: Alapértelmezett hanglicenc
   default_time_zone_desc: |
     Ez az alapértelmezett időzóna. A végső időzónát a megfigyelés helyétől függően állítjuk be mentésnél.
+  defaults_to_your_name_or_username: Alapértelmezetten a neved vagy a felhasználóneved
   definitions: Meghatározások
   delete: Törlés
   delete_all: Összes törlése
@@ -1130,6 +1163,7 @@ hu:
   describe_purpose: Írjd le a projekt célját.
   describe_your_interest_in_nature: Írd le természetbarát érdeklődési körödet!
   description: Leírás
+  description_from: Leírás innen
   description_sections: Leírás paragrafusok
   description_slash_tags: Leírás / címke
   description_tags_more: "Leírás, címkék, &amp; egyebek"
@@ -1174,6 +1208,7 @@ hu:
     Ha nem regisztáltál az @vow_or_con{vow:an|a} %{site_name}-ra, kérjük, hogy hagyd figyelmen kívül ezt az emailt.
   devise_confirmation_instructions_please_click: |
     Kérjük, hogy az emailcím megerősítéséhez kattints az alábbi linkre:
+  devise_confirmation_instructions_send_confirmation_email: Megerősítő e-mail küldése
   devise_reset_password_instructions_hello_email: Kedves %{email}!
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ha nem kértél ilyen e-mailt, akkor tárgytalan, vedd figyelmen kívül.
@@ -1504,6 +1539,7 @@ hu:
   from_place: Helyről
   from_soundcloud: Soundcloudról
   full_screen: Teljes képernyő
+  gbif: GBIM
   generate_widget: Modul létrehozása
   generate_your_stats: Saját statisztika készítése
   Genus: Nemzetség
@@ -3588,6 +3624,10 @@ hu:
   start_typing_someones_name: "Gépeld be valakinek a nevét..."
   stats: Statisztikák
   status: Státusz
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Felsőbb taxonszintről (%{taxon}) átvett státusz</strong>
   status_globally: '"%{status}" globálisan'
   status_in_place: '"%{status}" itt: %{place}'
   stop_editing: Szerkesztés befejezése
@@ -5307,6 +5347,9 @@ hu:
         empty: nem lehet üres
         even: páros kell legyen
         exclusion: foglalt
+        greater_than:
+          one: nagyobb kell legyen mint %{count}
+          other: nagyobb kell legyen, mint %{count}
         inclusion: nem szerepel a listán
         invalid: érvénytelen
         new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
