@@ -781,6 +781,8 @@ fr:
   birds: oiseaux
   birthday: Anniversaire
   black: noir
+  block: Bloquer
+  blocking_description: Le blocage empêche toute communication entre vous et un autre utilisateur. Il est conçu pour des situations où un autre utilisateur pourrait être une menace pour votre sécurité, par exemple en vous traquant ou en ayant d'autres comportements abusifs.
   block_removed: Blocage supprimé
   blocked_users: Utilisateurs bloqués
   blog_widget: Widget de blog
@@ -2382,6 +2384,7 @@ fr:
     italian: Italien
     japanese: Japonais
     kannada: Kannada
+    kazakh: Kazakh
     korean: Coréen
     latvian: letton
     lithuanian: Lithuanien
@@ -2517,6 +2520,7 @@ fr:
     id: Indonésien
     it: Italien
     ja: Japonais
+    kk: Kazakh
     kn: Kannada
     ko: Coréen
     lb: Luxembourgeois
@@ -4619,6 +4623,10 @@ fr:
   stats: Statistiques
   stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont pas été générées.
   status: État
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Statut appliqué à partir d'un taxon de rang supérieur :</strong> %{taxon}
   status_globally: '"%{status}" Global'
   status_in_place: '"%{status}" à %{place}'
   stay_and_try_again: Rester et réessayer
@@ -7716,6 +7724,12 @@ fr:
       index:
         connect_with_nature: Connectez-vous Avec la Nature
         explore_and_share: Explorer et partager vos observations du monde naturel.
+        observations_to_date:
+          one: "Observation à ce jour"
+          other: "Observations à ce jour"
+        species_observed:
+          one: "Espèces observées"
+          other: "Espèces observées"
         how_it_works: Comment cela marche
         record_your_observations: Enregistrer vos observations
         share_with_fellow_naturalists: Partager avec d'autres naturalistes
@@ -8165,10 +8179,25 @@ fr:
         blank: ne peut être vide
         confirmation: ne correspond pas au mot de passe
         empty: ne peut être vide
+        equal_to:
+          one: doit être égal à %{count}
+          other: doit être égal à %{count}
         even: doit être pair
         exclusion: est réservé
+        greater_than:
+          one: doit être supérieur à %{count}
+          other: doit être supérieur à %{count}
+        greater_than_or_equal_to:
+          one: doit être supérieur ou égal à %{count}
+          other: doit être supérieur ou égal à %{count}
         inclusion: n’est pas compris dans la liste
         invalid: n’est pas valide
+        less_than:
+          one: doit être inférieur à %{count}
+          other: doit être inférieur à %{count}
+        less_than_or_equal_to:
+          one: doit être inférieur ou égal à %{count}
+          other: doit être inférieur ou égal à %{count}
         new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
