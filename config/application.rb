@@ -77,6 +77,13 @@ module Inaturalist
 
     config.active_record.yaml_column_permitted_classes = [Symbol, ActiveSupport::HashWithIndifferentAccess]
 
+    config.action_controller.asset_host = proc do |path, request|
+      if Rails.env.production? && request && request.controller_instance
+        site = request.controller_instance.instance_variable_get( "@site" )
+        site && site.url
+      end
+    end
+
     config.to_prepare do
       Doorkeeper::ApplicationController.layout "application"
       # Rails 5 is more strict about what classes are allowed to be

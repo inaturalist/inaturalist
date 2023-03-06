@@ -901,6 +901,10 @@ en:
   birds: birds
   birthday: Birthday
   black: black
+  block: Block
+  blocking_description: Blocking prevents any communication between you and another user. It is for
+    situations where another user may put your safety at risk, like stalking or other abusive
+    behavior.
   block_removed: Block removed
   blocked_users: Blocked Users
   blog_widget: Blog widget
@@ -5050,6 +5054,10 @@ en:
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
+  # Displayed on the taxon detail page when a conservation status is being
+  # applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '"%{status}" Globally'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Stay and try again
@@ -8581,9 +8589,24 @@ en:
       index:
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
-        observations_to_date: 'Observations to Date'
-        species_observed: 'Species Observed'
-        people_signed_up: 'People Signed Up'
+        observations_to_date:
+          zero: "Observations to Date"
+          one: "Observation to Date"
+          few: "Observations to Date"
+          many: "Observations to Date"
+          other: "Observations to Date"
+        species_observed:
+          zero: "Species Observed"
+          one: "Species Observed"
+          few: "Species Observed"
+          many: "Species Observed"
+          other: "Species Observed"
+        people_signed_up:
+          zero: "People Signed Up"
+          one: "Person Signed Up"
+          few: "People Signed Up"
+          many: "People Signed Up"
+          other: "People Signed Up"
         how_it_works: How It Works
         record_your_observations: Record your observations
         share_with_fellow_naturalists: Share with fellow naturalists
@@ -8744,47 +8767,6 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: didn't match password
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      new_project_owner_must_be_a_manager: New project owner must be an admin
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
-      record_invalid: 'Validation failed: %{errors}'
-      requires_privilege_speech: |
-        must have three verifiable observations or three identifications
-        for others to do that
-      requires_privilege_organizer: must have 50 verifiable observations to do that
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is %{count} character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is %{count} character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be %{count} character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: "%{count} error prohibited this %{model} from being saved"
-        other: '%{count} errors prohibited this %{model} from being saved'
   helpers:
     defaults:
       title: "THIS IS A TITLE"
@@ -8874,10 +8856,6 @@ en:
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
     models:
       # Information authored by site admins shown to users at various places
@@ -9090,7 +9068,56 @@ en:
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:
-      <<: *errors
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: didn't match password
+        empty: can't be empty
+        equal_to:
+          one: must be equal to %{count}
+          other: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than:
+          one: must be greater than %{count}
+          other: must be greater than %{count}
+        greater_than_or_equal_to:
+          one: must be greater than or equal to %{count}
+          other: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than:
+          one: must be less than %{count}
+          other: must be less than %{count}
+        less_than_or_equal_to:
+          one: must be less than or equal to %{count}
+          other: must be less than or equal to %{count}
+        new_project_owner_must_be_a_manager: New project owner must be an admin
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        only_project_owner_can_change_project_owner: Only the project owner can change the project owner
+        record_invalid: 'Validation failed: %{errors}'
+        requires_privilege_speech: |
+          must have three verifiable observations or three identifications
+          for others to do that
+        requires_privilege_organizer: must have 50 verifiable observations to do that
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is %{count} character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is %{count} character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be %{count} character)
+          other: is the wrong length (should be %{count} characters)
+      template:
+        body: 'There were problems with the following fields:'
+        header:
+          one: "%{count} error prohibited this %{model} from being saved"
+          other: '%{count} errors prohibited this %{model} from being saved'
       models:
         application:
           attributes:

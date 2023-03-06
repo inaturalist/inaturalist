@@ -5,6 +5,7 @@ require "spec_helper"
 describe ControlledTermsController do
   describe "create" do
     it "requires login" do
+      controller.request.host = URI.parse( Site.default.url ).host
       post :create, params: { controlled_term: { uri: "userterm" } }
       expect( response ).not_to be_successful
       expect( response.response_code ).to eq 302

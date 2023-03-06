@@ -732,7 +732,12 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ geoprivacy: "any" }) ).to include(
         filters: [ ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "open" }) ).to include(
-        inverse_filters: [ { exists: { field: :geoprivacy } } ])
+        filters: [ { bool: {
+          should: [
+            { term: { geoprivacy: "open"} },
+            { bool: { must_not: { exists: { field: :geoprivacy } } } }
+          ]
+        }}])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured" }) ).to include(
         filters: [ { term: { geoprivacy: "obscured" } } ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured_private" }) ).to include(
