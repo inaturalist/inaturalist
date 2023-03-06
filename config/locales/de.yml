@@ -752,6 +752,8 @@ de:
   birds: Vögel
   birthday: Geburtstag
   black: schwarz
+  block: Blockieren
+  blocking_description: Das Blockieren unterbindet jegliche Kommunikation zwischen dir und einem anderen Benutzer. Es ist für Situationen gedacht, in denen ein anderer Benutzer deine Sicherheit gefährden kann, wie zum Beispiel durch Stalking oder anderes missbräuchliches Verhalten.
   block_removed: Sperre entfernt
   blocked_users: Gesperrte Benutzer
   blog_widget: Blog Widget
@@ -4533,6 +4535,10 @@ de:
   stats: Statistiken
   stats_for_this_year_have_not_been_generated: Für dieses Jahr wurden keine Statistiken erstellt.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '%{status} Global'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Bleibe und versuch's noch mal
