@@ -7192,6 +7192,15 @@ tr:
       index:
         connect_with_nature: Doğa ile Bağ Kur
         explore_and_share: Keşfet ve doğal dünyadan gözlemlerini paylaş.
+        observations_to_date:
+          one: "Bugüne Kadarki Gözlem"
+          other: "Bugüne Kadarki Gözlemler"
+        species_observed:
+          one: "Gözlemlenen Tür"
+          other: "Gözlemlenen Türler"
+        people_signed_up:
+          one: "Kaydolan Kişi"
+          other: "Kaydolan Kişiler"
         how_it_works: Nasıl Çalışır
         record_your_observations: Gözlemlerini kaydet
         share_with_fellow_naturalists: Doğa bilimci dostlarınla paylaş
@@ -7637,10 +7646,25 @@ tr:
         blank: boş bırakılamaz
         confirmation: şifre eşleşmedi
         empty: boş olamaz
+        equal_to:
+          one: '%{count} değerine eşit olmalıdır'
+          other: '%{count} değerine eşit olmalıdır'
         even: çift sayı olmalı
         exclusion: ayrılmış
+        greater_than:
+          one: '%{count} değerinden büyük olmalıdır'
+          other: '%{count} değerinden büyük olmalıdır'
+        greater_than_or_equal_to:
+          one: '%{count} değerinden büyük ya da eşit olmalıdır'
+          other: '%{count} değerinden büyük ya da eşit olmalıdır'
         inclusion: listeye dahil edilmemiş
         invalid: geçersiz
+        less_than:
+          one: '%{count} değerinden küçük olmalıdır'
+          other: '%{count} değerinden küçük olmalıdır'
+        less_than_or_equal_to:
+          one: '%{count} değerinden küçük ya da eşit olmalıdır'
+          other: '%{count} değerinden küçük ya da eşit olmalıdır'
         new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalıdır
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
