@@ -635,11 +635,18 @@ zh-CN:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 属性
   attribution: 署名
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, 由 %{user} 上传"
   authority_list:
     iucn_red_list: IUCN红色名录
     natureserve: NatureServe
     cites: 引用
   authorize: 授权
+  #Second-person verb to authorize an application to access an iNat account
+  #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
+  authorize_with_pkce: 使用 PKCE 授权
   authorize_permissions_from_provider: "来自%{provider}的授权权限"
   automatic_short: 自动
   automatically_add_observations_to_this_project: 自动添加观察至此项目
