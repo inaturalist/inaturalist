@@ -43,6 +43,7 @@ const InsertionDropTarget = ( {
       className={`dropzone ${className}`}
       activeClassName="hover"
       disableClick
+      disablePreview
       accept={ACCEPTED_FILE_TYPES}
       onDrop={acceptedFiles => {
         if ( acceptedFiles.length === 0 ) {
@@ -52,6 +53,14 @@ const InsertionDropTarget = ( {
           // above
           return;
         }
+        _.each( acceptedFiles, file => {
+          try {
+            file.preview ||= window.URL.createObjectURL( file );
+          } catch ( err ) {
+            // eslint-disable-next-line no-console
+            console.error( "Failed to generate preview for file", file, err );
+          }
+        } );
         insertDroppedFilesBefore( acceptedFiles, beforeCardId );
       }}
     />

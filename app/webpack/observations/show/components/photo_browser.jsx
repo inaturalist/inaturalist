@@ -334,9 +334,30 @@ class PhotoBrowser extends React.Component {
         <Dropzone
           ref="dropzone"
           className={`dropzone ${_.isEmpty( images ) ? "empty" : ""}`}
-          onDrop={onFileDrop}
+          onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+            // trying to protect against treating images dragged from the
+            // same page from being treated as new files. Images dragged from
+            // the same page will appear as multiple dataTransferItems, the
+            // first being a "string" kind and not a "file" kind
+            if ( dropEvent.nativeEvent.dataTransfer
+              && dropEvent.nativeEvent.dataTransfer.items
+              && dropEvent.nativeEvent.dataTransfer.items.length > 0
+              && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+              return;
+            }
+            _.each( acceptedFiles, file => {
+              try {
+                file.preview ||= window.URL.createObjectURL( file );
+              } catch ( err ) {
+                // eslint-disable-next-line no-console
+                console.error( "Failed to generate preview for file", file, err );
+              }
+            } );
+            onFileDrop( acceptedFiles, rejectedFiles, dropEvent );
+          }}
           activeClassName="hover"
           disableClick
+          disablePreview
           accept={ACCEPTED_FILE_TYPES}
           maxSize={MAX_FILE_SIZE}
         >
