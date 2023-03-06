@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import * as d3 from "d3";
-import d3tip from "d3-tip";
+import { tip as d3tip } from "d3-v6-tip";
 import legend from "d3-svg-legend";
 import { objectToComparable, shortFormattedNumber } from "../util";
 
@@ -184,6 +184,8 @@ class Histogram extends React.Component {
         }
       }
     } );
+
+    // Add the legend
     const legendScale = d3.scaleOrdinal( )
       .domain( _.keys( localSeries ) )
       .range( _.map( localSeries, ( v, k ) => this.colorForSeries( k ) ) );
@@ -194,10 +196,13 @@ class Histogram extends React.Component {
       .scale( legendScale );
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
+
+    // Maybe required when rescaling, see 39d4b038d3303e4b54d6840cf44352fd428865bd
     focus.select( ".axis--y" )
       .call( this.axisLeft( y ) )
       .select( ".domain" )
         .remove( );
+
     // This doesn't quite higlight the fill color of the rects in the context
     // if ( showContext ) {
     //   const context = d3.select( mountNode ).selectAll( ".context" );
@@ -412,11 +417,10 @@ class Histogram extends React.Component {
       .select( ".domain" )
         .remove( );
 
-    // const dateFormatter = d3.timeFormat( "%d %b" );
     const tip = d3tip()
       .attr( "class", "d3-tip" )
       .offset( [-10, 0] )
-      .html( d => {
+      .html( ( _event, d ) => {
         const { series: currentSeries } = this.props;
         if ( currentSeries[d.seriesName] && currentSeries[d.seriesName].label ) {
           return currentSeries[d.seriesName].label( d );
@@ -459,9 +463,9 @@ class Histogram extends React.Component {
       x2.domain( d3.extent( combinedData, d => d[xAttr] ) );
       y2.domain( d3.extent( combinedData, d => d.value ) );
       const focus = g;
-      const zoomed = ( ) => {
-        if ( d3.event.sourceEvent && d3.event.sourceEvent.type === "brush" ) return; // ignore zoom-by-brush
-        const t = d3.event.transform;
+      const zoomed = zoomEvent => {
+        if ( zoomEvent.sourceEvent && zoomEvent.sourceEvent.type === "brush" ) return; // ignore zoom-by-brush
+        const t = zoomEvent.transform;
         x.domain( t.rescaleX( x2 ).domain( ) );
         this.setState( { x } );
         this.rescaleSeries( );
@@ -473,9 +477,9 @@ class Histogram extends React.Component {
         .translateExtent( [[0, 0], [width, height]] )
         .extent( [[0, 0], [width, height]] )
         .on( "zoom", zoomed );
-      const brushed = ( ) => {
-        if ( d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom" ) return; // ignore brush-by-zoom
-        const s = d3.event.selection || x2.range();
+      const brushed = brushEvent => {
+        if ( brushEvent.sourceEvent && brushEvent.sourceEvent.type === "zoom" ) return; // ignore brush-by-zoom
+        const s = brushEvent.selection || x2.range();
         x.domain( s.map( x2.invert, x2 ) );
         this.setState( { x } );
         this.rescaleSeries( { x, y } );

@@ -13,7 +13,7 @@ def create_controlled_term_from_json( ct_json )
     joins( :labels ).
     where( "controlled_term_labels.label = ?", ct_json[:label] ).
     first
-  controlled_term ||= ControlledTerm.create(
+  update_attrs = {
     active: true,
     blocking: ct_json[:blocking],
     is_value: ct_json[:is_value],
@@ -21,7 +21,12 @@ def create_controlled_term_from_json( ct_json )
     ontology_uri: ct_json[:ontology_uri],
     uri: ct_json[:uri],
     uuid: ct_json[:uuid]
-  )
+  }
+  if controlled_term
+    controlled_term.update( update_attrs )
+  else
+    controlled_term = ControlledTerm.create( update_attrs )
+  end
   unless controlled_term.labels.where( label: ct_json[:label] ).exists?
     controlled_term.labels << ControlledTermLabel.new( label: ct_json[:label] )
   end
@@ -66,7 +71,7 @@ json = JSON.parse( response.body, symbolize_names: true )
 json[:results].each do | ct_json |
   attr_ct = create_controlled_term_from_json( ct_json )
   ct_json[:values].each do | ct_value_json |
-    value_ct = create_controlled_term_from_json( ct_value_json )
+    value_ct = create_controlled_term_from_json( ct_value_json.merge( is_value: true ) )
     begin
       ControlledTermValue.create!( controlled_attribute: attr_ct, controlled_value: value_ct )
     rescue ActiveRecord::RecordInvalid => e
