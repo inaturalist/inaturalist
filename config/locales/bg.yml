@@ -1187,9 +1187,13 @@ bg:
   download_csv: Изтегли CSV
   download_csv_template: Изтегли CSV шаблон
   download_kml: Изтегли KML
+  #Noun, as in a journal post that has not been published
   draft: чернова
+  #Noun, as in a journal post that has not been published
   draft_: Чернова
+  #Noun, as in a journal post that has not been published
   draft_saved: Черновата е запазена!
+  #Noun, as in journal posts that has not been published
   drafts: Чернови
   drag_and_drop_some_photos_or_sounds: Завлачи и пусни снимки или звуци
   drawings: Рисунки
@@ -2045,6 +2049,7 @@ bg:
   must_have_observation_field: "трябва да има попълнено поле за наблюдения '%{operand}'"
   must_have_photos: трябва да има снимки
   must_have_x: "трябва да има %{x}"
+  #Mute is a noun here
   mute_removed: Заглушаването е отменено
   muted_users: Заглушени потребители
   n_ago: "преди %{n}"
@@ -2937,7 +2942,6 @@ bg:
   post_from_your_journal_html: Публикация от <a href="%{url}">Вашия дневник</a>
   post_published: Публикувано!
   posted_by: Публикувано от
-  posted_on: Публикувано на
   posts: Публикации
   potential_disagreement: Потенциално несъгласие
   powered_by: Овъзможнено от
@@ -3912,8 +3916,6 @@ bg:
   user_added_x_observations_html: "%{user} добави %{x} наблюдения"
   user_autocomplete_placeholder: kueda, simon123 и т.н.
   user_disagrees_this_is_taxon: "Потребителят %{user} не е съгласен, че това е %{taxon}"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} хареса %{noun} на %{owner}"
   user_faved_this_observation: "%{user} хареса това наблюдение"
   user_hasnt_joined_any_projects: "%{user} не участва в никакви проекти"
   user_helped_x_people_with_y_ids_html: "%{user} е помогнал на <strong>%{x} човека</strong> със <strong>%{y} разпознавания</strong>"
@@ -4902,9 +4904,6 @@ bg:
       index:
         connect_with_nature: Сближете се с Природата
         explore_and_share: Изследвай и споделяй своите наблюдения на природата.
-        observations_to_date: 'Наблюдения до момента'
-        species_observed: 'Наблюдавани видове'
-        people_signed_up: 'Регистрирани потребители'
         how_it_works: Как работи
         record_your_observations: Запиши своите наблюдения
         share_with_fellow_naturalists: Сподели с останалите
@@ -4972,19 +4971,19 @@ bg:
       6: Пт
       7: Сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d.%m.%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%-d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -5055,41 +5054,6 @@ bg:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: трябва да бъде прието
-      blank: не може да е празно
-      confirmation: не съвпада с потвърждението
-      empty: не може да е празно
-      equal_to: трябва да е равно на %{count}
-      even: трябва да е четно
-      exclusion: е заето
-      greater_than: трябва да е повече от %{count}
-      greater_than_or_equal_to: трябва да е повече или равно на %{count}
-      inclusion: не фигурира в списъка
-      invalid: е невалидно
-      less_than: трябва да е по-малко от %{count}
-      less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-      new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-      not_a_number: не е число
-      not_an_integer: трябва да е цяло число
-      odd: трябва да е нечетно
-      record_invalid: 'Неуспешна проверка: %{errors}'
-      taken: вече е заето
-      too_long:
-        one: е прекалено дълго (макс. 1 символ)
-        other: е прекалено дълго (макс. %{count} символа)
-      too_short:
-        one: е прекалено кратко (мин. 1 символ)
-        other: е прекалено кратко (мин. %{count} символа)
-      wrong_length:
-        one: е с грешна дължина (трябва да е 1 символ)
-        other: е с грешна дължина (трябва да е %{count} символа)
-    template:
-      body: 'Имаше проблеми със следните полета:'
-      header:
-        one: "1 грешка попречи на запазването на %{model}"
-        other: '%{count} грешки попречиха на запазването на %{model}'
   helpers:
     defaults:
       title: "ТОВА Е ЗАГЛАВИЕ"
@@ -5152,48 +5116,21 @@ bg:
   time:
     am: преди обед
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d %b %Y, %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d %B %Y, %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d %b, %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: следобед
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        blank: не може да е празно
-        confirmation: не съвпада с паролата
-        empty: не може да е празно
-        equal_to: трябва да е равно на %{count}
-        even: трябва да е четно
-        exclusion: е резервирано
-        greater_than: трябва да е повече от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        inclusion: не фигурира в списъка
-        invalid: е невалидно
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
-        new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
-        not_a_number: не е число
-        not_an_integer: трябва да е цяло число
-        odd: трябва да е нечетно
-        record_invalid: 'Неуспешна проверка: %{errors}'
-        taken: вече е заето
-      template:
-        body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5315,12 +5252,7 @@ bg:
       messages:
         blank: не може да е празно
         confirmation: несъответстваща парола
-        equal_to: трябва да е равно на %{count}
         even: трябва да е четно
-        greater_than: трябва да е по-голямо от %{count}
-        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
-        less_than: трябва да е по-малко от %{count}
-        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
         new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно

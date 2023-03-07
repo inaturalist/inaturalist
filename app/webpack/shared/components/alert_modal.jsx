@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -7,6 +8,7 @@ import {
 
 const AlertModal = ( {
   backdrop,
+  confirmText,
   content,
   onCancel,
   onClose,
@@ -39,7 +41,7 @@ const AlertModal = ( {
             onClose( );
           }}
         >
-          { I18n.t( "ok" ) }
+          { confirmText || I18n.t( "ok" ) }
         </Button>
       </Modal.Footer>
     );
@@ -57,7 +59,13 @@ const AlertModal = ( {
           { title || I18n.t( "alert" ) }
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body dangerouslySetInnerHTML={{ __html: content }} />
+      { _.isObject( content ) ? (
+        <Modal.Body>
+          { content }
+        </Modal.Body>
+      ) : (
+        <Modal.Body dangerouslySetInnerHTML={{ __html: content }} />
+      ) }
       { modalFooter }
     </Modal>
   );
@@ -66,7 +74,8 @@ const AlertModal = ( {
 AlertModal.propTypes = {
   visible: PropTypes.bool,
   title: PropTypes.string,
-  content: PropTypes.string,
+  content: PropTypes.any,
+  confirmText: PropTypes.string,
   onConfirm: PropTypes.func,
   onClose: PropTypes.func,
   onCancel: PropTypes.func,

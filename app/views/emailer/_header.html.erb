@@ -5,7 +5,7 @@
   img_url = if site_logo_email_banner =~ /http/
     site_logo_email_banner
   else
-    uri_join( site_url, FakeView.image_url( site_logo_email_banner ) )
+    ::UrlHelper.uri_join( site_url, image_url( site_logo_email_banner ) )
   end
   site_name = site.name
 -%>

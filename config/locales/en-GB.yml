@@ -3,7 +3,12 @@ en-GB:
     one: '%{count} comment'
     other: '%{count} comments'
   _100_day_trends: 100 Day Trends
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A to Z"
   about: About
+  add_id: Add ID
+  add_place: Add Place
   add_to_favorites: Add to Favourites
   added_to_favorites_html: |
     Added to <a href="%{url}">favourites</a>
@@ -11,12 +16,17 @@ en-GB:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Authorise with PKCE
+  bg_color: BG Colour
+  colors: Colours
+  distance_traveled_value: "Distance travelled: %{distance}m"
+  distance_traveled: "Distance travelled (m)"
   favorite_taxa: Favourite Taxa
   favorites: "Favourites"
   header_your_favorites: Your Favourites
   no_favorites_added:
     current_user: You haven't added favourites yet.
     user: "%{user} hasn't added favourites."
+  taxon_colors: Taxon Colours
   users_favorites: "%{user}'s Favourites"
   your_favorites: Your Favourites
   views:

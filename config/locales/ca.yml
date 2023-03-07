@@ -1572,9 +1572,13 @@ ca:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Tàxons coberts cap a vall marcats
+  #Noun, as in a journal post that has not been published
   draft: esborrany
+  #Noun, as in a journal post that has not been published
   draft_: Esborrany
+  #Noun, as in a journal post that has not been published
   draft_saved: Esborrany desat!
+  #Noun, as in journal posts that has not been published
   drafts: Esborranys
   drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
   #Button label for drawing a circular boundary for an observation search
@@ -2731,6 +2735,7 @@ ca:
   must_have_quality_grades: "ha de tenir el grau de qualitat: %{grades}"
   must_have_sounds: ha de tenir sons
   must_have_x: "ha de tenir %{x}"
+  #Mute is a noun here
   mute_removed: Emmudiment eliminat
   muted_users: Usuaris silenciats
   n_ago: "fa %{n}"
@@ -3793,7 +3798,6 @@ ca:
   post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   posted_by: Publicat per
-  posted_on: Introduït a
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
@@ -5185,8 +5189,6 @@ ca:
   user_commented: "%{user} ha comentat"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} preferit %{noun} per %{owner}"
   user_faved_this_observation: "%{user} ha marcat com a favorita aquesta observació"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"
   user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
@@ -7074,9 +7076,6 @@ ca:
       index:
         connect_with_nature: Connecta amb la Natura
         explore_and_share: Exploreu i compartiu les vostres observacions sobre el món natural
-        observations_to_date: 'Observacions fins Ara'
-        species_observed: 'Espècies Observades'
-        people_signed_up: 'Persones Registrades'
         how_it_works: Com funciona
         record_your_observations: Deseu les vostres observacions
         share_with_fellow_naturalists: Compartiu amb companys naturalistes
@@ -7149,19 +7148,19 @@ ca:
       6: dv
       7: ds
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d de %B del %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -7232,46 +7231,6 @@ ca:
       month: Mes
       second: Segons
       year: Any
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: s'ha d'acceptar
-      blank: no pot estar en blanc
-      confirmation: no coincideix amb la contrasenya
-      empty: no pot estar buit
-      equal_to: ha de ser igual a %{count}
-      even: ha de ser parell
-      exclusion: està reservat
-      greater_than: ha de ser superior a %{count}
-      greater_than_or_equal_to: ha de ser superior o igual a %{count}
-      inclusion: no està inclòs a la llista
-      invalid: no és vàlid
-      less_than: ha de ser inferior a %{count}
-      less_than_or_equal_to: ha de ser inferior o igual a %{count}
-      new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
-      not_a_number: no és un nombre
-      not_an_integer: ha de ser un nombre enter
-      odd: ha de ser imparell
-      only_project_owner_can_change_project_owner: Únicament el propietari d'un joc pot canviar el seu propietari
-      record_invalid: 'La validació ha fallat: %{errors}'
-      requires_privilege_speech: |
-        heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
-      requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
-      taken: ja està en ús
-      too_long:
-        one: és massa llarg (el màxim és 1 caràcter)
-        other: és massa llarg (el màxim és %{count} caràcters)
-      too_short:
-        one: és massa curt (el mínim és 1 caràcter)
-        other: és massa curt (el mínim es %{count} caràcters)
-      wrong_length:
-        one: no té la longitud correcta (ha de tenir 1 caràcter)
-        other: no té la longitud correcta (ha de tenir %{count} caràcters)
-    template:
-      body: 'S''han detectat problemes en els camps següents:'
-      header:
-        one: "No s’ha pogut desar aquest/a %{model} perquè s’hi ha detectat 1 error."
-        other: 'No s’ha pogut desar aquest/a %{model} perquè s’hi han detectat %{count} errors.'
   helpers:
     defaults:
       title: "AIXÒ ÉS UN TÍTOL"
@@ -7334,64 +7293,21 @@ ca:
   time:
     am: del matí
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d/%m/%Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%I:%M %p %Z"
     pm: de la tarda
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: ha de ser acceptat
-        blank: no pot estar en blanc
-        confirmation: no coincideix amb la contrasenya
-        empty: no pot estar buit
-        equal_to: ha de ser igual a %{count}
-        even: ha de ser parell
-        exclusion: està reservat
-        greater_than: ha de ser superior a %{count}
-        greater_than_or_equal_to: ha de ser superior o igual a %{count}
-        inclusion: no està inclòs a la llista
-        invalid: no és vàlid
-        less_than: ha de ser inferior a %{count}
-        less_than_or_equal_to: ha de ser inferior o igual a %{count}
-        new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
-        not_a_number: no és un número
-        not_an_integer: ha de ser un nombre enter
-        odd: ha de ser senar
-        only_project_owner_can_change_project_owner: Únicament el propietari d'un projecte pot canviar el seu propietari
-        record_invalid: 'Ha fallat la validació: %{errors}'
-        requires_privilege_speech: Heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
-        requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
-        taken: ja està en ús
-        too_long:
-          one: és massa llarg (el màxim és 1 caràcter)
-          other: és massa llarg (el màxim és %{count} caràcters)
-        too_short:
-          one: és massa curt (el mínim és 1 caràcter)
-          other: és massa curt (el mínim és %{count} caràcters)
-        wrong_length:
-          one: la longitud és errònia (ha de ser d'1 caràcter)
-          other: la longitud és errònia (ha de ser de %{count} caràcters)
-      template:
-        body: 'Hi ha problemes amb els camps següents:'
-        header:
-          one: No s’ha pogut desar aquest %{model} perquè s’hi ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s’hi han detectat %{count} errors.
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7607,22 +7523,18 @@ ca:
         blank: no pot estar en blanc
         confirmation: no coincideix amb la contrasenya
         empty: no pot estar buit
-        equal_to: ha de ser igual a %{count}
         even: ha de ser parell
         exclusion: està reservat
-        greater_than: ha de ser més gran que %{count}
-        greater_than_or_equal_to: ha de ser més gran o igual a %{count}
         inclusion: no està inclòs a la llista
         invalid: no és vàlid
-        less_than: ha de ser inferior a %{count}
-        less_than_or_equal_to: ha de ser més petit o igual a %{count}
         new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
         not_a_number: no és un nombre
         not_an_integer: ha de ser un nombre sencer
         odd: ha de ser senar
         only_project_owner_can_change_project_owner: Únicament el propietari d'un projecte pot canviar el seu propietari
         record_invalid: 'La validació ha fallat: %{errors}'
-        requires_privilege_speech: heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
+        requires_privilege_speech: |
+          heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
         requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
         taken: ja està en ús
         too_long:
@@ -7637,8 +7549,8 @@ ca:
       template:
         body: 'Hi ha problemes amb els camps següents:'
         header:
-          one: No s’ha pogut desar aquest %{model} perquè s'ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s'han detectat %{count} errors.
+          one: "No s’ha pogut desar aquest %{model} perquè s'ha detectat 1 error."
+          other: 'No s’ha pogut desar aquest %{model} perquè s''han detectat %{count} errors.'
       models:
         application:
           attributes:

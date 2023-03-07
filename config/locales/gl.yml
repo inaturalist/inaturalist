@@ -1476,9 +1476,13 @@ gl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxons marcados no descenso
+  #Noun, as in a journal post that has not been published
   draft: '¡BORRADOR!'
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Gardado en borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra e solta algunhas fotos ou sons
   drawings: Deseños
@@ -2471,6 +2475,7 @@ gl:
   must_have_quality_grades: "debe ter graos de calidade: %{grades}"
   must_have_sounds: debe ter sons
   must_have_x: "debe ter %{x}"
+  #Mute is a noun here
   mute_removed: Silenciador retirado
   muted_users: Usuarios Acalados
   n_ago: "hai %{n}"
@@ -3458,7 +3463,6 @@ gl:
   post_from_your_journal_html: Publicación do <a href="%{url}">teu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
-  posted_on: Introducido o
   posts: Ingresos
   potential_disagreement: Desacordo Potencial
   powered_by: Desenvolvido por
@@ -4597,8 +4601,6 @@ gl:
   user_commented: "%{user} comentou"
   user_disagrees_this_is_taxon: "%{user} non concorda en que isto é %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non concorda con identificacións previas máis afinadas"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} engadíu a favoritos unha %{noun} de %{owner}"
   user_faved_this_observation: "%{user} engadíu a favoritos esta observación"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como non remitente de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como remitente de spam"
@@ -6298,9 +6300,6 @@ gl:
       index:
         connect_with_nature: Conecta coa Natureza
         explore_and_share: Explora e comparte as túas observacións do mundo natural.
-        observations_to_date: 'Observacións ata a Data'
-        species_observed: 'Especies Observadas'
-        people_signed_up: 'Persoas Rexistradas'
         how_it_works: Como Funciona
         record_your_observations: Rexistra as túas observación
         share_with_fellow_naturalists: Comparte con outros naturalistas
@@ -6371,19 +6370,19 @@ gl:
       6: Ve
       7: Sá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b,%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d de %B, %Y'
     month_names:
       - 
@@ -6454,46 +6453,6 @@ gl:
       month: Mes
       second: Segundos
       year: Ano
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Débese aceptar
-      blank: non pode estar en branco
-      confirmation: non coincide coa confirmación
-      empty: non pode estar baleiro
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser maior que %{count}
-      greater_than_or_equal_to: debe ser maior que ou igual a %{count}
-      inclusion: non está incluído na lista
-      invalid: non é válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que ou igual a %{count}
-      new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-      not_a_number: non é un número
-      not_an_integer: debe ser un número enteiro
-      odd: debe ser impar
-      only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-      record_invalid: 'A validación fallou: %{errors}'
-      requires_privilege_speech: |
-        debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-      requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-      taken: xa está en uso
-      too_long:
-        one: é demasiado longo (o máximo é %{count} caracter)
-        other: é demasiado longo (o máximo son %{count} caracteres)
-      too_short:
-        one: é demasiado curto (o mínimo é %{count} caracter)
-        other: é demasiado curto (o mínimo son %{count} caracteres)
-      wrong_length:
-        one: ten a longura errada (debe ter %{count} caracter)
-        other: ten a longura errada (debe ter %{count} caracteres)
-    template:
-      body: 'Atopáronse problemas nos seguintes campos:'
-      header:
-        one: "Non se puido gardar este/a %{model} porque se atopou 1 erro."
-        other: 'Non se puido gardar este/a %{model} porque se atoparon %{count} erros.'
   helpers:
     defaults:
       title: "ISTO É UN TÍTULO"
@@ -6556,64 +6515,21 @@ gl:
   time:
     am: Mañá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'ás %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d de %B do %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: Tarde
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: debe ser aceptado
-        blank: non se pode deixar en branco
-        confirmation: non coincide cá palabra chave
-        empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
-        even: debe ser par
-        exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
-        inclusion: non está incluído na lista
-        invalid: non é válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor ou igual a %{count}
-        new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
-        not_a_number: non é un número
-        not_an_integer: debe ser un número enteiro
-        odd: debe ser impar
-        only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
-        record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
-        requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
-        taken: xa está collido
-        too_long:
-          one: é demasiado longo (o máximo é %{count} caracter)
-          other: é demasiado longo (o máximo son %{count} caracteres)
-        too_short:
-          one: é demasiado curto (o mínimo é %{count} caracter)
-          other: é demasiado curto (o mínimo son %{count} caracteres)
-        wrong_length:
-          one: ten a longura errada (debe ter %{count} caracter)
-          other: ten a longura errada (debe ter %{count} caracteres)
-      template:
-        body: 'Houbo problemas cós seguintes campos:'
-        header:
-          one: '%{count} erro prohibíu este %{model} ser gardado.'
-          other: '%{count} erros prohibiron este %{model} ser gardado'
   activerecord:
     models:
       AssessmentSection: Sección de Avaliación
@@ -6751,22 +6667,18 @@ gl:
         blank: non se pode deixar en branco
         confirmation: non coincide cá palabra chave
         empty: non pode estar baleiro
-        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
-        greater_than: debe ser maior que %{count}
-        greater_than_or_equal_to: debe ser maior ou igual a %{count}
         inclusion: non está incluído na lista
         invalid: non é válido
-        less_than: debe ser inferior a %{count}
-        less_than_or_equal_to: debe ser inferior ou igual a %{count}
         new_project_owner_must_be_a_manager: O novo dono do proxecto debe ser un administrador
         not_a_number: non é un número
         not_an_integer: debe ser un número enteiro
         odd: debe ser impar
         only_project_owner_can_change_project_owner: Soamente o dono do proxecto pode mudar o dono do proxecto
         record_invalid: 'A validación fallou: %{errors}'
-        requires_privilege_speech: debe ter tres observacións verificables ou tres identificacións para outros para facer iso
+        requires_privilege_speech: |
+          debe ter tres observacións verificables ou tres identificacións para outros para facer iso
         requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
         taken: xa está en uso
         too_long:
@@ -6781,7 +6693,7 @@ gl:
       template:
         body: 'Atopáronse problemas nos seguintes campos:'
         header:
-          one: '%{count} erro prohibíu este %{model} ser gardado'
+          one: "%{count} erro prohibíu este %{model} ser gardado"
           other: '%{count} erros prohibiron este %{model} ser gardado'
       models:
         application:

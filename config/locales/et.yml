@@ -1563,9 +1563,13 @@ et:
   download_kml: Laadia alla KML
   downstream_coverage_rank: Alamtasemete katte kategooria
   downstream_deviations: Alamtasemete erinevused
+  #Noun, as in a journal post that has not been published
   draft: visand
+  #Noun, as in a journal post that has not been published
   draft_: Visand
+  #Noun, as in a journal post that has not been published
   draft_saved: Visand salvestatud!
+  #Noun, as in journal posts that has not been published
   drafts: Visandid
   drag_and_drop_some_photos_or_sounds: Lohista siia mõned fotod või helid
   #Button label for drawing a circular boundary for an observation search
@@ -2202,6 +2206,7 @@ et:
     italian: Itaalia
     japanese: Jaapani
     kannada: Kanada
+    kazakh: Kasahhi
     korean: Korea
     latvian: Läti
     lithuanian: Leedu
@@ -2282,6 +2287,10 @@ et:
     taxonomic: taksonoomiline
     photo: piltidega
   list_was_successfully_created: Nimekirja loomine õnnestus.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} ja %{three}"
+  list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Loetletud taksonid
   listed_taxon: Loetletud takson
   listed_taxon_updated: Lotletud taksonit värskendati
@@ -2333,6 +2342,7 @@ et:
     id: Indoneesia
     it: Itaalia
     ja: Jaapani
+    kk: Kasahhi
     kn: Kannada
     ko: Korea
     lb: Luksemburgi
@@ -2395,6 +2405,8 @@ et:
   lookup: Leia
   low: Madal
   lowest_rank: Madalaim kategooria
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Muuda administraatoriks
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Peasisu
@@ -2425,6 +2437,7 @@ et:
       every_publicly_visible_observation: Kõik avalikult nähtavad iNaturalist võrgustikus tehtud vaatlused
       featured_observations: Esiletõstetud vaatlused
       gbif_network: GBIF-võrk
+      gbif_network_description2: Muuseumitest ja teistest leidumisinfo jagajatest pärit andmed, mida haldab Global Biodiversity Informatics Facility.
       observations: Vaatlused
       place_boundary: Koha piir
       checklist_places: Kontrollnimekirja kohad
@@ -2437,6 +2450,9 @@ et:
   matching_species_will_shown_up_here: Siia ilmuvad sobivad liigid. Kaardid näitavad piirkonda kui üks selle liigi isend on asunud kohas %{place}.
   maverick: Sõltumatu
   media: Failid
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: ja
   media_type: Failitüüp
   medium: keskmine
   meet: Teretulemast
@@ -2559,6 +2575,7 @@ et:
   must_be_less_than_x_MB: "Peab olema väiksem kui %{x} MB"
   must_have_observation_field: "vaatluse peab väli '%{operand}' olema täidetud"
   must_have_x: "peab omama %{x}"
+  #Mute is a noun here
   mute_removed: Vaigistus eemaldatud
   muted_users: Vaigistatud kasutajad
   n_ago: "%{n} tagasi"
@@ -3334,6 +3351,8 @@ et:
     zambia: Sambia
   places_of_interest: Huviväärsused
   places_merged_successfully: Kohtade ühendamine õnnestus!
+  places_warning_look_for_existing2_html: |
+    Vaata esmalt <a href="/search?source[]=places">olemasolevaid kohti</a>, et veenduda, et saa mõnda neist ei korda. Meil on juba kõigi kontinentide ja riikidega seotud kohad ning ka paljude muude poliitiliste piirkondadega seotud paigad.
   places_warning_please_keep_in_mind: |
     Pea palun meeles järgnevaid piiranguid:
   plants: taimed
@@ -3356,7 +3375,6 @@ et:
   post_from_your_journal_html: <a href="%{url}">Sinu päeviku</a> postitused
   post_published: Postitus avaldatud!
   posted_by: Postitanud
-  posted_on: Postitatud
   posts: Postitused
   potential_disagreement: Võimalik ebakõla
   powered_by: Jooksutab
@@ -3903,6 +3921,10 @@ et:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Selle aasta statistikat pole veel loodud.
   status: Staatus
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Staatus pärineb kõrgema tasandi taksonilt:</strong> %{taxon}
   stay_and_try_again: Proovi uuesti
   still_no_luck?: Pole õnne?
   still_needs_id?: Kogukond saab määratlust kinnitada/parandada?
@@ -4351,8 +4373,6 @@ et:
   user_commented: "%{user} kommenteeris"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Kasutaja %{user} pole nõus varasema täpsema määratlusega"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "Kasutaja %{user} märkis lemmikuks kasutaja %{owner} %{noun}"
   user_faved_this_observation: "Kasutaja %{user} märkis selle vaatluse enda lemmikuks"
   user_flagged_as_a_non_spammer_html: "Kasutaja %{user} on märgitud mitte-rämpspostitajaks"
   user_flagged_as_a_spammer_html: "Kasutaja %{user} on märgitud rämpspostitajaks"
@@ -5139,6 +5159,8 @@ et:
         view_original_html: |
           Originaali näed aadressil <a href="%{url}">%{url}</a>. Palun jäta autoriõiguste rikkumise märkused alles, kui see foto neid tõepoolest rikub.
     places:
+      kml_field_desc2: |
+        Koha piirjoone KML. Seda saab teha Google Maps, Google Earth või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab olema väiksem kui USA Texase osariigil.
       edit:
         complex_boundary_note_html: |
           See piirjoon on veebis muutmiseks natuke liiga keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>, seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles laadida.
@@ -5656,9 +5678,6 @@ et:
       index:
         connect_with_nature: Liitu loodusega
         explore_and_share: Uuri ja jaga enda loodusvaatluseid.
-        observations_to_date: 'Vaatluseid kokku'
-        species_observed: 'Vaadeldud liike'
-        people_signed_up: 'Liitunud kasutajaid'
         how_it_works: Kuidas see toimib
         record_your_observations: Lisa oma vaatlused
         share_with_fellow_naturalists: Jaga teiste loodussõpradega
@@ -5729,15 +5748,15 @@ et:
       6: R
       7: L
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d. %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -5805,41 +5824,6 @@ et:
       month: Kuu
       second: Sekund
       year: Aasta
-  errors:
-    messages:
-      accepted: peab olema sobilik
-      blank: ei saa olla tühi
-      confirmation: ei vasta salasõnale
-      empty: ei saa olla tühi
-      equal_to: peab olema võrdne numbriga %{count}
-      even: peab olema paarisarv
-      exclusion: on reserveeritud
-      greater_than: peab olema suurem kui %{count}
-      greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
-      inclusion: pole nimekirjad
-      invalid: pole sobilik
-      less_than: peab olema väiksem kui %{count}
-      less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
-      new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
-      not_a_number: pole number
-      not_an_integer: peab olema täisarv
-      odd: peab olema paaritu
-      record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
-      taken: on juba valitud
-      too_long:
-        one: on liiga pikk (maksimum 1 tähemärk)
-        other: on liiga pikk (maksimum %{count} tähemärki)
-      too_short:
-        one: on liiga lühike (minimum 1 tähemärk)
-        other: on liiga lühike (minimum%{count} tähemärki)
-      wrong_length:
-        one: on vale pikkusega (peaks olema 1 tähemärk)
-        other: on vale pikkusega (peaks olema %{count} tähemärki)
-    template:
-      body: 'Järgmiste väljadega oli probleeme:'
-      header:
-        one: "1 viga ei lubanud salvestada: %{model}"
-        other: '%{count} viga ei lubanud salvestada: %{model}'
   helpers:
     defaults:
       title: "SEE ON PEALKIRI"
@@ -5878,58 +5862,19 @@ et:
   time:
     am: ennelõunat
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d. %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pealelõunat
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: peab olema valitud
-        blank: ei tohi olla tühi
-        confirmation: ei vasta salasõnale
-        empty: ei või olla tühi
-        equal_to: peab olema võrdne numbriga %{count}
-        even: peab olema paarisarv
-        exclusion: on reserveeritud
-        greater_than: peab olema suurem kui %{count}
-        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
-        inclusion: pole nimekirjas
-        invalid: pole sobilik
-        less_than: peab olema väiksem kui %{count}
-        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
-        new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
-        not_a_number: pole number
-        not_an_integer: peab olema täisarv
-        odd: peab olema paaritu
-        record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
-        taken: on juba valitud
-        too_long:
-          one: on liiga pikk (maksimum 1 tähemärk)
-          other: on liiga pikk (maksimum %{count} tähemärki)
-        too_short:
-          one: on liiga lühike (minimum 1 tähemärk)
-          other: on liiga lühike (minimum%{count} tähemärki)
-        wrong_length:
-          one: on vale pikkusega (peaks olema 1 tähemärk)
-          other: on vale pikkusega (peaks olema %{count} tähemärki)
-      template:
-        body: 'Järgnevate väljadega oli probleeme:'
-        header:
-          one: '1 viga ei lubanud salvestada: %{model}'
-          other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6049,22 +5994,17 @@ et:
     errors:
       messages:
         empty: ei saa olla tühi
-        equal_to: peab olema võrdne numbriga %{count}
         even: peab olema paarisarv
         exclusion: on reserveeritud
-        greater_than: peab olema suurem kui %{count}
-        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
         inclusion: pole nimekirjas
         invalid: pole sobilik
-        less_than: peab olema väiksem kui %{count}
-        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
         new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
         not_an_integer: peab olema täisarv
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       template:
         header:
-          one: '%{count} viga ei lubanud salvestada: %{model}'
+          one: "%{count} viga ei lubanud salvestada: %{model}"
           other: '%{count} viga ei lubanud salvestada: %{model}'
       models:
         comment:

@@ -1464,6 +1464,7 @@ id:
       signed_up_but_locked: "Anda berhasil mendaftar. Namun, kami tidak dapat memasukkan Anda karena akun Anda terkunci."
       signed_up_but_unconfirmed: "Sebuah pesan dengan tautan untuk konfirmasi telah dikirimkan ke alamat email Anda. Harap ikuti tautan yang ada untuk mengaktifkan akun Anda."
       updated: 'Anda berhasil memperbarui akun Anda.'
+      updated_but_not_signed_in: "Akun Anda telah berhasil diperbarui, tetapi karena kata sandi Anda berubah, Anda harus masuk lagi."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1549,9 +1550,15 @@ id:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taksa arus bawah yang ditandai
+  #Noun, as in a journal post that has not been published
   draft: konsep
+  #Noun, as in a journal post that has not been published
   draft_: Rancangan
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Draf oleh %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Rancangan tersimpan!
+  #Noun, as in journal posts that has not been published
   drafts: Rancangan
   drag_and_drop_some_photos_or_sounds: Seret & lepas foto atau suara
   #Button label for drawing a circular boundary for an observation search
@@ -2299,6 +2306,7 @@ id:
     italian: Italia
     japanese: Jepang
     kannada: Kannada
+    kazakh: Kazakh
     korean: Korea
     latvian: Latvia
     lithuanian: Lithuania
@@ -2434,6 +2442,7 @@ id:
     id: Indonesia
     it: Italia
     ja: Jepang
+    kk: Kazakh
     kn: Kannada
     ko: Korea
     lb: Luksemburg
@@ -2719,8 +2728,12 @@ id:
   must_have_quality_grades: "harus memiliki tingkat berkualitas: %{grades}"
   must_have_sounds: harus memiliki suara
   must_have_x: "harus memiliki %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Redam
+  #Mute is a noun here
   mute_removed: Peredaman dicabut
   muted_users: Pengguna Yang Diredam
+  muting_description: Meredam seseorang mencegah masuknya pemberitahuan tentang semua aktivitas mereka, termasuk penyebutan menggunakan "@", pesan, atau komentar dan identifikasi pada pengamatan Anda.
   n_ago: "%{n} yang lalu"
   n_people_agrees: "%{amount} orang setuju"
   n_people_disagrees: "%{amount} orang tidak setuju"
@@ -3244,6 +3257,9 @@ id:
     invalid_email: Format email tidak valid
   password: Kata sandi
   password_confirmation: 'Konfirmasi kata sandi'
+  password_change_description: Mengubah kata sandi Anda akan mengeluarkan Anda dari semua sesi iNaturalist Anda yang masih aktif pada perangkat-perangkat Anda.
+  password_change_logout_warning: Setelah Anda mengubah kata sandi Anda, Anda akan dikeluarkan dan Anda perlu masuk kembali menggunakan kata sandi baru Anda.
+  password_change_observations_warning: Anda juga akan dikeluarkan dari aplikasi mobile iNaturalist dan semua aplikasi atau situs web yang mengunggah ke iNaturalist untuk Anda, jadi pastikan Anda sudah mengunggah semua pengamatan yang belum diunggah sebelum Anda melakukan hal ini. Semua pengamatan yang belum diunggah akan hilang.
   paste: Tempel
   paste_in_a_bunch_of_names: Tempel di sejumlah nama, 1 per baris, dan tekan tombol!
   people: Orang
@@ -3805,7 +3821,10 @@ id:
   post_from_your_journal_html: Postingan dari <a href="%{url}">jurnal Anda</a>
   post_published: Postingan diterbitkan!
   posted_by: Diunggah oleh
-  posted_on: Diunggah pada
+  #Shows the date a journal post was published
+  posted_on_date_html: Diunggah pada %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Diunggah pada %{date} oleh %{user}
   posts: Postingan
   potential_disagreement: Potensi Ketidaksetujuan
   powered_by: Didukung oleh
@@ -5168,9 +5187,7 @@ id:
   user_commented: "%{user} berkomentar"
   user_disagrees_this_is_taxon: "%{user} tidak setuju ini adalah %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} menjadikan favorit %{noun} oleh %{owner}"
-  user_faved_a_noun_by_you: "%{user} menjadikan %{noun} oleh Anda sebagai favorit"
+  user_faved_an_observation_by_you: "%{user} memfavoritkan salah satu pengamatan Anda"
   user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
   user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
   user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
@@ -5499,6 +5516,8 @@ id:
     Menghasilkan dan membagikan data keanekaragaman hayati dengan skala dan kecepatan yang tidak pernah terbayangkan sebelumnya telah meningkatkan biaya-biaya
   yir_millions_of_people_used_inaturalist: |
     Jutaan orang menggunakan iNaturalist dan Seek oleh iNaturalist tahun ini untuk bisa terhubung dengan alam
+  yir_monthly_supporters_random_selection: |
+    Inilah beberapa pilihan acak berisi anggota-anggota komunitas iNat berjiwa pahlawan yang berdonasi setiap bulannya.
   yir_thank_your_for_being_generous: |
     Terima kasih karena telah berbaik hati memberikan waktu, perhatian, dan donasi kalian! iNaturalist merupakan inisiatif gabungan nonprofit dari California Academy of Sciences dan National Geographic Society. Program ini bergantung pada hibah-hibah dan donasi, termasuk hadiah-hadiah dari sebagian kecil dari komunitas. Kami sangat berterima kasih khususnya untuk Pendukung Bulanan karena pemberian tiap bulannya telah menolong kami untuk bisa membuat rencana untuk ke depannya.
   yir_your_gift_sustains: |
@@ -6330,6 +6349,8 @@ id:
         view_original_html: |
           Anda dapat melihat aslinya di <a href="%{url}">%{url}</a>. Tolong biarkan tanda pelanggaran hak cipta belum diselesaikan jika foto ini memang melanggar hak cipta.
     places:
+      kml_field_desc2: |
+        KML dari batas suatu tempat. Anda dapat membuatnya menggunakan Google Maps, Google Earth , atau kebanyakan aplikasi GIS lainnya. Harus memiliki setidaknya satu poligon, di bawah 1 MB (5MB untuk kurator situs), dan memiliki area yang lebih kecil dari negara bagian Texas/Pulau Kalimantan.
       edit:
         complex_boundary_note_html: |
           Batasan ini agak terlalu rumit untuk diubah di web. Namun, Anda dapat <a href="%{url}">mengunduh KMLnya</a>, mengubahnya di aplikasi GIS pilihan Anda, dan langsung mengunggah KML yang sudah diubah.
@@ -6854,7 +6875,7 @@ id:
     users:
       dashboard:
         taxon_change_desc: |
-          Perubahan takson merepresentasikan perubahan pada taksonomi %{site_name}. Sering kali, %{site_name} akan secara otomatis memelihara konten Anda tetap terbaru ketika ada perubahan yang terjadi (kecuali Anda tidak memilih untuk itu), tetapi kami masih ingin memberitahu Anda kapan dan bagaimana data Anda berubah.
+          Perubahan takson merepresentasikan perubahan pada taksonomi %{site_name}. Sering kali, %{site_name} akan memelihara konten Anda supaya tetap mutakhir secara otomatis ketika ada perubahan yang terjadi (kecuali jika Anda tidak menyalakan opsi ini), tetapi kami masih akan memberitahu Anda kapan dan bagaimana data Anda berubah.
         your_content_will_be_updated: Konten Anda yang berhubungan dengan taksa ini akan diperbarui secara otomatis.
         you_may_want_to_update: Anda memiliki beberapa konten yang terkait dengan taksa ini yang mungkin ingin Anda perbarui.
         cannot_update_your_content: "%{site_name} tidak bisa memperbarui konten Anda secara otomatis untuk perubahan ini."
@@ -6921,6 +6942,16 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        monthly_supporter_desc_html: |
+          Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
+          yang diterima oleh California Academy of Sciences (United
+          States IRS EIN 94-1156258) untuk mendukung operasi nirlaba
+          iNaturalist dan situs-situs Jaringan iNaturalist.
+          <a href="%{url}">Klik di sini untuk menjadi Pendukung Bulanan</a>.
+          Saat kami sudah mendapatkan dukungan Anda, Anda akan bisa mengecek kotak 
+          ini untuk menampilkan status ini di profil Anda. Catatan: alamat email Anda
+          di Donorbox dan iNaturalist harus sama supaya kita bisa mengonfirmasi bahwa
+          Anda adalah Pendukung Bulanan. Jika mereka berbeda, ubah salah satu supaya sama dengan yang lain.
         muting_desc_html: |
           <p>
           Meredam orang dapat mencegah Anda untuk menerima pemberitahuan tentang hal-hal yang merekan lakukan, termasuk mengomentari pengamatan Anda, mengirimkan pesan kepada Anda, menyebut Anda, dll. Meredam dapat membantu Anda mengabaikan seseorang tanpa menghalangi mereka untuk melakukan apapun.
@@ -7041,9 +7072,12 @@ id:
       index:
         connect_with_nature: Terhubung dengan Alam
         explore_and_share: Jelajahi dan bagikan pengamatan Anda dari alam.
-        observations_to_date: 'Pengamatan Hingga Saat Ini'
-        species_observed: 'Spesies Yang Diamati'
-        people_signed_up: 'Orang Telah Mendaftar'
+        observations_to_date:
+          other: "Pengamatan Hingga Saat Ini"
+        species_observed:
+          other: "Spesies Yang Diamati"
+        people_signed_up:
+          other: "Orang Yang Mendaftar"
         how_it_works: Cara Kerja
         record_your_observations: Rekam pengamatan Anda
         share_with_fellow_naturalists: Berbagi dengan sesama naturalis
@@ -7114,19 +7148,19 @@ id:
       6: Ju
       7: Sab
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B, %Y'
     month_names:
       - 
@@ -7182,42 +7216,6 @@ id:
       month: Bulan
       second: Detik
       year: Tahun
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: harus diterima
-      blank: tidak boleh kosong
-      confirmation: tidak sesuai dengan kata sandi
-      empty: tidak boleh kosong
-      equal_to: harus sama dengan %{count}
-      even: harus genap
-      exclusion: telah dipesan
-      greater_than: harus lebih besar dari %{count}
-      greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
-      inclusion: tidak termasuk dalam daftar
-      invalid: tidak valid
-      less_than: harus kurang dari %{count}
-      less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
-      new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
-      not_a_number: bukan angka
-      not_an_integer: harus bilangan bulat
-      odd: harus ganjil
-      only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
-      record_invalid: 'Validasi gagal: %{errors}'
-      requires_privilege_speech: |
-        harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
-      requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
-      taken: telah diambil
-      too_long:
-        other: terlalu panjang (maksimal %{count} karakter)
-      too_short:
-        other: terlalu pendek (minimal %{count} karakter)
-      wrong_length:
-        other: panjangnya salah (seharusnya %{count} karakter)
-    template:
-      body: 'Ada masalah dengan bidang-bidang berikut:'
-      header:
-        other: '%{count} eror melarang %{model} ini untuk disimpan'
   helpers:
     defaults:
       title: "INI JUDUL"
@@ -7279,60 +7277,21 @@ id:
   time:
     am: pagi
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b., %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: malam
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: harus diterima
-        blank: tidak boleh kosong
-        confirmation: tidak sesuai dengan konfirmasi
-        empty: tidak boleh kosong
-        equal_to: harus sama dengan %{count}
-        even: harus genap
-        exclusion: telah dipesan
-        greater_than: harus lebih besar dari %{count}
-        greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
-        inclusion: tidak termasuk di dalam daftar
-        invalid: tidak valid
-        less_than: harus kurang dari %{count}
-        less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
-        new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
-        not_a_number: bukan angka
-        not_an_integer: harus bilangan bulat
-        odd: harus ganjil
-        only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
-        record_invalid: 'Validasi gagal: %{errors}'
-        requires_privilege_speech: harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
-        requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
-        taken: telah diambil
-        too_long:
-          other: terlalu panjang (maksimal %{count} karakter)
-        too_short:
-          other: terlalu pendek (minimal %{count} karakter)
-        wrong_length:
-          other: panjangnya salah (seharusnya %{count} karakter)
-      template:
-        body: 'Ada beberapa masalah dengan bidang-bidang berikut:'
-        header:
-          other: '%{count} eror melarang %{model} ini untuk disimpan'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7548,22 +7507,28 @@ id:
         blank: tidak boleh kosong
         confirmation: tidak sesuai dengan kata sandi
         empty: tidak boleh kosong
-        equal_to: harus sama dengan %{count}
+        equal_to:
+          other: harus sama dengan %{count}
         even: harus genap
         exclusion: telah dipesan
-        greater_than: harus lebih besar dari %{count}
-        greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
+        greater_than:
+          other: harus lebih besar dari %{count}
+        greater_than_or_equal_to:
+          other: harus lebih besar atau sama dengan %{count}
         inclusion: tidak termasuk di dalam daftar
         invalid: tidak valid
-        less_than: harus kurang dari %{count}
-        less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
+        less_than:
+          other: harus kurang dari %{count}
+        less_than_or_equal_to:
+          other: harus kurang dari atau sama dengan %{count}
         new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
         not_a_number: bukan angka
         not_an_integer: harus bilangan bulat
         odd: harus ganjil
         only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
         record_invalid: 'Validasi gagal: %{errors}'
-        requires_privilege_speech: harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
+        requires_privilege_speech: |
+          harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
         requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
         taken: telah diambil
         too_long:

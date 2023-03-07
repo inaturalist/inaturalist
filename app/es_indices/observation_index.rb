@@ -1077,7 +1077,10 @@ class Observation < ApplicationRecord
       unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
         case p[geoprivacy_type]
         when Observation::OPEN
-          inverse_filters << { exists: { field: geoprivacy_type } }
+          search_filters << { bool: { should: [
+            { term: { geoprivacy_type => "open" } },
+            { bool: { must_not: { exists: { field: geoprivacy_type } } } }
+          ]}}
         when "obscured_private"
           search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
         else

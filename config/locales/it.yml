@@ -1586,9 +1586,13 @@ it:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxa coperti segnalati a valle
+  #Noun, as in a journal post that has not been published
   draft: bozza
+  #Noun, as in a journal post that has not been published
   draft_: Bozza
+  #Noun, as in a journal post that has not been published
   draft_saved: Bozza salvata!
+  #Noun, as in journal posts that has not been published
   drafts: Bozze
   drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
   #Button label for drawing a circular boundary for an observation search
@@ -2747,6 +2751,7 @@ it:
   must_have_quality_grades: "deve avere gradi di qualità: %{grades}"
   must_have_sounds: deve avere suoni
   must_have_x: "deve avere %{x}"
+  #Mute is a noun here
   mute_removed: Rimuovi il silenziatore
   muted_users: Utenti silenziati
   n_ago: "%{n} fa"
@@ -3809,7 +3814,6 @@ it:
   post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
   post_published: Post pubblicato!
   posted_by: Postato da
-  posted_on: Postato il
   posts: Post
   potential_disagreement: Potenzialmente In Disaccordo
   powered_by: Realizzato con
@@ -5202,8 +5206,6 @@ it:
   user_commented: "%{user} ha commentato"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} ha messo nei preferiti %{noun} di %{owner}"
   user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
@@ -7136,9 +7138,6 @@ it:
       index:
         connect_with_nature: Connettiti con la Natura
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
-        observations_to_date: 'Osservazioni finora'
-        species_observed: 'Specie Osservate'
-        people_signed_up: 'Persone iscritte'
         how_it_works: Come Funziona
         record_your_observations: Registra le tue osservazioni
         share_with_fellow_naturalists: Condividi con gli altri naturalisti
@@ -7209,19 +7208,19 @@ it:
       6: Ve
       7: Sa
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B, %Y'
     month_names:
       - 
@@ -7292,46 +7291,6 @@ it:
       month: Mese
       second: Secondi
       year: Anno
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: deve essere accettato
-      blank: non può essere vuoto
-      confirmation: non corrisponde alla password
-      empty: non può essere vuoto
-      equal_to: deve essere uguale a %{count}
-      even: deve essere anche
-      exclusion: è riservato
-      greater_than: deve essere più grande di %{count}
-      greater_than_or_equal_to: deve essere più grande o uguale a %{count}
-      inclusion: non è incluso nella lista
-      invalid: non è valido
-      less_than: deve essere minore di %{count}
-      less_than_or_equal_to: deve essere minore o uguale a %{count}
-      new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
-      not_a_number: non è un numero
-      not_an_integer: deve essere un numero intero
-      odd: deve essere dispari
-      only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
-      record_invalid: 'Validazione fallita: %{errors}'
-      requires_privilege_speech: |
-        devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
-      requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
-      taken: è già stato preso
-      too_long:
-        one: è troppo lungo (massimo 1 carattere)
-        other: è troppo lungo (massimo %{count} caratteri)
-      too_short:
-        one: è troppo corto (minimo 1 carattere)
-        other: è troppo corto (minimo %{count} caratteri)
-      wrong_length:
-        one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
-        other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
-    template:
-      body: 'Ci sono problemi con i seguenti campi:'
-      header:
-        one: "1 errore ha impedito a questo %{model} di essere salvato"
-        other: '%{count} errori hanno impedito a questo %{model} di essere salvato'
   helpers:
     defaults:
       title: "QUESTO E' UN TITOLO"
@@ -7394,64 +7353,21 @@ it:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b., %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: deve essere accettato
-        blank: non può essere vuoto
-        confirmation: non corrisponde alla password
-        empty: non può essere vuoto
-        equal_to: deve essere uguale a %{count}
-        even: deve essere pari
-        exclusion: è riservato
-        greater_than: deve essere superiore a %{count}
-        greater_than_or_equal_to: deve essere superiore o uguale a %{count}
-        inclusion: non è incluso nella lista
-        invalid: non è valido
-        less_than: deve essere meno di %{count}
-        less_than_or_equal_to: deve essere minore o uguale a %{count}
-        new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
-        not_a_number: non è un numero
-        not_an_integer: deve essere un numero intero
-        odd: deve essere dispari
-        only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
-        record_invalid: 'Validazione fallita: %{errors}'
-        requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
-        requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
-        taken: è già stato utilizzato
-        too_long:
-          one: è troppo lungo (massimo 1 carattere)
-          other: è troppo lungo (massimo %{count} caratteri)
-        too_short:
-          one: è troppo corto (minimo 1 carattere)
-          other: è troppo corto (minimo %{count} caratteri)
-        wrong_length:
-          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
-          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
-      template:
-        body: 'Ci sono stati problemi con i seguenti campi:'
-        header:
-          one: 1 errore impedisce a questo %{model} di essere salvato
-          other: '%{count} errori impediscono a questo %{model} di essere salvato'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7667,22 +7583,18 @@ it:
         blank: non può essere vuoto
         confirmation: non corrisponde alla password
         empty: non può essere vuoto
-        equal_to: deve essere uguale a %{count}
         even: deve essere anche
         exclusion: è riservato
-        greater_than: deve essere superiore a %{count}
-        greater_than_or_equal_to: deve essere superiore o uguale a %{count}
         inclusion: non è incluso nella lista
         invalid: non è valido
-        less_than: deve essere meno di %{count}
-        less_than_or_equal_to: deve essere minore o uguale a %{count}
         new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
         not_a_number: non è un numero
         not_an_integer: deve essere un numero intero
         odd: deve essere dispari
         only_project_owner_can_change_project_owner: Solo il proprietario del progetto può cambiare il proprietario del progetto
         record_invalid: 'Validazione fallita: %{errors}'
-        requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
+        requires_privilege_speech: |
+          devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
         taken: è già stato preso
         too_long:
@@ -7697,7 +7609,7 @@ it:
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:
-          one: 1 errore impedisce di salvare questo %{model}
+          one: "1 errore impedisce di salvare questo %{model}"
           other: '%{count} errori impediscono di salvare questo %{model}'
       models:
         application:

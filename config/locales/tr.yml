@@ -305,7 +305,7 @@ tr:
   add_id: Tanımlama Ekle
   #Tool tip for a button that adds italic text to a text area
   add_italic_text: Eğik yazı ekle
-  add_muted_users: Sessize alınacak kullanıcı ekle
+  add_muted_users: Sessize alınacak kullanıcıları ekle
   add_new_lexicon: Yeni Sözlük Ekle
   add_new_photos_by_their_ids: Flickr Kimlikleriyle Yeni Fotoğraflar Ekle (Creative Commons olmalı!)
   add_new_place: Yeni Bir Konum Ekle
@@ -1493,6 +1493,7 @@ tr:
       signed_up_but_locked: "Başarılı bir şekilde kaydoldun. Ancak, hesabın kilitli olduğu için oturumunu açamadık."
       signed_up_but_unconfirmed: "E-posta adresine onay bağlantısı içeren bir ileti gönderildi. Hesabını etkinleştirmek için lütfen bağlantıyı takip et."
       updated: 'Hesabını başarıyla güncelledin.'
+      updated_but_not_signed_in: "Hesabın başarıyla güncellendi ancak şifren değiştirildiği için yeniden oturum açman gerekiyor."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1578,9 +1579,15 @@ tr:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alt soy işaretli sınıflar
+  #Noun, as in a journal post that has not been published
   draft: taslak
+  #Noun, as in a journal post that has not been published
   draft_: Taslak
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: '%{user} kullanıcısının taslağı'
+  #Noun, as in a journal post that has not been published
   draft_saved: Taslak kaydedildi!
+  #Noun, as in journal posts that has not been published
   drafts: Taslaklar
   drag_and_drop_some_photos_or_sounds: Bazı fotoğrafları ya da sesleri sürükleyip bırak
   #Button label for drawing a circular boundary for an observation search
@@ -2318,6 +2325,7 @@ tr:
     italian: İtalyanca
     japanese: Japonca
     kannada: Kannadaca
+    kazakh: Kazakça
     korean: Korece
     latvian: Letonca
     lithuanian: Litvanca
@@ -2453,6 +2461,7 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    kk: Kazakça
     kn: Kannadaca
     ko: Korece
     lb: Lüksemburgca
@@ -2738,8 +2747,12 @@ tr:
   must_have_quality_grades: "minimum kalite derecesi: %{grades}"
   must_have_sounds: ses içermeli
   must_have_x: "%{x} olması gerekir"
-  mute_removed: Susturma kaldırıldı
-  muted_users: Susturulmuş Kullanıcılar
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Sessize al
+  #Mute is a noun here
+  mute_removed: Sessize alma kaldırıldı
+  muted_users: Sessize Alınmış Kullanıcılar
+  muting_description: Birini sessize almak, "@" ifadeleri, mesajlar ya da gözlemlerinle ilgili yorumlar ve tanımlamalar dahil olmak üzere onun herhangi bir etkinliğinden haberdar olmanı engeller.
   n_ago: "%{n} önce"
   n_people_agrees: "%{amount} kişi onaylıyor"
   n_people_disagrees: "%{amount} kişi onaylamıyor"
@@ -3257,6 +3270,9 @@ tr:
     invalid_email: Geçersiz e-posta formatı
   password: Şifre
   password_confirmation: 'Şifre doğrulama'
+  password_change_description: Şifreni değiştirdiğinde cihazlarınızdaki tüm etkin iNaturalist oturumlarından çıkarsın
+  password_change_logout_warning: Şifreni değiştirdikten sonra oturumun kapatılacak ve yeni şifrenle tekrar oturum açman gerekecektir.
+  password_change_observations_warning: Ayrıca iNaturalist mobil uygulamalarından ve senin adına iNaturalist'e gönderi yapan diğer uygulamalardan ya da web sitelerinden çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen tüm gözlemleri yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.
   paste: Yapıştır
   paste_in_a_bunch_of_names: Her satıra 1 tane olmak üzere bir grup isim yapıştır ve düğmeye bas!
   people: İnsanlar
@@ -3797,7 +3813,10 @@ tr:
   post_from_your_journal_html: <a href="%{url}">Günlüğünden</a> gönderi
   post_published: Gönderi yayınlandı!
   posted_by: Gönderen
-  posted_on: Gönderi tarihi
+  #Shows the date a journal post was published
+  posted_on_date_html: '%{date} tarihinde yayınlandı'
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: '%{user} tarafından %{date} tarihinde yayınlandı'
   posts: Gönderiler
   potential_disagreement: Potansiyel Anlaşmazlık
   powered_by: Destekleyen
@@ -5065,7 +5084,7 @@ tr:
   unfollow: Takibi bırak
   unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
-  unmute: Sesi aç
+  unmute: Sessizden Çıkart
   updates_notification_email_subject: "%{prefix} Yeni güncellemeler %{date}"
   updates_suspension_email_subject: "%{prefix} Aboneliklerin beklemede"
   updating: Güncelleniyor...
@@ -5180,9 +5199,7 @@ tr:
   user_commented: "%{user} yorum yaptı"
   user_disagrees_this_is_taxon: "%{user} bunun %{taxon} olduğunda hemfikir değil"
   user_disagrees_with_previous_finer_identifications: "%{user} karar verilmiş tanımda hemfikir değil"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}, %{owner} tarafından yapılan %{noun}i favori yaptı"
-  user_faved_a_noun_by_you: "%{user}, %{noun}ini favorilerine ekledi."
+  user_faved_an_observation_by_you: "%{user}, gözlemini beğendi"
   user_faved_this_observation: "%{user} bu gözlemi favorilerine ekledi"
   user_flagged_as_a_non_spammer_html: "%{user} gereksiz değil olarak işaretlendi"
   user_flagged_as_a_spammer_html: "%{user} gereksiz içerikçi olarak işaretlendi"
@@ -5200,7 +5217,7 @@ tr:
     <strong>%{user}</strong> artık %{project} için yürütücü
   user_is_now_a_curator_for_project_html: |
     <strong>%{user}</strong> artık %{project} için küratör
-  user_muted: Kullanıcı susturuldu
+  user_muted: Kullanıcı sessize alındı
   user_observed_on_on_date_in_place: |
     %{user}, %{place} konumunda %{date} tarihinde bir tane gözlemledi
   user_suggested_an_id: "%{user} bir tanımlama önerdi"
@@ -6368,6 +6385,8 @@ tr:
         view_original_html: |
           Aslını <a href="%{url}">%{url}</a> adresinden görüntüleyebilirsin. Bu fotoğraf telif hakkını ihlal ediyorsa lütfen telif hakkı ihlali işaretlerini çözülmemiş olarak bırak.
     places:
+      kml_field_desc2: |
+        Konum sınırının KML'si. Google Maps, Google Earth ya da çoğu GIS uygulamasını kullanarak bir tane oluşturabilirsin. En az bir çokgene sahip olmalı, 1 MB'nin altında olmalı (site küratörleri için 5 MB) ve ABD'nin Teksas eyaletinden daha küçük bir alana sahip olmalıdır.
       edit:
         complex_boundary_note_html: |
           Bu sınır, internette düzenlenemeyecek kadar karışık. Ancak, <a href="%{url}">KML'yi indirebilir</a>, seçtiğin GIS uygulmasında düzenleyebilir ve düzenlediğin KML'yi doğrudan yükleyebilirsin.
@@ -7173,9 +7192,15 @@ tr:
       index:
         connect_with_nature: Doğa ile Bağ Kur
         explore_and_share: Keşfet ve doğal dünyadan gözlemlerini paylaş.
-        observations_to_date: 'Bugüne Kadar Yapılan Gözlemler'
-        species_observed: 'Gözlemlenen Tür'
-        people_signed_up: 'Kaydolan Kişi'
+        observations_to_date:
+          one: "Bugüne Kadarki Gözlem"
+          other: "Bugüne Kadarki Gözlemler"
+        species_observed:
+          one: "Gözlemlenen Tür"
+          other: "Gözlemlenen Türler"
+        people_signed_up:
+          one: "Kaydolan Kişi"
+          other: "Kaydolan Kişiler"
         how_it_works: Nasıl Çalışır
         record_your_observations: Gözlemlerini kaydet
         share_with_fellow_naturalists: Doğa bilimci dostlarınla paylaş
@@ -7246,19 +7271,19 @@ tr:
       6: Cum
       7: Cmt
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B, %Y'
     month_names:
       - 
@@ -7329,46 +7354,6 @@ tr:
       month: Ay
       second: Saniye
       year: Yıl
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: kabul edilmeli
-      blank: boş bırakılamaz
-      confirmation: şifre eşleşmedi
-      empty: boş olamaz
-      equal_to: '%{count} değerine eşit olmalı'
-      even: çift sayı olmalı
-      exclusion: ayrılmış
-      greater_than: '%{count} değerinden büyük olmalı'
-      greater_than_or_equal_to: '%{count} değerinden büyük veya eşit olmalı'
-      inclusion: listeye dahil edilmedi
-      invalid: geçersiz
-      less_than: '%{count} değerinden küçük olmalı'
-      less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
-      new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalıdır
-      not_a_number: bir sayı değil
-      not_an_integer: bir tam sayı olmalı
-      odd: tek sayı olmalı
-      only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
-      record_invalid: 'Doğrulama başarısız oldu: %{errors}'
-      requires_privilege_speech: |
-        başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
-      requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
-      taken: zaten alınmış
-      too_long:
-        one: çok uzun (maksimum %{count} karakter)
-        other: çok uzun (maksimum %{count} karakter)
-      too_short:
-        one: çok kısa (minimum %{count} karakter)
-        other: çok kısa (minimum %{count} karakter)
-      wrong_length:
-        one: yanlış uzunlukta (%{count} karakter olmalı)
-        other: yanlış uzunlukta (%{count} karakter olmalı)
-    template:
-      body: 'Aşağıdaki alanlarla ilgili sorunlar oluştu:'
-      header:
-        one: "%{count} hata bu %{model}'in kaydedilmesini yasakladı"
-        other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
   helpers:
     defaults:
       title: "BU BİR BAŞLIK"
@@ -7431,64 +7416,21 @@ tr:
   time:
     am: öö
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b., %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: ös
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: kabul edilmeli
-        blank: boş bırakılamaz
-        confirmation: şifre eşleşmedi
-        empty: boş olamaz
-        equal_to: '%{count} değerine eşit olmalı'
-        even: çift sayı olmalı
-        exclusion: ayrılmış
-        greater_than: '%{count} değerinden büyük olmalı'
-        greater_than_or_equal_to: '%{count} değerinden büyük veya eşit olmalı'
-        inclusion: listeye dahil edilmedi
-        invalid: geçersiz
-        less_than: '%{count} değerinden küçük olmalı'
-        less_than_or_equal_to: '%{count} değerinden küçük veya eşit olmalı'
-        new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalıdır
-        not_a_number: bir sayı değil
-        not_an_integer: bir tam sayı olmalı
-        odd: tek sayı olmalı
-        only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
-        record_invalid: 'Doğrulama başarısız oldu: %{errors}'
-        requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
-        requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
-        taken: zaten alınmış
-        too_long:
-          one: çok uzun (maksimum %{count} karakter)
-          other: çok uzun (maksimum %{count} karakter)
-        too_short:
-          one: çok kısa (minimum %{count} karakter)
-          other: çok kısa (minimum %{count} karakter)
-        wrong_length:
-          one: yanlış uzunlukta (%{count} karakter olmalı)
-          other: yanlış uzunlukta (%{count} karakter olmalı)
-      template:
-        body: 'Aşağıdaki alanlarla ilgili sorunlar oluştu:'
-        header:
-          one: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
-          other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7704,22 +7646,33 @@ tr:
         blank: boş bırakılamaz
         confirmation: şifre eşleşmedi
         empty: boş olamaz
-        equal_to: '%{count} değerine eşit olmalı'
+        equal_to:
+          one: '%{count} değerine eşit olmalıdır'
+          other: '%{count} değerine eşit olmalıdır'
         even: çift sayı olmalı
         exclusion: ayrılmış
-        greater_than: '%{count} değerinden büyük olmalı'
-        greater_than_or_equal_to: '%{count} değerinden büyük ya da eşit olmalı'
+        greater_than:
+          one: '%{count} değerinden büyük olmalıdır'
+          other: '%{count} değerinden büyük olmalıdır'
+        greater_than_or_equal_to:
+          one: '%{count} değerinden büyük ya da eşit olmalıdır'
+          other: '%{count} değerinden büyük ya da eşit olmalıdır'
         inclusion: listeye dahil edilmemiş
         invalid: geçersiz
-        less_than: '%{count} değerinden küçük olmalı'
-        less_than_or_equal_to: '%{count} değerinden küçük ya da eşit olmalı'
+        less_than:
+          one: '%{count} değerinden küçük olmalıdır'
+          other: '%{count} değerinden küçük olmalıdır'
+        less_than_or_equal_to:
+          one: '%{count} değerinden küçük ya da eşit olmalıdır'
+          other: '%{count} değerinden küçük ya da eşit olmalıdır'
         new_project_owner_must_be_a_manager: Yeni proje sahibi bir yönetici olmalıdır
         not_a_number: bir sayı değil
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
         only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
         record_invalid: 'Doğrulama başarısız oldu: %{errors}'
-        requires_privilege_speech: başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
+        requires_privilege_speech: |
+          başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
         taken: zaten alınmış
         too_long:
@@ -7734,7 +7687,7 @@ tr:
       template:
         body: 'Aşağıdaki alanlarla ilgili sorunlar oluştu:'
         header:
-          one: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
+          one: "%{count} hata bu %{model}'in kaydedilmesini yasakladı"
           other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
       models:
         application:

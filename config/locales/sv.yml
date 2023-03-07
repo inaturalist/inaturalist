@@ -811,6 +811,8 @@ sv:
   birds: fåglar
   birthday: Födelsedag
   black: svart
+  block: Blockera
+  blocking_description: Blockering förhindrar kommunikation mellan dig och en annan användare. Det är till för situationer där en annan användare kan äventyra din säkerhet, som stalking eller andra kränkande beteenden.
   block_removed: Blockering togs bort
   blocked_users: Blockerade användare
   blog_widget: Blogg-widget
@@ -1555,6 +1557,7 @@ sv:
       signed_up_but_locked: "Du har registrerat dig. Vi kunde tyvärr inte logga in dig eftersom ditt konto är låst."
       signed_up_but_unconfirmed: "Ett meddelande med en bekräftelselänk har skickats till din e-postadress. Följ länken för att aktivera ditt konto."
       updated: 'Ditt konto har uppdaterats.'
+      updated_but_not_signed_in: "Ditt konto har uppdaterats framgångsrikt, men eftersom ditt lösenord ändrades måste du logga in igen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1651,9 +1654,15 @@ sv:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Underliggande flaggade taxa
+  #Noun, as in a journal post that has not been published
   draft: utkast
+  #Noun, as in a journal post that has not been published
   draft_: Utkast
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Utkast av %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Utkast sparat!
+  #Noun, as in journal posts that has not been published
   drafts: Utkast
   drag_and_drop_some_photos_or_sounds: Dra & släpp några bilder eller ljud
   #Button label for drawing a circular boundary for an observation search
@@ -2431,6 +2440,7 @@ sv:
     italian: Italienska
     japanese: Japanska
     kannada: Kannada
+    kazakh: Kazakiska
     korean: Koreanska
     latvian: Lettiska
     lithuanian: Litauiska
@@ -2566,6 +2576,7 @@ sv:
     id: Indonesiska
     it: Italienska
     ja: Japanska
+    kk: Kazakiska
     kn: Kannada
     ko: Koreanska
     lb: Luxemburgiska
@@ -2860,8 +2871,12 @@ sv:
   must_have_quality_grades: "måste vara av kvalitetsklass: %{grades}"
   must_have_sounds: måste ha ljud
   must_have_x: "måste ha %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Tysta
+  #Mute is a noun here
   mute_removed: Tystning borttagen
   muted_users: Tystade användare
+  muting_description: Att tysta någon hindrar dig från att bli aviserad om någon av deras aktiviteter, inklusive "@"-omnämnanden, meddelanden eller kommentarer och bestämningar av dina observationer.
   n_ago: "%{n} sedan"
   n_people_agrees: "%{amount} personer håller med"
   n_people_disagrees: "%{amount} personer är emot"
@@ -3385,6 +3400,9 @@ sv:
     invalid_email: Ogiltigt e-postformat
   password: Lösenord
   password_confirmation: 'Lösenordsbekräftelse'
+  password_change_description: Om du ändrar ditt lösenord loggas du ut från alla aktiva iNaturalist-sessioner på dina enheter
+  password_change_logout_warning: Efter att du bytt lösenord kommer du att loggas ut och du måste logga in igen med ditt nya lösenord.
+  password_change_observations_warning: Du kommer också att loggas ut från iNaturalist-mobilappar och andra appar eller webbplatser som publicerar på iNaturalist för din räkning, så se till att du har laddat upp eventuella väntande observationer innan du gör detta. Alla observationer som inte är uppladdade kommer att gå förlorade.
   paste: Klistra in
   paste_in_a_bunch_of_names: Klistra in ett gäng namn, 1 per rad, och tryck på knappen!
   people: Personer
@@ -3958,7 +3976,10 @@ sv:
   post_from_your_journal_html: Inlägg från <a href="%{url}">din dagbok</a>
   post_published: Inlägget publicerat!
   posted_by: Inlagt av
-  posted_on: Inlagt den
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicerat %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicerat %{date} av %{user}
   posts: Inlägg
   potential_disagreement: Möjlig oenighet
   powered_by: Drivs av
@@ -4705,6 +4726,10 @@ sv:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte genererats.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status tagen från ett överliggande taxon:</strong> %{taxon}
   status_globally: '%{status} Globalt'
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
@@ -5391,9 +5416,7 @@ sv:
   user_commented: "%{user} kommenterade"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} favoritmarkerade %{noun} av %{owner}"
-  user_faved_a_noun_by_you: "%{user} favoritmarkerad %{noun} av dig"
+  user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
@@ -7419,9 +7442,15 @@ sv:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforska och dela dina fynd från naturen.
-        observations_to_date: 'Fynd hittills'
-        species_observed: 'Observerade arter'
-        people_signed_up: 'Registrerade användare'
+        observations_to_date:
+          one: "Fynd hittills"
+          other: "Fynd hittills"
+        species_observed:
+          one: "Observerad art"
+          other: "Observerade arter"
+        people_signed_up:
+          one: "Registrerad användare"
+          other: "Registrerade användare"
         how_it_works: Hur det fungerar
         record_your_observations: Spara dina fynd
         share_with_fellow_naturalists: Dela med andra naturforskare
@@ -7493,19 +7522,19 @@ sv:
       6: Fre
       7: Lö
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%-d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%-d %B %Y'
     month_names:
       - 
@@ -7576,46 +7605,6 @@ sv:
       month: Månad
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: måste accepteras
-      blank: kan inte vara tomt
-      confirmation: stämde inte överens med lösenordet
-      empty: kan inte vara tomt
-      equal_to: måste vara lika med %{count}
-      even: måste vara jämnt
-      exclusion: är reserverad
-      greater_than: måste vara större än %{count}
-      greater_than_or_equal_to: måste vara större än eller lika med %{count}
-      inclusion: finns inte med i listan
-      invalid: är ogiltig
-      less_than: måste vara mindre än %{count}
-      less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-      new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-      not_a_number: är inte ett nummer
-      not_an_integer: måste vara ett heltal
-      odd: måste vara udda
-      only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-      record_invalid: 'Validering misslyckades: %{errors}'
-      requires_privilege_speech: |
-        måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-      requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-      taken: är redan taget
-      too_long:
-        one: är för långt (maximalt %{count} tecken)
-        other: är för långt (maximalt %{count} tecken)
-      too_short:
-        one: är för kort (minimum %{count} tecken)
-        other: är för kort (minimum %{count} tecken)
-      wrong_length:
-        one: är av fel längd (borde vara %{count} tecken)
-        other: är av fel längd (borde vara %{count} tecken)
-    template:
-      body: 'Det uppstod problem med följande fält:'
-      header:
-        one: "%{count} fel hindrade denna %{model} från att sparas"
-        other: '%{count} fel hindrade denna %{model} från att sparas'
   helpers:
     defaults:
       title: "DETTA ÄR EN TITEL"
@@ -7678,64 +7667,21 @@ sv:
   time:
     am: fm
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%-d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: em
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: måste accepteras
-        blank: kan inte vara tomt
-        confirmation: stämde inte överens med lösenordet
-        empty: kan inte vara tomt
-        equal_to: måste vara lika med %{count}
-        even: måste vara jämnt
-        exclusion: är reserverat
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
-        inclusion: finns inte med i listan
-        invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
-        new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
-        not_a_number: är inte ett nummer
-        not_an_integer: måste vara ett heltal
-        odd: måste vara udda
-        only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
-        record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
-        requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
-        taken: är redan taget
-        too_long:
-          one: är för långt (maximalt %{count} tecken)
-          other: är för långt (maximalt %{count} tecken)
-        too_short:
-          one: är för kort (minimum %{count} tecken)
-          other: är för kort (minimum %{count} tecken)
-        wrong_length:
-          one: är fel längd (ska vara %{count} tecken)
-          other: är fel längd (ska vara %{count} tecken)
-      template:
-        body: 'Det uppstod problem med följande fält:'
-        header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
-          other: '%{count} fel hindrade denna %{model} från att sparas'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7951,22 +7897,33 @@ sv:
         blank: kan inte vara tom
         confirmation: stämde inte överens med lösenordet
         empty: kan inte vara tom
-        equal_to: måste vara samma som %{count}
+        equal_to:
+          one: måste vara lika med %{count}
+          other: måste vara lika med %{count}
         even: måste vara jämn
         exclusion: är reserverad
-        greater_than: måste vara större än %{count}
-        greater_than_or_equal_to: måste vara större än eller lika med %{count}
+        greater_than:
+          one: måste vara fler än %{count}
+          other: måste vara fler än %{count}
+        greater_than_or_equal_to:
+          one: måste vara fler än eller lika med %{count}
+          other: måste vara fler än eller lika med %{count}
         inclusion: ingår inte i listan
         invalid: är ogiltig
-        less_than: måste vara mindre än %{count}
-        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        less_than:
+          one: måste vara färre än %{count}
+          other: måste vara färre än %{count}
+        less_than_or_equal_to:
+          one: måste vara färre än eller lika med %{count}
+          other: måste vara färre än eller lika med %{count}
         new_project_owner_must_be_a_manager: Ny projektägare måste vara administratör
         not_a_number: är inte en siffra
         not_an_integer: måste vara ett heltal
         odd: måste vara udda
         only_project_owner_can_change_project_owner: Endast projektägaren kan ändra projektägare
         record_invalid: 'Validering misslyckades: %{errors}'
-        requires_privilege_speech: måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
+        requires_privilege_speech: |
+          måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
         taken: är redan taget
         too_long:
@@ -7981,7 +7938,7 @@ sv:
       template:
         body: 'Det uppstod problem med följande fält:'
         header:
-          one: '%{count} fel hindrade denna %{model} från att sparas'
+          one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
         application:

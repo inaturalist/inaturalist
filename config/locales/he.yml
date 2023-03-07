@@ -1674,9 +1674,13 @@ he:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
+  #Noun, as in a journal post that has not been published
   draft: טיוטה
+  #Noun, as in a journal post that has not been published
   draft_: טיוטה
+  #Noun, as in a journal post that has not been published
   draft_saved: טיוטה נשמרה!
+  #Noun, as in journal posts that has not been published
   drafts: טיוטות
   drag_and_drop_some_photos_or_sounds: נא לגרור ולשחרר כמה תמונות או קולות
   #Button label for drawing a circular boundary for an observation search
@@ -2825,6 +2829,7 @@ he:
   must_have_quality_grades: "חייבת להיות בדרגות איכות: %{grades}"
   must_have_sounds: חייב להכיל קולות
   must_have_x: "חייב להכיל %{x}"
+  #Mute is a noun here
   mute_removed: ביטול השתקה
   muted_users: משתמשים מושתקים
   n_ago: "לפני %{n}"
@@ -3872,7 +3877,6 @@ he:
   post_from_your_journal_html: פוסט <a href="%{url}">מהיומן שלך</a>
   post_published: רשומה פורסמה!
   posted_by: פורסם על-ידי
-  posted_on: פורסם ב
   posts: פוסטים
   potential_disagreement: אי-הסכמה פוטנציאלית
   powered_by: מופעל על ידי
@@ -5317,8 +5321,6 @@ he:
   user_commented: "%{user} העיר"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} העדיף %{noun} של %{owner}"
   user_faved_this_observation: "%{user} אהב/ה תצפית זו"
   user_flagged_as_a_non_spammer_html: "%{user} סומנ.ה שלא מפיצ.ה ספאם"
   user_flagged_as_a_spammer_html: "%{user} סומנ.ה כמפיצ.ה ספאם"
@@ -7212,9 +7214,6 @@ he:
       index:
         connect_with_nature: התחברו לטבע
         explore_and_share: גלו ושתפו את תצפיות הטבע שלכן.ם
-        observations_to_date: 'תצפיות עד היום'
-        species_observed: 'מינים שנצפו'
-        people_signed_up: 'א.נשים הצטרפו'
         how_it_works: איך זה עובד
         record_your_observations: תעדו את התצפיות שלכם.ן
         share_with_fellow_naturalists: שתפו עם הקהילה
@@ -7285,19 +7284,19 @@ he:
       6: שישי
       7: שבת
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B, %Y'
     month_names:
       - 
@@ -7398,54 +7397,6 @@ he:
       month: חודש
       second: שניות
       year: שנה
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: חייב להתקבל
-      blank: לא ניתן להשאיר ריק
-      confirmation: לא תואם לססמה
-      empty: אינו יכול להיות ריק
-      equal_to: חייב להיות שווה ל־%{count}
-      even: חייב להיות זוגי
-      exclusion: שמור
-      greater_than: חייב להיות גדול מ־%{count}
-      greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-      inclusion: לא ברשימה
-      invalid: שגוי
-      less_than: חייב להיות פחות מ־%{count}
-      less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-      new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-      not_a_number: הוא לא מספר
-      not_an_integer: חייב להיות מספר שלם
-      odd: חייב להיות אי־זוגי
-      only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-      record_invalid: 'אימות נכשל: %{errors}'
-      requires_privilege_speech: |
-        צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-      requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-      taken: כבר תפוס
-      too_long:
-        one: ארוך מדי (מקסימום תו אחד)
-        two: ארוך מדי (מקסימום %{count} תווים)
-        many: ארוך מדי (מקסימום %{count} תווים)
-        other: ארוך מדי (מקסימום %{count} תווים)
-      too_short:
-        one: קצר מדי (מינימום תו אחד)
-        two: קצר מדי (מינימום %{count} תווים)
-        many: קצר מדי (מינימום %{count} תווים)
-        other: קצר מדי (מינימום %{count} תווים)
-      wrong_length:
-        one: באורך לא נכון (צריך להיות תו אחד)
-        two: באורך לא נכון (צריך להיות %{count} תווים)
-        many: באורך לא נכון (צריך להיות %{count} תווים)
-        other: באורך לא נכון (צריך להיות %{count} תווים)
-    template:
-      body: 'היו בעיות עם השדות הבאים:'
-      header:
-        one: "טעות אחת מנעה את שמירת %{model} זה"
-        two: '%{count} טעויות מנעו את שמירת %{model} זה'
-        many: '%{count} טעויות מנעו את שמירת %{model} זה'
-        other: '%{count} טעויות מנעו את שמירת %{model} זה'
   helpers:
     defaults:
       title: "זוהי כותרת"
@@ -7511,72 +7462,21 @@ he:
   time:
     am: לפנה"צ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: אחה"צ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: חייב להתקבל
-        blank: לא ניתן להשאיר ריק
-        confirmation: לא תואם לססמה
-        empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
-        even: חייב להיות זוגי
-        exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
-        inclusion: לא ברשימה
-        invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
-        new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
-        not_a_number: אינו מספר
-        not_an_integer: חייב להיות מספר שלם
-        odd: חייב להיות אי־זוגי
-        only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
-        record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריך לפחות שלושה תצפיות ניתנות לאימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זהצריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
-        requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
-        taken: כבר תפוס
-        too_long:
-          one: ארוך מדי (המקסימום הוא תו אחד)
-          two: ארוך מדי (מקסימום %{count} תווים)
-          many: ארוך מדי (המקסימום הוא %{count} תוים)
-          other: ארוך מדי (המקסימום הוא %{count} תוים)
-        too_short:
-          one: קצר מדי (לפחוחת תו אחד)
-          two: קצר מדי (%{count} תווים לפחות)
-          many: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-          other: קצר מדי (מספר תווים מינימלי נדרש הוא %{count})
-        wrong_length:
-          one: באורך לא נכון (צריך להיות תו %{count})
-          two: באורך לא נכון (צרים להיות %{count} תווים)
-          many: באורך לא נכון (צרים להיות %{count} תווים)
-          other: באורך לא נכון (צרים להיות %{count} תווים)
-      template:
-        body: 'היו בעיות עם השדות הבאים:'
-        header:
-          one: טעות אחת ב%{model} זה מנעה את שמירתו
-          two: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          many: '%{count} טעויות ב%{model} זה מנעו שמירתו'
-          other: '%{count} טעויות ב%{model} זה מנעו שמירתו'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7792,22 +7692,18 @@ he:
         blank: לא ניתן להשאיר ריק
         confirmation: לא תואם לססמה
         empty: אינו יכול להיות ריק
-        equal_to: חייב להיות שווה ל־%{count}
         even: חייב להיות זוגי
         exclusion: שמור
-        greater_than: חייב להיות גדול מ־%{count}
-        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
         inclusion: לא ברשימה
         invalid: שגוי
-        less_than: חייב להיות פחות מ־%{count}
-        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
         new_project_owner_must_be_a_manager: בעל.ת פרויקט חדש.ה חייב.ת להיות אדמינ.ית
         not_a_number: הוא לא מספר
         not_an_integer: חייב להיות מספר שלם וחיובי
         odd: חייב להיות אי־זוגי
         only_project_owner_can_change_project_owner: רק לבעל.ת הפרויקט מותר לשנות את בעלות הפרויקט
         record_invalid: 'אימות נכשל: %{errors}'
-        requires_privilege_speech: צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
+        requires_privilege_speech: |
+          צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
         requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
         taken: כבר תפוס
         too_long:
@@ -7828,7 +7724,7 @@ he:
       template:
         body: 'אירעו בעיות עם השדות הבאים:'
         header:
-          one: טעות אחת מנעה את שמירת %{model} זה
+          one: "טעות אחת מנעה את שמירת %{model} זה"
           two: '%{count} טעויות מנעו את שמירת %{model} זה'
           many: '%{count} טעויות מנעו את שמירת %{model} זה'
           other: '%{count} טעויות מנעו את שמירת %{model} זה'

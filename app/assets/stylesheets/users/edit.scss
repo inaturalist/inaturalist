@@ -484,3 +484,17 @@ select.dropdown {
     max-width: 60%;
   }
 }
+
+#user_password {
+  .btn {
+    margin-bottom: 5px;
+  }
+}
+
+.BlockMutedUsers + .BlockMutedUsers {
+  margin-top: 50px;
+}
+
+body>div>[role="dialog"] .modal-dialog {
+  margin: 30px auto;
+}

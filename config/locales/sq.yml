@@ -796,9 +796,13 @@ sq:
   download_csv: Shkarko CSV
   download_csv_template: Shkarko modelin CSV
   download_kml: Shkarko KML
+  #Noun, as in a journal post that has not been published
   draft: skicë
+  #Noun, as in a journal post that has not been published
   draft_: Skicë
+  #Noun, as in a journal post that has not been published
   draft_saved: Skicë e ruajtur!
+  #Noun, as in journal posts that has not been published
   drafts: Skicat
   drag_and_drop_some_photos_or_sounds: Tërhiq & lësho ca foto ose tinguj
   drawings: Vizatimet
@@ -1468,6 +1472,7 @@ sq:
   must_be_less_than_x_MB: "Duhet të jetë më pak se %{x}MB"
   must_have_observation_field: "Domosdo të ketë fushë të vëzhgimit %{operand} të plotësuar"
   must_have_x: "Duhet të ketë %{x}"
+  #Mute is a noun here
   mute_removed: Heshtja u hoq
   muted_users: Përdoruesi u hesht
   n_ago: "%{n} para"
@@ -2030,7 +2035,6 @@ sq:
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   post_published: Postimi u publikua!
   posted_by: Postuar nga
-  posted_on: Postuar më
   posts: Postimet
   potential_disagreement: Mosmarrëveshjet potenciale
   powered_by: Mbështetur nga
@@ -2540,9 +2544,6 @@ sq:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
-    welcome:
-      index:
-        species_observed: 'Specjet e vëzhguara'
   date:
     abbr_month_names:
       - 
@@ -2580,28 +2581,6 @@ sq:
       month: Muaji
       second: Sekondat
       year: Viti
-  errors:
-    messages:
-      accepted: Duhet të pranohet
-      blank: nuk mund të jetë bosh
-      confirmation: nuk përputhet me konfirmimin
-      empty: nuk mund të jetë bosh
-      equal_to: duhet të jetë e barabartë me %{count}
-      even: duhet të jetë çift
-      exclusion: është e rezervuar
-      greater_than: duhet të jetë më i madh se %{count}
-      greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-      inclusion: nuk është përfshirë në listë
-      invalid: është i pavlefshëm
-      less_than: duhet të jetë më pak se %{count}
-      less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-      not_a_number: nuk është një numër
-      not_an_integer: duhet të jetë një numër i plotë
-      odd: duhet të jetë tek
-      record_invalid: 'Vlefshmëria dështoi: %{errors}'
-      taken: është marrë tashmë
-    template:
-      body: 'Kishte probleme me fushat e mëposhtme:'
   helpers:
     select:
       prompt: Ju lutem zgjidhni
@@ -2623,31 +2602,6 @@ sq:
   time:
     am: pd
     pm: md
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: Patjetër të pranohet
-        blank: nuk mund të jetë bosh
-        confirmation: nuk përputhet me konfirmimin
-        empty: nuk mund të jetë bosh
-        equal_to: duhet të jetë e barabartë me %{count}
-        even: duhet të jetë i barabartë
-        exclusion: është e rezervuar
-        greater_than: duhet të jetë më i madh se %{count}
-        greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-        inclusion: nuk është përfshirë në listë
-        invalid: është i pavlefshëm
-        less_than: duhet të jetë më pak se %{count}
-        less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-        not_a_number: nuk është një numër
-        not_an_integer: duhet të jetë një numër i plotë
-        odd: duhet të jetë tek
-        record_invalid: 'Vlefshmëria dështoi: %{errors}'
-        taken: është marrë tashmë
-      template:
-        body: 'Kishte probleme me fushat e mëposhtme:'
   activerecord:
     models:
       AssessmentSection: Seksioni i Vlerësimit

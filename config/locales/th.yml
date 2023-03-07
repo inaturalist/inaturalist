@@ -913,6 +913,7 @@ th:
   download: ดาวน์โหลด
   download_csv: ดาวน์โหลด CSV
   download_kml: ดาวน์โหลด KML
+  #Noun, as in a journal post that has not been published
   draft_saved: บันทึกฉบับร่างแล้ว!
   drag_and_drop_some_photos_or_sounds: ลากแล้ววางรูปถ่ายหรือเสียง
   #Button label for drawing a circular boundary for an observation search
@@ -947,6 +948,7 @@ th:
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
+  email_notifications: การแจ้งเตือนทางอีเมล
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
   endangered: ใกล้สูญพันธุ์
@@ -1176,6 +1178,7 @@ th:
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: ไม่ใช้งาน
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
+  inaturalist_activity_notifications: "การแจ้งเตือนกิจกรรม"
   info: ข้อมูล
   introduced: ชนิดพันธุ์ต่างถิ่น
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
@@ -1573,6 +1576,8 @@ th:
   not_resolved: ไม่แก้ไข
   not_seeing_what_looking_for: ไม่พบสิ่งที่ค้นหา?
   notes: คำอธิบาย
+  notifications: การแจ้งเตือน
+  notify_me_of_mentions_description: "หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเมื่อมีคนพูดถึงคุณใน %{site_name}"
   number_of_observations: จำนวนการสังเกต
   number_of_observers_value: "จำนวนผู้สังเกต: %{number}"
   number_of_observers: "จำนวนผู้สังเกต"
@@ -1974,6 +1979,8 @@ th:
   read_our_getting_started_guide: อ่านคู่มือเริ่มต้นใช้งานของเรา
   real_time_discussions: การพูดคุยในขณะนี้
   reason: เหตุผล
+  receive_email_notifications: รับการแจ้งเตือนทางอีเมล
+  receive_email_notifications_description: "หากคุณปิด คุณจะไม่ได้รับอีเมลแจ้งเตือนจาก %{site_name}"
   receive_project_journal_notifications?: รับการแจ้งเตือนจากวารสารโครงการหรือไม่?
   recent_evidence_of_organism: หลักฐานไม่เก่าเกินไป (ไม่เป็นซากดึกดำบรรพ์)
   recent_new_users: ผู้ใช้งานใหม่ล่าสุด
@@ -2745,12 +2752,13 @@ th:
         trust_allow_members_to_trust: |-
           อนุญาตให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้ในการเข้าถึงพิกัดที่ถูกซ่อน
       new:
+        can_be_included_in_multiple: รวมเข้าไปในโครงการครอบคลุมหลายโครงการได้
         check_the_box_to_include_member_observations: |
           ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
           ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
-        custom_banner_icon_and_project_description: สามารถเปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายโครงการ
-        data_visualizations: มองเห็นภาพรวมของข้อมูล
+        custom_banner_icon_and_project_description: เปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายได้
+        data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
         duplicate_project: ทำซ้ำโครงการ
@@ -2767,6 +2775,7 @@ th:
         project_details: รายละเอียดโครงการ
         project_icon: ไอคอนโครงการ (PNG, JPG, หรือ GIF)
         project_name: ชื่อโครงการ
+        start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
         we_have_redesigned_projects: |
@@ -2854,11 +2863,21 @@ th:
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: ความคิดเห็น
+        #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_identifications: การจำแนก
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: การพูดถึง
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: ข้อความ
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_project_journal_posts: โพสต์วารสารโครงการ
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_project_added_your_observations: เมื่อมีการเพิ่มการสังเกตของคุณเข้าโครงการ
+        #Checkbox label for user preference about what to receive in the daily
+        #email update. This one controls whether or not you get notifications
+        #when the curators change in a project you've joined
+        notification_preferences_project_curator_changes: การเปลี่ยนแปลงผู้ดูแลโครงการ
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: การเปลี่ยนแปลงอนุกรมวิธาน
         #Checkbox label for user preference about what to receive in the daily email update
@@ -2875,7 +2894,6 @@ th:
       index:
         connect_with_nature: เชื่อมโยงกับธรรมชาติ
         explore_and_share: สำรวจและแชร์การสังเกตของคุณจากโลกธรรมชาติ
-        species_observed: 'ชนิดที่ถูกสังเกต'
         contribute_to_science: สนับสนุนวิทยาศาสตร์
         join_today: เข้าร่วมวันนี้
   date:
@@ -2942,9 +2960,6 @@ th:
       hour: ชั่วโมง
       minute: นาที
       second: วินาที
-  errors:
-    messages:
-      new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   helpers:
     select:
       prompt: โปรดเลือก
@@ -2966,13 +2981,8 @@ th:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
   activerecord:
     models:
       #Software application that operates iNat on a user's behalf, e.g. the

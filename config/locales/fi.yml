@@ -1434,6 +1434,7 @@ fi:
       signed_up_but_locked: "Rekisteröintisi onnistui. Emme kuitenkaan voineet kirjata sinua sisään koska tunnuksesi on lukittu."
       signed_up_but_unconfirmed: "Vahvistusohjeet on lähetetty sähköpostiosoitteeseesi. Avaathan sähköpostissa olevan linkin vahvistaaksesi tunnuksen."
       updated: 'Päivitit tilisi onnistuneesti.'
+      updated_but_not_signed_in: "Tilisi on päivitetty onnistuneesti, mutta salasanan vaihtamisen jälkeen sinun on kirjauduttava sisään uudelleen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1515,9 +1516,15 @@ fi:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Alemmat liputetut taksonit
+  #Noun, as in a journal post that has not been published
   draft: luonnos
+  #Noun, as in a journal post that has not been published
   draft_: Luonnos
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Luonnos käyttäjältä %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Luonnos tallennettu!
+  #Noun, as in journal posts that has not been published
   drafts: Luonnokset
   drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
   #Button label for drawing a circular boundary for an observation search
@@ -2202,6 +2209,7 @@ fi:
     italian: Italia
     japanese: Japani
     kannada: Kannada
+    kazakh: Kazakki
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
@@ -2330,6 +2338,7 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    kk: Kazakki
     kn: Kannada
     ko: korea
     lb: luxemburg
@@ -2600,8 +2609,12 @@ fi:
   must_have_quality_grades: "täytyy olla laatuarvosana: %{grades}"
   must_have_sounds: täytyy olla ääniä
   must_have_x: "täytyy olla %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Mykistä
+  #Mute is a noun here
   mute_removed: Hiljennys poistettu
   muted_users: Hiljennetyt käyttäjät
+  muting_description: Jonkun mykistäminen estää sinua saamasta ilmoitusta heidän toiminnastaan, mukaan lukien "@" maininnat, viestit tai kommentit ja tunnisteet havaintoihisi.
   n_ago: "%{n} sitten"
   n_people_agrees: "%{amount} ihmistä samaa mieltä"
   n_people_disagrees: "%{amount} ihmistä ovat eri mieltä"
@@ -3061,6 +3074,9 @@ fi:
     invalid_email: Virhellinen sähköpostiosoite
   password: Salasana
   password_confirmation: 'Salasanan vahvistus'
+  password_change_description: Salasanan vaihtaminen kirjaa sinut ulos kaikista aktiivisista iNaturalist-istunnoista kaikissa laitteissasi
+  password_change_logout_warning: Kun olet vaihtanut salasanasi, sinut kirjataan ulos ja sinun täytyy kirjautua uudelleen uudella salasanallasi.
+  password_change_observations_warning: Sinut kirjautaan ulos myös iNaturalist-mobiilisovelluksesta ja muista sovelluksista tai sivustoista, jotka lähettävät havainnot iNaturalistiin puolestasi, joten varmista, että olet ladannut kaikki havainnot ennen kuin teet tämän. Kaikki lataamattoma havainnot menetetään.
   paste: Liitä
   paste_in_a_bunch_of_names: Liitä joukko nimiä, 1 riviä kohden ja paina nappia!
   people: Ihmiset
@@ -3572,7 +3588,10 @@ fi:
   position: Sijainti
   post_published: Viesti julkaistu
   posted_by: Lähettänyt
-  posted_on: Lähetetty
+  #Shows the date a journal post was published
+  posted_on_date_html: Julkaistu %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Julkaistu %{date} käyttäjältä %{user}
   posts: Viestit
   potential_disagreement: Mahdollinen erimielisyys
   powered_by: Palvelun mahdollistaa
@@ -4716,9 +4735,6 @@ fi:
   user_blocked: Käyttäjä on estetty
   user_commented: "%{user} kommentoi"
   user_disagrees_this_is_taxon: "%{user} on eri mieltä siitä että tämä on %{taxon}"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} merkitsi käyttäjän %{owner} %{noun} suosikiksi"
-  user_faved_a_noun_by_you: "Merkitsit %{user} %{noun} suosikiksi"
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
@@ -5586,6 +5602,8 @@ fi:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
     places:
+      kml_field_desc2: |
+        Paikan rajat KML-tiedostona. Voit tehdä tiedoston Google Mapsilla, Google Eartilla tai useimmilla paikkatietosovelluksilla. Paikassa täytyy olla ainakin yksi polygoni ja sen pitää olla pienempi kuin 1 Mt (5Mt kuraattoreille) sekä pienempi kuin Teksas.
       edit:
         complex_boundary_note_html: |
           Tämän paikan rajat ovat liian monimutkaisia, jotta niitä voisi muokata verkossa. Voit <a href="%{url}">ladata KML-tiedoston</a>, muokata sitä paikkatietosovelluksessa ja tallentaa muokkamasi tiedoston uudelleen iNaturalistiin.
@@ -6170,9 +6188,6 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
-        observations_to_date: 'havaintoa tällä hetkellä'
-        species_observed: 'Havaitut lajit'
-        people_signed_up: 'rekisteröitynyttä käyttäjää'
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
         share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
@@ -6243,19 +6258,19 @@ fi:
       6: Pe
       7: La
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d. %Bta %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d. %bkuuta'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%-d. %bkuuta %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%-d. %Bta %Y'
     month_names:
       - 
@@ -6326,41 +6341,6 @@ fi:
       month: Kuukausi
       second: sekuntia
       year: Vuosi
-  errors:
-    messages:
-      accepted: täytyy olla hyväksytty
-      blank: ei voi olla tyhjä
-      confirmation: ei vastaa salasanaa
-      empty: ei voi olla tyhjä
-      equal_to: oltava yhtäsuuri kuin %{count}
-      even: täytyy olla parillinen
-      exclusion: on varattu
-      greater_than: täytyy olla suurempi kuin %{count}
-      greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-      inclusion: ei sisälly luetteloon
-      invalid: on virheellinen
-      less_than: täytyy olla vähemmän kuin %{count}
-      less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-      new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-      not_a_number: ei ole numero
-      not_an_integer: täytyy olla kokonaisluku
-      odd: on oltava pariton
-      only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-      requires_privilege_speech: |
-        täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
-      requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-      taken: on jo varattu
-      too_long:
-        one: on liian pitkä (maksimi on 1 merkki)
-        other: on liian pitkä (maksimi on %{count} merkkiä)
-      too_short:
-        one: on liian lyhyt (maksimi on 1 merkki)
-        other: on liian lyhyt (maksimi on %{count} merkkiä)
-      wrong_length:
-        one: on väärän pituinen (pitäisi olla 1 merkki)
-        other: on väärän pituinen (pitäisi olla %{count} merkkiä)
-    template:
-      body: 'Seuraavissa kentissä oli ongelmia:'
   helpers:
     defaults:
       title: "TÄMÄ ON OTSIKKO"
@@ -6423,61 +6403,21 @@ fi:
   time:
     am: ap.
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%-d. %Bta %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%-d. %Bta %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-d. %bkuuta %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%-d. %Bta %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%-d. %Bta %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: ip.
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: täytyy olla hyväksytty
-        blank: ei voi olla tyhjä
-        confirmation: ei vastaa salasanaa
-        empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
-        even: täytyy olla parillinen
-        exclusion: on varattu
-        greater_than: täytyy olla suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-        inclusion: ei sisälly luetteloon
-        invalid: on virheellinen
-        less_than: täytyy olla vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-        not_a_number: ei ole numero
-        not_an_integer: on oltava kokonaisluku
-        odd: on oltava pariton
-        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-        record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
-        requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-        taken: on jo varattu
-        too_long:
-          one: on liian pitkä (maksimi on 1 merkki)
-          other: on liian pitkä (maksimi on %{count} merkkiä)
-        too_short:
-          one: on liian lyhyt (minimi on 1 merkki)
-          other: on liian lyhyt (minimi on %{count} merkkiä)
-        wrong_length:
-          one: on väärän pituinen (pitää olla %{count} merkkiä)
-          other: ovat väärän pituisia (pitää olla %{count} merkkiä)
-      template:
-        body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6634,22 +6574,18 @@ fi:
         blank: ei voi olla tyhjä
         confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
         exclusion: on varattu
-        greater_than: oltava suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
         inclusion: ei sisälly luetteloon
         invalid: on virheellinen
-        less_than: oltava vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
         new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
+        requires_privilege_speech: |
+          sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         taken: on jo varattu
         too_long:
