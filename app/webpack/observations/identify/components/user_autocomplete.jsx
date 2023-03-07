@@ -92,4 +92,8 @@ UserAutocomplete.propTypes = {
   config: PropTypes.object
 };
 
+UserAutocomplete.defaultProps = {
+  config: {}
+};
+
 export default UserAutocomplete;
