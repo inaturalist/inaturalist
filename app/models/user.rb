@@ -1308,6 +1308,10 @@ class User < ApplicationRecord
     user_blocks_as_blocked_user.where( user_id: user ).exists?
   end
 
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
+  end
+
   def self.default_json_options
     {
       only: [
