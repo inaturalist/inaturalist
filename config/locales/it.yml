@@ -783,6 +783,8 @@ it:
   birds: uccelli
   birthday: Compleanno
   black: nero
+  block: Blocca
+  blocking_description: Il blocco impedisce qualsiasi comunicazione tra te e un altro utente. E 'per le situazioni in cui un altro utente può mettere a rischio la tua sicurezza come stalking o altri comportamenti abusivi.
   block_removed: Blocco rimosso
   blocked_users: Utenti bloccati
   blog_widget: Widget del Blog
@@ -1501,6 +1503,7 @@ it:
       signed_up_but_locked: "La registrazione è stata eseguita correttamente. Tuttavia, non puoi accedere perché il tuo account è bloccato."
       signed_up_but_unconfirmed: "Abbiamo inviato al tuo indirizzo e-mail un messaggio contenente il link di conferma. Per attivare l'account, segui il link."
       updated: 'L''account è stato aggiornato correttamente.'
+      updated_but_not_signed_in: "Il tuo account è stato aggiornato correttamente, ma poiché la tua password è stata modificata, devi accedere di nuovo"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1590,6 +1593,8 @@ it:
   draft: bozza
   #Noun, as in a journal post that has not been published
   draft_: Bozza
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Bozza di %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Bozza salvata!
   #Noun, as in journal posts that has not been published
@@ -2334,6 +2339,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     kannada: Kannada
+    kazakh: Kazako
     korean: Coreano
     latvian: Lettone
     lithuanian: Lituano
@@ -2414,6 +2420,10 @@ it:
     taxonomic: tassonomico
     photo: foto
   list_was_successfully_created: La lista è stata creata con successo.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, e %{three}"
+  list_with_two_items: "%{one} e %{two}"
   listed_taxa: Taxa Elencati
   listed_taxon: Taxa elencati
   listed_taxon_updated: Taxa elencati aggiornati
@@ -2465,6 +2475,7 @@ it:
     id: Indonesiano
     it: Italiano
     ja: Giapponese
+    kk: Kazako
     kn: Kannada
     ko: Coreano
     lb: Lussemburghese
@@ -2564,6 +2575,7 @@ it:
       every_publicly_visible_observation: Tutte le osservazioni pubbliche create sul network iNaturalist
       featured_observations: Osservazioni in primo piano
       gbif_network: Network GBIF
+      gbif_network_description2: Dati museali e di altri fornitori messi a disposizione dal Global Biodiversity Information Facility (GBIF)
       observations: Osservazioni
       place_boundary: Confine del luogo
       checklist_places: Checklist dei luoghi
@@ -2583,6 +2595,9 @@ it:
   maximum_positional_accuracy_including_unknown: |
     Accuratezza posizionale massima incluse le osservazioni senza accuratezza posizionale
   media: File multimediali
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: e
   media_type: Tipo di supporto
   medium: medio
   meet: Incontra
@@ -2751,9 +2766,12 @@ it:
   must_have_quality_grades: "deve avere gradi di qualità: %{grades}"
   must_have_sounds: deve avere suoni
   must_have_x: "deve avere %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenzia
   #Mute is a noun here
   mute_removed: Rimuovi il silenziatore
   muted_users: Utenti silenziati
+  muting_description: Mutare qualcuno ti impedisce di essere avvisato di qualsiasi loro attività, tra cui "@" menzioni, messaggi, o commenti e identificazioni sulle tue osservazioni.
   n_ago: "%{n} fa"
   n_people_agrees: "%{amount} persone sono d'accordo"
   n_people_disagrees: "%{amount} persone non sono d'accordo"
@@ -3274,6 +3292,9 @@ it:
     invalid_email: Formato email non valido
   password: Password
   password_confirmation: 'Conferma della password'
+  password_change_description: Cambiare la password ti disconnetterà da tutte le sessioni attive di iNaturalist sui tuoi dispositivi
+  password_change_logout_warning: Dopo aver modificato la tua password, sarai disconnesso e dovrai accedere di nuovo con la tua nuova password.
+  password_change_observations_warning: Sarai anche registrato dalle app mobili iNaturalist e da qualsiasi altra app o siti web che pubblicano su iNaturalist per tuo conto, quindi assicurati di aver caricato tutte le osservazioni in sospeso prima di farlo. Le osservazioni che non vengono caricate andranno perse.
   paste: Incolla
   paste_in_a_bunch_of_names: Incolla una lista di nomi, 1 per riga, e premi il pulsante!
   people: Persone
@@ -3779,6 +3800,8 @@ it:
   places_warning_export_complex_boundary_html: |
     Se stai cercando di esportare le osservazioni da un confine complesso, considera di
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">scaricarli da GBIF in alternativa</a>, dove puoi disegnare dei confini arbitrari, oppure di esportarli da iNat usando luoghi esistenti o un riquadro di delimitazione, e quindi filtrarli successivamente una volta scaricati.
+  places_warning_look_for_existing2_html: |
+    Cerca <a href="/search?source[]=places">tra i luoghi esistenti</a> per assicurarti di non creare un duplicato. Abbiamo già i luoghi per tutti i continenti e gli stati, così come per molti altri confini politici.
   places_warning_please_keep_in_mind: |
     Sei pregato di tenere a mente le seguenti limitazioni:
   places_warning_projects_can_have_multiple_places: |
@@ -3814,6 +3837,10 @@ it:
   post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
   post_published: Post pubblicato!
   posted_by: Postato da
+  #Shows the date a journal post was published
+  posted_on_date_html: Pubblicato il %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Pubblicato il %{date} da %{user}
   posts: Post
   potential_disagreement: Potenzialmente In Disaccordo
   powered_by: Realizzato con
@@ -4532,6 +4559,10 @@ it:
   stats: Statistiche
   stats_for_this_year_have_not_been_generated: Le statistiche per quest'anno non sono ancora state generate.
   status: Stato
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applicato da un taxon di livello superiore:</strong> %{taxon}
   status_globally: '"%{status}" a livello Globale'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Rimani e prova ancora
@@ -5206,6 +5237,7 @@ it:
   user_commented: "%{user} ha commentato"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
+  user_faved_an_observation_by_you: "%{user} ha messo tra i preferiti una tua osservazione"
   user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
@@ -6394,6 +6426,8 @@ it:
         view_original_html: |
           Puoi vedere l'originale al link <a href="%{url}">%{url}</a>. Per favore lascia la segnalazione di violazione del copyright come "non risolto" se la foto viola il copyright.
     places:
+      kml_field_desc2: |
+        File KML del perimetro del luogo. Ne puoi fare uno usando Google Maps, Google Earth, o la maggior parte delle applicazioni GIS. Deve essere formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori del sito) ed avere un'area più piccola di quella dello stato statunitense del Texas.
       edit:
         complex_boundary_note_html: |
           Questo perimetro è un po' troppo complesso per essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
@@ -7138,6 +7172,15 @@ it:
       index:
         connect_with_nature: Connettiti con la Natura
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
+        observations_to_date:
+          one: "Osservazioni Finora"
+          other: "Osservazioni Finora"
+        species_observed:
+          one: "Specie Osservata"
+          other: "Specie Osservate"
+        people_signed_up:
+          one: "Persona Iscritta"
+          other: "Persone Iscritte"
         how_it_works: Come Funziona
         record_your_observations: Registra le tue osservazioni
         share_with_fellow_naturalists: Condividi con gli altri naturalisti
@@ -7583,10 +7626,25 @@ it:
         blank: non può essere vuoto
         confirmation: non corrisponde alla password
         empty: non può essere vuoto
+        equal_to:
+          one: deve essere uguale a %{count}
+          other: devono essere uguali a %{count}
         even: deve essere anche
         exclusion: è riservato
+        greater_than:
+          one: deve essere superiore a %{count}
+          other: devono essere superiori a %{count}
+        greater_than_or_equal_to:
+          one: deve essere superiore o uguale a %{count}
+          other: devono essere superiori o uguali a %{count}
         inclusion: non è incluso nella lista
         invalid: non è valido
+        less_than:
+          one: deve essere meno di %{count}
+          other: devono essere meno di %{count}
+        less_than_or_equal_to:
+          one: deve essere minore o uguale a %{count}
+          other: devono essere minori o uguali a %{count}
         new_project_owner_must_be_a_manager: Il nuovo proprietario del progetto deve essere un amministratore
         not_a_number: non è un numero
         not_an_integer: deve essere un numero intero
