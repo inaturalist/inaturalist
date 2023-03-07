@@ -7467,9 +7467,12 @@ nl:
       index:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
-        observations_to_date: 'Waarnemingen tot nu toe'
-        species_observed: 'Waargenomen soorten'
-        people_signed_up: 'Mensen aangemeld'
+        observations_to_date:
+          one: "Waarneming tot"
+          other: "Waarnemingen tot"
+        species_observed:
+          one: "Waargenomen soort"
+          other: "Waargenomen soorten"
         how_it_works: Hoe het werkt
         record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
@@ -7627,46 +7630,6 @@ nl:
       month: Maand
       second: Seconden
       year: Jaar
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: moet aanvaard worden
-      blank: mag niet leeg blijven
-      confirmation: kwam niet overeen met het wachtwoord
-      empty: mag niet leeg blijven
-      equal_to: moet gelijk zijn aan %{count}
-      even: moet even zijn
-      exclusion: is voorbehouden
-      greater_than: moet groter zijn dan %{count}
-      greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-      inclusion: is niet opgenomen in de lijst
-      invalid: is ongeldig
-      less_than: moet kleiner zijn dan %{count}
-      less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-      new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-      not_a_number: is geen getal
-      not_an_integer: moet een geheel getal zijn
-      odd: moet oneven zijn
-      only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-      record_invalid: 'Validatie is mislukt: %{errors}'
-      requires_privilege_speech: |
-        je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-      requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-      taken: bestaat al
-      too_long:
-        one: is te lang (maximum is %{count} teken)
-        other: is te lang (maximum is %{count} tekens)
-      too_short:
-        one: is te kort (minimum is %{count} teken)
-        other: is te kort (minimum is %{count} tekens)
-      wrong_length:
-        one: heeft de verkeerde lengte (moet %{count} teken zijn)
-        other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-    template:
-      body: 'Er was een probleem met de volgende velden:'
-      header:
-        one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
-        other: 'Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen'
   helpers:
     defaults:
       title: "DIT IS EEN TITEL"
@@ -7744,47 +7707,6 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: moet aanvaard worden
-        blank: mag niet leeg blijven
-        confirmation: kwam niet overeen met het wachtwoord
-        empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
-        even: moet even zijn
-        exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-        inclusion: is niet opgenomen in de lijst
-        invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-        new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-        not_a_number: is geen getal
-        not_an_integer: moet een geheel getal zijn
-        odd: moet oneven zijn
-        only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-        record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-        requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-        taken: bestaat al
-        too_long:
-          one: is te lang (maximum is %{count} teken)
-          other: is te lang (maximum is %{count} tekens)
-        too_short:
-          one: is te kort (minimum is %{count} teken)
-          other: is te kort (minimum is %{count} tekens)
-        wrong_length:
-          one: heeft de verkeerde lengte (moet %{count} teken zijn)
-          other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-      template:
-        body: 'Er was een probleem met de volgende velden:'
-        header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8000,22 +7922,33 @@ nl:
         blank: mag niet leeg blijven
         confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
+        equal_to:
+          one: moet gelijk zijn aan %{count}
+          other: moeten gelijk zijn aan %{count}
         even: moet even zijn
         exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
+        greater_than:
+          one: moet groter zijn dan %{count}
+          other: moet groter zijn dan %{count}
+        greater_than_or_equal_to:
+          one: moet groter dan of gelijk zijn aan %{count}
+          other: moet groter dan of gelijk zijn aan %{count}
         inclusion: is niet opgenomen in de lijst
         invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+        less_than:
+          one: moet kleiner zijn dan %{count}
+          other: moet kleiner zijn dan %{count}
+        less_than_or_equal_to:
+          one: moet kleiner dan of gelijk zijn aan %{count}
+          other: moet kleiner dan of gelijk zijn aan %{count}
         new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
         only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
         record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
+        requires_privilege_speech: |
+          je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
         too_long:
@@ -8030,8 +7963,8 @@ nl:
       template:
         body: 'Er was een probleem met de volgende velden:'
         header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon dit %{model} niet worden opgeslagen
+          one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
+          other: 'Door %{count} fouten kon dit %{model} niet worden opgeslagen'
       models:
         application:
           attributes:

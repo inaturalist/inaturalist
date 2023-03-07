@@ -1514,40 +1514,6 @@ mk:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: мора да се прифати
-      blank: не може да стои празно
-      confirmation: не се совпаѓа со лозинката
-      empty: не може да стои празно
-      equal_to: мора да е рамно на %{count}
-      even: мора да биде парен број
-      exclusion: е зафатена
-      greater_than: мора да е поголемо од %{count}
-      greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-      inclusion: не фигурира на списокот
-      invalid: е неважечко
-      less_than: мора да е помало од %{count}
-      less_than_or_equal_to: мора да е помало или еднакво на %{count}
-      not_a_number: не е број
-      not_an_integer: мора да биде цел број
-      odd: мора да биде непарен број
-      record_invalid: 'Заверката не успеа: %{errors}'
-      taken: е веќе зафатено
-      too_long:
-        one: е предолго (највеќе 1 знак)
-        other: е предолго (највеќе %{count} знаци)
-      too_short:
-        one: е прекратко (барем 1 знак)
-        other: е прекратко (барем %{count} знаци)
-      wrong_length:
-        one: има погрешна должина (треба да има 1 знак)
-        other: има погрешна должина (треба да има %{count} знаци)
-    template:
-      body: 'Следниве полиња се проблематични:'
-      header:
-        one: "1 грешка му попречи на зачувувањето на овој %{model}"
-        other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   helpers:
     select:
       prompt: Одберете
@@ -1601,42 +1567,6 @@ mk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%j %B %Y"
     pm: попладне
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: мора да се прифати
-        blank: не може да стои празно
-        confirmation: не се совпаѓа со лозинката
-        empty: не може да стои празно
-        equal_to: мора да е рамно на %{count}
-        even: мора да биде парен број
-        exclusion: е зафатено
-        greater_than: мора да е поголемо од %{count}
-        greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-        inclusion: не фигурира на списокот
-        invalid: е неважечко
-        less_than: мора да е помало од %{count}
-        less_than_or_equal_to: мора да е помало или еднакво на %{count}
-        not_a_number: не е број
-        not_an_integer: мора да биде цел број
-        odd: мора да биде непарен број
-        record_invalid: 'Заверката не успеа: %{errors}'
-        taken: е веќе зафатено
-        too_long:
-          one: е предолго (највеќе 1 знак)
-          other: е предолго (највеќе %{count} знаци)
-        too_short:
-          one: е прекратко (барем 1 знак)
-          other: е прекратко (барем %{count} знаци)
-        wrong_length:
-          one: има погрешна должина (треба да има 1 знак)
-          other: има погрешна должина (треба да има %{count} знаци)
-      template:
-        body: 'Следниве полиња се проблематични:'
-        header:
-          one: Една грешка му попречи на зачувувањето на овој %{model}
-          other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
     attributes:
       assessment:

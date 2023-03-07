@@ -1040,6 +1040,9 @@ pl:
   connecting_to_facebook: "Łączenie z Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Połączenie konta %{site_name} z kontami na innych stronach pozwoli ci na logowanie do %{site_name}, używając danych logowania z tych stron."
   conservation_status: Status ochronny
+  conservation_status_created: Status ochrony utworzony
+  conservation_status_deleted: Status ochrony usunięty
+  conservation_status_updated: Status ochrony zaktualizowany
   conservation_status_descriptions:
     status: Kategorie statusu. Jeśli podany krótki kod statusu (np. EN lub CR) istnieje, to go użyj. Jeśli nie, to użyj pełnego kodu statusu (np. zagrożony lub krytycznie zagrożony).
     description: Zwięzły opis wyjaśniający dlaczego zostało to ujęte na liście.
@@ -1438,6 +1441,7 @@ pl:
   edit_atlas_for_taxon_html: Edytuj atlas dla %{taxon}
   edit_body: Edytuj treść
   edit_comment: Edytuj komentarz
+  edit_conservation_status: Edytuj status ochronny
   edit_custom_project_fields: Edytuj niestandardowe pola projektu
   edit_field: Edytuj notatkę
   edit_license: Edytuj licencję
@@ -1491,6 +1495,11 @@ pl:
   email: E‐mail
   email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
+  email_conf_banner_check_your_spam_folder_html: <strong>Sprawdź folder spamu</strong>
+  email_conf_banner_search_for_emails_html: <strong>Wyszukaj e-maili z <code>%{email}</code></strong>
+  #%{date} will be formatted with time.formats.long
+  email_conf_banner_we_delivered_todos: |
+    Dostarczyliśmy Ci e-mail z potwierdzeniem dnia %{date}. Jeśli go nie otrzymałeś, oto kilka rzeczy, które możesz zrobić:
   email_copyright: "Chroniony prawem autorskim &copy; %{x}, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
@@ -1595,8 +1604,10 @@ pl:
   filters: Filtry
   find: Znajdź
   find_a_guide: Znajdź przewodnik
+  find_a_post: Znajdź wpis
   find_a_place: Znajdź lokalizację
   find_guides: Znajdź przewodniki
+  find_posts_for: "Znajdź wpisy dla: %{journal_name}"
   find_new_place_to_explore: Znajdź nowe miejsce do prowadzenia obserwacji!
   find_observations: Znajdź obserwacje
   find_photos: Znajdź zdjęcia
@@ -1790,6 +1801,11 @@ pl:
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
   home: Strona główna
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Możesz zmienić swoje ustawienia licencji w <a class="linky" href="/users/edit#content">ustawieniach konta</a>.
   however_there_were_some_issues: "Jednak wystąpiły pewne problemy: %{issues}"
   i_dont_know_but_i_am_sure_this_is_taxon: Nie wiem, ale jestem pewien, że to %{taxon}
   icon: Ikona
@@ -1843,6 +1859,8 @@ pl:
   improving: Ulepszony
   in_n: "w %{n}"
   in_place_x: w miejscu %{place}
+  #As in a reason to flag something
+  inappropriate: Nieodpowiednie
   inaturalist_network: Sieć iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
@@ -2012,6 +2030,7 @@ pl:
     indonesian: indonezyjski
     italian: Włoski
     japanese: Japoński
+    kazakh: kazachski
     korean: Koreański
     latvian: Łotewski
     lithuanian: Litewski
@@ -2029,14 +2048,17 @@ pl:
     ojibwe: odżibwe
     palauan: palau
     pangasinan: Pangasinan
+    persian: perski
     polish: polski
     portuguese: Portugalski
     romanian: Rumuński
     russian: Rosyjski
+    serbian: serbski
     setswana: setswana
     sinhala: syngaleski
     slovak: słowacki
     spanish: Hiszpański
+    swahili: suahili
     swedish: Szwedzki
     tagalog: Tagalski
     tahitian: Tahitański
@@ -2113,6 +2135,7 @@ pl:
     de: Niemiecki
     el: Grecki
     en: Angielski
+    en-GB: angielski (Wielka Brytania)
     eo: Esperanto
     es: Hiszpański
     es-AR: Hiszpański (Argentyna)
@@ -2125,14 +2148,17 @@ pl:
     fr-CA: Francuski (Kanada)
     gl: Galicyjski
     he: Hebrajski
+    hr: chorwacki
     hu: Węgierski
     id: Indonezyjski
     it: Włoski
     ja: Japoński
+    kk: kazachski
     ko: Koreański
     lb: Luksemburski
     lt: Litewski
     lv: Łotewski
+    mi: maoryjski
     mk: Macedoński
     mr: Marathi
     nb: Norweski Bokmål
@@ -2144,6 +2170,7 @@ pl:
     ru: Rosyjski
     sk: Słowacki
     sq: Albański
+    sr: serbski
     sv: Szwedzki
     th: Tajski
     tr: Turecki
@@ -2382,6 +2409,7 @@ pl:
   new_assessment: Nowa ocena
   new_check_list: Nowa checklista
   new_check_list_for: "Stwórz nową checklistę dla %{place} &raquo;"
+  new_conservation_status: Nowy status ochronny
   new_flag_for: Nowe zgłoszenie dla
   new_guide: Nowy Przewodnik
   new_journal_post: Nowy post w Dzienniku
@@ -2621,6 +2649,8 @@ pl:
   observed_on: Zaobserwowano
   observer: Obserwator
   observers: Obserwatorzy
+  observer_prefers_no_traditional_project_addition: |
+    Obserwator nie pozwala innym użytkownikom na dodawanie swoich obserwacji do tradycyjnych projektów.
   observer_short: Obserwator
   occurence_status_describes_how: 'Status występowania opisuje jak często lub rzadko takson jest w danym obszarze. Zobacz DarwinCore, aby uzyskać <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">więcej informacji na temat terminologii</a>.'
   occurrence_status: Status występowania
@@ -4528,8 +4558,21 @@ pl:
     welcome:
       index:
         connect_with_nature: Połącz się z naturą
-        species_observed: 'zaobserwowane gatunki'
-        people_signed_up: 'zarejestrowanych użytkowników'
+        observations_to_date:
+          one: "obserwacja do tej pory"
+          few: "obserwacje do tej pory"
+          many: "obserwacji do tej pory"
+          other: "obserwacji do tej pory"
+        species_observed:
+          one: "zaobserwowany gatunek"
+          few: "zaobserwowane gatunki"
+          many: "zaobserwowanych gatunków"
+          other: "zaobserwowanego gatunku"
+        people_signed_up:
+          one: "zarejestrowany użytkownik"
+          few: "zarejestrowani użytkownicy"
+          many: "zarejestrowanych użytkowników"
+          other: "zarejestrowanego użytkownika"
         how_it_works: Jak to działa
         record_your_observations: Obserwuj i notuj
         share_with_fellow_naturalists: Podziel się ze znajomymi
@@ -4695,32 +4738,6 @@ pl:
       month: Miesiąc
       second: Sekundy
       year: Rok
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: musi zostać zaakceptowane
-      blank: nie może być puste
-      empty: nie może być puste
-      equal_to: musi być równe %{count}
-      even: musi być liczbą parzystą
-      exclusion: jest zarezerwowany
-      greater_than: musi być większe niż %{count}
-      greater_than_or_equal_to: musi być większe lub równe %{count}
-      inclusion: nie znajduje się na liście
-      invalid: jest nieprawidłowy
-      less_than: musi być mniejszy niż %{count}
-      less_than_or_equal_to: musi być mniejszy lub równy %{count}
-      not_a_number: nie jest liczbą
-      not_an_integer: musi być liczbą całkowitą
-      odd: musi być liczbą nieparzystą
-      record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
-    template:
-      body: 'Wystąpiły problemy z następującymi polami:'
-      header:
-        one: "%{count} błąd uniemożliwił zapisanie tego %{model}"
-        few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
-        many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
-        other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   helpers:
     defaults:
       title: "TO JEST TYTUŁ"
@@ -4800,25 +4817,6 @@ pl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: po południu
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: musi zostać zaakceptowane
-        less_than_or_equal_to: musi być mniejszy lub równy %{count}
-        new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
-        not_a_number: nie jest liczbą
-        not_an_integer: musi być liczbą całkowitą
-        odd: musi być liczbą nieparzystą
-        only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
-        record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
-      template:
-        header:
-          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
-          few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
-          many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
-          other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -4832,6 +4830,9 @@ pl:
       OauthApplication: Aplikacja
       TaxonLink: Link do taksonu
     attributes:
+      announcement:
+        created_at: Utworzono
+        updated_at: Zaktualizowano
       assessment:
         description: Opis
       assessment_section:
@@ -4951,15 +4952,35 @@ pl:
       messages:
         blank: nie może być puste
         empty: nie może być pusta
-        equal_to: musi być równe %{count}
+        equal_to:
+          one: musi być równe %{count}
+          few: muszą być równe %{count}
+          many: musi być równych %{count}
+          other: musi być równe %{count}
         even: musi być liczbą parzystą
         exclusion: jest zarezerwowany
-        greater_than: musi być większy niż %{count}
-        greater_than_or_equal_to: musi być większy lub równy %{count}
+        greater_than:
+          one: musi być większe niż %{count}
+          few: muszą być większe niż %{count}
+          many: musi być większych niż %{count}
+          other: musi być większe niż %{count}
+        greater_than_or_equal_to:
+          one: musi być większe lub równe %{count}
+          few: muszą być większe lub równe %{count}
+          many: musi być większych lub równych %{count}
+          other: musi być większe lub równe %{count}
         inclusion: nie znajduje się na liście
         invalid: jest nieprawidłowy
-        less_than: musi być mniejszy niż %{count}
-        less_than_or_equal_to: musi być mniejszy lub równy %{count}
+        less_than:
+          one: musi być mniejsze niż %{count}
+          few: muszą być mniejsze niż %{count}
+          many: musi być mniejszych niż %{count}
+          other: musi być mniejsze niż %{count}
+        less_than_or_equal_to:
+          one: musi być mniejsze lub równe %{count}
+          few: muszą być mniejsze lub równe %{count}
+          many: musi być mniejszych lub równych %{count}
+          other: musi być mniejsze lub równe %{count}
         new_project_owner_must_be_a_manager: Nowy właściciel projektu musi być administratorem
         not_a_number: nie jest liczbą
         not_an_integer: musi być liczbą całkowitą
@@ -4974,7 +4995,7 @@ pl:
       template:
         body: 'Wystąpiły problemy z następującymi polami:'
         header:
-          one: '%{count} błąd uniemożliwił zapisanie tego %{model}'
+          one: "%{count} błąd uniemożliwił zapisanie tego %{model}"
           few: '%{count} błędy uniemożliwiły zapisanie tego %{model}'
           many: '%{count} błędów uniemożliwiło zapisanie tego %{model}'
           other: '%{count} błędu uniemożliwiło zapisanie tego %{model}'
@@ -4985,6 +5006,13 @@ pl:
               fragment_present: "nie może zawierać fragmentu."
               has_query_parameter: "nie może zawierać parametru zapytania."
               invalid_uri: "musi być prawidłowym identyfikatorem URI."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: wyłączył możliwość dodawania komentarzy
         flag:
           attributes:
             user_id:

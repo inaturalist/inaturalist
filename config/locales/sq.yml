@@ -2544,9 +2544,6 @@ sq:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
-    welcome:
-      index:
-        species_observed: 'Specjet e vëzhguara'
   date:
     abbr_month_names:
       - 
@@ -2584,28 +2581,6 @@ sq:
       month: Muaji
       second: Sekondat
       year: Viti
-  errors:
-    messages:
-      accepted: Duhet të pranohet
-      blank: nuk mund të jetë bosh
-      confirmation: nuk përputhet me konfirmimin
-      empty: nuk mund të jetë bosh
-      equal_to: duhet të jetë e barabartë me %{count}
-      even: duhet të jetë çift
-      exclusion: është e rezervuar
-      greater_than: duhet të jetë më i madh se %{count}
-      greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-      inclusion: nuk është përfshirë në listë
-      invalid: është i pavlefshëm
-      less_than: duhet të jetë më pak se %{count}
-      less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-      not_a_number: nuk është një numër
-      not_an_integer: duhet të jetë një numër i plotë
-      odd: duhet të jetë tek
-      record_invalid: 'Vlefshmëria dështoi: %{errors}'
-      taken: është marrë tashmë
-    template:
-      body: 'Kishte probleme me fushat e mëposhtme:'
   helpers:
     select:
       prompt: Ju lutem zgjidhni
@@ -2627,31 +2602,6 @@ sq:
   time:
     am: pd
     pm: md
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: Patjetër të pranohet
-        blank: nuk mund të jetë bosh
-        confirmation: nuk përputhet me konfirmimin
-        empty: nuk mund të jetë bosh
-        equal_to: duhet të jetë e barabartë me %{count}
-        even: duhet të jetë i barabartë
-        exclusion: është e rezervuar
-        greater_than: duhet të jetë më i madh se %{count}
-        greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-        inclusion: nuk është përfshirë në listë
-        invalid: është i pavlefshëm
-        less_than: duhet të jetë më pak se %{count}
-        less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-        not_a_number: nuk është një numër
-        not_an_integer: duhet të jetë një numër i plotë
-        odd: duhet të jetë tek
-        record_invalid: 'Vlefshmëria dështoi: %{errors}'
-        taken: është marrë tashmë
-      template:
-        body: 'Kishte probleme me fushat e mëposhtme:'
   activerecord:
     models:
       AssessmentSection: Seksioni i Vlerësimit

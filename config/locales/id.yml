@@ -7072,9 +7072,12 @@ id:
       index:
         connect_with_nature: Terhubung dengan Alam
         explore_and_share: Jelajahi dan bagikan pengamatan Anda dari alam.
-        observations_to_date: 'Pengamatan Hingga Saat Ini'
-        species_observed: 'Spesies Yang Diamati'
-        people_signed_up: 'Orang Telah Mendaftar'
+        observations_to_date:
+          other: "Pengamatan Hingga Saat Ini"
+        species_observed:
+          other: "Spesies Yang Diamati"
+        people_signed_up:
+          other: "Orang Yang Mendaftar"
         how_it_works: Cara Kerja
         record_your_observations: Rekam pengamatan Anda
         share_with_fellow_naturalists: Berbagi dengan sesama naturalis
@@ -7213,42 +7216,6 @@ id:
       month: Bulan
       second: Detik
       year: Tahun
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: harus diterima
-      blank: tidak boleh kosong
-      confirmation: tidak sesuai dengan kata sandi
-      empty: tidak boleh kosong
-      equal_to: harus sama dengan %{count}
-      even: harus genap
-      exclusion: telah dipesan
-      greater_than: harus lebih besar dari %{count}
-      greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
-      inclusion: tidak termasuk dalam daftar
-      invalid: tidak valid
-      less_than: harus kurang dari %{count}
-      less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
-      new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
-      not_a_number: bukan angka
-      not_an_integer: harus bilangan bulat
-      odd: harus ganjil
-      only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
-      record_invalid: 'Validasi gagal: %{errors}'
-      requires_privilege_speech: |
-        harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
-      requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
-      taken: telah diambil
-      too_long:
-        other: terlalu panjang (maksimal %{count} karakter)
-      too_short:
-        other: terlalu pendek (minimal %{count} karakter)
-      wrong_length:
-        other: panjangnya salah (seharusnya %{count} karakter)
-    template:
-      body: 'Ada masalah dengan bidang-bidang berikut:'
-      header:
-        other: '%{count} eror melarang %{model} ini untuk disimpan'
   helpers:
     defaults:
       title: "INI JUDUL"
@@ -7325,43 +7292,6 @@ id:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: malam
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: harus diterima
-        blank: tidak boleh kosong
-        confirmation: tidak sesuai dengan konfirmasi
-        empty: tidak boleh kosong
-        equal_to: harus sama dengan %{count}
-        even: harus genap
-        exclusion: telah dipesan
-        greater_than: harus lebih besar dari %{count}
-        greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
-        inclusion: tidak termasuk di dalam daftar
-        invalid: tidak valid
-        less_than: harus kurang dari %{count}
-        less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
-        new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
-        not_a_number: bukan angka
-        not_an_integer: harus bilangan bulat
-        odd: harus ganjil
-        only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
-        record_invalid: 'Validasi gagal: %{errors}'
-        requires_privilege_speech: harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
-        requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
-        taken: telah diambil
-        too_long:
-          other: terlalu panjang (maksimal %{count} karakter)
-        too_short:
-          other: terlalu pendek (minimal %{count} karakter)
-        wrong_length:
-          other: panjangnya salah (seharusnya %{count} karakter)
-      template:
-        body: 'Ada beberapa masalah dengan bidang-bidang berikut:'
-        header:
-          other: '%{count} eror melarang %{model} ini untuk disimpan'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7577,22 +7507,28 @@ id:
         blank: tidak boleh kosong
         confirmation: tidak sesuai dengan kata sandi
         empty: tidak boleh kosong
-        equal_to: harus sama dengan %{count}
+        equal_to:
+          other: harus sama dengan %{count}
         even: harus genap
         exclusion: telah dipesan
-        greater_than: harus lebih besar dari %{count}
-        greater_than_or_equal_to: harus lebih besar atau sama dengan %{count}
+        greater_than:
+          other: harus lebih besar dari %{count}
+        greater_than_or_equal_to:
+          other: harus lebih besar atau sama dengan %{count}
         inclusion: tidak termasuk di dalam daftar
         invalid: tidak valid
-        less_than: harus kurang dari %{count}
-        less_than_or_equal_to: harus kurang dari atau sama dengan %{count}
+        less_than:
+          other: harus kurang dari %{count}
+        less_than_or_equal_to:
+          other: harus kurang dari atau sama dengan %{count}
         new_project_owner_must_be_a_manager: Pemilik proyek baru harus merupakan pengelola
         not_a_number: bukan angka
         not_an_integer: harus bilangan bulat
         odd: harus ganjil
         only_project_owner_can_change_project_owner: Hanya pemilik proyek yang bisa mengganti pemilik proyek
         record_invalid: 'Validasi gagal: %{errors}'
-        requires_privilege_speech: harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
+        requires_privilege_speech: |
+          harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
         requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
         taken: telah diambil
         too_long:

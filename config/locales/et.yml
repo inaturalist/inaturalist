@@ -3921,6 +3921,10 @@ et:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Selle aasta statistikat pole veel loodud.
   status: Staatus
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Staatus pärineb kõrgema tasandi taksonilt:</strong> %{taxon}
   stay_and_try_again: Proovi uuesti
   still_no_luck?: Pole õnne?
   still_needs_id?: Kogukond saab määratlust kinnitada/parandada?
@@ -5674,9 +5678,6 @@ et:
       index:
         connect_with_nature: Liitu loodusega
         explore_and_share: Uuri ja jaga enda loodusvaatluseid.
-        observations_to_date: 'Vaatluseid kokku'
-        species_observed: 'Vaadeldud liike'
-        people_signed_up: 'Liitunud kasutajaid'
         how_it_works: Kuidas see toimib
         record_your_observations: Lisa oma vaatlused
         share_with_fellow_naturalists: Jaga teiste loodussõpradega
@@ -5823,41 +5824,6 @@ et:
       month: Kuu
       second: Sekund
       year: Aasta
-  errors:
-    messages:
-      accepted: peab olema sobilik
-      blank: ei saa olla tühi
-      confirmation: ei vasta salasõnale
-      empty: ei saa olla tühi
-      equal_to: peab olema võrdne numbriga %{count}
-      even: peab olema paarisarv
-      exclusion: on reserveeritud
-      greater_than: peab olema suurem kui %{count}
-      greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
-      inclusion: pole nimekirjad
-      invalid: pole sobilik
-      less_than: peab olema väiksem kui %{count}
-      less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
-      new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
-      not_a_number: pole number
-      not_an_integer: peab olema täisarv
-      odd: peab olema paaritu
-      record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
-      taken: on juba valitud
-      too_long:
-        one: on liiga pikk (maksimum 1 tähemärk)
-        other: on liiga pikk (maksimum %{count} tähemärki)
-      too_short:
-        one: on liiga lühike (minimum 1 tähemärk)
-        other: on liiga lühike (minimum%{count} tähemärki)
-      wrong_length:
-        one: on vale pikkusega (peaks olema 1 tähemärk)
-        other: on vale pikkusega (peaks olema %{count} tähemärki)
-    template:
-      body: 'Järgmiste väljadega oli probleeme:'
-      header:
-        one: "1 viga ei lubanud salvestada: %{model}"
-        other: '%{count} viga ei lubanud salvestada: %{model}'
   helpers:
     defaults:
       title: "SEE ON PEALKIRI"
@@ -5909,43 +5875,6 @@ et:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pealelõunat
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: peab olema valitud
-        blank: ei tohi olla tühi
-        confirmation: ei vasta salasõnale
-        empty: ei või olla tühi
-        equal_to: peab olema võrdne numbriga %{count}
-        even: peab olema paarisarv
-        exclusion: on reserveeritud
-        greater_than: peab olema suurem kui %{count}
-        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
-        inclusion: pole nimekirjas
-        invalid: pole sobilik
-        less_than: peab olema väiksem kui %{count}
-        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
-        new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
-        not_a_number: pole number
-        not_an_integer: peab olema täisarv
-        odd: peab olema paaritu
-        record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
-        taken: on juba valitud
-        too_long:
-          one: on liiga pikk (maksimum 1 tähemärk)
-          other: on liiga pikk (maksimum %{count} tähemärki)
-        too_short:
-          one: on liiga lühike (minimum 1 tähemärk)
-          other: on liiga lühike (minimum%{count} tähemärki)
-        wrong_length:
-          one: on vale pikkusega (peaks olema 1 tähemärk)
-          other: on vale pikkusega (peaks olema %{count} tähemärki)
-      template:
-        body: 'Järgnevate väljadega oli probleeme:'
-        header:
-          one: '1 viga ei lubanud salvestada: %{model}'
-          other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6065,22 +5994,17 @@ et:
     errors:
       messages:
         empty: ei saa olla tühi
-        equal_to: peab olema võrdne numbriga %{count}
         even: peab olema paarisarv
         exclusion: on reserveeritud
-        greater_than: peab olema suurem kui %{count}
-        greater_than_or_equal_to: peab olema suurem või võrdne kui %{count}
         inclusion: pole nimekirjas
         invalid: pole sobilik
-        less_than: peab olema väiksem kui %{count}
-        less_than_or_equal_to: peab olema väiksem või võrdne kui %{count}
         new_project_owner_must_be_a_manager: Uue projekti omanik peab olema administraator
         not_an_integer: peab olema täisarv
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
       template:
         header:
-          one: '%{count} viga ei lubanud salvestada: %{model}'
+          one: "%{count} viga ei lubanud salvestada: %{model}"
           other: '%{count} viga ei lubanud salvestada: %{model}'
       models:
         comment:

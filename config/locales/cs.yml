@@ -7666,9 +7666,6 @@ cs:
       index:
         connect_with_nature: Spojte se s přírodou
         explore_and_share: Objevujte a sdílejte svá pozorování ze světa přírody.
-        observations_to_date: 'Pozorování k dnešnímu dni'
-        species_observed: 'Pozorované druhy'
-        people_signed_up: 'Zaregistrovaní lidé'
         how_it_works: Jak to funguje
         record_your_observations: Zaznamenejte své pozorování
         share_with_fellow_naturalists: Sdílejte s našimi přírodovědci
@@ -7853,54 +7850,6 @@ cs:
       month: Měsíc
       second: Sekundy
       year: Rok
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: musí být přijato
-      blank: nesmí být prázdné
-      confirmation: nesouhlasí kontrola
-      empty: nesmí být prázdné
-      equal_to: musí se rovnat %{count}
-      even: musí být vyrovnané
-      exclusion: je rezervováno
-      greater_than: musí být větší než %{count}
-      greater_than_or_equal_to: musí být větší nebo rovno %{count}
-      inclusion: není zahrnuto v seznamu
-      invalid: je neplatné
-      less_than: musí být méně než %{count}
-      less_than_or_equal_to: musí být menší než nebo rovno %{count}
-      new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
-      not_a_number: není číslo
-      not_an_integer: musí být celé číslo
-      odd: musí být liché číslo
-      only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
-      record_invalid: 'Schválení se nezdařilo: %{errors}'
-      requires_privilege_speech: |
-        musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
-      requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
-      taken: už je obsazené
-      too_long:
-        one: je příliš dlouhý (maximum je %{count} znak)
-        few: je příliš dlouhý (maximum je %{count} znaků)
-        many: je příliš dlouhý (maximum je %{count} znaků)
-        other: je příliš dlouhý (maximum je %{count} znaků)
-      too_short:
-        one: je příliš krátký (minimum je %{count} znak)
-        few: je příliš krátký (minimum je %{count} znaků)
-        many: je příliš krátký (minimum je %{count} znaků)
-        other: je příliš krátký (minimum je %{count} znaků)
-      wrong_length:
-        one: má špatnou délku (měla by být %{count} znaků)
-        few: má špatnou délku (měla by být %{count} znaků)
-        many: má špatnou délku (měla by být %{count} znaků)
-        other: má špatnou délku (mělo by být %{count} znaků)
-    template:
-      body: 'Následující pole obsahují chybně vyplněné údaje:'
-      header:
-        one: "%{count} chyba zabránila %{model} v uložení"
-        few: '%{count} chyba zabránila %{model} v uložení'
-        many: '%{count} chyb zabránilo %{model} v uložení'
-        other: '%{count} chyb zabránilo %{model} v uložení'
   helpers:
     defaults:
       title: "TOTO JE TITULKA"
@@ -7980,55 +7929,6 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: odpoledne
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: musí být přijato
-        blank: nesmí být prázdné
-        confirmation: nesouhlasí heslo
-        empty: nesmí být prázdné
-        equal_to: musí se rovnat %{count}
-        even: musí být sudé číslo
-        exclusion: je rezervováno
-        greater_than: musí být větší než %{count}
-        greater_than_or_equal_to: musí být větší nebo rovno %{count}
-        inclusion: není zahrnuto v seznamu
-        invalid: je neplatné
-        less_than: musí být méně než %{count}
-        less_than_or_equal_to: musí být menší než nebo rovno %{count}
-        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
-        not_a_number: není číslo
-        not_an_integer: musí být celé číslo
-        odd: musí být liché číslo
-        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
-        record_invalid: 'Schválení se nezdařilo: %{errors}'
-        requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
-        requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
-        taken: už je obsazené
-        too_long:
-          one: je příliš dlouhý (maximum je %{count} znaků)
-          few: je příliš dlouhý (maximum je %{count} znaků)
-          many: je příliš dlouhý (maximum je %{count} znaků)
-          other: je příliš dlouhý (maximum je %{count} znaků)
-        too_short:
-          one: je příliš krátká (minimum je %{count} znak)
-          few: je příliš krátký (maximum je %{count} znak)
-          many: je příliš krátký (maximum je %{count} znaků)
-          other: je příliš krátký (maximum je %{count} znaků)
-        wrong_length:
-          one: má špatnou délku (měla by být %{count} znaků)
-          few: má špatnou délku (mělo by být %{count} znaků)
-          many: má špatnou délku (mělo by být %{count} znaků)
-          other: má špatnou délku (mělo by být %{count} znaků)
-      template:
-        body: 'Následující pole obsahují chybně vyplněné údaje:'
-        header:
-          one: '%{count} chyba zabránila %{model} v uložení'
-          few: '%{count} chyb zabránilo %{model} v uložení'
-          many: '%{count} chyb zabránilo %{model} v uložení'
-          other: '%{count} chyb zabránilo %{model} v uložení'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8244,22 +8144,18 @@ cs:
         blank: nesmí být prázdné
         confirmation: nesouhlasí heslo
         empty: nesmí být prázdné
-        equal_to: musí se rovnat %{count}
         even: musí být sudé číslo
         exclusion: je rezervováno
-        greater_than: musí být větší než %{count}
-        greater_than_or_equal_to: musí být větší nebo rovno %{count}
         inclusion: není zahrnuto v seznamu
         invalid: je neplatné
-        less_than: musí být méně než %{count}
-        less_than_or_equal_to: musí být menší než nebo rovno %{count}
         new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
         only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
-        requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
+        requires_privilege_speech: |
+          musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
         taken: už je obsazené
         too_long:
@@ -8280,7 +8176,7 @@ cs:
       template:
         body: 'Následující pole obsahují chybně vyplněné údaje:'
         header:
-          one: '%{count} chyba zabránila %{model} v uložení'
+          one: "%{count} chyba zabránila %{model} v uložení"
           few: '%{count} chyb zabránilo %{model} v uložení'
           many: '%{count} chyb zabránilo %{model} v uložení'
           other: '%{count} chyb zabránilo %{model} v uložení'

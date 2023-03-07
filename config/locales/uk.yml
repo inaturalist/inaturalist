@@ -6775,9 +6775,6 @@ uk:
       index:
         connect_with_nature: Будьте на зв'язку з Природою
         explore_and_share: Досліджуйте та діліться своїми спостереженнями живої природи.
-        observations_to_date: 'Спостереження на цей момент'
-        species_observed: 'Спостережені види'
-        people_signed_up: 'Людей зареєструвалися'
         how_it_works: Як це працює
         record_your_observations: Фіксуйте ваші спостереження
         share_with_fellow_naturalists: Діліться з іншими натуралістами
@@ -6961,54 +6958,6 @@ uk:
       month: місяць
       second: секунд
       year: рік
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: повинні бути прийняті
-      blank: має бути заповненим
-      confirmation: не збігається з паролем
-      empty: не може бути порожнім
-      equal_to: має дорівнювати %{count}
-      even: має бути парним
-      exclusion: зарезервовано
-      greater_than: має бути більшим за %{count}
-      greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-      inclusion: не включено до переліку
-      invalid: недійсне
-      less_than: має бути менше, ніж %{count}
-      less_than_or_equal_to: має бути менше або дорівнювати %{count}
-      new_project_owner_must_be_a_manager: Новий власник проекту повинен бути адміністратором
-      not_a_number: не є числом
-      not_an_integer: має бути цілим числом
-      odd: має бути непарним
-      only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-      record_invalid: 'Помилка перевірки: %{errors}'
-      requires_privilege_speech: |
-        потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-      requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-      taken: вже зайнятий
-      too_long:
-        one: занадто довгий (максимум %{count} знак)
-        few: занадто довгий (максимум %{count} знаків)
-        many: занадто довгий (максимум %{count} знаків)
-        other: занадто довгий (максимум %{count} знаків)
-      too_short:
-        one: занадто короткий (мінімум %{count} знак)
-        few: занадто короткий (мінімум %{count} знаків)
-        many: занадто короткий (мінімум %{count} знаків)
-        other: занадто короткий (мінімум %{count} знаків)
-      wrong_length:
-        one: неправильна довжина (має бути %{count} знак)
-        few: неправильна довжина (має бути %{count} знаків)
-        many: неправильна довжина (має бути %{count} знаків)
-        other: неправильна довжина (має бути %{count} знаків)
-    template:
-      body: 'Виникли деякі проблеми з такими полями:'
-      header:
-        one: "%{count} помилка не дозволяє зберегти цю %{model}"
-        few: '%{count} помилки не дозволяють зберегти цю %{model}'
-        many: '%{count} помилок не дозволяють зберегти цю %{model}'
-        other: '%{count} помилок не дозволяють зберегти цю %{model}'
   helpers:
     defaults:
       title: "ЦЕ НАЗВА"
@@ -7088,55 +7037,6 @@ uk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: пп
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: повинні бути прийняті
-        blank: має бути заповненим
-        confirmation: не збігається з паролем
-        empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
-        even: має бути парним
-        exclusion: зарезервовано
-        greater_than: має бути більшим за %{count}
-        greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-        inclusion: не включено до переліку
-        invalid: недійсне
-        less_than: має бути менше, ніж %{count}
-        less_than_or_equal_to: має бути менше або дорівнювати %{count}
-        new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
-        not_a_number: не є числом
-        not_an_integer: має бути цілим числом
-        odd: має бути непарним
-        only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-        record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-        requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-        taken: вже зайнятий
-        too_long:
-          one: занадто довгий (максимум %{count} знак)
-          few: занадто довгий (максимум %{count} знаки)
-          many: занадто довгий (максимум %{count} знаків)
-          other: занадто довгий (максимум %{count} знаків)
-        too_short:
-          one: занадто короткий (мінімум %{count} знак)
-          few: занадто короткий (мінімум %{count} знаки)
-          many: занадто короткий (мінімум %{count} знаків)
-          other: занадто короткий (мінімум %{count} знаків)
-        wrong_length:
-          one: неправильна довжина (має бути %{count} знак)
-          few: неправильна довжина (має бути %{count} знаки)
-          many: неправильна довжина (має бути %{count} знаків)
-          other: неправильна довжина (має бути %{count} знаків)
-      template:
-        body: 'Виникли деякі проблеми з такими полями:'
-        header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
-          few: '%{count} помилок не дозволяють зберегти цю %{model}'
-          many: '%{count} помилок не дозволяють зберегти цю %{model}'
-          other: '%{count} помилок не дозволяють зберегти цю %{model}'
   activerecord:
     models:
       AssessmentSection: Розділи оцінки
@@ -7274,22 +7174,18 @@ uk:
         blank: не можуть залишатися порожніми
         confirmation: не збігається з паролем
         empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
         even: може мати тільки парне значення
         exclusion: зарезервовано
-        greater_than: значення має бути більшим за %{count}
-        greater_than_or_equal_to: значення має бути більшим або дорівнювати %{count}
         inclusion: не включено до переліку
         invalid: недійсне
-        less_than: значення має бути меншим ніж %{count}
-        less_than_or_equal_to: значення має бути меншим або дорівнювати %{count}
         new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
         not_a_number: не є числом
         not_an_integer: має бути цілим числом
         odd: може мати тільки непарне значення
         only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
         record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
+        requires_privilege_speech: |
+          потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
         requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
         taken: вже зайнятий
         too_long:
@@ -7310,7 +7206,7 @@ uk:
       template:
         body: 'Виникли деякі проблеми з такими полями:'
         header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
+          one: "%{count} помилка не дозволяє зберегти цю %{model}"
           few: '%{count} помилки не дозволяють зберегти цю %{model}'
           many: '%{count} помилок не дозволяють зберегти цю %{model}'
           other: '%{count} помилок не дозволяють зберегти цю %{model}'

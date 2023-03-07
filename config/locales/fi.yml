@@ -6188,9 +6188,6 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
-        observations_to_date: 'havaintoa tällä hetkellä'
-        species_observed: 'Havaitut lajit'
-        people_signed_up: 'rekisteröitynyttä käyttäjää'
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
         share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
@@ -6344,41 +6341,6 @@ fi:
       month: Kuukausi
       second: sekuntia
       year: Vuosi
-  errors:
-    messages:
-      accepted: täytyy olla hyväksytty
-      blank: ei voi olla tyhjä
-      confirmation: ei vastaa salasanaa
-      empty: ei voi olla tyhjä
-      equal_to: oltava yhtäsuuri kuin %{count}
-      even: täytyy olla parillinen
-      exclusion: on varattu
-      greater_than: täytyy olla suurempi kuin %{count}
-      greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-      inclusion: ei sisälly luetteloon
-      invalid: on virheellinen
-      less_than: täytyy olla vähemmän kuin %{count}
-      less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-      new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-      not_a_number: ei ole numero
-      not_an_integer: täytyy olla kokonaisluku
-      odd: on oltava pariton
-      only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-      requires_privilege_speech: |
-        täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme muille tehtyä tunnistusta, jotta voisit tehdä tämän
-      requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-      taken: on jo varattu
-      too_long:
-        one: on liian pitkä (maksimi on 1 merkki)
-        other: on liian pitkä (maksimi on %{count} merkkiä)
-      too_short:
-        one: on liian lyhyt (maksimi on 1 merkki)
-        other: on liian lyhyt (maksimi on %{count} merkkiä)
-      wrong_length:
-        one: on väärän pituinen (pitäisi olla 1 merkki)
-        other: on väärän pituinen (pitäisi olla %{count} merkkiä)
-    template:
-      body: 'Seuraavissa kentissä oli ongelmia:'
   helpers:
     defaults:
       title: "TÄMÄ ON OTSIKKO"
@@ -6456,44 +6418,6 @@ fi:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: ip.
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: täytyy olla hyväksytty
-        blank: ei voi olla tyhjä
-        confirmation: ei vastaa salasanaa
-        empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
-        even: täytyy olla parillinen
-        exclusion: on varattu
-        greater_than: täytyy olla suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
-        inclusion: ei sisälly luetteloon
-        invalid: on virheellinen
-        less_than: täytyy olla vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
-        new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
-        not_a_number: ei ole numero
-        not_an_integer: on oltava kokonaisluku
-        odd: on oltava pariton
-        only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
-        record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
-        requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
-        taken: on jo varattu
-        too_long:
-          one: on liian pitkä (maksimi on 1 merkki)
-          other: on liian pitkä (maksimi on %{count} merkkiä)
-        too_short:
-          one: on liian lyhyt (minimi on 1 merkki)
-          other: on liian lyhyt (minimi on %{count} merkkiä)
-        wrong_length:
-          one: on väärän pituinen (pitää olla %{count} merkkiä)
-          other: ovat väärän pituisia (pitää olla %{count} merkkiä)
-      template:
-        body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6650,22 +6574,18 @@ fi:
         blank: ei voi olla tyhjä
         confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
-        equal_to: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
         exclusion: on varattu
-        greater_than: oltava suurempi kuin %{count}
-        greater_than_or_equal_to: oltava suurempi tai yhtäsuuri kuin %{count}
         inclusion: ei sisälly luetteloon
         invalid: on virheellinen
-        less_than: oltava vähemmän kuin %{count}
-        less_than_or_equal_to: oltava vähemmän tai yhtäsuuri kuin %{count}
         new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
         odd: on oltava pariton
         only_project_owner_can_change_project_owner: Vain projektin omistaja voi muuttaa projektin omistajan
         record_invalid: 'Vahvistus epäonnistui: %{errors}'
-        requires_privilege_speech: sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
+        requires_privilege_speech: |
+          sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
         taken: on jo varattu
         too_long:

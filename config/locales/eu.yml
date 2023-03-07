@@ -2646,31 +2646,6 @@ eu:
       month: Hilabetea
       second: Segundoak
       year: Urtea
-  errors:
-    messages:
-      accepted: Onartu egin behar da
-      blank: ezin du zurian egon
-      confirmation: ez dator bat pasahitzarekin
-      empty: ezin du hutsik egon
-      equal_to: 'honen berdina izan behar du: %{count}'
-      even: bikoitia izan behar du
-      exclusion: erreserbatuta dago
-      greater_than: 'hau baino handiagoa izan behar du: %{count}'
-      greater_than_or_equal_to: 'hau baino handiagoa edo berdina izan behar du: %{count}'
-      inclusion: ez dago zerrendan jasota
-      invalid: ez da baliagarria
-      less_than: 'hau baino txikiagoa izan behar du: %{count}'
-      less_than_or_equal_to: 'hau baino txikiagoa edo berdina izan behar du: %{count}'
-      not_a_number: ez da zenbaki bat
-      not_an_integer: zenbaki osoa izan behar du
-      odd: bakoitia izan behar du
-      record_invalid: 'Baliozkotzeak huts egin du: %{errors}'
-      taken: dagoeneko erabileran dago
-    template:
-      body: 'Arazoak topatu dira eremu hauetan:'
-      header:
-        one: "Ezin izan da %{model} hau gorde, 1 errore topatu delako."
-        other: 'Ezin izan da %{model} hau gorde, %{count} errore topatu direlako.'
   helpers:
     select:
       prompt: Mesedez, hautatu
@@ -2726,13 +2701,6 @@ eu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
     pm: arratsaldea
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        not_a_number: ez da zenbaki bat
-        not_an_integer: zenbaki osoa izan behar du
-        odd: bakoitia izan behar du
   activerecord:
     attributes:
       assessment:

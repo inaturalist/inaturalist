@@ -3545,8 +3545,6 @@ pt:
     welcome:
       index:
         connect_with_nature: Ligue-se à Natureza
-        species_observed: 'Espécies observadas'
-        people_signed_up: 'Pessoas Registadas'
         how_it_works: Como funciona
         record_your_observations: Registre suas observações
         crowdsource_identifications: Identificações pela comunidade
@@ -3659,24 +3657,6 @@ pt:
       month: Mês
       second: Segundos
       year: Ano
-  errors:
-    messages:
-      accepted: deve ser aceito
-      blank: não pode ficar em branco
-      confirmation: não corresponde com a confirmação
-      empty: não pode ficar vazio
-      equal_to: deve ser igual a %{count}
-      even: deve ser par
-      exclusion: está reservado
-      greater_than: deve ser maior que %{count}
-      greater_than_or_equal_to: deve ser maior ou igual a %{count}
-      inclusion: não está incluído na lista
-      invalid: não é válido
-      less_than: deve ser menor que %{count}
-      less_than_or_equal_to: deve ser menor ou igual a %{count}
-      not_a_number: não é um número
-      not_an_integer: deve ser um número inteiro
-      odd: deve ser ímpar
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is
@@ -3715,26 +3695,6 @@ pt:
       long: '%d de %B de %Y, %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b, %H:%M'
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: não corresponde com a confirmação
-        equal_to: deve ser igual a %{count}
-        even: deve ser par
-        exclusion: está reservado
-        greater_than: deve ser maior que %{count}
-        greater_than_or_equal_to: deve ser maior ou igual a %{count}
-        inclusion: não está incluído na lista
-        invalid: não é válido
-        less_than: deve ser menor que %{count}
-        less_than_or_equal_to: deve ser menor ou igual a %{count}
-        not_a_number: não é um número
-        not_an_integer: deve ser um número inteiro
-        odd: deve ser ímpar
-        record_invalid: 'Falha na validação: %{errors}'
-      template:
-        body: 'Ocorreram problemas com os seguintes campos:'
   activerecord:
     attributes:
       assessment_section:

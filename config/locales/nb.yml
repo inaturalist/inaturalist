@@ -6095,9 +6095,6 @@ nb:
       index:
         connect_with_nature: Få kontakt med naturen
         explore_and_share: Utforsk og dele dine observasjoner fra den naturlige verden.
-        observations_to_date: 'Observasjoner hittil'
-        species_observed: 'Arter observert'
-        people_signed_up: 'Personer påmeldt'
         how_it_works: Slik fungerer det
         record_your_observations: Register dine observasjoner
         share_with_fellow_naturalists: Del med dine felles naturalister
@@ -6252,46 +6249,6 @@ nb:
       month: Måned
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: må være akseptert
-      blank: kan ikke være tom
-      confirmation: kom ikke overens med passordet
-      empty: kan ikke være tom
-      equal_to: må være lik %{count}
-      even: må være partall
-      exclusion: er forbeholdt
-      greater_than: må være større enn %{count}
-      greater_than_or_equal_to: må være større enn eller lik %{count}
-      inclusion: er ikke inkludert på listen
-      invalid: er ugyldig
-      less_than: må være mindre enn %{count}
-      less_than_or_equal_to: må være mindre enn eller lik %{count}
-      new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
-      not_a_number: er ikke et tall
-      not_an_integer: må være et helt tall
-      odd: må være oddetall
-      only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
-      record_invalid: 'Verifisering mislykket: %{errors}'
-      requires_privilege_speech: |
-        må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
-      requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
-      taken: er allerede opptatt
-      too_long:
-        one: er for lang (maks antall tegn er %{count})
-        other: er for lang (maks antall tegn er %{count})
-      too_short:
-        one: er for kort (minimum er %{count} tegn)
-        other: er for kort (minimum er %{count} tegn)
-      wrong_length:
-        one: har feil lengde (skal være %{count} tegn)
-        other: har feil lengde (skal være %{count} tegn)
-    template:
-      body: 'Det oppstod problemer med de følgende felt:'
-      header:
-        one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
-        other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
   helpers:
     defaults:
       title: "DETTE ER EN TITTEL"
@@ -6369,47 +6326,6 @@ nb:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: må være akseptert
-        blank: kan ikke være tom
-        confirmation: kom ikke overens med passordet
-        empty: kan ikke være tom
-        equal_to: må være lik %{count}
-        even: må være partall
-        exclusion: er forbeholdt
-        greater_than: må være større enn %{count}
-        greater_than_or_equal_to: må være større enn eller lik %{count}
-        inclusion: er ikke inkludert på listen
-        invalid: er ugyldig
-        less_than: må være mindre enn %{count}
-        less_than_or_equal_to: må være mindre enn eller lik %{count}
-        new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
-        not_a_number: er ikke et tall
-        not_an_integer: må være et helt tall
-        odd: må være oddetall
-        only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
-        record_invalid: 'Verifisering mislykket: %{errors}'
-        requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
-        requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
-        taken: er allerede opptatt
-        too_long:
-          one: er for lang (maks antall tegn er %{count})
-          other: er for lang (maks antall tegn er %{count})
-        too_short:
-          one: er for kort (minimum er %{count} tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: har feil lengde (skal være %{count} tegn)
-          other: har feil lengde (skal være %{count} tegn)
-      template:
-        body: 'Det var problemer med følgende felt:'
-        header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
   activerecord:
     models:
       AssessmentSection: Vurderingsseksjon
@@ -6539,22 +6455,18 @@ nb:
         blank: kan ikke være tom
         confirmation: kom ikke overens med passordet
         empty: kan ikke være tom
-        equal_to: må være lik %{count}
         even: må være partall
         exclusion: er forbeholdt
-        greater_than: må være større enn %{count}
-        greater_than_or_equal_to: må være større enn eller lik %{count}
         inclusion: er ikke inkludert på listen
         invalid: er ugyldig
-        less_than: må være mindre enn %{count}
-        less_than_or_equal_to: må være mindre enn eller lik %{count}
         new_project_owner_must_be_a_manager: Ny prosjekteier må være en admin
         not_a_number: er ikke et tall
         not_an_integer: må være et helt tall
         odd: må være oddetall
         only_project_owner_can_change_project_owner: Bare prosjekteieren kan endre prosjekteieren
         record_invalid: 'Verifisering mislykket: %{errors}'
-        requires_privilege_speech: må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
+        requires_privilege_speech: |
+          må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
         taken: er allerede opptatt
         too_long:
@@ -6569,8 +6481,8 @@ nb:
       template:
         body: 'Det var problemer med følgende felt:'
         header:
-          one: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
-          other: På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres
+          one: "På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres"
+          other: 'På grunn av %{count} feil kunne ikke @gender{n:dette|denne} %{model}@gender{n:et|en} lagres'
       models:
         application:
           attributes:

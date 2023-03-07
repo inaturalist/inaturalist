@@ -4831,9 +4831,6 @@ lt:
       index:
         connect_with_nature: Prisijunk prie gamtos
         explore_and_share: Tyrinėkite ir dalinkitės savo stebėjimais iš gamtos pasaulio.
-        observations_to_date: 'Stebėjimų'
-        species_observed: 'Stebėta rūšių'
-        people_signed_up: 'Užsiregistravusių žmonių'
         how_it_works: Kaip tai veikia
         record_your_observations: Užfiksuokite savo stebėjimus
         share_with_fellow_naturalists: Pasidalinkite su kitais gamtininkais
@@ -4966,46 +4963,6 @@ lt:
       month: Mėnuo
       second: Sekundės
       year: Metai
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: turi būti patvirtinta
-      blank: negali būti tuščia
-      confirmation: nesutapo su slaptažodžiu
-      empty: negali būti tuščia
-      equal_to: turi būti lygu %{count}
-      even: turi būti lyginis
-      exclusion: yra užimta
-      greater_than: turi būti daugiau už %{count}
-      greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
-      inclusion: neįtraukta į sąrašą
-      invalid: yra neteisinga
-      less_than: turi būti mažiau už %{count}
-      less_than_or_equal_to: turi būti mažiau arba lygu %{count}
-      new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
-      not_a_number: yra ne skaičius
-      not_an_integer: turi būti sveikas skaičius
-      odd: turi būti nelyginis
-      only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
-      record_invalid: 'Patvirtinimas nepavyko: %{errors}'
-      taken: jau užimtas
-      too_long:
-        one: per ilgas tekstas (daugiausiai %{count} simbolis)
-        few: per ilgas tekstas (daugiausiai %{count} simbolių)
-        many: per ilgas tekstas (daugiausiai %{count} simbolių)
-        other: per ilgas tekstas (daugiausiai %{count} simbolių)
-      too_short:
-        one: yra per trumpas (mažiausiai %{count} simbolis)
-        few: yra per trumpas (mažiausiai %{count} simbolių)
-        many: yra per trumpas (mažiausiai %{count} simbolių)
-        other: yra per trumpas (mažiausiai %{count} simbolių)
-      wrong_length:
-        one: yra neteisingo ilgio (turi būti %{count} simbolis)
-        few: yra neteisingo ilgio (turi būti %{count} simbolių)
-        many: yra neteisingo ilgio (turi būti %{count} simbolių)
-        other: yra neteisingo ilgio (turi būti %{count} simbolių)
-    template:
-      body: 'Buvo problemų su šiais laukeliais:'
   helpers:
     defaults:
       title: "TAI YRA PAVADINIMAS"
@@ -5068,48 +5025,6 @@ lt:
   time:
     am: am
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: turi būti patvirtinta
-        blank: negali būti tuščia
-        confirmation: nesutapo su slaptažodžiu
-        empty: negali būti tuščia
-        equal_to: turi būti lygu %{count}
-        even: turi būti lyginis
-        exclusion: yra užimta
-        greater_than: turi būti daugiau už %{count}
-        greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
-        inclusion: neįtraukta į sąrašą
-        invalid: yra neteisinga
-        less_than: turi būti mažiau už %{count}
-        less_than_or_equal_to: turi būti mažiau arba lygu %{count}
-        new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
-        not_a_number: yra ne skaičius
-        not_an_integer: turi būti sveikas skaičius
-        odd: turi būti nelyginis
-        only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
-        record_invalid: 'Patvirtinimas nepavyko: %{errors}'
-        taken: jau užimtas
-        too_long:
-          one: per ilgas tekstas (daugiausiai %{count} simbolis)
-          few: per ilgas tekstas (daugiausiai %{count} simbolių)
-          many: per ilgas tekstas (daugiausiai %{count} simbolių)
-          other: per ilgas tekstas (daugiausiai %{count} simbolių)
-        too_short:
-          one: yra per trumpas (mažiausiai %{count} simbolis)
-          few: yra per trumpas (mažiausiai %{count} simbolių)
-          many: yra per trumpas (mažiausiai %{count} simbolių)
-          other: yra per trumpas (mažiausiai %{count} simbolių)
-        wrong_length:
-          one: yra neteisingo ilgio (turi būti %{count} simbolis)
-          few: yra neteisingo ilgio (turi būti %{count} simbolių)
-          many: yra neteisingo ilgio (turi būti %{count} simbolių)
-          other: yra neteisingo ilgio (turi būti %{count} simbolių)
-      template:
-        body: 'Buvo problemų su šiais laukeliais:'
   activerecord:
     models:
       AssessmentSection: Vertinimo skyrius
@@ -5231,15 +5146,10 @@ lt:
         blank: negali būti tuščia
         confirmation: nesutapo su slaptažodžiu
         empty: negali būti tuščia
-        equal_to: turi būti lygu %{count}
         even: turi būti lyginis
         exclusion: yra užimta
-        greater_than: turi būti daugiau už %{count}
-        greater_than_or_equal_to: turi būti daugiau arba lygu %{count}
         inclusion: neįtraukta į sąrašą
         invalid: yra neteisinga
-        less_than: turi būti mažiau už %{count}
-        less_than_or_equal_to: turi būti mažiau arba lygu %{count}
         new_project_owner_must_be_a_manager: Naujasis projekto savininkas turi būti administratorius
         not_a_number: yra ne skaičius
         not_an_integer: turi būti sveikas skaičius

@@ -795,6 +795,8 @@ da:
   birds: fugle
   birthday: Fødselsdag
   black: sort
+  block: Blokering
+  blocking_description: Blokering forhindrer enhver kommunikation med en anden bruger i situationer, hvor vedkommende kan kompromittere din sikkerhed, såsom stalking eller anden krænkende adfærd.
   block_removed: Blokering fjernet
   blocked_users: Blokerede brugere
   blog_widget: Blog-widget
@@ -4717,6 +4719,10 @@ da:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status anvendt fra en højere niveau takson:</strong> %{taxon}
   status_globally: '"%{status}" Global'
   status_in_place: '"%{status}" i %{place}'
   stay_and_try_again: Bliv og prøv igen
@@ -7758,9 +7764,15 @@ da:
       index:
         connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
-        observations_to_date: 'Observationer til dato'
-        species_observed: 'Arter observeret'
-        people_signed_up: 'Personer tilmeldte sig'
+        observations_to_date:
+          one: "Observation til dato"
+          other: "Observationer til dato"
+        species_observed:
+          one: "Art observeret"
+          other: "Arter observeret"
+        people_signed_up:
+          one: "Person har tilmeldt sig"
+          other: "Personer har tilmeldt sig"
         how_it_works: Hvordan det fungerer
         record_your_observations: Registrér dine observationer
         share_with_fellow_naturalists: Del med ligesindede naturelskere
@@ -7918,47 +7930,6 @@ da:
       month: Måned
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: skal accepteres
-      blank: kan ikke være tom
-      confirmation: stemte ikke overens med adgangskoden
-      empty: kan ikke være tom
-      equal_to: skal være lig med %{count}
-      even: skal være lige
-      exclusion: er reserveret
-      greater_than: skal være større end %{count}
-      greater_than_or_equal_to: skal være større end, eller lig med, %{count}
-      inclusion: er ikke med på listen
-      invalid: er ugyldig
-      less_than: skal være mindre end %{count}
-      less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
-      new_project_owner_must_be_a_manager: Den nye projektejer skal være en admin
-      not_a_number: er ikke et tal
-      not_an_integer: skal være et heltal
-      odd: skal være ulige
-      only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
-      record_invalid: 'Validering mislykkedes: %{errors}'
-      requires_privilege_speech: |
-        skal have tre verificérbare observationer eller tre identifikationer
-        for at andre kan gøre det
-      requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
-      taken: er allerede blevet taget
-      too_long:
-        one: er for lang (maksimum er 1 tegn)
-        other: er for lang (maksimum er %{count} tegn)
-      too_short:
-        one: er for kort (minimum er 1 tegn)
-        other: er for kort (minimum er %{count} tegn)
-      wrong_length:
-        one: er forkert længde (skal være 1 tegn)
-        other: er forkert længde (skal være %{count} tegn)
-    template:
-      body: 'Der var problemer med følgende felter:'
-      header:
-        one: "1 fejl forhindrede denne %{model} i at blive gemt"
-        other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
   helpers:
     defaults:
       title: "DETTE ER EN TITEL"
@@ -8036,47 +8007,6 @@ da:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M %p"
     pm: PM
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: skal accepteres
-        blank: kan ikke være tom
-        confirmation: stemte ikke overens med adgangskoden
-        empty: kan ikke være tom
-        equal_to: skal være lig med %{count}
-        even: skal være lige
-        exclusion: er reserveret
-        greater_than: skal være større end %{count}
-        greater_than_or_equal_to: skal være større end, eller lig med, %{count}
-        inclusion: er ikke med på listen
-        invalid: er ugyldig
-        less_than: skal være mindre end %{count}
-        less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
-        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
-        not_a_number: er ikke et tal
-        not_an_integer: skal være et heltal
-        odd: skal være ulige
-        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
-        record_invalid: 'Validering mislykkedes: %{errors}'
-        requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
-        requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
-        taken: er allerede blevet taget
-        too_long:
-          one: er for lang (maksimum er 1 tegn)
-          other: er for lang (maksimum er %{count} tegn)
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: er forkert længde (skal være 1 tegn)
-          other: er forkert længde (skal være %{count} tegn)
-      template:
-        body: 'Der var problemer med følgende felter:'
-        header:
-          one: En fejl forhindrede %{model} i at blive gemt
-          other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8292,22 +8222,34 @@ da:
         blank: må ikke være tom
         confirmation: matchede ikke adgangskoden
         empty: må ikke være tom
-        equal_to: skal være lig med %{count}
+        equal_to:
+          one: skal være lig med %{count}
+          other: skal være lig med %{count}
         even: skal være lige
         exclusion: er reserveret
-        greater_than: skal være større end %{count}
-        greater_than_or_equal_to: skal være større end eller lig med %{count}
+        greater_than:
+          one: skal være større end %{count}
+          other: skal være større end %{count}
+        greater_than_or_equal_to:
+          one: skal være større end eller lig med %{count}
+          other: skal være større end eller lig med %{count}
         inclusion: er ikke inkluderet på listen
         invalid: er ugyldig
-        less_than: skal være mindre end %{count}
-        less_than_or_equal_to: skal være mindre end eller lig med %{count}
+        less_than:
+          one: skal være mindre end %{count}
+          other: skal være mindre end %{count}
+        less_than_or_equal_to:
+          one: skal være mindre end eller lig med %{count}
+          other: skal være mindre end eller lig med %{count}
         new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et helt tal
         odd: skal være et ulige tal
         only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering fejlede: %{errors}'
-        requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
+        requires_privilege_speech: |
+          skal have tre verificérbare observationer eller tre identifikationer
+          for at andre kan gøre det
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
         taken: er allerede blevet taget
         too_long:
@@ -8322,7 +8264,7 @@ da:
       template:
         body: 'Der var problemer med følgende felter:'
         header:
-          one: En fejl forhindrede denne %{model} i at blive gemt
+          one: "En fejl forhindrede denne %{model} i at blive gemt"
           other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
         application:

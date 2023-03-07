@@ -4449,9 +4449,6 @@ sr:
       index:
         connect_with_nature: Poveži se sa prirodom
         explore_and_share: Istražuj i podeli tvoje opservacije iz sveta prirode.
-        observations_to_date: 'opservacija do sad'
-        species_observed: 'vrsta zabeleženo'
-        people_signed_up: 'registrovanih korisnika'
         how_it_works: Kako funkcioniše
         record_your_observations: Zabeleži svoju opservaciju
         share_with_fellow_naturalists: Podeli sa drugim prirodnjacima
@@ -4620,50 +4617,6 @@ sr:
       month: Mesec
       second: Sekundi
       year: Godina
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: mora biti prihvaćeno
-      blank: ne može biti prazno
-      confirmation: ne poklapa se sa lozinkom
-      empty: ne možе biti prazno
-      equal_to: mora biti jednako %{count}
-      even: mora biti parno
-      exclusion: je rezervisano
-      greater_than: mora biti veće od %{count}
-      greater_than_or_equal_to: mora biti veće od ili jednako %{count}
-      inclusion: nije na listi
-      invalid: je neispravno
-      less_than: mora biti manje od %{count}
-      less_than_or_equal_to: mora biti manje od ili jednako %{count}
-      new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
-      not_a_number: nije broj
-      not_an_integer: mora biti ceo broj
-      odd: mora biti neparno
-      only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
-      record_invalid: 'Potvrda neuspela: %{errors}'
-      requires_privilege_speech: |
-        mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
-      requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
-      taken: već postoji
-      too_long:
-        one: je predugačka (maksimalno %{count} znak)
-        few: je predugačka (maksimalno %{count} znaka)
-        other: je predugačka (maksimalno %{count} znakova)
-      too_short:
-        one: je prekratka (minimalno %{count} znak)
-        few: je prekratka (minimalno %{count} znaka)
-        other: je prekratka (minimalno %{count} znakova)
-      wrong_length:
-        one: je pogrešne dužine (treba biti %{count} znak)
-        few: je pogrešne dužine (treba biti %{count} znaka)
-        other: je pogrešne dužine (treba biti %{count} znakova)
-    template:
-      body: 'Bilo je problema sa sledećim poljima:'
-      header:
-        one: "%{count} greška onemogućava da %{model} bude sačuvan"
-        few: '%{count} greške onemogućava da %{model} bude sačuvan'
-        other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
   helpers:
     defaults:
       title: "OVO JE NASLOV"
@@ -4742,38 +4695,6 @@ sr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: mora biti prihvaćeno
-        blank: ne može biti prazno
-        confirmation: ne poklapa se sa lozinkom
-        empty: ne možе biti prazno
-        equal_to: mora biti jednako %{count}
-        even: mora biti parno
-        exclusion: je rezervisano
-        greater_than: mora biti veće od %{count}
-        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
-        inclusion: nije na listi
-        invalid: je neispravno
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje od ili jednako %{count}
-        new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
-        not_a_number: nije broj
-        not_an_integer: mora biti ceo broj
-        odd: mora biti neparno
-        only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
-        record_invalid: 'Potvrda neuspela: %{errors}'
-        requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
-        taken: već postoji
-        too_long:
-          one: je predugačko (maksimalno %{count} karakter)
-          few: su predugački (maksimalno %{count} karakter)
-          other: su predugački (maksimalno %{count} karakter)
-      template:
-        body: 'Bilo je problema sa sledećim poljima:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -4939,22 +4860,18 @@ sr:
         blank: ne može biti prazno
         confirmation: ne poklapa se sa lozinkom
         empty: ne možе biti prazno
-        equal_to: mora biti jednako %{count}
         even: mora biti parno
         exclusion: je rezervisano
-        greater_than: mora biti veće od %{count}
-        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
         inclusion: nije na listi
         invalid: je neispravno
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje od ili jednako %{count}
         new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
         not_a_number: nije broj
         not_an_integer: mora biti ceo broj
         odd: mora biti neparno
         only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
         record_invalid: 'Potvrda neuspela: %{errors}'
-        requires_privilege_speech: mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
+        requires_privilege_speech: |
+          mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
         requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
         taken: već postoji
         too_long:
@@ -4972,7 +4889,7 @@ sr:
       template:
         body: 'Bilo je problema sa sledećim poljima:'
         header:
-          one: '%{count} greška onemogućava da %{model} bude sačuvan'
+          one: "%{count} greška onemogućava da %{model} bude sačuvan"
           few: '%{count} greške onemogućava da %{model} bude sačuvan'
           other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
       models:

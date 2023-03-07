@@ -5182,9 +5182,6 @@ ar:
       index:
         connect_with_nature: تواصل مع الطبيعة
         explore_and_share: استكشف وتبادل ملاحظاتك من العالم الطبيعي.
-        observations_to_date: 'ملاحظات للتاريخ'
-        species_observed: 'الأنواع الملاحظة'
-        people_signed_up: 'الناس المسجلون'
         how_it_works: كيف تعمل
         record_your_observations: تسجيل ملاحظاتك
         share_with_fellow_naturalists: مشاركتها مع زملائك الطبيعيين
@@ -5294,32 +5291,6 @@ ar:
       month: شهر
       second: ثوانٍ
       year: سنة
-  errors:
-    messages:
-      accepted: يجب أن تكون مقبولة
-      blank: لا يمكن تركها فارغة
-      confirmation: كلمة السر غير مطابقة
-      empty: لا يمكن تركها فارغة
-      equal_to: يجب أن تساوي %{count}
-      even: يجب أن يكون عددا زوجيا
-      exclusion: محجوز
-      greater_than: يجب أن يكون أكبر من %{count}
-      greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
-      inclusion: غير مدرج في القائمة
-      invalid: غير صالح
-      less_than: يجب أن يكون أقل من %{count}
-      less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
-      not_a_number: ليس رقما
-      not_an_integer: يجب أن يكون عددا صحيحا
-      odd: يجب أن يكون فرديا
-      record_invalid: 'أخفق التحقق: %{errors}'
-      requires_privilege_speech: |
-        يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات
-        للآخرين للقيام بذلك
-      requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
-      taken: لقد اُتخِذت بالفعل
-    template:
-      body: 'كانت هناك مشاكل في الحقول التالية:'
   helpers:
     defaults:
       title: "هذا هو العنوان"
@@ -5363,32 +5334,6 @@ ar:
   time:
     am: صباحا
     pm: مساء
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: يجب أن تكون مقبولة
-        blank: لا يمكن تركها فارغة
-        confirmation: كلمة السر غير مطابقة
-        empty: لا يمكن تركها فارغة
-        equal_to: يجب أن تساوي %{count}
-        even: يجب أن يكون عددا زوجيا
-        exclusion: محجوز
-        greater_than: يجب أن يكون أكبر من %{count}
-        greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
-        inclusion: غير مدرجة في القائمة
-        invalid: غير صالح
-        less_than: يجب أن يكون أقل من %{count}
-        less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
-        not_a_number: ليس رقما
-        not_an_integer: يجب أن يكون عددا صحيحا
-        odd: يجب أن يكون فرديا
-        record_invalid: 'أخفق التحقق: %{errors}'
-        requires_privilege_speech: "يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات\nللآخرين للقيام بذلك"
-        requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
-        taken: لقد اُتخِذت بالفعل
-      template:
-        body: 'كانت هناك مشاكل في الحقول التالية:'
   activerecord:
     models:
       AssessmentSection: قسم التقييم
@@ -5495,20 +5440,17 @@ ar:
         blank: لا يمكن أن تكون فارغة
         confirmation: كلمة السر غير مطابقة
         empty: لا يمكن أن تكون فارغة
-        equal_to: يجب أن تساوي %{count}
         even: يجب أن يكون حتى
         exclusion: محجوز
-        greater_than: يجب أن يكون أكبر من %{count}
-        greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
         inclusion: غير مدرج في القائمة
         invalid: غير صالح
-        less_than: يجب أن يكون أقل من %{count}
-        less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
         not_a_number: ليس رقما
         not_an_integer: يجب أن يكون عددا صحيحا
         odd: يجب أن يكون عددا فرديا
         record_invalid: 'أخفق التحقق: %{errors}'
-        requires_privilege_speech: "يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات\nللآخرين للقيام بذلك"
+        requires_privilege_speech: |
+          يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات
+          للآخرين للقيام بذلك
         requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
         taken: قد تم أخذه بالفعل
       template:

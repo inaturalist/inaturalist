@@ -3015,8 +3015,6 @@ sk:
       index:
         connect_with_nature: Spojte sa s prírodou
         explore_and_share: Objavujte a zdieľajte svoje pozorovania zo sveta prírody.
-        observations_to_date: 'Pozorovaní k dnešnému dňu'
-        people_signed_up: 'Zaregistrovaných ľudí'
         how_it_works: Ako to funguje
         record_your_observations: Zaznamenejte svoje pozorovania
         share_with_fellow_naturalists: Zdieľajte s našimi prirodovedcami
@@ -3117,29 +3115,6 @@ sk:
       month: Mesiac
       second: Sekundy
       year: Rok
-  errors:
-    messages:
-      accepted: musí byť prijaté
-      blank: nesmie byť nevyplnené
-      confirmation: heslo nesedí
-      empty: nesmie byť prázdne
-      equal_to: musí sa rovnať %{count}
-      even: musí byť párne
-      exclusion: je vyhradené
-      greater_than: musí väčšie ako %{count}
-      greater_than_or_equal_to: musí byť vyšší alebo rovnaký ako %{count}
-      inclusion: nie je zahrnuté v zozname
-      invalid: je neplatné
-      less_than: musí byť menší ako %{count}
-      less_than_or_equal_to: musí byť nižší alebo rovnaký ako %{count}
-      not_a_number: nie je číslo
-      not_an_integer: musí byť celé číslo
-      odd: musí byť nepárne
-      record_invalid: 'Potvrdenie zlyhalo: %{errors}'
-      requires_privilege_speech: |
-        musíte mať tri overené pozorovania alebo tri identifikácie pre ostatných aby ste mohli
-      requires_privilege_organizer: musíte mať 50 overených pozorovaní aby ste mohli
-      taken: už bolo prijaté
   helpers:
     submit:
       create: Vytvoriť %{model}
