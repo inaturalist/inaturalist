@@ -804,6 +804,7 @@ nl:
   birds: vogels
   birthday: Verjaardag
   black: zwart
+  block: Blokkeren
   block_removed: Blokkering opgeheven
   blocked_users: Geblokkeerde gebruikers
   blog_widget: Blogwidget
@@ -4711,6 +4712,10 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status toegepast van een hoger taxon:</strong> %{taxon}
   status_globally: 'Wereldwijd "%{status}"'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
