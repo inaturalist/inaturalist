@@ -133,7 +133,7 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
       }
     });
     // use the current user's id as the basis for the `reviewed` param
-    if( !_.isUndefined( params.reviewed ) && !params.viewer_id && CURRENT_USER ) {
+    if( params.reviewed !== undefined && !params.viewer_id && CURRENT_USER ) {
       params.viewer_id = CURRENT_USER.id;
     }
     return params;
