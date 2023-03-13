@@ -582,12 +582,16 @@ class UsersController < ApplicationController
       format.json { render :json => @updates }
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
-        render :edit2, layout: "bootstrap"
+        if params[:notifications]
+          redirect_to generic_edit_user_url( anchor: "notifications" )
+        else
+          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+          render :edit2, layout: "bootstrap"
+        end
       end
       format.json do
         render :json => @user.to_json(
