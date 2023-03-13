@@ -1,6 +1,8 @@
 #encoding: utf-8
-module INatAPIService
 
+require "inat_api_service/v2/client"
+
+module INatAPIService
   ENDPOINT = CONFIG.node_api_url
   TIMEOUT = 8
 
