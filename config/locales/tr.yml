@@ -783,6 +783,8 @@ tr:
   birds: kuşlar
   birthday: Doğum Günü
   black: siyah
+  block: Engelle
+  blocking_description: Engelleme, seninle başka bir kullanıcı arasındaki herhangi bir iletişimi önler. Başka bir kullanıcının, güvenliğini riske atabileceği durumlar içindir, ör. takip ya da diğer taciz edici davranışlar gibi.
   block_removed: Engel kaldırıldı
   blocked_users: Engellenen Kullanıcılar
   blog_widget: Blog widgeti
@@ -4533,6 +4535,10 @@ tr:
   stats: İstatistikler
   stats_for_this_year_have_not_been_generated: Bu yıl için istatistikler oluşturulamadı.
   status: Durum
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Daha üst düzey bir sınıftan uygulanan statü:</strong> %{taxon}
   status_globally: '"%{status}" Küresel'
   status_in_place: '%{place} içindeki "%{status}"'
   stay_and_try_again: Bekle ve yeniden dene

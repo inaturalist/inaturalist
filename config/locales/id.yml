@@ -730,6 +730,8 @@ id:
   birds: Burung
   birthday: Ulang Tahun
   black: Hitam
+  block: Blokir
+  blocking_description: Pemblokiran akan mencegah komunikasi Anda dengan pengguna lain. Pendekatan ini bisa dipakai untuk situasi di mana pengguna lain membahayakan keselamatan Anda, seperti stalking atau perilaku-perilaku lain yang tidak diinginkan.
   block_removed: Blokiran dihapus
   blocked_users: Pengguna Yang Diblokir
   blog_widget: Widget blog
@@ -4532,6 +4534,10 @@ id:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik untuk tahun ini belum dihasilkan
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status diterapkan dari takson dengan tingkat yang lebih tinggi:</strong> %{taxon}
   status_globally: '"%{status}" Secara Global'
   status_in_place: '"%{status}" di %{place}'
   stay_and_try_again: Tetap di sini dan coba lagi

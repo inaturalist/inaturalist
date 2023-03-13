@@ -186,7 +186,7 @@ th:
   add_annotations_for_controlled_attribute:
     sex: เพิ่มหมายเหตุสำหรับ "เพศ"
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
-    life_stage: เพิ่มคำอธิบายสำหรับ "ช่วงอายุ"
+    life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: ติดธงเพิ่ม
   add_another_photo: เพิ่มภาพถ่ายอีกใบ
@@ -238,14 +238,14 @@ th:
   add_plant_phenology_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดดอก"'
   add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
-  add_life_stage_adult_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: วัยผู้ใหญ่"'
-  add_life_stage_teneral_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ระยะหลังลอกคราบ"'
-  add_life_stage_subimago_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: การก่อรูปของปีก"'
-  add_life_stage_pupa_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ดักแด้"'
-  add_life_stage_nymph_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ตัวอ่อนบนบก (Nymph)"'
+  add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
+  add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
+  add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
+  add_life_stage_pupa_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ดักแด้"'
+  add_life_stage_nymph_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวอ่อน"'
   add_life_stage_larva_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวอ่อน"'
-  add_life_stage_juvenile_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: วัยเด็ก"'
-  add_life_stage_egg_annotation: 'เพิ่มคำอธิบายประกอบ "ช่วงชีวิต: ไข่"'
+  add_life_stage_juvenile_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: วัยอ่อน"'
+  add_life_stage_egg_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ไข่"'
   #As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
   #As in a Guide Section
@@ -951,12 +951,13 @@ th:
   email_notifications: การแจ้งเตือนทางอีเมล
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
+  end_date_time: วันที่ / เวลาสิ้นสุด
   endangered: ใกล้สูญพันธุ์
   endemic: เฉพาะถิ่น
   establishment:
     endemic: ประจำถิ่นเดียว
     establishment: การตั้งถิ่นฐาน
-    introduced: ชนิดพันธุ์ต่างถิ่น
+    introduced: ต่างถิ่น
     invasive: รุกราน
     managed: ถูกควบคุม
     native: พื้นเมือง
@@ -970,7 +971,9 @@ th:
   everyone_: ทุกคน
   everyone_journal_posts: โพสต์วารสารของทุกคน
   everywhere: ทุกที่
+  exact: เฉพาะวันที่
   exact_date: เฉพาะวันที่
+  exact_rank: เฉพาะลำดับ
   except: ยกเว้น
   exclude_places: ไม่รวมสถานที่นี้
   exclude_projects: ไม่รวมโครงการนี้
@@ -1180,7 +1183,8 @@ th:
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
   inaturalist_activity_notifications: "การแจ้งเตือนกิจกรรม"
   info: ข้อมูล
-  introduced: ชนิดพันธุ์ต่างถิ่น
+  insect_life_stage: ระยะการเจริญของแมลง
+  introduced: ต่างถิ่น
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: มีหลักฐานเพียงพอที่จะยืนยันว่าเป็น %{taxon} หรือไม่?
@@ -1376,6 +1380,8 @@ th:
   location_is_obscured: ตำแหน่งคลุมเครือ
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
+  logo:
+    none: ไม่ระบุ
   long: ลองจิจูด
   longitude: ลองจิจูด
   longitude_slash_x_coord_slash_easting: ลองจิจูด / แกน x / ตะวันออก
@@ -1569,6 +1575,8 @@ th:
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   no_taxonomic_changes_match_those_criteria: ไม่มีการเปลี่ยนแปลงอนุกรมวิธานที่ตรงกับเกณฑ์เหล่านั้น
   no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
+  none: ไม่ระบุ
+  none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
   not_evaluated: ยังไม่มีการประเมิน
   not_finding_place_you_want?: ไม่พบสถานที่ที่คุณต้องการ?
@@ -1611,7 +1619,7 @@ th:
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
   observation_removed_from_the_project: "การสังเกตถูกลบออกจากโครงการ \"%{project}\""
-  observation_requirements: ข้อกำหนดการสังเกต
+  observation_requirements: เกณฑ์การสังเกต
   observation_without_media: การสังเกตที่ไม่มีสื่อ
   observations: การสังเกต
   observations_: การสังเกต
@@ -2030,6 +2038,8 @@ th:
   remove_tags: ลบแท็ก
   removed: ลบออกแล้ว
   removed_project_user: ผู้ใช้โครงการที่ถูกลบ
+  required: จำเป็น
+  required_: จำเป็น
   research: งานวิจัย
   research_: งานวิจัย
   research_grade: ระดับงานวิจัย
@@ -2180,6 +2190,7 @@ th:
   start: เริ่มต้น
   start_a_new_project: เริ่มโครงการใหม่
   start_a_project: เริ่มต้นโครงการ
+  start_date_time: วันที่ / เวลาเริ่มต้น
   start_typing_place_name: พิมพ์ชื่อสถานที่...
   start_typing_someones_name: "พิมพ์ชื่อคน..."
   stats: สถิติ
@@ -2208,7 +2219,7 @@ th:
   taxa_with_unknown_relationships: หน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
   taxa_observed: หน่วยอนุกรมวิธานที่สังเกต
-  taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก และอื่น ๆ
+  taxon_autocomplete_placeholder: นก ผีเสื้อหนอนใบรัก ฯลฯ
   taxon_geoprivacy: การเปิดเผยพิกัด
   taxon_is_a_rank_of_plantae_with_x_observations:
     other: "%{taxon} เป็น%{rank}หนึ่งของพืชที่มี %{count} การสังเกต"
@@ -2411,6 +2422,8 @@ th:
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
   'true': 'จริง'
   trends: แนวโน้ม
+  #Noun
+  trust: ความไว้วางใจ
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   try_adding_species_form: ลองเพิ่มบางชนิดโดยใช้รูปแบบในหน้านี้
   type_place_name: พิมพ์ชื่อสถานที่
@@ -2471,6 +2484,7 @@ th:
   user_invited_you_to_join_this_project_on_date_html: "%{user} เชิญคุณเข้าร่วมโครงการนี้เมื่อ %{date}"
   user_is_a_naturalist: "%{user} เป็นนักธรรมชาติวิทยา!"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
+  user_trusts_this_project_for_none: ผู้ใช้งานไม่ไว้วางใจโครงการนี้ในการเปิดเผยพิกัด
   user_trusts_you_with_their_private_coordinates_desc: |
     ผู้สังเกตไว้วางใจคุณในการเปิดเผยพิกัดการสังเกตของเขาทั้งหมด
   username_or_user_id: ชื่อผู้ใช้ หรือ ID ผู้ใช้
@@ -2754,27 +2768,47 @@ th:
       new:
         can_be_included_in_multiple: รวมเข้าไปในโครงการครอบคลุมหลายโครงการได้
         check_the_box_to_include_member_observations: |
-          ทำเครื่องหมายในช่องด้านล่างเพื่อนำเข้าเฉพาะการสังเกตของผู้ใช้งานที่เข้าร่วมโครงการแล้ว
-          ใช้ตัวกรองผู้ใช้งานออกด้านบนเพื่อนำการสังเกตของผู้ใช้งานบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
+          ทำเครื่องหมายในช่องด้านล่างเพื่อรวมเฉพาะการสังเกตของผู้ที่เข้าร่วมโครงการแล้ว
+          ใช้ตัวกรอง "ไม่รวมผู้ใช้นี้" ด้านบนเพื่อนำการสังเกตของบางคนออกจากโครงการ รวมถึงเจ้าของโครงการและแอดมินด้วย
         collection_projects: โครงการสะสมชนิด
         custom_banner_icon_and_project_description: เปลี่ยนแปลงภาพหน้าปก ไอคอน และคำอธิบายได้
         data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
-        duplicate_project: ทำซ้ำโครงการ
+        duplicate_project: คัดลอกโครงการ
+        include_annotated_observations: |
+          รวมเฉพาะการสังเกตที่ระบุหมายเหตุ (เช่น ระยะการเจริญ) หรือคุณลักษณะ (เช่น ระยะการเจริญ = ตัวเต็มวัย) โดยแต่ละโครงการใช้ตัวกรองหมายเหตุได้เพียงหนึ่งอย่างเท่านั้น
         leaderboards_among_individuals: มีกระดานจัดอันดับ<strong>ผู้ใช้งาน</strong>แต่ละคน
         multiple_project_administrators: แต่ละโครงการมีแอดมินหลายคนได้
         no_need_to_rely_on_manual_addition: |
           การสังเกตจะถูกเพิ่มเข้าโครงการโดยอัตโนมัติ
+        note_these_users_will_be_able_to_edit: |
+          หมายเหตุ: ผู้ใช้งานเหล่านี้แก้ไขรายละเอียดโครงการได้ทั้งหมดรวมถึงการเลือกแอดมิน
+        note_you_can_delete_the_time: |
+          (หมายเหตุ: คุณสามารถลบเขตเวลาและการระบุเวลาออกได้ถ้าต้องการรวมการสังเกตตลอดวัน)
         note_about_unselected_filters: |
           หมายเหตุ: ถ้าไม่เลือกหน่วยอนุกรมวิธาน สถานที่ หรือผู้ใช้งานใด ๆ จะถือว่าเลือกหน่วยฯ สถานที่ และผู้ใช้งานทั้งหมด
         only_display_member_observations: |
-          แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (คนที่เข้าร่วมโครงการแล้ว)
+          แสดงการสังเกตจากสมาชิกโครงการเท่านั้น (ผู้ที่เข้าร่วมโครงการแล้ว)
+        optionally_filter_media: เลือกตัวกรองสำหรับการสังเกตที่มีรูปถ่าย เสียง หรือทั้งคู่
         or_drag_and_drop: (หรือลากแล้ววาง)
+        project_background_color: สีพื้นหลังคำอธิบายโครงการ
+        project_background_color_help: ตรวจสอบให้แน่ใจว่าได้เลือกสีพื้นหลังเข้มพอเพื่อให้มองเห็นข้อความสีขาวชัดเจน
         project_banner: ภาพหน้าปกโครงการ (PNG หรือ JPG)
+        project_banner_help: เลือกภาพหน้าปกโครงการ ขนาดที่เหมาะสมคือ กว้าง 760px สูง 320px
         project_details: รายละเอียดโครงการ
         project_icon: ไอคอนโครงการ (PNG, JPG, หรือ GIF)
+        project_icon_help: |
+          เลือกภาพไอคอน ควรมีขนาดอย่างน้อย 72px x 72px และจะถูกครอบตัดเป็นสี่เหลี่ยมจัตุรัส
         project_name: ชื่อโครงการ
+        project_summary: คำอธิบายโครงการ
+        project_summary_placeholder: ค้นหาและติดตามนกในอุทยานโกลเดนเกต...
+        select_native_to_include: |
+          เลือก "พื้นเมือง" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์พื้นเมือง" ของสถานที่ในโครงการของคุณ เลือก "ต่างถิ่น" เพื่อรวมเฉพาะหน่วยฯ ที่ทำเครื่องหมายว่าเป็น "ชนิดพันธุ์ต่างถิ่น" ของสถานที่ในโครงการของคุณ
+        select_quality_grade: |
+          เลือกระดับคุณภาพข้อมูลอย่างน้อยหนึ่งอย่าง อ่านคำอธิบายเพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูลได้ที่หน้า<a href="%{url}">คำถามที่พบบ่อย</a>ของเรา
+        specify_project_filters: |
+          กำหนดตัวกรองสำหรับการสังเกตที่จะรวมไว้ในโครงการของคุณ โดยเลือกได้หลายชนิด (หรือหน่วยอนุกรมวิธาน) สถานที่ วันที่ หรือเกณฑ์อื่น ๆ สำหรับการสังเกตที่จะรวมเข้าโครงการโดยอัตโนมัติ
         start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
@@ -2786,6 +2820,7 @@ th:
         errors:
           name_is_required: ต้องมีชื่อโครงการ
           name_already_taken: มีผู้ใช้ชื่อโครงการนี้แล้ว
+          summary_is_required: ต้องมีคำอธิบายโครงการ
       project_user_curator_coordinate_access_labels:
         observer: ใช่ แต่ฉันต้องเป็นคนเพิ่มการสังเกตเข้าโครงการเอง
         any: ใช่ ไม่สำคัญว่าใครเป็นคนเพิ่มการสังเกตเข้าโครงการ
@@ -2833,8 +2868,14 @@ th:
         frequency:
           research: ระดับงานวิจัย
           verifiable: ตรวจสอบได้
+          "Life Stage=Adult": ตัวเต็มวัย
+          "Life Stage=Egg": ไข่
           "Life Stage=Larva": ตัวอ่อน
+          "Life Stage=Juvenile": วัยอ่อน
+          "Life Stage=Nymph": ตัวอ่อน
+          "Life Stage=Pupa": ดักแด้
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
+          "Life Stage=Teneral": หลังลอกคราบ
           unannotated: ไม่มีหมายเหตุ
     taxon_names:
       form:
