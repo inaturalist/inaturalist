@@ -1371,12 +1371,14 @@ module ApplicationHelper
     args.join('/').gsub(/\/+/, '/')
   end
 
-  def google_maps_js(options = {})
-    libraries = options[:libraries] || []
-    version = Rails.env.development? ? "weekly" : "3.48"
-    params = "v=#{version}&key=#{CONFIG.google.browser_api_key}"
-    params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
-    "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
+  def google_maps_js(libraries: [])
+    source = URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
+      callback: "GOOGLE_MAPS_CALLBACK",
+      key: CONFIG.google.browser_api_key,
+      libraries: libraries.join(','),
+      v: Rails.env.development? ? "weekly" : "3.51",
+    }.to_query
+    javascript_include_tag source
   end
 
   def leaflet_js(options = {})
