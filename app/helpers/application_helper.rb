@@ -1372,13 +1372,18 @@ module ApplicationHelper
   end
 
   def google_maps_js(libraries: [])
-    source = URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
-      callback: "GOOGLE_MAPS_CALLBACK",
+    javascript_include_tag google_maps_loader_uri(libraries: libraries)
+  end
+
+  # https://developers.google.com/maps/documentation/javascript/url-params
+  # https://developers.google.com/maps/documentation/javascript/libraries
+  # https://developers.google.com/maps/documentation/javascript/versions
+  def google_maps_loader_uri(libraries: [])
+    URI::HTTPS.build host: "maps.google.com", path: "/maps/api/js", query: {
       key: CONFIG.google.browser_api_key,
-      libraries: libraries.join(','),
-      v: Rails.env.development? ? "weekly" : "3.51",
+      libraries: libraries.join(","),
+      v: "3.51",
     }.to_query
-    javascript_include_tag source
   end
 
   def leaflet_js(options = {})
