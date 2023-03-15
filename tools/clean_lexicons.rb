@@ -20,6 +20,7 @@ end
 
 start = Time.now
 deleted = []
+deleted_name_error_counts = {}
 updated = []
 created_ptns = []
 invalid_ptns = []
@@ -76,6 +77,9 @@ language_place_lexicons.each do | x |
       end
     else
       puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.errors.each do | error |
+        deleted_name_error_counts[error.full_message] = deleted_name_error_counts[error.full_message].to_i + 1
+      end
       tn.destroy unless @opts.dry
       deleted << tn
     end
@@ -234,6 +238,12 @@ puts "== REPORT =="
 puts
 puts "#{updated.size} names updated"
 puts "#{deleted.size} names deleted"
+if deleted_name_error_counts.size.positive?
+  puts "\tErrors that caused deletion:"
+  deleted_name_error_counts.each do | error, count |
+    puts "\t\t#{count.to_s.rjust( 6 )} #{error}"
+  end
+end
 puts "#{created_ptns.size} place taxon names created"
 puts "#{invalid_ptns.size} place taxon names not created"
 puts "#{Time.now - start} s elapsed"
