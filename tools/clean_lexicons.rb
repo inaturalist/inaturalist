@@ -28,7 +28,7 @@ taxon_ids_to_index = []
 puts
 puts "== REGIONALIZING LEXICONS =="
 puts
-puts <<-TXT
+puts <<~TXT
   Sometimes people add separate lexicons for a language in a region that should
   be handled with PlaceTaxonNames instead, so this will try and convert those
   and delete names that are no longer valid after being updated
@@ -37,15 +37,19 @@ TXT
 language_place_lexicons = [
   { wrong_lexicon: "Australian", right_lexicon: TaxonName::ENGLISH, country_name: "Australia" },
   { wrong_lexicon: "Egyptian Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Egypt" },
+  { wrong_lexicon: "English(india)", right_lexicon: TaxonName::ENGLISH, country_name: "India" },
   { wrong_lexicon: "Español (Argentina)", right_lexicon: TaxonName::SPANISH, country_name: "Argentina" },
   { wrong_lexicon: "Español (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
   { wrong_lexicon: "Español (Costa Rica)", right_lexicon: TaxonName::SPANISH, country_name: "Costa Rica" },
   { wrong_lexicon: "Español (Ecuador)", right_lexicon: TaxonName::SPANISH, country_name: "Ecuador" },
+  { wrong_lexicon: "Español (Uruguay)", right_lexicon: TaxonName::SPANISH, country_name: "Uruguay" },
   { wrong_lexicon: "Español Chileno", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
   { wrong_lexicon: "Español Perú", right_lexicon: TaxonName::SPANISH, country_name: "Peru" },
   { wrong_lexicon: "Moroccan Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Morocco" },
   { wrong_lexicon: "Português (Brasil)", right_lexicon: TaxonName::PORTUGUESE, country_name: "Brazil" },
-  { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" }
+  { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
+  { wrong_lexicon: "Spanish (Peru)", right_lexicon: TaxonName::SPANISH, country_name: "Peru" },
+  { wrong_lexicon: "Spanish (Perú)", right_lexicon: TaxonName::SPANISH, country_name: "Peru" }
 ]
 language_place_lexicons.each do | x |
   puts "Changing #{x[:wrong_lexicon]} to #{x[:right_lexicon]} and assigning to #{x[:country_name]}"
@@ -82,12 +86,12 @@ end
 puts
 puts "== SYNONYMIZING LEXICONS =="
 puts
-puts <<-TXT
+puts <<~TXT
   We get A LOT of lexicons that are variations of existing lexicons, so this
   tries to make some of the more common ones conform to conventional versions.
 TXT
 synonyms = {
-  "Aou 4 Letter Codes" => ["Aou 4 Letter Codes"],
+  "AOU 4-Letter Codes" => ["Aou 4 Letter Codes"],
   "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
   TaxonName::BELARUSIAN => ["Беларуская"],
   TaxonName::CATALAN => ["Català"],
@@ -103,33 +107,39 @@ synonyms = {
   TaxonName::GERMAN => ["Deutsch"],
   "Greek" => ["Greek (Modern)", "Modern Greek (1453 )"],
   "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
+  "Hokkien" => ["臺灣閩南語"],
   TaxonName::ITALIAN => ["Italiano"],
   "Indonesian" => ["Bahasa Indonesia"],
   "Irish" => ["Irish Gaelic"],
   TaxonName::JAPANESE => ["Japanese (Kanji)"],
+  "Ju|'hoan" => ["Juǀ’hoan"],
   "Malay" => ["Malay (Individual Language)", "Malayan"],
   "Nahuatl" => ["Náhuatl"],
   TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
+  "Oshikwanyama" => ["Oshi Kwanyama"],
   TaxonName::PORTUGUESE => ["Português"],
   TaxonName::RUSSIAN => ["Русски", "Русский"],
   TaxonName::SCIENTIFIC_NAMES => [
     "Nombres Científicos",
+    "Nomes Científicos",
     "Nomi Scientifici",
     "Noms Scientifiques",
-    "Nomes Científicos",
-    "學名",
-    "学名",
-    "Научные названия",
+    "Scientific Name",
     "Tieteelliset Nimet",
     "Videnskabelige Navne",
-    "Wetenschappelijke Namen"
+    "Wetenschappelijke Namen",
+    "Wissenschaftliche Namen",
+    "Научные названия",
+    "学名",
+    "學名"
   ],
   TaxonName::SETSWANA => ["Tswana"],
   TaxonName::SLOVAK => ["Slovakian"],
   TaxonName::SLOVENIAN => ["Slovene"],
   "Sotho (Northern)" => ["Northern Sotho", "Sotho ( Northern)"],
   TaxonName::SPANISH => ["Español"],
-  "Swahili" => ["Swahili (Individual Language)"],
+  "Swahili" => ["Swahili (Individual Language)", "Kiswahili"],
+  TaxonName::UKRAINIAN => ["український"],
   "Uyghur" => ["Uyghurche / ئۇيغۇرچە", "Uyghurche", "ئۇيغۇرچە"],
   TaxonName::WARAY_WARAY => ["Waray", "Waray (Philippines)"],
   "Yaqui" => ["yaqui"]
@@ -191,7 +201,13 @@ problem_lexicons = [
   { lexicon: "New Zealand", comment: "Not clear if these are English or Maori" },
   { lexicon: "Lexicon", comment: "We banned this, but not sure what to do with existing ones" },
   { lexicon: "Lexicon 1", comment: "We banned this, but not sure what to do with existing ones" },
-  { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" }
+  { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" },
+  {
+    lexicon: "Indigenous Australian",
+    comment: "There are at least 250 indigenous Australian languages so this is ambiguous"
+  },
+  { lexicon: "Creole (English)", comment: "There are many English creoles" },
+  { lexicon: "English (Creole)", comment: "There are many English creoles" }
 ]
 problem_lexicons.each do | l |
   puts l[:lexicon].inspect
