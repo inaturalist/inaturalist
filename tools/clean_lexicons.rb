@@ -165,6 +165,14 @@ synonyms.each do | lexicon, syns |
   puts
 end
 
+nillable_lexicons = TaxonName::FORBIDDEN_LEXICONS + ["''", "Other", "Lexicon", "Lexicon 1", "Unknown"]
+und_scope = TaxonName.where( lexicon: nillable_lexicons )
+puts
+puts "== Removing lexicons for unknown =="
+puts
+puts "Removing lexicon from #{und_scope.count} names with these lexicons: #{nillable_lexicons}"
+und_scope.update_all( "lexicon = null" )
+
 puts
 puts "== PROBLEM LEXICONS =="
 puts
@@ -173,9 +181,9 @@ puts <<~TXT
   to do about them.
 TXT
 problem_lexicons = [
-  { lexicon: nil, comment: "We used to allow blank lexicons, not sure what to do with these now" },
-  { lexicon: "", comment: "We used to allow blank lexicons, not sure what to do with these now" },
-  { lexicon: "Other", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: nil, comment: "We used to allow blank lexicons, now these names need to be manually fixed or removed" },
+  { lexicon: "", comment: "Should get lumped with nil" },
+  { lexicon: "Other", comment: "Should get lumped with nil" },
   { lexicon: "Chinese", comment: "Which version of Chinese does this mean?" },
   {
     lexicon: "Informal Latinized Name (Vernacular Concept Only)",
@@ -197,10 +205,10 @@ problem_lexicons = [
     lexicon: "Scots",
     comment: "Seems like a mix of regional English names and Scots Gaelic names"
   },
-  { lexicon: "Unknown", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Unknown", comment: "Should get lumped with nil" },
   { lexicon: "New Zealand", comment: "Not clear if these are English or Maori" },
-  { lexicon: "Lexicon", comment: "We banned this, but not sure what to do with existing ones" },
-  { lexicon: "Lexicon 1", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Lexicon", comment: "Should get lumped with nil" },
+  { lexicon: "Lexicon 1", comment: "Should get lumped with nil" },
   { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" },
   {
     lexicon: "Indigenous Australian",
