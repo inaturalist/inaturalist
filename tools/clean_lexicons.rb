@@ -162,6 +162,9 @@ synonyms.each do | lexicon, syns |
       updated << tn
     else
       puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.errors.each do | error |
+        deleted_name_error_counts[error.full_message] = deleted_name_error_counts[error.full_message].to_i + 1
+      end
       tn.destroy unless @opts.dry
       deleted << tn
     end
