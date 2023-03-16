@@ -95,7 +95,6 @@ puts <<~TXT
   tries to make some of the more common ones conform to conventional versions.
 TXT
 synonyms = {
-  "AOU 4-Letter Codes" => ["Aou 4 Letter Codes"],
   "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
   TaxonName::BELARUSIAN => ["Беларуская"],
   TaxonName::CATALAN => ["Català"],

@@ -131,7 +131,7 @@ module DarwinCore
     def self.file_names
       lexicons = base_scope.select( "DISTINCT lexicon" ).pluck( :lexicon ).uniq
       lexicons.each_with_object( {} ) do | lexicon, memo |
-        memo[lexicon] = "VernacularNames-#{( lexicon || 'unknown' ).parameterize}.csv"
+        memo[lexicon] = "VernacularNames-#{( lexicon.blank? ? 'unknown' : lexicon ).parameterize}.csv"
       end
     end
   end
