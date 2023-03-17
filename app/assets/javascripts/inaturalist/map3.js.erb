@@ -788,7 +788,7 @@ iNaturalist.OverlayControl.prototype.removeAll = function( ) {
 // in `layers` at the same time. If the overlay was not previously displayed
 // on the map, it will be added to the top-right corner of the map.
 iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( layers, options ) {
-  if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
+  if( ! Array.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
       title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
