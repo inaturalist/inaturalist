@@ -745,6 +745,8 @@ fi:
   birds: linnut
   birthday: Syntymäpäivä
   black: musta
+  block: Estä
+  blocking_description: Estäminen estää yhteydenpidon sinun ja toisen käyttäjän välillä. Estäminen on tarkoitettu tilanteisiin, joissa toinen käyttäjä häiritsee sinua, esimerkiksi vainoaa tai tekee muuta väärinkäyttöä.
   block_removed: Esto poistettu
   blocked_users: Estetyt käyttäjät
   blog_widget: Blogi-pienoisohjelma
@@ -4234,6 +4236,10 @@ fi:
   stats: Tilastot
   stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Tila haettu korkeammalta taksonilta:</strong> %{taxon}
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?
   still_working_on_classifying_taxon: Taksonin luokittelu edelleen käynnissä. Tarkista myöhemmin
@@ -6193,6 +6199,15 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
+        observations_to_date:
+          one: "Havainto tällä hetkellä"
+          other: "Havaintoa tällä hetkellä"
+        species_observed:
+          one: "Laji havaittu"
+          other: "Lajia havaittu"
+        people_signed_up:
+          one: "Rekisteröitynyttä käyttäjää"
+          other: "Rekisteröitynyttä käyttäjää"
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
         share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
@@ -6579,10 +6594,25 @@ fi:
         blank: ei voi olla tyhjä
         confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
+        equal_to:
+          one: oltava yhtäsuuri kuin %{count}
+          other: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
         exclusion: on varattu
+        greater_than:
+          one: oltava suurempi kuin %{count}
+          other: oltava suurempi kuin %{count}
+        greater_than_or_equal_to:
+          one: oltava suurempi tai yhtäsuuri kuin %{count}
+          other: oltava suurempi tai yhtäsuuri kuin %{count}
         inclusion: ei sisälly luetteloon
         invalid: on virheellinen
+        less_than:
+          one: oltava vähemmän kuin %{count}
+          other: oltava vähemmän kuin %{count}
+        less_than_or_equal_to:
+          one: oltava vähemmän tai yhtäsuuri kuin %{count}
+          other: oltava vähemmän tai yhtäsuuri kuin %{count}
         new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
