@@ -4,15 +4,26 @@
 #
 # Usage:
 #  rails r tools/load_time_zone_geometries.rb /path/to/combined-with-oceans.geojson
-#
 
-unless File.exist?( ARGV[0] )
-  puts "No file at #{ARGV[0]}"
-  exit 0
+filename = ARGV[0]
+
+unless File.exist?( filename )
+  abort "No file at #{filename}"
 end
 
-TimeZoneGeometry.load_geojson_file(
-  ARGV[0],
-  logger: Logger.new( STDOUT ),
-  debug: true
-)
+case File.extname( filename )
+when ".shp"
+  TimeZoneGeometry.load_shapefile(
+    filename,
+    logger: Logger.new( STDOUT ),
+    debug: true
+  )
+when ".json", ".geojson"
+  TimeZoneGeometry.load_geojson_file(
+    filename,
+    logger: Logger.new( STDOUT ),
+    debug: true
+  )
+else
+  abort "Don't know how to load file #{filename}"
+end
