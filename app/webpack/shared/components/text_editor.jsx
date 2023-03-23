@@ -38,6 +38,11 @@ class TextEditor extends React.Component {
     if ( mentions ) {
       const domNode = ReactDOM.findDOMNode( this );
       $( this.textarea.current, domNode ).textcompleteUsers( );
+      // onChange does not fire properly when using the enter key to make a selection. Tie into this event to avoid
+      // missing changes.
+      $( this.textarea.current, domNode ).on('textComplete:select', e => {
+        this.setState( { content: e.target.value } );
+      });
     }
   }
 
