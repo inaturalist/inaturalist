@@ -71,7 +71,7 @@ class TextEditor extends React.Component {
       this.setState( { content: e.target.value } );
     };
     return (
-      <div className={`TextEditor ${className} ${preview && "with-preview"}`}>
+      <div className={`TextEditor ${className || ""} ${preview ? "with-preview" : ""}`}>
         { this.textarea && (
           <div className="btn-toolbar" role="toolbar" aria-label={I18n.t( "text_editing_controls" )}>
             <div className="btn-group format-controls" role="group" aria-label={I18n.t( "text_formatting_controls" )}>
