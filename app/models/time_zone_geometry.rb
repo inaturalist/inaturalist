@@ -22,6 +22,7 @@ class TimeZoneGeometry < ActiveRecord::Base
       pg_string = {
         dbname: ApplicationRecord.connection_db_config.configuration_hash[:database],
         host: ApplicationRecord.connection_db_config.configuration_hash[:host],
+        port: ApplicationRecord.connection_db_config.configuration_hash[:port],
         user: ApplicationRecord.connection_db_config.configuration_hash[:username],
         password: ApplicationRecord.connection_db_config.configuration_hash[:password],
       }.map { |k, v| "#{k}=#{v}" }.join( " " )
@@ -73,6 +74,7 @@ class TimeZoneGeometry < ActiveRecord::Base
       pg_string = {
         dbname: ApplicationRecord.connection_db_config.configuration_hash[:database],
         host: ApplicationRecord.connection_db_config.configuration_hash[:host],
+        port: ApplicationRecord.connection_db_config.configuration_hash[:port],
         user: ApplicationRecord.connection_db_config.configuration_hash[:username],
         password: ApplicationRecord.connection_db_config.configuration_hash[:password],
       }.map { |k, v| "#{k}=#{v}" }.join( " " )
