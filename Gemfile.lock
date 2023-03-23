@@ -103,6 +103,14 @@ GIT
       i18n-inflector (~> 2.6)
       railties (>= 3.0.0)
 
+GIT
+  remote: https://github.com/stanhu/chronic.git
+  revision: 7ea371fd15a4e95dbd59c84894a77407cf4fe029
+  ref: 7ea371f
+  specs:
+    chronic (0.10.2)
+      numerizer (~> 0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -258,7 +266,6 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chroma (0.2.0)
-    chronic (0.10.2)
     climate_control (0.2.0)
     cocoon (1.2.15)
     coderay (1.1.3)
@@ -466,6 +473,7 @@ GEM
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
     nori (2.6.0)
+    numerizer (0.2.0)
     oauth (0.5.10)
     oauth2 (2.0.9)
       faraday (>= 0.17.3, < 3.0)
@@ -757,7 +765,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara
   chroma
-  chronic
+  chronic!
   cocoon
   coffee-rails
   daemons
@@ -866,4 +874,4 @@ RUBY VERSION
    ruby 3.0.4p208
 
 BUNDLED WITH
-   2.3.9
+   2.3.26
