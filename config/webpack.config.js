@@ -4,7 +4,7 @@ const webpack = require( "webpack" );
 const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
-  mode: "none",
+  mode: process.env.RAILS_ENV === "production" ? "production" : "none",
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
@@ -55,12 +55,7 @@ const config = {
         }
       }
     ]
-  },
-  plugins: [
-    new webpack.DefinePlugin( {
-      "process.env.NODE_ENV": JSON.stringify( process.env.NODE_ENV )
-    } )
-  ]
+  }
 };
 
 module.exports = config;
