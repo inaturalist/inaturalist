@@ -4,7 +4,7 @@ const webpack = require( "webpack" );
 const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
-  mode: "none",
+  mode: process.env.NODE_ENV === "production" ? "production" : "none",
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
