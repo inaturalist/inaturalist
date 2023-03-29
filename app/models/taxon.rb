@@ -1918,12 +1918,8 @@ class Taxon < ApplicationRecord
     end
   end
 
-  def view_context
-    FakeView
-  end
-
   def image_url
-    view_context.taxon_image_url( self )
+    ApplicationController.helpers.taxon_image_url( self )
   end
 
   def photo_url
@@ -2127,10 +2123,11 @@ class Taxon < ApplicationRecord
     last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
     return [] if last_committed_split.blank?
 
-    last_committed_split.output_taxa.reject do |t|
+    active_output_taxa = last_committed_split.output_taxa.reject do | t |
       # skip inactive output taxa when same as the source taxon to prevent an infinite loop
       t.id == id && !t.is_active?
-    end.map do | t |
+    end
+    active_output_taxa.map do | t |
       t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     end.flatten.uniq
   end
@@ -2489,6 +2486,9 @@ class Taxon < ApplicationRecord
     # if there's a single branch of matches, e.g. Homo and Homo sapiens,
     # choose the most conservative, highest rank taxon
     if sorted.first.ancestor_of?( sorted.last )
+      # ...unless we don't want to do that
+      return nil if options[:skip_conservative_branch_synonym]
+
       sorted.first
 
     # if only one result is grafted, choose that

@@ -582,12 +582,16 @@ class UsersController < ApplicationController
       format.json { render :json => @updates }
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.html do
-        @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
-        render :edit2, layout: "bootstrap"
+        if params[:notifications]
+          redirect_to generic_edit_user_url( anchor: "notifications" )
+        else
+          @monthly_supporter = @user.donorbox_plan_status == "active" && @user.donorbox_plan_type == "monthly"
+          render :edit2, layout: "bootstrap"
+        end
       end
       format.json do
         render :json => @user.to_json(
@@ -646,7 +650,6 @@ class UsersController < ApplicationController
          @display_user.previous_changes.empty?
         @display_user.update_columns(updated_at: Time.now)
       end
-      bypass_sign_in( @display_user )
       respond_to do |format|
         format.html do
           if locale_was != @display_user.locale
@@ -681,6 +684,9 @@ class UsersController < ApplicationController
         end
         format.json do
           User.refresh_es_index
+          if @display_user.encrypted_password_previously_changed?
+            flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
+          end
           render :json => @display_user.to_json(User.default_json_options)
         end
       end

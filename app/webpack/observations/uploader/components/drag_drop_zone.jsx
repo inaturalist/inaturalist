@@ -285,12 +285,21 @@ class DragDropZone extends Component {
               return;
             }
             if ( $( ".ObsCardComponent, .InsertionDropTarget" ).has( dropEvent.nativeEvent.target ).length === 0 ) {
+              _.each( acceptedFiles, file => {
+                try {
+                  file.preview = file.preview || window.URL.createObjectURL( file );
+                } catch ( err ) {
+                  // eslint-disable-next-line no-console
+                  console.error( "Failed to generate preview for file", file, err );
+                }
+              } );
               onDrop( acceptedFiles, rejectedFiles );
             }
           }}
           className={className}
           activeClassName="hover"
           disableClick
+          disablePreview
           accept={ACCEPTED_FILE_TYPES}
           maxSize={MAX_FILE_SIZE}
         >

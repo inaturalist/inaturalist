@@ -852,6 +852,11 @@ kk:
   #curatorial powers if a curator repeatedly..."
   curator_application_how_curators_bad_behavior: |
     Өздері тиісті мінез-құлықты көрсете алмайды.
+  #Description of the fact that a curator cannot delete content; part of a list
+  #of things curators can do, so you might imagine it is preceded with
+  #"Curators cannot..."
+  curator_application_what_curators_cannot_do_delete_html: |
+    Басқа пайдаланушылар жасаған контентті жою.
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Сіз бірнеше ай бойы сәйкестендірулерді және/немесе бақылауларды қосып жатырсыз және жалғастырғыңыз келеді.
   current_flags: Ағымдағы белгілер
@@ -985,8 +990,11 @@ kk:
   disconnect_provider: "%{provider} байланысын ажырату"
   done: Дайын
   download_caps: ЖҮКТЕУ
+  #Noun, as in a journal post that has not been published
   draft_: Нобай
+  #Noun, as in a journal post that has not been published
   draft_saved: Нобай сақталды!
+  #Noun, as in journal posts that has not been published
   drafts: Нобайлар
   edit_observations: Бақылауларды өңдеу
   email: Электрондық пошта
@@ -1008,7 +1016,9 @@ kk:
   forum: Форум
   gbif: GBIF
   Genus: Тұқымдас
+  google: Google
   grid: Тор
+  group: Топ
   guides: Нұсқаулықтар
   help: Көмек
   id: ID
@@ -1016,10 +1026,13 @@ kk:
   identification: идентификация
   identifications: Идентификациялар
   inaturalist_is_a_joint_initiative: "%{site_name} California Academy of Sciences пен National Geographic Society бірлескен бастамасы."
+  insects: жәндіктер
+  instagram: Instagram
   iphone: iPhone
   join_the_largest_group_of_naturalists_in_the_world: Әлемдегі ең үлкен натуралистер тобына қосылыңыз!
   journal: Журнал
   journal_posts: Журнал жазбалары
+  jpg_png_or_gif: "JPG, PNG немесе GIF"
   kml: KML
   labels: Белгілер
   learn: Үйрену
@@ -1106,6 +1119,7 @@ kk:
     ukrainian: Украин
     waray_waray: Варай-Варай
     visayan: Висаян
+  linkedin: LinkedIn
   list: Тізім
   lists: Тізімдер
   locales_: Жергілікті тіл
@@ -1165,18 +1179,63 @@ kk:
     uk: Украинша
     zh-CN: Қытайша (жеңілдетілген)
     zh-TW: Қытайша (дәстүрлі)
+  location: Орналасқан жер
   log_in: Жүйеге кіру
   #Stub text for the main content section when editing custom project data
   main_content_description: Негізгі контент осында
   make_a_new_place: Жаңа орын жасау
+  mammals: сүтқоректілер
   managing_projects: Жобаларды басқару
   map: Карта
+  maps:
+    overlays:
+      all_observations: Барлық бақылаулар
+  maverick: Басқа пікір
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: және
   meet: Танысу
+  mollusks: моллюскілер
   momentjs:
+    shortRelativeTime:
+      #Short text representing 1 second in the past
+      s: "1сек"
+      #Short text representing 1 minute in the past
+      m: "1мин"
+      #Short text representing %d minutes in the past
+      mm: "%dмин"
+      #Short text representing 1 hour in the past
+      h: "1сағ"
+      #Short text representing %d hours in the past
+      hh: "%dсағ"
+      #Short text representing 1 day in the past
+      d: "1күн"
+      #Short text representing 1 month in the past
+      M: "1ай"
+      #Short text representing %d months in the past
+      MM: "%dай"
+      #Short text representing 1 year in the past
+      'y': "1ж"
+      #Short text representing %d years in the past
+      yy: "%dж"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM YYYY · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
+    #Note that this should display an offset and not a time zone code, so
+    #please use Z and not z
+    datetime_with_offset: "D MMM YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM, YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long_without_year: "D MMMM"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
+  month: Ай
+  months: Айлар
   more: Тағы
   name_providers:
     ubio: uBio
@@ -1989,9 +2048,6 @@ kk:
       index:
         connect_with_nature: Табиғатпен байланыс
         explore_and_share: Табиғат әлемінен өз бақылауларыңызды зерттеп, бөлісіңіз.
-        observations_to_date: 'Осы күнге дейінгі бақылаулар'
-        species_observed: 'Бақыланған түрлер'
-        people_signed_up: 'адам тіркелді'
         how_it_works: Бұл қалай жұмыс істейді
         record_your_observations: Өз бақылауларыңызды жазыңыз
         share_with_fellow_naturalists: Табиғат зерттеушілерімен бөлісіңіз
@@ -2059,19 +2115,19 @@ kk:
       6: Жм.
       7: Сб.
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -2142,15 +2198,6 @@ kk:
       month: Ай
       second: Секундтар
       year: Жыл
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: қабылдануы керек
-      blank: бос қалуға болмайды
-      confirmation: құпия сөзге сәйкес келмеді
-      empty: бос болуы мүмкін емес
-      equal_to: '%{count} мәніне тең болуы керек'
-      requires_privilege_organizer: мұны істеу үшін 50 тексерілетін бақылау болуы керек
   number:
     format:
       #The delimiter separates parts of large integers, so if the number is

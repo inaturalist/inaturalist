@@ -126,6 +126,7 @@ kn:
   _100_day_trends: 100 ದಿನದ ಜನಪ್ರಿಯತೆ
   _percent_ID_d: "% ID'd"
   a_community_for_naturalist: ಪರಿಸರ ಪ್ರೇಮಿಗಳ ಒಂದು ಸಮುದಾಯ
+  a_flag_for_x: "%{x} ಗಾಗಿ ಫ್ಲ್ಯಾಗ್"
   a_member_of_taxon_html: "%{taxon} ನ ಸದಸ್ಯ"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
@@ -268,6 +269,7 @@ kn:
   add_obs_from_a_link: "ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ : %{link}"
   add_obs_from_a_list: ಪಟ್ಟಿಯಿಂದ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   add_observations: ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
+  add_observations_by_checking_off: ಪಟ್ಟಿಯಿಂದ ಜಾತಿಗಳನ್ನು ಬಿಟ್ಟುಬಿಡುವ ಮೂಲಕ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ.
   add_observations_project: ಈ ಪ್ರಾಯೋಜನೆಗೆ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ
   #Used for buttons to add observations where the words "Add"
   #and "Observations" need to be styled differently
@@ -662,6 +664,7 @@ kn:
   batch_edit_taxa_for_x_html: "%{x} ಗಾಗಿ ಜೀವಿವರ್ಗದ ಬ್ಯಾಚ್ ಸಂಪಾದನೆ"
   batch_operations: ಬ್ಯಾಚ್ ಕಾರ್ಯಾಚರಣೆಗಳು
   be_the_first_to_fave_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಮೆಚ್ಹುವುದರಲ್ಲಿ ನೀವು ಮೊದಲಿಗರಾಗಿ!
+  become_a_donor_caps: ದಾನಿಯಾಗು
   before_importing_photos: ಚಿತ್ರಗಳನ್ನು ಆಮದುಮಾಡುವ ಮುನ್ನ
   bg_color: ಹಿನ್ನೆಲೆ ಬಣ್ಣ
   bio: ಕಿರು ಪರಿಚಯ
@@ -1296,9 +1299,13 @@ kn:
   download_csv: CSV ಡೌನ್‍ಲೋಡ್
   download_csv_template: CSV ಮಾದರಿಯನ್ನು ಡೌನ್‍ಲೋಡ್ ಮಾಡಿ
   download_kml: KML ಡೌನ್‍ಲೋಡ್
+  #Noun, as in a journal post that has not been published
   draft: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_: ಕರಡುಪ್ರತಿ
+  #Noun, as in a journal post that has not been published
   draft_saved: ಕರಡುಪ್ರತಿ ಉಳಿಸಲಾಗಿದೆ!
+  #Noun, as in journal posts that has not been published
   drafts: ಕರಡುಪ್ರತಿಗಳು
   drag_and_drop_some_photos_or_sounds: ಕೆಲವು ಚಿತ್ರಗಳನ್ನು ಅಥವಾ ಧ್ವನಿಗಳನ್ನು ಎಳೆಯಿರಿ & ಬಿಡಿ
   drawings: ರೇಖಾಚಿತ್ರಗಳು
@@ -1964,6 +1971,7 @@ kn:
     de: ಜರ್ಮನ್
     el: ಗ್ರೀಕ್
     en: ಇಂಗ್ಲಿಷ್
+    en-GB: ಇಂಗ್ಲಿಷ್ (ಯುಕೆ)
     eo: ಎಸ್ಪೆರಾಂಟೋ
     es: ಸ್ಪಾನಿಶ್
     es-AR: ಸ್ಪಾನಿಶ್ (ಅರ್ಜೆಂಟಿನಾ)
@@ -2234,6 +2242,7 @@ kn:
   must_have_quality_grades: "ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು :%{grades}"
   must_have_sounds: ಧ್ವನಿಗಳನ್ನು ಹೊಂದಿರಲೇಬೇಕು
   must_have_x: "%{x} ಅನ್ನು ಹೊಂದಿರಲೇಬೇಕು"
+  #Mute is a noun here
   mute_removed: ಮೌನವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   muted_users: ಮೌನ ಬಳಕೆದಾರರು
   n_ago: "%{n} ಹಿಂದೆ"
@@ -3182,7 +3191,6 @@ kn:
   post_from_your_journal_html: <a href="%{url}">ನಿಮ್ಮ ನಿಯತಕಾಲಿಕೆ</a> ಯಿಂದ ಪೋಸ್ಟ್
   post_published: ಪೋಸ್ಟ್ ಪ್ರಕಟಣೆಗೊಂಡಿದೆ!
   posted_by: ಇವರಿಂದ ಪೋಸ್ಟ್ ಆಗಿದೆ
-  posted_on: ರಂದು ಪೋಸ್ಟ್ ಆಗಿದೆ
   posts: ಪೋಸ್ಟ್ ಗಳು
   potential_disagreement: ಸಂಭಾವ್ಯ ಭಿನ್ನಾಭಿಪ್ರಾಯ
   powered_by: ಇವರಿಂದ ನಡೆಸಲ್ಪಡುತ್ತಿದೆ
@@ -5477,9 +5485,6 @@ kn:
       index:
         connect_with_nature: ನಿಸರ್ಗದೊಡನೆ ಒಡನಾಡಿ
         explore_and_share: ನಿಸರ್ಗದ ಪ್ರಪಂಚವನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.
-        observations_to_date: 'ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು'
-        species_observed: 'ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು'
-        people_signed_up: 'ನೋಂದಾಯಿತ ಸದಸ್ಯರು'
         how_it_works: ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ
         record_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ದಾಖಲಿಸಿ
         share_with_fellow_naturalists: ಸಹ ನಿಸರ್ಗಪ್ರೇಮಿಗಳೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ
@@ -5550,19 +5555,19 @@ kn:
       6: ಶುಕ್ರ
       7: ಶನಿ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -5633,46 +5638,6 @@ kn:
       month: ತಿಂಗಳು
       second: ಸೆಕೆಂಡುಗಳು.
       year: ವರ್ಷ
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: ಒಪ್ಪಿಕೊಳ್ಳಲೇಬೇಕು
-      blank: ಖಾಲಿಯಿರಲಾಗದು
-      confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
-      empty: ಖಾಲಿಯಿರಲಾಗದು
-      equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
-      even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-      exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-      greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-      greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-      inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
-      invalid: ಅಸಿಂಧುವಾಗಿದೆ
-      less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-      less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-      new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
-      not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
-      not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
-      odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-      only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
-      record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-      requires_privilege_speech: |
-        ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
-      requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
-      taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
-      too_long:
-        one: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರ)
-        other: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-      too_short:
-        one: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರ)
-        other: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-      wrong_length:
-        one: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರವಿರಬೇಕು )
-        other: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರಗಳಿರಬೇಕು )
-    template:
-      body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
-      header:
-        one: "ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ"
-        other: 'ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ'
   helpers:
     defaults:
       title: "ಇದು ಶೀರ್ಷಿಕೆ"
@@ -5735,64 +5700,21 @@ kn:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: ಒಪ್ಪಿಕೊಳ್ಳಲೇಬೇಕು
-        blank: ಖಾಲಿಯಿರಲಾಗದು
-        confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
-        empty: ಖಾಲಿಯಿರಲಾಗದು
-        equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
-        even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-        exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-        greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-        greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-        inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
-        invalid: ಅಸಿಂಧುವಾಗಿದೆ
-        less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-        less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
-        new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
-        not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
-        not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
-        odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
-        only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
-        record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-        requires_privilege_speech: ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
-        requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
-        taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
-        too_long:
-          one: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರ)
-          other: ಬಹಳ ಉದ್ದವಿದೆ (ಗರಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-        too_short:
-          one: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರ)
-          other: ಬಹಳ ಗಿಡ್ಡವಿದೆ (ಕನಿಷ್ಟ %{count} ಅಕ್ಷರಗಳು)
-        wrong_length:
-          one: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರವಿರಬೇಕು )
-          other: ತಪ್ಪಾದ ಉದ್ದ (%{count} ಅಕ್ಷರಗಳಿರಬೇಕು )
-      template:
-        body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
-        header:
-          one: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ
-          other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -5944,22 +5866,18 @@ kn:
         blank: ಖಾಲಿಯಿರಲಾಗದು
         confirmation: ಗುಪ್ತಪದವನ್ನು ಹೋಲಲಿಲ್ಲ
         empty: ಖಾಲಿಯಿರಲಾಗದು
-        equal_to: '%{count} ಗೆ ಸಮನಾಗಿರಬೇಕು'
         even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
         exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
-        greater_than: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
-        greater_than_or_equal_to: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
         invalid: ಅಸಿಂಧುವಾಗಿದೆ
-        less_than: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
-        less_than_or_equal_to: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
         not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
         not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು
         odd: ಬೆಸಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
         only_project_owner_can_change_project_owner: ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರನ್ನು ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಮಾತ್ರವೇ ಬದಲಿಸಬಹುದು
         record_invalid: 'ಪರಿಶೀಲನೆ ವಿಫಲವಾಗಿದೆ: %{errors}'
-        requires_privilege_speech: ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
+        requires_privilege_speech: |
+          ಅದನ್ನು ಮಾಡಲು ನೀವು ಮೂರು ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಅಥವಾ ಇತರರಿಗಾಗಿ ಮೂರು ಗುರುತಿಸುವಿಕೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ.
         requires_privilege_organizer: ಅದನ್ನು ಮಾಡಲು 50 ಪರಿಶೀಲನಾರ್ಹ ವೀಕ್ಷಣೆಗಳನ್ನು ಹೊಂದಿರಬೇಕಾಗುತ್ತದೆ
         taken: ಈಗಾಗಲೇ ಬಳಕೆಯಲ್ಲಿದೆ
         too_long:
@@ -5974,8 +5892,8 @@ kn:
       template:
         body: 'ಈ ಕೆಳಗಿನ ಆವರಣಗಳೊಂದಿಗೆ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ:'
         header:
-          one: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ
-          other: ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ
+          one: "ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷ ತಡೆಹಿಡಿದಿದೆ"
+          other: 'ಈ %{model} ಅನ್ನು ಉಳಿಸುವ ಸಾಧ್ಯತೆಯನ್ನು %{count} ದೋಷಗಳು ತಡೆಹಿಡಿದಿವೆ'
       models:
         application:
           attributes:

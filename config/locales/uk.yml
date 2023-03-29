@@ -1583,9 +1583,13 @@ uk:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Таксони на нижчих рівнях, позначені прапорцем
+  #Noun, as in a journal post that has not been published
   draft: чернетка
+  #Noun, as in a journal post that has not been published
   draft_: Чернетка
+  #Noun, as in a journal post that has not been published
   draft_saved: Чернетку збережено!
+  #Noun, as in journal posts that has not been published
   drafts: Чернетки
   drag_and_drop_some_photos_or_sounds: Перетягніть сюди фотографії або звукозаписи
   drawings: Рисунки
@@ -2607,6 +2611,7 @@ uk:
   must_have_quality_grades: "повинні мати рівень якості: %{grades}"
   must_have_sounds: повинні мати звукозаписи
   must_have_x: "мусить мати %{x}"
+  #Mute is a noun here
   mute_removed: Ігнорування скасоване
   muted_users: Ігноровані користувачі
   n_ago: "%{n} тому"
@@ -3628,7 +3633,6 @@ uk:
   post_from_your_journal_html: Допис з <a href="%{url}">вашого журналу</a>
   post_published: Допис опубліковано!
   posted_by: Опубліковано
-  posted_on: Опубліковано у
   posts: Дописи
   potential_disagreement: Потенційна незгода
   powered_by: Працює на
@@ -4844,8 +4848,6 @@ uk:
   user_commented: "%{user} коментує"
   user_disagrees_this_is_taxon: "%{user} не погоджується, що це %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не погоджується з попередніми уточнючими визначеннями"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} додав/додала в уподобані %{noun} від %{owner}"
   user_faved_this_observation: "%{user} додав/додала це спостереження в уподобані"
   user_flagged_as_a_non_spammer_html: "%{user} позначено як не-спамера"
   user_flagged_as_a_spammer_html: "%{user} позначено як спамера"
@@ -5066,7 +5068,7 @@ uk:
   x_is_the_root_of_the_tree: "%{rank} %{name} є основою дерева"
   x_project_journal: "%{name} з %{project}"
   x_project_stats: "Статистика %{project}"
-  x_sent_you_a_new_message_on_y_html: "%{x} надіслав вам нове повідомлення щодо %{y}: "
+  x_sent_you_a_new_message_on_y_html: "%{x} надіслав вам нове повідомлення на сайті %{y}: "
   x_site_is_a_social_network_for_naturalist: |
     %{site} - це соціальна мережа для натуралістів! Фіксуйте свої спостереження рослин та тварин, діліться ними з друзями та дослідниками, та дізнавайтеся більше про живий сіт довкола вас.
   x_wrote_a_new_post_html: "%{x} написав новий допис"
@@ -6773,9 +6775,6 @@ uk:
       index:
         connect_with_nature: Будьте на зв'язку з Природою
         explore_and_share: Досліджуйте та діліться своїми спостереженнями живої природи.
-        observations_to_date: 'Спостереження на цей момент'
-        species_observed: 'Спостережені види'
-        people_signed_up: 'Людей зареєструвалися'
         how_it_works: Як це працює
         record_your_observations: Фіксуйте ваші спостереження
         share_with_fellow_naturalists: Діліться з іншими натуралістами
@@ -6846,19 +6845,19 @@ uk:
       6: пт
       7: сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -6959,54 +6958,6 @@ uk:
       month: місяць
       second: секунд
       year: рік
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: повинні бути прийняті
-      blank: має бути заповненим
-      confirmation: не збігається з паролем
-      empty: не може бути порожнім
-      equal_to: має дорівнювати %{count}
-      even: має бути парним
-      exclusion: зарезервовано
-      greater_than: має бути більшим за %{count}
-      greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-      inclusion: не включено до переліку
-      invalid: недійсне
-      less_than: має бути менше, ніж %{count}
-      less_than_or_equal_to: має бути менше або дорівнювати %{count}
-      new_project_owner_must_be_a_manager: Новий власник проекту повинен бути адміністратором
-      not_a_number: не є числом
-      not_an_integer: має бути цілим числом
-      odd: має бути непарним
-      only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-      record_invalid: 'Помилка перевірки: %{errors}'
-      requires_privilege_speech: |
-        потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-      requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-      taken: вже зайнятий
-      too_long:
-        one: занадто довгий (максимум %{count} знак)
-        few: занадто довгий (максимум %{count} знаків)
-        many: занадто довгий (максимум %{count} знаків)
-        other: занадто довгий (максимум %{count} знаків)
-      too_short:
-        one: занадто короткий (мінімум %{count} знак)
-        few: занадто короткий (мінімум %{count} знаків)
-        many: занадто короткий (мінімум %{count} знаків)
-        other: занадто короткий (мінімум %{count} знаків)
-      wrong_length:
-        one: неправильна довжина (має бути %{count} знак)
-        few: неправильна довжина (має бути %{count} знаків)
-        many: неправильна довжина (має бути %{count} знаків)
-        other: неправильна довжина (має бути %{count} знаків)
-    template:
-      body: 'Виникли деякі проблеми з такими полями:'
-      header:
-        one: "%{count} помилка не дозволяє зберегти цю %{model}"
-        few: '%{count} помилки не дозволяють зберегти цю %{model}'
-        many: '%{count} помилок не дозволяють зберегти цю %{model}'
-        other: '%{count} помилок не дозволяють зберегти цю %{model}'
   helpers:
     defaults:
       title: "ЦЕ НАЗВА"
@@ -7071,72 +7022,21 @@ uk:
   time:
     am: дп
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: пп
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: повинні бути прийняті
-        blank: має бути заповненим
-        confirmation: не збігається з паролем
-        empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
-        even: має бути парним
-        exclusion: зарезервовано
-        greater_than: має бути більшим за %{count}
-        greater_than_or_equal_to: має бути більше або дорівнювати %{count}
-        inclusion: не включено до переліку
-        invalid: недійсне
-        less_than: має бути менше, ніж %{count}
-        less_than_or_equal_to: має бути менше або дорівнювати %{count}
-        new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
-        not_a_number: не є числом
-        not_an_integer: має бути цілим числом
-        odd: має бути непарним
-        only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
-        record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
-        requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
-        taken: вже зайнятий
-        too_long:
-          one: занадто довгий (максимум %{count} знак)
-          few: занадто довгий (максимум %{count} знаки)
-          many: занадто довгий (максимум %{count} знаків)
-          other: занадто довгий (максимум %{count} знаків)
-        too_short:
-          one: занадто короткий (мінімум %{count} знак)
-          few: занадто короткий (мінімум %{count} знаки)
-          many: занадто короткий (мінімум %{count} знаків)
-          other: занадто короткий (мінімум %{count} знаків)
-        wrong_length:
-          one: неправильна довжина (має бути %{count} знак)
-          few: неправильна довжина (має бути %{count} знаки)
-          many: неправильна довжина (має бути %{count} знаків)
-          other: неправильна довжина (має бути %{count} знаків)
-      template:
-        body: 'Виникли деякі проблеми з такими полями:'
-        header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
-          few: '%{count} помилок не дозволяють зберегти цю %{model}'
-          many: '%{count} помилок не дозволяють зберегти цю %{model}'
-          other: '%{count} помилок не дозволяють зберегти цю %{model}'
   activerecord:
     models:
       AssessmentSection: Розділи оцінки
@@ -7274,22 +7174,18 @@ uk:
         blank: не можуть залишатися порожніми
         confirmation: не збігається з паролем
         empty: не може бути порожнім
-        equal_to: має дорівнювати %{count}
         even: може мати тільки парне значення
         exclusion: зарезервовано
-        greater_than: значення має бути більшим за %{count}
-        greater_than_or_equal_to: значення має бути більшим або дорівнювати %{count}
         inclusion: не включено до переліку
         invalid: недійсне
-        less_than: значення має бути меншим ніж %{count}
-        less_than_or_equal_to: значення має бути меншим або дорівнювати %{count}
         new_project_owner_must_be_a_manager: Новий власник проєкту повинен бути адміністратором
         not_a_number: не є числом
         not_an_integer: має бути цілим числом
         odd: може мати тільки непарне значення
         only_project_owner_can_change_project_owner: Тільки власник проєкту може змінити власника проєкту
         record_invalid: 'Помилка перевірки: %{errors}'
-        requires_privilege_speech: потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
+        requires_privilege_speech: |
+          потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
         requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
         taken: вже зайнятий
         too_long:
@@ -7310,7 +7206,7 @@ uk:
       template:
         body: 'Виникли деякі проблеми з такими полями:'
         header:
-          one: '%{count} помилка не дозволяє зберегти цю %{model}'
+          one: "%{count} помилка не дозволяє зберегти цю %{model}"
           few: '%{count} помилки не дозволяють зберегти цю %{model}'
           many: '%{count} помилок не дозволяють зберегти цю %{model}'
           other: '%{count} помилок не дозволяють зберегти цю %{model}'

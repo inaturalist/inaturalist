@@ -1,3 +1,4 @@
+@import "../../../../node_modules/billboard.js/src/scss/billboard";
 @import "../colors";
 @import "show/wikipedia";
 @import "../shared/user_text";
@@ -107,41 +108,40 @@
   line-height: 1;
   padding: 0;
 }
-.SeasonalityChart .c3-line {
+.SeasonalityChart .bb-line {
   stroke-width: 2px;
 }
 .FrequencyChart {
   height: 300px;
 }
-.FrequencyChart .c3-axis line,
-.FrequencyChart .c3-axis path {
+.FrequencyChart .bb-axis line,
+.FrequencyChart .bb-axis path {
   stroke: #aaa;
 }
-.FrequencyChart .c3-axis text {
+.FrequencyChart .bb-axis text {
   fill: #aaa;
 }
-.FrequencyChart .c3-axis-x .tick line,
-.FrequencyChart .c3-axis-y .tick line {
+.FrequencyChart .bb-axis-x .tick line,
+.FrequencyChart .bb-axis-y .tick line {
    display: none;
 }
-.FrequencyChart .c3-region {
+.FrequencyChart .bb-region {
   fill: #999;
   opacity: 1;
 }
-.FrequencyChart .c3-circle {
+.FrequencyChart .bb-circle {
   cursor: pointer;
 }
-.FrequencyChart .c3-circle._expanded_ {
+.FrequencyChart .bb-circle._expanded_ {
   stroke-width: 7px;
-  stroke: transparentize( #ddd, 0.6 );
-  stroke-location: outside;
+  stroke: transparentize( #ddd, 0.6 ) !important;
 }
 
-.FrequencyChart .c3-target-research .c3-circle._expanded_ {
-  stroke: transparentize( $inat-green, 0.6 );
+.FrequencyChart .bb-target-research .bb-circle._expanded_ {
+  stroke: transparentize( $inat-green, 0.6 ) !important;
 }
 
-.FrequencyChart line.c3-xgrid-focus {
+.FrequencyChart line.bb-xgrid-focus {
   display: none;
 }
 
@@ -325,6 +325,7 @@ $leaderItemImageDim: 56px;
   }
   .extra {
     font-size: 13px;
+    line-height: 30px;
     a {
       white-space: nowrap;
       margin-right: 10px;

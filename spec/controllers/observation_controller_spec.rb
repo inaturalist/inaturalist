@@ -483,6 +483,7 @@ describe ObservationsController do
   describe "review" do
     let( :obs_to_review ) { Observation.make! }
     it "forces users to log in when requesting HTML" do
+      controller.request.host = URI.parse( Site.default.url ).host
       post :review, format: :html, params: { id: obs_to_review }
       expect( response.response_code ).to eq 302
       expect( response ).to be_redirect

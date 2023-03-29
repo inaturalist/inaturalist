@@ -597,7 +597,6 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :summary
-      get :observation_weeks
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017

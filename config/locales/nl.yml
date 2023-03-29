@@ -804,6 +804,7 @@ nl:
   birds: vogels
   birthday: Verjaardag
   black: zwart
+  block: Blokkeren
   block_removed: Blokkering opgeheven
   blocked_users: Geblokkeerde gebruikers
   blog_widget: Blogwidget
@@ -1544,6 +1545,7 @@ nl:
       signed_up_but_locked: "Je hebt je succesvol ingeschreven. Je kan je echter nog niet aanmelden omdat je account is vergrendeld."
       signed_up_but_unconfirmed: "Een bericht met een bevestigingslink is verzonden naar jouw e-mailadres. Volg de link om je account te activeren."
       updated: 'Je hebt je account succesvol bijgewerkt.'
+      updated_but_not_signed_in: "Jouw account is met succes bijgewerkt maar omdat jouw wachtwoord is gewijzigd moet je opnieuw inloggen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1637,9 +1639,15 @@ nl:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Onderliggende gedekte taxa
+  #Noun, as in a journal post that has not been published
   draft: concept
+  #Noun, as in a journal post that has not been published
   draft_: Concept
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Concept door %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Kladversie bewaard!
+  #Noun, as in journal posts that has not been published
   drafts: Concepten
   drag_and_drop_some_photos_or_sounds: Sleep hier foto's of geluiden naartoe
   #Button label for drawing a circular boundary for an observation search
@@ -2837,8 +2845,12 @@ nl:
   must_have_quality_grades: "moet kwaliteitsbeoordelingen bevatten: %{grades}"
   must_have_sounds: moet geluiden hebben
   must_have_x: "%{x} vereist"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Dempen
+  #Mute is a noun here
   mute_removed: Dempen verwijderd
   muted_users: Gedempte gebruikers
+  muting_description: Het negeren van iemand voorkomt dat je meldingen krijgt over één van zijn activiteiten, inclusief "@"-vermeldingen, berichten of opmerkingen en determinaties van je waarnemingen.
   n_ago: "%{n} geleden"
   n_people_agrees: "%{amount} mensen gaan akkoord"
   n_people_disagrees: "%{amount} personen zijn het oneens"
@@ -3379,6 +3391,9 @@ nl:
     invalid_email: Ongeldige e-mailopmaak.
   password: Wachtwoord
   password_confirmation: 'Bevestiging wachtwoord'
+  password_change_description: Als jij jouw wachtwoord wijzigt log je uit uit alle actieve iNaturalist sessies op je toestellen
+  password_change_logout_warning: Nadat jij jouw wachtwoord hebt gewijzigd wordt je afgemeld en moet je opnieuw inloggen met je nieuwe wachtwoord.
+  password_change_observations_warning: Je wordt ook afgemeld bij de iNaturalist mobiele apps en andere apps of websites die in jouw naam naar iNaturalist posten, dus zorg ervoor dat je alle lopende waarnemingen hebt geüpload voordat je dit doet. Alle waarnemingen die niet worden geüpload zullen verloren gaan.
   paste: Plakken
   paste_in_a_bunch_of_names: Plak een aantal namen, 1 per regel en druk op de knop!
   people: Personen
@@ -3938,7 +3953,10 @@ nl:
   post_from_your_journal_html: Post vanuit <a href="%{url}">je dagboek</a>
   post_published: Bericht gepubliceerd!
   posted_by: Geplaatst door
-  posted_on: Geplaatst op
+  #Shows the date a journal post was published
+  posted_on_date_html: Geplaatst op %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Geplaatst op %{date} door %{user}
   posts: Berichten
   potential_disagreement: Potentiële meningsverschillen
   powered_by: Draait op
@@ -4694,6 +4712,10 @@ nl:
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet gegenereerd.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status toegepast van een hoger taxon:</strong> %{taxon}
   status_globally: 'Wereldwijd "%{status}"'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Blijf en probeer het opnieuw
@@ -5386,9 +5408,7 @@ nl:
   user_commented: "%{user} reageerde"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} heeft %{noun} door %{owner} als favoriet opgeslagen"
-  user_faved_a_noun_by_you: "%{user} heeft %{noun} van jou als favoriet opgeslagen"
+  user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
   user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
@@ -7452,9 +7472,12 @@ nl:
       index:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
-        observations_to_date: 'Waarnemingen tot nu toe'
-        species_observed: 'Waargenomen soorten'
-        people_signed_up: 'Mensen aangemeld'
+        observations_to_date:
+          one: "Waarneming tot"
+          other: "Waarnemingen tot"
+        species_observed:
+          one: "Waargenomen soort"
+          other: "Waargenomen soorten"
         how_it_works: Hoe het werkt
         record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
@@ -7529,19 +7552,19 @@ nl:
       6: vr
       7: za
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -7612,46 +7635,6 @@ nl:
       month: Maand
       second: Seconden
       year: Jaar
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: moet aanvaard worden
-      blank: mag niet leeg blijven
-      confirmation: kwam niet overeen met het wachtwoord
-      empty: mag niet leeg blijven
-      equal_to: moet gelijk zijn aan %{count}
-      even: moet even zijn
-      exclusion: is voorbehouden
-      greater_than: moet groter zijn dan %{count}
-      greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-      inclusion: is niet opgenomen in de lijst
-      invalid: is ongeldig
-      less_than: moet kleiner zijn dan %{count}
-      less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-      new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-      not_a_number: is geen getal
-      not_an_integer: moet een geheel getal zijn
-      odd: moet oneven zijn
-      only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-      record_invalid: 'Validatie is mislukt: %{errors}'
-      requires_privilege_speech: |
-        je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-      requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-      taken: bestaat al
-      too_long:
-        one: is te lang (maximum is %{count} teken)
-        other: is te lang (maximum is %{count} tekens)
-      too_short:
-        one: is te kort (minimum is %{count} teken)
-        other: is te kort (minimum is %{count} tekens)
-      wrong_length:
-        one: heeft de verkeerde lengte (moet %{count} teken zijn)
-        other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-    template:
-      body: 'Er was een probleem met de volgende velden:'
-      header:
-        one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
-        other: 'Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen'
   helpers:
     defaults:
       title: "DIT IS EEN TITEL"
@@ -7714,64 +7697,21 @@ nl:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: moet aanvaard worden
-        blank: mag niet leeg blijven
-        confirmation: kwam niet overeen met het wachtwoord
-        empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
-        even: moet even zijn
-        exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
-        inclusion: is niet opgenomen in de lijst
-        invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
-        new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
-        not_a_number: is geen getal
-        not_an_integer: moet een geheel getal zijn
-        odd: moet oneven zijn
-        only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
-        record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
-        requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
-        taken: bestaat al
-        too_long:
-          one: is te lang (maximum is %{count} teken)
-          other: is te lang (maximum is %{count} tekens)
-        too_short:
-          one: is te kort (minimum is %{count} teken)
-          other: is te kort (minimum is %{count} tekens)
-        wrong_length:
-          one: heeft de verkeerde lengte (moet %{count} teken zijn)
-          other: heeft de verkeerde lengte (moet %{count} tekens zijn)
-      template:
-        body: 'Er was een probleem met de volgende velden:'
-        header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon @gender{n:dit|deze} %{model} niet worden opgeslagen
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7987,22 +7927,33 @@ nl:
         blank: mag niet leeg blijven
         confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
-        equal_to: moet gelijk zijn aan %{count}
+        equal_to:
+          one: moet gelijk zijn aan %{count}
+          other: moeten gelijk zijn aan %{count}
         even: moet even zijn
         exclusion: is voorbehouden
-        greater_than: moet groter zijn dan %{count}
-        greater_than_or_equal_to: moet groter dan of gelijk zijn aan %{count}
+        greater_than:
+          one: moet groter zijn dan %{count}
+          other: moet groter zijn dan %{count}
+        greater_than_or_equal_to:
+          one: moet groter dan of gelijk zijn aan %{count}
+          other: moet groter dan of gelijk zijn aan %{count}
         inclusion: is niet opgenomen in de lijst
         invalid: is ongeldig
-        less_than: moet kleiner zijn dan %{count}
-        less_than_or_equal_to: moet kleiner dan of gelijk zijn aan %{count}
+        less_than:
+          one: moet kleiner zijn dan %{count}
+          other: moet kleiner zijn dan %{count}
+        less_than_or_equal_to:
+          one: moet kleiner dan of gelijk zijn aan %{count}
+          other: moet kleiner dan of gelijk zijn aan %{count}
         new_project_owner_must_be_a_manager: De nieuwe projecteigenaar moet een beheerder zijn
         not_a_number: is geen getal
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
         only_project_owner_can_change_project_owner: Alleen de projecteigenaar kan de projecteigenaar wijzigen
         record_invalid: 'Validatie is mislukt: %{errors}'
-        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
+        requires_privilege_speech: |
+          je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
         taken: bestaat al
         too_long:
@@ -8017,8 +7968,8 @@ nl:
       template:
         body: 'Er was een probleem met de volgende velden:'
         header:
-          one: Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen
-          other: Door %{count} fouten kon dit %{model} niet worden opgeslagen
+          one: "Door %{count} fout kon @gender{n:dit|deze} %{model} niet worden opgeslagen"
+          other: 'Door %{count} fouten kon dit %{model} niet worden opgeslagen'
       models:
         application:
           attributes:

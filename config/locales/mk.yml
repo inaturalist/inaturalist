@@ -1031,7 +1031,6 @@ mk:
   please_add_a_citation_for_this_change: Додајте навод во страницава.
   position: Положба
   posted_by: Објавено од
-  posted_on: Објавено на
   posts: Објави
   powered_by: Овозможено од
   powered_by_inaturalist_open_source_software_html: 'Овозможено од <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a> — програм со отворен код'
@@ -1450,13 +1449,13 @@ mk:
       6: пе
       7: са
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %j %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%j %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%j %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%j %B %Y'
     month_names:
       - 
@@ -1515,40 +1514,6 @@ mk:
       month: Месец
       second: Секунди
       year: Година
-  errors:
-    messages:
-      accepted: мора да се прифати
-      blank: не може да стои празно
-      confirmation: не се совпаѓа со лозинката
-      empty: не може да стои празно
-      equal_to: мора да е рамно на %{count}
-      even: мора да биде парен број
-      exclusion: е зафатена
-      greater_than: мора да е поголемо од %{count}
-      greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-      inclusion: не фигурира на списокот
-      invalid: е неважечко
-      less_than: мора да е помало од %{count}
-      less_than_or_equal_to: мора да е помало или еднакво на %{count}
-      not_a_number: не е број
-      not_an_integer: мора да биде цел број
-      odd: мора да биде непарен број
-      record_invalid: 'Заверката не успеа: %{errors}'
-      taken: е веќе зафатено
-      too_long:
-        one: е предолго (највеќе 1 знак)
-        other: е предолго (највеќе %{count} знаци)
-      too_short:
-        one: е прекратко (барем 1 знак)
-        other: е прекратко (барем %{count} знаци)
-      wrong_length:
-        one: има погрешна должина (треба да има 1 знак)
-        other: има погрешна должина (треба да има %{count} знаци)
-    template:
-      body: 'Следниве полиња се проблематични:'
-      header:
-        one: "1 грешка му попречи на зачувувањето на овој %{model}"
-        other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   helpers:
     select:
       prompt: Одберете
@@ -1591,55 +1556,17 @@ mk:
   time:
     am: претпладне
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%j %b. %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%j %B %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%j %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'во %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%j %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%j %B %Y"
     pm: попладне
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        accepted: мора да се прифати
-        blank: не може да стои празно
-        confirmation: не се совпаѓа со лозинката
-        empty: не може да стои празно
-        equal_to: мора да е рамно на %{count}
-        even: мора да биде парен број
-        exclusion: е зафатено
-        greater_than: мора да е поголемо од %{count}
-        greater_than_or_equal_to: мора да е поголемо или еднакво на %{count}
-        inclusion: не фигурира на списокот
-        invalid: е неважечко
-        less_than: мора да е помало од %{count}
-        less_than_or_equal_to: мора да е помало или еднакво на %{count}
-        not_a_number: не е број
-        not_an_integer: мора да биде цел број
-        odd: мора да биде непарен број
-        record_invalid: 'Заверката не успеа: %{errors}'
-        taken: е веќе зафатено
-        too_long:
-          one: е предолго (највеќе 1 знак)
-          other: е предолго (највеќе %{count} знаци)
-        too_short:
-          one: е прекратко (барем 1 знак)
-          other: е прекратко (барем %{count} знаци)
-        wrong_length:
-          one: има погрешна должина (треба да има 1 знак)
-          other: има погрешна должина (треба да има %{count} знаци)
-      template:
-        body: 'Следниве полиња се проблематични:'
-        header:
-          one: Една грешка му попречи на зачувувањето на овој %{model}
-          other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
     attributes:
       assessment:

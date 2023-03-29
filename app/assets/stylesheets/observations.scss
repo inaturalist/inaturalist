@@ -137,7 +137,7 @@
 .observations.mini .photos .sound-icon.with-photo {
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   height:75px;
   opacity: .8;
   color: #eee;
@@ -190,6 +190,7 @@
   $icon-gutter: 30px;
   $label-width: 70px;
   $label-margin: 10px;
+  $photo-width: 75px;
 
   .observation {
     position: relative;
@@ -206,13 +207,13 @@
   .user,
   .actions,
   .curator_ident {
-    padding-left: $icon-gutter;
+    padding-inline-start: $icon-gutter;
   }
 
   .icon {
     position: absolute;
     top: 8px;
-    left: 5px;
+    inset-inline-start: 5px;
 
     img {
       max-width: 20px;
@@ -224,23 +225,22 @@
   .observation[data-iconic-taxon-name="Mollusca"] .icon,
   .observation[data-iconic-taxon-name="Arachnida"] .icon {
     top: 5px;
-    left: 3px;
+    inset-inline-start: 3px;
   }
   .observation[data-iconic-taxon-name="Fungi"] .icon {
     top: 5px;
-    left:5px;
+    inset-inline-start: 5px;
   }
 
   .photos {
-    float: right;
-    margin-left: 4px;
+    margin-inline-start: 4px;
 
     &.attribute {
-      max-width:80px;
+      max-width: 80px;
     }
 
     img {
-      width: 75px;
+      width: $photo-width;
     }
 
     .photolist .photo.nophoto {
@@ -257,7 +257,7 @@
   .place {
     font-size: 100%;
     position: relative;
-    padding-left: $icon-gutter + $label-width + $label-margin;
+    padding-inline-start: $icon-gutter + $label-width + $label-margin;
   }
 
   .user .label,
@@ -269,7 +269,7 @@
     display: block;
     width: $label-width;
     position: absolute;
-    left: $icon-gutter;
+    inset-inline-start: $icon-gutter;
     color: #888;
     font-style: italic;
     font-size: 100%;
@@ -299,6 +299,23 @@
   }
 }
 
+[dir="ltr"] {
+  .observations.mini {
+    .photos {
+      float: right;
+    }
+  }
+}
+
+[dir="rtl"] {
+  .observations.mini {
+    .photos {
+      float: left;
+    }
+  }
+}
+
+
 .observations.table .photos img { width: 75px; }
 
 /* Compact Mini */
@@ -312,7 +329,7 @@
 .observations.mini.compact .observation .user,
 .observations.mini.compact .observation .observed_on,
 .observations.mini.compact .observation .created_at {
-  padding-left: 30px;
+  padding-inline-start: 30px;
 }
 
 .observations.mini.compact .observation .user .label,
@@ -501,12 +518,15 @@
 .observations.mini.compact.infowindow .observation .details,
 .observations.mini.compact.infowindow .observation .tags,
 .observations.mini.compact.infowindow .observation .actions {
-  padding-left: 0px;
+  padding-inline-start: 0px;
 }
 .observations.mini.compact.infowindow .observation .details {display:none;}
 
 .observations.mini.infowindow .observation[data-iconic-taxon-name] .icon {top:3px;}
-.observations.mini.infowindow .observation[data-iconic-taxon-name="Aves"] .icon {top:0px; left:0px;}
+.observations.mini.infowindow .observation[data-iconic-taxon-name="Aves"] .icon {
+  top: 0px;
+  inset-inline-start: 0px
+}
 .observations.mini.infowindow .observation[data-iconic-taxon-name="Fungi"] .icon,
 .observations.mini.infowindow .observation[data-iconic-taxon-name="Arachnida"] .icon,
 .observations.mini.infowindow .observation[data-iconic-taxon-name="Protozoa"] .icon,

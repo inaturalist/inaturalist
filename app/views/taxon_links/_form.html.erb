@@ -2,6 +2,7 @@
   <%= stylesheet_link_tag 'observations' %>
   <style type="text/css" media="screen">
     .field .text {width: 575px;}
+    #taxon_link_comments {margin: 1.5em 0 1.5em 0;}
   </style>
 <%- end -%>
 <%- content_for(:extrajs) do -%>
@@ -59,6 +60,12 @@
       <%= link_to user_image( @taxon_link.user ), @taxon_link.user %>
       <%= link_to @taxon_link.user.login, @taxon_link.user %>
       <%= t :on_day %> <%= l( @taxon_link.created_at.to_date, format: :long ) %>
+    </div>
+  <% end -%>
+  <% if @taxon_link.persisted? -%>
+    <div id="taxon_link_comments">
+      <hr/>
+      <%= render partial: "comments/comments", locals: { parent: @taxon_link } %>
     </div>
   <% end -%>
 </div>

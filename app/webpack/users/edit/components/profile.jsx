@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { createRef } from "react";
 import PropTypes from "prop-types";
 import Dropzone from "react-dropzone";
@@ -5,7 +6,7 @@ import moment from "moment";
 
 import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
-import ChangePassword from "./change_password";
+import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
 
 const Profile = ( {
@@ -14,7 +15,6 @@ const Profile = ( {
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
-  changePassword,
   confirmResendConfirmation,
   resendConfirmation
 } ) => {
@@ -113,9 +113,30 @@ const Profile = ( {
           <Dropzone
             ref={iconDropzone}
             className="dropzone"
-            onDrop={droppedFiles => onFileDrop( droppedFiles )}
+            onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+              // trying to protect against treating images dragged from the
+              // same page from being treated as new files. Images dragged from
+              // the same page will appear as multiple dataTransferItems, the
+              // first being a "string" kind and not a "file" kind
+              if ( dropEvent.nativeEvent.dataTransfer
+                && dropEvent.nativeEvent.dataTransfer.items
+                && dropEvent.nativeEvent.dataTransfer.items.length > 0
+                && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+                return;
+              }
+              _.each( acceptedFiles, file => {
+                try {
+                  file.preview = file.preview || window.URL.createObjectURL( file );
+                } catch ( err ) {
+                  // eslint-disable-next-line no-console
+                  console.error( "Failed to generate preview for file", file, err );
+                }
+              } );
+              onFileDrop( acceptedFiles );
+            }}
             activeClassName="hover"
             disableClick
+            disablePreview
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
           >
@@ -172,7 +193,7 @@ const Profile = ( {
           />
           { emailConfirmation }
         </SettingsItem>
-        <ChangePassword changePassword={changePassword} showError={showError} />
+        <ChangePasswordContainer showError={showError} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
@@ -213,7 +234,6 @@ Profile.propTypes = {
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
-  changePassword: PropTypes.func,
   resendConfirmation: PropTypes.func,
   confirmResendConfirmation: PropTypes.func
 };

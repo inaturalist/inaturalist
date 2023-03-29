@@ -535,13 +535,13 @@ class YearStatistic < ApplicationRecord
 
     # Get the icon
     icon_url = if user
-      FakeView.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif site
-      FakeView.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif Site.default
-      FakeView.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     else
-      FakeView.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
     end
     icon_ext = File.extname( URI.parse( icon_url ).path )
     icon_path = File.join( work_path, "icon#{icon_ext}" )
@@ -624,7 +624,7 @@ class YearStatistic < ApplicationRecord
       locale ||= I18n.locale
       obs_text = I18n.t(
         "x_observations",
-        count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+        count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
         locale: locale
       ).mb_chars.upcase
       medium_font_path = "Lato-Regular" if obs_text.non_latin_chars?
@@ -663,13 +663,13 @@ class YearStatistic < ApplicationRecord
     FileUtils.mkdir_p work_path, mode: 0o755
     # Get the icon
     icon_url = if user
-      FakeView.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( user.icon.url( :large ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif site
-      FakeView.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( site.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     elsif Site.default
-      FakeView.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( Site.default.logo_square.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     else
-      FakeView.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
+      ApplicationController.helpers.image_url( "bird.png" ).to_s.gsub( %r{([^:])//}, "\\1/" )
     end
     icon_url = icon_url.sub( "staticdev", "static" ) # basically just for testing
     icon_ext = File.extname( URI.parse( icon_url ).path )
@@ -718,7 +718,7 @@ class YearStatistic < ApplicationRecord
       run_cmd "convert #{square_icon_path} -resize 212x212 #{final_logo_path}"
     end
 
-    background_url = FakeView.image_url( "yir-background.png" ).to_s.
+    background_url = ApplicationController.helpers.image_url( "yir-background.png" ).to_s.
       gsub( %r{([^:])//}, "\\1/" ).
       gsub( "staging.inaturalist", "www.inaturalist" )
     background_path = File.join( work_path, "background.png" )
@@ -738,7 +738,7 @@ class YearStatistic < ApplicationRecord
         #{final_logo_path} #{background_path} #{background_with_icon_path}
     BASH
     wordmark_site = user&.site || site || Site.default
-    wordmark_url = FakeView.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
+    wordmark_url = ApplicationController.helpers.image_url( wordmark_site.logo.url ).to_s.gsub( %r{([^:])//}, "\\1/" )
     wordmark_url = wordmark_url.sub( "staticdev", "static" )
     wordmark_ext = File.extname( URI.parse( wordmark_url ).path )
     wordmark_path = File.join( work_path, "wordmark#{wordmark_ext}" )
@@ -818,17 +818,17 @@ class YearStatistic < ApplicationRecord
       "label"
     end
     obs_translation = I18n.t( "x_observations_html",
-      count: FakeView.number_with_delimiter( obs_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( obs_count, locale: locale ),
       locale: locale )
     obs_count_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     obs_label_txt = obs_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
     species_translation = I18n.t( "x_species_html",
-      count: FakeView.number_with_delimiter( species_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( species_count, locale: locale ),
       locale: locale )
     species_count_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     species_label_txt = species_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
     identifications_translation = I18n.t( "x_identifications_html",
-      count: FakeView.number_with_delimiter( identifications_count, locale: locale ),
+      count: ApplicationController.helpers.number_with_delimiter( identifications_count, locale: locale ),
       locale: locale )
     identifications_count_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 1].to_s.mb_chars.upcase
     identifications_label_txt = identifications_translation[%r{<span.*?>(.+)</span>(.+)}, 2].to_s.strip.mb_chars.upcase
@@ -1398,7 +1398,7 @@ class YearStatistic < ApplicationRecord
       else
         s.merge(
           login: u.login,
-          icon_url: FakeView.image_url( u.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
+          icon_url: ApplicationController.helpers.image_url( u.icon.url( :medium ) ).to_s.gsub( %r{([^:])//}, "\\1/" )
         )
       end
     end.compact

@@ -607,9 +607,19 @@ mr:
   #Button show less text
   less__context_text: कमी
   list: सूची
+  list_deleted: सूची हटवली.
+  list_saved: सूची जतन केली.
+  list_tooltip: सूची दृश्य दाखवा
+  list_updated: सूची अद्ययावत केली!
+  list_views:
+    plain: सामान्य
+    taxonomic: वर्गीकरणासंबधी
+    photo: फोटो
+  list_was_successfully_created: सूची यशस्वीरित्या तयार केली गेली.
   #Template for a comma-separated list of items. We'll use this to generate
   #lists of this form for an arbitrary number of items, not just three.
   list_with_n_items: "%{one}, %{two}, आणि %{three}"
+  list_with_two_items: "%{one} आणि %{two}"
   lists: याद्या
   locales:
     en-GB: इंग्रजी (युके)
@@ -876,7 +886,6 @@ mr:
     <a href="/privacy" target="_blank">गोपनीयता धोरण</a> आणि मी पुनरावलोकन केले आहे
     <a href="/pages/community+guidelines" target="_blank">समुदाय मार्गदर्शक तत्त्वे</a>.
   upload: अपलोड करा
-  user_faved_a_noun_by_you: "%{user} ने तुमचे %{noun} आवडते म्हणून अधोरेखित केले."
   user_trusts_this_project_for_none: वापरकर्त्याचा गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास नाही.
   user_trusts_this_project_for_any: |
     कोणत्याही कारणास्तव अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत वापरकर्ता या प्रकल्पावर विश्वास ठेवतो.
@@ -959,6 +968,9 @@ mr:
       show:
         ancestor_disagreements_desc2: |
           टॅक्सनच्या पूर्वजांपैकी ओळखलेल्या टॅक्साची संख्या, परंतु वर्गीकरणाशी असहमत (म्हणजे "मला वाटते की ते वंशात आहे पण हीच ती प्रजाती आहे ह्याच्याशी मी असहमत आहे")
+    places:
+      kml_field_desc2: |
+        ठिकाणाच्या सीमारेषेसाथीचा KML. तुम्ही गूगल मॅप, गूगल अर्थ अथवा इतर GIS अनुप्रयोग वापरून एक बनवू शकता. किमान एक बहुभुज असणे आवश्यक, १ MB पर्यंत (साइट क्युरेटरसाठी ५ MB), आणि क्षेत्रफळ अमेरिकेचे टेक्सास राज्यापेक्षा लहान असण्याची मर्यादा.
     stats:
       year:
         compare_desc: |
@@ -990,9 +1002,6 @@ mr:
       index:
         connect_with_nature: निसर्गाशी संबंध जोडा
         explore_and_share: नैसर्गिक जगातून तुमच्या निरीक्षणांचे अवलोकन करा आणि इतरांसोबत शेअर करा.
-        observations_to_date: 'आजपर्यंतची निरीक्षणे'
-        species_observed: 'नोंदवलेल्या प्रजाती'
-        people_signed_up: 'नोंदणीकृत वापरकर्ते'
         how_it_works: हे कसे कार्य करते
         record_your_observations: तुमची निरीक्षणे नोंदवा
         share_with_fellow_naturalists: सहकारी निसर्गवाद्यांसह सामायिक करा

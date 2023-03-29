@@ -22,6 +22,6 @@ describe GuideTaxaController, "show" do
   let(:guide_taxon) { guide.guide_taxa.first }
   it "should include an absolute path to a stylesheet" do
     get :show, format: :xml, params: { id: guide_taxon.id }
-    expect(response.body).to include FakeView.asset_url( "guide_taxon.xsl" )
+    expect(response.body).to include ApplicationController.helpers.asset_url( "guide_taxon.xsl" )
   end
 end

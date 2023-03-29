@@ -752,6 +752,8 @@ de:
   birds: Vögel
   birthday: Geburtstag
   black: schwarz
+  block: Blockieren
+  blocking_description: Das Blockieren unterbindet jegliche Kommunikation zwischen dir und einem anderen Benutzer. Es ist für Situationen gedacht, in denen ein anderer Benutzer deine Sicherheit gefährden kann, wie zum Beispiel durch Stalking oder anderes missbräuchliches Verhalten.
   block_removed: Sperre entfernt
   blocked_users: Gesperrte Benutzer
   blog_widget: Blog Widget
@@ -1470,6 +1472,7 @@ de:
       signed_up_but_locked: "Du hast dich erfolgreich angemeldet. Wir konnten dich jedoch nicht anmelden, da dein Account gesperrt ist."
       signed_up_but_unconfirmed: "Eine Nachricht mit dem Bestätigungslink wurde an deine E-Mail-Adresse gesendet. Bitte folgen dem Link, um dein Konto zu aktivieren."
       updated: 'Du hast dein Konto erfolgreich aktualisiert.'
+      updated_but_not_signed_in: "Dein Konto wurde erfolgreich aktualisiert, aber da dein Passwort geändert wurde, musst du dich erneut anmelden"
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1552,9 +1555,15 @@ de:
   download_csv_template: CSV-Vorlage herunterladen
   download_kml: KML herunterladen
   downstream_deviations: Downstream-Abweichungen
+  #Noun, as in a journal post that has not been published
   draft: Entwurf
+  #Noun, as in a journal post that has not been published
   draft_: Entwurf
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Entwurf von %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Entwurf gespeichert!
+  #Noun, as in journal posts that has not been published
   drafts: Entwürfe
   drag_and_drop_some_photos_or_sounds: durch "Ziehen & Ablegen" Bilder oder Audio-Dateien hinzufügen
   #Button label for drawing a circular boundary for an observation search
@@ -1818,7 +1827,7 @@ de:
   flag_for_user_title_html: |
     Meldung des Benutzers: %{title}
   flag_it!: Melden!
-  flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt.</strong><span class="meta">gekennzeichnet</span>.'
+  flag_marked_as_resolved_html: '<span class="meta">Meldung als</span> <strong>geklärt </strong><span class="meta">gekennzeichnet</span>.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;I'm flagging this %{record} because"
@@ -1896,9 +1905,9 @@ de:
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
   geoprivacy: Geo-Privatsphäre
-  geoprivacy_is_obscured: Geo-Privatsphäre ist <i>verborgen</i>
+  geoprivacy_is_obscured: Geo-Privatsphäre ist verborgen
   geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
-  geoprivacy_is_private: Geo-Privatsphäre ist <i>privat</i>
+  geoprivacy_is_private: Geo-Privatsphäre ist privat
   geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Projekt erstellen
@@ -2690,8 +2699,12 @@ de:
   must_have_quality_grades: "muss Qualitätsstufen besitzen: %{grades}"
   must_have_sounds: muss Audioaufnahmen enthalten
   must_have_x: "muss %{x} haben"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Stummschalten
+  #Mute is a noun here
   mute_removed: Sperre entfernt
   muted_users: Stummgestellte Benutzer
+  muting_description: Jemanden stummschalten bedeutet, über keinerlei Aktivitäten benachrichtigt zu werden, einschließlich "@"-Erwähnungen, Nachrichten oder Kommentare, sowie Bestimmungen zu deinen Beobachtungen.
   n_ago: "vor %{n}"
   n_people_agrees: "%{amount} der Personen stimmen zu"
   n_people_disagrees: "%{amount} Bestimmer sind anderer Meinung"
@@ -3165,7 +3178,7 @@ de:
   organism_is_wild: Organismus ist wild
   organisms: Organismen
   original: Orginal
-  originally_flagged_by: Ursprünglich gemeldet von
+  originally_flagged_by: Anfängliche Meldung von
   originally_imported_from_url_html: "Ursprünglich von <a href='%{url}'>%{url}</a> importiert"
   original_page_url_for_this_photo: "Ursprüngliche Seiten-URL für dieses Foto."
   original_rights_holder: Ursprünglicher Rechteinhaber
@@ -3211,6 +3224,9 @@ de:
     invalid_email: Ungültiges E-Mail-Format
   password: Passwort
   password_confirmation: 'Passwort bestätigen'
+  password_change_description: Durch die Änderung deines Passworts wirst du von allen aktiven iNaturalist-Verbindungen auf deinen Geräten abgemeldet
+  password_change_logout_warning: Nachdem du dein Passwort geändert hast, wirst du abgemeldet und musst dich erneut mit deinem neuen Passwort anmelden.
+  password_change_observations_warning: Du wirst auch von den mobilen Apps und anderen Apps oder Webseiten abgemeldet, mit denen du Beobachtungen an iNaturalist meldest, also überprüfe, dass alle ausstehenden Beobachtungen hochgeladen wurden, bevor du dein Passwort änderst. Alle nicht hochgeladenen Beobachtungen gehen verloren.
   paste: Einfügen
   paste_in_a_bunch_of_names: Trage mehrere Namen ein, einen pro Zeile, und klicke auf den Button!
   people: Personen
@@ -3774,7 +3790,10 @@ de:
   post_from_your_journal_html: Beitrag von <a href="%{url}">deinem Journal</a>
   post_published: Eintrag veröffentlicht!
   posted_by: Gepostet von
-  posted_on: Gepostet am
+  #Shows the date a journal post was published
+  posted_on_date_html: veröffentlicht am %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: veröffentlicht am %{date} von %{user}
   posts: Beiträge
   potential_disagreement: Besteht Einwand gegen die aktuelle Bestimmung?
   powered_by: Betrieben von
@@ -4341,7 +4360,7 @@ de:
   site_admins: Seiten-Administratoren
   site_name_place: "%{site_name}-Gebiete"
   site_observations_export_from_date: "%{site_name}-Beobachtungsexport vom %{date}"
-  site_site_admin: "%{site_name}-Websiteadministrator"
+  site_site_admin: "%{site_name} Site-Administrator"
   site_staff: "%{site_name}-Mitarbeiter"
   site_stats: Seitenstatistik
   site_taxon_page: "%{site_name} Taxonseite"
@@ -4516,6 +4535,10 @@ de:
   stats: Statistiken
   stats_for_this_year_have_not_been_generated: Für dieses Jahr wurden keine Statistiken erstellt.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '%{status} Global'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Bleibe und versuch's noch mal
@@ -5164,7 +5187,7 @@ de:
   user1_user2_and_x_others_faved_this_observation: "%{user1}, %{user2} und %{x_others} haben diese Beobachtung zu ihren Favoriten hinzugefügt"
   user_added_a_comment_html: "Kommentar hinzugefügt von: %{user}"
   user_added_a_fave_html: "%{user} hat einen Favoriten hinzugefügt"
-  user_added_a_flag_html: "%{user} hat etwas gemeldet"
+  user_added_a_flag_html: "Meldung von %{user}"
   user_added_a_x: "%{user}: %{x} hinzugefügt"
   user_added_a_x_to_noun_by_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
   user_added_a_x_to_noun_by_user_html: "%{user}: %{x} zu %{noun} von %{by} hinzugefügt"
@@ -5190,9 +5213,7 @@ de:
   user_commented: "%{user} hat kommentiert"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user}: eine Beobachtung von %{owner} favorisiert"
-  user_faved_a_noun_by_you: "%{user} hat %{noun} von dir favorisiert"
+  user_faved_an_observation_by_you: "%{user} hat eine Beobachtung von dir favorisiert"
   user_faved_this_observation: "%{user} hat diese Beobachtung als Favoriten hinzugefügt"
   user_flagged_as_a_non_spammer_html: "%{user} als Nicht-Spammer markiert"
   user_flagged_as_a_spammer_html: "%{user} als Spammer gemeldet"
@@ -6145,7 +6166,7 @@ de:
           Koordinaten deiner Beobachtungen nicht mit den Kuratoren dieses Projekts teilen möchtest
           musst du sie aus dem Projekt entfernen.
         data_quality_assessment_desc_html: |
-          Die Bewertung der Datenqualität (<i>Data Quality Assessment</i>; DQA) erlaubt die Beurteilung einer Beobachtung anhand bestimmter Parameter. Beobachtungen mit Forschungsqualität können von Wissenschaftlern für die Forschung genutzt werden. Jeder kann zu einer Beurteilung beitragen.
+          In der Datenqualitäts-Bewertung ('Data Quality Assessment'; DQA) werden bestimmte Kriterien einer Beobachtung erfasst, die festlegen, ob diese Beobachtung 'Forschungsqualität' erreichen kann. Jeder kann zu einer Beurteilung beitragen.
         disagreement_count_desc: "Anzahl der identifizierten Taxa, die nicht zu den Vorfahren eines Taxons gehören"
         identification_count_desc: '# an Bestimmungen einer bestimmten Art'
         flagged_photos_desc_html: |
@@ -7207,9 +7228,15 @@ de:
       index:
         connect_with_nature: Verbinde dich mit der Natur
         explore_and_share: Entdecke und teile deine Naturbeobachtungen.
-        observations_to_date: 'Beobachtungen bisher'
-        species_observed: 'Arten beobachtet'
-        people_signed_up: 'Benutzer angemeldet'
+        observations_to_date:
+          one: "Beobachtung bisher"
+          other: "Beobachtungen bisher"
+        species_observed:
+          one: "Art beobachtet"
+          other: "Arten beobachtet"
+        people_signed_up:
+          one: "Person angemeldet"
+          other: "Personen angemeldet"
         how_it_works: Wie es funktioniert
         record_your_observations: Beobachtungen machen
         share_with_fellow_naturalists: Mit anderen Naturfreunden teilen
@@ -7280,19 +7307,19 @@ de:
       6: Fr
       7: Sa
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d. %b. %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -7363,46 +7390,6 @@ de:
       month: Monat
       second: Sekunden
       year: Jahr
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: muss akzeptiert sein
-      blank: darf nicht leer sein
-      confirmation: stimmt nicht mit dem Passwort überein
-      empty: darf nicht leer sein
-      equal_to: muss gleich %{count} sein
-      even: muss gerade sein
-      exclusion: ist reserviert
-      greater_than: muss größer als %{count} sein
-      greater_than_or_equal_to: muss größer als oder gleich %{count} sein
-      inclusion: ist nicht in der Liste enthalten
-      invalid: ist ungültig
-      less_than: muss kleiner als %{count} sein
-      less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
-      new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
-      not_a_number: ist keine Zahl
-      not_an_integer: muss eine ganze Zahl sein
-      odd: muss ungerade sein
-      only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
-      record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
-      requires_privilege_speech: |
-        muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
-      requires_privilege_organizer: muss 50 verifizierbare Beobachtungen haben, um dies zu tun
-      taken: ist bereits vergeben
-      too_long:
-        one: ist zu lang (maximal %{count} Zeichen)
-        other: ist zu lang (maximal %{count} Zeichen)
-      too_short:
-        one: ist zu kurz (mindestens %{count} Zeichen)
-        other: ist zu kurz (mindestens %{count} Zeichen)
-      wrong_length:
-        one: hat die falsche Länge (sollte %{count} Zeichen lang sein)
-        other: ist die falsche Länge (sollte %{count} Zeichen sein)
-    template:
-      body: 'Es gab Probleme mit den folgenden Feldern:'
-      header:
-        one: "%{count} Fehler verhinderte das Speichern von %{model}"
-        other: '%{count} Fehler verhinderten das Speichern von %{model}'
   helpers:
     defaults:
       title: "DIES IST EIN TITEL"
@@ -7465,64 +7452,21 @@ de:
   time:
     am: AM
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: PM
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: muss akzeptiert sein
-        blank: darf nicht leer sein
-        confirmation: stimmt nicht mit dem Passwort überein
-        empty: darf nicht leer sein
-        equal_to: muss gleich %{count} sein
-        even: muss gerade sein
-        exclusion: ist reserviert
-        greater_than: muss größer als %{count} sein
-        greater_than_or_equal_to: muss größer als oder gleich %{count} sein
-        inclusion: ist nicht in der Liste enthalten
-        invalid: ist ungültig
-        less_than: muss kleiner als %{count} sein
-        less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
-        new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
-        not_a_number: ist keine Zahl
-        not_an_integer: muss eine Ganzzahl sein
-        odd: muss ungerade sein
-        only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
-        record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
-        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
-        requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
-        taken: ist bereits vergeben
-        too_long:
-          one: ist zu lang (maximal 1 Zeichen)
-          other: ist zu lang (maximal %{count} Zeichen)
-        too_short:
-          one: ist zu kurz (Minimum ist 1 Zeichen)
-          other: ist zu kurz (mindestens %{count} Zeichen)
-        wrong_length:
-          one: ist die falsche Länge (sollte 1 Zeichen sein)
-          other: ist die falsche Länge (sollte %{count} Zeichen sein)
-      template:
-        body: 'Es gab Probleme mit den folgenden Feldern:'
-        header:
-          one: '%{count} Fehler verhinderte das Speichern von %{model}'
-          other: '%{count} Fehler verhinderten das Speichern von %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7710,22 +7654,33 @@ de:
         blank: darf nicht leer sein
         confirmation: stimmt nicht mit dem Passwort überein
         empty: darf nicht leer sein
-        equal_to: muss gleich %{count} sein
+        equal_to:
+          one: muss gleich %{count} sein
+          other: muss gleich %{count} sein
         even: muss gerade sein
         exclusion: ist reserviert
-        greater_than: muss größer als %{count} sein
-        greater_than_or_equal_to: muss größer als oder gleich %{count} sein
+        greater_than:
+          one: muss größer als %{count} sein
+          other: muss größer als %{count} sein
+        greater_than_or_equal_to:
+          one: muss größer als oder gleich %{count} sein
+          other: muss größer als oder gleich %{count} sein
         inclusion: ist nicht in der Liste enthalten
         invalid: ist ungültig
-        less_than: muss kleiner als %{count} sein
-        less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        less_than:
+          one: muss kleiner als %{count} sein
+          other: muss kleiner als %{count} sein
+        less_than_or_equal_to:
+          one: muss kleiner als oder gleich %{count} sein
+          other: muss kleiner als oder gleich %{count} sein
         new_project_owner_must_be_a_manager: Neuer Projekteigentümer muss ein Administrator sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
         odd: muss ungerade sein
         only_project_owner_can_change_project_owner: Nur der Projekteigentümer kann den Projekteigentümer ändern
         record_invalid: 'Validierung fehlgeschlagen: %{errors}'
-        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
+        requires_privilege_speech: |
+          muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
         taken: ist bereits vergeben
         too_long:
@@ -7740,7 +7695,7 @@ de:
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
         header:
-          one: '%{count} Fehler verhinderte das Speichern von %{model}'
+          one: "%{count} Fehler verhinderte das Speichern von %{model}"
           other: '%{count} Fehler verhinderten das Speichern von %{model}'
       models:
         application:

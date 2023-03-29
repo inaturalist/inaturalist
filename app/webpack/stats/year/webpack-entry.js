@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import { render } from "react-dom";
 import React from "react";
 import StatsYearApp from "./components/app";

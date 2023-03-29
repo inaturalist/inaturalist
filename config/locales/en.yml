@@ -901,6 +901,10 @@ en:
   birds: birds
   birthday: Birthday
   black: black
+  block: Block
+  blocking_description: Blocking prevents any communication between you and another user. It is for
+    situations where another user may put your safety at risk, like stalking or other abusive
+    behavior.
   block_removed: Block removed
   blocked_users: Blocked Users
   blog_widget: Blog widget
@@ -1805,9 +1809,15 @@ en:
   # Label for a link to taxa that are descendants ("downstream") of the current
   # taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Downstream flagged taxa
+  # Noun, as in a journal post that has not been published
   draft: draft
+  # Noun, as in a journal post that has not been published
   draft_: Draft
+  # Attribution for a journal post that has not been published
+  draft_by_user_html: Draft by %{user}
+  # Noun, as in a journal post that has not been published
   draft_saved: Draft saved!
+  # Noun, as in journal posts that has not been published
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
   # Button label for drawing a circular boundary for an observation search
@@ -2585,6 +2595,8 @@ en:
     scientific_names: Scientific Names
     afrikaans: Afrikaans
     albanian: Albanian
+    aou_4_letter_codes: AOU 4-Letter Codes
+    aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabic
     armenian: Armenian
     belarusian: Belarusian
@@ -2610,9 +2622,11 @@ en:
     gela: Gela
     german: German
     greek: Greek
+    gujarati: Gujarati
     hawaiian: Hawaiian
     hebrew: Hebrew
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Hungarian
     icelandic: Icelandic
     ilokano: Ilokano
@@ -2659,6 +2673,7 @@ en:
     tokelauan: Tokelauan
     turkish: Turkish
     ukrainian: Ukrainian
+    uyghur: Uyghur
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Less
@@ -3059,7 +3074,9 @@ en:
   must_have_quality_grades: "must have quality grades: %{grades}"
   must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
+  # Imperative verb, label for a button that lets you mute another user
   mute: Mute
+  # Mute is a noun here
   mute_removed: Mute removed
   muted_users: Muted Users
   muting_description: Muting someone prevents you from being notified about any of their activity,
@@ -4219,7 +4236,10 @@ en:
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
-  posted_on: Posted on
+  # Shows the date a journal post was published
+  posted_on_date_html: Posted on %{date}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Posted on %{date} by %{user}
   posts: Posts
   potential_disagreement: Potential Disagreement
   powered_by: Powered by
@@ -5039,6 +5059,10 @@ en:
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
+  # Displayed on the taxon detail page when a conservation status is being
+  # applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '"%{status}" Globally'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Stay and try again
@@ -5770,9 +5794,7 @@ en:
   user_commented: "%{user} commented"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
-  # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
-  user_faved_a_noun_by_you: "%{user} faved %{noun} by you"
+  user_faved_an_observation_by_you: "%{user} faved an observation by you"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
@@ -8572,9 +8594,24 @@ en:
       index:
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
-        observations_to_date: 'Observations to Date'
-        species_observed: 'Species Observed'
-        people_signed_up: 'People Signed Up'
+        observations_to_date:
+          zero: "Observations to Date"
+          one: "Observation to Date"
+          few: "Observations to Date"
+          many: "Observations to Date"
+          other: "Observations to Date"
+        species_observed:
+          zero: "Species Observed"
+          one: "Species Observed"
+          few: "Species Observed"
+          many: "Species Observed"
+          other: "Species Observed"
+        people_signed_up:
+          zero: "People Signed Up"
+          one: "Person Signed Up"
+          few: "People Signed Up"
+          many: "People Signed Up"
+          other: "People Signed Up"
         how_it_works: How It Works
         record_your_observations: Record your observations
         share_with_fellow_naturalists: Share with fellow naturalists
@@ -8652,19 +8689,19 @@ en:
       6: Fr
       7: Sa
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       -
@@ -8735,47 +8772,6 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: didn't match password
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      new_project_owner_must_be_a_manager: New project owner must be an admin
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
-      record_invalid: 'Validation failed: %{errors}'
-      requires_privilege_speech: |
-        must have three verifiable observations or three identifications
-        for others to do that
-      requires_privilege_organizer: must have 50 verifiable observations to do that
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is %{count} character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is %{count} character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be %{count} character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: "%{count} error prohibited this %{model} from being saved"
-        other: '%{count} errors prohibited this %{model} from being saved'
   helpers:
     defaults:
       title: "THIS IS A TITLE"
@@ -8850,27 +8846,21 @@ en:
   time:
     am: am
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
     models:
       # Information authored by site admins shown to users at various places
@@ -9083,7 +9073,56 @@ en:
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:
-      <<: *errors
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: didn't match password
+        empty: can't be empty
+        equal_to:
+          one: must be equal to %{count}
+          other: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than:
+          one: must be greater than %{count}
+          other: must be greater than %{count}
+        greater_than_or_equal_to:
+          one: must be greater than or equal to %{count}
+          other: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than:
+          one: must be less than %{count}
+          other: must be less than %{count}
+        less_than_or_equal_to:
+          one: must be less than or equal to %{count}
+          other: must be less than or equal to %{count}
+        new_project_owner_must_be_a_manager: New project owner must be an admin
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        only_project_owner_can_change_project_owner: Only the project owner can change the project owner
+        record_invalid: 'Validation failed: %{errors}'
+        requires_privilege_speech: |
+          must have three verifiable observations or three identifications
+          for others to do that
+        requires_privilege_organizer: must have 50 verifiable observations to do that
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is %{count} character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is %{count} character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be %{count} character)
+          other: is the wrong length (should be %{count} characters)
+      template:
+        body: 'There were problems with the following fields:'
+        header:
+          one: "%{count} error prohibited this %{model} from being saved"
+          other: '%{count} errors prohibited this %{model} from being saved'
       models:
         application:
           attributes:
