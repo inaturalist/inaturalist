@@ -55,7 +55,16 @@ const config = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    // Some dependencies seem to expect process.env.NODE_ENV to be defined,
+    // particularly in development
+    new webpack.DefinePlugin( {
+      "process.env.NODE_ENV": JSON.stringify(
+        process.env.RAILS_ENV || process.env.NODE_ENV
+      )
+    } )
+  ]
 };
 
 module.exports = config;
