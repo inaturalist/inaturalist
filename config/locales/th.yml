@@ -988,6 +988,7 @@ th:
   explore: สำรวจ
   export: ส่งออก
   export_observations: ส่งออกการสังเกต
+  export_with_private_coordinates: ส่งออกด้วยพิกัดที่ซ่อนไว้
   exporting: "กำลังส่งออก..."
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
@@ -1004,6 +1005,7 @@ th:
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
+  filter_by_curator_identification: กรองตามการจำแนกโดยผู้ดูแล
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
@@ -1015,8 +1017,8 @@ th:
   find_places: ค้นหาสถานที่
   find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
   find_species: ค้นหาชนิด
-  find_suitable_observations: ค้นหาการสังเกตที่เหมาะสม
-  find_unsuitable_observations: ค้นหาการสังเกตที่ไม่เหมาะสม
+  find_suitable_observations: ค้นหาการสังเกตที่ตรวจสอบได้
+  find_unsuitable_observations: ค้นหาการสังเกตทั้งหมด
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
   first_observer: ผู้สังเกตคนแรก
@@ -1190,6 +1192,7 @@ th:
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: มีหลักฐานเพียงพอที่จะยืนยันว่าเป็น %{taxon} หรือไม่?
+  is_this_offensive_html: 'โครงการนี้<a href="/help#inappropriate">ไม่เหมาะสม</a> เป็นสแปม หรือมีคำพูดที่แสดงความเกลียดชังหรือไม่?'
   it_can_now_be_used_for_research: สามารถนำไปใช้ในการวิจัยและแสดงบนหน้าเว็บอื่น ๆ ได้
   jobs: ตำแหน่งงาน
   join: เข้าร่วม
@@ -1486,6 +1489,7 @@ th:
   more_info: ข้อมูลเพิ่มเติม
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
+  more_observations: การสังเกตเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
@@ -1556,6 +1560,7 @@ th:
   no_its_as_good_as_it_can_be: ไม่ต้อง เท่านี้ก็พอแล้ว
   no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
   no_license_all_rights_reserved: ไม่มีสัญญาอนุญาต (สงวนลิขสิทธิ์ทั้งหมด)
+  no_matching_observations: ไม่มีการสังเกตที่ตรงตามเงื่อนไข
   no_matching_species: ไม่มีชนิดที่ตรงกัน
   no_members_yet: "ยังไม่มีสมาชิก"
   no_messages_yet: ยังไม่มีข้อความ
@@ -1577,6 +1582,7 @@ th:
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   no_taxonomic_changes_match_those_criteria: ไม่มีการเปลี่ยนแปลงอนุกรมวิธานที่ตรงกับเกณฑ์เหล่านั้น
   no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
+  noble_curators: "ผู้ดูแลดีเด่นของ %{site}"
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
@@ -1831,6 +1837,8 @@ th:
     other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
   project_cover: รูปหน้าปกโครงการ
+  project_created_on: สร้างโครงการนี้เมื่อ %{date}
+  project_curator_tools: เครื่องมือผู้ดูแลโครงการ
   project_home: หน้าหลักโครงการ
   project_icon: ไอคอนโครงการ
   project_journal: วารสารโครงการ
