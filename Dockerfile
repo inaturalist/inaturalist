@@ -24,17 +24,15 @@ COPY --chown=inaturalist:inaturalist Gemfile.lock /code/Gemfile.lock
 RUN gem install bundler
 RUN bundle install --verbose
 
-COPY --chown=inaturalist:inaturalist package.json /code/package.json
-COPY --chown=inaturalist:inaturalist package-lock.json /code/package-lock.json
-RUN npm install
+COPY --chown=inaturalist:inaturalist . /code/
 
-COPY --chown=inaturalist:inaturalist . /code
+RUN rm -rf node_modules
+
+RUN npm install
 
 COPY --chown=inaturalist:inaturalist config/config.docker.yml /code/config/config.yml
 COPY --chown=inaturalist:inaturalist config/database.docker.yml /code/config/database.yml
 
-COPY --chown=inaturalist:inaturalist app/assets /code/app/assets
-COPY --chown=inaturalist:inaturalist app/webpack /code/app/webpack
 RUN npm run webpack
 
 EXPOSE 3000

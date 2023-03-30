@@ -188,7 +188,7 @@ $.fn.taxonAutocomplete = function( options ) {
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
-    var apiBaseURL = "<%= CONFIG.node_api_url %>";
+    var apiBaseURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>";
     if ( options.useAPIv2 ) {
       apiBaseURL = apiBaseURL.replace( "/v1", "/v2" );
       headers["X-HTTP-Method-Override"] = "GET";
@@ -330,7 +330,7 @@ $.fn.taxonAutocomplete = function( options ) {
   }
 
   if ( $( options.idEl ).val( ) ) {
-    var url = "<%= CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
     var jsonpCallback = "initialTaxonCallback";
     // try to make jsonp callback unique to handle multiple taxon autocompletes on a page
     if ( options.idEl.id && options.idEl.id != "" ) {

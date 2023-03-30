@@ -1008,7 +1008,7 @@ function getMessagesCount() {
 function getHeaderCounts() {
   var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
   $.ajax({
-    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/notification_counts",
     headers: {
       Authorization: apiToken
     },
@@ -1459,7 +1459,7 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
+      $.getJSON( "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
           callback( $.map( data.results, function( user ) {
             var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";

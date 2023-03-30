@@ -61,7 +61,7 @@
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
-    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <meta property="og:type" content="website"/>
     <% if current_user %>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>" />

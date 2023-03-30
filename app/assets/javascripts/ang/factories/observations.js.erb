@@ -2,27 +2,27 @@
 
 iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
   var show = function( id, params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/" + id;
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observations/" + id;
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url, { cache: true } );
   };
   var search = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations";
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observations";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var speciesCounts = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/species_counts";
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observations/species_counts";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var identifiers = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/identifiers";
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observations/identifiers";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
   var observers = function( params ) {
-    var url = "<%= CONFIG.node_api_url %>/observations/observers";
+    var url = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observations/observers";
     if( params ) { url += "?" + $.param(params); }
     return shared.basicGet( url );
   };
