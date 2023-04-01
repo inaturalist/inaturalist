@@ -2,6 +2,13 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
+import {
+  Identification,
+  Observation,
+  Photo,
+  Project,
+  Sound
+} from "inaturalistjs";
 
 class FlaggingModal extends Component {
   constructor( props, context ) {
@@ -19,6 +26,24 @@ class FlaggingModal extends Component {
     this.props.setFlaggingModalState( { radioOption: name } );
   }
 
+  getItemClassName( ) {
+    const { state: propsState } = this.props;
+    const { item } = propsState;
+    let className = "Comment";
+    if ( item.constructor === Project ) {
+      className = "Project";
+    } else if ( item.constructor === Observation || item.quality_grade ) {
+      className = "Observation";
+    } else if ( item.constructor === Identification || item.taxon ) {
+      className = "Identification";
+    } else if ( item.constructor === Photo || item.square_url ) {
+      className = "Photo";
+    } else if ( item.constructor === Sound || item.file_url ) {
+      className = "Sound";
+    }
+    return className;
+  }
+
   close( ) {
     this.props.setFlaggingModalState( { show: false } );
   }
@@ -34,24 +59,6 @@ class FlaggingModal extends Component {
       body
     );
     this.close( );
-  }
-
-  getItemClassName( ) {
-    const { state: propsState } = this.props;
-    const { item } = propsState;
-    let className = "Comment";
-    if ( item.constructor.name === "Project" ) {
-      className = "Project";
-    } else if ( item.constructor.name === "Observation" || item.quality_grade ) {
-      className = "Observation";
-    } else if ( item.constructor.name === "Identification" || item.taxon ) {
-      className = "Identification";
-    } else if ( item.constructor.name === "Photo" || item.square_url ) {
-      className = "Photo";
-    } else if ( item.constructor.name === "Sound" || item.file_url ) {
-      className = "Sound";
-    }
-    return className;
   }
 
   render( ) {
