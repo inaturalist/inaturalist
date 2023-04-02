@@ -417,8 +417,8 @@ hu:
   all_taxa_in_this_guide: Minden taxon ebből az útmutatóból
   all_taxonomic_groups: "&laquo; Minden rendszertani csoport"
   all_updates: Minden frissítés
-  allow_curator_access: Gondnoki hozzáférés engedélyezése
-  allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt gondozóinak, hogy láthassák rejtett koordinátáidat
+  allow_curator_access: Kurátori hozzáférés engedélyezése
+  allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt kurátorainak, hogy láthassák rejtett koordinátáidat
   allowed_html: Engedélyezett HTML
   allowed_occurrence_status_values: Az előfordulási státusz megengedett értékei
   allowed_values: Megengedett értékek
@@ -547,7 +547,7 @@ hu:
   are_you_sure_you_want_to_delete_this_post: Biztos, hogy törlöd ezt a cikket?
   are_you_sure_you_want_to_delete_this_taxon_change: Biztosan törlöd ezt a taxonváltoztatást?
   are_you_sure_you_want_to_remove_all_tags: Biztosan törlöd az összes címkét?
-  are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint gondnokot?
+  are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint kurátort?
   are_you_sure_you_want_to_remove_from_project: Biztos, hogy eltávolítod %{user}-t ebből a projektből?
   are_you_sure_you_want_to_remove_manager: Biztos, hogy eltávolítod %{user}-t mint menedzsert?
   are_you_sure_you_want_to_remove_spammer: |
@@ -1006,12 +1006,12 @@ hu:
   curate_user: Felhasználó gondozása
   curating: Gondozás
   curation: Gondozás
-  curator: Gondnok
+  curator: Kurátor
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Meg kell indokolnod, hogy miért akarsz kurátor lenni.
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html: Miért akarsz gondnok lenni?
+  curator_application_fields_explanation_html: Miért akarsz kurátor lenni?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
     Ha az iNaturalist taxonómiáját akarod szerkeszteni, kérünk, hogy mondj egy-két példát a végrehajtani kívánt változtatásokra, és adj meg forrásokat a javasolt változtatásokhoz. Ha releváns, kérünk, hogy hivatkozz a megfelelő taxonómiai hatóságra <a
@@ -1026,14 +1026,14 @@ hu:
   curator_application_how_curators_lose_their_powers: |
     Hogyan veszíti el egy kurátor a hatáskörét
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: Gondozói jelentkezés beküldve
+  curator_application_success: Kurátori jelentkezés beküldve
   #Header
-  curator_application_what_curators_can_do: Mit tehetnek a gondnokok
+  curator_application_what_curators_can_do: Mit tehetnek a kurátorok
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
   #Header
-  curator_application_what_curators_cannot_do: Mit nem tehetnek a gondnokok
+  curator_application_what_curators_cannot_do: Mit nem tehetnek a kurátorok
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1048,9 +1048,9 @@ hu:
   curator_application_title: Kurátori jelentkezés
   #Header followed by a list
   curator_application_you_should_apply_if: |
-    Csak akkor jelentkezhetsz gondozónak, ha:
-  curators_changed_for_x_html: "%{x} gondozói megváltoztak"
-  curators: Gondnokok
+    Csak akkor jelentkezhetsz kurátornak, ha:
+  curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
+  curators: Kurátorok
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -2278,7 +2278,7 @@ hu:
   'no': 'Nem'
   no_but_it_is_a_member_of_taxon: "Nem, de %{taxon} taxon tagja"
   no_comments_yet: Még nincsenek megjegyzések.
-  no_curators_yet: Még nincs gondnok!
+  no_curators_yet: Még nincs kurátor!
   no_description: Nincs leírás
   no_flickr_photos_tagged: Egy Flickr fotó sem kapott címkét!
   no_identifications: Nincsenek meghatározások
@@ -3166,7 +3166,7 @@ hu:
   project_list_defaults:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
+    <a href="%{url}">%{project}</a> kurátorai hozzáadták pár megfigyelésedet
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
@@ -3374,8 +3374,8 @@ hu:
   remove_all_tags: Minden címke eltávolítása
   remove_conservation_status: a természetvédelmi státusz eltávolítása
   remove_from: Eltávolítás innen
-  remove_curator: Gondozó eltávolítása
-  remove_curator_status: Gondozói státusz eltávolítása
+  remove_curator: Kurátor eltávolítása
+  remove_curator_status: Kurátori státusz eltávolítása
   remove_from_featured: Törlés a kiemeltek közül
   remove_from_guide: Eltávolítás az útmutatóból
   remove_from_list: Eltávolítás a listából
