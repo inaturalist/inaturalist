@@ -1021,7 +1021,7 @@ hu:
     Ha gyakori neveket akarsz szerkeszteni, kérjük mondj egy-két példát a végrehajtani kívánt változtatásokra.
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-    Ha viselkedést akarsz moderálni az iNaturaliston, kérünk hogy mondj egy-két példát közösségi irányelvek megsértésére és mit tennél azokban a helyzetekben.
+    Ha viselkedést akarsz moderálni az iNaturaliston, kérjük, hogy mondj egy-két példát közösségi irányelvek megsértésére, és arra, hogy mit tennél azokban a helyzetekben.
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hogyan veszíti el egy kurátor a hatáskörét
@@ -1459,7 +1459,7 @@ hu:
   #Label for the date/time when a flag was created
   flag_created: Bejelentés létrehozva
   flag_deleted: Bejelentés törölve
-  flag_description: A tartalom bejelentésével értesíted a gondozókat a problémáról.
+  flag_description: A tartalom bejelentésével értesíted a kurátorokat a problémáról.
   flag_comment_description: Megjegyzés hozzáadása az okokról és a bizonyítékról (opcionális).
   flag_for_check_list_title_html: |
     Lista bejelentése: %{title}
@@ -1503,11 +1503,11 @@ hu:
   flagged_taxon: Bejelentett taxon
   flagged_thing_explanation: "%{thing} eddigi bejelentései:"
   flagging_desc: |
-    A bejelentéssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
+    A bejelentéssel felhívhatod az önkéntes kurátorok figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
   flags: Bejelentések
   flags_with_count: Bejelentések (%{count})
-  flags_explanation: "Az %{site_name} felhasználói bejelenthetik a gondozók vagy az adminok figyelmét igénylő hibákat."
+  flags_explanation: "Az %{site_name} felhasználói bejelenthetik a kurátorok vagy az adminok figyelmét igénylő hibákat."
   flags_for_x_html: '%{x} bejelentések'
   flickr_account_information: Flickr fiókod adatai
   flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
@@ -1602,7 +1602,7 @@ hu:
   hide: Elrejtés
   hide_content: Tartalom elrejtése
   hide_desc: |
-    A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap gondozói és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
+    A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap kurátorai és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Megjelölés nélküli" elrejtése'
@@ -3157,7 +3157,7 @@ hu:
     one: Projekt admin
     other: Projekt adminok
   project_coordinate_access_warning: |
-    A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában, mielőtt megbíznál ebben a projektben.
+    A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik kurátorában, mielőtt megbíznál ebben a projektben.
   project_created_on: 'hozta létre ezt a projektet ekkor: %{date}'
   project_curators: A projekt kurátorai
   project_group_label: Csoport
@@ -3491,7 +3491,7 @@ hu:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} tőled"
-  see_something_wrong_with_taxon: Látsz valami hibásat e taxonnal kapcsolatban? Tudasd a gondozókkal.
+  see_something_wrong_with_taxon: Látsz valami hibásat e taxonnal kapcsolatban? Tudasd a kurátorokkal.
   seen_nearby: A közelben látták
   select: Kiválasztás
   select_all: Összes kijelölése
@@ -3772,6 +3772,7 @@ hu:
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a rendszertant és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  this_bioblitz_beings_in: 'Bioblitz visszaszámlálás:'
   this_is_how_taxon_names_will_be_displayed: Azt mutatja, hogyan jelenjenek meg számodra a taxonmegnevezések %{site_name} minden oldalán
   this_is_your_observation: Ez a te megfigyelésed
   this_is_your_observation_desc: Mindig láthatod saját megfigyeléseid koordinátáit.
@@ -4976,7 +4977,7 @@ hu:
         #Checkbox label for user preference about what to receive in the daily
         #email update. This one controls whether or not you get notifications
         #when the curators change in a project you've joined
-        notification_preferences_project_curator_changes: Változások a projek gondozói tekintetében
+        notification_preferences_project_curator_changes: Változások a projek kurátorai tekintetében
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Rendszertani változások
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5397,7 +5398,7 @@ hu:
               only_staff_can_unhide: Csak a személyzet jeleníthet meg rejtett tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
-              must_be_a_curator: gondozó kell legyen
+              must_be_a_curator: kurátor kell legyen
         observation:
           attributes:
             base:
@@ -5413,7 +5414,7 @@ hu:
               dna_only_atcg: "DNS-hez csak az A, T, C vagy G karaktereket tartalmazhatja"
             observation_id:
               user_does_not_accept_fields_from_others: a felhasználó nem fogad el mezőket másoktól
-              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap gondozóitól fogad el mezőket
+              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap kurátoraitól fogad el mezőket
         observations_export_flow_task:
           attributes:
             base:
@@ -5443,7 +5444,7 @@ hu:
         project_observation:
           attributes:
             user_id:
-              must_be_curator: ennek a projektnek gondozója kell legyen
+              must_be_curator: ennek a projektnek kurátora kell legyen
             observation_id:
               must_be_observed_after: |
                 %{time} után kell legyen megfigyelve
@@ -5453,22 +5454,22 @@ hu:
           attributes:
             rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
         taxon_name:
           attributes:
             name:
