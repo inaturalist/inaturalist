@@ -230,7 +230,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #result-grid .userimage {
   position: absolute;
-  right: 15px;
+  inset-inline-end: 15px;
   bottom: 65px;
 }
 .bootstrap .userimage:hover,
@@ -350,6 +350,11 @@ inat-taxon.split-taxon .icon {display: none;}
 #filters h1 {
   float: left;
 }
+
+[dir="rtl"] #filters h1 {
+  float: right;
+} 
+
 #filter-container,
 #filters .primary-filters {
   margin-top: 20px;
@@ -369,7 +374,7 @@ inat-taxon.split-taxon .icon {display: none;}
   background-color: #74ac00;
   position: absolute;
   top: -10px;
-  right: -10px;
+  inset-inline-end: -10px;
 }
 
 .bootstrap #filter-container .filter-changed,
@@ -455,7 +460,7 @@ inat-taxon.split-taxon .icon {display: none;}
   font-size: 12px;
   position: absolute;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
 }
 #stats-container .stat-title i:before {
   position: relative;
@@ -476,9 +481,9 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #stats-container .stat {
   margin: 15px 0;
-  border-left: 1px solid #aaa;
-  margin-left: -15px;
-  padding-left: 15px;
+  border-inline-start: 1px solid #aaa;
+  margin-inline-start: -15px;
+  padding-inline-start: 15px;
 }
 #stats-container .statcol.active .stat,
 #stats-container #obsstatcol .stat { border: 0 transparent; }
@@ -774,6 +779,23 @@ inat-taxon { white-space: nowrap; }
       margin-right: 2px;
       color: white;
     }
+  }
+}
+
+[dir=rtl] #view-controls {
+  #subview-controls {
+    float: right;
+    margin-right: 3px;
+    padding-bottom : 2px;
+  }
+  #primary-map-controls {
+    float: right;
+    margin-right: 12px;
+    padding-bottom: 2px;
+  }
+  #map-shape-controls {
+    padding-top: 1px;
+    float: right;
   }
 }
 .btn .glyphicon {
