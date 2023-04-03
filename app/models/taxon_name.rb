@@ -67,6 +67,7 @@ class TaxonName < ApplicationRecord
     FINNISH: "Finnish",
     FRENCH: "French",
     GELA: "Gela",
+    GEORGIAN: "Georgian",
     GERMAN: "German",
     GREEK: "Greek",
     HAWAIIAN: "Hawaiian",

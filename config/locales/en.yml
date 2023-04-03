@@ -2620,6 +2620,7 @@ en:
     french: French
     galician: Galician
     gela: Gela
+    georgian: Georgian
     german: German
     greek: Greek
     gujarati: Gujarati
@@ -2772,6 +2773,7 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    ka: Georgian
     kk: Kazakh
     kn: Kannada
     ko: Korean
@@ -8754,17 +8756,17 @@ en:
         one: "%{count} second"
         other: '%{count} seconds'
     countdown_x_days:
-      one: day
-      other: days
+      one: DAY
+      other: DAYS
     countdown_x_hours:
-      one: hour
-      other: hours
+      one: HOUR
+      other: HOURS
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MINS
     countdown_x_seconds:
-      one: sec
-      other: sec
+      one: SEC
+      other: SECS
     prompts:
       day: Day
       hour: Hour
