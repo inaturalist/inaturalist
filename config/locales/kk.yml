@@ -2179,18 +2179,6 @@ kk:
       x_seconds:
         one: "%{count} секунд"
         other: '%{count} секунд'
-    countdown_x_days:
-      one: күн
-      other: күн
-    countdown_x_hours:
-      one: сағат
-      other: сағат
-    countdown_x_minutes:
-      one: мин.
-      other: мин.
-    countdown_x_seconds:
-      one: сек.
-      other: сек.
     prompts:
       day: Күн
       hour: Сағат
