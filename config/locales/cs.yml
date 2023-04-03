@@ -7823,26 +7823,6 @@ cs:
         few: '%{count} sekund'
         many: '%{count} sekund'
         other: '%{count} sekund'
-    countdown_x_days:
-      one: den
-      few: dny
-      many: dny
-      other: dny
-    countdown_x_hours:
-      one: hodina
-      few: hodiny
-      many: hodiny
-      other: hodiny
-    countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
-    countdown_x_seconds:
-      one: sec
-      few: sec
-      many: sec
-      other: sec
     prompts:
       day: Den
       hour: Hodina
