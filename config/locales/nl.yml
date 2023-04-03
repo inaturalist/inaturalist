@@ -7624,18 +7624,6 @@ nl:
       x_seconds:
         one: "%{count} seconde"
         other: '%{count} seconden'
-    countdown_x_days:
-      one: dag
-      other: dagen
-    countdown_x_hours:
-      one: uur
-      other: uren
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sec
-      other: sec
     prompts:
       day: Dag
       hour: Uur
