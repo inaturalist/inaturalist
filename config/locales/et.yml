@@ -5808,15 +5808,6 @@ et:
       x_seconds:
         one: "1 sekund"
         other: '%{count} sekundit'
-    countdown_x_days:
-      one: päev
-      other: päeva
-    countdown_x_hours:
-      one: tund
-      other: tundi
-    countdown_x_seconds:
-      one: sek
-      other: sek
     prompts:
       day: Päev
       hour: Tund
