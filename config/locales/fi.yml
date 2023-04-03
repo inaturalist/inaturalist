@@ -6342,18 +6342,6 @@ fi:
       x_seconds:
         one: "1 sekunti"
         other: '%{count} sekuntia'
-    countdown_x_days:
-      one: päivä
-      other: päivää
-    countdown_x_hours:
-      one: tunti
-      other: tuntia
-    countdown_x_minutes:
-      one: minuutti
-      other: minuuttia
-    countdown_x_seconds:
-      one: sekunti
-      other: sekuntia
     prompts:
       day: Päivä
       hour: Tunti
