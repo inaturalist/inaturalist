@@ -7346,18 +7346,6 @@ tr:
       x_seconds:
         one: "%{count} saniye"
         other: '%{count} saniye'
-    countdown_x_days:
-      one: gün
-      other: gün
-    countdown_x_hours:
-      one: saat
-      other: saat
-    countdown_x_minutes:
-      one: dk
-      other: dk
-    countdown_x_seconds:
-      one: sn
-      other: sn
     prompts:
       day: Gün
       hour: Saat
