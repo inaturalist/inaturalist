@@ -146,7 +146,7 @@ ja:
   about_trusting_projects: Trust Projectsについて
   about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
-    これには、あなたが位置情報プライバシーを「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
+    これには、あなたが位置情報公開状況を「不明瞭」または「非公開」に設定した観察記録が含まれます。例えば、あなたの裏庭や他の人に知られたくない場所での観察記録などです。
   about_trusting_projects_options_taxon: |-
     このプロジェクトのあなたの観察記録のうち、絶滅危惧種のため場所が不明瞭なもののみ
   about_trusting_projects_options_taxon_desc: |-
@@ -742,7 +742,7 @@ ja:
     swap: 入力分類群を出力分類群に置き換え
     drop: 現在は完全に廃止された分類群。過去の記録またはデータ提供先との互換性のために保存されます。
     stage: 変更グループの一部としてリリースするための非アクティブなコンセプトを準備する
-  change_geoprivacy: '位置情報プライバシーを変更する'
+  change_geoprivacy: '位置情報公開状況を変更する'
   change_group: グループを変更
   change_icon: アイコンを変更
   change_password: パスワードを変更
@@ -5368,10 +5368,6 @@ ja:
         other: '%{count}ヶ月'
       x_seconds:
         other: '%{count}秒'
-    countdown_x_hours:
-      other: 時間
-    countdown_x_seconds:
-      other: 秒
     prompts:
       day: 日
       hour: 時間
