@@ -580,6 +580,7 @@ th:
   birds: นก
   birthday: วันเกิด
   blocked_users: ผู้ใช้ที่ถูกบล็อก
+  blog_widget: วิดเจ็ตของบล็อก
   blue_butterfly_etc: "สีฟ้า ผีเสื้อ ฯลฯ"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: ข้อความตัวหนา
@@ -1238,6 +1239,7 @@ th:
   leave_this_project: ออกจากโครงการนี้
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
+  let_us_walk_you_through: ให้เราแนะนำคุณเกี่ยวกับคุณสมบัติหลักของเว็บไซต์นี้
   lexicon: ภาษา/ศัพท์เฉพาะ
   lexicon_cannot_contain_words: "ไม่สามารถมีคำต่อไปนี้: %{words}"
   lexicons:
@@ -1378,6 +1380,7 @@ th:
     uk: ภาษายูเครน
     zh-CN: ภาษาจีน (ตัวย่อ)
     zh-TW: ภาษาจีน (ดั้งเดิม)
+  localized_species_accounts: บัญชีชนิดพันธุ์เฉพาะถิ่น
   location: ตำแหน่ง
   location_is_accurate: ตำแหน่งถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
@@ -2532,6 +2535,7 @@ th:
   view_on_flickr: ดูใน Flickr
   view_place: ดูสถานที่
   view_projects_from_place: "ดูโครงการจาก %{place}"
+  view_sample: ดูตัวอย่าง
   view_stats: ดูสถิติ
   view_taxon_change: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   view_taxon_changes: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
@@ -2590,6 +2594,7 @@ th:
   withdraw: ถอนออก
   #Loading status while an identification is being withdrawn
   withdrawing: กำลังถอน...
+  worldwide: ทั่วโลก
   x_journal: "วารสารของ %{user}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
@@ -3000,14 +3005,6 @@ th:
         other: '%{count} นาที'
       x_months:
         other: '%{count} เดือน'
-    countdown_x_days:
-      other: วัน
-    countdown_x_hours:
-      other: ชั่วโมง
-    countdown_x_minutes:
-      other: นาที
-    countdown_x_seconds:
-      other: วินาที
     prompts:
       day: วัน
       hour: ชั่วโมง
