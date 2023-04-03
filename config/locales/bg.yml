@@ -5035,18 +5035,6 @@ bg:
       x_seconds:
         one: "1 секунда"
         other: '%{count} секунди'
-    countdown_x_days:
-      one: ден
-      other: дена
-    countdown_x_hours:
-      one: час
-      other: часа
-    countdown_x_minutes:
-      one: мин
-      other: мин
-    countdown_x_seconds:
-      one: сек
-      other: сек
     prompts:
       day: Ден
       hour: Час
