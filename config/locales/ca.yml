@@ -7212,18 +7212,6 @@ ca:
       x_seconds:
         one: "1 segon"
         other: '%{count} segons'
-    countdown_x_days:
-      one: dia
-      other: dies
-    countdown_x_hours:
-      one: hora
-      other: hores
-    countdown_x_minutes:
-      one: min.
-      other: mins.
-    countdown_x_seconds:
-      one: seg.
-      other: segs.
     prompts:
       day: Dia
       hour: Hora
