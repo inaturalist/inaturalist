@@ -64,7 +64,7 @@ class EventCountdown extends Component {
             </span>
           </Col>
           <Col xs={3}>
-            <span className="value">{ numberWithCommas( seconds ) }</span>
+            <span className="value">{ seconds }</span>
             <span className="type">
               { I18n.t( "datetime.countdown_x_seconds", { count: seconds } ) }
             </span>
