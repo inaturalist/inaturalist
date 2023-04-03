@@ -4936,26 +4936,6 @@ lt:
         few: '%{count} mėnesiai'
         many: '%{count} mėnesiai'
         other: '%{count} mėnesiai'
-    countdown_x_days:
-      one: diena
-      few: dienos
-      many: dienos
-      other: dienos
-    countdown_x_hours:
-      one: valanda
-      few: valandos
-      many: valandos
-      other: valand.
-    countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
-    countdown_x_seconds:
-      one: sek
-      few: sek
-      many: sek
-      other: sek
     prompts:
       day: Diena
       hour: Valanda
