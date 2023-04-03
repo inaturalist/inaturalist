@@ -4596,22 +4596,6 @@ sr:
         one: "%{count} sekund"
         few: '%{count} sekunda'
         other: '%{count} sekundi'
-    countdown_x_days:
-      one: dan
-      few: dana
-      other: dana
-    countdown_x_hours:
-      one: sat
-      few: sata
-      other: sati
-    countdown_x_minutes:
-      one: minut
-      few: minuta
-      other: minuta
-    countdown_x_seconds:
-      one: sekund
-      few: sekunda
-      other: sekundi
     prompts:
       day: Dan
       hour: Sat
