@@ -4,11 +4,6 @@ import { Row, Col } from "react-bootstrap";
 import moment from "moment-timezone";
 
 class EventCountdown extends Component {
-  constructor( props ) {
-    super( props );
-    this.state = { refresh: Math.random( ) };
-  }
-
   componentDidMount( ) {
     const { startTimeObject, setAttributes } = this.props;
     let timeDiff;
@@ -22,8 +17,8 @@ class EventCountdown extends Component {
         // the event has started
         setAttributes( { started: true } );
       } else {
-        // trigger a refresh of this component by updating some property
-        this.setState( { refresh: Math.random( ) } );
+        // trigger a refresh of this component
+        this.forceUpdate( );
       }
     }, 200 );
   }
@@ -46,37 +41,39 @@ class EventCountdown extends Component {
     return (
       <div className="EventCountdown">
         <div className="section-intro">
-           {I18n.t( "this_bioblitz_beings_in" ) }:
+          {I18n.t( "this_bioblitz_beings_in" ) }
+          :
         </div>
         <Row className="">
-          <Col xs={ 3 }>
+          <Col xs={3}>
             <span className="value">{ days }</span>
             <span className="type">
               { I18n.t( "datetime.countdown_x_days", { count: days } ) }
             </span>
           </Col>
-          <Col xs={ 3 }>
+          <Col xs={3}>
             <span className="value">{ hours }</span>
             <span className="type">
               { I18n.t( "datetime.countdown_x_hours", { count: hours } ) }
             </span>
           </Col>
-          <Col xs={ 3 }>
+          <Col xs={3}>
             <span className="value">{ minutes }</span>
             <span className="type">
               { I18n.t( "datetime.countdown_x_minutes", { count: minutes } ) }
             </span>
           </Col>
-          <Col xs={ 3 }>
-            <span className="value">{ seconds }</span>
+          <Col xs={3}>
+            <span className="value">{ numberWithCommas( seconds ) }</span>
             <span className="type">
               { I18n.t( "datetime.countdown_x_seconds", { count: seconds } ) }
             </span>
           </Col>
         </Row>
         <button
+          type="button"
           className="btn-green"
-          onClick={ ( ) => setSelectedTab( "about" ) }
+          onClick={( ) => setSelectedTab( "about" )}
         >
           { I18n.t( "about_this_bioblitz" ) }
         </button>
@@ -86,7 +83,6 @@ class EventCountdown extends Component {
 }
 
 EventCountdown.propTypes = {
-  config: PropTypes.object,
   setAttributes: PropTypes.func,
   startTimeObject: PropTypes.object,
   setSelectedTab: PropTypes.func

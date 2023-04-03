@@ -220,23 +220,6 @@ module ApplicationHelper
     dialog + link
   end
 
-  def link_to_tip(title, options = {}, &block)
-    id = title.gsub(/\W/, '').underscore
-    dialog = content_tag(:div, capture(&block), :class => "tip", :style => "display:none", :id => "#{id}_tip")
-    link_options = options.delete(:link) || {}
-    data = (options.delete(:tip) || {}).merge(tip: "##{id}_tip")
-    data['tip-options'] = {
-      content: {
-        text: "##{id}_tip"
-      },
-      show: {event: 'click'},
-      hide: {event: 'click unfocus'}
-    }.merge(options.delete(:tip_options) || {}).to_json
-    options = options.merge(data: data)
-    link = link_to(title, "#", options.merge(onclick: "javascript:return false;"))
-    dialog + link
-  end
-  
   # Generate a URL based on the current params hash, overriding existing values
   # with the hash passed in.  To remove existing values, specify them with
   # :without => [:some, :keys]
@@ -464,39 +447,7 @@ module ApplicationHelper
     end
     block_given? ? concat(content.html_safe) : content.html_safe
   end
-  
-  def one_line_observation(o, options = {})
-    skip = (options.delete(:skip) || []).map(&:to_sym)
-    txt = ""
-    txt += "#{o.user.login} observed " unless skip.include?(:user)
-    unless skip.include?(:taxon)
-      txt += if o.taxon
-        render(:partial => 'shared/taxon', :locals => {
-          :taxon => o.taxon,
-          :include_article => true
-        })
-      else
-        t(:something)
-      end
-      txt += " "
-    end
-    unless skip.include?(:observed_on)
-      txt += if o.observed_on.blank?
-        t(:in_the_past).downcase
-      else
-        "#{t(:on_day, :default => "on")} #{l o.observed_on, format: :long} "
-      end
-    end
-    unless skip.include?(:place_guess)
-      txt += if o.place_guess.blank?
-        t(:somewhere_on_earth).downcase
-      else
-        "#{t(:in, :default => "in")} #{o.place_guess}"
-      end
-    end
-    txt
-  end
-  
+
   def html_attributize(txt)
     return txt if txt.blank?
     strip_tags(txt).gsub('"', "'").gsub("\n", " ")
