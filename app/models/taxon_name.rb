@@ -361,6 +361,7 @@ class TaxonName < ApplicationRecord
   end
 
   def locale_for_lexicon
+    # Note that `und` is an official ISO 639 code for "Undetermined". See https://en.wikipedia.org/wiki/ISO_639:u
     LOCALES[localizable_lexicon] || "und"
   end
 

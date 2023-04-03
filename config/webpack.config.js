@@ -4,7 +4,7 @@ const webpack = require( "webpack" );
 const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
-  mode: "none",
+  mode: process.env.RAILS_ENV === "production" ? "production" : "none",
   target: ["web", "es5"],
   context: path.resolve( webpackAssetsPath ),
   entry: {
@@ -57,8 +57,12 @@ const config = {
     ]
   },
   plugins: [
+    // Some dependencies seem to expect process.env.NODE_ENV to be defined,
+    // particularly in development
     new webpack.DefinePlugin( {
-      "process.env.NODE_ENV": JSON.stringify( process.env.NODE_ENV )
+      "process.env.NODE_ENV": JSON.stringify(
+        process.env.RAILS_ENV || process.env.NODE_ENV
+      )
     } )
   ]
 };
