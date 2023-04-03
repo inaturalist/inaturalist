@@ -7916,18 +7916,6 @@ da:
       x_seconds:
         one: "1 sekund"
         other: '%{count} sekunder'
-    countdown_x_days:
-      one: dag
-      other: dage
-    countdown_x_hours:
-      one: time
-      other: timer
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sek
-      other: sek
     prompts:
       day: Dag
       hour: Time
