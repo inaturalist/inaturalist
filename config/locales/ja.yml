@@ -610,6 +610,7 @@ ja:
   attribution_uploaded_by_user: "%{attribution}, %{user} によって投稿されました"
   authority_list:
     iucn_red_list: IUCNレッドリスト
+    natureserve: NatureServe
     cites: ワシントン条約（CITES）
   authorize: 承認
   #Second-person verb to authorize an application to access an iNat account
@@ -677,6 +678,7 @@ ja:
   birds: 鳥類
   birthday: 誕生日
   black: 黒
+  block: ブロック
   block_removed: ブロックを削除しました
   blocked_users: ブロックしたユーザー
   blog_widget: ブログ用のウィジェット
@@ -1416,6 +1418,8 @@ ja:
   draft: 下書き
   #Noun, as in a journal post that has not been published
   draft_: 下書き
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: 下書き - %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: 下書きが保存されました
   #Noun, as in journal posts that has not been published
@@ -1961,6 +1965,7 @@ ja:
   italic_text: 斜体
   item_flagged_notice_html: |
     これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、サイトの管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。<a href="%{manage_flags_path}">フラグの管理</a>
+  jobs: 採用情報
   join: 参加
   join_and_add_an_observation_to_project_html: '%{project} への参加と観察記録の追加'
   join_project: このプロジェクトに参加する
@@ -2480,6 +2485,8 @@ ja:
   needs_to_be_identified: 要同定
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
+  #Column header in a table listing iNaturalist Network members
+  network_member: ネットワークメンバー
   new: 新規
   new_and_noteworthy: 注目すべき新機能
   new_announcement: 新着お知らせ
@@ -2524,10 +2531,14 @@ ja:
   newly_observed_species: 新たに観察された種
   newly_observed_species_in_year: "%{year} に新たに追加された種"
   next: 次
+  next_date_short: 次へ
   next_observation: 次の観察記録
   next_page: 次のページ
+  next_page_short: 次へ
   next_photo: 次の写真
+  next_post_short: 次へ
   next_tab: 次のタブ
+  next_taxon_short: 次へ
   'no': 'いいえ'
   no_assessments_have_been_added_to_this_project_yet: このプロジェクトにはまだ評価がありません。
   no_but_it_is_a_member_of_taxon: "同定に十分な情報が無いか、 %{taxon} の別の分類群です。"
@@ -2556,6 +2567,7 @@ ja:
   no_matching_places: 一致する場所がありません
   no_matching_projects: 一致するプロジェクトがありません
   no_matching_species: 一致する種がありません
+  no_matching_taxa: 一致する分類群がありません
   no_matching_users: 一致するユーザーありません
   no_members_yet: "メンバーはまだありません。"
   no_messages_yet: メッセージはまだありません。
@@ -2638,6 +2650,9 @@ ja:
   observation_: 観察記録
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
   observation_aggregation: 観察記録の集合体
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: 観察 - %{user}
   observation_brief_something_on_day: "%{day} の何か"
   observation_brief_something_on_day_at_time: "%{day} %{time} の何か"
   observation_brief_something_on_day_at_time_by_user: "%{user}さんによる %{day} %{time} の何か"
@@ -2740,10 +2755,12 @@ ja:
   of_places: 場所
   of_this_taxon: この分類群の
   offensive_inappropriate: 不快／不適切
+  off_caps: "OFF"
   official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
   old_observation_form: 旧観察記録記入フォーム（非推奨）
   ok: "OK"
+  on_caps: "ON"
   onboarding:
     observe_panel_title: 早速観察記録を投稿しよう！
     observe_panel_body_p1_local: 何を投稿すればいいのかわからない？近隣で観察されている生き物を見てみましょう...
@@ -3330,6 +3347,10 @@ ja:
   post_from_your_journal_html: <a href="%{url}">あなたの日記</a>からの投稿
   post_published: 投稿されました！
   posted_by: 投稿者
+  #Shows the date a journal post was published
+  posted_on_date_html: '投稿日: %{date}'
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: '投稿日: %{date}、投稿者 - %{user}'
   posts: 投稿
   potential_disagreement: 不一致の可能性
   powered_by: 搭載ソフト：
@@ -3339,11 +3360,15 @@ ja:
   preview_observations_with_these_observation_requirements: これらの観察条件で観察記録をプレビューする
   preview_of_synced_observation: "同期済の観察記録の<strong>プレビュー</strong>です。<a href=\\\"%{url}\\\">取り消しますか？</a>"
   previewing: "プレビュー中"
+  previous_date_short: 前へ
   prev: 前へ
   previous_observation: 前の観察記録
   previous_page: 前のページ
+  previous_page_short: 前へ
   previous_photo: 前の写真
+  previous_post_short: 前へ
   previous_tab: 前のタブ
+  previous_taxon_short: 前へ
   print_verb: 印刷
   privacy: プライバシー
   private: 非公開
@@ -3638,6 +3663,9 @@ ja:
   research_grade_tooltip_html: '"研究用"グレードの観察記録は、メディア、位置、日付、そして正確な同定（通常は種レベル）についてコミュニティの合意が得られています。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
   research_grade_observations_have: '"研究用グレード"の観察記録には、日付、写真、座標、コミュニティが支持する同定が含まれています。クリックすると、データ品質評価を見ることができます。'
   research_grade_qualification: 研究用グレードの資格
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: 再送信してサインアウト
   resend_confirmation_email: 確認メールを再送信
   reset_filters_short: リセット
   reset_brightness: 明るさをリセット
@@ -3926,6 +3954,10 @@ ja:
   stats: 統計
   stats_for_this_year_have_not_been_generated: 今年の統計は作成されていません。
   status: 状況
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>上位の分類群から適用された位置情報公開状況:</strong> %{taxon}
   status_globally: '世界中で「%{status}」'
   status_in_place: '%{place} で「%{status}」'
   stay_and_try_again: 滞在して、もう一度試してみてください。
@@ -4254,6 +4286,8 @@ ja:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_kolkata: インド標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_novosibirsk: クラスノヤルスク時間
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_shanghai: 中国標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_singapore: シンガポール標準時
@@ -4261,6 +4295,8 @@ ja:
   time_zone_asia_taipei: 台湾標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_tokyo: 日本標準時
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_yekaterinburg: エカテリンブルク時間
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_australia_adelaide: アデレード標準時
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4449,6 +4485,8 @@ ja:
   used_x_times:
     other: '%{count}回使用'
   user: ユーザー
+  user1_and_user2_faved_this_observation: "%{user1}さんと%{user2}さんがこの観察記録をお気に入りに追加しました"
+  user1_user2_and_x_others_faved_this_observation: "%{user1}さんと%{user2}さんと%{x_others}さんがこの観察記録をお気に入りに追加しました"
   user_added_a_comment_html: "%{user} さんがコメントを追加しました"
   user_added_a_fave_html: "%{user}さんがお気に入りを追加しました"
   user_added_a_flag_html: "%{user}さんがフラグを追加しました"
@@ -4464,6 +4502,8 @@ ja:
   user_commented: "%{user} さんがコメントしました"
   user_disagrees_this_is_taxon: "%{user} さんは同定に必要な情報が無いか、 %{taxon} ではないと考えています"
   user_disagrees_with_previous_finer_identifications: "%{user}は以前のより細かい分類レベルの同定に不賛成しました。"
+  user_faved_an_observation_by_you: "%{user}さんがあなたの観察記録をお気に入りに追加しました。"
+  user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_flagged_as_a_non_spammer_html: "%{user} を非スパマーとしてマークしました"
   user_flagged_as_a_spammer_html: "%{user} をスパマーとしてマークしました"
   user_has_opted_out_of_community_id: 利用者はコミュニティ分類群の通知を受け取りません
@@ -4658,6 +4698,7 @@ ja:
   withdrawing: 撤回中...
   wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
+  would_you_prefer_to_view_common_names_used_in_place_html: <strong>%{place}</strong>で使われる習慣的な名称で表示しますか?
   x_blog: "%{x}のブログ"
   x_deleted: "%{x}は削除されました"
   x_does_not_exist: "%{x}は存在しません"
@@ -5054,6 +5095,8 @@ ja:
           まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
         welcome_to_projects: プロジェクトへようこそ！
         errors:
+          name_is_required: プロジェクト名が必要です
+          name_less_than_100_characters: プロジェクト名は100文字未満にする必要があります
           name_already_taken: このプロジェクト名は既に使用されています
           summary_is_required: プロジェクトの概要が必要です。
       project_user_curator_coordinate_access_labels:
@@ -5086,7 +5129,10 @@ ja:
     search:
       index:
         no_taxa_options: "いくつかの選択肢があります:"
+        no_taxa_forum: フォーラムに連絡
     shared:
+      blocked:
+        youve_been_blocked: ブロックされました
       spam:
         message_for_owner_and_curators_html: |
           これはスパムとしてフラグが付けられ、公開されていません。作成者自身か、キュレーター管理者のみに表示されます。間違いだと思われる場合は<a href="mailto:%{email}">ご連絡</a>ください。
@@ -5132,12 +5178,18 @@ ja:
         growth_title: 成長
         new_species_desc_html: |
           今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
+        new_species_per_year_by_date_added: 追加した日付順
+        new_species_per_year_by_date_observed: 観察した日付順
+        observations_per_year_by_date_added: 追加した日付順
+        observations_per_year_by_date_observed: 観察した日付順
         #Periods where someone consistently made observations, e.g. "a 10-day streak"
         observation_streaks: 連続観測
         observation_streaks_color_desc: |
           色は対数スケールで日数を表しています。
         observation_streaks_desc2: |
           連続観測とは、誰かが毎日外に出て、検証可能な新しい観測を記録した、少なくとも5日間の期間のことを言います。ここでは、今年始まった、あるいはこの統計が作成された時点で進行中である最長連続観測を表示しています（個々のユーザーについては、今年終了した連続観測も含めています）。
+        species_per_year_by_date_added: 追加した日付順
+        species_per_year_by_date_observed: 観察した日付順
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
         sunburst_desc_html: |
           観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
@@ -5250,6 +5302,9 @@ ja:
         this_user_was_banned: このユーザーは利用停止されました
         favorites_list_prompt_html: |
           あなたのお気に入りの分類群を紹介してみませんか？「%{link_start_tag}お気に入り%{link_end_tag}」というタイトルのリストを作成してみよう。最近追加されたものがこのスペースに表示されます。
+    user_parents:
+      new:
+        child_name_private: お子様の名前 (プライベート)
     welcome:
       index:
         connect_with_nature: 自然とふれ合おう
@@ -5376,6 +5431,8 @@ ja:
       second: 秒
       year: 年
   helpers:
+    defaults:
+      title: "これはタイトルです"
     select:
       prompt: 選択してください
     submit:
@@ -5383,6 +5440,19 @@ ja:
       submit: '%{model} を保存'
       update: '%{model} を更新'
   number:
+    format:
+      #The delimiter separates parts of large integers, so if the number is
+      #"one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "," is the delimiter. This should not be
+      #the same as the separator.
+      delimiter: ','
+      #The separator separates an integer from a decimal fraction, so if the
+      #number is "one million and two and a half" this would be written as
+      #"1,000,002.5" in English, and "." is the separator. This should not be
+      #the same as the delimiter.
+      separator: .
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -5500,6 +5570,7 @@ ja:
         #taxon
         show_for_descendent_taxa: 子孫分類群を表示
       user:
+        login: ユーザ名
         locale: 地域
         time_zone: タイムゾーン
         search_place_id: 場所を検索
@@ -5580,5 +5651,6 @@ ja:
   will_paginate:
     previous_label: "&#8592; 前へ"
     next_label: "次へ &#8594;"
+    page_gap: "&hellip;"
   zoom_in: 拡大
   zoom_out: 縮小
