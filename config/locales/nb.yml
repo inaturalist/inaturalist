@@ -6230,18 +6230,6 @@ nb:
       x_seconds:
         one: "%{count} sekund"
         other: '%{count} sekunder'
-    countdown_x_days:
-      one: dag
-      other: dager
-    countdown_x_hours:
-      one: time
-      other: timer
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sek
-      other: sek
     prompts:
       day: Dag
       hour: Time

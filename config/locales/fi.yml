@@ -173,6 +173,7 @@ fi:
   about_taxon_ranges: Tietoja taksonin alueesta
   about_taxon_ranges_desc: |
     Taksonin alue kuvaa taksonin maailmanlaajuista levinneisyyttä. Tiedot tulevat tyypillisesti IUCN Punaisesta kirjasta.
+  about_the_network: Tietoa verkostosta
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
@@ -745,6 +746,8 @@ fi:
   birds: linnut
   birthday: Syntymäpäivä
   black: musta
+  block: Estä
+  blocking_description: Estäminen estää yhteydenpidon sinun ja toisen käyttäjän välillä. Estäminen on tarkoitettu tilanteisiin, joissa toinen käyttäjä häiritsee sinua, esimerkiksi vainoaa tai tekee muuta väärinkäyttöä.
   block_removed: Esto poistettu
   blocked_users: Estetyt käyttäjät
   blog_widget: Blogi-pienoisohjelma
@@ -1497,6 +1500,8 @@ fi:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: LAHJOITA
+  donate_again_caps: LAHJOITA UUDELLEEN
+  donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
   done: Valmis
   dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
@@ -2175,6 +2180,8 @@ fi:
     scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
+    aou_4_letter_codes: AOU 4-kirjainkoodit
+    aou_6_letter_codes: AOU 6-kirjainkoodit
     arabic: Arabia
     armenian: Armenia
     belarusian: Valkovenäjä
@@ -2197,11 +2204,14 @@ fi:
     finnish: Suomi
     french: Ranska
     galician: Galicia
+    georgian: Georgia
     german: Saksa
     greek: Kreikka
+    gujarati: Gujarati
     hawaiian: Havaiji
     hebrew: Heprea
     hiligaynon: Hiligaino
+    hokkien: Hokkien
     hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
@@ -2248,6 +2258,7 @@ fi:
     tokelauan: Tokelau
     turkish: Turkki
     ukrainian: Ukraina
+    uyghur: Uiguuri
     waray_waray: Waray-waray
     visayan: Visaya
   less: Vähemmän
@@ -2338,6 +2349,7 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    ka: Georgia
     kk: Kazakki
     kn: Kannada
     ko: korea
@@ -2560,6 +2572,8 @@ fi:
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Kuukausi
   #title for section describing people who donate to iNat every month
   monthly_supporters: Kuukausilahjoittajat
@@ -3266,6 +3280,10 @@ fi:
       subdivision: naapurusto
       Suburb: Lähiö
       suburb: lähiö
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Ylänimi
       supername: ylänimi
       Territory: Reviiri
@@ -4229,6 +4247,10 @@ fi:
   stats: Tilastot
   stats_for_this_year_have_not_been_generated: Paina nappia alta, niin luomme tilastot.
   status: Tila
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Tila haettu korkeammalta taksonilta:</strong> %{taxon}
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?
   still_working_on_classifying_taxon: Taksonin luokittelu edelleen käynnissä. Tarkista myöhemmin
@@ -4506,6 +4528,8 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: Guatemalan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantin normaaliaika (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: Bolivian aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: Perun aika
@@ -4524,7 +4548,23 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: Meksikon Tyynenmeren aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indokiinan aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hongkongin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Länsi-Indonesian aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Israelin normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Intian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_novosibirsk: Krasnojarskin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Kiinan normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singaporen normaaliaika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: Taiwanin aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4585,6 +4625,8 @@ fi:
   time_zone_pacific_apia: Samoan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Uuden-Seelannin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havaijin-Aleuttien normaaliaika
   #As in the title of a book or a blog post
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
@@ -6013,6 +6055,8 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
+          "Sex=Female": Naaras
+          "Sex=Male": Koiras
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -6188,6 +6232,15 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa havaintosi.
+        observations_to_date:
+          one: "Havainto tällä hetkellä"
+          other: "Havaintoa tällä hetkellä"
+        species_observed:
+          one: "Laji havaittu"
+          other: "Lajia havaittu"
+        people_signed_up:
+          one: "Rekisteröitynyttä käyttäjää"
+          other: "Rekisteröitynyttä käyttäjää"
         how_it_works: Näin se toimii
         record_your_observations: Tallenna omat havainnot
         share_with_fellow_naturalists: Jaa muiden luontoharrastajien kanssa
@@ -6323,17 +6376,17 @@ fi:
         one: "1 sekunti"
         other: '%{count} sekuntia'
     countdown_x_days:
-      one: päivä
-      other: päivää
+      one: PÄIVÄ
+      other: PÄIVÄÄ
     countdown_x_hours:
-      one: tunti
-      other: tuntia
+      one: TUNTI
+      other: TUNTIA
     countdown_x_minutes:
-      one: minuutti
-      other: minuuttia
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sekunti
-      other: sekuntia
+      one: SEK
+      other: SEK
     prompts:
       day: Päivä
       hour: Tunti
@@ -6541,6 +6594,8 @@ fi:
         wikipedia_summary: Wikipedia-yhteenveto
         wikipedia_title: Wikipedia-otsikko
       taxon_name:
+        lexicon: Sanasto
+        name: Nimi
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
@@ -6574,10 +6629,25 @@ fi:
         blank: ei voi olla tyhjä
         confirmation: ei vastaa salasanaa
         empty: ei voi olla tyhjä
+        equal_to:
+          one: oltava yhtäsuuri kuin %{count}
+          other: oltava yhtäsuuri kuin %{count}
         even: pitää olla parillinen
         exclusion: on varattu
+        greater_than:
+          one: oltava suurempi kuin %{count}
+          other: oltava suurempi kuin %{count}
+        greater_than_or_equal_to:
+          one: oltava suurempi tai yhtäsuuri kuin %{count}
+          other: oltava suurempi tai yhtäsuuri kuin %{count}
         inclusion: ei sisälly luetteloon
         invalid: on virheellinen
+        less_than:
+          one: oltava vähemmän kuin %{count}
+          other: oltava vähemmän kuin %{count}
+        less_than_or_equal_to:
+          one: oltava vähemmän tai yhtäsuuri kuin %{count}
+          other: oltava vähemmän tai yhtäsuuri kuin %{count}
         new_project_owner_must_be_a_manager: Projektin uuden omistajan tulee olla ylläpitäjä
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku

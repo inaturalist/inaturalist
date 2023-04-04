@@ -917,6 +917,8 @@ cs:
   birds: ptáci
   birthday: Narozeniny
   black: černá
+  block: Blokovat
+  blocking_description: Blokování zabraňuje jakékoli komunikaci mezi vámi a jiným uživatelem. Je to pro situace, kdy může vaše bezpečnost ohrozit jiný uživatel, jako je stalking nebo jiné obtěžující chování.
   block_removed: Zablokování zrušeno
   blocked_users: Zablokovaní uživatelé
   blog_widget: Zásuvný modul pro blog
@@ -2490,6 +2492,8 @@ cs:
     scientific_names: Vědecké názvy
     afrikaans: Afrikánština
     albanian: Albánština
+    aou_4_letter_codes: Čtyřpísmenný kód AOU
+    aou_6_letter_codes: 6 písmenný kód AOU
     arabic: Arabština
     armenian: Arménština
     belarusian: Běloruština
@@ -2515,9 +2519,11 @@ cs:
     gela: Gela
     german: Němčina
     greek: Řečtina
+    gujarati: Gudžarátština
     hawaiian: Havajština
     hebrew: Hebrejština
     hiligaynon: Hiligaynon
+    hokkien: Hokkienština
     hungarian: Maďarština
     icelandic: Islandština
     ilokano: Ilokano
@@ -2564,6 +2570,7 @@ cs:
     tokelauan: Tokelauan
     turkish: turecky
     ukrainian: Ukrajinština
+    uyghur: Ujghurština
     waray_waray: Waray-Waray
     visayan: Visayan
   less: Méně
@@ -7666,6 +7673,11 @@ cs:
       index:
         connect_with_nature: Spojte se s přírodou
         explore_and_share: Objevujte a sdílejte svá pozorování ze světa přírody.
+        species_observed:
+          one: "Pozorovaný druh"
+          few: "Pozorované druhy"
+          many: "Pozorovaných druhů"
+          other: "Pozorovaných druhů"
         how_it_works: Jak to funguje
         record_your_observations: Zaznamenejte své pozorování
         share_with_fellow_naturalists: Sdílejte s našimi přírodovědci
@@ -7823,26 +7835,6 @@ cs:
         few: '%{count} sekund'
         many: '%{count} sekund'
         other: '%{count} sekund'
-    countdown_x_days:
-      one: den
-      few: dny
-      many: dny
-      other: dny
-    countdown_x_hours:
-      one: hodina
-      few: hodiny
-      many: hodiny
-      other: hodiny
-    countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
-    countdown_x_seconds:
-      one: sec
-      few: sec
-      many: sec
-      other: sec
     prompts:
       day: Den
       hour: Hodina

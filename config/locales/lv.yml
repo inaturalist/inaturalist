@@ -7023,22 +7023,6 @@ lv:
         zero: '%{count} sekundes'
         one: "%{count} sekunde"
         other: '%{count} sekundes'
-    countdown_x_days:
-      zero: dienas
-      one: diena
-      other: dienas
-    countdown_x_hours:
-      zero: stundas
-      one: stunda
-      other: stundas
-    countdown_x_minutes:
-      zero: min.
-      one: min.
-      other: min.
-    countdown_x_seconds:
-      zero: sek.
-      one: sek.
-      other: sek.
     prompts:
       day: Diena
       hour: Stunda

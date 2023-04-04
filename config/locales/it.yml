@@ -7315,18 +7315,6 @@ it:
       x_seconds:
         one: "1 secondo"
         other: '%{count} secondi'
-    countdown_x_days:
-      one: giorno
-      other: giorni
-    countdown_x_hours:
-      one: ora
-      other: ore
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sec
-      other: sec
     prompts:
       day: Giorno
       hour: Ora

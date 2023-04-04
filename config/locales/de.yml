@@ -2234,6 +2234,8 @@ de:
     scientific_names: Wissenschaftl. Name
     afrikaans: Afrikaans
     albanian: Albanisch
+    aou_4_letter_codes: AOU 4-Buchstaben-Codes
+    aou_6_letter_codes: AOU 6-Buchstaben-Codes
     arabic: Arabisch
     armenian: Armenisch
     belarusian: Weißrussisch
@@ -2259,9 +2261,11 @@ de:
     gela: Gela
     german: Deutsch
     greek: Griechisch
+    gujarati: Gujarati
     hawaiian: Hawaiisch
     hebrew: Hebräisch
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Ungarisch
     icelandic: Isländisch
     ilokano: Ilokano
@@ -2308,6 +2312,7 @@ de:
     tokelauan: Tokelauisch
     turkish: Türkisch
     ukrainian: Ukrainisch
+    uyghur: Uigurisch
     waray_waray: Wáray-Wáray
     visayan: Visayan
   less: Weniger
@@ -7371,18 +7376,6 @@ de:
       x_seconds:
         one: "%{count} Sekunde"
         other: '%{count} Sekunden'
-    countdown_x_days:
-      one: Tag
-      other: Tage
-    countdown_x_hours:
-      one: Stunde
-      other: Stunden
-    countdown_x_minutes:
-      one: Min.
-      other: Min.
-    countdown_x_seconds:
-      one: Sek.
-      other: Sek.
     prompts:
       day: Tag
       hour: Stunde
@@ -7705,6 +7698,13 @@ de:
               has_query_parameter: "kann keinen Abfrageparameter enthalten."
               invalid_uri: "muss ein gültiger URI sein."
               relative_uri: "muss ein absoluter URI sein."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: hat Kommentare deaktiviert
         flag:
           attributes:
             flag:

@@ -2603,7 +2603,7 @@ uk:
   must_be_observed_after: має бути спостережено після %{operand}
   must_be_observed_before: має бути спостережено до %{operand}
   must_be_observed_by_user: повинні бути спостережені %{user}
-  must_be_observed_in_place: не повинні бути спостережені у %{place}
+  must_be_observed_in_place: повинні бути спостережені у %{place}
   must_be_less_than_x_MB: "має бути менше за %{x} МБ"
   must_have_observation_field: "спостереження мусить мати заповнене поле %{operand}"
   must_have_photos: повинні мати фото
@@ -6931,26 +6931,6 @@ uk:
         few: '%{count} секунди'
         many: '%{count} секунд'
         other: '%{count} секунд'
-    countdown_x_days:
-      one: день
-      few: дні
-      many: днів
-      other: днів
-    countdown_x_hours:
-      one: година
-      few: години
-      many: годин
-      other: годин
-    countdown_x_minutes:
-      one: хв
-      few: хв
-      many: хв
-      other: хв
-    countdown_x_seconds:
-      one: с
-      few: с
-      many: с
-      other: с
     prompts:
       day: день
       hour: година

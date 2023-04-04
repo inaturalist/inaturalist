@@ -2292,6 +2292,8 @@ tr:
     scientific_names: Bilimsel Adlar
     afrikaans: Afrikaanca
     albanian: Arnavutça
+    aou_4_letter_codes: AOU 4-Harf Kodları
+    aou_6_letter_codes: AOU 6-Harf Kodları
     arabic: Arapça
     armenian: Ermenice
     belarusian: Belarusça
@@ -2315,11 +2317,14 @@ tr:
     french: Fransızca
     galician: Galiçyaca
     gela: Gela
+    georgian: Gürcüce
     german: Almanca
     greek: Yunanca
+    gujarati: Güceratça
     hawaiian: Havaice
     hebrew: İbranice
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Macarca
     icelandic: İzlandaca
     ilokano: Ilokano
@@ -2366,6 +2371,7 @@ tr:
     tokelauan: Tokelauca
     turkish: Türkçe
     ukrainian: Ukraynaca
+    uyghur: Uygurca
     waray_waray: Varay
     visayan: Visayanca
   less: Daha az
@@ -2463,6 +2469,7 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    ka: Gürcüce
     kk: Kazakça
     kn: Kannadaca
     ko: Korece
@@ -7342,17 +7349,17 @@ tr:
         one: "%{count} saniye"
         other: '%{count} saniye'
     countdown_x_days:
-      one: gün
-      other: gün
+      one: GÜN
+      other: GÜN
     countdown_x_hours:
-      one: saat
-      other: saat
+      one: SAAT
+      other: SAAT
     countdown_x_minutes:
-      one: dk
-      other: dk
+      one: DAK
+      other: DAK
     countdown_x_seconds:
-      one: sn
-      other: sn
+      one: SAN
+      other: SAN
     prompts:
       day: Gün
       hour: Saat

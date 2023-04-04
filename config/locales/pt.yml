@@ -3641,15 +3641,6 @@ pt:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
-    countdown_x_days:
-      one: dia
-      other: dias
-    countdown_x_hours:
-      one: hora
-      other: horas
-    countdown_x_seconds:
-      one: s
-      other: s
     prompts:
       day: Dia
       hour: Hora

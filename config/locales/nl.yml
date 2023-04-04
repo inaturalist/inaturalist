@@ -805,6 +805,7 @@ nl:
   birthday: Verjaardag
   black: zwart
   block: Blokkeren
+  blocking_description: Blokkeren voorkomt elke communicatie tussen jou en een andere gebruiker. Het is voor situaties waarin een andere gebruiker jouw veiligheid in gevaar kan brengen, zoals stalking of ander misbruik.
   block_removed: Blokkering opgeheven
   blocked_users: Geblokkeerde gebruikers
   blog_widget: Blogwidget
@@ -2380,6 +2381,8 @@ nl:
     scientific_names: Wetenschappelijke namen
     afrikaans: Afrikaans
     albanian: Albanees
+    aou_4_letter_codes: AOU 4-Letter Codes
+    aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabisch
     armenian: Armeens
     belarusian: Wit-Russisch
@@ -2403,11 +2406,14 @@ nl:
     french: Frans
     galician: Galicisch
     gela: Gela
+    georgian: Georgisch
     german: Duits
     greek: Grieks
+    gujarati: Gujarati
     hawaiian: Hawaïaans
     hebrew: Hebreeuws
     hiligaynon: "\nHiligaynon"
+    hokkien: Hokkien
     hungarian: Hongaars
     icelandic: IJslands
     ilokano: Ilokano
@@ -2454,6 +2460,7 @@ nl:
     tokelauan: Tokelaus
     turkish: Turks
     ukrainian: Oekraïens
+    uyghur: Oeigoers
     waray_waray: Winaray
     visayan: Visayan
   less: Minder
@@ -2551,6 +2558,7 @@ nl:
     id: Indonesisch
     it: Italiaans
     ja: Japans
+    ka: Georgisch
     kk: Kazachs
     kn: Kannada
     ko: Koreaans
@@ -7478,6 +7486,9 @@ nl:
         species_observed:
           one: "Waargenomen soort"
           other: "Waargenomen soorten"
+        people_signed_up:
+          one: "Persoon aangemeld"
+          other: "Mensen aangemeld"
         how_it_works: Hoe het werkt
         record_your_observations: Houd je waarnemingen bij
         share_with_fellow_naturalists: Deel met mede-naturalisten
@@ -7616,18 +7627,6 @@ nl:
       x_seconds:
         one: "%{count} seconde"
         other: '%{count} seconden'
-    countdown_x_days:
-      one: dag
-      other: dagen
-    countdown_x_hours:
-      one: uur
-      other: uren
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sec
-      other: sec
     prompts:
       day: Dag
       hour: Uur

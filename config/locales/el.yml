@@ -6302,18 +6302,6 @@ el:
       x_seconds:
         one: "1 δευτερόλεπτο"
         other: '%{count} δευτερόλεπτα'
-    countdown_x_days:
-      one: ημέρα
-      other: ημέρες)
-    countdown_x_hours:
-      one: ώρα
-      other: ώρες
-    countdown_x_minutes:
-      one: λεπτό
-      other: λεπτά
-    countdown_x_seconds:
-      one: δευτερόλεπτο
-      other: δευτερόλεπτα
     prompts:
       day: Ημέρα
       hour: Ώρα

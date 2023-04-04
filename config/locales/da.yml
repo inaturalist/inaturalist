@@ -2373,6 +2373,8 @@ da:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
     albanian: Albansk
+    aou_4_letter_codes: AOU 4-bogstavskoder
+    aou_6_letter_codes: AOU 6-bogstavskoder
     arabic: Arabisk
     armenian: Armensk
     belarusian: Hviderussisk
@@ -2396,11 +2398,14 @@ da:
     french: Fransk
     galician: Galicisk
     gela: Gela
+    georgian: Georgisk
     german: Tysk
     greek: Græsk
+    gujarati: Gujarati
     hawaiian: Hawaiiansk
     hebrew: Hebraisk
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Ungarsk
     icelandic: Islandsk
     ilokano: Ilokano
@@ -2447,6 +2452,7 @@ da:
     tokelauan: Tokelauan
     turkish: Tyrkisk
     ukrainian: Ukrainsk
+    uyghur: Uighur
     waray_waray: Waray-Waray
     visayan: Visayansk
   less: Mindre
@@ -2544,6 +2550,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    ka: Georgisk
     kk: Kasakhisk
     kn: Kannaresisk
     ko: Koreansk
@@ -7912,17 +7919,17 @@ da:
         one: "1 sekund"
         other: '%{count} sekunder'
     countdown_x_days:
-      one: dag
-      other: dage
+      one: DAG
+      other: DAGE
     countdown_x_hours:
-      one: time
-      other: timer
+      one: TIME
+      other: TIMER
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sek
-      other: sek
+      one: SEK
+      other: SEK
     prompts:
       day: Dag
       hour: Time
