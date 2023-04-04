@@ -7698,6 +7698,13 @@ de:
               has_query_parameter: "kann keinen Abfrageparameter enthalten."
               invalid_uri: "muss ein gültiger URI sein."
               relative_uri: "muss ein absoluter URI sein."
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: hat Kommentare deaktiviert
         flag:
           attributes:
             flag:
