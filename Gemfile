@@ -24,7 +24,9 @@ gem "capistrano-passenger"
 gem "capistrano-rails"
 gem "capistrano-rvm"
 gem "chroma"
-gem "chronic"
+
+# DST crossover fixes: https://github.com/mojombo/chronic/pull/396
+gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
 gem "coffee-rails"
 gem "daemons"
