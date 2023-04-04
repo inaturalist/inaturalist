@@ -162,7 +162,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       let modified = Object.assign( { }, state.obsCards );
       _.each( action.attrs, ( v, k ) => {
         _.each( state.selectedObsCards, c => {
-          if ( _.isArray( c[k] ) ) {
+          if ( Array.isArray( c[k] ) ) {
             modified = update( modified, {
               [c.id]: {
                 $merge: {
@@ -193,7 +193,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       let modified = Object.assign( { }, state.obsCards );
       _.each( action.attrs, ( v, k ) => {
         _.each( state.selectedObsCards, c => {
-          if ( _.isArray( c[k] ) ) {
+          if ( Array.isArray( c[k] ) ) {
             modified = update( modified, {
               [c.id]: {
                 $merge: {
