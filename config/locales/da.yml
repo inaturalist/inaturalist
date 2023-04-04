@@ -2398,6 +2398,7 @@ da:
     french: Fransk
     galician: Galicisk
     gela: Gela
+    georgian: Georgisk
     german: Tysk
     greek: Græsk
     gujarati: Gujarati
@@ -2549,6 +2550,7 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    ka: Georgisk
     kk: Kasakhisk
     kn: Kannaresisk
     ko: Koreansk
@@ -7916,6 +7918,18 @@ da:
       x_seconds:
         one: "1 sekund"
         other: '%{count} sekunder'
+    countdown_x_days:
+      one: DAG
+      other: DAGE
+    countdown_x_hours:
+      one: TIME
+      other: TIMER
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEK
+      other: SEK
     prompts:
       day: Dag
       hour: Time
