@@ -270,8 +270,10 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
+    <% unless @skip_external_connections %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+    <% end %>
     <%= yield :extrajs %>
     <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">
