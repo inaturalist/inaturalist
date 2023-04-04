@@ -2317,6 +2317,7 @@ tr:
     french: Fransızca
     galician: Galiçyaca
     gela: Gela
+    georgian: Gürcüce
     german: Almanca
     greek: Yunanca
     gujarati: Güceratça
@@ -2468,6 +2469,7 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    ka: Gürcüce
     kk: Kazakça
     kn: Kannadaca
     ko: Korece
@@ -7346,6 +7348,18 @@ tr:
       x_seconds:
         one: "%{count} saniye"
         other: '%{count} saniye'
+    countdown_x_days:
+      one: GÜN
+      other: GÜN
+    countdown_x_hours:
+      one: SAAT
+      other: SAAT
+    countdown_x_minutes:
+      one: DAK
+      other: DAK
+    countdown_x_seconds:
+      one: SAN
+      other: SAN
     prompts:
       day: Gün
       hour: Saat
