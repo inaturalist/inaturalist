@@ -2298,6 +2298,7 @@ id:
     french: Prancis
     galician: Galisia
     gela: Gela
+    georgian: Georgia
     german: Jerman
     greek: Yunani
     gujarati: Gujarat
@@ -2449,6 +2450,7 @@ id:
     id: Indonesia
     it: Italia
     ja: Jepang
+    ka: Georgia
     kk: Kazakh
     kn: Kannada
     ko: Korea
@@ -7212,6 +7214,14 @@ id:
         other: '%{count} bulan'
       x_seconds:
         other: '%{count} detik'
+    countdown_x_days:
+      other: HARI
+    countdown_x_hours:
+      other: JAM
+    countdown_x_minutes:
+      other: MENIT
+    countdown_x_seconds:
+      other: DETIK
     prompts:
       day: Hari
       hour: Jam
