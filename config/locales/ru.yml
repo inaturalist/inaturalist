@@ -894,6 +894,8 @@ ru:
   birds: птицы
   birthday: День рождения
   black: черный
+  block: Заблокировать
+  blocking_description: Блокировка предотвращает связь между вами и другим пользователем. Это для тех ситуаций, когда другой пользователь может поставить под угрозу вашу безопасность, например, преследует вас или ведёт себя оскорбительно.
   block_removed: Блокировка удалена
   blocked_users: Заблокированные Пользователи
   blog_widget: Виджет блога
@@ -2426,6 +2428,8 @@ ru:
     scientific_names: Научные названия
     afrikaans: Африкаанс
     albanian: албанский
+    aou_4_letter_codes: AOU 4-буквенные коды
+    aou_6_letter_codes: AOU 6-буквенные коды
     arabic: Арабский
     armenian: Армянский
     belarusian: Белорусский
@@ -2449,11 +2453,14 @@ ru:
     french: Французский
     galician: Галисийский
     gela: Гела
+    georgian: Грузинский
     german: Немецкий
     greek: Греческий
+    gujarati: Гуджарати
     hawaiian: Гавайский
     hebrew: Иврит
     hiligaynon: Хилигайнон
+    hokkien: Хоккиен
     hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
@@ -2500,6 +2507,7 @@ ru:
     tokelauan: токелау
     turkish: Турецкий
     ukrainian: Украинский
+    uyghur: Уйгурский
     waray_waray: варайский
     visayan: Бисайский
   less: Меньше
@@ -2597,6 +2605,7 @@ ru:
     id: индонезийский
     it: Итальянский
     ja: Японский
+    ka: Грузинский
     kk: Казахский
     kn: Каннада
     ko: Корейский
@@ -4704,6 +4713,10 @@ ru:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Статистика за этот год не сформирована.
   status: Статус
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Статус применен от таксона верхнего уровня:</strong> %{taxon}
   status_globally: 'Глобальный "%{status}"'
   status_in_place: '"%{status}" в %{place}'
   stay_and_try_again: Остановитесь и попробуйте ещё раз
@@ -7577,6 +7590,26 @@ ru:
         few: '%{count} секунды'
         many: '%{count} секунд'
         other: '%{count} секунд'
+    countdown_x_days:
+      one: ДЕНЬ
+      few: ДНЯ
+      many: ДНЕЙ
+      other: ДНЕЙ
+    countdown_x_hours:
+      one: ЧАС
+      few: ЧАСА
+      many: ЧАСОВ
+      other: ЧАСОВ
+    countdown_x_minutes:
+      one: МИН
+      few: МИН
+      many: МИН
+      other: МИН
+    countdown_x_seconds:
+      one: СЕК
+      few: СЕК
+      many: СЕК
+      other: СЕК
     prompts:
       day: День
       hour: Час
