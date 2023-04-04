@@ -25,7 +25,7 @@ class TimeZoneGeometry < ActiveRecord::Base
         port: ApplicationRecord.connection_db_config.configuration_hash[:port],
         user: ApplicationRecord.connection_db_config.configuration_hash[:username],
         password: ApplicationRecord.connection_db_config.configuration_hash[:password],
-      }.map { |k, v| "#{k}=#{v}" }.join( " " )
+      }.reject {|_k, v| v.blank? }.map { |k, v| "#{k}=#{v}" }.join( " " )
       # Note that ogr2ogr will automatically create a spatial index on the geom column
       cmd = <<-BASH
         ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
@@ -77,7 +77,7 @@ class TimeZoneGeometry < ActiveRecord::Base
         port: ApplicationRecord.connection_db_config.configuration_hash[:port],
         user: ApplicationRecord.connection_db_config.configuration_hash[:username],
         password: ApplicationRecord.connection_db_config.configuration_hash[:password],
-      }.map { |k, v| "#{k}=#{v}" }.join( " " )
+      }.reject {|_k, v | v.blank? }.map {|k, v| "#{k}=#{v}" }.join( " " )
       # Note that ogr2ogr will automatically create a spatial index on the geom column
       cmd = <<-BASH
         ogr2ogr -f "PostgreSQL" PG:"#{pg_string}" \
