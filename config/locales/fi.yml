@@ -173,6 +173,7 @@ fi:
   about_taxon_ranges: Tietoja taksonin alueesta
   about_taxon_ranges_desc: |
     Taksonin alue kuvaa taksonin maailmanlaajuista levinneisyyttä. Tiedot tulevat tyypillisesti IUCN Punaisesta kirjasta.
+  about_the_network: Tietoa verkostosta
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
@@ -1499,6 +1500,8 @@ fi:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: LAHJOITA
+  donate_again_caps: LAHJOITA UUDELLEEN
+  donate_again_today_caps: LAHJOITA UUDELLEEN TÄNÄÄN
   done: Valmis
   dont_have_an_account_sign_up_html: Eikö sinulla vielä ole käyttäjätunnusta? <strong>Rekisteröidy.</strong>
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
@@ -2201,6 +2204,7 @@ fi:
     finnish: Suomi
     french: Ranska
     galician: Galicia
+    georgian: Georgia
     german: Saksa
     greek: Kreikka
     gujarati: Gujarati
@@ -2345,6 +2349,7 @@ fi:
     id: indonesia
     it: italia
     ja: japani
+    ka: Georgia
     kk: Kazakki
     kn: Kannada
     ko: korea
@@ -2567,6 +2572,8 @@ fi:
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: Kuukausi
   #title for section describing people who donate to iNat every month
   monthly_supporters: Kuukausilahjoittajat
@@ -3273,6 +3280,10 @@ fi:
       subdivision: naapurusto
       Suburb: Lähiö
       suburb: lähiö
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      Sum: Sum
+      #https://en.wikipedia.org/wiki/Sum_(country_subdivision)
+      sum: sum
       Supername: Ylänimi
       supername: ylänimi
       Territory: Reviiri
@@ -4517,6 +4528,8 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: Guatemalan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlantin normaaliaika (Kanada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: Bolivian aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: Perun aika
@@ -4535,7 +4548,23 @@ fi:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_tijuana: Meksikon Tyynenmeren aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_baghdad: Arabian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_bangkok: Indokiinan aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_hong_kong: Hongkongin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jakarta: Länsi-Indonesian aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_jerusalem: Israelin normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_kolkata: Intian normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_novosibirsk: Krasnojarskin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_shanghai: Kiinan normaaliaika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_asia_singapore: Singaporen normaaliaika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_asia_taipei: Taiwanin aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4596,6 +4625,8 @@ fi:
   time_zone_pacific_apia: Samoan aika
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Uuden-Seelannin aika
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Havaijin-Aleuttien normaaliaika
   #As in the title of a book or a blog post
   title: otsikko
   title_and_description: "Otsikko & kuvaus"
@@ -6024,6 +6055,8 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
+          "Sex=Female": Naaras
+          "Sex=Male": Koiras
           unannotated: Ei annotaatiota
         photo_chooser_modal_desc: |
           Raahaa kuvat tänne vasemmalta, tai raahaa kuvat tänne uudelleenjärjestääksesi.
@@ -6342,6 +6375,18 @@ fi:
       x_seconds:
         one: "1 sekunti"
         other: '%{count} sekuntia'
+    countdown_x_days:
+      one: PÄIVÄ
+      other: PÄIVÄÄ
+    countdown_x_hours:
+      one: TUNTI
+      other: TUNTIA
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEK
+      other: SEK
     prompts:
       day: Päivä
       hour: Tunti
@@ -6549,6 +6594,8 @@ fi:
         wikipedia_summary: Wikipedia-yhteenveto
         wikipedia_title: Wikipedia-otsikko
       taxon_name:
+        lexicon: Sanasto
+        name: Nimi
         name_provider: Nimipankki
         source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
