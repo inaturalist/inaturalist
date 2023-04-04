@@ -1847,6 +1847,10 @@ kk:
     other: '%{count} бақылауды жою керек пе?'
   remove_photo: Фотосуретті жою
   remove_place: Орынды жою
+  reorder_by_taxonomy: Таксономия бойынша қайта реттеу
+  repair_broken_urls: Бұзылған URL мекенжайларын жөндеу
+  repair_doesnt_work_for_that_kind_of_photo: Мұндай фотосурет үшін жөндеу жұмыс істемейді
+  repair_external_photos: Сыртқы фотосуреттерді жөндеу
   replace_parentesis: (алмастыру)
   reply: Жауап беру
   reptiles: бауырымен жорғалаушылар
@@ -1860,20 +1864,43 @@ kk:
   research_grade: Зерттеу дәрежесі
   research_grade_short_html: "З<span class='full'>ерттеу </span>Д<span class='full'>әрежесі</span>"
   research_grade_observations_have: '"Зерттеу дәрежесі" бақылауларының күні, фотосуреті, координаттары және қоғамдастық қолдайтын идентификациясы болады. Деректер сапасын бағалауды көру үшін басыңыз.'
+  research_grade_qualification: Зерттеу дәрежесінің бағасы
   #Label for a button that re-sends the account confirmation email and signs
   #you out until you do
   resend_and_sign_out: Қайта жіберу және шығу
   resend_confirmation_email: Растау электрондық хатын қайта жіберу
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Тастау
+  reset_filters_short: Тастау
+  restore: Қалпына келтіру
+  restoring: Қалпына келтірілуде...
+  review_all: Барлығын шолу
+  review_identifications_of_taxon_html: |
+    <span class="sciname">%{taxon}</span> %{taxon_id} идентификацияларын қарап шығу
+  rg_observations: ЗД бақылаулары
+  role: Рөл
+  rotate_left: Солға бұру
+  rotate_right: Оңға бұру
   row_singular_or_plural: Қатар(лар)
   rules_and_formatting: "Ережелер және форматтау"
   rules_for_adding_observations: Бақылауларды қосу ережелері
   rules_for_becoming_a_member: Мүше болу ережелері
+  rules_types:
+    must_be_identified: анықталуы қажет
+    must_be_on_list: тізімде болуы керек
+    must_be_coordinates_shareable_by_project_curators: бақылаушы жоба кураторларына координаттарды көруге рұқсат беруі керек.
+    must_be_verifiable: тексерілетін болуы керек
+    must_be_wild: жабайы болуы керек
   satellite: жер серігі
   save: Сақтау
   save_all: Барлығын сақтау
   save_and_add_another: Сақтау және басқасын қосу
+  save_and_continue: "Сақтау &amp; Жалғастыру..."
+  save_and_add_taxa: "Сақтау және түрлерді қосуды бастау"
   save_changes: Өзгерістерді сақтау
   save_comment: Пікірді сақтау
+  save_fields: Өрістерді сақтау
+  save_identification: Идентификацияны сақтау
   save_observation: Бақылауды сақтау
   save_photos: Фотосуреттерді сақтау
   save_place: Орынды сақтау
