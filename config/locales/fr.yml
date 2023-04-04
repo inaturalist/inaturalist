@@ -2349,6 +2349,8 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     albanian: Albanais
+    aou_4_letter_codes: Codes en 4 lettres de l'AOU
+    aou_6_letter_codes: Codes en 6 lettres de l'AOU
     arabic: arabe
     armenian: arménien
     belarusian: Biélorusse
@@ -2372,11 +2374,14 @@ fr:
     french: Français
     galician: galicien
     gela: Gela
+    georgian: Géorgien
     german: Allemand
     greek: Grec
+    gujarati: Gujarati
     hawaiian: Hawaïen
     hebrew: Hébreu
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
@@ -2423,6 +2428,7 @@ fr:
     tokelauan: Tokelauan
     turkish: Turc
     ukrainian: Ukrainien
+    uyghur: Ouïghour
     waray_waray: Waray-Waray
     visayan: cebuano
   less: Moins
@@ -2520,6 +2526,7 @@ fr:
     id: Indonésien
     it: Italien
     ja: Japonais
+    ka: Géorgien
     kk: Kazakh
     kn: Kannada
     ko: Coréen
@@ -7570,6 +7577,10 @@ fr:
           biodiversité</a> (SMIB), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
+        monthly_supporter_desc_html: |
+          Les personnes qui soutiennent iNaturalist en faisant chaque mois un don automatique à la California Academy of Sciences (code fiscal des États-Unis IRS EIN 94-1156258) appuient les activités à but non lucratif d’iNaturalist et les sites du réseau iNaturalist.
+          <a href="%{url}">Cliquez ici pour faire un don mensuel</a>.
+          Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, changez-en une.
         muting_desc_html: |
           <p>
           Passer quelqu’un en mode muet vous évite de recevoir des notifications sur ce
@@ -7730,6 +7741,9 @@ fr:
         species_observed:
           one: "Espèces observées"
           other: "Espèces observées"
+        people_signed_up:
+          one: "Personne inscrite"
+          other: "Personnes inscrites"
         how_it_works: Comment cela marche
         record_your_observations: Enregistrer vos observations
         share_with_fellow_naturalists: Partager avec d'autres naturalistes
@@ -7868,6 +7882,18 @@ fr:
       x_seconds:
         one: "1 seconde"
         other: '%{count} secondes'
+    countdown_x_days:
+      one: JOUR
+      other: JOURS
+    countdown_x_hours:
+      one: HEURE
+      other: HEURES
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEC
+      other: SEC
     prompts:
       day: Jour
       hour: Heure
