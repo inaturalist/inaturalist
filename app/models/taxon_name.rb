@@ -98,7 +98,7 @@ class TaxonName < ApplicationRecord
     RUSSIAN: "Russian",
     SANTALI: "Santali",
     SERBIAN: "Serbian",
-    SETSWANA: "Setswana",
+    TSWANA: "Tswana",
     SINHALA: "Sinhala",
     SLOVAK: "Slovak",
     SLOVENIAN: "Slovenian",
