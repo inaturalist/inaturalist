@@ -7627,6 +7627,15 @@ nl:
       x_seconds:
         one: "%{count} seconde"
         other: '%{count} seconden'
+    countdown_x_days:
+      one: DAG
+      other: DAGEN
+    countdown_x_hours:
+      one: UUR
+      other: UREN
+    countdown_x_seconds:
+      one: SEC
+      other: SECS
     prompts:
       day: Dag
       hour: Uur
