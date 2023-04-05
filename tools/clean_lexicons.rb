@@ -252,8 +252,12 @@ top_100_lexicons = TaxonName.
   reverse[0..100].
   map { _1[0] }.
   reject( &:blank? )
+invalid_synonyms = synonyms.map {| _canonical, alternatives | alternatives }.flatten
 top_100_untranslatable_lexicons = top_100_lexicons.
-  select {| lexicon | I18n.t( lexicon.parameterize.underscore, scope: "lexicons", default: nil ).nil? }
+  select do | lexicon |
+    I18n.t( lexicon.parameterize.underscore, scope: "lexicons", default: nil ).nil? &&
+      !invalid_synonyms.include?( lexicon )
+  end
 
 puts
 puts "== REPORT =="
@@ -270,10 +274,11 @@ unless top_100_untranslatable_lexicons.blank?
   puts
   puts "Top 100 Lexicons Not Available for Translation"
   puts
-  top_100_untranslatable_lexicons each do | lexicon |
+  top_100_untranslatable_lexicons.each do | lexicon |
     normalized_lexicon = TaxonName.normalize_lexicon( lexicon )
-    puts "#{normalized_lexicon.parameterize.underscore}: #{normalized_lexicon}"
+    puts "\t#{normalized_lexicon.parameterize.underscore}: #{normalized_lexicon}"
   end
+  puts
 end
 puts "#{created_ptns.size} place taxon names created"
 puts "#{invalid_ptns.size} place taxon names not created"
