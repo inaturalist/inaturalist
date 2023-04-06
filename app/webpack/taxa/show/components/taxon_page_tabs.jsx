@@ -305,7 +305,7 @@ class TaxonPageTabs extends React.Component {
             />
           </div>
           <div
-            role="tabpanel"
+            role="tabpanel" 
             className={`tab-pane ${genusOrSpecies ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
             id="similar-tab"
           >
@@ -327,7 +327,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "articles"
+  chosenTab: "taxonomy"
 };
 
 export default TaxonPageTabs;
