@@ -75,12 +75,16 @@
           <h3>
             <%= link_to h(truncate(place.name, :length => 30)), place %>
           </h3>
-          <div class="small description">
-            <%= t("place_geo.geo_planet_place_types.#{place.place_type_name.gsub(' ','_')}", :default => t(:unknown)) if(place.place_type_name) %>
-            <% if place.parent -%>
-              <%= t :in %> <%= link_to place.parent.display_name, place.parent %>
-            <% end -%>
-          </div>
+          <% unless place.place_type_name.blank? %>
+            <div class="small description">
+              <div>
+                <%=t "place_geo.geo_planet_place_types.#{place.place_type_name.gsub( " ","_" )}", default: t(:unknown) %>
+              </div>
+              <% if place.parent -%>
+                <%= link_to place.parent.display_name, place.parent %>
+              <% end -%>
+            </div>
+          <% end -%>
         </div>
       </div>
     <% end %>

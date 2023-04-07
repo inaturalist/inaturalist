@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="<%= I18n.locale %>"
       lang="<%= I18n.locale %>"
+      <% if @rtl %>
+        dir="rtl"
+      <% else %>
+        dir="ltr"
+      <% end %>
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
@@ -16,6 +21,7 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
     <%= csrf_meta_tag %>
     <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>
@@ -53,7 +59,15 @@
           </div>
         </div>
       <% end %>
-
+      <% if flash[:success] && !@flash_js %>
+        <div class="bootstrap">
+          <div class="container upstacked">
+            <div class="alert alert-success upstacked">
+              <%= flash[:success].html_safe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
       <% if flash[:error] && !@flash_js %>
         <div class="bootstrap">
           <div class="container upstacked">
@@ -256,8 +270,10 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
+    <% unless @skip_external_connections %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag "map_bundle" unless @minimal_header %>
+    <% end %>
     <%= yield :extrajs %>
     <% if logged_in? && !@minimal_header -%>
       <script type="text/javascript" charset="utf-8">

@@ -170,6 +170,10 @@ zh-TW:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精確度 (公尺)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 在特定精確度數值以上
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 在特定精確度數值以下
   account: 帳號
   account_creation: 帳號建立
   account_settings: 帳號設定
@@ -449,7 +453,6 @@ zh-TW:
   analyze_clashes: 分析無意中的意見分歧
   analyze_ids: 分析 ID
   ancestor_taxon: 祖先分類
-  and: 和
   and_other_taxa: "&amp;其它物種分類"
   android: Android
   animals: 動物
@@ -492,6 +495,12 @@ zh-TW:
   anyone: 任何人
   app_owner_application_explanation_required: |
     您必須對您想要打造的應用程式提供更詳細的解釋。
+  app_owner_application_about_p2_html: |
+    自2022年起，我們以人工審核方式審核想要使用API用戶端的使用者，為了創建第三方應用程式，您必須先提交申請才能成為"app擁有者"，申請內容必須描述該app的功能以及您計畫如何使用它，在提交申請前請確認您的帳號註冊時間至少2個月以上並且在過去一個月內完成至少10筆<a href="/pages/help#identification"
+    target="_blank">改進中的鑑定</a>，我們可能會對您的申請內容提出後續問題，並保留以任何理由拒絕申請的權利。
+  app_owner_application_inelligible: |
+    在提交申請前，你的帳號註冊時間需要至少2個月以上，並在過去的一個月內完成10次改進中鑑定。
+  app_owner_application_fields_explanation_html: 描述您的app將具有的功能以及您計畫如何使用它。
   app_owner_application_success: App 擁有者申請表已提交
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
@@ -630,6 +639,7 @@ zh-TW:
   #of values, and not a synonym of "typical" or "normal"
   avg: 平均
   back: 返回
+  back_to_applications: "返回應用程式"
   back_to_all_species: 返回至所有物種
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
@@ -669,6 +679,8 @@ zh-TW:
   batch_edit_taxa_for_x_html: "批量編輯%{x}物種分類群"
   batch_operations: 批量操作
   be_the_first_to_fave_this_observation: 成為最先將此觀察列為最愛的人吧！
+  become_a_donor_caps: 成為捐款者
+  become_a_donor_today_caps: 今天成為捐款者
   before_importing_photos: 在匯入照片前
   bg_color: 背景顏色
   bio: 個人簡介
@@ -704,7 +716,6 @@ zh-TW:
   browse_species_that_occur_near_this_observation: 瀏覽接近此觀察所出現的物種。
   built_with_site_guides_html: "建於 <a href='%{url}'>%{site_name} 指南</a>"
   bulk_import_of_filename_is_complete: "%{filename} 的巨量匯入已完成"
-  by: 由
   by_everyone: 由任何人
   by_user: "由 %{user}"
   by_you: 由您
@@ -1431,9 +1442,13 @@ zh-TW:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: 下游已標記的涵蓋物種分類
+  #Noun, as in a journal post that has not been published
   draft: 草稿
+  #Noun, as in a journal post that has not been published
   draft_: 草稿
+  #Noun, as in a journal post that has not been published
   draft_saved: 草稿已儲存！
+  #Noun, as in journal posts that has not been published
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
   #Button label for drawing a circular boundary for an observation search
@@ -1693,7 +1708,7 @@ zh-TW:
   flag_marked_as_resolved_html: '<span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 項目
-  flag_reason: "&ldquo;我正標記此%{record}出自於"
+  flag_reason: "&ldquo;我正標記此%{record}，因為其變動原因為："
   flag_resolution: 解決
   flag_saved: 已儲存旗號標記。
   flag_saved_thanks_html: 標記已儲存，感謝！<a href="%{url}" class="readmore">檢視標記</a>
@@ -2339,7 +2354,6 @@ zh-TW:
       every_publicly_visible_observation: 任何在 iNaturalist 網路裡所創建的公開可見觀察
       featured_observations: 精選觀察
       gbif_network: GBIF 網路
-      gbif_network_description: 來自於博物館以及其它透由全球生物多樣性資訊機構（GBIF）所分派的事件提供方之記錄
       observations: 觀察
       place_boundary: 地點邊界
       checklist_places: 名錄地點
@@ -2499,6 +2513,7 @@ zh-TW:
   must_have_quality_grades: "必須符合品質等級為：%{grades}"
   must_have_sounds: 必須要有聲音檔
   must_have_x: "必須要有 %{x}"
+  #Mute is a noun here
   mute_removed: 禁言已移除
   muted_users: 已被禁言的使用者
   n_ago: "%{n} 前"
@@ -3475,8 +3490,6 @@ zh-TW:
   places_merged_successfully: 合併地點成功！
   places_warning_export_complex_boundary_html: |
     如果您嘗試要從一個複雜的區域邊界中匯出觀察紀錄，請考慮從<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF</a>來下載，在 GBIF 網站上您可以繪出任意的邊界，或是使用現有的地點或邊界框來篩選並下載資料。
-  places_warning_look_for_existing_html: |
-    搜尋<a href="/search?source[]=places">現有的地點</a>以確保您不會重複建立。我們已經建立了所有大陸和國家的地點，以及各國轄下的兩層行政區域邊界。
   places_warning_projects_can_have_multiple_places: |
     如果您試著要建立一個地點邊界給某專案使用的話，其實專案可以同時選擇多個地點。舉例來說，如果您想要建立一個專案給紐西蘭和澳洲使用，您可以在專案設定中加入這兩個地點而非建立一個包含兩個國家的地點。
   places_warning_new_places_are_slow_html: |
@@ -3508,7 +3521,6 @@ zh-TW:
   post_from_your_journal_html: 來自<a href="%{url}">您的日誌</a>的發佈文章
   post_published: 貼文已發佈！
   posted_by: 發佈由
-  posted_on: 發佈在
   posts: 貼文
   potential_disagreement: 潛在不一致
   powered_by: 技術提供由
@@ -4739,8 +4751,6 @@ zh-TW:
   user_commented: "%{user} 已評論"
   user_disagrees_this_is_taxon: "%{user} 不同意這是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意之前較佳的鑑定"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛"
   user_faved_this_observation: "%{user} 將此觀察記錄設為最愛"
   user_flagged_as_a_non_spammer_html: "%{user}已被標記為並不是濫發垃圾訊息者"
   user_flagged_as_a_spammer_html: "%{user}已被標記為濫發垃圾訊息者"
@@ -5774,8 +5784,6 @@ zh-TW:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
-      kml_field_desc: |
-        地點邊界的 KML。您可以使用在 Google 地圖、Google 地球，或多數的 GIS 應用程式。另外內容必須至少要有一個多邊形且小於 1 MB（網站策展人可使用到 5 MB），而且是要比美國德州還要小的地區。
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
@@ -6541,9 +6549,6 @@ zh-TW:
       index:
         connect_with_nature: 與自然連接
         explore_and_share: 探索並分享您來自於大自然的觀察。
-        observations_to_date: '個現有觀察'
-        species_observed: '個已觀察物種'
-        people_signed_up: '個註冊成員'
         how_it_works: 它是如何運作的
         record_your_observations: 記錄您的觀察
         share_with_fellow_naturalists: 與關注的自然觀察者分享
@@ -6614,19 +6619,19 @@ zh-TW:
       6: 五
       7: 六
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%m月%d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%-m月%-d日'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b 月 %e 日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%Y %b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%-m月%-d日'
     month_names:
       - 
@@ -6667,14 +6672,6 @@ zh-TW:
         other: '%{count} 個月'
       x_seconds:
         other: '%{count} 秒'
-    countdown_x_days:
-      other: 天
-    countdown_x_hours:
-      other: 小時
-    countdown_x_minutes:
-      other: 分
-    countdown_x_seconds:
-      other: 秒
     prompts:
       day: 日
       hour: 時
@@ -6682,42 +6679,6 @@ zh-TW:
       month: 月
       second: 秒
       year: 年
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: 必須被接受
-      blank: 不可留空
-      confirmation: 密碼不符
-      empty: 不能為空
-      equal_to: 必須等於 %{count}
-      even: 必須是偶數
-      exclusion: 已被保留
-      greater_than: 必須大於%{count}
-      greater_than_or_equal_to: 必須大於或等於 %{count}
-      inclusion: 未包含在名錄中
-      invalid: 是無效的
-      less_than: 必須小於%{count}
-      less_than_or_equal_to: 必須小於或等於 %{count}
-      new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-      not_a_number: 不是一個數字
-      not_an_integer: 必須是整數
-      odd: 必須是奇數
-      only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-      record_invalid: '驗證失敗: %{errors}'
-      requires_privilege_speech: |
-        必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-      requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-      taken: 已被使用
-      too_long:
-        other: 太長 (最多 %{count} 個字元)
-      too_short:
-        other: 太短 (最少 %{count} 個字元)
-      wrong_length:
-        other: 長度錯誤 (應為 %{count} 個字元)
-    template:
-      body: '以下欄位出現了問題：'
-      header:
-        other: '%{count} 個錯誤禁止了儲存此%{model}'
   helpers:
     defaults:
       title: "這是個標題"
@@ -6779,60 +6740,21 @@ zh-TW:
   time:
     am: 上午
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y/%m/%d %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%Y年%m月%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%m月%d日 %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y年%B%d日"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: 下午
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: 必須被接受
-        blank: 不可留空
-        confirmation: 密碼不符
-        empty: 不能為空
-        equal_to: 必須相同於%{count}
-        even: 必須是偶數
-        exclusion: 已被保留
-        greater_than: 必須大於%{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
-        inclusion: 未包含在名錄中
-        invalid: 是無效的
-        less_than: 必須小於%{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
-        new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
-        not_a_number: 不是一個數字
-        not_an_integer: 必須為整數
-        odd: 必須是奇數
-        only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: '驗證失敗: %{errors}'
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
-        requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
-        taken: 已被使用
-        too_long:
-          other: 太長 (最多 %{count} 個字元)
-        too_short:
-          other: 太短 (最少 %{count} 個字元)
-        wrong_length:
-          other: 長度錯誤 (應為 %{count} 個字元)
-      template:
-        body: 以下欄位出現了問題：
-        header:
-          other: '%{count} 個錯誤禁止了儲存此%{model}'
   activerecord:
     models:
       AssessmentSection: 評估段落
@@ -6970,22 +6892,18 @@ zh-TW:
         blank: 不可留空
         confirmation: 密碼不符
         empty: 不能為空
-        equal_to: 必須等於 %{count}
         even: 必須是偶數
         exclusion: 已被保留
-        greater_than: 必須大於 %{count}
-        greater_than_or_equal_to: 必須大於或等於 %{count}
         inclusion: 未包含在名錄中
         invalid: 是無效的
-        less_than: 必須小於 %{count}
-        less_than_or_equal_to: 必須小於或等於 %{count}
         new_project_owner_must_be_a_manager: 新專案的擁有者必須是管理員
         not_a_number: 不是一個數字
         not_an_integer: 必須為整數
         odd: 必須是奇數
         only_project_owner_can_change_project_owner: 只有專案的擁有者才能更改專案的擁有者
-        record_invalid: 驗證失敗：%{errors}
-        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+        record_invalid: '驗證失敗：%{errors}'
+        requires_privilege_speech: |
+          必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
         too_long:
@@ -6995,7 +6913,7 @@ zh-TW:
         wrong_length:
           other: 長度錯誤（應為 %{count} 個字元）
       template:
-        body: 以下欄位出現了問題：
+        body: '以下欄位出現了問題：'
         header:
           other: '%{count} 個錯誤禁止了儲存此%{model}'
       models:

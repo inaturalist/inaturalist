@@ -520,7 +520,6 @@ da:
   analyze_clashes: Analysér Utilsigtede Uenigheder
   analyze_ids: Analysér ID'er
   ancestor_taxon: Stamfader Takson
-  and: og
   and_other_taxa: "&amp;Andre taksa"
   android: Android
   animals: Dyr
@@ -796,6 +795,8 @@ da:
   birds: fugle
   birthday: Fødselsdag
   black: sort
+  block: Blokering
+  blocking_description: Blokering forhindrer enhver kommunikation med en anden bruger i situationer, hvor vedkommende kan kompromittere din sikkerhed, såsom stalking eller anden krænkende adfærd.
   block_removed: Blokering fjernet
   blocked_users: Blokerede brugere
   blog_widget: Blog-widget
@@ -823,7 +824,6 @@ da:
   browse_species_that_occur_near_this_observation: Gennemse arter, der forekommer nær denne observation.
   built_with_site_guides_html: "Bygget med <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Multi import af %{filename} er udført"
-  by: af
   by_everyone: Af alle
   by_user: "af %{user}"
   by_you: Af dig
@@ -1543,6 +1543,7 @@ da:
       signed_up_but_locked: "Din konto er oprettet. Indlogning kan imidlertid ikke ske, da din konto er låst."
       signed_up_but_unconfirmed: "En besked med et bekræftelseslink er sendt til din e-mailadresse. Følg linket for at aktivere din konto."
       updated: 'Din kontoopdatering er nu gennemført.'
+      updated_but_not_signed_in: "Din konto er nu opdateret, men da adgangskoden er skiftet, skal du logge ind igen."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1634,9 +1635,15 @@ da:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Nedstrøms markeret dækket taksa
+  #Noun, as in a journal post that has not been published
   draft: kladde
+  #Noun, as in a journal post that has not been published
   draft_: Kladde
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Kladde fra %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Kladde gemt!
+  #Noun, as in journal posts that has not been published
   drafts: Kladder
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
   #Button label for drawing a circular boundary for an observation search
@@ -2113,8 +2120,13 @@ da:
   home: Hjem
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Timejustering:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
   however_not_licensed: |
     Den er dog ikke licenseret til genbrug og deles derfor ikke med datadepoter, som respekterer licensvalg.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Man kan ændre sine licensindstillinger i 
     <a class="linky" href="/users/edit#content">kontoindstillingerne</a>.
@@ -2361,6 +2373,8 @@ da:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
     albanian: Albansk
+    aou_4_letter_codes: AOU 4-bogstavskoder
+    aou_6_letter_codes: AOU 6-bogstavskoder
     arabic: Arabisk
     armenian: Armensk
     belarusian: Hviderussisk
@@ -2384,11 +2398,14 @@ da:
     french: Fransk
     galician: Galicisk
     gela: Gela
+    georgian: Georgisk
     german: Tysk
     greek: Græsk
+    gujarati: Gujarati
     hawaiian: Hawaiiansk
     hebrew: Hebraisk
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Ungarsk
     icelandic: Islandsk
     ilokano: Ilokano
@@ -2396,6 +2413,7 @@ da:
     italian: Italiensk
     japanese: Japansk
     kannada: Kannaresisk
+    kazakh: Kasakhisk
     korean: Koreansk
     latvian: Lettisk
     lithuanian: Litauisk
@@ -2434,6 +2452,7 @@ da:
     tokelauan: Tokelauan
     turkish: Tyrkisk
     ukrainian: Ukrainsk
+    uyghur: Uighur
     waray_waray: Waray-Waray
     visayan: Visayansk
   less: Mindre
@@ -2476,6 +2495,10 @@ da:
     taxonomic: taksonomisk
     photo: foto
   list_was_successfully_created: Listen blev oprettet.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} og %{three}"
+  list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
@@ -2527,6 +2550,8 @@ da:
     id: Indonesisk
     it: Italiensk
     ja: Japansk
+    ka: Georgisk
+    kk: Kasakhisk
     kn: Kannaresisk
     ko: Koreansk
     lb: Luxembursk
@@ -2592,6 +2617,8 @@ da:
   lookup: Slå op
   low: lav
   lowest_rank: Laveste rang
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Gør til administrator
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hovedindhold
@@ -2624,7 +2651,7 @@ da:
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet i iNaturalis Network
       featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
-      gbif_network_description: Registreringer fra museer og andre udbydere distribueret af Global Biodiversity Informatics Facility
+      gbif_network_description2: Optegnelser fra muséer og andre hændelsesudbydere distribueret af Global Biodiversity Information Facility
       observations: Observationer
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
@@ -2643,6 +2670,9 @@ da:
   maximum_positional_accuracy_including_unknown: |
     Maksimal placeringsnøjagtighed, herunder observationer uden placeringsnøjagtighed
   media: Medier
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: og
   media_type: Medietype
   medium: mellem
   meet: Mød
@@ -2816,8 +2846,12 @@ da:
   must_have_quality_grades: "skal have kvalitetsgraduering: %{grades}"
   must_have_sounds: skal have lyde
   must_have_x: "skal have %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Tavsgør
+  #Mute is a noun here
   mute_removed: Sluk fjernet
   muted_users: Slukkede brugere
+  muting_description: Tavsgørelse af nogen undertrykker notifcering om vedkommendes aktiviteter, herunder "@"-omtale, beskeder eller kommentarer og identifikationer på dine observationer.
   n_ago: "%{n} siden"
   n_people_agrees: "%{amount} personer er enige"
   n_people_disagrees: "%{amount} personer er uenige"
@@ -3351,6 +3385,9 @@ da:
     invalid_email: Ugyldigt emailformat
   password: Adgangskode
   password_confirmation: 'Adgangskode bekræftelse'
+  password_change_description: Skiftes adgangskoden, logges du ud af alle dine aktive iNaturalist-sessioner på alle enheder
+  password_change_logout_warning: Når adgangskoden er skiftet, logges du ud og vil skulle logge ind igen med den nye adgangskode.
+  password_change_observations_warning: Du logges ligeledes ud af iNaturalist mobil-appen og alle andre apps eller websteder, som poster til iNaturalist på dine vegne, så sørg for at evt. afventende observationer uploades, før du gør dette, da alle ikke-uploadede observationer vil gå tabt.
   paste: Indsæt
   paste_in_a_bunch_of_names: Indsæt et bundt af navne, 1 per linje, og tryk på knappen!
   people: Personer
@@ -3866,10 +3903,9 @@ da:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">at downloade dem fra GBIF i stedet</a>,
     hvor du kan trække vilkårlige grænser, eller eksporter dem fra iNat vha.
     eksisterende steder eller en afgrænsningsboks, og derefter filtrere dataene igen efter download.
-  places_warning_look_for_existing_html: |
-    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at du ikke opretter en dublet. Vi har allerede steder til alle
-    kontinenter og lande, samt to administrative niveauer under
-    land.
+  places_warning_look_for_existing2_html: |
+    Kig efter <a href="/search?source[]=places">eksisterende steder</a> for at sikre, at der ikke oprettes en dublet. Vi har allerede steder til alle
+    kontinenter og lande, samt mange andre politiske grænser.
   places_warning_please_keep_in_mind: |
     Hold flg. begrænsninger for øje:
   places_warning_projects_can_have_multiple_places: |
@@ -3910,7 +3946,10 @@ da:
   post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   posted_by: Indsendt af
-  posted_on: Indsendt den
+  #Shows the date a journal post was published
+  posted_on_date_html: Postet d. %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Postet d. %{date} af %{user}
   posts: Indlæg
   potential_disagreement: Potentiel uenighed
   powered_by: Drevet af
@@ -4687,6 +4726,10 @@ da:
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet genereret.
   status: Status
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status anvendt fra en højere niveau takson:</strong> %{taxon}
   status_globally: '"%{status}" Global'
   status_in_place: '"%{status}" i %{place}'
   stay_and_try_again: Bliv og prøv igen
@@ -5395,8 +5438,7 @@ da:
   user_commented: "%{user} kommenterede"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} synes godt om %{noun} af %{owner}"
+  user_faved_an_observation_by_you: "%{user} gjorde en af dine observationer til favorit"
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
@@ -6750,10 +6792,10 @@ da:
         view_original_html: |
           Du kan se originalen på <a href="%{url}">%{url}</a>. Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette foto krænker ophavsret.
     places:
-      kml_field_desc: |
-        KML af stedets omrids. Du kan lave et ved hjælp af Google Maps, Google
-        Earth eller de fleste GIS-applikationer. Skal have mindst en polygon og være
-        under 1 MB (5 MB til side kuratorer).
+      kml_field_desc2: |
+        KML af stedets afgrænsning. Man kan lave et vha. Google Maps, Google
+        Earth eller de fleste GIS-applikationer. Skal have mindst én polygon, være
+        under 1 MB (5 MB til sidekuratorer) samt med en udstrækning mindre end den amerikanske stat Texas.
       edit:
         complex_boundary_note_html: |
           Denne grænse er lidt for kompleks til at redigere på internettet. Du kan dog
@@ -7573,7 +7615,7 @@ da:
           iNaturalist Monthly Supporter leverer månedlige bidrag, som modtages af California Academy of Sciences (United
           States IRS FIN 94-1156258) til støtte af nonprofitdriften af iNaturalist og iNaturalist-netværkswebsteder.
           <a href="%{url}">Klik hér for at blive en Monthly Supporter</a>.
-          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: Du vil skulle benytte præcis den samme e-mailadresse på Donorbox, som du benytter på iNaturalist, for at vi kan bekræfte, at du er blevet en Monthly Supporter.
+          Når vi har bekræftet din støtte, vil du kunne afkrydse dette markeringsfelt for at vise denne status på din profil. Bemærk: E-mailadresserne brugt på Donorbox og iNaturalist skal være identiske, for at vi kan bekræfte, at du er en Monthly Supporter. Er de forskellige, så skift én af dem, så begge de er ens.
         muting_desc_html: |
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
@@ -7729,9 +7771,15 @@ da:
       index:
         connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
-        observations_to_date: 'Observationer til dato'
-        species_observed: 'Arter observeret'
-        people_signed_up: 'Personer tilmeldte sig'
+        observations_to_date:
+          one: "Observation til dato"
+          other: "Observationer til dato"
+        species_observed:
+          one: "Art observeret"
+          other: "Arter observeret"
+        people_signed_up:
+          one: "Person har tilmeldt sig"
+          other: "Personer har tilmeldt sig"
         how_it_works: Hvordan det fungerer
         record_your_observations: Registrér dine observationer
         share_with_fellow_naturalists: Del med ligesindede naturelskere
@@ -7806,19 +7854,19 @@ da:
       6: Fr
       7: Lø
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d. %b, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -7871,17 +7919,17 @@ da:
         one: "1 sekund"
         other: '%{count} sekunder'
     countdown_x_days:
-      one: dag
-      other: dage
+      one: DAG
+      other: DAGE
     countdown_x_hours:
-      one: time
-      other: timer
+      one: TIME
+      other: TIMER
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sek
-      other: sek
+      one: SEK
+      other: SEK
     prompts:
       day: Dag
       hour: Time
@@ -7889,47 +7937,6 @@ da:
       month: Måned
       second: Sekunder
       year: År
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: skal accepteres
-      blank: kan ikke være tom
-      confirmation: stemte ikke overens med adgangskoden
-      empty: kan ikke være tom
-      equal_to: skal være lig med %{count}
-      even: skal være lige
-      exclusion: er reserveret
-      greater_than: skal være større end %{count}
-      greater_than_or_equal_to: skal være større end, eller lig med, %{count}
-      inclusion: er ikke med på listen
-      invalid: er ugyldig
-      less_than: skal være mindre end %{count}
-      less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
-      new_project_owner_must_be_a_manager: Den nye projektejer skal være en admin
-      not_a_number: er ikke et tal
-      not_an_integer: skal være et heltal
-      odd: skal være ulige
-      only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
-      record_invalid: 'Validering mislykkedes: %{errors}'
-      requires_privilege_speech: |
-        skal have tre verificérbare observationer eller tre identifikationer
-        for at andre kan gøre det
-      requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
-      taken: er allerede blevet taget
-      too_long:
-        one: er for lang (maksimum er 1 tegn)
-        other: er for lang (maksimum er %{count} tegn)
-      too_short:
-        one: er for kort (minimum er 1 tegn)
-        other: er for kort (minimum er %{count} tegn)
-      wrong_length:
-        one: er forkert længde (skal være 1 tegn)
-        other: er forkert længde (skal være %{count} tegn)
-    template:
-      body: 'Der var problemer med følgende felter:'
-      header:
-        one: "1 fejl forhindrede denne %{model} i at blive gemt"
-        other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
   helpers:
     defaults:
       title: "DETTE ER EN TITEL"
@@ -7992,64 +7999,21 @@ da:
   time:
     am: AM
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d. %b, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d. %B, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M %p"
     pm: PM
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: skal accepteres
-        blank: kan ikke være tom
-        confirmation: stemte ikke overens med adgangskoden
-        empty: kan ikke være tom
-        equal_to: skal være lig med %{count}
-        even: skal være lige
-        exclusion: er reserveret
-        greater_than: skal være større end %{count}
-        greater_than_or_equal_to: skal være større end, eller lig med, %{count}
-        inclusion: er ikke med på listen
-        invalid: er ugyldig
-        less_than: skal være mindre end %{count}
-        less_than_or_equal_to: skal være mindre end, eller lig med, %{count}
-        new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
-        not_a_number: er ikke et tal
-        not_an_integer: skal være et heltal
-        odd: skal være ulige
-        only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
-        record_invalid: 'Validering mislykkedes: %{errors}'
-        requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
-        requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
-        taken: er allerede blevet taget
-        too_long:
-          one: er for lang (maksimum er 1 tegn)
-          other: er for lang (maksimum er %{count} tegn)
-        too_short:
-          one: er for kort (minimum er 1 tegn)
-          other: er for kort (minimum er %{count} tegn)
-        wrong_length:
-          one: er forkert længde (skal være 1 tegn)
-          other: er forkert længde (skal være %{count} tegn)
-      template:
-        body: 'Der var problemer med følgende felter:'
-        header:
-          one: En fejl forhindrede %{model} i at blive gemt
-          other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8265,22 +8229,34 @@ da:
         blank: må ikke være tom
         confirmation: matchede ikke adgangskoden
         empty: må ikke være tom
-        equal_to: skal være lig med %{count}
+        equal_to:
+          one: skal være lig med %{count}
+          other: skal være lig med %{count}
         even: skal være lige
         exclusion: er reserveret
-        greater_than: skal være større end %{count}
-        greater_than_or_equal_to: skal være større end eller lig med %{count}
+        greater_than:
+          one: skal være større end %{count}
+          other: skal være større end %{count}
+        greater_than_or_equal_to:
+          one: skal være større end eller lig med %{count}
+          other: skal være større end eller lig med %{count}
         inclusion: er ikke inkluderet på listen
         invalid: er ugyldig
-        less_than: skal være mindre end %{count}
-        less_than_or_equal_to: skal være mindre end eller lig med %{count}
+        less_than:
+          one: skal være mindre end %{count}
+          other: skal være mindre end %{count}
+        less_than_or_equal_to:
+          one: skal være mindre end eller lig med %{count}
+          other: skal være mindre end eller lig med %{count}
         new_project_owner_must_be_a_manager: Ny projektejer skal være en admin
         not_a_number: er ikke et tal
         not_an_integer: skal være et helt tal
         odd: skal være et ulige tal
         only_project_owner_can_change_project_owner: Kun projektejeren kan ændre projektejerskab
         record_invalid: 'Validering fejlede: %{errors}'
-        requires_privilege_speech: "skal have tre verificérbare observationer eller tre identifikationer\nfor at andre kan gøre det"
+        requires_privilege_speech: |
+          skal have tre verificérbare observationer eller tre identifikationer
+          for at andre kan gøre det
         requires_privilege_organizer: skal have 50 verificerbare observationer for at gøre det
         taken: er allerede blevet taget
         too_long:
@@ -8295,7 +8271,7 @@ da:
       template:
         body: 'Der var problemer med følgende felter:'
         header:
-          one: En fejl forhindrede denne %{model} i at blive gemt
+          one: "En fejl forhindrede denne %{model} i at blive gemt"
           other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
       models:
         application:

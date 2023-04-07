@@ -1,7 +1,4 @@
-require File.dirname(__FILE__) + '/../spec_helper'
-include ApplicationHelper
-include UsersHelper
-include AuthenticatedTestHelper
+require 'spec_helper'
 
 describe UsersHelper do
   let(:user) { User.make! }

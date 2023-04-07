@@ -20,7 +20,7 @@ Paperclip.interpolates("icon_type_extension") do |attachment, style|
 end
 
 Paperclip.interpolates("root_url") do |attachment, style|
-  FakeView.root_url.chomp("/")
+  UrlHelper.root_url.chomp( "/" )
 end
 
 Paperclip::UploadedFileAdapter.content_type_detector = InatContentTypeDetector

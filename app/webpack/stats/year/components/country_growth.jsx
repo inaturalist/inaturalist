@@ -35,9 +35,8 @@ class CountryGrowth extends React.Component {
 
   componentDidMount( ) {
     this.renderVisualization( );
-    d3.json( WORLD_ATLAS_50M_JSON_URL, world => this.setState( { world } ) );
-    d3.tsv(
-      WORLD_ATLAS_50M_TSV_URL,
+    d3.json( WORLD_ATLAS_50M_JSON_URL ).then( world => this.setState( { world } ) );
+    d3.tsv( WORLD_ATLAS_50M_TSV_URL ).then(
       worldData => this.setState( { worldData: _.keyBy( worldData, d => d.iso_n3 ) } )
     );
   }
@@ -234,12 +233,12 @@ class CountryGrowth extends React.Component {
       zoomToBounds( bounds );
     }
     svg.select( "rect" ).on( "click", reset );
-    function zoomed( ) {
+    function zoomed( zoomEvent ) {
       g.selectAll( "path" ).style( "stroke-width", "0px" );
-      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / d3.event.transform.k}px` );
-      g.attr( "transform", d3.event.transform );
+      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / zoomEvent.transform.k}px` );
+      g.attr( "transform", zoomEvent.transform );
     }
-    function clicked( d ) {
+    function clicked( _clickEvent, d ) {
       const current = svg.selectAll( `[id="${d.id}"]` );
       if ( that.state.currentFeatureID === d.id ) {
         return reset( );
@@ -315,7 +314,7 @@ class CountryGrowth extends React.Component {
         .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
         .style( "color", d => d3.color( d3.interpolateViridis( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
         .style( "background-color", d => d3.interpolateViridis( dataScale( d.properties[metric] ) ) )
-        .on( "click", d => clicked( d ) );
+        .on( "click", ( clickEvent, d ) => clicked( clickEvent, d ) );
     enterBars
       .append( "span" )
         .attr( "class", "rank" )

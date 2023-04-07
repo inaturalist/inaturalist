@@ -41,6 +41,9 @@
 h1 {
   .btn {
     margin-left: 10px;
+    &.muting {
+      margin-left: 2px;
+    }
   }
 
   small.role {

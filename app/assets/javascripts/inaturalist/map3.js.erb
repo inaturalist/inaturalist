@@ -426,6 +426,10 @@ iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   tilt: 0
 };
 
+iNaturalist.Map.API_PARAMS = function( ) {
+  return <%= INatAPIService::MAPPABLE_PARAMS.to_s %>;
+};
+
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
@@ -784,7 +788,7 @@ iNaturalist.OverlayControl.prototype.removeAll = function( ) {
 // in `layers` at the same time. If the overlay was not previously displayed
 // on the map, it will be added to the top-right corner of the map.
 iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( layers, options ) {
-  if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
+  if( ! Array.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
       title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
@@ -1168,105 +1172,10 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     options.featured_observation_id = options.observation_id;
   }
   // these are the parameters that will be sent to the node API
-  var paramKeys = [
-    "acc",
-    "acc_above",
-    "acc_below",
-    "acc_below_or_unknown",
-    "apply_project_rules_for",
-    "border_opacity",
-    "cache",
-    "captive",
-    "collection_preview",
-    "color",
-    "created_d1",
-    "created_d2",
-    "created_on",
-    "d1",
-    "d2",
-    "day",
-    "endemic",
-    "featured_observation_id",
-    "geo",
-    "geoprivacy",
-    "has",
-    "has",
-    "hrank",
-    "id",
-    "id_above",
-    "iconic_taxa",
-    "iconic_taxa",
-    "ident_taxon_id",
-    "ident_taxon_id_exclusive",
-    "ident_user_id",
-    "identifications",
-    "identified",
-    "introduced",
-    "lat",
-    "line_color",
-    "line_opacity",
-    "line_width",
-    "list_id",
-    "lng",
-    "lrank",
-    "members_of_project",
-    "month",
-    "native",
-    "nelat",
-    "nelng",
-    "not_in_place",
-    "not_in_project",
-    "not_matching_project_rules_for",
-    "not_user_id",
-    "oauth_application_id",
-    "on",
-    "opacity",
-    "photo_license",
-    "photos",
-    "place_id",
-    "popular",
-    "precision",
-    "precision_offset",
-    "project_id",
-    "project_ids",
-    "projects[]",
-    "q",
-    "quality_grade",
-    "radius",
-    "rank",
-    "reviewed",
-    "scaled",
-    "search_on",
-    "skip_top_hits",
-    "sounds",
-    "style",
-    "swlat",
-    "swlng",
-    "taxon_geoprivacy",
-    "taxon_id",
-    "taxon_ids",
-    "taxon_ids[]",
-    "term_id",
-    "term_value_id",
-    "threatened",
-    "tile_size",
-    "ttl",
-    "unobserved_by_user_id",
-    "user_after",
-    "user_before",
-    "user_id",
-    "verifiable",
-    "viewer_id",
-    "viewer_id",
-    "width",
-    "without_taxon_id",
-    "without_term_value_id",
-    "year"
-  ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "grid" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "points" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "points" } ));
   // add a layer to the map for the grid
   gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + gridTileSuffix;

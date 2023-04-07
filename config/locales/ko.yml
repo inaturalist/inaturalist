@@ -290,7 +290,6 @@ ko:
   already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
   ancestor_taxon: 조상 분류군
-  and: 그리고
   and_other_taxa: "&amp; 다른 분류군"
   android: 안드로이드
   animals: 동물
@@ -789,9 +788,13 @@ ko:
   download_csv: CSV 다운로드
   download_csv_template: CSV 양식 다운로드
   download_kml: KML 다운로드
+  #Noun, as in a journal post that has not been published
   draft: 초안
+  #Noun, as in a journal post that has not been published
   draft_: 초안
+  #Noun, as in a journal post that has not been published
   draft_saved: 초안이 저장되었습니다!
+  #Noun, as in journal posts that has not been published
   drafts: 초안
   drag_and_drop_some_photos_or_sounds: 사진이나 소리를 끌어서 놓으십시오
   edit: 수정
@@ -1363,6 +1366,7 @@ ko:
   most_observed_introduced_species: 가장 많이 관찰된 도입종
   most_observed_threatened_species: 가장 많이 관찰된 위기종
   must_have_observation_field: "%{operand}을 필수로 기입해야 합니다."
+  #Mute is a noun here
   mute_removed: 알림 제외를 제거함
   muted_users: 알림에서 제외된 사용자
   n_ago: "%{n}전"
@@ -2419,12 +2423,6 @@ ko:
     emailer:
       photos_missing:
         subject: 일부 사진에 수정이 필요합니다
-    places:
-      kml_field_desc: |
-        장소 경계의 KML입니다. Google Maps, Google Earth,
-        대부분의 GIS 애플리케이션을 사용하여 만들 수 있습니다.
-        적어도 1 MB 미만(사이트 큐레이터의 경우 5 MB)의 다각형이
-        하나라도 있어야 하며 면적은 미국 텍사스 주보다 작아야 합니다.
     projects:
       project_type: 프로젝트 유형
       confirm_leave:
@@ -2525,9 +2523,6 @@ ko:
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
-        observations_to_date: '개의 관찰이 게시됨'
-        species_observed: '종이 관찰됨'
-        people_signed_up: '명의 사람들이 가입함'
         how_it_works: 사용하는 법
         record_your_observations: 관찰을 기록하세요
         share_with_fellow_naturalists: 다른 사용자들과 공유해요
@@ -2594,9 +2589,9 @@ ko:
       6: 금
       7: 토
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%Y %b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y년 %B'
     month_names:
       - 
@@ -2618,14 +2613,6 @@ ko:
         other: 약 %{count}분
       less_than_x_seconds:
         other: 약 %{count}초
-    countdown_x_days:
-      other: 일
-    countdown_x_hours:
-      other: 시간
-    countdown_x_minutes:
-      other: 분
-    countdown_x_seconds:
-      other: 초
     prompts:
       day: 일
       hour: 시간
@@ -2633,26 +2620,6 @@ ko:
       month: 달
       second: 초
       year: 년
-  errors:
-    messages:
-      accepted: 동의해야 합니다
-      blank: 비워둘 수 없습니다
-      confirmation: 비밀번호와 일치하지 않습니다
-      empty: 비워둘 수 없습니다
-      equal_to: '%{count}와(과) 같아야 합니다'
-      even: 짝수여야 합니다
-      exclusion: 이미 존재합니다.
-      greater_than: '%{count}보다 커야 합니다'
-      greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
-      inclusion: 목록에 포함하지 않습니다
-      invalid: 잘못되었습니다
-      less_than: '%{count}보다 작아야 합니다'
-      less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
-      not_a_number: 숫자가 아닙니다
-      not_an_integer: 정수여야 합니다
-      odd: 홀수여야 합니다
-      record_invalid: '검증에 실패했습니다: %{errors}'
-      taken: 이미 쓰이고 있습니다.
   helpers:
     defaults:
       title: "이것은 제목입니다"
@@ -2665,15 +2632,8 @@ ko:
         strip_insignificant_zeros: true
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%Y년 %B %d일"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%Y년 %B %d일"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: 비밀번호와 일치하지 않습니다
   activerecord:
     models:
       TaxonLink: 분류 링크
@@ -2711,11 +2671,8 @@ ko:
         confirmation: 비밀번호와 일치하지 않습니다
         empty: 비워둘 수 없습니다
         even: 짝수여야 합니다
-        greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
         inclusion: 목록에 포함되어 있지 않습니다
         invalid: 잘못되었습니다
-        less_than: '%{count}보다 작아야 합니다'
-        less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
         not_a_number: 숫자가 아닙니다
         not_an_integer: 정수여야 합니다
         odd: 홀수여야 합니다

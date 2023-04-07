@@ -212,6 +212,12 @@ fr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Préc. (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Précisions supérieure à
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Précision inférieure à
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Précision absente ou inférieure à
   account: Compte
   account_creation: Création de compte
   account_settings: Paramètres du compte
@@ -514,7 +520,6 @@ fr:
   analyze_clashes: Analyser les désaccords involontaires
   analyze_ids: Analyser les Id
   ancestor_taxon: Taxon parent
-  and: et
   and_other_taxa: "&amp; Autres taxons"
   android: Android
   animals: Animaux
@@ -776,6 +781,8 @@ fr:
   birds: oiseaux
   birthday: Anniversaire
   black: noir
+  block: Bloquer
+  blocking_description: Le blocage empêche toute communication entre vous et un autre utilisateur. Il est conçu pour des situations où un autre utilisateur pourrait être une menace pour votre sécurité, par exemple en vous traquant ou en ayant d'autres comportements abusifs.
   block_removed: Blocage supprimé
   blocked_users: Utilisateurs bloqués
   blog_widget: Widget de blog
@@ -803,7 +810,6 @@ fr:
   browse_species_that_occur_near_this_observation: Explorer les espèces présentes à proximité de cette observation.
   built_with_site_guides_html: "Construit avec les <a href='%{url}'>guides d’%{site_name}</a>"
   bulk_import_of_filename_is_complete: "L’import en masse de %{filename} est terminée"
-  by: par
   by_everyone: Par tout le monde
   by_user: "Par %{user}"
   by_you: Par vous
@@ -1521,6 +1527,7 @@ fr:
       signed_up_but_locked: "Votre compte a été créé avec succès. Cependant, vous ne pouvez pas vous connecter, car votre compte est verrouillé."
       signed_up_but_unconfirmed: "Un message contenant un lien de confirmation a été envoyé à votre adresse e-mail. Cliquez sur ce lien pour activer votre compte."
       updated: 'Vous avez mis à jour votre compte avec succès.'
+      updated_but_not_signed_in: "Votre compte a été modifié avec succès. Merci de vous reconnecter."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1607,9 +1614,15 @@ fr:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxons couverts marqués en aval
+  #Noun, as in a journal post that has not been published
   draft: brouillon
+  #Noun, as in a journal post that has not been published
   draft_: Brouillon
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Brouillon par %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Brouillon enregistré!
+  #Noun, as in journal posts that has not been published
   drafts: Brouillons
   drag_and_drop_some_photos_or_sounds: Glisser et déposer quelques photos ou sons
   #Button label for drawing a circular boundary for an observation search
@@ -2079,6 +2092,13 @@ fr:
   home: Accueil
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Heures de décalage :"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Cependant, sa licence n'autorise pas la réutilisation et elle ne sera pas transmise aux référentiels de données qui respectent les choix de licence.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
   however_not_licensed_action_html: |
     Vous pouvez modifier vos préférences de licence dans <a class="linky" href="/users/edit#content">les paramètres de votre compte</a>.
   however_there_were_some_issues: "Cependant, il y a eu quelques problèmes : %{issues}"
@@ -2329,6 +2349,8 @@ fr:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
     albanian: Albanais
+    aou_4_letter_codes: Codes en 4 lettres de l'AOU
+    aou_6_letter_codes: Codes en 6 lettres de l'AOU
     arabic: arabe
     armenian: arménien
     belarusian: Biélorusse
@@ -2352,11 +2374,14 @@ fr:
     french: Français
     galician: galicien
     gela: Gela
+    georgian: Géorgien
     german: Allemand
     greek: Grec
+    gujarati: Gujarati
     hawaiian: Hawaïen
     hebrew: Hébreu
     hiligaynon: Hiligaynon
+    hokkien: Hokkien
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
@@ -2364,6 +2389,7 @@ fr:
     italian: Italien
     japanese: Japonais
     kannada: Kannada
+    kazakh: Kazakh
     korean: Coréen
     latvian: letton
     lithuanian: Lithuanien
@@ -2402,6 +2428,7 @@ fr:
     tokelauan: Tokelauan
     turkish: Turc
     ukrainian: Ukrainien
+    uyghur: Ouïghour
     waray_waray: Waray-Waray
     visayan: cebuano
   less: Moins
@@ -2444,6 +2471,10 @@ fr:
     taxonomic: taxinomique
     photo: photo
   list_was_successfully_created: La liste a bien été créée.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} et %{three}"
+  list_with_two_items: "%{one} et %{two}"
   listed_taxa: Taxons listés
   listed_taxon: Taxon listé
   listed_taxon_updated: Taxon listé à jour
@@ -2495,6 +2526,8 @@ fr:
     id: Indonésien
     it: Italien
     ja: Japonais
+    ka: Géorgien
+    kk: Kazakh
     kn: Kannada
     ko: Coréen
     lb: Luxembourgeois
@@ -2560,6 +2593,8 @@ fr:
   lookup: Chercher
   low: Bas
   lowest_rank: Rang le moins élevé
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Rendre administrateur
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contenu principal
@@ -2592,7 +2627,7 @@ fr:
       every_publicly_visible_observation: Toutes les observations qui peuvent être vues par tout le monde créées dans le réseau iNaturalist
       featured_observations: Notre sélection
       gbif_network: Réseau SMIB
-      gbif_network_description: Enregistrements de musées et autres fournisseurs de présences distribués par le Système mondial d’informations sur la biodiversité
+      gbif_network_description2: Enregistrements provenant de musées et autres fournisseurs d'occurences distribués par le Système mondial d’information sur la biodiversité
       observations: Observations
       place_boundary: Limites géographiques du lieu
       checklist_places: Check-list de lieux
@@ -2611,6 +2646,9 @@ fr:
   maximum_positional_accuracy_including_unknown: |
     Précision maximale de localisation incluant les observations sans précision de la localisation
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: et
   media_type: Type de média
   medium: moyen
   meet: Rencontrer
@@ -2782,8 +2820,12 @@ fr:
   must_have_quality_grades: "doit avoir les niveaux de qualité : %{grades}"
   must_have_sounds: doit disposer de sons
   must_have_x: "doit avoir %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Mettre en mode muet
+  #Mute is a noun here
   mute_removed: Mise au silence supprimée
   muted_users: Utilisateurs réduits au silence
+  muting_description: 'Mettre quelqu''un en mode muet vous permet de ne pas recevoir de notifications à propos de ses activités : mentions "@", messages, commentaires et identifications de vos observations.'
   n_ago: "il y a %{n}"
   n_people_agrees: "%{amount} des gens sont d’accord"
   n_people_disagrees: "%{amount} des gens ne sont pas d’accord"
@@ -2982,6 +3024,8 @@ fr:
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
   not_finding_place_you_want?: Vous n’avez pas trouvé le lieu que vous vouliez ?
   not_found: Non trouvé
+  #Filter for observations not in a particular place
+  not_in_place: Pas dans le lieu
   not_linked_facebook: "Votre compte %{site_name} n’est pas lié à votre compte Facebook"
   not_linked_flickr: "Votre compte %{site_name} n’est pas lié à votre compte Flickr"
   not_on_this_list: Pas dans cette liste.
@@ -3073,6 +3117,14 @@ fr:
   observation_curation: Organisation d’observations
   observation_date: Date
   observation_date?: Date ?
+  #Basic observation export fields
+  observation_export_column_type_basic: Paramètres de base
+  #Geographic observation export fields
+  observation_export_column_type_geo: Géo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Taxon, autres
   observation_field: Champ de l’observation
   observation_field_details: Détails du champ de l’observation
   observation_field_type_text: Texte
@@ -3301,6 +3353,9 @@ fr:
     invalid_email: Format de courriel non valide
   password: Mot de passe
   password_confirmation: 'Confirmation du mot de passe'
+  password_change_description: Changer votre mot de passe vous déconnectera de toutes les sessions iNaturalist actives sur vos appareils.
+  password_change_logout_warning: Quand vous aurez changé votre mot de passe, votre session prendra fin et vous devrez vous reconnecter avec votre nouveau mot de passe.
+  password_change_observations_warning: Votre session sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom sera fermée. Assurez-vous donc d'avoir téléchargé toutes les observations en attente avant de faire cela. Toutes les observations qui ne sont pas téléchargées seront perdues.
   paste: Coller
   paste_in_a_bunch_of_names: Collez dans un groupe de noms, 1 par ligne, et appuyez sur le bouton!
   people: Personnes
@@ -3814,10 +3869,8 @@ fr:
     où vous pouvez dessiner des limites arbitraires, ou bien de les télécharger depuis iNat 
     en utilisant des lieux existants ou une rectangle géographique puis filtrez 
     les données à nouveau une fois que vous les avez téléchargées.
-  places_warning_look_for_existing_html: |
-    Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vérifier
-    que vous n'êtes pas en train de créer un doublon. Nous avons déjà des lieux pour tous les
-    continents et pays, et deux niveaux administratifs inférieurs au pays.
+  places_warning_look_for_existing2_html: |
+    Cherchez dans les <a href="/search?source[]=places">lieux existants</a> pour vous assurer de ne pas créer un doublon. Nous avons déjà des lieux pour tous les continents et pays, et pour de nombreuses autres limites territoriales.
   places_warning_please_keep_in_mind: |
     Veuillez garder à l'esprit les restrictions suivantes :
   places_warning_projects_can_have_multiple_places: |
@@ -3853,7 +3906,10 @@ fr:
   post_from_your_journal_html: Publié depuis <a href="%{url}">votre journal</a>
   post_published: Note publiée!
   posted_by: Publié par
-  posted_on: Publié le
+  #Shows the date a journal post was published
+  posted_on_date_html: Publié le %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publié le %{date} par %{user}
   posts: Notes
   potential_disagreement: Désaccord potentiel
   powered_by: Optimisé par
@@ -4574,6 +4630,10 @@ fr:
   stats: Statistiques
   stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont pas été générées.
   status: État
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Statut appliqué à partir d'un taxon de rang supérieur :</strong> %{taxon}
   status_globally: '"%{status}" Global'
   status_in_place: '"%{status}" à %{place}'
   stay_and_try_again: Rester et réessayer
@@ -5263,8 +5323,7 @@ fr:
   user_commented: "%{user} a commenté"
   user_disagrees_this_is_taxon: "%{user} ne pense pas que ce soit %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} a mis en favori %{noun} par %{owner}"
+  user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
   user_faved_this_observation: "%{user} a mis cette observation en favori"
   user_flagged_as_a_non_spammer_html: "%{user} signalé comme non spammeur"
   user_flagged_as_a_spammer_html: "%{user} signalé comme spammeur"
@@ -5518,6 +5577,8 @@ fr:
     Commons Attribution-Share-Alike License 3.0</a>. Son contenu peut avoir été
     supprimé dans l’original, mais aucun contenu n’a été modifié ou complété.
   with: avec
+  #Filter for observations not in a particular taxon
+  without_taxon: Pas dans le taxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Retirer
@@ -6653,8 +6714,8 @@ fr:
           laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
           viole les droits d’auteur.
     places:
-      kml_field_desc: |
-        Fichier KML des limites géographiques du lieu. Vous pouvez le créer un en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone et être inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une suface plus petite que l’état du Texas.
+      kml_field_desc2: |
+        Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une surface plus petite que l’état du Texas (États-Unis).
       edit:
         complex_boundary_note_html: |
           Cette limite géographique est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
@@ -7517,14 +7578,9 @@ fr:
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
         monthly_supporter_desc_html: |
-          Les parrains réguliers d’iNaturalist font des contributions mensualisées
-          automatiques qui sont reçues par la California Academy of Sciences (code fiscal des États-Unis IRS EIN 94-1156258) afin de soutenir les opérations à but non-lucratif d’iNaturalist et les sites en ligne d’iNaturalist.
-          <a href="%{url}">Cliquez ici pour devenir un parrain mensualisé</a>.
-          Lorsque nous avons confirmé votre soutien, vous pourrez vérifiez cette
-          boîte pour afficher ce statut sur votre profil. Note : vous devrez utiliser
-          exactement la même adresse courriel sur Donorbox que celle que vous
-          utilisez sur iNaturalist pour nous permettre de confirmer que vous êtes
-          un parrain mensualisé.
+          Les personnes qui soutiennent iNaturalist en faisant chaque mois un don automatique à la California Academy of Sciences (code fiscal des États-Unis IRS EIN 94-1156258) appuient les activités à but non lucratif d’iNaturalist et les sites du réseau iNaturalist.
+          <a href="%{url}">Cliquez ici pour faire un don mensuel</a>.
+          Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, changez-en une.
         muting_desc_html: |
           <p>
           Passer quelqu’un en mode muet vous évite de recevoir des notifications sur ce
@@ -7679,9 +7735,15 @@ fr:
       index:
         connect_with_nature: Connectez-vous Avec la Nature
         explore_and_share: Explorer et partager vos observations du monde naturel.
-        observations_to_date: 'Observations à ce jour'
-        species_observed: 'Espèces observées'
-        people_signed_up: 'Personnes se sont inscrites'
+        observations_to_date:
+          one: "Observation à ce jour"
+          other: "Observations à ce jour"
+        species_observed:
+          one: "Espèces observées"
+          other: "Espèces observées"
+        people_signed_up:
+          one: "Personne inscrite"
+          other: "Personnes inscrites"
         how_it_works: Comment cela marche
         record_your_observations: Enregistrer vos observations
         share_with_fellow_naturalists: Partager avec d'autres naturalistes
@@ -7756,19 +7818,19 @@ fr:
       6: Ve
       7: Sa
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%e %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -7821,17 +7883,17 @@ fr:
         one: "1 seconde"
         other: '%{count} secondes'
     countdown_x_days:
-      one: jour
-      other: jours
+      one: JOUR
+      other: JOURS
     countdown_x_hours:
-      one: heure
-      other: heures
+      one: HEURE
+      other: HEURES
     countdown_x_minutes:
-      one: minute
-      other: minutes
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: seconde
-      other: seconde
+      one: SEC
+      other: SEC
     prompts:
       day: Jour
       hour: Heure
@@ -7839,47 +7901,6 @@ fr:
       month: Mois
       second: Secondes
       year: Année
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: doit être accepté
-      blank: ne peut pas être vide
-      confirmation: ne correspond pas au mot de passe
-      empty: ne peut pas être vide
-      equal_to: doit être égal à %{count}
-      even: doit être pair
-      exclusion: est réservé
-      greater_than: doit être supérieur à %{count}
-      greater_than_or_equal_to: doit être supérieur ou égal à %{count}
-      inclusion: n’est pas dans la liste
-      invalid: n’est pas valide
-      less_than: doit être inférieur à %{count}
-      less_than_or_equal_to: doit être inférieur ou égal à %{count}
-      new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
-      not_a_number: n’est pas un nombre
-      not_an_integer: doit être un nombre entier
-      odd: doit être impair
-      only_project_owner_can_change_project_owner: Seul le responsable du projet peut changer le responsable du projet
-      record_invalid: 'Échec de validation : %{errors}'
-      requires_privilege_speech: |
-        doit avoir trois observations vérifiables ou trois identifications
-        pour d’autres, pour pouvoir faire cela
-      requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
-      taken: a déjà été pris
-      too_long:
-        one: est trop long (le maximum est de 1 caractère)
-        other: est trop long (le maximum est de %{count} caractères)
-      too_short:
-        one: est trop court (le minimum est de 1 caractère)
-        other: est trop court (le minimum est de %{count} caractères)
-      wrong_length:
-        one: n’a pas la bonne longueur (devrait être de 1 caractère)
-        other: n’a pas la bonne longueur (devrait être de %{count} caractères)
-    template:
-      body: 'Il y a eu des problèmes avec les champs suivants :'
-      header:
-        one: "1 erreur a empêché ce %{model} d’être enregistré"
-        other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   helpers:
     defaults:
       title: "CECI EST UN TITRE"
@@ -7942,64 +7963,21 @@ fr:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: doit être accepté
-        blank: ne peut pas être vide
-        confirmation: ne correspond pas au mot de passe
-        empty: ne peut pas être vide
-        equal_to: doit être égal à %{count}
-        even: doit être pair
-        exclusion: est réservé
-        greater_than: doit être supérieur à %{count}
-        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
-        inclusion: n’est pas compris dans la liste
-        invalid: n’est pas valide
-        less_than: doit être inférieur à %{count}
-        less_than_or_equal_to: doit être inférieur ou égal à %{count}
-        new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
-        not_a_number: n’est pas un nombre
-        not_an_integer: doit être un entier
-        odd: doit être impair
-        only_project_owner_can_change_project_owner: Seul le responsable du projet peut modifier le responsable du projet
-        record_invalid: 'Échec de validation : %{errors}'
-        requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour d’autres, pour pouvoir faire cela"
-        requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
-        taken: a déjà été pris
-        too_long:
-          one: est trop long (le maximum est de 1 caractère)
-          other: est trop long (le maximum est de %{count} caractères)
-        too_short:
-          one: est trop court (le minimum est de 1 caractère)
-          other: est trop court (le minimum est de %{count} caractères)
-        wrong_length:
-          one: n’a pas la bonne longueur (devrait être de 1 caractère)
-          other: n’a pas la bonne longueur (devrait être de %{count} caractères)
-      template:
-        body: 'Il y a des problèmes avec les champs suivants :'
-        header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
-          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -8215,22 +8193,34 @@ fr:
         blank: ne peut être vide
         confirmation: ne correspond pas au mot de passe
         empty: ne peut être vide
-        equal_to: doit être égal à %{count}
+        equal_to:
+          one: doit être égal à %{count}
+          other: doit être égal à %{count}
         even: doit être pair
         exclusion: est réservé
-        greater_than: doit être supérieur à %{count}
-        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+        greater_than:
+          one: doit être supérieur à %{count}
+          other: doit être supérieur à %{count}
+        greater_than_or_equal_to:
+          one: doit être supérieur ou égal à %{count}
+          other: doit être supérieur ou égal à %{count}
         inclusion: n’est pas compris dans la liste
         invalid: n’est pas valide
-        less_than: doit être inférieur à %{count}
-        less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        less_than:
+          one: doit être inférieur à %{count}
+          other: doit être inférieur à %{count}
+        less_than_or_equal_to:
+          one: doit être inférieur ou égal à %{count}
+          other: doit être inférieur ou égal à %{count}
         new_project_owner_must_be_a_manager: Le nouveau responsable du projet doit être un administrateur
         not_a_number: n’est pas un nombre
         not_an_integer: doit être un entier
         odd: doit être impair
         only_project_owner_can_change_project_owner: Seul le responsable du projet peut modifier le responsable du projet
         record_invalid: 'Échec de la validation : %{errors}'
-        requires_privilege_speech: "doit avoir trois observations vérifiables ou trois identifications\npour que les autres puissent faire cela"
+        requires_privilege_speech: |
+          doit avoir trois observations vérifiables ou trois identifications
+          pour que les autres puissent faire cela
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
         taken: a déjà été pris
         too_long:
@@ -8245,7 +8235,7 @@ fr:
       template:
         body: 'Il y a des problèmes avec les champs suivants :'
         header:
-          one: 1 erreur a empêché ce %{model} d’être enregistré
+          one: "1 erreur a empêché ce %{model} d’être enregistré"
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
       models:
         application:

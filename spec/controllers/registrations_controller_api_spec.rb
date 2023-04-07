@@ -81,13 +81,13 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should assign a user to a site" do
-    @site = Site.make!( url: "test.host" ) # hoping the test host is the same across platforms...
+    @site = Site.make!( url: "http://test.host" ) # hoping the test host is the same across platforms...
     u = register_user_with_params
     expect( u.site ).to eq @site
   end
 
   it "should assign a user to a site using inat_site_id param" do
-    site1 = Site.make!( url: "test.host" )
+    site1 = Site.make!( url: "http://test.host" )
     site2 = Site.make!
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {
@@ -100,13 +100,13 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should give the user the locale of the requested site" do
-    site = Site.make!( url: "test.host", preferred_locale: "es-MX" )
+    site = Site.make!( url: "http://test.host", preferred_locale: "es-MX" )
     u = register_user_with_params
     expect( u.locale ).to eq site.preferred_locale
   end
 
   it "should give the user the locale of the site specified by inat_site_id" do
-    site1 = Site.make!( url: "test.host" )
+    site1 = Site.make!( url: "http://test.host" )
     site2 = Site.make!( preferred_locale: "es-MX" )
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {

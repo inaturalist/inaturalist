@@ -13,7 +13,7 @@ xml.GuideTaxon :position => gt.position do
       image_sizes.each do |s|
         next unless url = gp.send("#{s}_url")
         xml.href url, :type => "remote", :size => s
-        xml.href(File.join(local_asset_path, guide_asset_filename(gp, :size => s)), :type => "local", :size => s) if local_asset_path
+        xml.href(File.join(local_asset_path, gp.asset_filename(size: s)), :type => "local", :size => s) if local_asset_path
       end
       xml.dc(:description, gp.description) unless gp.description.blank?
       xml.attribution gp.attribution
@@ -29,7 +29,7 @@ xml.GuideTaxon :position => gt.position do
       image_sizes.each do |s|
         next unless gr.respond_to?("#{s}_url") && (url = gr.send("#{s}_url")) && !url.blank?
         xml.href url, :type => "remote", :size => s
-        xml.href(File.join(local_asset_path, guide_asset_filename(gr, :size => s)), :type => "local", :size => s) if local_asset_path
+        xml.href(File.join(local_asset_path, gr.asset_filename(size: s)), :type => "local", :size => s) if local_asset_path
       end
       xml.attribution gr.attribution
       xml.dcterms :rightsHolder, gr.attribution_name

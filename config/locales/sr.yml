@@ -197,6 +197,12 @@ sr:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Preciznost (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Preciznost preko
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Preciznost ispod
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Preciznost ispod ili nepoznata
   account: Nalog
   account_creation: Kreiranje naloga
   account_settings: Podešavanja naloga
@@ -456,7 +462,6 @@ sr:
   amphibians: vodozemci
   analyze_ids: Analiziraj ID-jeve
   ancestor_taxon: Takson predak
-  and: i
   and_other_taxa: "&amp; drugi taksoni"
   android: Android
   animals: Životinje
@@ -619,6 +624,12 @@ sr:
   batch_edit_taxa_for_x_html: "Zbirno uređivanje za %{x}"
   batch_operations: Zbirne operacije
   be_the_first_to_fave_this_observation: Prvi/va dodaj ovu opservaciju u favorite!
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    <strong>Preporučujemo da se takođe izvrši promena taksona koja obuhavata %{old_parent}, kao što je odvajanje %{new_parent} od %{old_parent}</strong> jer procenjujemo da će promena imati za rezultat više od 10 nenamernih neslaganja.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    <strong>Verovatno nije potrebno izvršiti promenu taksona%{old_parent}</strong> jer procenjujemo da će promena imati za rezultat 10 ili manje nenamernih neslaganja.
   become_a_donor_caps: POSTANI DONATOR
   become_a_donor_today_caps: POSTANI DONATOR DANAS
   bg_color: BG boja
@@ -930,6 +941,7 @@ sr:
   date_is_accurate: Datum je tačan
   date_observed: Datum zapažanja
   date_observed_: Datum zapažanja
+  date_observed_on: datum zapažanja
   date_picker:
     closeText: Zatvori
     currentText: Danas
@@ -1000,6 +1012,7 @@ sr:
   devise_unlock_instructions_unlock: Otključaj profil
   disable: Onemogući
   disable_comments: Onemogući komentare
+  disable_comments_desc: Onemogući dodavanje komentara
   disagree_: Ne slažem se
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
@@ -1027,9 +1040,13 @@ sr:
   download_csv: Preuzmi CSV
   download_csv_template: Preuzmi CSV šablon
   download_kml: Preuzmi KML
+  #Noun, as in a journal post that has not been published
   draft: nacrt
+  #Noun, as in a journal post that has not been published
   draft_: Nacrt
+  #Noun, as in a journal post that has not been published
   draft_saved: Nacrt sačuvan!
+  #Noun, as in journal posts that has not been published
   drafts: Nacrt
   drag_and_drop_some_photos_or_sounds: Prevuci fotografije ili zvukove
   #Button label for drawing a circular boundary for an observation search
@@ -1784,6 +1801,7 @@ sr:
   new_announcement: Novo saopštenje
   new_application: Nova aplikacija
   new_assessment: Nova procena
+  new_comment_on_a_parent_by_user_link: Nov komentar na %{parent} korisnika %{user_link}
   new_guide: Novi vodič
   new_journal_post: Nova rubrika dnevnika
   new_list: Nova lista
@@ -2553,7 +2571,6 @@ sr:
   #Post is a noun
   post_from_your_journal_html: Objava iz <a href="%{url}">tvog dnevnika</a>
   posted_by: Postavio
-  posted_on: Postavljeno
   posts: Objave
   potential_disagreement: Potencijalno neslaganje
   powered_by: Pokreće
@@ -2772,6 +2789,7 @@ sr:
   recently_created: Nedavno kreirano
   recently_finished: Nedavno završeno
   recently_observed: Nedavno zabeleženo
+  recently_resolved: Nedavno razrešeno
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Evidencija
   red: crvena
@@ -2785,6 +2803,8 @@ sr:
   relationships:
     match: poklapanje
     error: greška
+  relationships_user_settings: Odnosi
+  relationship_html: "Odnos: %{link}"
   remarks_optional: 'Beleške <span class="small description">(opcionalno)</span>'
   remember_me: Zapamti me
   remove: Ukloni
@@ -2792,6 +2812,7 @@ sr:
   remove_conservation_status: Ukloni status ugroženosti
   remove_from: Ukloni iz
   remove_curator: Ukloni kustosa
+  remove_curator_status: Ukloni status kustosa
   remove_from_featured: Ukloni iz istaknutih
   remove_from_guide: Ukloni iz vodiča
   remove_from_list: Ukloni sa liste
@@ -2828,6 +2849,7 @@ sr:
   research_grade_tooltip_html: 'Opservacije "Istraživački nivo" imaju medije, lokaciju, datum i slaganje zajednice oko identifikacije (obično na nivou vrste). <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o kvalitetu podataka</a>'
   research_grade_observations_have: 'Opservacije "Istraživački nivo" imaju datum, fotografiju, koordinate i ID podržan od strane zajednice. Klikni da pogledaš procenu kvaliteta podataka.'
   research_grade_qualification: Zahtevi za istraživački nivo
+  resend_confirmation_email: Ponovo pošalji imejl za potvrdu
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
   reset_filters_short: Resetuj
@@ -2838,6 +2860,7 @@ sr:
   resolved: Rešeno
   resolved_by: Rešeno od strane
   resolved_by_user_on_date_html: Rešeno od strane %{user} %{date}
+  resolver_said_x_html: '<span class="meta">%{resolver} kaže,</span> "%{x}"'
   restart: Restartuj
   restore: Povrati
   restoring: Vraćanje...
@@ -2855,6 +2878,7 @@ sr:
   row_singular_or_plural: Red(ovi)
   rules_and_formatting: "Pravila & formatiranje"
   rules_for_adding_observations: Pravila za dodavanje opservacija
+  rules_for_becoming_a_member: Pravila za buduće članove
   rules_types:
     must_be_captive: mora biti u zatočeništvu / kultivisano
     must_be_identified: mora biti identifikovano
@@ -2925,6 +2949,8 @@ sr:
   select_at_least_one: Označi bar jedno
   #select_one_or_more_photos: Select One Or More Photos
   select_none: Izaberi ništa
+  select_one_of_friends_albums: Označi jedan od %{friend} albuma
+  select_one_of_your_albums: Označi jedan od tvojih albuma
   select_one_or_more_photos: 'Izaberi jednu ili više fotografija'
   select_options: Izaberi opciju
   selected: označeno
@@ -2932,6 +2958,9 @@ sr:
   selected_taxon: Izabran takson
   select_this_taxon: Izaberi takson
   send: pošalji
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Pošalji i izloguj me
   send_confirmation_email: Pošalji imejl za potvrdu
   send_me_reset_password_instructions: Pošalji mi uputstvo za resetovanje lozinke
   sending: Slanje...
@@ -2956,9 +2985,11 @@ sr:
   show_only: Prikaži samo
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
   show_taxa_from_place: "Prikaži taksoni iz %{place}"
+  show_uncountable_species: Prikaži nebrojive vrste
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Prikaži prvo %{x}
+  showing_taxa_from_everywhere: "Prikaži taksone od svuda"
   showing_taxa_from_place: "Prikaži taksone iz %{place}"
   showing_x_of_y: Prikazuje se %{x} od %{y}
   sign_in: Prijavi se
@@ -3023,6 +3054,7 @@ sr:
   source: Izvor
   source_: 'Izvor:'
   source_wikipedia: "Izvor: Vikipedija"
+  source_list_: "Lista izvora"
   source_list:
     catalogue_of_life: Katalog života
     inaturalist: iNaturalist
@@ -3038,6 +3070,7 @@ sr:
   source_url: Izvorni URL
   sources: Izvori
   sources_youve_added: Izvori koje si dodao/la
+  sources_and_credits: Izvori i zasluge
   spam: Neželjena pošta
   #Plural
   species: Vrste
@@ -3048,6 +3081,8 @@ sr:
   species_search: Pretraga vrsta
   species_taxon_name: Vrsta / Naziv taksona
   species_unknown: Vrsta nepoznata
+  #Abbreviation for "source"
+  src: Izvor
   standard: Standardni
   start: Od
   start_a_new_project: Započni novi projekat
@@ -3057,6 +3092,7 @@ sr:
   status: Status
   status_globally: '"%{status}" globalno'
   status_in_place: '"%{status}" u %{place}'
+  still_no_luck?: I dalje ništa?
   still_needs_id?: Zajednica može da potvrdi/unapredi ID?
   stop_editing: Prekini uređivanje
   stop_following_user: "Otprati %{user}"
@@ -3472,8 +3508,6 @@ sr:
   user_commented: "%{user} komentariše"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} je dodao u favorite %{noun} od %{owner}"
   user_faved_this_observation: "%{user} je dodao/la opservaciju u favorite"
   user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
@@ -3730,6 +3764,7 @@ sr:
   you_dont_have_permission_to_edit_those_photos: Nemaš dozvolu da izmeniš te fotografije.
   you_faved_this: Dodato u favorite!
   you_have_left_x_project: "Napustio si %{project}"
+  you_have_not_confirmed_your_email_address: Nisi potvrdio/la tvoju imejl adresu!
   you_havent_linked_your_inaturalist_google_account: "Nisi povezao/la tvoj %{site_name} nalog sa Google nalogom"
   you_joined_this_project: Pridružio si se ovom projektu!
   you_must_be_a_member_of_this_project_to_do_that: Moraš biti član ovog projekta da bi to uradio
@@ -3873,6 +3908,7 @@ sr:
         alphaname: Alfabetski po naučnom imenu
     lifelists:
       observed_species: Zabeležene vrste
+      observed_rank: Zabeleženo %{rank}
       unobserved_species: Nezabeležena vrsta
       all_species: Sve vrste
       all_unobserved_species: Sve nezabeležene vrste
@@ -3973,12 +4009,12 @@ sr:
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}
         quality_assessment_help2_html: |
           <p>
-          Procena kvaliteta podataka je ocena ispravnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
+          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Sve opservacije na početku imaju <strong>"Neobavezno"</strong> status i on se menja u <strong>"Potreban ID"</strong> ako
           </p>
 
           <ul>
           <li>opservacija <strong>ima datum</strong></li>
-          <li>opservacija <strong>je georeferencirana</strong> (tj. GŠ/GD koordinate)</li>
+          <li>opservacija <strong>je georeferencirana</strong> (tj. ima GŠ/GD koordinate)</li>
           <li>opservacija <strong>ima fotografije ili zvukove</strong></li>
           <li>opservacija <strong>nije ljudske jedinke</strong></li>
           </ul>
@@ -3991,11 +4027,11 @@ sr:
           </li>
           </ul>
           <p>
-          Opservacije će automatski dobiti status <strong>"neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
+          Opservacije će automatski dobiti status <strong>"Neobavezno"</strong> ako navedeni uslovi nisu zadovoljeni ili se zajednica ne slaže.
           </p>
           <ul>
           <li>
-          <strong>lokacije ne deluje tačna</strong> (npr. majmuni u sred okeana,
+          <strong>lokacija ne deluje tačna</strong> (npr. majmuni u sred okeana,
           nilski konji u poslovnim zgradama, itd.)
           </li>
           <li>
@@ -4011,7 +4047,7 @@ sr:
           opservaciji više nije potreban ID <em>i</em> ID zajednice je iznad nivoa porodice
           </li>
           <li>
-          posmatrač je isključio/la ID zajednice i takson ID-ja zajednice nije predak ni potomak povezanog taksona sa ID-jem posmatrača
+          posmatrač je isključio/la opciju ID zajednice i takson ID-ja zajednice nije predak ni potomak taksona povezanog sa ID-jem posmatrača
           </li>
           </ul>
           <p>
@@ -4019,7 +4055,7 @@ sr:
           </p>
           <ul>
           <li>
-          Sistem će automatski glasati da opservacija nije u divljini/naturalizovana ako ima bar 10 drugih opservacija tog roda ili niže u najmanjem okrugu, državi, ili zemlji mesta koje sadrži tu opservaciju i 80% ili više tih opservacija da su označene kao da nisu u divljini /naturalizovane.
+          Sistem će automatski pretpostaviti da opservacija nije u divljini/naturalizovana ako postoji bar 10 drugih opservacija tog roda ili niže klasifikacije u najmanjem ekvivalentnom mestu u okrugu, državi ili zemlji koje sadrži tu opservaciju i 80% ili više takvih opservacija su označene da nisu u divljini/naturalizovane.
           </li>
           </ul>
     emailer:
@@ -4058,6 +4094,8 @@ sr:
           Šta želiš da uradiš sa opservacijama u ovom projektu?
         keep_observations_label: |
           Ostavi tvoje opservacije u ovom projektu
+        project_requires_curator_coordinate_access_desc: |
+          Ovaj projekat ne dozvoljava opservacije gde koordinate nisu vidljive kustosima projekta. Ako ne želiš da deliš koordinate tvojih opservacija sa kustostima ovog projekta, moraš ih ukloniti iz projekta.
         remove_observations_label: |
           Ukloni sve tvoje opservacije iz obog projekta
         revoke_observations_label: |
@@ -4203,7 +4241,7 @@ sr:
         obs_cid_d_to_genus_desc: Kreirano u poslednjih nedelju dana i ima ID zajednice na nivou roda ili niže
         obs_desc: Kreirane u poslednjih 7 dana
         obs_id_d_desc: Kreirane u poslednjih 7 dana i imaju ID (može biti i posmatračev)
-        observations_1_week_moving_window: Opservacije (vremenski period od jedne nedelje)
+        observations_1_week_moving_window: Opservacije (za nedelju dana)
         other_desc_html: Kreirano pomoću drugih aplikacija <a href="%{url}">razvijenih od strane programera</a>
         recent_desc: Registrovani u prethodnih 7 dana
         recent_w_0_obs: Skorašnji bez opservacija
@@ -4413,9 +4451,6 @@ sr:
       index:
         connect_with_nature: Poveži se sa prirodom
         explore_and_share: Istražuj i podeli tvoje opservacije iz sveta prirode.
-        observations_to_date: 'opservacija do sad'
-        species_observed: 'vrsta zabeleženo'
-        people_signed_up: 'registrovanih korisnika'
         how_it_works: Kako funkcioniše
         record_your_observations: Zabeleži svoju opservaciju
         share_with_fellow_naturalists: Podeli sa drugim prirodnjacima
@@ -4486,19 +4521,19 @@ sr:
       6: Pet
       7: Sub
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d.%m.%Y.'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e. %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d. %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -4561,22 +4596,6 @@ sr:
         one: "%{count} sekund"
         few: '%{count} sekunda'
         other: '%{count} sekundi'
-    countdown_x_days:
-      one: dan
-      few: dana
-      other: dana
-    countdown_x_hours:
-      one: sat
-      few: sata
-      other: sati
-    countdown_x_minutes:
-      one: minut
-      few: minuta
-      other: minuta
-    countdown_x_seconds:
-      one: sekund
-      few: sekunda
-      other: sekundi
     prompts:
       day: Dan
       hour: Sat
@@ -4584,50 +4603,6 @@ sr:
       month: Mesec
       second: Sekundi
       year: Godina
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: mora biti prihvaćeno
-      blank: ne može biti prazno
-      confirmation: ne poklapa se sa lozinkom
-      empty: ne možе biti prazno
-      equal_to: mora biti jednako %{count}
-      even: mora biti parno
-      exclusion: je rezervisano
-      greater_than: mora biti veće od %{count}
-      greater_than_or_equal_to: mora biti veće od ili jednako %{count}
-      inclusion: nije na listi
-      invalid: je neispravno
-      less_than: mora biti manje od %{count}
-      less_than_or_equal_to: mora biti manje od ili jednako %{count}
-      new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
-      not_a_number: nije broj
-      not_an_integer: mora biti ceo broj
-      odd: mora biti neparno
-      only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
-      record_invalid: 'Potvrda neuspela: %{errors}'
-      requires_privilege_speech: |
-        mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
-      requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
-      taken: već postoji
-      too_long:
-        one: je predugačka (maksimalno %{count} znak)
-        few: je predugačka (maksimalno %{count} znaka)
-        other: je predugačka (maksimalno %{count} znakova)
-      too_short:
-        one: je prekratka (minimalno %{count} znak)
-        few: je prekratka (minimalno %{count} znaka)
-        other: je prekratka (minimalno %{count} znakova)
-      wrong_length:
-        one: je pogrešne dužine (treba biti %{count} znak)
-        few: je pogrešne dužine (treba biti %{count} znaka)
-        other: je pogrešne dužine (treba biti %{count} znakova)
-    template:
-      body: 'Bilo je problema sa sledećim poljima:'
-      header:
-        one: "%{count} greška onemogućava da %{model} bude sačuvan"
-        few: '%{count} greške onemogućava da %{model} bude sačuvan'
-        other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
   helpers:
     defaults:
       title: "OVO JE NASLOV"
@@ -4691,55 +4666,21 @@ sr:
   time:
     am: am
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d. %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d. %B %Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d. %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: mora biti prihvaćeno
-        blank: ne može biti prazno
-        confirmation: ne poklapa se sa lozinkom
-        empty: ne možе biti prazno
-        equal_to: mora biti jednako %{count}
-        even: mora biti parno
-        exclusion: je rezervisano
-        greater_than: mora biti veće od %{count}
-        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
-        inclusion: nije na listi
-        invalid: je neispravno
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje od ili jednako %{count}
-        new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
-        not_a_number: nije broj
-        not_an_integer: mora biti ceo broj
-        odd: mora biti neparno
-        only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
-        record_invalid: 'Potvrda neuspela: %{errors}'
-        requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
-        taken: već postoji
-        too_long:
-          one: je predugačko (maksimalno %{count} karakter)
-          few: su predugački (maksimalno %{count} karakter)
-          other: su predugački (maksimalno %{count} karakter)
-      template:
-        body: 'Bilo je problema sa sledećim poljima:'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -4760,6 +4701,9 @@ sr:
       announcement:
         created_at: Kreirano
         updated_at: Ažurirano
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: ID-jevi sajtova
       assessment:
         description: Opis
       assessment_section:
@@ -4799,6 +4743,8 @@ sr:
       observation_field_value:
         value: 'vrednost'
       observations_export_flow_task:
+        #Date/time the task began processing
+        started_at: Započeto
         #Date/time the task finished processing
         finished_at: Završeno
         #Inputs to an export task, e.g. the query and the columns
@@ -4900,22 +4846,18 @@ sr:
         blank: ne može biti prazno
         confirmation: ne poklapa se sa lozinkom
         empty: ne možе biti prazno
-        equal_to: mora biti jednako %{count}
         even: mora biti parno
         exclusion: je rezervisano
-        greater_than: mora biti veće od %{count}
-        greater_than_or_equal_to: mora biti veće od ili jednako %{count}
         inclusion: nije na listi
         invalid: je neispravno
-        less_than: mora biti manje od %{count}
-        less_than_or_equal_to: mora biti manje od ili jednako %{count}
         new_project_owner_must_be_a_manager: Novi vlasnik projekta mora biti administrator
         not_a_number: nije broj
         not_an_integer: mora biti ceo broj
         odd: mora biti neparno
         only_project_owner_can_change_project_owner: Samo vlasnik projekta može promeniti vlasnika projekta
         record_invalid: 'Potvrda neuspela: %{errors}'
-        requires_privilege_speech: mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
+        requires_privilege_speech: |
+          mora imati 3 argumentovane opservacije ili 3 identifikacije da bi drugi mogli to uraditi
         requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
         taken: već postoji
         too_long:
@@ -4933,7 +4875,7 @@ sr:
       template:
         body: 'Bilo je problema sa sledećim poljima:'
         header:
-          one: '%{count} greška onemogućava da %{model} bude sačuvan'
+          one: "%{count} greška onemogućava da %{model} bude sačuvan"
           few: '%{count} greške onemogućava da %{model} bude sačuvan'
           other: '%{count} grešaka onemogućava da %{model} bude sačuvan'
       models:
@@ -4992,6 +4934,13 @@ sr:
               cannot_be_blank: ne može biti prazno
               must_have_more_than_three_points: mora imati više od 3 poena
               polygon_with_fewer_than_four_points: ima poligon sa manje od 4 tačke
+        post:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: ne dozvoljava dodavanje komentara
         project_observation:
           attributes:
             base:

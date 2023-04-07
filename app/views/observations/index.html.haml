@@ -27,6 +27,8 @@
       .col-xs-12
         #filters.clear
           %h1= t :observations
+          - INatAPIService::MAPPABLE_PARAMS.each do |param|
+            %input{ type: "hidden", name: param }
           #filter-container.btn-group.pull-right
             %button.btn.btn-default.dropdown-toggle{ "uib-tooltip" => "{{ shared.t( 'filters' ) }}" }
               %i.fa.fa-sliders
@@ -37,7 +39,6 @@
             .dropdown-menu.dropdown-menu-right{"ng-include": "'ang/templates/observation_search/filter_menu.html'", onload: "onFiltersLoad( )"}
           .form-inline.pull-right.primary-filters
             %input.form-control{ placeholder: t( "ranks.species" ), name: "taxon_name", value: params[:taxon_name] }
-            %input{ type: "hidden", name: "taxon_id" }
             %span#place-name-input
               :ruby
                 # Note that if you give this a name like place_name, Chrome will apply its address autocomplete and potentiall obscure results.

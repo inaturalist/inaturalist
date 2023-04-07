@@ -245,7 +245,7 @@ class LocalPhoto < Photo
   end
 
   def reset_file_from_original
-    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    interpolated_original_url = ApplicationController.helpers.image_url( self.file.url(:original) )
     
     # If we're using local file storage and using some kind of development-ish
     # setup, it probably means we're running a single server process, which
@@ -264,7 +264,7 @@ class LocalPhoto < Photo
     else
       {}
     end
-    old_interpolated_original_url = FakeView.image_url(
+    old_interpolated_original_url = ApplicationController.helpers.image_url(
       Paperclip::Interpolations.interpolate( "photos/:id/:style.:extension", self.file, "original" ),
       image_url_opts
     )
@@ -273,7 +273,7 @@ class LocalPhoto < Photo
     
     # If it's not at the old path, use the cached original_url if it's not copyright infringement
     elsif original_url !~ /copyright/
-      FakeView.image_url( original_url )
+      ApplicationController.helpers.image_url( original_url )
 
     # If this is a copyright violation AND we don't have access to an original file, we're screwed.
     else

@@ -3,29 +3,25 @@
 class ConservationStatusesController < ApplicationController
   before_action :curator_required
   before_action :load_record, except: [:new, :create, :index]
+  before_action :load_taxon, except: [:create, :destroy]
   before_action :load_form_variables, only: [:new, :edit]
 
   layout "bootstrap"
 
   def index
-    @taxon = load_record( klass: "Taxon", param: :taxon_id )
     redirect_to taxon_path( @taxon, anchor: "status-tab" )
   end
 
   def new
-    unless ( @taxon = load_record( klass: "Taxon", param: :taxon_id ) )
-      return render_404
-    end
+    return render_404 unless @taxon
 
     @conservation_status = ConservationStatus.new( user: current_user, taxon: @taxon )
-    Rails.logger.debug "[DEBUG] @conservation_status.place_id: #{@conservation_status.place_id}"
   end
 
   def create
     @conservation_status = ConservationStatus.new( approved_create_params )
     @conservation_status.user = current_user
     @conservation_status.updater = current_user
-    @taxon = Taxon.find_by_id( params[:taxon_id] ) || @conservation_status.taxon
     if @conservation_status.save
       respond_to do | format |
         format.html do
@@ -44,7 +40,6 @@ class ConservationStatusesController < ApplicationController
   end
 
   def edit
-    @taxon = @conservation_status.taxon || load_record( klass: "Taxon", param: :taxon_id )
     render_404 unless @taxon
   end
 
@@ -111,5 +106,9 @@ class ConservationStatusesController < ApplicationController
       map( &:first ).compact.reject( &:blank? ).map( &:strip )
     @conservation_status_authorities += ConservationStatus::AUTHORITIES
     @conservation_status_authorities = @conservation_status_authorities.uniq.sort
+  end
+
+  def load_taxon
+    @taxon = @conservation_status&.taxon || load_record( klass: "Taxon", param: :taxon_id )
   end
 end

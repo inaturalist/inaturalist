@@ -346,7 +346,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         $scope.params.place_id = $scope.selectedPlace.id;
         $scope.updatePlaceAutocomplete( );
       }
-    } else if( !_.isArray( $scope.params.place_id) ) {
+    } else if( !Array.isArray( $scope.params.place_id) ) {
       $scope.alignMapOnSearch = false;
       $scope.params.place_id = "any";
       $scope.updatePlaceAutocomplete( );
@@ -385,13 +385,13 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( _.isString( $scope.params.place_id ) ) {
       $scope.params.place_id = _.filter( $scope.params.place_id.split(","), _.identity );
     }
-    if( _.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
+    if( Array.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
       $scope.params.place_id = $scope.params.place_id[0];
     }
-    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
+    if( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
       $scope.params.place_id = parseInt( $scope.params.place_id );
     }
-    if( $scope.params.place_id && !_.isArray( $scope.params.place_id ) ) {
+    if( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
       // load place name and polygon from ID
       PlacesFactory.show( $scope.params.place_id ).then( function( response ) {
         places = PlacesFactory.responseToInstances( response );
@@ -444,7 +444,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.currentSubview = PREFERRED_SUBVIEW;
     }
     // use the current user's id as the basis for the `reviewed` param
-    if( !_.isUndefined( initialParams.reviewed ) && !initialParams.reviewed_by && CURRENT_USER ) {
+    if( initialParams.reviewed !== undefined && !initialParams.reviewed_by && CURRENT_USER ) {
       initialParams.viewer_id = CURRENT_USER.id;
     }
     // a taxon_name param was provided, and a match was found,
@@ -500,7 +500,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       var urlParams = ObservationsFactory.processParams( _.fromPairs( newParams ), $scope.possibleFields );
       urlParams = _.mapValues( urlParams, function( v, k ) {
         // arrays turned to comma-delimited lists for URLs
-        if( _.isArray( v ) ) { return v.join(","); }
+        if( Array.isArray( v ) ) { return v.join(","); }
         // allow `photos=any` when the default value of true is changed
         if( $scope.defaultParams[ k ] === true && v !== true ) { v = "any"; }
         return v;
@@ -1366,7 +1366,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.paramsForUrl = function( options ) {
     options = options || { };
     var urlParams = _.extend( { }, $scope.params );
-    if( urlParams.month && !_.isArray( urlParams.month ) ) {
+    if( urlParams.month && !Array.isArray( urlParams.month ) ) {
       urlParams.month = urlParams.month.split(",");
     }
     urlParams.iconic_taxa = _.keys( urlParams._iconic_taxa );

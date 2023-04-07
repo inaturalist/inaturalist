@@ -106,7 +106,7 @@ class ProviderOauthController < ApplicationController
     end
     user ||= begin
       fb = Koala::Facebook::API.new( provider_token )
-      r = fb.get_object( "me", fields: "id,email,name,first_name,last_name,about,link,website,location,verified" )
+      r = fb.get_object( "me", fields: "id,email,name,first_name" )
       user = User.joins( :provider_authorizations ).
         where( "provider_authorizations.provider_uid = ?", r["id"] ).
         where( "provider_authorizations.provider_name = 'facebook'" ).
@@ -121,18 +121,7 @@ class ProviderOauthController < ApplicationController
             "email" => r["email"],
             "name" => r["name"],
             "first_name" => r["first_name"],
-            "last_name" => r["last_name"],
-            "image" => "http://graph.facebook.com/#{uid}/picture?type=square",
-            "description" => r["about"],
-            "urls" => {
-              "Facebook" => r["link"],
-              "Website" => r["website"]
-            },
-            "location" => ( r["location"] || {} )["name"],
-            "verified" => r["verified"]
-          },
-          "credentials" => {
-            "token" => provider_token
+            "image" => "http://graph.facebook.com/#{uid}/picture?type=square"
           }
         }
         user = User.create_from_omniauth( auth_info )
@@ -325,7 +314,7 @@ class ProviderOauthController < ApplicationController
     unless user.active_for_authentication?
       raise INat::Auth::SuspendedError if user.suspended?
       raise INat::Auth::ChildWithoutPermissionError if user.child_without_permission?
-      raise INat::Auth::UnconfirmedError if ( !user.confirmed? || confirmation_sent_at.blank? )
+      raise INat::Auth::UnconfirmedError if !user.confirmed? || confirmation_sent_at.blank?
     end
     access_token = Doorkeeper::AccessToken.
       where( application_id: client.id, resource_owner_id: user.id, revoked_at: nil ).

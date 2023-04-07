@@ -12,7 +12,7 @@ module ActiveRecord
         avg = 0
         unless recent_times.blank?
           avg = recent_times.sum.to_f / recent_times.size
-          eta = FakeView.time_ago_in_words( (
+          eta = ApplicationController.helpers.time_ago_in_words( (
             avg * ( total - current )
           ).seconds.from_now )
         end

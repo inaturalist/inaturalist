@@ -65,7 +65,7 @@ const Identifications = ( {
             <DateHistogram
               series={series}
               tickFormatBottom={d => moment( d ).format( "MMM D" )}
-              onClick={currentUser && currentUser.id ? d => {
+              onClick={currentUser && currentUser.id ? ( _clickEvent, d ) => {
                 let url = "/identifications?for=others&current=true";
                 const d1 = moment( d.date ).format( "YYYY-MM-DD" );
                 let d2;

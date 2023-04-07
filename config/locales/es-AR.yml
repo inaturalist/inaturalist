@@ -477,7 +477,6 @@ es-AR:
   amphibians: anfibios
   analyze_ids: Analizá IDs
   ancestor_taxon: Taxón Antepasado
-  and: "y"
   and_other_taxa: "&amp; Otros taxones"
   android: Android
   animals: Animales
@@ -717,7 +716,6 @@ es-AR:
   browse_species_that_occur_near_this_observation: Examinar especies que existan cerca de esta observación.
   built_with_site_guides_html: "Construido con las guías de <a href='%{url}'>%{site_name}"
   bulk_import_of_filename_is_complete: "La importación masiva de %{filename} está completa"
-  by: por
   by_everyone: Por cualquiera
   by_user: "por %{user}"
   by_you: Tuyas
@@ -1471,9 +1469,13 @@ es-AR:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Taxones descendientes marcados
+  #Noun, as in a journal post that has not been published
   draft: borrador
+  #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado en borrador!'
+  #Noun, as in journal posts that has not been published
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
@@ -2376,7 +2378,6 @@ es-AR:
       every_publicly_visible_observation: Todas las observaciones públicamente visibles creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
-      gbif_network_description: Registros de los museos y de otras ocurrencia de los proveedores distribuidos por la Infraestructura Mundial de Información en Biodiversidad (GBIF)
       observations: Observaciones
       place_boundary: Límite del lugar
       checklist_places: Lista de verificación de los lugares
@@ -2525,6 +2526,9 @@ es-AR:
   must_have_photos: debe tener fotos
   must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
+  #Mute is a noun here
   mute_removed: Silenciamiento eliminado
   muted_users: Usuarios silenciados
   n_ago: "hace %{n}"
@@ -3435,8 +3439,6 @@ es-AR:
   places_warning_export_complex_boundary_html: |
     Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considerá
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde podés dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
-  places_warning_look_for_existing_html: |
-    Buscá en los <a href="/search?source[]=places">lugares creados</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como dos niveles administrativos por debajo del de país.
   places_warning_projects_can_have_multiple_places: |
     Si estás intentando crear un lugar para un límite de proyecto, los proyectos pueden estar compuestos por múltiples lugares. Por ejemplo, si querés hacer un proyecto para Argentina y Uruguay, puedes añadir requisitos para esos dos lugares en lugar de hacer uno nuevo.
   places_warning_new_places_are_slow_html: |
@@ -3469,7 +3471,6 @@ es-AR:
   post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
-  posted_on: Ingresado el
   posts: Ingresos
   potential_disagreement: Posible desacuerdo
   powered_by: Propulsado por
@@ -4599,8 +4600,6 @@ es-AR:
   user_commented: "%{user} comentó"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} marcó como favorito %{noun} por %{owner}"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
@@ -5565,8 +5564,6 @@ es-AR:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
-      kml_field_desc: |
-        KML de la frontera de sitio.  Puedes hacer uno utilizando mapas de Google, Google Earth, o la mayoría de las aplicaciones de SIG. Debe tener por lo menos un polígono de menos de 1 MB (5 MB para curadores de sitio), y tener una área más pequeña que Texas, U.S.A.
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
@@ -6084,9 +6081,6 @@ es-AR:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
-        monthly_supporter_desc_html: |
-          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS EIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
-          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -6179,9 +6173,6 @@ es-AR:
       index:
         connect_with_nature: Conectate con la naturaleza
         explore_and_share: Explorá y compartí tus observaciones del mundo natural.
-        observations_to_date: 'Observaciones hasta la fecha'
-        species_observed: 'Especies observadas'
-        people_signed_up: 'Personas inscritas'
         how_it_works: Cómo funciona
         record_your_observations: Registra tus observaciones
         share_with_fellow_naturalists: Comparte con otros naturalistas
@@ -6255,13 +6246,13 @@ es-AR:
       6: vi
       7: sá
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d.%b.%Y'
     month_names:
       - 
@@ -6313,15 +6304,6 @@ es-AR:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
-    countdown_x_days:
-      one: día
-      other: días
-    countdown_x_hours:
-      one: hora
-      other: horas
-    countdown_x_seconds:
-      one: s
-      other: s
     prompts:
       day: Día
       hour: Hora
@@ -6329,35 +6311,6 @@ es-AR:
       month: Mes
       second: Segundos
       year: Año
-  errors:
-    messages:
-      accepted: debe ser aceptado
-      blank: no puede estar en blanco
-      confirmation: no coincide la contraseña
-      empty: no puede estar vacío
-      equal_to: debe ser igual a %{count}
-      even: debe ser par
-      exclusion: está reservado
-      greater_than: debe ser mayor que %{count}
-      greater_than_or_equal_to: debe ser mayor que o igual a %{count}
-      inclusion: no está incluido en la lista
-      invalid: no es válido
-      less_than: debe ser menor que %{count}
-      less_than_or_equal_to: debe ser menor que o igual a %{count}
-      not_a_number: no es un número
-      not_an_integer: debe ser un entero
-      odd: debe ser impar
-      record_invalid: 'La validación falló: %{errors}'
-      requires_privilege_speech: |
-        Debe tener tres observaciones verificables o tres identificaciones
-        para que otros hagan eso
-      requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
-      taken: ya está en uso
-    template:
-      body: 'Se encontraron problemas con los siguientes campos:'
-      header:
-        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
-        other: 'No se pudo guardar este/a %{model} porque se encontraron %{count} errores'
   helpers:
     defaults:
       title: "ESTE ES UN TÍTULO"
@@ -6413,62 +6366,21 @@ es-AR:
   time:
     am: mañana
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: 'a las %I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: debe ser aceptado
-        blank: no puede estar en blanco
-        confirmation: no coincide la contraseña
-        empty: no puede estar vacío
-        equal_to: debe ser igual a %{count}
-        even: debe ser par
-        exclusion: está reservado
-        greater_than: debe ser menor que %{count}
-        greater_than_or_equal_to: debe ser mayor o igual que %{count}
-        inclusion: no está incluido en la lista
-        invalid: no es válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor o igual que %{count}
-        not_a_number: no es un número
-        not_an_integer: debe ser un entero
-        odd: debe ser impar
-        record_invalid: 'Falló la validación: %{errors}'
-        requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
-        requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
-        taken: ya ha sido tomado.
-        too_long:
-          one: es demasiado largo (el máximo es 1 carácter)
-          other: es demasiado largo (el máximo son %{count} caracteres)
-        too_short:
-          one: es demasiado corto (el mínimo es 1 carácter)
-          other: es demasiado corto (el mínimo son %{count} caracteres)
-        wrong_length:
-          one: no tiene el tamaño correcto(debe ser de 1 carácter)
-          other: es de tamaño incorrecto (debe ser de %{count} caracteres)
-      template:
-        body: 'Hubo problemas con los siguientes campos:'
-        header:
-          one: 1 error prohibió este %{model} de ser salvado
-          other: '%{count} errores prohibieron este %{model} de ser salvado'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -6621,20 +6533,17 @@ es-AR:
         blank: No puede quedar en blanco
         confirmation: No coincide la contraseña
         empty: no puede estar vacío
-        equal_to: debe ser igual a %{count}
         even: debe ser par
         exclusion: está reservado
-        greater_than: debe ser mayor de %{count}
-        greater_than_or_equal_to: debe ser mayor que o igual a %{count}
         inclusion: no está incluido en la lista
         invalid: no es válido
-        less_than: debe ser menor que %{count}
-        less_than_or_equal_to: debe ser menor que o igual a %{count}
         not_a_number: no es un número
         not_an_integer: debe ser un número entero
         odd: debe ser impar
         record_invalid: 'Falló la validación: %{errors}'
-        requires_privilege_speech: "Debe tener tres observaciones verificables o tres identificaciones\npara que otros hagan eso"
+        requires_privilege_speech: |
+          Debe tener tres observaciones verificables o tres identificaciones
+          para que otros hagan eso
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
         taken: ya está en uso
         too_long:
@@ -6649,7 +6558,7 @@ es-AR:
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
         header:
-          one: '%{count} error prohibió guardar este %{model}'
+          one: "%{count} error prohibió guardar este %{model}"
           other: '%{count} errores prohibieron guardar este %{model}'
       models:
         application:

@@ -77,7 +77,9 @@ mi:
   add_from_your_observations: Tāpiritia mai i āu mauhanga
   add_id: Tāpiri tautuhi
   add_new_place: Tāpiri tētahi wāhi hōu
+  add_obs_from_a_list: Tapiritia ngā mauhanga i tētahi tūtira
   add_observations: Tāpiri ngā mauhanga
+  add_observations_project: Tapiritia ngā mauhanga ki te kohinga nei
   add_place: Tāpiri wāhi
   add_tag: Tāpiri te tūtohu
   add_tags: Tāpiri ngā tūtohu
@@ -148,7 +150,6 @@ mi:
   allowed_values: Uara tika
   already_have_an_account_log_in_html: Kua hangaia tō pūkete anō? <strong>Takiuru mai.</strong>
   amphibians: ika oneone
-  and: me
   animals: Kīrehe
   annotation: Kupu tāpiri
   annotations: Kupu tāpiri
@@ -210,7 +211,6 @@ mi:
   browse_observations: Tirotiro ngā mauhanga
   browse_people: Tirotiro ngā tāngata
   browse_projects: Tirotiro ngā kohinga
-  by: nā
   by_everyone: Nā tātou
   by_user: "Nā %{user}"
   by_you: Nā koe
@@ -354,6 +354,9 @@ mi:
   date_is_accurate: He tika te rā
   date_observed: Rā mātakitia
   date_observed_: Rā mātakitia
+  date_picker:
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Panuku
   date_time: Rā/Wā
   date_updated: Rā whakahou
   day: Rā
@@ -395,9 +398,13 @@ mi:
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
   download_caps: TIKIAKE
+  #Noun, as in a journal post that has not been published
   draft: hukihuki
+  #Noun, as in a journal post that has not been published
   draft_: Hukihuki
+  #Noun, as in a journal post that has not been published
   draft_saved: Kua tiakina te hukihuki!
+  #Noun, as in journal posts that has not been published
   drafts: Hukihuki
   duration_value: "Roanga: %{duration} mēneti"
   edit: Whakatika
@@ -663,6 +670,13 @@ mi:
   new_password: Kupuhipa hōu
   new_project: Kohinga hōu
   new_users: Kaiwhakamahi hōu
+  next: Panuku
+  next_date_short: Panuku
+  next_observation: Mauhanga panuku
+  next_page_short: Panuku
+  next_photo: Whakaahua panuku
+  next_post_short: Panuku
+  next_taxon_short: Panuku
   'no': 'Kāo'
   no_but_it_is_a_member_of_taxon: "Kāo, engari he huānga i %{taxon}"
   no_comments_yet: E kore ngā kōrero anō
@@ -1360,8 +1374,6 @@ mi:
         step1_title: HANGAIA HE PŪKETE I TŌ TAMARIKI
     welcome:
       index:
-        species_observed: 'Momo i mātakitia'
-        people_signed_up: 'Tāngata i takiuru'
         how_it_works: Pehea te mahi
         record_your_observations: Tuhia āu whakamātaki
         contribute_to_science: Homai ki te pūtaiao
@@ -1409,19 +1421,19 @@ mi:
       6: Me
       7: Ho
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%e %b"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%d %B %Y'
     month_names:
       - 
@@ -1440,14 +1452,6 @@ mi:
   datetime:
     distance_in_words:
       half_a_minute: haurua i te meneti
-    countdown_x_days:
-      other: rā
-    countdown_x_hours:
-      other: haora
-    countdown_x_minutes:
-      other: men
-    countdown_x_seconds:
-      other: hek
     prompts:
       day: Rā
       hour: Haora
@@ -1455,9 +1459,6 @@ mi:
       month: Marama
       second: Hākona
       year: Tau
-  errors:
-    messages:
-      confirmation: Kāore i te ōrite te kupuhipa
   number:
     human:
       decimal_units:
@@ -1469,17 +1470,12 @@ mi:
         format: '%n %u'
   time:
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %B %Y"
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      messages:
-        confirmation: Kāore i te ōrite te kupuhipa
   activerecord:
     models:
       #Noun
@@ -1532,6 +1528,8 @@ mi:
       "@vow_or_con":
         vow: oropuare
         con: orokati
+  will_paginate:
+    next_label: "Panuku &#8594;"
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z ki A

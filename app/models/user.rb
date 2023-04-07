@@ -368,17 +368,17 @@ class User < ApplicationRecord
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -427,7 +427,7 @@ class User < ApplicationRecord
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
@@ -1282,6 +1282,11 @@ class User < ApplicationRecord
     end
   end
 
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
+  end
+
   def recent_notifications(options={})
     return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
@@ -1302,6 +1307,10 @@ class User < ApplicationRecord
 
   def blocked_by?( user )
     user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options

@@ -152,6 +152,7 @@
     }
     return ["other"];
   };
+  I18n.pluralization.mi = other;
   I18n.pluralization.mk = function ( count ) {
     var n = normalizeCount( count, "mk" ) || 0;
     var isWhole = parseInt( n, 2 ) === n;
@@ -164,6 +165,7 @@
     }
     return ["other"];
   };
+  I18n.pluralization.ms = other;
   I18n.pluralization.pl = function ( count ) {
     var n = normalizeCount( count, "pl" ) || 0;
     var mod10 = n % 10;
@@ -205,7 +207,9 @@
   I18n.pluralization.ru = function ( count ) { return eastSlavic( count, "ru" ); };
   I18n.pluralization.sk = function ( count ) { return westSlavic( count, "sk" ); };
   I18n.pluralization.sr = function ( count ) { return oneFewOther( count, "sr" ); };
+  I18n.pluralization.th = other;
   I18n.pluralization.uk = function ( count ) { return eastSlavic( count, "uk" ); };
+  I18n.pluralization.vi = other;
   I18n.pluralization.zh = other;
   I18n.pluralization["zh-CN"] = other;
   I18n.pluralization["zh-HK"] = other;

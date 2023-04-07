@@ -479,7 +479,6 @@ el:
   already_have_an_account_log_in_html: Έχετε ήδη λογαριασμό;<strong>Συνδεθείτε.</strong>
   amphibians: Αμφίβια
   ancestor_taxon: Πρόγονη Ταξινομική Βαθμίδα
-  and: και
   and_other_taxa: "&amp; Άλλα Taxa"
   android: Ανδροειδές
   animals: Ζώα
@@ -715,7 +714,6 @@ el:
   browse_species_that_occur_near_this_observation: Περιήγηση ειδών που απαντώνται κοντά σε αυτή τη παρατήρηση.
   built_with_site_guides_html: "Κατασκευάστηκε με τους <a href='%{url}'>%{site_name} Οδηγούς</a>"
   bulk_import_of_filename_is_complete: "Η μαζική εισαγωγή του %{filename} ολοκληρώθηκε"
-  by: από
   by_everyone: από όλους
   by_user: "από την/τον %{user}"
   by_you: από εσάς
@@ -1363,9 +1361,13 @@ el:
   downstream_coverage_colon_rank: "Κάλυψη με φορά προς τα κάτω: Κατάταξη %{rank}"
   downstream_deviations: Αποκλίσεις με φορά προς τα κάτω
   downstream_deviations_for_taxon: "Αποκλίσεις με φορά προς τα κάτω για %{taxon}"
+  #Noun, as in a journal post that has not been published
   draft: Πρόχειρο
+  #Noun, as in a journal post that has not been published
   draft_: Πρόχειρο
+  #Noun, as in a journal post that has not been published
   draft_saved: Το πρόχειρο αποθηκεύτηκε!
+  #Noun, as in journal posts that has not been published
   drafts: Προσχέδια
   drag_and_drop_some_photos_or_sounds: Σύρετε & αποθέστε φωτογραφίες ή ήχους
   drawings: Σχέδια
@@ -2168,7 +2170,6 @@ el:
       every_publicly_visible_observation: Κάθε δημόσια ορατή παρατήρηση που έχει δημιουργηθεί στο δίκτυο του iNaturalist
       featured_observations: Προβεβλημμένες παρατηρήσεις
       gbif_network: Δίκτυο GBIF
-      gbif_network_description: Καταγραφές από μουσεία και άλλους διοργανωτές εκδηλώσεων που διανέμονται από την Global Biodiversity Informatics Facility
       observations: Παρατηρήσεις
       place_boundary: Σύνορα τόπου
       checklist_places: Τόποι λίστας ελέγχου
@@ -2308,6 +2309,7 @@ el:
   must_be_less_than_x_MB: "Πρέπει να είναι λιγότερο από %{x} MB"
   must_have_observation_field: "Απαιτείται συμπλήρωση %{operand} του πεδίου παρατηρήσεων"
   must_have_x: "πρέπει να έχει %{x}"
+  #Mute is a noun here
   mute_removed: Η σίγαση αφαιρέθηκε
   muted_users: Σιγασμένοι χρήστες
   n_ago: "%{n} πριν"
@@ -3234,11 +3236,6 @@ el:
     όπου μπορείτε να σχεδιάσετε αυθαίρετα όρια ή να τα εξάγετε από το iNat χρησιμοποιώντας
     υπάρχουσες τοποθεσίες ή ένα πλαίσιο οριοθέτησης και στη συνέχεια να φιλτράρετε ξανά τα δεδομένα αφότου τα κατεβάσετε.
     .
-  places_warning_look_for_existing_html: |
-    Αναζητήστε <a href="/search?source[]=places">υπάρχουσες περιοχές</a> για να βεβαιωθείτε ότι
-    δεν δημιουργείτε διπλότυπα. Έχουμε ήδη περιοχές από όλες τις
-    ηπείρους και χώρες, καθώς και δύο διοικητικά επίπεδα χαμηλότερα της χώρας
-    .
   places_warning_projects_can_have_multiple_places: |
     Αν προσπαθείτε να δημιουργήσετε μια περιοχή για ένα όριο του έργου, τα έργα μπορούν να
     να αποτελούνται από πολλαπλές περιοχές. Για παράδειγμα, αν θέλετε να κάνετε ένα έργο για
@@ -3274,7 +3271,6 @@ el:
   post_from_your_journal_html: Δημοσίευση από το <a href="%{url}">ημερολόγιό σας</a>
   post_published: Η ανάρτηση δημοσιεύτηκε!
   posted_by: Αναρτήθηκε από
-  posted_on: Αναρτήθηκε στις
   posts: Αναρτήσεις
   potential_disagreement: Πιθανή διαφωνία
   powered_by: Παρέχεται από
@@ -4332,8 +4328,6 @@ el:
   user_commented: "Ο/Η %{user} σχολίασε"
   user_disagrees_this_is_taxon: "Ο/Η %{user} διαφωνεί ότι αυτό είναι %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Ο/Η %{user} διαφωνεί με προηγούμενες καλύτερες ταυτοποιήσεις"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "Ο χρήστης %{user} προσέθεσε στα αγαπημένα του το %{noun} του %{owner}"
   user_faved_this_observation: "Ο χρήστης %{user} προσέθεσε αυτήν την παρατήρηση στα αγαπημένα του"
   user_flagged_as_a_non_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως όχι σπάμερ"
   user_flagged_as_a_spammer_html: "Ο/Η %{user} έχει σημειωθεί ως σπάμερ"
@@ -5358,10 +5352,6 @@ el:
         view_original_html: |
           Μπορείτε να δείτε το πρωτότυπο στο <a href="%{url}">%{url}</a>. Παρακαλούμε να αφήνετε ως μη επιλυμένες τις αναφορές για παραβάσεις δικαιωμάτων δημιουργού αν αυτή η φωτογραφία όντως παραβιάζει πνευματικά δικαιώματα.
     places:
-      kml_field_desc: |
-        KML του ορίου της περιοχής. Μπορείτε να δημιουργήσετε ένα χρησιμοποιώντας το Google Maps, το Google Earth ή τις περισσότερες εφαρμογές GIS. Πρέπει να έχει τουλάχιστον ένα πολύγωνο
-        κάτω του 1 MB (5 MB για επιμελητές ιστοσελίδων) και να είναι μια περιοχή μικρότερη από την
-        πολιτεία του Τέξας των ΗΠΑ.
       edit:
         complex_boundary_note_html: |
           Αυτό το όριο είναι λίγο περίπλοκο για να επεξεργαστεί στο διαδίκτυο. Όμως, μπορείτε να <a href="%{url}">κατεβάσετε το KML</a>, να το επεξεργαστείτε στην εφαρμογή GIS της επιλογής σας, και να ανεβάσετε το επεξεργασμένο KML απευθείας.
@@ -6024,16 +6014,6 @@ el:
           <a href="http://www.gbif.org/">Υπηρεσία Παγκόσμιας Ενημέρωσης για τη Βιοποικιλότητα</a> (GBIF), που είναι ένας διεθνής, διακυβερνητικός οργανισμός
           που συγκεντρώνει και διανέμει πληροφορίες για τη βιοποικιλότητα από όλο τον κόσμο
           .
-        monthly_supporter_desc_html: |
-          Οι Μηνιαίοι Υποστηρικτές του iNaturalist κάνουν αυτόματες μηνιαίες εισφορές
-          που λαμβάνονται από το California Academy of Sciences (Ηνωμένες Πολιτείες
-          IRS EIN 94-1156258) για να υποστηρίξουν τη μη κερδοσκοπική λειτουργία των δικτυακών τόπων
-          iNaturalist και Δικτύου iNaturalist.
-          <a href="%{url}">Κάντε κλικ εδώ για να γίνετε Μηνιαίος Υποστηρικτής</a>.
-          Όταν επιβεβαιώσουμε την υποστήριξή σας, θα μπορείτε να τσεκάρετε αυτό το πλαίσιο
-          για να εμφανίσετε αυτό το στατους στο προφίλ σας. Σημείωση: θα χρειαστεί να χρησιμοποιήσετε
-          ακριβώς την ίδια διεύθυνση email στο Donorbox όπως κάνετε στο iNaturalist
-          για να επιβεβαιώσουμε ότι έχετε γίνει Μηνιαίος Υποστηρικτής.
         muting_desc_html: |
           <p>
           Με το να σιγάσετε κάποιον σταματάτε να λαμβάνετε ειδοποιήσεις για πράγματα
@@ -6186,9 +6166,6 @@ el:
       index:
         connect_with_nature: Συνδέσου με τη Φύση
         explore_and_share: Εξερεύνησε και μοιράσου τις παρατηρήσεις σου από τον φυσικό κόσμο.
-        observations_to_date: 'Παρατηρήσεις μέχρι σήμερα'
-        species_observed: 'Παρατηρηθέντα Είδη'
-        people_signed_up: 'Άτομα που έχουν εγγραφεί'
         how_it_works: Πώς Λειτουργεί
         record_your_observations: Καταχωρίστε τις παρατηρήσεις σας
         share_with_fellow_naturalists: Μοιραστείτε με τους φίλους φυσιολάτρες
@@ -6261,19 +6238,19 @@ el:
       6: Πα
       7: Σα
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%d-%m-%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       - 
@@ -6325,18 +6302,6 @@ el:
       x_seconds:
         one: "1 δευτερόλεπτο"
         other: '%{count} δευτερόλεπτα'
-    countdown_x_days:
-      one: ημέρα
-      other: ημέρες)
-    countdown_x_hours:
-      one: ώρα
-      other: ώρες
-    countdown_x_minutes:
-      one: λεπτό
-      other: λεπτά
-    countdown_x_seconds:
-      one: δευτερόλεπτο
-      other: δευτερόλεπτα
     prompts:
       day: Ημέρα
       hour: Ώρα
@@ -6344,46 +6309,6 @@ el:
       month: Μήνας
       second: δεύτερα
       year: Έτος
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: Αποδεκτό
-      blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στον κωδικό
-      empty: δεν πρέπει να είναι άδειο
-      equal_to: πρέπει να είναι ίσο με %{count}
-      even: πρέπει να είναι άρτιος
-      exclusion: είναι δεσμευμένο
-      greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-      greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-      inclusion: δεν περιλαμβάνεται στη λίστα
-      invalid: είναι άκυρο
-      less_than: πρέπει να είναι λιγότερο από %{count}
-      less_than_or_equal_to: πρέπει να είναι λιγότερο ή ίσο με %{count}
-      new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-      not_a_number: δεν είναι αριθμός
-      not_an_integer: πρέπει να είναι ακέραιος αριθμός
-      odd: πρέπει να είναι περιττός
-      only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-      record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-      requires_privilege_speech: |
-        πρέπει να έχει τρεις επαληθευμένες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να μπορεί να το κάνει αυτό
-      requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-      taken: έχει ήδη καταληφθεί
-      too_long:
-        one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-      too_short:
-        one: είναι πολύ μικρό (ελάχ.επιτρ. %{count} χαρακτήρας)
-        other: είναι πολύ μικρά (ελάχ.επιτρ. %{count} χαρακτήρες)
-      wrong_length:
-        one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-        other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-    template:
-      body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-      header:
-        one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του %{model}"
-        other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του %{model}'
   helpers:
     defaults:
       title: "ΑΥΤΟΣ ΕΙΝΑΙ ΕΝΑΣ ΤΙΤΛΟΣ"
@@ -6446,64 +6371,21 @@ el:
   time:
     am: πμ
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l: %M %p"
     pm: μμ
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: πρέπει να είναι αποδεκτό
-        blank: δεν μπορεί να είναι κενό
-        confirmation: δεν αντιστοιχεί στον κωδικό
-        empty: δεν πρέπει να είναι άδειο
-        equal_to: πρέπει να είναι ίσο με %{count}
-        even: πρέπει να είναι άρτιος
-        exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
-        inclusion: δεν περιλαμβάνεται στη λίστα
-        invalid: είναι άκυρο
-        less_than: πρέπει να είναι μικρότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
-        new_project_owner_must_be_a_manager: Ο νέος ιδιοκτήτης του έργου πρέπει να είναι διαχειριστής
-        not_a_number: δεν είναι αριθμός
-        not_an_integer: πρέπει να είναι ακέραιος αριθμός
-        odd: πρέπει να είναι περιττός
-        only_project_owner_can_change_project_owner: Μόνο ο ιδιοκτήτης του έργου μπορεί να αλλάξει τον ιδιοκτήτη του έργου
-        record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να έχει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για άλλους για να το κάνει αυτό
-        requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
-        taken: έχει ήδη καταληφθεί
-        too_long:
-          one: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρας)
-          other: είναι πολύ μεγάλο (μέγ.επιτρ. %{count} χαρακτήρες)
-        too_short:
-          one: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-          other: είναι πολύ μικρό (το ελάχιστο είναι %{count} χαρακτήρες)
-        wrong_length:
-          one: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-          other: δεν είναι σωστός ο αριθμός χαρακτήρων (πρέπει να έχει %{count} χαρακτήρες)
-      template:
-        body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
-        header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
-          other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
   activerecord:
     models:
       AssessmentSection: Τομέας Αποτίμησης
@@ -6633,22 +6515,18 @@ el:
         blank: δεν μπορεί να είναι κενό
         confirmation: δεν αντιστοιχεί στον κωδικό πρόσβασης
         empty: δεν μπορεί να είναι κενό
-        equal_to: πρέπει να είναι ίσο με %{count}
         even: πρέπει να είναι άρτιος αριθμός
         exclusion: είναι δεσμευμένο
-        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
-        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
         inclusion: δεν περιλαμβάνεται στη λίστα
         invalid: είναι άκυρο
-        less_than: πρέπει να είναι λιγότερο από %{count}
-        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
         new_project_owner_must_be_a_manager: Ο νέος κάτοχος του πρότζεκτ πρέπει να είναι ένας διαχειριστής
         not_a_number: δεν είναι αριθμός
         not_an_integer: πρέπει να είναι ακέραιος αριθμός
         odd: πρέπει να είναι περιττός
         only_project_owner_can_change_project_owner: Μόνο ο κάτοχοςτου έργου μπορεί να αλλάξει τον κάτοχο του έργου
         record_invalid: 'Επικύρωση απέτυχε: %{errors}'
-        requires_privilege_speech: πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
+        requires_privilege_speech: |
+          πρέπει να διαθέτει τρεις επαληθεύσιμες παρατηρήσεις ή τρεις ταυτοποιήσεις για να το κάνει κάποιος άλλος αυτό
         requires_privilege_organizer: πρέπει να έχει 50 επαληθεύσιμες παρατηρήσεις για να το κάνει αυτό
         taken: έχει ήδη καταληφθεί
         too_long:
@@ -6663,7 +6541,7 @@ el:
       template:
         body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
         header:
-          one: Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του "%{model}"
+          one: "Ένα %{count} σφάλμα εμπόδισε την αποθήκευση αυτού του \"%{model}\""
           other: '%{count} σφάλματα εμπόδισαν την αποθήκευση αυτού του "%{model}'
       models:
         application:

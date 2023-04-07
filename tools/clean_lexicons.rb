@@ -20,6 +20,7 @@ end
 
 start = Time.now
 deleted = []
+deleted_name_error_counts = {}
 updated = []
 created_ptns = []
 invalid_ptns = []
@@ -28,7 +29,7 @@ taxon_ids_to_index = []
 puts
 puts "== REGIONALIZING LEXICONS =="
 puts
-puts <<-TXT
+puts <<~TXT
   Sometimes people add separate lexicons for a language in a region that should
   be handled with PlaceTaxonNames instead, so this will try and convert those
   and delete names that are no longer valid after being updated
@@ -37,15 +38,19 @@ TXT
 language_place_lexicons = [
   { wrong_lexicon: "Australian", right_lexicon: TaxonName::ENGLISH, country_name: "Australia" },
   { wrong_lexicon: "Egyptian Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Egypt" },
+  { wrong_lexicon: "English(india)", right_lexicon: TaxonName::ENGLISH, country_name: "India" },
   { wrong_lexicon: "Español (Argentina)", right_lexicon: TaxonName::SPANISH, country_name: "Argentina" },
   { wrong_lexicon: "Español (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
   { wrong_lexicon: "Español (Costa Rica)", right_lexicon: TaxonName::SPANISH, country_name: "Costa Rica" },
   { wrong_lexicon: "Español (Ecuador)", right_lexicon: TaxonName::SPANISH, country_name: "Ecuador" },
+  { wrong_lexicon: "Español (Uruguay)", right_lexicon: TaxonName::SPANISH, country_name: "Uruguay" },
   { wrong_lexicon: "Español Chileno", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
   { wrong_lexicon: "Español Perú", right_lexicon: TaxonName::SPANISH, country_name: "Peru" },
   { wrong_lexicon: "Moroccan Arabic", right_lexicon: TaxonName::ARABIC, country_name: "Morocco" },
   { wrong_lexicon: "Português (Brasil)", right_lexicon: TaxonName::PORTUGUESE, country_name: "Brazil" },
-  { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" }
+  { wrong_lexicon: "Spanish (Chile)", right_lexicon: TaxonName::SPANISH, country_name: "Chile" },
+  { wrong_lexicon: "Spanish (Peru)", right_lexicon: TaxonName::SPANISH, country_name: "Peru" },
+  { wrong_lexicon: "Spanish (Perú)", right_lexicon: TaxonName::SPANISH, country_name: "Peru" }
 ]
 language_place_lexicons.each do | x |
   puts "Changing #{x[:wrong_lexicon]} to #{x[:right_lexicon]} and assigning to #{x[:country_name]}"
@@ -72,6 +77,9 @@ language_place_lexicons.each do | x |
       end
     else
       puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.errors.each do | error |
+        deleted_name_error_counts[error.full_message] = deleted_name_error_counts[error.full_message].to_i + 1
+      end
       tn.destroy unless @opts.dry
       deleted << tn
     end
@@ -82,12 +90,18 @@ end
 puts
 puts "== SYNONYMIZING LEXICONS =="
 puts
-puts <<-TXT
+puts <<~TXT
   We get A LOT of lexicons that are variations of existing lexicons, so this
   tries to make some of the more common ones conform to conventional versions.
 TXT
+# Note that we try to use the English exonym listed on the en.wikipedia.org
+# page of a language as the canonical name, so "Japanese" and not "Nigongo"
+# or "日本語". Localization should happen on Crowdin.
 synonyms = {
-  "Aou 4 Letter Codes" => ["Aou 4 Letter Codes"],
+  # FWIW, "Aou 4 Letter Codes" is the canonical form that callbacks will
+  # enforce. This is just here to clean up some records that predate those
+  # callbacks
+  "Aou 4 Letter Codes" => ["Aou 4 Letter Codes", "AOU 4-Letter Codes"],
   "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
   TaxonName::BELARUSIAN => ["Беларуская"],
   TaxonName::CATALAN => ["Català"],
@@ -103,33 +117,42 @@ synonyms = {
   TaxonName::GERMAN => ["Deutsch"],
   "Greek" => ["Greek (Modern)", "Modern Greek (1453 )"],
   "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
+  "Hill Mari" => ["Western Mari"],
+  "Hokkien" => ["臺灣閩南語"],
   TaxonName::ITALIAN => ["Italiano"],
   "Indonesian" => ["Bahasa Indonesia"],
   "Irish" => ["Irish Gaelic"],
   TaxonName::JAPANESE => ["Japanese (Kanji)"],
+  "Juǀʼhoan" => ["Juǀ’hoan"],
+  "Lozi" => ["Si Lozi", "siLozi"],
   "Malay" => ["Malay (Individual Language)", "Malayan"],
   "Nahuatl" => ["Náhuatl"],
   TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
+  "Oshikwanyama" => ["Oshi Kwanyama"],
   TaxonName::PORTUGUESE => ["Português"],
   TaxonName::RUSSIAN => ["Русски", "Русский"],
   TaxonName::SCIENTIFIC_NAMES => [
     "Nombres Científicos",
+    "Nomes Científicos",
     "Nomi Scientifici",
     "Noms Scientifiques",
-    "Nomes Científicos",
-    "學名",
-    "学名",
-    "Научные названия",
+    "Scientific Name",
     "Tieteelliset Nimet",
     "Videnskabelige Navne",
-    "Wetenschappelijke Namen"
+    "Wetenschappelijke Namen",
+    "Wissenschaftliche Namen",
+    "Научные названия",
+    "学名",
+    "學名"
   ],
-  TaxonName::SETSWANA => ["Tswana"],
   TaxonName::SLOVAK => ["Slovakian"],
   TaxonName::SLOVENIAN => ["Slovene"],
   "Sotho (Northern)" => ["Northern Sotho", "Sotho ( Northern)"],
+  "Sotho" => ["Southern Sotho", "Sotho (Southern)", "Sesotho"],
   TaxonName::SPANISH => ["Español"],
-  "Swahili" => ["Swahili (Individual Language)"],
+  "Swahili" => ["Swahili (Individual Language)", "Kiswahili"],
+  TaxonName::TSWANA => ["Setswana"],
+  TaxonName::UKRAINIAN => ["український"],
   "Uyghur" => ["Uyghurche / ئۇيغۇرچە", "Uyghurche", "ئۇيغۇرچە"],
   TaxonName::WARAY_WARAY => ["Waray", "Waray (Philippines)"],
   "Yaqui" => ["yaqui"]
@@ -148,12 +171,23 @@ synonyms.each do | lexicon, syns |
       updated << tn
     else
       puts "Failed to save #{tn}, errors: #{tn.errors.full_messages.to_sentence}" if @opts.debug
+      tn.errors.each do | error |
+        deleted_name_error_counts[error.full_message] = deleted_name_error_counts[error.full_message].to_i + 1
+      end
       tn.destroy unless @opts.dry
       deleted << tn
     end
   end
   puts
 end
+
+nillable_lexicons = TaxonName::FORBIDDEN_LEXICONS + ["''", "Other", "Lexicon", "Lexicon 1", "Unknown"]
+und_scope = TaxonName.where( lexicon: nillable_lexicons )
+puts
+puts "== Removing lexicons for unknown =="
+puts
+puts "Removing lexicon from #{und_scope.count} names with these lexicons: #{nillable_lexicons}"
+und_scope.update_all( "lexicon = null" )
 
 puts
 puts "== PROBLEM LEXICONS =="
@@ -163,9 +197,9 @@ puts <<~TXT
   to do about them.
 TXT
 problem_lexicons = [
-  { lexicon: nil, comment: "We used to allow blank lexicons, not sure what to do with these now" },
-  { lexicon: "", comment: "We used to allow blank lexicons, not sure what to do with these now" },
-  { lexicon: "Other", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: nil, comment: "We used to allow blank lexicons, now these names need to be manually fixed or removed" },
+  { lexicon: "", comment: "Should get lumped with nil" },
+  { lexicon: "Other", comment: "Should get lumped with nil" },
   { lexicon: "Chinese", comment: "Which version of Chinese does this mean?" },
   {
     lexicon: "Informal Latinized Name (Vernacular Concept Only)",
@@ -187,11 +221,17 @@ problem_lexicons = [
     lexicon: "Scots",
     comment: "Seems like a mix of regional English names and Scots Gaelic names"
   },
-  { lexicon: "Unknown", comment: "We banned this, but not sure what to do with existing ones" },
+  { lexicon: "Unknown", comment: "Should get lumped with nil" },
   { lexicon: "New Zealand", comment: "Not clear if these are English or Maori" },
-  { lexicon: "Lexicon", comment: "We banned this, but not sure what to do with existing ones" },
-  { lexicon: "Lexicon 1", comment: "We banned this, but not sure what to do with existing ones" },
-  { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" }
+  { lexicon: "Lexicon", comment: "Should get lumped with nil" },
+  { lexicon: "Lexicon 1", comment: "Should get lumped with nil" },
+  { lexicon: "Brazil", comment: "Probably Portuguese, but can we be sure?" },
+  {
+    lexicon: "Indigenous Australian",
+    comment: "There are at least 250 indigenous Australian languages so this is ambiguous"
+  },
+  { lexicon: "Creole (English)", comment: "There are many English creoles" },
+  { lexicon: "English (Creole)", comment: "There are many English creoles" }
 ]
 problem_lexicons.each do | l |
   puts l[:lexicon].inspect
@@ -205,11 +245,36 @@ puts "== REINDEXING #{taxon_ids_to_index.size} TAXA =="
 puts
 Taxon.elastic_index!( ids: taxon_ids_to_index ) unless @opts.dry
 
+top_100_lexicons = TaxonName.
+  group( "lexicon" ).
+  count.
+  sort_by {| _lexicon, count | count }.
+  reverse[0..100].
+  map { _1[0] }.
+  reject( &:blank? )
+top_100_untranslatable_lexicons = top_100_lexicons.
+  select {| lexicon | I18n.t( lexicon.parameterize.underscore, scope: "lexicons", default: nil ).nil? }
+
 puts
 puts "== REPORT =="
 puts
 puts "#{updated.size} names updated"
 puts "#{deleted.size} names deleted"
+if deleted_name_error_counts.size.positive?
+  puts "\tErrors that caused deletion:"
+  deleted_name_error_counts.each do | error, count |
+    puts "\t\t#{count.to_s.rjust( 6 )} #{error}"
+  end
+end
+unless top_100_untranslatable_lexicons.blank?
+  puts
+  puts "Top 100 Lexicons Not Available for Translation"
+  puts
+  top_100_untranslatable_lexicons each do | lexicon |
+    normalized_lexicon = TaxonName.normalize_lexicon( lexicon )
+    puts "#{normalized_lexicon.parameterize.underscore}: #{normalized_lexicon}"
+  end
+end
 puts "#{created_ptns.size} place taxon names created"
 puts "#{invalid_ptns.size} place taxon names not created"
 puts "#{Time.now - start} s elapsed"

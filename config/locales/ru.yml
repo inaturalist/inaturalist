@@ -2,24 +2,24 @@ ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
     one: "%{count} Изменение"
-    few: "%{count} Изменения"
+    few: "%{count} изменений"
     many: "%{count} Изменений"
-    other: "%{count} изменений"
+    other: "%{count} Изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
     other: '%{count} Комментариев'
   x_comments_html:
-    one: '<span class="count">%{count}</span>комментарий'
-    few: '<span class="count">%{count}</span>комментария'
-    many: '<span class="count">%{count}</span>комментариев'
-    other: '<span class="count">%{count}</span>комментариев'
+    one: '<span class="count">%{count}</span> комментарий'
+    few: '<span class="count">%{count}</span> комментария'
+    many: '<span class="count">%{count}</span> комментариев'
+    other: '<span class="count">%{count}</span> комментариев'
   x_faves:
     one: '%{count} фаворит'
     few: '%{count} фаворита'
     many: '%{count} фаворитов'
-    other: '%{count} фаворита'
+    other: '%{count} фаворитов'
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> флаг разрешен"
     few: "<span class='count'>%{count}</span> флага разрешено"
@@ -194,10 +194,10 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} Звук"
-    few: "%{count} Звука"
-    many: "%{count} Звуков"
-    other: "%{count} Звуков"
+    one: "%{count} звук"
+    few: "%{count} звука"
+    many: "%{count} звуков"
+    other: "%{count} звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -297,6 +297,12 @@ ru:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точность (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точность выше
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точность ниже
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точность ниже или не известна
   account: Учётная запись
   account_creation: Создание учётной записи
   account_settings: Настройки учётной записи
@@ -623,7 +629,6 @@ ru:
   analyze_clashes: Анализ непредусмотренных разногласий
   analyze_ids: Анализ идентификаций
   ancestor_taxon: Таксон-предок
-  and: и
   and_other_taxa: "&amp; Другие Таксоны"
   android: Android
   animals: Животные
@@ -889,6 +894,8 @@ ru:
   birds: птицы
   birthday: День рождения
   black: черный
+  block: Заблокировать
+  blocking_description: Блокировка предотвращает связь между вами и другим пользователем. Это для тех ситуаций, когда другой пользователь может поставить под угрозу вашу безопасность, например, преследует вас или ведёт себя оскорбительно.
   block_removed: Блокировка удалена
   blocked_users: Заблокированные Пользователи
   blog_widget: Виджет блога
@@ -916,7 +923,6 @@ ru:
   browse_species_that_occur_near_this_observation: Просмотр видов, которые встречаются рядом с местом этого наблюдения.
   built_with_site_guides_html: "Создан с помощью<a href='%{url}'>%{site_name} Руководств</a>"
   bulk_import_of_filename_is_complete: "Групповой импорт %{filename} завершён"
-  by: _
   by_everyone: Любые
   by_user: "%{user}"
   by_you: Ваши
@@ -1608,6 +1614,7 @@ ru:
       signed_up_but_locked: "Ваша регистрация успешно завершена. Однако вы не может войти в систему потому, что ваша учетная запись заблокирована."
       signed_up_but_unconfirmed: "Письмо со ссылкой для подтверждения было отправлено на ваш адрес электронной почты. Пожалуйста, перейдите по ссылке, чтобы активировать учетную запись."
       updated: 'Вы успешно обновили свою учётную запись.'
+      updated_but_not_signed_in: "Ваш аккаунт успешно обновлён, но так как ваш пароль изменился, нужно войти снова."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1694,9 +1701,15 @@ ru:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Помеченные флагом таксоны в направлении вниз
+  #Noun, as in a journal post that has not been published
   draft: черновик
+  #Noun, as in a journal post that has not been published
   draft_: Черновик
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Черновик %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Черновик сохранен!
+  #Noun, as in journal posts that has not been published
   drafts: Черновики
   drag_and_drop_some_photos_or_sounds: Перетащите и отпустите несколько фото или звуков
   #Button label for drawing a circular boundary for an observation search
@@ -2163,6 +2176,16 @@ ru:
   home: Главная
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Часы регулировки:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Однако, он не лицензирован для повторного использования и не будет передаваться с данными репозиториев, которые соблюдают условия выбора лицензии.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Вы можете изменить ваши настройки лицензии в
+    <a class="linky" href="/users/edit#content">настройках учетной записи</a>.
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2405,6 +2428,8 @@ ru:
     scientific_names: Научные названия
     afrikaans: Африкаанс
     albanian: албанский
+    aou_4_letter_codes: AOU 4-буквенные коды
+    aou_6_letter_codes: AOU 6-буквенные коды
     arabic: Арабский
     armenian: Армянский
     belarusian: Белорусский
@@ -2428,11 +2453,14 @@ ru:
     french: Французский
     galician: Галисийский
     gela: Гела
+    georgian: Грузинский
     german: Немецкий
     greek: Греческий
+    gujarati: Гуджарати
     hawaiian: Гавайский
     hebrew: Иврит
     hiligaynon: Хилигайнон
+    hokkien: Хоккиен
     hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
@@ -2440,6 +2468,7 @@ ru:
     italian: Итальянский
     japanese: Японский
     kannada: Каннада
+    kazakh: Казахский
     korean: Корейский
     latvian: Латышский
     lithuanian: Литовский
@@ -2478,6 +2507,7 @@ ru:
     tokelauan: токелау
     turkish: Турецкий
     ukrainian: Украинский
+    uyghur: Уйгурский
     waray_waray: варайский
     visayan: Бисайский
   less: Меньше
@@ -2520,6 +2550,10 @@ ru:
     taxonomic: таксономический
     photo: фото
   list_was_successfully_created: Список был успешно создан.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, и %{three}"
+  list_with_two_items: "%{one} и %{two}"
   listed_taxa: Перечисленные таксоны
   listed_taxon: Перечисленный таксон
   listed_taxon_updated: Перечисленные таксоны обновлены
@@ -2571,6 +2605,8 @@ ru:
     id: индонезийский
     it: Итальянский
     ja: Японский
+    ka: Грузинский
+    kk: Казахский
     kn: Каннада
     ko: Корейский
     lb: Люксембургский
@@ -2636,6 +2672,8 @@ ru:
   lookup: Поиск
   low: Низший
   lowest_rank: Низший ранг
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Сделать администратором
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Основной контент
@@ -2668,7 +2706,7 @@ ru:
       every_publicly_visible_observation: Каждое публично видимое наблюдение, созданное в сети iNaturalist
       featured_observations: Рекомендуемые наблюдения
       gbif_network: сеть GBIF
-      gbif_network_description: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
+      gbif_network_description2: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
       observations: Наблюдения
       place_boundary: Границы места
       checklist_places: Места с контрольными списками
@@ -2688,6 +2726,9 @@ ru:
   maximum_positional_accuracy_including_unknown: |
     Максимальная точность местоположени, включая наблюдения с неточным местоположением
   media: Медиафайл
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: и
   media_type: Тип медиафайла
   medium: средний
   meet: Встретить
@@ -2771,17 +2812,17 @@ ru:
       #Short text representing %d years in the past
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_zone: "D.M.YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
+    datetime_with_zone_no_year: "D.M H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z"
+    datetime_with_offset: "D.M.YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "D MMMM, YYYY"
+    date_long: "D.M.YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long_without_year: "D MMMM"
+    date_long_without_year: "D.M"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2850,8 +2891,12 @@ ru:
   must_have_quality_grades: "должны иметь оценки качества: %{grades}"
   must_have_sounds: должны содержать аудио
   must_have_x: "должен иметь %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Игнорировать
+  #Mute is a noun here
   mute_removed: Отмена игнорирования
   muted_users: Игнорируемые пользователи
+  muting_description: Игнорирование кого-либо запрещает вам получать уведомления о любой его деятельности, включая упоминания "@", сообщения или комментарии и идентификацию ваших наблюдений.
   n_ago: "%{n} назад"
   n_people_agrees: "%{amount} людей согласны"
   n_people_disagrees: "%{amount} людей несогласны"
@@ -3050,6 +3095,8 @@ ru:
   not_findig_what_you_want: Не нашли то, что искали?
   not_finding_place_you_want?: Не нашли место, которое искали?
   not_found: Не найдено
+  #Filter for observations not in a particular place
+  not_in_place: Не в данном месте
   not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
@@ -3139,6 +3186,14 @@ ru:
   observation_curation: Курирование наблюдений
   observation_date: Дата
   observation_date?: Дата?
+  #Basic observation export fields
+  observation_export_column_type_basic: Основное
+  #Geographic observation export fields
+  observation_export_column_type_geo: Гео
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Таксон
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Таксон, дополнительно
   observation_field: Поле наблюдения
   observation_field_details: Детали поля наблюдения
   observation_field_type_text: Текст
@@ -3208,6 +3263,10 @@ ru:
   observed_on: Дата
   observer: Наблюдатель
   observers: Наблюдатели
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Наблюдатель позволяет другим пользователям добавлять свои наблюдения только к традиционным проектам, к которым они присоединились.
+  observer_prefers_no_traditional_project_addition: |
+    Наблюдатель не позволяет другим пользователям добавлять свои наблюдения к традиционным проектам.
   observer_short: Наблюдатель
   occurence_status_describes_how: 'Статус присутствия указывает, насколько часто или редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для получения большей информации о терминологии</a>.'
   occurrence_status: Статус присутствия
@@ -3356,6 +3415,9 @@ ru:
     invalid_email: Неверный формат адреса электронной почты
   password: Пароль
   password_confirmation: 'Подтверждение пароля'
+  password_change_description: Изменение вашего пароля приведет к отключению всех ваших активных сессий iNaturalist на всех ваших устройствах
+  password_change_logout_warning: После смены пароля вы будете выведены из системы, и вам придется снова войти в систему с новым паролем.
+  password_change_observations_warning: Вы также будете выведены из мобильных приложений iNaturalist и любых других приложений или сайтов, которые размещают сообщения в iNaturalist от вашего имени, поэтому убедитесь, что вы завершили загрузку любые незавершенных наблюдений, прежде чем это произойдёт. Любые незагруженные наблюдения будут потеряны.
   paste: Вставить
   paste_in_a_bunch_of_names: Вставьте множество имён, по 1 на строку, и нажмите кнопку!
   people: Люди
@@ -3868,8 +3930,8 @@ ru:
   places_warning_export_complex_boundary_html: |
     Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
     где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
-  places_warning_look_for_existing_html: |
-    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_look_for_existing2_html: |
+    Поищите <a href="/search?source[]=places">существующие места</a> , чтобы убедиться, что вы не создаёте дубликаты. У нас уже есть места для всех континентов и стран, а также многих других политических границ.
   places_warning_please_keep_in_mind: |
     Пожалуйста, помните о следующих ограничениях:
   places_warning_projects_can_have_multiple_places: |
@@ -3905,7 +3967,10 @@ ru:
   post_from_your_journal_html: Сообщение из <a href="%{url}">вашего журнала</a>
   post_published: Сообщение опубликовано!
   posted_by: Сообщение
-  posted_on: Опубликовано в
+  #Shows the date a journal post was published
+  posted_on_date_html: Размещено %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Размещено %{date} пользователем %{user}
   posts: Сообщения
   potential_disagreement: Возможное несогласие
   powered_by: При поддержке
@@ -4648,6 +4713,10 @@ ru:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Статистика за этот год не сформирована.
   status: Статус
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Статус применен от таксона верхнего уровня:</strong> %{taxon}
   status_globally: 'Глобальный "%{status}"'
   status_in_place: '"%{status}" в %{place}'
   stay_and_try_again: Остановитесь и попробуйте ещё раз
@@ -5360,8 +5429,7 @@ ru:
   user_commented: "%{user} прокомментировал"
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} добавил к фаворитам %{noun} от %{owner}"
+  user_faved_an_observation_by_you: "Пользователь %{user} добавил к фаворитам ваше наблюдение"
   user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
   user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
@@ -5616,6 +5684,8 @@ ru:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
   with: с
+  #Filter for observations not in a particular taxon
+  without_taxon: Не относящееся к таксону
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Отозвать
@@ -6566,9 +6636,8 @@ ru:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.
     places:
-      kml_field_desc: |
-        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google
-        Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
+      kml_field_desc2: |
+        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
       edit:
         complex_boundary_note_html: |
           Эта граница слишком сложна для редактирования в Интернете. Однако вы можете <a href="%{url}">загрузить KML</a>, отредактировать его в приложении GIS по вашему выбору и загрузить свой отредактированный KML напрямую.
@@ -7062,6 +7131,7 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
+          "Plant Phenology=No Evidence of Flowering": Нет доказательств цветения
           "Life Stage=Adult": Взрослый
           "Life Stage=Egg": Яйцо
           "Life Stage=Larva": Личинка
@@ -7219,9 +7289,15 @@ ru:
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         monthly_supporter_desc_html: |
-          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
-          <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
-          Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.
+          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы
+          которые получает Калифорнийская академия наук (United
+          States IRS EIN 94-1156258) для поддержки некоммерческой деятельности
+          iNaturalist и сети сайтов iNaturalist Network.
+          <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>.
+          Когда мы подтвердим вашу поддержку, вы сможете проверить наличие отметки в этом
+          поле (отображения этого статуса) в вашем профиле. Примечание: адреса электронной почты
+          на Donorbox и iNaturalist должны точно совпадать, чтобы мы могли подтвердить, что
+          вы являетесь ежемесячным спонсором. Если поля отличаются, измените одно так, чтобы оно соответствовало другому.
         muting_desc_html: |
           <p>
           Игнорирование кого-либо предотвращает получение вами уведомления о том, что они делают, в том числе о комментировании ваших наблюдений, отправке вам сообщения, упоминании вас и т.д. Эта опция помогает, не мешая при этом ему что-либо делать.
@@ -7343,9 +7419,21 @@ ru:
       index:
         connect_with_nature: На связи с природой
         explore_and_share: Просматривайте и делитесь вашими наблюдениями природного мира
-        observations_to_date: 'наблюдений'
-        species_observed: 'Наблюдаемые виды'
-        people_signed_up: 'человек зарегистрировалось'
+        observations_to_date:
+          one: "Наблюдение на сегодня"
+          few: "Наблюдений на сегодня"
+          many: "Наблюдений на сегодня"
+          other: "Наблюдений на сегодня"
+        species_observed:
+          one: "Наблюдаемый вид"
+          few: "Наблюдаемые виды"
+          many: "Наблюдаемые виды"
+          other: "Наблюдаемые виды"
+        people_signed_up:
+          one: "Зарегистрированный пользователь"
+          few: "Зарегистрированных пользователей"
+          many: "Зарегистрированных пользователей"
+          other: "Зарегистрированных пользователей"
         how_it_works: 'Как это работает:'
         record_your_observations: Зарегистрируйте ваши наблюдения
         share_with_fellow_naturalists: Поделитесь с другими
@@ -7416,20 +7504,20 @@ ru:
       6: Пт
       7: Сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      long: '%d.%m.%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%d.%m'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      compact: "%e.%m"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%d.%m.%Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%B %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      month_day_year: '%d.%m.%Y'
     month_names:
       - 
       - Январь
@@ -7503,25 +7591,25 @@ ru:
         many: '%{count} секунд'
         other: '%{count} секунд'
     countdown_x_days:
-      one: день
-      few: дня
-      many: дней
-      other: дней
+      one: ДЕНЬ
+      few: ДНЯ
+      many: ДНЕЙ
+      other: ДНЕЙ
     countdown_x_hours:
-      one: час
-      few: часа
-      many: часов
-      other: часов
+      one: ЧАС
+      few: ЧАСА
+      many: ЧАСОВ
+      other: ЧАСОВ
     countdown_x_minutes:
-      one: мин
-      few: мин
-      many: мин
-      other: мин
+      one: МИН
+      few: МИН
+      many: МИН
+      other: МИН
     countdown_x_seconds:
-      one: сек
-      few: сек
-      many: сек
-      other: сек
+      one: СЕК
+      few: СЕК
+      many: СЕК
+      other: СЕК
     prompts:
       day: День
       hour: Час
@@ -7529,54 +7617,6 @@ ru:
       month: Месяц
       second: Секунды
       year: Год
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: должно быть принято
-      blank: не может быть пустым
-      confirmation: не соответствует паролю
-      empty: не может быть пустым
-      equal_to: должно быть равно %{count}
-      even: должно быть чётным
-      exclusion: зарезервировано
-      greater_than: должно быть больше %{count}
-      greater_than_or_equal_to: должно быть больше или равно %{count}
-      inclusion: не включён в список
-      invalid: недопустимо
-      less_than: должно быть меньше %{count}
-      less_than_or_equal_to: должно быть меньше или равно %{count}
-      new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
-      not_a_number: не является числом
-      not_an_integer: должно быть целым
-      odd: должно быть нечётным
-      only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
-      record_invalid: 'Ошибка проверки: %{errors}'
-      requires_privilege_speech: |
-        для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
-      requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
-      taken: уже было принято
-      too_long:
-        one: слишком длинное (максимум %{count} символ)
-        few: слишком длинное (максимум %{count} символа)
-        many: слишком длинное (максимум %{count} символов)
-        other: слишком длинное (максимум %{count} символов)
-      too_short:
-        one: слишком короткое (минимум %{count} символ)
-        few: слишком короткое (минимум %{count} символа)
-        many: слишком короткое (минимум %{count} символов)
-        other: слишком короткое (минимум %{count} символов)
-      wrong_length:
-        one: неверная длина (необходим %{count} символ)
-        few: неверная длина (необходимо %{count} символа)
-        many: неверная длина (необходимо %{count} символов)
-        other: неверная длина (необходимо %{count} символов)
-    template:
-      body: 'Возникли некоторые проблемы со следующими полями:'
-      header:
-        one: "%{count} ошибка препятствует сохранению этого %{model}"
-        few: '%{count} ошибки препятствуют сохранению этого %{model}'
-        many: '%{count} ошибок препятствуют сохранению этого %{model}'
-        other: '%{count} ошибок препятствуют сохранению этого %{model}'
   helpers:
     defaults:
       title: "ЭТО ЗАГОЛОВОК"
@@ -7641,72 +7681,21 @@ ru:
   time:
     am: утра
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y %I%M%p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%d.%m.%Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      long: '%d.%m.%Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short: '%d.%m %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%H:%M"
     pm: вечера
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: должно быть принято
-        blank: не может быть пустым
-        confirmation: не соответствует паролю
-        empty: не может быть пустым
-        equal_to: должно быть равно %{count}
-        even: должно быть чётным
-        exclusion: зарезервировано
-        greater_than: должно быть больше %{count}
-        greater_than_or_equal_to: должно быть больше или равно %{count}
-        inclusion: не включён в список
-        invalid: недопустимо
-        less_than: должно быть меньше %{count}
-        less_than_or_equal_to: должно быть меньше или равно %{count}
-        new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
-        not_a_number: не является числом
-        not_an_integer: должно быть целым
-        odd: должно быть нечётным
-        only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
-        record_invalid: 'Ошибка проверки: %{errors}'
-        requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
-        requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
-        taken: уже было принято
-        too_long:
-          one: слишком длинное (максимум %{count} символ)
-          few: слишком длинное (максимум %{count} символа)
-          many: слишком длинное (максимум %{count} символов)
-          other: слишком длинное (максимум %{count} символов)
-        too_short:
-          one: слишком короткое (минимум %{count} символ)
-          few: слишком короткое (минимум %{count} символа)
-          many: слишком короткое (минимум %{count} символов)
-          other: слишком короткое (минимум %{count} символов)
-        wrong_length:
-          one: неверная длина (необходим %{count} символ)
-          few: неверная длина (необходимо %{count} символа)
-          many: неверная длина (необходимо %{count} символов)
-          other: неверная длина (необходимо %{count} символов)
-      template:
-        body: 'Возникли некоторые проблемы со следующими полями:'
-        header:
-          one: '%{count} ошибка препятствует сохранению этой %{model}'
-          few: '%{count} ошибки препятствуют сохранению этой %{model}'
-          many: '%{count} ошибок препятствуют сохранению этой %{model}'
-          other: '%{count} ошибок препятствуют сохранению этой %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7922,22 +7911,43 @@ ru:
         blank: не может быть пустым
         confirmation: не соответствует паролю
         empty: не может быть пустым
-        equal_to: должно быть равно %{count}
+        equal_to:
+          one: должен быть равен %{count}
+          few: должно быть равно %{count}
+          many: должно быть равно %{count}
+          other: должно быть равно %{count}
         even: должно быть чётным
         exclusion: зарезервировано
-        greater_than: должно быть больше %{count}
-        greater_than_or_equal_to: должно быть больше или равно %{count}
+        greater_than:
+          one: должен быть больше %{count}
+          few: должно быть больше %{count}
+          many: должно быть больше %{count}
+          other: должно быть больше %{count}
+        greater_than_or_equal_to:
+          one: должен быть не меньше %{count}
+          few: должно быть не меньше %{count}
+          many: должно быть не меньше %{count}
+          other: должно быть не меньше %{count}
         inclusion: не включён в список
         invalid: неверно
-        less_than: должно быть меньше %{count}
-        less_than_or_equal_to: должно быть меньше или равно %{count}
+        less_than:
+          one: должен быть меньше %{count}
+          few: должно быть меньше %{count}
+          many: должно быть меньше %{count}
+          other: должно быть меньше %{count}
+        less_than_or_equal_to:
+          one: должен быть не больше %{count}
+          few: должны быть не больше %{count}
+          many: должны быть не больше %{count}
+          other: должны быть не больше %{count}
         new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
         not_a_number: не является числом
         not_an_integer: должно быть целым
         odd: должно быть нечетным
         only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
         record_invalid: 'Ошибка проверки: %{errors}'
-        requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
+        requires_privilege_speech: |
+          для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
         taken: уже было принято
         too_long:
@@ -7958,7 +7968,7 @@ ru:
       template:
         body: 'Возникли проблемы со следующими полями:'
         header:
-          one: '%{count} ошибка препятствует сохранению этой %{model}'
+          one: "%{count} ошибка препятствует сохранению этой %{model}"
           few: '%{count} ошибки препятствуют сохранению этой %{model}'
           many: '%{count} ошибок препятствуют сохранению этой %{model}'
           other: '%{count} ошибок препятствуют сохранению этой %{model}'

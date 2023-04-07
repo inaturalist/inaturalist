@@ -123,7 +123,7 @@ const PieChartForIconicTaxonCounts = ( {
       margin={margin}
       labelForDatum={labelForDatum}
       donutWidth={donutWidth}
-      onClick={d => {
+      onClick={( _clickEvent, d ) => {
         let url = urlPrefix || `/observations?d1=${year}-01-01&d2=${year}-12-31`;
         if ( user ) {
           url += `&user_id=${user.login}`;

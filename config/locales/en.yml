@@ -612,7 +612,6 @@ en:
   analyze_clashes: Analyze Unintended Disagreements
   analyze_ids: Analyze IDs
   ancestor_taxon: Ancestor Taxon
-  and: and
   and_other_taxa: "&amp; Other Taxa"
   android: Android
   animals: Animals
@@ -902,6 +901,10 @@ en:
   birds: birds
   birthday: Birthday
   black: black
+  block: Block
+  blocking_description: Blocking prevents any communication between you and another user. It is for
+    situations where another user may put your safety at risk, like stalking or other abusive
+    behavior.
   block_removed: Block removed
   blocked_users: Blocked Users
   blog_widget: Blog widget
@@ -929,7 +932,6 @@ en:
   browse_species_that_occur_near_this_observation: Browse species that occur near this observation.
   built_with_site_guides_html: "Built with <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Bulk import of %{filename} is complete"
-  by: by
   by_everyone: By everyone
   by_user: "By %{user}"
   by_you: By you
@@ -1710,6 +1712,7 @@ en:
       signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
       signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
       updated: 'You updated your account successfully.'
+      updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     mailer:
       confirmation_instructions:
         # Subject of an email sent to confirm your account
@@ -1806,9 +1809,15 @@ en:
   # Label for a link to taxa that are descendants ("downstream") of the current
   # taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Downstream flagged taxa
+  # Noun, as in a journal post that has not been published
   draft: draft
+  # Noun, as in a journal post that has not been published
   draft_: Draft
+  # Attribution for a journal post that has not been published
+  draft_by_user_html: Draft by %{user}
+  # Noun, as in a journal post that has not been published
   draft_saved: Draft saved!
+  # Noun, as in journal posts that has not been published
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
   # Button label for drawing a circular boundary for an observation search
@@ -2583,18 +2592,25 @@ en:
   lexicon: Lexicon
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
-    scientific_names: Scientific Names
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanian
+    aou_4_letter_codes: AOU 4-Letter Codes
+    aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabic
     armenian: Armenian
+    asturian: Asturian
+    basque: Basque
     belarusian: Belarusian
     bengali: Bengali
+    bikol: Bikol
     bulgarian: Bulgarian
+    carolinian: Carolinian
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinese (simplified)
     chinese_traditional: Chinese (traditional)
+    chuvash: Chuvash
     creole_french: creole (French)
     creole_portuguese: creole (Portuguese)
     croatian: Croatian
@@ -2605,26 +2621,38 @@ en:
     english: English
     estonian: Estonian
     faroese: Faroese
+    fijian: Fijian
     finnish: Finnish
     french: French
     galician: Galician
     gela: Gela
+    georgian: Georgian
     german: German
     greek: Greek
+    gujarati: Gujarati
     hawaiian: Hawaiian
     hebrew: Hebrew
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Hodges Number
+    hokkien: Hokkien
     hungarian: Hungarian
     icelandic: Icelandic
     ilokano: Ilokano
     indonesian: Indonesian
+    irish: Irish
     italian: Italian
     japanese: Japanese
     kannada: Kannada
+    kazakh: Kazakh
     korean: Korean
+    kweyol: Kwéyòl
     latvian: Latvian
     lithuanian: Lithuanian
+    lozi: Lozi
     luxembourgish: Luxembourgish
+    malagasy: Malagasy
     malay: Malay
     malayalam: Malayalam
     maltese: Maltese
@@ -2634,6 +2662,8 @@ en:
     misima_paneati: Misima-paneati
     mongolian: Mongolian
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegian
     occitan: Occitan
     ojibwe: Ojibwe
@@ -2645,22 +2675,39 @@ en:
     romanian: Romanian
     russian: Russian
     santali: Santali
+    scientific_names: Scientific Names
     serbian: Serbian
-    setswana: Setswana
+    shona: Shona
     sinhala: Sinhala
     slovak: Slovak
     slovenian: Slovenian
+    sotho: Sotho
+    sotho: Sotho
+    sotho_northern: Sotho (Northern)
     spanish: Spanish
     swahili: Swahili
+    swati: Swati
     swedish: Swedish
     tagalog: Tagalog
     tahitian: Tahitian
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelauan
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turkish
+    u_s_d_a_symbol: U.S.D.A. Symbol
     ukrainian: Ukrainian
-    waray_waray: Waray-Waray
+    uyghur: Uyghur
+    venda: Venda
+    vermont_flora_codes: Vermont Flora Codes
+    vietnamese: Vietnamese
     visayan: Visayan
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Less
   # Button show less text
   less__context_text: Less
@@ -2701,6 +2748,10 @@ en:
     taxonomic: taxonomic
     photo: photo
   list_was_successfully_created: List was successfully created.
+  # Template for a comma-separated list of items. We'll use this to generate
+  # lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, and %{three}"
+  list_with_two_items: "%{one} and %{two}"
   listed_taxa: Listed Taxa
   listed_taxon: Listed taxon
   listed_taxon_updated: Listed taxon updated
@@ -2753,6 +2804,8 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    ka: Georgian
+    kk: Kazakh
     kn: Kannada
     ko: Korean
     lb: Luxembourgish
@@ -2818,6 +2871,8 @@ en:
   lookup: Lookup
   low: Low
   lowest_rank: Lowest Rank
+  # Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Make admin
   # Header for main content section of the project detail page when editing custom project data.
   main_content: Main content
@@ -2850,7 +2905,7 @@ en:
       every_publicly_visible_observation: Every publicly visible observation created in the iNaturalist network
       featured_observations: Featured observations
       gbif_network: GBIF network
-      gbif_network_description: Records from museums and other occurrence providers distributed by the Global Biodiversity Informatics Facility
+      gbif_network_description2: Records from museums and other occurrence providers distributed by the Global Biodiversity Information Facility
       observations: Observations
       place_boundary: Place boundary
       checklist_places: Checklist places
@@ -2870,6 +2925,9 @@ en:
   maximum_positional_accuracy_including_unknown: |
     Maximum positional accuracy including observations without positional accuracy
   media: Media
+  # Used to join media types required by a project, e.g. photos *and* sounds.
+  # If a single word won't work, a symbol like "+" would be fine.
+  media_and: and
   media_type: Media Type
   medium: medium
   meet: Meet
@@ -3049,8 +3107,13 @@ en:
   must_have_quality_grades: "must have quality grades: %{grades}"
   must_have_sounds: must have sounds
   must_have_x: "must have %{x}"
+  # Imperative verb, label for a button that lets you mute another user
+  mute: Mute
+  # Mute is a noun here
   mute_removed: Mute removed
   muted_users: Muted Users
+  muting_description: Muting someone prevents you from being notified about any of their activity,
+    including "@" mentions, messages, or comments and identifications on your observations.
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -3602,6 +3665,14 @@ en:
     invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
+  password_change_description: Changing your password will log you out of all active
+    iNaturalist sessions across your devices
+  password_change_logout_warning: After you change your password, you will be signed out and you
+    will need to sign in again with your new password.
+  password_change_observations_warning: You will also be signed out of the iNaturalist mobile apps
+    and any other apps or websites that post to iNaturalist on your behalf, so make sure you have
+    uploaded any pending observations before you do this. Any observations that are not uploaded
+    will be lost.
   paste: Paste
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   people: People
@@ -4147,11 +4218,10 @@ en:
     where you can draw arbitrary boundaries, or export them from iNat using
     existing places or a bounding box and then filter the data again once you've
     downloaded it.
-  places_warning_look_for_existing_html: |
+  places_warning_look_for_existing2_html: |
     Look for <a href="/search?source[]=places">existing places</a> to make sure
     you're not creating a duplicate. We already have places for all the
-    continents and countries, as well as two administrative levels below
-    country.
+    continents and countries, and many other political boundaries.
   places_warning_please_keep_in_mind: |
     Please keep in mind the following restrictions:
   places_warning_projects_can_have_multiple_places: |
@@ -4199,7 +4269,10 @@ en:
   post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   posted_by: Posted by
-  posted_on: Posted on
+  # Shows the date a journal post was published
+  posted_on_date_html: Posted on %{date}
+  # Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Posted on %{date} by %{user}
   posts: Posts
   potential_disagreement: Potential Disagreement
   powered_by: Powered by
@@ -5019,6 +5092,10 @@ en:
   stats: Stats
   stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   status: Status
+  # Displayed on the taxon detail page when a conservation status is being
+  # applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Status applied from a higher-level taxon:</strong> %{taxon}
   status_globally: '"%{status}" Globally'
   status_in_place: '"%{status}" in %{place}'
   stay_and_try_again: Stay and try again
@@ -5750,8 +5827,7 @@ en:
   user_commented: "%{user} commented"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
-  # %{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_faved_an_observation_by_you: "%{user} faved an observation by you"
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
@@ -7317,9 +7393,9 @@ en:
           leave copyright infringement flags as unresolved if this photo does
           infringe copyright.
     places:
-      kml_field_desc: |
+      kml_field_desc2: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon be
+        Earth, or most GIS applications. Must have at least one polygon, be
         under 1 MB (5 MB for site curators), and have an area smaller than the
         US state of Texas.
       edit:
@@ -8551,9 +8627,24 @@ en:
       index:
         connect_with_nature: Connect with Nature
         explore_and_share: Explore and share your observations from the natural world.
-        observations_to_date: 'Observations to Date'
-        species_observed: 'Species Observed'
-        people_signed_up: 'People Signed Up'
+        observations_to_date:
+          zero: "Observations to Date"
+          one: "Observation to Date"
+          few: "Observations to Date"
+          many: "Observations to Date"
+          other: "Observations to Date"
+        species_observed:
+          zero: "Species Observed"
+          one: "Species Observed"
+          few: "Species Observed"
+          many: "Species Observed"
+          other: "Species Observed"
+        people_signed_up:
+          zero: "People Signed Up"
+          one: "Person Signed Up"
+          few: "People Signed Up"
+          many: "People Signed Up"
+          other: "People Signed Up"
         how_it_works: How It Works
         record_your_observations: Record your observations
         share_with_fellow_naturalists: Share with fellow naturalists
@@ -8631,19 +8722,19 @@ en:
       6: Fr
       7: Sa
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%Y-%m-%d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b %d'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%b %e"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%b %d, %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%B %Y'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%B %d, %Y'
     month_names:
       -
@@ -8696,17 +8787,17 @@ en:
         one: "%{count} second"
         other: '%{count} seconds'
     countdown_x_days:
-      one: day
-      other: days
+      one: DAY
+      other: DAYS
     countdown_x_hours:
-      one: hour
-      other: hours
+      one: HOUR
+      other: HOURS
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MINS
     countdown_x_seconds:
-      one: sec
-      other: sec
+      one: SEC
+      other: SECS
     prompts:
       day: Day
       hour: Hour
@@ -8714,47 +8805,6 @@ en:
       month: Month
       second: Seconds
       year: Year
-  errors: &errors
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: must be accepted
-      blank: can't be blank
-      confirmation: didn't match password
-      empty: can't be empty
-      equal_to: must be equal to %{count}
-      even: must be even
-      exclusion: is reserved
-      greater_than: must be greater than %{count}
-      greater_than_or_equal_to: must be greater than or equal to %{count}
-      inclusion: is not included in the list
-      invalid: is invalid
-      less_than: must be less than %{count}
-      less_than_or_equal_to: must be less than or equal to %{count}
-      new_project_owner_must_be_a_manager: New project owner must be an admin
-      not_a_number: is not a number
-      not_an_integer: must be an integer
-      odd: must be odd
-      only_project_owner_can_change_project_owner: Only the project owner can change the project owner
-      record_invalid: 'Validation failed: %{errors}'
-      requires_privilege_speech: |
-        must have three verifiable observations or three identifications
-        for others to do that
-      requires_privilege_organizer: must have 50 verifiable observations to do that
-      taken: has already been taken
-      too_long:
-        one: is too long (maximum is %{count} character)
-        other: is too long (maximum is %{count} characters)
-      too_short:
-        one: is too short (minimum is %{count} character)
-        other: is too short (minimum is %{count} characters)
-      wrong_length:
-        one: is the wrong length (should be %{count} character)
-        other: is the wrong length (should be %{count} characters)
-    template:
-      body: 'There were problems with the following fields:'
-      header:
-        one: "%{count} error prohibited this %{model} from being saved"
-        other: '%{count} errors prohibited this %{model} from being saved'
   helpers:
     defaults:
       title: "THIS IS A TITLE"
@@ -8829,27 +8879,21 @@ en:
   time:
     am: am
     formats:
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       default: '%b. %d, %Y %H:%M:%S %z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%B %d, %Y %I:%M %p'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b %H:%M'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       compact: "%I:%M %p"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       observed_at: '%I:%M %p %Z'
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       day_month_year: "%B %d, %Y"
-      # See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       hours: "%l:%M %p"
     pm: pm
-  # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      <<: *errors
   activerecord:
     models:
       # Information authored by site admins shown to users at various places
@@ -9062,7 +9106,56 @@ en:
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:
-      <<: *errors
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: must be accepted
+        blank: can't be blank
+        confirmation: didn't match password
+        empty: can't be empty
+        equal_to:
+          one: must be equal to %{count}
+          other: must be equal to %{count}
+        even: must be even
+        exclusion: is reserved
+        greater_than:
+          one: must be greater than %{count}
+          other: must be greater than %{count}
+        greater_than_or_equal_to:
+          one: must be greater than or equal to %{count}
+          other: must be greater than or equal to %{count}
+        inclusion: is not included in the list
+        invalid: is invalid
+        less_than:
+          one: must be less than %{count}
+          other: must be less than %{count}
+        less_than_or_equal_to:
+          one: must be less than or equal to %{count}
+          other: must be less than or equal to %{count}
+        new_project_owner_must_be_a_manager: New project owner must be an admin
+        not_a_number: is not a number
+        not_an_integer: must be an integer
+        odd: must be odd
+        only_project_owner_can_change_project_owner: Only the project owner can change the project owner
+        record_invalid: 'Validation failed: %{errors}'
+        requires_privilege_speech: |
+          must have three verifiable observations or three identifications
+          for others to do that
+        requires_privilege_organizer: must have 50 verifiable observations to do that
+        taken: has already been taken
+        too_long:
+          one: is too long (maximum is %{count} character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is %{count} character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be %{count} character)
+          other: is the wrong length (should be %{count} characters)
+      template:
+        body: 'There were problems with the following fields:'
+        header:
+          one: "%{count} error prohibited this %{model} from being saved"
+          other: '%{count} errors prohibited this %{model} from being saved'
       models:
         application:
           attributes:

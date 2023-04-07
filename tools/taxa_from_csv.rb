@@ -4,7 +4,7 @@ require "rubygems"
 require "optimist"
 require "csv"
 
-opts = Optimist.options do
+OPTS = Optimist.options do
   banner <<~HELP
     Import taxa from a list of names in CSV following the format
 
@@ -48,31 +48,29 @@ end
 
 start = Time.now
 
-OPTS = opts
-
-csv_path = ARGV[0]
-unless csv_path && File.exist?( csv_path )
-  Optimist.die "CSV does not exist: #{csv_path}"
+@csv_path = ARGV[0]
+unless @csv_path && File.exist?( @csv_path )
+  Optimist.die "CSV does not exist: #{@csv_path}"
 end
 
-unless opts.place_id.blank?
-  if ( @place = Place.find( opts.place_id ) )
+unless OPTS.place_id.blank?
+  if ( @place = Place.find( OPTS.place_id ) )
     puts "Found place: #{@place}"
   else
     Optimist.die "Couldn't find place: #{OPTS.place_id}"
   end
 end
 
-unless opts.user_id.blank?
-  if ( @user = User.find( opts.user_id ) )
+unless OPTS.user_id.blank?
+  if ( @user = User.find( OPTS.user_id ) )
     puts "Found user: #{@user}"
   else
     Optimist.die "Couldn't find user: #{OPTS.user_id}"
   end
 end
 
-unless opts.source_id.blank?
-  if ( @source = Source.find( opts.source_id ) )
+unless OPTS.source_id.blank?
+  if ( @source = Source.find( OPTS.source_id ) )
     puts "Found source: #{@source}"
   else
     Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
@@ -174,80 +172,90 @@ def add_to_place( taxon, place )
   end
 end
 
-num_created = num_existing = 0
-not_created = []
+@num_created = @num_existing = 0
+@not_created = []
 
-CSV.foreach( csv_path, skip_blanks: true ) do | row |
-  sciname, *common_names = row
-  puts row.join( " | " )
-  next unless sciname
+def import_taxa
+  CSV.foreach( @csv_path, skip_blanks: true ) do | row |
+    sciname, *common_names = row
+    puts row.join( " | " )
+    next unless sciname
 
-  unless ( taxon = Taxon.single_taxon_for_name( sciname ) )
-    candidates = Taxon.where( name: sciname )
-    if candidates.active.count > 1
-      @errors << [sciname, "multiple active taxa"]
+    unless ( taxon = Taxon.single_taxon_for_name( sciname, skip_conservative_branch_synonym: true ) )
+      candidates = Taxon.where( name: sciname )
+      if candidates.active.count > 1
+        @errors << [sciname, "multiple active taxa"]
+        next
+      end
+
+      if candidates.inactive.count > 1
+        @errors << [sciname, "multiple inactive taxa"]
+        next
+      end
+
+      if ( inactive_candidate = candidates.inactive.first ) && !inactive_candidate.current_synonymous_taxon
+        @errors << [sciname, "inactive taxon with no single active synonym"]
+        next
+      end
+    end
+
+    if taxon
+      @num_existing += 1
+      puts "\tFound #{taxon}"
+      save_common_names( taxon, common_names )
+      add_to_place( taxon, @place ) if @place && !OPTS.skip_check_lists
       next
     end
 
-    if candidates.inactive.count > 1
-      @errors << [sciname, "multiple inactive taxa"]
+    if OPTS.skip_creation
+      @not_created << sciname
       next
     end
 
-    if ( inactive_candidate = candidates.inactive.first ) && !inactive_candidate.current_synonymous_taxon
-      @errors << [sciname, "inactive taxon with no single active synonym"]
+    taxon = begin
+      Taxon.import( sciname )
+    rescue NameProviderError
+      nil
+    end
+    unless taxon
+      @errors << [sciname, "couldn't import a taxon"]
+      puts "\t#{@errors.last.last}"
       next
     end
-  end
-
-  if taxon
-    num_existing += 1
-    puts "\tFound #{taxon}"
+    puts "\tCreated #{taxon}"
+    @num_created += 1
     save_common_names( taxon, common_names )
     add_to_place( taxon, @place ) if @place && !OPTS.skip_check_lists
-    next
+
+    begin
+      taxon.graft
+    rescue RatatoskGraftError
+      @errors << [sciname, "failed to graft"]
+      puts "\t#{@errors.last.last}"
+      next
+    end
+    puts "\tGrafted to #{taxon.parent_id}"
   end
 
-  if opts.skip_creation
-    not_created << sciname
-    next
-  end
-
-  taxon = begin
-    Taxon.import( sciname )
-  rescue NameProviderError
-    nil
-  end
-  unless taxon
-    @errors << [sciname, "couldn't import a taxon"]
-    puts "\t#{@errors.last.last}"
-    next
-  end
-  puts "\tCreated #{taxon}"
-  num_created += 1
-  save_common_names( taxon, common_names )
-  add_to_place( taxon, @place ) if @place && !OPTS.skip_check_lists
-
-  begin
-    taxon.graft
-  rescue RatatoskGraftError
-    @errors << [sciname, "failed to graft"]
-    puts "\t#{@errors.last.last}"
-    next
-  end
-  puts "\tGrafted to #{taxon.parent_id}"
+  puts
+  puts "== REINDEXING #{@taxon_ids_to_index.size} TAXA =="
+  puts
+  Taxon.elastic_index!( ids: @taxon_ids_to_index.to_a.uniq )
 end
 
-puts
-puts "== REINDEXING #{@taxon_ids_to_index.size} TAXA =="
-puts
-Taxon.elastic_index!( ids: @taxon_ids_to_index.to_a.uniq )
+if @user
+  Audited.audit_class.as_user( @user ) do
+    import_taxa
+  end
+else
+  import_taxa
+end
 
-unless not_created.blank?
+unless @not_created.blank?
   puts
   puts "Not created:"
   puts
-  puts not_created.join( "\n" )
+  puts @not_created.join( "\n" )
   puts
 end
 
@@ -265,9 +273,9 @@ end
 
 puts
 puts "Finished in #{Time.now - start} s"
-puts "#{num_created} taxa created"
-puts "#{not_created.size} taxa not created"
-puts "#{num_existing} taxa existing"
+puts "#{@num_created} taxa created"
+puts "#{@not_created.size} taxa not created"
+puts "#{@num_existing} taxa existing"
 puts "#{@names_created} names created"
 puts "#{@names_existing} names existing"
 puts "#{@names_skipped} names skipped b/c they already exist for other taxa"

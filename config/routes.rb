@@ -262,13 +262,9 @@ Rails.application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
-      get :accumulation
-      get :phylogram
       get :export
       get :map
       get :identify
-      get :moimport
-      post :moimport
       get :torquemap
       get :compare
     end
@@ -602,7 +598,6 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :summary
-      get :observation_weeks
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017

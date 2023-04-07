@@ -1,4 +1,22 @@
 ta:
+  x_languages:
+    one: "%{count} மொழி"
+    other: "%{count} மொழிகள்"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A முதல் Z"
+  about_conservation_status: பாதுகாப்பு நிலை பற்றி
+  lexicons:
+    french: பிரெஞ்சு
+  locales:
+    fr: பிரெஞ்சு
+    fr-CA: பிரஞ்சு (கனடா)
+  location: இடம்
+  onboarding:
+    observe_panel_body_p2: வெளியே சென்று பல்லுயிர்களின் ஒவ்வொரு பகுதியையும் பாருங்கள். வனவிலங்குகள் போன்றவற்றில் ஏதேனும் ஒன்றைத் தேர்ந்தெடுத்து அதன் முழு பிரேம் படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே வனவிலங்கு வகை படம் இருந்தால் <a href="%{new_observation_path}">இப்போதே சேர்க்கவும்</a>. பார்வைகளைப் பதிவுசெய்ய %{site_name} மொபைல் பயன்பாடுகளையும் நீங்கள் பயன்படுத்தலாம்.
+  places_name:
+    french_guiana: பிரெஞ்சு கயானா
+    french_polynesia: பிரெஞ்ச் பாலிநீசியா
   date:
     abbr_month_names:
       - 
