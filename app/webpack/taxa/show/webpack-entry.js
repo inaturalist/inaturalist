@@ -18,6 +18,8 @@ import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
 import { windowStateForTaxon } from "../shared/util";
 
+const { Taxon } = inatjs;
+
 const rootReducer = combineReducers( {
   config: configReducer,
   taxon: taxonReducer,
@@ -107,7 +109,7 @@ history.replaceState( s.state, s.title, s.url );
 window.onpopstate = e => {
   // User returned from BACK
   if ( e.state && e.state.taxon ) {
-    store.dispatch( setTaxon( new inatjs.Taxon( e.state.taxon ) ) );
+    store.dispatch( setTaxon( new Taxon( e.state.taxon ) ) );
     store.dispatch( fetchTaxon( e.state.taxon ) );
     store.dispatch( fetchTaxonAssociates( e.state.taxon ) );
   }
