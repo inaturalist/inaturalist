@@ -120,14 +120,14 @@ class ProviderAuthorization < ApplicationRecord
 
   def destroy_photo_identity
     if provider_name == "flickr"
-      user.flickr_identity.destroy
+      user&.flickr_identity&.destroy
     end
     true
   end
 
   def destroy_sound_identity
     if provider_name == "soundcloud"
-      user.soundcloud_identity.destroy
+      user&.soundcloud_identity&.destroy
     end
     true
   end
