@@ -227,7 +227,6 @@ hu:
   add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     A név módosításához végezz el <a target="_blank" href="%{url}">taxoncserét</a>
-  add_an_assessment: Értékelés hozzáadása
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
   add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
@@ -235,7 +234,7 @@ hu:
   add_annotations_for_x: '%{x} megjelölés hozzáadása'
   add_annotations_for_controlled_attribute:
     sex: '"Nem" megjelölés hozzáadása'
-    plant_phenology: Jegyzet hozzáadása a "Fenológiai fázishoz"
+    plant_phenology: Megjelölés hozzáadása a "Fenológiai fázishoz"
     life_stage: '"Életszakasz" megjelölés hozzáadása'
     evidence_of_presence: '"Megjelenési bizonyíték" megjelölés hozzáadása'
   add_another_flag: Még egy bejelentés
@@ -281,11 +280,11 @@ hu:
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
   add_alive_or_dead_cannot_be_determined_annotation: '"Élő vagy élettelen: Nem meghatározható" megjelölés hozzáadása'
   add_alive_or_dead_dead_annotation: '"Élő vagy élettelen: Élettelen" megjelölés hozzáadása'
-  add_plant_phenology_budding_annotation: '"Rügyező fenológiai fázis" hozzáadása'
-  add_plant_phenology_flower_budding_annotation: '"Bimbózó fenológiai fázis" hozzáadása'
-  add_plant_phenology_flowering_annotation: '"Virágzó fenológiai fázis" hozzáadása'
-  add_plant_phenology_fruiting_annotation: '"Termő fenológiai fázis" hozzáadása'
-  add_plant_phenology_no_evidence_of_flowering_annotation: '"Virágzás bizonyítéka hiányzik fenológiai fázis" hozzáadása'
+  add_plant_phenology_budding_annotation: '"Fenológiai fázis: Rügyező" hozzáadása'
+  add_plant_phenology_flower_budding_annotation: '"Fenológiai fázis: Bimbózó" hozzáadása'
+  add_plant_phenology_flowering_annotation: '"Fenológiai fázis: Virágzó" hozzáadása'
+  add_plant_phenology_fruiting_annotation: '"Fenológiai fázis: Termő" hozzáadása'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '"Fenológiai fázis: Virágzás bizonyítéka hiányzik" hozzáadása'
   add_life_stage_adult_annotation: '"Életszakasz: Felnőtt" megjelölés hozzáadása'
   add_life_stage_teneral_annotation: '"Életszakasz: Frissen kikelt" megjelölés hozzáadása'
   add_life_stage_subimago_annotation: '"Életszakasz: Szubimágó" megjelölés hozzáadása'
@@ -675,8 +674,8 @@ hu:
   browse: Böngészés
   browse_all_projects: Böngészés a projektek között
   browse_all_species: Összes faj böngészése
-  browse_observations: Megfigyelések megtekintése
-  browse_people: Emberek keresése
+  browse_observations: Megfigyelések böngészése
+  browse_people: Emberek böngészése
   browse_projects: Böngészés a projektek között
   browse_species_that_occur_near_this_observation: Fajok keresése közel e megfigyeléshez
   bulk_import_of_filename_is_complete: "%{filename} csoportos betöltése kész"
@@ -1812,6 +1811,7 @@ hu:
   lexicon_cannot_contain_words: "nem tartalmazhatja ezeket a szavakat: %{words}"
   lexicons:
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albán
     aou_4_letter_codes: Négybetűs AOU-kódok
     aou_6_letter_codes: Hatbetűs AOU-kódok
@@ -1845,6 +1845,7 @@ hu:
     hungarian: magyar
     icelandic: Izlandi
     indonesian: Indonéz
+    irish: Ír
     italian: Olasz
     japanese: Japán
     korean: Koreai
@@ -1877,6 +1878,8 @@ hu:
     turkish: Török
     ukrainian: Ukrán
     uyghur: Ujgur
+    vietnamese: Vietnámi
+    zulu: Zulu
   less: Kevesebb
   #Button show less text
   less__context_text: Kevesebb
