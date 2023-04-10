@@ -141,6 +141,12 @@ th:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Acc (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: คลาดเคลื่อนสูงกว่า
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: คลาดเคลื่อนต่ำกว่า
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: คลาดเคลื่อนต่ำกว่าหรือไม่ทราบ
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
   account_settings: การตั้งค่าบัญชี
