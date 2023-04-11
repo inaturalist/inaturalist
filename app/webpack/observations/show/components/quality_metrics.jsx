@@ -3,7 +3,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
-/* global SITE */
 
 class QualityMetrics extends React.Component {
   constructor( ) {
@@ -12,8 +11,17 @@ class QualityMetrics extends React.Component {
     this.needsIDRow = this.needsIDRow.bind( this );
   }
 
-  voteCell( metric, isAgree, isMajority, className, usersChoice, voters,
-    loading, disabled, options = {} ) {
+  voteCell(
+    metric,
+    isAgree,
+    isMajority,
+    className,
+    usersChoice,
+    voters,
+    loading,
+    disabled,
+    options = {}
+  ) {
     const {
       config,
       unvoteMetric,
@@ -87,44 +95,51 @@ class QualityMetrics extends React.Component {
         contents={<span>{`(${needsIDInfo.votersFor.length})`}</span>}
       />
     );
-    const votesAgainstCount = needsIDInfo.voteAgainstLoading ? (
-      <div className="loading_spinner" />
-    ) : (
-      <UsersPopover
-        users={needsIDInfo.votersAgainst}
-        keyPrefix="metric-needs_id-disagree"
-        contents={<span>{`(${needsIDInfo.votersAgainst.length})`}</span>}
-      /> );
-    const checkboxYes = loggedIn ? (
-      <input
-        type="checkbox"
-        id="improveYes"
-        disabled={needsIDInfo.loading}
-        // Sometimes userVotedFor becomes null, which tells React that the
-        // checkbox is uncontrolled, which displeases it, so we default to false
-        checked={needsIDInfo.userVotedFor || false}
-        onChange={( ) => {
-          if ( needsIDInfo.userVotedFor ) {
-            unvoteMetric( "needs_id" );
-          } else {
-            voteMetric( "needs_id" );
-          }
-        }}
-      /> ) : null;
-    const checkboxNo = loggedIn ? (
-      <input
-        type="checkbox"
-        id="improveNo"
-        disabled={needsIDInfo.loading}
-        checked={needsIDInfo.userVotedAgainst || false}
-        onChange={( ) => {
-          if ( needsIDInfo.userVotedAgainst ) {
-            unvoteMetric( "needs_id" );
-          } else {
-            voteMetric( "needs_id", { agree: "false" } );
-          }
-        }}
-      /> ) : null;
+    const votesAgainstCount = needsIDInfo.voteAgainstLoading
+      ? <div className="loading_spinner" />
+      : (
+        <UsersPopover
+          users={needsIDInfo.votersAgainst}
+          keyPrefix="metric-needs_id-disagree"
+          contents={<span>{`(${needsIDInfo.votersAgainst.length})`}</span>}
+        />
+      );
+    const checkboxYes = loggedIn
+      ? (
+        <input
+          type="checkbox"
+          id="improveYes"
+          disabled={needsIDInfo.loading}
+          // Sometimes userVotedFor becomes null, which tells React that the
+          // checkbox is uncontrolled, which displeases it, so we default to false
+          checked={needsIDInfo.userVotedFor || false}
+          onChange={( ) => {
+            if ( needsIDInfo.userVotedFor ) {
+              unvoteMetric( "needs_id" );
+            } else {
+              voteMetric( "needs_id" );
+            }
+          }}
+        />
+      )
+      : null;
+    const checkboxNo = loggedIn
+      ? (
+        <input
+          type="checkbox"
+          id="improveNo"
+          disabled={needsIDInfo.loading}
+          checked={needsIDInfo.userVotedAgainst || false}
+          onChange={( ) => {
+            if ( needsIDInfo.userVotedAgainst ) {
+              unvoteMetric( "needs_id" );
+            } else {
+              voteMetric( "needs_id", { agree: "false" } );
+            }
+          }}
+        />
+      )
+      : null;
     return (
       <tr className="improve">
         <td className="metric_title" colSpan={3}>
@@ -211,12 +226,26 @@ class QualityMetrics extends React.Component {
     const info = this.infoForMetric( metric );
     return {
       agreeCell: this.voteCell(
-        metric, true, info.mostAgree, info.agreeClass, info.userVotedFor,
-        info.votersFor, info.voteForLoading, info.loading, options
+        metric,
+        true,
+        info.mostAgree,
+        info.agreeClass,
+        info.userVotedFor,
+        info.votersFor,
+        info.voteForLoading,
+        info.loading,
+        options
       ),
       disagreeCell: this.voteCell(
-        metric, false, info.mostDisagree, info.disagreeClass, info.userVotedAgainst,
-        info.votersAgainst, info.voteAgainstLoading, info.loading, options
+        metric,
+        false,
+        info.mostDisagree,
+        info.disagreeClass,
+        info.userVotedAgainst,
+        info.votersAgainst,
+        info.voteAgainstLoading,
+        info.loading,
+        options
       ),
       loading: info.loading
     };
@@ -264,7 +293,9 @@ class QualityMetrics extends React.Component {
     const rankText = needsIDInfo.mostDisagree
       ? I18n.t( "community_id_is_precise" )
       : I18n.t( "community_id_at_species_level_or_lower" );
-    const rankPassed = needsIDInfo.mostDisagree ? communityTaxonAtLeastSubfamily : communityTaxonAtLeastSpecies;
+    const rankPassed = needsIDInfo.mostDisagree
+      ? communityTaxonAtLeastSubfamily
+      : communityTaxonAtLeastSpecies;
     return (
       <div className="QualityMetrics">
         { tableOnly ? null : (
@@ -276,7 +307,7 @@ class QualityMetrics extends React.Component {
               </span>
             </div>
             <div className="text">
-              { I18n.t( "views.observations.show.data_quality_assessment_desc_html" ) }
+              { I18n.t( "views.observations.show.data_quality_assessment_desc2_html" ) }
             </div>
           </div>
         ) }

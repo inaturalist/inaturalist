@@ -7064,10 +7064,13 @@ en:
           project curators cannot see. If you don't want to share the
           coordinates of this observation with the curators of this project,
           you must remove the observation from the project.
-        data_quality_assessment_desc_html: |
-          The Data Quality Assessment is an evaluation of an observation’s
-          accuracy. Research Grade observations may be used by scientists for
-          research. Cast your vote below:
+        data_quality_assessment_desc2_html: |
+          The Quality Grade summarizes the accuracy, precision, completeness,
+          relevance, and appropriateness of an iNaturalist observation as
+          biodiversity data. Some attributes are automatically determined,
+          while others are subject to a vote by iNat users. iNaturalist
+          shares "Research Grade" observations with a number of data partners
+          for use in science and conservation.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
