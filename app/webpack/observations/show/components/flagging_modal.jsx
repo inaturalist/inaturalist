@@ -29,17 +29,22 @@ class FlaggingModal extends Component {
   getItemClassName( ) {
     const { state: propsState } = this.props;
     const { item } = propsState;
-    let className = "Comment";
-    if ( item.constructor === Project ) {
+    let className;
+    if ( item instanceof Project ) {
       className = "Project";
-    } else if ( item.constructor === Observation || item.quality_grade ) {
+    } else if ( item instanceof Observation || item.quality_grade ) {
       className = "Observation";
-    } else if ( item.constructor === Identification || item.taxon ) {
+    } else if ( item instanceof Identification || item.taxon ) {
       className = "Identification";
-    } else if ( item.constructor === Photo || item.square_url ) {
+    } else if ( item instanceof Photo || item.square_url ) {
       className = "Photo";
-    } else if ( item.constructor === Sound || item.file_url ) {
+    } else if ( item instanceof Sound || item.file_url ) {
       className = "Sound";
+    } else if ( item instanceof Comment ) {
+      className = "Comment";
+    }
+    if ( !className ) {
+      throw new Error( "Can't flag an unknown type of item" );
     }
     return className;
   }
