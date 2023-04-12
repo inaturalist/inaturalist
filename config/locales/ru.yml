@@ -1,15 +1,15 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} Изменение"
-    few: "%{count} изменений"
-    many: "%{count} Изменений"
-    other: "%{count} Изменений"
+    one: "%{count} изменение"
+    few: "%{count} изменения"
+    many: "%{count} изменений"
+    other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} Комментариев'
+    other: '%{count} комментариев'
   x_comments_html:
     one: '<span class="count">%{count}</span> комментарий'
     few: '<span class="count">%{count}</span> комментария'
