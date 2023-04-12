@@ -785,6 +785,8 @@ es-MX:
   birds: Aves
   birthday: Cumpleaños
   black: Negro
+  block: Bloquea
+  blocking_description: Bloquear evita cualquier comunicación entre usted y otro usuario. Es para situaciones en las que otro usuario puede poner su seguridad en peligro, como acechos u otro comportamiento abusivo.
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -2342,16 +2344,24 @@ es-MX:
   lexicon_cannot_contain_words: "no se pueden contener las siguientes palabras: %{words}"
   lexicons:
     afrikaans: Afrikáans
+    alabama: Alabama
     albanian: Albanés
+    aou_4_letter_codes: Código AOU de 4 letras
+    aou_6_letter_codes: Código AOU de 6 letras
     arabic: Árabe
     armenian: Armenio
+    asturian: Asturiano
+    basque: Vasco
     belarusian: Bielorruso
     bengali: Bengalí
+    bikol: Bikol
     bulgarian: Búlgaro
+    carolinian: Carolinero
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
+    chuvash: Chuvasio
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
     croatian: Croata
@@ -2362,27 +2372,38 @@ es-MX:
     english: Inglés
     estonian: Estonio
     faroese: Feroés
+    fijian: Fijiano
     finnish: Finés
     french: Francés
     galician: Gallego
     gela: Gela
+    georgian: Georgiano
     german: Alemán
     greek: Griego
+    gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Hebreo
+    herero: Herero
     hiligaynon: Hiligainón
+    hill_mari: Hill Mari
+    hodges_number: Número de cartuchos
+    hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
     indonesian: Indonesio
+    irish: Irlandés
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
     kazakh: Kazajo
     korean: Coreano
+    kweyol: Kwéyo l
     latvian: Letón
     lithuanian: Lituano
+    lozi: Lozi
     luxembourgish: Luxemburgués
+    malagasy: Malgache
     malay: Malayo
     malayalam: Malayalam
     maltese: Maltés
@@ -2392,6 +2413,8 @@ es-MX:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Noruego
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2405,20 +2428,36 @@ es-MX:
     santali: Santalí
     scientific_names: Nombres científicos
     serbian: Serbio
+    shona: Shona
     sinhala: Cingalés
     slovak: Eslovaco
     slovenian: Esloveno
+    sotho: Sotho
+    sotho_northern: Sotho (Norte)
     spanish: Español
     swahili: Suajili
+    swati: Suazi
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    tamil: Tamil
     thai: Tailandés
     tokelauan: Tokelauano
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tsuana
     turkish: Turco
+    u_s_d_a_symbol: Símbolo U.S.D.A.
     ukrainian: Ucraniano
+    uyghur: Uigur
+    venda: Venda
+    vermont_flora_codes: Códigos Flora Vermont
+    vietnamese: Vietnamita
     visayan: Visayo
     waray_waray: Samareño
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Menos
   #Button show less text
   less__context_text: Menos
@@ -2514,6 +2553,7 @@ es-MX:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    ka: Georgiano
     kk: Kazajo
     kn: Canarés
     ko: Coreano
@@ -4637,6 +4677,10 @@ es-MX:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estatus
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estado aplicado desde un taxón de alto nivel:</strong> %{taxon}
   status_globally: '"%{status}" Globalmente'
   status_in_place: '"%{status}" en %{place}'
   stay_and_try_again: Permanecer e intentar de nuevo
@@ -6340,6 +6384,8 @@ es-MX:
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
+        data_quality_assessment_desc2_html: |
+          El Grado de Calidad resume la exactitud de la ubicación, precisión, integridad, relevancia y idoneidad de una observación de iNaturalist como datos de biodiversidad. Algunos atributos se determinan automáticamente, mientras que otros están sujetos a un voto de usuarios de iNat. iNaturalist comparte observaciones de "Grado de investigación" con una serie de socios de datos para su uso en la ciencia y la conservación.
         disagreement_count_desc: "nº de taxa identificados que no están entre los ancestros de un  taxón"
         identification_count_desc: '# de identificaciones para un taxon individual'
         flagged_photos_desc_html: |
@@ -7540,6 +7586,18 @@ es-MX:
       x_seconds:
         one: "Un segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: DÍA
+      other: DÍAS
+    countdown_x_hours:
+      one: HORA
+      other: HORAS
+    countdown_x_minutes:
+      one: MIN
+      other: MINS
+    countdown_x_seconds:
+      one: SEG
+      other: SEGS
     prompts:
       day: Día
       hour: Hora
