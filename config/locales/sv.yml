@@ -6449,6 +6449,13 @@ sv:
         cumulative_count_desc: 'Antal bestämning av ett enskilt taxon och alla underliggande'
         curator_coordinate_access_disabled_desc_html: |
           Detta projekt tillåter inte fynd med koordinater som förvaltarna inte kan se. Om du inte vill dela koordinaterna för detta fynd med förvaltarna av detta projekt, måste du ta bort fyndet från projektet.
+        data_quality_assessment_desc2_html: |
+          Kvalitetsklassen är en sammanfattning av noggrannhet, precision, fullständighet,
+          relevans och lämplighet av ett iNaturalist-fynd i egenskapen av data om
+          biologisk mångfald. Vissa egenskaper avgörs automatiskt, medan
+          andra bestäms genom röstning av iNat-användare. iNaturalist
+          delar fynd av "Forskningsklass" med ett antal datapartners
+          för användning inom vetenskap och naturvård.
         disagreement_count_desc: "Antal bestämda taxa som inte hör till ett taxons föräldrar"
         identification_count_desc: 'Antal bestämningar för ett enskilt taxon'
         flagged_photos_desc_html: |
