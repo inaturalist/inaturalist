@@ -6542,6 +6542,13 @@ da:
         cumulative_count_desc: 'Antal af identifikationer for en enkelt takson og alle dets efterkommere'
         curator_coordinate_access_disabled_desc_html: |
           Dette projekt tillader ikke observationer med koordinater som projekt kuratorer ikke kan se. Hvis du ikke vil dele koordinater for denne observation med kuratorerne af dette projekt, skal du fjerne observationen fra projektet.
+        data_quality_assessment_desc2_html: |
+          Kvalitetsklasse opsummerer nøjagtighed, præcision, fuldstændighed,
+          relevans og hensigtsmæssighed af en iNaturalist-observation som
+          biodiversitetsdata. Nogle attributter bestemmes automatisk,
+          mens andre er underlagt en afstemning af iNat-brugere. iNaturalist
+          deler observationer af "Forskningskvalitet" med en række datapartnere
+          til videnskabelig brug samt bevaring.
         disagreement_count_desc: "Antal af identificerede taksa, der ikke er blandt en taksons stamfædre"
         identification_count_desc: 'Antal af identifikationer for en individuel takson'
         flagged_photos_desc_html: |
