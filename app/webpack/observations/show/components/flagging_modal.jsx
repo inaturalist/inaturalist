@@ -7,7 +7,8 @@ import {
   Observation,
   Photo,
   Project,
-  Sound
+  Sound,
+  Comment
 } from "inaturalistjs";
 
 class FlaggingModal extends Component {
