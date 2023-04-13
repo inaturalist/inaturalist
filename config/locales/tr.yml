@@ -4435,7 +4435,7 @@ tr:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Otomatik gizlenen koordinatlar (sınıf coğrafi gizliliği nedeniyle gizlenmiş ya da özel)
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist bazı türlerin koordinatlarını onları rahatsız edilmekten, toplanmaktan ya da kaçak avlanmaktan korumak için otomatik olarak gizler. Gözlem koordinatları yalnızca türleri korumak için otomatik olarak gizlenmişse, iNaturalist kendi ülkelerindeki tüm gözlemlerin gerçek koordinatlarını Ağ Üyeleriyle paylaşır.
+    iNaturalist bazı türlerin koordinatlarını onları rahatsız edilmekten, toplanmaktan ya da kaçak avlanmaktan korumak için otomatik olarak gizler. Gözlem koordinatları yalnızca türleri korumak için otomatik olarak gizlenmiş ise iNaturalist kendi ülkelerindeki tüm gözlemlerin gerçek koordinatlarını Ağ Üyeleri ile paylaşır.
   sites_affiliation_more_email_addresses: |
     E-posta adresleri Ağ Üyeleri ile yalnızca site ile ilgili iletişim amacıyla paylaşılır.
   sites_affiliation_more_twice_per_year: |
@@ -6171,6 +6171,8 @@ tr:
         cumulative_count_desc: '# tek bir sınıf ve onun tüm alt soyu için tanımlama sayısı'
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje küratörlerinin göremediği koordinatlara sahip gözlemlere izin vermez. Bu gözlemin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, gözlemi projeden kaldırman gerekir.
+        data_quality_assessment_desc3_html: |
+          Nitelik Değerlendirmesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
         disagreement_count_desc: "# bir sınıfın üst soyu arasında yer almayan tanımlanmış sınıfların sayısı"
         identification_count_desc: '# tek bir sınıf için tanımlama sayısı'
         flagged_photos_desc_html: |
