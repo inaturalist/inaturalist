@@ -307,7 +307,7 @@ class QualityMetrics extends React.Component {
               </span>
             </div>
             <div className="text">
-              { I18n.t( "views.observations.show.data_quality_assessment_desc2_html" ) }
+              { I18n.t( "views.observations.show.data_quality_assessment_desc3_html" ) }
             </div>
           </div>
         ) }
