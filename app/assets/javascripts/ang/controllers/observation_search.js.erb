@@ -866,10 +866,22 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.section += 1;
     $scope.pagination.searching = true;
     var processedParams = ObservationsFactory.processParamsForAPI(
-      _.extend( { }, $scope.params, iNaturalist.localeParams( ),
-        { page: $scope.apiPage( ), per_page: $scope.pagination.perSection } ), $scope.possibleFields);
+      _.extend(
+        { },
+        $scope.params,
+        iNaturalist.localeParams( ),
+        {
+          page: $scope.apiPage( ),
+          per_page: $scope.pagination.perSection
+        }
+      ), $scope.possibleFields);
+    var searchHasManyResults = $scope.pagination.total > 10000;
+    if ( searchHasManyResults ) {
+      processedParams.no_total_hits = true;
+    }
+
     ObservationsFactory.search( processedParams ).then( function( response ) {
-      if( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) ||
+      if( ( ( response.data.total_results <= ( response.data.page * response.data.per_page ) ) && !searchHasManyResults ) ||
           ( $scope.pagination.section >= $scope.pagination.maxSections ) ) {
         $scope.pagination.stopped = true;
       }
