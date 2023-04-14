@@ -1021,20 +1021,20 @@ es-AR:
     molt: Muda
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
+    bone: |
+      Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
+    cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
     dead: El organismo está muerto o muestra signos de muerte inminente
+    feather: Una o más plumas no unidas a un organismo
     flower_budding: Los cogollos de flores son visibles pero no están abiertos
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Frutas visibles y todavía unidas a la planta
+    molt: Piel descartada o exoesqueleto
     no_evidence_of_flowering: Los medios no proporcionan pruebas de estructuras reproductivas
-    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
-    cannot_be_determined: No es posible determinarlo a partir de las pruebas proporcionadas
-    feather: Una o más plumas no unidas a un organismo
     organism: Organismo total o parcial
     scat: Materias fecales (no egagrópilas de rapaces u otros materiales regurgitados)
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     track: Impresión en el suelo o la nieve hecha por un organismo
-    bone: |
-      Restos endoesqueléticos predominantes; de lo contrario, la exposición parcial de huesos en un organismo intacto debe etiquetarse "organismo"
-    molt: Piel descartada o exoesqueleto
   controls: Controles
   convert: Convertir
   coordinate_systems: Sistemas de coordenadas
@@ -2131,7 +2131,6 @@ es-AR:
   lexicon: Léxico
   lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
-    scientific_names: Nombres científicos
     afrikaans: Afrikáans
     albanian: Albanés
     arabic: Árabe
@@ -2190,7 +2189,7 @@ es-AR:
     romanian: Rumano
     russian: Ruso
     santali: Santalí
-    setswana: Setsuana
+    scientific_names: Nombres científicos
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Español
@@ -2202,8 +2201,8 @@ es-AR:
     tokelauan: Tokelauano
     turkish: Turco
     ukrainian: Ucraniano
-    waray_waray: Samareño
     visayan: Bisayo
+    waray_waray: Samareño
   less: Menos
   licensed_site_photos: "Fotos con licencia de %{site_name}"
   license: Licencia
@@ -3994,8 +3993,6 @@ es-AR:
     En Portugal, el miembro de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} compartió datos para el Atlas portugués de aves migratorias o el Atlas de mamíferos, así como para varios artículos de investigación científica portugueses.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas ocultas automáticamente (ocultas o privadas debido a la "geoprivacidad del taxón")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas de la perturbación, recolección o caza furtiva. Si las coordenadas de observación sólo se ocultaron automáticamente para proteger las especies, iNaturalist comparte las verdaderas coordenadas de todas las observaciones de sus países respectivos con Miembros de la Red.
   sites_affiliation_more_email_addresses: |
     Las direcciones de correo electrónico se comparten con los administradores locales de los miembros de la red, únicamente con el propósito de facilitar la comunicación relacionada con iNaturalist, en el caso de que sea necesario.
   sites_affiliation_more_twice_per_year: |
@@ -5396,8 +5393,6 @@ es-AR:
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
-        data_quality_assessment_desc_html: |
-          La Evaluación de la Calidad de Datos es una evaluación del rigor de una observación. Las observaciones con Grado de Investigación pueden ser utilizadas por los científicos para sus investigaciones. Podés realizar la evaluación a continuación:
         disagreement_count_desc: "nº de taxones identificados que no están entre los ancestros de un taxón"
         identification_count_desc: '# de identificaciones para un taxón individual'
         flagged_photos_desc_html: |

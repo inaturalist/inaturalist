@@ -1003,19 +1003,19 @@ ja:
     molt: 抜け殻
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
+    cannot_be_determined: 提供された証拠から判断することはできません
     dead: 生物は死んでいるか、瀕死である
+    feather: 生物の本体から分離した羽毛
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
+    molt: 脱ぎ捨てられた皮膚または外骨格
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
-    teneral: 羽化したばかりで、まだ成熟していない成体
-    cannot_be_determined: 提供された証拠から判断することはできません
-    feather: 生物の本体から分離した羽毛
     organism: 生物の本体またはその一部
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
+    teneral: 羽化したばかりで、まだ成熟していない成体
     track: 地面や雪面に残された生物の圧痕
-    molt: 脱ぎ捨てられた皮膚または外骨格
-    gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
   controls: 設定
   convert: 変換
   coordinate_systems: 座標システム
@@ -2049,7 +2049,6 @@ ja:
   lexicon: 言語
   lexicon_cannot_contain_words: "次の単語を含めることはできません: %{words}"
   lexicons:
-    scientific_names: 学名
     afrikaans: アフリカーンス語
     albanian: アルバニア語
     arabic: アラビア語
@@ -2103,6 +2102,7 @@ ja:
     portuguese: ポルトガル語
     romanian: ルーマニア語
     russian: ロシア語
+    scientific_names: 学名
     serbian: セルビア語
     sinhala: シンハラ語
     slovak: スロバキア語
@@ -4977,8 +4977,6 @@ ja:
           <p class="ui">
           <strong>アルゴリズム：</strong>すべての提案された分類群とそれを含むより上位の分類群 (例：ヒト <i>Homo sapiens</i> とそれを含む分類群であるヒト属 <i>Homo</i>) について・①「一致数」 - その分類群に同意している提案の数・②「不一致数」 - 完全に異なる分類群の提案（すなわち、その分類群に同意しない）の数・③「祖先の不一致数」 - 詳細な（より下位の）分類群に同意しない上位の分類群の提案の数、、、これら３つの数の比としてスコアが計算されます。同定を提案された分類群とそれらを含むより上位の分類群のうち、スコアが2/3を超え、少なくとも２人の同意がある最も下位の分類群がコミュニティ分類群になります。</p>
         cumulative_count_desc: '単一の分類群とその下位分類に対する同定の総数'
-        data_quality_assessment_desc_html: |
-          データ品質評価は、観察記録の精度の評価です。研究グレードの観察記録は、科学者が研究のために使用することができます。以下に投票してください。
         identification_count_desc: '単一の分類群に対する同定の件数'
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
     emailer:

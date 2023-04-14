@@ -1151,21 +1151,21 @@ fr:
     molt: Mue
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
+    bone: |
+      Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
+    cannot_be_determined: Ne peut être déterminé à partir des données fournies
     dead: L'organisme est mort ou montre des signes de mort imminente
+    feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
+    gall: Excroissance d'un tissu végétal causée par un parasite
+    molt: Dépouille ou exosquelette abandonné
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
-    teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
-    cannot_be_determined: Ne peut être déterminé à partir des données fournies
-    feather: Une ou plusieurs plumes qui ne sont pas attachées à un organisme
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
+    teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
     track: Empreinte faite sur le sol ou dans la neige par l'organisme
-    bone: |
-      Restes principalement endosquelettiques ; en cas d'exposition partielle des os d'un organisme intact par ailleurs, indiquer « organisme ».
-    molt: Dépouille ou exosquelette abandonné
-    gall: Excroissance d'un tissu végétal causée par un parasite
   controls: Contrôles
   convert: Convertir
   coordinate_systems: Systèmes des coordonnées
@@ -2346,20 +2346,25 @@ fr:
   lexicon: Lexique
   lexicon_cannot_contain_words: "ne peut pas contenir les mots suivants : %{words}"
   lexicons:
-    scientific_names: Noms scientifiques
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanais
     aou_4_letter_codes: Codes en 4 lettres de l'AOU
     aou_6_letter_codes: Codes en 6 lettres de l'AOU
     arabic: arabe
     armenian: arménien
+    asturian: Asturien
+    basque: Basque
     belarusian: Biélorusse
     bengali: Bengali
+    bikol: Bicol
     bulgarian: bulgare
+    carolinian: Carolinien
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinois (simplifié)
     chinese_traditional: Chinois (traditionnel)
+    chuvash: Tchouvache
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
     croatian: croate
@@ -2370,6 +2375,7 @@ fr:
     english: Anglais
     estonian: Estonien
     faroese: féroïen
+    fijian: Fidjien
     finnish: Finnois
     french: Français
     galician: galicien
@@ -2380,20 +2386,27 @@ fr:
     gujarati: Gujarati
     hawaiian: Hawaïen
     hebrew: Hébreu
+    herero: Héréro
     hiligaynon: Hiligaynon
+    hill_mari: Mari des montagnes
+    hodges_number: Numéro MONA
     hokkien: Hokkien
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
     indonesian: indonésien
+    irish: Irlandais
     italian: Italien
     japanese: Japonais
     kannada: Kannada
     kazakh: Kazakh
     korean: Coréen
+    kweyol: Créole antillais
     latvian: letton
     lithuanian: Lithuanien
+    lozi: Lozi
     luxembourgish: Luxembourgeois
+    malagasy: Malgache
     malay: malais
     malayalam: malayalam
     maltese: Maltais
@@ -2403,6 +2416,8 @@ fr:
     misima_paneati: Misima-paneati
     mongolian: mongol
     nahuatl: nahuatl
+    navajo: Navajo
+    ndebele: Ndébélé
     norwegian: Norvégien
     occitan: Occitan
     ojibwe: ojibwé
@@ -2414,23 +2429,38 @@ fr:
     romanian: Roumain
     russian: Russe
     santali: Santâlî
+    scientific_names: Noms scientifiques
     serbian: Serbe
-    setswana: tswana
+    shona: Shona
     sinhala: Singhalais
     slovak: Slovaque
     slovenian: slovène
+    sotho: Sotho du Sud
+    sotho_northern: Sotho du Nord
     spanish: Espagnol
     swahili: Swahili
+    swati: Swati
     swedish: Suédois
     tagalog: Tagalog
     tahitian: Tahitien
+    tamil: Tamoul
     thai: Thaï
     tokelauan: Tokelauan
+    totonaco: Totonaque
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turc
+    u_s_d_a_symbol: Symbole de l'U.S.D.A.
     ukrainian: Ukrainien
     uyghur: Ouïghour
-    waray_waray: Waray-Waray
+    venda: Venda
+    vermont_flora_codes: Codes de la flore du Vermont
+    vietnamese: Vietnamien
     visayan: cebuano
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapotèque
+    zulu: Zoulou
   less: Moins
   #Button show less text
   less__context_text: Moins
@@ -4491,8 +4521,6 @@ fr:
     %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, le membre du réseau iNaturalist du Portugal, a communiqué des données pour l'atlas portugais des oiseaux migrateurs, l'atlas des mammifères ainsi que pour plusieurs articles de recherche scientifique au Portugal.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordonnées cachées automatiquement (masquées ou privées en raison de la « géoconfidentialité » du taxon)
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist masque automatiquement les coordonnées pour certaines espèces, pour protéger celles-ci des perturbations, de la récolte ou du braconnage. Si les coordonnées exactes des observations dans un pays ne sont masquées que de façon automatique, pour protéger l'espèce, iNaturalist les communique aux membres du réseau dans ce pays.
   sites_affiliation_more_email_addresses: |
     Les adresses électroniques ne sont communiquées aux membres du réseau qu'à des fins de communication à propos du site.
   sites_affiliation_more_twice_per_year: |
@@ -6427,8 +6455,8 @@ fr:
           non visibles par les responsables. Si vous ne voulez pas partager les
           coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
-        data_quality_assessment_desc_html: |
-          L'appréciation de la qualité des données est une évaluation de la précision d’une observation. Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Votez ci-dessous :
+        data_quality_assessment_desc3_html: |
+          Le niveau de qualité résume l'exactitude, la précision, l'exhaustivité, la pertinence et le caractère approprié d'une observation iNaturalist en tant que donnée sur la biodiversité. Certains attributs sont établis automatiquement, tandis que d'autres sont le résultat du vote des utilisateurs. Des partenaires d'iNaturalist dans le domaine des sciences et de la conservation ont accès aux données des observations sous licence de « niveau recherche ».
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |

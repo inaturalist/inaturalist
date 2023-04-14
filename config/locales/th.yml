@@ -141,6 +141,12 @@ th:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Acc (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: คลาดเคลื่อนสูงกว่า
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: คลาดเคลื่อนต่ำกว่า
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: คลาดเคลื่อนต่ำกว่าหรือไม่ทราบ
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
   account_settings: การตั้งค่าบัญชี
@@ -764,13 +770,13 @@ th:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
   controlled_term_definitions:
+    feather: ขนที่หลุดออกจากตัวนก
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
-    no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
-    feather: ขนที่หลุดออกจากตัวนก
-    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+    no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
+    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
   #A filter option that only shows observations for which the viewer has
@@ -1243,7 +1249,6 @@ th:
   lexicon: ภาษา/ศัพท์เฉพาะ
   lexicon_cannot_contain_words: "ไม่สามารถมีคำต่อไปนี้: %{words}"
   lexicons:
-    scientific_names: ชื่อวิทยาศาสตร์
     afrikaans: ภาษาอาฟรีกานส์
     albanian: ภาษาแอลเบเนีย
     arabic: ภาษาอาหรับ
@@ -1305,8 +1310,8 @@ th:
     romanian: ภาษาโรมาเนีย
     russian: ภาษารัสเซีย
     santali: ภาษาสันถาลี
+    scientific_names: ชื่อวิทยาศาสตร์
     serbian: ภาษาเซอร์เบีย
-    setswana: ภาษาเซตสวานา
     sinhala: ภาษาสิงหล
     slovak: ภาษาสโลวัก
     slovenian: ภาษาสโลวีเนีย
@@ -1319,8 +1324,8 @@ th:
     tokelauan: ภาษาโตเกเลา
     turkish: ภาษาตุรกี
     ukrainian: ภาษายูเครน
-    waray_waray: ภาษาวาไร-วาไร
     visayan: ภาษาวิซายัน
+    waray_waray: ภาษาวาไร-วาไร
   life: สิ่งมีชีวิต
   life_list: "รายการสิ่งมีชีวิตของ %{user}"
   link_your_facebook_account: เชื่อมต่อบัญชี Facebook ของคุณ
@@ -2156,8 +2161,6 @@ th:
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
   site_stats: สถิติการใช้งาน
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist จะซ่อนพิกัดสิ่งมีชีวิตบางชนิดโดยอัตโนมัติเพื่อป้องกันการโดนรบกวน การเก็บสะสม หรือการล่าสัตว์ ถ้าพิกัดการสังเกตถูกซ่อนเพื่อการอนุรักษ์ iNaturalist จะแชร์พิกัดจริงของทุกการสังเกตจากประเทศนั้น ๆ ให้กับสมาชิกเครือข่าย
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
   some_observations_are_missing_media_or_identifications_desc: |
@@ -2711,8 +2714,6 @@ th:
       import:
         date_column_format: YYYY-MM-DD HH:MM
       show:
-        data_quality_assessment_desc_html: |
-          การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
         quality_assessment_help2_html: |

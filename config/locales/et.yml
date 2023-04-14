@@ -1125,21 +1125,21 @@ et:
     molt: Kest
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
+    bone: |
+      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
+    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
     dead: Organism on surnud või on naha peatse surma märgid
+    feather: Üks või enam organismi külge mitte kinnituvat sulge
     flower_budding: Õite pungad on nähtavad, kuid pole avanenud
     flowering: Õied nähtavad, avatud ja ikka veel taime küljes
     fruiting: Vili nähtav ja ikka veel taime küljes
+    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
+    molt: Kõrvale heidetud nahk või eksoskelett
     no_evidence_of_flowering: Meedia järgi pole paljunemisele viitavaid tunnuseid näha
-    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
-    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
-    feather: Üks või enam organismi külge mitte kinnituvat sulge
     organism: Täielik või osaline organism
     scat: Fekaalid (mitte öökulli räpetombud või muu tagasioksendatud mateeria)
+    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
     track: Organismi poolt maapinda või lumme jäetud jälg
-    bone: |
-      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
-    molt: Kõrvale heidetud nahk või eksoskelett
-    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
   controls: Juhthoovad
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
@@ -2182,7 +2182,6 @@ et:
   let_us_walk_you_through: Vaatame üle selle lehe peamised võimalused.
   lexicon: Sõnastik
   lexicons:
-    scientific_names: Teaduslikud nimed
     afrikaans: Afrikaani
     albanian: Albaania
     aou_4_letter_codes: 4-tähelised AOU koodid
@@ -2250,8 +2249,8 @@ et:
     romanian: Rumeenia
     russian: Vene
     santali: Santali
+    scientific_names: Teaduslikud nimed
     serbian: Serbia
-    setswana: Tsvana
     sinhala: Singali
     slovak: Slovaki
     slovenian: Sloveenia
@@ -2265,8 +2264,8 @@ et:
     turkish: Türgi
     ukrainian: Ukraina
     uyghur: Uiguuri
-    waray_waray: Varai
     visayan: Visayani
+    waray_waray: Varai
   less: Vähem
   #Button show less text
   less__context_text: Vähem
@@ -5070,8 +5069,6 @@ et:
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
-        data_quality_assessment_desc_html: |
-          Andmete kvaliteedihinnang näitab vaatluse täpsust. Teaduskõlbulike vaatluseid saavad teadlased kasutada oma uurimistöös. Hinda allpool ise:
         disagreement_count_desc: "Taksoni alamtaksonite seas mitte olevate määratluste hulk"
         identification_count_desc: 'Selle konkreetse taksoni määratluste hulk'
         flagged_photos_desc_html: |

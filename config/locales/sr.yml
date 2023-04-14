@@ -846,9 +846,9 @@ sr:
   controlled_term_definitions:
     flower_budding: Cvetni pupoljci su vidljivi ali zatvoreni
     fruiting: Voćke vidljive i još uvek na biljci
+    molt: Odbačena koža ili egzoskelet
     organism: Ceo ili deo organizma
     track: Otisci organizma na zemlji ili snegu
-    molt: Odbačena koža ili egzoskelet
   controls: Kontrole
   convert: Konvertuj
   coordinates: Koordinate
@@ -1431,7 +1431,6 @@ sr:
   lexicon: Rečnik
   lexicon_cannot_contain_words: "ne može sadržati sledeće reči: %{words}"
   lexicons:
-    scientific_names: Naučni nazivi
     afrikaans: Afrikans
     albanian: Albanski
     arabic: arapski
@@ -1490,8 +1489,8 @@ sr:
     romanian: rumunski
     russian: ruski
     santali: santali
+    scientific_names: Naučni nazivi
     serbian: srpski
-    setswana: secvana
     sinhala: sinhala
     slovak: slovački
     slovenian: slovenački
@@ -3018,8 +3017,6 @@ sr:
   site_taxon_page: "%{site_name} strana taksona"
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automatski skrivene koordinate (prikrivene ili privatne zbog "geoprivatnosti taksona")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist automatski sakriva koordinate za neke vrste radi zaštite od uznemiravanja, prikupljanja i krivolova. Ako su koordinate opservacije automatski skrivene da bi se žaštitile vrste, iNaturalist deli koordinate svih opservacija u njihovim zemljama sa članovima mreže.
   sites_affiliation_more_user_hidden_coordinates: |
     Koordinate koje je korisnik sakrio (prikrivene ili privatne zbog podešavanja "geoprivatnosti")
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
@@ -4002,8 +3999,6 @@ sr:
         date_column_format: DD-MM-GGGG HH:MM
         decimal_degrees_format: dd.dddd
       show:
-        data_quality_assessment_desc_html: |
-          Procena kvaliteta podataka je ocena verodostojnosti opservacije. Opservacije "Istraživačkog nivoa" naučnici mogu upotrebiti u istraživačke svrhe. Glasaj ispod:
         identification_count_desc: 'broj identifikacija za individualni takson'
         flagged_photos_desc_html: |
           Neke od ovih slika su označene da sadrže neprikladan sadržaj ili povredu autorskih prava. Za više detalja, pogledaj %{links}

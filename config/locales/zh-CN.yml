@@ -1016,19 +1016,19 @@ zh-CN:
     molt: 蜕皮
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
+    cannot_be_determined: 无法根据已提供的证据确认。
     dead: 生物已经死亡或有死亡征兆
+    feather: 一根或多根不附于生物身上的羽毛
     flower_budding: 花苞可见但未绽放
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
+    gall: 植物因受病原刺激或虫害而出现的局部增生
+    molt: 蜕下的皮或外骨骼
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
-    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
-    cannot_be_determined: 无法根据已提供的证据确认。
-    feather: 一根或多根不附于生物身上的羽毛
     organism: 整个或部分生物体
     scat: 排泄物（非鸮类食丸或其它呕吐物）
+    teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
     track: 由生物在地面或雪地上留下的印痕
-    molt: 蜕下的皮或外骨骼
-    gall: 植物因受病原刺激或虫害而出现的局部增生
   controls: 控制
   convert: 转换
   coordinate_systems: 坐标系
@@ -1981,7 +1981,6 @@ zh-CN:
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
   lexicons:
-    scientific_names: 学名
     afrikaans: 南非语
     albanian: 阿尔巴尼亚语
     arabic: 阿拉伯语
@@ -2042,8 +2041,8 @@ zh-CN:
     romanian: 罗马尼亚语
     russian: 俄语
     santali: 桑塔利语
+    scientific_names: 学名
     serbian: 塞尔维亚语
-    setswana: 茨瓦纳语
     sinhala: 僧伽罗语
     slovak: 斯洛伐克语
     slovenian: 斯洛文尼亚语
@@ -2056,8 +2055,8 @@ zh-CN:
     tokelauan: 托克劳语
     turkish: 土耳其语
     ukrainian: 乌克兰语
-    waray_waray: 瓦瑞瓦瑞语
     visayan: 维萨扬文
+    waray_waray: 瓦瑞瓦瑞语
   less: 更少
   licensed_site_photos: "已授权的 %{site_name} 照片"
   license: 许可协议
@@ -5155,8 +5154,6 @@ zh-CN:
         cumulative_count_desc: '单个分类单元及其所有后代的标识号'
         curator_coordinate_access_disabled_desc_html: |
           该项目不允许那些项目馆长无法查看坐标的观察。如果您不想与此项目的馆长共享此观察的坐标，则必须从项目中删除这些观察。
-        data_quality_assessment_desc_html: |
-          数据质量评估是对观察记录的精确程度的评估。科研级别的观察记录可能会被科学家用于科学研究。请在下方投票：
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |

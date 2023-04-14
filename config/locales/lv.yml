@@ -1175,21 +1175,21 @@ lv:
     molt: Nomesta āda
   controlled_term_definitions:
     alive: Organisms ir dzīvs un nekas neliecina par pretējo
+    bone: |
+      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
+    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
     dead: Organisms ir miris vai novērojamas nenovēršamas nāves pazīmes
+    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     flower_budding: Ziedpumpuri ir redzami, bet nav uzplaukuši
     flowering: Ziedi ir redzami, uzplaukuši un vēl aizvien klāt pie auga
     fruiting: Augļi ir redzami un vēl aizvien klāt pie auga
+    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
+    molt: Nomesta āda vai ārskelets
     no_evidence_of_flowering: Pievienotajos failos nekas neliecina par reproduktīvajām struktūrām
-    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
-    cannot_be_determined: Nav iespējams noteikt pēc pievienotajiem datiem
-    feather: Viena vai vairākas spalvas, kas atdalītas no organisma
     organism: Vesels organisms vai tā daļa
     scat: Izkārnijumi (neskaitot pūču atrijas vai citu atvemtu barību)
+    teneral: Nesen izveidojies nobriedis organisms, kas vēl nav sasniedzis savu pēdējo nobrieduma varietāti
     track: Kāda organisma uz zemes atstāti nospiedumi
-    bone: |
-      Ārskeleta atliekas. Jāņem vērā, ka daļēji atsegti kauli citādi nesabojātā organismā tomēr jāsauc par organismu.
-    molt: Nomesta āda vai ārskelets
-    gall: Deformēta auga audu izaugums, ko izraisījis parazītisks organisms
   controls: Vadīklas
   convert: Konvertēt
   coordinate_systems: Koordinātu sistēmas
@@ -2272,7 +2272,6 @@ lv:
   lexicon: Leksikons
   lexicon_cannot_contain_words: "nedrīkst saturēt šos vārdus: %{words}"
   lexicons:
-    scientific_names: Zinātniskie nosaukumi
     afrikaans: Afrikandu
     albanian: Albāņu
     arabic: Arābu
@@ -2334,7 +2333,7 @@ lv:
     romanian: Rumāņu
     russian: Krievu
     santali: Santali
-    setswana: Secvanu
+    scientific_names: Zinātniskie nosaukumi
     sinhala: Singāļu
     slovak: Slovāku
     slovenian: Slovēņu
@@ -2347,8 +2346,8 @@ lv:
     tokelauan: Tokelauiešu
     turkish: Turku
     ukrainian: Ukraiņu
-    waray_waray: Varajiešu
     visayan: Visajaniešu
+    waray_waray: Varajiešu
   less: Mazāk
   licensed_site_photos: "%{site_name} vietnes licencētas fotogrāfijas"
   license: Licence
@@ -4277,8 +4276,6 @@ lv:
     Portugāles iNaturalist tīkla dalībnieku organizācija %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} nodrošina novērojumu datus Portugāles migrējošo putnu un zīdītāju atlantiem, kā arī vairākiem citiem zinātniski pētnieciskajiem darbiem Portugālē.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Automātiski noslēptas koordinātas (tās ir noslēptas vai privātas taksonu ģeoprivātuma iestatījumu dēļ)
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist automātiski noslēpj noteiktu sugu koordinātas, lai pasargātu tās no tādiem draudiem kā miera traucēšana, transportēšana un malu medniecība. Ja koordinātas ir noslēptas tikai automātiski, lai pasargātu sugas, iNaturalist dalās ar visu novērojumu faktiskajām koordinātām ar attiecīgo valstu tīkla dalībniekiem.
   sites_affiliation_more_email_addresses: |
     E-pasta adreses ir pieejamas tīkla dalībniekiem tikai ar šo vietni saistītos komunikācijas nolūkos.
   sites_affiliation_more_twice_per_year: |
@@ -5988,8 +5985,6 @@ lv:
         cumulative_count_desc: 'Individuāla taksona un tā zemāku pakāpju taksonu identifikāciju skaits'
         curator_coordinate_access_disabled_desc_html: |
           Projektā nav atļauts pievienot novērojumus ar koordinātām, kas nav pieejamas projekta pārziņiem. Ja nevēlies sniegt pārziņiem piekļuvi pie savu novērojumu koordinātām, tev nāksies viņus no šī projekta izslēgt.
-        data_quality_assessment_desc_html: |
-          Datu kvalitātes novērtējumā izvērtē novērojuma precizitāti. Pētniecības līmeņa novērojumus izmanto zinātnieki. Nobalso šeit:
         disagreement_count_desc: "Identificēto taksonu skaits, kas nav daļa no taksona priekštečiem"
         identification_count_desc: 'Individuāla taksona identifikāciju skaits'
         flagged_photos_desc_html: |

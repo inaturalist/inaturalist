@@ -1075,20 +1075,20 @@ fi:
     molt: Nahka
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
+    bone: |
+      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
+    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
     dead: Eliö on kuollut tai kuolemassa
+    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     flower_budding: Nuput näkyvissä, mutta eivät auenneita
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
+    molt: Hylätty nahka tai ulkoinen tukiranka
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
-    cannot_be_determined: Ei voida määrittää perustuen annettuun näyttöön
-    feather: Yksi tai useampi sulka tai höyhen, joka ei ole kiinni eliössä
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
     track: Eliön jälki maassa tai lumessa
-    bone: |
-      Pääasiassa sisäisen tukirangan jäänteitä; osittainen luun paljastuminen muuten ehjässä eliössä tulisi merkitä "eliöksi"
-    molt: Hylätty nahka tai ulkoinen tukiranka
-    gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
   controls: Ohjaimet
   convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
@@ -2177,7 +2177,6 @@ fi:
   let_us_walk_you_through: Tutustu tämän sivuston tärkeimpiin ominaisuuksiin.
   lexicon: Sanakirja
   lexicons:
-    scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
     albanian: Albania
     aou_4_letter_codes: AOU 4-kirjainkoodit
@@ -2244,8 +2243,8 @@ fi:
     romanian: Romania
     russian: Venäjä
     santali: santali
+    scientific_names: Tieteelliset nimet
     serbian: Serbia
-    setswana: Setswana
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
@@ -2259,8 +2258,8 @@ fi:
     turkish: Turkki
     ukrainian: Ukraina
     uyghur: Uiguuri
-    waray_waray: Waray-waray
     visayan: Visaya
+    waray_waray: Waray-waray
   less: Vähemmän
   #Button show less text
   less__context_text: Vähemmän
@@ -5508,8 +5507,6 @@ fi:
           </p>
         curator_coordinate_access_disabled_desc_html: |
           Tähän projektiin ei voi tallentaa havaintoja, joiden koordinaatit eivät näy kuraattoreille. Jos et halua jakaa havainnon koordinaatteja projektin kuraattoreiden kanssa, sinun täytyy poistaa havaintosi projektista.
-        data_quality_assessment_desc_html: |
-          Laatuarvio on arvio havainnon täsmällisyydestä. Tutkimustason saavuttaneita havaintoja voidaan käyttää tieteelliseen tutkimukseen. Anna äänesi alla:
         flagged_photos_desc_html: |
           Osa näistä valokuvista on liputettu sopimattomiksi tai tekijänoikeusrikkomuksiksi. Lisätietoja: %{links}
         observation_flagged_notice_html: |

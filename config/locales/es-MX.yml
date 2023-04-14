@@ -785,6 +785,8 @@ es-MX:
   birds: Aves
   birthday: Cumpleaños
   black: Negro
+  block: Bloquea
+  blocking_description: Bloquear evita cualquier comunicación entre usted y otro usuario. Es para situaciones en las que otro usuario puede poner su seguridad en peligro, como acechos u otro comportamiento abusivo.
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -1157,21 +1159,21 @@ es-MX:
     molt: Muda(s)
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
+    bone: |
+      Principalmente restos del endoesqueleto/huesos; por otro lado, la exposición parcial de huesos en un organismo intacto, debe etiquetarse "organismo"
+    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
     dead: El organismo está muerto o muestra signos de muerte inminente
+    feather: Una o más plumas no unidas a un organismo
     flower_budding: Las yemas florales son visibles pero no están abiertas
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Frutas visibles y todavía unidas a la planta
+    gall: Brote de tejido vegetal deformado causado por un organismo parasítico
+    molt: Piel descartada o exoesqueleto
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
-    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
-    cannot_be_determined: No se puede determinar a partir de la evidencia proporcionada
-    feather: Una o más plumas no unidas a un organismo
     organism: Organismo completo o una parte del mismo
     scat: Materia fecal (no pellets de lechuzas/búhos u otro material regurgitado)
+    teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
     track: Impresión(es) en suelo o nieve hecha por el organismo
-    bone: |
-      Principalmente restos del endoesqueleto/huesos; por otro lado, la exposición parcial de huesos en un organismo intacto, debe etiquetarse "organismo"
-    molt: Piel descartada o exoesqueleto
-    gall: Brote de tejido vegetal deformado causado por un organismo parasítico
   controls: Controles
   convert: Convierte
   coordinate_systems: Sistemas de coordenadas
@@ -2341,18 +2343,25 @@ es-MX:
   lexicon: Léxico
   lexicon_cannot_contain_words: "no se pueden contener las siguientes palabras: %{words}"
   lexicons:
-    scientific_names: Nombres científicos
     afrikaans: Afrikáans
+    alabama: Alabama
     albanian: Albanés
+    aou_4_letter_codes: Código AOU de 4 letras
+    aou_6_letter_codes: Código AOU de 6 letras
     arabic: Árabe
     armenian: Armenio
+    asturian: Asturiano
+    basque: Vasco
     belarusian: Bielorruso
     bengali: Bengalí
+    bikol: Bikol
     bulgarian: Búlgaro
+    carolinian: Carolinero
     catalan: Catalán
     cebuano: Cebuano
     chinese_simplified: Chino (simplificado)
     chinese_traditional: Chino (tradicional)
+    chuvash: Chuvasio
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
     croatian: Croata
@@ -2363,27 +2372,38 @@ es-MX:
     english: Inglés
     estonian: Estonio
     faroese: Feroés
+    fijian: Fijiano
     finnish: Finés
     french: Francés
     galician: Gallego
     gela: Gela
+    georgian: Georgiano
     german: Alemán
     greek: Griego
+    gujarati: Gujarati
     hawaiian: Hawaiano
     hebrew: Hebreo
+    herero: Herero
     hiligaynon: Hiligainón
+    hill_mari: Hill Mari
+    hodges_number: Número de cartuchos
+    hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandés
     ilokano: Ilocano
     indonesian: Indonesio
+    irish: Irlandés
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
     kazakh: Kazajo
     korean: Coreano
+    kweyol: Kwéyo l
     latvian: Letón
     lithuanian: Lituano
+    lozi: Lozi
     luxembourgish: Luxemburgués
+    malagasy: Malgache
     malay: Malayo
     malayalam: Malayalam
     maltese: Maltés
@@ -2393,6 +2413,8 @@ es-MX:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Noruego
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2404,22 +2426,38 @@ es-MX:
     romanian: Rumano
     russian: Ruso
     santali: Santalí
+    scientific_names: Nombres científicos
     serbian: Serbio
-    setswana: Setswana
+    shona: Shona
     sinhala: Cingalés
     slovak: Eslovaco
     slovenian: Esloveno
+    sotho: Sotho
+    sotho_northern: Sotho (Norte)
     spanish: Español
     swahili: Suajili
+    swati: Suazi
     swedish: Sueco
     tagalog: Tagalo
     tahitian: Tahitiano
+    tamil: Tamil
     thai: Tailandés
     tokelauan: Tokelauano
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tsuana
     turkish: Turco
+    u_s_d_a_symbol: Símbolo U.S.D.A.
     ukrainian: Ucraniano
-    waray_waray: Samareño
+    uyghur: Uigur
+    venda: Venda
+    vermont_flora_codes: Códigos Flora Vermont
+    vietnamese: Vietnamita
     visayan: Visayo
+    waray_waray: Samareño
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Menos
   #Button show less text
   less__context_text: Menos
@@ -2515,6 +2553,7 @@ es-MX:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    ka: Georgiano
     kk: Kazajo
     kn: Canarés
     ko: Coreano
@@ -4493,8 +4532,8 @@ es-MX:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas ocultas automáticamente (oscurecidas o privadas debido a la "geoprivacidad del taxón")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas
-    de la perturbación, recolección o colecta ilegal. Si las coordenadas de la observación se han ocultado automáticamente para proteger las especies, iNaturalist comparte las verdaderas coordenadas de todas las observaciones de los países respectivos con Miembros de la Red.
+    Naturalista oculta automáticamente las coordenadas de algunas especies para protegerlas
+    de la perturbación, recolección o caza ilegal. Si las coordenadas de observación sólo se han ocultado automáticamente para proteger las especies, Naturalista comparte las verdaderas coordenadas de todas las observaciones de sus países respectivos con Miembros de la Red.
   sites_affiliation_more_email_addresses: |
     Las direcciones de correo electrónico se comparten con los miembros de la red únicamente con propósitos de comunicaciones relacionadas con el sitio.
   sites_affiliation_more_twice_per_year: |
@@ -4638,6 +4677,10 @@ es-MX:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estatus
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estado aplicado desde un taxón de alto nivel:</strong> %{taxon}
   status_globally: '"%{status}" Globalmente'
   status_in_place: '"%{status}" en %{place}'
   stay_and_try_again: Permanecer e intentar de nuevo
@@ -6341,8 +6384,8 @@ es-MX:
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
-        data_quality_assessment_desc_html: |
-          La Evaluación de la Calidad de Datos es una evaluación del rigor de una observación. Las observaciones con Grado de Investigación pueden ser utilizadas por los científicos para sus investigaciones. Puedes realizar la evaluación a continuación:
+        data_quality_assessment_desc3_html: |
+          El grado de calidad resume la precisión de la ubicación, integridad, relevancia y idoneidad de una observación de iNaturalist como datos de biodiversidad. Algunos atributos se determinan automáticamente, mientras que otros están sujetos a un voto de usuarios de iNat. iNaturalist comparte observaciones con licencia "Grado de Investigación" con una serie de datos socios para su uso en ciencia y conservación.
         disagreement_count_desc: "nº de taxa identificados que no están entre los ancestros de un  taxón"
         identification_count_desc: '# de identificaciones para un taxon individual'
         flagged_photos_desc_html: |
@@ -7543,6 +7586,18 @@ es-MX:
       x_seconds:
         one: "Un segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: DÍA
+      other: DÍAS
+    countdown_x_hours:
+      one: HORA
+      other: HORAS
+    countdown_x_minutes:
+      one: MIN
+      other: MINS
+    countdown_x_seconds:
+      one: SEG
+      other: SEGS
     prompts:
       day: Día
       hour: Hora

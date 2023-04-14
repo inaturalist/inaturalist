@@ -1020,20 +1020,20 @@ zh-TW:
     molt: 蛻皮
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
+    bone: |
+      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
+    cannot_be_determined: 從提供的證據當中無法判定
     dead: 生物已經死亡或是顯示有立即死亡的徵兆
+    feather: 一或多根未附著在某種生物上的羽毛
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    molt: 蛻下的表皮或外骨骼
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
-    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
-    cannot_be_determined: 從提供的證據當中無法判定
-    feather: 一或多根未附著在某種生物上的羽毛
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
+    teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
     track: 某種生物在地面或雪地上造成的印記
-    bone: |
-      主要的內骨骼還存在；部分骨骼暴露在一個完整的生物體中，應該標註為「生物」
-    molt: 蛻下的表皮或外骨骼
   controls: 控制
   convert: 轉換
   coordinate_systems: 座標系統
@@ -2104,8 +2104,8 @@ zh-TW:
   lexicon: 詞彙
   lexicon_cannot_contain_words: "不能包括以下文字: %{words}"
   lexicons:
-    scientific_names: 學名
     afrikaans: 南非語
+    alabama: 阿拉巴馬語(Alabama)
     albanian: 阿爾巴尼亞語
     arabic: 阿拉伯文
     armenian: 亞美尼亞文
@@ -2164,7 +2164,7 @@ zh-TW:
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
-    setswana: 札那文
+    scientific_names: 學名
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
     slovenian: 斯洛維尼亞文
@@ -2176,8 +2176,8 @@ zh-TW:
     tokelauan: 托克勞語
     turkish: 土耳其語
     ukrainian: 烏克蘭語
-    waray_waray: 瓦瑞瓦瑞語
     visayan: 維薩亞斯文
+    waray_waray: 瓦瑞瓦瑞語
   less: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
@@ -4062,10 +4062,6 @@ zh-TW:
     葡萄牙的 iNaturalist 網路成員 %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} 共享葡萄牙候鳥地圖、哺乳類動物地圖的資料，以及數篇葡萄牙的科學研究論文。
   sites_affiliation_more_automatically_hidden_coordinates: |
     自動隱藏座標 (依據「受脅分類群的地理資訊隱私權」的遮蔽或是私有座標）
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    《愛自然》會自動隱藏某些物種的座標來保護它們免除干擾、採集或狩獵。
-    如果該觀察紀錄座標被自動隱藏以保護物種的話，
-    《愛自然》會和國際網路成員分享在其國家中所有觀察紀錄之真實座標。
   sites_affiliation_more_email_addresses: |
     與國際網路成員共享的電子郵件位址僅會使用於跟本站相關之聯絡目的。
   sites_affiliation_more_twice_per_year: |
@@ -5614,8 +5610,6 @@ zh-TW:
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
-        data_quality_assessment_desc_html: |
-          「資料品質評估」是針對某一筆觀察記錄準確性的評量方式。「研究等級」的觀察記錄有機會被科學家用於研究上。請在下方投下您的一票：
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |
