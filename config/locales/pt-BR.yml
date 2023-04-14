@@ -2374,18 +2374,24 @@ pt-BR:
   lexicon_cannot_contain_words: "não pode conter as seguintes palavras: %{words}"
   lexicons:
     afrikaans: Africâner
+    alabama: Alabama
     albanian: Albanês
     aou_4_letter_codes: Códigos de 4 letras AOU
     aou_6_letter_codes: Códigos de 6 letras AOU
     arabic: Árabe
     armenian: Armênio
+    asturian: asturiano
+    basque: basco
     belarusian: Bielorrusso
     bengali: Bengalês
+    bikol: Bikol
     bulgarian: Búlgaro
+    carolinian: Caroliniano
     catalan: Catalão
     cebuano: Cebuano
     chinese_simplified: Chinês (Simplificado)
     chinese_traditional: Chinês (tradicional)
+    chuvash: Chuvache
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
     croatian: Croata
@@ -2396,21 +2402,27 @@ pt-BR:
     english: Inglês
     estonian: Estônio
     faroese: Ferôes
+    fijian: Fijiano
     finnish: Finlandês
     french: Francês
     galician: Galego
     gela: Gela
+    georgian: Georgiano
     german: Alemão
     greek: Grego
     gujarati: Guzerate
     hawaiian: Havaiano
     hebrew: Hebraico
+    herero: Herero
     hiligaynon: Ilongo
+    hill_mari: Hill Mari
+    hodges_number: Número de Hodges
     hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandês
     ilokano: Ilocano
     indonesian: Indonésio
+    irish: irlandês
     italian: Italiano
     japanese: Japonês
     kannada: canarês
@@ -2419,6 +2431,7 @@ pt-BR:
     latvian: Letão
     lithuanian: Lituano
     luxembourgish: Luxemburguês
+    malagasy: Malgaxe
     malay: Malaio
     malayalam: Malaiala
     maltese: Maltês
@@ -2428,6 +2441,8 @@ pt-BR:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Náuatle
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norueguês
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2446,16 +2461,28 @@ pt-BR:
     slovenian: Esloveno
     spanish: Espanhol
     swahili: suaíli
+    swati: Suázi
     swedish: Sueco
     tagalog: Análogo
     tahitian: Taitiano
+    tamil: Tâmil
     thai: Tailandês
     tokelauan: Tokelauano
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tsuana
     turkish: Turco
+    u_s_d_a_symbol: Símbolo U.S.D.A.
     ukrainian: Ucraniano
     uyghur: Uigur
+    venda: Venda
+    vermont_flora_codes: Códigos da Flora Vermont
+    vietnamese: Vietnamita
     visayan: Cebuano
     waray_waray: Samarenho
+    xhosa: Xossa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Menos
   #Button show less text
   less__context_text: Menos
@@ -2551,6 +2578,7 @@ pt-BR:
     id: Indonesio
     it: Italiano
     ja: Japonês
+    ka: Georgiano
     kk: Cazaque
     kn: Canarês
     ko: Coreano
@@ -7685,6 +7713,18 @@ pt-BR:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: DIA
+      other: DIAS
+    countdown_x_hours:
+      one: HORA
+      other: HORAS
+    countdown_x_minutes:
+      one: min
+      other: min
+    countdown_x_seconds:
+      one: s
+      other: s
     prompts:
       day: Dia
       hour: Hora
