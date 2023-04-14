@@ -2347,18 +2347,24 @@ fr:
   lexicon_cannot_contain_words: "ne peut pas contenir les mots suivants : %{words}"
   lexicons:
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanais
     aou_4_letter_codes: Codes en 4 lettres de l'AOU
     aou_6_letter_codes: Codes en 6 lettres de l'AOU
     arabic: arabe
     armenian: arménien
+    asturian: Asturien
+    basque: Basque
     belarusian: Biélorusse
     bengali: Bengali
+    bikol: Bicol
     bulgarian: bulgare
+    carolinian: Carolinien
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinois (simplifié)
     chinese_traditional: Chinois (traditionnel)
+    chuvash: Tchouvache
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
     croatian: croate
@@ -2369,6 +2375,7 @@ fr:
     english: Anglais
     estonian: Estonien
     faroese: féroïen
+    fijian: Fidjien
     finnish: Finnois
     french: Français
     galician: galicien
@@ -2379,20 +2386,27 @@ fr:
     gujarati: Gujarati
     hawaiian: Hawaïen
     hebrew: Hébreu
+    herero: Héréro
     hiligaynon: Hiligaynon
+    hill_mari: Mari des montagnes
+    hodges_number: Numéro MONA
     hokkien: Hokkien
     hungarian: Hongrois
     icelandic: Islandais
     ilokano: Ilocano
     indonesian: indonésien
+    irish: Irlandais
     italian: Italien
     japanese: Japonais
     kannada: Kannada
     kazakh: Kazakh
     korean: Coréen
+    kweyol: Créole antillais
     latvian: letton
     lithuanian: Lithuanien
+    lozi: Lozi
     luxembourgish: Luxembourgeois
+    malagasy: Malgache
     malay: malais
     malayalam: malayalam
     maltese: Maltais
@@ -2402,6 +2416,8 @@ fr:
     misima_paneati: Misima-paneati
     mongolian: mongol
     nahuatl: nahuatl
+    navajo: Navajo
+    ndebele: Ndébélé
     norwegian: Norvégien
     occitan: Occitan
     ojibwe: ojibwé
@@ -2415,21 +2431,36 @@ fr:
     santali: Santâlî
     scientific_names: Noms scientifiques
     serbian: Serbe
+    shona: Shona
     sinhala: Singhalais
     slovak: Slovaque
     slovenian: slovène
+    sotho: Sotho du Sud
+    sotho_northern: Sotho du Nord
     spanish: Espagnol
     swahili: Swahili
+    swati: Swati
     swedish: Suédois
     tagalog: Tagalog
     tahitian: Tahitien
+    tamil: Tamoul
     thai: Thaï
     tokelauan: Tokelauan
+    totonaco: Totonaque
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turc
+    u_s_d_a_symbol: Symbole de l'U.S.D.A.
     ukrainian: Ukrainien
     uyghur: Ouïghour
+    venda: Venda
+    vermont_flora_codes: Codes de la flore du Vermont
+    vietnamese: Vietnamien
     visayan: cebuano
     waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapotèque
+    zulu: Zoulou
   less: Moins
   #Button show less text
   less__context_text: Moins
@@ -6424,6 +6455,8 @@ fr:
           non visibles par les responsables. Si vous ne voulez pas partager les
           coordonnées de cette observation avec les responsables de ce projet,
           vous devez supprimer l’observation du projet.
+        data_quality_assessment_desc3_html: |
+          Le niveau de qualité résume l'exactitude, la précision, l'exhaustivité, la pertinence et le caractère approprié d'une observation iNaturalist en tant que donnée sur la biodiversité. Certains attributs sont établis automatiquement, tandis que d'autres sont le résultat du vote des utilisateurs. Des partenaires d'iNaturalist dans le domaine des sciences et de la conservation ont accès aux données des observations sous licence de « niveau recherche ».
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
