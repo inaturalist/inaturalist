@@ -2426,18 +2426,24 @@ ru:
   lexicon_cannot_contain_words: "не может содержать следующие слова: %{words}"
   lexicons:
     afrikaans: Африкаанс
+    alabama: Алабама
     albanian: албанский
     aou_4_letter_codes: AOU 4-буквенные коды
     aou_6_letter_codes: AOU 6-буквенные коды
     arabic: Арабский
     armenian: Армянский
+    asturian: Астурийский
+    basque: Баскский
     belarusian: Белорусский
     bengali: Бенгальский
+    bikol: Ринконада бикол
     bulgarian: Болгарский
+    carolinian: Каролинский
     catalan: Каталонский
     cebuano: Себуанский
     chinese_simplified: Китайский (упрощенный)
     chinese_traditional: Китайский (традиционный)
+    chuvash: Чувашский
     creole_french: Креольский (Французский)
     creole_portuguese: Креольский (Португальский)
     croatian: Хорватский
@@ -2448,6 +2454,7 @@ ru:
     english: Английский
     estonian: Эстонский
     faroese: Фарерский
+    fijian: Фиджийский
     finnish: Финский
     french: Французский
     galician: Галисийский
@@ -2458,20 +2465,27 @@ ru:
     gujarati: Гуджарати
     hawaiian: Гавайский
     hebrew: Иврит
+    herero: Гереро
     hiligaynon: Хилигайнон
+    hill_mari: Горный марийский
+    hodges_number: Нумерация Ходжеса
     hokkien: Хоккиен
     hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
     indonesian: Индонезийский
+    irish: Ирландский
     italian: Итальянский
     japanese: Японский
     kannada: Каннада
     kazakh: Казахский
     korean: Корейский
+    kweyol: Сент-люсийский франко-креольский
     latvian: Латышский
     lithuanian: Литовский
+    lozi: Лози
     luxembourgish: Люксембургский
+    malagasy: Малагасийский
     malay: Малайский
     malayalam: Малаялам
     maltese: Мальтийский
@@ -2481,6 +2495,8 @@ ru:
     misima_paneati: Misima-paneati
     mongolian: Монгольский
     nahuatl: Науатль
+    navajo: Навахо
+    ndebele: Ндебеле
     norwegian: Норвежский
     occitan: Окситанский
     ojibwe: Оджибве
@@ -2494,21 +2510,36 @@ ru:
     santali: Сантали
     scientific_names: Научные названия
     serbian: Сербский
+    shona: Шона
     sinhala: Сингальский
     slovak: Словацкий
     slovenian: Словенский
+    sotho: Сото
+    sotho_northern: Сото Северный
     spanish: Испанский
     swahili: Суахили
+    swati: Свати
     swedish: Шведский
     tagalog: тагальский
     tahitian: таитянский
+    tamil: Тамильский
     thai: Тайский
     tokelauan: токелау
+    totonaco: Тотонакский
+    tsonga: Тсонга
+    tswana: Тсвана
     turkish: Турецкий
+    u_s_d_a_symbol: Кинологический
     ukrainian: Украинский
     uyghur: Уйгурский
+    venda: Венда
+    vermont_flora_codes: Коды флоры Вермонта
+    vietnamese: Вьетнамский
     visayan: Бисайский
     waray_waray: варайский
+    xhosa: Коса
+    zapoteco: Сапотекский
+    zulu: Зулусский
   less: Меньше
   #Button show less text
   less__context_text: Меньше
@@ -4572,6 +4603,8 @@ ru:
     а также данными других португальских научных исследований.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Автоматически скрытые координаты (скрытые или частные из-за "геоприватности таксона")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist автоматически скрывает координаты некоторых видов, чтобы защитить их от беспокойства, сбора или браконьерства. Если координаты наблюдений были скрыты автоматически только для защиты видов, iNaturalist делится истинными координатами всех наблюдений с членами сети соответствующих стран.
   sites_affiliation_more_email_addresses: |
     Адреса электронной почты сообщаются членам сети исключительно для коммуникационных целей, связанных с сайтом.
   sites_affiliation_more_twice_per_year: |
@@ -6413,6 +6446,10 @@ ru:
         cumulative_count_desc: '# идентификаций отдельного таксона и всех его потомков'
         curator_coordinate_access_disabled_desc_html: |
           Этот проект не допускает наблюдений с координатами, которые кураторы проекта не могут видеть. Если вы не хотите делиться координатами этого наблюдения с кураторами этого проекта, вы должны удалить наблюдение из проекта.
+        data_quality_assessment_desc3_html: |
+          Оценка качества суммирует точность, прецизионность, полноту, актуальность и уместность наблюдения iNaturalist как данных о биологическом разнообразии. Некоторые атрибуты определяются автоматически, а другие - голосованием пользователей iNat. iNaturalist
+          делится наблюдениями, имеющими оценку "Research Grade", с рядом партнеров
+          для использования в науке и охране природы.
         disagreement_count_desc: "# идентифицированных таксонов, которые не относятся к предкам таксона"
         identification_count_desc: '# идентификаций отдельного таксона'
         flagged_photos_desc_html: |
