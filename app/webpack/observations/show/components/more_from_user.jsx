@@ -23,8 +23,10 @@ const MoreFromUser = ( {
   }
   let dateObserved;
   if ( observation.time_observed_at ) {
-    dateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone );
+    dateObserved = moment.tz(
+      observation.time_observed_at,
+      observation.observed_time_zone
+    );
   } else if ( observation.observed_on ) {
     dateObserved = moment( observation.observed_on );
   }
@@ -32,10 +34,9 @@ const MoreFromUser = ( {
   const calendarDate = dateObserved ? dateObserved.format( "YYYY/M/D" ) : null;
   const { testingApiV2 } = config || {};
   const loadObservationCallback = ( e, o ) => {
-    if ( !e.metaKey ) {
-      e.preventDefault( );
-      showNewObservation( o, { useInstance: !testingApiV2 } );
-    }
+    if ( e.metaKey || e.ctrlKey ) return;
+    e.preventDefault( );
+    showNewObservation( o, { useInstance: !testingApiV2 } );
   };
   const userLogin = observation.user.login;
   // obs list starts with the previous 3 obs
@@ -107,7 +108,6 @@ const MoreFromUser = ( {
                       ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
                       : null
                     }
-                    target="_self"
                     className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
                     onClick={e => { loadObservationCallback( e, o ); }}
                   >

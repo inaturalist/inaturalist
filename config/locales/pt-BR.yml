@@ -793,6 +793,8 @@ pt-BR:
   birds: aves
   birthday: Aniversário
   black: preto
+  block: Bloquear
+  blocking_description: O bloqueio impede qualquer comunicação entre você e o outro usuário. Utilizado em situações em que outro usuário pode colocar sua segurança em risco, como perseguição ou outro comportamento abusivo.
   block_removed: Bloqueio removido
   blocked_users: Usuários Bloqueados
   blog_widget: Blog Widget
@@ -1159,21 +1161,21 @@ pt-BR:
     molt: Muda
   controlled_term_definitions:
     alive: O organismo está vivo e não mostra sinais de morte iminente
+    bone: |
+      Predominantemente restos endoesqueléticos; exposição parcial de ossos num organismo intacto deve ser rotulado como "organismo"
+    cannot_be_determined: Não pode ser determinado a partir da evidência fornecida
     dead: O organismo está morto ou mostra sinais de morte iminente
+    feather: Uma ou mais penas não ligadas a um organismo
     flower_budding: Botões de flor são visíveis, mas não abertos
     flowering: Flores visíveis, abertas e ainda presas à planta
     fruiting: Frutos visíveis e ainda anexados à planta
+    gall: Crescimento anormal deformativo de tecido vegetal causado por parasita
+    molt: Pele ou exoesqueleto descartados
     no_evidence_of_flowering: Os meios de comunicação não dão provas de estruturas reprodutivas
-    teneral: Adulto que emergiu recentemente, mas ainda não atingiu sua forma final de adulto
-    cannot_be_determined: Não pode ser determinado a partir da evidência fornecida
-    feather: Uma ou mais penas não ligadas a um organismo
     organism: Organismo inteiro ou parcial
     scat: Matéria fecal (mas não pelotas de coruja ou outra regurgitação)
+    teneral: Adulto que emergiu recentemente, mas ainda não atingiu sua forma final de adulto
     track: Impressão no solo ou neve feita pelo organismo
-    bone: |
-      Predominantemente restos endoesqueléticos; exposição parcial de ossos num organismo intacto deve ser rotulado como "organismo"
-    molt: Pele ou exoesqueleto descartados
-    gall: Crescimento anormal deformativo de tecido vegetal causado por parasita
   controls: Controles
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -2371,18 +2373,25 @@ pt-BR:
   lexicon: Léxico
   lexicon_cannot_contain_words: "não pode conter as seguintes palavras: %{words}"
   lexicons:
-    scientific_names: Nomes Científicos
     afrikaans: Africâner
+    alabama: Alabama
     albanian: Albanês
+    aou_4_letter_codes: Códigos de 4 letras AOU
+    aou_6_letter_codes: Códigos de 6 letras AOU
     arabic: Árabe
     armenian: Armênio
+    asturian: asturiano
+    basque: basco
     belarusian: Bielorrusso
     bengali: Bengalês
+    bikol: Bikol
     bulgarian: Búlgaro
+    carolinian: Caroliniano
     catalan: Catalão
     cebuano: Cebuano
     chinese_simplified: Chinês (Simplificado)
     chinese_traditional: Chinês (tradicional)
+    chuvash: Chuvache
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
     croatian: Croata
@@ -2393,19 +2402,27 @@ pt-BR:
     english: Inglês
     estonian: Estônio
     faroese: Ferôes
+    fijian: Fijiano
     finnish: Finlandês
     french: Francês
     galician: Galego
     gela: Gela
+    georgian: Georgiano
     german: Alemão
     greek: Grego
+    gujarati: Guzerate
     hawaiian: Havaiano
     hebrew: Hebraico
+    herero: Herero
     hiligaynon: Ilongo
+    hill_mari: Hill Mari
+    hodges_number: Número de Hodges
+    hokkien: Hokkien
     hungarian: Húngaro
     icelandic: Islandês
     ilokano: Ilocano
     indonesian: Indonésio
+    irish: irlandês
     italian: Italiano
     japanese: Japonês
     kannada: canarês
@@ -2414,6 +2431,7 @@ pt-BR:
     latvian: Letão
     lithuanian: Lituano
     luxembourgish: Luxemburguês
+    malagasy: Malgaxe
     malay: Malaio
     malayalam: Malaiala
     maltese: Maltês
@@ -2423,6 +2441,8 @@ pt-BR:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Náuatle
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norueguês
     occitan: Occitano
     ojibwe: Ojibwe
@@ -2434,22 +2454,35 @@ pt-BR:
     romanian: Romano
     russian: Russo
     santali: Santali
+    scientific_names: Nomes Científicos
     serbian: Sérvio
-    setswana: Setswana
     sinhala: Cingalês
     slovak: Eslovaco
     slovenian: Esloveno
     spanish: Espanhol
     swahili: suaíli
+    swati: Suázi
     swedish: Sueco
     tagalog: Análogo
     tahitian: Taitiano
+    tamil: Tâmil
     thai: Tailandês
     tokelauan: Tokelauano
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tsuana
     turkish: Turco
+    u_s_d_a_symbol: Símbolo U.S.D.A.
     ukrainian: Ucraniano
-    waray_waray: Samarenho
+    uyghur: Uigur
+    venda: Venda
+    vermont_flora_codes: Códigos da Flora Vermont
+    vietnamese: Vietnamita
     visayan: Cebuano
+    waray_waray: Samarenho
+    xhosa: Xossa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Menos
   #Button show less text
   less__context_text: Menos
@@ -2545,6 +2578,7 @@ pt-BR:
     id: Indonesio
     it: Italiano
     ja: Japonês
+    ka: Georgiano
     kk: Cazaque
     kn: Canarês
     ko: Coreano
@@ -4553,12 +4587,6 @@ pt-BR:
     O membro da rede iNaturalist de Portugal, %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, compartilhou dados dos atlas portugueses de aves migratórias e de mamíferos, bem como vários outros documentos científicos portugueses.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas automaticamente ocultadas (obscurecidas ou privadas por conta da "geoprivacidade do táxon")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    O iNaturalist oculta automaticamente as coordenadas de algumas espécies para protegê-las
-    de perturbações, coleções ou caça furtiva. Se as coordenadas
-    da observação só foram ocultadas automaticamente para proteger as espécies,
-    o iNaturalist compartilha as coordenadas verdadeiras de todas as observações de seus
-    países respectivos com membros da Rede.
   sites_affiliation_more_email_addresses: |
     Os endereços de e-mail são compartilhados com os Membros da Rede apenas para fins de comunicações relacionadas com o site.
   sites_affiliation_more_twice_per_year: |
@@ -6396,8 +6424,6 @@ pt-BR:
         cumulative_count_desc: '# de identificações para um único táxon e todos os seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este projeto não permite a inclusão de observações sem o acesso habilitado as coordenadas geográficas por seus administradores. Caso não deseje compartilhar as coordenadas desta observação, é preciso que a remova do projeto.
-        data_quality_assessment_desc_html: |
-          A Avaliação da Qualidade dos Dados é uma avaliação da precisão de uma observação. Observações em Nível de Pesquisa podem ser usadas por cientistas para pesquisa. Dê seu voto abaixo:
         disagreement_count_desc: "# de táxons identificados que não estão entre os ancestrais de um grupo ou espécie"
         identification_count_desc: '# de identificações para um único táxon'
         flagged_photos_desc_html: |
@@ -7688,14 +7714,14 @@ pt-BR:
         one: "1 segundo"
         other: '%{count} segundos'
     countdown_x_days:
-      one: dia
-      other: dias
+      one: DIA
+      other: DIAS
     countdown_x_hours:
-      one: hora
-      other: horas
+      one: HORA
+      other: HORAS
     countdown_x_minutes:
       one: min
-      other: mins
+      other: min
     countdown_x_seconds:
       one: s
       other: s

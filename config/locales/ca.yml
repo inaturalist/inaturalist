@@ -1128,21 +1128,21 @@ ca:
     molt: Muda
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
+    bone: |
+      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
+    cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
+    feather: Una o més plomes, no unides a un organisme
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    molt: Restes de pell o exoesquelet
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
-    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
-    cannot_be_determined: No es pot determinar a partir de les dades aportades
-    feather: Una o més plomes, no unides a un organisme
     organism: Tot o part d'un organisme
     scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
+    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     track: Impressió al terra o la neu feta per un organisme
-    bone: |
-      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
-    molt: Restes de pell o exoesquelet
-    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -2284,7 +2284,6 @@ ca:
   lexicon: Lèxic
   lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
-    scientific_names: Noms científics
     afrikaans: Afrikaans
     albanian: Albanès
     arabic: Àrab
@@ -2346,8 +2345,8 @@ ca:
     romanian: Romanès
     russian: Rus
     santali: Santali
+    scientific_names: Noms científics
     serbian: Serbi
-    setswana: Setsuana
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
@@ -2360,8 +2359,8 @@ ca:
     tokelauan: Tokelauà
     turkish: Turc
     ukrainian: Ucraïnès
-    waray_waray: Samarà
     visayan: Visayà
+    waray_waray: Samarà
   less: Menys
   #Button show less text
   less__context_text: Menys
@@ -4378,8 +4377,6 @@ ca:
     El membre de la xarxa d'iNaturalist a Portugal %{start_tag_portugal}BioDiversity4All%{end_tag_portugal} comparteix dades per l'atles portuguès d'aus migratòries, l'atles de mamífers, així com per diversos articles portuguesos d'investigació científica.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenades ocultes automàticament (enfosquides o privades a causa de la "geoprivacitat del tàxon")
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist oculta automàticament les coordenades d'algunes espècies per protegir-les de les molèsties, la recol·lecció o la caça furtiva. Si les coordenades de l'observació s'han ocultat automàticament únicament per a protegir l'espècie, iNaturalist comparteix les coordenades correctes de totes les observacions amb els Membres de la Xarxa dels respectius països.
   sites_affiliation_more_email_addresses: |
     Les adreces de correu electrònic són compartides amb Membres de la Xarxa amb l'únic objectiu de permetre comunicacions relatives a aquest lloc.
   sites_affiliation_more_twice_per_year: |
@@ -6139,9 +6136,6 @@ ca:
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
-        data_quality_assessment_desc_html: |
-          L'Anàlisi de la Qualitat de les Dades és una avaluació de la precisió d'una observació. Les observacions amb Grau de Recerca poden ser utilitzades pels científics per a la recerca.
-          Doneu el vostre vot sota:
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
@@ -7212,18 +7206,6 @@ ca:
       x_seconds:
         one: "1 segon"
         other: '%{count} segons'
-    countdown_x_days:
-      one: dia
-      other: dies
-    countdown_x_hours:
-      one: hora
-      other: hores
-    countdown_x_minutes:
-      one: min.
-      other: mins.
-    countdown_x_seconds:
-      one: seg.
-      other: segs.
     prompts:
       day: Dia
       hour: Hora

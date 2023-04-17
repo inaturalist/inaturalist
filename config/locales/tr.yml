@@ -1136,21 +1136,21 @@ tr:
     molt: Deri değiştirme/Tüy dökme
   controlled_term_definitions:
     alive: Organizma yaşıyor ve bir ölüm belirtisi göstermiyor
+    bone: |
+      Ağırlıklı olarak iç iskelet kalıntıları; aksi takdirde sağlam bir organizmada kısmi kemik maruziyeti "organizma" olarak etiketlenmelidir
+    cannot_be_determined: Sununlan kanıtlardan tespit edilemiyor
     dead: Organizma ölü ya da bir ölüm belirtisi gösteriyor
+    feather: Bir organizmaya bağlı olmayan bir veya birden fazla tüy
     flower_budding: Çiçek tomurcukları görünür ama açmamış
     flowering: Çiçekler görünür, açık ve hâlâ bitkiye bağlı
     fruiting: Meyveler görünür ve hâlâ bitkiye bağlı
+    gall: Parazit bir organizmanın neden olduğu deforme olmuş doku büyümesi
+    molt: Atılan deri veya dış iskelet
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
-    teneral: Yakın zamanda ortaya çıkmış ancak henüz nihai yetişkin formuna ulaşmamış yetişkin
-    cannot_be_determined: Sununlan kanıtlardan tespit edilemiyor
-    feather: Bir organizmaya bağlı olmayan bir veya birden fazla tüy
     organism: Organizmanın tamamı veya bir kısmı
     scat: Dışkı maddesi (baykuş peletleri ya da diğer kusmuk maddeleri değil)
+    teneral: Yakın zamanda ortaya çıkmış ancak henüz nihai yetişkin formuna ulaşmamış yetişkin
     track: Organizma tarafından zeminde veya karda bırakılan iz
-    bone: |
-      Ağırlıklı olarak iç iskelet kalıntıları; aksi takdirde sağlam bir organizmada kısmi kemik maruziyeti "organizma" olarak etiketlenmelidir
-    molt: Atılan deri veya dış iskelet
-    gall: Parazit bir organizmanın neden olduğu deforme olmuş doku büyümesi
   controls: Kontroller
   convert: Dönüştür
   coordinate_systems: Koordinat sistemleri
@@ -2289,18 +2289,25 @@ tr:
   lexicon: Sözlük
   lexicon_cannot_contain_words: "bu kelimeleri içeremez: %{words}"
   lexicons:
-    scientific_names: Bilimsel Adlar
     afrikaans: Afrikaanca
+    alabama: Alabamaca
     albanian: Arnavutça
+    aou_4_letter_codes: AOU 4-Harf Kodları
+    aou_6_letter_codes: AOU 6-Harf Kodları
     arabic: Arapça
     armenian: Ermenice
+    asturian: Asturyasça
+    basque: Baskça
     belarusian: Belarusça
     bengali: Bengalce
+    bikol: Bikol
     bulgarian: Bulgarca
+    carolinian: Karolince
     catalan: Katalanca
     cebuano: Sebuanca
     chinese_simplified: Çince (basitleştirilmiş)
     chinese_traditional: Çince (geleneksel)
+    chuvash: Çuvaşça
     creole_french: Kreol (Fransızca)
     creole_portuguese: Kreol (Portekizce)
     croatian: Hırvatça
@@ -2311,27 +2318,38 @@ tr:
     english: İngilizce
     estonian: Estonca
     faroese: Faroece
+    fijian: Fijice
     finnish: Fince
     french: Fransızca
     galician: Galiçyaca
     gela: Gela
+    georgian: Gürcüce
     german: Almanca
     greek: Yunanca
+    gujarati: Güceratça
     hawaiian: Havaice
     hebrew: İbranice
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Dağlık Marice
+    hodges_number: Hodges Numarası
+    hokkien: Hokkien
     hungarian: Macarca
     icelandic: İzlandaca
     ilokano: Ilokano
     indonesian: Endonezce
+    irish: İrlandaca
     italian: İtalyanca
     japanese: Japonca
     kannada: Kannadaca
     kazakh: Kazakça
     korean: Korece
+    kweyol: Kwéyòl
     latvian: Letonca
     lithuanian: Litvanca
+    lozi: Lozi
     luxembourgish: Lüksemburgca
+    malagasy: Malgaşça
     malay: Malayca
     malayalam: Malayalamca
     maltese: Maltaca
@@ -2341,6 +2359,8 @@ tr:
     misima_paneati: Misiman
     mongolian: Moğolca
     nahuatl: Nahuatl
+    navajo: Navahoca
+    ndebele: Ndebele
     norwegian: Norveççe
     occitan: Oksitanca
     ojibwe: Ojibvaca
@@ -2352,22 +2372,38 @@ tr:
     romanian: Rumence
     russian: Rusça
     santali: Santalice
+    scientific_names: Bilimsel Adlar
     serbian: Sırpça
-    setswana: Setsvana
+    shona: Şona
     sinhala: Sinhala
     slovak: Slovakça
     slovenian: Slovence
+    sotho: Sotho
+    sotho_northern: Sotho (Kuzey)
     spanish: İspanyolca
     swahili: Svahilice
+    swati: Svati
     swedish: İsveççe
     tagalog: Tagalogca
     tahitian: Tahitice
+    tamil: Tamilce
     thai: Tayca
     tokelauan: Tokelauca
+    totonaco: Totonak
+    tsonga: Tsonga
+    tswana: Setsvana
     turkish: Türkçe
+    u_s_d_a_symbol: U.S.D.A. Sembol
     ukrainian: Ukraynaca
-    waray_waray: Varay
+    uyghur: Uygurca
+    venda: Venda
+    vermont_flora_codes: Vermont Bitki Örtüsü Kodları
+    vietnamese: Vietnamca
     visayan: Visayanca
+    waray_waray: Varay
+    xhosa: Zosa
+    zapoteco: Zapotek
+    zulu: Zuluca
   less: Daha az
   #Button show less text
   less__context_text: Daha az
@@ -2463,6 +2499,7 @@ tr:
     id: Endonezce
     it: İtalyanca
     ja: Japonca
+    ka: Gürcüce
     kk: Kazakça
     kn: Kannadaca
     ko: Korece
@@ -4398,7 +4435,7 @@ tr:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Otomatik gizlenen koordinatlar (sınıf coğrafi gizliliği nedeniyle gizlenmiş ya da özel)
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist bazı türlerin koordinatlarını onları rahatsız edilmekten, toplanmaktan ya da kaçak avlanmaktan korumak için otomatik olarak gizler. Gözlem koordinatları yalnızca türleri korumak için otomatik olarak gizlenmişse, iNaturalist kendi ülkelerindeki tüm gözlemlerin gerçek koordinatlarını Ağ Üyeleriyle paylaşır.
+    iNaturalist bazı türlerin koordinatlarını onları rahatsız edilmekten, toplanmaktan ya da kaçak avlanmaktan korumak için otomatik olarak gizler. Gözlem koordinatları yalnızca türleri korumak için otomatik olarak gizlenmiş ise iNaturalist kendi ülkelerindeki tüm gözlemlerin gerçek koordinatlarını Ağ Üyeleri ile paylaşır.
   sites_affiliation_more_email_addresses: |
     E-posta adresleri Ağ Üyeleri ile yalnızca site ile ilgili iletişim amacıyla paylaşılır.
   sites_affiliation_more_twice_per_year: |
@@ -6134,8 +6171,8 @@ tr:
         cumulative_count_desc: '# tek bir sınıf ve onun tüm alt soyu için tanımlama sayısı'
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje küratörlerinin göremediği koordinatlara sahip gözlemlere izin vermez. Bu gözlemin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, gözlemi projeden kaldırman gerekir.
-        data_quality_assessment_desc_html: |
-          Veri Nitelik Değerlendirmesi, bir gözlemin doğruluğunun değerlendirilmesidir. Araştırma Sınıfı gözlemler bilim insanları tarafından araştırma için kullanılabilir. Aşağıdan oy verin:
+        data_quality_assessment_desc3_html: |
+          Nitelik Değerlendirmesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
         disagreement_count_desc: "# bir sınıfın üst soyu arasında yer almayan tanımlanmış sınıfların sayısı"
         identification_count_desc: '# tek bir sınıf için tanımlama sayısı'
         flagged_photos_desc_html: |
@@ -7342,17 +7379,17 @@ tr:
         one: "%{count} saniye"
         other: '%{count} saniye'
     countdown_x_days:
-      one: gün
-      other: gün
+      one: GÜN
+      other: GÜN
     countdown_x_hours:
-      one: saat
-      other: saat
+      one: SAAT
+      other: SAAT
     countdown_x_minutes:
-      one: dk
-      other: dk
+      one: DAK
+      other: DAK
     countdown_x_seconds:
-      one: sn
-      other: sn
+      one: SAN
+      other: SAN
     prompts:
       day: Gün
       hour: Saat

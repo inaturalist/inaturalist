@@ -176,6 +176,7 @@ eu:
   #Tool tip for a button that adds a link to a text area
   add_a_link: Lotura bat gehitu
   add_a_name: Izena gehitu
+  add_a_note: Ohar bat gehitu
   add_a_new_change_group: Gehitu beste aldaketa bat taldean
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Zenbakidun zerrenda gehitu
@@ -186,6 +187,8 @@ eu:
   add_an_observation: Oharra gehitu
   add_an_observation_of: "Honi buruzko oharra gehitu: %{taxon}"
   add_annotations_for_x: Gehitu iruzkinak "%{x}" horretan
+  add_annotations_for_controlled_attribute:
+    sex: Gehitu oharra "Sexua"-rako
   add_another_flag: Beste bandera bat gehitu
   add_another_photo: Beste argazki bat gehitu
   add_another_section: Sekzio berria gehitu
@@ -193,6 +196,7 @@ eu:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: Aktiboa gehitu
   add_batch: Lotea gehitu
+  add_blocked_users: Blokeatutako erabiltzaileak gehitu
   #Tool tip for a button that adds bold text to a text area
   add_bold_text: Testu lodia sartu
   add_comma_separated_tags: "Komarekin bereiztutako etiketak gehitu"
@@ -410,6 +414,8 @@ eu:
   #Label for an option to show/include content by any user
   any_user: Edozein
   anyone: Edonor
+  app_owner_application_explanation_required: |
+    Eraiki nahi duzunaren azalpen zehatzagoa eman behar duzu.
   apply_to_selected: Hautatutakoei aplikatu
   apply_captive_cultivated: "Aplikatu etxekotua / landatua"
   apply_fields: Aplikatu eremuak
@@ -481,6 +487,8 @@ eu:
     Ziur zaude erabiltzaile hau ohoragarria dela?
     Bere kontuan dagoen edozein spam marka konponduko da.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Ziur zaude %{x} taxon hauek ezabatu nahi dituzula?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Ziur zaude behaketa hau %{project}-etik ezabatu nahi duzula?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Ziur zaude espezie edo egiaztapen-zerrendako taldea %{place}-ndik ezabatu nahi duzula?"
   associated_observations: Lotutako oharrak
   associated_taxa: Lotutako taxonak
@@ -490,6 +498,11 @@ eu:
   asc: Goranz.
   ascending: Goranzkoa
   assessment: balorazioa
+  assessment_has_benn_completed: Ebaluazioa osatu da.
+  assessment_sections: Ebaluazioaren atalak
+  assessment_was_deleted: Ebaluazioa ezabatu da.
+  assessment_was_successfully_created: Ebaluazioa arrakastaz sortu da.
+  assessment_was_successfully_updated: Ebaluazioa ongi eguneratu da.
   assessments: balorazioak
   associations: Elkarteak
   atlas_for_taxon_html: '%{taxon} taxonarentzako atlasa'
@@ -502,6 +515,10 @@ eu:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atributua
   attribution: Esleipena
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{user}-k %{attribution} igo du."
   authority_list:
     iucn_red_list: IUCN zerrenda gorria
     natureserve: NatureServe
@@ -529,7 +546,9 @@ eu:
   back_to_taxon_changes: "Taxon aldaketetarako itzuli"
   back_to_viewing: "<i>%{taxon}</i> berriro ikusi"
   back_to_x: "Hona itzuli: %{noun}"
+  back_to_x_history: "%{x}-(r)en historira itzuli."
   back_to_x_journal: "Honen egutegira itzuli: %{user}"
+  back_to_x_blog: "%{x}-(r)en blogera itzuli"
   back_to_your_journal: Zure egunkarira itzuli
   back_to_your_observations: Zure oharretara itzuli
   back_to_your_profile: Zure profilera itzuli
@@ -545,6 +564,7 @@ eu:
   birds: hegaztiak
   birthday: Urtebetetzea
   black: beltza
+  blocking_description: Blokeatzeak, zu eta beste edozein erabiltzaileren arteko komunikazioa galarazten du. Beste erabiltzaile batek zure seguratsuna arriskuan jartzen duen egoeratarako da, hala nola, mehatxu edo abusuzko jarreretarako.
   block_removed: Blokeoa kendu
   blocked_users: Blokeatutako Erabiltzaileak
   blog_widget: Blogeko widget-a
@@ -707,6 +727,10 @@ eu:
   committed: Gorde
   #Status message while a taxon change is being committed
   committing: Gordetzen...
+  common_name: Izen arrunta
+  community: Komunitatea
+  community_curated: Komunitateak gainbegiratua
+  community_guidelines: Komunitatearen jarraibideak
   community_supported_id: Komunitateak aitortutako taxoia?
   compare: Alderatu
   compare_with: 'Honekin alderatu:'
@@ -1271,7 +1295,6 @@ eu:
   leave_this_project: Proiektu honetatik irten
   lexicon: Hiztegia
   lexicons:
-    scientific_names: Izen zientifikoak
     bengali: Bengalera
     catalan: Katalana
     cebuano: Cebuera
@@ -1296,6 +1319,7 @@ eu:
     portuguese: Portugesa
     romanian: Errumaniera
     russian: Errusiera
+    scientific_names: Izen zientifikoak
     spanish: Espainola
     swedish: Suediera
     tagalog: Tagaloa

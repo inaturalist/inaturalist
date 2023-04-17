@@ -1028,15 +1028,15 @@ nb:
     bone: Bein
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
+    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
     dead: Organisme er død eller viser tegn på en snarlig død
+    feather: En eller flere fjær som ikke er knyttet til en organisme
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
-    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
-    cannot_be_determined: Kan ikke bestemmes ut fra beviset som er lagt frem
-    feather: En eller flere fjær som ikke er knyttet til en organisme
     organism: Hel eller del av organisme
+    teneral: Voksen som nylig har kommet ut av puppen men som ikke har oppnådd sin endelige voksne form ennå
     track: Avtrykk i bakken eller snø laget av organisme
   controls: Kontrollpanel
   convert: Konverter
@@ -1968,7 +1968,6 @@ nb:
   lexicon: Leksikon
   lexicon_cannot_contain_words: "kan ikke inneholde følgende ord: %{words}"
   lexicons:
-    scientific_names: Vitenskapelige navn
     afrikaans: Afrikansk
     albanian: Albansk
     arabic: Arabisk
@@ -2021,6 +2020,7 @@ nb:
     portuguese: Portugisisk
     romanian: Rumensk
     russian: Russisk
+    scientific_names: Vitenskapelige navn
     serbian: Serbisk
     slovak: Slovakisk
     slovenian: Slovensk
@@ -5239,9 +5239,6 @@ nb:
         cumulative_count_desc: 'Antall observasjoner for et individuelt takson og alle sine etterkommere'
         curator_coordinate_access_disabled_desc_html: |
           Dette prosjektet aksepterer ikke observasjoner med koordinater som prosjektkuratorene ikke kan se. Hvis du ikke vil dele koordinatene til denne observasjonen med kuratorene til dette prosjektet, må du fjerne observasjonen fra dette prosjektet.
-        data_quality_assessment_desc_html: |
-          Datakvalitetsvurderingen er en evaluering av observasjonens nøyaktighet.
-          Observasjoner av forskningskvalitet kan brukes av forskere innen forskning. Stem nedenfor:
         disagreement_count_desc: "antall identifiserte taksa som ikke er blant taksonets aner"
         identification_count_desc: 'Antall identifikasjoner for et individuelt takson'
         flagged_photos_desc_html: |
@@ -6230,18 +6227,6 @@ nb:
       x_seconds:
         one: "%{count} sekund"
         other: '%{count} sekunder'
-    countdown_x_days:
-      one: dag
-      other: dager
-    countdown_x_hours:
-      one: time
-      other: timer
-    countdown_x_minutes:
-      one: min
-      other: min
-    countdown_x_seconds:
-      one: sek
-      other: sek
     prompts:
       day: Dag
       hour: Time

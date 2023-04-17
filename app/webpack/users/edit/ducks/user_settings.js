@@ -94,7 +94,7 @@ export async function handleSaveError( e ) {
     return {};
   }
   const body = await e.response.json( );
-  if ( body && body.errors && _.isArray( body.errors ) && _.isObject( body.errors[0] )
+  if ( body && body.errors && Array.isArray( body.errors ) && _.isObject( body.errors[0] )
     && body.errors[0].from === "externalAPI" && body.errors[0].message ) {
     // apiv2 passes on errors from rails in an object, e.g.:
     //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }

@@ -819,6 +819,7 @@ pl:
   birds: ptaki
   birthday: Urodziny
   black: czarny
+  block: Blokuj
   block_removed: Blokada została zdjęta
   blocked_users: Zablokowani użytkownicy
   blog_widget: Widżet bloga
@@ -1119,15 +1120,15 @@ pl:
     molt: Wylinka
   controlled_term_definitions:
     alive: Organizm żyje i nie wykazuje żadnych oznak zbliżającej się śmierci
+    cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
     dead: Organizm jest martwy lub wykazuje oznaki zbliżającej się śmierci
     flower_budding: Pąki kwiatowe są widoczne, ale nie otwarte
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
-    teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
-    cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
-    organism: Cały lub częściowy organizm
-    track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
     molt: Zrzucona skóra lub egzoszkielet
+    organism: Cały lub częściowy organizm
+    teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
+    track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
   controls: Kontrolki
   convert: Konwertuj
   coordinate_systems: System współrzędnych
@@ -1168,7 +1169,7 @@ pl:
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
-  create: Utwórz
+  create: Utworzenie
   create_a_guide: Stwórz przewodnik
   create_a_new_field: Stwórz nową notatkę
   create_a_new_place: Utwórz nową lokalizację
@@ -1329,7 +1330,7 @@ pl:
   description_slash_tags: Opis / Tagi
   description_tags_more: "Opis, Tagi, &amp; Więcej"
   desription: Opis
-  destroy: Zniszcz
+  destroy: Usunięcie
   details: Szczegóły
   deviation: Odchylenie
   devise:
@@ -1994,17 +1995,22 @@ pl:
   lexicon: Leksykon
   lexicon_cannot_contain_words: "nie można zawierać następujących słów: %{words}"
   lexicons:
-    scientific_names: Nazwy naukowe
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albański
     arabic: arabski
     armenian: ormiański
+    asturian: Asturyjski
+    basque: Baskijski
     bengali: Bengalski
+    bikol: Bikolski
     bulgarian: bułgarski
+    carolinian: Karoliński
     catalan: Kataloński
     cebuano: Cebuano
     chinese_simplified: Chiński (uproszczony)
     chinese_traditional: Chiński (tradycyjny)
+    chuvash: Czuwaski
     creole_french: Kreolski (francuski)
     creole_portuguese: Kreolski (portugalski)
     croatian: chorwacki
@@ -2015,6 +2021,7 @@ pl:
     english: Angielski
     estonian: Estoński
     faroese: farerski
+    fijian: Fidżyjski
     finnish: Fiński
     french: Francuski
     galician: galicyjski
@@ -2023,18 +2030,24 @@ pl:
     greek: Grecki
     hawaiian: Hawajski
     hebrew: Hebrajski
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Górnomaryjski
     hungarian: Węgierski
     icelandic: Islandzki
     ilokano: Iloko
     indonesian: indonezyjski
+    irish: Irlandzki
     italian: Włoski
     japanese: Japoński
     kazakh: kazachski
     korean: Koreański
+    kweyol: Kwéyòl
     latvian: Łotewski
     lithuanian: Litewski
+    lozi: Lozi
     luxembourgish: Luksemburski
+    malagasy: Malgaski
     malay: malajski
     malayalam: malajalam
     maltese: Maltański
@@ -2043,6 +2056,7 @@ pl:
     misima_paneati: Misima-Paneati
     mongolian: mongolski
     nahuatl: nahuatl
+    navajo: Nawaho
     norwegian: Norweski
     occitan: Oksytański
     ojibwe: odżibwe
@@ -2053,8 +2067,8 @@ pl:
     portuguese: Portugalski
     romanian: Rumuński
     russian: Rosyjski
+    scientific_names: Nazwy naukowe
     serbian: serbski
-    setswana: setswana
     sinhala: syngaleski
     slovak: słowacki
     spanish: Hiszpański
@@ -2066,8 +2080,11 @@ pl:
     tokelauan: Tokelau
     turkish: Turecki
     ukrainian: ukraiński
-    waray_waray: Warajski
     visayan: bisajski
+    waray_waray: Warajski
+    xhosa: Xhosa
+    zapoteco: Zapotecki
+    zulu: Zulu
   less: Mniej
   #Button show less text
   less__context_text: Mniej
@@ -3915,7 +3932,7 @@ pl:
   unpublish: Cofnij publikację
   unsubscribe: Anuluj subskrypcję
   unsuspend_user: Cofnij zawieszenie użytkownika
-  update: Zaktualizuj
+  update: Aktualizacja
   update_existing_observations_with_new_license: Zaktualizuj istniejące obserwacje z nowymi ustawieniami licencji
   update_existing_photos_with_new_license: Zaktualizuj istniejące zdjęcia z nowymi ustawieniami licencji
   update_existing_sounds_with_new_license: Zaktualizuj istniejące nagrania dźwiękowe z nowymi ustawieniami licencji
@@ -4711,26 +4728,6 @@ pl:
         few: '%{count} sekundy'
         many: '%{count} sekund'
         other: '%{count} sekundy'
-    countdown_x_days:
-      one: dzień
-      few: dni
-      many: dni
-      other: dnia
-    countdown_x_hours:
-      one: godzina
-      few: godziny
-      many: godzin
-      other: godziny
-    countdown_x_minutes:
-      one: minuta
-      few: minuty
-      many: minut
-      other: minuty
-    countdown_x_seconds:
-      one: sekunda
-      few: sekundy
-      many: sekund
-      other: sekundy
     prompts:
       day: Dzień
       hour: Godzina

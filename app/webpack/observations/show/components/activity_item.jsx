@@ -67,6 +67,7 @@ class ActivityItem extends React.Component {
           textareaClassName="form-control"
           maxLength={5000}
           showCharsRemainingAt={4000}
+          mentions
         />
         <div className="btn-group edit-form-btns">
           <button

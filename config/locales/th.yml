@@ -141,6 +141,12 @@ th:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Acc (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: คลาดเคลื่อนสูงกว่า
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: คลาดเคลื่อนต่ำกว่า
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: คลาดเคลื่อนต่ำกว่าหรือไม่ทราบ
   account: บัญชีผู้ใช้
   account_creation: การสร้างบัญชี
   account_settings: การตั้งค่าบัญชี
@@ -148,7 +154,7 @@ th:
   accuracy: ความแม่นยำ
   accuracy_meters: ความแม่นยำ (เมตร)
   accuracy_of_the_coordinates: |
-    ความแม่นยำของพิกัดถูกระบุเป็นหน่วยเมตร คุณสามารถแก้ไขได้โดยคลิ๊กลิงค์ "แก้ไข" ด้านบนหรือคลิ๊กที่เครื่องหมายบนแผนที่แล้วลากแก้ไขโดยพยายามทำให้วงกลมใหญ่พอที่จะแน่ใจได้ว่าคุณอยู่ข้างในนั้น
+    หน่วยความแม่นยำของพิกัดแสดงเป็นเมตร คุณสามารถแก้ไขโดยคลิกลิงก์ "แก้ไข" ด้านบนหรือคลิกบนแผนที่แล้วลากออก โดยพยายามลากวงกลมให้ครอบคลุมตำแหน่งการสังเกตที่คุณแน่ใจ
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: ปฏิบัติการ
   actions: การดำเนินการทั้งหมด
@@ -580,6 +586,7 @@ th:
   birds: นก
   birthday: วันเกิด
   blocked_users: ผู้ใช้ที่ถูกบล็อก
+  blog_widget: วิดเจ็ตของบล็อก
   blue_butterfly_etc: "สีฟ้า ผีเสื้อ ฯลฯ"
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: ข้อความตัวหนา
@@ -763,13 +770,13 @@ th:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
   controlled_term_definitions:
+    feather: ขนที่หลุดออกจากตัวนก
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
-    no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
-    feather: ขนที่หลุดออกจากตัวนก
-    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+    no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
+    organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
   #A filter option that only shows observations for which the viewer has
@@ -941,6 +948,8 @@ th:
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
+  editing_observation_field: แก้ไขข้อมูลเสริมการสังเกต
+  editing_observation_id: "แก้ไขการสังเกต %{obs_id}"
   editing_project: แก้ไข %{project}
   editing_subscription_to_x_html: "แก้ไขการติดตาม %{x}"
   editing_taxon: แก้ไข %{taxon}
@@ -986,6 +995,7 @@ th:
   explore: สำรวจ
   export: ส่งออก
   export_observations: ส่งออกการสังเกต
+  export_with_private_coordinates: ส่งออกด้วยพิกัดที่ซ่อนไว้
   exporting: "กำลังส่งออก..."
   extinct: สูญพันธุ์
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
@@ -1002,6 +1012,7 @@ th:
   file_should_be_in_the_following_format: "ควรจัดเรียงไฟล์ตามรูปแบบนี้: ชื่อหน่วยอนุกรมวิธาน, คำอธิบาย"
   #The name of a computer file
   filename: ชื่อไฟล์
+  filter_by_curator_identification: กรองตามการจำแนกโดยผู้ดูแล
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
@@ -1013,8 +1024,8 @@ th:
   find_places: ค้นหาสถานที่
   find_some_people_to_follow: "ค้นหาผู้คนที่จะติดตาม"
   find_species: ค้นหาชนิด
-  find_suitable_observations: ค้นหาการสังเกตที่เหมาะสม
-  find_unsuitable_observations: ค้นหาการสังเกตที่ไม่เหมาะสม
+  find_suitable_observations: ค้นหาการสังเกตที่ตรวจสอบได้
+  find_unsuitable_observations: ค้นหาการสังเกตทั้งหมด
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
   first_observer: ผู้สังเกตคนแรก
@@ -1188,6 +1199,7 @@ th:
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: มีหลักฐานเพียงพอที่จะยืนยันว่าเป็น %{taxon} หรือไม่?
+  is_this_offensive_html: 'โครงการนี้<a href="/help#inappropriate">ไม่เหมาะสม</a> เป็นสแปม หรือมีคำพูดที่แสดงความเกลียดชังหรือไม่?'
   it_can_now_be_used_for_research: สามารถนำไปใช้ในการวิจัยและแสดงบนหน้าเว็บอื่น ๆ ได้
   jobs: ตำแหน่งงาน
   join: เข้าร่วม
@@ -1233,10 +1245,10 @@ th:
   leave_this_project: ออกจากโครงการนี้
   #Terminal nodes in a taxonomic tree
   leaves: ใบ
+  let_us_walk_you_through: ให้เราแนะนำคุณเกี่ยวกับคุณสมบัติหลักของเว็บไซต์นี้
   lexicon: ภาษา/ศัพท์เฉพาะ
   lexicon_cannot_contain_words: "ไม่สามารถมีคำต่อไปนี้: %{words}"
   lexicons:
-    scientific_names: ชื่อวิทยาศาสตร์
     afrikaans: ภาษาอาฟรีกานส์
     albanian: ภาษาแอลเบเนีย
     arabic: ภาษาอาหรับ
@@ -1298,8 +1310,8 @@ th:
     romanian: ภาษาโรมาเนีย
     russian: ภาษารัสเซีย
     santali: ภาษาสันถาลี
+    scientific_names: ชื่อวิทยาศาสตร์
     serbian: ภาษาเซอร์เบีย
-    setswana: ภาษาเซตสวานา
     sinhala: ภาษาสิงหล
     slovak: ภาษาสโลวัก
     slovenian: ภาษาสโลวีเนีย
@@ -1312,8 +1324,8 @@ th:
     tokelauan: ภาษาโตเกเลา
     turkish: ภาษาตุรกี
     ukrainian: ภาษายูเครน
-    waray_waray: ภาษาวาไร-วาไร
     visayan: ภาษาวิซายัน
+    waray_waray: ภาษาวาไร-วาไร
   life: สิ่งมีชีวิต
   life_list: "รายการสิ่งมีชีวิตของ %{user}"
   link_your_facebook_account: เชื่อมต่อบัญชี Facebook ของคุณ
@@ -1373,6 +1385,7 @@ th:
     uk: ภาษายูเครน
     zh-CN: ภาษาจีน (ตัวย่อ)
     zh-TW: ภาษาจีน (ดั้งเดิม)
+  localized_species_accounts: บัญชีชนิดพันธุ์เฉพาะถิ่น
   location: ตำแหน่ง
   location_is_accurate: ตำแหน่งถูกต้อง
   location_is_exact: มีหลักฐานของสิ่งมีชีวิต
@@ -1484,6 +1497,7 @@ th:
   more_info: ข้อมูลเพิ่มเติม
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
+  more_observations: การสังเกตเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและถูกเพิ่มเข้ารายการโปรดมากสุด
@@ -1554,6 +1568,7 @@ th:
   no_its_as_good_as_it_can_be: ไม่ต้อง เท่านี้ก็พอแล้ว
   no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
   no_license_all_rights_reserved: ไม่มีสัญญาอนุญาต (สงวนลิขสิทธิ์ทั้งหมด)
+  no_matching_observations: ไม่มีการสังเกตที่ตรงตามเงื่อนไข
   no_matching_species: ไม่มีชนิดที่ตรงกัน
   no_members_yet: "ยังไม่มีสมาชิก"
   no_messages_yet: ยังไม่มีข้อความ
@@ -1575,6 +1590,7 @@ th:
   no_taxa_with_unknown_relationships: ไม่มีหน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   no_taxonomic_changes_match_those_criteria: ไม่มีการเปลี่ยนแปลงอนุกรมวิธานที่ตรงกับเกณฑ์เหล่านั้น
   no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
+  noble_curators: "ผู้ดูแลดีเด่นของ %{site}"
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
@@ -1829,6 +1845,8 @@ th:
     other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
   project_cover: รูปหน้าปกโครงการ
+  project_created_on: สร้างโครงการนี้เมื่อ %{date}
+  project_curator_tools: เครื่องมือผู้ดูแลโครงการ
   project_home: หน้าหลักโครงการ
   project_icon: ไอคอนโครงการ
   project_journal: วารสารโครงการ
@@ -2143,8 +2161,6 @@ th:
   skip_to_next_page: "ข้ามไปหน้าถัดไป"
   small: เล็ก
   site_stats: สถิติการใช้งาน
-  sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist จะซ่อนพิกัดสิ่งมีชีวิตบางชนิดโดยอัตโนมัติเพื่อป้องกันการโดนรบกวน การเก็บสะสม หรือการล่าสัตว์ ถ้าพิกัดการสังเกตถูกซ่อนเพื่อการอนุรักษ์ iNaturalist จะแชร์พิกัดจริงของทุกการสังเกตจากประเทศนั้น ๆ ให้กับสมาชิกเครือข่าย
   some_observations_are_missing_media_or_identifications: |
     บางการสังเกตไม่มีสื่อหรือการจำแนก
   some_observations_are_missing_media_or_identifications_desc: |
@@ -2522,6 +2538,7 @@ th:
   view_on_flickr: ดูใน Flickr
   view_place: ดูสถานที่
   view_projects_from_place: "ดูโครงการจาก %{place}"
+  view_sample: ดูตัวอย่าง
   view_stats: ดูสถิติ
   view_taxon_change: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
   view_taxon_changes: ดูการเปลี่ยนแปลงหน่วยอนุกรมวิธาน
@@ -2580,6 +2597,7 @@ th:
   withdraw: ถอนออก
   #Loading status while an identification is being withdrawn
   withdrawing: กำลังถอน...
+  worldwide: ทั่วโลก
   x_journal: "วารสารของ %{user}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
@@ -2696,8 +2714,6 @@ th:
       import:
         date_column_format: YYYY-MM-DD HH:MM
       show:
-        data_quality_assessment_desc_html: |
-          การประเมินคุณภาพข้อมูลคือการตรวจวัดความถูกต้องของการสังเกต นักวิทยาศาสตร์อาจนำการสังเกตระดับงานวิจัยไปศึกษาต่อได้ คุณสามารถโหวตได้ข้างล่างนี้
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
         quality_assessment_help2_html: |
@@ -2817,6 +2833,8 @@ th:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
         you_can_learn_more_html: |
           เรียนรู้เพิ่มเติมเกี่ยวกับการจัดการโครงการได้<a href="https://www.inaturalist.org/pages/managing-projects">ที่นี่</a> หรืออ่านประวัติการเปลี่ยนแปลงโครงการได้ที่<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">บล็อกของเรา</a>
+        you_have_not_defined_any_observation_requirements: |
+          คุณยังไม่ได้กำหนดเกณฑ์การสังเกต ตรวจสอบว่าได้เลือกอย่างน้อย 1 หน่วยอนุกรมวิธาน (เช่น นก สนเขา) สถานที่ (เช่น Brazil, Yellowstone) ผู้ใช้งาน และ/หรือวันที่สังเกต เพื่อรวมการสังเกตตามเกณฑ์เหล่านี้เข้าโครงการของคุณ
         errors:
           name_is_required: ต้องมีชื่อโครงการ
           name_already_taken: มีผู้ใช้ชื่อโครงการนี้แล้ว
@@ -2988,14 +3006,6 @@ th:
         other: '%{count} นาที'
       x_months:
         other: '%{count} เดือน'
-    countdown_x_days:
-      other: วัน
-    countdown_x_hours:
-      other: ชั่วโมง
-    countdown_x_minutes:
-      other: นาที
-    countdown_x_seconds:
-      other: วินาที
     prompts:
       day: วัน
       hour: ชั่วโมง

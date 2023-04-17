@@ -1084,21 +1084,21 @@ id:
     molt: Kulit
   controlled_term_definitions:
     alive: Organisme hidup dan tidak memperlihatkan tanda-tanda akan mati
+    bone: |
+      Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
+    cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
     dead: Organisme telah mati atau memperlihatkan tanda-tanda akan mati
+    feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
     flower_budding: Kuncup bunga terlihat namun tidak terbuka
     flowering: Bunga terlihat, terbuka, dan tetap menempel ke tanaman
     fruiting: Buah terlihat dan masih menempel ke tanaman
+    gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
+    molt: Kulit yang dibuang atau eksoskeleton
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
-    teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
-    cannot_be_determined: Tidak dapat disimpulkan dari bukti yang diberikan
-    feather: Satu atau lebih bulu yang tidak terkait dengan sebuah organisme
     organism: Organisme penuh atau sebagian
     scat: Unsur tinja (bukan pelet burung hantu atau zat muntahan lainnya)
+    teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
     track: Jejak di tanah atau salju yang dibuat oleh organisme
-    bone: |
-      Didominasi oleh sisa-sisa endoskeleton; organisme yang seharusnya utuh, tapi sebagian tulangnya terlihat harus tetap dilabeli "organisme"
-    molt: Kulit yang dibuang atau eksoskeleton
-    gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
   controls: Kontrol
   convert: Ubah
   coordinate_systems: Sistem koordinat
@@ -2270,18 +2270,25 @@ id:
   lexicon: Kamus
   lexicon_cannot_contain_words: "tidak boleh mengandung kata-kata berikut: %{words}"
   lexicons:
-    scientific_names: Nama Ilmiah
     afrikaans: Afrika
+    alabama: Alabama
     albanian: Albania
+    aou_4_letter_codes: Kode 4 huruf AOU
+    aou_6_letter_codes: Kode 6 huruf AOU
     arabic: Arab
     armenian: Armenia
+    asturian: Asturia
+    basque: Basque
     belarusian: Belarusia
     bengali: Benggala
+    bikol: Bikol
     bulgarian: Bulgaria
+    carolinian: Caroline
     catalan: Katalan
     cebuano: Cebuano
     chinese_simplified: Mandarin (sederhana)
     chinese_traditional: Mandarin (tradisional)
+    chuvash: Chuvash
     creole_french: Creole (Prancis)
     creole_portuguese: Creole (Portugis)
     croatian: Kroasia
@@ -2292,27 +2299,38 @@ id:
     english: Inggris
     estonian: Estonia
     faroese: Faroe
+    fijian: Fiji
     finnish: Finlandia
     french: Prancis
     galician: Galisia
     gela: Gela
+    georgian: Georgia
     german: Jerman
     greek: Yunani
+    gujarati: Gujarat
     hawaiian: Hawaii
     hebrew: Ibrani
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Angka Hodge
+    hokkien: Hokkien
     hungarian: Hungaria
     icelandic: Islandia
     ilokano: Ilokano
     indonesian: Indonesia
+    irish: Irlandia
     italian: Italia
     japanese: Jepang
     kannada: Kannada
     kazakh: Kazakh
     korean: Korea
+    kweyol: Kwéyòl
     latvian: Latvia
     lithuanian: Lithuania
+    lozi: Lozi
     luxembourgish: Luksemburg
+    malagasy: Malagasi
     malay: Melayu
     malayalam: Malayalam
     maltese: Malta
@@ -2322,6 +2340,8 @@ id:
     misima_paneati: Misima-paneati
     mongolian: Mongolia
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegia
     occitan: Occitan
     ojibwe: Ojibwe
@@ -2333,22 +2353,38 @@ id:
     romanian: Romania
     russian: Rusia
     santali: Santali
+    scientific_names: Nama Ilmiah
     serbian: Serbia
-    setswana: Setswana
+    shona: Shona
     sinhala: Sinhala
     slovak: Slovakia
     slovenian: Slovenia
+    sotho: Sotho
+    sotho_northern: Sotho (Utara)
     spanish: Spanyol
     swahili: Swahili
+    swati: Swati
     swedish: Swedia
     tagalog: Tagalog
     tahitian: Tahiti
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelau
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turki
+    u_s_d_a_symbol: Simbol U.S.D.A.
     ukrainian: Ukraina
-    waray_waray: Waray-Waray
+    uyghur: Uighur
+    venda: Venda
+    vermont_flora_codes: Kode Flora Vermont
+    vietnamese: Vietnam
     visayan: Visaya
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Kurang
   #Button show less text
   less__context_text: Lebih Sedikit
@@ -2444,6 +2480,7 @@ id:
     id: Indonesia
     it: Italia
     ja: Jepang
+    ka: Georgia
     kk: Kazakh
     kn: Kannada
     ko: Korea
@@ -6129,8 +6166,8 @@ id:
         cumulative_count_desc: '# identifikasi untuk sebuah takson individu dan semua keturunannya'
         curator_coordinate_access_disabled_desc_html: |
           Proyek ini tidak memperbolehkan pengamatan dengan koordinat yang tidak dapat dilihat oleh kurator proyek. Jika Anda tidak ingin berbagi koordinat pengamatan ini dengan kurator proyek ini, Anda harus menghapus pengamatan tersebut dari proyek ini.
-        data_quality_assessment_desc_html: |
-          Penilaian Kualitas Data merupakan sebuah evaluasi keakuratan sebuah pengamatan. Pengamatan Kelas Riset dapat digunakan oleh ilmuwan untuk penelitian. Berikan suaramu di bawah ini:
+        data_quality_assessment_desc3_html: |
+          Tingkat Kualitas merangkum akurasi, presisi, kelengkapan, relevansi, dan kelayakan dari suatu pengamatan iNaturalist sebagai suatu data keanekaragaman hayati. Beberapa atribut ditentukan secara otomatis, sedangkan beberapa atribut lain tergantung pada suara pengguna iNat. iNaturalist membagikan pengamatan-pengamatan "Tingkat Riset" yang berlisensi dengan beberapa mitra data untuk keperluan sains dan konservasi.
         disagreement_count_desc: "# taksa yang diidentifikasi yang bukan merupakan induk sebuah takson"
         identification_count_desc: '# identifikasi untuk sebuah takson individu'
         flagged_photos_desc_html: |
@@ -7208,13 +7245,13 @@ id:
       x_seconds:
         other: '%{count} detik'
     countdown_x_days:
-      other: hari
+      other: HARI
     countdown_x_hours:
-      other: jam
+      other: JAM
     countdown_x_minutes:
-      other: men
+      other: MENIT
     countdown_x_seconds:
-      other: det
+      other: DETIK
     prompts:
       day: Hari
       hour: Jam
