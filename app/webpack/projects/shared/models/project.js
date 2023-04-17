@@ -3,8 +3,9 @@ import inatjs from "inaturalistjs";
 import moment from "moment-timezone";
 import util from "../util";
 
-const Project = class Project {
+const Project = class Project extends inatjs.Project {
   constructor( attrs, additionalSearchParams = { } ) {
+    super( attrs );
     Object.assign( this, attrs );
     this.is_traditional = this.project_type !== "collection" && this.project_type !== "umbrella";
     this.is_umbrella = ( this.project_type === "umbrella" );
@@ -21,7 +22,7 @@ const Project = class Project {
         const MappedClass = mappings[rule.operand_type];
         const attr = MappedClass.name.toLowerCase( );
         if ( rule[attr] ) {
-          return Object.assign( { }, rule, { [attr]: new MappedClass( rule[attr] ) } );
+          return { ...rule, [attr]: new MappedClass( rule[attr] ) };
         }
       }
       return rule;

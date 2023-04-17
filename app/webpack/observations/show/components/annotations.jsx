@@ -115,21 +115,11 @@ class Annotations extends React.Component {
     );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;
-    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
-      defaultValue: term.label
-    } );
-    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, {
-      defaultValue: attr.label
-    } );
-    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, {
-      defaultValue: value.label
-    } );
-    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}`, {
-      defaultValue: false
-    } );
-    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}`, {
-      defaultValue: valueLabel
-    } );
+    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}` );
+    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}` );
+    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}` );
+    const termDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( term.label )}` );
+    const valueDefinition = I18n.t( `controlled_term_definitions.${_.snakeCase( value.label )}` );
     const termPopover = (
       <Popover
         id={`annotation-popover-${a.uuid}`}

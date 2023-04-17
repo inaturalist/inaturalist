@@ -227,7 +227,6 @@ hu:
   add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
     A név módosításához végezz el <a target="_blank" href="%{url}">taxoncserét</a>
-  add_an_assessment: Értékelés hozzáadása
   add_an_identification: Meghatározás hozzáadása
   add_an_observation: Megfigyelés hozzáadása
   add_an_observation_of: "%{taxon} taxonon belüli megfigyelés hozzáadása"
@@ -235,7 +234,7 @@ hu:
   add_annotations_for_x: '%{x} megjelölés hozzáadása'
   add_annotations_for_controlled_attribute:
     sex: '"Nem" megjelölés hozzáadása'
-    plant_phenology: Jegyzet hozzáadása a "Fenológiai fázishoz"
+    plant_phenology: Megjelölés hozzáadása a "Fenológiai fázishoz"
     life_stage: '"Életszakasz" megjelölés hozzáadása'
     evidence_of_presence: '"Megjelenési bizonyíték" megjelölés hozzáadása'
   add_another_flag: Még egy bejelentés
@@ -281,11 +280,11 @@ hu:
   add_alive_or_dead_alive_annotation: '"Élő vagy élettelen: Élő" megjelölés hozzáadása'
   add_alive_or_dead_cannot_be_determined_annotation: '"Élő vagy élettelen: Nem meghatározható" megjelölés hozzáadása'
   add_alive_or_dead_dead_annotation: '"Élő vagy élettelen: Élettelen" megjelölés hozzáadása'
-  add_plant_phenology_budding_annotation: '"Rügyező fenológiai fázis" hozzáadása'
-  add_plant_phenology_flower_budding_annotation: '"Bimbózó fenológiai fázis" hozzáadása'
-  add_plant_phenology_flowering_annotation: '"Virágzó fenológiai fázis" hozzáadása'
-  add_plant_phenology_fruiting_annotation: '"Termő fenológiai fázis" hozzáadása'
-  add_plant_phenology_no_evidence_of_flowering_annotation: '"Virágzás bizonyítéka hiányzik fenológiai fázis" hozzáadása'
+  add_plant_phenology_budding_annotation: '"Fenológiai fázis: Rügyező" hozzáadása'
+  add_plant_phenology_flower_budding_annotation: '"Fenológiai fázis: Bimbózó" hozzáadása'
+  add_plant_phenology_flowering_annotation: '"Fenológiai fázis: Virágzó" hozzáadása'
+  add_plant_phenology_fruiting_annotation: '"Fenológiai fázis: Termő" hozzáadása'
+  add_plant_phenology_no_evidence_of_flowering_annotation: '"Fenológiai fázis: Virágzás bizonyítéka hiányzik" hozzáadása'
   add_life_stage_adult_annotation: '"Életszakasz: Felnőtt" megjelölés hozzáadása'
   add_life_stage_teneral_annotation: '"Életszakasz: Frissen kikelt" megjelölés hozzáadása'
   add_life_stage_subimago_annotation: '"Életszakasz: Szubimágó" megjelölés hozzáadása'
@@ -417,8 +416,8 @@ hu:
   all_taxa_in_this_guide: Minden taxon ebből az útmutatóból
   all_taxonomic_groups: "&laquo; Minden rendszertani csoport"
   all_updates: Minden frissítés
-  allow_curator_access: Gondnoki hozzáférés engedélyezése
-  allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt gondozóinak, hogy láthassák rejtett koordinátáidat
+  allow_curator_access: Kurátori hozzáférés engedélyezése
+  allow_project_curators_to_view_your_private_coordinates: Engedélyezed a projekt kurátorainak, hogy láthassák rejtett koordinátáidat
   allowed_html: Engedélyezett HTML
   allowed_occurrence_status_values: Az előfordulási státusz megengedett értékei
   allowed_values: Megengedett értékek
@@ -547,7 +546,7 @@ hu:
   are_you_sure_you_want_to_delete_this_post: Biztos, hogy törlöd ezt a cikket?
   are_you_sure_you_want_to_delete_this_taxon_change: Biztosan törlöd ezt a taxonváltoztatást?
   are_you_sure_you_want_to_remove_all_tags: Biztosan törlöd az összes címkét?
-  are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint gondnokot?
+  are_you_sure_you_want_to_remove_curator: Biztosan törlöd %{user} felhasználót mint kurátort?
   are_you_sure_you_want_to_remove_from_project: Biztos, hogy eltávolítod %{user}-t ebből a projektből?
   are_you_sure_you_want_to_remove_manager: Biztos, hogy eltávolítod %{user}-t mint menedzsert?
   are_you_sure_you_want_to_remove_spammer: |
@@ -675,8 +674,8 @@ hu:
   browse: Böngészés
   browse_all_projects: Böngészés a projektek között
   browse_all_species: Összes faj böngészése
-  browse_observations: Megfigyelések megtekintése
-  browse_people: Emberek keresése
+  browse_observations: Megfigyelések böngészése
+  browse_people: Emberek böngészése
   browse_projects: Böngészés a projektek között
   browse_species_that_occur_near_this_observation: Fajok keresése közel e megfigyeléshez
   bulk_import_of_filename_is_complete: "%{filename} csoportos betöltése kész"
@@ -937,14 +936,14 @@ hu:
     molt: Levedlett kültakaró
   controlled_term_definitions:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
+    cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
     dead: Az élőlény halott vagy a haldoklik
     flower_budding: A virágbimbók látszanak, de nincsenek kinyílva
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
-    cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
+    molt: Levedlett bőr vagy más kültakaró
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
-    molt: Levedlett bőr vagy más kültakaró
   convert: Konvertálás
   coordinate_systems: Koordináta-rendszerek
   coordinates: Koordináták
@@ -1006,12 +1005,12 @@ hu:
   curate_user: Felhasználó gondozása
   curating: Gondozás
   curation: Gondozás
-  curator: Gondnok
+  curator: Kurátor
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Meg kell indokolnod, hogy miért akarsz kurátor lenni.
   #Prompt for information when applying to be a curator
-  curator_application_fields_explanation_html: Miért akarsz gondnok lenni?
+  curator_application_fields_explanation_html: Miért akarsz kurátor lenni?
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
     Ha az iNaturalist taxonómiáját akarod szerkeszteni, kérünk, hogy mondj egy-két példát a végrehajtani kívánt változtatásokra, és adj meg forrásokat a javasolt változtatásokhoz. Ha releváns, kérünk, hogy hivatkozz a megfelelő taxonómiai hatóságra <a
@@ -1021,19 +1020,19 @@ hu:
     Ha gyakori neveket akarsz szerkeszteni, kérjük mondj egy-két példát a végrehajtani kívánt változtatásokra.
   #Prompt for information when applying to be a curator
   curator_application_fields_moderation_examples_html: |
-    Ha viselkedést akarsz moderálni az iNaturaliston, kérünk hogy mondj egy-két példát közösségi irányelvek megsértésére és mit tennél azokban a helyzetekben.
+    Ha viselkedést akarsz moderálni az iNaturaliston, kérjük, hogy mondj egy-két példát közösségi irányelvek megsértésére, és arra, hogy mit tennél azokban a helyzetekben.
   #Header
   curator_application_how_curators_lose_their_powers: |
     Hogyan veszíti el egy kurátor a hatáskörét
   #Message shown when a curator application has been succesfully submitted
-  curator_application_success: Gondozói jelentkezés beküldve
+  curator_application_success: Kurátori jelentkezés beküldve
   #Header
-  curator_application_what_curators_can_do: Mit tehetnek a gondnokok
+  curator_application_what_curators_can_do: Mit tehetnek a kurátorok
   curator_application_what_curators_can_do_hide_comments_html: |
     A <a
     href="/pages/community+guidelines" target="_blank">Közösségi irányelveket</a> sértő felhasználók felfüggesztése és megjegyzéseinek elrejtése.
   #Header
-  curator_application_what_curators_cannot_do: Mit nem tehetnek a gondnokok
+  curator_application_what_curators_cannot_do: Mit nem tehetnek a kurátorok
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
@@ -1048,9 +1047,9 @@ hu:
   curator_application_title: Kurátori jelentkezés
   #Header followed by a list
   curator_application_you_should_apply_if: |
-    Csak akkor jelentkezhetsz gondozónak, ha:
-  curators_changed_for_x_html: "%{x} gondozói megváltoztak"
-  curators: Gondnokok
+    Csak akkor jelentkezhetsz kurátornak, ha:
+  curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
+  curators: Kurátorok
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -1459,7 +1458,7 @@ hu:
   #Label for the date/time when a flag was created
   flag_created: Bejelentés létrehozva
   flag_deleted: Bejelentés törölve
-  flag_description: A tartalom bejelentésével értesíted a gondozókat a problémáról.
+  flag_description: A tartalom bejelentésével értesíted a kurátorokat a problémáról.
   flag_comment_description: Megjegyzés hozzáadása az okokról és a bizonyítékról (opcionális).
   flag_for_check_list_title_html: |
     Lista bejelentése: %{title}
@@ -1503,11 +1502,11 @@ hu:
   flagged_taxon: Bejelentett taxon
   flagged_thing_explanation: "%{thing} eddigi bejelentései:"
   flagging_desc: |
-    A bejelentéssel felhívhatod az önkéntes moderátoraink figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
+    A bejelentéssel felhívhatod az önkéntes kurátorok figyelmét egyes tartalmakra. Kérkük, hogy ne jelölj meg kifogásolhatóként olyan dolgokat, amelyeket magad is megoldhatsz, például meghatározás hozzáadásával, az Adatminőségi kiértékeléssel, vagy kapcsolatfelvétel révén azzal, aki a kifogásolt tartalmat létrehozta.
   flagger: Bejelentő
   flags: Bejelentések
   flags_with_count: Bejelentések (%{count})
-  flags_explanation: "Az %{site_name} felhasználói bejelenthetik a gondozók vagy az adminok figyelmét igénylő hibákat."
+  flags_explanation: "Az %{site_name} felhasználói bejelenthetik a kurátorok vagy az adminok figyelmét igénylő hibákat."
   flags_for_x_html: '%{x} bejelentések'
   flickr_account_information: Flickr fiókod adatai
   flickr_has_no_creative_commons: A Flicker-nek nincsenek Creative-Commons licencű képei erről a helyről.
@@ -1602,7 +1601,7 @@ hu:
   hide: Elrejtés
   hide_content: Tartalom elrejtése
   hide_desc: |
-    A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap gondozói és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
+    A tartalom elrejtésével megszűnik a publikus hozzáférés az adott tartalomhoz, de mások továbbra is látni fogják, hogy valami el van rejtve. Ezenkívűl a honlap kurátorai és a tartalom szerzője láthatják a rejtett tartalmat. Általánosságban ez csak az írott tartalmakra érvényes, például ha elrejted egy azonosítás tartalmát, az azonosítás maga látható marad, de az azonosító megjegyzései rejtve lesznek. Ha már el van rejtve egy tartalom, azt már csak a honlap kezelője állíthatja vissza, úgyhogy kérünk légy óvatos és csak kivételes esetben használd.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Megjelölés nélküli" elrejtése'
@@ -1811,9 +1810,11 @@ hu:
   lexicon: Szókészlet
   lexicon_cannot_contain_words: "nem tartalmazhatja ezeket a szavakat: %{words}"
   lexicons:
-    scientific_names: Tudományos nevek
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albán
+    aou_4_letter_codes: Négybetűs AOU-kódok
+    aou_6_letter_codes: Hatbetűs AOU-kódok
     arabic: Arab
     armenian: Örmény
     belarusian: Belorusz
@@ -1837,11 +1838,14 @@ hu:
     galician: Galíciai
     german: Német
     greek: Görög
+    gujarati: Gudzsaráti
     hawaiian: Hawaii
     hebrew: Héber
+    hokkien: Hokkien
     hungarian: magyar
     icelandic: Izlandi
     indonesian: Indonéz
+    irish: Ír
     italian: Olasz
     japanese: Japán
     korean: Koreai
@@ -1860,6 +1864,7 @@ hu:
     portuguese: Portugál
     romanian: Román
     russian: Orosz
+    scientific_names: Tudományos nevek
     serbian: szerb
     sinhala: Szingaléz
     slovak: Szlovák
@@ -1872,6 +1877,9 @@ hu:
     tokelauan: Tokelaui
     turkish: Török
     ukrainian: Ukrán
+    uyghur: Ujgur
+    vietnamese: Vietnámi
+    zulu: Zulu
   less: Kevesebb
   #Button show less text
   less__context_text: Kevesebb
@@ -2273,7 +2281,7 @@ hu:
   'no': 'Nem'
   no_but_it_is_a_member_of_taxon: "Nem, de %{taxon} taxon tagja"
   no_comments_yet: Még nincsenek megjegyzések.
-  no_curators_yet: Még nincs gondnok!
+  no_curators_yet: Még nincs kurátor!
   no_description: Nincs leírás
   no_flickr_photos_tagged: Egy Flickr fotó sem kapott címkét!
   no_identifications: Nincsenek meghatározások
@@ -3152,7 +3160,7 @@ hu:
     one: Projekt admin
     other: Projekt adminok
   project_coordinate_access_warning: |
-    A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik gondozójában, mielőtt megbíznál ebben a projektben.
+    A koordinátákhoz való hozzáférés fontos a kutatók számára, de ezt kihasználhatják az orrvadászok és az illegális növénygyűjtők. Bizonyosodj meg arról, hogy bízol a projekt mindegyik kurátorában, mielőtt megbíznál ebben a projektben.
   project_created_on: 'hozta létre ezt a projektet ekkor: %{date}'
   project_curators: A projekt kurátorai
   project_group_label: Csoport
@@ -3161,7 +3169,7 @@ hu:
   project_list_defaults:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> gondozói hozzáadták pár megfigyelésedet
+    <a href="%{url}">%{project}</a> kurátorai hozzáadták pár megfigyelésedet
   project_members_only: Csak projekttagok
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
@@ -3369,8 +3377,8 @@ hu:
   remove_all_tags: Minden címke eltávolítása
   remove_conservation_status: a természetvédelmi státusz eltávolítása
   remove_from: Eltávolítás innen
-  remove_curator: Gondozó eltávolítása
-  remove_curator_status: Gondozói státusz eltávolítása
+  remove_curator: Kurátor eltávolítása
+  remove_curator_status: Kurátori státusz eltávolítása
   remove_from_featured: Törlés a kiemeltek közül
   remove_from_guide: Eltávolítás az útmutatóból
   remove_from_list: Eltávolítás a listából
@@ -3486,7 +3494,7 @@ hu:
   #translation keys like `your_identifications`. This is here in case we
   #forget to add a translation key like that.
   second_person_possessive_singular: "%{noun} tőled"
-  see_something_wrong_with_taxon: Látsz valami hibásat e taxonnal kapcsolatban? Tudasd a gondozókkal.
+  see_something_wrong_with_taxon: Látsz valami hibásat e taxonnal kapcsolatban? Tudasd a kurátorokkal.
   seen_nearby: A közelben látták
   select: Kiválasztás
   select_all: Összes kijelölése
@@ -3767,6 +3775,7 @@ hu:
   these_folks_kindly_volunteer_to: Ők azok, akik önkéntesen gondozzák a rendszertant és megoldanak különféle problémákat.
   these_observations_have_not_been_uploaded_yet: |
     Ezek a megfigyelések még nem kerültek feltöltésre.
+  this_bioblitz_beings_in: 'Bioblitz visszaszámlálás:'
   this_is_how_taxon_names_will_be_displayed: Azt mutatja, hogyan jelenjenek meg számodra a taxonmegnevezések %{site_name} minden oldalán
   this_is_your_observation: Ez a te megfigyelésed
   this_is_your_observation_desc: Mindig láthatod saját megfigyeléseid koordinátáit.
@@ -4173,7 +4182,7 @@ hu:
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
-  we_have_no_conservation_status_for_this_taxon: Ez a taxon nem rendlkezik természetvédelmi státusszal
+  we_have_no_conservation_status_for_this_taxon: Nincs a természetvédelmi státuszra vonatkozó adatunk erről a taxonról
   we_have_no_establishment_data_for_this_taxon: "Nincs honossági adatunk erről a taxonról"
   weather: Időjárás
   website: Weboldal
@@ -4595,8 +4604,6 @@ hu:
           </p>
 
         cumulative_count_desc: 'A meghatározások száma az egyéni taxon szintjén és az alatt'
-        data_quality_assessment_desc_html: |
-          Az Adatminőségi kiértékelés a megfigyelés pontosságára irányul. A tudományos szintű meghatározások felhasználhatók tudományos célokra. Alább szavazatoddal értékelheted a megfigyelést:
         disagreement_count_desc: "Azon meghatározási taxonok száma, amelyek a magasabb szintű taxonokon is kívül esnek"
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
@@ -4971,7 +4978,7 @@ hu:
         #Checkbox label for user preference about what to receive in the daily
         #email update. This one controls whether or not you get notifications
         #when the curators change in a project you've joined
-        notification_preferences_project_curator_changes: Változások a projek gondozói tekintetében
+        notification_preferences_project_curator_changes: Változások a projek kurátorai tekintetében
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Rendszertani változások
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5105,6 +5112,18 @@ hu:
       over_x_years:
         one: több, mint %{count} éve
         other: több, mint %{count} éve
+    countdown_x_days:
+      one: NAP
+      other: NAP
+    countdown_x_hours:
+      one: ÓRA
+      other: ÓRA
+    countdown_x_minutes:
+      one: PERC
+      other: PERC
+    countdown_x_seconds:
+      one: MP
+      other: MP
     prompts:
       day: Nap
       hour: Óra
@@ -5392,7 +5411,7 @@ hu:
               only_staff_can_unhide: Csak a személyzet jeleníthet meg rejtett tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
-              must_be_a_curator: gondozó kell legyen
+              must_be_a_curator: kurátor kell legyen
         observation:
           attributes:
             base:
@@ -5408,7 +5427,7 @@ hu:
               dna_only_atcg: "DNS-hez csak az A, T, C vagy G karaktereket tartalmazhatja"
             observation_id:
               user_does_not_accept_fields_from_others: a felhasználó nem fogad el mezőket másoktól
-              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap gondozóitól fogad el mezőket
+              user_only_accepts_fields_from_site_curators: a felhasználó csak a honlap kurátoraitól fogad el mezőket
         observations_export_flow_task:
           attributes:
             base:
@@ -5438,7 +5457,7 @@ hu:
         project_observation:
           attributes:
             user_id:
-              must_be_curator: ennek a projektnek gondozója kell legyen
+              must_be_curator: ennek a projektnek kurátora kell legyen
             observation_id:
               must_be_observed_after: |
                 %{time} után kell legyen megfigyelve
@@ -5448,22 +5467,22 @@ hu:
           attributes:
             rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                csak e taxon gondozója változtathatja meg
+                csak e taxon kurátora változtathatja meg
         taxon_name:
           attributes:
             name:

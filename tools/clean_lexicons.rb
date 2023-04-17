@@ -94,7 +94,14 @@ puts <<~TXT
   We get A LOT of lexicons that are variations of existing lexicons, so this
   tries to make some of the more common ones conform to conventional versions.
 TXT
+# Note that we try to use the English exonym listed on the en.wikipedia.org
+# page of a language as the canonical name, so "Japanese" and not "Nigongo"
+# or "日本語". Localization should happen on Crowdin.
 synonyms = {
+  # FWIW, "Aou 4 Letter Codes" is the canonical form that callbacks will
+  # enforce. This is just here to clean up some records that predate those
+  # callbacks
+  "Aou 4 Letter Codes" => ["Aou 4 Letter Codes", "AOU 4-Letter Codes"],
   "Bunun" => ["Bunun (Taiwan)"], # this is regional but doesn't really need to be since this is only spoken in Taiwan
   TaxonName::BELARUSIAN => ["Беларуская"],
   TaxonName::CATALAN => ["Català"],
@@ -110,12 +117,14 @@ synonyms = {
   TaxonName::GERMAN => ["Deutsch"],
   "Greek" => ["Greek (Modern)", "Modern Greek (1453 )"],
   "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
+  "Hill Mari" => ["Western Mari"],
   "Hokkien" => ["臺灣閩南語"],
   TaxonName::ITALIAN => ["Italiano"],
   "Indonesian" => ["Bahasa Indonesia"],
   "Irish" => ["Irish Gaelic"],
   TaxonName::JAPANESE => ["Japanese (Kanji)"],
-  "Ju|'hoan" => ["Juǀ’hoan"],
+  "Juǀʼhoan" => ["Juǀ’hoan"],
+  "Lozi" => ["Si Lozi", "siLozi"],
   "Malay" => ["Malay (Individual Language)", "Malayan"],
   "Nahuatl" => ["Náhuatl"],
   TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
@@ -136,12 +145,13 @@ synonyms = {
     "学名",
     "學名"
   ],
-  TaxonName::SETSWANA => ["Tswana"],
   TaxonName::SLOVAK => ["Slovakian"],
   TaxonName::SLOVENIAN => ["Slovene"],
   "Sotho (Northern)" => ["Northern Sotho", "Sotho ( Northern)"],
+  "Sotho" => ["Southern Sotho", "Sotho (Southern)", "Sesotho"],
   TaxonName::SPANISH => ["Español"],
   "Swahili" => ["Swahili (Individual Language)", "Kiswahili"],
+  TaxonName::TSWANA => ["Setswana"],
   TaxonName::UKRAINIAN => ["український"],
   "Uyghur" => ["Uyghurche / ئۇيغۇرچە", "Uyghurche", "ئۇيغۇرچە"],
   TaxonName::WARAY_WARAY => ["Waray", "Waray (Philippines)"],
@@ -235,6 +245,20 @@ puts "== REINDEXING #{taxon_ids_to_index.size} TAXA =="
 puts
 Taxon.elastic_index!( ids: taxon_ids_to_index ) unless @opts.dry
 
+top_100_lexicons = TaxonName.
+  group( "lexicon" ).
+  count.
+  sort_by {| _lexicon, count | count }.
+  reverse[0..100].
+  map { _1[0] }.
+  reject( &:blank? )
+invalid_synonyms = synonyms.map {| _canonical, alternatives | alternatives }.flatten
+top_100_untranslatable_lexicons = top_100_lexicons.
+  select do | lexicon |
+    I18n.t( lexicon.parameterize.underscore, scope: "lexicons", default: nil ).nil? &&
+      !invalid_synonyms.include?( lexicon )
+  end
+
 puts
 puts "== REPORT =="
 puts
@@ -245,6 +269,16 @@ if deleted_name_error_counts.size.positive?
   deleted_name_error_counts.each do | error, count |
     puts "\t\t#{count.to_s.rjust( 6 )} #{error}"
   end
+end
+unless top_100_untranslatable_lexicons.blank?
+  puts
+  puts "Top 100 Lexicons Not Available for Translation"
+  puts
+  top_100_untranslatable_lexicons.each do | lexicon |
+    normalized_lexicon = TaxonName.normalize_lexicon( lexicon )
+    puts "\t#{normalized_lexicon.parameterize.underscore}: #{normalized_lexicon}"
+  end
+  puts
 end
 puts "#{created_ptns.size} place taxon names created"
 puts "#{invalid_ptns.size} place taxon names not created"

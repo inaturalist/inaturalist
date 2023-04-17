@@ -1292,22 +1292,22 @@ en:
     molt: Molt
   controlled_term_definitions:
     alive: Organism is living and shows no signs of imminent death
-    dead: Organism is dead or shows signs of imminent death
-    flower_budding: Flower buds are visible but not open
-    flowering: Flowers visible, open, and still attached to the plant
-    fruiting: Fruit visible and still attached to the plant
-    no_evidence_of_flowering: Media provides no evidence of reproductive structures
-    teneral: Adult that has recently emerged but has not yet achieved its final adult form
-    cannot_be_determined: Cannot be determined from the evidence provided
-    feather: One or more feathers not attached to an organism
-    organism: Whole or partial organism
-    scat: Fecal matter (not owl pellets or other regurgitated matter)
-    track: Impression in ground or snow made by organism
     bone: |
       Predominantly endoskeletal remains; partial bone exposure in an otherwise
       intact organism should be labelled "organism"
-    molt: Discarded skin or exoskeleton
+    cannot_be_determined: Cannot be determined from the evidence provided
+    dead: Organism is dead or shows signs of imminent death
+    feather: One or more feathers not attached to an organism
+    flower_budding: Flower buds are visible but not open
+    flowering: Flowers visible, open, and still attached to the plant
+    fruiting: Fruit visible and still attached to the plant
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
+    molt: Discarded skin or exoskeleton
+    no_evidence_of_flowering: Media provides no evidence of reproductive structures
+    organism: Whole or partial organism
+    scat: Fecal matter (not owl pellets or other regurgitated matter)
+    teneral: Adult that has recently emerged but has not yet achieved its final adult form
+    track: Impression in ground or snow made by organism
   controls: Controls
   convert: Convert
   coordinate_systems: Coordinate systems
@@ -2592,20 +2592,25 @@ en:
   lexicon: Lexicon
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
-    scientific_names: Scientific Names
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanian
     aou_4_letter_codes: AOU 4-Letter Codes
     aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabic
     armenian: Armenian
+    asturian: Asturian
+    basque: Basque
     belarusian: Belarusian
     bengali: Bengali
+    bikol: Bikol
     bulgarian: Bulgarian
+    carolinian: Carolinian
     catalan: Catalan
     cebuano: Cebuano
     chinese_simplified: Chinese (simplified)
     chinese_traditional: Chinese (traditional)
+    chuvash: Chuvash
     creole_french: creole (French)
     creole_portuguese: creole (Portuguese)
     croatian: Croatian
@@ -2616,29 +2621,38 @@ en:
     english: English
     estonian: Estonian
     faroese: Faroese
+    fijian: Fijian
     finnish: Finnish
     french: French
     galician: Galician
     gela: Gela
+    georgian: Georgian
     german: German
     greek: Greek
     gujarati: Gujarati
     hawaiian: Hawaiian
     hebrew: Hebrew
+    herero: Herero
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Hodges Number
     hokkien: Hokkien
     hungarian: Hungarian
     icelandic: Icelandic
     ilokano: Ilokano
     indonesian: Indonesian
+    irish: Irish
     italian: Italian
     japanese: Japanese
     kannada: Kannada
     kazakh: Kazakh
     korean: Korean
+    kweyol: Kwéyòl
     latvian: Latvian
     lithuanian: Lithuanian
+    lozi: Lozi
     luxembourgish: Luxembourgish
+    malagasy: Malagasy
     malay: Malay
     malayalam: Malayalam
     maltese: Maltese
@@ -2648,6 +2662,8 @@ en:
     misima_paneati: Misima-paneati
     mongolian: Mongolian
     nahuatl: Nahuatl
+    navajo: Navajo
+    ndebele: Ndebele
     norwegian: Norwegian
     occitan: Occitan
     ojibwe: Ojibwe
@@ -2659,23 +2675,39 @@ en:
     romanian: Romanian
     russian: Russian
     santali: Santali
+    scientific_names: Scientific Names
     serbian: Serbian
-    setswana: Setswana
+    shona: Shona
     sinhala: Sinhala
     slovak: Slovak
     slovenian: Slovenian
+    sotho: Sotho
+    sotho: Sotho
+    sotho_northern: Sotho (Northern)
     spanish: Spanish
     swahili: Swahili
+    swati: Swati
     swedish: Swedish
     tagalog: Tagalog
     tahitian: Tahitian
+    tamil: Tamil
     thai: Thai
     tokelauan: Tokelauan
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turkish
+    u_s_d_a_symbol: U.S.D.A. Symbol
     ukrainian: Ukrainian
     uyghur: Uyghur
-    waray_waray: Waray-Waray
+    venda: Venda
+    vermont_flora_codes: Vermont Flora Codes
+    vietnamese: Vietnamese
     visayan: Visayan
+    waray_waray: Waray-Waray
+    xhosa: Xhosa
+    zapoteco: Zapoteco
+    zulu: Zulu
   less: Less
   # Button show less text
   less__context_text: Less
@@ -2772,6 +2804,7 @@ en:
     id: Indonesian
     it: Italian
     ja: Japanese
+    ka: Georgian
     kk: Kazakh
     kn: Kannada
     ko: Korean
@@ -4869,7 +4902,7 @@ en:
     iNaturalist automatically hides the coordinates for some species to protect
     them from disturbance, collection, or poaching. If the observation
     coordinates have only been hidden automatically to protect species,
-    iNaturalist shares  the true coordinates of all observations from their
+    iNaturalist shares the true coordinates of all observations from their
     respective countries with Network Members.
   sites_affiliation_more_email_addresses: |
     Email addresses are shared with Network Members solely for the purposes of
@@ -7031,10 +7064,13 @@ en:
           project curators cannot see. If you don't want to share the
           coordinates of this observation with the curators of this project,
           you must remove the observation from the project.
-        data_quality_assessment_desc_html: |
-          The Data Quality Assessment is an evaluation of an observation’s
-          accuracy. Research Grade observations may be used by scientists for
-          research. Cast your vote below:
+        data_quality_assessment_desc3_html: |
+          The Quality Grade summarizes the accuracy, precision, completeness,
+          relevance, and appropriateness of an iNaturalist observation as
+          biodiversity data. Some attributes are automatically determined,
+          while others are subject to a vote by iNat users. iNaturalist
+          shares licensed "Research Grade" observations with a number of data
+          partners for use in science and conservation.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
@@ -8754,17 +8790,17 @@ en:
         one: "%{count} second"
         other: '%{count} seconds'
     countdown_x_days:
-      one: day
-      other: days
+      one: DAY
+      other: DAYS
     countdown_x_hours:
-      one: hour
-      other: hours
+      one: HOUR
+      other: HOURS
     countdown_x_minutes:
-      one: min
-      other: min
+      one: MIN
+      other: MINS
     countdown_x_seconds:
-      one: sec
-      other: sec
+      one: SEC
+      other: SECS
     prompts:
       day: Day
       hour: Hour

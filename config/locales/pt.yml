@@ -930,13 +930,13 @@ pt:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
   controlled_term_definitions:
+    bone: |
+      Restos endo-esqueléticos predominantes; exposição parcial de ossos num organismo intacto deve ser rotulado de "organismo"
     feather: Uma ou mais penas não ligadas a um organismo
+    molt: Pele ou exoesqueleto descartados
     organism: Organismo inteiro ou parcial
     scat: Matéria fecal (não pelotas de coruja ou outra regurgitação)
     track: Impressão no solo ou neve feita pelo organismo
-    bone: |
-      Restos endo-esqueléticos predominantes; exposição parcial de ossos num organismo intacto deve ser rotulado de "organismo"
-    molt: Pele ou exoesqueleto descartados
   controls: Controlos
   convert: Converter
   coordinate_systems: Sistemas de coordenadas
@@ -1754,7 +1754,6 @@ pt:
   let_us_walk_you_through: Deixe-nos apresentar as principais características deste sítio
   lexicon: Léxico
   lexicons:
-    scientific_names: Nomes científicos
     afrikaans: Africanês
     albanian: Albanês
     bengali: Bengalês
@@ -1789,6 +1788,7 @@ pt:
     portuguese: Português
     romanian: Romano
     russian: Russo
+    scientific_names: Nomes científicos
     spanish: Espanhol
     swedish: Sueco
     tagalog: Tagalo
@@ -3641,15 +3641,6 @@ pt:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
-    countdown_x_days:
-      one: dia
-      other: dias
-    countdown_x_hours:
-      one: hora
-      other: horas
-    countdown_x_seconds:
-      one: s
-      other: s
     prompts:
       day: Dia
       hour: Hora

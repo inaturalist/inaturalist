@@ -770,6 +770,8 @@ et:
   birds: linnud
   birthday: Sünnipäev
   black: must
+  block: Blokeeri
+  blocking_description: Blokeerimine ei luba sinu ja teise kasutaja vahel mitte mingisugust suhtlust. See on olukordadeks, kus teine kasutaja võib ohustada sinu elu nagu jälitamine või solvav käitumine.
   block_removed: Blokeering eemaldatud
   blocked_users: Blokeeritud kasutajad
   blog_widget: Blogipidamise tööriist
@@ -1123,21 +1125,21 @@ et:
     molt: Kest
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
+    bone: |
+      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
+    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
     dead: Organism on surnud või on naha peatse surma märgid
+    feather: Üks või enam organismi külge mitte kinnituvat sulge
     flower_budding: Õite pungad on nähtavad, kuid pole avanenud
     flowering: Õied nähtavad, avatud ja ikka veel taime küljes
     fruiting: Vili nähtav ja ikka veel taime küljes
+    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
+    molt: Kõrvale heidetud nahk või eksoskelett
     no_evidence_of_flowering: Meedia järgi pole paljunemisele viitavaid tunnuseid näha
-    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
-    cannot_be_determined: Tõendite põhjal pole võimalik kindlaks määrata
-    feather: Üks või enam organismi külge mitte kinnituvat sulge
     organism: Täielik või osaline organism
     scat: Fekaalid (mitte öökulli räpetombud või muu tagasioksendatud mateeria)
+    teneral: Äsja väljunud täiskasvanud isend, kes pole veel saavutanud oma lõpliku täiskasvanud vormi
     track: Organismi poolt maapinda või lumme jäetud jälg
-    bone: |
-      Peamiselt siseskeletist koosnevad jäänused; muus osas tervest organismist välja paistvaid luid tuleks märkida terminiga "organism"
-    molt: Kõrvale heidetud nahk või eksoskelett
-    gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
   controls: Juhthoovad
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
@@ -1567,6 +1569,8 @@ et:
   draft: visand
   #Noun, as in a journal post that has not been published
   draft_: Visand
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Visandi autor %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Visand salvestatud!
   #Noun, as in journal posts that has not been published
@@ -1578,9 +1582,12 @@ et:
   draw_rectangular_boundary: Tee nelinurkne piirjoon
   drawings: Joonistused
   duplicate_verb: Kopeeri
+  duration_value: "Kestvus: %{duration} minutit"
   each_place_displays_all_species_inat_knows: "Igal koha lehel on äratoodud kõik liigid, mida %{site_name} teab seal leiduvat, kaasarvatud info nende arvukuse ja kaitsestaatuse kohta ning liigi esmavaatluse teinud isiku nimi meie andmebaasis. Liike saab filtreerida taksonoomilise grupi, värvi, kaitsestaatuse järgi või neid leida lihtsalt otsingu abil."
   earliest_added: Varem lisatud
   edit: Muuda
+  #Title of the moderation note editor
+  edit_moderator_note: Muuda moderaatori märkust
   edit_a_batch_of_observations: Muuda vaatluste komplekti
   edit_account_settings_and_profile: "Muuda konto sätteid &amp; profiili"
   edit_assessment: Muuda hinnangut
@@ -1608,6 +1615,7 @@ et:
   edit_source: Muuda allikat
   edit_taxa: Muuda taksoneid
   edit_taxon: Muuda taksonit
+  edit_taxon_framework: Muuda taksoniraamistikku
   edit_taxon_link: Muuda taksoni linki
   edit_taxon_range: Muuda taksoni piirkonda
   edit_the_observation: Muuda vaatlust
@@ -1632,7 +1640,10 @@ et:
   editing_project: Muudan projekti %{project}
   editing_project_asset: Muudan lisasid projektil
   editing_subscription_to_x_html: "Muudan jälgimist: %{x}"
+  editing_taxon: Muudan taksonit %{taxon}
   editing_taxon_link: Muudan taksoni linki
+  editing_taxon_name_for_taxon_html: Muudan taksoni nime "%{name}" taksonil %{taxon}
+  editing_taxon_range_for_taxon_html: Muudan taksoni %{taxon} taksoni piirkonda
   editing_this: Muudan elementi %{elem}
   editing_x_in_y: "Muudan %{x}/%{y}"
   editors: Toimetajad
@@ -1657,6 +1668,7 @@ et:
     <strong>%{link_start_tag}Palun kinnita oma e-posti aadress%{link_end_tag}</strong>.
     Kõik kasutajad peavad oma e-posti aadressi kinnitama kuupäevaks %{date}. Peale seda kuupäeva ei saa aadressi mitte kinnitanud kasutajad enne sisse logida, kui uuendavad oma salasõna. E-posti aadressi kinnitamiseks külasta oma %{link_start_tag}konto sätteid%{link_end_tag}.
   email_copyright: "&copy; %{x}, kõik õigused kaitstud"
+  email_notifications: E-posti teavitused
   embed: 'Manusta'
   embed_place_widget: Manusta koha koodijupp
   embed_this_assessment: Manusta see hinnang
@@ -1669,6 +1681,8 @@ et:
   endangered: Hävimisohus
   endemic: Endeemiline
   endemic_to_x: "Endeemiline kohas %{x}"
+  #Abbreviation for the Encyclopedia of Life (https://eol.org/)
+  eol: EOL
   eol_collection_url: "EOL-i kollektsiooni URL"
   error_updating_photo: "Foto uuendamine ebaõnnestus: %{photo_errors}"
   establishment:
@@ -2168,9 +2182,10 @@ et:
   let_us_walk_you_through: Vaatame üle selle lehe peamised võimalused.
   lexicon: Sõnastik
   lexicons:
-    scientific_names: Teaduslikud nimed
     afrikaans: Afrikaani
     albanian: Albaania
+    aou_4_letter_codes: 4-tähelised AOU koodid
+    aou_6_letter_codes: 6-tähelised AOU koodid
     arabic: Araabia
     armenian: Armeenia
     belarusian: Valgevene
@@ -2194,11 +2209,14 @@ et:
     french: Prantsuse
     galician: Galiitsia
     gela: Gela
+    georgian: Gruusia
     german: Saksa
     greek: Kreeka
+    gujarati: Gudžarati
     hawaiian: Havai
     hebrew: Heebrea
     hiligaynon: Hiligainoni
+    hokkien: Hokkien
     hungarian: Ungari
     icelandic: Islandi
     ilokano: Iloko
@@ -2231,8 +2249,8 @@ et:
     romanian: Rumeenia
     russian: Vene
     santali: Santali
+    scientific_names: Teaduslikud nimed
     serbian: Serbia
-    setswana: Tsvana
     sinhala: Singali
     slovak: Slovaki
     slovenian: Sloveenia
@@ -2245,8 +2263,9 @@ et:
     tokelauan: Tokelau
     turkish: Türgi
     ukrainian: Ukraina
-    waray_waray: Varai
+    uyghur: Uiguuri
     visayan: Visayani
+    waray_waray: Varai
   less: Vähem
   #Button show less text
   less__context_text: Vähem
@@ -2342,6 +2361,7 @@ et:
     id: Indoneesia
     it: Itaalia
     ja: Jaapani
+    ka: Gruusia
     kk: Kasahhi
     kn: Kannada
     ko: Korea
@@ -5049,8 +5069,6 @@ et:
         cumulative_count_desc: 'Taksoni ja kõigi selle alamtaksonite määratluste hulk'
         curator_coordinate_access_disabled_desc_html: |
           See projekt ei luba lisada vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse projektist eemaldama.
-        data_quality_assessment_desc_html: |
-          Andmete kvaliteedihinnang näitab vaatluse täpsust. Teaduskõlbulike vaatluseid saavad teadlased kasutada oma uurimistöös. Hinda allpool ise:
         disagreement_count_desc: "Taksoni alamtaksonite seas mitte olevate määratluste hulk"
         identification_count_desc: 'Selle konkreetse taksoni määratluste hulk'
         flagged_photos_desc_html: |
@@ -5809,14 +5827,17 @@ et:
         one: "1 sekund"
         other: '%{count} sekundit'
     countdown_x_days:
-      one: päev
-      other: päeva
+      one: PÄEV
+      other: PÄEVA
     countdown_x_hours:
-      one: tund
-      other: tundi
+      one: TUND
+      other: TUNDI
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sek
-      other: sek
+      one: SEK
+      other: SEK
     prompts:
       day: Päev
       hour: Tund

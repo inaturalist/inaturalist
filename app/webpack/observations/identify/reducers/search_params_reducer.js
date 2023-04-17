@@ -46,7 +46,7 @@ const normalizeParams = params => {
       newValue = parseInt( newValue, 10 );
     }
     // coerce arrayish strings to arrays
-    if ( k === "month" && !_.isArray( newValue ) ) {
+    if ( k === "month" && !Array.isArray( newValue ) ) {
       newValue = newValue.toString( ).split( "," ).map( m => parseInt( m, 10 ) );
     } else if ( typeof ( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
@@ -96,7 +96,7 @@ const paramsForSearch = params => {
     if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
       return;
     }
-    if ( _.isArray( v ) && v.length === 0 ) {
+    if ( Array.isArray( v ) && v.length === 0 ) {
       return;
     }
     newParams[k] = v;
@@ -150,7 +150,7 @@ const setUrl = ( newParams, defaultParams ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    if ( _.isArray( v ) ) {
+    if ( Array.isArray( v ) ) {
       urlState[k] = v.join( "," );
     } else {
       urlState[k] = v;

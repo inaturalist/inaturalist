@@ -238,7 +238,8 @@ export function infiniteScrollObservations( previousScrollIndex, nextScrollIndex
     let params = {
       ...project.search_params,
       per_page: 50,
-      page: project.filtered_observations_page + 1
+      page: project.filtered_observations_page + 1,
+      no_total_hits: true
     };
     if ( config.observationFilters ) {
       params = Object.assign( params, config.observationFilters );

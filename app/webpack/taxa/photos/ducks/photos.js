@@ -28,7 +28,7 @@ export function setUrl( newParams, options = {} ) {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    if ( _.isArray( v ) ) {
+    if ( Array.isArray( v ) ) {
       newState[k] = v.join( "," );
     } else {
       newState[k] = v;
