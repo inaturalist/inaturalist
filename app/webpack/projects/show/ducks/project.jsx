@@ -309,12 +309,18 @@ export function fetchSpecies( ) {
   };
 }
 
-export function fetchObservers( ) {
+export function fetchObservers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.all_observers_loaded ) { return null; }
     const { testingApiV2 } = config;
-    const params = { ...project.search_params };
+    const params = {
+      ...project.search_params,
+      per_page: 0
+    };
+    if ( noPageLimit ) {
+      delete params.per_page;
+    }
     if ( testingApiV2 ) {
       params.fields = {
         user: {
@@ -326,7 +332,8 @@ export function fetchObservers( ) {
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
         observers_loaded: true,
-        observers: response
+        observers: response,
+        all_observers_loaded: noPageLimit
       } ) );
     } ).catch( handleAPIError );
   };
@@ -352,6 +359,16 @@ export function fetchSpeciesObservers( ) {
         species_observers: response
       } ) );
     } ).catch( handleAPIError );
+  };
+}
+
+export function setObserversSort( observersSort ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( );
+    if ( observersSort === "species" && !project.species_observers_loaded ) {
+      dispatch( fetchSpeciesObservers( ) );
+    }
+    dispatch( setConfig( { observersSort } ) );
   };
 }
 
@@ -437,7 +454,7 @@ export function fetchIconicTaxaCounts( ) {
 export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( !project ) { return null; }
+    if ( !project || project.project_type !== "umbrella" ) { return Promise.resolve( ); }
     const { testingApiV2 } = config;
     const params = { ...project.search_params };
     if ( testingApiV2 ) {
@@ -511,17 +528,12 @@ export function fetchOverviewData( ) {
       dispatch( fetchPosts( ) );
       return;
     }
-    if ( project.project_type === "umbrella" ) {
-      dispatch( fetchUmbrellaStats( ) )
-        .then( ( ) => dispatch( fetchRecentObservations( ) ) );
-    } else {
-      dispatch( fetchRecentObservations( ) );
-    }
     dispatch( fetchMembers( ) )
-      .then( ( ) => dispatch( fetchSpecies( ) ) );
-    dispatch( fetchObservers( ) )
-      .then( ( ) => dispatch( fetchIdentifiers( ) ) )
-      .then( ( ) => dispatch( fetchSpeciesObservers( ) ) );
+      .then( ( ) => dispatch( fetchRecentObservations( ) ) )
+      .then( ( ) => dispatch( fetchUmbrellaStats( ) ) )
+      .then( ( ) => dispatch( fetchSpecies( ) ) )
+      .then( ( ) => dispatch( fetchObservers( project.project_type !== "umbrella" ) ) )
+      .then( ( ) => dispatch( fetchIdentifiers( ) ) );
   };
 }
 
