@@ -796,7 +796,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         });
         $scope.speciesPagination.searching = false;
       } ).then( function( ) {
-        ObservationsFactory
+        return ObservationsFactory
           .identifiers( $scope.currentView === "identifiers" ? statsParams : statsParamsOnlyCount )
           .then( function( response ) {
           if( $scope.lastSearchTime != thisSearchTime ) { return; }
