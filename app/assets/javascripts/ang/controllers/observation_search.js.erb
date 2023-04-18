@@ -808,7 +808,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           } );
           $scope.identifiersPagination.searching = false;
         } );
-      } ).then( ( ) => {
+      } ).then( function( ) => {
         ObservationsFactory
           .observers( $scope.currentView === "observers" ? statsParams : statsParamsOnlyCount )
           .then( function( response ) {
