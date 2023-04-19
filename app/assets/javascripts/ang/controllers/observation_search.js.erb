@@ -792,8 +792,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         ? dataLoadPromises.unshift( $scope.loadObservers )
         : dataLoadPromises.push( $scope.loadObservers );
 
-      dataLoadPromises.reduce( ( p, promise ) => {
-         return p.then( ( ) => promise( thisSearchTime ) );
+      dataLoadPromises.reduce( function( p, promise ) {
+         return p.then( function( ) { return promise( thisSearchTime ); } );
       }, Promise.resolve( ) );
     } );
   };
