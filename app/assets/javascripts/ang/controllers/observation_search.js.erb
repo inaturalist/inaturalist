@@ -682,6 +682,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.pagination.perPage = $scope.pagination.maxSections * $scope.pagination.perSection;
     $scope.pagination.searching = true;
     $scope.pagination.stopped = false;
+    $scope.identifiersPagination = $scope.identifiersPagination || { };
+    $scope.identifiersPagination.searching = true;
+    $scope.observersPagination = $scope.observersPagination || { };
+    $scope.observersPagination.searching = true;
     $scope.speciesPagination = $scope.speciesPagination || { };
     $scope.speciesPagination.page = 1;
     $scope.speciesPagination.perPage = 50;
@@ -777,11 +781,30 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         return;
       }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      var speciesParams = _.extend( { }, statsParams, {
-        per_page: $scope.speciesPagination.perPage
-      } );
-      ObservationsFactory.speciesCounts( speciesParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
+      $scope.statsParams = statsParams;
+      $scope.statsParamsOnlyCount = _.extend( { }, statsParams, { per_page: 0 } );
+
+      var dataLoadPromises = [$scope.loadSpecies];
+      $scope.currentView === "identifiers"
+        ? dataLoadPromises.unshift( $scope.loadIdentifiers )
+        : dataLoadPromises.push( $scope.loadIdentifiers );
+      $scope.currentView === "observers"
+        ? dataLoadPromises.unshift( $scope.loadObservers )
+        : dataLoadPromises.push( $scope.loadObservers );
+
+      dataLoadPromises.reduce( function( p, promise ) {
+         return p.then( function( ) { return promise( thisSearchTime ); } );
+      }, Promise.resolve( ) );
+    } );
+  };
+
+  $scope.loadSpecies = function( searchTime ) {
+    var speciesParams = _.extend( { }, $scope.statsParams, {
+      per_page: $scope.speciesPagination.perPage
+    } );
+    return ObservationsFactory.speciesCounts( speciesParams )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
           var t = new iNatModels.Taxon( r.taxon );
@@ -790,59 +813,107 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         });
         $scope.speciesPagination.searching = false;
       } );
-      ObservationsFactory.identifiers( statsParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
+  }
+
+  $scope.loadIdentifiers = function( searchTime ) {
+    return ObservationsFactory
+      .identifiers( $scope.currentView === "identifiers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
         $scope.totalIdentifiers = response.data.total_results;
         $scope.identifiers = _.map( response.data.results, function( r ) {
           var u = new iNatModels.User( r.user );
           u.resultCount = r.count;
           return u;
-        });
-        // identifiers is currently on average a little faster than observers.
-        // Query for identifiers first, and only when that's done fetch observers
-        // to help spread out query load
-        ObservationsFactory.observers( statsParams ).then( function( response ) {
-          if( $scope.lastSearchTime != thisSearchTime ) { return; }
-          $scope.totalObservers = response.data.total_results;
+        } );
+        $scope.identifiersPagination.searching = false;
+      } );
+  }
+
+  $scope.loadObservers = function( searchTime ) {
+    return ObservationsFactory
+      .observers( $scope.currentView === "observers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
+        $scope.totalObservers = response.data.total_results;
+        $scope.observers = _.map( response.data.results, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.observationCount = r.observation_count;
+          u.speciesCount = r.species_count;
+          return u;
+        } );
+        $scope.observersPagination.searching = false;
+      } );
+  }
+
+  $scope.showMoreIdentifiers = function( ) {
+    $scope.identifiersPagination = $scope.identifiersPagination || { };
+    if ( $scope.totalIdentifiers > 0 && _.isEmpty( $scope.identifiers ) ) {
+      if ( $scope.identifiersPagination.searching === true ) { return; }
+      $scope.identifiersPagination.searching = true;
+      ObservationsFactory
+        .identifiers( _.extend( { }, $scope.statsParams, { no_total_hits: true } ) )
+        .then( function( response ) {
+          $scope.identifiers = _.map( response.data.results, function( r ) {
+            var u = new iNatModels.User( r.user );
+            u.resultCount = r.count;
+            return u;
+          } );
+          $scope.identifiersPagination.searching = false;
+      } );
+      return;
+    }
+    // simple "pagination" of results already fetched, so we're not
+    // rendering too many DOM elements, which need images fetched
+    $scope.numberIdentifiersShown += 20;
+  };
+
+  $scope.showMoreObservers = function( ) {
+    $scope.observersPagination = $scope.observersPagination || { };
+    if ( $scope.totalObservers > 0 && _.isEmpty( $scope.observers ) ) {
+      if ( $scope.observersPagination.searching === true ) { return; }
+      $scope.observersPagination.searching = true;
+      ObservationsFactory
+        .observers( _.extend( { }, $scope.statsParams, { no_total_hits: true } ) )
+        .then( function( response ) {
           $scope.observers = _.map( response.data.results, function( r ) {
             var u = new iNatModels.User( r.user );
             u.observationCount = r.observation_count;
             u.speciesCount = r.species_count;
             return u;
-          });
-        });
-      });
-    });
-  };
-  // simple "pagination" of results already fetched, so we're not
-  // rendering too many DOM elements, which need images fetched
-  $scope.showMoreIdentifiers = function( ) {
-    $scope.numberIdentifiersShown += 20;
-  };
-  $scope.showMoreObservers = function( ) {
+          } );
+          $scope.observersPagination.searching = false;
+      } );
+      return;
+    }
+    // simple "pagination" of results already fetched, so we're not
+    // rendering too many DOM elements, which need images fetched
     $scope.numberObserversShown += 20;
   };
+
   $scope.showMoreTaxa = function( ) {
     $scope.speciesPagination = $scope.speciesPagination || { };
-    if( !$scope.taxa || _.isEmpty( $scope.speciesPagination ) ) { return; }
+    if ( !$scope.taxa || _.isEmpty( $scope.speciesPagination ) ) { return; }
     if ( $scope.speciesPagination.page >= 20 ||
       ( $scope.speciesPagination.page * $scope.speciesPagination.perPage ) > $scope.totalSpecies ) {
       $scope.speciesPagination.stopped = true;
     }
-    if( $scope.speciesPagination.searching === true ) { return; }
-    if( $scope.speciesPagination.stopped === true ) { return; }
+    if ( $scope.speciesPagination.searching === true ) { return; }
+    if ( $scope.speciesPagination.stopped === true ) { return; }
     $scope.speciesPagination.searching = true;
     $scope.speciesPagination.page += 1;
 
-    var taxonParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params,
-      iNaturalist.localeParams( ), {
+    var taxonParams = _.extend( { },
+      $scope.statsParams,
+      {
         page: $scope.speciesPagination.page,
         per_page: $scope.speciesPagination.perPage
       }
-    ), $scope.possibleFields );
-    taxonParams = _.omit( taxonParams, [ "order_by", "order" ] );
-
+    );
     ObservationsFactory.speciesCounts( taxonParams ).then( function( response ) {
       $scope.totalSpecies = response.data.total_results;
       $scope.taxa = $scope.taxa.concat( _.map( response.data.results, function( r ) {
