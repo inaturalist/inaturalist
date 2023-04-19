@@ -781,13 +781,30 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
         return;
       }
       $scope.observations = ObservationsFactory.responseToInstances( response );
-      var speciesParams = _.extend( { }, statsParams, {
-        per_page: $scope.speciesPagination.perPage
-      } );
       $scope.statsParams = statsParams;
-      var statsParamsOnlyCount = _.extend( { }, statsParams, { per_page: 0 } );
-      ObservationsFactory.speciesCounts( speciesParams ).then( function( response ) {
-        if( $scope.lastSearchTime != thisSearchTime ) { return; }
+      $scope.statsParamsOnlyCount = _.extend( { }, statsParams, { per_page: 0 } );
+
+      var dataLoadPromises = [$scope.loadSpecies];
+      $scope.currentView === "identifiers"
+        ? dataLoadPromises.unshift( $scope.loadIdentifiers )
+        : dataLoadPromises.push( $scope.loadIdentifiers );
+      $scope.currentView === "observers"
+        ? dataLoadPromises.unshift( $scope.loadObservers )
+        : dataLoadPromises.push( $scope.loadObservers );
+
+      dataLoadPromises.reduce( ( p, promise ) => {
+         return p.then( ( ) => promise( thisSearchTime ) );
+      }, Promise.resolve( ) );
+    } );
+  };
+
+  $scope.loadSpecies = function( searchTime ) {
+    var speciesParams = _.extend( { }, $scope.statsParams, {
+      per_page: $scope.speciesPagination.perPage
+    } );
+    return ObservationsFactory.speciesCounts( speciesParams )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
         $scope.totalSpecies = response.data.total_results;
         $scope.taxa = _.map( response.data.results, function( r ) {
           var t = new iNatModels.Taxon( r.taxon );
@@ -795,36 +812,43 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           return t;
         });
         $scope.speciesPagination.searching = false;
-      } ).then( function( ) {
-        return ObservationsFactory
-          .identifiers( $scope.currentView === "identifiers" ? statsParams : statsParamsOnlyCount )
-          .then( function( response ) {
-          if( $scope.lastSearchTime != thisSearchTime ) { return; }
-          $scope.totalIdentifiers = response.data.total_results;
-          $scope.identifiers = _.map( response.data.results, function( r ) {
-            var u = new iNatModels.User( r.user );
-            u.resultCount = r.count;
-            return u;
-          } );
-          $scope.identifiersPagination.searching = false;
-        } );
-      } ).then( function( ) {
-        ObservationsFactory
-          .observers( $scope.currentView === "observers" ? statsParams : statsParamsOnlyCount )
-          .then( function( response ) {
-          if( $scope.lastSearchTime != thisSearchTime ) { return; }
-          $scope.totalObservers = response.data.total_results;
-          $scope.observers = _.map( response.data.results, function( r ) {
-            var u = new iNatModels.User( r.user );
-            u.observationCount = r.observation_count;
-            u.speciesCount = r.species_count;
-            return u;
-          } );
-          $scope.observersPagination.searching = false;
-        } );
       } );
-    } );
-  };
+  }
+
+  $scope.loadIdentifiers = function( searchTime ) {
+    return ObservationsFactory
+      .identifiers( $scope.currentView === "identifiers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
+        $scope.totalIdentifiers = response.data.total_results;
+        $scope.identifiers = _.map( response.data.results, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.resultCount = r.count;
+          return u;
+        } );
+        $scope.identifiersPagination.searching = false;
+      } );
+  }
+
+  $scope.loadObservers = function( searchTime ) {
+    return ObservationsFactory
+      .observers( $scope.currentView === "observers"
+        ? $scope.statsParams
+        : $scope.statsParamsOnlyCount )
+      .then( function( response ) {
+        if( $scope.lastSearchTime != searchTime ) { return; }
+        $scope.totalObservers = response.data.total_results;
+        $scope.observers = _.map( response.data.results, function( r ) {
+          var u = new iNatModels.User( r.user );
+          u.observationCount = r.observation_count;
+          u.speciesCount = r.species_count;
+          return u;
+        } );
+        $scope.observersPagination.searching = false;
+      } );
+  }
 
   $scope.showMoreIdentifiers = function( ) {
     $scope.identifiersPagination = $scope.identifiersPagination || { };

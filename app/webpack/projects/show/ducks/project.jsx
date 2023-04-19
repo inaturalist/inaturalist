@@ -1,3 +1,4 @@
+/* eslint no-unused-expressions: ["error", { "allowTernary": true }] */
 import _ from "lodash";
 import React from "react";
 import inatjs from "inaturalistjs";
@@ -312,12 +313,18 @@ export function fetchSpecies( ) {
 export function fetchObservers( noPageLimit = false ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( !project || project.all_observers_loaded ) { return null; }
-    const { testingApiV2 } = config;
+    if ( !project
+      || project.all_observers_loaded
+      || project.observers_loading
+    ) { return null; }
+    const { testingApiV2, selectedTab } = config;
     const params = {
       ...project.search_params,
       per_page: 0
     };
+    if ( project.project_type !== "umbrella" || selectedTab === "observers" ) {
+      noPageLimit = true;
+    }
     if ( noPageLimit ) {
       delete params.per_page;
     }
@@ -329,8 +336,10 @@ export function fetchObservers( noPageLimit = false ) {
         }
       };
     }
+    dispatch( setAttributes( { observers_loading: true } ) );
     return inatjs.observations.observers( params ).then( response => {
       dispatch( setAttributes( {
+        observers_loading: false,
         observers_loaded: true,
         observers: response,
         all_observers_loaded: noPageLimit
@@ -520,20 +529,31 @@ export function fetchIdentificationCategories( ) {
 }
 
 export function fetchOverviewData( ) {
-  return ( dispatch, getState ) => {
-    const { project } = getState( );
+  return async ( dispatch, getState ) => {
+    const { project, config } = getState( );
     if ( project.hasInsufficientRequirements( )
       || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 ) ) {
       dispatch( fetchMembers( ) );
       dispatch( fetchPosts( ) );
       return;
     }
-    dispatch( fetchMembers( ) )
-      .then( ( ) => dispatch( fetchRecentObservations( ) ) )
-      .then( ( ) => dispatch( fetchUmbrellaStats( ) ) )
-      .then( ( ) => dispatch( fetchSpecies( ) ) )
-      .then( ( ) => dispatch( fetchObservers( project.project_type !== "umbrella" ) ) )
-      .then( ( ) => dispatch( fetchIdentifiers( ) ) );
+    const dataFetchPromises = [];
+    dataFetchPromises.push( fetchRecentObservations );
+    dataFetchPromises.push( fetchUmbrellaStats );
+    config.selectedTab === "species"
+      ? dataFetchPromises.unshift( fetchSpecies )
+      : dataFetchPromises.push( fetchSpecies );
+    config.selectedTab === "observers"
+      ? dataFetchPromises.unshift( fetchObservers )
+      : dataFetchPromises.push( fetchObservers );
+    config.selectedTab === "identifiers"
+      ? dataFetchPromises.unshift( fetchIdentifiers )
+      : dataFetchPromises.push( fetchIdentifiers );
+    dataFetchPromises.unshift( fetchMembers );
+    for ( const dataFetchPromise of dataFetchPromises ) {
+      // eslint-disable-next-line no-await-in-loop
+      await dispatch( dataFetchPromise( ) );
+    }
   };
 }
 

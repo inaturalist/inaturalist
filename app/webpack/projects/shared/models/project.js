@@ -35,6 +35,9 @@ const Project = class Project extends inatjs.Project {
       ttl: 900
     };
     if ( updatedSecondsAgo < 900 ) {
+      // the project was recently updated. Add a parameter ?v to the query,
+      // representing the value of updated_at, so results cached with
+      // potentially old search parameters are not used
       this.search_params.v = moment( this.updated_at ).format( "x" );
     }
     if ( this.is_traditional ) {
