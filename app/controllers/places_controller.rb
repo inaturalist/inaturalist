@@ -51,17 +51,9 @@ class PlacesController < ApplicationController
 
   before_action :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
-  requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
-    if: proc {| _c |
-      # Only check privileges if the current user didn't create the place, i.e.
-      # allow people to edit places they created even if they haven't earned the
-      # organizer privilege
-      if @place.blank?
-        true
-      else
-        current_user.id != @place.user_id
-      end
-    }
+  requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy] do
+    redirect_back_or_default(root_url)
+  end
   protect_from_forgery with: :exception, unless: lambda {
     request.parameters[:action] == "autocomplete" && request.format.json?
   }
