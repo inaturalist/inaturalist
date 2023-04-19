@@ -16,7 +16,7 @@
   </style>
 <%- end -%>
 <div id="pageheader">
-  <% if logged_in? && current_user.has_role?(:organizer) -%>
+  <% if logged_in? && current_user.privileged_with?( UserPrivilege::ORGANIZER ) -%>
     <div id="tools" class="description">
       <%= t(:not_findig_what_you_want) %>
       <%= link_to t(:add_new_place), new_place_path, :class => 'readmore', :rel => "nofollow" %>
