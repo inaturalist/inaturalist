@@ -180,6 +180,12 @@
         %tr
           %th User Privileges
           %td
+            - if @display_user.is_curator?
+              %p.alert.alert-warning
+                Note: user is a curator, which circumvents all privileges
+            - if @display_user.is_admin?
+              %p.alert.alert-warning
+                Note: user is an admin, which circumvents all privileges
             %ul.plain
               - UserPrivilege::PRIVILEGES.each do |privilege|
                 %li.lined.clearfix
