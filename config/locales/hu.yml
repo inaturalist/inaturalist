@@ -765,7 +765,7 @@ hu:
     target='_blank'>Creative Commons Nevezd meg! - Ne add el! 4.0 Nemzetközi</a> licencet szeretnéd alkalmazni a feltöltött tartalmakra. Ez azt jelenti, hogy bárki lemásolhatja, és felhasználhatja fotóidat és/vagy megfigyeléseidet anélkül, hogy erre engedélyt kérne, azzal a feltétellel, hogy megnevez téged, mint a tartalom szerzőjét és nem használja kereskedelmi célra. Később módosíthatod vagy visszavonhatod a licencet, de ez a legalkalmasabb licenc kutatókkal való megosztáshoz.
   checklist: Lista
   choose_a_field: Adatmező kiválasztása
-  choose_a_list_above: Válassz egyet a fentről.
+  choose_a_list_above: Válassz egy listát fentről.
   choose_a_place: Válassz helyet
   choose_a_taxon: Válassz taxont (opcionális)
   choose_columns: Válaszd ki az oszlopokat
@@ -787,7 +787,7 @@ hu:
   code_contributors: Hozzájárulók
   colors: Színek
   columns: Oszlopok
-  combine: Összerendezés
+  combine: Összevonás
   comma_separated_please: Vesszővel elválasztva
   #Noun, used to label a comment or a comment field in a form
   comment: megjegyzés
@@ -3703,6 +3703,48 @@ hu:
   taxon_autocomplete_placeholder: Madarak, pillangók, stb.
   taxon_geoprivacy: Taxon helyvédelme
   taxon_is_a_rank: "%{taxon} egy %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} egy %{rank} %{iconic_taxon}ban 1 megfigyeléssel"
+    other: "%{taxon} egy %{rank} %{iconic_taxon}ban %{count} megfigyeléssel"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} egy kétéltű %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy kétéltű %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} egy madár %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy madár %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} egy emlős %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy emlős %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} egy hüllő %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy hüllő %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} egy növény %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy növény %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} egy sugarasúszójú hal %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy sugarasúszójú hal %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} egy állat %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy állat %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} egy rovar %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy rovar %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} egy pókféle %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy pókféle %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} egy gomba %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy gomba %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} egy protozoa %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy protozoa %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} egy puhatestű %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy puhatestű %{rank} %{count} megfigyeléssel"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} egy színesmoszat %{rank} 1 megfigyeléssel"
+    other: "%{taxon} egy színesmoszat %{rank} %{count} megfigyeléssel"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} egy rendszertani ország 1 megfigyeléssel"
     other: "%{taxon} egy rendszertani ország %{count} megfigyeléssel"
@@ -5014,6 +5056,9 @@ hu:
       index:
         connect_with_nature: Kapcsolódj a természethez
         explore_and_share: Fedezd fel a természetet és oszd meg megfigyeléseidet!
+        observations_to_date:
+          one: "Eddigi megfigyelések"
+          other: "Eddigi megfigyelések"
         how_it_works: Hogyan működik?
         record_your_observations: Végezz megfigyeléseket
         share_with_fellow_naturalists: Oszd meg természettudósokkal
