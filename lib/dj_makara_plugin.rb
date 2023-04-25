@@ -7,12 +7,15 @@ def job_can_use_replica( job )
   class_name = ( job.handler_yaml.object.kind_of?( ActiveRecord::Base ) ?
     job.handler_yaml.object.class.name : job.handler_yaml.object.name ) rescue nil
   object_method = "#{class_name}::#{job.handler_yaml.method_name}"
+  return true if object_method == "CheckList::refresh"
+  return true if object_method == "CheckList::refresh_listed_taxon"
+  return true if object_method == "Identification::notify_subscribers_of"
   return true if object_method == "Identification::run_update_curator_identification"
   return true if object_method == "Identification::update_categories_for_observation"
-  return true if object_method == "CheckList::refresh_listed_taxon"
-  return true if object_method == "CheckList::refresh"
   return true if object_method == "Observation::notify_subscribers_of"
-  return true if object_method == "Identification::notify_subscribers_of"
+  return true if object_method == "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation"
+  return true if object_method == "Taxon::elastic_index!"
+  return true if object_method == "Taxon::update_observation_counts"
   return true if object_method == "UpdateAction::email_updates_to_user"
   false
 end
