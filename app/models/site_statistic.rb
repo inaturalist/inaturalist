@@ -259,9 +259,51 @@ class SiteStatistic < ApplicationRecord
         { term: { roles: "admin" } }
       ]
     ).total_entries
-    #Identification, Observation, Comment, Post
-    users_scope = User.where( "(spammer IS NULL or NOT spammer)" )
-    active = User.active_ids(at_time).count
+    active_from_observations = Observation.elastic_search(
+      size: 0,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 30.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } }
+      ],
+      aggregate: {
+        user_id: {
+          terms: { field: "user.id", size: 1000000 }
+        }
+      }
+    ).response.aggregations.user_id.
+      buckets.map { |b| 
+          b["key"]
+        }
+    active_from_identifications = Identification.elastic_search(
+      size: 0,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 30.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } }
+      ],
+      aggregate: {
+        user_id: {
+          terms: { field: "user.id", size: 1000000 }
+        }
+      }
+    ).response.aggregations.user_id.
+      buckets.map { |b| 
+          b["key"]
+        }
+    active = (active_from_observations + active_from_identifications).uniq.count
     last_7_days = User.elastic_search(
       size: 0,
       track_total_hits: true,
@@ -465,7 +507,8 @@ class SiteStatistic < ApplicationRecord
     sites = Site.select(:id, :name).map{ |s| 
         [ s.id, s.name ]
       }.to_h
-    species_counts_by_site = Observation.elastic_search(
+    species_counts_by_site = {}
+    Observation.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
@@ -503,10 +546,11 @@ class SiteStatistic < ApplicationRecord
       buckets.map do |b| 
           if sites.key?(b["key"])
             site_name = sites[b["key"]]
-            [ site_name, b["doc_count"] ]
+            species_counts_by_site[site_name] = b["distinct_taxon_id"].value
           end
-      end.compact
-    count_by_rank = Observation.elastic_search(
+      end
+    count_by_rank = {}
+    Observation.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
@@ -527,13 +571,16 @@ class SiteStatistic < ApplicationRecord
       ],
       aggregate: {
         ranks: {
-          terms: { field: "taxon.rank", size: 1000 }
+          terms: { field: "taxon.rank_level", size: 1000 }
         }
       }
     ).response.aggregations.ranks.
-      buckets.map{ |b| 
-          [ b["key"], b["doc_count"] ]
-        }
+      buckets.map do |b| 
+          rank_level_float = b["key"]
+          rank_level = (rank_level_float.to_i == rank_level_float) ? rank_level_float.to_i : rank_level_float
+          rank = Taxon::RANK_FOR_RANK_LEVEL[ rank_level ].presence || "other"
+          count_by_rank[rank] = b["doc_count"]
+        end
     { species_counts: species_counts,
       species_counts_by_site: species_counts_by_site,
       count_by_rank: count_by_rank
