@@ -128,11 +128,11 @@ class SiteStatistic < ApplicationRecord
       ]
     ).total_entries
     # community_identified_to_genus_taxon
-    # 1. get all community taxon ids from ES observations
+    # 1. get all community taxon ids / count from ES observations
     # 2. filter this taxon ids list to rank<=genus using Postgres 
     #    (since we don't have taxon rank info in ES)
-    # 3. get observations count from ES from this filtered taxon ids list
-    # split steps 2 and 3 in 10k chunks
+    # 3. for each community taxon id being <=genus, sum the count
+    #    from previous ES observations query
     community_identified_to_genus = 0
     community_identified_to_genus_taxon_ids = Observation.elastic_search(
       size: 0,
@@ -157,31 +157,14 @@ class SiteStatistic < ApplicationRecord
       }
     ).response.aggregations.community_taxon_id.
       buckets.map { |b| 
-          b["key"]
-        }.to_a
-    community_identified_to_genus_taxon_ids.each_slice(10000) do |batch_taxon_ids|
+          [ b["key"], b["doc_count"] ]
+        }.to_h
+    community_identified_to_genus_taxon_ids.keys.each_slice(10000) do |batch_taxon_ids|
       batch_taxon_ids_filtered = Taxon.where("rank_level <= 20").
         where("id IN (?)", batch_taxon_ids).
-        select("id").collect { |u| u.id.to_s }
-      community_identified_to_genus += Observation.elastic_search(
-        size: 0,
-        track_total_hits: true,
-        filters: [
-          {
-            range: {
-              created_at: {
-                gte: at_time - 7.days,
-                lte: at_time
-              }
-            }
-          },
-          {
-            terms: {
-              "community_taxon_id": batch_taxon_ids_filtered
-            }
-          }
-        ]
-      ).total_entries  
+        select("id").collect { |taxon_id| 
+          community_identified_to_genus += community_identified_to_genus_taxon_ids[taxon_id.id] 
+        }
     end
     {
       # count: Observation.where("created_at <= ?", at_time).count,
@@ -273,7 +256,7 @@ class SiteStatistic < ApplicationRecord
           }
         },
         { term: { spam: false } },
-        { term: { roles: "curator" } }
+        { term: { roles: ["curator", "admin"] } }
       ]
     ).total_entries
     admins = User.elastic_search(

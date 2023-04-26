@@ -8,7 +8,7 @@ describe SiteStatistic do
     OauthApplication.make!(name: "iNaturalist iPhone App")
   end
 
-  elastic_models( Observation, Identification, User )
+  elastic_models( Observation, Identification, User, Project )
 
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do
