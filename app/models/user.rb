@@ -549,6 +549,9 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
     friendships.where( friend_id: user, trust: true ).exists?
   end
   

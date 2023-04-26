@@ -1531,8 +1531,7 @@ class Observation < ApplicationRecord
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
-    return true if user_id == viewer.id
-    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
+    return true if user.trusts?( viewer )
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
