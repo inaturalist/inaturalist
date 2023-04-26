@@ -120,13 +120,52 @@ class SiteStatistic < ApplicationRecord
               gte: at_time - 7.days,
               lte: at_time
             }
-          },
+          }
         },
         {
           exists: { field: "community_taxon_id" }
         }
       ]
     ).total_entries
+    # community_identified_to_genus_taxon
+    # 1. get all community taxon ids / count from ES observations
+    # 2. filter this taxon ids list to rank<=genus using Postgres 
+    #    (since we don't have taxon rank info in ES)
+    # 3. for each community taxon id being <=genus, sum the count
+    #    from previous ES observations query
+    community_identified_to_genus = 0
+    community_identified_to_genus_taxon_ids = Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          exists: { field: "community_taxon_id" }
+        }        
+      ],
+      aggregate: {
+        community_taxon_id: {
+          terms: { field: "community_taxon_id", size: 10000000 }
+        }
+      }
+    ).response.aggregations.community_taxon_id.
+      buckets.map { |b| 
+          [ b["key"], b["doc_count"] ]
+        }.to_h
+    community_identified_to_genus_taxon_ids.keys.each_slice(10000) do |batch_taxon_ids|
+      batch_taxon_ids_filtered = Taxon.where("rank_level <= 20").
+        where("id IN (?)", batch_taxon_ids).
+        select("id").collect { |taxon_id| 
+          community_identified_to_genus += community_identified_to_genus_taxon_ids[taxon_id.id] 
+        }
+    end
     {
       # count: Observation.where("created_at <= ?", at_time).count,
       count: count,
@@ -141,45 +180,179 @@ class SiteStatistic < ApplicationRecord
       identified: identified,
       # community_identified: Observation.where("community_taxon_id IS NOT NULL AND created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
       community_identified: community_identified,
-      community_identified_to_genus: Observation.joins(:community_taxon).
-        where("taxa.rank_level <= 20 AND observations.created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
-        count
+      community_identified_to_genus: community_identified_to_genus
     }
   end
 
   def self.identifications_stats(at_time = Time.now)
     at_time = at_time.utc
+    count = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
+    last_7_days = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            gte: at_time - 7.days,
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
+    today = Identification.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            gte: at_time - 1.days,
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
     {
-      count: Identification.where("created_at <= ?", at_time).count,
-      last_7_days: Identification.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: Identification.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+      count: count,
+      last_7_days: last_7_days,
+      today: today
     }
   end
 
   def self.users_stats(at_time = Time.now)
     at_time = at_time.utc
-    es_response = Observation.elastic_search(
+    count = User.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
-        { terms: { quality_grade: %w(research needs_id) } },
         {
           range: {
             created_at: {
-              gte: ( at_time - 1 .day ),
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } }
+      ]
+    ).total_entries
+    curators = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } },
+        { terms: { roles: ["curator", "admin"] } }
+      ]
+    ).total_entries
+    admins = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } },
+        { term: { roles: "admin" } }
+      ]
+    ).total_entries
+    active_from_observations = Observation.elastic_search(
+      size: 0,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 30.days,
               lte: at_time
             }
           }
         }
       ],
-      aggs: {
-        distinct_users: {
-          cardinality: {
-            field: "user.id"
-          }
+      aggregate: {
+        user_id: {
+          terms: { field: "user.id", size: 10000000 }
         }
       }
-    )
+    ).response.aggregations.user_id.
+      buckets.map { |b| 
+          b["key"]
+        }
+    active_from_identifications = Identification.elastic_search(
+      size: 0,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 30.days,
+              lte: at_time
+            }
+          }
+        }
+      ],
+      aggregate: {
+        user_id: {
+          terms: { field: "user.id", size: 10000000 }
+        }
+      }
+    ).response.aggregations.user_id.
+      buckets.map { |b| 
+          b["key"]
+        }
+    active_from_comments = Comment.select("DISTINCT(user_id)").
+      where(created_at: (at_time - 30.days)..at_time).
+      collect{ |i| i.user_id }
+    active_from_posts = Post.select("DISTINCT(user_id)").
+      where(created_at: (at_time - 30.days)..at_time).
+      collect{ |i| i.user_id }
+    active = (active_from_observations + active_from_identifications + active_from_comments + active_from_posts).uniq.count
+    last_7_days = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } }
+      ]
+    ).total_entries
+    today = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 1.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } }
+      ]
+    ).total_entries
     identifiers = Identification.elastic_search(
       size: 0,
       track_total_hits: true,
@@ -204,66 +377,232 @@ class SiteStatistic < ApplicationRecord
         }
       }
     ).aggregations.distinct_users.value
-    users_scope = User.where( "(spammer IS NULL or NOT spammer)" )
+    observers = Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        { terms: { quality_grade: %w(research needs_id) } },
+        {
+          range: {
+            created_at: {
+              gte: ( at_time - 1 .day ),
+              lte: at_time
+            }
+          }
+        }
+      ],
+      aggs: {
+        distinct_users: {
+          cardinality: {
+            field: "user.id"
+          }
+        }
+      }
+    ).aggregations.distinct_users.value    
+    recent_7_obs = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } },
+        {
+          range: {
+            observations_count: {
+              gte: 7
+            }
+          }
+        }
+      ]
+    ).total_entries
+    recent_0_obs = User.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        { term: { spam: false } },
+        { term: { observations_count: 0 } }
+      ]
+    ).total_entries
     {
-      count: users_scope.where("created_at <= ?", at_time).count,
-      curators: users_scope.where("created_at <= ?", at_time).curators.count,
-      admins: users_scope.where("created_at <= ?", at_time).admins.count,
-      active: User.active_ids(at_time).count,
-      last_7_days: users_scope.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: users_scope.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count,
-      # identifiers: Identification.joins(:observation).
-      #   where("identifications.created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-      #   where("identifications.user_id != observations.user_id").
-      #   count("DISTINCT identifications.user_id"),
+      count: count,
+      curators: curators,
+      admins: admins,
+      active: active,
+      last_7_days: last_7_days,
+      today: today,
       identifiers: identifiers,
-      observers: es_response.aggregations.distinct_users.value,
-      recent_7_obs: users_scope.
-        where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
-        where("observations_count >= 7").
-        count,
-      recent_0_obs: users_scope.
-        where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).
-        where("observations_count = 0").
-        count
+      observers: observers,
+      recent_7_obs: recent_7_obs,
+      recent_0_obs: recent_0_obs
     }
   end
 
   def self.projects_stats(at_time = Time.now)
-    at_time = at_time.utc
-    { count: Project.where("created_at <= ?", at_time).count,
-      last_7_days: Project.where("created_at BETWEEN ? AND ?", at_time - 7.days, at_time).count,
-      today: Project.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).count
+    at_time = at_time.utc    
+    count = Project.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
+    last_7_days = Project.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            gte: at_time - 7.days,
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
+    today = Project.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        range: {
+          created_at: {
+            gte: at_time - 1.days,
+            lte: at_time
+          }
+        }
+      ]
+    ).total_entries
+    { count: count,
+      last_7_days: last_7_days,
+      today: today
     }
   end
 
   def self.taxa_stats(at_time = Time.now)
     at_time = at_time.utc
-    { species_counts: Taxon.of_rank_equiv_or_lower(10).joins(:observations).
-        where("observations.created_at <= ?", at_time).
-        distinct.
-        count(:id),
-      species_counts_by_site: Hash[ Taxon.joins(observations: :site).
-        where("observations.created_at <= ?", at_time).
-        select("sites.name, count(distinct taxa.id) as count").
-        of_rank_equiv_or_lower(10).
-        group("sites.id").
-        order( Arel.sql( "count(distinct taxa.id) desc" ) ).
-        collect{ |a|
-          [ a["name"], a["count"].to_i ]
+    species_counts = Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          range: {
+            "taxon.rank_level": {
+              lte: 10
+            }
+          }
         }
       ],
-      count_by_rank: Hash[ Taxon.joins(:observations).
-        where("observations.created_at <= ?", at_time).
-        where("taxa.rank_level > 0").
-        select("taxa.rank_level, count(distinct observations.id) as count").
-        group("taxa.rank_level").
-        order( Arel.sql( "count(distinct observations.id) desc" ) ).
-        collect{ |a| [
-          Taxon::RANK_LEVELS.select{ |k,v| v == a["rank_level"] }.first.try(:first) || "other",
-          a["count"].to_i
-        ]}
-      ]
+      aggregate: {
+        species_counts: {
+          cardinality: {
+            field: "taxon.id"
+          }
+        }
+      }
+    ).response.aggregations.species_counts.value    
+    sites = Site.select(:id, :name).map{ |s| 
+        [ s.id, s.name ]
+      }.to_h
+    species_counts_by_site = {}
+    Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          range: {
+            "taxon.rank_level": {
+              lte: 10
+            }
+          }
+        }
+      ],
+      aggregate: {
+        group_by_sites: {
+          terms: {
+            field: "site_id",
+            size: 1000
+          },
+          aggs: {
+            distinct_taxon_id: {
+              cardinality: {
+                field: "taxon.id"
+              }
+            }
+          }
+        }
+      }
+    ).response.aggregations.group_by_sites.
+      buckets.map do |b| 
+          if sites.key?(b["key"])
+            site_name = sites[b["key"]]
+            species_counts_by_site[site_name] = b["distinct_taxon_id"].value
+          end
+      end
+    count_by_rank = {}
+    Observation.elastic_search(
+      size: 0,
+      track_total_hits: true,
+      filters: [
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          range: {
+            "taxon.rank_level": {
+              gt: 0
+            }
+          }
+        }
+      ],
+      aggregate: {
+        ranks: {
+          terms: { field: "taxon.rank_level", size: 1000 }
+        }
+      }
+    ).response.aggregations.ranks.
+      buckets.map do |b| 
+          rank_level_float = b["key"]
+          rank_level = (rank_level_float.to_i == rank_level_float) ? rank_level_float.to_i : rank_level_float
+          rank = Taxon::RANK_FOR_RANK_LEVEL[ rank_level ].presence || "other"
+          count_by_rank[rank] = b["doc_count"]
+        end
+    { species_counts: species_counts,
+      species_counts_by_site: species_counts_by_site,
+      count_by_rank: count_by_rank
     }
   end
 
