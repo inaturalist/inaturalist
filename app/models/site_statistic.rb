@@ -127,7 +127,14 @@ class SiteStatistic < ApplicationRecord
         }
       ]
     ).total_entries
-    community_identified_to_genus = Observation.elastic_search(
+    # community_identified_to_genus_taxon
+    # 1. get all community taxon ids from ES observations
+    # 2. filter this taxon ids list to rank<=genus using Postgres 
+    #    (since we don't have taxon rank info in ES)
+    # 3. get observations count from ES from this filtered taxon ids list
+    # split steps 2 and 3 in 10k chunks
+    community_identified_to_genus = 0
+    community_identified_to_genus_taxon_ids = Observation.elastic_search(
       size: 0,
       track_total_hits: true,
       filters: [
@@ -140,17 +147,42 @@ class SiteStatistic < ApplicationRecord
           }
         },
         {
-          range: {
-            "taxon.rank_level": {
-              lte: 20
+          exists: { field: "community_taxon_id" }
+        }        
+      ],
+      aggregate: {
+        community_taxon_id: {
+          terms: { field: "community_taxon_id", size: 10000000 }
+        }
+      }
+    ).response.aggregations.community_taxon_id.
+      buckets.map { |b| 
+          b["key"]
+        }.to_a
+    community_identified_to_genus_taxon_ids.each_slice(10000) do |batch_taxon_ids|
+      batch_taxon_ids_filtered = Taxon.where("rank_level <= 20").
+        where("id IN (?)", batch_taxon_ids).
+        select("id").collect { |u| u.id.to_s }
+      community_identified_to_genus += Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            range: {
+              created_at: {
+                gte: at_time - 7.days,
+                lte: at_time
+              }
+            }
+          },
+          {
+            terms: {
+              "community_taxon_id": batch_taxon_ids_filtered
             }
           }
-        },
-        {
-          exists: { field: "community_taxon_id" }
-        }
-      ]
-    ).total_entries
+        ]
+      ).total_entries  
+    end
     {
       # count: Observation.where("created_at <= ?", at_time).count,
       count: count,
@@ -269,12 +301,11 @@ class SiteStatistic < ApplicationRecord
               lte: at_time
             }
           }
-        },
-        { term: { spam: false } }
+        }
       ],
       aggregate: {
         user_id: {
-          terms: { field: "user.id", size: 1000000 }
+          terms: { field: "user.id", size: 10000000 }
         }
       }
     ).response.aggregations.user_id.
@@ -291,19 +322,24 @@ class SiteStatistic < ApplicationRecord
               lte: at_time
             }
           }
-        },
-        { term: { spam: false } }
+        }
       ],
       aggregate: {
         user_id: {
-          terms: { field: "user.id", size: 1000000 }
+          terms: { field: "user.id", size: 10000000 }
         }
       }
     ).response.aggregations.user_id.
       buckets.map { |b| 
           b["key"]
         }
-    active = (active_from_observations + active_from_identifications).uniq.count
+    active_from_comments = Comment.select("DISTINCT(user_id)").
+      where(created_at: (at_time - 30.days)..at_time).
+      collect{ |i| i.user_id }
+    active_from_posts = Post.select("DISTINCT(user_id)").
+      where(created_at: (at_time - 30.days)..at_time).
+      collect{ |i| i.user_id }
+    active = (active_from_observations + active_from_identifications + active_from_comments + active_from_posts).uniq.count
     last_7_days = User.elastic_search(
       size: 0,
       track_total_hits: true,
