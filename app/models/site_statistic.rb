@@ -256,7 +256,7 @@ class SiteStatistic < ApplicationRecord
           }
         },
         { term: { spam: false } },
-        { term: { roles: ["curator", "admin"] } }
+        { terms: { roles: ["curator", "admin"] } }
       ]
     ).total_entries
     admins = User.elastic_search(
