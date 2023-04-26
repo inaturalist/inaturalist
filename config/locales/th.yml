@@ -5,7 +5,7 @@ th:
   x_comments:
     other: '%{count} ความคิดเห็น'
   x_comments_html:
-    other: '<span class="count">%{count}</span> คอมเมนต์'
+    other: '<span class="count">%{count}</span> ความคิดเห็น'
   x_faves:
     other: '%{count} ชอบ'
   x_flags_resolved_html:
@@ -1731,14 +1731,22 @@ th:
   per_week: ต่อสัปดาห์
   person: ผู้ใช้งาน
   per_page: "จำนวนต่อหน้า"
+  photo: รูปถ่าย
   photo_licensing: สัญญาอนุญาตรูปถ่าย
+  photos_or_sounds: รูปถ่ายหรือเสียง
+  photos_or_sounds?: รูปถ่ายหรือเสียง?
   photos_size:
     small: เล็ก
     medium: กลาง
     large: ใหญ่
+  photos_updated: รูปที่อัปเดตแล้ว
   place: สถานที่
   place_geo:
     geo_planet_place_types:
+      Airport: สนามบิน
+      airport: สนามบิน
+      Building: อาคาร
+      building: อาคาร
       City Building: อาคารในเมือง
       city building: อาคารในเมือง
       Continent: ทวีป
@@ -1834,6 +1842,10 @@ th:
   #Post is a noun
   post_from_your_journal_html: โพสต์จาก<a href="%{url}">วารสารของคุณ</a>
   post_published: เผยแพร่โพสต์แล้ว!
+  #Shows the date a journal post was published
+  posted_on_date_html: โพสต์เมื่อ %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: โพสต์เมื่อ %{date} โดย %{user}
   posts: โพสต์
   powered_by: ขับเคลื่อนโดย
   powered_by_inaturalist_open_source_software_html: 'ขับเคลื่อนโดย<a href="https://github.com/inaturalist/inaturalist" target="_new" >ซอฟต์แวร์โอเพนซอร์ส iNaturalist</a>'
@@ -1844,6 +1856,7 @@ th:
   prev: ก่อนหน้า
   previous_observation: การสังเกตก่อนหน้า
   previous_page_short: ก่อนหน้า
+  previous_photo: รูปก่อนหน้า
   privacy: ความเป็นส่วนตัว
   private: ส่วนตัว
   private_: ส่วนตัว
@@ -2028,6 +2041,7 @@ th:
   recent_observations_by: "การสังเกตล่าสุดโดย %{login}"
   recently_active: เคลื่อนไหวล่าสุด
   recently_created: สร้างขึ้นล่าสุด
+  recently_observed: สังเกตล่าสุด
   recently_resolved: เพิ่งแก้ไข
   redo_search_in_map: ค้นหาในแผนที่อีกครั้ง
   redo_search_in_map_area: ค้นหาในขอบเขตแผนที่อีกครั้ง
@@ -2126,6 +2140,7 @@ th:
   search_species_: ค้นหาชนิด...
   search_the_map: ค้นหาแผนที่
   search_this_taxon: ค้นหาหน่วยอนุกรมวิธานนี้
+  search_your_photos: ค้นหารูปของคุณ
   searching: "กำลังค้นหา..."
   seasonality: ตามฤดูกาล
   #This is a fallback translation for posessive phrases. It could be used on
@@ -2554,6 +2569,7 @@ th:
   view_on: ดูใน
   view_on_flickr: ดูใน Flickr
   view_place: ดูสถานที่
+  view_post: ดูโพสต์
   view_projects_from_place: "ดูโครงการจาก %{place}"
   view_sample: ดูตัวอย่าง
   view_stats: ดูสถิติ
@@ -2787,6 +2803,9 @@ th:
           ข้อกำหนดการสังเกตของโครงการต่อไปนี้เพิ่งมีการเปลี่ยนแปลง:
         wondering_what_this_means_html: |
           สงสัยว่าความเป็นส่วนตัวของพิกัดคืออะไรใช่ไหม? <a href="%{url}">เรียนรู้เพิ่มเติมในเอกสารของเรา</a>
+    places:
+      kml_field_desc2: |
+        ไฟล์ KML ของขอบเขตสถานที่ สามารถสร้างด้วย Google Maps, Google Earth หรือแอปพลิเคชัน GIS ส่วนใหญ่ โดยจะต้องมีอย่างน้อยหนึ่งพื้นที่ ขนาดไฟล์ต่ำกว่า 1 MB (5 MB สำหรับผู้ดูแลเว็บไซต์) และพื้นที่ต้องมีขนาดเล็กกว่ารัฐเท็กซัสในสหรัฐฯ
     projects:
       confirm_leave:
         remove_observations_desc_html: |
@@ -2809,6 +2828,8 @@ th:
         data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
+        do_you_need_features_from_traditional: |
+          คุณต้องการใช้คุณสมบัติจากโครงการรูปแบบเดิมหรือไม่ เช่น การเข้าถึงพิกัดจริง การกำหนดข้อมูลเสริมการสังเกตเอง หรือการเพิ่มการสังเกตที่ไม่สามารถรวมเข้าโครงการโดยอัตโนมัติได้?
         duplicate_project: คัดลอกโครงการ
         include_annotated_observations: |
           รวมเฉพาะการสังเกตที่ระบุหมายเหตุ (เช่น ระยะการเจริญ) หรือคุณลักษณะ (เช่น ระยะการเจริญ = ตัวเต็มวัย) โดยแต่ละโครงการใช้ตัวกรองหมายเหตุได้เพียงหนึ่งอย่างเท่านั้น
@@ -2844,8 +2865,11 @@ th:
         specify_project_filters: |
           กำหนดตัวกรองสำหรับการสังเกตที่จะรวมไว้ในโครงการของคุณ โดยเลือกได้หลายชนิด (หรือหน่วยอนุกรมวิธาน) สถานที่ วันที่ หรือเกณฑ์อื่น ๆ สำหรับการสังเกตที่จะรวมเข้าโครงการโดยอัตโนมัติ
         start_and_end_times_for_bioblitzes: กำหนดวัน/เวลาเริ่มต้นและสิ้นสุดได้ (สำหรับกิจกรรม bioblitz)
+        traditional_projects_cannot_be_copied: คัดลอกโครงการรูปแบบเดิมไม่ได้
         unique_url_for_outreach: มี URL ของแต่ละโครงการสำหรับการเผยแพร่
         users_can_follow_your_project: ผู้ใช้ติดตามอัปเดตโพสต์วารสารจากโครงการของคุณได้
+        use_this_link_to_create_html: |
+          ไปที่<a href="%{url}">ลิงก์นี้</a>เพื่อสร้างโครงการรูปแบบเดิมแทน
         we_have_redesigned_projects: |
           โครงการจะช่วยรวบรวมทุกการสังเกตตามเงื่อนไขที่คุณกำหนด ได้แก่ สถานที่ หน่วยอนุกรมวิธาน ผู้ใช้งาน คุณภาพข้อมูล และวันที่ โดยสามารถเลือกสร้างโครงการ 2 ประเภทหลัก ได้แก่ โครงการสะสมชนิด และโครงการครอบคลุม ซึ่งมีลักษณะการใช้งานดังนี้:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
@@ -3099,6 +3123,8 @@ th:
         map_type: ประเภทแผนที่
       project_observation:
         user_id: ผู้ส่ง
+      place:
+        place_type: ประเภทสถานที่
       source:
         title: หัวข้อ
       taxon:
