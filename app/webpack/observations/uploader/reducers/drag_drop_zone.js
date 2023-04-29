@@ -68,7 +68,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       const { attrs } = action;
       // reset the gallery to the first photo when a new photo is added
       if ( action.attrs.files ) { attrs.galleryIndex = 1; }
-      const keys = _.keys( attrs );
+      const keys = Object.keys( attrs );
       if (
         _.difference( keys, ["saveState", "galleryIndex", "files"] ).length > 0
         && attrs.modified !== false
@@ -153,7 +153,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
       return Object.assign( { }, state, {
         obsCards: modified,
-        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
+        selectedObsCards: _.pick( modified, Object.keys( state.selectedObsCards ) )
       } );
     }
 
@@ -184,7 +184,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
       return Object.assign( { }, state, {
         obsCards: modified,
-        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
+        selectedObsCards: _.pick( modified, Object.keys( state.selectedObsCards ) )
       } );
     }
 
@@ -207,7 +207,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
       return Object.assign( { }, state, {
         obsCards: modified,
-        selectedObsCards: _.pick( modified, _.keys( state.selectedObsCards ) )
+        selectedObsCards: _.pick( modified, Object.keys( state.selectedObsCards ) )
       } );
     }
 
@@ -228,7 +228,7 @@ const dragDropZone = ( state = defaultState, action ) => {
       } );
       const newState = {
         obsCards: modified,
-        selectedObsCards: _.pick( modified, _.keys( action.ids ) )
+        selectedObsCards: _.pick( modified, Object.keys( action.ids ) )
       };
       if ( _.isEmpty( newState.selectedObsCards ) ) {
         newState.observationField = null;

@@ -17,7 +17,7 @@ export default function reducer( state = {}, action ) {
       if ( !state.currentUser ) return state;
       if ( !state.currentUser.id ) return state;
       const prefUpdates = _.pickBy( action.updates, ( v, k ) => ( k.match( /prefers_/ ) || k.match( /preferred_/ ) ) );
-      if ( _.keys( prefUpdates ).length > 0 ) {
+      if ( Object.keys( prefUpdates ).length > 0 ) {
         const body = new FormData( );
         body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
         _.forEach( action.updates, ( v, k ) => {

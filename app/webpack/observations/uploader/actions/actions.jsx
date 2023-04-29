@@ -23,7 +23,7 @@ const actions = class actions {
 
   static appendObsCards( obsCards ) {
     return function ( dispatch ) {
-      const firstKey = _.first( _.keys( obsCards ) );
+      const firstKey = _.first( Object.keys( obsCards ) );
       dispatch( { type: types.APPEND_OBS_CARDS, obsCards } );
       // select the first card in any new batch
       dispatch( actions.selectObsCards( { [firstKey]: true } ) );
@@ -107,7 +107,7 @@ const actions = class actions {
     return function ( dispatch, getState ) {
       dispatch( { type: types.CREATE_BLANK_OBS_CARD } );
       const s = getState( );
-      const lastKey = _.last( _.keys( s.dragDropZone.obsCards ) );
+      const lastKey = _.last( Object.keys( s.dragDropZone.obsCards ) );
       // select the blank card
       dispatch( actions.selectObsCards( { [lastKey]: true } ) );
     };
@@ -205,7 +205,7 @@ const actions = class actions {
   static confirmRemoveSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      const count = _.keys( s.dragDropZone.selectedObsCards ).length;
+      const count = Object.keys( s.dragDropZone.selectedObsCards ).length;
       if ( count > 0 ) {
         dispatch( actions.setState( {
           removeModal: {
@@ -246,7 +246,7 @@ const actions = class actions {
 
   static mergeObsCards( obsCards, targetCard ) {
     return function ( dispatch ) {
-      const ids = _.keys( obsCards );
+      const ids = Object.keys( obsCards );
       const targetIDString = targetCard ? targetCard.id : _.min( ids );
       const targetID = parseInt( targetIDString, 10 );
       const targetFiles = obsCards[targetID].files;
@@ -371,7 +371,7 @@ const actions = class actions {
   static combineSelected( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      const count = _.keys( s.dragDropZone.selectedObsCards ).length;
+      const count = Object.keys( s.dragDropZone.selectedObsCards ).length;
       if ( count > 1 ) {
         dispatch( actions.mergeObsCards( s.dragDropZone.selectedObsCards ) );
       }
@@ -572,7 +572,7 @@ const actions = class actions {
       } );
       // show a modal with the projects and counts of obs that were not added
       // otherwise go to the user's observation page
-      if ( _.keys( missingProjects ).length > 0 ) {
+      if ( Object.keys( missingProjects ).length > 0 ) {
         dispatch( actions.setState( {
           confirmModal: {
             show: true,

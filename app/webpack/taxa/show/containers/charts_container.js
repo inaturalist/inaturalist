@@ -20,7 +20,7 @@ function mapStateToProps( state ) {
   const seasonalityLoading = _.isEmpty( state.observations.monthOfYearFrequency )
     || !Object.keys( state.observations.monthOfYearFrequency ).includes( "verifiable" )
     || !Object.keys( state.observations.monthOfYearFrequency ).includes( "research" );
-  const seasonalityKeys = _.keys(
+  const seasonalityKeys = Object.keys(
     monthOfYearFrequencyVerifiable
   )
     .map( monthNum => Number( monthNum ) )
@@ -67,11 +67,11 @@ function mapStateToProps( state ) {
   const historyLoading = _.isEmpty( state.observations.monthFrequency )
     || !Object.keys( state.observations.monthFrequency ).includes( "verifiable" )
     || !Object.keys( state.observations.monthFrequency ).includes( "research" );
-  const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
+  const historyKeys = Object.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
   const scaledHistory = state.config.prefersScaledFrequencies
     && state.observations.monthFrequency.background;
-  if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
+  if ( !_.isEmpty( Object.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
     historyColumns.push( ["verifiable", ...historyKeys.map( d => {
       let freq = monthFrequencyVerifiable[d] || 0;

@@ -374,7 +374,7 @@ Stats.loadRecentUsers = function ( json ) {
 };
 
 Stats.loadRanks = function ( json ) {
-  var ranks = _.keys( json[0].data.taxa.count_by_rank ).reverse( );
+  var ranks = Object.keys( json[0].data.taxa.count_by_rank ).reverse( );
   google.charts.setOnLoadCallback( function ( ) {
     Stats.simpleChart( {
       element_id: "ranks",
