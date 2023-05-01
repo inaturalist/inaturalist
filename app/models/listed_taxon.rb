@@ -852,22 +852,26 @@ class ListedTaxon < ApplicationRecord
   end
 
   def related_listed_taxa
+    return [] if place_id.blank?
     ListedTaxon.where(taxon_id: taxon_id, place_id: place_id).where("id != ?", id)
   end
 
   def other_primary_listed_taxa?
+    return false if place_id.blank?
     scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 0
   end
 
   def multiple_primary_listed_taxa?
+    return false if place_id.blank?
     scope = ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true )
     scope = scope.where("id != ?", id) if id
     scope.count > 1
   end
 
   def primary_listed_taxon
+    return nil if place_id.blank?
     primary_listing ? self : ListedTaxon.where( taxon_id: taxon_id, place_id: place_id, primary_listing: true ).first
   end
 
