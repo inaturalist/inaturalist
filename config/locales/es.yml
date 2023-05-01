@@ -784,6 +784,8 @@ es:
   birds: aves
   birthday: Cumpleaños
   black: negro
+  block: Bloquear
+  blocking_description: Bloquear evita cualquier comunicación entre usted y otro usuario. Es para situaciones en las que otro usuario puede poner su seguridad en peligro, como el acoso u otro comportamiento abusivo.
   block_removed: Bloqueo eliminado
   blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
@@ -1511,6 +1513,7 @@ es:
       signed_up_but_locked: "Te has registrado correctamente. Sin embargo, no puedes ingresar porque tu cuenta está bloqueada."
       signed_up_but_unconfirmed: "Se ha enviado un mensaje con un enlace de confirmación a su dirección de correo electrónico. Sigue el enlace para activar su cuenta."
       updated: 'Has actualizado tu cuenta correctamente.'
+      updated_but_not_signed_in: "Tu cuenta ha sido actualizada con éxito, pero como tu contraseña ha cambiado, necesitas iniciar sesión de nuevo."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1601,6 +1604,8 @@ es:
   draft: borrador
   #Noun, as in a journal post that has not been published
   draft_: Borrador
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Borrador de %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: '¡Guardado en borrador!'
   #Noun, as in journal posts that has not been published
@@ -2331,11 +2336,14 @@ es:
   lexicon_cannot_contain_words: "no puede contener las siguientes palabras: %{words}"
   lexicons:
     afrikaans: Afrikáans
+    alabama: Alabama
     albanian: Albanés
     aou_4_letter_codes: Código AOU de 4 letras
     aou_6_letter_codes: Código AOU de 6 letras
     arabic: Árabe
     armenian: Armenio
+    asturian: Asturiano
+    basque: Euskera
     belarusian: Bielorruso
     bengali: Bengalí
     bulgarian: Búlgaro
@@ -2357,6 +2365,7 @@ es:
     french: Francés
     galician: Gallego
     gela: Gela
+    georgian: Georgiano
     german: Alemán
     greek: Griego
     gujarati: Gujarati
@@ -2368,9 +2377,11 @@ es:
     icelandic: Islandés
     ilokano: Ilocano
     indonesian: Indonesio
+    irish: Irlandés
     italian: Italiano
     japanese: Japonés
     kannada: Canarés
+    kazakh: Kazajo
     korean: Coreano
     latvian: Letón
     lithuanian: Lituano
@@ -2384,6 +2395,7 @@ es:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Náhuatl
+    navajo: Navajo
     norwegian: Noruego
     occitan: Occitano
     ojibwe: Ojibwa
@@ -2410,8 +2422,10 @@ es:
     turkish: Turco
     ukrainian: Ucraniano
     uyghur: Uyghur
+    vietnamese: Vietnamita
     visayan: Bisayo
     waray_waray: Samareño
+    zulu: Zulú
   less: Menos
   #Button show less text
   less__context_text: Menos
@@ -2452,6 +2466,10 @@ es:
     taxonomic: taxonomía
     photo: fotos
   list_was_successfully_created: La lista fue creada exitosamente.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} y %{three}"
+  list_with_two_items: "{one} y {two}"
   listed_taxa: Taxones listados
   listed_taxon: Taxón listado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
@@ -2503,6 +2521,8 @@ es:
     id: Indonesio
     it: Italiano
     ja: Japonés
+    ka: Georgiano
+    kk: Kazajo
     kn: Canarés
     ko: Coreano
     lb: Luxemburgués
@@ -2602,6 +2622,7 @@ es:
       every_publicly_visible_observation: Todas las observaciones públicamente visibles creadas en la red iNaturalist
       featured_observations: Observaciones destacadas
       gbif_network: Red de GBIF
+      gbif_network_description2: Registros de museos y otros proveedores distribuidos por el Global Biodiversity Information Facility
       observations: Observaciones
       place_boundary: Límite del lugar
       checklist_places: Lugares en las listas de verificación
@@ -2621,6 +2642,9 @@ es:
   maximum_positional_accuracy_including_unknown: |
     Precisión máxima de la posición, incluyendo observaciones sin precisión de su posición
   media: Multimedia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: "y"
   media_type: Tipo de medios
   medium: medio
   meet: Conoce
@@ -2795,9 +2819,12 @@ es:
   must_have_quality_grades: "debe tener el nivel de calidad: %{grades}"
   must_have_sounds: debe tener sonidos
   must_have_x: "debe tener %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
   #Mute is a noun here
   mute_removed: Silenciamiento eliminado
   muted_users: Usuarios silenciados
+  muting_description: Silenciar a alguien evita que se te notifique sobre cualquiera de sus actividades, incluyendo menciones "@", mensajes, o comentarios e identificaciones en tus observaciones.
   n_ago: "hace %{n}"
   n_people_agrees: "%{amount} personas concuerdan"
   n_people_disagrees: "%{amount} personas no concuerdan"
@@ -3320,6 +3347,9 @@ es:
     invalid_email: Formato de correo electrónico incorrecto
   password: Contraseña
   password_confirmation: 'Confirmar contraseña'
+  password_change_description: Cambiar tu contraseña cerrará todas las sesiones activas de iNaturalist en todos tus dispositivos
+  password_change_logout_warning: Después de cambiar tu contraseña, serás desconectado y tendrás que volver a iniciar sesión con tu nueva contraseña.
+  password_change_observations_warning: También serás desconectado de las aplicaciones móviles de iNaturalist y de cualquier otra aplicación o sitio web que publique en iNaturalist en tu nombre, así que asegúrese de haber subido cualquier observación pendiente. Cualquier observación que no se suba se perderá.
   paste: Pegar
   paste_in_a_bunch_of_names: Pegar un grupo de nombres, 1 por línea y ¡presionar el botón!
   people: Personas
@@ -3831,6 +3861,8 @@ es:
   places_warning_export_complex_boundary_html: |
     Si estás intentando exportar observaciones a partir de un límite geográfico complejo, considera
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">descargarlas de GBIF</a>, donde puedes dibujar los límites, o exportarlos desde iNat usando lugares existentes o un límite en forma de caja, y luego filtrar los datos de nuevo una vez que los hayas descargado.
+  places_warning_look_for_existing2_html: |
+    Busca <a href="/search?source[]=places">lugares existentes</a> para asegurarte de que no estás creando un duplicado. Ya tenemos lugares para todos los continentes y países, así como para muchos otros tipos de límites administrativos.
   places_warning_please_keep_in_mind: |
     Tenga en cuenta las restricciones enumeradas a continuación:
   places_warning_projects_can_have_multiple_places: |
@@ -3867,6 +3899,10 @@ es:
   post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: '¡Nota publicada!'
   posted_by: Publicado por
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicado el %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicado el %{date} por %{user}
   posts: Ingresos
   potential_disagreement: Posible desacuerdo
   powered_by: Propulsado por
@@ -4456,6 +4492,10 @@ es:
     En Portugal, el miembro de la red iNaturalist %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}compartió datos para el atlas portugués de aves migratorias, para el atlas de mamíferos, así como para varios artículos de investigación científica portugueses.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas ocultas automáticamente (ocultas o privadas debido a la "geoprivacidad del taxón")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    iNaturalist oculta automáticamente las coordenadas de algunas especies para protegerlas de molestias, la recolección o caza furtiva. Si las coordenadas de observación sólo se han ocultado automáticamente para proteger las especies,
+    iNaturalist comparte con los Miembros de la Red las coordenadas reales de todas las observaciones de sus
+    países respectivos.
   sites_affiliation_more_email_addresses: |
     Las direcciones de correo electrónico se comparten con los administradores locales, miembros de la red, únicamente con el propósito de facilitar la comunicación relacionada con iNaturalist, en el caso de que sea necesario.
   sites_affiliation_more_twice_per_year: |
@@ -4604,6 +4644,10 @@ es:
   stats: Estadísticas
   stats_for_this_year_have_not_been_generated: No se han generado las estadísticas de este año.
   status: Estado
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estado aplicado desde un taxón de nivel superior:</strong> %{taxon}
   status_globally: '"%{status}" Globalmente'
   status_in_place: '"%{status}" en %{place}'
   stay_and_try_again: Permanecer e intentar de nuevo
@@ -6274,6 +6318,8 @@ es:
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos sus descendientes'
         curator_coordinate_access_disabled_desc_html: |
           Este proyecto no permite observaciones con coordenadas que los curadores del proyecto no puedan ver. Si no quieres compartir las coordenadas de esta observación con los curadores del proyecto, debes eliminar la observación del proyecto.
+        data_quality_assessment_desc3_html: |
+          El grado de calidad resume la precisión, integridad, relevancia e idoneidad de una observación de iNaturalist como datos de biodiversidad. Algunos atributos se determinan automáticamente, mientras que otros están sujetos a voto de usuarios de iNat. iNaturalist comparte observaciones con licencia "Grado de Investigación" con una serie de socios de datos para su uso en ciencia y conservación.
         disagreement_count_desc: "nº de taxones identificados que no están entre los ancestros de un taxón"
         identification_count_desc: '# de identificaciones para un taxón individual'
         flagged_photos_desc_html: |
@@ -6476,6 +6522,8 @@ es:
         view_original_html: |
           Puedes ver el original en <a href="%{url}">%{url}</a>. Deja sin resolver las marcas de violación de derechos de autor si esta foto viola los derechos de autor.
     places:
+      kml_field_desc2: |
+        KML del límite de lugar. Puede crear uno usando Google Maps, Google Earth o la mayoría de aplicaciones GIS. Debe tener al menos un polígono, ocupar menos de 1 MB (5 MB para curadores del sitio), y tener un área menor que el estado de Texas en Estados Unidos.
       edit:
         complex_boundary_note_html: |
           Este límite es demasiado complejo para editar en la web. Sin embargo, puedes <a href="%{url}">descargar el archivo KML</a>, editarlo en una aplicación de SIG, y subir tu KML editado directamente.
@@ -7292,6 +7340,15 @@ es:
       index:
         connect_with_nature: Conéctate con la naturaleza
         explore_and_share: Explora y comparte tus observaciones del mundo natural.
+        observations_to_date:
+          one: "Observaciones hasta la fecha"
+          other: "Observaciones hasta la fecha"
+        species_observed:
+          one: "Especie observada"
+          other: "Especies observadas"
+        people_signed_up:
+          one: "Persona inscritas"
+          other: "Personas inscritas"
         how_it_works: Cómo funciona
         record_your_observations: Registra tus observaciones
         share_with_fellow_naturalists: Comparte con otros naturalistas
@@ -7429,6 +7486,18 @@ es:
       x_seconds:
         one: "1 segundo"
         other: '%{count} segundos'
+    countdown_x_days:
+      one: DÍA
+      other: DÍAS
+    countdown_x_hours:
+      one: HORA
+      other: HORAS
+    countdown_x_minutes:
+      one: MIN
+      other: MIN
+    countdown_x_seconds:
+      one: SEC
+      other: SEC
     prompts:
       day: Día
       hour: Hora
@@ -7728,8 +7797,17 @@ es:
         blank: No puede quedar en blanco
         confirmation: No coincide la contraseña
         empty: no puede estar vacío
+        equal_to:
+          one: debe ser igual a %{count}
+          other: deben ser iguales a %{count}
         even: debe ser par
         exclusion: está reservado
+        greater_than:
+          one: debe ser mayor de %{count}
+          other: deben ser mayores de %{count}
+        greater_than_or_equal_to:
+          one: debe ser mayor o igual que %{count}
+          other: deben ser mayores o iguales que %{count}
         inclusion: no está incluido en la lista
         invalid: no es válido
         less_than:
