@@ -126,7 +126,7 @@ class Annotations extends React.Component {
         className="AnnotationPopover"
       >
         <div className="contents">
-          { termDefinition && <p>{ termDefinition }</p> }
+          { termDefinition && !termDefinition.match( /\[missing/ ) && <p>{ termDefinition }</p> }
           <div className="view">{ I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }</div>
           <div className="search">
             <a href={`/observations?term_id=${attr.id}&term_value_id=${value.id}`}>
