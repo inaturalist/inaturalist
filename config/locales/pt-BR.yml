@@ -4587,6 +4587,12 @@ pt-BR:
     O membro da rede iNaturalist de Portugal, %{start_tag_portugal}BioDiversity4All%{end_tag_portugal}, compartilhou dados dos atlas portugueses de aves migratórias e de mamíferos, bem como vários outros documentos científicos portugueses.
   sites_affiliation_more_automatically_hidden_coordinates: |
     Coordenadas automaticamente ocultadas (obscurecidas ou privadas por conta da "geoprivacidade do táxon")
+  sites_affiliation_more_automatically_hidden_coordinates_desc: |
+    O iNaturalist oculta automaticamente as coordenadas de algumas espécies para protegê-las
+    de perturbações, coleta ou caça ilegal. Mesmo que as coordenadas
+    da observação tenham sido ocultadas automaticamente com o objetivo de proteger espécies,
+    o iNaturalist permite o acesso às coordenadas reais de todas as observações de seus
+    países respectivos aos membros da Rede de Coordenadores.
   sites_affiliation_more_email_addresses: |
     Os endereços de e-mail são compartilhados com os Membros da Rede apenas para fins de comunicações relacionadas com o site.
   sites_affiliation_more_twice_per_year: |
@@ -6424,6 +6430,13 @@ pt-BR:
         cumulative_count_desc: '# de identificações para um único táxon e todos os seus descendentes'
         curator_coordinate_access_disabled_desc_html: |
           Este projeto não permite a inclusão de observações sem o acesso habilitado as coordenadas geográficas por seus administradores. Caso não deseje compartilhar as coordenadas desta observação, é preciso que a remova do projeto.
+        data_quality_assessment_desc3_html: |
+          O Grau de Qualidade resume a exatidão, precisão, completude,
+          relevância e pertinencia de uma observação iNaturalist como dado de
+          biodiversidade. Alguns atributos são definidos automaticamente,
+          enquanto outros estão sujeitos ao voto de usuários do iNat. iNaturalist
+          compartilha observações do "Nível de Pesquisa" com uma série de parceiros de dados
+          para uso em ciência e conservação.
         disagreement_count_desc: "# de táxons identificados que não estão entre os ancestrais de um grupo ou espécie"
         identification_count_desc: '# de identificações para um único táxon'
         flagged_photos_desc_html: |

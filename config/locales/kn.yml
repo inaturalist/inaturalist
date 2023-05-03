@@ -673,6 +673,7 @@ kn:
   birds: ಹಕ್ಕಿಗಳು
   birthday: ಜನ್ಮದಿನ
   black: ಕಪ್ಪು
+  block: ನಿರ್ಬಂಧಿಸಿ
   block_removed: ನಿರ್ಬಂಧ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   blocked_users: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
   blog_widget: ಬ್ಲಾಗ್ ವಿಜೆಟ್
@@ -1852,8 +1853,10 @@ kn:
     french: ಫ್ರೆಂಚ್
     galician: ಗ್ಯಾಲಿಶಿಯನ್
     gela: ಗೆಲಾ
+    georgian: ಜಾರ್ಜಿಯನ್
     german: ಜರ್ಮನ್
     greek: ಗ್ರೀಕ್
+    gujarati: ಗುಜರಾತಿ
     hawaiian: ಹವಾಯಿಯನ್
     hebrew: ಹೀಬ್ರೂ
     hiligaynon: ಹಿಲಿಗೇನಾನ್
@@ -1988,6 +1991,7 @@ kn:
     id: ಇಂಡೋನೀಷಿಯನ್
     it: ಇಟಾಲಿಯನ್
     ja: ಜಪಾನೀಸ್
+    ka: ಜಾರ್ಜಿಯನ್
     kn: ಕನ್ನಡ
     ko: ಕೊರಿಯನ್
     lb: ಲಕ್ಸಂಬರ್ಗಿಷ್
@@ -5481,6 +5485,15 @@ kn:
       index:
         connect_with_nature: ನಿಸರ್ಗದೊಡನೆ ಒಡನಾಡಿ
         explore_and_share: ನಿಸರ್ಗದ ಪ್ರಪಂಚವನ್ನು ಅನ್ವೇಷಿಸಿ ಮತ್ತು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಿ.
+        observations_to_date:
+          one: "ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು"
+          other: "ಇಲ್ಲಿಯವರೆಗಿನ ವೀಕ್ಷಣೆಗಳು"
+        species_observed:
+          one: "ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು"
+          other: "ವೀಕ್ಷಿಸಿದ ಪ್ರಭೇದಗಳು"
+        people_signed_up:
+          one: "ನೋಂದಾಯಿತ ಸದಸ್ಯರು"
+          other: "ನೋಂದಾಯಿತ ಸದಸ್ಯರು"
         how_it_works: ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ
         record_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ದಾಖಲಿಸಿ
         share_with_fellow_naturalists: ಸಹ ನಿಸರ್ಗಪ್ರೇಮಿಗಳೊಡನೆ ಹಂಚಿಕೊಳ್ಳಿ
@@ -5852,8 +5865,20 @@ kn:
         empty: ಖಾಲಿಯಿರಲಾಗದು
         even: ಸಮಸಂಖ್ಯೆಯಾಗಿರಬೇಕು
         exclusion: ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ
+        greater_than:
+          one: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಹೆಚ್ಚಿರಬೇಕು'
+        greater_than_or_equal_to:
+          one: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಹೆಚ್ಚಿಗೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         inclusion: ಪಟ್ಟಿಯಲ್ಲಿ ಸೇರಿಸಿಲ್ಲ
         invalid: ಅಸಿಂಧುವಾಗಿದೆ
+        less_than:
+          one: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಕಡಿಮೆ ಇರಬೇಕು'
+        less_than_or_equal_to:
+          one: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
+          other: '%{count} ಗಿಂತ ಕಡಿಮೆ ಅಥವಾ ಸಮನಾಗಿರಬೇಕು'
         new_project_owner_must_be_a_manager: ಹೊಸ ಪ್ರಾಯೋಜನೆಯ ಮಾಲೀಕರು ಒಬ್ಬ ನಿರ್ವಾಹಕರಾಗಿರಬೇಕು
         not_a_number: ಅಂಕೆಯಾಗಿಲ್ಲ
         not_an_integer: ಒಂದು ಇಂಟೀಜರ್ ಅಂಕೆಯಾಗಿರಬೇಕು

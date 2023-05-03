@@ -1,7 +1,13 @@
-hi:
-  lexicons:
-    malayalam: मलयाळम
-    tamil: तमिऴ्
+en-US:
+  date_created: Date Created
+  date_observed: Date observed
+  date_observed_: Date Observed
+  date_updated: Date Updated
+  views:
+    observations:
+      compare:
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Date Field
   date:
     abbr_month_names:
       - 

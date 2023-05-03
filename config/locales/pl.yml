@@ -250,6 +250,10 @@ pl:
   about_complete_taxa: O kompletnych taksonach
   about_conservation_status: O statusie ochronnym
   about_editing_observation_fields: O edytowaniu pól obserwacji
+  #Header for a section explaining Establishment Means. See the
+  #about_establishment_desc key or
+  #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
+  about_establishment_means: O Sposobach Ulokowania
   about_license_options: O opcjach licencji
   about_licenses: O licencjach
   #Header for a section describing taxon names
@@ -285,9 +289,13 @@ pl:
   #of a project
   about_trusting_projects_project_managers_are: |-
     Menedżerowie projektu, którzy będą mieli dostęp do ukrytych współrzędnych to:
+  about_trusting_projects_warning: |-
+    Menedżerowie projektów mogą zmieniać parametry projektu tak, żeby uwzględnić twoje obserwacje, a także dodawać lub usuwać menedżerów projektu w każdym momencie. Będziesz otrzymywać powiadomienia o tych zmianach, ale zasadniczo powierzasz temu projektowi swoje dane o lokalizacji, więc uważaj.
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Możesz wybrać czy udostępniać ukryte współrzędne dla
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: O niezamierzonych niezgodnościach
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -468,11 +476,15 @@ pl:
   admin_s: Administratorzy
   admin_only: Tylko dla administratorów
   admin_tools: Narzędzia administracyjne
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizacje partnerskie
   agree_: Zgadzam się
   agree?: Zgadzasz się?
   agree_with_current_taxon: Zgadzam się z aktualnym taksonem
   agreeing: Zgoda...
   aka: vel
+  #Noun, title of a popup alerting you to something
+  alert: Powiadomienie
   all: Wszystkie
   all_comments: Wszystkie komentarze
   all_flags_must_be_resolved: Wszystkie zgłoszenia muszą zostać rozwiązane
@@ -605,6 +617,7 @@ pl:
   all_updates: Wszystkie aktualizacje
   allow_curator_access: Zezwalaj na dostęp kuratorom
   allow_project_curators_to_view_your_private_coordinates: Zezwalaj opiekunom projektu na dostęp do ukrytych współrzędnych
+  allowed_establish_means_values: Dozwolone ustalanie pochodzenia
   allowed_html: Dozwolony HTML
   allowed_occurrence_status_values: Dozwolone wartości dla statusu występowania
   allowed_values: Dozwolone wartości
@@ -613,6 +626,10 @@ pl:
   alphabetical_order: Kolejność alfabetyczna
   already_have_an_account_log_in_html: Masz już konto? <strong>Zaloguj się.</strong>
   amphibians: płazy
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analizuj nierozstrzygnięte spory
   analyze_ids: Analizuj oznaczenia
   ancestor_taxon: Takson przodek
   and_other_taxa: "&amp; Inne taksony"
@@ -639,6 +656,8 @@ pl:
   any_annotation_value: Dowolny
   #Label for an option to show content from any date
   any_date: Dowolna
+  #Label for an option to show content with any establishment means
+  any_establishment: Dowolny
   #Label for an option to show content with any license
   any_license: Dowolna
   #Label for an option to show content with photos, sounds, or neither
@@ -650,7 +669,25 @@ pl:
   #Label for an option to show observation with any reviewed status, i.e. both
   #reviewed and unreviewed
   any_reviewed: Obojętnie
+  #Label for an option to show/include content by any user
+  any_user: Dowolny
   anyone: Ktokolwiek
+  app_owner_application_explanation_required: |
+    Musisz podać bardziej szczegółowe wyjaśnienie tego, co chcesz zbudować.
+  app_owner_application_about_p1a_html: |
+    Aplikacje iNaturalist pozwalają na uwierzytelnione korzystanie z iNaturalist API. Ten pozwala na wykonywanie połączeń API, które robią takie rzeczy jak tworzenie obserwacji lub
+    identyfikacji. Zwykle używane są aplikacje takie jak aplikacje desktopowe lub mobilne aplikacje, które zawierają funkcje dla swoich użytkowników do tworzenia obserwacji iNaturalist. Zawartość ta musi być generowana z prawdziwym zaangażowaniem ludzi
+    lub pod ich nadzorem. Przeczytaj nasze <a href="/pages/community+guidelines"
+    target="_blank">Wytyczne Społeczności</a> zakazujące wygenerowanych maszynowo obserwacji, identyfikacji i komentarzy po więcej szczegółów.
+  app_owner_application_about_p2_html: |
+    Od 2022 r. wymagamy ręcznej akceptacji dla użytkowników, którzy chcą tworzyć klientów API.
+    Aby utworzyć aplikacje firm trzecich, musisz najpierw złożyć aplikację, aby stać się "właścicielem aplikacji''. Ta aplikacja powinna opisać funkcjonalność proponowanej aplikacji i sposób jej używania. Aby złożyć wniosek, Twoje konto musi mieć co najmniej 2 miesiące i mieć zrobione co najmiej 10 <a href="/pages/help#identification"
+    target="_blank">poprawek danych</a> w ostatnim miesiącu. Możemy zadawać dalsze pytania dotyczące Twojego planu i z jakiegokolwiek powodu zastrzegamy sobie prawo do odrzucenia wniosków.
+  app_owner_application_inelligible: |
+    Aby złożyć wniosek, Twoje konto musi mieć co najmniej 2 miesiące i
+    musi mieć zrobione co najmniej 10 poprawek danych identyfikacyjnych w ostatnim miesiącu.
+  app_owner_application_fields_explanation_html: Opisz funkcjonalność Twojej aplikacji i sposób, w jaki zamierzasz jej używać.
+  app_owner_application_success: Zgłoszenie na właściciela aplikacji została złożona
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplikacja
@@ -661,6 +698,8 @@ pl:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Aplikuj
+  apply_to_be_an_app_owner: Aplikuj, by stać się Właścicielem Aplikacji
+  apply_to_create_applications_title: Zastosuj, by stworzyć aplikację
   apply_to_selected: Zastosuj do wybranych
   apply_captive_cultivated: "Zastosuj żyje w niewoli / jest hodowany"
   apply_fields: Zastosuj pola
