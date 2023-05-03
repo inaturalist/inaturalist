@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { connect } from "react-redux";
 import LeaderboardPanel from "../components/leaderboard_panel";
 
@@ -6,8 +7,8 @@ function mapStateToProps( state ) {
     config: state.config,
     project: state.project,
     type: "species_observers",
-    leaders: state.project && state.project.species_observers_loaded ?
-      state.project.species_observers.results : null
+    leaders: state.project && state.project.observers_loaded
+      ? _.reverse( _.sortBy( state.project.observers.results, "species_count" ) ) : null
   };
 }
 

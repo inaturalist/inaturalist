@@ -29,11 +29,17 @@ const Project = class Project extends inatjs.Project {
     } );
     this.createSpecificRuleAttributes( );
     this.createRulePreferenceAttributes( );
+    const updatedSecondsAgo = moment( ).diff( this.updated_at, "seconds" );
     this.search_params = {
       project_id: this.id,
-      ttl: 900,
-      v: moment( this.updated_at ).format( "x" )
+      ttl: 900
     };
+    if ( updatedSecondsAgo < 900 ) {
+      // the project was recently updated. Add a parameter ?v to the query,
+      // representing the value of updated_at, so results cached with
+      // potentially old search parameters are not used
+      this.search_params.v = moment( this.updated_at ).format( "x" );
+    }
     if ( this.is_traditional ) {
       this.search_params.collection_preview = true;
     }

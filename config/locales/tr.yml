@@ -7038,12 +7038,10 @@ tr:
           Eğer sitede belirli bir kişi ile sorun yaşıyorsanız, hesabınızı silmek
           yerine <a href="/users/edit">o kişileri susturmayı</a> düşünün.
         still_want_to_delete_html: |
-          Eğer hala hesabınızı silmekte kararlıysanız, aşağıdaki forma 
-          <code>%{confirmation_code}</code> girin, ardından hesabınızı ve tüm 
-          verilerinizi silmek için butona tıklayın.
-        type_confirmation_code: '%{confirmation_code} yazın'
+          Hesabını silmek istediğinden hâlâ eminsen, aşağıdaki forma <code>%{confirmation_code}</code> gir ve hesabını ve tüm verilerini silmek için düğmeye tıkla.
+        type_confirmation_code: '%{confirmation_code} yaz'
         you_must_enter_confirmation_code_in_the_form: |
-          Hesabınızı silmek için forma "%{confirmation_code}" girmelisiniz
+          Hesabını silmek için forma "%{confirmation_code}" girmelisin
       edit:
         about_third_party_tracking: Üçüncü tarafın izlemesi hakkında
         blocking_desc_html: |
@@ -7060,8 +7058,7 @@ tr:
           Birisi sizi %{site_name}'te taciz ediyorsa, <a href="mailto:%{help_email}">lütfen bize bildirin</a>. Bu, Kullanım Koşullarımızın ihlali anlamına geliyor ise ya da sitemiz için uygunsuz olduğunu düşündüğümüz başka bir davranışı temsil ediyor ise, araştıracağız.
           </p>
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
-          Fikrinizi değiştirirseniz, her zaman 
-          <a href='/users/edit'>ayarlarınızı düzenleyebilirsiniz</a>.
+          Fikrinizi değiştirirsen, her zaman <a href='/users/edit'>ayarlarını düzenleyebilirsin</a>.
         inaturalist_network_affiliation_desc_html: |
           <p>
           <a href="%{url}" target="_blank">iNaturalist Ağı </a>, küresel iNaturalist
@@ -7110,32 +7107,29 @@ tr:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_messages: Mesajlar
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_journal_posts: Proje yayın gönderileri
+        notification_preferences_project_journal_posts: Proje günlük gönderileri
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_project_added_your_observations: Bir proje gözlemlerinizi eklediğinde
+        notification_preferences_project_added_your_observations: Bir proje gözlemlerini eklediğinde
         #Checkbox label for user preference about what to receive in the daily
         #email update. This one controls whether or not you get notifications
         #when the curators change in a project you've joined
-        notification_preferences_project_curator_changes: Proje sorumlusu değişiklikleri
+        notification_preferences_project_curator_changes: Proje küratörü değişiklikleri
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Sınıflandırma değişiklikleri
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_user_observations: Takip ettiğim insanlar tarafından yapılan gözlemler
+        notification_preferences_user_observations: Takip ettiğim kişilerin gözlemleri
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Sınıfların gözlemleri veya abone olduğum yerlerden yapılan gözlemler
+        notification_preferences_taxon_or_place_observations: Sınıfların gözlemleri veya abone olduğum konumlardan gözlemler
         place_preference_changed_notice_html: |
           Konum tercihi değişti. Fikrini değiştirirsen her zaman <a href='/users/edit'>ayarlarını düzenleyebilirsin</a>.
         project_addition_preferences:
           any: Herhangi
-          joined: Katıldığınız projeler
+          joined: Katıldığın projeler
           none: "Hiç kimse, projeye yalnızca siz gözlemlerinizi ekleyebilirsiniz"
         prefers_community_taxa_desc: |
           %{site_name}, gözlemlerinin ne olduğunu ve topluluğun ne düşündüğünü izler. Topluluğun görüşünün kendi görüşünün önüne geçmesi gerektiğini düşünmüyorsan, buradan vazgeçebilirsin. İnsanlar yine de tanımlama ekleyebilecek ancak gözlemlerin tanımlamandaki sınıfla ilişkili kalacaktır. Bu, tanımlaman, topluluğun görüşüyle eşleşmediği sürece gözlemlerinin Araştırma Sınıfı statüsü için uygun olmayacağı anlamına gelir.
         prefers_coordinate_interpolation_protection_desc: |
-          Bir gözlemin coğrafi gizliliğini "gizlenmiş" veya "özel" olarak ayarladığınızda, 
-          aynı coğrafi gizliliği, diğer insanların aynı zamanda yapılan gözlemlerine dayanarak 
-          gerçek koordinatları tahmin etmelerini zorlaştırmak için, aynı günden itibaren tüm 
-          diğer gözlemleriniz için de geçerli kılar.
+          Bir gözlemin coğrafi gizliliğini "gizlenmiş" veya "özel" olarak ayarladığında, diğer kişilerin aynı zamanda yapılan gözlemlere dayanarak gerçek koordinatları tahmin etmesini zorlaştırmak için aynı gündeki diğer tüm gözlemlerine aynı coğrafi gizliliği uygulayacaktır.
         prefers_no_tracking_label: Üçüncü taraf hizmetleri kullanarak stabilite ve kullanım verileri toplamayın
         prefers_no_tracking_label_desc_we_use: |
           Stabiliteyi izlemek ve yazılımımızdaki hataları ve sorunları bulmak için çeşitli üçüncü taraf hizmetleri kullanıyoruz. Bu üçüncü partiler şunları içerir
@@ -7160,9 +7154,7 @@ tr:
         prefers_no_tracking_label_desc_limits: |
           Bu seçeneğin yalnızca açıkça bu şirketlere gönderdiğimiz analizler ve çökme verileri için geçerli olduğunu unutmayın. Tüm iNaturalist sunucuları Microsoft tarafından sağlanmakta ve barındırılmaktadır, iNaturalist görüntüleri Amazon tarafından barındırılmaktadır ve neredeyse bütün iNaturalist haritaları Google tarafından sunulmaktadır; bunun anlamı iNaturalist'teki gözlemlere her baktığınızda, bu şirketler tarafından sağlanan hizmetlere bağlanıyor ve en azından IP adresinizi onlara gösteriyorsunuz (iPhone uygulamasında Apple'ın haritalarını kullanıyoruz). iNaturalist olasılıkla bu şirketlerin sunduğu hizmetler olmadan olmazdı ve iNat'ı kullanırken onlarla paylaştığınız veri miktarını ve türlerini sınırlayabilirken, veri akışını bütünüyle durduramayız.
         project_settings_desc: |
-          Unutmayın, bu, projelere gizli koordinatlarınıza erişmesine veya size güncellemeler 
-          göndermesine izin vermiyor. Bu izinleri vermek için projelere katılmanız veya 
-          duruma göre onay vermeniz gerekir.
+          Unutma, bu, projelere gizli koordinatlarına erişme veya sana güncelleme gönderme izni vermez. Bu izinleri vermek için projelere katılman veya duruma göre izin vermen gerekir.
         same_day_geoprivacy_protection: Aynı gün coğrafi gizlilik koruması
         taxon_change_desc: |
           Sınıflar %{site_name} üzerinde birleştirildiğinde veya yeniden adlandırıldığında,
@@ -7206,31 +7198,29 @@ tr:
           Çocuğunuz daha sonra Seek uygulamasını kullanarak iNaturalist hesabına
           gözlemler gönderebilir böylece iNaturalist.org adresinde görülebilirler.
           </p>
-        thanks_for_creating_a_minor_account: ÇOCUK HESABI OLUŞTURDUĞUNUZ İÇİN TEŞEKKÜRLER!
+        thanks_for_creating_a_minor_account: ÇOCUK HESABI OLUŞTURDUĞUN İÇİN TEŞEKKÜRLER!
         we_will_send_you_an_email: |
           Çocuğunuzun hesabı aktif hale geldiğinde size bir e-posta göndereceğiz.
       new:
         child_name_private: Çocuk ismi (özel)
-        create_a_minor_account: Bir Çocuk Hesabı Oluşturun
-        create_minor_account: Çocuk Hesabı Oluşturun
+        create_a_minor_account: Bir Çocuk Hesabı Oluştur
+        create_minor_account: Çocuk Hesabı Oluştur
         parent_name_private: Ebeveyn veya yasal vasi ismi (özel)
         parent_email: Ebeveyn veya yasal vasi e-postası (özel)
         inaturalist_minor_account_signup: iNaturalist Çocuk Hesabı Kaydı
         parent_information_private: Ebeveyn Bilgisi (özel)
-        step1_title: ÇOCUKLARINIZ İÇİN BİR HESAP OLUŞTURUN
+        step1_title: ÇOCUKLARIN İÇİN BİR HESAP OLUŞTUR
         step1_desc: |
           Gizlilik düzenlemelerine uymak için, 13 yaşın altındaki bir kişiye hesap oluşturmak için bir ebeveynin ya da yasal vasinin onayına ihtiyacımız var. Çocuğunuzun iNaturalist'i kullanmasını istiyorsanız, bize bazı kimlik ve iletişim bilgilerini sağlamalısınız.
-        step2_title: BİR KREDİ KARTI İLE KİMLİĞİNİZİ DOĞRULAYIN
+        step2_title: BİR KREDİ KARTI İLE KİMLİĞİNİ DOĞRULA
         step2_desc: |
           Bir yetişkin olarak kimliğini doğrulamak için kredi kartı kullanarak iNaturalist'e en az 1 ABD doları tutarında nominal bir bağışta bulunman gerekmektedir. Bu, gizlilik yasalarına uymamızı sağlayan en az müdahaleci kimlik doğrulama şeklidir. Lütfen bir önceki adımda "ebeveyn e-postası" olarak girdiğin e-posta adresini kullandığından emin ol.
-        step3_title: ONAY E-POSTASI İÇİN BEKLEYİN
+        step3_title: ONAY E-POSTASI İÇİN BEKLE
         step3_desc: |
-          Bağışta kullanılan e-posta, "ana e-posta" olarak girdiğiniz e-posta ile eşleştikten sonra,
-          çocuğunuzun hesabını etkinleştireceğiz ve ebeveyne giriş talimatlarını içeren
-          bir e-posta göndereceğiz. Bu 24 saate kadar sürebilir.
-        step3_donor_title: ÇOCUK HESABINIZ AKTİVE EDİLDİ
+          Bağışta kullanılan e-posta ile "ebeveyn e-postası" olarak girdiğin e-postayı eşleştirdiğimizde, çocuğun hesabını etkinleştireceğiz ve ebeveyne giriş talimatlarını içeren bir e-posta göndereceğiz. Bu işlem 24 saate kadar sürebilir.
+        step3_donor_title: ÇOCUĞUNUZUN HESABI ETKİNLEŞTİRİLDİ
         step3_donor_desc: |
-          Çünkü siz bir iNaturalist bağışçısısınız, kimliğinizi doğrulamak için mevcut bağışınızı kullanabildik.
+          Bir iNaturalist bağışçısı olduğun için kimliğini mevcut bağışınla doğrulayabildik.
     welcome:
       index:
         connect_with_nature: Doğa ile Bağ Kur
@@ -7273,7 +7263,7 @@ tr:
         join_today: Bugün Katıl
     wiki_pages:
       form:
-        save_and_edit_to_add_attachments: Eklenti eklemek için kaydedin ve düzenleyin
+        save_and_edit_to_add_attachments: Ek eklemek için kaydet ve düzenle
   date:
     abbr_day_names:
       - Paz
@@ -7315,13 +7305,13 @@ tr:
       7: Cmt
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      default: '%Y-%m-%d'
+      default: '%d-%m-%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       long: '%d %B, %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%d %b'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
-      compact: "%b %e"
+      compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short_with_year: '%d %b, %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
@@ -7401,7 +7391,7 @@ tr:
     defaults:
       title: "BU BİR BAŞLIK"
     select:
-      prompt: Lütfen seçiniz
+      prompt: Lütfen seçin
     submit:
       create: '%{model} oluştur'
       submit: '%{model} kaydet'
@@ -7453,7 +7443,7 @@ tr:
           tb: TB
   support:
     array:
-      last_word_connector: ', ve '
+      last_word_connector: 've '
       two_words_connector: ' ve '
       words_connector: ', '
   time:
@@ -7515,7 +7505,7 @@ tr:
       conservation_status:
         status: Durum
         description: Açıklama
-        authority: Yetki
+        authority: Merci
         place_id: Konum
         url: URL
         geoprivacy: Coğrafi Gizlilik
@@ -7529,7 +7519,7 @@ tr:
         flag: İşaret
       guide:
         source_url: Kaynak URL
-        published_at: Yayımlama
+        published_at: Yayım
       listed_taxon:
         occurrence_status_level: Oluşum Durumu Seviyesi
         establishment_means: Yerleşim Tipi
@@ -7544,7 +7534,7 @@ tr:
         description: Notlar
         geo_x: Doğuya Doğru
         geo_y: Kuzeye Doğru
-        observed_on: gözlenen tarih
+        observed_on: gözlem tarihi
       observation_field_value:
         value: 'değer'
       observations_export_flow_task:
@@ -7581,7 +7571,7 @@ tr:
         prefers_count_from_list: Listeden saymayı tercih eder
         description: Açıklama
         end_time: Bitiş zamanı
-        event_url: Etkinlik kayıt URL'i
+        event_url: Etkinlik kayıt URL'si
         terms: Şartlar
         map_type: Harita türü
         zoom_level: Yakınlaştırma seviyesi
@@ -7593,10 +7583,10 @@ tr:
         start_time: Başlangıç zamanı
         last_aggregated_at: Son toplanan gözlemler
       project_observation:
-        user_id: Gönderici
+        user_id: Gönderen
       place:
         code: Kod
-        display_name: İsim görüntüle
+        display_name: Görünen Ad
         latitude: Enlem
         longitude: Boylam
         name: İsim
@@ -7609,7 +7599,7 @@ tr:
         logo_email_banner: E-posta Afişi
       source:
         title: Başlık
-        in_text: Metin içerisinde
+        in_text: Metin içinde
         url: URL
         citation: Alıntı
       taxon:
@@ -7636,7 +7626,7 @@ tr:
         name: İsim
         #External source of the taxon, e.g. Catalogue of Life
         name_provider: Ad sağlayıcı
-        parent_id: Üst Kimliği
+        parent_id: Üst Kimlik
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: Fotoğraflar kilitli mi?
@@ -7674,16 +7664,16 @@ tr:
         #taxon
         show_for_descendent_taxa: Alt soy sınıflar için göster
       user:
-        email: E-Posta
+        email: E-posta
         login: Kullanıcı Adı
         name: İsim
         locale: Yerel
-        time_zone: Zaman dilimi
-        search_place_id: Arama yeri
+        time_zone: Zaman Dilimi
+        search_place_id: Arama Konumu
         place_id: Konum
-        preferred_observation_fields_by: Şuradan gözlem alanlarına izin ver
+        preferred_observation_fields_by: 'Şuradaki gözlem alanlarına izin ver:'
     errors:
-      format: '%{attribute}%{message}'
+      format: '%{attribute} %{message}'
       messages:
         accepted: kabul edilmeli
         blank: boş bırakılamaz
@@ -7713,25 +7703,25 @@ tr:
         not_an_integer: bir tam sayı olmalı
         odd: tek sayı olmalı
         only_project_owner_can_change_project_owner: Yalnızca proje sahibi, proje sahibini değiştirebilir
-        record_invalid: 'Doğrulama başarısız oldu: %{errors}'
+        record_invalid: 'Doğrulama başarısız: %{errors}'
         requires_privilege_speech: |
           başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
         taken: zaten alınmış
         too_long:
-          one: çok uzun (maksimum %{count} karakter)
-          other: çok uzun (maksimum %{count} karakter)
+          one: çok uzun (en çok %{count} karakter)
+          other: çok uzun (en çok %{count} karakter)
         too_short:
-          one: çok kısa (minimum %{count} karakter)
-          other: çok kısa (minimum %{count} karakter)
+          one: çok kısa (en az %{count} karakter)
+          other: çok kısa (en az %{count} karakter)
         wrong_length:
           one: yanlış uzunlukta (%{count} karakter olmalı)
           other: yanlış uzunlukta (%{count} karakter olmalı)
       template:
         body: 'Aşağıdaki alanlarla ilgili sorunlar oluştu:'
         header:
-          one: "%{count} hata bu %{model}'in kaydedilmesini yasakladı"
-          other: '%{count} hata bu %{model}''in kaydedilmesini yasakladı'
+          one: "%{count} hata bu %{model}'in kaydedilmesini engelledi"
+          other: '%{count} hata bu %{model}''in kaydedilmesini engelledi'
       models:
         application:
           attributes:
@@ -7757,7 +7747,7 @@ tr:
         guide:
           attributes:
             published_at:
-              published_at_needs_3_taxa: "rehberinizde en az 3 sınıfa ihtiyaç var"
+              published_at_needs_3_taxa: "rehberinde en az 3 sınıfa ihtiyaç var"
         guide_taxon:
           attributes:
             base:
@@ -7788,7 +7778,7 @@ tr:
         observation_field_value:
           attributes:
             value:
-              dna_only_atcg: "DNA yalnızca A, T, S, veya G karakterlerini içerebilir"
+              dna_only_atcg: "DNA yalnızca A, T, S veya G karakterlerini içerebilir"
               date_format: |
                 bir tarih alanı GG-AA-YYYY şeklinde olmalı ("%{observation_species_guess}"
                 gözleminizde "%{observation_field_name}")
@@ -7797,7 +7787,7 @@ tr:
                 gözleminizde "%{observation_field_name}")
             observation_id:
               user_does_not_accept_fields_from_others: kullanıcı başkalarından alanları kabul etmiyor
-              user_only_accepts_fields_from_site_curators: kullanıcı yalnızca sayfa sorumlularından alanları kabul eder
+              user_only_accepts_fields_from_site_curators: kullanıcı yalnızca site küratörlerinden alanları kabul eder
         observations_export_flow_task:
           attributes:
             base:
@@ -7827,7 +7817,7 @@ tr:
               prefers_no_comments: yeni yorumlara izin vermiyor
             user:
               must_be_on_site_long_enough: |
-                yayınlamak için 24 saatten daha önce kayıt yaptırmış olmalısınız. İstenmeyen kullanımların önüne geçmek için böyle bir önlem aldık. Yine de bir taslak olarak kaydedebilirsiniz, ve bir gün içinde hala siteyi kullanıyor olursanız, yayınlayabilirsiniz.
+                yayınlamak için 24 saatten daha uzun süre önce kaydolmalıdır. Çok fazla istenmeyen ileti gönderen oluyor ve bu onlarla başa çıkmanın bir yolu. Yine de bir taslak kaydedebilirsin ve bir gün içinde siteyi hâlâ kullanıyorsan, yayınlayabilirsin.
         project_observation:
           attributes:
             base:
@@ -7838,7 +7828,7 @@ tr:
               collection_and_umbrella_projects_do_not_allow_direct_submission: |
                 koleksiyon ve şemsiye projeleri doğrudan iletime izin vermez
             user_id:
-              must_be_curator: bu projenin bir sorumlusu olmalı
+              must_be_curator: bu projenin bir küratörü olmalı
             observation_id:
               must_be_observed_after: |
                 %{time} sonrasında gözlenmeli
@@ -7853,25 +7843,25 @@ tr:
           attributes:
             rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             rank_level:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             ancestry:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
-                yalnızca bu sınıfın sorumlusu tarafından değiştirilebilir
+                yalnızca bu sınıfın küratörü tarafından değiştirilebilir
             name:
               bad_format: |
-                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar, ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
         taxon_name:
           attributes:
             lexicon:
@@ -7886,12 +7876,12 @@ tr:
               must_match_the_taxon_if_valid: |
                 geçerli bir bilimsel ad ise sınıf adıyla eşleşmelidir
               bad_format: |
-                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar, ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
         taxon_photo:
           attributes:
             taxon:
               too_many_photos: |
-                %{max}'dan fazla fotoğraf olamaz
+                %{max} fotoğraftan fazlası olamaz
         taxon_range:
           attributes:
             iucn_relationship:
@@ -7902,10 +7892,10 @@ tr:
           attributes:
             login:
               must_begin_with_a_letter: |
-                bir harf ile başlamalı, boşluk içermemeli, ve yalnızca harfler, sayılar, kısa çizgiler, ve alt çizgiler kullanılmalı
+                bir harf ile başlamalı, boşluk içermemeli ve yalnızca harfler, sayılar, kısa çizgiler ve alt çizgiler kullanılmalı
             email:
               must_look_like_an_email_address: bir e-posta adresi gibi görünmeli
-              domain_is_not_supported: etki alanı desteklenmiyor
+              domain_is_not_supported: domain desteklenmiyor
         user_block:
           attributes:
             base:
@@ -7916,23 +7906,23 @@ tr:
           attributes:
             email:
               belongs_to_an_existing_user: |
-                mevcut bir kullanıcıya aittir; eğer hesabınız varsa, lütfen devam etmeden önce giriş yapın, veya farklı bir e-posta adresi kullanın
+                mevcut bir kullanıcıya aittir; eğer hesabın varsa, lütfen devam etmeden önce giriş yap veya farklı bir e-posta adresi kullan
   doorkeeper:
     scopes:
       write: |
-        Gözlemlerinizi, tanımlarınızı ve sizin adınıza diğer içerikleri oluşturun, güncelleyin ve silin, ve gizli koordinatlarınıza ve sitede erişebileceğiniz diğer bilgilere erişin.
+        Senin adına gözlemlerini, tanımlamalarını ve diğer içerikleri oluşturabilir, güncelleyebilir ve silebilir ve gizli koordinatlarına ve sitede ulaşabileceğin diğer tüm bilgilere erişebilirsin.
       login: |
-        E-posta adresi, kullanıcı adı, isim, ve kullanıcı simgesi gibi oturum açmakla ilgili bilgilere erişin.
+        Burada hesabınla ilişkili e-posta adresi, kullanıcı adı, ad ve kullanıcı simgesi gibi üçüncü taraf bir hizmette oturum açmak ile ilgili bilgilere eriş.
       account_delete: |
         Hesabını kendi adına sil.
     errors:
       messages:
         #Common error messages
-        invalid_request: 'İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri var, veya yanlış biçimlendirilmiş.'
-        invalid_redirect_uri: 'Dahil edilmiş yönlendirme uri geçerli değil.'
+        invalid_request: 'İstekte gerekli bir parametre eksik, desteklenmeyen bir parametre değeri var veya yanlış biçimlendirilmiş.'
+        invalid_redirect_uri: 'Dahil edilen yönlendirme uri''si geçerli değil.'
         unauthorized_client: 'Kullanıcının bu yöntemi kullanarak bu isteği gerçekleştirme yetkisi yok.'
         access_denied: 'Kaynak sahibi veya yetkilendirme sunucusu isteği reddetti.'
-        invalid_scope: 'İstenen alan geçersiz, bilinmeyen, veya hatalı biçimlendirilmiş.'
+        invalid_scope: 'İstenen alan geçersiz, bilinmeyen veya hatalı biçimlendirilmiş.'
         server_error: 'Yetkilendirme sunucusu, isteği yerine getirmesini engelleyen beklenmedik bir durumla karşılaştı.'
         temporarily_unavailable: 'Yetkilendirme sunucusu şu anda sunucunun geçici bir aşırı yüklenmesi veya bakımı nedeniyle isteği yerine getiremiyor.'
         #Configuration error messages
@@ -7941,8 +7931,8 @@ tr:
         #Access grant errors
         unsupported_response_type: 'Yetkilendirme sunucusu bu yanıt türünü desteklemiyor.'
         #Access token errors
-        invalid_client: 'Kullanıcı kimlik doğrulaması, bilinmeyen kullanıcı, dahil edilmeyen kullanıcı kimlik doğrulaması, veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle başarısız oldu.'
-        invalid_grant: 'Sağlanan yetkilendirme onayı geçersiz, süresi dolmuş, iptal edilmiş, yetkilendirme isteğinde kullanılan yönlendirme URI ile eşleşmiyor, veya başka bir kullanıcıya verilmiş.'
+        invalid_client: 'Kullanıcı kimlik doğrulaması, bilinmeyen kullanıcı, dahil edilmeyen kullanıcı kimlik doğrulaması veya desteklenmeyen kimlik doğrulama yöntemi nedeniyle başarısız oldu.'
+        invalid_grant: 'Sağlanan yetkilendirme onayı geçersiz, süresi dolmuş, iptal edilmiş, yetkilendirme isteğinde kullanılan yönlendirme URI ile eşleşmiyor veya başka bir kullanıcıya verilmiş.'
         unsupported_grant_type: 'Yetkilendirme onay türü, yetkilendirme sunucusu tarafından desteklenmiyor.'
         #Password Access token errors
         invalid_resource_owner: 'Sağlanan kaynak sahibi kimlik bilgileri geçerli değil veya kaynak sahibi bulunamıyor'
@@ -8096,6 +8086,6 @@ tr:
   #Descending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (descending)"
   z_to_a: Z - A
-  zoom_in: Yakınlaştır
-  zoom_out: Uzaklaştır
+  zoom_in: Yakınlaş
+  zoom_out: Uzaklaş
   zoom_photo: Fotoğrafı Yakınlaştır

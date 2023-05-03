@@ -1531,8 +1531,7 @@ class Observation < ApplicationRecord
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
-    return true if user_id == viewer.id
-    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
+    return true if user.trusts?( viewer )
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -2243,7 +2242,7 @@ class Observation < ApplicationRecord
       taxon_ids_including_ancestors.each do |tid|
         Taxon.delay(
           priority: INTEGRITY_PRIORITY,
-          run_at: 1.hour.from_now,
+          run_at: 2.hours.from_now,
           unique_hash: { "Taxon::update_observation_counts": tid }
         ).update_observation_counts( taxon_ids: [tid] )
       end
