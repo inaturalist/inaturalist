@@ -668,7 +668,7 @@ export function fetchUser( user, options ) {
         children,
         taxa,
         user,
-        simplifiedLeafParents: Object.keys( simplifiedLeafParents ),
+        simplifiedLeafParents: _.keys( simplifiedLeafParents ),
         observationsWithoutTaxon: response.count_without_taxon
       } ) );
       if ( featuredTaxonID ) {

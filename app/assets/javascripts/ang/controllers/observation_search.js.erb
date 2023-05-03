@@ -520,7 +520,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       currentSearch = urlParams;
     }
 
-    $scope.numFiltersSet = Object.keys( currentSearch ).length;
+    $scope.numFiltersSet = _.keys( currentSearch ).length;
     var skippableParams = [ 'view', 'subview', 'taxon_id', 'place_id',
       'swlat', 'swlng', 'nelat', 'nelng', 'page' ];
     for (var i = skippableParams.length - 1; i >= 0; i--) {
@@ -1452,7 +1452,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( urlParams.month && !Array.isArray( urlParams.month ) ) {
       urlParams.month = urlParams.month.split(",");
     }
-    urlParams.iconic_taxa = Object.keys( urlParams._iconic_taxa );
+    urlParams.iconic_taxa = _.keys( urlParams._iconic_taxa );
     if( options.convertProjectsParam && urlParams.project_id ) {
       urlParams.projects = urlParams.project_id;
       delete urlParams.project_id;

@@ -99,7 +99,7 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
     keysToDelete.push( "createdDateType" );
     if ( params.observationFields ) {
       // remove all existing observation field params
-      _.each( Object.keys( params ), function( k ) {
+      _.each( _.keys( params ), function( k ) {
         if ( k.match( /field:.+/ ) ) {
           delete params[ k ];
         }
@@ -112,14 +112,14 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
       keysToDelete.push( "observationFields" );
     }
     if( possibleFields ) {
-      var unknownFields = _.difference( Object.keys( params ), possibleFields );
+      var unknownFields = _.difference( _.keys( params ), possibleFields );
       _.each( unknownFields, function( f ) {
         if ( !f.match( /field:.+/ ) ) {
           delete params[ f ];
         }
       });
     }
-    _.each( Object.keys( params ), function( k ) {
+    _.each( _.keys( params ), function( k ) {
       if( k == "verifiable" ) { return; }
       // _.isEmpty returns true for ints and floats
       if( _.isEmpty( params[ k ] ) && !_.isBoolean( params[ k ] )

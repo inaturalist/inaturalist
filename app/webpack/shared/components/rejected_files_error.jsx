@@ -24,7 +24,7 @@ const RejectedFilesError = ( { rejectedFiles } ) => {
       console.log( "[DEBUG] rejected file: ", file );
     }
   } );
-  if ( Object.keys( errors ).length === 0 ) {
+  if ( _.keys( errors ).length === 0 ) {
     return null;
   }
   return (

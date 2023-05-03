@@ -110,11 +110,11 @@ class LocationChooserMap extends React.Component {
     const { obsCards } = this.props;
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: Object.keys( obsCards )
+      obsCards: _.keys( obsCards )
     } );
     const nextComparable = objectToComparable( {
       ..._.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: Object.keys( nextProps.obsCards )
+      obsCards: _.keys( nextProps.obsCards )
     } );
     return comparable !== nextComparable;
   }
@@ -258,11 +258,11 @@ class LocationChooserMap extends React.Component {
     ];
     const comparable = objectToComparable( {
       ..._.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: Object.keys( obsCards )
+      obsCards: _.keys( obsCards )
     } );
     const prevComparable = objectToComparable( {
       ..._.filter( prevProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ),
-      obsCards: Object.keys( prevProps.obsCards )
+      obsCards: _.keys( prevProps.obsCards )
     } );
     if ( comparable === prevComparable ) {
       return;

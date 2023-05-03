@@ -22,7 +22,7 @@ function updateSession( params ) {
 // Basically serialize an object so it can be used for deep object comparison,
 // e.g. when deciding whether to update a react component
 function objectToComparable( object = {} ) {
-  return _.map( Object.keys( object ).sort( ), k => {
+  return _.map( _.keys( object ).sort( ), k => {
     const v = object[k];
     if ( typeof ( v ) === "object" ) {
       return `(${k}-${objectToComparable( v )})`;

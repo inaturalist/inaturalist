@@ -103,7 +103,7 @@ class Histogram extends React.Component {
       .x( d => x( d[xAttr] ) )
       .y( d => y( d.value ) );
     const focus = svg.select( ".focus" );
-    const seriesGroups = focus.selectAll( ".series" ).data( Object.keys( localSeries ), d => d );
+    const seriesGroups = focus.selectAll( ".series" ).data( _.keys( localSeries ), d => d );
     seriesGroups.enter( )
       .append( "g" )
         .attr( "style", `clip-path: url(#${clipID})` )
@@ -187,7 +187,7 @@ class Histogram extends React.Component {
 
     // Add the legend
     const legendScale = d3.scaleOrdinal( )
-      .domain( Object.keys( localSeries ) )
+      .domain( _.keys( localSeries ) )
       .range( _.map( localSeries, ( v, k ) => this.colorForSeries( k ) ) );
     const legendOrdinal = legend.legendColor( )
       .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
@@ -206,7 +206,7 @@ class Histogram extends React.Component {
     // This doesn't quite higlight the fill color of the rects in the context
     // if ( showContext ) {
     //   const context = d3.select( mountNode ).selectAll( ".context" );
-    //   const contextSeriesName = Object.keys( localSeries )[0];
+    //   const contextSeriesName = _.keys( localSeries )[0];
     //   const contextSeriesData = localSeries[contextSeriesName];
     //   const contextBars = context.selectAll( "rect" ).data( contextSeriesData );
     //   const colorForDatum = d => {
@@ -492,7 +492,7 @@ class Histogram extends React.Component {
       const brush = d3.brushX( )
         .extent( [[0, 0], [width, height2]] )
         .on( "brush end", brushed );
-      const contextSeriesName = Object.keys( localSeries )[0];
+      const contextSeriesName = _.keys( localSeries )[0];
       const contextSeriesData = localSeries[contextSeriesName];
       const contextBars = context.selectAll( "rect" ).data( contextSeriesData );
       const colorForDatum = d => {

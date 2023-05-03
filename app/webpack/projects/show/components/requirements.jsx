@@ -86,7 +86,7 @@ const Requirements = ( {
       </a>
     ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
-    : _.map( Object.keys( project.rule_quality_grade ),
+    : _.map( _.keys( project.rule_quality_grade ),
       q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {

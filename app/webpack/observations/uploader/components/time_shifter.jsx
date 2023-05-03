@@ -75,7 +75,7 @@ class TimeShifter extends SelectionBasedComponent {
   handleValueChange( ) {
     const { selectedObsCards } = this.props;
     const { timeShift } = this.state;
-    const cardsToUpdate = Object.keys( selectedObsCards ).map( card => selectedObsCards[card] );
+    const cardsToUpdate = _.keys( selectedObsCards ).map( card => selectedObsCards[card] );
 
     const isPositive = value => Math.sign( value ) === 1;
     const isNegative = value => Math.sign( value ) === -1;

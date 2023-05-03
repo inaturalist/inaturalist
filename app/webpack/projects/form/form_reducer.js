@@ -380,7 +380,7 @@ export function submitProject( ) {
         prefers_hide_umbrella_map_flags: !!project.hide_umbrella_map_flags,
         prefers_banner_contain: !!project.header_image_contain,
         prefers_rule_quality_grade: project.rule_quality_grade
-          ? Object.keys( project.rule_quality_grade ).join( "," ) : "",
+          ? _.keys( project.rule_quality_grade ).join( "," ) : "",
         prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
         prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
         prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,

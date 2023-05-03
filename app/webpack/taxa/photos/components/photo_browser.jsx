@@ -42,7 +42,7 @@ const PhotoBrowser = ( {
     sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), "groupName" );
   }
   const photoLicenses = _.sortBy(
-    Object.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
+    _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
     k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
   );
   const renderObservationPhotos = obsPhotos => (

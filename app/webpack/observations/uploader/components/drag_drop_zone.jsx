@@ -170,7 +170,7 @@ class DragDropZone extends Component {
       selectObsCards
     } = this.props;
     let newSelected;
-    const selectedIDs = Object.keys( selectedObsCards );
+    const selectedIDs = _.keys( selectedObsCards );
     if ( commandKeyPressed ) {
       // command + click
       if ( selectedObsCards[obsCard.id] ) {
@@ -229,8 +229,8 @@ class DragDropZone extends Component {
     if ( fileIsOver ) { className += " fileOver"; }
     const cardCount = Object.keys( obsCards ).length;
     if ( cardCount > 0 ) {
-      const keys = Object.keys( selectedObsCards );
-      const countSelected = Object.keys( selectedObsCards ).length;
+      const keys = _.keys( selectedObsCards );
+      const countSelected = _.keys( selectedObsCards ).length;
       const lastUpdate = _.max( _.map( selectedObsCards, c => c.updatedAt ) );
       const first = keys[0];
       let leftMenuKey = `leftmenu${countSelected}${first}${lastUpdate}`;
@@ -255,7 +255,7 @@ class DragDropZone extends Component {
     } else {
       intro = ( <OpeningActionMenu fileChooser={this.fileChooser} /> );
     }
-    const countSelected = Object.keys( selectedObsCards ).length;
+    const countSelected = _.keys( selectedObsCards ).length;
     const countSelectedPending = _.sum(
       _.map( selectedObsCards, c => c.nonUploadedFiles().length )
     );

@@ -262,7 +262,7 @@ export function fetchTerms( options = { histograms: false } ) {
       // If there's data about how many observations do *not* have annotations
       // of these relevant attributes, add "No Annotation" data
       if ( options.histograms && r.unannotated ) {
-        const usedAttributeIds = Object.keys( fieldValues ).map( Number );
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
         _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
           if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
             fieldValues[Number( unannotatedAttributeId )].push( {

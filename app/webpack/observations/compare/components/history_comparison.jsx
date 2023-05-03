@@ -67,7 +67,7 @@ const HistoryComparison = ( {
       );
     } else {
       let allXValues = _.flatten(
-        _.map( histories, history => Object.keys( history ) )
+        _.map( histories, history => _.keys( history ) )
       );
       if ( xAttr === "date" ) {
         allXValues = allXValues.map( isoParse );

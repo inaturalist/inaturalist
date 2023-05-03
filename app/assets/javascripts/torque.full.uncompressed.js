@@ -38819,7 +38819,7 @@ module.exports = function(fc, field, num){
         iteratee(obj[i], i, obj);
       }
     } else {
-      var keys = Object.keys(obj);
+      var keys = _.keys(obj);
       for (i = 0, length = keys.length; i < length; i++) {
         iteratee(obj[keys[i]], keys[i], obj);
       }
@@ -38830,7 +38830,7 @@ module.exports = function(fc, field, num){
   // Return the results of applying the iteratee to each element.
   _.map = _.collect = function(obj, iteratee, context) {
     iteratee = cb(iteratee, context);
-    var keys = !isArrayLike(obj) && Object.keys(obj),
+    var keys = !isArrayLike(obj) && _.keys(obj),
         length = (keys || obj).length,
         results = Array(length);
     for (var index = 0; index < length; index++) {
@@ -38854,7 +38854,7 @@ module.exports = function(fc, field, num){
 
     return function(obj, iteratee, memo, context) {
       iteratee = optimizeCb(iteratee, context, 4);
-      var keys = !isArrayLike(obj) && Object.keys(obj),
+      var keys = !isArrayLike(obj) && _.keys(obj),
           length = (keys || obj).length,
           index = dir > 0 ? 0 : length - 1;
       // Determine the initial value if none is provided.
@@ -38904,7 +38904,7 @@ module.exports = function(fc, field, num){
   // Aliased as `all`.
   _.every = _.all = function(obj, predicate, context) {
     predicate = cb(predicate, context);
-    var keys = !isArrayLike(obj) && Object.keys(obj),
+    var keys = !isArrayLike(obj) && _.keys(obj),
         length = (keys || obj).length;
     for (var index = 0; index < length; index++) {
       var currentKey = keys ? keys[index] : index;
@@ -38917,7 +38917,7 @@ module.exports = function(fc, field, num){
   // Aliased as `any`.
   _.some = _.any = function(obj, predicate, context) {
     predicate = cb(predicate, context);
-    var keys = !isArrayLike(obj) && Object.keys(obj),
+    var keys = !isArrayLike(obj) && _.keys(obj),
         length = (keys || obj).length;
     for (var index = 0; index < length; index++) {
       var currentKey = keys ? keys[index] : index;
@@ -39099,7 +39099,7 @@ module.exports = function(fc, field, num){
   // Return the number of elements in an object.
   _.size = function(obj) {
     if (obj == null) return 0;
-    return isArrayLike(obj) ? obj.length : Object.keys(obj).length;
+    return isArrayLike(obj) ? obj.length : _.keys(obj).length;
   };
 
   // Split a collection into two arrays: one whose elements all satisfy the given
@@ -39591,7 +39591,7 @@ module.exports = function(fc, field, num){
 
   // Retrieve the names of an object's own properties.
   // Delegates to **ECMAScript 5**'s native `Object.keys`
-  Object.keys = function(obj) {
+  _.keys = function(obj) {
     if (!_.isObject(obj)) return [];
     if (nativeKeys) return nativeKeys(obj);
     var keys = [];
@@ -39613,7 +39613,7 @@ module.exports = function(fc, field, num){
 
   // Retrieve the values of an object's properties.
   _.values = function(obj) {
-    var keys = Object.keys(obj);
+    var keys = _.keys(obj);
     var length = keys.length;
     var values = Array(length);
     for (var i = 0; i < length; i++) {
@@ -39626,7 +39626,7 @@ module.exports = function(fc, field, num){
   // In contrast to _.map it returns an object
   _.mapObject = function(obj, iteratee, context) {
     iteratee = cb(iteratee, context);
-    var keys =  Object.keys(obj),
+    var keys =  _.keys(obj),
           length = keys.length,
           results = {},
           currentKey;
@@ -39639,7 +39639,7 @@ module.exports = function(fc, field, num){
 
   // Convert an object into a list of `[key, value]` pairs.
   _.pairs = function(obj) {
-    var keys = Object.keys(obj);
+    var keys = _.keys(obj);
     var length = keys.length;
     var pairs = Array(length);
     for (var i = 0; i < length; i++) {
@@ -39651,7 +39651,7 @@ module.exports = function(fc, field, num){
   // Invert the keys and values of an object. The values must be serializable.
   _.invert = function(obj) {
     var result = {};
-    var keys = Object.keys(obj);
+    var keys = _.keys(obj);
     for (var i = 0, length = keys.length; i < length; i++) {
       result[obj[keys[i]]] = keys[i];
     }
@@ -39673,12 +39673,12 @@ module.exports = function(fc, field, num){
 
   // Assigns a given object with all the own properties in the passed-in object(s)
   // (https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
-  _.extendOwn = _.assign = createAssigner(Object.keys);
+  _.extendOwn = _.assign = createAssigner(_.keys);
 
   // Returns the first key on an object that passes a predicate test
   _.findKey = function(obj, predicate, context) {
     predicate = cb(predicate, context);
-    var keys = Object.keys(obj), key;
+    var keys = _.keys(obj), key;
     for (var i = 0, length = keys.length; i < length; i++) {
       key = keys[i];
       if (predicate(obj[key], key, obj)) return key;
@@ -39746,7 +39746,7 @@ module.exports = function(fc, field, num){
 
   // Returns whether an object has a given set of `key:value` pairs.
   _.isMatch = function(object, attrs) {
-    var keys = Object.keys(attrs), length = keys.length;
+    var keys = _.keys(attrs), length = keys.length;
     if (object == null) return !length;
     var obj = Object(object);
     for (var i = 0; i < length; i++) {
@@ -39834,10 +39834,10 @@ module.exports = function(fc, field, num){
       }
     } else {
       // Deep compare objects.
-      var keys = Object.keys(a), key;
+      var keys = _.keys(a), key;
       length = keys.length;
       // Ensure that both objects contain the same number of properties before comparing deep equality.
-      if (Object.keys(b).length !== length) return false;
+      if (_.keys(b).length !== length) return false;
       while (length--) {
         // Deep compare each member
         key = keys[length];
@@ -39860,7 +39860,7 @@ module.exports = function(fc, field, num){
   _.isEmpty = function(obj) {
     if (obj == null) return true;
     if (isArrayLike(obj) && (_.isArray(obj) || _.isString(obj) || _.isArguments(obj))) return obj.length === 0;
-    return Object.keys(obj).length === 0;
+    return _.keys(obj).length === 0;
   };
 
   // Is a given value a DOM element?
@@ -40015,7 +40015,7 @@ module.exports = function(fc, field, num){
       return map[match];
     };
     // Regexes for identifying a key that needs to be escaped
-    var source = '(?:' + Object.keys(map).join('|') + ')';
+    var source = '(?:' + _.keys(map).join('|') + ')';
     var testRegexp = RegExp(source);
     var replaceRegexp = RegExp(source, 'g');
     return function(string) {

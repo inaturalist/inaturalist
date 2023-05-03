@@ -37,7 +37,7 @@ class Translators extends React.Component {
     }
     const sortedData = _.sortBy( dataWithTotals, u => u[sortBy] * ( sort === "asc" ? 1 : -1 ) );
     const dataToShow = sortedData.slice( 0, numToShow );
-    const languageNames = Object.keys( data.languages );
+    const languageNames = _.keys( data.languages );
     const maxVal = d3max( _.map( dataWithTotals, d => d.total ) );
     const scale = scaleLinear( )
       .domain( [0, maxVal] )

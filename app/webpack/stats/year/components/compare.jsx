@@ -37,7 +37,7 @@ class Compare extends Component {
       return memo;
     }, {} );
     // If there's only one year represented, there's nothing to compare
-    if ( Object.keys( speciesPerYear ).length < 2 ) {
+    if ( _.keys( speciesPerYear ).length < 2 ) {
       // return <div />;
     }
     if ( year < 2020 ) {
