@@ -204,8 +204,9 @@ GEM
       sprockets (>= 3.0, < 5)
       tilt
     ast (2.4.2)
-    audited (5.0.2)
+    audited (5.3.3)
       activerecord (>= 5.0, < 7.1)
+      request_store (~> 1.2)
     aws-eventstream (1.2.0)
     aws-partitions (1.510.0)
     aws-sdk-cloudfront (1.56.0)
@@ -400,7 +401,7 @@ GEM
     httpi (2.5.0)
       rack
       socksify
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
@@ -584,6 +585,8 @@ GEM
     rdoc (6.3.3)
     redcarpet (3.5.1)
     regexp_parser (2.1.1)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -732,7 +735,7 @@ GEM
     ya2yaml (0.31)
     yajl-ruby (1.4.3)
     yui-compressor (0.12.0)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   ruby
