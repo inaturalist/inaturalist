@@ -185,7 +185,12 @@ const FIELDS = {
     id: true,
     uuid: true,
     url: true,
-    license_code: true
+    license_code: true,
+    flags: {
+      id: true,
+      flag: true,
+      resolved: true
+    }
   },
   place_guess: true,
   place_ids: true,

@@ -303,7 +303,10 @@ class UsersController < ApplicationController
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
       @favorite_listed_taxa = @favorites_list.listed_taxa.
-        includes(taxon: [:photos, :taxon_names ]).
+        includes(taxon: [
+          { photos: [:flags, :file_prefix, :file_extension] },
+          { taxon_names: :place_taxon_names }
+        ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
 

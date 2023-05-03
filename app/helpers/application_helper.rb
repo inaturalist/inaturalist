@@ -295,6 +295,12 @@ module ApplicationHelper
     
     # make sure attributes are quoted correctly
     text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # remove escaped underscores from mentions where Redcarpet didn't process markdown
+    mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
+    while text.match( mentions_with_escaped_underscores_regex )
+      text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
+    end
     
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's

@@ -69,6 +69,13 @@ describe ApplicationHelper do
         expect( parsed_formatted_link[:rel] ).to include "nofollow"
       end
     end
+    describe "mentions" do
+      let( :user ) { User.make!( login: "with__extra__underscores" ) }
+      it "preserves user logins in mentions" do
+        expect( formatted_user_text( "@#{user.login}" ) ).to include( ">@#{user.login}</a>" )
+        expect( formatted_user_text( "<p>@#{user.login}</p>" ) ).to include( ">@#{user.login}</a>" )
+      end
+    end
   end
 
   describe "#image_url" do

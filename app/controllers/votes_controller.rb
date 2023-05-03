@@ -52,10 +52,10 @@ class VotesController < ApplicationController
         :quality_metrics,
         :projects,
         :flags,
-        { :photos => :flags },
-        { :user => :stored_preferences },
-        { :taxon => [:taxon_names, :taxon_descriptions] },
-        { :iconic_taxon => :taxon_descriptions }
+        { photos: [:flags, :file_prefix, :file_extension] },
+        { user: [:stored_preferences, :friendships] },
+        { taxon: [ { taxon_names: :place_taxon_names }, :taxon_descriptions] },
+        { iconic_taxon: :taxon_descriptions }
       ])
     respond_to do |format|
       format.html

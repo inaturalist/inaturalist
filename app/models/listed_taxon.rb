@@ -422,7 +422,7 @@ class ListedTaxon < ApplicationRecord
 
   def index_taxon
     unless skip_index_taxon
-      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
         unique_hash: { "Taxon::elastic_index": taxon_id }).
         elastic_index!(ids: [taxon_id])
     end
