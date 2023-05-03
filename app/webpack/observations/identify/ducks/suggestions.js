@@ -257,12 +257,12 @@ export function fetchSuggestions( query ) {
     const s = getState( );
     const { testingApiV2 } = s.config;
     let newQuery = {};
-    if ( query && _.keys( query ).length > 0 ) {
+    if ( query && Object.keys( query ).length > 0 ) {
       newQuery = query;
     } else {
       newQuery = s.suggestions.query;
     }
-    if ( _.keys( newQuery ).length === 0 ) {
+    if ( Object.keys( newQuery ).length === 0 ) {
       return null;
     }
     if ( testingApiV2 ) {

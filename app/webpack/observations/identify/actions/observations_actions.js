@@ -70,7 +70,7 @@ function fetchObservationPlaces( ) {
     let placeIDs = _.compact( _.flattenDeep( observations.map(
       o => [o.place_ids, o.private_place_ids]
     ) ) );
-    const existingPlaceIDs = _.keys( getState( ).observations.placesByID )
+    const existingPlaceIDs = Object.keys( getState( ).observations.placesByID )
       .map( pid => parseInt( pid, 10 ) );
     placeIDs = _.take(
       _.uniq( _.without( placeIDs, ...existingPlaceIDs ) ),

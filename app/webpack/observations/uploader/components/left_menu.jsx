@@ -84,7 +84,7 @@ class LeftMenu extends SelectionBasedComponent {
 
   details( ) {
     const { updateSelectedObsCards, config } = this.props;
-    const count = _.keys( this.props.selectedObsCards ).length;
+    const count = Object.keys( this.props.selectedObsCards ).length;
     const singleObservation = count === 1 ? _.values( this.props.selectedObsCards )[0] : null;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
@@ -263,7 +263,7 @@ class LeftMenu extends SelectionBasedComponent {
   }
 
   render( ) {
-    const count = _.keys( this.props.selectedObsCards ).length;
+    const count = Object.keys( this.props.selectedObsCards ).length;
     let menu;
     const detailsContent = this.uniqueValuesOf( "description" ).length > 0
       || this.uniqueValuesOf( "date" ).length > 0
