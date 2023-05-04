@@ -416,10 +416,6 @@ GEM
       bindata
       httpclient
     jwt (2.7.0)
-    koala (3.0.0)
-      addressable
-      faraday
-      json (>= 1.8)
     kt-paperclip (7.1.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
@@ -804,7 +800,6 @@ DEPENDENCIES
   icalendar
   irwi!
   json
-  koala
   kt-paperclip
   lefthook
   machinist!
