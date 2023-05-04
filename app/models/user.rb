@@ -1525,6 +1525,10 @@ class User < ApplicationRecord
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
   end
 
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+  end
+
   # this method will look at all this users photos and create separate delayed jobs
   # for each photo that should be moved to the other bucket
   def self.enqueue_photo_bucket_moving_jobs( user )

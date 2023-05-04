@@ -2306,8 +2306,18 @@ kk:
         woeid: WOEID
       source:
         url: URL
+      taxon_name:
+        is_valid: Жарамды ма?
+        name: Атауы
+        name_provider: Атау провайдері
       taxon_link:
         url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Сайт атауы
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Қысқаша атау
         #Taxon this link is associated with
         taxon: Таксон
         #Place this link is associated with
@@ -2321,6 +2331,10 @@ kk:
         search_place_id: Іздеу орны
         place_id: Орын
     errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: қабылдануы керек
+        blank: бос болуы мүмкін емес
       models:
         taxon_name:
           attributes:

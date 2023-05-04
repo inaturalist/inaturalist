@@ -164,6 +164,12 @@ ja:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: '精度（m）'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: 以上の精度
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: 以下の精度
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: 以下の精度または不明
   account: アカウント
   account_creation: アカウント作成
   account_settings: アカウント設定
@@ -1610,6 +1616,8 @@ ja:
   file_should_be_in_the_following_format: "ファイルは次のフォーマットでなければなりません: taxon name, description"
   fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
   fill_out_your_profile: あなたのプロフィールを完成しましょう
+  #The name of a computer file
+  filename: ファイル名
   filter: 絞り込む
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
@@ -2050,16 +2058,22 @@ ja:
   lexicon_cannot_contain_words: "次の単語を含めることはできません: %{words}"
   lexicons:
     afrikaans: アフリカーンス語
+    alabama: アラバマ語
     albanian: アルバニア語
     arabic: アラビア語
     armenian: アルメニア語
+    asturian: アストゥリアス語
+    basque: バスク語
     belarusian: ベラルーシ語
     bengali: ベンガル語
+    bikol: ビコル語
     bulgarian: ブルガリア語
+    carolinian: カロリン語
     catalan: カタロニア語
     cebuano: セブアノ語
     chinese_simplified: 中国語 (簡体字)
     chinese_traditional: 中国語 (繁体字)
+    chuvash: チュヴァシュ語
     creole_french: クレオール語（フランス語）
     creole_portuguese: クレオール語（ポルトガル語）
     croatian: クロアチア語
@@ -2070,32 +2084,41 @@ ja:
     english: 英語
     estonian: エストニア語
     faroese: フェロー語
+    fijian: フィジー語
     finnish: フィンランド語
     french: フランス語
     galician: ガリシア語
     gela: ゲラ語
+    georgian: ジョージア(グルジア)語
     german: ドイツ語
     greek: ギリシャ語
     hawaiian: ハワイ語
     hebrew: ヘブライ語
+    herero: ヘレロ語
     hiligaynon: ヒリガイノン語
+    hill_mari: 山地マリ語
+    hodges_number: ホッジス番号
     hungarian: ハンガリー語
     icelandic: アイスランド語
     ilokano: イロカノ語
     indonesian: インドネシア語
+    irish: アイルランド語
     italian: イタリア語
     japanese: 日本語
     kannada: カンナダ語
     korean: 韓国語
     latvian: ラトビア語
     lithuanian: リトアニア語
+    lozi: ロズィ語
     luxembourgish: ルクセンブルク語
+    malagasy: マダガスカル語
     malay: マレー語
     malayalam: マラヤーラム語
     maltese: マルタ語
     maori: マオリ語
     marathi: マラーティー語
     misima_paneati: ミシマパネアティ語
+    navajo: ナバホ語
     norwegian: ノルウェー語
     occitan: オック語
     pangasinan: パンガシナン語
@@ -2104,19 +2127,31 @@ ja:
     russian: ロシア語
     scientific_names: 学名
     serbian: セルビア語
+    shona: ショナ語
     sinhala: シンハラ語
     slovak: スロバキア語
     slovenian: スロベニア語
+    sotho: ソト語
+    sotho_northern: 北ソト語
     spanish: スペイン語
     swahili: スワヒリ語
+    swati: スワティ語
     swedish: スウェーデン語
     tagalog: タガログ語
     tahitian: タヒチ語
+    tamil: タミル語
     thai: タイ語
     tokelauan: トケラウ語
+    totonaco: トトナク語
+    tsonga: ツォンガ語
+    tswana: ツワナ語
     turkish: トルコ語
     ukrainian: ウクライナ語
+    venda: ヴェンダ語
+    vietnamese: ベトナム語
     waray_waray: ワライ語
+    xhosa: コサ語
+    zulu: ズールー語
   less: より少なく
   #Button show less text
   less__context_text: 少なく表示
@@ -2201,6 +2236,7 @@ ja:
     id: インドネシア語
     it: イタリア語
     ja: 日本語
+    ka: ジョージア(グルジア)語
     kk: カザフ語
     kn: カンナダ語
     ko: 韓国語
@@ -4101,6 +4137,7 @@ ja:
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: これはIUCNレッドリストからの分布マップではありません（分類群はIUCNに登録されていません）
   taxon_range_guidelines_each_taxon_can_have: 各分類群は1つの分布域のみを持つことができます。分布域はその分類群の世界的な分布を表す必要があります。
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
+  taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
   taxon_ranks: 分類群のランク
   taxon_removed_from_list: リストから分類群が削除されました
@@ -4688,6 +4725,8 @@ ja:
   without_annotation: 注釈なし
   widget: ウィジェット
   widget_code: ウィジェットコード
+  wikipedia_attribution_cc_by_sa_3: |
+    ソース: ウィキペディア, "%{title}", %{url}, CC BY-SA 3.0
   wikipedia_attribution_cc_by_sa_3_html: |
     この記事に流用するウィキペディア掲載の記事<a href="%{url}">"%{title}"</a>の内容は、権利の継承を<a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>に指定されています。元の記事から除去された可能性はあっても、このページ上で内容の改変は行われていません。
@@ -4892,6 +4931,7 @@ ja:
       all_observations: すべての観察記録
       filter_by: 絞込み条件：
       dropdowns:
+        sort: 並べ替え
         most_observed: 最も観察数が多い
         least_observed: 最も観察数が少ない
         date_added_newest: 登録日、最新順
@@ -4909,6 +4949,13 @@ ja:
           プロジェクトのキュレーターが手動で追加した分類群と、研究用観察
           からプロジェクトに提示された分類群は、プロジェクト一覧に追加
           されます。
+    messages:
+      from: 差出人
+      to: 宛先
+      subject_body: 件名 / 本文
+      index:
+        show_messages_from_user: '%{user} からのメッセージを表示'
+        show_messages_to_user: '%{user}に宛てたメッセージを表示'
     observations:
       community_id:
         ancestor_disagreements: 祖先の不一致数
@@ -5173,6 +5220,7 @@ ja:
         compare_site_desc: |
           今年は例年と比べてどうでしたか？緑のバーは今年、白のバーは昨年を示し、グレーの背景の部分は最も低い年と最も高い年、そして全年の平均を示しています。
         compared_to_previous_years: 前年との比較
+        inaturalist_network: iNaturalistネットワーク
         growth_title: 成長
         new_species_desc_html: |
           今年初めて追加された生物種。月をクリックすると、その月に追加された新記録種のいくつかを見ることができます。また、全体の種の累積を見たり、スライダーを過去に動かして他の新しく観察された種を見ることもできます。このグラフは、検証可能な観測による種を、%{site_name} にアップロードされた月（観測された月ではない）ごとに表示しています。これは上位または下位の分類を含まないので、哺乳類として識別された観察はカウントされず、<i>Canis lupus</i> ssp. <i>arctos</i> の観察は <i>Canis lupus</i> としてカウントされるだけです。
@@ -5208,6 +5256,8 @@ ja:
         frequency:
           research: 研究用
           verifiable: 研究用+要同定
+        max_photos_desc: |
+          分類群は最大%{max}枚の写真のみ追加できます。他の写真を追加するには、既存の写真を削除してください。
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -5381,6 +5431,8 @@ ja:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      short_with_year: '%Y.%b.%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_year: '%Y年%B'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       month_day_year: '%Y年%B%d日'
@@ -5421,6 +5473,14 @@ ja:
         other: '%{count}ヶ月'
       x_seconds:
         other: '%{count}秒'
+    countdown_x_days:
+      other: 日
+    countdown_x_hours:
+      other: 時間
+    countdown_x_minutes:
+      other: 分
+    countdown_x_seconds:
+      other: 秒
     prompts:
       day: 日
       hour: 時間
@@ -5466,12 +5526,20 @@ ja:
         units:
           byte:
             other: バイト
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
   support:
     array:
+      last_word_connector: '、および '
+      two_words_connector: ' 、 '
       words_connector: '、'
   time:
     am: 午前
     formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
+      default: '%Y.%b.%d %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
       short: '%b%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes
@@ -5483,6 +5551,9 @@ ja:
       #on the web site, mostly on the dashboard
       Announcement: お知らせ
     attributes:
+      announcement:
+        created_at: '作成:'
+        updated_at: 'アップデート:'
       assessment:
         description: 説明
       assessment_section:
@@ -5645,6 +5716,10 @@ ja:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 この言語の名前は種の学名と一致してはいけません
+        user_block:
+          attributes:
+            base:
+              user_already_blocked: すでにそのユーザをブロックしています
   wild: 野生
   will_paginate:
     previous_label: "&#8592; 前へ"
