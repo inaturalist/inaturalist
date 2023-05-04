@@ -1193,7 +1193,6 @@ en:
   connected_accounts_titlecase: Connected Accounts
   connecting_flickr: "Connecting to Flickr... "
   connect_to_flickr_again_to_authorize_write_permissions: Connect to Flickr again to authorize write permissions
-  connecting_to_facebook: "Connecting to Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecting your %{site_name} account to accounts on other sites will allow you to login to %{site_name} using your credentials from those sites."
   cannot_be_changed_during_a_content_freeze: Cannot be changed during a content freeze
   conservation_status: Conservation Status
@@ -1998,16 +1997,6 @@ en:
   extra_properties: Extra Properties
   evidence_of_organism: Evidence of organism
   facebook: Facebook
-  facebook_account_information: Your Facebook Account Information
-  facebook_account_not_linked: "%{user} doesn't have a linked facebook account anymore, so %{site_name} doesn't have permission to access this photo."
-  facebook_access_token_expired: "Access token has expired. %{user} needs to re-link their Facebook account."
-  facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
-  facebook_options: Facebook Options
-  facebook_photo_import_disabled_notice: |
-    In November 2020 Facebook required us to verify that we really needed
-    access to photos, and we were unable to complete the process due to
-    problems with Facebook's verification system. As a result, we can no longer
-    support importing photos from Facebook.
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
@@ -2176,7 +2165,7 @@ en:
   frequency: Frequency
   from_a_place: from a place
   from_eol_collection: From EOL collection
-  from_flickr_facebook_etc: From Flickr, Facebook, etc.
+  from_flickr_etc: From Flickr, etc.
   from_list: From list
   from_photos: From photos
   from_place: From place
@@ -2723,14 +2712,8 @@ en:
   # user to iNat to authorize the app's use of their iNat account. "Link" is
   # a noun.
   link_to_authorization_code: Link to authorization code
-  link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_google_account: Link your Google account
-  linked_facebook: "Your %{site_name} account is currently linked to your Facebook account."
-  linked_facebook_automaticaly: "Also, keep in mind that if you log in to %{site_name} via Facebook, we will automatically re-link your %{site_name} and Facebook accounts. Seems reasonable that if you use Facebook you'll want to be able to import Facebook photos, right?"
-  linked_facebook_description: "Keeping your %{site_name} account linked to your Facebook account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Facebook to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Facebook account that you want to link %{site_name} to."
-  linked_facebook_howto: "To connect Facebook with %{site_name}, click the link on the right and sign into Facebook.com."
-  linked_facebook_password: "We will never ask you for your Facebook password (but Facebook might, check the url that the button sends you and make sure it's Facebook.com). We will also won't change your Facebook data unless you want us to."
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -3322,7 +3305,6 @@ en:
   not_found: Not found
   # Filter for observations not in a particular place
   not_in_place: Not in place
-  not_linked_facebook: "Your %{site_name} account is not linked to your Facebook account"
   not_linked_flickr: "Your %{site_name} account is not linked to your Flickr account"
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
@@ -3609,7 +3591,7 @@ en:
   options: Options
   or: or
   # Usually used to separate buttons or functional areas of the interface, e.g.
-  # sign in fields OR sign in with Facebook
+  # sign in with Apple OR Google
   or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   orange: orange
@@ -4379,10 +4361,6 @@ en:
     Apple did not provide an email address for that account, which is
     required. Please create a account on this site instead of signing
     in via Apple.
-  provider_without_email_error_flickr: |
-    Facebook did not provide an email address for that account, which is
-    required. Please create a account on this site instead of signing
-    in via Facebook.
   provider_without_email_error_flickr: |
     Flickr did not provide an email address for that account, which is
     required. Please create a account on this site instead of signing
@@ -5170,7 +5148,6 @@ en:
   tagging: 'Tagging...'
   tags: Tags
   tags_are_a_way: 'Tags are a way to organize your observations. For example, you might tag all your tidepool observations "tidepools" to make them easier to find later.'
-  take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
   target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
   target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
@@ -6017,11 +5994,9 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support: |
-    We also support <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, and
-    <a href="http://facebook.com">Facebook</a>
-    for image hosting.
+  we_also_support2: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>
+    and <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."

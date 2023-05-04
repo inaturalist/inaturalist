@@ -97,39 +97,16 @@ class ProviderOauthController < ApplicationController
 
   private
 
+  # Note that we can only do this while we have records of these users having
+  # successufully authorized in the past. As of Spring 2023, we can no longer
+  # get user data from the Facebook API, so we can't check Facebook tokens we
+  # haven't already seen
   def oauth_access_token_from_facebook_token( client_id, provider_token )
     client = Doorkeeper::Application.find_by_uid( client_id )
     return nil unless client
 
     user = if ( pa = ProviderAuthorization.where( provider_name: "facebook", token: provider_token ).first )
       pa.user
-    end
-    user ||= begin
-      fb = Koala::Facebook::API.new( provider_token )
-      r = fb.get_object( "me", fields: "id,email,name,first_name" )
-      user = User.joins( :provider_authorizations ).
-        where( "provider_authorizations.provider_uid = ?", r["id"] ).
-        where( "provider_authorizations.provider_name = 'facebook'" ).
-        first
-      user ||= User.where( "email = ?", r["email"] ).first
-      if user.blank?
-        uid = r["id"]
-        auth_info = {
-          "provider" => "facebook",
-          "uid" => uid,
-          "info" => {
-            "email" => r["email"],
-            "name" => r["name"],
-            "first_name" => r["first_name"],
-            "image" => "http://graph.facebook.com/#{uid}/picture?type=square"
-          }
-        }
-        user = User.create_from_omniauth( auth_info )
-      end
-      user
-    rescue Koala::Facebook::AuthenticationError => e
-      Rails.logger.debug "[DEBUG] Failed to get fb user info from token: #{e}"
-      nil
     end
     return nil unless user&.persisted?
 
