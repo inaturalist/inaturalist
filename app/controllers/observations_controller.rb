@@ -2328,7 +2328,6 @@ class ObservationsController < ApplicationController
       return true
     end
     if Rails.env.development?
-      FacebookPhoto
       PicasaPhoto
       LocalPhoto
       FlickrPhoto

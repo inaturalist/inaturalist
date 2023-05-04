@@ -6,7 +6,7 @@ class ProviderOauthController < ApplicationController
   layout "bootstrap"
 
   # OAuth2 assertion flow: http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
-  # Accepts Facebook and Google access tokens and returns an iNat access token
+  # Accepts Apple and Google access tokens and returns an iNat access token
   def assertion
     assertion_type = params[:assertion_type] || params[:grant_type]
     client = Doorkeeper::Application.find_by_uid( params[:client_id] )
@@ -25,8 +25,6 @@ class ProviderOauthController < ApplicationController
     access_token = begin
       Timeout.timeout( 10 ) do
         case assertion_type
-        when /facebook/
-          oauth_access_token_from_facebook_token( params[:client_id], params[:assertion] )
         when /google/
           oauth_access_token_from_google_token( params[:client_id], params[:assertion] )
         when /apple/
@@ -96,22 +94,6 @@ class ProviderOauthController < ApplicationController
   end
 
   private
-
-  # Note that we can only do this while we have records of these users having
-  # successufully authorized in the past. As of Spring 2023, we can no longer
-  # get user data from the Facebook API, so we can't check Facebook tokens we
-  # haven't already seen
-  def oauth_access_token_from_facebook_token( client_id, provider_token )
-    client = Doorkeeper::Application.find_by_uid( client_id )
-    return nil unless client
-
-    user = if ( pa = ProviderAuthorization.where( provider_name: "facebook", token: provider_token ).first )
-      pa.user
-    end
-    return nil unless user&.persisted?
-
-    assertion_access_token_for_client_and_user( client, user )
-  end
 
   def oauth_access_token_from_google_token( client_id, provider_token )
     client = Doorkeeper::Application.find_by_uid( client_id )
