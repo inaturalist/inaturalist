@@ -139,6 +139,12 @@ $label-start: 7px;
   padding: 2px 0 0 $label-start;
   line-height: 18px;
 }
+
+[dir="rtl"] .ac-result .ac-label {
+  padding: 2px $label-start 0 0;
+  line-height: 18px;
+}
+
 .ac-result.taxon .ac-label {
   display: inline-block;
 }
